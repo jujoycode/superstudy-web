@@ -73,7 +73,6 @@ import { NewsletterDetailPage } from '@/legacy/pages/student/newsletter/Newslett
 import { StudentNewsletterApprovalPage } from '@/legacy/pages/student/newsletter/StudentNewsletterApprovalPage'
 import { NoticePage } from '@/legacy/pages/student/notice/NoticePage'
 import { NotificationPage } from '@/legacy/pages/student/notification/NotificationPage'
-import { OutingAddPage } from '@/legacy/pages/student/outing/OutingAddPage'
 import { OutingApprovalPage } from '@/legacy/pages/student/outing/OutingApprovalPage'
 import { OutingDetailPage } from '@/legacy/pages/student/outing/OutingDetailPage'
 import { OutingPage } from '@/legacy/pages/student/outing/OutingPage'
@@ -87,7 +86,7 @@ import { PrivacyPolicy } from '@/legacy/pages/student/PrivacyPolicy'
 import { SelfTestPage } from '@/legacy/pages/student/self-test/SelfTestPage'
 import { TermsOfUse } from '@/legacy/pages/student/TermsOfUse'
 import { TimetableDetailPage } from '@/legacy/pages/student/timetable/TimetableDetailPage'
-import { StudentRedirect } from '@/legacy/pages/student/StudentRedirect'
+import { StudentRedirect } from '@/legacy/components/StudentRedirect'
 import CASInterviewDetailPage from '@/legacy/pages/ib/student/CAS/CASInterviewDetailPage'
 import { CASMainPage } from '@/legacy/pages/ib/student/CAS/CASMainPage'
 import { CASReflectionDiaryDetailPage } from '@/legacy/pages/ib/student/CAS/CASReflectionDiaryDetailPage'
@@ -382,7 +381,7 @@ export const routers: RouteObject[] = [
         children: [
           { index: true, element: <OutingPage /> },
           { path: '/:id', element: <OutingDetailPage /> },
-          { path: '/add', element: <OutingAddPage /> },
+          // { path: '/add', element: <OutingAddPage /> }, // props issue
         ],
       },
       { path: '/apply', element: <ApplyPage /> },
