@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { format } from 'date-fns'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
-import NODATA from 'src/assets/images/no-data.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
 import { useFeedback } from '@/legacy/container/ib-feedback'
 import { RequestFeedbackDto, ResponseFeedbackDtoReferenceTable, ResponseUserDto } from '@/legacy/generated/model'
 import { twMerge } from 'tailwind-merge'

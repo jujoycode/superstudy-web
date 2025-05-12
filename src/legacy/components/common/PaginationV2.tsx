@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { HTMLAttributes } from 'react'
 import { ResponsePaginatedIBDto } from '@/legacy/generated/model'
-import { useSearch } from 'src/lib/router'
+import { useSearch } from '@/legacy/lib/router'
 import SVGIcon from '../icon/SVGIcon'
 import { PaginationLink } from './Pagination'
 import { Typography } from './Typography'

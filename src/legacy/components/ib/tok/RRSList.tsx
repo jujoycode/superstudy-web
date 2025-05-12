@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import NODATA from 'src/assets/images/no-data.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
 import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'

@@ -1,6 +1,6 @@
 import { cloneDeep } from 'lodash'
 import React, { FC } from 'react'
-import { ReactComponent as DeleteQuestionIcon } from 'src/assets/icons/survey-delete.svg'
+import { ReactComponent as DeleteQuestionIcon } from '@/legacy/assets/icons/survey-delete.svg'
 import { SelectValues } from '../SelectValues'
 import { Radio } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'

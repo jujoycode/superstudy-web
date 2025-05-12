@@ -1,8 +1,8 @@
 import { differenceInSeconds, parseISO } from 'date-fns'
 import { useHistory } from 'react-router-dom'
 import { StudentGroup } from '@/legacy/generated/model'
-import { useModals } from 'src/modals/ModalStack'
-import { StudentModal } from 'src/modals/StudentModal'
+import { useModals } from '@/legacy/modals/ModalStack'
+import { StudentModal } from '@/legacy/modals/StudentModal'
 import { getNickName, padLeftstr } from '@/legacy/util/status'
 import { twMerge } from 'tailwind-merge'
 

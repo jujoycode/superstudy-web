@@ -6,7 +6,7 @@ import { useBlockChainContract } from '@/legacy/container/block-chain-contract'
 import { useBlockChainRequest } from '@/legacy/container/block-chain-request'
 import { useBlockChainWallet } from '@/legacy/container/block-chain-wallet'
 import { RequestUpdateSchoolInfoDto } from '@/legacy/generated/model'
-import { PrivacyManager } from 'src/pages/admin/school/SchoolPage'
+import { PrivacyManager } from '@/legacy/pages/admin/school/SchoolPage'
 import CertificationBadge from './CertificationBadge'
 
 interface BlockchainSettingProps {

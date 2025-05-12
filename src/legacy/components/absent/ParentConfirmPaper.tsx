@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import { Absent } from '@/legacy/generated/model'
-import { cn } from 'src/lib/tailwind-merge'
+import { cn } from '@/legacy/lib/tailwind-merge'
 import { getNickName, getPeriodStr } from '@/legacy/util/status'
 import { makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
 import { Td } from '../Td'

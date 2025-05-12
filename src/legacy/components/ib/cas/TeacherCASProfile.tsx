@@ -1,4 +1,4 @@
-import SvgUser from 'src/assets/images/no_profile.png'
+import SvgUser from '@/legacy/assets/images/no_profile.png'
 import { Typography } from '@/legacy/components/common/Typography'
 import { Constants } from '@/legacy/constants'
 import { ResponseIBPortfolioDto } from '@/legacy/generated/model'

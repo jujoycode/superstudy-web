@@ -1,19 +1,19 @@
-import clsx from 'clsx';
-import { ChangeEvent, TextareaHTMLAttributes, forwardRef, useEffect, useState } from 'react';
-import { cn } from 'src/lib/tailwind-merge';
-import { Typography } from './Typography';
+import clsx from 'clsx'
+import { ChangeEvent, TextareaHTMLAttributes, forwardRef, useEffect, useState } from 'react'
+import { cn } from '@/legacy/lib/tailwind-merge'
+import { Typography } from './Typography'
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  showWordCount?: boolean;
-  showLength?: boolean;
-  maxLength?: number;
-  displayMaxLength?: number;
-  onWordCountChange?: (count: number) => void;
-  readonly?: boolean;
-  disabled?: boolean;
-  readonlyBackground?: 'bg-white' | 'bg-primary-gray-100';
-  wrapperClassName?: string;
-  textareaClassName?: string;
+  showWordCount?: boolean
+  showLength?: boolean
+  maxLength?: number
+  displayMaxLength?: number
+  onWordCountChange?: (count: number) => void
+  readonly?: boolean
+  disabled?: boolean
+  readonlyBackground?: 'bg-white' | 'bg-primary-gray-100'
+  wrapperClassName?: string
+  textareaClassName?: string
 }
 
 export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(
@@ -36,51 +36,51 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
   },
   ref,
 ) {
-  const [inputValue, setInputValue] = useState(value || '');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [isError, setIsError] = useState(false);
+  const [inputValue, setInputValue] = useState(value || '')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [isError, setIsError] = useState(false)
 
   useEffect(() => {
-    if (inputValue !== value) setInputValue(value || ''); // 외부 value와 동기화
-  }, [value]);
+    if (inputValue !== value) setInputValue(value || '') // 외부 value와 동기화
+  }, [value])
 
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(false)
 
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    let newValue = e.target.value;
+    let newValue = e.target.value
 
     // 글자수 제한 처리
     if (maxLength && newValue.length > maxLength) {
-      newValue = newValue.slice(0, maxLength);
+      newValue = newValue.slice(0, maxLength)
       // 이벤트 객체 업데이트
-      e.target.value = newValue;
+      e.target.value = newValue
     }
 
     // 단어 수 계산 및 콜백 실행
     if (showWordCount && onWordCountChange) {
-      const text = newValue.trim();
-      const words = text ? text.split(/\s+/).filter((word) => word.length > 0) : [];
-      onWordCountChange(words.length);
+      const text = newValue.trim()
+      const words = text ? text.split(/\s+/).filter((word) => word.length > 0) : []
+      onWordCountChange(words.length)
     }
 
-    setInputValue(newValue);
+    setInputValue(newValue)
     if (onChange) {
-      onChange(e);
+      onChange(e)
     }
-  };
+  }
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleFocus = () => setIsFocused(true)
+  const handleBlur = () => setIsFocused(false)
 
   useEffect(() => {
     if (typeof inputValue === 'string' && displayMaxLength && inputValue.length > displayMaxLength) {
-      setIsError(true);
-      setErrorMessage('입력 가능한 글자 수를 초과하였습니다.');
+      setIsError(true)
+      setErrorMessage('입력 가능한 글자 수를 초과하였습니다.')
     } else {
-      setIsError(false);
-      setErrorMessage('');
+      setIsError(false)
+      setErrorMessage('')
     }
-  }, [inputValue]);
+  }, [inputValue])
 
   return (
     <div>
@@ -88,7 +88,7 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
         className={cn(
           clsx(
             className,
-            'relative flex flex-col justify-between gap-4 rounded-lg border border-primary-gray-200 p-4 focus:outline-none focus:ring-0',
+            'border-primary-gray-200 relative flex flex-col justify-between gap-4 rounded-lg border p-4 focus:ring-0 focus:outline-none',
             {
               'bg-primary-gray-100': (readonly && readonlyBackground === 'bg-primary-gray-100') || disabled,
               'cursor-not-allowed': readonly || disabled,
@@ -107,7 +107,7 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
           ref={ref}
           className={cn(
             clsx(
-              `h-full min-h-max w-full resize-none border-none p-0 text-15 font-medium text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 read-only:pointer-events-none focus:text-primary-gray-700 focus:outline-none focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400`,
+              `text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:text-primary-gray-700 h-full min-h-max w-full resize-none border-none p-0 font-medium read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400`,
               {
                 'bg-primary-gray-100': (readonly && readonlyBackground === 'bg-primary-gray-100') || disabled,
                 'cursor-not-allowed': readonly || disabled,
@@ -124,10 +124,10 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
           {...props}
         />
         {showWordCount && (
-          <div className="flex flex-row items-center text-12">
+          <div className="text-12 flex flex-row items-center">
             <p className="text-primary-gray-500">단어 수</p>&nbsp;
-            <p className="font-medium text-primary-orange-800">
-              <p className="font-medium text-primary-orange-800">
+            <p className="text-primary-orange-800 font-medium">
+              <p className="text-primary-orange-800 font-medium">
                 {typeof inputValue === 'string' && inputValue.trim()
                   ? inputValue
                       .trim()
@@ -139,7 +139,7 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
           </div>
         )}
         {showLength && (
-          <div className="flex flex-row items-center text-12">
+          <div className="text-12 flex flex-row items-center">
             <Typography
               variant="caption"
               className={clsx('text-primary-gray-400', { 'text-system-error-800': isError })}
@@ -151,7 +151,7 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
           </div>
         )}
       </div>
-      {errorMessage && <p className="text-sm text-system-error-800">{errorMessage}</p>}
+      {errorMessage && <p className="text-system-error-800 text-sm">{errorMessage}</p>}
     </div>
-  );
-});
+  )
+})

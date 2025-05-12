@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
-import NODATA from 'src/assets/images/no-data.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'

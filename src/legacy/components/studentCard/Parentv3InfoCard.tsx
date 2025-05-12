@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-import icon from 'src/assets/icons/more-vertical.svg'
+import icon from '@/legacy/assets/icons/more-vertical.svg'
 import { useTeacherStudentUpdateParent } from '@/legacy/container/teacher-student-update-parent'
 import { useCounselingSendParentSignUpV2 } from '@/legacy/generated/endpoint'
 import { useLanguage } from '@/legacy/hooks/useLanguage'

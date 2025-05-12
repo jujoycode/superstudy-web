@@ -1,28 +1,28 @@
-import { range } from 'lodash';
-import { HTMLAttributes } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
-import { useSearch } from 'src/lib/router';
-import { cn } from 'src/lib/tailwind-merge';
-import { Icon } from './icons';
+import { range } from 'lodash'
+import { HTMLAttributes } from 'react'
+import { Link, LinkProps } from 'react-router-dom'
+import { useSearch } from '@/legacy/lib/router'
+import { cn } from '@/legacy/lib/tailwind-merge'
+import { Icon } from './icons'
 
 interface Paginated<T> {
-  items?: T[];
-  total?: number;
-  size?: number;
+  items?: T[]
+  total?: number
+  size?: number
 }
 
 export interface PaginationProps extends HTMLAttributes<HTMLDivElement> {
-  data?: Paginated<any>;
+  data?: Paginated<any>
 }
 
 export function Pagination({ data, className, ...props }: PaginationProps) {
-  const { page } = useSearch({ page: 1 });
-  const total = data?.total ?? 0;
-  const size = data?.size ?? 25;
-  const pageSetSize = 5;
-  const pageCount = Math.ceil(total / size);
-  const startPage = Math.floor((page - 1) / pageSetSize) * pageSetSize + 1;
-  const pages = range(startPage, startPage + pageSetSize).filter((p) => p <= pageCount);
+  const { page } = useSearch({ page: 1 })
+  const total = data?.total ?? 0
+  const size = data?.size ?? 25
+  const pageSetSize = 5
+  const pageCount = Math.ceil(total / size)
+  const startPage = Math.floor((page - 1) / pageSetSize) * pageSetSize + 1
+  const pages = range(startPage, startPage + pageSetSize).filter((p) => p <= pageCount)
 
   return (
     <div className={cn('flex justify-center', className)} {...props}>
@@ -45,7 +45,7 @@ export function Pagination({ data, className, ...props }: PaginationProps) {
         </PaginationLink>
       )}
     </div>
-  );
+  )
 }
 
 export interface PaginationLinkProps extends LinkProps {}
@@ -53,8 +53,8 @@ export interface PaginationLinkProps extends LinkProps {}
 export function PaginationLink({ className, ...props }: PaginationLinkProps) {
   return (
     <Link
-      className={cn('grid h-10 w-10 place-items-center rounded-sm text-14 text-gray-500 hover:bg-gray-50', className)}
+      className={cn('text-14 grid h-10 w-10 place-items-center rounded-sm text-gray-500 hover:bg-gray-50', className)}
       {...props}
     />
-  );
+  )
 }

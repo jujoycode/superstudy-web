@@ -1,5 +1,5 @@
 import { ChangeEvent, InputHTMLAttributes } from 'react'
-import ADDFILE from 'src/assets/images/addfile.png'
+import ADDFILE from '@/legacy/assets/images/addfile.png'
 import { fileType } from '@/legacy/hooks/useImageAndDocument'
 import { Typography } from './Typography'
 

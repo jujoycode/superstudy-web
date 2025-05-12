@@ -1,6 +1,6 @@
 import { map, max, orderBy } from 'lodash'
 import { useState } from 'react'
-import NODATA from 'src/assets/images/no-data.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
 import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 import { useEEEvaluationGetItems } from '@/legacy/generated/endpoint'
 import { ResponseEEEvaluationDto } from '@/legacy/generated/model'

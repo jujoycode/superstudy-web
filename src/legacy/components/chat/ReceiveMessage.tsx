@@ -3,8 +3,8 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg'
-import SvgUser from 'src/assets/svg/user.svg'
+import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
+import SvgUser from '@/legacy/assets/svg/user.svg'
 import { Constants } from '@/legacy/constants'
 import {
   useActivityV3FindTitleByIds,

@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import { InputHTMLAttributes } from 'react';
-import { ReactComponent as FileUploadImg } from 'src/assets/svg/upload-image.svg';
+import clsx from 'clsx'
+import { InputHTMLAttributes } from 'react'
+import { ReactComponent as FileUploadImg } from '@/legacy/assets/svg/upload-image.svg'
 
 export interface MobileImageUploadProps extends InputHTMLAttributes<HTMLInputElement> {}
 
@@ -10,10 +10,10 @@ export function MobileImageUpload({ children, className, ...props }: MobileImage
       {children || (
         <>
           <FileUploadImg />
-          <p className="text-sm text-brand-1">이미지를 선택해주세요. </p>
+          <p className="text-brand-1 text-sm">이미지를 선택해주세요. </p>
         </>
       )}
       <input type="file" accept=".png, .jpeg, .jpg" className="hidden" {...props} />
     </label>
-  );
+  )
 }

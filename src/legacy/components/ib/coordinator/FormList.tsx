@@ -1,6 +1,6 @@
 import { concat, sortBy } from 'lodash'
 import { useState } from 'react'
-import NODATA from 'src/assets/images/no-data.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'

@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 // ! 개선 필요
 import { useHistory } from 'react-router-dom'
-import { Routes } from 'src/routes'
+import { Routes } from '@/legacy/routes'
 
 import { useActivityCreate, useActivityUpdate } from '@/legacy/generated/endpoint'
 import { ActivityType, UploadFileTypeEnum, type Group, type RequestCreateActivityDto } from '@/legacy/generated/model'

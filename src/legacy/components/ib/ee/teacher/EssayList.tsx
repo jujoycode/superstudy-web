@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import NODATA from 'src/assets/images/no-data.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
 import { useGetFeedbackExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
 import { useEssayGetEssay } from '@/legacy/generated/endpoint'
 import { ResponseIBDto } from '@/legacy/generated/model'

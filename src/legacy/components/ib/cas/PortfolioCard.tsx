@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
-import NODATA from 'src/assets/images/no-data.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
 import { Typography } from '@/legacy/components/common/Typography'
 import { ResponseIBPortfolioListDto } from '@/legacy/generated/model'
 import CASPercent from './CASPercent'

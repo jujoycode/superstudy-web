@@ -1,6 +1,6 @@
 import { map } from 'lodash'
 import { PropsWithChildren, useRef, useState } from 'react'
-import NODATA from 'src/assets/images/no-data.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
 import SelectBar, { SelectBarOptionProps } from '@/legacy/components/common/SelectBar'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { useIBDeadlineCreateDeadline } from '@/legacy/generated/endpoint'

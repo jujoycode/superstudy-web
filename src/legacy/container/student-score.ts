@@ -6,7 +6,7 @@ import {
   useStudentExamScoreGetStudentMockExamScoresByParent,
   useStudentExamScorePatchStudentExamScores,
 } from '@/legacy/generated/endpoint'
-import type { SchoolExamParams } from 'src/pages/student/score/SchoolExamPage'
+import type { SchoolExamParams } from '@/legacy/pages/student/score/SchoolExamPage'
 import type { StudentExamScoreGetStudentMockExamScoresByParentParams } from '@/legacy/generated/model'
 
 export interface MockScore {

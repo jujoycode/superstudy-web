@@ -1,5 +1,5 @@
-import undoArrow from 'src/assets/images/undo-arrow.png'
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg'
+import undoArrow from '@/legacy/assets/images/undo-arrow.png'
+import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
 import { Constants } from '@/legacy/constants'
 import { DocumentObject } from '@/legacy/types/document-object'
 import { getFileNameFromUrl } from '@/legacy/util/file'

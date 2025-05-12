@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg'
+import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
 import { Constants } from '@/legacy/constants'
 import { AnnouncementType, ResponseAnnouncementDto } from '@/legacy/generated/model'
 import { getFileNameFromUrl, getFileNameFromUrlToAnn } from '@/legacy/util/file'

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
-import { ReactComponent as DownArrow } from 'src/assets/icons/chevron-down.svg'
-import { ReactComponent as Plus } from 'src/assets/svg/plus.svg'
+import { ReactComponent as DownArrow } from '@/legacy/assets/icons/chevron-down.svg'
+import { ReactComponent as Plus } from '@/legacy/assets/svg/plus.svg'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useTeacherCounseling } from '@/legacy/container/teacher-counseling'
 import { UserContainer } from '@/legacy/container/user'

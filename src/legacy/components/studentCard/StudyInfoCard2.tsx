@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { ReactComponent as SomeIcon } from 'src/assets/svg/edit_orange.svg'
-import { ReactComponent as SaveIcon } from 'src/assets/svg/save.svg'
+import { ReactComponent as SomeIcon } from '@/legacy/assets/svg/edit_orange.svg'
+import { ReactComponent as SaveIcon } from '@/legacy/assets/svg/save.svg'
 import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'
 import { Button } from '@/legacy/components/common/Button'
 import { Time } from '@/legacy/components/common/Time'

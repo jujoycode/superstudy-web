@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import NODATA from 'src/assets/images/no-data.png'
-import SvgUser from 'src/assets/images/no_profile.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
+import SvgUser from '@/legacy/assets/images/no_profile.png'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'

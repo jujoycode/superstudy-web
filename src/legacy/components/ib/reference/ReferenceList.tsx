@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 import { useHistory } from 'react-router-dom'
 import { Typography } from '@/legacy/components/common/Typography'
 import { ResponseReferenceInfoDto, ResponseReferenceInfoDtoCategory } from '@/legacy/generated/model'
-import NODATA from 'src/assets/images/no-data.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
 
 interface EEReferenceListProps {
   data?: ResponseReferenceInfoDto[]

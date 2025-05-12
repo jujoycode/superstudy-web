@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react'
-import NODATA from 'src/assets/images/no-data.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'
 import { useGetIBProject } from '@/legacy/container/ib-project-get-filter'

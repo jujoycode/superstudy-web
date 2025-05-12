@@ -1,6 +1,6 @@
 import { FC, useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { SuperModal } from 'src/components/SuperModal'
+import { SuperModal } from '@/legacy/components/SuperModal'
 import { Avatar, Textarea } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'

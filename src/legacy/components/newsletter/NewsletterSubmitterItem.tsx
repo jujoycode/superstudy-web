@@ -1,8 +1,8 @@
 import { useLocation } from 'react-router'
 import { StudentGroup, StudentNewsletter } from '@/legacy/generated/model'
-import { cn } from 'src/lib/tailwind-merge'
-import { useModals } from 'src/modals/ModalStack'
-import { StudentModal } from 'src/modals/StudentModal'
+import { cn } from '@/legacy/lib/tailwind-merge'
+import { useModals } from '@/legacy/modals/ModalStack'
+import { StudentModal } from '@/legacy/modals/StudentModal'
 import { getNickName } from '@/legacy/util/status'
 
 interface NewsletterSubmitterItemProps {

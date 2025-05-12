@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import NODATA from 'src/assets/images/no-data.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
 import { SchoolScore } from '@/legacy/container/student-score'
 import { Typography } from '@/legacy/components/common/Typography'
 import SVGIcon from '../icon/SVGIcon'

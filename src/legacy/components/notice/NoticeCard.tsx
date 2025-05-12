@@ -2,7 +2,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import { Badge } from '@/legacy/components/common'
 import { Notice } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { Routes } from 'src/routes'
+import { Routes } from '@/legacy/routes'
 import { getNickName } from '@/legacy/util/status'
 import { Time } from '@/legacy/components/common/Time'
 

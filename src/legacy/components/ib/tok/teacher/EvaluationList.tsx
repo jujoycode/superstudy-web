@@ -5,7 +5,7 @@ import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 
-import NODATA from 'src/assets/images/no-data.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
 import { Typography } from '@/legacy/components/common/Typography'
 import { useTokEvaluationCreate } from '@/legacy/container/ib-evaluation'
 import { useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'

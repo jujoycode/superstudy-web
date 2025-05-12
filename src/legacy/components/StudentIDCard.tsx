@@ -12,7 +12,7 @@ import { Blank, CloseButton, IconButton, Section } from '@/legacy/components/com
 import { UploadFileTypeEnum, type ResponseUserDto, type UpdateUserDto } from '@/legacy/generated/model'
 
 // ? 추후 고도화
-import Edit from 'src/assets/svg/edit.svg'
+import Edit from '@/legacy/assets/svg/edit.svg'
 
 interface StudentIDCardProps {
   meRecoil: ResponseUserDto

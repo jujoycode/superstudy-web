@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import { Absent } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
-import { cn } from 'src/lib/tailwind-merge'
+import { cn } from '@/legacy/lib/tailwind-merge'
 import { getNickName } from '@/legacy/util/status'
 import { makeStartEndToString } from '@/legacy/util/time'
 import { Td } from '../Td'

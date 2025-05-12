@@ -1,6 +1,6 @@
 import { Typography } from '@/legacy/components/common/Typography'
-import ADDFILE from 'src/assets/images/addfile.png'
-import WRITE from 'src/assets/images/write.png'
+import ADDFILE from '@/legacy/assets/images/addfile.png'
+import WRITE from '@/legacy/assets/images/write.png'
 import clsx from 'clsx'
 import { ChangeEvent, useState, useRef } from 'react'
 import AlertV2 from '@/legacy/components/common/AlertV2'

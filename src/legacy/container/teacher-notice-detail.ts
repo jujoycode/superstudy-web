@@ -3,7 +3,7 @@ import { useQueryClient } from 'react-query'
 
 // ! 개선 필요
 import { useHistory } from 'react-router-dom'
-import { Routes } from 'src/routes'
+import { Routes } from '@/legacy/routes'
 
 import { Constants } from '@/legacy/constants'
 import { isPdfFile } from '@/legacy/util/file'

@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 // ! 개선 필요
 import { useHistory } from 'react-router-dom'
-import { Routes } from 'src/routes'
+import { Routes } from '@/legacy/routes'
 
 import { Constants } from '@/legacy/constants'
 import { useActivityDelete, useActivityFindOne } from '@/legacy/generated/endpoint'

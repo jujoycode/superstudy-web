@@ -2,7 +2,7 @@ import { filter, maxBy, orderBy } from 'lodash'
 import { useState } from 'react'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
-import { PopupModal } from 'src/components/PopupModal'
+import { PopupModal } from '@/legacy/components/PopupModal'
 import { useTokEvaluationGetCriteriaItems } from '@/legacy/generated/endpoint'
 import {
   RequestCreateTokEvaluationDtoType,
@@ -17,7 +17,7 @@ import { Typography } from '../../@/legacy/components/common/Typography'
 import FrontPaginatedList from '../../../FrontPaginatedList '
 import { CoordinatorTOK_Eval_AddEval } from './CoordinatorTOK_Eval_AddEval'
 import { CoordinatorTOK_Eval_UpdateEval } from './CoordinatorTOK_Eval_UpdateEval'
-import NODATA from 'src/assets/images/no-data.png'
+import NODATA from '@/legacy/assets/images/no-data.png'
 import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 
 export type ModalType = 'Category' | 'Update' | 'Add' | null

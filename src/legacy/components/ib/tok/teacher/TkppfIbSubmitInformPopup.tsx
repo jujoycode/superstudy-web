@@ -6,7 +6,7 @@ import { Check } from '@/legacy/components/common/Check'
 import { Input } from '@/legacy/components/common/Input'
 import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import { Typography } from '@/legacy/components/common/Typography'
-import { PopupModal } from 'src/components/PopupModal'
+import { PopupModal } from '@/legacy/components/PopupModal'
 import { useIBTKPPFUpdateInfo, useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
 import { RequestTKPPFInfoUpdateDto, ResponseIBDto, ResponseTKPPFDto } from '@/legacy/generated/model'
 
