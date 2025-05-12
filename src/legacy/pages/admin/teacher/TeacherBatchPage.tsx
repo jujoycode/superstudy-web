@@ -1,18 +1,17 @@
 import { useContext, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
 import readXlsxFile from 'read-excel-file'
 import { useSetRecoilState } from 'recoil'
 import { Blank } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { teacherManagementBulkCreateTeacher, teacherManagementRequestSignUp } from '@/legacy/generated/endpoint'
-import { RequestCreateTeacherDto, RequestCreateUserBulkDto, Role } from '@/legacy/generated/model'
+import { type RequestCreateTeacherDto, type RequestCreateUserBulkDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { toastState, warningState } from 'src/store'
 import { AdminContext } from '../AdminMainPage'
 
 export function TeacherBatchPage() {
-  const { goBack } = useHistory()
   const { year } = useContext(AdminContext)
   const [isLoading, setIsLoading] = useState(false)
   const [items, setItems] = useState<RequestCreateTeacherDto[]>([])
@@ -46,7 +45,7 @@ export function TeacherBatchPage() {
           headNumber,
           homeRoomKlass,
         }))
-        setItems(items as any)
+        setItems(items as RequestCreateTeacherDto[])
       } else {
         alert('선생님 일괄 추가 양식의 엑셀파일을 선택해주세요.')
       }
@@ -91,15 +90,13 @@ export function TeacherBatchPage() {
     let sucCnt = 0
     await Promise.all(
       newMembers.map(async (item) => {
-        try {
-          const result = await teacherManagementRequestSignUp(item.id)
-          if (result) {
-            sucCnt++
-            item.failReason = '전송 성공'
-          } else {
-            item.failReason = '가입요청 메일 전송 실패'
-          }
-        } catch (error) {
+        const result = await teacherManagementRequestSignUp(item.id).catch(() => {
+          item.failReason = '가입요청 메일 전송 실패'
+        })
+        if (result) {
+          sucCnt++
+          item.failReason = '전송 성공'
+        } else {
           item.failReason = '가입요청 메일 전송 실패'
         }
       }),

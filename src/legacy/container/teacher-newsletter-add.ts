@@ -3,7 +3,7 @@ import { useQueryClient } from 'react-query'
 
 // ! 개선 필요
 import { useHistory, useLocation } from 'react-router-dom'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'

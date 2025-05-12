@@ -1,8 +1,7 @@
-import { useHistory } from 'react-router-dom'
 import { BackButton, BottomFixed, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 
 interface FindIdSuccessPageProps {
   phone: string

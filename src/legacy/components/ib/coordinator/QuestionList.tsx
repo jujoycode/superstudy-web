@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'

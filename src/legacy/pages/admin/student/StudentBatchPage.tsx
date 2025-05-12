@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import readXlsxFile from 'read-excel-file'
 import { useSetRecoilState } from 'recoil'
 import { Blank } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { studentManagementBulkCreateStudent } from '@/legacy/generated/endpoint'
-import { RequestCreateStudentDto, RequestCreateUserBulkDto } from '@/legacy/generated/model'
+import type { RequestCreateStudentDto, RequestCreateUserBulkDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { toastState, warningState } from 'src/store'
 import { AdminContext } from '../AdminMainPage'
+import useHistory from '@/legacy/hooks/useHistory'
 
 export function StudentBatchPage() {
   const { goBack } = useHistory()
@@ -29,7 +29,7 @@ export function StudentBatchPage() {
     if (currentMonth === 2 && year !== currentYear) {
       setWarningMsg(`주의 : ${year} 학년도가 선택되어 있습니다.`)
     }
-  }, [year])
+  }, [year, setWarningMsg])
 
   const { t } = useLanguage()
 
@@ -42,7 +42,7 @@ export function StudentBatchPage() {
         const items = rows.map(([grade, klass, studentNumber, name, nickName, email, barcode, nokName, nokPhone]) => {
           return { grade, klass, studentNumber, name, nickName, email, barcode, nokName, nokPhone }
         })
-        setItems(items as any)
+        setItems(items as RequestCreateStudentDto[])
       } else {
         alert('학생 일괄 추가 양식의 엑셀파일을 선택해주세요.')
       }
@@ -66,11 +66,10 @@ export function StudentBatchPage() {
       chunkedItems.push(items.slice(i, i + CHUNK_SIZE))
     }
 
-    const allResults: any[] = []
+    const allResults: RequestCreateUserBulkDto[] = []
 
     try {
       for (const chunk of chunkedItems) {
-        console.log('chunk')
         const formattedChunk = chunk.map((item) => ({
           ...item,
           grade: Number(item.grade),
@@ -92,7 +91,7 @@ export function StudentBatchPage() {
         setToastMsg('학생 일괄 추가를 완료하였습니다')
         goBack()
       }
-    } catch (error) {
+    } catch {
       setIsLoading(false)
       setToastMsg('학생 일괄 추가를 실패하였습니다.')
     }

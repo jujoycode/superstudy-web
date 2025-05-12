@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
 import { useRecoilValue } from 'recoil'
 import { useFieldtripResultResend, useFieldtripsFindOne } from '@/legacy/generated/endpoint'
 import { childState } from '@/stores'

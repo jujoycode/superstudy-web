@@ -15,7 +15,7 @@ import { useCodeGetPartnerSchoolBySchool, userSignup, useSchoolsFindOne } from '
 import { RequestSignupDto } from '@/legacy/generated/model'
 import { form } from '@/legacy/lib/form'
 import { useSearch } from '@/legacy/lib/router'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { toastState } from 'src/store'
 import { Validator } from '@/legacy/util/validator'
 

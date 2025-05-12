@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { Label, Select } from '@/legacy/components/common'
@@ -8,12 +8,13 @@ import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { parentManagementUpdateParent, useParentManagementGetParentInfo } from '@/legacy/generated/endpoint'
-import { RequestModifyParentDto } from '@/legacy/generated/model'
+import { type RequestModifyParentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { toastState } from 'src/store'
 import { AdminContext } from '../AdminMainPage'
+import useHistory from '@/legacy/hooks/useHistory'
 
 export function ParentEditPage() {
   const { goBack } = useHistory()
@@ -35,8 +36,8 @@ export function ParentEditPage() {
 
   useEffect(() => parentInfo && reset(parentInfo), [parentInfo])
 
-  async function save(params: any) {
-    await parentManagementUpdateParent(id, params).then((result) => {
+  async function save(params: RequestModifyParentDto) {
+    await parentManagementUpdateParent(id, params).then(() => {
       setToastMsg(`${params.name} 님 수정완료`)
     })
     goBack()

@@ -1,18 +1,19 @@
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { NumberInput } from '@/legacy/components/common/NumberInput'
 import { klassManagementCreateKlass } from '@/legacy/generated/endpoint'
-import { RequestCreateKlassDto } from '@/legacy/generated/model'
+import { type RequestCreateKlassDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { toastState } from 'src/store'
 import { AdminContext } from '../AdminMainPage'
+import useHistory from '@/legacy/hooks/useHistory'
 
 export function KlassEditPage() {
   const { push } = useHistory()
@@ -28,7 +29,7 @@ export function KlassEditPage() {
     formState: { errors, isValid },
   } = useForm<RequestCreateKlassDto>()
 
-  async function save(params: any) {
+  async function save(params: RequestCreateKlassDto) {
     if (id) return
     const klass = await klassManagementCreateKlass({ ...params, year }).catch((error) =>
       alert(error.response.data.message),

@@ -5,7 +5,7 @@ import { useIBRRSNotSubmittedNotification, useIBRRSSubmissionStatus } from '@/le
 import { useRRSGetSubmissionStatusCount } from '@/legacy/generated/endpoint'
 import { RRSGetSubmissionStatusCountParams, RRSGetSubmissionStatusStatus } from '@/legacy/generated/model'
 import RRSOverviewPanel from './RRSOverviewPanel'
-import { useHistory } from 'react-router-dom'
+
 import { Blank } from '@/legacy/components/common/Blank'
 
 export default function RRSView({ grade, klass }: RRSGetSubmissionStatusCountParams) {

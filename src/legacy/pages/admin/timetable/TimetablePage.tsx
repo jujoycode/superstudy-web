@@ -15,7 +15,6 @@ import { Constants } from '@/legacy/constants'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import {
   schoolManagementGetRegistTimetable,
-  schoolManagementLoadTimetableFromNeis,
   schoolManagementRegistTimetable,
   schoolManagementResetLecture,
   timetableManagementCreateMoveLecture,
@@ -33,15 +32,17 @@ import {
 import {
   Category,
   LectureType,
-  ResponseTimetableUploadInfoDto,
-  ResponseTimetableV3Dto,
+  type ResponseGroupDto,
+  type ResponseTeacherInfoDto,
+  type ResponseTimetableUploadInfoDto,
+  type ResponseTimetableV3Dto,
   UploadFileTypeEnum,
 } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { meState, toastState, warningState } from 'src/store'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getFileNameFromUrl } from '@/legacy/util/file'
@@ -106,7 +107,6 @@ export function TimetablePage() {
   const [exchangeEndWeekNum, setExchangeEndWeekNum] = useState<number>(0)
   const [exchangeStartWeekIndex, setExchangeStartWeekIndex] = useState<number>(0)
   const [exchangeEndWeekIndex, setExchangeEndWeekIndex] = useState<number>(0)
-  const [modalOpen, setModalOpen] = useState(false)
   const [subjectInput, setSubjectInput] = useState(false)
   const [subjectUser, setSubjectUser] = useState<string>('')
 
@@ -159,7 +159,7 @@ export function TimetablePage() {
   const klass = klasses?.find((k) => k.id === klassId)
 
   const uniqueKlasses = useMemo(() => {
-    return klasses?.reduce((acc: any[], current) => {
+    return klasses?.reduce((acc: ResponseGroupDto[], current) => {
       const x = acc.find((item) => item.id === current.id)
       if (!x) {
         acc.push(current)
@@ -178,7 +178,7 @@ export function TimetablePage() {
   )
 
   const uniqueKlubs = useMemo(() => {
-    return klubs?.reduce((acc: any[], current) => {
+    return klubs?.reduce((acc: ResponseGroupDto[], current) => {
       const x = acc.find((item) => item.id === current.id)
       if (!x) {
         acc.push(current)
@@ -191,6 +191,7 @@ export function TimetablePage() {
   const students = useMemo(() => {
     return (
       studentsOrg?.items
+        //@ts-ignore
         .filter((student) => !student.notAttend)
         .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0)) ?? []
     )
@@ -210,7 +211,7 @@ export function TimetablePage() {
   }, [teachers, teacherId])
 
   const uniqueTeacher = useMemo(() => {
-    return teachers?.items.reduce((acc: any[], current) => {
+    return teachers?.items.reduce((acc: ResponseTeacherInfoDto[], current) => {
       const x = acc.find((item) => item.id === current.id)
       if (!x) {
         acc.push(current)
@@ -261,7 +262,7 @@ export function TimetablePage() {
   async function resetExcel(type: string) {
     if (type === 'file') {
       if (!confirm(`시간표 등록시 사용된 엑셀 파일을 삭제할까요? 등록된 시간표는 유지 됩니다.`)) return
-      const rst = await schoolManagementResetLecture()
+      await schoolManagementResetLecture()
       await fetchRegistJobs()
     } else {
       if (type === 'student') {
@@ -269,7 +270,7 @@ export function TimetablePage() {
       } else if (type === 'all') {
         if (!confirm(`전체시간표를 초기화 하시겠습니까? 초기화 후 엑셀파일을 다시 등록하세요.`)) return
       }
-      const rst = await timetableManagementResetLecture(type, { year, semester })
+      await timetableManagementResetLecture(type, { year, semester })
     }
   }
 
@@ -285,7 +286,7 @@ export function TimetablePage() {
     resetDocuments()
   }, [neisRegType, bulkRegMode])
 
-  async function save(params: any) {
+  async function save(params: ResponseTimetableV3Dto) {
     let reqParams = {
       ...params,
       year: `${year}`,
@@ -302,7 +303,7 @@ export function TimetablePage() {
     if (target === TimetableTarget.TEACHER) {
       reqParams.type = LectureType.MOVE // 선생님은 분반수업만 수정하도록 막음.
     } else if (target === TimetableTarget.KLASS) {
-      reqParams.groupId = klassId
+      reqParams.groupId = klassId || 0
     }
 
     await timetableManagementCreateMoveLecture(weekNum, lecture.id || 0, reqParams)
@@ -314,14 +315,6 @@ export function TimetablePage() {
     if (!lecture.id) return
     if (!confirm(`${lecture.subject} 수업을 삭제할까요?`)) return
     await timetableManagementDeleteLecture(lecture.id)
-  }
-
-  async function loadNEISTimetable() {
-    if (!confirm(`나이스 시간표 정보를 불러올까요?`)) return
-
-    await schoolManagementLoadTimetableFromNeis({ year, semester, grade: klass?.grade, klass: klass?.klass })
-    //refetch();
-    setToastMsg('나이스 시간표 정보를 불러왔습니다.')
   }
 
   function getWeekIndex(weekNum: number) {
@@ -376,7 +369,7 @@ export function TimetablePage() {
 
   const { documentObjectMap, handleDocumentAdd, toggleDocumentDelete, resetDocuments } = useImageAndDocument({})
 
-  const { isUploadLoading, handleUploadFile } = useFileUpload()
+  const { handleUploadFile } = useFileUpload()
 
   async function handleSubmitNeisTimeTable(timeTableType: string) {
     if (!confirm(`나이스 시간표를 등록할까요?`)) return
@@ -463,7 +456,7 @@ export function TimetablePage() {
           </Select>
           {(target === TimetableTarget.KLASS || target === TimetableTarget.STUDENT) && (
             <Select value={klassId} onChange={(e) => setKlassId(Number(e.target.value))}>
-              {uniqueKlasses?.map((k: any) => (
+              {uniqueKlasses?.map((k: ResponseGroupDto) => (
                 <option key={k.id} value={k.id}>
                   {k.name}
                 </option>
@@ -570,7 +563,7 @@ export function TimetablePage() {
                                 if (
                                   lec?.subject &&
                                   lec?.subject !== '' &&
-                                  uniqueKlasses?.includes(lec?.subject) === false
+                                  !uniqueKlasses?.map((el) => el.teacherGroupSubject)?.includes(lec?.subject)
                                 ) {
                                   setSubjectInput(true)
                                   setSubjectUser(lec?.subject)

@@ -11,7 +11,7 @@ import { GroupContainer } from '@/legacy/container/group'
 import { useStudentChatRoomList } from '@/legacy/container/student-chat-room-list'
 import { useStudentChatUserList } from '@/legacy/container/student-chat-user-list'
 import { ResponseGroupDto } from '@/legacy/generated/model'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { UserDatas } from '@/legacy/types'
 import { ChatDetailPage } from './ChatDetailPage'
 

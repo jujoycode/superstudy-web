@@ -1,5 +1,5 @@
 import { differenceInSeconds, parseISO } from 'date-fns'
-import { useHistory } from 'react-router-dom'
+
 import { StudentGroup } from '@/legacy/generated/model'
 import { useModals } from '@/legacy/modals/ModalStack'
 import { StudentModal } from '@/legacy/modals/StudentModal'

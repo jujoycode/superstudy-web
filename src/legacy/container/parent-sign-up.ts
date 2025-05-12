@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 // ! 개선 필요
-import { useHistory } from 'react-router-dom'
 
 import { useRecoilValue } from 'recoil'
 import { useUserGetUser, useUserParentSignUp } from '@/legacy/generated/endpoint'

@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { t } from 'i18next'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
 import { useRecoilValue } from 'recoil'
 import { ErrorBlank, SelectValues } from '@/legacy/components'
 import { BackButton, Badge, Blank, BottomFixed, Label, Section, TopNavbar } from '@/legacy/components/common'

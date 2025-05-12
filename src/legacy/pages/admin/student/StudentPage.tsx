@@ -1,5 +1,5 @@
 import { debounce } from 'lodash'
-import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { type ChangeEvent, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
@@ -18,14 +18,16 @@ import {
 } from '@/legacy/generated/endpoint'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSearch } from '@/legacy/lib/router'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { toastState, warningState } from 'src/store'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
 import { AdminContext } from '../AdminMainPage'
+import type { ResponseGroupDto } from '@/legacy/generated/model'
 
 export function StudentPage() {
   const { t } = useLanguage()
+  //@ts-expect-error useTranslation type instantiation error
   const { t: ta } = useTranslation('admin', { keyPrefix: 'student_page' })
   const { year } = useContext(AdminContext)
   const { page, size } = useSearch({ page: 1, size: 25 })
@@ -63,7 +65,9 @@ export function StudentPage() {
     await Promise.all(
       ids.map((id) =>
         studentManagementRequestSignUp(id).then((result) => {
-          result && sucCnt++
+          if (result) {
+            sucCnt++
+          }
         }),
       ),
     )
@@ -77,7 +81,9 @@ export function StudentPage() {
     await Promise.all(
       ids.map((id) =>
         studentManagementDeleteStudent(id).then((result) => {
-          result && sucCnt++
+          if (result) {
+            sucCnt++
+          }
         }),
       ),
     )
@@ -123,7 +129,7 @@ export function StudentPage() {
           <Select value={klassName} onChange={(e) => setKlassName(e.target.value)}>
             <option value="">{t('select_class')}</option>
             {klasses
-              ?.reduce((acc: any[], current: any) => {
+              ?.reduce((acc: ResponseGroupDto[], current: ResponseGroupDto) => {
                 if (!acc.find((item) => item.id === current.id)) {
                   acc.push(current)
                 }

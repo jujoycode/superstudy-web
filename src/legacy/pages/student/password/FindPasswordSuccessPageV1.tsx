@@ -1,4 +1,3 @@
-import { useHistory } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { Toast } from '@/legacy/components/Toast'
 import { Alert, BackButton, Blank, BottomFixed, Section, TopNavbar } from '@/legacy/components/common'

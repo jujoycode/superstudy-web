@@ -10,7 +10,7 @@ import {
   useAdminCommonFindAllKlassBySchool,
   useStudentManagementGetStudents,
 } from '@/legacy/generated/endpoint'
-import { ResponseStudentInfoDto, UploadFileTypeEnum } from '@/legacy/generated/model'
+import { type ResponseGroupDto, type ResponseStudentInfoDto, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
 import { useSearch } from '@/legacy/lib/router'
 import { cn } from '@/legacy/lib/tailwind-merge'
@@ -20,6 +20,7 @@ import { AdminContext } from '../AdminMainPage'
 const MAX_UPLOAD_FILES = 25
 
 export function StudentPhotosPage() {
+  //@ts-expect-error useTranslation type instantiation error
   const { t } = useTranslation()
   const { t: ta } = useTranslation('admin', { keyPrefix: 'student_photos_page' })
   const { year } = useContext(AdminContext)
@@ -76,7 +77,7 @@ export function StudentPhotosPage() {
 
           <Select value={klassName} onChange={(e) => setKlassName(e.target.value)}>
             {klasses
-              ?.reduce((acc: any[], current: any) => {
+              ?.reduce((acc: ResponseGroupDto[], current: ResponseGroupDto) => {
                 if (!acc.find((item) => item.id === current.id)) {
                   acc.push(current)
                 }

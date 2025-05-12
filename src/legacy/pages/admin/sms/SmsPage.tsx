@@ -18,7 +18,7 @@ import { FrontPagination } from '@/legacy/components'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
-import { CoachPosition, Guide, useCoachMark } from '@/legacy/components/common/CoachMark'
+import { CoachPosition, type Guide, useCoachMark } from '@/legacy/components/common/CoachMark'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import {
   useSmsGetFieldtripsByTeacher,
@@ -26,7 +26,7 @@ import {
   useSmsManagementGetCreditRemain,
   useSmsManagementGetStatistics,
 } from '@/legacy/generated/endpoint'
-import { SmsCreditHistory } from '@/legacy/generated/model'
+import { type SmsCreditHistory } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { isValidDate, makeDateToString } from '@/legacy/util/time'
 

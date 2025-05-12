@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -13,13 +13,14 @@ import {
   studentManagementUpdateStudent,
   useStudentManagementGetStudentInfo,
 } from '@/legacy/generated/endpoint'
-import { Category, RequestCreateStudentDto, RequestModifyStudentDto } from '@/legacy/generated/model'
+import { Category, type RequestCreateStudentDto, type RequestModifyStudentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { toastState, warningState } from 'src/store'
 import { getErrorMsg } from '@/legacy/util/status'
 import { AdminContext } from '../AdminMainPage'
+import useHistory from '@/legacy/hooks/useHistory'
 
 export function StudentEditPage() {
   const { goBack } = useHistory()
@@ -46,27 +47,29 @@ export function StudentEditPage() {
 
   useEffect(() => studentInfo && reset(studentInfo.studentData), [studentInfo])
 
-  async function save(params: any) {
+  async function save(params: RequestModifyStudentDto & RequestCreateStudentDto) {
     if (params.expiredReason === '') {
       params.expiredReason = null
     }
-    id
-      ? await studentManagementUpdateStudent(id, params)
-          .then((result) => {
-            setToastMsg(`${params.name} 님 수정완료`)
-            goBack()
-          })
-          .catch((result) => {
-            setToastMsg(getErrorMsg(result))
-          })
-      : await studentManagementCreateStudent({ ...params, year })
-          .then((result) => {
-            setToastMsg(`${params.name} 님 추가완료`)
-            goBack()
-          })
-          .catch((result) => {
-            setToastMsg(getErrorMsg(result))
-          })
+    if (id) {
+      await studentManagementUpdateStudent(id, params)
+        .then(() => {
+          setToastMsg(`${params.name} 님 수정완료`)
+          goBack()
+        })
+        .catch((error) => {
+          setToastMsg(getErrorMsg(error))
+        })
+    } else {
+      await studentManagementCreateStudent({ ...params, year })
+        .then(() => {
+          setToastMsg(`${params.name} 님 추가완료`)
+          goBack()
+        })
+        .catch((error) => {
+          setToastMsg(getErrorMsg(error))
+        })
+    }
   }
 
   return (
@@ -125,7 +128,7 @@ export function StudentEditPage() {
                 const state = studentStates.find((s) => s.name === e.target.value)
                 setValue('expired', state?.etc1 === 'true')
                 setValue('expiredReason', e.target.value)
-                setValue('notAttend', state?.etc2 === 'true')
+                // setValue('notAttend', state?.etc2 === 'true')
 
                 if (state?.etc1 === 'true') {
                   setToastWarnMsg(`${state?.name} 상태의 학생은 슈퍼스쿨 사용이 중지 됩니다.`)

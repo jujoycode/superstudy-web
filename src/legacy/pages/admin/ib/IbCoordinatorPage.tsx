@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import _ from 'lodash'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { Admin } from '@/legacy/components/common/Admin'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -9,10 +8,14 @@ import { Typography } from '@/legacy/components/common/Typography'
 import ConfirmSelectBar from '@/legacy/components/ib/coordinator/ConfirmSelectBar'
 import { useGetIBCoordinators, useUpateIBCoordinator } from '@/legacy/container/ib-admin'
 import { useUserGetAllTeachers } from '@/legacy/generated/endpoint'
-import { RequestCoordinatorDto } from '@/legacy/generated/model'
+import { type RequestCoordinatorDto } from '@/legacy/generated/model'
 import { twMerge } from 'tailwind-merge'
+import { useTranslation } from 'react-i18next'
+
+import '@/legacy/util/i18n'
 
 export function IbCoordinatorPage() {
+  //@ts-expect-error useTranslation type instantiation error
   const { t } = useTranslation()
   const { pathname } = useLocation()
   const [alertMessage, setAlertMessage] = useState<string | null>(null)

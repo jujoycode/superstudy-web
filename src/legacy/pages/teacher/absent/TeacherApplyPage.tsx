@@ -1,6 +1,6 @@
 import { t } from 'i18next'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
 import { ReactComponent as RightArrow } from '@/legacy/assets/svg/mypage-right-arrow.svg'
 import { BackButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'

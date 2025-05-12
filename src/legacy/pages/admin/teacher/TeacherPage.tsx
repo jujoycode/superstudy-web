@@ -1,5 +1,5 @@
 import { debounce } from 'lodash'
-import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { type ChangeEvent, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { Select } from '@/legacy/components/common'
@@ -15,10 +15,10 @@ import {
   teacherManagementRequestSignUp,
   useTeacherManagementGetTeachers,
 } from '@/legacy/generated/endpoint'
-import { ResponseTeacherInfoDto, Role } from '@/legacy/generated/model'
+import { type ResponseTeacherInfoDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSearch } from '@/legacy/lib/router'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { toastState, warningState } from 'src/store'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
@@ -52,13 +52,17 @@ export function TeacherPage() {
     { query: { keepPreviousData: true } },
   )
 
-  const idMap = teachers?.items.reduce((map: any, obj: any) => {
+  const idMap = teachers?.items.reduce((map: Record<number, ResponseTeacherInfoDto>, obj: ResponseTeacherInfoDto) => {
     map[obj.id] = obj
     return map
   }, {})
 
   // idMap의 값들을 배열로 변환합니다.
-  const uniqueTeachers: ResponseTeacherInfoDto[] = idMap && Object.values(idMap)
+  let uniqueTeachers: ResponseTeacherInfoDto[] = []
+
+  if (idMap) {
+    uniqueTeachers = Object.values(idMap)
+  }
 
   const cb = useCheckbox(uniqueTeachers)
   const ids = cb.items.map(({ id }) => id)
@@ -69,7 +73,9 @@ export function TeacherPage() {
     await Promise.all(
       ids.map((id) =>
         teacherManagementRequestSignUp(id).then((result) => {
-          result && sucCnt++
+          if (result) {
+            sucCnt++
+          }
         }),
       ),
     )
@@ -83,7 +89,9 @@ export function TeacherPage() {
     await Promise.all(
       ids.map((id) =>
         teacherManagementDeleteTeacher(id).then((result) => {
-          result && sucCnt++
+          if (result) {
+            sucCnt++
+          }
         }),
       ),
     )

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useParams } from 'react-router'
-import { useHistory } from 'react-router-dom'
+
 import Viewer from 'react-viewer'
 import { useRecoilValue } from 'recoil'
 import { ErrorBlank, SuperModal } from '@/legacy/components'

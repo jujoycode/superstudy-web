@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
 import { useActiveAnnouncements } from '@/legacy/container/active-announcement'
 import { ResponseAnnouncementDto } from '@/legacy/generated/model'
 import { jsonParseSafe } from '@/legacy/util/validator'

@@ -16,7 +16,7 @@ import { useTeacherChatRoomList } from '@/legacy/container/teacher-chat-room-lis
 import { MergedGroupType, useTeacherChatUserList } from '@/legacy/container/teacher-chat-user-list'
 import { GroupType, ResponseGroupDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { meState, toastState } from 'src/store'
 import { MenuType, UserDatas } from '@/legacy/types'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'

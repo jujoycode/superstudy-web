@@ -1,6 +1,6 @@
 import { useState } from 'react'
 // ! 개선 필요
-import { useHistory } from 'react-router-dom'
+
 import {
   useFieldtripResultDenyResult,
   useFieldtripResultResend,

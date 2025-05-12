@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 // ! 개선 필요
-import { useHistory } from 'react-router-dom'
+
 import { Routes } from '@/routers'
 
 import {

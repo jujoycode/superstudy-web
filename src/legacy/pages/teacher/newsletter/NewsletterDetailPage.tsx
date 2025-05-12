@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useParams } from 'react-router'
-import { useHistory } from 'react-router-dom'
+
 import Viewer from 'react-viewer'
 import { useRecoilValue } from 'recoil'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
@@ -12,7 +12,7 @@ import { useTeacherNewsletterDetail } from '@/legacy/container/teacher-newslette
 import { useNewsLettersUpdateEndAt } from '@/legacy/generated/endpoint'
 import { NewsletterType, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { meState } from 'src/store'
 import { UserDatas } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'

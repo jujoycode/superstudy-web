@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 
 // ! 개선 필요
-import { useHistory } from 'react-router-dom'
+
 import { Routes } from '@/routers'
 
 import { useSetRecoilState } from 'recoil'

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
 import { Constants } from '@/legacy/constants'
 import { ResponseAnnouncementDto } from '@/legacy/generated/model'
 import { isHTML, jsonParseSafe } from '@/legacy/util/validator'

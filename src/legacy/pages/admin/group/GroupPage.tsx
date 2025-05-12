@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -20,12 +20,18 @@ import {
   useGroupManagementGetGroupDetailInfo,
   useGroupManagementGetGroupList,
 } from '@/legacy/generated/endpoint'
-import { Category, RequestGroupTeacherDto, RequestModifyGroupOnlyDto, SubjectType } from '@/legacy/generated/model'
+import {
+  Category,
+  type RequestGroupTeacherDto,
+  type RequestModifyGroupOnlyDto,
+  SubjectType,
+} from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { toastState, warningState } from 'src/store'
 import { getErrorMsg, getNickName } from '@/legacy/util/status'
 import { AdminContext } from '../AdminMainPage'
+import useHistory from '@/legacy/hooks/useHistory'
 
 const SubjectTypes = [
   { id: 0, name: '과목', value: SubjectType.LECTURE },
@@ -56,12 +62,10 @@ export function GroupPage() {
     }
   }, [year])
 
-  const [categoryType, setCategoryType] = useState<any>(SubjectTypes[0].value)
+  const [categoryType, setCategoryType] = useState<string>(SubjectTypes[0].value)
 
   const { categoryData: codeCreativeActivities } = useCodeByCategoryName(Category.creativeActivity)
   const { categoryData: codeSubjects } = useCodeByCategoryName(Category.subjectType)
-
-  const [subject, setSubject] = useState<string>('')
 
   const { data: allTeachers } = useAdminCommonSearchTeachers({ year })
   const { data: allStudents } = useAdminCommonSearchStudents(
@@ -72,18 +76,18 @@ export function GroupPage() {
 
   useEffect(() => {
     if (groupId || isLoading) return
-    groups?.[0] ? replace(`${Routes.admin.group.index}/${groups[0].id}`) : replace(Routes.admin.group.new)
+    if (groups && groups[0]) {
+      replace(`${Routes.admin.group.index}/${groups[0].id}`)
+    } else {
+      replace(Routes.admin.group.new)
+    }
   }, [isLoading, groups])
 
   const { data: group } = useGroupManagementGetGroupDetailInfo(groupId, {
     query: { keepPreviousData: true, enabled: !!groupId },
   })
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isValid },
-  } = useForm<RequestModifyGroupOnlyDto>()
+  const { handleSubmit, register } = useForm<RequestModifyGroupOnlyDto>()
 
   const {
     handleSubmit: handleGroupTeacherSubmit,
@@ -91,14 +95,14 @@ export function GroupPage() {
     reset: resetGroupTeacher,
   } = useForm<RequestGroupTeacherDto>()
 
-  async function saveGroupName(params: any) {
+  async function saveGroupName(params: RequestModifyGroupOnlyDto) {
     if (!groupId) return
-    const group = await groupManagementUpdateGroup(groupId, { ...params, year: `${year}` })
+    await groupManagementUpdateGroup(groupId, { ...params, year: `${year}` })
     setToastMsg(`${params.name} 그룹명이 변경되었습니다`)
     setEditGroup(false)
   }
 
-  async function addGroupTeacher(params: any) {
+  async function addGroupTeacher(params: RequestGroupTeacherDto) {
     if (!groupId) return
     await groupManagementAddTeachers(groupId, { groupTeachers: [params] })
     resetGroupTeacher({ userId: undefined, subject: '', room: '' })
@@ -132,9 +136,11 @@ export function GroupPage() {
     if (!confirm(`${group.groupInfo.name} 그룹을 삭제할까요?`)) return
     await groupManagementDeleteGroup(groupId)
       .then((result) => {
-        result
-          ? setToastMsg(`${group.groupInfo.name} 그룹이 삭제되었습니다`)
-          : setToastMsg(`${group.groupInfo.name} 그룹을 삭제할 수 없습니다`)
+        if (result) {
+          setToastMsg(`${group.groupInfo.name} 그룹이 삭제되었습니다`)
+        } else {
+          setToastMsg(`${group.groupInfo.name} 그룹을 삭제할 수 없습니다`)
+        }
       })
       .catch((result) => {
         setToastMsg(getErrorMsg(result))

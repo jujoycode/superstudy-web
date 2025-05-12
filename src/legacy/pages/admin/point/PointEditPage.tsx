@@ -1,19 +1,20 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { adminPointCreate, adminPointUpdate, useAdminPointGetOne } from '@/legacy/generated/endpoint'
-import { PointCreateBody, PointUpdateBody } from '@/legacy/generated/model'
+import type { PointCreateBody, PointUpdateBody } from '@/legacy/generated/model'
 import { form } from '@/legacy/lib/form'
 import { cn } from '@/legacy/lib/tailwind-merge'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { toastState } from 'src/store'
 import { getErrorMsg } from '@/legacy/util/status'
+import useHistory from '@/legacy/hooks/useHistory'
 
 type PointSaveBody = PointCreateBody | PointUpdateBody
 
@@ -22,6 +23,7 @@ function isCreating(id: number, body: PointSaveBody): body is PointCreateBody {
 }
 
 export function PointEditPage() {
+  //@ts-expect-error useTranslation type instantiation error
   const { t } = useTranslation()
   const { t: ta } = useTranslation('admin', { keyPrefix: 'point_edit_page' })
   const { goBack } = useHistory()
@@ -44,7 +46,11 @@ export function PointEditPage() {
 
   async function save(params: PointSaveBody) {
     try {
-      isCreating(id, params) ? await adminPointCreate(params) : await adminPointUpdate(id, params)
+      if (isCreating(id, params)) {
+        await adminPointCreate(params)
+      } else {
+        await adminPointUpdate(id, params)
+      }
     } catch (error) {
       setToastMsg(getErrorMsg(error))
     }

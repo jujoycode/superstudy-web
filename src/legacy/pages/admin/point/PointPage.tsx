@@ -8,7 +8,7 @@ import { Checkbox, useCheckbox } from '@/legacy/components/common/Checkbox'
 import { Pagination } from '@/legacy/components/common/Pagination'
 import { adminPointDelete, useAdminPointGet } from '@/legacy/generated/endpoint'
 import { useSearch } from '@/legacy/lib/router'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { toastState } from 'src/store'
 
 export function PointPage() {

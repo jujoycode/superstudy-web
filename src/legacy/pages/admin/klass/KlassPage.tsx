@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -20,12 +20,13 @@ import {
   useAdminCommonSearchTeachers,
   useKlassManagementGetKlassInfo,
 } from '@/legacy/generated/endpoint'
-import { RequestGroupTeacherDto } from '@/legacy/generated/model'
+import { type RequestGroupTeacherDto, type ResponseGroupDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { toastState, warningState } from 'src/store'
 import { getNickName } from '@/legacy/util/status'
 import { AdminContext } from '../AdminMainPage'
+import useHistory from '@/legacy/hooks/useHistory'
 
 export function KlassPage() {
   const { t } = useLanguage()
@@ -60,7 +61,11 @@ export function KlassPage() {
 
   useEffect(() => {
     if (klassId || isLoading) return
-    klasses?.[0] ? replace(`${Routes.admin.klass.index}/${klasses[0].id}`) : replace(Routes.admin.klass.new)
+    if (klasses && klasses[0]) {
+      replace(`${Routes.admin.klass.index}/${klasses[0].id}`)
+    } else {
+      replace(Routes.admin.klass.new)
+    }
   }, [isLoading, klasses])
 
   const klass = klasses?.find((k) => k.id === klassId)
@@ -94,7 +99,7 @@ export function KlassPage() {
     await klassManagementChangeHomeroomTeacher(klassId, { teacherId: homeroomTeacherId })
   }
 
-  async function addGroupTeacher(params: any) {
+  async function addGroupTeacher(params: RequestGroupTeacherDto) {
     if (!klassId) return
     await groupManagementAddTeachers(klassId, { groupTeachers: [params] })
     resetGroupTeacher({ userId: undefined, subject: '', room: '' })
@@ -134,7 +139,7 @@ export function KlassPage() {
         <div className="flex items-center gap-2">
           <Select value={klassId} onChange={(e) => push(`${Routes.admin.klass.index}/${e.target.value}`)}>
             {klasses
-              ?.reduce((acc: any[], current: any) => {
+              ?.reduce((acc: ResponseGroupDto[], current: ResponseGroupDto) => {
                 if (!acc.find((item) => item.id === current.id)) {
                   acc.push(current)
                 }

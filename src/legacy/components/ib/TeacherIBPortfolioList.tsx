@@ -13,7 +13,7 @@ import SelectBar from '@/legacy/components/common/SelectBar'
 import { Typography } from '@/legacy/components/common/Typography'
 import PortfolioCard from './cas/PortfolioCard'
 import QueryString from 'qs'
-import { useHistory } from 'react-router-dom'
+
 import { useLocation } from 'react-router-dom'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 

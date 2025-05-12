@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Linkify from 'react-linkify'
 import { useParams } from 'react-router'
-import { useHistory } from 'react-router-dom'
+
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, BottomFixed, CloseButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

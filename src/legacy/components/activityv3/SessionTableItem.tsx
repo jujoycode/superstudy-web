@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { useMemo } from 'react'
-import { useHistory } from 'react-router-dom'
+
 import { ACTIVITY_SESSION_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import { useActivitySessionFindSubmitters } from '@/legacy/generated/endpoint'
 import { ActivitySession, RequestUpdateActivitySessionOrderDto, StudentGroup } from '@/legacy/generated/model'

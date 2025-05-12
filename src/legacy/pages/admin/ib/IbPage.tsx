@@ -10,10 +10,11 @@ import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import { InputField } from '@/legacy/components/ib/InputField'
 import { useCreateIBSchool, useGetIBSchoolInfo, useUpateIBSchool } from '@/legacy/container/ib-admin'
-import { RequestIBSchoolManagementDto } from '@/legacy/generated/model'
+import { type RequestIBSchoolManagementDto } from '@/legacy/generated/model'
 import { twMerge } from 'tailwind-merge'
 
 export function IbPage() {
+  //@ts-expect-error useTranslation type instantiation error
   const { t } = useTranslation()
   const { pathname } = useLocation()
   const [editMode, setEditMode] = useState(false)
@@ -44,7 +45,7 @@ export function IbPage() {
       console.error('IB 학교 정보 수정 중 오류 발생:', error)
     },
   })
-  const { handleSubmit, control, register, reset } = useForm<RequestIBSchoolManagementDto>({
+  const { handleSubmit, control, reset } = useForm<RequestIBSchoolManagementDto>({
     defaultValues: data,
   })
 
@@ -187,7 +188,7 @@ export function IbPage() {
               <Typography variant="body3" className="min-w-[117px] font-medium">
                 Session
               </Typography>
-              <Typography variant="body3" className="text-primary-gray-700" placeholder="Session 정보를 입력해주세요.">
+              <Typography variant="body3" className="text-primary-gray-700">
                 {data && formatSession(data?.session)}
               </Typography>
             </div>

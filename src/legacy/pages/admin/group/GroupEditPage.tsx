@@ -1,18 +1,19 @@
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { groupManagementCreateGroup } from '@/legacy/generated/endpoint'
-import { RequestCreateGroupOnlyDto } from '@/legacy/generated/model'
+import { type RequestCreateGroupOnlyDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
-import { Routes } from '@/legacy/routes'
 import { toastState } from 'src/store'
 import { AdminContext } from '../AdminMainPage'
+import useHistory from '@/legacy/hooks/useHistory'
+import { Routes } from '@/legacy/constants/routes'
 
 export function GroupEditPage() {
   const { push } = useHistory()
@@ -28,7 +29,7 @@ export function GroupEditPage() {
     formState: { errors, isValid },
   } = useForm<RequestCreateGroupOnlyDto>()
 
-  async function save(params: any) {
+  async function save(params: RequestCreateGroupOnlyDto) {
     if (id) return
     const group = await groupManagementCreateGroup({ ...params, year: `${year}` })
     setToastMsg(`${group.name} 그룹이 생성되었습니다`)

@@ -5,7 +5,6 @@ import moment from 'moment'
 import { useEffect, useState } from 'react'
 
 // ! 개선 필요
-import { useHistory } from 'react-router-dom'
 
 import { useRecoilValue } from 'recoil'
 import { childState } from '@/stores'

@@ -7,8 +7,8 @@ import { adminCommonDeleteUser, useAdminCommonGetExpiredUsers } from '@/legacy/g
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSearch } from '@/legacy/lib/router'
-import { Routes } from '@/legacy/routes'
-import { toastState } from '@/legacy/store'
+import { toastState } from 'src/store'
+import { Routes } from '@/legacy/constants/routes'
 
 export function ExpiredUserPage() {
   const { page, size } = useSearch({ page: 1, size: 25 })

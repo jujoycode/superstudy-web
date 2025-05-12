@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
 import { Chip, HorizontalScrollView, List, ListItem, Section, TopNavbar } from '@/legacy/components/common'
 import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import { useActivityV3FindByStudent, useStudentGroupsFindByStudent } from '@/legacy/generated/endpoint'

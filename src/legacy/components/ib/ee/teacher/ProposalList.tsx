@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
 import { BadgeV2, BadgeV2Color } from '@/legacy/components/common/BadgeV2'
 import { useGetFeedbackExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
 import { ResponseIBDto } from '@/legacy/generated/model'

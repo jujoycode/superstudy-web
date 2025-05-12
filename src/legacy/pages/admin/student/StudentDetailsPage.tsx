@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext } from 'react'
+import { type ChangeEvent, useContext } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -8,7 +8,7 @@ import { GroupType, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignedUrl } from '@/legacy/lib/query'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { AdminContext } from '../AdminMainPage'
 
 export function StudentDetailsPage() {
@@ -50,7 +50,9 @@ export function StudentDetailsPage() {
                   children={t('delete')}
                   onClick={() => {
                     const text = t('confirm_delete_profile_image')
-                    confirm(text) && studentManagementUpdateStudent(id, { profile: '' })
+                    if (confirm(text)) {
+                      studentManagementUpdateStudent(id, { profile: '' })
+                    }
                   }}
                   className="filled-red-light"
                 />
@@ -96,7 +98,9 @@ export function StudentDetailsPage() {
                     children={t('unlock_password')}
                     onClick={() => {
                       const text = t('confirm_unlock_password')
-                      confirm(text) && studentManagementUpdateStudent(id, { loginFailCount: 0 })
+                      if (confirm(text)) {
+                        studentManagementUpdateStudent(id, { loginFailCount: 0 })
+                      }
                     }}
                     className="filled-red-light"
                   />

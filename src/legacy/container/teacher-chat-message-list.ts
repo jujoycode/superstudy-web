@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 // ! 이 부분 수정 필요
-import { useHistory } from 'react-router-dom'
+
 import { Routes } from '@/routers'
 
 import {

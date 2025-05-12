@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -15,13 +15,20 @@ import {
   teacherManagementUpdateTeacher,
   useTeacherManagementGetTeacherInfo,
 } from '@/legacy/generated/endpoint'
-import { Category, RequestCreateTeacherDto, RequestModifyTeacherDto, Role, ScoreUse } from '@/legacy/generated/model'
+import {
+  Category,
+  type RequestCreateTeacherDto,
+  type RequestModifyTeacherDto,
+  Role,
+  ScoreUse,
+} from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { meState, toastState } from 'src/store'
 import { getErrorMsg } from '@/legacy/util/status'
 import { AdminContext } from '../AdminMainPage'
+import useHistory from '@/legacy/hooks/useHistory'
 
 export function TeacherEditPage() {
   const me = useRecoilValue(meState)
@@ -54,27 +61,29 @@ export function TeacherEditPage() {
 
   useEffect(() => teacherInfo && reset(teacherInfo.teacherData), [teacherInfo])
 
-  async function save(params: any) {
+  async function save(params: RequestModifyTeacherDto & RequestCreateTeacherDto) {
     if (watch('role') !== Role.HEAD && watch('role') !== Role.PRE_HEAD) {
       params.headNumber = 0
     }
-    id
-      ? await teacherManagementUpdateTeacher(id, params)
-          .then((result) => {
-            setToastMsg(`${params.name} 님 수정완료`)
-            goBack()
-          })
-          .catch((result) => {
-            setToastMsg(getErrorMsg(result))
-          })
-      : await teacherManagementCreateTeacher(params)
-          .then((result) => {
-            setToastMsg(`${params.name} 님 추가완료`)
-            goBack()
-          })
-          .catch((result) => {
-            setToastMsg(getErrorMsg(result))
-          })
+    if (id) {
+      await teacherManagementUpdateTeacher(id, params)
+        .then(() => {
+          setToastMsg(`${params.name} 님 수정완료`)
+          goBack()
+        })
+        .catch((error) => {
+          setToastMsg(getErrorMsg(error))
+        })
+    } else {
+      await teacherManagementCreateTeacher(params)
+        .then(() => {
+          setToastMsg(`${params.name} 님 추가완료`)
+          goBack()
+        })
+        .catch((error) => {
+          setToastMsg(getErrorMsg(error))
+        })
+    }
   }
 
   return (

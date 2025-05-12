@@ -50,7 +50,9 @@ export function ParentDetailsPage() {
                   children={t('unlock_password')}
                   onClick={() => {
                     const text = t('confirm_unlock_password')
-                    confirm(text) && parentManagementUpdateParent(id, { loginFailCount: 0 })
+                    if (confirm(text)) {
+                      parentManagementUpdateParent(id, { loginFailCount: 0 })
+                    }
                   }}
                   className="filled-red-light"
                 />

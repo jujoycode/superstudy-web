@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { ChangeEvent, useContext } from 'react'
+import { type ChangeEvent, useContext } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -9,7 +9,7 @@ import { GroupType, Role, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignedUrl } from '@/legacy/lib/query'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { getNickName } from '@/legacy/util/status'
 import { AdminContext } from '../AdminMainPage'
 
@@ -94,7 +94,9 @@ export function TeacherDetailsPage() {
                     children={t('unlock_password')}
                     onClick={() => {
                       const text = t('confirm_unlock_password')
-                      confirm(text) && teacherManagementUpdateTeacher(id, { loginFailCount: 0 })
+                      if (confirm(text)) {
+                        teacherManagementUpdateTeacher(id, { loginFailCount: 0 })
+                      }
                     }}
                     className="filled-red-light"
                   />

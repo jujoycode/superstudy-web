@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
 import { useRecoilValue } from 'recoil'
 import NODATA from '@/legacy/assets/images/no-data.png'
 import { Blank } from '@/legacy/components/common'

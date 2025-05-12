@@ -2,8 +2,7 @@ import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 
 // ! 로직 개선
-import { Routes } from '@/legacy/routes'
-import { useHistory } from 'react-router-dom'
+import { Routes } from '@/legacy/constants/routes'
 
 import {
   useNewsLettersDelete,

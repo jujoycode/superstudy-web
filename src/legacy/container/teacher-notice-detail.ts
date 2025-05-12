@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 
 // ! 개선 필요
-import { useHistory } from 'react-router-dom'
-import { Routes } from '@/legacy/routes'
+
+import { Routes } from '@/legacy/constants/routes'
 
 import { Constants } from '@/legacy/constants'
 import { isPdfFile } from '@/legacy/util/file'

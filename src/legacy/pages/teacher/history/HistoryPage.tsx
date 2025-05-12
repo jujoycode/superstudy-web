@@ -2,7 +2,7 @@ import { range } from 'lodash'
 import { useMemo, useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { Route, Switch, useLocation } from 'react-router'
-import { useHistory } from 'react-router-dom'
+
 import { ReactComponent as Refresh } from '@/legacy/assets/svg/refresh.svg'
 import { ErrorBlank, FrontPagination } from '@/legacy/components'
 import { AbsentCard } from '@/legacy/components/absent/AbsentCard'

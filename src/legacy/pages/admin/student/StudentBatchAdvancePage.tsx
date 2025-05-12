@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import readXlsxFile from 'read-excel-file'
 import { useSetRecoilState } from 'recoil'
 import { Blank } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { studentManagementAdvancedStudent } from '@/legacy/generated/endpoint'
-import { RequestAdvancedStudentDto } from '@/legacy/generated/model'
+import { type RequestAdvancedStudentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { toastState, warningState } from 'src/store'
 import { AdminContext } from '../AdminMainPage'
+import useHistory from '@/legacy/hooks/useHistory'
 
 export function StudentBatchAdvancePage() {
   const { goBack } = useHistory()
@@ -40,7 +40,7 @@ export function StudentBatchAdvancePage() {
         const items = rows.map(([newGrade, newKlass, newStudentNumber, name, oldGrade, oldKlass, oldStudentNumber]) => {
           return { newGrade, newKlass, newStudentNumber, name, oldGrade, oldKlass, oldStudentNumber }
         })
-        setItems(items as any)
+        setItems(items as RequestAdvancedStudentDto[])
       } else {
         alert('일괄 진급 양식의 엑셀파일을 선택해주세요.')
       }
@@ -82,24 +82,22 @@ export function StudentBatchAdvancePage() {
 
     // 학급별 병렬 처리
     await Promise.all(
-      Object.entries(klassBatches).map(async ([klassKey, klassItems]) => {
+      Object.entries(klassBatches).map(async ([, klassItems]) => {
         // 각 학급 내에서는 순차 처리
         for (const { item, index } of klassItems) {
-          try {
-            await studentManagementAdvancedStudent({
-              ...item,
-              newGrade: Number(item.newGrade),
-              newKlass: Number(item.newKlass),
-              newStudentNumber: Number(item.newStudentNumber),
-              oldGrade: Number(item.oldGrade),
-              oldKlass: Number(item.oldKlass),
-              oldStudentNumber: Number(item.oldStudentNumber),
-              adventYear: year,
-            })
-          } catch (error: any) {
+          await studentManagementAdvancedStudent({
+            ...item,
+            newGrade: Number(item.newGrade),
+            newKlass: Number(item.newKlass),
+            newStudentNumber: Number(item.newStudentNumber),
+            oldGrade: Number(item.oldGrade),
+            oldKlass: Number(item.oldKlass),
+            oldStudentNumber: Number(item.oldStudentNumber),
+            adventYear: year,
+          }).catch((error) => {
             errors[index] = error.response?.data?.message || '처리 중 오류가 발생했습니다.'
             errorCount++
-          }
+          })
         }
       }),
     )

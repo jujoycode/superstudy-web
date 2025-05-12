@@ -1,5 +1,5 @@
 import { Checkbox } from '@mui/material'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { type ChangeEvent, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSetRecoilState } from 'recoil'
 import BlockchainSetting from '@/legacy/components/blockchain/BlockchainSetting'
@@ -14,7 +14,7 @@ import {
   schoolManagementModifySchoolInfo,
   useSchoolManagementGetSchoolInfo,
 } from '@/legacy/generated/endpoint'
-import { OutingUse, RequestUpdateSchoolInfoDto, ScoreUse, UploadFileTypeEnum } from '@/legacy/generated/model'
+import { OutingUse, type RequestUpdateSchoolInfoDto, ScoreUse, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignedUrl } from '@/legacy/lib/query'
@@ -52,7 +52,7 @@ export function SchoolPage() {
   const privacyManager = { name, position, contact }
 
   const setToastMsg = useSetRecoilState(toastState)
-  const { t, changeLanguage } = useLanguage()
+  const { t } = useLanguage()
 
   useEffect(() => school && reset({ ...school, privacyManager }), [school, editPrivacyManager, editFieldtripDays])
 

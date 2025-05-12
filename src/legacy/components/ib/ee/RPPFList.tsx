@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
 import NODATA from '@/legacy/assets/images/no-data.png'
 import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
 import { useInterviewGetByStudentId, useInterviewQNAGetByStudentId } from '@/legacy/container/ib-student-interview'

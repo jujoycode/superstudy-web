@@ -1,4 +1,3 @@
-import { useHistory } from 'react-router-dom'
 import { ResponseCoordinatorSelfCheckDtoType, ResponseIBDto, ResponseUserDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
