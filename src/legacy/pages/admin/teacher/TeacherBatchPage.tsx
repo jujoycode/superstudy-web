@@ -8,7 +8,7 @@ import { Button } from '@/legacy/components/common/Button'
 import { teacherManagementBulkCreateTeacher, teacherManagementRequestSignUp } from '@/legacy/generated/endpoint'
 import { RequestCreateTeacherDto, RequestCreateUserBulkDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { toastState, warningState } from '@/legacy/store'
+import { toastState, warningState } from 'src/store'
 import { AdminContext } from '../AdminMainPage'
 
 export function TeacherBatchPage() {

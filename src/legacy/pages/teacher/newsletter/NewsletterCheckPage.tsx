@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil'
 import { NewsletterCheckerItem } from '@/legacy/components/newsletter/NewsletterCheckerItem'
 import { useTeacherNewsletterCheck } from '@/legacy/container/teacher-newsletter-check'
 import { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup } from '@/legacy/generated/model'
-import { newsletterOpenedGroupState } from '@/legacy/store'
+import { newsletterOpenedGroupState } from 'src/store'
 import { NewsletterCheckDetailPage } from './NewsletterCheckDetailPage'
 
 export function NewsletterCheckPage() {

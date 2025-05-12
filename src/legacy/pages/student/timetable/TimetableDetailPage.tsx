@@ -6,7 +6,7 @@ import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { useStudentTimetableDetail } from '@/legacy/container/student-timetable-detail'
 import { LectureType, ResponseTimetableV3Dto, Role } from '@/legacy/generated/model'
-import { childState, meState } from '@/legacy/store'
+import { childState, meState } from 'src/store'
 import { dayOfKorWeek } from '@/legacy/util/date'
 
 interface TimetableDetailPageProps {

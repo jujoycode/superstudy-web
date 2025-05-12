@@ -6,7 +6,7 @@ import {
   useStudentActivityV3DownloadRecordSummary,
   useStudentRecordontrollerDownloadRecordSummary,
 } from '@/legacy/generated/endpoint'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { downloadExcel } from '@/legacy/util/download-excel'
 
 export const ActivityV3DownloadPage = () => {

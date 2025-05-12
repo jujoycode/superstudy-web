@@ -12,7 +12,7 @@ import { PointCreateBody, PointUpdateBody } from '@/legacy/generated/model'
 import { form } from '@/legacy/lib/form'
 import { cn } from '@/legacy/lib/tailwind-merge'
 import { Routes } from '@/legacy/routes'
-import { toastState } from '@/legacy/store'
+import { toastState } from 'src/store'
 import { getErrorMsg } from '@/legacy/util/status'
 
 type PointSaveBody = PointCreateBody | PointUpdateBody

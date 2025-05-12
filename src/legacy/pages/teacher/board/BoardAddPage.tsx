@@ -14,7 +14,7 @@ import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
 import { useTeacherBoardAdd } from '@/legacy/container/teacher-board-add'
 import { BoardCategoryEnum, Group, RequestCreateBoardDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getExtOfFilename } from '@/legacy/util/file'
 

@@ -13,7 +13,7 @@ import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { useAnnouncementDetail } from '@/legacy/container/announcement-detail'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { languageState } from '@/legacy/store'
+import { languageState } from 'src/store'
 import { getFileNameFromUrl, getFileNameFromUrlToAnn } from '@/legacy/util/file'
 import { isHTML } from '@/legacy/util/validator'
 

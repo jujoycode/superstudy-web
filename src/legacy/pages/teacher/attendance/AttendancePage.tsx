@@ -14,7 +14,7 @@ import { Attendance, ResponseTimetableV3Dto, Role } from '@/legacy/generated/mod
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useModals } from '@/legacy/modals/ModalStack'
 import { StudentModal } from '@/legacy/modals/StudentModal'
-import { languageState, meState, toastState } from '@/legacy/store'
+import { languageState, meState, toastState } from 'src/store'
 import { AbsentSave, PeriodSubjectTeacher } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName } from '@/legacy/util/status'

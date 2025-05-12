@@ -17,7 +17,7 @@ import { Category, RequestCreateStudentDto, RequestModifyStudentDto } from '@/le
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
 import { Routes } from '@/legacy/routes'
-import { toastState, warningState } from '@/legacy/store'
+import { toastState, warningState } from 'src/store'
 import { getErrorMsg } from '@/legacy/util/status'
 import { AdminContext } from '../AdminMainPage'
 

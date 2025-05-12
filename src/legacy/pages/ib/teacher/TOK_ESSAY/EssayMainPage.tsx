@@ -24,7 +24,7 @@ import { useIBOutlineStatusApprove, useIBOutlineStatusReject, useTKPPFGetByIBId 
 import { ResponseIBDtoStatus } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 
 export type TOKProject = 'OUTLINE' | 'ESSAY' | 'TKPPF' | 'RRS'
 export type LocationState = {

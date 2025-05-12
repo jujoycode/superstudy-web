@@ -20,7 +20,7 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useRPPFGetByIBIdFindAll } from '@/legacy/container/ib-rppf-findAll'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import type { EEProject, LocationState } from '../../student/EE/EEMainPage'
 import { ResponseIBDtoStatus } from '@/legacy/generated/model'
 

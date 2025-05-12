@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 import { useCourseGet } from '@/legacy/generated/endpoint'
 import { Course, CourseStatus } from '@/legacy/generated/model'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { courseTimeToString } from '@/legacy/util/course'
 import { dayOfKorWeek } from '@/legacy/util/date'
 

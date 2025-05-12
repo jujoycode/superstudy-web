@@ -31,7 +31,7 @@ import {
   StudentNewsletter,
 } from '@/legacy/generated/model'
 import { useSignature } from '@/legacy/hooks/useSignature'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { makeDateToString } from '@/legacy/util/time'
 

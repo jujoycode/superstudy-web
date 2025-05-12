@@ -10,7 +10,7 @@ import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { UserContainer } from '@/legacy/container/user'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { isStayLoggedInState } from '@/legacy/store'
+import { isStayLoggedInState } from 'src/store'
 
 export function Login() {
   const [isStayLoggedIn, setIsStayLoggedIn] = useRecoilState(isStayLoggedInState)

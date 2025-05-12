@@ -23,7 +23,7 @@ import { useIBProposalSentAll, useIBProposalUpdateWaitPlan } from '@/legacy/cont
 import { useRPPFGetByIBIdFindAll } from '@/legacy/container/ib-rppf-findAll'
 import { ResponseRPPFDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 
 export type EEProject = 'PROPOSAL' | 'ESSAY' | 'RPPF' | 'RRS'
 export type LocationState = {

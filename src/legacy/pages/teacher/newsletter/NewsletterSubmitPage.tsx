@@ -11,7 +11,7 @@ import { Icon } from '@/legacy/components/common/icons'
 import { NewsletterSubmitterItem } from '@/legacy/components/newsletter/NewsletterSubmitterItem'
 import { useTeacherNewsletterSubmit } from '@/legacy/container/teacher-newsletter-submit'
 import { ResponseGroupDto, StudentGroup, StudentNewsletter } from '@/legacy/generated/model'
-import { newsletterOpenedGroupState } from '@/legacy/store'
+import { newsletterOpenedGroupState } from 'src/store'
 import { NewsletterSubmitDetailPage } from './NewsletterSubmitDetailPage'
 
 export function NewsletterSubmitPage() {

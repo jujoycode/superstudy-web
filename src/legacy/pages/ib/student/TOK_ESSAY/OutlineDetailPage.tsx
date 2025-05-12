@@ -19,7 +19,7 @@ import { useIBProposalUpdateWaitPlan } from '@/legacy/container/ib-proposal-sent
 import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
 import { useOutlineSubmit, useOutlineUpdate } from '@/legacy/container/ib-tok-essay'
 import { RequestIBTokOutlineDto } from '@/legacy/generated/model'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 
 export const OutlineDetailPage = () => {
   const history = useHistory()

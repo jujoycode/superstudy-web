@@ -10,7 +10,7 @@ import { useStudentOutingDetail } from '@/legacy/container/student-outing-detail
 import { UserContainer } from '@/legacy/container/user'
 import { OutingStatus, OutingUse, Role } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
-import { childState } from '@/legacy/store'
+import { childState } from 'src/store'
 import { OutingAddPage } from './OutingAddPage'
 
 export function OutingDetailPage() {

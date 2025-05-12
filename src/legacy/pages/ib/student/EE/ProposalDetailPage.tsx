@@ -20,7 +20,7 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBProposalDelete } from '@/legacy/container/ib-proposal-delete'
 import { useIBProposalUpdate } from '@/legacy/container/ib-proposal-update'
 import { RequestIBProposalUpdateDto } from '@/legacy/generated/model'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 
 export const ProposalDetailPage = () => {
   const history = useHistory()

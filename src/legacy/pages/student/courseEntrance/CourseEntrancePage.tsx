@@ -7,7 +7,7 @@ import sugang from '@/legacy/assets/images/sugang.png'
 import { ReactComponent as Logo } from '@/legacy/assets/svg/logo.svg'
 import { Blank, Section } from '@/legacy/components/common'
 import { externalCreateToken, externalUpdateQueue, useCourseSeasonGet } from '@/legacy/generated/endpoint'
-import { childState, toastState } from '@/legacy/store'
+import { childState, toastState } from 'src/store'
 
 export function CourseEntrancePage() {
   const { push } = useHistory()

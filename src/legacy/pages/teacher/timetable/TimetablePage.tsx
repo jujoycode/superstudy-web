@@ -6,7 +6,7 @@ import { BackButton, Blank, Divider, TopNavbar } from '@/legacy/components/commo
 import { useSchoolsFindOne } from '@/legacy/generated/endpoint'
 import { Course, ResponseTimetableV3Dto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { TimetableAttendancePage } from './TimetableAttendancePage'
 import { TimetableCoursePage } from './TimetableCoursePage'
 import { TimetableCoursesPage } from './TimetableCoursesPage'

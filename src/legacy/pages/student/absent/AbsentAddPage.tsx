@@ -18,7 +18,7 @@ import { useStudentAbsentAdd } from '@/legacy/container/student-absent-add'
 import { UserContainer } from '@/legacy/container/user'
 import { Absent, AbsentStatus, Role } from '@/legacy/generated/model'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { childState } from '@/legacy/store'
+import { childState } from 'src/store'
 import { AbsentTimeType } from '@/legacy/types'
 import { makeDateToString } from '@/legacy/util/time'
 

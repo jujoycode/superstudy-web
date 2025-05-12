@@ -9,7 +9,7 @@ import { TextInput } from '@/legacy/components/common/TextInput'
 import { GroupContainer } from '@/legacy/container/group'
 import { useTeacherFirstLogin } from '@/legacy/container/teacher-first-login'
 import { ResponseGroupDto } from '@/legacy/generated/model'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { Validator } from '@/legacy/util/validator'
 
 export function TeacherFirstLoginPage() {

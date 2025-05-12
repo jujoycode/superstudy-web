@@ -23,7 +23,7 @@ import {
 } from '@/legacy/container/ib-tok-exhibition'
 import { ResponseExhibitionDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 
 export type TOKProject = 'EXHIBITION' | 'EXHIBITION_PLAN'
 export type LocationState = {

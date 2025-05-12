@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { useNotificationLogFindAll, useNotificationLogRead } from '@/legacy/generated/endpoint'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { makeDateToString } from '@/legacy/util/time'
 
 export const NotificationPage = () => {

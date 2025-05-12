@@ -14,7 +14,7 @@ import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { useTeacherActivitySubmitDetail } from '@/legacy/container/teacher-activity-submit-detail'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 
 interface ActivitySubmitDetailPageProps {

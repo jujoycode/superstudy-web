@@ -9,7 +9,7 @@ import { Pagination } from '@/legacy/components/common/Pagination'
 import { adminPointDelete, useAdminPointGet } from '@/legacy/generated/endpoint'
 import { useSearch } from '@/legacy/lib/router'
 import { Routes } from '@/legacy/routes'
-import { toastState } from '@/legacy/store'
+import { toastState } from 'src/store'
 
 export function PointPage() {
   const { t } = useTranslation()

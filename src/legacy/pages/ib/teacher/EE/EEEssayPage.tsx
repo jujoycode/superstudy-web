@@ -25,7 +25,7 @@ import { useGetIBPlagiarismInspectRatio } from '@/legacy/container/plagiarism-in
 import { CopykillerTargetTable, ResponseCopykillerResponseDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { usePolling } from '@/legacy/hooks/usePolling'
-import { meState, schoolPropertiesState } from '@/legacy/store'
+import { meState, schoolPropertiesState } from 'src/store'
 import { LocationState } from '@/legacy/type/ib'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
 

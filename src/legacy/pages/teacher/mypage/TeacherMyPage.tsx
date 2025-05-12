@@ -9,7 +9,7 @@ import { BackButton, IconButton, Section, TopNavbar } from '@/legacy/components/
 import { Icon } from '@/legacy/components/common/icons'
 import { Constants } from '@/legacy/constants'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { useLogout } from '@/legacy/util/hooks'
 import { checkNewVersion } from '@/legacy/util/status'
 

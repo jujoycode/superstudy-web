@@ -19,7 +19,7 @@ import {
 import { OutingUse, ResponseDashboardDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { cn } from '@/legacy/lib/tailwind-merge'
-import { meState, newMsgCntState } from '@/legacy/store'
+import { meState, newMsgCntState } from 'src/store'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { globalEnv } from '@/legacy/util/global-env'
 import { useAuth, useLogout } from '@/legacy/util/hooks'

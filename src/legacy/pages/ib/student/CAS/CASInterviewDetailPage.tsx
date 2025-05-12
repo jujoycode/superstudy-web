@@ -19,7 +19,7 @@ import {
   useInterviewQNA,
 } from '@/legacy/container/ib-student-interview'
 import { RequestCreateQnaDto } from '@/legacy/generated/model'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 
 export default function CASInterviewDetailPage() {
   const history = useHistory()

@@ -4,7 +4,7 @@ import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { AdminContext } from '../AdminMainPage'
 
 interface TimetableHistoryProps {

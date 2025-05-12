@@ -22,7 +22,7 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ApprovalLine, Category, ResponseApprovalLineDto, ResponseTeacherInfoDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { toastState } from '@/legacy/store'
+import { toastState } from 'src/store'
 import { getNickName } from '@/legacy/util/status'
 import { AdminContext } from '../AdminMainPage'
 

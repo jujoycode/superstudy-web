@@ -21,7 +21,7 @@ import { Chat, RequestUpdateChatroomInfoDto, UploadFileTypeEnum } from '@/legacy
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { useSocket } from '@/legacy/lib/socket'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { isNowOrFuture } from '@/legacy/util/time'
 import { twMerge } from 'tailwind-merge'
 

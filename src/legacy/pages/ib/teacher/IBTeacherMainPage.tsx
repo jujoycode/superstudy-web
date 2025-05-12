@@ -13,7 +13,7 @@ import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 import { useGetPlagiarismInspectList } from '@/legacy/container/plagiarism-inspector'
 import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/teacher/PlagiarismInspectPage'
 import { twMerge } from 'tailwind-merge'
-import { meState, schoolPropertiesState } from '@/legacy/store'
+import { meState, schoolPropertiesState } from 'src/store'
 import { useRecoilValue } from 'recoil'
 import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
 

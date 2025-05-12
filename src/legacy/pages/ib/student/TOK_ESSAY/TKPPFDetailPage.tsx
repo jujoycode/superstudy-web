@@ -17,7 +17,7 @@ import { IbTKPPF } from '@/legacy/components/ib/tok/IbTKPPF'
 import { useIBDeadline } from '@/legacy/container/ib-deadline'
 import { useIBTKPPFCreate, useIBTKPPFRequestComplete, useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
 import { RequestCreateTKPPFDto, ResponseIBDto } from '@/legacy/generated/model'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 
 interface LocationState {
   title: string

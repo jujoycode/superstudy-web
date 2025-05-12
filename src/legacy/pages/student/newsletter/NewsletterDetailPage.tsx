@@ -22,7 +22,7 @@ import { useStudentNewsletterAdd } from '@/legacy/container/student-newsletter-a
 import { useStudentNewsletterDetail } from '@/legacy/container/student-newsletter-detail'
 import { NewsletterType, RequestUpsertStudentNewsletterDto, Role } from '@/legacy/generated/model'
 import { useSignature } from '@/legacy/hooks/useSignature'
-import { meState, toastState } from '@/legacy/store'
+import { meState, toastState } from 'src/store'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isPdfFile } from '@/legacy/util/file'
 import { NewsletterAddPage } from './NewsletterAddPage'

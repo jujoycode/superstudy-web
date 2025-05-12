@@ -24,7 +24,7 @@ import { useexhibitionGetByIBId, useExhibitionSubmit, useExhibitionUpdate } from
 import { RequestExhibitionDto, ResponseExhibitionDto, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { createTokExhibitionPdf } from '@/legacy/util/ib/tok-exhibition-pdf'
 import { handleSingleBlobDownload } from '@/legacy/util/download-blob'
 

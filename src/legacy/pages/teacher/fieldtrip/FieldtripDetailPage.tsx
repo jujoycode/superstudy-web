@@ -12,7 +12,7 @@ import { useTeacherFieldtripDetail } from '@/legacy/container/teacher-fieldtrip-
 import { fieldtripsReCalculateFieldtripDaysWithUserId } from '@/legacy/generated/endpoint'
 import { FieldtripStatus, ResponseUserDto } from '@/legacy/generated/model'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
-import { toastState } from '@/legacy/store'
+import { toastState } from 'src/store'
 import { approveButtonType } from '@/legacy/types'
 import { extractReactData, getDoc } from '@/legacy/util/pdf'
 import { buttonEnableState } from '@/legacy/util/permission'

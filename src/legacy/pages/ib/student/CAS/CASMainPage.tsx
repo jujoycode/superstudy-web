@@ -25,7 +25,7 @@ import { useIBHopeMentor, useIBRequestComplete, useIBWaitMentor } from '@/legacy
 import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBProposalUpdateWaitPlan } from '@/legacy/container/ib-proposal-sent'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { DateUtil } from '@/legacy/util/date'
 import { twMerge } from 'tailwind-merge'
 

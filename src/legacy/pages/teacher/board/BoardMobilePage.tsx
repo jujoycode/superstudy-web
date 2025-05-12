@@ -10,7 +10,7 @@ import { Icon } from '@/legacy/components/common/icons'
 import { useTeacherBoard } from '@/legacy/container/teacher-board'
 import { useTeacherKlassGroup } from '@/legacy/container/teacher-klass-groups'
 import { Board, Group } from '@/legacy/generated/model'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 const filters = ['제목', '작성자']

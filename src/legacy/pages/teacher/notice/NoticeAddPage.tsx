@@ -12,7 +12,7 @@ import { TextInput } from '@/legacy/components/common/TextInput'
 import { useTeacherNoticeAdd } from '@/legacy/container/teacher-notice-add'
 import { Code, Notice } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getExtOfFilename } from '@/legacy/util/file'
 

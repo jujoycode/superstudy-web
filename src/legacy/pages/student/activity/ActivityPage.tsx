@@ -6,7 +6,7 @@ import { Tabs } from '@/legacy/components/common/Tabs'
 import { ActivityFilterEnum } from '@/legacy/constants/activity-filter.enum'
 import { useStudentActivity } from '@/legacy/container/student-activity'
 import { ActivityType } from '@/legacy/generated/model'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 export function ActivityPage() {

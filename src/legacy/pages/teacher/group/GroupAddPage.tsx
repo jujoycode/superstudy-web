@@ -11,7 +11,7 @@ import { GroupContainer } from '@/legacy/container/group'
 import { useTeacherGroupAdd } from '@/legacy/container/teacher-group-add'
 import { Category, GroupType, ResponseGroupDto, StudentGroup, SubjectType, User } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState, toastState } from '@/legacy/store'
+import { meState, toastState } from 'src/store'
 import { getNickName } from '@/legacy/util/status'
 import { getThisYear } from '@/legacy/util/time'
 

@@ -16,7 +16,7 @@ import { RequestSignupDto } from '@/legacy/generated/model'
 import { form } from '@/legacy/lib/form'
 import { useSearch } from '@/legacy/lib/router'
 import { Routes } from '@/legacy/routes'
-import { toastState } from '@/legacy/store'
+import { toastState } from 'src/store'
 import { Validator } from '@/legacy/util/validator'
 
 export function Signup() {

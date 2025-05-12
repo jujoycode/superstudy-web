@@ -7,7 +7,7 @@ import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Icon } from '@/legacy/components/common/icons'
 import { useTeacherNewsletter } from '@/legacy/container/teacher-newsletter'
 import { Newsletter, NewsletterType } from '@/legacy/generated/model'
-import { meState } from '@/legacy/store'
+import { meState } from 'src/store'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 const filters = ['제목', '작성자']

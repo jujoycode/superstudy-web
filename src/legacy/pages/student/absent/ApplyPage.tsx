@@ -7,7 +7,7 @@ import { SuperModal } from '@/legacy/components'
 import { Section, TopNavbar } from '@/legacy/components/common'
 import { UserContainer } from '@/legacy/container/user'
 import { OutingUse } from '@/legacy/generated/model'
-import { childState } from '@/legacy/store'
+import { childState } from 'src/store'
 
 export function ApplyPage() {
   const { push } = useHistory()
