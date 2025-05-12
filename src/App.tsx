@@ -1,13 +1,10 @@
 import CacheBuster from 'react-cache-buster'
 import { version } from '../package.json' with { type: 'json' }
-import { createBrowserRouter, RouterProvider, type RouteObject } from 'react-router'
-
-// 수정
+import { RouterProvider } from 'react-router-dom'
 import { Blank } from '@/legacy/components/common'
+import { router } from '@/routers'
 
 export function App() {
-  const routes = createBrowserRouter([] as RouteObject[])
-
   return (
     <CacheBuster
       currentVersion={version}
@@ -19,7 +16,7 @@ export function App() {
         console.log('cache cleared')
       }}
     >
-      <RouterProvider router={routes} />
+      <RouterProvider router={router} />
     </CacheBuster>
   )
 }

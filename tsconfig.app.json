@@ -27,7 +27,8 @@
     /* Paths */
     "baseUrl": ".",
     "paths": {
-      "@/legacy/*": ["src/legacy/*"]
+      "@/legacy/*": ["src/legacy/*"],
+      "@/routers": ["src/routers/index.tsx"]
     }
   },
   "include": ["src"]
