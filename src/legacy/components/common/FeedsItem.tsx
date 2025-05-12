@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import parse from 'html-react-parser'
 import { useEffect, useRef, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
 import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'

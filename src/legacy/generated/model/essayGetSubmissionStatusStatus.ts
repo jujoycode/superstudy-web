@@ -9,7 +9,7 @@
 export type EssayGetSubmissionStatusStatus =
   (typeof EssayGetSubmissionStatusStatus)[keyof typeof EssayGetSubmissionStatusStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const EssayGetSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',

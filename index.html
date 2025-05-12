@@ -165,41 +165,42 @@
     <div id="tooltip-root"></div>
     <script>
       // 페이지가 로드된 시간
-      var startTime = new Date().getTime();
-      var timerInterval;
+      var startTime = new Date().getTime()
+      var timerInterval
 
       // 경과 시간을 표시하는 함수
       function updateElapsedTime() {
         // 현재 시간과 시작 시간의 차이를 계산하여 경과 시간을 초 단위로 가져옴
-        var currentTime = new Date().getTime();
-        var elapsedTimeInSeconds = Math.floor((currentTime - startTime) / 1000);
+        var currentTime = new Date().getTime()
+        var elapsedTimeInSeconds = Math.floor((currentTime - startTime) / 1000)
 
         // 경과 시간을 HTML 요소에 업데이트
-        var elapsedTimeElement = document.getElementById('elapsedTime');
+        var elapsedTimeElement = document.getElementById('elapsedTime')
         if (elapsedTimeElement) {
-          elapsedTimeElement.innerText = elapsedTimeInSeconds + '초 경과 (최대 1분 30초 소요)';
+          elapsedTimeElement.innerText = elapsedTimeInSeconds + '초 경과 (최대 1분 30초 소요)'
         } else {
-          clearInterval(timerInterval); // 요소를 찾지 못하면 타이머 중지
+          clearInterval(timerInterval) // 요소를 찾지 못하면 타이머 중지
         }
       }
 
       // 페이지가 로드되면 매 초마다 경과 시간을 업데이트
-      timerInterval = setInterval(updateElapsedTime, 1000);
+      timerInterval = setInterval(updateElapsedTime, 1000)
     </script>
     <script>
       function refreshPage() {
-        location.reload();
+        location.reload()
       }
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R3QBH7RRHQ"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
+      window.dataLayer = window.dataLayer || []
       function gtag() {
-        dataLayer.push(arguments);
+        dataLayer.push(arguments)
       }
-      gtag('js', new Date());
-      gtag('config', 'G-R3QBH7RRHQ');
+      gtag('js', new Date())
+      gtag('config', 'G-R3QBH7RRHQ')
     </script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { useActivityV3FindOne } from '@/legacy/generated/endpoint'
 import { ActivityV3AddPage } from './ActivityV3AddPage'
 

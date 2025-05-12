@@ -15,7 +15,7 @@
  */
 export type ResponseEssayDtoStatus = (typeof ResponseEssayDtoStatus)[keyof typeof ResponseEssayDtoStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseEssayDtoStatus = {
   PENDING: 'PENDING',
   SUBMIT: 'SUBMIT',

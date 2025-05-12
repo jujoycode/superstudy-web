@@ -12,7 +12,7 @@
 export type ResponseIBTokOutlineSubmissionStatusDtoIbType =
   (typeof ResponseIBTokOutlineSubmissionStatusDtoIbType)[keyof typeof ResponseIBTokOutlineSubmissionStatusDtoIbType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBTokOutlineSubmissionStatusDtoIbType = {
   NORMAL: 'NORMAL',
   CAS_NORMAL: 'CAS_NORMAL',

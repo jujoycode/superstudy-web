@@ -12,7 +12,7 @@
 export type ResponseCopykillerWithContentDtoCompleteStatus =
   (typeof ResponseCopykillerWithContentDtoCompleteStatus)[keyof typeof ResponseCopykillerWithContentDtoCompleteStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseCopykillerWithContentDtoCompleteStatus = {
   N: 'N',
   Y: 'Y',

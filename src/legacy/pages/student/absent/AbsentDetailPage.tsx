@@ -1,7 +1,7 @@
 import { t } from 'i18next'
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { ErrorBlank } from '@/legacy/components'
@@ -22,7 +22,7 @@ import { AbsentAddPage } from './AbsentAddPage'
 export function AbsentDetailPage() {
   const { push } = useHistory()
 
-  let { id } = useParams<{ id: string }>()
+  const { id } = useParams<{ id: string }>()
   const { me } = UserContainer.useContext()
 
   const { absent, error, isLoading, deleteAbsent, errorMessage, refetch, resendAlimtalk } = useStudentAbsentDetail(

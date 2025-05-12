@@ -8,7 +8,7 @@
 
 export type FAQGetFAQListCategory = (typeof FAQGetFAQListCategory)[keyof typeof FAQGetFAQListCategory];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const FAQGetFAQListCategory = {
   IB_EE: 'IB_EE',
   IB_CAS: 'IB_CAS',

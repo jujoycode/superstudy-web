@@ -10,9 +10,9 @@ import {
   RequestIBDeadlineDto,
   ResponseIBDeadlineDto,
 } from '@/legacy/generated/model'
-import AlertV2 from '../@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { Typography } from '../@/legacy/components/common/Typography'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { CreateDeadlineField } from '../CreateDeadlineField'
 

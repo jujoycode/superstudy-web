@@ -7,8 +7,8 @@ import { UserContainer } from '@/legacy/container/user'
 import { queryClient } from '@/legacy/lib/query'
 import { App } from './App'
 import './legacy/util/i18n'
-import './legacy/calendar.css'
-import './legacy/index.css'
+// import './legacy/calendar.css'
+// import './legacy/index.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

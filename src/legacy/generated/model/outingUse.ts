@@ -8,7 +8,7 @@
 
 export type OutingUse = (typeof OutingUse)[keyof typeof OutingUse];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const OutingUse = {
   NONE: 'NONE',
   USE_STUDENT_ONLY: 'USE_STUDENT_ONLY',

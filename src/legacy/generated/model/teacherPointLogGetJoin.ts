@@ -8,7 +8,7 @@
 
 export type TeacherPointLogGetJoin = (typeof TeacherPointLogGetJoin)[keyof typeof TeacherPointLogGetJoin];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const TeacherPointLogGetJoin = {
   teacher: 'teacher',
 } as const;

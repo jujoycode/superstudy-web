@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import NODATA from '@/legacy/assets/images/no-data.png'
 import { PopupModal } from '@/legacy/components/PopupModal'

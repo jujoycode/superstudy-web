@@ -8,7 +8,7 @@
 
 export type EEEvaluationLocation = (typeof EEEvaluationLocation)[keyof typeof EEEvaluationLocation];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const EEEvaluationLocation = {
   ESSAY: 'ESSAY',
 } as const;

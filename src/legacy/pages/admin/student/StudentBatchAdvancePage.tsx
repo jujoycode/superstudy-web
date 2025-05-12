@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import readXlsxFile from 'read-excel-file'
 import { useSetRecoilState } from 'recoil'
 import { Blank } from '@/legacy/components/common'

@@ -33,7 +33,7 @@ export function useStudentOutingDetail(id: number) {
   })
 
   useEffect(() => {
-    if (!!child) {
+    if (child) {
       refetchOutings()
     }
   }, [child])

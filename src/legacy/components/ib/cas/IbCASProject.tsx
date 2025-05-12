@@ -22,9 +22,9 @@ import {
 } from '@/legacy/generated/model'
 import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { Check } from '../@/legacy/components/common/Check'
-import { Typography } from '../@/legacy/components/common/Typography'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Check } from '@/legacy/components/common/Check'
+import { Typography } from '@/legacy/components/common/Typography'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 

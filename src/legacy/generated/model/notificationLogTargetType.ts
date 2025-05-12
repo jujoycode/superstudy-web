@@ -11,7 +11,7 @@
  */
 export type NotificationLogTargetType = (typeof NotificationLogTargetType)[keyof typeof NotificationLogTargetType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const NotificationLogTargetType = {
   segment: 'segment',
   device: 'device',

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 
 // ! 개선 필요
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router'
 import { Routes } from '@/legacy/routes'
 
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
@@ -199,7 +199,7 @@ export function useTeacherNewsletterAdd(id: string) {
     },
   })
 
-  let buttonDisabled =
+  const buttonDisabled =
     !newsletter?.title?.length ||
     !newsletter?.content?.length ||
     !newsletter?.type?.length ||

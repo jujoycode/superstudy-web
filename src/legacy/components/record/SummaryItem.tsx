@@ -51,7 +51,7 @@ export function SummaryItem({ summary }: SummaryItemProps) {
       <div>
         <div className="flex items-center justify-between pb-2">
           {updateState ? (
-            // eslint-disable-next-line react/jsx-no-undef, @typescript-eslint/no-unsafe-member-access
+            // eslint-disable-next-line react/jsx-no-undef
             <TextInput
               className="w-2/3"
               value={recordSubject}

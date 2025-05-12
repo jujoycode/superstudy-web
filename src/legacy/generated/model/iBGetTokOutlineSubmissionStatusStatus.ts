@@ -9,7 +9,7 @@
 export type IBGetTokOutlineSubmissionStatusStatus =
   (typeof IBGetTokOutlineSubmissionStatusStatus)[keyof typeof IBGetTokOutlineSubmissionStatusStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const IBGetTokOutlineSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',

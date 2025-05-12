@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { cn } from '@/legacy/lib/tailwind-merge'
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

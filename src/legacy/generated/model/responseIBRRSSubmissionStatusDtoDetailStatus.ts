@@ -12,7 +12,7 @@
 export type ResponseIBRRSSubmissionStatusDtoDetailStatus =
   (typeof ResponseIBRRSSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBRRSSubmissionStatusDtoDetailStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBRRSSubmissionStatusDtoDetailStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   LESS_THAN_THREE: 'LESS_THAN_THREE',

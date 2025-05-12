@@ -8,7 +8,7 @@
 
 export type FieldtripType = (typeof FieldtripType)[keyof typeof FieldtripType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const FieldtripType = {
   SUBURBS: 'SUBURBS',
   HOME: 'HOME',

@@ -7,7 +7,7 @@ import {
   useIBTOKExhibitionSubmissionStatus,
 } from '@/legacy/container/ib-overview'
 import { ExhibitionGetSubmissionStatusCountParams, ExhibitionGetSubmissionStatusStatus } from '@/legacy/generated/model'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import ExhibitionOverviewPanel from './ExhibitionOverviewPanel'
 import { handleBatchBlobDownload } from '@/legacy/hooks/useBatchDownload'
 import { Blank } from '@/legacy/components/common/Blank'

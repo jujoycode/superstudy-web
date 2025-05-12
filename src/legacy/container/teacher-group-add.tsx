@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 // ! 개선 필요
 import { Routes } from '@/routers'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 
 import {
   useGroupsCreate,

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { ErrorBlank } from '@/legacy/components'
 import AnnouncementDetailCard from '@/legacy/components/announcement/AnnouncementDetailCard'
 import { BackButton, Blank, TopNavbar } from '@/legacy/components/common'

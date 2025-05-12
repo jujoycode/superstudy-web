@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useState } from 'react'
-import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Link, Route, Switch, useHistory, useLocation } from 'react-router'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import IBLayout from '@/legacy/components/ib/IBLayout'

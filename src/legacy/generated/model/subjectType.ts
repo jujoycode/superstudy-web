@@ -8,7 +8,7 @@
 
 export type SubjectType = (typeof SubjectType)[keyof typeof SubjectType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const SubjectType = {
   LECTURE: 'LECTURE',
   ACTIVITY: 'ACTIVITY',

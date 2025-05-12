@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 // @ts-ignore
 import ExifOrientationImg from 'react-exif-orientation-img'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router'
 import Viewer from 'react-viewer'
 import { useRecoilValue } from 'recoil'
 import { ReactComponent as ChatIcon } from '@/legacy/assets/svg/chat.svg'

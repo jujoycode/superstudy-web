@@ -12,7 +12,7 @@
 export type ResponseIBTokExhibitionPlanSubmissionStatusDtoIbType =
   (typeof ResponseIBTokExhibitionPlanSubmissionStatusDtoIbType)[keyof typeof ResponseIBTokExhibitionPlanSubmissionStatusDtoIbType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBTokExhibitionPlanSubmissionStatusDtoIbType = {
   NORMAL: 'NORMAL',
   CAS_NORMAL: 'CAS_NORMAL',

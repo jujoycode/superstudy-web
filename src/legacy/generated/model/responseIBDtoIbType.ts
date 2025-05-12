@@ -11,7 +11,7 @@
  */
 export type ResponseIBDtoIbType = (typeof ResponseIBDtoIbType)[keyof typeof ResponseIBDtoIbType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBDtoIbType = {
   NORMAL: 'NORMAL',
   CAS_NORMAL: 'CAS_NORMAL',

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { Blank, List, Select, TopNavbar } from '@/legacy/components/common'
 import { FeedsItem } from '@/legacy/components/common/FeedsItem'

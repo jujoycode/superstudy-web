@@ -75,7 +75,7 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
   let userIds = selectedUsers.map((el) => el.id)
 
   const [selectedTeachers, setSelectedTeachers] = useState<userTeacher[]>(me ? [{ id: me.id, name: me.name }] : [])
-  let teacherIds = selectedTeachers.map((el) => el.id)
+  const teacherIds = selectedTeachers.map((el) => el.id)
 
   useEffect(() => {
     setSelectedUsers(groupStudentsData)

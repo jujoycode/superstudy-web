@@ -161,7 +161,7 @@ export default function ExamChart({ studentId }: ExamChartProps) {
             if (semesterData) {
               const subjectData = _.find(semesterData, { subject_group: subjectName })
               if (subjectData) {
-                let subjects = subjectData.subject_list || subjectData.total_subject_list
+                const subjects = subjectData.subject_list || subjectData.total_subject_list
                 return subjects.map((sub: any) => sub).join(', ')
               }
             }

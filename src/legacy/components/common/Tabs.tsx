@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ButtonHTMLAttributes, HTMLAttributes } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
+import { Link, LinkProps } from 'react-router';
 
 interface TabsProps extends HTMLAttributes<HTMLElement> {}
 

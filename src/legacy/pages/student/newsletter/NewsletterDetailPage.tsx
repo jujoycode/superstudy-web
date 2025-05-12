@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { ErrorBlank } from '@/legacy/components/ErrorBlank'
 import {

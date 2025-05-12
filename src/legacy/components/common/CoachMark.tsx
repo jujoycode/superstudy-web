@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, type JSX } from 'react'
 import { ICoachProps } from 'react-coach-mark'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
+import { useHistory } from '@/hooks/useHistory';
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { Button } from './Button'
 

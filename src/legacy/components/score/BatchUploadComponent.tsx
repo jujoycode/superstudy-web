@@ -2,7 +2,7 @@ import { Box, LinearProgress, LinearProgressProps, Typography } from '@mui/mater
 import clsx from 'clsx'
 import _ from 'lodash'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import superstudyLogo from '@/legacy/assets/images/logo.png'
 import neisLogo from '@/legacy/assets/images/neis.png'
 import AlertDialog from '@/legacy/components/common/AlertDialog'

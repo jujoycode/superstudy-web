@@ -8,7 +8,7 @@
 
 export type FilterDescription = (typeof FilterDescription)[keyof typeof FilterDescription];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const FilterDescription = {
   인정: '인정',
   미인정: '미인정',

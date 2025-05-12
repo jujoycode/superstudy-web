@@ -3,7 +3,7 @@ import { PropsWithChildren, useState } from 'react'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
 import { ResponseChecklistDto } from '@/legacy/generated/model'
-import { Typography } from '../@/legacy/components/common/Typography'
+import { Typography } from '@/legacy/components/common/Typography'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 
 interface IbCASCheckListProps {

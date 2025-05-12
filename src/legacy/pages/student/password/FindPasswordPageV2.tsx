@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router'
 import { ReactComponent as Logo } from '@/legacy/assets/svg/logo_superschool.svg'
 import { Alert, BackButton, Blank, Label, TopNavbar } from '@/legacy/components/common'
 import AlertDialog from '@/legacy/components/common/AlertDialog'

@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'

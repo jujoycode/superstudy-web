@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router'
 import { useUserCreateChildren } from '@/legacy/generated/endpoint'
 
 export function AddChildrenPage() {

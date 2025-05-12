@@ -8,7 +8,7 @@
 
 export type StudentNewsletterStatus = (typeof StudentNewsletterStatus)[keyof typeof StudentNewsletterStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const StudentNewsletterStatus = {
   BEFORE_STUDENT_ANSWER: 'BEFORE_STUDENT_ANSWER',
   BEFORE_PARENT_ANSWER: 'BEFORE_PARENT_ANSWER',

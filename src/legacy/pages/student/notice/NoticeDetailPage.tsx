@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { BackButton, Blank, TopNavbar } from '@/legacy/components/common'
 import { FeedsDetail } from '@/legacy/components/common/FeedsDetail'
 import { ErrorBlank } from '@/legacy/components/ErrorBlank'

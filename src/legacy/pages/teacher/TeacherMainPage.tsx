@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import preval from 'preval.macro'
 import { useEffect, useMemo, useState } from 'react'
-import { Link, LinkProps, Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Link, LinkProps, Redirect, Route, Switch, useHistory, useLocation } from 'react-router'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { ReactComponent as RightArrow } from '@/legacy/assets/svg/RightFillArrow.svg'
 import { ReactComponent as Logo } from '@/legacy/assets/svg/logo.svg'

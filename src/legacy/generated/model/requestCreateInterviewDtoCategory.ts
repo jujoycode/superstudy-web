@@ -12,7 +12,7 @@
 export type RequestCreateInterviewDtoCategory =
   (typeof RequestCreateInterviewDtoCategory)[keyof typeof RequestCreateInterviewDtoCategory];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const RequestCreateInterviewDtoCategory = {
   EE_RPPF: 'EE_RPPF',
   CAS_PORTFOLIO_1: 'CAS_PORTFOLIO_1',

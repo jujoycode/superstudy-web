@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router'
 import { Badge, Blank } from '@/legacy/components/common'
 import { useActivityFindBySubject } from '@/legacy/generated/endpoint'
 import { Activity, ActivityType } from '@/legacy/generated/model'

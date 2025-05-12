@@ -8,7 +8,7 @@
 
 export type DeadlineType = (typeof DeadlineType)[keyof typeof DeadlineType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const DeadlineType = {
   EE_ESSAY: 'EE_ESSAY',
   EE_RRS: 'EE_RRS',

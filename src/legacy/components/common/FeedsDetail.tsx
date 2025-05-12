@@ -2,11 +2,10 @@ import parse from 'html-react-parser'
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { useHistory } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
-import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
+import  FileItemIcon from '@/legacy/assets/svg/file-item-icon.svg'
 import { Constants } from '@/legacy/constants'
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
@@ -62,7 +61,6 @@ export function FeedsDetail({
   createAt,
   isPreview = false,
 }: FeedsDetailProps) {
-  const { push } = useHistory()
 
   const meRecoil = useRecoilValue(meState)
   const myChild = useRecoilValue(childState)
@@ -236,7 +234,7 @@ export function FeedsDetail({
           </div>
         )}
 
-        {Pdfs?.map((pdfFile: string, i: number) => {
+        {Pdfs?.map((pdfFile: string) => {
           return (
             <>
               <div key={pdfFile}>

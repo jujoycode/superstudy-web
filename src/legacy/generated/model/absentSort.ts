@@ -8,7 +8,7 @@
 
 export type AbsentSort = (typeof AbsentSort)[keyof typeof AbsentSort];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const AbsentSort = {
   DESC: 'DESC',
   ASC: 'ASC',

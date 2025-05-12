@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { SelectMenus } from '@/legacy/components'
 import { Blank, List, Select } from '@/legacy/components/common'

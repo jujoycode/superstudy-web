@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { FC } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router'
 import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import { ActivitySession, ActivityV3 } from '@/legacy/generated/model'
 import { twMerge } from 'tailwind-merge'

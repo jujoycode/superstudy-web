@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import NODATA from '@/legacy/assets/images/no-data.png'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import {
@@ -11,10 +11,10 @@ import {
   useIBReferenceDelete,
 } from '@/legacy/container/ib-coordinator'
 import { ReferenceInfoGetReferenceInfoListCategory } from '@/legacy/generated/model'
-import AlertV2 from '../@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { RadioV2 } from '../@/legacy/components/common/RadioV2'
-import { Typography } from '../@/legacy/components/common/Typography'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import FrontPaginatedList from '../../FrontPaginatedList '
 import { PopupModal } from '../../PopupModal'
 import { CoordinatorEE_FAQ_AddFaq } from './ee/CoordinatorEE_FAQ_AddFaq'

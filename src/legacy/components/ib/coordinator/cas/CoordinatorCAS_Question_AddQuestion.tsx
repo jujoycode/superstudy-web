@@ -14,9 +14,9 @@ import {
   ResponseIBProfileTemplateDto,
   ResponseInterviewDto,
 } from '@/legacy/generated/model'
-import AlertV2 from '../../@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '../../@/legacy/components/common/ButtonV2'
-import { Typography } from '../../@/legacy/components/common/Typography'
+import AlertV2 from '../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import SVGIcon from '../../../icon/SVGIcon'
 import { FormInputField } from '../../FormInputField'
@@ -254,7 +254,7 @@ export function CoordinatorCAS_Question_AddQuestion({
                           commonQuestion: questions,
                         },
                       })
-                    } else if (!!category) {
+                    } else if (category) {
                       createInterview({
                         data: {
                           title: (PORTFOLIO_TYPES.find((el) => el.value === category)?.name || '인터뷰') + ' 양식',
@@ -274,7 +274,7 @@ export function CoordinatorCAS_Question_AddQuestion({
                           commonQuestion: questions,
                         },
                       })
-                    } else if (!!category) {
+                    } else if (category) {
                       createInterview({
                         data: {
                           title: '위험평가 양식',

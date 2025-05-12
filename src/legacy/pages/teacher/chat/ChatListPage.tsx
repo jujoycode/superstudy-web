@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { ReactComponent as Close } from '@/legacy/assets/svg/close.svg'
 import { ChatRoomList } from '@/legacy/components/chat/ChatRoomList'
@@ -204,7 +204,7 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
         // 신규 사용자의 경우 전화번호 유효성 검증
         // 아이디와 이름이 있는 경우에는 신규 사용자가 아니므로 전화번호 유효성 검증x
         if ((obj['id'] && obj['이름']) || Validator.phoneNumberRule(phoneNum)) {
-          let inputUser = {
+          const inputUser = {
             id: obj['id'] ? Number(obj['id']) : Number(phoneNum),
             name: obj['이름'],
             role: '',
@@ -355,7 +355,7 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                               }
 
                               if (!selectedUsers?.find((el) => el.id === Number(phoneInput))) {
-                                let inputUser = {
+                                const inputUser = {
                                   id: Number(phoneInput),
                                   name: nameInput,
                                   role: '',

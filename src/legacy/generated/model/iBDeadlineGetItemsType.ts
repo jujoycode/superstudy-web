@@ -8,7 +8,7 @@
 
 export type IBDeadlineGetItemsType = (typeof IBDeadlineGetItemsType)[keyof typeof IBDeadlineGetItemsType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const IBDeadlineGetItemsType = {
   IB_EE: 'IB_EE',
   IB_CAS: 'IB_CAS',

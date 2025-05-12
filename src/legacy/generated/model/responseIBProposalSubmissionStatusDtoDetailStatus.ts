@@ -12,7 +12,7 @@
 export type ResponseIBProposalSubmissionStatusDtoDetailStatus =
   (typeof ResponseIBProposalSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBProposalSubmissionStatusDtoDetailStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBProposalSubmissionStatusDtoDetailStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMIT: 'SUBMIT',

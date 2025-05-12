@@ -8,7 +8,7 @@
 
 export type FeedbackReferenceTable = (typeof FeedbackReferenceTable)[keyof typeof FeedbackReferenceTable];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const FeedbackReferenceTable = {
   IB: 'IB',
   ESSAY: 'ESSAY',

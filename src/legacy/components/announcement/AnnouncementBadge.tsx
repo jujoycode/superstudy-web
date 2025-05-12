@@ -1,4 +1,5 @@
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
+import { useHistory } from '@/hooks/useHistory'
 import { Announcement } from '@/legacy/generated/model/announcement'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { Time } from '@/legacy/components/common/Time'

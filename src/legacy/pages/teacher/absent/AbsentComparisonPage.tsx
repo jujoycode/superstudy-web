@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import _, { range } from 'lodash'
 import React, { useEffect, useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { Label, Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

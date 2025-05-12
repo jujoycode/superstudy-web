@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
 import { ErrorBlank } from '@/legacy/components'

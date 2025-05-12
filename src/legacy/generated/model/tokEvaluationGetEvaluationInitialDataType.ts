@@ -9,7 +9,7 @@
 export type TokEvaluationGetEvaluationInitialDataType =
   (typeof TokEvaluationGetEvaluationInitialDataType)[keyof typeof TokEvaluationGetEvaluationInitialDataType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const TokEvaluationGetEvaluationInitialDataType = {
   EXHIBITION: 'EXHIBITION',
   ESSAY: 'ESSAY',

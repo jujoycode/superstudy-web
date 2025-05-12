@@ -50,7 +50,7 @@ export default function Parentv3InfoCard({
   const totalPendingParents2 = !isParentAlreadyAdded ? 1 : 0
   const canAddParent = totalParent + totalPendingParents + totalPendingParents2 < 2
 
-  let key = studentId || 0
+  const key = studentId || 0
   const { mutate: sendParentSignUpV2Mutate } = useCounselingSendParentSignUpV2({
     mutation: {
       onSuccess: () => {

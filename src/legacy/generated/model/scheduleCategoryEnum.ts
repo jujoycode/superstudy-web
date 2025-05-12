@@ -8,7 +8,7 @@
 
 export type ScheduleCategoryEnum = (typeof ScheduleCategoryEnum)[keyof typeof ScheduleCategoryEnum];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ScheduleCategoryEnum = {
   allday: 'allday',
   time: 'time',

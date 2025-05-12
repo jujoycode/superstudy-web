@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, useLocation, useParams } from 'react-router-dom'
+import { useHistory, useLocation, useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -16,7 +16,7 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBInterviewUpdate, useInterviewQNA } from '@/legacy/container/ib-student-interview'
 import { RequestCreateQnaDto } from '@/legacy/generated/model'
 import { meState } from 'src/store'
-import { LocationState } from '@/legacy/type/ib'
+import type { LocationState } from '@/legacy/types/ib'
 
 export const EERppfInterviewDetailPage = () => {
   const history = useHistory()

@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilState, useRecoilValue } from 'recoil'

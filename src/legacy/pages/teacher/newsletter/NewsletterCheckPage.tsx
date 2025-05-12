@@ -1,6 +1,6 @@
 import { useQueryClient } from 'react-query'
 import { useParams } from 'react-router'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Route, Switch, useHistory } from 'react-router'
 import { useRecoilState } from 'recoil'
 import { NewsletterCheckerItem } from '@/legacy/components/newsletter/NewsletterCheckerItem'
 import { useTeacherNewsletterCheck } from '@/legacy/container/teacher-newsletter-check'

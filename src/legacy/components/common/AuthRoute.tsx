@@ -1,5 +1,5 @@
 import { ComponentType } from 'react'
-import { Redirect, Route } from 'react-router-dom'
+import { Redirect, Route } from 'react-router'
 import { UserContainer } from '@/legacy/container/user'
 import { useAuth } from '@/legacy/util/hooks'
 

@@ -27,3 +27,5 @@ RUN yarn install
 
 # 개발 서버 실행
 CMD ["yarn", "start:dev"]
+# Storybook 서버 실행
+CMD ["yarn", "storybook"]

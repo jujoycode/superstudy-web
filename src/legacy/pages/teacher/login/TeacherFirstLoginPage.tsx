@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { Blank, Label, PhoneNumberField, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

@@ -9,7 +9,7 @@
 export type IBGetCasSubmissionStatusStatus =
   (typeof IBGetCasSubmissionStatusStatus)[keyof typeof IBGetCasSubmissionStatusStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const IBGetCasSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',

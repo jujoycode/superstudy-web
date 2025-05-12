@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, TopNavbar } from '@/legacy/components/common'

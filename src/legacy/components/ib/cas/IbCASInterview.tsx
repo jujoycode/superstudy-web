@@ -9,7 +9,7 @@ import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import { useCheckListGetByStudent } from '@/legacy/container/ib-checklist-find'
 import { useIBInterviewCreate } from '@/legacy/container/ib-student-interview'
 import { RequestCreateQnaDto, ResponseStudentInterviewDto } from '@/legacy/generated/model'
-import { Typography } from '../@/legacy/components/common/Typography'
+import { Typography } from '@/legacy/components/common/Typography'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 
 interface IbCASInterviewProps {

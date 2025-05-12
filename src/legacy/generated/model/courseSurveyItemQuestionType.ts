@@ -9,7 +9,7 @@
 export type CourseSurveyItemQuestionType =
   (typeof CourseSurveyItemQuestionType)[keyof typeof CourseSurveyItemQuestionType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const CourseSurveyItemQuestionType = {
   주관식_단답형: '주관식 단답형',
   주관식_서술형: '주관식 서술형',

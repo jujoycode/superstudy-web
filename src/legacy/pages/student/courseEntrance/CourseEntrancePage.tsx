@@ -1,7 +1,7 @@
 // @ts-ignore
 import { addHours, differenceInSeconds, format } from 'date-fns'
 import { useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import sugang from '@/legacy/assets/images/sugang.png'
 import { ReactComponent as Logo } from '@/legacy/assets/svg/logo.svg'

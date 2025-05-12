@@ -11,7 +11,7 @@
  */
 export type NotificationLogType = (typeof NotificationLogType)[keyof typeof NotificationLogType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const NotificationLogType = {
   BASIC: 'BASIC',
   ABSENT: 'ABSENT',

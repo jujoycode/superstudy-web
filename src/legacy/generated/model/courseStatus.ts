@@ -8,7 +8,7 @@
 
 export type CourseStatus = (typeof CourseStatus)[keyof typeof CourseStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const CourseStatus = {
   EDITING: 'EDITING',
   PROPOSED: 'PROPOSED',

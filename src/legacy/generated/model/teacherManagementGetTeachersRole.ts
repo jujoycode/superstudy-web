@@ -9,7 +9,7 @@
 export type TeacherManagementGetTeachersRole =
   (typeof TeacherManagementGetTeachersRole)[keyof typeof TeacherManagementGetTeachersRole];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const TeacherManagementGetTeachersRole = {
   ADMIN: 'ADMIN',
   TEACHER: 'TEACHER',

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { useTeacherKlassGroup } from '@/legacy/container/teacher-klass-groups'
 import { MonthAgo, getEndDate, getStartDate, getThisYear, makeDateToString } from '@/legacy/util/time'

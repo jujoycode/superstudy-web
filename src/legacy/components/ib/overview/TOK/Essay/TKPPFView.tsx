@@ -1,6 +1,6 @@
 import { saveAs } from 'file-saver'
 import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import {

@@ -8,7 +8,7 @@
 
 export type FieldtripStatus = (typeof FieldtripStatus)[keyof typeof FieldtripStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const FieldtripStatus = {
   WAITING: 'WAITING',
   RETURNED: 'RETURNED',

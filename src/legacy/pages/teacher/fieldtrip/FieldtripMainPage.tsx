@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Route, Switch, useHistory, useLocation } from 'react-router'
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

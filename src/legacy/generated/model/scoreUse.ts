@@ -8,7 +8,7 @@
 
 export type ScoreUse = (typeof ScoreUse)[keyof typeof ScoreUse];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ScoreUse = {
   NONE: 'NONE',
   USE_PRIVATE: 'USE_PRIVATE',

@@ -12,7 +12,7 @@
 export type ResponseFeedbackDtoReferenceTable =
   (typeof ResponseFeedbackDtoReferenceTable)[keyof typeof ResponseFeedbackDtoReferenceTable];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseFeedbackDtoReferenceTable = {
   IB: 'IB',
   ESSAY: 'ESSAY',

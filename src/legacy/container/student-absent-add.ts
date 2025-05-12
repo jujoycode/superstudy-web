@@ -5,7 +5,7 @@ import moment from 'moment'
 import { useEffect, useState } from 'react'
 
 // ! 개선 필요
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 
 import { useRecoilValue } from 'recoil'
 import { childState } from '@/stores'
@@ -216,7 +216,7 @@ export function useStudentAbsentAdd({ absentData, returnToDetail }: Props) {
           setLoading(false)
           setSignModal(false)
           //setErrorMessage(errorMsg?.message || '슈퍼스쿨에 문의하여 결재자 지정상태를 확인하세요.');
-        } catch (error) {}
+        } catch (error) { }
       },
     },
     request: {
@@ -365,9 +365,8 @@ export function useStudentAbsentAdd({ absentData, returnToDetail }: Props) {
             .filter((f) => f.reason === '생리')
             .map((mense) => {
               const statusText = mense.absentStatus === AbsentStatus.PROCESSED ? '결재완료' : '결재중'
-              return `${makeStartEndToString(mense.startAt, mense.endAt, mense.reportType)} ${mense.description}${
-                mense.reportType
-              } ${mense.reason} ${statusText}`
+              return `${makeStartEndToString(mense.startAt, mense.endAt, mense.reportType)} ${mense.description}${mense.reportType
+                } ${mense.reason} ${statusText}`
             })
 
           setMensesTexts(mensesText)

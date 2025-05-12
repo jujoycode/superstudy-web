@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import NODATA from '@/legacy/assets/images/no-data.png'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'

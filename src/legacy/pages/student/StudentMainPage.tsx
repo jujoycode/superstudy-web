@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useMemo } from 'react'
-import { Link, Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Link, Redirect, Route, Switch, useHistory, useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { ReactComponent as Logo } from '@/legacy/assets/svg/logo.svg'
 import { Toast } from '@/legacy/components/Toast'

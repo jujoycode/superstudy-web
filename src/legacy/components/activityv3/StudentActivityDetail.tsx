@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { useRecoilState } from 'recoil'
 import { Constants } from '@/legacy/constants'
 import {

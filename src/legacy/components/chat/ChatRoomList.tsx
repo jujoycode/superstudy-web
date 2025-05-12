@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router'
 import { useSetRecoilState } from 'recoil'
 import SvgUser from '@/legacy/assets/svg/user.svg'
 import { MessageBox } from '@/legacy/components/chat/MessageBox'

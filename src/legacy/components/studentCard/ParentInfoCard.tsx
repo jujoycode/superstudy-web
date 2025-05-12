@@ -44,7 +44,7 @@ export function ParentInfoCard({ studentId, parentInfo }: ParentInfoCard) {
     totalParent = parentInfo?.length || 0
   }
   //const totalParent = parentInfo?.length || 0;
-  let key = studentId || 0
+  const key = studentId || 0
   const { mutate: sendParentSignUpV2Mutate } = useCounselingSendParentSignUpV2({
     mutation: {
       onSuccess: () => {

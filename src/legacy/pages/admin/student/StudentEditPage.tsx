@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router'
 import { useSetRecoilState } from 'recoil'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'

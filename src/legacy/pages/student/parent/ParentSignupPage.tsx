@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { use100vh } from 'react-div-100vh'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router'
 import { useRecoilState } from 'recoil'
 import { ReactComponent as Logo } from '@/legacy/assets/svg/logo.svg'
 import { Toast } from '@/legacy/components/Toast'
@@ -397,7 +397,7 @@ export function ParentSignupPage() {
                     onChange={(e) => setOtpNum(String(e.target.value))}
                     className="mb-2"
                   />
-                  {!!remainSecString ? (
+                  {remainSecString ? (
                     <Button.lg
                       children="인증번호 확인"
                       disabled={otpNum.length !== 6}

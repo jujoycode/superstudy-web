@@ -110,9 +110,9 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
         return a.receiverNum > b.receiverNum ? 1 : -1
       })
       .map((item, index) => {
-        const itemText1 = !!item.userText1 ? item.userText1 : userText1[index]
-        const itemText2 = !!item.userText2 ? item.userText2 : userText2[index]
-        const itemText3 = !!item.userText3 ? item.userText3 : userText3[index]
+        const itemText1 = item.userText1 ? item.userText1 : userText1[index]
+        const itemText2 = item.userText2 ? item.userText2 : userText2[index]
+        const itemText3 = item.userText3 ? item.userText3 : userText3[index]
 
         const personalMessage =
           getSenderName() +

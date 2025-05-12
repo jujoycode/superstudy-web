@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { MonthAgo, getEndDate, getStartDate, makeDateToString } from '@/legacy/util/time'
 import { FieldtripStatus, Role } from '@/legacy/generated/model'

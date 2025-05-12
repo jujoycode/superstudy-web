@@ -1,8 +1,9 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+import { useHistory } from '@/hooks/useHistory'
 import NODATA from '@/legacy/assets/images/no-data.png'
 import { SuperModal } from '@/legacy/components'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -39,7 +40,7 @@ export const OutlineDetailPage = () => {
   const outlineData = ibData?.tokOutline
 
   const klassNum = ibKlassNum
-  const { data: Questions, isLoading: isFetching } = useThemeQuestionFindAll('TOK_ESSAY')
+  const { data: Questions } = useThemeQuestionFindAll('TOK_ESSAY')
   const { categoryData: knowledgeArea } = useCodeByCategoryName('tokOutlineKnowledgeArea')
 
   const [editMode, setEditMode] = useState<boolean>(false)
@@ -535,7 +536,7 @@ export const OutlineDetailPage = () => {
                         size={40}
                         variant="solid"
                         color="gray100"
-                        onClick={() => history.push(`/teacher/ib/tok/essay/${ibData.id}`, { type: 'OUTLINE' })}
+                        onClick={() => history.push(`/ib/student/tok/essay/${id}`, { type: 'OUTLINE' })}
                       >
                         목록 돌아가기
                       </ButtonV2>

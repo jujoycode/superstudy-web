@@ -1,5 +1,5 @@
 import { useQueryClient } from 'react-query'
-import { Route, Switch, useHistory, useLocation, useParams } from 'react-router-dom'
+import { Route, Switch, useHistory, useLocation, useParams } from 'react-router'
 import { ErrorBlank, Tab } from '@/legacy/components'
 import { Blank } from '@/legacy/components/common'
 import { SubmitterItem } from '@/legacy/components/record/SubmitterItem'

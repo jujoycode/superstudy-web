@@ -28,7 +28,7 @@ export function useStudentNoticeDetail(noticeId?: number) {
   })
 
   useEffect(() => {
-    if (!!child) {
+    if (child) {
       refetchNotice()
     }
   }, [child])

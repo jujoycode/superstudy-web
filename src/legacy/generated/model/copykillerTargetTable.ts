@@ -8,7 +8,7 @@
 
 export type CopykillerTargetTable = (typeof CopykillerTargetTable)[keyof typeof CopykillerTargetTable];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const CopykillerTargetTable = {
   EE_ESSAY: 'EE_ESSAY',
   TOK_ESSAY: 'TOK_ESSAY',

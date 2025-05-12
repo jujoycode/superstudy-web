@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import Groupv3InfoCard from '@/legacy/components/studentCard/Groupv3InfoCard'
 import Parentv3InfoCard from '@/legacy/components/studentCard/Parentv3InfoCard'
 import Studentv3InfoCard from '@/legacy/components/studentCard/Studentv3InfoCard'

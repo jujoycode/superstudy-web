@@ -12,7 +12,7 @@
 export type ResponseIBTokOutlineDtoStatus =
   (typeof ResponseIBTokOutlineDtoStatus)[keyof typeof ResponseIBTokOutlineDtoStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBTokOutlineDtoStatus = {
   PENDING: 'PENDING',
   SUBMIT: 'SUBMIT',

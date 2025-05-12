@@ -8,7 +8,7 @@
 
 export type CourseSurveyStatus = (typeof CourseSurveyStatus)[keyof typeof CourseSurveyStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const CourseSurveyStatus = {
   대기중: '대기중',
   진행중: '진행중',

@@ -9,7 +9,7 @@
 export type RRSUnsubmitNotificationIbType =
   (typeof RRSUnsubmitNotificationIbType)[keyof typeof RRSUnsubmitNotificationIbType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const RRSUnsubmitNotificationIbType = {
   NORMAL: 'NORMAL',
   CAS_NORMAL: 'CAS_NORMAL',

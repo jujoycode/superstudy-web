@@ -11,9 +11,9 @@ import {
   TokEvaluationGetCriteriaItemsType,
 } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import AlertV2 from '../../@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '../../@/legacy/components/common/ButtonV2'
-import { Typography } from '../../@/legacy/components/common/Typography'
+import AlertV2 from '../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
 import FrontPaginatedList from '../../../FrontPaginatedList '
 import { CoordinatorTOK_Eval_AddEval } from './CoordinatorTOK_Eval_AddEval'
 import { CoordinatorTOK_Eval_UpdateEval } from './CoordinatorTOK_Eval_UpdateEval'

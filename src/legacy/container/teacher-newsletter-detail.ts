@@ -3,7 +3,7 @@ import { useQueryClient } from 'react-query'
 
 // ! 로직 개선
 import { Routes } from '@/legacy/routes'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 
 import {
   useNewsLettersDelete,

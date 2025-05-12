@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, Route, Switch } from 'react-router-dom'
+import { Link, Route, Switch } from 'react-router'
 import { SelectMenus } from '@/legacy/components'
 import { BoardCard } from '@/legacy/components/board/BoardCard'
 import { Blank, Select } from '@/legacy/components/common'

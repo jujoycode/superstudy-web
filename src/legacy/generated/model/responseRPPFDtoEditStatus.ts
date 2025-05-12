@@ -16,7 +16,7 @@
  */
 export type ResponseRPPFDtoEditStatus = (typeof ResponseRPPFDtoEditStatus)[keyof typeof ResponseRPPFDtoEditStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseRPPFDtoEditStatus = {
   LOCK: 'LOCK',
   REQUEST_UNLOCK: 'REQUEST_UNLOCK',

@@ -1,6 +1,6 @@
 import _, { range } from 'lodash'
 import { useEffect, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router'
 import { SessionDownloadModal } from '@/legacy/components/activityv3/SessionDownloadModal'
 import { BackButton, Select, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

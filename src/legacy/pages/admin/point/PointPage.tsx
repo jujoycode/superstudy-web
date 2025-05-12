@@ -1,6 +1,6 @@
 import { sumBy } from 'lodash'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { useSetRecoilState } from 'recoil'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'

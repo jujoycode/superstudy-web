@@ -3,7 +3,7 @@ import { range } from 'lodash'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router'
 import { useSetRecoilState } from 'recoil'
 import { BackButton, Divider, Label, PhoneNumberField, Select, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -188,7 +188,7 @@ export function Signup() {
                       onChange={(e) => setOtpNumStudent(e.target.value)}
                       className="mb-2"
                     />
-                    {!!remainSecStringStudent ? (
+                    {remainSecStringStudent ? (
                       <Button.lg
                         children="인증번호 확인"
                         disabled={otpNumStudent.length !== 6}
@@ -273,7 +273,7 @@ export function Signup() {
                       onChange={(e) => setOtpNumParent(e.target.value)}
                       className="mb-2"
                     />
-                    {!!remainSecStringParent ? (
+                    {remainSecStringParent ? (
                       <Button.lg
                         children="인증번호 확인"
                         disabled={otpNumParent.length !== 6}

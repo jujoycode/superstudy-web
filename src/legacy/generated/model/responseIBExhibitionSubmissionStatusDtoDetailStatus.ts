@@ -12,7 +12,7 @@
 export type ResponseIBExhibitionSubmissionStatusDtoDetailStatus =
   (typeof ResponseIBExhibitionSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBExhibitionSubmissionStatusDtoDetailStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBExhibitionSubmissionStatusDtoDetailStatus = {
   EVALUATED: 'EVALUATED',
   NOT_EVALUATED: 'NOT_EVALUATED',

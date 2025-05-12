@@ -1,4 +1,4 @@
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router'
 import { Badge } from '@/legacy/components/common'
 import { Notice } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'

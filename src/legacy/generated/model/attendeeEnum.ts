@@ -8,7 +8,7 @@
 
 export type AttendeeEnum = (typeof AttendeeEnum)[keyof typeof AttendeeEnum];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const AttendeeEnum = {
   일반: '일반',
   공휴일: '공휴일',

@@ -1,5 +1,5 @@
 // ! 개선 필요
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router'
 
 export const useQueryParams = () => {
   const location = useLocation()

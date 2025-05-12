@@ -8,7 +8,7 @@
 
 export type UploadFileTypeEnum = (typeof UploadFileTypeEnum)[keyof typeof UploadFileTypeEnum];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const UploadFileTypeEnum = {
   'board/files': 'board/files',
   'board/images': 'board/images',

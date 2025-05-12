@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import readXlsxFile, { Row } from 'read-excel-file'
 import { ErrorBlank, Td } from '@/legacy/components'
 import { Blank, Section } from '@/legacy/components/common'

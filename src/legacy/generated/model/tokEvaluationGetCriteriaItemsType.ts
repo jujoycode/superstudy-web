@@ -9,7 +9,7 @@
 export type TokEvaluationGetCriteriaItemsType =
   (typeof TokEvaluationGetCriteriaItemsType)[keyof typeof TokEvaluationGetCriteriaItemsType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const TokEvaluationGetCriteriaItemsType = {
   EXHIBITION: 'EXHIBITION',
   ESSAY: 'ESSAY',

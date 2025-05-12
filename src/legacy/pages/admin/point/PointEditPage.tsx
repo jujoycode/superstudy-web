@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router'
 import { useSetRecoilState } from 'recoil'
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'

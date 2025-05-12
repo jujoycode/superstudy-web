@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { Button } from './common/Button'
 import { useRecoilValue } from 'recoil'
 import { meState } from '@/stores'

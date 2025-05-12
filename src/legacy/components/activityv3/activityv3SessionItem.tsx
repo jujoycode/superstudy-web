@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { FC } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router'
 import { ActivitySession } from '@/legacy/generated/model'
 import { twMerge } from 'tailwind-merge'
 

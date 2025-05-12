@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Route, Switch, useHistory, useLocation } from 'react-router'
 import { ErrorBlank, FrontPagination } from '@/legacy/components'
 import { BackButton, TopNavbar } from '@/legacy/components/common'
 import { SearchInput } from '@/legacy/components/common/SearchInput'

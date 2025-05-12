@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import NODATA from '@/legacy/assets/images/no-data.png'
 import AlertV2 from '@/legacy/components/common/AlertV2'

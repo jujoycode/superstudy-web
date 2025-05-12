@@ -12,7 +12,7 @@
 export type ResponseTokEvaluationCriteriaDtoType =
   (typeof ResponseTokEvaluationCriteriaDtoType)[keyof typeof ResponseTokEvaluationCriteriaDtoType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseTokEvaluationCriteriaDtoType = {
   EXHIBITION: 'EXHIBITION',
   ESSAY: 'ESSAY',

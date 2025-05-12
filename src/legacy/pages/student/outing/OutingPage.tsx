@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { ReactComponent as RightArrow } from '@/legacy/assets/svg/mypage-right-arrow.svg'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'

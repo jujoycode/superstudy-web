@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { useNotificationLogFindAll, useNotificationLogRead } from '@/legacy/generated/endpoint'

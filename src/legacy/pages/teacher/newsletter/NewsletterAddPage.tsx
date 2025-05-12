@@ -91,7 +91,7 @@ export function NewsletterAddPage() {
 
   const [selectedGroupType, setSelectedGroupType] = useState<GroupType>()
 
-  let recvuserIds = selectedUsers.map((el: { id: any }) => el.id)
+  const recvuserIds = selectedUsers.map((el: { id: any }) => el.id)
 
   const getTitle = (ud: any) => {
     if (ud.role === '') {

@@ -3,7 +3,7 @@ import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { Typography } from '@/legacy/components/common/Typography'
 
 // ! 개선 필요
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 
 import {
   useIBProposalNotSubmittedNotification,

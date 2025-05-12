@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { BackButton, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
@@ -47,7 +47,7 @@ export function TwoFactor() {
                   onChange={(e) => setOtpNumber(String(e.target.value))}
                   className="mb-2"
                 />
-                {!!remainSecString ? (
+                {remainSecString ? (
                   <Button.lg
                     children="인증번호 확인"
                     disabled={otpNumber.length !== 6}

@@ -12,7 +12,7 @@
 export type ResponseIBTKPPFSubmissionStatusDtoDetailStatus =
   (typeof ResponseIBTKPPFSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBTKPPFSubmissionStatusDtoDetailStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBTKPPFSubmissionStatusDtoDetailStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   FIRST_DRAFT: 'FIRST_DRAFT',

@@ -17,7 +17,7 @@
 export type ResponseIBOnlyCasDtoEditStatus =
   (typeof ResponseIBOnlyCasDtoEditStatus)[keyof typeof ResponseIBOnlyCasDtoEditStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBOnlyCasDtoEditStatus = {
   LOCK: 'LOCK',
   REQUEST_UNLOCK: 'REQUEST_UNLOCK',

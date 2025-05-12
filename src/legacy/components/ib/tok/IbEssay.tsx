@@ -7,12 +7,12 @@ import { RequestEssayDto, ResponseEssayDto, UploadFileTypeEnum } from '@/legacy/
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { getFileNameFromUrl } from '@/legacy/util/file'
-import AlertV2 from '../@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { Check } from '../@/legacy/components/common/Check'
-import { ImageNFileUpload } from '../@/legacy/components/common/ImageNFileUpload'
-import { Input } from '../@/legacy/components/common/Input'
-import { Typography } from '../@/legacy/components/common/Typography'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Check } from '@/legacy/components/common/Check'
+import { ImageNFileUpload } from '@/legacy/components/common/ImageNFileUpload'
+import { Input } from '@/legacy/components/common/Input'
+import { Typography } from '@/legacy/components/common/Typography'
 import { PopupModal } from '../../PopupModal'
 
 interface IbEssayProps {

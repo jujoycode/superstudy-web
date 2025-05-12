@@ -12,7 +12,7 @@
 export type ResponseCopykillerWithContentDtoTargetTable =
   (typeof ResponseCopykillerWithContentDtoTargetTable)[keyof typeof ResponseCopykillerWithContentDtoTargetTable];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseCopykillerWithContentDtoTargetTable = {
   EE_ESSAY: 'EE_ESSAY',
   TOK_ESSAY: 'TOK_ESSAY',

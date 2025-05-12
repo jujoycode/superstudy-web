@@ -9,7 +9,7 @@
 export type IBGetTokExhibitionPlanSubmissionStatusStatus =
   (typeof IBGetTokExhibitionPlanSubmissionStatusStatus)[keyof typeof IBGetTokExhibitionPlanSubmissionStatusStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const IBGetTokExhibitionPlanSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',

@@ -27,7 +27,7 @@ export interface AssignPointModalProps {
 }
 
 export function AssignPointModal({ studentId, groupId: defaultGroupId }: AssignPointModalProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation('')
   const { t: tm } = useTranslation('modal', { keyPrefix: 'assign_point_modal' })
   const { popModal } = useModals()
   const setToastMsg = useSetRecoilState(toastState)

@@ -12,7 +12,7 @@ import {
   ResponseIBTokExhibitionPlanSubmissionStatusDto,
   ResponseIBTokExhibitionPlanSubmissionStatusDtoDetailStatus,
 } from '@/legacy/generated/model'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import PlanOverviewPanel from './PlanOverviewPanel'
 import { handleBatchBlobDownload } from '@/legacy/hooks/useBatchDownload'
 import { createTokExhibitionPlanPdf } from '@/legacy/util/ib/tok-exhibition-plan-pdf'

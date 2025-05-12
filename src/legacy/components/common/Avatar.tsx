@@ -59,9 +59,9 @@ export function Avatar({
     }
   }
 
-  let notificationSize = size / 4;
+  const notificationSize = size / 4;
 
-  let notificationElement = (
+  const notificationElement = (
     <span
       className={`absolute ${notification}-0 right-0 block
                   w-${notificationSize} h-${notificationSize} rounded-full ring-2 ring-white

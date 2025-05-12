@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 // ! 개선 필요
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 
 import { useRecoilValue } from 'recoil'
 import { childState } from '@/stores'
@@ -133,7 +133,7 @@ export function useTeacherOutingAdd(outingData?: Outing) {
   }
   const { mutate: updateOutingMutate, isLoading: isUpdateOutingLoading } = useOutingsUpdate({
     mutation: {
-      onSuccess: () => {},
+      onSuccess: () => { },
       onError: (error) => {
         const errorMsg: errorType | undefined = error?.response?.data ? (error?.response?.data as errorType) : undefined
 

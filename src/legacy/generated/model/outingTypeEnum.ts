@@ -8,7 +8,7 @@
 
 export type OutingTypeEnum = (typeof OutingTypeEnum)[keyof typeof OutingTypeEnum];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const OutingTypeEnum = {
   조퇴: '조퇴',
   외출: '외출',

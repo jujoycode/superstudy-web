@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
 import { BackButton, Blank, Divider, TopNavbar } from '@/legacy/components/common'
 import { useSchoolsFindOne } from '@/legacy/generated/endpoint'

@@ -9,7 +9,7 @@
 export type EssayGetSubmissionStatusIbType =
   (typeof EssayGetSubmissionStatusIbType)[keyof typeof EssayGetSubmissionStatusIbType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const EssayGetSubmissionStatusIbType = {
   NORMAL: 'NORMAL',
   CAS_NORMAL: 'CAS_NORMAL',

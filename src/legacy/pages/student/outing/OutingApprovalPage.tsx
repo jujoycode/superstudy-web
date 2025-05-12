@@ -1,4 +1,4 @@
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router'
 import { ErrorBlank } from '@/legacy/components'
 import { Blank, BottomFixed, CloseButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

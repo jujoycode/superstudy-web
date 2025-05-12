@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Badge, Section } from '@/legacy/components/common'

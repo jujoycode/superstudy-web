@@ -9,7 +9,7 @@
 export type IBCasPortfolioGetSubmissionStatusByInterviewStatus =
   (typeof IBCasPortfolioGetSubmissionStatusByInterviewStatus)[keyof typeof IBCasPortfolioGetSubmissionStatusByInterviewStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const IBCasPortfolioGetSubmissionStatusByInterviewStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',

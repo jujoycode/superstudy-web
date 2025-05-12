@@ -9,7 +9,7 @@
 export type RRSGetSubmissionStatusStatus =
   (typeof RRSGetSubmissionStatusStatus)[keyof typeof RRSGetSubmissionStatusStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const RRSGetSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',

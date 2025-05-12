@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router'
 import { ReactComponent as Close } from '@/legacy/assets/svg/close.svg'
 import { ChatRoomList } from '@/legacy/components/chat/ChatRoomList'
 import { BackButton, Blank, Divider, Label, Section, TopNavbar } from '@/legacy/components/common'

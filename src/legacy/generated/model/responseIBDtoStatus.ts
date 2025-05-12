@@ -23,7 +23,7 @@ IB 프로젝트 진행 상태 값:
  */
 export type ResponseIBDtoStatus = (typeof ResponseIBDtoStatus)[keyof typeof ResponseIBDtoStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBDtoStatus = {
   PENDING: 'PENDING',
   WAIT_MENTOR: 'WAIT_MENTOR',

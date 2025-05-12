@@ -1,5 +1,5 @@
 import preval from 'preval.macro'
-import { Redirect, useHistory } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router'
 import superstudyLight from '@/legacy/assets/images/superstudy-light.png'
 import { ReactComponent as Logo } from '@/legacy/assets/svg/logo.svg'
 import { BottomFixed, Screen, Section } from '@/legacy/components/common'

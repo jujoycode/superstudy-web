@@ -12,7 +12,7 @@
 export type ResponseInterviewListWithQnaDtoCategory =
   (typeof ResponseInterviewListWithQnaDtoCategory)[keyof typeof ResponseInterviewListWithQnaDtoCategory];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseInterviewListWithQnaDtoCategory = {
   EE_RPPF: 'EE_RPPF',
   CAS_PORTFOLIO_1: 'CAS_PORTFOLIO_1',

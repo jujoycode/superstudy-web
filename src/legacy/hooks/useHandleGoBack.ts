@@ -1,5 +1,5 @@
 import QueryString from 'qs';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from '@/hooks/useHistory';
 import { useQueryParams } from './useQueryParams';
 
 export const useHandleGoBack = (path: string) => {

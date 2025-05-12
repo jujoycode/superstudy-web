@@ -12,7 +12,7 @@
 export type ResponseIBTokExhibitionPlanDtoStatus =
   (typeof ResponseIBTokExhibitionPlanDtoStatus)[keyof typeof ResponseIBTokExhibitionPlanDtoStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBTokExhibitionPlanDtoStatus = {
   PENDING: 'PENDING',
   SUBMIT: 'SUBMIT',

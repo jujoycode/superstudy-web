@@ -91,7 +91,7 @@ export function useInsertScoreBatch() {
 }
 
 export function useStudentScoreFileCheck(grade: number, insertionYear: number) {
-  const [errorMessage, setErrorMessage] = useState<String | undefined>()
+  const [errorMessage, setErrorMessage] = useState<string | undefined>()
   const { data, isLoading, error } = useStudentExamScoreCheckScoreFile<SCORE_DATA>(
     { grade, insertionYear },
     {
@@ -111,7 +111,7 @@ export function useStudentScoreFileCheck(grade: number, insertionYear: number) {
 }
 
 export function useStudentScoreFileCheckMock(grade: number, insertionYear: number) {
-  const [errorMessage, setErrorMessage] = useState<String | undefined>()
+  const [errorMessage, setErrorMessage] = useState<string | undefined>()
   const { data, isLoading, error } = useStudentExamScoreCheckMockScoreFile<MOCK_DATA>(
     { grade, insertionYear },
     {
@@ -132,7 +132,7 @@ export function useStudentScoreFileCheckMock(grade: number, insertionYear: numbe
 }
 
 export function useStudentScoreFileCheckTest(grade: number, insertionYear: number) {
-  const [errorMessage, setErrorMessage] = useState<String | undefined>()
+  const [errorMessage, setErrorMessage] = useState<string | undefined>()
   const { data, isLoading, error } = useStudentExamScoreCheckTestScoreFile<TestScore>(
     { grade, insertionYear },
     {

@@ -255,7 +255,7 @@ export function AttendancePage() {
   // 교사 시간표
   const { teachers, timetableV3Teacher, teacherId, setTeacherId } = useTeacherTimetableDetail('출석부', selday)
 
-  let uniqueTimetableV3Teacher = timetableV3Teacher
+  const uniqueTimetableV3Teacher = timetableV3Teacher
     ?.filter((obj, index, self) => index === self.findIndex((t) => t.groupId === obj.groupId))
     ?.sort((a, b) => {
       if (!a.room || !b.room) {

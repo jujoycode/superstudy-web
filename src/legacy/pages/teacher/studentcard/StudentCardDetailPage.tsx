@@ -1,4 +1,4 @@
-import { Route, Switch, useHistory, useLocation, useParams } from 'react-router-dom'
+import { Route, Switch, useHistory, useLocation, useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { BackButton, Blank, List, TopNavbar } from '@/legacy/components/common'
 import Counselingv3Card from '@/legacy/components/studentCard/Counselingv3Card'

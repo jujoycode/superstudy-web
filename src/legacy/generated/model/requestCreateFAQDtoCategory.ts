@@ -12,7 +12,7 @@
 export type RequestCreateFAQDtoCategory =
   (typeof RequestCreateFAQDtoCategory)[keyof typeof RequestCreateFAQDtoCategory];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const RequestCreateFAQDtoCategory = {
   IB_EE: 'IB_EE',
   IB_CAS: 'IB_CAS',

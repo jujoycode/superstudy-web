@@ -39,7 +39,7 @@ export function useStudentNewsletterDetail(id?: number) {
   })
 
   useEffect(() => {
-    if (!!child) {
+    if (child) {
       refetchNewsletter()
       refetch()
     }

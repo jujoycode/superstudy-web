@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 
 // ! 개선 필요
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 
 import { childState } from '@/stores'
 import { useAbsentsDelete, useAbsentsFindOne, useAbsentsResend } from '@/legacy/generated/endpoint'

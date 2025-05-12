@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import NODATA from '@/legacy/assets/images/no-data.png'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'

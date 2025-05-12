@@ -9,7 +9,7 @@
 export type AnnouncementGetAllAnnouncementsType =
   (typeof AnnouncementGetAllAnnouncementsType)[keyof typeof AnnouncementGetAllAnnouncementsType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const AnnouncementGetAllAnnouncementsType = {
   UPDATE: 'UPDATE',
   SERVICE: 'SERVICE',

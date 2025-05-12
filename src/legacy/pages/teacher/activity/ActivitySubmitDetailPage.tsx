@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'

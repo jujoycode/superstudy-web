@@ -9,7 +9,7 @@
 export type EssayUnsubmitNotificationType =
   (typeof EssayUnsubmitNotificationType)[keyof typeof EssayUnsubmitNotificationType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const EssayUnsubmitNotificationType = {
   EE_ESSAY: 'EE_ESSAY',
   TOK_ESSAY: 'TOK_ESSAY',

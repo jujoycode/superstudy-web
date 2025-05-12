@@ -12,7 +12,7 @@
 export type ResponseChecklistDtoLocation =
   (typeof ResponseChecklistDtoLocation)[keyof typeof ResponseChecklistDtoLocation];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseChecklistDtoLocation = {
   ESSAY: 'ESSAY',
   TOK_ESSAY: 'TOK_ESSAY',

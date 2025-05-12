@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import moment from 'moment'
 import { useState } from 'react'
-import { Link, Route, Switch, useLocation, useParams } from 'react-router-dom'
+import { Link, Route, Switch, useLocation, useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'

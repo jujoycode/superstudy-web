@@ -1,5 +1,5 @@
 import { t } from 'i18next'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router'
 import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
 import { ErrorBlank, Td2 } from '@/legacy/components'
 import { Blank, BottomFixed, CloseButton, Label, Section, TopNavbar } from '@/legacy/components/common'

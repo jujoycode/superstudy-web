@@ -8,7 +8,7 @@
 
 export type NewsletterCategoryEnum = (typeof NewsletterCategoryEnum)[keyof typeof NewsletterCategoryEnum];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const NewsletterCategoryEnum = {
   기타: '기타',
   교무: '교무',

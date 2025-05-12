@@ -9,7 +9,7 @@
 export type ThemeQuestionSaveThemeQuestionsType =
   (typeof ThemeQuestionSaveThemeQuestionsType)[keyof typeof ThemeQuestionSaveThemeQuestionsType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ThemeQuestionSaveThemeQuestionsType = {
   TOK_ESSAY: 'TOK_ESSAY',
   TOK_EXHIBITION: 'TOK_EXHIBITION',

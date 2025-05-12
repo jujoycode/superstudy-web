@@ -8,7 +8,7 @@
 
 export type CalendarIdEnum = (typeof CalendarIdEnum)[keyof typeof CalendarIdEnum];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const CalendarIdEnum = {
   NUMBER_0: '0',
   NUMBER_1: '1',

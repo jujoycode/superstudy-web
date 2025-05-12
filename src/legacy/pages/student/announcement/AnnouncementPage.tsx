@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Route, Switch, useHistory, useLocation } from 'react-router'
 import AnnouncementBadge from '@/legacy/components/announcement/AnnouncementBadge'
 import { BackButton, Blank, Chip, HorizontalScrollView, List, TopNavbar } from '@/legacy/components/common'
 import { NoItem } from '@/legacy/components/common/NoItem'

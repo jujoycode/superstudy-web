@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { useParams } from 'react-router'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Route, Switch, useHistory } from 'react-router'
 import { useRecoilState } from 'recoil'
 import { ReactComponent as RightArrow } from '@/legacy/assets/svg/mypage-right-arrow.svg'
 import { SuperModal, Tab } from '@/legacy/components'

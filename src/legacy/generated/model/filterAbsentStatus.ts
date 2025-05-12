@@ -8,7 +8,7 @@
 
 export type FilterAbsentStatus = (typeof FilterAbsentStatus)[keyof typeof FilterAbsentStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const FilterAbsentStatus = {
   BEFORE_APPROVAL: 'BEFORE_APPROVAL',
   PROCESSED: 'PROCESSED',

@@ -8,7 +8,7 @@
 
 export type AbsentStatus = (typeof AbsentStatus)[keyof typeof AbsentStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const AbsentStatus = {
   RETURNED: 'RETURNED',
   BEFORE_PARENT_CONFIRM: 'BEFORE_PARENT_CONFIRM',

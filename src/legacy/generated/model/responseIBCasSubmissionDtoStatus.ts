@@ -12,7 +12,7 @@
 export type ResponseIBCasSubmissionDtoStatus =
   (typeof ResponseIBCasSubmissionDtoStatus)[keyof typeof ResponseIBCasSubmissionDtoStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBCasSubmissionDtoStatus = {
   PENDING: 'PENDING',
   WAIT_MENTOR: 'WAIT_MENTOR',

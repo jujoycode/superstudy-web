@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Link, Route, Switch, useHistory, useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import CAS from '@/legacy/assets/images/CAS.png'
 import EE from '@/legacy/assets/images/EE.png'

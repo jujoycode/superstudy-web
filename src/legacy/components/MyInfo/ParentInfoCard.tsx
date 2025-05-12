@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 // ! 개선 필요
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 
 import { useRecoilValue } from 'recoil'
 import { QueryKey } from '@/legacy/constants/query-key'

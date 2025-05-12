@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { GeneralGPTModal } from '@/legacy/components/activityv3/GPT/GeneralGPTModal'
 import { Blank } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

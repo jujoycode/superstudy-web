@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -15,7 +15,7 @@ import { getNickName } from '@/legacy/util/status'
 export function FieldtripDetailPage() {
   const { push } = useHistory()
 
-  let { id } = useParams<{ id: string }>()
+  const { id } = useParams<{ id: string }>()
   const [mode, setMode] = useState(false)
   const { me, isMeLoading } = UserContainer.useContext()
   const {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { useRecoilState } from 'recoil'
 import { ReactComponent as Refresh } from '@/legacy/assets/svg/refresh.svg'
 import { NoticePopup } from '@/legacy/components/NoticePopup'

@@ -1,6 +1,6 @@
-import { Link, useHistory } from 'react-router-dom'
-import { ReactComponent as ArrowLeftIcon } from '@/legacy/assets/svg/icon-arrow-left.svg'
-import { ReactComponent as ArrowRightIcon } from '@/legacy/assets/svg/icon-arrow-right.svg'
+import { Link } from 'react-router'
+import ArrowLeftIcon from '@/legacy/assets/svg/icon-arrow-left.svg'
+import ArrowRightIcon from '@/legacy/assets/svg/icon-arrow-right.svg'
 
 export interface FrontPaginationProps {
   basePath: string
@@ -21,7 +21,6 @@ export function FrontPagination({
   page,
   setPage,
 }: FrontPaginationProps) {
-  const { push } = useHistory()
   const pageCount = Math.ceil(total / limit)
   const pageSet = Math.ceil(page / maxPageSetLength)
   const pageSetLength = Math.min(pageCount - (pageSet - 1) * maxPageSetLength, maxPageSetLength)

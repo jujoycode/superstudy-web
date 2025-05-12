@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Route, Switch, useHistory } from 'react-router'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { Blank, Chip, HorizontalScrollView, Select } from '@/legacy/components/common'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'

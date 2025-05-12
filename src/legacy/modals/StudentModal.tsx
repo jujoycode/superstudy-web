@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 // ! 개선 필요
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router'
 
 import SvgUser from '@/legacy/assets/svg/user.svg'
 import { SuperModal } from '@/legacy/components'

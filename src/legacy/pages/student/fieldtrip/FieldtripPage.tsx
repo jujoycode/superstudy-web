@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
 import { ReactComponent as RightArrow } from '@/legacy/assets/svg/mypage-right-arrow.svg'
 import { ErrorBlank, SuperModal } from '@/legacy/components'

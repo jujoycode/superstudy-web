@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import NODATA from '@/legacy/assets/images/no-data.png'
 import { Typography } from '@/legacy/components/common/Typography'
 import { ResponseIBPortfolioListDto } from '@/legacy/generated/model'

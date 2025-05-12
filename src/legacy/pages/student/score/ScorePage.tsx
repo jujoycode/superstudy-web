@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Link, Route, Switch, useParams } from 'react-router-dom'
+import { Link, Route, Switch, useParams } from 'react-router'
 import { BackButton, TopNavbar } from '@/legacy/components/common'
 import { twMerge } from 'tailwind-merge'
 import { MockExamPage } from './MockExamPage'

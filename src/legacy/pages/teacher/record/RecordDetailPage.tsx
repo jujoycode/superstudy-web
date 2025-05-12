@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Blank, Section, Select, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

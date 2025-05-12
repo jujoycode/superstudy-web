@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { BackButton, BottomFixed, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { useLanguage } from '@/legacy/hooks/useLanguage'

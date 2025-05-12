@@ -31,7 +31,7 @@ export function useStudentBoardDetail(boardId?: number) {
   })
 
   useEffect(() => {
-    if (!!child) {
+    if (child) {
       refetchBoard()
     }
   }, [child])

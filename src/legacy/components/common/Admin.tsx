@@ -1,10 +1,8 @@
 import { HTMLAttributes, TableHTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { cn } from '@/legacy/lib/tailwind-merge'
 
-export interface AdminProps {}
-
-export function Admin({ ...props }: AdminProps) {
+export function Admin() {
   return <></>
 }
 

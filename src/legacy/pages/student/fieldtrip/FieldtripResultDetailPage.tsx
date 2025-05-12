@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { ErrorBlank } from '@/legacy/components'
@@ -20,7 +20,7 @@ import { isPdfFile } from '@/legacy/util/file'
 import { getNickName } from '@/legacy/util/status'
 
 export function FieldtripResultDetailPage() {
-  let { id } = useParams<{ id: string }>()
+  const { id } = useParams<{ id: string }>()
   const { push } = useHistory()
   const { me } = UserContainer.useContext()
 

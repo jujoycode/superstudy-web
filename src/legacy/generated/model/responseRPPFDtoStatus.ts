@@ -17,7 +17,7 @@
  */
 export type ResponseRPPFDtoStatus = (typeof ResponseRPPFDtoStatus)[keyof typeof ResponseRPPFDtoStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseRPPFDtoStatus = {
   IN_PROGRESS: 'IN_PROGRESS',
   WAIT_COMPLETE: 'WAIT_COMPLETE',

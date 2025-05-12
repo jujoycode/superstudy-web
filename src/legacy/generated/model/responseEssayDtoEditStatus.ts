@@ -16,7 +16,7 @@
  */
 export type ResponseEssayDtoEditStatus = (typeof ResponseEssayDtoEditStatus)[keyof typeof ResponseEssayDtoEditStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseEssayDtoEditStatus = {
   LOCK: 'LOCK',
   REQUEST_UNLOCK: 'REQUEST_UNLOCK',

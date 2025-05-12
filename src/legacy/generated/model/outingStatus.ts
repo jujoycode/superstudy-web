@@ -8,7 +8,7 @@
 
 export type OutingStatus = (typeof OutingStatus)[keyof typeof OutingStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const OutingStatus = {
   RETURNED: 'RETURNED',
   BEFORE_TEACHER_APPROVAL: 'BEFORE_TEACHER_APPROVAL',

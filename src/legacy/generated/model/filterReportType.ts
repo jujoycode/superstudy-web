@@ -8,7 +8,7 @@
 
 export type FilterReportType = (typeof FilterReportType)[keyof typeof FilterReportType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const FilterReportType = {
   결석: '결석',
   지각: '지각',

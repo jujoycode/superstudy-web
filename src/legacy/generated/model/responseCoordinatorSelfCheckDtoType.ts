@@ -19,7 +19,7 @@
 export type ResponseCoordinatorSelfCheckDtoType =
   (typeof ResponseCoordinatorSelfCheckDtoType)[keyof typeof ResponseCoordinatorSelfCheckDtoType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseCoordinatorSelfCheckDtoType = {
   IB_EE: 'IB_EE',
   IB_CAS: 'IB_CAS',

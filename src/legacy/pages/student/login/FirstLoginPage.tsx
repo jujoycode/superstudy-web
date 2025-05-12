@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { ReactComponent as Logo } from '@/legacy/assets/svg/logo.svg'
 import { BackButton, Blank, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'

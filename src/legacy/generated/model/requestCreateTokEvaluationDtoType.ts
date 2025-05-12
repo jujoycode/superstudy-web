@@ -12,7 +12,7 @@
 export type RequestCreateTokEvaluationDtoType =
   (typeof RequestCreateTokEvaluationDtoType)[keyof typeof RequestCreateTokEvaluationDtoType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const RequestCreateTokEvaluationDtoType = {
   EXHIBITION: 'EXHIBITION',
   ESSAY: 'ESSAY',

@@ -8,7 +8,7 @@
 
 export type BlockChainReferenceTable = (typeof BlockChainReferenceTable)[keyof typeof BlockChainReferenceTable];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const BlockChainReferenceTable = {
   BLOCK_CHAIN_EOAKEY: 'BLOCK_CHAIN_EOAKEY',
   BLOCK_CHAIN_CONTRACT: 'BLOCK_CHAIN_CONTRACT',

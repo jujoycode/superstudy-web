@@ -8,7 +8,7 @@
 
 export type NewsletterType = (typeof NewsletterType)[keyof typeof NewsletterType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const NewsletterType = {
   NOTICE: 'NOTICE',
   STUDENT_PARENTS_SURVEY: 'STUDENT_PARENTS_SURVEY',

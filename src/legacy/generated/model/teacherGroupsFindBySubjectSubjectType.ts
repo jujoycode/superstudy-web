@@ -9,7 +9,7 @@
 export type TeacherGroupsFindBySubjectSubjectType =
   (typeof TeacherGroupsFindBySubjectSubjectType)[keyof typeof TeacherGroupsFindBySubjectSubjectType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const TeacherGroupsFindBySubjectSubjectType = {
   LECTURE: 'LECTURE',
   ACTIVITY: 'ACTIVITY',

@@ -12,7 +12,7 @@
 export type ResponseIBTKPPFSubmissionStatusDtoIbType =
   (typeof ResponseIBTKPPFSubmissionStatusDtoIbType)[keyof typeof ResponseIBTKPPFSubmissionStatusDtoIbType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBTKPPFSubmissionStatusDtoIbType = {
   NORMAL: 'NORMAL',
   CAS_NORMAL: 'CAS_NORMAL',

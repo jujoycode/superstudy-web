@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import QueryString from 'qs'
 import { useEffect, useRef, useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import CAS from '@/legacy/assets/images/CAS.png'
 import EE from '@/legacy/assets/images/EE.png'

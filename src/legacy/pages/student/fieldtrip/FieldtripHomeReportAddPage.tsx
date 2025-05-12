@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { every, get } from 'lodash'
 import { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import {
   BackButton,
@@ -27,7 +27,7 @@ import { makeDateToString } from '@/legacy/util/time'
 
 export function FieldtripHomeReportAddPage() {
   const { push } = useHistory()
-  let { id } = useParams<{ id: string }>()
+  const { id } = useParams<{ id: string }>()
   const { sigPadData, canvasRef, clearSignature } = useSignature()
   const { me } = UserContainer.useContext()
   const [dayHomePlan, setDayHomePlan] = useState(false)

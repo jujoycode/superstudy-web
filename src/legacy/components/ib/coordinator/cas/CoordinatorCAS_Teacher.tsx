@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import _ from 'lodash'
 import { FC, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { Check } from '@/legacy/components/common/Check'
 import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'

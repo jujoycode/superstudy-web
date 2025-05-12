@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 // ! 개선 필요
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { Routes } from '@/legacy/routes'
 
 import { useActivityCreate, useActivityUpdate } from '@/legacy/generated/endpoint'
@@ -116,7 +116,7 @@ export function useTeacherActivityAdd(activityId?: number) {
 
   const selectedGroupIds = selectedGroups?.map((el) => el.id) || []
   const isLoading = isUploadLoading || isCreateActivityMutate || isUpdateActivityMutate
-  let isContainQuestion = true
+  const isContainQuestion = true
   // if (type === ActivityType.SURVEY && content) {
   //   const survey = new Survey.Model(JSON.parse(content));
   //   if (survey.getAllQuestions().length > 0) {

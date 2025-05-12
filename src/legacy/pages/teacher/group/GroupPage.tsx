@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Link, Route, Switch, useHistory, useLocation } from 'react-router'
 import { Divider } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
 import { TeacharAllGroup, useTeacherAllGroup } from '@/legacy/container/teacher-group-all'

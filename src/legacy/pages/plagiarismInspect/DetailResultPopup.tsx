@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { ErrorBlank } from '@/legacy/components/ErrorBlank'
 import { useGetPlagiarismInspectDetail } from '@/legacy/container/plagiarism-inspector'
 import { Blank } from '@/legacy/components/common'

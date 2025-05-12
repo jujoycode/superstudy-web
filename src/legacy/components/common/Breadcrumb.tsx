@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from '@/hooks/useHistory';
 import SolidSVGIcon from '../icon/SolidSVGIcon';
 import SVGIcon from '../icon/SVGIcon';
 import { Typography } from './Typography';

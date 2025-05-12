@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import BgLogo from '@/legacy/assets/images/Intersect.png'
 import { ReactComponent as RightArrow } from '@/legacy/assets/svg/mypage-right-arrow.svg'

@@ -8,7 +8,7 @@
 
 export type BoardCategoryEnum = (typeof BoardCategoryEnum)[keyof typeof BoardCategoryEnum];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const BoardCategoryEnum = {
   조종례: '조종례',
   알림: '알림',

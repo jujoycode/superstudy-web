@@ -1,12 +1,12 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
 import { useGetFeedbackBatchExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
 import { ResponseIBDto } from '@/legacy/generated/model'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { Typography } from '../@/legacy/components/common/Typography'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import FeedbackViewer from '../FeedbackViewer'
 
 interface OutlineListProps {

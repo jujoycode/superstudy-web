@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
@@ -19,7 +19,7 @@ import { ActivityDetailSubmitPage } from './ActivityDetailSubmitPage'
 
 export function ActivityDetailPage() {
   const me = useRecoilValue(meState)
-  let { id } = useParams<{ id: string }>()
+  const { id } = useParams<{ id: string }>()
 
   const { error, data: activity } = useActivityFindOne(+id, {
     query: {

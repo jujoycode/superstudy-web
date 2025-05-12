@@ -1,7 +1,7 @@
 import preval from 'preval.macro'
 import { useState } from 'react'
 import Barcode from 'react-barcode'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { ReactComponent as RightArrow } from '@/legacy/assets/svg/mypage-right-arrow.svg'
 import { StudentIDCard } from '@/legacy/components'

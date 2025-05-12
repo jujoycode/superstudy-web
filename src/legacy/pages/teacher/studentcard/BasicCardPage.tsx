@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { CounselingCard } from '@/legacy/components/studentCard/CounselingCard'
 import { GroupInfoCard } from '@/legacy/components/studentCard/GroupInfoCard'
 import { ParentInfoCard } from '@/legacy/components/studentCard/ParentInfoCard'

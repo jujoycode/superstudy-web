@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Link, Route, Switch, useLocation, useParams } from 'react-router-dom'
+import { Link, Route, Switch, useLocation, useParams } from 'react-router'
 import { AllScore } from '@/legacy/components/score/AllScore'
 import { ScoreAnalysis } from '@/legacy/components/score/ScoreAnalysis'
 import { TargetScore } from '@/legacy/components/score/TargetScore'

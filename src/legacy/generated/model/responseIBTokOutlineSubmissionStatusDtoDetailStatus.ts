@@ -12,7 +12,7 @@
 export type ResponseIBTokOutlineSubmissionStatusDtoDetailStatus =
   (typeof ResponseIBTokOutlineSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBTokOutlineSubmissionStatusDtoDetailStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseIBTokOutlineSubmissionStatusDtoDetailStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMIT: 'SUBMIT',

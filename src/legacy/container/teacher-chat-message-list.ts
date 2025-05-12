@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 // ! 이 부분 수정 필요
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { Routes } from '@/routers'
 
 import {
@@ -37,7 +37,7 @@ export function useTeacherChatMessageList(chatroomId: number) {
       onSuccess: () => {
         setNewMessage('')
         refetchChatMessages()
-          .then(() => {})
+          .then(() => { })
           .catch((_) => {
             // refetch 중에 발생한 에러를 처리하는 작업
             //alert(error?.message);
@@ -55,7 +55,7 @@ export function useTeacherChatMessageList(chatroomId: number) {
     mutation: {
       onSuccess: () => {
         refetchChatMessages()
-          .then(() => {})
+          .then(() => { })
           .catch((_) => {
             // refetch 중에 발생한 에러를 처리하는 작업
             //alert(error?.message);

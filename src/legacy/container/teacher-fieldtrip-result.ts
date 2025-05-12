@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { GroupContainer } from '@/legacy/container/group'
 import { MonthAgo, getEndDate, getStartDate, makeDateToString } from '@/legacy/util/time'

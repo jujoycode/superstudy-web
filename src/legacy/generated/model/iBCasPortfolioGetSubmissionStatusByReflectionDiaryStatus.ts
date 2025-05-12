@@ -9,7 +9,7 @@
 export type IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus =
   (typeof IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus)[keyof typeof IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',

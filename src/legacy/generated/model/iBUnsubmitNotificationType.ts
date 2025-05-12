@@ -8,7 +8,7 @@
 
 export type IBUnsubmitNotificationType = (typeof IBUnsubmitNotificationType)[keyof typeof IBUnsubmitNotificationType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const IBUnsubmitNotificationType = {
   IB_PROPOSAL: 'IB_PROPOSAL',
   IB_PROJECT: 'IB_PROJECT',

@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { ManagerScheduleCard } from '@/legacy/components/timetable/ManagerScheduleCard'
 import { makeDateToString, weekAgo } from '@/legacy/util/time'
 import { ManagerScheduleDetailPage } from './ManagerScheduleDetailPage'
 
-let manager = [{ id: 1 }, { id: 2 }, { id: 3 }]
+const manager = [{ id: 1 }, { id: 2 }, { id: 3 }]
 
 export function ManagerScheduleMainPage() {
   const [startDate, setStartDate] = useState(makeDateToString(weekAgo(new Date())))

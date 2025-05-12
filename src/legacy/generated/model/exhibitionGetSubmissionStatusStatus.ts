@@ -9,7 +9,7 @@
 export type ExhibitionGetSubmissionStatusStatus =
   (typeof ExhibitionGetSubmissionStatusStatus)[keyof typeof ExhibitionGetSubmissionStatusStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ExhibitionGetSubmissionStatusStatus = {
   PENDING: 'PENDING',
   IN_PROGRESS: 'IN_PROGRESS',

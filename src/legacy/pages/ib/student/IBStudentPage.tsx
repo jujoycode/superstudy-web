@@ -1,4 +1,4 @@
-import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Link, Route, Switch, useHistory, useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import Logo from '@/legacy/assets/images/logo_color.png'
 import SvgUser from '@/legacy/assets/images/no_profile.png'

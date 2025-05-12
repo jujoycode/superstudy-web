@@ -9,7 +9,7 @@
 export type ActivityV3FindByTeacherSubjectType =
   (typeof ActivityV3FindByTeacherSubjectType)[keyof typeof ActivityV3FindByTeacherSubjectType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ActivityV3FindByTeacherSubjectType = {
   LECTURE: 'LECTURE',
   ACTIVITY: 'ACTIVITY',

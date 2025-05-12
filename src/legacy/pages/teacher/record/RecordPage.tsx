@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Route, Switch, useHistory } from 'react-router'
 import { ErrorBlank, SelectMenus } from '@/legacy/components'
 import { Button } from '@/legacy/components/common/Button'
 import { useTeacherRecord } from '@/legacy/container/teacher-record'

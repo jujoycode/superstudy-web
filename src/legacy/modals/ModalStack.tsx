@@ -1,5 +1,5 @@
 import { cloneElement, ReactElement, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { atom, useRecoilState } from 'recoil';
 
 const modalsAtom = atom<ReactElement[]>({ key: 'modalsAtom', default: [] });

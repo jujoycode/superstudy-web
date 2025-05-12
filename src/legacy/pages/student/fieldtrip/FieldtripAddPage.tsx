@@ -3,7 +3,7 @@ import { addDays, eachDayOfInterval, isSameDay } from 'date-fns'
 import { chain, concat, every, findIndex, flatten, get, last } from 'lodash'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { ErrorBlank, SelectValues, SuperModal } from '@/legacy/components'
 import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
@@ -334,8 +334,8 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
         })
       }
 
-      let _prevUsedDays = homePlan.length
-      let _usedDays = usedDays
+      const _prevUsedDays = homePlan.length
+      const _usedDays = usedDays
 
       if (!_prevUsedDays) {
         if (!homePlan.length) {

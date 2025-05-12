@@ -12,7 +12,7 @@ import {
   ResponseIBTokOutlineSubmissionStatusDto,
   ResponseIBTokOutlineSubmissionStatusDtoDetailStatus,
 } from '@/legacy/generated/model'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import OutlineOverviewPanel from './OutlineOverviewPanel'
 import { handleBatchBlobDownload } from '@/legacy/hooks/useBatchDownload'
 import { createTokOutlinePdf } from '@/legacy/util/ib/tok-outline-pdf'

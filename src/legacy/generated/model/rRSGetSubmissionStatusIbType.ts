@@ -9,7 +9,7 @@
 export type RRSGetSubmissionStatusIbType =
   (typeof RRSGetSubmissionStatusIbType)[keyof typeof RRSGetSubmissionStatusIbType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const RRSGetSubmissionStatusIbType = {
   NORMAL: 'NORMAL',
   CAS_NORMAL: 'CAS_NORMAL',

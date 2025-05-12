@@ -12,9 +12,9 @@ import {
   UpdateTokEvaluationGradeDto,
 } from '@/legacy/generated/model'
 import { useTokEvaluationGetCriteriaById } from '../../../../generated/endpoint'
-import AlertV2 from '../../@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '../../@/legacy/components/common/ButtonV2'
-import { Typography } from '../../@/legacy/components/common/Typography'
+import AlertV2 from '../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import { EvalInputField } from '../../EvalInputField'
 

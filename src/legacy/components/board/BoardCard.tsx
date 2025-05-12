@@ -1,4 +1,5 @@
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
+import { useHistory } from '@/hooks/useHistory'
 import { Board } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName } from '@/legacy/util/status'

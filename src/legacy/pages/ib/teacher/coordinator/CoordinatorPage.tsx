@@ -1,7 +1,7 @@
 // P-T-012 : 코디선생님 프로젝트 메인 화면
 // /teacher/ib/coordinatorPage
 // https://www.notion.so/superschoolofficial/P-T-012-126e90ac0a99800e94d4da062bdc5417
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
 import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
 import { Typography } from '@/legacy/components/common/Typography'

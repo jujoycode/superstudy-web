@@ -14,9 +14,9 @@ import {
   ResponseIBDeadlineDto,
   ResponseIBDeadlineitemsDto,
 } from '@/legacy/generated/model'
-import AlertV2 from '../@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { Typography } from '../@/legacy/components/common/Typography'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import FrontPaginatedList from '../../FrontPaginatedList '
 import { Coordinator_Schedule_AddSchedule } from './Coordinator_Schedule_AddSchedule'
 import { Coordinator_Schedule_UpdateSchedule } from './Coordinator_Schedule_UpdateSchedule'

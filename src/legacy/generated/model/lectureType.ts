@@ -8,7 +8,7 @@
 
 export type LectureType = (typeof LectureType)[keyof typeof LectureType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const LectureType = {
   FIX: 'FIX',
   SELECT: 'SELECT',

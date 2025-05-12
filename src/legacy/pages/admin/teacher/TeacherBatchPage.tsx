@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import readXlsxFile from 'read-excel-file'
 import { useSetRecoilState } from 'recoil'
 import { Blank } from '@/legacy/components/common'
@@ -12,7 +11,6 @@ import { toastState, warningState } from 'src/store'
 import { AdminContext } from '../AdminMainPage'
 
 export function TeacherBatchPage() {
-  const { goBack } = useHistory()
   const { year } = useContext(AdminContext)
   const [isLoading, setIsLoading] = useState(false)
   const [items, setItems] = useState<RequestCreateTeacherDto[]>([])

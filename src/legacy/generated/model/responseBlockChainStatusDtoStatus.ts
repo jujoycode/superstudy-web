@@ -12,7 +12,7 @@
 export type ResponseBlockChainStatusDtoStatus =
   (typeof ResponseBlockChainStatusDtoStatus)[keyof typeof ResponseBlockChainStatusDtoStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseBlockChainStatusDtoStatus = {
   NO_DATA: 'NO_DATA',
   PENDING: 'PENDING',

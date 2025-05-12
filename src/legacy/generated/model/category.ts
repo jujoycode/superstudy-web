@@ -8,7 +8,7 @@
 
 export type Category = (typeof Category)[keyof typeof Category];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const Category = {
   studentstatus: 'studentstatus',
   teacherstatus: 'teacherstatus',

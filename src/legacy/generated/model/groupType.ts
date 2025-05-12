@@ -8,7 +8,7 @@
 
 export type GroupType = (typeof GroupType)[keyof typeof GroupType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const GroupType = {
   KLASS: 'KLASS',
   KLUB: 'KLUB',

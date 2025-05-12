@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Route, Switch, useHistory, useLocation } from 'react-router'
 import { SelectMenus } from '@/legacy/components'
 import { ActivitiesView } from '@/legacy/components/activity/ActivitiesView'
 import { BackButton, Label, Select, TopNavbar } from '@/legacy/components/common'

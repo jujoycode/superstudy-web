@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router'
 import { ErrorBlank } from '@/legacy/components'
 import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
 import {

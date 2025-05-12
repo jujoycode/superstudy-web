@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 // ! 개선 필요
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 
 import { useRecoilValue } from 'recoil'
 import { childState } from '@/stores'
@@ -188,7 +188,7 @@ export function useTeacherAbsentAdd({ absentData, returnToDetail }: Props) {
           alert(errorMsg?.message || '결재자 지정상태를 확인하세요.')
           setLoading(false)
           setSignModal(false)
-        } catch {}
+        } catch { }
       },
     },
     request: {

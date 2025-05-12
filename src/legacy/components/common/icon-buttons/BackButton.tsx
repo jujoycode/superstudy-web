@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from '@/hooks/useHistory';
 import { IconButton } from '../IconButton';
 import { Icon } from '../icons';
 

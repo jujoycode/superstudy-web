@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from '@/hooks/useHistory';
 
 interface ListItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   to?: string;

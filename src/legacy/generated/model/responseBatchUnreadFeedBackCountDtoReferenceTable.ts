@@ -12,7 +12,7 @@
 export type ResponseBatchUnreadFeedBackCountDtoReferenceTable =
   (typeof ResponseBatchUnreadFeedBackCountDtoReferenceTable)[keyof typeof ResponseBatchUnreadFeedBackCountDtoReferenceTable];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ResponseBatchUnreadFeedBackCountDtoReferenceTable = {
   IB: 'IB',
   ESSAY: 'ESSAY',

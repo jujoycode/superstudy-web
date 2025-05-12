@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { useActivitySessionFindOne } from '@/legacy/generated/endpoint'
 import { ActivityV3SessionAddPage } from './ActivityV3SessionAddPage'
 

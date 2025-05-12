@@ -9,7 +9,7 @@
 export type RPPFGetSubmissionStatusStatus =
   (typeof RPPFGetSubmissionStatusStatus)[keyof typeof RPPFGetSubmissionStatusStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const RPPFGetSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   IN_PROGRESS: 'IN_PROGRESS',

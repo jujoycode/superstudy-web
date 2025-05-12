@@ -603,7 +603,7 @@ export const isSameDay = (time1: string, time2: string) => {
 export const convertTimeToKorean = (timeString: string) => {
   const [hourStr, minuteStr] = timeString.split(':')
   let hour = parseInt(hourStr, 10)
-  let minute = parseInt(minuteStr, 10)
+  const minute = parseInt(minuteStr, 10)
   let meridiem = '오전'
 
   if (hour >= 12) {

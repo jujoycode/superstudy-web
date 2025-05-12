@@ -33,11 +33,11 @@ export const getFileNameFromUrlToAnn = (url: string) => {
   return url.lastIndexOf('/') >= 0 ? url.slice(url.lastIndexOf('/') + 1) : url
 }
 
-export const isPdfFile = (fileName: String) => {
-  let _lastDot = fileName.lastIndexOf('.')
+export const isPdfFile = (fileName: string) => {
+  const _lastDot = fileName.lastIndexOf('.')
 
   // 확장자 명만 추출한 후 소문자로 변경
-  let _fileExt = fileName.substring(_lastDot, fileName.length).toLowerCase()
+  const _fileExt = fileName.substring(_lastDot, fileName.length).toLowerCase()
   if (_fileExt === '.pdf') {
     return true
   } else {
@@ -56,8 +56,8 @@ export const isImageFile = (fileName: string) => {
   return imageExtensions.includes(_fileExt)
 }
 
-export const getExtOfFilename = (fileName: String) => {
-  let _lastDot = fileName.lastIndexOf('.')
+export const getExtOfFilename = (fileName: string) => {
+  const _lastDot = fileName.lastIndexOf('.')
 
   // 확장자 명만 추출한 후 소문자로 변경
   return fileName.substring(_lastDot, fileName.length).toLowerCase()
@@ -110,10 +110,10 @@ export const handleDownload = async (fileUrl: string, fileName?: string) => {
   }
 }
 
-export const isExcelFile = (fileName: String) => {
-  let _lastDot = fileName.lastIndexOf('.')
+export const isExcelFile = (fileName: string) => {
+  const _lastDot = fileName.lastIndexOf('.')
   // 확장자 명만 추출한 후 소문자로 변경
-  let _fileExt = fileName.substring(_lastDot, fileName.length).toLowerCase()
+  const _fileExt = fileName.substring(_lastDot, fileName.length).toLowerCase()
   if (_fileExt === '.xlsx' || _fileExt === 'xls') {
     return true
   } else {

@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
+import { useHistory } from '@/hooks/useHistory'
 import { Absent, AbsentStatus, ResponsePaginatedAbsentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName, getPeriodStr } from '@/legacy/util/status'

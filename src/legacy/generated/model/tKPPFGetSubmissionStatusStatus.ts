@@ -9,7 +9,7 @@
 export type TKPPFGetSubmissionStatusStatus =
   (typeof TKPPFGetSubmissionStatusStatus)[keyof typeof TKPPFGetSubmissionStatusStatus];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const TKPPFGetSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   IN_PROGRESS: 'IN_PROGRESS',

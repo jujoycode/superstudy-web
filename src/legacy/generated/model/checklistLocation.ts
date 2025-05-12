@@ -8,7 +8,7 @@
 
 export type ChecklistLocation = (typeof ChecklistLocation)[keyof typeof ChecklistLocation];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const ChecklistLocation = {
   ESSAY: 'ESSAY',
   TOK_ESSAY: 'TOK_ESSAY',

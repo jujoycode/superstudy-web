@@ -11,7 +11,7 @@
  */
 export type NotificationLogReadType = (typeof NotificationLogReadType)[keyof typeof NotificationLogReadType];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export const NotificationLogReadType = {
   READ: 'READ',
   APPROVE: 'APPROVE',

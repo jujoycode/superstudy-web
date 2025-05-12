@@ -1,6 +1,6 @@
 import { debounce } from 'lodash'
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { useSetRecoilState } from 'recoil'
 import { Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
