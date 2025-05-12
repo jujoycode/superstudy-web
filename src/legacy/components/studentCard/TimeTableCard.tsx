@@ -1,0 +1,130 @@
+import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { useStudentTimetableDetail } from 'src/container/teacher-student-timetable-detail';
+import { LectureType, ResponseTimetableV3Dto } from 'src/generated/model';
+import { useLanguage } from 'src/hooks/useLanguage';
+import { meState } from 'src/store';
+import { dayOfKorWeek } from 'src/util/date';
+
+interface TimeTableCardProps {
+  studentId?: number;
+}
+
+export function TimeTableCard({ studentId }: TimeTableCardProps) {
+  const [selectedLectureInfo, setSelectedLectureInfo] = useState<ResponseTimetableV3Dto | undefined>();
+  const { t } = useLanguage();
+  const { timetableV3Student, error, loading } = useStudentTimetableDetail(studentId);
+
+  const me = useRecoilValue(meState);
+  const hasSaturdayClass = me?.school.hasSaturdayClass || false;
+
+  const timesArray: number[] | undefined = timetableV3Student?.map((item: ResponseTimetableV3Dto) => item.time);
+  const maxTime: number = timesArray ? Math.max(...timesArray) : 0;
+
+  const todayNum = new Date().getDay();
+
+  const lectureData = (day: number, time: number) => {
+    const lectures = timetableV3Student?.filter((item) => item.day === day && item.time === time);
+
+    // TODO lectures[0] 을 무조건 가져오는게 아니고, type = move 를 가져와야 함.
+    return lectures ? lectures[0] : undefined;
+  };
+
+  const timeTableV3Click = (lecture: ResponseTimetableV3Dto | undefined) => {
+    if (lecture && lecture?.type !== LectureType.UNKNOWN) {
+      setSelectedLectureInfo(lecture);
+    }
+  };
+
+  return (
+    <div className="relative mt-4 rounded-md border-2 bg-white p-4">
+      <h6 className="pt-3 text-lg font-semibold md:pt-0">{t('student_personal_timetable', '학생 개인 시간표')}</h6>
+      <table className="mx-auto mt-4 w-full rounded-md border text-center">
+        <thead>
+          <tr>
+            <td colSpan={2} className="border bg-grey-9" />
+            <td className="min-w-max border bg-grey-9 py-4">{t('monday', '월')}</td>
+            <td className="min-w-max border bg-grey-9">{t('tuesday', '화')}</td>
+            <td className="min-w-max border bg-grey-9">{t('wednesday', '수')}</td>
+            <td className="min-w-max border bg-grey-9">{t('thursday', '목')}</td>
+            <td className="min-w-max border bg-grey-9">{t('friday', '금')}</td>
+            {hasSaturdayClass && <td className="min-w-max border bg-grey-9">{t('saturday', '토')}</td>}
+          </tr>
+        </thead>
+        <tbody>
+          {Array.from({ length: maxTime }, (_, i) => (
+            <tr key={i}>
+              <td colSpan={2} className="border bg-grey-9 px-2 py-2.5">
+                {i + 1}
+              </td>
+              {Array.from({ length: hasSaturdayClass ? 6 : 5 }, (_, dayNum) => {
+                const lecture = lectureData(dayNum + 1, i + 1);
+                return (
+                  <td
+                    key={dayNum}
+                    className={`border-grey-50 min-w-9.5 min-h-10.5 cursor-pointer border px-1 py-2 text-xs md:text-base 
+                              ${todayNum === dayNum + 1 ? 'bg-brand-1 bg-opacity-20' : ''}                              
+                              ${i === 0 && dayNum === 0 ? 'border-l-0 border-t-0' : ''}  
+                              ${i === 0 && dayNum === (hasSaturdayClass ? 5 : 4) ? 'border-r-0 border-t-0' : ''}  
+                              ${i === maxTime - 1 && dayNum === 0 ? 'border-b-0 border-l-0' : ''}  
+                              ${
+                                i === maxTime - 1 && dayNum === (hasSaturdayClass ? 5 : 4)
+                                  ? 'border-b-0 border-r-0'
+                                  : ''
+                              }  
+                              ${i === 0 || i === maxTime - 1 ? 'border-b-0 border-t-0' : ''}  
+                              ${dayNum === 0 || dayNum === (hasSaturdayClass ? 5 : 4) ? 'border-l-0 border-r-0' : ''}  
+                              ${
+                                lecture?.id !== undefined && selectedLectureInfo?.id === lecture?.id
+                                  ? 'bg-yellow-200 text-red-500'
+                                  : ''
+                              }                                                     
+                          `}
+                    onClick={() => {
+                      timeTableV3Click(lecture);
+                    }}
+                  >
+                    {lecture?.subject}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {selectedLectureInfo && (
+        <div className="mt-2 flex w-full items-center justify-center">
+          <div className="w-full rounded-xl border border-grey-5 bg-white px-4">
+            <div className="text-base text-gray-500 ">
+              {dayOfKorWeek(selectedLectureInfo.day)}요일 {selectedLectureInfo.time + '교시'}
+            </div>
+
+            <table className="mb-2 w-full table-fixed">
+              <tr>
+                <td colSpan={2} className="rounded-l-lg bg-grey-7 text-center">
+                  과목
+                </td>
+                <td colSpan={3} className="bg-grey-9 pl-2 font-bold">
+                  {selectedLectureInfo?.subject}
+                </td>
+                <td colSpan={2} className="bg-grey-7 text-center">
+                  선생님
+                </td>
+                <td colSpan={3} className="bg-grey-9 pl-2 font-bold">
+                  {selectedLectureInfo.teacherName}
+                </td>
+                <td colSpan={2} className="bg-grey-7 text-center ">
+                  장소
+                </td>
+                <td colSpan={3} className="rounded-r-lg bg-grey-9 pl-2 font-bold">
+                  {selectedLectureInfo?.room}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

@@ -1,0 +1,115 @@
+import { FC, useState } from 'react';
+import { RequestIBDeadlineDto } from 'src/generated/model';
+import { DateFormat, DateUtil } from 'src/util/date';
+import { twMerge } from 'tailwind-merge';
+import { Button } from '../common/Button';
+import ScheduleAndTimePicker from '../common/ScheduleAndTimePicker';
+import { Typography } from '../common/Typography';
+import ColorSVGIcon from '../icon/ColorSVGIcon';
+import SVGIcon from '../icon/SVGIcon';
+import { DEADLINE_TYPE_KOR } from './coordinator/Coordinator_Schedule';
+
+interface CreateDeadlineFieldProps {
+  deadline: RequestIBDeadlineDto;
+  index: number;
+  handleDeleteDeadline: (index: number) => void;
+  handleUpdateDeadline: (dto: Partial<RequestIBDeadlineDto>, index: number) => void;
+}
+
+export const CreateDeadlineField: FC<CreateDeadlineFieldProps> = ({
+  deadline,
+  index,
+  handleDeleteDeadline,
+  handleUpdateDeadline,
+}) => {
+  const [isFocused, setIsFocused] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
+
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = () => setIsFocused(false);
+  return (
+    <div className="rounded-lg bg-gray-50">
+      <div className="flex items-center justify-between border-b border-gray-200 p-4">
+        <Typography variant="title2">{DEADLINE_TYPE_KOR[deadline.type]}</Typography>
+        <ColorSVGIcon.Close
+          className="cursor-pointer"
+          color="gray700"
+          size={32}
+          onClick={() => handleDeleteDeadline(index)}
+        />
+      </div>
+      <div className="flex items-center justify-between p-4">
+        <div className="flex w-[235px] flex-col gap-3">
+          <Typography variant="title3" className="font-semibold">
+            마감기한
+          </Typography>
+          <div className="relative">
+            <div
+              className={`flex h-10 w-full items-center gap-2 rounded-lg border border-primary-gray-200 bg-white px-3 py-[9px] focus:outline-none focus:ring-0 ${
+                isFocused && 'border-primary-gray-700'
+              }`}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onClick={() => setCalendarOpen(!calendarOpen)}
+            >
+              <SVGIcon.Calendar size={20} color="gray700" />
+              <input
+                className="w-full flex-1 border-none bg-white p-0 text-15 font-medium text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 focus:outline-none focus:ring-0"
+                placeholder="마감기한 선택"
+                value={
+                  deadline.deadlineTime
+                    ? DateUtil.formatDate(new Date(deadline.deadlineTime), DateFormat['YYYY.MM.DD a hh:mm']) + '까지'
+                    : ''
+                }
+              />
+            </div>
+            {calendarOpen && (
+              <div className="fixed left-1/2 top-1/2 z-50 mt-2 -translate-x-1/2 -translate-y-1/2 transform">
+                <ScheduleAndTimePicker
+                  key={index}
+                  initialDeadline={deadline.deadlineTime ? new Date(deadline.deadlineTime) : undefined}
+                  onSave={(finalDate) => {
+                    const finalDateString = finalDate?.toISOString() || '';
+                    handleUpdateDeadline({ deadlineTime: finalDateString }, index);
+                    setCalendarOpen(false);
+                  }}
+                  onCancel={() => setCalendarOpen(false)}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="flex flex-col gap-3">
+          <Typography variant="title3" className="font-semibold">
+            알림주기
+          </Typography>
+          <div className="flex items-center space-x-2">
+            {[7, 3, 1, 0].map((day) => (
+              <Button.lg
+                key={day}
+                className={twMerge(
+                  'h-[40px] border border-primary-gray-300 bg-white text-primary-gray-700 disabled:border-primary-gray-200 disabled:bg-primary-gray-100 disabled:text-primary-gray-400',
+                  deadline.remindDays?.includes(day) &&
+                    'border-primary-orange-400 bg-primary-orange-100 text-primary-orange-800',
+                )}
+                disabled={!deadline.deadlineTime}
+                onClick={() =>
+                  handleUpdateDeadline(
+                    {
+                      remindDays: deadline.remindDays?.includes(day)
+                        ? (deadline.remindDays || []).filter((el) => el !== day)
+                        : (deadline.remindDays || []).concat(day),
+                    },
+                    index,
+                  )
+                }
+              >
+                {day === 0 ? '당일' : `${day}일전`}
+              </Button.lg>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
