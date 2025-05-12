@@ -6,7 +6,7 @@ import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
-import { CoachPosition, Guide, useCoachMark } from '@/legacy/components/common/CoachMark'
+import { CoachPosition, type Guide, useCoachMark } from '@/legacy/components/common/CoachMark'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import {
@@ -20,7 +20,13 @@ import {
   useApprovalLineGetApprovalLineByType2,
   useSchoolManagementGetSchoolInfo,
 } from '@/legacy/generated/endpoint'
-import { ApprovalLine, Category, ResponseApprovalLineDto, ResponseTeacherInfoDto, Role } from '@/legacy/generated/model'
+import {
+  type ApprovalLine,
+  Category,
+  type ResponseApprovalLineDto,
+  type ResponseTeacherInfoDto,
+  Role,
+} from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { toastState } from 'src/store'
 import { getNickName } from '@/legacy/util/status'
@@ -138,13 +144,20 @@ export function ApprovalLinePage() {
     setModified(false)
   }, [type1, type2, toggle, school, klasses, approvalLines])
 
-  const idMap = allTeachers?.items.reduce((map: any, obj: any) => {
-    map[obj.id] = obj
-    return map
-  }, {})
+  const idMap = allTeachers?.items.reduce(
+    (acc: Record<number, ResponseTeacherInfoDto>, cur: ResponseTeacherInfoDto) => {
+      acc[cur.id] = cur
+      return acc
+    },
+    {},
+  )
 
   // idMap의 값들을 배열로 변환합니다.
-  const uniqueTeachers: ResponseTeacherInfoDto[] = idMap && Object.values(idMap)
+  let uniqueTeachers: ResponseTeacherInfoDto[] = []
+
+  if (idMap) {
+    uniqueTeachers = Object.values(idMap)
+  }
 
   const teachers = uniqueTeachers?.sort((a, b) => a.name.localeCompare(b.name)) ?? []
 
@@ -487,7 +500,7 @@ export function ApprovalLinePage() {
                   {steps.map((step) => (
                     <Select
                       disabled={step > enabledStep}
-                      value={(al as any)[`approver${step}Id`]}
+                      value={al[`approver${step}Id`]}
                       onChange={(e) => {
                         setTree((prev) => {
                           const prevAl = prev.get(grade)?.get(klass)

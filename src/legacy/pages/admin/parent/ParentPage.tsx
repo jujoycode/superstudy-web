@@ -1,5 +1,5 @@
 import { debounce } from 'lodash'
-import { ChangeEvent, useContext, useState } from 'react'
+import { type ChangeEvent, useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -14,18 +14,19 @@ import {
 } from '@/legacy/generated/endpoint'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSearch } from '@/legacy/lib/router'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
 import { AdminContext } from '../AdminMainPage'
+import type { ResponseGroupDto } from '@/legacy/generated/model'
 
 export function ParentPage() {
   const { t } = useLanguage()
+  //@ts-expect-error useTranslation type instantiation error
   const { t: ta } = useTranslation('admin', { keyPrefix: 'parent_page' })
   const { year } = useContext(AdminContext)
   const { page, size } = useSearch({ page: 1, size: 25 })
   const [klassName, setKlassName] = useState('')
-  const [firstVisit, setFirstVisit] = useState<boolean>()
   const [keyword, setKeyword] = useState('')
 
   const [sortField, setSortField] = useState<string>('')
@@ -33,12 +34,11 @@ export function ParentPage() {
 
   const { data: klasses } = useAdminCommonFindAllKlassBySchool({ year })
   const { data: parents } = useParentManagementGetParents(
-    { page, size, year, klass: klassName, first_visit: firstVisit, keyword, sortField, sortDirection },
+    { page, size, year, klass: klassName, first_visit: false, keyword, sortField, sortDirection },
     { query: { keepPreviousData: true } },
   )
 
   const cb = useCheckbox(parents?.items)
-  const ids = cb.items.map(({ id }) => id)
 
   // 버튼 추가할 필요가 생기면 활용
   // async function deleteParent() {
@@ -66,12 +66,6 @@ export function ParentPage() {
     exportCSVToExcel(content, '보호자')
   }
 
-  function onFirstVisitChange(e: ChangeEvent<HTMLSelectElement>) {
-    if (e.target.value === 'undefined') return setFirstVisit(undefined)
-    if (e.target.value === 'false') return setFirstVisit(false)
-    if (e.target.value === 'true') return setFirstVisit(true)
-  }
-
   const onKeywordChange = debounce((e: ChangeEvent<HTMLInputElement>) => setKeyword(e.target.value), 300)
 
   const handleSort = (field: string) => {
@@ -94,7 +88,7 @@ export function ParentPage() {
           <Select value={klassName} onChange={(e) => setKlassName(e.target.value)}>
             <option value="">{t('select_class')}</option>
             {klasses
-              ?.reduce((acc: any[], current: any) => {
+              ?.reduce((acc: ResponseGroupDto[], current: ResponseGroupDto) => {
                 if (!acc.find((item) => item.id === current.id)) {
                   acc.push(current)
                 }
