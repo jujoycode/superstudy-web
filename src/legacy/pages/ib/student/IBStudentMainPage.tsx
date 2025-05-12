@@ -21,7 +21,7 @@ import { IbOutline } from '@/legacy/components/ib/tok/IbOutline'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { PopupModal } from '@/legacy/components/PopupModal'
 import { useGetIBProject } from '@/legacy/container/ib-project-get-filter'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { twMerge } from 'tailwind-merge'
 
 export type IBProject = '' | 'CAS' | 'EE' | 'TOK'

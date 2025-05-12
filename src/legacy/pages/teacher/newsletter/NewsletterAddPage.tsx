@@ -20,7 +20,7 @@ import { MergedGroupType, useTeacherChatUserList } from '@/legacy/container/teac
 import { useTeacherNewsletterAdd } from '@/legacy/container/teacher-newsletter-add'
 import { GroupType, Newsletter, NewsletterCategoryEnum, NewsletterType, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { MenuType, UserDatas } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getExtOfFilename } from '@/legacy/util/file'

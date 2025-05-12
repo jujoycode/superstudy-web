@@ -19,7 +19,7 @@ import { useStudentCanteen } from '@/legacy/container/student-canteen'
 import { UserContainer } from '@/legacy/container/user'
 import { useNotificationLogFindRecent } from '@/legacy/generated/endpoint'
 import { Role, Schedule } from '@/legacy/generated/model'
-import { childState, newMsgCntState } from 'src/store'
+import { childState, newMsgCntState } from '@/stores'
 import { checkNewVersion } from '@/legacy/util/status'
 import { makeDateToString, makeMonthDayToString } from '@/legacy/util/time'
 

@@ -12,7 +12,7 @@ import { RequestModifyParentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
 import { Routes } from '@/legacy/routes'
-import { toastState } from 'src/store'
+import { toastState } from '@/stores'
 import { AdminContext } from '../AdminMainPage'
 
 export function ParentEditPage() {

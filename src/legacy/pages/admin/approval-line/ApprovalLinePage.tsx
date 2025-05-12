@@ -28,7 +28,7 @@ import {
   Role,
 } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { toastState } from 'src/store'
+import { toastState } from '@/stores'
 import { getNickName } from '@/legacy/util/status'
 import { AdminContext } from '../AdminMainPage'
 

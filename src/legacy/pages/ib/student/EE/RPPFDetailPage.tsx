@@ -18,7 +18,7 @@ import { useIBDeadline } from '@/legacy/container/ib-deadline'
 import { useIBRPPFCreate } from '@/legacy/container/ib-rppf-create'
 import { useRPPFGetById } from '@/legacy/container/ib-rppf-findId'
 import { RequestCreateRPPFDto, ResponseIBDto } from '@/legacy/generated/model'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 
 interface LocationState {
   title: string

@@ -18,7 +18,7 @@ import { OutingUse, type RequestUpdateSchoolInfoDto, ScoreUse, UploadFileTypeEnu
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignedUrl } from '@/legacy/lib/query'
-import { toastState } from 'src/store'
+import { toastState } from '@/stores'
 
 export interface PrivacyManager {
   name: string

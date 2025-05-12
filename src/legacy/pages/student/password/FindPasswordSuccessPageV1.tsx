@@ -5,7 +5,7 @@ import { Alert, BackButton, Blank, BottomFixed, Section, TopNavbar } from '@/leg
 import { Button } from '@/legacy/components/common/Button'
 import { useFindPassword } from '@/legacy/container/find-password'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { toastState } from 'src/store'
+import { toastState } from '@/stores'
 
 // TODO 카카오톡 수신 확인 필요
 // TODO 메일 발송 api 확인 필요

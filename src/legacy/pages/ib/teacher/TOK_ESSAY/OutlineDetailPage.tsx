@@ -22,7 +22,7 @@ import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
 import { useIBOutlineStatusApprove, useIBOutlineStatusReject, useOutlineUpdate } from '@/legacy/container/ib-tok-essay'
 import { RequestIBTokOutlineDto, ResponseIBDtoStatus, ResponseIBTokOutlineDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 
 export const OutlineDetailPage = () => {
   const history = useHistory()

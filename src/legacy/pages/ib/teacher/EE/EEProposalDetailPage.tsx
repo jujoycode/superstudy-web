@@ -23,7 +23,7 @@ import { useIBProposalUpdate } from '@/legacy/container/ib-proposal-update'
 import { useIBRejectPlanByProposal, useIBUpdateIBProposalStatusInProgress } from '@/legacy/generated/endpoint'
 import { RequestIBProposalUpdateDto, ResponseIBDtoStatus } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 
 export const EEProposalDetailPage = () => {
   const { id, proposalId } = useParams<{ id: string; proposalId: string }>()

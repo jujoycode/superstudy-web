@@ -13,7 +13,7 @@ import { useTeacherSearchUser } from '@/legacy/container/teacher-search-user'
 import { useGroupsFindLectureGroupsByTeacher } from '@/legacy/generated/endpoint'
 import { Group, GroupType, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { getNickName } from '@/legacy/util/status'
 import { StudentCardDetailPage } from './StudentCardDetailPage'
 

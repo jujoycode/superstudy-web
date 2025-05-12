@@ -27,7 +27,7 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ActivityType, StudentGroup } from '@/legacy/generated/model'
 import { handleBulkDownload } from '@/legacy/hooks/useBatchDownload'
-import { meState, toastState } from 'src/store'
+import { meState, toastState } from '@/stores'
 import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { getNickName } from '@/legacy/util/status'

@@ -18,7 +18,7 @@ import {
   useStudentActivityV3SaveStudentText,
 } from '@/legacy/generated/endpoint'
 import { ActivityType } from '@/legacy/generated/model'
-import { meState, toastState } from 'src/store'
+import { meState, toastState } from '@/stores'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 
 export function ActivitySessionPage() {

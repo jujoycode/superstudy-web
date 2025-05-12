@@ -18,7 +18,7 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBTKPPFCreate, useIBTKPPFRequestReject, useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
 import { RequestCreateTKPPFDto, ResponseTKPPFDto, TKPPFContentResponseDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { LocationState } from '@/legacy/type/ib'
 
 type TKPPFKeys = 'sequence1' | 'sequence2' | 'sequence3'

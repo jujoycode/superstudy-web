@@ -7,7 +7,7 @@ import { Time } from '@/legacy/components/common/Time'
 import { Typography } from '@/legacy/components/common/Typography'
 import { usePointLogGet } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { numberWithSign } from '@/legacy/util/string'
 
 const encouragements = [

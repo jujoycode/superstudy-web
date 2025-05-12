@@ -9,7 +9,7 @@ import { Icon } from '@/legacy/components/common/icons'
 import { useStudentFieldtrip } from '@/legacy/container/student-fieldtrip'
 import { UserContainer } from '@/legacy/container/user'
 import { FieldtripStatus, Role } from '@/legacy/generated/model'
-import { childState } from 'src/store'
+import { childState } from '@/stores'
 import { makeStartEndToString } from '@/legacy/util/time'
 
 export function FieldtripPage() {

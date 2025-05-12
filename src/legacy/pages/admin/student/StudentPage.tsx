@@ -19,7 +19,7 @@ import {
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSearch } from '@/legacy/lib/router'
 import { Routes } from '@/legacy/constants/routes'
-import { toastState, warningState } from 'src/store'
+import { toastState, warningState } from '@/stores'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
 import { AdminContext } from '../AdminMainPage'

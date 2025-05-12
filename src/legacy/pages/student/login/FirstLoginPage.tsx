@@ -8,7 +8,7 @@ import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useStudentFirstLogin } from '@/legacy/container/student-first-login'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { useLogout } from '@/legacy/util/hooks'
 import { Validator } from '@/legacy/util/validator'
 

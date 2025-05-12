@@ -17,7 +17,7 @@ import { MergedGroupType, useTeacherChatUserList } from '@/legacy/container/teac
 import { GroupType, ResponseGroupDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { Routes } from '@/legacy/constants/routes'
-import { meState, toastState } from 'src/store'
+import { meState, toastState } from '@/stores'
 import { MenuType, UserDatas } from '@/legacy/types'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { Validator } from '@/legacy/util/validator'

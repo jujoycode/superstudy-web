@@ -8,7 +8,7 @@ import { Button } from '@/legacy/components/common/Button'
 import { studentManagementAdvancedStudent } from '@/legacy/generated/endpoint'
 import { RequestAdvancedStudentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { toastState, warningState } from 'src/store'
+import { toastState, warningState } from '@/stores'
 import { AdminContext } from '../AdminMainPage'
 
 export function StudentBatchAdvancePage() {

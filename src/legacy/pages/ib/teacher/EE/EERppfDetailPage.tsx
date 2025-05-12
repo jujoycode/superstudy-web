@@ -22,7 +22,7 @@ import { useRPPFGetById } from '@/legacy/container/ib-rppf-findId'
 import { useRPPFUpdateRPPFStatusReject } from '@/legacy/generated/endpoint'
 import { RequestCreateRPPFDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { LocationState } from '@/legacy/type/ib'
 
 export const EERppfDetailPage = () => {

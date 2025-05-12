@@ -9,7 +9,7 @@ import { Button } from '@/legacy/components/common/Button'
 import { Constants } from '@/legacy/constants'
 import { Canteen, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 
 interface CanteenDetailPageProps {
   selectedDate: Date

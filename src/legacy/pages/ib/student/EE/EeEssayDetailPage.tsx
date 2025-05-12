@@ -17,7 +17,7 @@ import IBLayout from '@/legacy/components/ib/IBLayout'
 import { useEssayGetByIBId } from '@/legacy/container/ib-essay-find'
 import { useIBEssaySent } from '@/legacy/container/ib-essay-send'
 import { ResponseIBDto } from '@/legacy/generated/model'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
 
 interface LocationState {

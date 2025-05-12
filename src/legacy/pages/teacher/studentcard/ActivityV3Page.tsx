@@ -19,7 +19,7 @@ import {
   useStudentRecordontrollerFindByStudentId,
 } from '@/legacy/generated/endpoint'
 import { SubjectType } from '@/legacy/generated/model'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { downloadExcel } from '@/legacy/util/download-excel'
 import { getThisYear } from '@/legacy/util/time'
 

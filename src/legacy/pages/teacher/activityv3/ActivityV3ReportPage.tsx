@@ -14,7 +14,7 @@ import { Constants } from '@/legacy/constants'
 import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import { useActivityV3FindByGroupIds, useActivityV3FindOne } from '@/legacy/generated/endpoint'
 import { StudentGroup } from '@/legacy/generated/model'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 
 interface ActivityV3ReportPageProps {}

@@ -7,7 +7,7 @@ import { adminCommonDeleteUser, useAdminCommonGetExpiredUsers } from '@/legacy/g
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSearch } from '@/legacy/lib/router'
-import { toastState } from 'src/store'
+import { toastState } from '@/stores'
 import { Routes } from '@/legacy/constants/routes'
 
 export function ExpiredUserPage() {

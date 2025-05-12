@@ -21,7 +21,7 @@ import {
 } from '@/legacy/generated/endpoint'
 import { GroupType } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { tokenState } from 'src/store'
+import { tokenState } from '@/stores'
 import { getSearchYearByMonth, getThisYear } from '@/legacy/util/time'
 import * as XLSX from 'xlsx'
 

@@ -21,7 +21,7 @@ import { useIBProposalUpdateWaitPlan } from '@/legacy/container/ib-proposal-sent
 import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
 import { useExhibitionPlanSubmit, useExhibitionPlanUpdate } from '@/legacy/container/ib-tok-exhibition'
 import { RequestIBTokExhibitionPlanDto } from '@/legacy/generated/model'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 
 interface Commetary {
   targetKey: string

@@ -27,7 +27,7 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { ResponseIBDtoStatus } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { twMerge } from 'tailwind-merge'
 
 export type CASProject = 'ACTIVITY_PLAN' | 'ACTIVITY_LOG'

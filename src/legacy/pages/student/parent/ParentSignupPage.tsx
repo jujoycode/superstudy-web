@@ -11,7 +11,7 @@ import { TextInput } from '@/legacy/components/common/TextInput'
 import { useOtp } from '@/legacy/container/otp'
 import { useParentSignUp } from '@/legacy/container/parent-sign-up'
 import { UserContainer } from '@/legacy/container/user'
-import { isStayLoggedInState } from 'src/store'
+import { isStayLoggedInState } from '@/stores'
 import { useLogout } from '@/legacy/util/hooks'
 import { Validator } from '@/legacy/util/validator'
 

@@ -23,7 +23,7 @@ import {
 import { Category, RequestGroupTeacherDto, RequestModifyGroupOnlyDto, SubjectType } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { Routes } from '@/legacy/routes'
-import { toastState, warningState } from 'src/store'
+import { toastState, warningState } from '@/stores'
 import { getErrorMsg, getNickName } from '@/legacy/util/status'
 import { AdminContext } from '../AdminMainPage'
 

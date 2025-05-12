@@ -10,7 +10,7 @@ import { InputDel } from '@/legacy/components/common/InputDel'
 import { PasswordInputToggle } from '@/legacy/components/common/PasswordInputToggle'
 import { NoticePopup } from '@/legacy/components/NoticePopup'
 import { UserContainer } from '@/legacy/container/user'
-import { isStayLoggedInState } from 'src/store'
+import { isStayLoggedInState } from '@/stores'
 import { isEmail } from '@/legacy/util/validator'
 
 export function LoginV2() {

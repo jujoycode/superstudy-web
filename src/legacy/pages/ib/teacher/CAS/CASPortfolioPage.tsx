@@ -12,7 +12,7 @@ import TeacherCASProfile from '@/legacy/components/ib/cas/TeacherCASProfile'
 import TeacherCASRefNInt from '@/legacy/components/ib/cas/TeacherCASRefInt'
 import IBLayout from '@/legacy/components/ib/IBLayout'
 import { useIBPortfolioGetById } from '@/legacy/container/ib-cas'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { makeStudNum5 } from '@/legacy/util/status'
 
 function CASPortfolioPage() {

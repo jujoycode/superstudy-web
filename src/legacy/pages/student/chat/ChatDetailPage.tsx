@@ -17,7 +17,7 @@ import { Chat, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { useSocket } from '@/legacy/lib/socket'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { isNowOrFuture } from '@/legacy/util/time'
 
 interface ChatDetailPageProps {

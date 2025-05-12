@@ -19,7 +19,7 @@ import { useIBApproveComplete, useIBStatusRejectComplete } from '@/legacy/contai
 import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBExhibitionPlanStatusApprove, useIBExhibitionPlanStatusReject } from '@/legacy/container/ib-tok-exhibition'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { ResponseIBDtoStatus } from '@/legacy/generated/model'
 

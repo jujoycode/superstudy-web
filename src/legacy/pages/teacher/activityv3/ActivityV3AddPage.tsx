@@ -51,7 +51,7 @@ import {
 } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { meState, toastState } from 'src/store'
+import { meState, toastState } from '@/stores'
 import { nameWithId } from '@/legacy/types'
 import { getFileNameFromUrl } from '@/legacy/util/file'
 

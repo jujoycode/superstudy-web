@@ -29,7 +29,7 @@ import { FieldtripDatePicker } from '@/legacy/components/fieldtrip/FieldtripDate
 import { useStudentFieldtripAddSuburbs } from '@/legacy/container/student-fieldtrip-add-suburbs'
 import { UserContainer } from '@/legacy/container/user'
 import { Fieldtrip, Role } from '@/legacy/generated/model'
-import { childState } from 'src/store'
+import { childState } from '@/stores'
 import { getCustomString } from '@/legacy/util/string'
 import { differenceWithSchedulesWithHalfDay, isWeekendDay } from '@/legacy/util/time'
 

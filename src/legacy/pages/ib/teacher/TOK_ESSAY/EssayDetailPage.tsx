@@ -23,7 +23,7 @@ import { CopykillerTargetTable, ResponseCopykillerResponseDto } from '@/legacy/g
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { usePolling } from '@/legacy/hooks/usePolling'
 import { IBDetailPlagiarimInspectResultBadge } from '@/legacy/components/ib/plagiarismInspect/IBDetailPlagiarimInspectResultBadge'
-import { meState, schoolPropertiesState } from 'src/store'
+import { meState, schoolPropertiesState } from '@/stores'
 import { LocationState } from '@/legacy/type/ib'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
 

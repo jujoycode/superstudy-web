@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil'
 import { BackButton, TopNavbar } from '@/legacy/components/common'
 import { StudyInfoCard2 } from '@/legacy/components/studentCard/StudyInfoCard2'
 import { Role } from '@/legacy/generated/model'
-import { childState, meState } from 'src/store'
+import { childState, meState } from '@/stores'
 
 export function MyStudyPage() {
   const me = useRecoilValue(meState)

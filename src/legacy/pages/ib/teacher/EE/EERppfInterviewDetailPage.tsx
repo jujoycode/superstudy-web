@@ -15,7 +15,7 @@ import IBLayout from '@/legacy/components/ib/IBLayout'
 import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBInterviewUpdate, useInterviewQNA } from '@/legacy/container/ib-student-interview'
 import { RequestCreateQnaDto } from '@/legacy/generated/model'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import type { LocationState } from '@/legacy/types/ib'
 
 export const EERppfInterviewDetailPage = () => {

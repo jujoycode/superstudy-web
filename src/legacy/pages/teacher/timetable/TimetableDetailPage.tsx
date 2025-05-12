@@ -8,7 +8,7 @@ import { GroupContainer } from '@/legacy/container/group'
 import { useTeacherTimetableDetail } from '@/legacy/container/teacher-timetable-v3-detail'
 import { LectureType, ResponseTimetableV3Dto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { convertClassFormat } from '@/legacy/util/validator'
 
 interface TimetableDetailPageProps {

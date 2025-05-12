@@ -13,7 +13,7 @@ import { useCommonGetHolidays } from '@/legacy/container/common-get-holidays'
 import { useStudentOutingAdd } from '@/legacy/container/student-outing-add'
 import { UserContainer } from '@/legacy/container/user'
 import { OutingTypeEnum, OutingUse, ResponseCreateOutingDto, Role } from '@/legacy/generated/model'
-import { childState } from 'src/store'
+import { childState } from '@/stores'
 import { AbsentTimeType, periodArray } from '@/legacy/types'
 
 const reportType = [OutingTypeEnum.조퇴, OutingTypeEnum.외출, OutingTypeEnum.확인]

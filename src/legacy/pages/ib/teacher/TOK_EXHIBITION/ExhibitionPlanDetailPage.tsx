@@ -31,7 +31,7 @@ import {
   ResponseIBTokExhibitionPlanDto,
 } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 
 interface Commetary {
   targetKey: string

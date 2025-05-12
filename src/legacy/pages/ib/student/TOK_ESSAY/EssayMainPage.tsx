@@ -23,7 +23,7 @@ import { useIBProposalUpdateWaitPlan } from '@/legacy/container/ib-proposal-sent
 import { useOutlineSubmit, useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
 import { ResponseTKPPFDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 
 export type TOKEssayProject = 'OUTLINE' | 'ESSAY' | 'TKPPF' | 'RRS'
 export type LocationState = {

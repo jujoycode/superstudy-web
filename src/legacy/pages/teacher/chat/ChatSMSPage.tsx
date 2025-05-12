@@ -13,7 +13,7 @@ import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
 import { SmsCard } from '@/legacy/components/sms/SmsCard'
 import { useTeacherSms } from '@/legacy/container/teacher-sms'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { UserDatas } from '@/legacy/types'
 import { isValidDate, makeDateToString } from '@/legacy/util/time'
 

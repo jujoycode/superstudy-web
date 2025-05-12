@@ -13,7 +13,7 @@ import { useNewsLettersUpdateEndAt } from '@/legacy/generated/endpoint'
 import { NewsletterType, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { Routes } from '@/legacy/routes'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { UserDatas } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 

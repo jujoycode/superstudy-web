@@ -6,7 +6,7 @@ import { SuperModal } from '@/legacy/components'
 import { BackButton, Label, PhoneNumberField, Section, Textarea, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 
 export function FieldtripSuburbsReportDetailPage() {
   const { push } = useHistory()

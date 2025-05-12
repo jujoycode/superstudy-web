@@ -6,7 +6,7 @@ import { Button } from '@/legacy/components/common/Button'
 import { ParentInfoCard } from '@/legacy/components/MyInfo/ParentInfoCard'
 import { useStudentKlassHistory } from '@/legacy/container/student-klass-history'
 import { Role } from '@/legacy/generated/model'
-import { isUpdateMeState, meState } from 'src/store'
+import { isUpdateMeState, meState } from '@/stores'
 import { MyDeletePage } from './MyDeletePage'
 import { MyInfoUpdatePage } from './MyInfoUpdatePage'
 

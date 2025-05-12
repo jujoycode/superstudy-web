@@ -8,7 +8,7 @@ import { Icon } from '@/legacy/components/common/icons'
 import { useTeacherNewsletter } from '@/legacy/container/teacher-newsletter'
 import { TeacherNoticeContainer } from '@/legacy/container/teacher-notice'
 import { Notice } from '@/legacy/generated/model'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 const filters = ['제목', '작성자']

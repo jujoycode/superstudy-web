@@ -19,7 +19,7 @@ import { Category, RequestCreateTeacherDto, RequestModifyTeacherDto, Role, Score
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
 import { Routes } from '@/legacy/routes'
-import { meState, toastState } from 'src/store'
+import { meState, toastState } from '@/stores'
 import { getErrorMsg } from '@/legacy/util/status'
 import { AdminContext } from '../AdminMainPage'
 
