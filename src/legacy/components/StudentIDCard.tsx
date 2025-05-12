@@ -1,118 +1,120 @@
-import { ChangeEvent, useState } from 'react';
-import { ReactComponent as Edit } from 'src/assets/svg/edit.svg';
-import { Blank, CloseButton, IconButton, Section } from 'src/components/common';
-import { Constants } from 'src/constants';
-import { useUserUpdateMe } from 'src/generated/endpoint';
-import { ResponseUserDto, UpdateUserDto, UploadFileTypeEnum } from 'src/generated/model';
-import { useFileUpload } from 'src/hooks/useFileUpload';
-import { DateUtil } from 'src/util/date';
-import { checkFileSizeLimit100MB } from 'src/util/file';
-import { makeDateToString } from 'src/util/time';
-import { Validator } from 'src/util/validator';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Button } from './common/Button';
+import { useState, type ChangeEvent } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Constants } from '@/legacy/constants'
+import { DateUtil } from '@/legacy/util/date'
+import { Validator } from '@/legacy/util/validator'
+import { makeDateToString } from '@/legacy/util/time'
+import { checkFileSizeLimit100MB } from '@/legacy/util/file'
+import { useUserUpdateMe } from '@/legacy/generated/endpoint'
+import { useFileUpload } from '@/legacy/hooks/useFileUpload'
+import { Button } from '@/legacy/components/common/Button'
+import { Blank, CloseButton, IconButton, Section } from '@/legacy/components/common'
+import { UploadFileTypeEnum, type ResponseUserDto, type UpdateUserDto } from '@/legacy/generated/model'
+
+// ? 추후 고도화
+import Edit from 'src/assets/svg/edit.svg'
 
 interface StudentIDCardProps {
-  meRecoil: ResponseUserDto;
+  meRecoil: ResponseUserDto
 }
 
 export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [editMode, setEditMode] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false)
+  const [editMode, setEditMode] = useState(false)
 
-  const [customProfile, setCustomProfile] = useState<File | string | null | undefined>(meRecoil.customProfile);
-  const [background, setBackground] = useState<File | string | null | undefined>(meRecoil.customBackground);
+  const [customProfile, setCustomProfile] = useState<File | string | null | undefined>(meRecoil.customProfile)
+  const [background, setBackground] = useState<File | string | null | undefined>(meRecoil.customBackground)
 
-  const { handleUploadFile } = useFileUpload();
+  const { handleUploadFile } = useFileUpload()
 
   const handleBackgroundImageAdd = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
-      return;
+      return
     }
 
-    const selectedImageFiles = (e.target as HTMLInputElement).files;
+    const selectedImageFiles = (e.target as HTMLInputElement).files
     if (!selectedImageFiles || !selectedImageFiles.length) {
-      return;
+      return
     }
 
     if (!Validator.fileNameRule(selectedImageFiles[0].name)) {
-      alert('특수문자(%, &, ?, ~)가 포함된 파일명은 사용할 수 없습니다.');
-      return;
+      alert('특수문자(%, &, ?, ~)가 포함된 파일명은 사용할 수 없습니다.')
+      return
     }
 
     if (!checkFileSizeLimit100MB([selectedImageFiles[0]])) {
-      alert('한번에 최대 100MB까지만 업로드 가능합니다.');
-      return;
+      alert('한번에 최대 100MB까지만 업로드 가능합니다.')
+      return
     }
 
-    setBackground(selectedImageFiles[0]);
-  };
+    setBackground(selectedImageFiles[0])
+  }
 
   const handleProfileImageAdd = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
-      return;
+      return
     }
 
-    const selectedImageFiles = (e.target as HTMLInputElement).files;
+    const selectedImageFiles = (e.target as HTMLInputElement).files
     if (!selectedImageFiles || !selectedImageFiles.length) {
-      return;
+      return
     }
 
     if (!Validator.fileNameRule(selectedImageFiles[0].name)) {
-      alert('특수문자(%, &, ?, ~)가 포함된 파일명은 사용할 수 없습니다.');
-      return;
+      alert('특수문자(%, &, ?, ~)가 포함된 파일명은 사용할 수 없습니다.')
+      return
     }
 
     if (!checkFileSizeLimit100MB([selectedImageFiles[0]])) {
-      alert('한번에 최대 100MB까지만 업로드 가능합니다.');
-      return;
+      alert('한번에 최대 100MB까지만 업로드 가능합니다.')
+      return
     }
 
-    setCustomProfile(selectedImageFiles[0]);
-  };
+    setCustomProfile(selectedImageFiles[0])
+  }
 
   const { mutate: updateBackgroundImagMutate, isLoading } = useUserUpdateMe({
     mutation: {
       onSuccess: () => {
-        setEditMode(false);
+        setEditMode(false)
       },
     },
-  });
+  })
   const handleUpdateBackgroundImage = async () => {
     if (background instanceof File) {
-      const imageFileNames = await handleUploadFile(UploadFileTypeEnum['profiles/custombackground'], [background]);
+      const imageFileNames = await handleUploadFile(UploadFileTypeEnum['profiles/custombackground'], [background])
       const payload = {
         customBackground: imageFileNames[0],
-      } as UpdateUserDto;
+      } as UpdateUserDto
       updateBackgroundImagMutate({
         data: payload,
-      });
+      })
     }
-    handleUpdateProfile();
+    handleUpdateProfile()
 
-    setEditMode(false);
-  };
+    setEditMode(false)
+  }
 
   const handleUpdateProfile = async () => {
     if (customProfile instanceof File) {
-      const imageFileNames = await handleUploadFile(UploadFileTypeEnum['profiles'], [customProfile]);
+      const imageFileNames = await handleUploadFile(UploadFileTypeEnum['profiles'], [customProfile])
       const payload = {
         customProfile: imageFileNames[0],
-      } as UpdateUserDto;
+      } as UpdateUserDto
       updateBackgroundImagMutate({
         data: payload,
-      });
+      })
     }
     //setModalOpen(false);
-  };
+  }
 
   return (
     <>
       {isLoading && <Blank />}
-      <Swiper slidesPerView={1.05} spaceBetween={10} className="mySwiper px-6 pb-5 pt-6">
+      <Swiper slidesPerView={1.05} spaceBetween={10} className="mySwiper px-6 pt-6 pb-5">
         <SwiperSlide>
           <div className="card_shadow relative overflow-hidden">
-            <div className="absolute left-0 right-0 z-10">
+            <div className="absolute right-0 left-0 z-10">
               <div className="flex items-center justify-end space-x-2 rounded-xl">
                 <input
                   type="file"
@@ -123,7 +125,7 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
                 />
               </div>
             </div>
-            <div className="relative flex h-80 w-full flex-col bg-transparent bg-gradient-to-t from-littleblack">
+            <div className="from-littleblack relative flex h-80 w-full flex-col bg-transparent bg-gradient-to-t">
               {/* 뒷배경 */}
               {background ? (
                 typeof background === 'string' ? (
@@ -146,11 +148,11 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
               )}
 
               {editMode && background && (
-                <span className="absolute right-3 top-3 z-40 block h-6 w-6 rounded-full bg-red-700 ring-2 ring-white">
+                <span className="absolute top-3 right-3 z-40 block h-6 w-6 rounded-full bg-red-700 ring-2 ring-white">
                   <div
                     className="flex h-full w-full cursor-pointer items-center justify-center text-white"
                     onClick={() => {
-                      setBackground(undefined);
+                      setBackground(undefined)
                     }}
                     style={{ transform: 'translate(0.1px, 0.1px)' }}
                   >
@@ -190,8 +192,8 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
                       accept=".png, .jpeg, .jpg"
                       className="hidden"
                       onChange={(e) => {
-                        handleProfileImageAdd;
-                        e.target.validity.valid && setCustomProfile(e.target.files?.item(0));
+                        handleProfileImageAdd
+                        e.target.validity.valid && setCustomProfile(e.target.files?.item(0))
                       }}
                     />
                     {customProfile && (
@@ -199,7 +201,7 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
                         <div
                           className="flex h-full w-full cursor-pointer items-center justify-center text-white"
                           onClick={() => {
-                            setCustomProfile(undefined);
+                            setCustomProfile(undefined)
                           }}
                           style={{ transform: 'translate(0.1px, 0.1px)' }}
                         >
@@ -231,19 +233,21 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
                   {editMode ? (
                     <>
                       <label htmlFor="bg-upload">
-                        <div className="cursor-pointer rounded-xl bg-littleblack p-2 text-sm text-white">
+                        <div className="bg-littleblack cursor-pointer rounded-xl p-2 text-sm text-white">
                           배경 업로드
                         </div>
                       </label>
 
                       <div
-                        className="cursor-pointer rounded-xl bg-littleblack p-2 text-sm text-white"
+                        className="bg-littleblack cursor-pointer rounded-xl p-2 text-sm text-white"
                         onClick={handleUpdateBackgroundImage}
                       >
                         완료
                       </div>
                     </>
                   ) : (
+                    // @ts-ignore svg에 className을 왜...?
+                    // 추후, Svg 용 atom 생성하여 대체
                     <Edit className="p-0.5" onClick={() => setEditMode(true)} />
                   )}
                 </div>
@@ -276,7 +280,7 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
               <div className="flex h-80 w-full flex-col items-center bg-[#FAFAFA]">
                 {meRecoil && (
                   <img
-                    className="mb-2 mt-12 h-32 w-32 cursor-pointer rounded-md object-cover"
+                    className="mt-12 mb-2 h-32 w-32 cursor-pointer rounded-md object-cover"
                     src={`${Constants.imageUrl}${meRecoil.profile}`}
                     alt=""
                     loading="lazy"
@@ -286,14 +290,14 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
                 <table>
                   <tbody>
                     <tr>
-                      <td className="flex justify-between py-1 pr-3 text-xs text-grey-4">
+                      <td className="text-grey-4 flex justify-between py-1 pr-3 text-xs">
                         <p>성</p>
                         <p>명</p>
                       </td>
                       <td className="text-sm font-bold tracking-widest text-black">{meRecoil?.name}</td>
                     </tr>
                     <tr>
-                      <td className="flex justify-between py-1 pr-3 text-xs text-grey-4">
+                      <td className="text-grey-4 flex justify-between py-1 pr-3 text-xs">
                         <p>학</p>
                         <p>번</p>
                       </td>
@@ -303,17 +307,17 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
                       </td>
                     </tr>
                     <tr>
-                      <td className="pr-3 text-xs text-grey-4">생년월일</td>
+                      <td className="text-grey-4 pr-3 text-xs">생년월일</td>
                       <td className="text-sm text-black">
                         {meRecoil?.birthDate && makeDateToString(meRecoil.birthDate, '.')}
                       </td>
                     </tr>
                     <tr>
-                      <td className="pr-3 text-xs text-grey-4">유효기간</td>
+                      <td className="text-grey-4 pr-3 text-xs">유효기간</td>
                       <td className="text-sm text-gray-500">{DateUtil.getYear() + 1}.02.28</td>
                     </tr>
                     <tr>
-                      <td className="flex justify-between py-1 pr-3 text-xs text-grey-4">
+                      <td className="text-grey-4 flex justify-between py-1 pr-3 text-xs">
                         <p>발</p>
                         <p>급</p>
                         <p>일</p>
@@ -354,9 +358,9 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
       </Swiper>
 
       {modalOpen && (
-        <div className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-littleblack`}>
+        <div className={`bg-littleblack fixed inset-0 z-60 flex h-screen w-full items-center justify-center`}>
           <div className={`relative w-80 rounded-lg bg-white opacity-100`}>
-            <div className="absolute right-3 top-3">
+            <div className="absolute top-3 right-3">
               <CloseButton onClick={() => setModalOpen(false)} />
             </div>
             <Section>
@@ -399,5 +403,5 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
         </div>
       )}
     </>
-  );
+  )
 }

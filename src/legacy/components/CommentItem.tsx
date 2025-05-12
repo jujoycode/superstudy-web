@@ -1,35 +1,35 @@
-import { useState } from 'react';
-import { Avatar, ListItem } from 'src/components/common';
-import { Comment } from 'src/generated/model';
-import { SuperModal } from './SuperModal';
-import { Button } from './common/Button';
-import { SearchInput } from './common/SearchInput';
-import { Time } from './common/Time';
+import { useState } from 'react'
+import { Avatar, ListItem } from '@/legacy/components/common'
+import { Time } from '@/legacy/components/common/Time'
+import { Button } from '@/legacy/components/common/Button'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { SuperModal } from '@/legacy/components/SuperModal'
+import type { Comment } from '@/legacy/generated/model'
 
 interface CommentItemProps {
-  comment: Comment;
-  userId?: number;
-  userRole?: string;
-  updateComment: (id: number, content: string) => void;
-  deleteComment: (id: number) => void;
+  comment: Comment
+  userId?: number
+  userRole?: string
+  updateComment: (id: number, content: string) => void
+  deleteComment: (id: number) => void
 }
 
 export function CommentItem({ comment, userId, userRole, updateComment, deleteComment }: CommentItemProps) {
-  const [text, setText] = useState(comment.content || undefined);
-  const [updateState, setUpdateState] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [text, setText] = useState(comment.content || undefined)
+  const [updateState, setUpdateState] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
 
   const handleUpdate = async () => {
     if (!text) {
-      alert('텍스트 내용을 입력해주세요.');
+      alert('텍스트 내용을 입력해주세요.')
     } else {
-      await updateComment(comment.id, text);
-      await setUpdateState(false);
+      await updateComment(comment.id, text)
+      await setUpdateState(false)
     }
-  };
+  }
 
   if (!comment) {
-    return <></>;
+    return <></>
   }
   return (
     <ListItem key={comment.id || 0}>
@@ -39,8 +39,8 @@ export function CommentItem({ comment, userId, userRole, updateComment, deleteCo
           <Button.lg
             children="삭제하기"
             onClick={async () => {
-              await deleteComment(comment?.id);
-              await setModalOpen(false);
+              await deleteComment(comment?.id)
+              await setModalOpen(false)
             }}
             className="filled-primary w-full"
           />
@@ -51,7 +51,7 @@ export function CommentItem({ comment, userId, userRole, updateComment, deleteCo
         <div style={{ width: 'calc(100% - 4rem)' }}>
           <div className="align-center flex justify-between">
             <div className="flex items-center space-x-2 overflow-hidden">
-              <div className="min-w-max font-bold text-grey-1">{comment.user?.name}</div>
+              <div className="text-grey-1 min-w-max font-bold">{comment.user?.name}</div>
               <Time date={comment.updatedAt} />
             </div>
             {!updateState ? (
@@ -86,23 +86,23 @@ export function CommentItem({ comment, userId, userRole, updateComment, deleteCo
               <div className="ml-2 flex space-x-2">
                 <div
                   onClick={() => {
-                    setUpdateState(false);
-                    setText(comment.content || undefined);
+                    setUpdateState(false)
+                    setText(comment.content || undefined)
                   }}
                   className="min-w-max text-gray-400"
                 >
                   취소
                 </div>
-                <div onClick={handleUpdate} className="min-w-max text-brandblue-1">
+                <div onClick={handleUpdate} className="text-brandblue-1 min-w-max">
                   수정 완료
                 </div>
               </div>
             </>
           ) : (
-            <div className="mt-1 whitespace-normal text-left text-grey-2">{comment.content}</div>
+            <div className="text-grey-2 mt-1 text-left whitespace-normal">{comment.content}</div>
           )}
         </div>
       </div>
     </ListItem>
-  );
+  )
 }

@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { useGetIBProject } from 'src/container/ib-project-get-filter';
-import { IBGetIBBycoordinatorParams, ResponseCoordinatorSelfCheckDtoType, ResponseUserDto } from 'src/generated/model';
-import { Typography } from '../common/Typography';
-import SVGIcon from '../icon/SVGIcon';
-import ProjectCard from './ProjectCard';
+import React, { useEffect, useState } from 'react'
+import { useGetIBProject } from '@/legacy/container/ib-project-get-filter'
+import {
+  IBGetIBBycoordinatorParams,
+  ResponseCoordinatorSelfCheckDtoType,
+  ResponseUserDto,
+} from '@/legacy/generated/model'
+import { Typography } from '@/legacy/components/common/Typography'
+import SVGIcon from '../icon/SVGIcon'
+import ProjectCard from './ProjectCard'
 
 interface ProjectListProps {
-  title: string;
-  params: IBGetIBBycoordinatorParams;
-  statuses: string;
-  user: ResponseUserDto;
-  setCount?: (count: number) => void;
-  permission?: ResponseCoordinatorSelfCheckDtoType;
-  currentPage: number; // 추가된 props
-  onPageChange: (page: number) => void; // 추가된 props
+  title: string
+  params: IBGetIBBycoordinatorParams
+  statuses: string
+  user: ResponseUserDto
+  setCount?: (count: number) => void
+  permission?: ResponseCoordinatorSelfCheckDtoType
+  currentPage: number // 추가된 props
+  onPageChange: (page: number) => void // 추가된 props
 }
 
 const ProjectList: React.FC<ProjectListProps> = ({
@@ -26,30 +30,30 @@ const ProjectList: React.FC<ProjectListProps> = ({
   currentPage,
   onPageChange,
 }) => {
-  const { data, getIBProject, isLoading } = useGetIBProject();
-  const [isOpen, setIsOpen] = useState(true);
-  const itemsPerPage = 12;
+  const { data, getIBProject, isLoading } = useGetIBProject()
+  const [isOpen, setIsOpen] = useState(true)
+  const itemsPerPage = 12
 
   useEffect(() => {
     if (isOpen) {
       switch (params.ibTypes) {
         case 'EE':
-          break;
+          break
         case 'CAS':
-          params.ibTypes = 'CAS_NORMAL,CAS_PROJECT';
-          break;
+          params.ibTypes = 'CAS_NORMAL,CAS_PROJECT'
+          break
         case 'TOK':
-          params.ibTypes = 'TOK_ESSAY,TOK_EXHIBITION';
+          params.ibTypes = 'TOK_ESSAY,TOK_EXHIBITION'
       }
-      getIBProject({ ...params, statuses, page: currentPage });
+      getIBProject({ ...params, statuses, page: currentPage })
     }
-  }, [isOpen, params, currentPage]);
+  }, [isOpen, params, currentPage])
 
   useEffect(() => {
     if (params.studentName && setCount && data?.total !== undefined) {
-      setCount(data.total);
+      setCount(data.total)
     }
-  }, [data]);
+  }, [data])
 
   // const fetchAdditionalData = (page: number) => {
   //   const startIndex = (page - 1) * itemsPerPage;
@@ -60,8 +64,8 @@ const ProjectList: React.FC<ProjectListProps> = ({
   // };
 
   const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   // const getCurrentPageItems = () => {
   //   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -88,7 +92,7 @@ const ProjectList: React.FC<ProjectListProps> = ({
   //   return items.slice(startIndex, endIndex);
   // };
 
-  const totalPages = Math.ceil((data?.total || 0) / itemsPerPage);
+  const totalPages = Math.ceil((data?.total || 0) / itemsPerPage)
 
   return (
     <div>
@@ -149,36 +153,36 @@ const ProjectList: React.FC<ProjectListProps> = ({
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ProjectList;
+export default ProjectList
 
 const DummyCard = () => (
   <>
     <div
-      className={`box-border flex h-[223px] w-[308px] animate-pulse cursor-pointer flex-col rounded-xl border border-primary-gray-200 bg-white shadow`}
+      className={`border-primary-gray-200 box-border flex h-[223px] w-[308px] animate-pulse cursor-pointer flex-col rounded-xl border bg-white shadow`}
     >
-      <div className="box-border flex flex-row items-center border-b border-b-primary-gray-100 px-5 py-3">
+      <div className="border-b-primary-gray-100 box-border flex flex-row items-center border-b px-5 py-3">
         <div className="h-4 flex-1 rounded bg-slate-200"></div>
       </div>
       <div className="flex w-[308px] flex-1 flex-col justify-between px-5 pt-5">
         <div>
           <nav className="box-border flex w-full flex-row items-center justify-between">
-            <span className="h-6 w-10 rounded bg-primary-gray-100"></span>
-            <span className="h-6 w-20 rounded bg-primary-gray-100"></span>
+            <span className="bg-primary-gray-100 h-6 w-10 rounded"></span>
+            <span className="bg-primary-gray-100 h-6 w-20 rounded"></span>
           </nav>
           <main className="box-border flex flex-col gap-3 py-6">
-            <span className="h-6 w-40 rounded bg-primary-gray-100"></span>
+            <span className="bg-primary-gray-100 h-6 w-40 rounded"></span>
             <div className="flex w-full flex-col gap-2">
               <span className="flex flex-row gap-2">
-                <span className="h-6 w-14 rounded bg-primary-gray-100"></span>
-                <span className="h-6 w-30 rounded bg-primary-gray-100"></span>
+                <span className="bg-primary-gray-100 h-6 w-14 rounded"></span>
+                <span className="bg-primary-gray-100 h-6 w-30 rounded"></span>
               </span>
 
               <span className="flex flex-row gap-2">
-                <span className="h-6 w-14 rounded bg-primary-gray-100"></span>
-                <span className="h-6 w-30 rounded bg-primary-gray-100"></span>
+                <span className="bg-primary-gray-100 h-6 w-14 rounded"></span>
+                <span className="bg-primary-gray-100 h-6 w-30 rounded"></span>
               </span>
             </div>
           </main>
@@ -186,28 +190,28 @@ const DummyCard = () => (
       </div>
     </div>
     <div
-      className={`box-border flex h-[223px] w-[308px] animate-pulse cursor-pointer flex-col rounded-xl border border-primary-gray-200 bg-white shadow`}
+      className={`border-primary-gray-200 box-border flex h-[223px] w-[308px] animate-pulse cursor-pointer flex-col rounded-xl border bg-white shadow`}
     >
-      <div className="box-border flex flex-row items-center border-b border-b-primary-gray-100 px-5 py-3">
+      <div className="border-b-primary-gray-100 box-border flex flex-row items-center border-b px-5 py-3">
         <div className="h-4 flex-1 rounded bg-slate-200"></div>
       </div>
       <div className="flex w-[308px] flex-1 flex-col justify-between px-5 pt-5">
         <div>
           <nav className="box-border flex w-full flex-row items-center justify-between">
-            <span className="h-6 w-10 rounded bg-primary-gray-100"></span>
-            <span className="h-6 w-20 rounded bg-primary-gray-100"></span>
+            <span className="bg-primary-gray-100 h-6 w-10 rounded"></span>
+            <span className="bg-primary-gray-100 h-6 w-20 rounded"></span>
           </nav>
           <main className="box-border flex flex-col gap-3 py-6">
-            <span className="h-6 w-40 rounded bg-primary-gray-100"></span>
+            <span className="bg-primary-gray-100 h-6 w-40 rounded"></span>
             <div className="flex w-full flex-col gap-2">
               <span className="flex flex-row gap-2">
-                <span className="h-6 w-14 rounded bg-primary-gray-100"></span>
-                <span className="h-6 w-30 rounded bg-primary-gray-100"></span>
+                <span className="bg-primary-gray-100 h-6 w-14 rounded"></span>
+                <span className="bg-primary-gray-100 h-6 w-30 rounded"></span>
               </span>
 
               <span className="flex flex-row gap-2">
-                <span className="h-6 w-14 rounded bg-primary-gray-100"></span>
-                <span className="h-6 w-30 rounded bg-primary-gray-100"></span>
+                <span className="bg-primary-gray-100 h-6 w-14 rounded"></span>
+                <span className="bg-primary-gray-100 h-6 w-30 rounded"></span>
               </span>
             </div>
           </main>
@@ -215,23 +219,23 @@ const DummyCard = () => (
       </div>
     </div>
   </>
-);
+)
 
 interface PaginationProps {
-  totalItems: number;
-  itemsPerPage: number;
-  currentPage: number;
-  onPageChange: (page: number) => void;
+  totalItems: number
+  itemsPerPage: number
+  currentPage: number
+  onPageChange: (page: number) => void
 }
 
 export const IBPagination: React.FC<PaginationProps> = ({ totalItems, itemsPerPage, currentPage, onPageChange }) => {
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const totalPages = Math.ceil(totalItems / itemsPerPage)
 
   const handlePageClick = (page: number) => {
     if (page >= 1 && page <= totalPages) {
-      onPageChange(page);
+      onPageChange(page)
     }
-  };
+  }
 
   return (
     <div className="flex items-center justify-center gap-1 py-4">
@@ -239,7 +243,7 @@ export const IBPagination: React.FC<PaginationProps> = ({ totalItems, itemsPerPa
         className={`flex h-8 w-8 items-center justify-center ${
           currentPage === 1
             ? 'text-primary-gray-400'
-            : 'hover:rounded-md hover:bg-primary-gray-50 hover:text-primary-gray-700'
+            : 'hover:bg-primary-gray-50 hover:text-primary-gray-700 hover:rounded-md'
         }`}
         onClick={() => handlePageClick(currentPage - 1)}
         disabled={currentPage === 1}
@@ -250,9 +254,9 @@ export const IBPagination: React.FC<PaginationProps> = ({ totalItems, itemsPerPa
       {[...Array(totalPages)].map((_, index) => (
         <button
           key={index}
-          className={`h-8 w-8 text-14 font-medium ${
+          className={`text-14 h-8 w-8 font-medium ${
             currentPage === index + 1
-              ? 'rounded-md bg-primary-gray-700 text-white'
+              ? 'bg-primary-gray-700 rounded-md text-white'
               : 'text-primary-gray-700 hover:bg-primary-gray-50 hover:text-primary-gray-700' // hover 스타일
           }`}
           onClick={() => handlePageClick(index + 1)}
@@ -265,7 +269,7 @@ export const IBPagination: React.FC<PaginationProps> = ({ totalItems, itemsPerPa
         className={`flex h-8 w-8 items-center justify-center ${
           currentPage === totalPages
             ? 'text-primary-gray-400'
-            : 'hover:rounded-md hover:bg-primary-gray-50 hover:text-primary-gray-700'
+            : 'hover:bg-primary-gray-50 hover:text-primary-gray-700 hover:rounded-md'
         }`}
         onClick={() => handlePageClick(currentPage + 1)}
         disabled={currentPage === totalPages}
@@ -273,5 +277,5 @@ export const IBPagination: React.FC<PaginationProps> = ({ totalItems, itemsPerPa
         <SVGIcon.Arrow weight="bold" color="gray400" size={24} rotate={180} />
       </button>
     </div>
-  );
-};
+  )
+}

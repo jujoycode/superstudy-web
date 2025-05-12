@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import { useStudentPropertyUpdate } from 'src/container/student-property-update';
-import { Button } from '../common/Button';
-import { TextInput } from '../common/TextInput';
-import { Time } from '../common/Time';
+import { useState } from 'react'
+import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'
+import { Button } from '@/legacy/components/common/Button'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Time } from '@/legacy/components/common/Time'
 
 interface StudyInfoCard {
-  studentId?: number;
-  isCard: boolean;
-  isForbidden?: boolean;
+  studentId?: number
+  isCard: boolean
+  isForbidden?: boolean
 }
 
 export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard) {
-  const [barcode, setBarcode] = useState('aaa');
+  const [barcode, setBarcode] = useState('aaa')
   const {
     isEditMode,
     setIsEditMode,
@@ -38,7 +38,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
     lastUpdateAt,
   } = useStudentPropertyUpdate({
     studentId: studentId || 0,
-  });
+  })
 
   const handleUpdate = () => {
     updateStudentProperty(
@@ -51,64 +51,64 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
       JSON.stringify(selfStudy),
       motto,
       hopeCareerPath,
-    );
-  };
+    )
+  }
 
   const setValues = (type: string, row: string, col: string, value: string) => {
     if (type === 'resolution') {
-      const tmp = JSON.parse(JSON.stringify(resolution));
+      const tmp = JSON.parse(JSON.stringify(resolution))
       if (tmp?.[row] === undefined) {
-        tmp[row] = { 항목: '', 목표: '', 기한: '' };
+        tmp[row] = { 항목: '', 목표: '', 기한: '' }
       }
-      tmp[row][col] = value;
-      setResolution(tmp);
+      tmp[row][col] = value
+      setResolution(tmp)
     } else if (type === 'hopeUnivMajor') {
-      const tmpHopeUnivMajor = JSON.parse(JSON.stringify(hopeUnivMajor));
+      const tmpHopeUnivMajor = JSON.parse(JSON.stringify(hopeUnivMajor))
       if (tmpHopeUnivMajor?.[row] === undefined) {
-        tmpHopeUnivMajor[row] = { univ: '', major: '' };
+        tmpHopeUnivMajor[row] = { univ: '', major: '' }
       }
-      tmpHopeUnivMajor[row][col] = value;
-      setHopeUnivMajor(tmpHopeUnivMajor);
+      tmpHopeUnivMajor[row][col] = value
+      setHopeUnivMajor(tmpHopeUnivMajor)
     } else if (type === 'admission') {
-      const tmp = JSON.parse(JSON.stringify(admission));
+      const tmp = JSON.parse(JSON.stringify(admission))
       if (tmp?.[row] === undefined) {
-        tmp[row] = { 입시전형: '', 비고: '' };
+        tmp[row] = { 입시전형: '', 비고: '' }
       }
-      tmp[row][col] = value;
-      setAdmission(tmp);
+      tmp[row][col] = value
+      setAdmission(tmp)
     } else if (type === 'joinGroup') {
-      const tmp = JSON.parse(JSON.stringify(joinGroup));
+      const tmp = JSON.parse(JSON.stringify(joinGroup))
       if (tmp?.[row] === undefined) {
-        tmp[row] = { 활동구분: '', 활동명: '', 비고: '' };
+        tmp[row] = { 활동구분: '', 활동명: '', 비고: '' }
       }
-      tmp[row][col] = value;
-      setJoinGroup(tmp);
+      tmp[row][col] = value
+      setJoinGroup(tmp)
     } else if (type === 'schoolOrigin') {
-      const tmp = JSON.parse(JSON.stringify(schoolOrigin));
+      const tmp = JSON.parse(JSON.stringify(schoolOrigin))
       if (tmp?.[row] === undefined) {
-        tmp[row] = { 학교명: '', 비고: '' };
+        tmp[row] = { 학교명: '', 비고: '' }
       }
-      tmp[row][col] = value;
-      setSchoolOrigin(tmp);
+      tmp[row][col] = value
+      setSchoolOrigin(tmp)
     } else if (type === 'extraCurricular') {
-      const tmp = JSON.parse(JSON.stringify(extraCurricular));
+      const tmp = JSON.parse(JSON.stringify(extraCurricular))
       if (tmp?.[row] === undefined) {
-        tmp[row] = { 과목: '', 장소: '', 요일: '', 비고: '' };
+        tmp[row] = { 과목: '', 장소: '', 요일: '', 비고: '' }
       }
-      tmp[row][col] = value;
-      setExtraCurricular(tmp);
+      tmp[row][col] = value
+      setExtraCurricular(tmp)
     } else if (type === 'selfStudy') {
-      const tmp = JSON.parse(JSON.stringify(selfStudy));
+      const tmp = JSON.parse(JSON.stringify(selfStudy))
       if (tmp?.[row] === undefined) {
-        tmp[row] = { 장소: '', 요일: '', 시간: '' };
+        tmp[row] = { 장소: '', 요일: '', 시간: '' }
       }
-      tmp[row][col] = value;
-      setSelfStudy(tmp);
+      tmp[row][col] = value
+      setSelfStudy(tmp)
     }
-  };
+  }
 
   return (
-    <div className="scroll-box mt-0 h-screen-5 overflow-y-auto pb-4 pt-4 md:mt-4 md:h-screen-4">
+    <div className="scroll-box h-screen-5 md:h-screen-4 mt-0 overflow-y-auto pt-4 pb-4 md:mt-4">
       {isCard && (
         <div className="flex justify-between text-xl font-semibold">
           <p>학습/진로 목표</p>
@@ -117,10 +117,10 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
               <>
                 <button
                   children="취소"
-                  className="rounded-md bg-light_orange px-2 py-1 text-sm text-brand-1 hover:bg-red-500 hover:text-light_orange focus:outline-none"
+                  className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-none"
                   onClick={() => {
-                    setIsEditMode(false);
-                    refetch();
+                    setIsEditMode(false)
+                    refetch()
                   }}
                 />
               </>
@@ -128,13 +128,13 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
             {!isForbidden ? (
               <button
                 children={isEditMode ? '저장하기' : '수정하기'}
-                className="rounded-md bg-light_orange px-2 py-1 text-sm text-brand-1 hover:bg-brand-1 hover:text-light_orange focus:outline-none"
+                className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-none"
                 onClick={() => {
                   if (isEditMode) {
-                    handleUpdate();
-                    refetch();
+                    handleUpdate()
+                    refetch()
                   }
-                  setIsEditMode(true);
+                  setIsEditMode(true)
                 }}
               />
             ) : (
@@ -143,7 +143,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </div>
         </div>
       )}
-      <div className={` bg-white p-3  ${isCard ? 'rounded-lg border' : ''} `}>
+      <div className={`bg-white p-3 ${isCard ? 'rounded-lg border' : ''} `}>
         <div className="h-2 w-full text-right text-xs">
           {lastUpdateAt && (
             <span>
@@ -154,19 +154,19 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
         <div className="text-lg font-bold">1. 목표</div>
 
         {/* 좌우명 */}
-        <table className="mt-3 w-full  break-words text-sm">
+        <table className="mt-3 w-full text-sm break-words">
           <tr>
             <td className="border-b-2 text-base font-semibold" colSpan={1}>
               좌우명
             </td>
           </tr>
           <tr>
-            <td className="w-full " colSpan={1}>
-              <div className=" mb-1 flex flex-row flex-wrap"></div>
+            <td className="w-full" colSpan={1}>
+              <div className="mb-1 flex flex-row flex-wrap"></div>
             </td>
           </tr>
           <tr>
-            <td className="h-5 border border-black ">
+            <td className="h-5 border border-black">
               {isEditMode ? (
                 <TextInput value={motto} onChange={(e) => setMotto(e.target.value)} className="h-5 text-sm" />
               ) : (
@@ -177,19 +177,19 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
         </table>
 
         {/* 희망진로 */}
-        <table className="mt-3 w-full  break-words text-sm">
+        <table className="mt-3 w-full text-sm break-words">
           <tr>
             <td className="border-b-2 text-base font-semibold" colSpan={3}>
               희망 진로
             </td>
           </tr>
           <tr>
-            <td className="w-full " colSpan={1}>
-              <div className=" mb-1 flex flex-row flex-wrap"></div>
+            <td className="w-full" colSpan={1}>
+              <div className="mb-1 flex flex-row flex-wrap"></div>
             </td>
           </tr>
           <tr>
-            <td className="h-5 border border-black ">
+            <td className="h-5 border border-black">
               {isEditMode ? (
                 <TextInput
                   value={hopeCareerPath}
@@ -204,24 +204,24 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
         </table>
 
         {/* 올해목표 */}
-        <table className="mt-3 w-full  break-words text-sm">
+        <table className="mt-3 w-full text-sm break-words">
           <tr>
             <td className="border-b-2 text-base font-semibold" colSpan={3}>
               올해 목표
             </td>
           </tr>
           <tr>
-            <td className="w-full " colSpan={3}>
-              <div className=" mb-2 flex flex-row flex-wrap"></div>
+            <td className="w-full" colSpan={3}>
+              <div className="mb-2 flex flex-row flex-wrap"></div>
             </td>
           </tr>
           <tr>
             <th className="w-[25%] border border-black bg-gray-200">항목</th>
-            <th className=" border border-black bg-gray-200">목표</th>
-            <th className="w-[25%]  border border-black bg-gray-200">기한</th>
+            <th className="border border-black bg-gray-200">목표</th>
+            <th className="w-[25%] border border-black bg-gray-200">기한</th>
           </tr>
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['1']?.['항목'] || ''}
@@ -233,7 +233,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 resolution?.['1']?.['항목'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['1']?.['목표'] || ''}
@@ -245,7 +245,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 resolution?.['1']?.['목표'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['1']?.['기한'] || ''}
@@ -260,7 +260,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['2']?.['항목'] || ''}
@@ -272,7 +272,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 resolution?.['2']?.['항목'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['2']?.['목표'] || ''}
@@ -284,7 +284,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 resolution?.['2']?.['목표'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['2']?.['기한'] || ''}
@@ -299,7 +299,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['3']?.['항목'] || ''}
@@ -311,7 +311,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 resolution?.['3']?.['항목'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['3']?.['목표'] || ''}
@@ -323,7 +323,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 resolution?.['3']?.['목표'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['3']?.['기한'] || ''}
@@ -338,7 +338,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5  border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['4']?.['항목'] || ''}
@@ -350,7 +350,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 resolution?.['4']?.['항목'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['4']?.['목표'] || ''}
@@ -362,7 +362,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 resolution?.['4']?.['목표'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['4']?.['기한'] || ''}
@@ -377,7 +377,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5 border  border-black text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['5']?.['항목'] || ''}
@@ -389,7 +389,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 resolution?.['5']?.['항목'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['5']?.['목표'] || ''}
@@ -401,7 +401,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 resolution?.['5']?.['목표'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={resolution?.['5']?.['기한'] || ''}
@@ -417,15 +417,15 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
         </table>
 
         {/* 진학목표 */}
-        <table className="mt-3 w-full table-fixed break-words text-sm">
+        <table className="mt-3 w-full table-fixed text-sm break-words">
           <tr>
             <td className="border-b-2 text-base font-semibold" colSpan={4}>
               진학 목표
             </td>
           </tr>
           <tr>
-            <td className="w-full " colSpan={4}>
-              <div className=" mb-2 flex flex-row flex-wrap"></div>
+            <td className="w-full" colSpan={4}>
+              <div className="mb-2 flex flex-row flex-wrap"></div>
             </td>
           </tr>
           <tr>
@@ -436,7 +436,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
           <tr>
             <th className="border border-black bg-gray-200">희망대학</th>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={hopeUnivMajor?.['1st']?.['univ'] || ''}
@@ -447,7 +447,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 hopeUnivMajor?.['1st']?.['univ'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={hopeUnivMajor?.['2nd']?.['univ'] || ''}
@@ -458,7 +458,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 hopeUnivMajor?.['2nd']?.['univ'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={hopeUnivMajor?.['3rd']?.['univ'] || ''}
@@ -472,7 +472,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
           <tr>
             <th className="border border-black bg-gray-200">희망학과</th>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={hopeUnivMajor?.['1st']?.['major'] || ''}
@@ -483,7 +483,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 hopeUnivMajor?.['1st']?.['major'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={hopeUnivMajor?.['2nd']?.['major'] || ''}
@@ -494,7 +494,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 hopeUnivMajor?.['2nd']?.['major'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={hopeUnivMajor?.['3rd']?.['major'] || ''}
@@ -509,23 +509,23 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
         </table>
 
         {/* 해당 입시전형 */}
-        <table className="mt-3 w-full  break-words text-sm">
+        <table className="mt-3 w-full text-sm break-words">
           <tr>
             <td className="border-b-2 text-base font-semibold" colSpan={2}>
               해당 입시전형
             </td>
           </tr>
           <tr>
-            <td className="w-full " colSpan={2}>
-              <div className=" mb-2 flex flex-row flex-wrap"></div>
+            <td className="w-full" colSpan={2}>
+              <div className="mb-2 flex flex-row flex-wrap"></div>
             </td>
           </tr>
           <tr>
             <th className="w-[25%] border border-black bg-gray-200">입시전형</th>
-            <th className=" border border-black bg-gray-200">비고</th>
+            <th className="border border-black bg-gray-200">비고</th>
           </tr>
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={admission?.['1']?.['입시전형'] || ''}
@@ -537,7 +537,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 admission?.['1']?.['입시전형'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={admission?.['1']?.['비고'] || ''}
@@ -555,25 +555,25 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
         <div className="mt-4 text-lg font-bold">2. 학교생활</div>
 
         {/* 소속 정보 */}
-        <table className="mt-3 w-full  break-words text-sm">
+        <table className="mt-3 w-full text-sm break-words">
           <tr>
-            <td className="border-b-2 text-base font-semibold " colSpan={3}>
+            <td className="border-b-2 text-base font-semibold" colSpan={3}>
               소속 정보
             </td>
           </tr>
           <tr>
-            <td className="w-full " colSpan={3}>
-              <div className=" mb-2 flex flex-row flex-wrap"></div>
+            <td className="w-full" colSpan={3}>
+              <div className="mb-2 flex flex-row flex-wrap"></div>
             </td>
           </tr>
           <tr>
-            <th className="w-[25%] border border-black bg-gray-200 ">활동구분</th>
+            <th className="w-[25%] border border-black bg-gray-200">활동구분</th>
             <th className="border border-black bg-gray-200">활동명</th>
             <th className="w-[25%] border border-black bg-gray-200">비고</th>
           </tr>
           <tr>
             <th className="border border-black bg-gray-200">동아리</th>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={joinGroup?.['1']?.['활동명'] || ''}
@@ -585,7 +585,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 joinGroup?.['1']?.['활동명'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={joinGroup?.['1']?.['비고'] || ''}
@@ -599,7 +599,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
             </td>
           </tr>
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={joinGroup?.['2']?.['활동구분'] || ''}
@@ -611,7 +611,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 joinGroup?.['2']?.['활동구분'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={joinGroup?.['2']?.['활동명'] || ''}
@@ -623,7 +623,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 joinGroup?.['2']?.['활동명'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={joinGroup?.['2']?.['비고'] || ''}
@@ -638,7 +638,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={joinGroup?.['3']?.['활동구분'] || ''}
@@ -650,7 +650,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 joinGroup?.['3']?.['활동구분'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={joinGroup?.['3']?.['활동명'] || ''}
@@ -662,7 +662,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 joinGroup?.['3']?.['활동명'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={joinGroup?.['3']?.['비고'] || ''}
@@ -677,7 +677,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={joinGroup?.['4']?.['활동구분'] || ''}
@@ -689,7 +689,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 joinGroup?.['4']?.['활동구분'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={joinGroup?.['4']?.['활동명'] || ''}
@@ -701,7 +701,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 joinGroup?.['4']?.['활동명'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={joinGroup?.['4']?.['비고'] || ''}
@@ -717,23 +717,23 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
         </table>
 
         {/* 출신학교 */}
-        <table className="mt-3 w-full  break-words text-sm">
+        <table className="mt-3 w-full text-sm break-words">
           <tr>
-            <td className="border-b-2 text-base font-semibold " colSpan={2}>
+            <td className="border-b-2 text-base font-semibold" colSpan={2}>
               출신학교
             </td>
           </tr>
           <tr>
-            <td className="w-full " colSpan={2}>
-              <div className=" mb-2 flex flex-row flex-wrap"></div>
+            <td className="w-full" colSpan={2}>
+              <div className="mb-2 flex flex-row flex-wrap"></div>
             </td>
           </tr>
           <tr>
-            <th className="w-[30%] border border-black bg-gray-200 ">학교명</th>
+            <th className="w-[30%] border border-black bg-gray-200">학교명</th>
             <th className="border border-black bg-gray-200">비고</th>
           </tr>
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={schoolOrigin?.['1']?.['학교명'] || ''}
@@ -745,7 +745,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 schoolOrigin?.['1']?.['학교명'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={schoolOrigin?.['1']?.['비고'] || ''}
@@ -760,7 +760,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={schoolOrigin?.['2']?.['학교명'] || ''}
@@ -772,7 +772,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 schoolOrigin?.['2']?.['학교명'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={schoolOrigin?.['2']?.['비고'] || ''}
@@ -790,26 +790,26 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
         <div className="mt-4 text-lg font-bold">3. 학습</div>
 
         {/* 학습 정보 */}
-        <table className="mt-3 w-full table-fixed break-words text-sm">
+        <table className="mt-3 w-full table-fixed text-sm break-words">
           <tr>
-            <td className="border-b-2 text-base font-semibold " colSpan={4}>
+            <td className="border-b-2 text-base font-semibold" colSpan={4}>
               학습 정보
             </td>
           </tr>
           <tr>
-            <td className="w-full " colSpan={4}>
-              <div className=" mb-2 flex flex-row flex-wrap"></div>
+            <td className="w-full" colSpan={4}>
+              <div className="mb-2 flex flex-row flex-wrap"></div>
             </td>
           </tr>
           <tr>
-            <th className="border border-black bg-gray-200 ">과목</th>
+            <th className="border border-black bg-gray-200">과목</th>
             <th className="border border-black bg-gray-200">장소</th>
             <th className="border border-black bg-gray-200">요일</th>
             <th className="border border-black bg-gray-200">비고</th>
           </tr>
 
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['1']?.['과목'] || ''}
@@ -821,7 +821,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['1']?.['과목'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['1']?.['장소'] || ''}
@@ -833,7 +833,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['1']?.['장소'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['1']?.['요일'] || ''}
@@ -845,7 +845,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['1']?.['요일'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['1']?.['비고'] || ''}
@@ -860,7 +860,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['2']?.['과목'] || ''}
@@ -872,7 +872,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['2']?.['과목'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['2']?.['장소'] || ''}
@@ -883,7 +883,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['2']?.['장소'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['2']?.['요일'] || ''}
@@ -894,7 +894,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['2']?.['요일'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['2']?.['비고'] || ''}
@@ -908,7 +908,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['3']?.['과목'] || ''}
@@ -920,7 +920,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['3']?.['과목'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['3']?.['장소'] || ''}
@@ -931,7 +931,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['3']?.['장소'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['3']?.['요일'] || ''}
@@ -942,7 +942,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['3']?.['요일'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['3']?.['비고'] || ''}
@@ -956,7 +956,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['4']?.['과목'] || ''}
@@ -968,7 +968,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['4']?.['과목'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['4']?.['장소'] || ''}
@@ -979,7 +979,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['4']?.['장소'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['4']?.['요일'] || ''}
@@ -990,7 +990,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['4']?.['요일'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['4']?.['비고'] || ''}
@@ -1004,7 +1004,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['5']?.['과목'] || ''}
@@ -1016,7 +1016,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['5']?.['과목'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['5']?.['장소'] || ''}
@@ -1027,7 +1027,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['5']?.['장소'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['5']?.['요일'] || ''}
@@ -1038,7 +1038,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['5']?.['요일'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['5']?.['비고'] || ''}
@@ -1052,7 +1052,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['6']?.['과목'] || ''}
@@ -1064,7 +1064,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['6']?.['과목'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['6']?.['장소'] || ''}
@@ -1075,7 +1075,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['6']?.['장소'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['6']?.['요일'] || ''}
@@ -1086,7 +1086,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 extraCurricular?.['6']?.['요일'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={extraCurricular?.['6']?.['비고'] || ''}
@@ -1101,24 +1101,24 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
         </table>
 
         {/* 자기주도학습 */}
-        <table className="mt-3 w-full  break-words text-sm">
+        <table className="mt-3 w-full text-sm break-words">
           <tr>
             <td className="border-b-2 text-base font-semibold" colSpan={3}>
               자기주도학습
             </td>
           </tr>
           <tr>
-            <td className="w-full " colSpan={3}>
-              <div className=" mb-2 flex flex-row flex-wrap"></div>
+            <td className="w-full" colSpan={3}>
+              <div className="mb-2 flex flex-row flex-wrap"></div>
             </td>
           </tr>
           <tr>
             <th className="w-[25%] border border-black bg-gray-200">장소</th>
-            <th className=" border border-black bg-gray-200">요일</th>
-            <th className=" border border-black bg-gray-200">시간</th>
+            <th className="border border-black bg-gray-200">요일</th>
+            <th className="border border-black bg-gray-200">시간</th>
           </tr>
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={selfStudy?.['1']?.['장소'] || ''}
@@ -1130,7 +1130,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 selfStudy?.['1']?.['장소'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={selfStudy?.['1']?.['요일'] || ''}
@@ -1141,7 +1141,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 selfStudy?.['1']?.['요일'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={selfStudy?.['1']?.['시간'] || ''}
@@ -1155,7 +1155,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={selfStudy?.['2']?.['장소'] || ''}
@@ -1167,7 +1167,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 selfStudy?.['2']?.['장소'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={selfStudy?.['2']?.['요일'] || ''}
@@ -1178,7 +1178,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 selfStudy?.['2']?.['요일'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={selfStudy?.['2']?.['시간'] || ''}
@@ -1192,7 +1192,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
           </tr>
 
           <tr>
-            <td className="h-5 border border-black  text-center">
+            <td className="h-5 border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={selfStudy?.['3']?.['장소'] || ''}
@@ -1204,7 +1204,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 selfStudy?.['3']?.['장소'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={selfStudy?.['3']?.['요일'] || ''}
@@ -1215,7 +1215,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 selfStudy?.['3']?.['요일'] || ''
               )}
             </td>
-            <td className="border border-black  text-center">
+            <td className="border border-black text-center">
               {isEditMode ? (
                 <TextInput
                   value={selfStudy?.['3']?.['시간'] || ''}
@@ -1238,8 +1238,8 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
                 children="취소"
                 className="outlined-primary w-full"
                 onClick={() => {
-                  setIsEditMode(false);
-                  refetch();
+                  setIsEditMode(false)
+                  refetch()
                 }}
               />
             </>
@@ -1249,13 +1249,13 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
             className="filled-primary w-full"
             onClick={() => {
               if (isEditMode) {
-                handleUpdate();
+                handleUpdate()
               }
-              setIsEditMode(true);
+              setIsEditMode(true)
             }}
           />
         </div>
       )}
     </div>
-  );
+  )
 }

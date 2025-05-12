@@ -1,13 +1,13 @@
-import { Fieldtrip } from 'src/generated/model';
-import { makeDateToString2 } from 'src/util/time';
+import { Fieldtrip } from '@/legacy/generated/model'
+import { makeDateToString2 } from '@/legacy/util/time'
 
 interface FieldtripSeparatePaperProps {
-  studentName?: string;
-  studentGradeKlass?: string;
-  index: number;
-  content: any;
-  fieldtrip: Fieldtrip | undefined;
-  type: '신청서' | '결과보고서';
+  studentName?: string
+  studentGradeKlass?: string
+  index: number
+  content: any
+  fieldtrip: Fieldtrip | undefined
+  type: '신청서' | '결과보고서'
 }
 
 export function FieldtripSeparatePaper({
@@ -18,20 +18,20 @@ export function FieldtripSeparatePaper({
   fieldtrip,
   type = '신청서',
 }: FieldtripSeparatePaperProps) {
-  let homeContentType = 'Time';
+  let homeContentType = 'Time'
 
   if (fieldtrip?.type === 'HOME' && content && Array.isArray(content) && content[0].day) {
-    homeContentType = 'Day';
+    homeContentType = 'Day'
   }
 
   if (type === '신청서') {
     return (
-      <div className="text-xs md:px-12  md:pt-10 md:text-base">
+      <div className="text-xs md:px-12 md:pt-10 md:text-base">
         <div className="flex w-full justify-center">
           <h5 className="text-sm font-bold md:text-xl">「학교장허가 가정학습」 {type}(별지)</h5>
         </div>
         <div className="-mt-0.5 flex justify-center pt-10">
-          <table className="w-full table-fixed border-2 border-black ">
+          <table className="w-full table-fixed border-2 border-black">
             <thead>
               <tr className="h-8">
                 <th className="border border-black bg-gray-200" colSpan={3}>
@@ -91,7 +91,7 @@ export function FieldtripSeparatePaper({
                         <td className="h-20 border border-black text-center" colSpan={4}>
                           {content['subject' + (i + 1)] && content['subject' + (i + 1)]}
                         </td>
-                        <td className="h-20 border border-black text-left " colSpan={14}>
+                        <td className="h-20 border border-black text-left" colSpan={14}>
                           {content['content' + (i + 1)] && content['content' + (i + 1)]}
                         </td>
                       </tr>
@@ -118,13 +118,13 @@ export function FieldtripSeparatePaper({
           </table>
         </div>
       </div>
-    );
+    )
   } else if (type === '결과보고서') {
     return (
-      <div className="text-xs md:px-12 md:pt-10 md:text-base ">
+      <div className="text-xs md:px-12 md:pt-10 md:text-base">
         <div className="w-full text-center text-sm font-bold md:text-xl">「학교장허가 가정학습」 {type}(별지)</div>
-        <div className="mb-20 mt-10 flex justify-center">
-          <table className="w-full table-fixed border-2 border-black ">
+        <div className="mt-10 mb-20 flex justify-center">
+          <table className="w-full table-fixed border-2 border-black">
             <thead>
               <tr className="h-8">
                 <th className="border border-black bg-gray-200" colSpan={3}>
@@ -171,7 +171,7 @@ export function FieldtripSeparatePaper({
                     <td className="h-6 border border-black text-center" colSpan={4} rowSpan={1}>
                       교과
                     </td>
-                    <th className="h-6 border border-black text-left " colSpan={14} rowSpan={1}>
+                    <th className="h-6 border border-black text-left" colSpan={14} rowSpan={1}>
                       학습내용
                     </th>
                     {/* <th className="h-3 border border-black text-center" colSpan={4}>
@@ -231,8 +231,8 @@ export function FieldtripSeparatePaper({
           </table>
         </div>
       </div>
-    );
+    )
   } else {
-    return <></>;
+    return <></>
   }
 }

@@ -1,17 +1,17 @@
-import { Typography } from 'src/components/common/Typography';
-import SolidSVGIcon from 'src/components/icon/SolidSVGIcon';
+import { Typography } from '@/legacy/components/common/Typography'
+import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
 
-type strands = { activity?: number; creativity?: number; service?: number };
+type strands = { activity?: number; creativity?: number; service?: number }
 
 interface CASPercentProps {
-  data: strands;
+  data: strands
 }
 
 function CASPercent({ data }: CASPercentProps) {
-  const totalSum = (data?.creativity || 0) + (data?.activity || 0) + (data?.service || 0);
-  const creativityPercent = ((data?.creativity || 0) / totalSum) * 100 || 0;
-  const activityPercent = ((data?.activity || 0) / totalSum) * 100 || 0;
-  const servicePercent = ((data?.service || 0) / totalSum) * 100 || 0;
+  const totalSum = (data?.creativity || 0) + (data?.activity || 0) + (data?.service || 0)
+  const creativityPercent = ((data?.creativity || 0) / totalSum) * 100 || 0
+  const activityPercent = ((data?.activity || 0) / totalSum) * 100 || 0
+  const servicePercent = ((data?.service || 0) / totalSum) * 100 || 0
   return (
     <div className="flex flex-col gap-2">
       <div className="flex flex-row items-center justify-between">
@@ -41,12 +41,12 @@ function CASPercent({ data }: CASPercentProps) {
       </div>
       <div className="flex h-2 w-full">
         {totalSum === 0 ? (
-          <div className="h-full w-full rounded-[2px] bg-primary-gray-200"></div>
+          <div className="bg-primary-gray-200 h-full w-full rounded-[2px]"></div>
         ) : (
           <>
             {creativityPercent > 0 && (
               <div
-                className="rounded-l-[2px] border-dim-8 bg-gradient-orange-400"
+                className="border-dim-8 bg-gradient-orange-400 rounded-l-[2px]"
                 style={{
                   width: `${creativityPercent}%`,
                   marginRight: creativityPercent > 0 ? '1px' : '0',
@@ -67,7 +67,7 @@ function CASPercent({ data }: CASPercentProps) {
                 className={
                   creativityPercent === 0 && activityPercent === 0
                     ? 'rounded-l-[2px] rounded-r-[2px]'
-                    : 'rounded-r-[2px] border-dim-8 bg-gradient-green-400'
+                    : 'border-dim-8 bg-gradient-green-400 rounded-r-[2px]'
                 }
                 style={{
                   width: `${servicePercent}%`,
@@ -78,7 +78,7 @@ function CASPercent({ data }: CASPercentProps) {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default CASPercent;
+export default CASPercent

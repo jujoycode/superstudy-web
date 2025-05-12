@@ -1,48 +1,48 @@
-import clsx from 'clsx';
-import _ from 'lodash';
-import QueryString from 'qs';
-import { useEffect, useRef, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { useCodeByCategoryName } from 'src/container/category';
-import { useCoordinatorCheck } from 'src/container/ib-coordinator';
-import { useGroupsFindAllKlassBySchool, useStudentGroupsFindByGroupId } from 'src/generated/endpoint';
-import { useQueryParams } from 'src/hooks/useQueryParams';
-import { meState } from 'src/store';
-import { padLeftstr } from 'src/util/status';
-import { Check } from '../common/Check';
-import { IBBlank } from '../common/IBBlank';
-import { Input } from '../common/Input';
-import { LayeredTabs, Tab } from '../common/LayeredTabs';
-import SelectBar, { SelectBarOptionProps } from '../common/SelectBar';
-import { Typography } from '../common/Typography';
-import ProjectList from './ProjectList';
+import clsx from 'clsx'
+import _ from 'lodash'
+import QueryString from 'qs'
+import { useEffect, useRef, useState } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { useCodeByCategoryName } from '@/legacy/container/category'
+import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
+import { useGroupsFindAllKlassBySchool, useStudentGroupsFindByGroupId } from '@/legacy/generated/endpoint'
+import { useQueryParams } from '@/legacy/hooks/useQueryParams'
+import { meState } from '@/stores'
+import { padLeftstr } from '@/legacy/util/status'
+import { Check } from '@/legacy/components/common/Check'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Input } from '@/legacy/components/common/Input'
+import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
+import SelectBar, { SelectBarOptionProps } from '@/legacy/components/common/SelectBar'
+import { Typography } from '@/legacy/components/common/Typography'
+import ProjectList from './ProjectList'
 
 export const STATUS_GROUPS = {
   담당교사_지정대기: ['WAIT_MENTOR', 'WAITING_FOR_NEXT_PROPOSAL'],
   계획중: ['WAIT_PLAN_APPROVE', 'REJECT_PLAN', 'REJECT_MENTOR'],
   진행중: ['IN_PROGRESS', 'REJECT_COMPLETE', 'WAIT_COMPLETE'],
   완료: ['COMPLETE'],
-};
-
-interface SelectedOptions {
-  grade: number;
-  klass: number;
-  projectType: IBProjectTypes;
-  studentId: number;
-  studentName: string;
-  checked: boolean;
-  pages: Record<string, number>;
-  groupId: number;
 }
 
-type IBProjectTypes = 'NORMAL' | 'EE' | 'CAS' | 'TOK';
+interface SelectedOptions {
+  grade: number
+  klass: number
+  projectType: IBProjectTypes
+  studentId: number
+  studentName: string
+  checked: boolean
+  pages: Record<string, number>
+  groupId: number
+}
+
+type IBProjectTypes = 'NORMAL' | 'EE' | 'CAS' | 'TOK'
 
 export default function TeacherIBStatus() {
-  const location = useLocation();
-  const history = useHistory();
-  const me = useRecoilValue(meState);
-  const { setQueryParamsWithStorage, removeStoredQueryParams } = useQueryParams();
+  const location = useLocation()
+  const history = useHistory()
+  const me = useRecoilValue(meState)
+  const { setQueryParamsWithStorage, removeStoredQueryParams } = useQueryParams()
   const defaultOptions: SelectedOptions = {
     grade: 0,
     klass: 0,
@@ -57,10 +57,10 @@ export default function TeacherIBStatus() {
       page4: 1,
     },
     groupId: 0,
-  };
+  }
 
   const parseQueryParams = (): SelectedOptions => {
-    const params = QueryString.parse(location.search, { ignoreQueryPrefix: true });
+    const params = QueryString.parse(location.search, { ignoreQueryPrefix: true })
     return {
       grade: Number(params.grade) || defaultOptions.grade,
       klass: Number(params.klass) || defaultOptions.klass,
@@ -75,22 +75,22 @@ export default function TeacherIBStatus() {
         page4: Number(params.page4) || defaultOptions.pages.page4,
       },
       groupId: Number(params.groupId) || defaultOptions.groupId,
-    };
-  };
+    }
+  }
 
-  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(parseQueryParams);
-  const [selectedSubject, setSelectedSubject] = useState();
-  const [searchStudentName, setSearchStudentName] = useState('');
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(parseQueryParams)
+  const [selectedSubject, setSelectedSubject] = useState()
+  const [searchStudentName, setSearchStudentName] = useState('')
   const projectListRefs = useRef<Record<string, HTMLDivElement | null>>({
     page1: null,
     page2: null,
     page3: null,
     page4: null,
-  });
+  })
 
-  const [counts, setCounts] = useState<Record<string, number>>({});
-  const { data: klassGroups, isLoading: isKlassGroupsLoading } = useGroupsFindAllKlassBySchool();
-  const { categoryData: subjects } = useCodeByCategoryName('eeKnowledgeArea');
+  const [counts, setCounts] = useState<Record<string, number>>({})
+  const { data: klassGroups, isLoading: isKlassGroupsLoading } = useGroupsFindAllKlassBySchool()
+  const { categoryData: subjects } = useCodeByCategoryName('eeKnowledgeArea')
   const subjectOptions: SelectBarOptionProps[] = [
     { id: 0, value: undefined, text: '과목 전체' },
     ...(subjects?.map((subject) => ({
@@ -98,18 +98,18 @@ export default function TeacherIBStatus() {
       value: subject.name,
       text: subject.name,
     })) || []),
-  ];
+  ]
 
   const { data: studentGroups, isLoading: isStudentGroupsLoading } = useStudentGroupsFindByGroupId(
     selectedOptions.groupId,
     {
       query: { enabled: !!selectedOptions.groupId },
     },
-  );
+  )
 
-  const { permission } = useCoordinatorCheck();
+  const { permission } = useCoordinatorCheck()
 
-  const isOptionSelected = !!selectedOptions.grade && !!selectedOptions.klass;
+  const isOptionSelected = !!selectedOptions.grade && !!selectedOptions.klass
 
   const handleOptionChange = (optionType: keyof SelectedOptions, value: any) => {
     const updatedOptions = {
@@ -119,22 +119,22 @@ export default function TeacherIBStatus() {
       ...(optionType === 'klass' ? { groupId: 0, studentId: 0 } : {}),
       ...(optionType === 'projectType' ? { pages: { ...defaultOptions.pages } } : {}),
       ...(optionType === 'checked' ? { pages: { ...defaultOptions.pages } } : {}),
-    };
+    }
 
     if (optionType === 'grade' || optionType === 'klass') {
       const groupDatas = klassGroups?.filter(
         (group) => group.grade === updatedOptions.grade && group.klass === updatedOptions.klass,
-      );
-      updatedOptions.groupId = groupDatas?.[0]?.id || 0;
+      )
+      updatedOptions.groupId = groupDatas?.[0]?.id || 0
     }
 
-    setSelectedOptions(updatedOptions);
-    updateSearchParams(updatedOptions);
-  };
+    setSelectedOptions(updatedOptions)
+    updateSearchParams(updatedOptions)
+  }
 
   useEffect(() => {
-    setSelectedOptions(parseQueryParams());
-  }, [location.search]);
+    setSelectedOptions(parseQueryParams())
+  }, [location.search])
 
   const updateSearchParams = (updatedOptions: SelectedOptions) => {
     const params = {
@@ -146,19 +146,19 @@ export default function TeacherIBStatus() {
       checked: updatedOptions.checked !== defaultOptions.checked ? updatedOptions.checked : undefined,
       groupId: updatedOptions.groupId !== defaultOptions.groupId ? updatedOptions.groupId : undefined,
       ...updatedOptions.pages,
-    };
+    }
     const filteredParams = Object.fromEntries(
       Object.entries(params).filter(([_, value]) => value !== undefined),
-    ) as Record<string, string>;
-    setQueryParamsWithStorage(filteredParams);
-    history.replace({ search: QueryString.stringify(filteredParams, { addQueryPrefix: true }) });
-  };
+    ) as Record<string, string>
+    setQueryParamsWithStorage(filteredParams)
+    history.replace({ search: QueryString.stringify(filteredParams, { addQueryPrefix: true }) })
+  }
 
   const grades = [
     { id: 0, value: 0, text: '학년 전체' },
     { id: 1, value: 2, text: '2학년' },
     { id: 2, value: 3, text: '3학년' },
-  ];
+  ]
 
   const klasses = _(klassGroups)
     .filter((group) => group.grade === selectedOptions.grade)
@@ -167,53 +167,53 @@ export default function TeacherIBStatus() {
     .map((klass, index) => ({ id: index + 1, value: klass, text: `${klass}반` }))
     .concat([{ id: 0, value: 0, text: '반 전체' }])
     .orderBy('value')
-    .value();
+    .value()
 
   const students = _(studentGroups)
     .map((sg, index) => {
-      const { grade, klass } = selectedOptions;
+      const { grade, klass } = selectedOptions
       return {
         id: index + 1,
         value: sg.user.id,
         text: `${grade}${padLeftstr(klass)}${padLeftstr(sg.studentNumber)} ${sg.user.name}`,
-      };
+      }
     })
-    .value();
+    .value()
 
   const handleSearch = () => {
     if (!searchStudentName) {
-      alert('텍스트 내용을 입력해주세요.');
+      alert('텍스트 내용을 입력해주세요.')
     } else {
-      handleOptionChange('studentName', searchStudentName);
+      handleOptionChange('studentName', searchStudentName)
     }
-  };
+  }
 
   const handleSetCount = (statusKey: string, count: number) => {
     setCounts((prevCounts) => ({
       ...prevCounts,
       [statusKey]: count,
-    }));
-  };
+    }))
+  }
 
   useEffect(() => {
     const currentPage = Object.keys(selectedOptions.pages).find(
       (key) => selectedOptions.pages[key] !== defaultOptions.pages[key],
-    );
+    )
     if (currentPage && projectListRefs.current[currentPage]) {
-      projectListRefs.current[currentPage]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      projectListRefs.current[currentPage]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
-  }, [selectedOptions.pages]);
+  }, [selectedOptions.pages])
 
   useEffect(() => {
-    removeStoredQueryParams();
-  }, []);
+    removeStoredQueryParams()
+  }, [])
 
   if (me == null) {
-    return <IBBlank />;
+    return <IBBlank />
   }
 
   if (isKlassGroupsLoading || isStudentGroupsLoading) {
-    return <IBBlank />;
+    return <IBBlank />
   }
 
   return (
@@ -317,7 +317,7 @@ export default function TeacherIBStatus() {
                   onChange={() => handleOptionChange('checked', !selectedOptions.checked)}
                   size={20}
                 />
-                <Typography variant="body3" className="font-medium text-primary-gray-700">
+                <Typography variant="body3" className="text-primary-gray-700 font-medium">
                   담당학생만 보기
                 </Typography>
               </label>
@@ -339,7 +339,7 @@ export default function TeacherIBStatus() {
             <div className="flex items-center gap-4 py-4">
               <hr className="flex-1" />
               <Typography variant="body3" className="font-medium">
-                {selectedOptions.studentName} <span className="font-normal text-primary-gray-700">검색결과</span>{' '}
+                {selectedOptions.studentName} <span className="text-primary-gray-700 font-normal">검색결과</span>{' '}
                 <span className="text-primary-orange-800">
                   {counts['COMPLETE'] +
                     counts['IN_PROGRESS,REJECT_COMPLETE,WAIT_COMPLETE'] +
@@ -352,7 +352,7 @@ export default function TeacherIBStatus() {
           )}
           <div
             ref={(el) => (projectListRefs.current.page1 = el)}
-            className="border-b border-b-primary-gray-200 pb-10 pt-5"
+            className="border-b-primary-gray-200 border-b pt-5 pb-10"
           >
             <ProjectList
               title="담당교사 지정대기"
@@ -376,7 +376,7 @@ export default function TeacherIBStatus() {
               }
             />
           </div>
-          <div ref={(el) => (projectListRefs.current.page2 = el)} className="border-b border-b-primary-gray-200 py-10">
+          <div ref={(el) => (projectListRefs.current.page2 = el)} className="border-b-primary-gray-200 border-b py-10">
             <ProjectList
               title="계획중"
               params={{
@@ -399,7 +399,7 @@ export default function TeacherIBStatus() {
               }
             />
           </div>
-          <div ref={(el) => (projectListRefs.current.page3 = el)} className="border-b border-b-primary-gray-200 py-10">
+          <div ref={(el) => (projectListRefs.current.page3 = el)} className="border-b-primary-gray-200 border-b py-10">
             <ProjectList
               title="진행중"
               params={{
@@ -422,7 +422,7 @@ export default function TeacherIBStatus() {
               permission={permission}
             />
           </div>
-          <div ref={(el) => (projectListRefs.current.page4 = el)} className="border-b border-b-primary-gray-200 py-10">
+          <div ref={(el) => (projectListRefs.current.page4 = el)} className="border-b-primary-gray-200 border-b py-10">
             <ProjectList
               title="완료"
               params={{
@@ -448,5 +448,5 @@ export default function TeacherIBStatus() {
         </section>
       </main>
     </>
-  );
+  )
 }

@@ -1,39 +1,39 @@
-import clsx from 'clsx';
-import { useEffect, useMemo, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import SvgUser from 'src/assets/svg/user.svg';
-import { Constants } from 'src/constants';
-import { useCodeByCategoryName } from 'src/container/category';
-import { useStudentPropertyUpdate } from 'src/container/student-property-update';
-import { useTeacherStudentUpdate } from 'src/container/teacher-student-update';
-import { useTeacherStudentCard } from 'src/container/teacher-studentcard';
-import { Category, Code, ResponseParentUserDto } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { useModals } from 'src/modals/ModalStack';
-import { StudentModal } from 'src/modals/StudentModal';
-import { meState } from 'src/store';
-import { getNickName } from 'src/util/status';
-import { getThisYear } from 'src/util/time';
-import { Validator } from 'src/util/validator';
-import { Select } from '../common';
-import { TextInput } from '../common/TextInput';
-import { Time } from '../common/Time';
-import { Icon } from '../common/icons';
+import clsx from 'clsx'
+import { useEffect, useMemo, useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import SvgUser from 'src/assets/svg/user.svg'
+import { Constants } from '@/legacy/constants'
+import { useCodeByCategoryName } from '@/legacy/container/category'
+import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'
+import { useTeacherStudentUpdate } from '@/legacy/container/teacher-student-update'
+import { useTeacherStudentCard } from '@/legacy/container/teacher-studentcard'
+import { Category, Code, ResponseParentUserDto } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { useModals } from 'src/modals/ModalStack'
+import { StudentModal } from 'src/modals/StudentModal'
+import { meState } from '@/stores'
+import { getNickName } from '@/legacy/util/status'
+import { getThisYear } from '@/legacy/util/time'
+import { Validator } from '@/legacy/util/validator'
+import { Select } from '@/legacy/components/common'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Time } from '@/legacy/components/common/Time'
+import { Icon } from '@/legacy/components/common/icons'
 
 interface StudentInfoCardProps {
-  id: number;
+  id: number
 }
 
 export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
-  const { t } = useLanguage();
-  const { pushModal } = useModals();
-  const me = useRecoilValue(meState);
-  const thisYear = getThisYear();
-  const [studentStatesKey, setStudentStatesKey] = useState(0);
-  const [modalOpen, setModalOpen] = useState(false);
+  const { t } = useLanguage()
+  const { pushModal } = useModals()
+  const me = useRecoilValue(meState)
+  const thisYear = getThisYear()
+  const [studentStatesKey, setStudentStatesKey] = useState(0)
+  const [modalOpen, setModalOpen] = useState(false)
 
-  const { studentInfo: info } = useTeacherStudentCard(id);
-  const { categoryData: studentStates } = useCodeByCategoryName(Category.studentstatus);
+  const { studentInfo: info } = useTeacherStudentCard(id)
+  const { categoryData: studentStates } = useCodeByCategoryName(Category.studentstatus)
 
   const {
     isEditMode,
@@ -60,63 +60,63 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
     toggleImageDelete,
     barcode,
     setBarcode,
-  } = useTeacherStudentUpdate();
+  } = useTeacherStudentUpdate()
 
   const studentInfo = useMemo(() => {
-    setStudentInfo(info?.student);
-    return info?.student;
-  }, [info]);
-  const studentGroupInfo = useMemo(() => info?.groupNames, [info]);
+    setStudentInfo(info?.student)
+    return info?.student
+  }, [info])
+  const studentGroupInfo = useMemo(() => info?.groupNames, [info])
 
   const { motto } = useStudentPropertyUpdate({
     studentId: studentInfo?.id || 0,
-  });
+  })
 
   useEffect(() => {
     if (expiredReason && studentStates) {
-      const selItem = studentStates?.filter((item: Code) => item.name === expiredReason);
+      const selItem = studentStates?.filter((item: Code) => item.name === expiredReason)
       if (selItem) {
-        setStudentStatesKey(selItem[0].key);
+        setStudentStatesKey(selItem[0].key)
       }
     }
-  }, [expiredReason, studentStates]);
+  }, [expiredReason, studentStates])
 
   const setStudExpiredObj = (exp: Code) => {
-    setExpired(exp.etc1 === 'true' ? true : false);
-    setExpiredReason(exp.name);
-  };
+    setExpired(exp.etc1 === 'true' ? true : false)
+    setExpiredReason(exp.name)
+  }
 
   const klassName = studentInfo?.klassGroupName
     ? studentInfo?.klassGroupName + ' ' + studentInfo?.studentNumber.toString() + '번'
-    : '';
+    : ''
 
   const checkParentJoin = () => {
-    let rst = false;
+    let rst = false
 
     if (nokPhone) {
       info?.parents?.map((item: ResponseParentUserDto) => {
         if (nokPhone === item.phone) {
-          rst = true;
+          rst = true
         }
-      });
+      })
     } else {
-      rst = true;
+      rst = true
     }
-    return rst;
-  };
+    return rst
+  }
 
   const handleCopyToClipboard = async (text: string) => {
     if (text) {
       try {
-        await navigator.clipboard.writeText(text);
-        alert('이메일이 클립보드에 복사되었습니다.');
+        await navigator.clipboard.writeText(text)
+        alert('이메일이 클립보드에 복사되었습니다.')
       } catch (err) {
-        alert('이메일 복사에 실패했습니다. 다시 시도해주세요.');
+        alert('이메일 복사에 실패했습니다. 다시 시도해주세요.')
       }
     } else {
-      alert('복사할 내용이 없습니다.');
+      alert('복사할 내용이 없습니다.')
     }
-  };
+  }
   return (
     <section className="relative h-full rounded-md border-2 bg-white p-4">
       <article className="flex items-center justify-between pt-3 md:pt-0">
@@ -125,7 +125,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
           {isEditMode && (
             <button
               onClick={() => setIsEditMode(!isEditMode)}
-              className="h-8 w-16 rounded-md border border-darkgray font-semibold transition-all hover:bg-darkgray hover:text-white"
+              className="border-darkgray hover:bg-darkgray h-8 w-16 rounded-md border font-semibold transition-all hover:text-white"
             >
               {t('cancel', '취소')}
             </button>
@@ -143,32 +143,32 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
                   sendParentSignUpV2Mutate({
                     studentId: Number(studentInfo?.id),
                     data: { name: nokName, phone: nokPhone },
-                  });
+                  })
                 } else {
-                  alert('보호자 정보를 확인해 주세요.');
+                  alert('보호자 정보를 확인해 주세요.')
                 }
               }}
-              className="h-8 rounded-md border border-darkgray px-2 text-sm font-semibold transition-all hover:bg-darkgray hover:text-white md:px-4 md:text-16"
+              className="border-darkgray hover:bg-darkgray md:text-16 h-8 rounded-md border px-2 text-sm font-semibold transition-all hover:text-white md:px-4"
             />
           )}
           <button
             onClick={() => {
               if (isEditMode) {
                 if (phone && !Validator.phoneNumberRule(phone)) {
-                  alert('학생 전화번호를 확인해 주세요.');
-                  return;
+                  alert('학생 전화번호를 확인해 주세요.')
+                  return
                 }
 
                 if (nokPhone && !Validator.phoneNumberRule(nokPhone)) {
-                  alert('보호자 전화번호를 확인해 주세요.');
-                  return;
+                  alert('보호자 전화번호를 확인해 주세요.')
+                  return
                 }
-                updateStudent();
+                updateStudent()
               }
-              setIsEditMode(!isEditMode);
+              setIsEditMode(!isEditMode)
             }}
-            className={`h-8 rounded-md border border-darkgray font-semibold transition-all hover:bg-darkgray hover:text-white md:w-16 ${
-              isEditMode ? 'w-16' : 'w-8 text-sm md:text-16'
+            className={`border-darkgray hover:bg-darkgray h-8 rounded-md border font-semibold transition-all hover:text-white md:w-16 ${
+              isEditMode ? 'w-16' : 'md:text-16 w-8 text-sm'
             }`}
           >
             {isEditMode ? t('save', '저장') : t('edit', '수정')}
@@ -185,17 +185,17 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
                   className="rounded-[8px] object-fill"
                   alt=""
                   onError={({ currentTarget }) => {
-                    currentTarget.onerror = null;
-                    currentTarget.src = SvgUser;
-                    currentTarget.className = 'w-full';
+                    currentTarget.onerror = null
+                    currentTarget.src = SvgUser
+                    currentTarget.className = 'w-full'
                   }}
                 />
                 {profile ? (
-                  <span className="absolute right-0 top-0 z-40 block h-6 w-6 rounded-full bg-red-700 ring-2 ring-white">
+                  <span className="absolute top-0 right-0 z-40 block h-6 w-6 rounded-full bg-red-700 ring-2 ring-white">
                     <div
                       className="flex h-full w-full cursor-pointer items-center justify-center text-white"
                       onClick={() => {
-                        toggleImageDelete();
+                        toggleImageDelete()
                       }}
                       style={{ transform: 'translate(0.1px, 0.1px)' }}
                     >
@@ -203,7 +203,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
                     </div>
                   </span>
                 ) : (
-                  <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brand-1">
+                  <div className="bg-brand-1 absolute top-1/2 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full">
                     <p className="text-2xl text-white">+</p>
                   </div>
                 )}
@@ -222,15 +222,15 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
               alt="프로필 이미지"
               className="w-full rounded-[8px] object-fill"
               onError={({ currentTarget }) => {
-                currentTarget.onerror = null;
-                currentTarget.src = SvgUser;
-                currentTarget.className = 'rounded-[8px] object-fill w-full';
+                currentTarget.onerror = null
+                currentTarget.src = SvgUser
+                currentTarget.className = 'rounded-[8px] object-fill w-full'
               }}
             />
           )}
         </div>
         <div className="flex w-full flex-col md:ml-4 md:basis-3/4">
-          <div className="mb-2 mt-2 flex flex-col items-center md:mt-0 md:flex-row md:gap-4">
+          <div className="mt-2 mb-2 flex flex-col items-center md:mt-0 md:flex-row md:gap-4">
             <h5 className="text-[20px] font-bold">
               <button onClick={() => pushModal(<StudentModal id={id} />)}>
                 {studentInfo?.name}
@@ -296,7 +296,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
                           <Icon.ChevronDown />
                         </div>
                         {modalOpen && (
-                          <div className="absolute -bottom-10 right-2 block rounded-md border bg-white px-2 py-1">
+                          <div className="absolute right-2 -bottom-10 block rounded-md border bg-white px-2 py-1">
                             <div className="flex min-w-max items-center gap-2 rounded-md px-0.5 py-1 transition-all">
                               <p className="font-bold">{studentInfo.email}</p>
                               <button
@@ -337,8 +337,8 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
                   placeholder="학적 선택"
                   value={studentStatesKey}
                   onChange={(e) => {
-                    const selItem = studentStates?.filter((item: Code) => item.key === Number(e.target.value));
-                    selItem && setStudExpiredObj(selItem[0]);
+                    const selItem = studentStates?.filter((item: Code) => item.key === Number(e.target.value))
+                    selItem && setStudExpiredObj(selItem[0])
                   }}
                   className="h-6 w-30 rounded-none border-0 border-b border-gray-400 p-0 focus:border-b-2 focus:border-black focus:ring-0"
                 >
@@ -414,5 +414,5 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
         </div>
       </article>
     </section>
-  );
+  )
 }

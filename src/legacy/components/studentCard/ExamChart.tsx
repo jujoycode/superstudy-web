@@ -8,32 +8,32 @@ import {
   PointElement,
   Title,
   Tooltip,
-} from 'chart.js';
-import _ from 'lodash';
-import { useEffect, useState } from 'react';
-import { Chart } from 'react-chartjs-2';
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
-import { Select as CommonSelect, Label } from 'src/components/common';
-import { useStudentSubjectsScore } from 'src/container/student-subjects-score';
-import HintMessage from '../common/HintMessage';
-import { IBBlank } from '../common/IBBlank';
-import { Typography } from '../common/Typography';
+} from 'chart.js'
+import _ from 'lodash'
+import { useEffect, useState } from 'react'
+import { Chart } from 'react-chartjs-2'
+import Select from 'react-select'
+import makeAnimated from 'react-select/animated'
+import { Select as CommonSelect, Label } from '@/legacy/components/common'
+import { useStudentSubjectsScore } from '@/legacy/container/student-subjects-score'
+import HintMessage from '@/legacy/components/common/HintMessage'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
 
 interface ExamChartProps {
-  studentId: string;
+  studentId: string
 }
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend)
 
 const SCORE_FILTER = [
   { label: '등급', value: '등급' },
   { label: 'Z점수', value: 'Z점수' },
   { label: '원점수', value: '원점수' },
-];
+]
 
-const LABELS = ['1학년 1학기', '1학년 2학기', '2학년 1학기', '2학년 2학기', '3학년 1학기', '3학년 2학기', '평균'];
-const defaultSubjects = ['국어', '과학', '사회(역사/도덕포함)', '수학', '영어'];
+const LABELS = ['1학년 1학기', '1학년 2학기', '2학년 1학기', '2학년 2학기', '3학년 1학기', '3학년 2학기', '평균']
+const defaultSubjects = ['국어', '과학', '사회(역사/도덕포함)', '수학', '영어']
 
 const colors = [
   'rgba(247, 124, 206, 1)',
@@ -50,54 +50,54 @@ const colors = [
   'rgba(63, 175, 113, 1)',
   'rgba(82, 203, 228, 1)',
   'rgba(102, 139, 242, 1)',
-];
+]
 
-const animatedComponents = makeAnimated();
+const animatedComponents = makeAnimated()
 
 export default function ExamChart({ studentId }: ExamChartProps) {
-  const [scoreType, setScoreType] = useState<string>(SCORE_FILTER[0].value);
-  const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
-  const [scoreDatas, setScoreDatas] = useState<any>({});
-  const { scores, isLoading } = useStudentSubjectsScore(Number(studentId));
+  const [scoreType, setScoreType] = useState<string>(SCORE_FILTER[0].value)
+  const [selectedSubjects, setSelectedSubjects] = useState<string[]>([])
+  const [scoreDatas, setScoreDatas] = useState<any>({})
+  const { scores, isLoading } = useStudentSubjectsScore(Number(studentId))
 
   useEffect(() => {
     if (scores) {
-      const newScoreDatas: any = {};
+      const newScoreDatas: any = {}
       scores.forEach((scoreData: any) => {
-        const scoreTypeLabel = scoreData.score_type;
-        newScoreDatas[scoreTypeLabel] = newScoreDatas[scoreTypeLabel] || {};
-        const subjectAverages: { [key: string]: { total: number; count: number } } = {};
+        const scoreTypeLabel = scoreData.score_type
+        newScoreDatas[scoreTypeLabel] = newScoreDatas[scoreTypeLabel] || {}
+        const subjectAverages: { [key: string]: { total: number; count: number } } = {}
 
         scoreData.scores.forEach((semesterData: any) => {
-          const label = `${semesterData.grade}학년 ${semesterData.semester}학기`;
-          newScoreDatas[scoreTypeLabel][label] = newScoreDatas[scoreTypeLabel][label] || [];
-          newScoreDatas[scoreTypeLabel][label].push(semesterData);
+          const label = `${semesterData.grade}학년 ${semesterData.semester}학기`
+          newScoreDatas[scoreTypeLabel][label] = newScoreDatas[scoreTypeLabel][label] || []
+          newScoreDatas[scoreTypeLabel][label].push(semesterData)
 
-          const subjectGroup = semesterData.subject_group;
+          const subjectGroup = semesterData.subject_group
           if (!subjectAverages[subjectGroup]) {
-            subjectAverages[subjectGroup] = { total: 0, count: 0 };
+            subjectAverages[subjectGroup] = { total: 0, count: 0 }
           }
-          subjectAverages[subjectGroup].total += parseFloat(semesterData.average_score);
-          subjectAverages[subjectGroup].count++;
-        });
+          subjectAverages[subjectGroup].total += parseFloat(semesterData.average_score)
+          subjectAverages[subjectGroup].count++
+        })
 
         newScoreDatas[scoreTypeLabel]['평균'] = Object.keys(subjectAverages).map((subjectGroup) => {
-          const { total, count } = subjectAverages[subjectGroup];
+          const { total, count } = subjectAverages[subjectGroup]
           return {
             subject_group: subjectGroup,
             average_score: (total / count).toFixed(2),
-          };
-        });
-      });
+          }
+        })
+      })
       if (subjectNames.length > 0) {
         const initialSubjects = subjectNames
           .filter((subject) => defaultSubjects.includes(subject.label))
-          .map((subject) => subject.value);
-        setSelectedSubjects(initialSubjects);
+          .map((subject) => subject.value)
+        setSelectedSubjects(initialSubjects)
       }
-      setScoreDatas(newScoreDatas);
+      setScoreDatas(newScoreDatas)
     }
-  }, [scores]);
+  }, [scores])
 
   const subjectNames = _.chain(scores)
     .map('scores')
@@ -105,7 +105,7 @@ export default function ExamChart({ studentId }: ExamChartProps) {
     .map('subject_group')
     .uniq()
     .map((subject) => ({ value: subject, label: subject }))
-    .value();
+    .value()
 
   // 차트 옵션 정의
   const options = {
@@ -137,7 +137,7 @@ export default function ExamChart({ studentId }: ExamChartProps) {
               pointStyle: 'circle',
               hidden: !chart.isDatasetVisible(i),
               index: i,
-            }));
+            }))
           },
         },
       },
@@ -151,24 +151,24 @@ export default function ExamChart({ studentId }: ExamChartProps) {
         filter: (item: any) => item.parsed.y !== null,
         callbacks: {
           title: (tooltipItems: any) => {
-            const tooltipItem = tooltipItems[0];
-            const semesterLabel = tooltipItem.label;
-            const subjectName = tooltipItem.dataset.label;
+            const tooltipItem = tooltipItems[0]
+            const semesterLabel = tooltipItem.label
+            const subjectName = tooltipItem.dataset.label
             if (semesterLabel === '평균') {
-              return subjectName;
+              return subjectName
             }
-            const semesterData = scoreDatas[scoreType][semesterLabel];
+            const semesterData = scoreDatas[scoreType][semesterLabel]
             if (semesterData) {
-              const subjectData = _.find(semesterData, { subject_group: subjectName });
+              const subjectData = _.find(semesterData, { subject_group: subjectName })
               if (subjectData) {
-                let subjects = subjectData.subject_list || subjectData.total_subject_list;
-                return subjects.map((sub: any) => sub).join(', ');
+                let subjects = subjectData.subject_list || subjectData.total_subject_list
+                return subjects.map((sub: any) => sub).join(', ')
               }
             }
-            return subjectName;
+            return subjectName
           },
           label: (tooltipItem: any) => {
-            return `${scoreType}: ${tooltipItem.raw}`;
+            return `${scoreType}: ${tooltipItem.raw}`
           },
         },
         titleColor: 'black',
@@ -196,14 +196,14 @@ export default function ExamChart({ studentId }: ExamChartProps) {
           callback: function (tickValue: string | number) {
             // 기준선의 데이터가 숫자이고, 0일 경우 빈 문자열 아닐 경우에는 값 그대로 전달
             if (typeof tickValue === 'number') {
-              return tickValue === 0 || tickValue === 10 ? '' : tickValue;
+              return tickValue === 0 || tickValue === 10 ? '' : tickValue
             }
-            return tickValue;
+            return tickValue
           },
         },
       },
     },
-  };
+  }
 
   // 각 Option 들에 대한 스타일 설정
   const customStyles = {
@@ -240,7 +240,7 @@ export default function ExamChart({ studentId }: ExamChartProps) {
       ...base,
       color: '#999',
     }),
-  };
+  }
 
   if (isLoading)
     return (
@@ -250,7 +250,7 @@ export default function ExamChart({ studentId }: ExamChartProps) {
           종합성적 데이터를 불러오고 있습니다.
         </Typography>
       </div>
-    );
+    )
   return (
     <div>
       <div className="flex w-full flex-col gap-4 pb-4 md:flex-col">
@@ -298,12 +298,12 @@ export default function ExamChart({ studentId }: ExamChartProps) {
           datasets: selectedSubjects.map((subjectName, index) => ({
             label: subjectName,
             data: LABELS.map((label) => {
-              const semesterData = scoreDatas[scoreType][label];
+              const semesterData = scoreDatas[scoreType][label]
               if (semesterData) {
-                const subjectData = _.find(semesterData, { subject_group: subjectName });
-                return subjectData ? subjectData.average_score : null;
+                const subjectData = _.find(semesterData, { subject_group: subjectName })
+                return subjectData ? subjectData.average_score : null
               }
-              return null;
+              return null
             }),
             borderColor: colors[index % colors.length],
             backgroundColor: colors[index % colors.length],
@@ -317,5 +317,5 @@ export default function ExamChart({ studentId }: ExamChartProps) {
         }}
       />
     </div>
-  );
+  )
 }

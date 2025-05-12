@@ -1,19 +1,19 @@
-import SVGIcon from 'src/components/icon/SVGIcon';
-import { useRecoilValue } from 'recoil';
-import { Typography } from 'src/components/common/Typography';
-import { ResponseCopykillerResponseDto } from 'src/generated/model';
-import clsx from 'clsx';
-import { schoolPropertiesState } from 'src/store';
-import { useGetPlagiarismInspectDetail } from 'src/container/plagiarism-inspector';
-import { useState } from 'react';
-import LoadingPopup from './LoadingPopup';
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { useRecoilValue } from 'recoil'
+import { Typography } from '@/legacy/components/common/Typography'
+import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
+import clsx from 'clsx'
+import { schoolPropertiesState } from '@/stores'
+import { useGetPlagiarismInspectDetail } from '@/legacy/container/plagiarism-inspector'
+import { useState } from 'react'
+import LoadingPopup from './LoadingPopup'
 
 interface IBDetailPlagiarimInspectResultBadgeProps {
-  id: number;
-  status: ResponseCopykillerResponseDto['completeStatus'] | null;
-  copyRatio: ResponseCopykillerResponseDto['copyRatio'] | null;
-  enabled?: boolean;
-  errorMessage?: string;
+  id: number
+  status: ResponseCopykillerResponseDto['completeStatus'] | null
+  copyRatio: ResponseCopykillerResponseDto['copyRatio'] | null
+  enabled?: boolean
+  errorMessage?: string
 }
 
 const getPlagiarismInspectResultUI = (
@@ -30,7 +30,7 @@ const getPlagiarismInspectResultUI = (
             입니다
           </Typography>
         </>
-      );
+      )
     case 'F':
       return (
         <>
@@ -39,7 +39,7 @@ const getPlagiarismInspectResultUI = (
             표절 검사에 실패하였습니다.
           </Typography>
         </>
-      );
+      )
     default:
       return (
         <>
@@ -48,9 +48,9 @@ const getPlagiarismInspectResultUI = (
             검사 진행중
           </Typography>
         </>
-      );
+      )
   }
-};
+}
 
 export const IBDetailPlagiarimInspectResultBadge: React.FC<IBDetailPlagiarimInspectResultBadgeProps> = ({
   id,
@@ -59,39 +59,39 @@ export const IBDetailPlagiarimInspectResultBadge: React.FC<IBDetailPlagiarimInsp
   enabled = true,
   errorMessage,
 }) => {
-  const schoolProperties = useRecoilValue(schoolPropertiesState);
-  const [isCausePopupOpen, setIsCausePopupOpen] = useState(false);
+  const schoolProperties = useRecoilValue(schoolPropertiesState)
+  const [isCausePopupOpen, setIsCausePopupOpen] = useState(false)
 
-  const hasLicenseKey = !!schoolProperties?.find((property) => property.key === 'COPYKILLER_LICENSE_KEY')?.value;
+  const hasLicenseKey = !!schoolProperties?.find((property) => property.key === 'COPYKILLER_LICENSE_KEY')?.value
 
-  const shouldRender = enabled && hasLicenseKey;
+  const shouldRender = enabled && hasLicenseKey
 
   const { refetch } = useGetPlagiarismInspectDetail(id, {
     query: {
       enabled: false,
     },
-  });
+  })
 
   const handleClick = () => {
     if (status === 'Y') {
-      openDetailPopup();
+      openDetailPopup()
     } else if (status === 'F') {
-      setIsCausePopupOpen(true);
+      setIsCausePopupOpen(true)
     }
-  };
+  }
 
   const openDetailPopup = async () => {
-    const result = await refetch();
-    const detailData = result.data;
+    const result = await refetch()
+    const detailData = result.data
     if (detailData) {
-      const popup = window.open('', '_blank', 'width=1200,height=800');
-      popup?.document.write(detailData);
-      popup?.document.close();
+      const popup = window.open('', '_blank', 'width=1200,height=800')
+      popup?.document.write(detailData)
+      popup?.document.close()
     }
-  };
+  }
 
   if (!shouldRender) {
-    return null;
+    return null
   }
 
   return (
@@ -114,5 +114,5 @@ export const IBDetailPlagiarimInspectResultBadge: React.FC<IBDetailPlagiarimInsp
         />
       )}
     </div>
-  );
-};
+  )
+}

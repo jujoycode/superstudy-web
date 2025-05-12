@@ -1,10 +1,10 @@
-import { Group } from 'src/generated/model';
-import { Checkbox } from './common/Checkbox';
+import { Group } from '@/legacy/generated/model'
+import { Checkbox } from './common/Checkbox'
 
 interface AllSelectCheckboxProps {
-  selectedGroups: Group[];
-  setSelectedGroups: (groups: Group[]) => void;
-  groups: Group[];
+  selectedGroups: Group[]
+  setSelectedGroups: (groups: Group[]) => void
+  groups: Group[]
 }
 
 export function AllSelectCheckbox({ selectedGroups, setSelectedGroups, groups }: AllSelectCheckboxProps) {
@@ -19,5 +19,5 @@ export function AllSelectCheckbox({ selectedGroups, setSelectedGroups, groups }:
             )
       }
     />
-  );
+  )
 }

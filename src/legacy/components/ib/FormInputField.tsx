@@ -1,19 +1,19 @@
-import { ChangeEventHandler, InputHTMLAttributes, PropsWithChildren } from 'react';
-import { Input } from 'src/components/common/Input';
-import { Typography } from 'src/components/common/Typography';
-import { IBInterviewCommonQuestionDto } from 'src/generated/model';
-import { twMerge } from 'tailwind-merge';
-import { TextareaV2 } from '../common/TextareaV2';
-import ColorSVGIcon from '../icon/ColorSVGIcon';
+import { ChangeEventHandler, InputHTMLAttributes, PropsWithChildren } from 'react'
+import { Input } from '@/legacy/components/common/Input'
+import { Typography } from '@/legacy/components/common/Typography'
+import { IBInterviewCommonQuestionDto } from '@/legacy/generated/model'
+import { twMerge } from 'tailwind-merge'
+import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
+import ColorSVGIcon from '../icon/ColorSVGIcon'
 
 interface FormInputFieldProps {
-  index: number;
-  question: string;
-  label: string;
-  deleteQuestion: () => void;
-  setQuestion?: (question: string) => void;
-  size?: 40 | 32 | 48;
-  readOnly?: boolean;
+  index: number
+  question: string
+  label: string
+  deleteQuestion: () => void
+  setQuestion?: (question: string) => void
+  size?: 40 | 32 | 48
+  readOnly?: boolean
 }
 
 export const FormInputField = ({
@@ -26,8 +26,8 @@ export const FormInputField = ({
   readOnly = false,
 }: PropsWithChildren<FormInputFieldProps>) => {
   const onChangeQuestion: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setQuestion(e.target.value);
-  };
+    setQuestion(e.target.value)
+  }
 
   return (
     <section>
@@ -49,20 +49,20 @@ export const FormInputField = ({
         />
       </div>
     </section>
-  );
-};
+  )
+}
 
 interface InterviewFormInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  disabled?: boolean;
-  className?: string;
+  label?: string
+  disabled?: boolean
+  className?: string
 }
 
 FormInputField.Interview = ({ label, className, disabled = false, ...props }: InterviewFormInputFieldProps) => {
   return (
     <div
       className={twMerge(
-        'flex h-12 w-full items-center space-x-2 rounded-md border border-gray-200 bg-white px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0',
+        'focus:border-brand-1 flex h-12 w-full items-center space-x-2 rounded-md border border-gray-200 bg-white px-4 placeholder-gray-400 focus:ring-0',
         disabled && 'bg-gray-100 text-gray-400',
         className,
       )}
@@ -70,18 +70,18 @@ FormInputField.Interview = ({ label, className, disabled = false, ...props }: In
       {label && <div className="whitespace-pre">{label}</div>}
       <input className="block w-full border-0 focus:ring-0" {...props} />
     </div>
-  );
-};
+  )
+}
 
 interface QuestionFormInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
-  index: number;
-  dto: IBInterviewCommonQuestionDto;
-  label: string;
-  deleteQuestion: () => void;
-  setQuestion?: (dto: IBInterviewCommonQuestionDto) => void;
-  size?: 40 | 32 | 48;
-  readOnly?: boolean;
-  useHint?: boolean;
+  index: number
+  dto: IBInterviewCommonQuestionDto
+  label: string
+  deleteQuestion: () => void
+  setQuestion?: (dto: IBInterviewCommonQuestionDto) => void
+  size?: 40 | 32 | 48
+  readOnly?: boolean
+  useHint?: boolean
 }
 
 FormInputField.Question = ({
@@ -95,12 +95,12 @@ FormInputField.Question = ({
   useHint = true,
 }: PropsWithChildren<QuestionFormInputFieldProps>) => {
   const onChangeQuestion: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setQuestion({ question: e.target.value });
-  };
+    setQuestion({ question: e.target.value })
+  }
 
   const onChangeHint: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-    setQuestion({ question, hint: e.target.value });
-  };
+    setQuestion({ question, hint: e.target.value })
+  }
 
   return (
     <section>
@@ -122,7 +122,7 @@ FormInputField.Question = ({
         />
         {useHint && (
           <TextareaV2
-            className="font-base h-24 w-full resize-none rounded-lg bg-white p-4 text-14"
+            className="font-base text-14 h-24 w-full resize-none rounded-lg bg-white p-4"
             placeholder={'(선택)예시 답변을 입력해주세요.'}
             value={hint}
             onChange={onChangeHint}
@@ -130,5 +130,5 @@ FormInputField.Question = ({
         )}
       </div>
     </section>
-  );
-};
+  )
+}

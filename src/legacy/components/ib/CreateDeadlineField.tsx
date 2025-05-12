@@ -1,19 +1,19 @@
-import { FC, useState } from 'react';
-import { RequestIBDeadlineDto } from 'src/generated/model';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { twMerge } from 'tailwind-merge';
-import { Button } from '../common/Button';
-import ScheduleAndTimePicker from '../common/ScheduleAndTimePicker';
-import { Typography } from '../common/Typography';
-import ColorSVGIcon from '../icon/ColorSVGIcon';
-import SVGIcon from '../icon/SVGIcon';
-import { DEADLINE_TYPE_KOR } from './coordinator/Coordinator_Schedule';
+import { FC, useState } from 'react'
+import { RequestIBDeadlineDto } from '@/legacy/generated/model'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { twMerge } from 'tailwind-merge'
+import { Button } from '@/legacy/components/common/Button'
+import ScheduleAndTimePicker from '@/legacy/components/common/ScheduleAndTimePicker'
+import { Typography } from '@/legacy/components/common/Typography'
+import ColorSVGIcon from '../icon/ColorSVGIcon'
+import SVGIcon from '../icon/SVGIcon'
+import { DEADLINE_TYPE_KOR } from './coordinator/Coordinator_Schedule'
 
 interface CreateDeadlineFieldProps {
-  deadline: RequestIBDeadlineDto;
-  index: number;
-  handleDeleteDeadline: (index: number) => void;
-  handleUpdateDeadline: (dto: Partial<RequestIBDeadlineDto>, index: number) => void;
+  deadline: RequestIBDeadlineDto
+  index: number
+  handleDeleteDeadline: (index: number) => void
+  handleUpdateDeadline: (dto: Partial<RequestIBDeadlineDto>, index: number) => void
 }
 
 export const CreateDeadlineField: FC<CreateDeadlineFieldProps> = ({
@@ -22,11 +22,11 @@ export const CreateDeadlineField: FC<CreateDeadlineFieldProps> = ({
   handleDeleteDeadline,
   handleUpdateDeadline,
 }) => {
-  const [isFocused, setIsFocused] = useState(false);
-  const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
+  const [isFocused, setIsFocused] = useState(false)
+  const [calendarOpen, setCalendarOpen] = useState<boolean>(false)
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleFocus = () => setIsFocused(true)
+  const handleBlur = () => setIsFocused(false)
   return (
     <div className="rounded-lg bg-gray-50">
       <div className="flex items-center justify-between border-b border-gray-200 p-4">
@@ -45,7 +45,7 @@ export const CreateDeadlineField: FC<CreateDeadlineFieldProps> = ({
           </Typography>
           <div className="relative">
             <div
-              className={`flex h-10 w-full items-center gap-2 rounded-lg border border-primary-gray-200 bg-white px-3 py-[9px] focus:outline-none focus:ring-0 ${
+              className={`border-primary-gray-200 flex h-10 w-full items-center gap-2 rounded-lg border bg-white px-3 py-[9px] focus:ring-0 focus:outline-none ${
                 isFocused && 'border-primary-gray-700'
               }`}
               onFocus={handleFocus}
@@ -54,7 +54,7 @@ export const CreateDeadlineField: FC<CreateDeadlineFieldProps> = ({
             >
               <SVGIcon.Calendar size={20} color="gray700" />
               <input
-                className="w-full flex-1 border-none bg-white p-0 text-15 font-medium text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 focus:outline-none focus:ring-0"
+                className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none bg-white p-0 font-medium focus:ring-0 focus:outline-none"
                 placeholder="마감기한 선택"
                 value={
                   deadline.deadlineTime
@@ -64,14 +64,14 @@ export const CreateDeadlineField: FC<CreateDeadlineFieldProps> = ({
               />
             </div>
             {calendarOpen && (
-              <div className="fixed left-1/2 top-1/2 z-50 mt-2 -translate-x-1/2 -translate-y-1/2 transform">
+              <div className="fixed top-1/2 left-1/2 z-50 mt-2 -translate-x-1/2 -translate-y-1/2 transform">
                 <ScheduleAndTimePicker
                   key={index}
                   initialDeadline={deadline.deadlineTime ? new Date(deadline.deadlineTime) : undefined}
                   onSave={(finalDate) => {
-                    const finalDateString = finalDate?.toISOString() || '';
-                    handleUpdateDeadline({ deadlineTime: finalDateString }, index);
-                    setCalendarOpen(false);
+                    const finalDateString = finalDate?.toISOString() || ''
+                    handleUpdateDeadline({ deadlineTime: finalDateString }, index)
+                    setCalendarOpen(false)
                   }}
                   onCancel={() => setCalendarOpen(false)}
                 />
@@ -88,7 +88,7 @@ export const CreateDeadlineField: FC<CreateDeadlineFieldProps> = ({
               <Button.lg
                 key={day}
                 className={twMerge(
-                  'h-[40px] border border-primary-gray-300 bg-white text-primary-gray-700 disabled:border-primary-gray-200 disabled:bg-primary-gray-100 disabled:text-primary-gray-400',
+                  'border-primary-gray-300 text-primary-gray-700 disabled:border-primary-gray-200 disabled:bg-primary-gray-100 disabled:text-primary-gray-400 h-[40px] border bg-white',
                   deadline.remindDays?.includes(day) &&
                     'border-primary-orange-400 bg-primary-orange-100 text-primary-orange-800',
                 )}
@@ -111,5 +111,5 @@ export const CreateDeadlineField: FC<CreateDeadlineFieldProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

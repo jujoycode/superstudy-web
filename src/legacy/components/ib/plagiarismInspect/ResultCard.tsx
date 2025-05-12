@@ -1,30 +1,30 @@
-import { Typography } from 'src/components/common/Typography';
-import { cn } from 'src/lib/tailwind-merge';
-import Badge from './Badge';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { ResponseCopykillerResponseDto, ResponseCopykillerWithContentDto } from 'src/generated/model';
-import { format } from 'date-fns';
-import { useGetPlagiarismInspectDetail, useGetPlagiarismInspectResult } from 'src/container/plagiarism-inspector';
-import { useState } from 'react';
-import LoadingPopup from './LoadingPopup';
-import { Constants } from 'src/constants';
-import { PopupModal } from 'src/components/PopupModal';
-import { Blank } from 'src/components/common';
-import AlertV2 from 'src/components/common/AlertV2';
-import { getFileNameFromUrl } from 'src/util/file';
-import { downloadFile } from 'src/util/download-image';
+import { Typography } from '@/legacy/components/common/Typography'
+import { cn } from 'src/lib/tailwind-merge'
+import Badge from './Badge'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { ResponseCopykillerResponseDto, ResponseCopykillerWithContentDto } from '@/legacy/generated/model'
+import { format } from 'date-fns'
+import { useGetPlagiarismInspectDetail, useGetPlagiarismInspectResult } from '@/legacy/container/plagiarism-inspector'
+import { useState } from 'react'
+import LoadingPopup from './LoadingPopup'
+import { Constants } from '@/legacy/constants'
+import { PopupModal } from 'src/components/PopupModal'
+import { Blank } from '@/legacy/components/common'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { getFileNameFromUrl } from '@/legacy/util/file'
+import { downloadFile } from '@/legacy/util/download-image'
 
 export default function ResultCard({ data }: { data: ResponseCopykillerResponseDto }) {
-  const [isCausePopupOpen, setIsCausePopupOpen] = useState(false);
-  const [isTextPreviewOpen, setIsTextPreviewOpen] = useState(false);
-  const [textPreviewData, setTextPreviewData] = useState<{ title: string; content: string } | null>(null);
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [isCausePopupOpen, setIsCausePopupOpen] = useState(false)
+  const [isTextPreviewOpen, setIsTextPreviewOpen] = useState(false)
+  const [textPreviewData, setTextPreviewData] = useState<{ title: string; content: string } | null>(null)
+  const [isAlertOpen, setIsAlertOpen] = useState(false)
 
   const { refetch } = useGetPlagiarismInspectDetail(data.id, {
     query: {
       enabled: false,
     },
-  });
+  })
 
   const { refetch: refetchStatus, isLoading: isRefetchStatusLoading } = useGetPlagiarismInspectResult(data.id, {
     query: {
@@ -34,46 +34,46 @@ export default function ResultCard({ data }: { data: ResponseCopykillerResponseD
           setTextPreviewData({
             title: data.title,
             content: data.content,
-          });
-          setIsTextPreviewOpen(true);
+          })
+          setIsTextPreviewOpen(true)
         } else {
-          setIsAlertOpen(true);
+          setIsAlertOpen(true)
         }
       },
     },
-  });
+  })
 
   const handleClick = () => {
     if (data.completeStatus === 'Y') {
-      openDetailPopup(data.id);
+      openDetailPopup(data.id)
     } else if (data.completeStatus === 'F') {
-      openCausePopup();
+      openCausePopup()
     }
-  };
+  }
 
   const handleTitleClick = () => {
     if (data.files.length > 0) {
-      downloadFile(Constants.imageUrl + data.files[0], getFileNameFromUrl(data.files[0]));
+      downloadFile(Constants.imageUrl + data.files[0], getFileNameFromUrl(data.files[0]))
     } else {
-      refetchStatus();
+      refetchStatus()
     }
-  };
+  }
 
   const openDetailPopup = (id: number) => {
-    window.open(`/plagiarism-inspect/detail/${id}`, '_blank', 'width=1200,height=800');
-  };
+    window.open(`/plagiarism-inspect/detail/${id}`, '_blank', 'width=1200,height=800')
+  }
 
   const openCausePopup = () => {
-    setIsCausePopupOpen(true);
-  };
+    setIsCausePopupOpen(true)
+  }
 
   return (
-    <div className="flex h-[210px] w-[392px] flex-col justify-between rounded-xl border border-primary-gray-200 bg-white p-6 shadow-[0px_4px_8px_0px_#F4F6F8]">
+    <div className="border-primary-gray-200 flex h-[210px] w-[392px] flex-col justify-between rounded-xl border bg-white p-6 shadow-[0px_4px_8px_0px_#F4F6F8]">
       <div className="flex flex-col gap-2">
         <Typography
           variant="title2"
           className={cn(
-            'line-clamp-3 text-18 text-primary-gray-900',
+            'text-18 text-primary-gray-900 line-clamp-3',
             data.completeStatus === 'Y' && 'cursor-pointer hover:underline',
           )}
           onClick={data.completeStatus === 'Y' ? handleTitleClick : undefined}
@@ -123,10 +123,10 @@ export default function ResultCard({ data }: { data: ResponseCopykillerResponseD
           footerClassName="px-8"
         >
           <div className="flex flex-col gap-4">
-            <div className="flex flex-col gap-4 rounded-lg border border-primary-gray-200 p-4">
+            <div className="border-primary-gray-200 flex flex-col gap-4 rounded-lg border p-4">
               <Typography variant="body2">{textPreviewData?.title}</Typography>
             </div>
-            <div className="scroll-box flex h-[400px] w-full flex-col gap-4 overflow-y-auto rounded-lg border border-primary-gray-200 p-4">
+            <div className="scroll-box border-primary-gray-200 flex h-[400px] w-full flex-col gap-4 overflow-y-auto rounded-lg border p-4">
               <Typography variant="body2">{textPreviewData?.content}</Typography>
             </div>
           </div>
@@ -139,12 +139,12 @@ export default function ResultCard({ data }: { data: ResponseCopykillerResponseD
           message="원문 확인 불가"
           description={`[2025.03.23] 이전에 검사된 문서의 원문은 시스템에 저장되지 않아 확인할 수 없습니다.\n앞으로 진행하는 표절 검사에서는 원문 확인 기능을 이용해 주세요.`}
           onConfirm={() => {
-            setIsAlertOpen(false);
+            setIsAlertOpen(false)
           }}
         />
       )}
 
       {isRefetchStatusLoading && <Blank />}
     </div>
-  );
+  )
 }

@@ -1,40 +1,37 @@
-import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-import { queryClient } from './query';
+import axios, { AxiosError, type AxiosRequestConfig } from 'axios'
+import { queryClient } from './query'
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
-    skipRefetch?: boolean;
+    skipRefetch?: boolean
   }
 }
 
-export const api = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+export const api = axios.create({ baseURL: process.env.REACT_APP_API_URL })
 
 export async function mutator<T>(config: AxiosRequestConfig, options?: AxiosRequestConfig) {
-  return api<T>({ ...config, ...options }).then(({ data }) => data);
+  return api<T>({ ...config, ...options }).then(({ data }) => data)
 }
 
-// 요청취소 팩토리
-const CancelToken = axios.CancelToken;
-
-let isRefreshing = false;
-const getStorage = (key: string) => sessionStorage.getItem(key) || localStorage.getItem(key);
-const setStorage = (key: string, value: string) => localStorage.setItem(key, value);
+let isRefreshing = false
+const getStorage = (key: string) => sessionStorage.getItem(key) || localStorage.getItem(key)
+const setStorage = (key: string, value: string) => localStorage.setItem(key, value)
 const removeStorage = (key: string) => {
-  localStorage.removeItem(key);
-  sessionStorage.removeItem(key);
-};
+  localStorage.removeItem(key)
+  sessionStorage.removeItem(key)
+}
 
 const refreshAccessToken = async () => {
-  const { data } = await api.post('/api/users/refresh-login', {});
-  const { token, refresh_token } = data;
+  const { data } = await api.post('/api/users/refresh-login', {})
+  const { token, refresh_token } = data
 
   if (token && refresh_token) {
-    setStorage('token', token);
-    setStorage('refreshToken', refresh_token);
-    setStorage('tokenIssue', new Date().toISOString());
-    return token;
+    setStorage('token', token)
+    setStorage('refreshToken', refresh_token)
+    setStorage('tokenIssue', new Date().toISOString())
+    return token
   }
-};
+}
 
 api.interceptors.request.use(async (config) => {
   // TODO: 리프레쉬 토큰 발급요청 임시방편으로 주석처리
@@ -67,76 +64,76 @@ api.interceptors.request.use(async (config) => {
   //   }
   // }
 
-  const token = getStorage(config.url === '/api/users/refresh-login' ? 'refreshToken' : 'token');
+  const token = getStorage(config.url === '/api/users/refresh-login' ? 'refreshToken' : 'token')
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`
   }
-  return config;
-});
+  return config
+})
 
 api.interceptors.response.use(
   (response) => {
-    const method = response.config.method ?? '';
-    const skipRefetch = response.config.skipRefetch ?? false;
+    const method = response.config.method ?? ''
+    const skipRefetch = response.config.skipRefetch ?? false
     if (!skipRefetch && ['post', 'patch', 'put', 'delete'].includes(method)) {
-      queryClient.refetchQueries({ active: true });
+      queryClient.refetchQueries({ active: true })
     }
-    return response;
+    return response
   },
   async (error) => {
-    handleErrorResponse(error);
-    return Promise.reject(error);
+    handleErrorResponse(error)
+    return Promise.reject(error)
   },
-);
+)
 
 async function handleErrorResponse(error: any) {
-  const errorResponse = error.response?.data;
-  const statusCode = errorResponse?.code ?? errorResponse?.statusCode ?? 400;
+  const errorResponse = error.response?.data
+  const statusCode = errorResponse?.code ?? errorResponse?.statusCode ?? 400
   const checkCode = [
     401,
     '1001200', // 토큰이 만료되었습니다.
     '1001201', // 토큰을 찾을 수 없습니다.
     '1001103', // 2차 인증이 통과되지 않았습니다.
-  ];
+  ]
 
   // FIXME: hooks.ts 의 logout 함수 구조 변경이 필요
   if (checkCode.includes(statusCode)) {
-    setStorage('two-factor', 'false');
+    setStorage('two-factor', 'false')
 
     if (statusCode === 401) {
       // Unauthorized
 
       if (!isRefreshing) {
-        isRefreshing = true;
+        isRefreshing = true
         try {
-          const newToken = await refreshAccessToken();
+          const newToken = await refreshAccessToken()
           if (newToken) {
-            window.location.reload();
+            window.location.reload()
           }
         } catch (error) {
-          removeStorage('token');
-          removeStorage('refreshToken');
-          setStorage('two-factor', 'false');
-          window.location.reload();
+          removeStorage('token')
+          removeStorage('refreshToken')
+          setStorage('two-factor', 'false')
+          window.location.reload()
         } finally {
-          isRefreshing = false;
+          isRefreshing = false
         }
       } else {
-        logout();
+        logout()
       }
     } else if (errorResponse.code !== '1001103') {
-      logout();
+      logout()
     }
   }
 }
 
 function logout() {
-  setStorage('two-factor', 'false');
-  removeStorage('token');
-  removeStorage('refreshToken');
+  setStorage('two-factor', 'false')
+  removeStorage('token')
+  removeStorage('refreshToken')
   // const history = useHistory();
   // history.push('/login');
-  window.location.reload();
+  window.location.reload()
 }
 
-export type ErrorType<Error> = AxiosError<Error>;
+export type ErrorType<Error> = AxiosError<Error>

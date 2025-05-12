@@ -1,57 +1,57 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import NODATA from 'src/assets/images/no-data.png';
-import { PopupModal } from 'src/components/PopupModal';
-import AlertV2 from 'src/components/common/AlertV2';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { IBBlank } from 'src/components/common/IBBlank';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import { Typography } from 'src/components/common/Typography';
-import { useIBPortfolioGetById } from 'src/container/ib-cas';
-import { meState } from 'src/store';
-import CASChart from './CASChart';
-import CASPortfolioDataList from './CASPortfolioDataList';
-import CASPortfolioTimeline from './CASPortfolioTimeline';
-import CASProfile from './CASProfile';
-import CASRefNInt from './CASRefNInt';
-import { IbCASNormal } from './IbCASNormal';
-import { IbCASProject } from './IbCASProject';
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import NODATA from 'src/assets/images/no-data.png'
+import { PopupModal } from 'src/components/PopupModal'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import { useIBPortfolioGetById } from '@/legacy/container/ib-cas'
+import { meState } from '@/stores'
+import CASChart from './CASChart'
+import CASPortfolioDataList from './CASPortfolioDataList'
+import CASPortfolioTimeline from './CASPortfolioTimeline'
+import CASProfile from './CASProfile'
+import CASRefNInt from './CASRefNInt'
+import { IbCASNormal } from './IbCASNormal'
+import { IbCASProject } from './IbCASProject'
 
-type ModalType = 'SELECT' | 'IBCAS' | 'IBPROJECT' | null;
-type CategoryType = 'IBCAS' | 'IBPROJECT' | null;
+type ModalType = 'SELECT' | 'IBCAS' | 'IBPROJECT' | null
+type CategoryType = 'IBCAS' | 'IBPROJECT' | null
 
 export default function CASPortfolio() {
-  const me = useRecoilValue(meState);
-  const location = useLocation<{ alertMessage?: string }>();
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<CategoryType>(null);
-  const [activeModal, setActiveModal] = useState<ModalType>(null);
+  const me = useRecoilValue(meState)
+  const location = useLocation<{ alertMessage?: string }>()
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType>(null)
+  const [activeModal, setActiveModal] = useState<ModalType>(null)
 
-  const { data, refetch, isLoading } = useIBPortfolioGetById(me?.id || 0);
+  const { data, refetch, isLoading } = useIBPortfolioGetById(me?.id || 0)
 
   const handleSuccess = (action: 'CAS_NORMAL' | 'CAS_PROJECT') => {
-    setActiveModal(null);
-    setSelectedCategory(null);
+    setActiveModal(null)
+    setSelectedCategory(null)
     switch (action) {
       case 'CAS_NORMAL':
-        setAlertMessage(`CAS 일반 계획서가\n저장되었습니다`);
-        break;
+        setAlertMessage(`CAS 일반 계획서가\n저장되었습니다`)
+        break
       case 'CAS_PROJECT':
-        setAlertMessage(`CAS 프로젝트 계획서가\n저장되었습니다`);
-        break;
+        setAlertMessage(`CAS 프로젝트 계획서가\n저장되었습니다`)
+        break
     }
-    refetch();
-  };
+    refetch()
+  }
 
   useEffect(() => {
     if (location.state?.alertMessage) {
-      setAlertMessage(location.state.alertMessage);
+      setAlertMessage(location.state.alertMessage)
     }
-  }, [location.state]);
+  }, [location.state])
 
   if (me == null) {
-    return <IBBlank />;
+    return <IBBlank />
   }
 
   return (
@@ -137,5 +137,5 @@ export default function CASPortfolio() {
         />
       )}
     </div>
-  );
+  )
 }

@@ -1,17 +1,17 @@
-import clsx from 'clsx';
-import _ from 'lodash';
-import { PropsWithChildren, useState } from 'react';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import SearchSelect from 'src/components/common/SearchSelect';
-import { useUserGetAllTeachers } from 'src/generated/endpoint';
-import { Typography } from '../../common/Typography';
-import ColorSVGIcon from '../../icon/ColorSVGIcon';
+import clsx from 'clsx'
+import _ from 'lodash'
+import { PropsWithChildren, useState } from 'react'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import SearchSelect from '@/legacy/components/common/SearchSelect'
+import { useUserGetAllTeachers } from '@/legacy/generated/endpoint'
+import { Typography } from '../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
 
 interface IbCASMentorSelectProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  onSuccess: (selectedId: number) => void;
-  ablePropragation?: boolean;
+  modalOpen: boolean
+  setModalClose: () => void
+  onSuccess: (selectedId: number) => void
+  ablePropragation?: boolean
 }
 
 export function IbCASMentorSelect({
@@ -20,8 +20,8 @@ export function IbCASMentorSelect({
   onSuccess,
   ablePropragation = false,
 }: PropsWithChildren<IbCASMentorSelectProps>) {
-  const [selectedId, setSelectedId] = useState<number>();
-  const { data: teachersData } = useUserGetAllTeachers();
+  const [selectedId, setSelectedId] = useState<number>()
+  const { data: teachersData } = useUserGetAllTeachers()
 
   const teachers = _(teachersData)
     .map((teacher) => ({
@@ -30,17 +30,17 @@ export function IbCASMentorSelect({
       text: teacher.name || '이름 없음',
     }))
     .sortBy('text')
-    .value();
+    .value()
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black bg-opacity-50 ${
+      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
         }
       }}
     >
@@ -72,5 +72,5 @@ export function IbCASMentorSelect({
         </div>
       </div>
     </div>
-  );
+  )
 }

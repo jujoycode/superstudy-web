@@ -1,39 +1,39 @@
-import { Link, useLocation } from 'react-router-dom';
-import { Badge } from 'src/components/common';
-import { Fieldtrip, FieldtripStatus } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { makeStartEndToString } from 'src/util/time';
+import { Link, useLocation } from 'react-router-dom'
+import { Badge } from '@/legacy/components/common'
+import { Fieldtrip, FieldtripStatus } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { makeStartEndToString } from '@/legacy/util/time'
 
 interface FieldtripNoticeCardProps {
-  fieldtrip: Fieldtrip;
+  fieldtrip: Fieldtrip
 }
 
 export function FieldtripNoticeCard({ fieldtrip }: FieldtripNoticeCardProps) {
-  const { pathname, search } = useLocation();
-  const { t } = useLanguage();
+  const { pathname, search } = useLocation()
+  const { t } = useLanguage()
 
-  let text = <div className="text-sm text-red-500"> {t('pending_approval', '승인 전')}</div>;
+  let text = <div className="text-sm text-red-500"> {t('pending_approval', '승인 전')}</div>
 
   switch (fieldtrip?.fieldtripStatus) {
     case FieldtripStatus.BEFORE_PARENT_CONFIRM:
-      text = <div className="text-sm text-red-500">{t('before_parent_approval', '학부모 승인 전')}</div>;
-      break;
+      text = <div className="text-sm text-red-500">{t('before_parent_approval', '학부모 승인 전')}</div>
+      break
     case FieldtripStatus.PROCESSING:
       text = (
         <div className="text-sm text-red-500">
           {fieldtrip?.nextApproverTitle} {t('pending_approval', '승인 전')}
         </div>
-      );
-      break;
+      )
+      break
     case FieldtripStatus.PROCESSED:
-      text = <div className="text-sm text-gray-600">{t('approved', '승인 완료')}</div>;
-      break;
+      text = <div className="text-sm text-gray-600">{t('approved', '승인 완료')}</div>
+      break
     case FieldtripStatus.RETURNED:
-      text = <div className="text-sm text-brand-1">{t('rejected', '반려됨')}</div>;
-      break;
+      text = <div className="text-brand-1 text-sm">{t('rejected', '반려됨')}</div>
+      break
     case FieldtripStatus.DELETE_APPEAL:
-      text = <div className="text-sm text-red-800">{t('delete_request', '삭제 요청')}</div>;
-      break;
+      text = <div className="text-sm text-red-800">{t('delete_request', '삭제 요청')}</div>
+      break
   }
   return (
     <>
@@ -72,5 +72,5 @@ export function FieldtripNoticeCard({ fieldtrip }: FieldtripNoticeCardProps) {
         <div className="h-0.5 bg-gray-100"></div>
       </Link>
     </>
-  );
+  )
 }

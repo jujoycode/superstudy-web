@@ -1,40 +1,40 @@
-import { FC, useRef, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { SuperModal } from 'src/components/SuperModal';
-import { Avatar, Textarea } from 'src/components/common';
-import { Checkbox } from 'src/components/common/Checkbox';
-import ConfirmDialog from 'src/components/common/ConfirmDialog';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { Icon } from 'src/components/common/icons';
-import { useStudentRecordontrollerCreate, useStudentSelfAssessmentGetAnnualReview } from 'src/generated/endpoint';
+import { FC, useRef, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { SuperModal } from 'src/components/SuperModal'
+import { Avatar, Textarea } from '@/legacy/components/common'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Icon } from '@/legacy/components/common/icons'
+import { useStudentRecordontrollerCreate, useStudentSelfAssessmentGetAnnualReview } from '@/legacy/generated/endpoint'
 import {
   Counseling,
   ResponseStudentCardStudentDto,
   StudentSelfAssessment,
   TeacherStudentAssessment,
-} from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { toastState } from 'src/store';
-import 'swiper/swiper.min.css';
-import { twMerge } from 'tailwind-merge';
+} from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { toastState } from '@/stores'
+import 'swiper/swiper.min.css'
+import { twMerge } from 'tailwind-merge'
 
 interface GeneralGPTModalProps {
-  studentId: number;
-  studentSelfAssessment?: StudentSelfAssessment | undefined;
-  counselingData?: Counseling[] | undefined;
-  teacherStudentAssessment?: TeacherStudentAssessment | undefined;
-  selectedStudentIds: number[];
-  setSelectedStudentIds: (ids: number[]) => void;
-  selectedCounselingIds: number[];
-  setSelectedCounselingIds: (ids: number[]) => void;
-  selectedTeacherIds: number[];
-  setSelectedTeacherIds: (ids: number[]) => void;
-  isStudentAssessmentSelected: boolean;
-  setStudentAssessmentSelected: (bool: boolean) => void;
-  isTeacherAssessmentSelected: boolean;
-  setTeacherAssessmentSelected: (bool: boolean) => void;
-  onClose: () => void;
-  studentInfo?: ResponseStudentCardStudentDto;
+  studentId: number
+  studentSelfAssessment?: StudentSelfAssessment | undefined
+  counselingData?: Counseling[] | undefined
+  teacherStudentAssessment?: TeacherStudentAssessment | undefined
+  selectedStudentIds: number[]
+  setSelectedStudentIds: (ids: number[]) => void
+  selectedCounselingIds: number[]
+  setSelectedCounselingIds: (ids: number[]) => void
+  selectedTeacherIds: number[]
+  setSelectedTeacherIds: (ids: number[]) => void
+  isStudentAssessmentSelected: boolean
+  setStudentAssessmentSelected: (bool: boolean) => void
+  isTeacherAssessmentSelected: boolean
+  setTeacherAssessmentSelected: (bool: boolean) => void
+  onClose: () => void
+  studentInfo?: ResponseStudentCardStudentDto
 }
 
 export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
@@ -55,48 +55,48 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
   onClose,
   studentInfo,
 }) => {
-  const { t, currentLang } = useLanguage();
-  const [toastMsg, setToastMsg] = useRecoilState(toastState);
-  const [content, setContent] = useState('');
-  const [question, setQuestion] = useState('');
-  const [sentence, setSentence] = useState('');
-  const [reportContents, setReportContents] = useState<any[]>([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [conversationId, setConversationId] = useState<string>();
-  const [selectedContentIndex, setSelectedContentIndex] = useState<number | undefined>();
-  const [modalStep, setModalStep] = useState(1);
-  const [confirmOpen, setConfirmOpen] = useState(false);
-  const titleInputRef = useRef<HTMLInputElement>(null);
+  const { t, currentLang } = useLanguage()
+  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [content, setContent] = useState('')
+  const [question, setQuestion] = useState('')
+  const [sentence, setSentence] = useState('')
+  const [reportContents, setReportContents] = useState<any[]>([])
+  const [modalOpen, setModalOpen] = useState(false)
+  const [conversationId, setConversationId] = useState<string>()
+  const [selectedContentIndex, setSelectedContentIndex] = useState<number | undefined>()
+  const [modalStep, setModalStep] = useState(1)
+  const [confirmOpen, setConfirmOpen] = useState(false)
+  const titleInputRef = useRef<HTMLInputElement>(null)
 
   const { mutate: getAnnualReview, isLoading } = useStudentSelfAssessmentGetAnnualReview({
     mutation: {
       onSuccess: (data: any) => {
-        setReportContents((reportContents) => reportContents.concat({ type: 'content', data }));
-        setConversationId(data.conversation_id);
+        setReportContents((reportContents) => reportContents.concat({ type: 'content', data }))
+        setConversationId(data.conversation_id)
       },
     },
-  });
+  })
 
   const { mutate: createStudentRecord } = useStudentRecordontrollerCreate({
     mutation: {
       onSuccess: () => {
-        setToastMsg('변경 사항이 저장되었습니다.');
-        onClose();
-        setContent('');
-        localStorage.setItem('student_record_content', '');
-        localStorage.setItem('student_record_type', '');
-        setConversationId('');
-        setModalOpen(false);
-        setReportContents([]);
-        setQuestion('');
-        setSentence('');
-        setModalStep(1);
+        setToastMsg('변경 사항이 저장되었습니다.')
+        onClose()
+        setContent('')
+        localStorage.setItem('student_record_content', '')
+        localStorage.setItem('student_record_type', '')
+        setConversationId('')
+        setModalOpen(false)
+        setReportContents([])
+        setQuestion('')
+        setSentence('')
+        setModalStep(1)
       },
       onError: (error) => {
-        setToastMsg(error.message);
+        setToastMsg(error.message)
       },
     },
-  });
+  })
 
   const handleSaveClick = () => {
     createStudentRecord({
@@ -108,15 +108,15 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
         creativeType: '',
       },
       params: { studentId },
-    });
-  };
+    })
+  }
 
   const handleQuestionSend = () => {
     if (!question) {
-      alert('질문 내용을 입력해 주세요!');
-      return;
+      alert('질문 내용을 입력해 주세요!')
+      return
     }
-    setReportContents((reportContents) => reportContents.concat({ type: 'question', question, sentence }));
+    setReportContents((reportContents) => reportContents.concat({ type: 'question', question, sentence }))
     getAnnualReview({
       studentId,
       data: {
@@ -130,14 +130,14 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
         selectedCounseling:
           counselingData?.filter((data) => selectedCounselingIds.includes(data.id))?.map((el) => el.content) || [],
       },
-    });
-    setSentence('');
-    setQuestion('');
-  };
+    })
+    setSentence('')
+    setQuestion('')
+  }
 
-  const byteLength = new TextEncoder().encode(content).length;
-  const trimmedContent = content.replaceAll(' ', '');
-  const trimmedByteLength = new TextEncoder().encode(trimmedContent).length;
+  const byteLength = new TextEncoder().encode(content).length
+  const trimmedContent = content.replaceAll(' ', '')
+  const trimmedByteLength = new TextEncoder().encode(trimmedContent).length
 
   return (
     <>
@@ -148,13 +148,13 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
               <div className="mb-2 h-full w-full overflow-hidden px-5 pb-4">
                 <div className="flex items-center gap-2">
                   <div className="text-xl font-bold">
-                    행동특성 및 종합의견 초안 작성<span className="ml-1 align-top text-sm text-brandblue-1">AI</span>
+                    행동특성 및 종합의견 초안 작성<span className="text-brandblue-1 ml-1 align-top text-sm">AI</span>
                   </div>
                 </div>
                 <div className="text-xs font-semibold text-[#666]">
                   선택한 기록을 기반으로 행동특성 및 종합의견 초안을 작성합니다.
                 </div>
-                <div className="flex h-screen-16 flex-col space-y-4 overflow-y-auto p-4">
+                <div className="h-screen-16 flex flex-col space-y-4 overflow-y-auto p-4">
                   {studentInfo && (
                     <>
                       <h1 className="text-xl font-bold text-gray-600">학생 진로진학 정보</h1>
@@ -195,7 +195,7 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
                           />
                           <p className="text-sm text-gray-500">학생 자기 평가 내용</p>
                         </div>
-                        <div className="mt-1 w-full whitespace-pre-line rounded-lg border border-gray-300 p-2">
+                        <div className="mt-1 w-full rounded-lg border border-gray-300 p-2 whitespace-pre-line">
                           {studentSelfAssessment.assessment}
                         </div>
                       </>
@@ -244,7 +244,7 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
                           />
                           <p className="text-sm text-gray-500">교사 학생 평가 내용</p>
                         </div>
-                        <div className="mt-1 w-full whitespace-pre-line rounded-lg border border-gray-300 p-2">
+                        <div className="mt-1 w-full rounded-lg border border-gray-300 p-2 whitespace-pre-line">
                           {teacherStudentAssessment.assessment}
                         </div>
                       </>
@@ -261,8 +261,8 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
                       !selectedTeacherIds.length &&
                       (!isTeacherAssessmentSelected || !teacherStudentAssessment?.assessment)
                     ) {
-                      setToastMsg('초안을 작성하려면 데이터를 선택해주세요!');
-                      return;
+                      setToastMsg('초안을 작성하려면 데이터를 선택해주세요!')
+                      return
                     }
                     getAnnualReview({
                       studentId,
@@ -285,7 +285,7 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
                             ?.filter((data) => selectedCounselingIds.includes(data.id))
                             ?.map((el) => el.content) || [],
                       },
-                    });
+                    })
                   }}
                   disabled={
                     isLoading &&
@@ -302,7 +302,7 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
                 </button>
               </div>
             </div>
-            <div className={`flex w-3/5 flex-col overflow-y-auto overflow-x-hidden p-5`}>
+            <div className={`flex w-3/5 flex-col overflow-x-hidden overflow-y-auto p-5`}>
               {!reportContents[0] && !isLoading && (
                 <div className="flex h-full w-full flex-col items-center justify-center gap-10">
                   <Icon.AIRobot className="h-60 w-60" />
@@ -326,13 +326,13 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
                           </div>
                           <Avatar size={8} />
                         </div>
-                      );
+                      )
                     }
-                    const { data } = _data;
-                    const reportContent = data.content;
-                    const byteLength = new TextEncoder().encode(reportContent).length;
-                    const trimmedContent = reportContent.replaceAll(' ', '');
-                    const trimmedByteLength = new TextEncoder().encode(trimmedContent).length;
+                    const { data } = _data
+                    const reportContent = data.content
+                    const byteLength = new TextEncoder().encode(reportContent).length
+                    const trimmedContent = reportContent.replaceAll(' ', '')
+                    const trimmedByteLength = new TextEncoder().encode(trimmedContent).length
 
                     return (
                       <>
@@ -374,7 +374,7 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
                           </div>
                         </div>
                       </>
-                    );
+                    )
                   })}
                   {isLoading && (
                     <div className="flex h-80 w-full flex-col items-center justify-center gap-10">
@@ -443,8 +443,8 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
             message={t('text_unsaved_changes', '저장되지 않은 내용이 있습니다.')}
             onCancel={() => setConfirmOpen(!confirmOpen)}
             onConfirm={() => {
-              onClose();
-              setContent('');
+              onClose()
+              setContent('')
             }}
           />
         )}
@@ -452,17 +452,17 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
       <SuperModal
         modalOpen={modalOpen}
         setModalClose={() => {
-          setModalStep(1);
-          setModalOpen(false);
-          setSelectedContentIndex(undefined);
-          setContent('');
+          setModalStep(1)
+          setModalOpen(false)
+          setSelectedContentIndex(undefined)
+          setContent('')
         }}
         className="w-128 lg:w-256"
       >
         <div className="px-12 py-6">
           {modalStep === 1 && (
             <>
-              <div className="flex h-screen-18 flex-col">
+              <div className="h-screen-18 flex flex-col">
                 <div>
                   <h1 className="text-xl font-bold">{t('annual_review_record_draft', '행동특성 및 종합의견 초안')}</h1>
                   <span className="text-sm text-gray-600">
@@ -503,8 +503,8 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
                 disabled={selectedContentIndex === undefined}
                 onClick={() => {
                   if (selectedContentIndex !== undefined) {
-                    setModalStep(2);
-                    setContent(reportContents[selectedContentIndex].data.content);
+                    setModalStep(2)
+                    setContent(reportContents[selectedContentIndex].data.content)
                   }
                 }}
                 className="mt-4 box-border w-full rounded-md border-2 border-gray-500 bg-[#163192] px-14 py-2 text-base font-semibold text-white"
@@ -545,5 +545,5 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
         </div>
       </SuperModal>
     </>
-  );
-};
+  )
+}

@@ -1,17 +1,17 @@
-import { forwardRef } from 'react';
-import { Absent } from 'src/generated/model';
-import { cn } from 'src/lib/tailwind-merge';
-import { getNickName, getPeriodStr } from 'src/util/status';
-import { makeStartEndToString, makeTimeToString } from 'src/util/time';
-import { Td } from '../Td';
+import { forwardRef } from 'react'
+import { Absent } from '@/legacy/generated/model'
+import { cn } from 'src/lib/tailwind-merge'
+import { getNickName, getPeriodStr } from '@/legacy/util/status'
+import { makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
+import { Td } from '../Td'
 
 interface ParentConfirmPaperProps {
-  absent: Absent;
-  isMobileView?: boolean;
+  absent: Absent
+  isMobileView?: boolean
 }
 
 export const ParentConfirmPaper = forwardRef((props: ParentConfirmPaperProps, ref: any) => {
-  const { absent, isMobileView = false } = props;
+  const { absent, isMobileView = false } = props
 
   return (
     <div ref={ref} className={cn('w-full bg-white', !isMobileView && 'md:h-[1100px]')}>
@@ -73,7 +73,7 @@ export const ParentConfirmPaper = forwardRef((props: ParentConfirmPaperProps, re
               <Td>{absent?.parentComment}</Td>
             </tr>
           </table>
-          <div className="whitespace-pre-line pt-1 text-brand-1">
+          <div className="text-brand-1 pt-1 whitespace-pre-line">
             *{absent?.student?.name} 학생이 해당 기간동안&nbsp;
             {absent?.reportType === '지각' || absent?.reportType === '결과' || absent?.reportType === '조퇴'
               ? absent?.reportType
@@ -84,7 +84,7 @@ export const ParentConfirmPaper = forwardRef((props: ParentConfirmPaperProps, re
         <div>
           <div className="flex w-full items-center space-x-4 pr-4">
             <div className="w-full min-w-max text-right text-gray-600">신고일:</div>
-            <div className="w-2/5 min-w-[150px] whitespace-pre text-right font-bold text-gray-800">
+            <div className="w-2/5 min-w-[150px] text-right font-bold whitespace-pre text-gray-800">
               {absent?.reportedAt}
             </div>
           </div>
@@ -112,5 +112,5 @@ export const ParentConfirmPaper = forwardRef((props: ParentConfirmPaperProps, re
         </div>
       </div>
     </div>
-  );
-});
+  )
+})

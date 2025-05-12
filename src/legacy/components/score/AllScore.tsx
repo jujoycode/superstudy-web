@@ -1,31 +1,31 @@
-import clsx from 'clsx';
-import { useState } from 'react';
-import { LayeredTabs, Tab } from '../common/LayeredTabs';
-import SelectBar from '../common/SelectBar';
-import ExamChart from '../studentCard/ExamChart';
-import { ExamScoreBoard } from '../studentCard/ExamScoreBoard';
-import { INDIExamScoreBoard } from '../studentCard/INDIExamScoreBoard';
+import clsx from 'clsx'
+import { useState } from 'react'
+import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
+import SelectBar from '@/legacy/components/common/SelectBar'
+import ExamChart from '../studentCard/ExamChart'
+import { ExamScoreBoard } from '../studentCard/ExamScoreBoard'
+import { INDIExamScoreBoard } from '../studentCard/INDIExamScoreBoard'
 
 interface AllScoreProps {
-  studentId: string;
-  grade: number;
+  studentId: string
+  grade: number
 }
 
-type ScoreType = 'ALL' | 'TEST';
+type ScoreType = 'ALL' | 'TEST'
 
 const grades = [
   { id: 0, value: 1, text: '1학년' },
   { id: 1, value: 2, text: '2학년' },
   { id: 2, value: 3, text: '3학년' },
-];
+]
 
 export const AllScore = ({ studentId, grade: initialGrade }: AllScoreProps) => {
-  const [type, setType] = useState<ScoreType>('ALL');
-  const [grade, setGrade] = useState(initialGrade);
+  const [type, setType] = useState<ScoreType>('ALL')
+  const [grade, setGrade] = useState(initialGrade)
 
   const handleOptionChange = (value: number) => {
-    setGrade(value);
-  };
+    setGrade(value)
+  }
   return (
     <main className="flex flex-col gap-10">
       <ExamChart studentId={studentId} />
@@ -70,5 +70,5 @@ export const AllScore = ({ studentId, grade: initialGrade }: AllScoreProps) => {
         {type === 'TEST' && <INDIExamScoreBoard studentId={studentId} grade={grade} />}
       </div>
     </main>
-  );
-};
+  )
+}

@@ -1,30 +1,30 @@
-import { useState } from 'react';
-import NODATA from 'src/assets/images/no-data.png';
-import { SchoolScore } from 'src/container/student-score';
-import { Typography } from '../common/Typography';
-import SVGIcon from '../icon/SVGIcon';
-import BottomSheetListSelection from './BottomSheetListSelection';
+import { useState } from 'react'
+import NODATA from 'src/assets/images/no-data.png'
+import { SchoolScore } from '@/legacy/container/student-score'
+import { Typography } from '@/legacy/components/common/Typography'
+import SVGIcon from '../icon/SVGIcon'
+import BottomSheetListSelection from './BottomSheetListSelection'
 
 interface BottomSheetProps {
-  data?: SchoolScore[];
-  onChange: (data: SchoolScore) => void;
+  data?: SchoolScore[]
+  onChange: (data: SchoolScore) => void
 }
 
 export function ScoreBottomSheet({ data, onChange }: BottomSheetProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = (data: SchoolScore, index: number) => {
-    setSelectedIndex(index);
-    setIsOpen(false);
-    onChange(data);
-  };
+    setSelectedIndex(index)
+    setIsOpen(false)
+    onChange(data)
+  }
 
   if (data?.length === 0 || !data) {
     return (
       <>
-        <div className="flex h-12 cursor-pointer flex-row items-center justify-between rounded-lg border border-primary-gray-200 bg-primary-gray-100 px-4 py-3">
-          <Typography variant="body2" className="font-medium text-primary-gray-400">
+        <div className="border-primary-gray-200 bg-primary-gray-100 flex h-12 cursor-pointer flex-row items-center justify-between rounded-lg border px-4 py-3">
+          <Typography variant="body2" className="text-primary-gray-400 font-medium">
             시험 선택
           </Typography>
         </div>
@@ -37,13 +37,13 @@ export function ScoreBottomSheet({ data, onChange }: BottomSheetProps) {
           </Typography>
         </div>
       </>
-    );
+    )
   }
 
   return (
     <>
       <div
-        className="flex h-12 cursor-pointer flex-row items-center justify-between rounded-lg border border-primary-gray-200 bg-white px-4 py-3"
+        className="border-primary-gray-200 flex h-12 cursor-pointer flex-row items-center justify-between rounded-lg border bg-white px-4 py-3"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Typography variant="body2" className="font-medium">
@@ -55,21 +55,21 @@ export function ScoreBottomSheet({ data, onChange }: BottomSheetProps) {
 
       <BottomSheetListSelection isOpen={isOpen} onClose={() => setIsOpen(false)}>
         {data.map((item, index) => {
-          const isSelected = selectedIndex === index;
+          const isSelected = selectedIndex === index
           return (
             <div key={index} className="flex flex-row items-center justify-between py-4">
               <Typography
                 variant={isSelected ? 'title3' : 'body1'}
-                className={isSelected ? 'font-semibold text-primary-orange-800' : 'text-primary-gray-700'}
+                className={isSelected ? 'text-primary-orange-800 font-semibold' : 'text-primary-gray-700'}
                 onClick={() => handleClick(item, index)}
               >
                 {item.year}년 {item.grade}학년 {item.semester}학기 {item.step === 'final' ? '종합성적' : '중간고사'}
               </Typography>
               {isSelected && <SVGIcon.Check color="orange800" size={20} />}
             </div>
-          );
+          )
         })}
       </BottomSheetListSelection>
     </>
-  );
+  )
 }

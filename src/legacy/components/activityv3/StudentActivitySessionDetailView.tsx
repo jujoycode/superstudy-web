@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Viewer from 'react-viewer';
-import { ImageDecorator } from 'react-viewer/lib/ViewerProps';
-import { useRecoilValue } from 'recoil';
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg';
-import { Constants } from 'src/constants';
-import { useSessionCommentCreate } from 'src/generated/endpoint';
-import { ActivitySession, StudentActivitySession } from 'src/generated/model';
-import { meState } from 'src/store';
-import { getFileNameFromUrl, isPdfFile } from 'src/util/file';
-import { BottomFixed, Divider, Section } from '../common';
-import { Button } from '../common/Button';
-import { PdfCard } from '../common/PdfCard';
-import { SearchInput } from '../common/SearchInput';
-import { Time } from '../common/Time';
-import { Icon } from '../common/icons';
-import { SuperSurveyViewComponent } from '../survey/SuperSurveyViewComponent';
-import { SessionCommentItem } from './SessionCommentItem';
+import React, { useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import Viewer from 'react-viewer'
+import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { useRecoilValue } from 'recoil'
+import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg'
+import { Constants } from '@/legacy/constants'
+import { useSessionCommentCreate } from '@/legacy/generated/endpoint'
+import { ActivitySession, StudentActivitySession } from '@/legacy/generated/model'
+import { meState } from '@/stores'
+import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { BottomFixed, Divider, Section } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { PdfCard } from '@/legacy/components/common/PdfCard'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Time } from '@/legacy/components/common/Time'
+import { Icon } from '@/legacy/components/common/icons'
+import { SuperSurveyViewComponent } from '../survey/SuperSurveyViewComponent'
+import { SessionCommentItem } from './SessionCommentItem'
 
 interface StudentActivitySessionDetailViewProps {
-  activitySession: ActivitySession;
-  studentActivitySession?: StudentActivitySession;
-  changeSubmitView?: () => void;
-  isLoading?: boolean;
-  refetch?: () => void;
+  activitySession: ActivitySession
+  studentActivitySession?: StudentActivitySession
+  changeSubmitView?: () => void
+  isLoading?: boolean
+  refetch?: () => void
 }
 
 export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDetailViewProps> = ({
@@ -33,62 +33,62 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
   isLoading = false,
   refetch = () => {},
 }) => {
-  const now = new Date();
-  const me = useRecoilValue(meState);
-  const [text, setText] = useState('');
-  const [hasImagesModalOpen, setImagesModalOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [hasPdfModalOpen, setPdfModalOpen] = useState(false);
-  const [focusPdfFile, setFocusPdfFile] = useState('');
+  const now = new Date()
+  const me = useRecoilValue(meState)
+  const [text, setText] = useState('')
+  const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
+  const [focusPdfFile, setFocusPdfFile] = useState('')
 
   const { mutate: createSessionComment, isLoading: createSessionCommentLoading } = useSessionCommentCreate({
     mutation: {
       onSuccess: () => {
-        refetch();
-        setText('');
+        refetch()
+        setText('')
       },
     },
-  });
+  })
 
-  const images = studentActivity?.images || [];
-  const Pdfs = studentActivity?.images?.filter((image) => isPdfFile(image)) || [];
-  const files = studentActivity?.files || [];
+  const images = studentActivity?.images || []
+  const Pdfs = studentActivity?.images?.filter((image) => isPdfFile(image)) || []
+  const files = studentActivity?.files || []
 
-  const viewerImages: ImageDecorator[] = [];
+  const viewerImages: ImageDecorator[] = []
   for (const image of images) {
     if (isPdfFile(image) == false) {
       viewerImages.push({
         src: `${Constants.imageUrl}${image}`,
-      });
+      })
     }
   }
 
   const createComment = () => {
-    if (!studentActivity) return;
+    if (!studentActivity) return
     createSessionComment({
       params: { sessionId: studentActivity?.id },
       data: { content: text },
-    });
-  };
+    })
+  }
 
-  const isSubmitDate = !activity.startDate || now >= new Date(activity.startDate);
+  const isSubmitDate = !activity.startDate || now >= new Date(activity.startDate)
   const calculateIsSubmitHour = () => {
-    const { submitStartHour, submitStartMinute, submitEndHour, submitEndMinute } = activity;
+    const { submitStartHour, submitStartMinute, submitEndHour, submitEndMinute } = activity
     if (submitStartHour === -1 || submitStartMinute === -1 || submitEndHour === -1 || submitEndMinute === -1) {
-      return true;
+      return true
     }
-    const start = new Date(now);
-    start.setHours(submitStartHour, submitStartMinute, 0, 0);
+    const start = new Date(now)
+    start.setHours(submitStartHour, submitStartMinute, 0, 0)
 
-    const end = new Date(now);
-    end.setHours(submitEndHour, submitEndMinute, 0, 0);
+    const end = new Date(now)
+    end.setHours(submitEndHour, submitEndMinute, 0, 0)
 
-    return now >= start && now < end;
-  };
+    return now >= start && now < end
+  }
 
-  let surveyContent = {};
+  let surveyContent = {}
   try {
-    surveyContent = JSON.parse(studentActivity?.content || '{}');
+    surveyContent = JSON.parse(studentActivity?.content || '{}')
   } catch (err) {}
 
   return (
@@ -106,8 +106,8 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
           <div key={image}>
             <div
               onClick={() => {
-                setActiveIndex(i);
-                setImagesModalOpen(true);
+                setActiveIndex(i)
+                setImagesModalOpen(true)
               }}
               className="w-full"
             >
@@ -132,15 +132,15 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
                       fileUrl={`${Constants.imageUrl}${pdfFile}`}
                       visibleButton
                       onClick={() => {
-                        setFocusPdfFile(`${Constants.imageUrl}${pdfFile}`);
-                        setPdfModalOpen(true);
+                        setFocusPdfFile(`${Constants.imageUrl}${pdfFile}`)
+                        setPdfModalOpen(true)
                       }}
                     ></PdfCard>
                   </div>
                 </div>
               </div>
             </>
-          );
+          )
         })}
         {files?.map((fileUrl: string, index) => (
           <div key={index} className="flex h-8 items-center space-x-2 rounded bg-stone-50 px-3 py-1">
@@ -174,13 +174,13 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
         {(!isSubmitDate || !calculateIsSubmitHour()) && (
           <div>
             {activity.startDate && (
-              <div className="mt-3 text-brandblue-1">
+              <div className="text-brandblue-1 mt-3">
                 활동 시작 시간 : <Time date={activity.startDate} className="text-16 text-inherit" /> (
                 <Time date={activity.startDate} formatDistanceToNow className="text-16 text-inherit" />)
               </div>
             )}
             {activity.submitStartHour !== undefined && (
-              <div className="mt-3 text-brandblue-1">
+              <div className="text-brandblue-1 mt-3">
                 활동 시간대 : {activity.submitStartHour}시 {activity.submitStartMinute}분부터 {activity.submitEndHour}시{' '}
                 {activity.submitEndMinute}분까지
               </div>
@@ -189,7 +189,7 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
         )}
         {studentActivity?.isSubmitted && (
           <div>
-            <div className="mt-3 text-brandblue-1">
+            <div className="text-brandblue-1 mt-3">
               최초 제출 일시 : <Time date={studentActivity.createdAt} className="text-16 text-inherit" /> (
               <Time date={studentActivity.createdAt} formatDistanceToNow className="text-16 text-inherit" />)
             </div>
@@ -212,7 +212,7 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
 
       {/* 1:1 피드백 영역 */}
       <Section className="pb-16">
-        {isLoading && <div className="absolute inset-0 bg-littleblack">로딩 중...</div>}
+        {isLoading && <div className="bg-littleblack absolute inset-0">로딩 중...</div>}
         {studentActivity?.sessionComments
           ?.sort((a, b) => (new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1))
           ?.map((sessionComment) => (
@@ -237,5 +237,5 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
         </div>
       </BottomFixed>
     </>
-  );
-};
+  )
+}

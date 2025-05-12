@@ -1,27 +1,27 @@
-import clsx from 'clsx';
-import { HTMLAttributes } from 'react';
-import { ResponsePaginatedIBDto } from 'src/generated/model';
-import { useSearch } from 'src/lib/router';
-import SVGIcon from '../icon/SVGIcon';
-import { PaginationLink } from './Pagination';
-import { Typography } from './Typography';
+import clsx from 'clsx'
+import { HTMLAttributes } from 'react'
+import { ResponsePaginatedIBDto } from '@/legacy/generated/model'
+import { useSearch } from 'src/lib/router'
+import SVGIcon from '../icon/SVGIcon'
+import { PaginationLink } from './Pagination'
+import { Typography } from './Typography'
 
 export interface PaginationV2Props extends HTMLAttributes<HTMLDivElement> {
-  data?: ResponsePaginatedIBDto;
-  onPageChange: (page: number) => void;
+  data?: ResponsePaginatedIBDto
+  onPageChange: (page: number) => void
 }
 
 export default function PaginationV2({ data, onPageChange, className, ...props }: PaginationV2Props) {
-  const { page } = useSearch({ page: 1 });
-  const currentPage = data?.currentPage || 0;
-  const totalPages = data?.totalPages || 0;
+  const { page } = useSearch({ page: 1 })
+  const currentPage = data?.currentPage || 0
+  const totalPages = data?.totalPages || 0
   // const size = data?.size ?? 100; // 페이지당 항목 수
-  const displayRange = 5; // 현재 페이지 주변에 표시할 페이지 수
-  const startPage = Math.max(1, currentPage - Math.floor(displayRange / 2));
-  const endPage = Math.min(totalPages, startPage + displayRange - 1);
+  const displayRange = 5 // 현재 페이지 주변에 표시할 페이지 수
+  const startPage = Math.max(1, currentPage - Math.floor(displayRange / 2))
+  const endPage = Math.min(totalPages, startPage + displayRange - 1)
 
-  const shouldShowStartEllipsis = startPage > 2;
-  const shouldShowEndEllipsis = endPage < totalPages - 1;
+  const shouldShowStartEllipsis = startPage > 2
+  const shouldShowEndEllipsis = endPage < totalPages - 1
 
   const pages = [
     ...(shouldShowStartEllipsis ? [1, '...'] : Array.from({ length: startPage - 1 }, (_, i) => i + 1)),
@@ -29,7 +29,7 @@ export default function PaginationV2({ data, onPageChange, className, ...props }
     ...(shouldShowEndEllipsis
       ? ['...', totalPages]
       : Array.from({ length: totalPages - endPage }, (_, i) => endPage + 1 + i)),
-  ];
+  ]
 
   return (
     <div className={clsx('pagination', className)} {...props}>
@@ -70,5 +70,5 @@ export default function PaginationV2({ data, onPageChange, className, ...props }
         </div>
       )}
     </div>
-  );
+  )
 }

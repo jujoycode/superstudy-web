@@ -1,27 +1,27 @@
-import clsx from 'clsx';
-import { forwardRef, PropsWithChildren } from 'react';
-import { Controller } from 'react-hook-form';
-import { Input } from 'src/components/common/Input';
-import SelectBar from 'src/components/common/SelectBar';
-import { TextareaV2 } from 'src/components/common/TextareaV2';
-import { Typography } from 'src/components/common/Typography';
-import { ImageNFileUpload } from '../common/ImageNFileUpload';
+import clsx from 'clsx'
+import { forwardRef, PropsWithChildren } from 'react'
+import { Controller } from 'react-hook-form'
+import { Input } from '@/legacy/components/common/Input'
+import SelectBar from '@/legacy/components/common/SelectBar'
+import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import { ImageNFileUpload } from '@/legacy/components/common/ImageNFileUpload'
 
 interface InputFieldProps {
-  label?: string;
-  subLabel?: string;
-  name: string;
-  control: any;
-  placeholder?: string;
-  inputType?: string;
-  dropdownWidth?: string;
-  type?: 'input' | 'select' | 'textarea' | 'files' | 'input_label';
-  options?: { id: number; value: string }[];
-  size?: 40 | 32 | 48;
-  mode?: 'modal' | 'page';
-  className?: string;
-  fixedHeight?: boolean;
-  inputLable?: string;
+  label?: string
+  subLabel?: string
+  name: string
+  control: any
+  placeholder?: string
+  inputType?: string
+  dropdownWidth?: string
+  type?: 'input' | 'select' | 'textarea' | 'files' | 'input_label'
+  options?: { id: number; value: string }[]
+  size?: 40 | 32 | 48
+  mode?: 'modal' | 'page'
+  className?: string
+  fixedHeight?: boolean
+  inputLable?: string
   titleVariant?:
     | 'heading'
     | 'title1'
@@ -32,10 +32,10 @@ interface InputFieldProps {
     | 'body3'
     | 'caption'
     | 'caption2'
-    | 'caption3';
-  titleClassName?: string;
-  readOnly?: boolean;
-  required?: boolean;
+    | 'caption3'
+  titleClassName?: string
+  readOnly?: boolean
+  required?: boolean
 }
 
 export const InputField = forwardRef<HTMLDivElement, PropsWithChildren<InputFieldProps>>(
@@ -79,7 +79,7 @@ export const InputField = forwardRef<HTMLDivElement, PropsWithChildren<InputFiel
               </Typography>
             )}
             {subLabel && (
-              <Typography variant={titleVariant} className="font-semibold text-primary-orange-800">
+              <Typography variant={titleVariant} className="text-primary-orange-800 font-semibold">
                 {subLabel}
               </Typography>
             )}
@@ -127,6 +127,6 @@ export const InputField = forwardRef<HTMLDivElement, PropsWithChildren<InputFiel
           }
         />
       </section>
-    );
+    )
   },
-);
+)

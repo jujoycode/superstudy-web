@@ -1,27 +1,27 @@
-import clsx from 'clsx';
-import { useEffect, useMemo, useState } from 'react';
-import { useQueryClient } from 'react-query';
-import SvgUser from 'src/assets/svg/user.svg';
-import { Select } from 'src/components/common';
-import { Constants } from 'src/constants';
-import { useCodeByCategoryName } from 'src/container/category';
-import { useTeacherStudentUpdate } from 'src/container/teacher-student-update';
-import { useTeacherStudentCard } from 'src/container/teacher-studentcard';
-import { Category, Code, ResponseParentUserDto } from 'src/generated/model';
-import { Validator } from 'src/util/validator';
-import { TextInput } from '../common/TextInput';
+import clsx from 'clsx'
+import { useEffect, useMemo, useState } from 'react'
+import { useQueryClient } from 'react-query'
+import SvgUser from 'src/assets/svg/user.svg'
+import { Select } from '@/legacy/components/common'
+import { Constants } from '@/legacy/constants'
+import { useCodeByCategoryName } from '@/legacy/container/category'
+import { useTeacherStudentUpdate } from '@/legacy/container/teacher-student-update'
+import { useTeacherStudentCard } from '@/legacy/container/teacher-studentcard'
+import { Category, Code, ResponseParentUserDto } from '@/legacy/generated/model'
+import { Validator } from '@/legacy/util/validator'
+import { TextInput } from '@/legacy/components/common/TextInput'
 
 interface StudentInfoCardProps {
-  id: number;
+  id: number
 }
 
 export function StudentInfoCard({ id }: StudentInfoCardProps) {
-  const queryClient = useQueryClient();
-  const [studentStatesKey, setStudentStatesKey] = useState(0);
+  const queryClient = useQueryClient()
+  const [studentStatesKey, setStudentStatesKey] = useState(0)
 
-  const { studentInfo: info } = useTeacherStudentCard(id);
+  const { studentInfo: info } = useTeacherStudentCard(id)
 
-  const { categoryData: studentStates } = useCodeByCategoryName(Category.studentstatus);
+  const { categoryData: studentStates } = useCodeByCategoryName(Category.studentstatus)
 
   const {
     isEditMode,
@@ -50,49 +50,49 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
     sendParentSignUpV2Mutate,
     handleChangeImage,
     toggleImageDelete,
-  } = useTeacherStudentUpdate();
+  } = useTeacherStudentUpdate()
 
   const studentInfo = useMemo(() => {
-    setStudentInfo(info?.student);
-    return info?.student;
-  }, [info]);
-  const parentInfo = useMemo(() => info?.parents, [info]);
+    setStudentInfo(info?.student)
+    return info?.student
+  }, [info])
+  const parentInfo = useMemo(() => info?.parents, [info])
 
   useEffect(() => {
     if (expiredReason && studentStates) {
-      const selItem = studentStates?.filter((item: Code) => item.name === expiredReason);
+      const selItem = studentStates?.filter((item: Code) => item.name === expiredReason)
       if (selItem) {
-        setStudentStatesKey(selItem[0].key);
+        setStudentStatesKey(selItem[0].key)
       }
     }
-  }, [expiredReason, studentStates]);
+  }, [expiredReason, studentStates])
 
   const checkParentJoin = () => {
-    let rst = false;
+    let rst = false
 
     if (nokPhone) {
       parentInfo?.map((item: ResponseParentUserDto) => {
         if (nokPhone === item.phone) {
-          rst = true;
+          rst = true
         }
-      });
+      })
     } else {
-      rst = true;
+      rst = true
     }
-    return rst;
-  };
+    return rst
+  }
 
   const klassName = studentInfo?.klassGroupName
     ? studentInfo?.klassGroupName + ' ' + studentInfo?.studentNumber.toString() + '번'
-    : '';
+    : ''
 
-  const studMyRole = studentInfo?.studentRole;
+  const studMyRole = studentInfo?.studentRole
 
   const setStudExpiredObj = (exp: Code) => {
-    console.log(exp);
-    setExpired(exp.etc1 === 'true' ? true : false);
-    setExpiredReason(exp.name);
-  };
+    console.log(exp)
+    setExpired(exp.etc1 === 'true' ? true : false)
+    setExpiredReason(exp.name)
+  }
 
   return (
     <div className="mb-5">
@@ -114,11 +114,11 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
               {isEditMode ? (
                 <>
                   {profile && (
-                    <span className="absolute right-3 top-3 z-40 block h-6 w-6 rounded-full bg-red-700 ring-2 ring-white">
+                    <span className="absolute top-3 right-3 z-40 block h-6 w-6 rounded-full bg-red-700 ring-2 ring-white">
                       <div
                         className="flex h-full w-full cursor-pointer items-center justify-center text-white"
                         onClick={() => {
-                          toggleImageDelete();
+                          toggleImageDelete()
                         }}
                         style={{ transform: 'translate(0.1px, 0.1px)' }}
                       >
@@ -127,21 +127,21 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                     </span>
                   )}
                   <label htmlFor="imageupload">
-                    <div className="  ">
-                      <div className=" h-full w-full rounded bg-white object-cover">
+                    <div className=" ">
+                      <div className="h-full w-full rounded bg-white object-cover">
                         <div className="flex h-full w-full cursor-pointer flex-col items-center justify-center">
                           <img
                             src={`${Constants.imageUrl}${profile}`}
                             alt=""
                             loading="lazy"
                             onError={({ currentTarget }) => {
-                              currentTarget.onerror = null; // prevents looping
-                              currentTarget.src = SvgUser;
-                              currentTarget.className = 'w-full';
+                              currentTarget.onerror = null // prevents looping
+                              currentTarget.src = SvgUser
+                              currentTarget.className = 'w-full'
                             }}
                           />
                           {!profile && (
-                            <div className=" h-full w-full text-center text-brand-1">학생사진을 선택해주세요.</div>
+                            <div className="text-brand-1 h-full w-full text-center">학생사진을 선택해주세요.</div>
                           )}
                         </div>
                       </div>
@@ -161,9 +161,9 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   alt=""
                   loading="lazy"
                   onError={({ currentTarget }) => {
-                    currentTarget.onerror = null; // prevents looping
-                    currentTarget.src = SvgUser;
-                    currentTarget.className = 'w-full';
+                    currentTarget.onerror = null // prevents looping
+                    currentTarget.src = SvgUser
+                    currentTarget.className = 'w-full'
                   }}
                 />
               )}
@@ -185,7 +185,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   placeholder="전화번호 입력"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="h-5 w-48 border-brand-1"
+                  className="border-brand-1 h-5 w-48"
                 />
               ) : (
                 phone
@@ -200,7 +200,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   type="date"
                   value={birthDate}
                   onChange={(e) => setBirthDate(e.target.value)}
-                  className="h-5 w-48 border-brand-1"
+                  className="border-brand-1 h-5 w-48"
                 />
               ) : (
                 birthDate
@@ -215,7 +215,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   placeholder="바코드 입력"
                   value={barcode}
                   onChange={(e) => setBarcode(e.target.value)}
-                  className="h-5 w-48 border-brand-1"
+                  className="border-brand-1 h-5 w-48"
                 />
               ) : (
                 barcode
@@ -260,10 +260,10 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   placeholder="학적 선택"
                   value={studentStatesKey}
                   onChange={(e) => {
-                    const selItem = studentStates?.filter((item: Code) => item.key === Number(e.target.value));
-                    selItem && setStudExpiredObj(selItem[0]);
+                    const selItem = studentStates?.filter((item: Code) => item.key === Number(e.target.value))
+                    selItem && setStudExpiredObj(selItem[0])
                   }}
-                  className="h-6 w-48 border-brand-1 py-0"
+                  className="border-brand-1 h-6 w-48 py-0"
                 >
                   {studentStates?.map((item: Code) => (
                     <option key={item.key} value={item.key} className={clsx(item?.etc1 === 'true' && 'text-red-500')}>
@@ -272,12 +272,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   ))}
                 </Select.lg>
               ) : (
-                <div
-                  className={` ${expired && 'text-red-500'}            
-              `}
-                >
-                  {expiredReason}
-                </div>
+                <div className={` ${expired && 'text-red-500'} `}>{expiredReason}</div>
               )}
             </td>
           </tr>
@@ -291,10 +286,10 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   onChange={(e) => setNokName(e.target.value)}
                   onKeyDown={(e) => {
                     if (Validator.onlyEngAndHan(e.key) === false) {
-                      e.preventDefault();
+                      e.preventDefault()
                     }
                   }}
-                  className="h-5 w-48 border-brand-1"
+                  className="border-brand-1 h-5 w-48"
                 />
               ) : (
                 nokName
@@ -309,7 +304,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   placeholder="전화번호 입력"
                   value={nokPhone}
                   onChange={(e) => setNokPhone(e.target.value)}
-                  className="h-5 w-48 border-brand-1"
+                  className="border-brand-1 h-5 w-48"
                 />
               ) : (
                 <div className="flex">
@@ -322,12 +317,12 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                           sendParentSignUpV2Mutate({
                             studentId: Number(studentInfo?.id),
                             data: { name: nokName, phone: nokPhone },
-                          });
+                          })
                         } else {
-                          alert('보호자 정보를 확인해 주세요.');
+                          alert('보호자 정보를 확인해 주세요.')
                         }
                       }}
-                      className="rounded-md bg-light_orange px-2 text-sm text-brand-1 hover:bg-brand-1 hover:text-light_orange focus:outline-none"
+                      className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 text-sm focus:outline-none"
                     />
                   )}
                 </div>
@@ -340,36 +335,36 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
             <>
               <button
                 children="취소"
-                className="rounded-md bg-light_orange px-2 py-1 text-sm text-brand-1 hover:bg-red-500 hover:text-light_orange focus:outline-none"
+                className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-none"
                 onClick={() => {
-                  queryClient.refetchQueries({ active: true });
-                  setIsEditMode(false);
+                  queryClient.refetchQueries({ active: true })
+                  setIsEditMode(false)
                 }}
               />
             </>
           )}
           <button
             children={isEditMode ? '저장하기' : '수정하기'}
-            className="rounded-md bg-light_orange px-2 py-1 text-sm text-brand-1 hover:bg-brand-1 hover:text-light_orange focus:outline-none"
+            className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-none"
             onClick={() => {
               if (isEditMode) {
                 if (phone && !Validator.phoneNumberRule(phone)) {
-                  alert('학생 전화번호를 확인해 주세요.');
-                  return;
+                  alert('학생 전화번호를 확인해 주세요.')
+                  return
                 }
 
                 if (nokPhone && !Validator.phoneNumberRule(nokPhone)) {
-                  alert('보호자 전화번호를 확인해 주세요.');
-                  return;
+                  alert('보호자 전화번호를 확인해 주세요.')
+                  return
                 }
 
-                updateStudent();
+                updateStudent()
               }
-              setIsEditMode(true);
+              setIsEditMode(true)
             }}
           />
         </div>
       </div>
     </div>
-  );
+  )
 }

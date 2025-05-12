@@ -1,0 +1,35 @@
+{
+  "point_dashboard": {
+    "title": "상벌점관리",
+    "assign_points": "상벌점 부여",
+    "total_merits": "총 상점",
+    "total_demerits": "총 벌점",
+    "average": "평균 점수",
+    "top_merit_scorers": "상점 다득점",
+    "top_demerit_receivers": "벌점 다득점",
+    "student_points_overview": "학생점수현황",
+    "student_name": "이름",
+    "student_merits": "상점",
+    "student_demerits": "벌점",
+    "student_total": "총합",
+    "recent_logs": "최근 기록",
+    "download_excel": "엑셀 다운로드",
+    "point_log_created_at": "날짜",
+    "point_log_assigner": "부여자",
+    "point_log_assignee": "학생",
+    "point_log_title": "항목",
+    "point_log_value": "점수",
+    "no_items_found": "항목이 없습니다"
+  },
+  "pointlogs_page": {
+    "assign_points": "상벌점 부여",
+    "merits": "상점",
+    "demerits": "벌점",
+    "total": "총합",
+    "point_log_created_at": "날짜",
+    "point_log_assigner": "부여자",
+    "point_log_title": "항목",
+    "point_log_value": "점수",
+    "no_items_found": "항목이 없습니다"
+  }
+}

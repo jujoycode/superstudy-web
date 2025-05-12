@@ -1,11 +1,11 @@
-import { Time } from '../common/Time';
+import { Time } from '@/legacy/components/common/Time'
 
 interface SmsCardProps {
-  receiverName: string;
-  sendAt: string;
-  content: string;
-  result: boolean;
-  retryCount: number;
+  receiverName: string
+  sendAt: string
+  content: string
+  result: boolean
+  retryCount: number
 }
 
 export function SmsCard({ receiverName, sendAt, content, result, retryCount }: SmsCardProps) {
@@ -28,5 +28,5 @@ export function SmsCard({ receiverName, sendAt, content, result, retryCount }: S
         </div>
       </div>
     </div>
-  );
+  )
 }

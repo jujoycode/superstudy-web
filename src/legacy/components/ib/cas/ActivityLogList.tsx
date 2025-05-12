@@ -1,46 +1,46 @@
-import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import NODATA from 'src/assets/images/no-data.png';
-import AlertV2 from 'src/components/common/AlertV2';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { IBBlank } from 'src/components/common/IBBlank';
-import { Typography } from 'src/components/common/Typography';
-import ColorSVGIcon from 'src/components/icon/ColorSVGIcon';
-import { useActivityLogGetAll } from 'src/container/ib-cas';
-import { useGetFeedbackBatchExist } from 'src/container/ib-feedback';
-import { FeedbackReferenceTable, ResponseIBDtoStatus } from 'src/generated/model';
-import FeedbackViewer from '../FeedbackViewer';
-import { IBPagination } from '../ProjectList';
-import { IbActivityLog } from './IbActivityLog';
+import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
+import NODATA from 'src/assets/images/no-data.png'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
+import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
+import { useActivityLogGetAll } from '@/legacy/container/ib-cas'
+import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
+import { FeedbackReferenceTable, ResponseIBDtoStatus } from '@/legacy/generated/model'
+import FeedbackViewer from '../FeedbackViewer'
+import { IBPagination } from '../ProjectList'
+import { IbActivityLog } from './IbActivityLog'
 
-const itemsPerPage = 10;
+const itemsPerPage = 10
 
 interface ActivityLogListProps {
-  id: number;
-  status: ResponseIBDtoStatus;
-  writerId?: number;
+  id: number
+  status: ResponseIBDtoStatus
+  writerId?: number
 }
 
 interface LocationState {
-  page: number;
+  page: number
 }
 
 export default function ActivityLogList({ id, status, writerId }: ActivityLogListProps) {
-  const { push } = useHistory();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [alertOpen, setAlertOpen] = useState<boolean>(false);
-  const location = useLocation<LocationState>();
-  const page = location.state?.page;
-  const [currentPage, setCurrentPage] = useState(page || 1);
-  const { data, isLoading, refetch } = useActivityLogGetAll(id, { page: currentPage, limit: 10, writerId: writerId });
-  const logIds = data?.items.map((log) => log.id).join(',');
-  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false);
+  const { push } = useHistory()
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [alertOpen, setAlertOpen] = useState<boolean>(false)
+  const location = useLocation<LocationState>()
+  const page = location.state?.page
+  const [currentPage, setCurrentPage] = useState(page || 1)
+  const { data, isLoading, refetch } = useActivityLogGetAll(id, { page: currentPage, limit: 10, writerId: writerId })
+  const logIds = data?.items.map((log) => log.id).join(',')
+  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false)
   const [feedbackReference, setFeedbackReference] = useState<{
-    referenceId: number;
-    referenceTable: FeedbackReferenceTable;
-  }>();
-  const [localUnreadCounts, setLocalUnreadCounts] = useState<Record<string, number>>({});
+    referenceId: number
+    referenceTable: FeedbackReferenceTable
+  }>()
+  const [localUnreadCounts, setLocalUnreadCounts] = useState<Record<string, number>>({})
 
   const { data: feedbacks, isLoading: isFeedbackFetching } = useGetFeedbackBatchExist(
     logIds
@@ -50,40 +50,40 @@ export default function ActivityLogList({ id, status, writerId }: ActivityLogLis
         }
       : { referenceIds: '', referenceTable: 'ACTIVITY_LOG' },
     { enabled: !!logIds },
-  );
+  )
 
   useEffect(() => {
-    const initialCounts: Record<string, number> = {};
+    const initialCounts: Record<string, number> = {}
     if (feedbacks?.items) {
       feedbacks.items.forEach((item) => {
-        initialCounts[`ACTIVITY_LOG-${item.referenceId}`] = item.unreadCount || 0;
-      });
+        initialCounts[`ACTIVITY_LOG-${item.referenceId}`] = item.unreadCount || 0
+      })
     }
-    setLocalUnreadCounts(initialCounts);
-  }, [feedbacks]);
+    setLocalUnreadCounts(initialCounts)
+  }, [feedbacks])
 
   const markAsRead = (referenceId: number) => {
-    const key = `ACTIVITY_LOG-${referenceId}`;
+    const key = `ACTIVITY_LOG-${referenceId}`
     setLocalUnreadCounts((prevCounts) => ({
       ...prevCounts,
       [key]: 0,
-    }));
-  };
+    }))
+  }
 
   const handleFeedbackOpen = (referenceId: number, referenceTable: FeedbackReferenceTable, unreadCount: number) => {
-    setFeedbackReference({ referenceId, referenceTable });
-    setFeedbackOpen(true);
+    setFeedbackReference({ referenceId, referenceTable })
+    setFeedbackOpen(true)
 
     if (unreadCount > 0) {
-      markAsRead(referenceId);
+      markAsRead(referenceId)
     }
-  };
+  }
 
   const handleSuccess = () => {
-    setIsOpen(!isOpen);
-    refetch();
-    setAlertOpen(!alertOpen);
-  };
+    setIsOpen(!isOpen)
+    refetch()
+    setAlertOpen(!alertOpen)
+  }
 
   return (
     <section className="relative flex min-h-[664px] flex-col rounded-xl bg-white">
@@ -117,13 +117,13 @@ export default function ActivityLogList({ id, status, writerId }: ActivityLogLis
               </div>
             ) : (
               <table className="w-full">
-                <thead className="border-y border-y-primary-gray-100 text-[15px] font-medium text-primary-gray-500">
+                <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
                   <tr>
-                    <td className="w-[100px] py-[9px] pl-6 pr-2 text-center">번호</td>
+                    <td className="w-[100px] py-[9px] pr-2 pl-6 text-center">번호</td>
                     <td className="w-[540px] px-2 py-[9px] text-center">제목</td>
                     <td className="w-[216px] px-2 py-[9px] text-center">작성자</td>
                     <td className="w-[216px] px-2 py-[9px] text-center">수정일</td>
-                    <td className="w-[208px] py-[9px] pl-2 pr-6 text-center">피드백</td>
+                    <td className="w-[208px] py-[9px] pr-6 pl-2 text-center">피드백</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -131,11 +131,11 @@ export default function ActivityLogList({ id, status, writerId }: ActivityLogLis
                     ?.slice()
                     .reverse()
                     .map((activityLog, index) => {
-                      const feedback = feedbacks?.items?.find((item) => item.referenceId === activityLog.id);
-                      const itemNumber = data.total - (currentPage - 1) * itemsPerPage - index;
+                      const feedback = feedbacks?.items?.find((item) => item.referenceId === activityLog.id)
+                      const itemNumber = data.total - (currentPage - 1) * itemsPerPage - index
                       return (
-                        <tr key={activityLog.id} className="border-b border-b-primary-gray-100">
-                          <td className="py-4 pl-6 pr-2 text-center">{itemNumber}</td>
+                        <tr key={activityLog.id} className="border-b-primary-gray-100 border-b">
+                          <td className="py-4 pr-2 pl-6 text-center">{itemNumber}</td>
                           <td
                             className="cursor-pointer px-2 py-4 text-start"
                             onClick={() =>
@@ -148,7 +148,7 @@ export default function ActivityLogList({ id, status, writerId }: ActivityLogLis
                           <td className="px-2 py-4 text-center">
                             {format(new Date(activityLog.updatedAt), 'yyyy.MM.dd')}
                           </td>
-                          <td className="flex justify-center py-4 pl-2 pr-6">
+                          <td className="flex justify-center py-4 pr-6 pl-2">
                             {feedback ? (
                               feedback.totalCount === 0 ? (
                                 <>-</>
@@ -188,7 +188,7 @@ export default function ActivityLogList({ id, status, writerId }: ActivityLogLis
                             )}
                           </td>
                         </tr>
-                      );
+                      )
                     })}
                 </tbody>
               </table>
@@ -227,5 +227,5 @@ export default function ActivityLogList({ id, status, writerId }: ActivityLogLis
         <AlertV2 message={`활동일지가\n저장되었습니다`} confirmText="확인" onConfirm={() => setAlertOpen(!alertOpen)} />
       )}
     </section>
-  );
+  )
 }

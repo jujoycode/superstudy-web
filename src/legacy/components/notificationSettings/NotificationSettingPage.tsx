@@ -1,25 +1,25 @@
-import clsx from 'clsx';
-import { format } from 'date-fns';
-import { range } from 'lodash';
-import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { notificationSettingsUpdate, useNotificationSettingsGetMine } from 'src/generated/endpoint';
-import { Role } from 'src/generated/model';
-import { meState } from 'src/store';
-import { convertTimeToKorean } from 'src/util/time';
-import { Divider, Select } from '../common';
-import { Checkbox } from '../common/Checkbox';
-import { ToggleSwitch } from '../common/ToggleSwitch';
+import clsx from 'clsx'
+import { format } from 'date-fns'
+import { range } from 'lodash'
+import { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import { notificationSettingsUpdate, useNotificationSettingsGetMine } from '@/legacy/generated/endpoint'
+import { Role } from '@/legacy/generated/model'
+import { meState } from '@/stores'
+import { convertTimeToKorean } from '@/legacy/util/time'
+import { Divider, Select } from '@/legacy/components/common'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { ToggleSwitch } from '@/legacy/components/common/ToggleSwitch'
 
-const daysOfWeekString = ['일', '월', '화', '수', '목', '금', '토'];
+const daysOfWeekString = ['일', '월', '화', '수', '목', '금', '토']
 
 export function NotificationSettingPage() {
-  const me = useRecoilValue(meState);
+  const me = useRecoilValue(meState)
 
-  const [disturbTime, setDisturbTime] = useState(false);
-  const { data: notificationSetting, refetch } = useNotificationSettingsGetMine();
+  const [disturbTime, setDisturbTime] = useState(false)
+  const { data: notificationSetting, refetch } = useNotificationSettingsGetMine()
 
-  const [allowDays, setAllowDays] = useState<string | undefined>();
+  const [allowDays, setAllowDays] = useState<string | undefined>()
 
   useEffect(() => {
     if (
@@ -27,30 +27,30 @@ export function NotificationSettingPage() {
       notificationSetting?.timeFrom === '00:00:00' &&
       notificationSetting?.timeTo === '00:00:00'
     ) {
-      setDisturbTime(false);
+      setDisturbTime(false)
     } else {
-      setDisturbTime(true);
+      setDisturbTime(true)
 
       const falseDays = notificationSetting?.daysOfWeek.reduce((acc: string[], currentValue, index) => {
         if (!currentValue) {
-          acc.push(daysOfWeekString[index]);
+          acc.push(daysOfWeekString[index])
         }
-        return acc;
-      }, []);
+        return acc
+      }, [])
 
-      setAllowDays(falseDays?.join(','));
+      setAllowDays(falseDays?.join(','))
     }
-  }, [notificationSetting]);
+  }, [notificationSetting])
 
-  if (!notificationSetting) return null;
+  if (!notificationSetting) return null
   return (
     <>
       <div className="mb-20">
-        <h3 className="mb-2 mt-2 px-4 text-13 font-medium text-gray-400"> 푸시 알림 메시지 수신 여부를 설정합니다.</h3>
+        <h3 className="text-13 mt-2 mb-2 px-4 font-medium text-gray-400"> 푸시 알림 메시지 수신 여부를 설정합니다.</h3>
         <label className="flex items-center justify-between px-4 py-3 active:bg-gray-50">
           <div className="flex flex-col">
             <span className="text-lg font-bold text-gray-800">결재알림</span>
-            <span className="text-sm text-grey-5">출결, 확인증, 체험학습</span>
+            <span className="text-grey-5 text-sm">출결, 확인증, 체험학습</span>
           </div>
           <ToggleSwitch
             checked={notificationSetting.notifyApprovals}
@@ -62,7 +62,7 @@ export function NotificationSettingPage() {
           <label className="flex items-center justify-between px-4 py-3 active:bg-gray-50">
             <div className="flex flex-col">
               <span className="text-lg font-bold text-gray-800">출결상태</span>
-              <span className="text-sm text-grey-5">출석, 결석</span>
+              <span className="text-grey-5 text-sm">출석, 결석</span>
             </div>
             <ToggleSwitch
               checked={notificationSetting.notifyAttendances}
@@ -75,7 +75,7 @@ export function NotificationSettingPage() {
         <label className="flex items-center justify-between px-4 py-3 active:bg-gray-50">
           <div className="flex flex-col">
             <span className="text-lg font-bold text-gray-800">신규게시물</span>
-            <span className="text-sm text-grey-5">학급, 공지, 가정통신문</span>
+            <span className="text-grey-5 text-sm">학급, 공지, 가정통신문</span>
           </div>
           <ToggleSwitch
             checked={notificationSetting.notifyPosts}
@@ -85,7 +85,7 @@ export function NotificationSettingPage() {
         <label className="flex items-center justify-between px-4 py-3 active:bg-gray-50">
           <div className="flex flex-col">
             <span className="text-lg font-bold text-gray-800">채팅</span>
-            <span className="text-sm text-grey-5">메시지</span>
+            <span className="text-grey-5 text-sm">메시지</span>
           </div>
           <ToggleSwitch
             checked={notificationSetting.notifyChats}
@@ -98,7 +98,7 @@ export function NotificationSettingPage() {
         <label className="flex items-center justify-between px-4 py-3 active:bg-gray-50">
           <div className="flex flex-col">
             <span className="text-lg font-bold text-gray-800">방해금지 시간대</span>
-            <span className="text-sm text-grey-5">알림을 받지 않을 시간 설정</span>
+            <span className="text-grey-5 text-sm">알림을 받지 않을 시간 설정</span>
           </div>
           <ToggleSwitch
             checked={disturbTime}
@@ -108,25 +108,25 @@ export function NotificationSettingPage() {
                   timeFrom: '00:00:00',
                   timeTo: '00:00:00',
                   daysOfWeek: [false, false, false, false, false, false, false],
-                });
+                })
               } else {
                 notificationSettingsUpdate(notificationSetting.id, {
                   timeFrom: '18:00:00',
                   timeTo: '08:00:00',
                   daysOfWeek: [true, false, false, false, false, false, true],
-                });
+                })
               }
 
-              setDisturbTime(!disturbTime);
+              setDisturbTime(!disturbTime)
             }}
           />
         </label>
         {disturbTime && (
           <div className="mx-4 rounded-lg bg-gray-100 p-4">
-            <div className="mb-2 mt-2 px-4 text-sm text-grey-5">방해금지 요일</div>
+            <div className="text-grey-5 mt-2 mb-2 px-4 text-sm">방해금지 요일</div>
             <div className="flex justify-between px-4 py-2">
               {range(0, 7).map((day) => {
-                const checked = notificationSetting.daysOfWeek[day];
+                const checked = notificationSetting.daysOfWeek[day]
                 return (
                   <label
                     key={day}
@@ -142,16 +142,16 @@ export function NotificationSettingPage() {
                       className="sr-only"
                       checked={checked}
                       onChange={(e) => {
-                        const daysOfWeek = [...notificationSetting.daysOfWeek];
-                        daysOfWeek[day] = e.target.checked;
-                        notificationSettingsUpdate(notificationSetting.id, { daysOfWeek });
+                        const daysOfWeek = [...notificationSetting.daysOfWeek]
+                        daysOfWeek[day] = e.target.checked
+                        notificationSettingsUpdate(notificationSetting.id, { daysOfWeek })
                       }}
                     />
                   </label>
-                );
+                )
               })}
             </div>
-            <div className="mb-2 mt-2 px-4 text-sm text-grey-5">방해금지 시간</div>
+            <div className="text-grey-5 mt-2 mb-2 px-4 text-sm">방해금지 시간</div>
             <div className="flex items-center gap-4 px-4">
               <Select
                 value={notificationSetting.timeFrom}
@@ -159,12 +159,12 @@ export function NotificationSettingPage() {
                 className="flex-1"
               >
                 {range(0, 30 * 48, 30).map((minutes) => {
-                  const date = new Date(0, 0, 0, 0, minutes, 0);
+                  const date = new Date(0, 0, 0, 0, minutes, 0)
                   return (
                     <option key={minutes} value={format(date, 'HH:mm:ss')}>
                       {format(date, 'HH:mm')}
                     </option>
-                  );
+                  )
                 })}
               </Select>
               <span>~</span>
@@ -174,21 +174,21 @@ export function NotificationSettingPage() {
                 className="flex-1"
               >
                 {range(30, 30 * 49, 30).map((minutes) => {
-                  const date = new Date(0, 0, 0, 0, minutes, 0);
+                  const date = new Date(0, 0, 0, 0, minutes, 0)
                   return (
                     //<option key={minutes} value={minutes === 1440 ? '24:00:00' : format(date, 'HH:mm:ss')}>
                     <option key={minutes} value={format(date, 'HH:mm:ss')}>
                       {format(date, 'HH:mm')}
                     </option>
-                  );
+                  )
                 })}
               </Select>
             </div>
 
             {allowDays?.length === 0 ? (
-              <div className="mb-2 mt-2 px-4 text-sm text-red-400">알림을 받지 않습니다.</div>
+              <div className="mt-2 mb-2 px-4 text-sm text-red-400">알림을 받지 않습니다.</div>
             ) : (
-              <div className="mb-2 mt-2 px-4 text-sm text-red-400">
+              <div className="mt-2 mb-2 px-4 text-sm text-red-400">
                 {'* ' + allowDays + '요일'}
                 <br />
                 {' ' +
@@ -202,5 +202,5 @@ export function NotificationSettingPage() {
         )}
       </div>
     </>
-  );
+  )
 }

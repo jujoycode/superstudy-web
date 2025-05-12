@@ -1,70 +1,70 @@
-import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import NODATA from 'src/assets/images/no-data.png';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import ColorSVGIcon from 'src/components/icon/ColorSVGIcon';
-import { useGetFeedbackBatchExist } from 'src/container/ib-feedback';
-import { useRRSGetByIBIdFindAll } from 'src/container/ib-rrs-findAll';
-import { FeedbackReferenceTable, ResponseIBDto } from 'src/generated/model';
+import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import NODATA from 'src/assets/images/no-data.png'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
+import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
+import { useRRSGetByIBIdFindAll } from '@/legacy/container/ib-rrs-findAll'
+import { FeedbackReferenceTable, ResponseIBDto } from '@/legacy/generated/model'
 
-import { Typography } from 'src/components/common/Typography';
-import { LocationState } from 'src/type/ib';
-import FeedbackViewer from '../../FeedbackViewer';
-import { IBPagination } from '../../ProjectList';
+import { Typography } from '@/legacy/components/common/Typography'
+import { LocationState } from '@/legacy/types/ib'
+import FeedbackViewer from '../../FeedbackViewer'
+import { IBPagination } from '../../ProjectList'
 
 interface RRSListProps {
-  title?: string;
-  data: ResponseIBDto;
-  studentData?: LocationState['student'];
-  refetch: () => void;
+  title?: string
+  data: ResponseIBDto
+  studentData?: LocationState['student']
+  refetch: () => void
 }
 
 export default function RRSList({ title, data: ibData, studentData, refetch }: RRSListProps) {
-  const id = ibData.id;
-  const [currentPage, setCurrentPage] = useState(1);
-  const { data, isLoading } = useRRSGetByIBIdFindAll(id, { page: currentPage });
-  const { push } = useHistory();
+  const id = ibData.id
+  const [currentPage, setCurrentPage] = useState(1)
+  const { data, isLoading } = useRRSGetByIBIdFindAll(id, { page: currentPage })
+  const { push } = useHistory()
 
-  const rrsIds = data?.total ? data?.items.map((rrs) => rrs.id).join(',') : null;
-  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false);
+  const rrsIds = data?.total ? data?.items.map((rrs) => rrs.id).join(',') : null
+  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false)
   const [feedbackReference, setFeedbackReference] = useState<{
-    referenceId: number;
-    referenceTable: FeedbackReferenceTable;
-  }>();
-  const [localUnreadCounts, setLocalUnreadCounts] = useState<Record<string, number>>({});
+    referenceId: number
+    referenceTable: FeedbackReferenceTable
+  }>()
+  const [localUnreadCounts, setLocalUnreadCounts] = useState<Record<string, number>>({})
 
   const { data: feedbacks } = useGetFeedbackBatchExist(
     rrsIds ? { referenceIds: rrsIds, referenceTable: 'RRS' } : { referenceIds: '', referenceTable: 'RRS' },
     { enabled: !!rrsIds },
-  );
+  )
 
   useEffect(() => {
-    const initialCounts: Record<string, number> = {};
+    const initialCounts: Record<string, number> = {}
     if (feedbacks?.items) {
       feedbacks.items.forEach((item) => {
-        initialCounts[`RRS-${item.referenceId}`] = item.unreadCount || 0;
-      });
+        initialCounts[`RRS-${item.referenceId}`] = item.unreadCount || 0
+      })
     }
-    setLocalUnreadCounts(initialCounts);
-  }, [feedbacks]);
+    setLocalUnreadCounts(initialCounts)
+  }, [feedbacks])
 
   const markAsRead = (referenceId: number) => {
-    const key = `RRS-${referenceId}`;
+    const key = `RRS-${referenceId}`
     setLocalUnreadCounts((prevCounts) => ({
       ...prevCounts,
       [key]: 0,
-    }));
-  };
+    }))
+  }
 
   const handleFeedbackOpen = (referenceId: number, referenceTable: FeedbackReferenceTable, unreadCount: number) => {
-    setFeedbackReference({ referenceId, referenceTable });
-    setFeedbackOpen(true);
+    setFeedbackReference({ referenceId, referenceTable })
+    setFeedbackOpen(true)
 
     if (unreadCount > 0) {
-      markAsRead(referenceId);
+      markAsRead(referenceId)
     }
-  };
+  }
 
   return (
     <section className="flex h-[664px] flex-col">
@@ -81,15 +81,15 @@ export default function RRSList({ title, data: ibData, studentData, refetch }: R
             </div>
             <span className="flex flex-col items-center">
               {ibData?.status === 'WAIT_COMPLETE' || ibData?.status === 'COMPLETE' ? (
-                <Typography variant="body2" className="font-medium text-primary-gray-900">
+                <Typography variant="body2" className="text-primary-gray-900 font-medium">
                   작성된 RRS가 없습니다.
                 </Typography>
               ) : (
                 <>
-                  <Typography variant="body2" className="font-medium text-primary-gray-900">
+                  <Typography variant="body2" className="text-primary-gray-900 font-medium">
                     학생이 RRS를 작성해야
                   </Typography>
-                  <Typography variant="body2" className="font-medium text-primary-gray-900">
+                  <Typography variant="body2" className="text-primary-gray-900 font-medium">
                     확인할 수 있습니다.
                   </Typography>
                 </>
@@ -98,24 +98,24 @@ export default function RRSList({ title, data: ibData, studentData, refetch }: R
           </div>
         ) : (
           <table className="w-full">
-            <thead className="border-y border-y-primary-gray-100 text-[15px] text-primary-gray-500 ">
+            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px]">
               <tr>
-                <th className="w-[100px] py-[9px] pl-6 pr-2 text-center font-medium">번호</th>
+                <th className="w-[100px] py-[9px] pr-2 pl-6 text-center font-medium">번호</th>
                 <th className="w-[756px] px-2 py-[9px] text-center font-medium">제목</th>
                 <th className="w-[216px] px-2 py-[9px] text-center font-medium">수정일</th>
-                <th className="w-[208px] py-[9px] pl-2 pr-6 text-center font-medium">피드백</th>
+                <th className="w-[208px] py-[9px] pr-6 pl-2 text-center font-medium">피드백</th>
               </tr>
             </thead>
-            <tbody className="text-[15px] font-medium text-primary-gray-900">
+            <tbody className="text-primary-gray-900 text-[15px] font-medium">
               {data?.items
                 ?.slice()
                 .reverse()
                 .map((rrs, index) => {
-                  const feedback = feedbacks?.items?.find((item) => item.referenceId === rrs.id);
-                  const itemNumber = data.total - (currentPage - 1) * 10 - index;
+                  const feedback = feedbacks?.items?.find((item) => item.referenceId === rrs.id)
+                  const itemNumber = data.total - (currentPage - 1) * 10 - index
                   return (
-                    <tr key={rrs.id} className="border-b border-b-primary-gray-100">
-                      <td className="py-[11px] pl-6 pr-2 text-center">{itemNumber}</td>
+                    <tr key={rrs.id} className="border-b-primary-gray-100 border-b">
+                      <td className="py-[11px] pr-2 pl-6 text-center">{itemNumber}</td>
                       <td
                         className="cursor-pointer px-2 py-[11px] text-start"
                         onClick={() =>
@@ -129,7 +129,7 @@ export default function RRSList({ title, data: ibData, studentData, refetch }: R
                         {rrs.title}
                       </td>
                       <td className="px-2 py-[11px] text-center">{format(new Date(rrs.createdAt), 'yyyy.MM.dd')}</td>
-                      <td className="flex justify-center py-[11px] pl-2 pr-6">
+                      <td className="flex justify-center py-[11px] pr-6 pl-2">
                         {feedback ? (
                           feedback.totalCount === 0 ? (
                             <>-</>
@@ -161,7 +161,7 @@ export default function RRSList({ title, data: ibData, studentData, refetch }: R
                         )}
                       </td>
                     </tr>
-                  );
+                  )
                 })}
             </tbody>
           </table>
@@ -186,5 +186,5 @@ export default function RRSList({ title, data: ibData, studentData, refetch }: R
         />
       )}
     </section>
-  );
+  )
 }

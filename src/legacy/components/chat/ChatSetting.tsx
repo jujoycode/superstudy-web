@@ -1,26 +1,26 @@
-import clsx from 'clsx';
-import { ChangeEvent, useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import SvgUser from 'src/assets/svg/user.svg';
-import { CloseButton, Label, Section } from 'src/components/common';
-import { Constants } from 'src/constants';
+import { useState, useEffect, type ChangeEvent } from 'react'
+import { useRecoilValue } from 'recoil'
+import clsx from 'clsx'
+import { meState } from '@/stores'
+import { Constants } from '@/legacy/constants'
 import {
-  RequestUpdateChatroomInfoDto,
-  ResponseChatAttendeeDto,
-  ResponseChatroomInfoDetailDto,
   Role,
   UploadFileTypeEnum,
-} from 'src/generated/model';
-import { useFileUpload } from 'src/hooks/useFileUpload';
-import { meState } from 'src/store';
-import { getRoleTitle } from 'src/util/permission';
-import { getNickName } from 'src/util/status';
-import { getHoursfromHHmmString, getMinutesfromHHmmString, makeHHmmString } from 'src/util/time';
-import { Button } from '../common/Button';
-import { SearchInput } from '../common/SearchInput';
-import { Tabs } from '../common/Tabs';
-import { TextInput } from '../common/TextInput';
-import { Icon } from '../common/icons';
+  type RequestUpdateChatroomInfoDto,
+  type ResponseChatAttendeeDto,
+  type ResponseChatroomInfoDetailDto,
+} from '@/legacy/generated/model'
+import { getNickName } from '@/legacy/util/status'
+import { Tabs } from '@/legacy/components/common/Tabs'
+import { getRoleTitle } from '@/legacy/util/permission'
+import { Icon } from '@/legacy/components/common/icons'
+import { Button } from '@/legacy/components/common/Button'
+import { useFileUpload } from '@/legacy/hooks/useFileUpload'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { CloseButton, Label, Section } from '@/legacy/components/common'
+import { getHoursfromHHmmString, getMinutesfromHHmmString, makeHHmmString } from '@/legacy/util/time'
+import SvgUser from '@/legacy/assets/svg/user.svg'
 
 enum contentType {
   setting = 1,
@@ -28,16 +28,16 @@ enum contentType {
 }
 
 interface ChatSettingProps {
-  modalOpen: boolean;
-  showAttendees?: boolean;
-  setUpdateInfo: (roominfo: RequestUpdateChatroomInfoDto) => void;
-  removeUser: (userId: number) => void;
-  addUser: (userIds: number[]) => void;
-  setModalClose: () => void;
-  setCloseChat: () => void;
-  onSearchUser: (searchName: string) => void;
-  searchUserList?: ResponseChatAttendeeDto[];
-  info?: ResponseChatroomInfoDetailDto;
+  modalOpen: boolean
+  showAttendees?: boolean
+  setUpdateInfo: (roominfo: RequestUpdateChatroomInfoDto) => void
+  removeUser: (userId: number) => void
+  addUser: (userIds: number[]) => void
+  setModalClose: () => void
+  setCloseChat: () => void
+  onSearchUser: (searchName: string) => void
+  searchUserList?: ResponseChatAttendeeDto[]
+  info?: ResponseChatroomInfoDetailDto
 }
 
 export function ChatSetting({
@@ -52,57 +52,57 @@ export function ChatSetting({
   searchUserList,
   info,
 }: ChatSettingProps) {
-  const me = useRecoilValue(meState);
+  const me = useRecoilValue(meState)
 
-  const [isStudentView, setIsStudentView] = useState(me?.role === Role.USER || me?.role === Role.PARENT);
+  const [isStudentView, setIsStudentView] = useState(me?.role === Role.USER || me?.role === Role.PARENT)
 
-  const { handleUploadFile } = useFileUpload();
+  const { handleUploadFile } = useFileUpload()
 
-  const [selContent, setSelContent] = useState(contentType.setting);
-  const [chatroomName, setChatroomName] = useState('');
-  const [userSearch, setUserSearch] = useState('');
-  const [profile, setProfile] = useState('');
-  const [startH, setStartH] = useState(0);
-  const [startM, setStartM] = useState(0);
-  const [endH, setEndH] = useState(0);
-  const [endM, setEndM] = useState(0);
-  const [editable, setEditable] = useState(false);
-  const [showSearchList, setShowSearchList] = useState(false);
+  const [selContent, setSelContent] = useState(contentType.setting)
+  const [chatroomName, setChatroomName] = useState('')
+  const [userSearch, setUserSearch] = useState('')
+  const [profile, setProfile] = useState('')
+  const [startH, setStartH] = useState(0)
+  const [startM, setStartM] = useState(0)
+  const [endH, setEndH] = useState(0)
+  const [endM, setEndM] = useState(0)
+  const [editable, setEditable] = useState(false)
+  const [showSearchList, setShowSearchList] = useState(false)
 
-  const [enableChatTime, setEnableChatTime] = useState(true);
+  const [enableChatTime, setEnableChatTime] = useState(true)
 
   useEffect(() => {
     if (info?.roomData) {
-      setStartH(getHoursfromHHmmString(info?.roomData?.chatStartTime, 10));
-      setStartM(getMinutesfromHHmmString(info?.roomData?.chatStartTime, 11));
+      setStartH(getHoursfromHHmmString(info?.roomData?.chatStartTime, 10))
+      setStartM(getMinutesfromHHmmString(info?.roomData?.chatStartTime, 11))
 
-      setEndH(getHoursfromHHmmString(info?.roomData?.chatEndTime, 10));
-      setEndM(getMinutesfromHHmmString(info?.roomData?.chatEndTime, 11));
+      setEndH(getHoursfromHHmmString(info?.roomData?.chatEndTime, 10))
+      setEndM(getMinutesfromHHmmString(info?.roomData?.chatEndTime, 11))
 
-      setEnableChatTime(info?.roomData?.chatStartTime !== info?.roomData?.chatEndTime);
+      setEnableChatTime(info?.roomData?.chatStartTime !== info?.roomData?.chatEndTime)
 
-      setChatroomName(info?.roomData?.name || '');
+      setChatroomName(info?.roomData?.name || '')
 
-      setProfile(info?.roomData?.roomImage || '');
+      setProfile(info?.roomData?.roomImage || '')
 
-      setEditable(info?.roomData?.createdUserId === me?.id);
+      setEditable(info?.roomData?.createdUserId === me?.id)
     }
-  }, [info]);
+  }, [info])
 
   useEffect(() => {
-    setEnableChatTime(startH !== endH || startM !== endM);
-  }, [startH, startM, endH, endM]);
+    setEnableChatTime(startH !== endH || startM !== endM)
+  }, [startH, startM, endH, endM])
 
   useEffect(() => {
-    modalOpen && showAttendees ? setSelContent(contentType.member) : setSelContent(contentType.setting);
-  }, [modalOpen]);
+    modalOpen && showAttendees ? setSelContent(contentType.member) : setSelContent(contentType.setting)
+  }, [modalOpen])
 
   const OnSaveInfo = () => {
-    let cst = '00:00';
-    let cet = '00:00';
+    let cst = '00:00'
+    let cet = '00:00'
     if (enableChatTime && (startH !== endH || startM !== endM)) {
-      cst = makeHHmmString(startH, startM);
-      cet = makeHHmmString(endH, endM);
+      cst = makeHHmmString(startH, startM)
+      cet = makeHHmmString(endH, endM)
     }
 
     const info: RequestUpdateChatroomInfoDto = {
@@ -110,29 +110,29 @@ export function ChatSetting({
       chatStartTime: cst,
       chatEndTime: cet,
       roomImage: profile,
-    };
+    }
 
-    setUpdateInfo(info);
-  };
+    setUpdateInfo(info)
+  }
 
   const OnAdduser = (userid: number) => {
-    addUser([userid]);
-  };
+    addUser([userid])
+  }
 
   const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
-      return;
+      return
     }
 
-    const selectedImageFiles = (e.target as HTMLInputElement).files;
+    const selectedImageFiles = (e.target as HTMLInputElement).files
     if (!selectedImageFiles || !selectedImageFiles.length) {
-      return;
+      return
     }
 
-    const imageFileNames = await handleUploadFile(UploadFileTypeEnum['profiles'], [selectedImageFiles[0]]);
+    const imageFileNames = await handleUploadFile(UploadFileTypeEnum['profiles'], [selectedImageFiles[0]])
 
-    setProfile(imageFileNames[0]);
-  };
+    setProfile(imageFileNames[0])
+  }
 
   return (
     <div
@@ -141,7 +141,7 @@ export function ChatSetting({
         !modalOpen && 'translate-x-full',
       )}
     >
-      <div className="h-10 w-full bg-white ">
+      <div className="h-10 w-full bg-white">
         <div className="float-left bg-white">
           <Tabs>
             {[
@@ -153,30 +153,30 @@ export function ChatSetting({
                 children={tab.name}
                 selected={selContent === tab.type}
                 onClick={() => {
-                  setShowSearchList(false);
-                  setUserSearch('');
-                  setSelContent(tab.type);
+                  setShowSearchList(false)
+                  setUserSearch('')
+                  setSelContent(tab.type)
                 }}
                 className="flex-none px-5"
               />
             ))}
           </Tabs>
         </div>
-        <div className="float-right bg-brand-1">
+        <div className="bg-brand-1 float-right">
           <CloseButton
             onClick={() => {
-              setShowSearchList(false);
-              setUserSearch('');
-              setModalClose();
+              setShowSearchList(false)
+              setUserSearch('')
+              setModalClose()
             }}
           />
         </div>
       </div>
       {selContent === contentType.setting && (
-        <div className="w-full flex-col ">
+        <div className="w-full flex-col">
           <Section>
             <label className="text-sm text-gray-800">대화방 대표이미지</label>
-            <div className="mx-auto h-40 w-40 flex-1  flex-shrink-0 items-start rounded-full">
+            <div className="mx-auto h-40 w-40 flex-1 flex-shrink-0 items-start rounded-full">
               {editable ? (
                 <>
                   <label htmlFor="imageupload">
@@ -187,9 +187,9 @@ export function ChatSetting({
                           alt=""
                           loading="lazy"
                           onError={({ currentTarget }) => {
-                            currentTarget.onerror = null; // prevents looping
-                            currentTarget.src = SvgUser;
-                            currentTarget.className = 'w-full';
+                            currentTarget.onerror = null // prevents looping
+                            currentTarget.src = SvgUser
+                            currentTarget.className = 'w-full'
                           }}
                         />
                       </div>
@@ -209,9 +209,9 @@ export function ChatSetting({
                   alt=""
                   loading="lazy"
                   onError={({ currentTarget }) => {
-                    currentTarget.onerror = null; // prevents looping
-                    currentTarget.src = SvgUser;
-                    currentTarget.className = 'w-full';
+                    currentTarget.onerror = null // prevents looping
+                    currentTarget.src = SvgUser
+                    currentTarget.className = 'w-full'
                   }}
                 />
               )}
@@ -240,10 +240,7 @@ export function ChatSetting({
                     value={startH}
                     disabled={!editable}
                     onChange={(e) => setStartH(Number(e.target.value))}
-                    className="h-12 w-16 min-w-max rounded-md
-               border border-gray-200 px-4
-               placeholder-gray-400 focus:border-brand-1 focus:ring-0
-               disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     {new Array(24).fill(null).map((item, num: number) => (
                       <option key={num} value={num}>
@@ -256,7 +253,7 @@ export function ChatSetting({
                     value={startM}
                     disabled={!editable}
                     onChange={(e) => setStartM(Number(e.target.value))}
-                    className="h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     <option value={0}>0</option>
                     <option value={10}>10</option>
@@ -272,10 +269,7 @@ export function ChatSetting({
                     disabled={!editable}
                     value={endH}
                     onChange={(e) => setEndH(Number(e.target.value))}
-                    className="h-12 w-16 min-w-max rounded-md
-               border border-gray-200 px-4
-               placeholder-gray-400 focus:border-brand-1 focus:ring-0
-               disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     {new Array(24).fill(null).map((item, num: number) => (
                       <option key={num} value={num}>
@@ -286,10 +280,7 @@ export function ChatSetting({
                   <span>시</span>
                   <select
                     disabled={!editable}
-                    className="h-12 w-16 min-w-max rounded-md
-        border border-gray-200 px-4
-        placeholder-gray-400 focus:border-brand-1 focus:ring-0
-        disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                     onChange={(e) => setEndM(Number(e.target.value))}
                     value={endM}
                   >
@@ -316,27 +307,27 @@ export function ChatSetting({
         </div>
       )}
       {selContent === contentType.member && (
-        <div className="w-full flex-col ">
+        <div className="w-full flex-col">
           <Section>
             {editable && (
               <>
                 <label className="text-sm text-gray-800">대화상대 추가</label>
-                <div className="w-full cursor-pointer text-sm ">
+                <div className="w-full cursor-pointer text-sm">
                   <div className="flex items-center space-x-2">
                     <SearchInput
                       placeholder="추가할 이름을 입력하세요."
                       value={userSearch}
                       onChange={(e) => setUserSearch(e.target.value)}
                       onSearch={() => {
-                        setShowSearchList(true);
-                        onSearchUser(userSearch);
+                        setShowSearchList(true)
+                        onSearchUser(userSearch)
                       }}
                       className="w-full"
                     />
                     <Icon.Search
                       onClick={() => {
-                        setShowSearchList(true);
-                        onSearchUser(userSearch);
+                        setShowSearchList(true)
+                        onSearchUser(userSearch)
                       }}
                     />
                   </div>
@@ -347,13 +338,12 @@ export function ChatSetting({
             {showSearchList ? (
               <>
                 <div
-                  className={` ${isStudentView ? 'h-screen-16' : editable ? 'h-screen-22' : 'h-screen-12'}
-               scroll-box  overflow-y-scroll`}
+                  className={` ${isStudentView ? 'h-screen-16' : editable ? 'h-screen-22' : 'h-screen-12'} scroll-box overflow-y-scroll`}
                 >
                   {searchUserList && searchUserList.length > 0 ? (
                     searchUserList
                       ?.sort((a, b) => {
-                        return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+                        return a.name < b.name ? -1 : a.name > b.name ? 1 : 0
                       })
                       .map((AttendeeInfo: ResponseChatAttendeeDto) => (
                         <div
@@ -363,12 +353,12 @@ export function ChatSetting({
                         >
                           <div className="relative">
                             <img
-                              className="flex-2 mx-auto mr-1 h-10 w-10 flex-shrink-0 items-start rounded-full"
+                              className="mx-auto mr-1 h-10 w-10 flex-2 flex-shrink-0 items-start rounded-full"
                               src={`${Constants.imageUrl}${AttendeeInfo?.customProfile || AttendeeInfo.profile}`}
                               alt=""
                               onError={({ currentTarget }) => {
-                                currentTarget.onerror = null; // prevents looping
-                                currentTarget.src = SvgUser;
+                                currentTarget.onerror = null // prevents looping
+                                currentTarget.src = SvgUser
                                 //currentTarget.className = 'w-full ';
                               }}
                             />
@@ -376,11 +366,11 @@ export function ChatSetting({
 
                           <div>
                             {AttendeeInfo?.role === Role.USER ? (
-                              <div className="text-sm text-brand-1">
+                              <div className="text-brand-1 text-sm">
                                 {AttendeeInfo?.name} {AttendeeInfo?.studentNumber}
                               </div>
                             ) : AttendeeInfo?.role === Role.PARENT ? (
-                              <div className="text-sm text-brandblue-1">
+                              <div className="text-brandblue-1 text-sm">
                                 {AttendeeInfo?.name} {'보호자 '}
                                 {AttendeeInfo?.children &&
                                   '(' +
@@ -398,7 +388,7 @@ export function ChatSetting({
                             )}
                           </div>
 
-                          <div className="float-right ml-3 rounded-md bg-brand-1 text-white">추가</div>
+                          <div className="bg-brand-1 float-right ml-3 rounded-md text-white">추가</div>
                         </div>
                       ))
                   ) : (
@@ -408,8 +398,8 @@ export function ChatSetting({
                 <Button.lg
                   children="검색결과 닫기"
                   onClick={() => {
-                    setUserSearch('');
-                    setShowSearchList(false);
+                    setUserSearch('')
+                    setShowSearchList(false)
                   }}
                   className="filled-primary"
                 />
@@ -418,23 +408,22 @@ export function ChatSetting({
               <>
                 <label className="text-sm text-gray-800">대화상대 목록</label>
                 <div
-                  className={` ${isStudentView ? 'h-screen-16' : editable ? 'h-screen-22' : 'h-screen-12'}
-             scroll-box  overflow-y-scroll`}
+                  className={` ${isStudentView ? 'h-screen-16' : editable ? 'h-screen-22' : 'h-screen-12'} scroll-box overflow-y-scroll`}
                 >
                   {info?.attendeeList
                     ?.sort((a, b) => {
-                      return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+                      return a.name < b.name ? -1 : a.name > b.name ? 1 : 0
                     })
                     .map((AttendeeInfo: ResponseChatAttendeeDto) => (
                       <div key={AttendeeInfo.id} className="my-1 flex cursor-pointer items-center">
                         <div className="relative">
                           <img
-                            className="flex-2 mx-auto mr-1 h-10 w-10 flex-shrink-0 items-start rounded-full"
+                            className="mx-auto mr-1 h-10 w-10 flex-2 flex-shrink-0 items-start rounded-full"
                             src={`${Constants.imageUrl}${AttendeeInfo.customProfile}`}
                             alt=""
                             onError={({ currentTarget }) => {
-                              currentTarget.onerror = null; // prevents looping
-                              currentTarget.src = SvgUser;
+                              currentTarget.onerror = null // prevents looping
+                              currentTarget.src = SvgUser
                               //currentTarget.className = 'w-full ';
                             }}
                           />
@@ -442,12 +431,12 @@ export function ChatSetting({
 
                         <div>
                           {AttendeeInfo?.role === Role.USER ? (
-                            <div className="text-sm text-brand-1">
+                            <div className="text-brand-1 text-sm">
                               {AttendeeInfo?.name}
                               {getNickName(AttendeeInfo?.nickName)} {AttendeeInfo?.studentNumber}
                             </div>
                           ) : AttendeeInfo?.role === Role.PARENT ? (
-                            <div className="text-sm text-brandblue-1">
+                            <div className="text-brandblue-1 text-sm">
                               {AttendeeInfo?.name}{' '}
                               {AttendeeInfo?.children &&
                                 '[' +
@@ -468,10 +457,10 @@ export function ChatSetting({
                         </div>
 
                         {info?.roomData?.createdUserId === AttendeeInfo.id ? (
-                          <div className="float-right ml-3 rounded-md bg-brand-1 text-white">{'방장'}</div>
+                          <div className="bg-brand-1 float-right ml-3 rounded-md text-white">{'방장'}</div>
                         ) : (
                           editable && (
-                            <div className=" float-right">
+                            <div className="float-right">
                               <CloseButton onClick={() => removeUser(AttendeeInfo?.id)} />
                             </div>
                           )
@@ -488,5 +477,5 @@ export function ChatSetting({
         </div>
       )}
     </div>
-  );
+  )
 }

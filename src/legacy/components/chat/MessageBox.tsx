@@ -1,8 +1,8 @@
-import { ResponseChatroomInfoDto } from 'src/generated/model';
-import { DateFormat, DateUtil } from 'src/util/date';
+import { ResponseChatroomInfoDto } from '@/legacy/generated/model'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 interface MessageBoxProps {
-  info: ResponseChatroomInfoDto;
+  info: ResponseChatroomInfoDto
 }
 
 export function MessageBox({ info }: MessageBoxProps) {
@@ -43,5 +43,5 @@ export function MessageBox({ info }: MessageBoxProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

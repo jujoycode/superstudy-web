@@ -1,28 +1,28 @@
-import { useAbsentsDownloadAttendee } from 'src/generated/endpoint';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { downloadExcel } from 'src/util/download-excel';
-import { makeDateToString } from 'src/util/time';
-import { Button } from '../common/Button';
+import { useAbsentsDownloadAttendee } from '@/legacy/generated/endpoint'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { downloadExcel } from '@/legacy/util/download-excel'
+import { makeDateToString } from '@/legacy/util/time'
+import { Button } from '@/legacy/components/common/Button'
 
 interface AttendeeInfoDownloadViewProps {
-  startDate: string;
-  endDate: string;
-  selectedGroupId: number;
+  startDate: string
+  endDate: string
+  selectedGroupId: number
 }
 
 export function AttendeeInfoDownloadView({ startDate, endDate, selectedGroupId }: AttendeeInfoDownloadViewProps) {
-  const { t } = useLanguage();
+  const { t } = useLanguage()
   const { refetch: refetchExcelData } = useAbsentsDownloadAttendee(
     { startDate, endDate, selectedGroupId },
     {
       query: {
         enabled: false,
         onSuccess: (data) => {
-          downloadExcel(data, `학급별출결현황 (${makeDateToString(new Date())})`);
+          downloadExcel(data, `학급별출결현황 (${makeDateToString(new Date())})`)
         },
       },
     },
-  );
+  )
 
   return (
     <Button.lg
@@ -30,5 +30,5 @@ export function AttendeeInfoDownloadView({ startDate, endDate, selectedGroupId }
       onClick={() => refetchExcelData()}
       className="bg-green-400 text-white"
     />
-  );
+  )
 }

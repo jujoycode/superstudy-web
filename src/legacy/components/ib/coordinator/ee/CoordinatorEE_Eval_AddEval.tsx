@@ -1,22 +1,22 @@
-import clsx from 'clsx';
-import { PropsWithChildren } from 'react';
-import { Blank } from 'src/components/common';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { TextareaV2 } from 'src/components/common/TextareaV2';
-import { Typography } from 'src/components/common/Typography';
-import ColorSVGIcon from 'src/components/icon/ColorSVGIcon';
-import SVGIcon from 'src/components/icon/SVGIcon';
-import { PopupModal } from 'src/components/PopupModal';
-import { useCreateEvaluation } from 'src/container/ib/create-evaluation';
-import { useEEEvaluationCreateEEEvaluation } from 'src/generated/endpoint';
-import { RequestEEEvaluationLevelByItemsDto } from 'src/generated/model';
-import { EvalInputField } from '../../EvalInputField';
+import clsx from 'clsx'
+import { PropsWithChildren } from 'react'
+import { Blank } from '@/legacy/components/common'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { PopupModal } from 'src/components/PopupModal'
+import { useCreateEvaluation } from '@/legacy/container/ib/create-evaluation'
+import { useEEEvaluationCreateEEEvaluation } from '@/legacy/generated/endpoint'
+import { RequestEEEvaluationLevelByItemsDto } from '@/legacy/generated/model'
+import { EvalInputField } from '../../EvalInputField'
 
 interface CoordinatorEE_Eval_AddEvalProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  onSuccess: () => void;
-  ablePropragation?: boolean;
+  modalOpen: boolean
+  setModalClose: () => void
+  onSuccess: () => void
+  ablePropragation?: boolean
 }
 
 export function CoordinatorEE_Eval_AddEval({
@@ -26,7 +26,7 @@ export function CoordinatorEE_Eval_AddEval({
   ablePropragation = false,
 }: PropsWithChildren<CoordinatorEE_Eval_AddEvalProps>) {
   // 평가 아코디언 기준 뱃지를 만들기 위한 알파벳 배열 생성
-  const alphabetArray = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+  const alphabetArray = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i))
 
   const {
     evaluation,
@@ -43,16 +43,16 @@ export function CoordinatorEE_Eval_AddEval({
     handleUpdateItem,
     handleDeleteItem,
     reset,
-  } = useCreateEvaluation();
+  } = useCreateEvaluation()
 
   const { mutate: createEvaluation, isLoading: createLoading } = useEEEvaluationCreateEEEvaluation({
     mutation: {
       onSuccess: () => {
-        onSuccess();
-        reset();
+        onSuccess()
+        reset()
       },
     },
-  });
+  })
 
   const footerButtons = (
     <div className="flex justify-end gap-3">
@@ -73,7 +73,7 @@ export function CoordinatorEE_Eval_AddEval({
         저장하기
       </ButtonV2>
     </div>
-  );
+  )
 
   return (
     <>
@@ -81,8 +81,8 @@ export function CoordinatorEE_Eval_AddEval({
       <PopupModal
         modalOpen={modalOpen}
         setModalClose={() => {
-          setModalClose();
-          reset();
+          setModalClose()
+          reset()
         }}
         title="평가기준 작성"
         footerButtons={footerButtons}
@@ -96,7 +96,7 @@ export function CoordinatorEE_Eval_AddEval({
                 key={JSON.stringify(criteria) + index}
                 onClick={() => setSelectedCriteriaIndex(index)}
                 className={clsx(
-                  'flex cursor-pointer items-center justify-center whitespace-pre rounded-lg px-4 py-[9px]',
+                  'flex cursor-pointer items-center justify-center rounded-lg px-4 py-[9px] whitespace-pre',
                   index === selectedCriteriaIndex
                     ? 'bg-primary-gray-700 text-white'
                     : 'bg-primary-gray-50 text-primary-gray-700 hover:bg-primary-gray-200',
@@ -191,7 +191,7 @@ export function CoordinatorEE_Eval_AddEval({
                         size={40}
                         color="gray400"
                         onClick={() => handleCreateItem(levelIndex)}
-                        className="flex items-center justify-center gap-1 whitespace-pre bg-white"
+                        className="flex items-center justify-center gap-1 bg-white whitespace-pre"
                       >
                         <SVGIcon.Plus color="gray700" size={16} weight="bold" />
                         추가
@@ -207,7 +207,7 @@ export function CoordinatorEE_Eval_AddEval({
                       </div>
                     )}
                   </div>
-                );
+                )
               })}
               <TextareaV2
                 className="h-40 bg-white"
@@ -215,7 +215,7 @@ export function CoordinatorEE_Eval_AddEval({
                 onChange={(e) => handleUpdateLevel({ description: e.target.value }, levelIndex)}
               />
             </div>
-          );
+          )
         })}
         <div className="flex w-full justify-center py-2">
           <ButtonV2
@@ -223,8 +223,8 @@ export function CoordinatorEE_Eval_AddEval({
             size={40}
             color="gray400"
             onClick={(e) => {
-              e.stopPropagation();
-              handleCreateLevel();
+              e.stopPropagation()
+              handleCreateLevel()
             }}
             className="flex items-center justify-center gap-1"
           >
@@ -234,5 +234,5 @@ export function CoordinatorEE_Eval_AddEval({
         </div>
       </PopupModal>
     </>
-  );
+  )
 }

@@ -1,30 +1,30 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { useUserSearch } from 'src/container/ib-find-user';
-import { ResponseIBStudentDto } from 'src/generated/model';
-import SVGIcon from '../icon/SVGIcon';
-import { ButtonV2 } from './ButtonV2';
-import { Check } from './Check';
-import { Input } from './Input';
-import { Typography } from './Typography';
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { useUserSearch } from '@/legacy/container/ib-find-user'
+import { ResponseIBStudentDto } from '@/legacy/generated/model'
+import SVGIcon from '../icon/SVGIcon'
+import { ButtonV2 } from './ButtonV2'
+import { Check } from './Check'
+import { Input } from './Input'
+import { Typography } from './Typography'
 
 interface MemberSearchPortalProps {
-  initialStudents?: ResponseIBStudentDto[];
-  onSave?: (member: ResponseIBStudentDto[]) => void;
-  onCancel?: () => void;
-  id?: number;
-  children?: React.ReactNode;
+  initialStudents?: ResponseIBStudentDto[]
+  onSave?: (member: ResponseIBStudentDto[]) => void
+  onCancel?: () => void
+  id?: number
+  children?: React.ReactNode
 }
 
 const MemberSearchPortal: React.FC<MemberSearchPortalProps> = ({ initialStudents, onSave, onCancel, id, children }) => {
-  const { data, isLoading } = useUserSearch();
-  const [open, setOpen] = useState<boolean>(false);
-  const [localData, setLocalData] = useState<ResponseIBStudentDto[]>(initialStudents || []);
-  const [searchText, setSearchText] = useState('');
-  const [grade, setGrade] = useState<number>(0);
-  const [klass, setKlass] = useState<number>(0);
-  const [tooltipStyle, setTooltipStyle] = useState<React.CSSProperties>({});
-  const triggerRef = useRef<HTMLDivElement>(null);
+  const { data, isLoading } = useUserSearch()
+  const [open, setOpen] = useState<boolean>(false)
+  const [localData, setLocalData] = useState<ResponseIBStudentDto[]>(initialStudents || [])
+  const [searchText, setSearchText] = useState('')
+  const [grade, setGrade] = useState<number>(0)
+  const [klass, setKlass] = useState<number>(0)
+  const [tooltipStyle, setTooltipStyle] = useState<React.CSSProperties>({})
+  const triggerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setTooltipStyle({
@@ -33,64 +33,64 @@ const MemberSearchPortal: React.FC<MemberSearchPortalProps> = ({ initialStudents
       left: '50%',
       transform: 'translate(-50%, -50%)', // 정확한 중앙 정렬
       zIndex: 1000, // 다른 UI 요소 위에 배치
-    });
-  }, []);
+    })
+  }, [])
 
   useEffect(() => {
-    setLocalData(initialStudents || []);
-  }, [initialStudents]);
+    setLocalData(initialStudents || [])
+  }, [initialStudents])
 
   const groupedData = useMemo(() => {
-    if (!data) return {};
+    if (!data) return {}
 
     const grouped = data.reduce((acc: any, student: ResponseIBStudentDto) => {
-      const key = `${student.studentGroup.group.grade}학년 ${student.studentGroup.group.klass}반`;
+      const key = `${student.studentGroup.group.grade}학년 ${student.studentGroup.group.klass}반`
       if (!acc[student.studentGroup.group.grade]) {
-        acc[student.studentGroup.group.grade] = {};
+        acc[student.studentGroup.group.grade] = {}
       }
       if (!acc[student.studentGroup.group.grade][student.studentGroup.group.klass]) {
-        acc[student.studentGroup.group.grade][student.studentGroup.group.klass] = [];
+        acc[student.studentGroup.group.grade][student.studentGroup.group.klass] = []
       }
-      acc[student.studentGroup.group.grade][student.studentGroup.group.klass].push(student);
-      return acc;
-    }, {});
+      acc[student.studentGroup.group.grade][student.studentGroup.group.klass].push(student)
+      return acc
+    }, {})
 
     for (const gradeKey in grouped) {
       for (const klassKey in grouped[gradeKey]) {
         grouped[gradeKey][klassKey].sort(
           (a: ResponseIBStudentDto, b: ResponseIBStudentDto) =>
             a.studentGroup.studentNumber - b.studentGroup.studentNumber,
-        );
+        )
       }
     }
 
-    return grouped;
-  }, [data]);
+    return grouped
+  }, [data])
 
   const selectedGroup = useMemo(() => {
-    if (grade === 0 || klass === 0) return [];
-    return groupedData[grade]?.[klass] || [];
-  }, [groupedData, grade, klass]);
+    if (grade === 0 || klass === 0) return []
+    return groupedData[grade]?.[klass] || []
+  }, [groupedData, grade, klass])
 
   const allStudentsSorted = useMemo(() => {
-    if (!data) return [];
-    return [...data].sort((a, b) => a.name.localeCompare(b.name, 'ko'));
-  }, [data]);
+    if (!data) return []
+    return [...data].sort((a, b) => a.name.localeCompare(b.name, 'ko'))
+  }, [data])
 
   const filteredData = useMemo(() => {
-    if (!searchText.trim()) return data || [];
+    if (!searchText.trim()) return data || []
 
     return (Array.isArray(data) ? data : []).filter((student: ResponseIBStudentDto) => {
       const fullStudentNumber = `${student.studentGroup.group.grade}${String(student.studentGroup.group.klass).padStart(
         2,
         '0',
-      )}${String(student.studentGroup.studentNumber).padStart(2, '0')}`;
+      )}${String(student.studentGroup.studentNumber).padStart(2, '0')}`
       return (
         student.name.includes(searchText) || // 이름 검색
         fullStudentNumber.includes(searchText) // 학번 검색
-      );
-    });
-  }, [data, searchText]);
+      )
+    })
+  }, [data, searchText])
 
   const handleCheckChange = (student: ResponseIBStudentDto, checked: boolean) => {
     setLocalData((prev) =>
@@ -99,28 +99,28 @@ const MemberSearchPortal: React.FC<MemberSearchPortalProps> = ({ initialStudents
           ? prev
           : [...prev, student]
         : prev.filter((s) => s.id !== student.id),
-    );
-  };
+    )
+  }
 
   const handleSave = () => {
     if (onSave) {
-      onSave(localData);
-      setOpen(!open);
+      onSave(localData)
+      setOpen(!open)
     }
-  };
+  }
 
   const handleCancel = () => {
     if (onCancel) {
-      onCancel();
-      setOpen(!open);
+      onCancel()
+      setOpen(!open)
     }
-  };
+  }
 
-  const tooltipRoot = document.getElementById('tooltip-root') || document.body;
+  const tooltipRoot = document.getElementById('tooltip-root') || document.body
   const tooltipContent = open && (
     <div
       style={tooltipStyle}
-      className="border-primary-gray-200 flex h-[473px] w-[280px] flex-col items-center rounded-lg border bg-white py-4 text-13 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]"
+      className="border-primary-gray-200 text-13 flex h-[473px] w-[280px] flex-col items-center rounded-lg border bg-white py-4 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]"
     >
       <div className="sticky top-0 z-10 flex w-[248px] flex-col items-center gap-2 pb-4">
         <div className="flex w-full items-center justify-around gap-1">
@@ -217,15 +217,15 @@ const MemberSearchPortal: React.FC<MemberSearchPortalProps> = ({ initialStudents
                 <>
                   <ul>
                     {selectedGroup.map((student: ResponseIBStudentDto) => {
-                      const isChecked = student.id === id || localData.some((s) => s.id === student.id);
-                      const me = student.id === id;
+                      const isChecked = student.id === id || localData.some((s) => s.id === student.id)
+                      const me = student.id === id
                       return (
                         <li
                           key={student.id}
                           className="hover:bg-primary-gray-50 flex cursor-pointer justify-between px-2 py-1.5 hover:rounded-md"
                           onClick={(e) => {
-                            if (!me) handleCheckChange(student, !isChecked);
-                            e.stopPropagation(); // 클릭 이벤트 중지
+                            if (!me) handleCheckChange(student, !isChecked)
+                            e.stopPropagation() // 클릭 이벤트 중지
                           }}
                         >
                           <Typography
@@ -244,7 +244,7 @@ const MemberSearchPortal: React.FC<MemberSearchPortalProps> = ({ initialStudents
                             onClick={(e) => e.stopPropagation()}
                           />
                         </li>
-                      );
+                      )
                     })}
                   </ul>
                 </>
@@ -256,15 +256,15 @@ const MemberSearchPortal: React.FC<MemberSearchPortalProps> = ({ initialStudents
               </Typography>
               <ul>
                 {allStudentsSorted.map((student) => {
-                  const isChecked = student.id === id || localData.some((s) => s.id === student.id);
-                  const me = student.id === id;
+                  const isChecked = student.id === id || localData.some((s) => s.id === student.id)
+                  const me = student.id === id
                   return (
                     <li
                       key={student.id}
                       className="hover:bg-primary-gray-50 flex cursor-pointer justify-between px-2 py-1.5 hover:rounded-md"
                       onClick={(e) => {
-                        if (!me) handleCheckChange(student, !isChecked);
-                        e.stopPropagation(); // 클릭 이벤트 중지
+                        if (!me) handleCheckChange(student, !isChecked)
+                        e.stopPropagation() // 클릭 이벤트 중지
                       }}
                     >
                       <Typography variant="body2" className={`font-medium ${isChecked && 'text-primary-orange-800'}`}>
@@ -280,7 +280,7 @@ const MemberSearchPortal: React.FC<MemberSearchPortalProps> = ({ initialStudents
                         onClick={(e) => e.stopPropagation()}
                       />
                     </li>
-                  );
+                  )
                 })}
               </ul>
             </div>
@@ -290,15 +290,15 @@ const MemberSearchPortal: React.FC<MemberSearchPortalProps> = ({ initialStudents
         <div className="scroll-box flex w-[248px] flex-col overflow-y-auto pb-4">
           <ul>
             {filteredData.map((student) => {
-              const isChecked = student.id === id || localData.some((s) => s.id === student.id);
-              const me = student.id === id;
+              const isChecked = student.id === id || localData.some((s) => s.id === student.id)
+              const me = student.id === id
               return (
                 <li
                   key={student.id}
                   className="hover:bg-primary-gray-50 flex cursor-pointer justify-between px-2 py-1.5 hover:rounded-md"
                   onClick={(e) => {
-                    if (!me) handleCheckChange(student, !isChecked);
-                    e.stopPropagation(); // 클릭 이벤트 중지
+                    if (!me) handleCheckChange(student, !isChecked)
+                    e.stopPropagation() // 클릭 이벤트 중지
                   }}
                 >
                   <Typography variant="body2" className={`font-medium ${isChecked && 'text-primary-orange-800'}`}>
@@ -314,7 +314,7 @@ const MemberSearchPortal: React.FC<MemberSearchPortalProps> = ({ initialStudents
                     onClick={(e) => e.stopPropagation()}
                   />
                 </li>
-              );
+              )
             })}
           </ul>
         </div>
@@ -328,7 +328,7 @@ const MemberSearchPortal: React.FC<MemberSearchPortalProps> = ({ initialStudents
         </ButtonV2>
       </footer>
     </div>
-  );
+  )
 
   return (
     <div className="relative" ref={triggerRef}>
@@ -337,7 +337,7 @@ const MemberSearchPortal: React.FC<MemberSearchPortalProps> = ({ initialStudents
       </div>
       {open && createPortal(tooltipContent, tooltipRoot)}
     </div>
-  );
-};
+  )
+}
 
-export default MemberSearchPortal;
+export default MemberSearchPortal

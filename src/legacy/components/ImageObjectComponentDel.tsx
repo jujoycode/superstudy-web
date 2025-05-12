@@ -1,40 +1,40 @@
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { Constants } from 'src/constants';
-import { ImageObject } from 'src/type/image-object';
-import { isPdfFile } from 'src/util/file';
-import { PdfCard } from './common/PdfCard';
-import { Icon } from './common/icons';
+import clsx from 'clsx'
+import { useEffect, useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { Constants } from '@/legacy/constants'
+import type { ImageObject } from '@/legacy/types/image-object'
+import { isPdfFile } from '@/legacy/util/file'
+import { PdfCard } from './common/PdfCard'
+import { Icon } from './common/icons'
 
 interface ImageObjectComponentProps {
-  id: number;
-  imageObjet: ImageObject;
-  onDeleteClick?: (key: number) => void;
-  cardType?: boolean;
+  id: number
+  imageObjet: ImageObject
+  onDeleteClick?: (key: number) => void
+  cardType?: boolean
 }
 
 export function ImageObjectComponentDel({ id, imageObjet, onDeleteClick, cardType }: ImageObjectComponentProps) {
   if (imageObjet.isDelete) {
-    return null;
+    return null
   }
-  const [objUrl, setObjUrl] = useState('');
+  const [objUrl, setObjUrl] = useState('')
 
   useEffect(() => {
-    setObjUrl(typeof imageObjet.image == 'string' ? imageObjet.image : URL.createObjectURL(imageObjet.image));
-  }, [imageObjet]);
+    setObjUrl(typeof imageObjet.image == 'string' ? imageObjet.image : URL.createObjectURL(imageObjet.image))
+  }, [imageObjet])
 
   return (
     <div
       className={clsx(
         'relative',
         cardType
-          ? 'aspect-5/3 rounded border-2 border-dashed border-grey-5'
+          ? 'border-grey-5 aspect-5/3 rounded border-2 border-dashed'
           : 'aspect-square min-h-[48px] rounded border border-neutral-200 md:min-h-[120px]',
       )}
     >
       {onDeleteClick && (
-        <span className="absolute -right-2 -top-2 z-10 block md:right-3 md:top-3">
+        <span className="absolute -top-2 -right-2 z-10 block md:top-3 md:right-3">
           <div
             className="flex h-full w-full cursor-pointer items-center justify-center text-white"
             onClick={() => onDeleteClick(id)}
@@ -59,5 +59,5 @@ export function ImageObjectComponentDel({ id, imageObjet, onDeleteClick, cardTyp
         <LazyLoadImage src={objUrl} alt="" loading="lazy" className="object-fit absolute h-full w-full rounded" />
       )}
     </div>
-  );
+  )
 }

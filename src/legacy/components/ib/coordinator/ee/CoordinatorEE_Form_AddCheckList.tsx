@@ -1,28 +1,28 @@
-import { concat } from 'lodash';
-import { PropsWithChildren, useEffect, useRef, useState } from 'react';
-import { Blank } from 'src/components/common';
-import { useChecklistCreateChecklist, useChecklistDeleteChecklist } from 'src/generated/endpoint';
-import { ChecklistLocation, ResponseChecklistDto } from 'src/generated/model';
-import AlertV2 from '../../../common/AlertV2';
-import { ButtonV2 } from '../../../common/ButtonV2';
-import { Typography } from '../../../common/Typography';
-import ColorSVGIcon from '../../../icon/ColorSVGIcon';
-import SVGIcon from '../../../icon/SVGIcon';
-import { FormInputField } from '../../FormInputField';
+import { concat } from 'lodash'
+import { PropsWithChildren, useEffect, useRef, useState } from 'react'
+import { Blank } from '@/legacy/components/common'
+import { useChecklistCreateChecklist, useChecklistDeleteChecklist } from '@/legacy/generated/endpoint'
+import { ChecklistLocation, ResponseChecklistDto } from '@/legacy/generated/model'
+import AlertV2 from '../../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../../@/legacy/components/common/ButtonV2'
+import { Typography } from '../../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../../icon/ColorSVGIcon'
+import SVGIcon from '../../../icon/SVGIcon'
+import { FormInputField } from '../../FormInputField'
 
 interface CoordinatorEE_Form_AddCheckListProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  checkListItems: ResponseChecklistDto[];
-  onSuccess: () => void;
-  handleBack?: () => void;
-  type: ChecklistLocation;
+  modalOpen: boolean
+  setModalClose: () => void
+  checkListItems: ResponseChecklistDto[]
+  onSuccess: () => void
+  handleBack?: () => void
+  type: ChecklistLocation
 }
 
 export interface QA {
-  id: number; // 각 질문/답변을 고유하게 식별하기 위한 ID
-  question: string;
-  answer: string;
+  id: number // 각 질문/답변을 고유하게 식별하기 위한 ID
+  question: string
+  answer: string
 }
 
 export function CoordinatorEE_Form_AddCheckList({
@@ -33,44 +33,44 @@ export function CoordinatorEE_Form_AddCheckList({
   handleBack,
   type,
 }: PropsWithChildren<CoordinatorEE_Form_AddCheckListProps>) {
-  const [isOpen, setIsOpen] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [checkListContents, setCheckListContents] = useState<string[]>([]);
-  const [deleteCheckListIds, setDeleteCheckListIds] = useState<number[]>([]);
+  const [isOpen, setIsOpen] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [checkListContents, setCheckListContents] = useState<string[]>([])
+  const [deleteCheckListIds, setDeleteCheckListIds] = useState<number[]>([])
 
   const hasEmptyFields = () => {
-    return checkListContents.some((content) => content.trim() === '');
-  };
+    return checkListContents.some((content) => content.trim() === '')
+  }
 
-  const { mutate: createCheckList, isLoading: createLoading } = useChecklistCreateChecklist();
+  const { mutate: createCheckList, isLoading: createLoading } = useChecklistCreateChecklist()
 
-  const { mutate: deleteCheckList, isLoading: deleteLoading } = useChecklistDeleteChecklist();
+  const { mutate: deleteCheckList, isLoading: deleteLoading } = useChecklistDeleteChecklist()
 
-  const isLoading = createLoading || deleteLoading;
+  const isLoading = createLoading || deleteLoading
 
-  const filteredCheckListItems = checkListItems.filter((item) => !deleteCheckListIds.includes(item.id));
+  const filteredCheckListItems = checkListItems.filter((item) => !deleteCheckListIds.includes(item.id))
 
   useEffect(() => {
     if (!checkListItems.length && !checkListContents.length) {
-      setCheckListContents(['']);
+      setCheckListContents([''])
     }
-  }, [checkListItems]);
+  }, [checkListItems])
 
   return (
     <>
       {isLoading && <Blank />}
       <div
-        className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black bg-opacity-50 ${
+        className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
           !modalOpen && 'hidden'
         }`}
       >
         <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white px-8`}>
-          <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pb-6 pt-8 backdrop-blur-[20px]">
+          <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6 backdrop-blur-[20px]">
             <Typography variant="title1">체크리스트 작성</Typography>
             <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} />
           </div>
 
-          <div ref={scrollRef} className="scroll-box flex max-h-[608px] flex-col gap-6 overflow-auto pb-8 pt-4">
+          <div ref={scrollRef} className="scroll-box flex max-h-[608px] flex-col gap-6 overflow-auto pt-4 pb-8">
             {concat([] as (ResponseChecklistDto | string)[], filteredCheckListItems, checkListContents).map(
               (checklist, index) =>
                 typeof checklist === 'string' ? (
@@ -81,16 +81,16 @@ export function CoordinatorEE_Form_AddCheckList({
                     question={checklist}
                     setQuestion={(question: string) =>
                       setCheckListContents((prev) => {
-                        const value = structuredClone(prev);
-                        value[index - filteredCheckListItems.length] = question;
-                        return value;
+                        const value = structuredClone(prev)
+                        value[index - filteredCheckListItems.length] = question
+                        return value
                       })
                     }
                     deleteQuestion={() =>
                       setCheckListContents((prev) => {
-                        const value = structuredClone(prev);
-                        value.splice(index - filteredCheckListItems.length, 1);
-                        return value;
+                        const value = structuredClone(prev)
+                        value.splice(index - filteredCheckListItems.length, 1)
+                        return value
                       })
                     }
                   />
@@ -122,7 +122,7 @@ export function CoordinatorEE_Form_AddCheckList({
 
           <div
             className={
-              'sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-primary-gray-100 bg-white/70 pb-8 pt-6 backdrop-blur-[20px]'
+              'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]'
             }
           >
             <div className="flex justify-end gap-3">
@@ -136,9 +136,9 @@ export function CoordinatorEE_Form_AddCheckList({
                 size={48}
                 disabled={hasEmptyFields()}
                 onClick={() => {
-                  createCheckList({ data: { location: type, checklistContents: checkListContents } });
-                  deleteCheckListIds.length && deleteCheckList({ data: { ids: deleteCheckListIds } });
-                  onSuccess();
+                  createCheckList({ data: { location: type, checklistContents: checkListContents } })
+                  deleteCheckListIds.length && deleteCheckList({ data: { ids: deleteCheckListIds } })
+                  onSuccess()
                 }}
               >
                 저장하기
@@ -151,5 +151,5 @@ export function CoordinatorEE_Form_AddCheckList({
         )}
       </div>
     </>
-  );
+  )
 }

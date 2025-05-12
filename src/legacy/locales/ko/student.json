@@ -1,0 +1,12 @@
+{
+  "pointlogs_page": {
+    "merits": "총 상점",
+    "demerits": "총 벌점",
+    "total": "순 점수",
+    "point_log_created_at": "날짜",
+    "point_log_assigner": "부여자",
+    "point_log_title": "항목",
+    "point_log_value": "점수",
+    "no_items_found": "항목이 없습니다"
+  }
+}

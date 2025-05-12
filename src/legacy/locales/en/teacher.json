@@ -1,0 +1,35 @@
+{
+  "point_dashboard": {
+    "title": "Point Dashboard",
+    "assign_points": "Assign points",
+    "total_merits": "Total merits",
+    "total_demerits": "Total demerits",
+    "average": "Average",
+    "top_merit_scorers": "Top Merit Scorers",
+    "top_demerit_receivers": "Top Demerit Receivers",
+    "student_points_overview": "Student Points Overview",
+    "student_name": "Name",
+    "student_merits": "Merits",
+    "student_demerits": "Demerits",
+    "student_total": "Total",
+    "recent_logs": "Recent Logs",
+    "download_excel": "Download Excel",
+    "point_log_created_at": "Date",
+    "point_log_assigner": "Assigner",
+    "point_log_assignee": "Assignee",
+    "point_log_title": "Title",
+    "point_log_value": "Value",
+    "no_items_found": "No items found"
+  },
+  "pointlogs_page": {
+    "assign_points": "Assign points",
+    "merits": "Merits",
+    "demerits": "Demerits",
+    "total": "Total",
+    "point_log_created_at": "Date",
+    "point_log_assigner": "Assigner",
+    "point_log_title": "Title",
+    "point_log_value": "Value",
+    "no_items_found": "No items found"
+  }
+}

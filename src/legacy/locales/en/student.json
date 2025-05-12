@@ -1,0 +1,12 @@
+{
+  "pointlogs_page": {
+    "merits": "Merits",
+    "demerits": "Demerits",
+    "total": "Total",
+    "point_log_created_at": "Date",
+    "point_log_assigner": "Assigner",
+    "point_log_title": "Title",
+    "point_log_value": "Value",
+    "no_items_found": "No items found"
+  }
+}

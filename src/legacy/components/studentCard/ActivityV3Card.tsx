@@ -1,31 +1,31 @@
-import { Chart as ChartJS, registerables } from 'chart.js';
-import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
-import { Chart } from 'react-chartjs-2';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { Chart as ChartJS, registerables } from 'chart.js'
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
+import { Chart } from 'react-chartjs-2'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   useActivityCardGenerateGPTAnalysis,
   useActivityCardGetActivityGPTAnalysis,
   useStudentActivityV3SaveByTeacher,
-} from 'src/generated/endpoint';
-import { ActivityV3, Record } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState, toastState } from 'src/store';
-import { Textarea } from '../common';
-import { Button } from '../common/Button';
-import { Checkbox } from '../common/Checkbox';
-import { TextInput } from '../common/TextInput';
-import { Icon } from '../common/icons';
+} from '@/legacy/generated/endpoint'
+import { ActivityV3, Record } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { meState, toastState } from '@/stores'
+import { Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Icon } from '@/legacy/components/common/icons'
 
-ChartJS.register(...registerables);
+ChartJS.register(...registerables)
 
 interface ActivityV3CardProps {
-  activityv3: ActivityV3;
-  studentId: number;
-  openedCardIds: number[];
-  setOpenedCardIds: Dispatch<SetStateAction<number[]>>;
-  checkedCardIds: number[];
-  setCheckedCardIds: (cardIds: number[]) => void;
-  showDisabledActivity?: boolean;
+  activityv3: ActivityV3
+  studentId: number
+  openedCardIds: number[]
+  setOpenedCardIds: Dispatch<SetStateAction<number[]>>
+  checkedCardIds: number[]
+  setCheckedCardIds: (cardIds: number[]) => void
+  showDisabledActivity?: boolean
 }
 
 export const ActivityV3Card: FC<ActivityV3CardProps> = ({
@@ -37,15 +37,15 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
   setCheckedCardIds,
   showDisabledActivity = false,
 }) => {
-  const { t } = useLanguage();
-  const me = useRecoilValue(meState);
-  const [toastMsg, setToastMsg] = useRecoilState(toastState);
+  const { t } = useLanguage()
+  const me = useRecoilValue(meState)
+  const [toastMsg, setToastMsg] = useRecoilState(toastState)
 
-  const sav = activityv3.studentActivityV3s?.[0];
-  const [isSubmitSummary, setSubmitSummary] = useState(false);
-  const [record, setRecord] = useState('');
-  const [summary, setSummary] = useState('');
-  const [title, setTitle] = useState('');
+  const sav = activityv3.studentActivityV3s?.[0]
+  const [isSubmitSummary, setSubmitSummary] = useState(false)
+  const [record, setRecord] = useState('')
+  const [summary, setSummary] = useState('')
+  const [title, setTitle] = useState('')
 
   const {
     data,
@@ -55,26 +55,26 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
     query: {
       enabled: openedCardIds.includes(activityv3.id) && me?.schoolId === 2,
     },
-  });
-  const gptContents: any = data;
+  })
+  const gptContents: any = data
 
   const { mutate: generateGPTAnalysis, isLoading: generateLoading } = useActivityCardGenerateGPTAnalysis({
     mutation: {
       onSuccess: () => {
-        refetch();
+        refetch()
       },
       onError: (error) => setToastMsg(error.message),
     },
-  });
+  })
 
   const { mutate: saveStudentActivityV3 } = useStudentActivityV3SaveByTeacher({
     mutation: {
       onSuccess: () => {
-        setToastMsg('변경 사항이 저장되었습니다.');
+        setToastMsg('변경 사항이 저장되었습니다.')
       },
       onError: (error) => setToastMsg(error.message),
     },
-  });
+  })
 
   const options = {
     maintainAspectRatio: false,
@@ -105,13 +105,13 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
         callbacks: {
           title: () => '',
           label: (tooltipItem: any) => {
-            return `${tooltipItem.label} : ${tooltipItem.raw}점`;
+            return `${tooltipItem.label} : ${tooltipItem.raw}점`
           },
           afterLabel: (tooltipItem: any) => {
             //@ts-ignore
-            const reason = Object.values(gptContents.analysis['탐구역량'])?.[tooltipItem.dataIndex]?.['근거'];
-            console.log(tooltipItem, ' reason ', reason);
-            return `${reason.match(/.{1,20}/g).join('\n')}`;
+            const reason = Object.values(gptContents.analysis['탐구역량'])?.[tooltipItem.dataIndex]?.['근거']
+            console.log(tooltipItem, ' reason ', reason)
+            return `${reason.match(/.{1,20}/g).join('\n')}`
           },
         },
       },
@@ -127,9 +127,9 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
         grid: {
           color: (context: any) => {
             if (context.index === 5) {
-              return 'black'; // 마지막 기준선은 검은색
+              return 'black' // 마지막 기준선은 검은색
             }
-            return '#DDDDDD'; // 나머지 기준선은 회색
+            return '#DDDDDD' // 나머지 기준선은 회색
           },
         },
         pointLabels: {
@@ -144,37 +144,37 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
     layout: {
       padding: 0,
     },
-  };
+  }
 
   useEffect(() => {
-    if (!record) setRecord(sav?.record || '');
-    if (!summary) setSummary(sav?.summary || '');
-    if (!title) setTitle(sav?.title || activityv3?.title || '');
-  }, [sav]);
+    if (!record) setRecord(sav?.record || '')
+    if (!summary) setSummary(sav?.summary || '')
+    if (!title) setTitle(sav?.title || activityv3?.title || '')
+  }, [sav])
 
   const getIsSessionSubmitted = () => {
     if (sav?.studentText || sav?.records?.length || sav?.summary) {
-      return true;
+      return true
     }
-    let isSubmitted = false;
+    let isSubmitted = false
     activityv3.activitySessions?.map((session) => {
       if (session?.studentActivitySessions?.[0]?.isSubmitted) {
-        isSubmitted = true;
+        isSubmitted = true
       }
-    });
-    return isSubmitted;
-  };
+    })
+    return isSubmitted
+  }
 
-  const isLoading = analysisLoading || generateLoading;
+  const isLoading = analysisLoading || generateLoading
 
   if (!showDisabledActivity && !getIsSessionSubmitted()) {
-    return <></>;
+    return <></>
   }
 
   return (
     <div className="overflow-hidden rounded-lg border border-gray-600">
       <div
-        className="flex cursor-pointer items-center justify-between space-x-2 px-4 py-2.5 "
+        className="flex cursor-pointer items-center justify-between space-x-2 px-4 py-2.5"
         onClick={() =>
           openedCardIds.includes(activityv3.id)
             ? setOpenedCardIds(openedCardIds.filter((id) => activityv3.id !== id))
@@ -194,7 +194,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
           />
 
           <div className="text-15 font-bold">
-            <span className="text-sm text-brand-1">[{activityv3.subject}]</span> {activityv3.title}
+            <span className="text-brand-1 text-sm">[{activityv3.subject}]</span> {activityv3.title}
           </div>
         </div>
         {openedCardIds.includes(activityv3.id) ? <Icon.ChevronDown /> : <Icon.ChevronUp />}
@@ -204,7 +204,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
         <div className="h-full w-full bg-white">
           {/* GPT 분석 내용 */}
           {isLoading ? (
-            <div className="flex w-full justify-center space-x-2 py-4 text-center text-16 text-gray-600">
+            <div className="text-16 flex w-full justify-center space-x-2 py-4 text-center text-gray-600">
               <span className="h-6 w-6 animate-ping rounded-full bg-sky-400 opacity-75"></span>
               <div> GPT 분석 결과를 불러오는 중입니다...</div>
             </div>
@@ -212,9 +212,9 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
             <>
               {gptContents && (
                 <div className="flex w-full flex-col space-y-2 border-b border-gray-300 px-4 py-2">
-                  <div className="mb-1 text-16 font-bold">탐구 역량</div>
-                  <div className="relative -mb-2 -mt-2 h-[300px] w-full overflow-hidden">
-                    <div className="h-[calc(100% + 40px)] absolute -bottom-2 -top-2 left-0 right-0">
+                  <div className="text-16 mb-1 font-bold">탐구 역량</div>
+                  <div className="relative -mt-2 -mb-2 h-[300px] w-full overflow-hidden">
+                    <div className="h-[calc(100% + 40px)] absolute -top-2 right-0 -bottom-2 left-0">
                       <Chart
                         type="radar"
                         datasetIdKey="id"
@@ -242,7 +242,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
                   </div>
                   <div className="text-16 font-bold">인성 역량</div>
                   {gptContents.analysis['인성역량']['인성역량'].map((value: any) => (
-                    <div key={value} className="flex w-max rounded-md border border-gray-500 px-3 py-1 text-16">
+                    <div key={value} className="text-16 flex w-max rounded-md border border-gray-500 px-3 py-1">
                       {value}
                     </div>
                   ))}
@@ -256,7 +256,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
           <div className="w-full border-b border-gray-300 px-4 py-2">
             <h1 className="font-semibold">차시 정보</h1>
             {activityv3.activitySessions?.map((session) => (
-              <div className="flex w-full items-center justify-between py-0.5 text-14">
+              <div className="text-14 flex w-full items-center justify-between py-0.5">
                 <p>{session?.title}</p>
                 <p>
                   {session?.studentActivitySessions?.[0]?.isSubmitted ? (
@@ -293,7 +293,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
             <p className="text-12 leading-5 text-gray-500">
               {t('text_activity_memo', '활동기록에서 활동 진행 중 학생에 대한 메모를 하실 수 있습니다.')}
             </p>
-            <p className="whitespace-pre-line text-13 leading-5">
+            <p className="text-13 leading-5 whitespace-pre-line">
               {sav?.records?.map((record: Record) => (
                 <>
                   <span>{record?.content}</span>
@@ -316,7 +316,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
                   className="mt-2"
                 />
                 <Textarea
-                  className="mt-2 rounded-lg border border-gray-300 p-2 text-13 leading-5"
+                  className="text-13 mt-2 rounded-lg border border-gray-300 p-2 leading-5"
                   value={summary}
                   placeholder="활동요약 내용을 작성해주세요."
                   onChange={(e) => setSummary(e.target.value)}
@@ -329,7 +329,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
                     불러오기
                   </Button>
                   <Button
-                    className="w-full border border-brand-1 text-brand-1"
+                    className="border-brand-1 text-brand-1 w-full border"
                     onClick={() =>
                       saveStudentActivityV3({
                         params: { activityv3Id: activityv3.id, userId: studentId },
@@ -345,15 +345,15 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
               <>
                 <div>
                   {sav?.title && (
-                    <p className="w-full whitespace-pre-line border-b border-gray-300 text-14 leading-5">
+                    <p className="text-14 w-full border-b border-gray-300 leading-5 whitespace-pre-line">
                       {sav?.title}
                     </p>
                   )}
-                  {sav?.summary && <p className="whitespace-pre-line text-13 leading-5">{sav.summary}</p>}
+                  {sav?.summary && <p className="text-13 leading-5 whitespace-pre-line">{sav.summary}</p>}
                 </div>
                 {me?.schoolId !== 183 && (
                   <Button
-                    className="mt-2 w-full border border-gray-500 disabled:bg-gray-200 "
+                    className="mt-2 w-full border border-gray-500 disabled:bg-gray-200"
                     disabled={isLoading}
                     onClick={() =>
                       generateGPTAnalysis({
@@ -368,7 +368,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
                   </Button>
                 )}
                 <Button
-                  className="mt-1 w-full border border-brand-1 text-brand-1"
+                  className="border-brand-1 text-brand-1 mt-1 w-full border"
                   onClick={() => setSubmitSummary(true)}
                 >
                   {sav?.summary ? '수정하기' : '작성하기'}
@@ -379,5 +379,5 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
         </div>
       )}
     </div>
-  );
-};
+  )
+}

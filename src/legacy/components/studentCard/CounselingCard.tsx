@@ -1,20 +1,20 @@
-import { useState } from 'react';
-import { Select, Textarea } from 'src/components/common';
-import { useCodeByCategoryName } from 'src/container/category';
-import { useTeacherCounseling } from 'src/container/teacher-counseling';
-import { UserContainer } from 'src/container/user';
-import { Category, Code, Counseling } from 'src/generated/model';
-import { isValidDate } from 'src/util/time';
-import { SuperModal } from '..';
-import { Button } from '../common/Button';
-import { TextInput } from '../common/TextInput';
+import { useState } from 'react'
+import { Select, Textarea } from '@/legacy/components/common'
+import { useCodeByCategoryName } from '@/legacy/container/category'
+import { useTeacherCounseling } from '@/legacy/container/teacher-counseling'
+import { UserContainer } from '@/legacy/container/user'
+import { Category, Code, Counseling } from '@/legacy/generated/model'
+import { isValidDate } from '@/legacy/util/time'
+import { SuperModal } from '..'
+import { Button } from '@/legacy/components/common/Button'
+import { TextInput } from '@/legacy/components/common/TextInput'
 
 interface CounselingCardProps {
-  studentId: number;
+  studentId: number
 }
 
 export function CounselingCard({ studentId }: CounselingCardProps) {
-  const { me } = UserContainer.useContext();
+  const { me } = UserContainer.useContext()
 
   const {
     isEditMode,
@@ -34,20 +34,20 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
     counselingData,
     createCounseling,
     deleteCounseling,
-  } = useTeacherCounseling(studentId);
+  } = useTeacherCounseling(studentId)
 
-  const { categoryData: counselingType } = useCodeByCategoryName(Category.counselingtype);
+  const { categoryData: counselingType } = useCodeByCategoryName(Category.counselingtype)
 
-  const [categoryObj, setCategoryObj] = useState<Code | undefined>();
+  const [categoryObj, setCategoryObj] = useState<Code | undefined>()
 
-  const [warnMsg, setWarnMsg] = useState('');
-  const [alertDelete, setAlertDelete] = useState(false);
-  const [deleteItem, setDeleteItem] = useState(-1);
+  const [warnMsg, setWarnMsg] = useState('')
+  const [alertDelete, setAlertDelete] = useState(false)
+  const [deleteItem, setDeleteItem] = useState(-1)
 
   const categoryChanged = (item: Code) => {
-    setCategoryObj(item);
-    setCategory(item.name);
-  };
+    setCategoryObj(item)
+    setCategory(item.name)
+  }
 
   return (
     <div className="mb-5">
@@ -56,11 +56,11 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
         <button
           children="메모추가"
           onClick={() => {
-            setContent('');
-            setCoulselorName(me?.name || '');
-            setIsAddMode(true);
+            setContent('')
+            setCoulselorName(me?.name || '')
+            setIsAddMode(true)
           }}
-          className="rounded-md bg-light_orange px-2 py-1 text-sm text-brand-1 hover:bg-brand-1 hover:text-light_orange focus:outline-none"
+          className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-none"
         />
       </div>
       <div className="relative flex h-full flex-col gap-4 rounded-lg border bg-white p-3">
@@ -73,10 +73,10 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
                   <Select.lg
                     value={categoryObj?.key}
                     onChange={(e) => {
-                      const selItem = counselingType?.filter((item: Code) => item.key === Number(e.target.value));
-                      selItem && categoryChanged(selItem[0]);
+                      const selItem = counselingType?.filter((item: Code) => item.key === Number(e.target.value))
+                      selItem && categoryChanged(selItem[0])
                     }}
-                    className="h-6 border-brand-1 py-0"
+                    className="border-brand-1 h-6 py-0"
                   >
                     {counselingType?.map((item: Code) => (
                       <option key={item.key} value={item.key}>
@@ -93,13 +93,13 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
                     type="date"
                     value={counselingAt}
                     onChange={(e) => {
-                      const selectedDate = new Date(e.target.value);
+                      const selectedDate = new Date(e.target.value)
                       if (!isValidDate(selectedDate)) {
-                        return;
+                        return
                       }
-                      setCounselingAt(e.target.value);
+                      setCounselingAt(e.target.value)
                     }}
-                    className="h-6 border-brand-1"
+                    className="border-brand-1 h-6"
                   />
                 </div>
               </div>
@@ -110,7 +110,7 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
                     placeholder="이름 입력"
                     value={counselorName}
                     onChange={(e) => setCoulselorName(e.target.value)}
-                    className="h-6 border-brand-1"
+                    className="border-brand-1 h-6"
                   />
                 </div>
               </div>
@@ -119,31 +119,31 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
               placeholder="내용 입력"
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              className="h-30 border-brand-1"
+              className="border-brand-1 h-30"
             />
             <div className="flex flex-row-reverse gap-1 text-right">
               {setIsAddMode && (
                 <button
                   children="취소"
-                  className="rounded-md bg-light_orange px-2 py-1 text-sm text-brand-1 hover:bg-red-50 hover:text-light_orange focus:outline-none"
+                  className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-50 focus:outline-none"
                   onClick={() => {
-                    setIsAddMode(false);
-                    setWarnMsg('');
+                    setIsAddMode(false)
+                    setWarnMsg('')
                   }}
                 />
               )}
               <button
                 children="저장"
-                className="rounded-md bg-light_orange px-2 py-1 text-sm text-brand-1 hover:bg-brand-1 hover:text-light_orange focus:outline-none"
+                className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-none"
                 onClick={() => {
                   if (categoryObj && categoryObj?.key >= 0) {
                     if (isAddMode) {
-                      createCounseling();
+                      createCounseling()
                     } else {
-                      setIsAddMode(true);
+                      setIsAddMode(true)
                     }
                   } else {
-                    setWarnMsg('* 카테고리를 선택해주세요.');
+                    setWarnMsg('* 카테고리를 선택해주세요.')
                   }
                 }}
               />
@@ -169,17 +169,17 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
                     <button
                       children="수정"
                       onClick={() => setIsEditMode(true)}
-                      className="rounded-md bg-light_orange px-2 py-1 text-sm text-brand-1 hover:bg-brand-1 hover:text-light_orange focus:outline-none"
+                      className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-none"
                     />
                   </div>
                 )}
                 {item?.writerId === me?.id && !isAddMode && (
                   <button
                     children="삭제"
-                    className="self-end rounded-md bg-light_orange px-2 py-1 text-sm text-brand-1 hover:bg-brand-1 hover:text-light_orange focus:outline-none"
+                    className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange self-end rounded-md px-2 py-1 text-sm focus:outline-none"
                     onClick={() => {
-                      setDeleteItem(item?.id);
-                      setAlertDelete(true);
+                      setDeleteItem(item?.id)
+                      setAlertDelete(true)
                     }}
                   />
                 )}
@@ -193,13 +193,13 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
           <Button.lg
             children="삭제하기"
             onClick={() => {
-              deleteCounseling(deleteItem);
-              setAlertDelete(false);
+              deleteCounseling(deleteItem)
+              setAlertDelete(false)
             }}
             className="filled-primary w-full"
           />
         </div>
       </SuperModal>
     </div>
-  );
+  )
 }

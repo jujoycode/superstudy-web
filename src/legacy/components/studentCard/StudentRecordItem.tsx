@@ -1,52 +1,52 @@
-import { FC, useState } from 'react';
-import { useStudentRecordontrollerDelete, useStudentRecordontrollerUpdate } from 'src/generated/endpoint';
-import { StudentRecord } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { SuperModal } from '../SuperModal';
-import { Textarea } from '../common';
-import { Button } from '../common/Button';
-import { TextInput } from '../common/TextInput';
+import { FC, useState } from 'react'
+import { useStudentRecordontrollerDelete, useStudentRecordontrollerUpdate } from '@/legacy/generated/endpoint'
+import { StudentRecord } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { SuperModal } from '../SuperModal'
+import { Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { TextInput } from '@/legacy/components/common/TextInput'
 
 interface StudentRecordItemProps {
-  record: StudentRecord;
-  refetch: () => void;
+  record: StudentRecord
+  refetch: () => void
 }
 
 export const StudentRecordItem: FC<StudentRecordItemProps> = ({ record, refetch }) => {
-  const { t, currentLang } = useLanguage();
-  const [updateView, setUpdateView] = useState(false);
-  const [title, setTitle] = useState(record.title);
-  const [content, setContent] = useState(record.content);
-  const [modalOpen, setModalOpen] = useState(false);
+  const { t, currentLang } = useLanguage()
+  const [updateView, setUpdateView] = useState(false)
+  const [title, setTitle] = useState(record.title)
+  const [content, setContent] = useState(record.content)
+  const [modalOpen, setModalOpen] = useState(false)
 
-  const reportContent = updateView ? content : record.content;
-  const byteLength = new TextEncoder().encode(reportContent).length;
-  const trimmedContent = reportContent.replaceAll(' ', '');
-  const trimmedByteLength = new TextEncoder().encode(trimmedContent).length;
+  const reportContent = updateView ? content : record.content
+  const byteLength = new TextEncoder().encode(reportContent).length
+  const trimmedContent = reportContent.replaceAll(' ', '')
+  const trimmedByteLength = new TextEncoder().encode(trimmedContent).length
 
   const { mutate: updateStudentRecord } = useStudentRecordontrollerUpdate({
     mutation: {
       onSuccess: () => {
-        setUpdateView(false);
-        refetch();
+        setUpdateView(false)
+        refetch()
       },
     },
-  });
+  })
   const { mutate: deleteStudentRecord } = useStudentRecordontrollerDelete({
     mutation: {
       onSuccess: () => {
-        setUpdateView(false);
-        refetch();
+        setUpdateView(false)
+        refetch()
       },
     },
-  });
+  })
 
   return (
     <>
       {updateView ? (
         <div className="mt-2 flex flex-col space-y-2 rounded-lg border border-gray-300 p-4" key={record.id}>
           <div className="flex items-center justify-between">
-            <div className="w-min whitespace-pre rounded-xl border border-brand-1 px-3 py-1.5 text-15 text-brand-1">
+            <div className="border-brand-1 text-15 text-brand-1 w-min rounded-xl border px-3 py-1.5 whitespace-pre">
               {record.type}
             </div>
             <div className="text-sm">작성자 : {record?.writer?.name} 선생님</div>
@@ -86,7 +86,7 @@ export const StudentRecordItem: FC<StudentRecordItemProps> = ({ record, refetch 
       ) : (
         <div className="mt-2 flex flex-col space-y-2 rounded-lg border border-gray-300 p-4" key={record.id}>
           <div className="flex items-center justify-between">
-            <div className="w-min whitespace-pre rounded-xl border border-brand-1 px-3 py-1.5 text-15 text-brand-1">
+            <div className="border-brand-1 text-15 text-brand-1 w-min rounded-xl border px-3 py-1.5 whitespace-pre">
               {record.type}
             </div>
             <div className="text-sm">작성자 : {record?.writer?.name} 선생님</div>
@@ -124,13 +124,13 @@ export const StudentRecordItem: FC<StudentRecordItemProps> = ({ record, refetch 
           <Button.lg
             children="삭제하기"
             onClick={() => {
-              deleteStudentRecord({ id: record.id });
-              setModalOpen(false);
+              deleteStudentRecord({ id: record.id })
+              setModalOpen(false)
             }}
             className="filled-primary w-full"
           />
         </div>
       </SuperModal>
     </>
-  );
-};
+  )
+}

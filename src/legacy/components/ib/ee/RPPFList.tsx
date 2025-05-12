@@ -1,112 +1,109 @@
-import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import NODATA from 'src/assets/images/no-data.png';
-import { useGetFeedbackBatchExist } from 'src/container/ib-feedback';
-import { useInterviewGetByStudentId, useInterviewQNAGetByStudentId } from 'src/container/ib-student-interview';
-import { FeedbackReferenceTable, ResponseIBDto, ResponseRPPFDto } from 'src/generated/model';
-import { Blank } from '../../common';
-import AlertV2 from '../../common/AlertV2';
-import { BadgeV2 } from '../../common/BadgeV2';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Typography } from '../../common/Typography';
-import ColorSVGIcon from '../../icon/ColorSVGIcon';
-import FeedbackViewer from '../FeedbackViewer';
-import { IbEeInterview } from './IbEeInterview';
-import { IbEeRPPF } from './IbEeRPPF';
+import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import NODATA from 'src/assets/images/no-data.png'
+import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
+import { useInterviewGetByStudentId, useInterviewQNAGetByStudentId } from '@/legacy/container/ib-student-interview'
+import { FeedbackReferenceTable, ResponseIBDto, ResponseRPPFDto } from '@/legacy/generated/model'
+import { Blank } from '../@/legacy/components/common'
+import AlertV2 from '../@/legacy/components/common/AlertV2'
+import { BadgeV2 } from '../@/legacy/components/common/BadgeV2'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
+import FeedbackViewer from '../FeedbackViewer'
+import { IbEeInterview } from './IbEeInterview'
+import { IbEeRPPF } from './IbEeRPPF'
 
 interface RPPFListProps {
-  data: ResponseIBDto;
-  title: string;
-  userId: number;
-  rppfs?: ResponseRPPFDto[];
+  data: ResponseIBDto
+  title: string
+  userId: number
+  rppfs?: ResponseRPPFDto[]
 }
 
 export default function RPPFList({ data, title, userId, rppfs = [] }: RPPFListProps) {
-  const { push } = useHistory();
+  const { push } = useHistory()
 
-  const approvedProposal = data.proposals?.find((proposal) => proposal.status === 'ACCEPT') || null;
+  const approvedProposal = data.proposals?.find((proposal) => proposal.status === 'ACCEPT') || null
   // 작성 가능한 인터뷰가 있는지 확인
-  const { data: ableInterviews = [] } = useInterviewGetByStudentId(userId || 0, 'EE_RPPF');
-  const unCreateInterview = ableInterviews.find((item) => !item.is_created);
+  const { data: ableInterviews = [] } = useInterviewGetByStudentId(userId || 0, 'EE_RPPF')
+  const unCreateInterview = ableInterviews.find((item) => !item.is_created)
 
-  const { data: interviews = [], isLoading: isInterviewLoading } = useInterviewQNAGetByStudentId(
-    userId || 0,
-    'EE_RPPF',
-  );
-  const [modalState, setModalState] = useState<null | 'createRPPF' | 'interview'>(null);
-  const [alertType, setAlertType] = useState<null | 'RPPF' | 'interview'>(null);
-  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false);
+  const { data: interviews = [], isLoading: isInterviewLoading } = useInterviewQNAGetByStudentId(userId || 0, 'EE_RPPF')
+  const [modalState, setModalState] = useState<null | 'createRPPF' | 'interview'>(null)
+  const [alertType, setAlertType] = useState<null | 'RPPF' | 'interview'>(null)
+  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false)
   const [feedbackReference, setFeedbackReference] = useState<{
-    referenceId: number;
-    referenceTable: FeedbackReferenceTable;
-  }>();
-  const [localUnreadCounts, setLocalUnreadCounts] = useState<Record<string, number>>({});
+    referenceId: number
+    referenceTable: FeedbackReferenceTable
+  }>()
+  const [localUnreadCounts, setLocalUnreadCounts] = useState<Record<string, number>>({})
 
   const mergedData = [
     ...rppfs.map((rppf) => ({ ...rppf, type: 'RPPF' })),
     ...interviews.map((interview) => ({ ...interview, type: 'interview' })),
-  ].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  ].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
 
   const handleSuccess = (type: 'RPPF' | 'interview') => {
-    setModalState(null);
+    setModalState(null)
     // refetch();
-    setAlertType(type);
-  };
+    setAlertType(type)
+  }
 
-  const rppfIdsString = rppfs.length > 0 ? rppfs.map((rppf) => rppf.id).join(',') : null;
-  const interviewIdsString = interviews.length > 0 ? interviews.map((interview) => interview.qna.id).join(',') : null;
+  const rppfIdsString = rppfs.length > 0 ? rppfs.map((rppf) => rppf.id).join(',') : null
+  const interviewIdsString = interviews.length > 0 ? interviews.map((interview) => interview.qna.id).join(',') : null
 
   const { data: interviewFeedbacks } = useGetFeedbackBatchExist(
     interviewIdsString
       ? { referenceIds: interviewIdsString, referenceTable: 'INTERVIEW' }
       : { referenceIds: '', referenceTable: 'INTERVIEW' },
     { enabled: !!interviewIdsString },
-  );
+  )
 
   const { data: rppfFeedbacks } = useGetFeedbackBatchExist(
     rppfIdsString
       ? { referenceIds: rppfIdsString, referenceTable: 'RPPF' }
       : { referenceIds: '', referenceTable: 'RPPF' },
     { enabled: !!rppfIdsString },
-  );
+  )
 
   // unreadCount를 0으로 업데이트하는 함수
   const markAsRead = (referenceId: number, referenceTable: FeedbackReferenceTable) => {
-    const key = `${referenceTable}-${referenceId}`; // 문자열 키 생성
+    const key = `${referenceTable}-${referenceId}` // 문자열 키 생성
     setLocalUnreadCounts((prevCounts) => {
-      const newCounts = { ...prevCounts };
-      newCounts[key] = 0;
-      return newCounts;
-    });
-  };
+      const newCounts = { ...prevCounts }
+      newCounts[key] = 0
+      return newCounts
+    })
+  }
 
   const handleFeedbackOpen = (referenceId: number, referenceTable: FeedbackReferenceTable, unreadCount: number) => {
-    setFeedbackReference({ referenceId, referenceTable });
-    setFeedbackOpen(true);
+    setFeedbackReference({ referenceId, referenceTable })
+    setFeedbackOpen(true)
 
     if (unreadCount > 0) {
-      markAsRead(referenceId, referenceTable); // referenceTable 추가
+      markAsRead(referenceId, referenceTable) // referenceTable 추가
     }
-  };
+  }
 
   useEffect(() => {
-    const initialCounts: Record<string, number> = {};
+    const initialCounts: Record<string, number> = {}
 
     if (rppfFeedbacks?.items) {
       rppfFeedbacks.items.forEach((item) => {
-        initialCounts[`RPPF-${item.referenceId}`] = item.unreadCount || 0;
-      });
+        initialCounts[`RPPF-${item.referenceId}`] = item.unreadCount || 0
+      })
     }
 
     if (interviewFeedbacks?.items) {
       interviewFeedbacks.items.forEach((item) => {
-        initialCounts[`INTERVIEW-${item.referenceId}`] = item.unreadCount || 0;
-      });
+        initialCounts[`INTERVIEW-${item.referenceId}`] = item.unreadCount || 0
+      })
     }
 
-    setLocalUnreadCounts(initialCounts);
-  }, [rppfFeedbacks, interviewFeedbacks]);
+    setLocalUnreadCounts(initialCounts)
+  }, [rppfFeedbacks, interviewFeedbacks])
 
   return (
     <section className="h-[664px]">
@@ -171,7 +168,7 @@ export default function RPPFList({ data, title, userId, rppfs = [] }: RPPFListPr
           </div>
         ) : (
           <table className="w-full text-center">
-            <thead className="border-y border-y-primary-gray-100 text-[15px] font-medium text-primary-gray-500">
+            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
               <tr className="flex w-full items-center justify-between gap-[16px] px-[24px] py-[9px]">
                 <td className="w-[176px]">종류</td>
                 <td className="w-[632px]">제목</td>
@@ -181,11 +178,11 @@ export default function RPPFList({ data, title, userId, rppfs = [] }: RPPFListPr
             </thead>
             <tbody>
               {rppfs.map((rppf) => {
-                const feedback = rppfFeedbacks?.items?.find((item) => item.referenceId === rppf.id);
+                const feedback = rppfFeedbacks?.items?.find((item) => item.referenceId === rppf.id)
                 return (
                   <tr
                     key={rppf.id}
-                    className="flex w-full items-center justify-between gap-[16px] border-b border-b-primary-gray-100 px-[24px] py-[9px]"
+                    className="border-b-primary-gray-100 flex w-full items-center justify-between gap-[16px] border-b px-[24px] py-[9px]"
                   >
                     <td className="flex w-[176px] items-center justify-center">
                       <BadgeV2 type="solid_regular" color={'blue'} size={24}>
@@ -231,17 +228,17 @@ export default function RPPFList({ data, title, userId, rppfs = [] }: RPPFListPr
                       )}
                     </td>
                   </tr>
-                );
+                )
               })}
               {interviews
                 ?.slice()
                 .sort((a, b) => new Date(b.qna.updatedAt).getTime() - new Date(a.qna.updatedAt).getTime())
                 .map((interview) => {
-                  const feedback = interviewFeedbacks?.items?.find((item) => item.referenceId === interview.qna.id);
+                  const feedback = interviewFeedbacks?.items?.find((item) => item.referenceId === interview.qna.id)
                   return (
                     <tr
                       key={interview.id}
-                      className="flex w-full items-center justify-between gap-[16px] border-b border-b-primary-gray-100 px-[24px] py-[9px]"
+                      className="border-b-primary-gray-100 flex w-full items-center justify-between gap-[16px] border-b px-[24px] py-[9px]"
                     >
                       <td className="flex w-[176px] items-center justify-center">
                         <BadgeV2 type="solid_regular" color={'gray'} size={24}>
@@ -297,7 +294,7 @@ export default function RPPFList({ data, title, userId, rppfs = [] }: RPPFListPr
                         )}
                       </td>
                     </tr>
-                  );
+                  )
                 })}
             </tbody>
           </table>
@@ -335,5 +332,5 @@ export default function RPPFList({ data, title, userId, rppfs = [] }: RPPFListPr
         />
       )}
     </section>
-  );
+  )
 }

@@ -1,23 +1,23 @@
-import { PropsWithChildren, useEffect, useRef, useState } from 'react';
-import { Button } from 'src/components/common/Button';
-import ScheduleAndTimePicker from 'src/components/common/ScheduleAndTimePicker';
-import SVGIcon from 'src/components/icon/SVGIcon';
-import { useIBDeadlineUpdateDeadline } from 'src/generated/endpoint';
-import { ResponseIBDeadlineDto } from 'src/generated/model';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { twMerge } from 'tailwind-merge';
-import AlertV2 from '../../common/AlertV2';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Typography } from '../../common/Typography';
-import ColorSVGIcon from '../../icon/ColorSVGIcon';
-import { DEADLINE_TYPE_KOR } from './Coordinator_Schedule';
+import { PropsWithChildren, useEffect, useRef, useState } from 'react'
+import { Button } from '@/legacy/components/common/Button'
+import ScheduleAndTimePicker from '@/legacy/components/common/ScheduleAndTimePicker'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { useIBDeadlineUpdateDeadline } from '@/legacy/generated/endpoint'
+import { ResponseIBDeadlineDto } from '@/legacy/generated/model'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { twMerge } from 'tailwind-merge'
+import AlertV2 from '../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
+import { DEADLINE_TYPE_KOR } from './Coordinator_Schedule'
 
 interface Coordinator_Schedule_UpdateScheduleProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  handleBack?: () => void;
-  scheduleData?: ResponseIBDeadlineDto;
-  onSuccess?: () => void;
+  modalOpen: boolean
+  setModalClose: () => void
+  handleBack?: () => void
+  scheduleData?: ResponseIBDeadlineDto
+  onSuccess?: () => void
 }
 
 export function Coordinator_Schedule_UpdateSchedule({
@@ -27,41 +27,41 @@ export function Coordinator_Schedule_UpdateSchedule({
   scheduleData,
   onSuccess,
 }: PropsWithChildren<Coordinator_Schedule_UpdateScheduleProps>) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
-  const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [deadline, setDeadline] = useState<ResponseIBDeadlineDto | undefined>(scheduleData);
+  const [isOpen, setIsOpen] = useState(false)
+  const [isFocused, setIsFocused] = useState(false)
+  const [calendarOpen, setCalendarOpen] = useState<boolean>(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [deadline, setDeadline] = useState<ResponseIBDeadlineDto | undefined>(scheduleData)
 
-  const { mutate: updateDeadline } = useIBDeadlineUpdateDeadline({ mutation: { onSuccess } });
+  const { mutate: updateDeadline } = useIBDeadlineUpdateDeadline({ mutation: { onSuccess } })
 
   const handleSubmit = () => {
-    if (!deadline) return;
-    updateDeadline({ id: deadline.id, data: deadline });
-  };
+    if (!deadline) return
+    updateDeadline({ id: deadline.id, data: deadline })
+  }
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleFocus = () => setIsFocused(true)
+  const handleBlur = () => setIsFocused(false)
 
   useEffect(() => {
     if (scheduleData) {
-      setDeadline(scheduleData);
+      setDeadline(scheduleData)
     }
-  }, [scheduleData]);
+  }, [scheduleData])
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black bg-opacity-50 ${
+      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
         !modalOpen && 'hidden'
       }`}
     >
       <div className={`relative w-[632px] overflow-hidden rounded-xl bg-white px-8`}>
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pb-6 pt-8 backdrop-blur-[20px]">
+        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6 backdrop-blur-[20px]">
           <Typography variant="title1">마감기한 설정</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} />
         </div>
 
-        <div ref={scrollRef} className="scroll-box flex max-h-[608px] flex-col gap-6 overflow-auto pb-8 pt-4">
+        <div ref={scrollRef} className="scroll-box flex max-h-[608px] flex-col gap-6 overflow-auto pt-4 pb-8">
           {deadline && (
             <div className="rounded-lg bg-gray-50">
               <div className="flex items-center justify-between border-b border-gray-300 p-4">
@@ -74,7 +74,7 @@ export function Coordinator_Schedule_UpdateSchedule({
                   </Typography>
                   <div className="relative">
                     <div
-                      className={`flex h-10 w-full items-center gap-2 rounded-lg border border-primary-gray-200 bg-white px-3 py-[9px] focus:outline-none focus:ring-0 ${
+                      className={`border-primary-gray-200 flex h-10 w-full items-center gap-2 rounded-lg border bg-white px-3 py-[9px] focus:ring-0 focus:outline-none ${
                         isFocused && 'border-primary-gray-700'
                       }`}
                       onFocus={handleFocus}
@@ -83,7 +83,7 @@ export function Coordinator_Schedule_UpdateSchedule({
                     >
                       <SVGIcon.Calendar size={20} color="gray700" />
                       <input
-                        className="w-full flex-1 border-none bg-white p-0 text-15 font-medium text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 focus:outline-none focus:ring-0"
+                        className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none bg-white p-0 font-medium focus:ring-0 focus:outline-none"
                         placeholder="마감기한 선택"
                         value={
                           deadline.deadlineTime
@@ -94,13 +94,13 @@ export function Coordinator_Schedule_UpdateSchedule({
                       />
                     </div>
                     {calendarOpen && (
-                      <div className="fixed left-1/2 top-1/2 z-50 mt-2 -translate-x-1/2 -translate-y-1/2 transform">
+                      <div className="fixed top-1/2 left-1/2 z-50 mt-2 -translate-x-1/2 -translate-y-1/2 transform">
                         <ScheduleAndTimePicker
                           initialDeadline={deadline.deadlineTime ? new Date(deadline.deadlineTime) : undefined}
                           onSave={(finalDate) => {
-                            const finalDateString = finalDate?.toISOString() || '';
-                            setDeadline({ ...deadline, deadlineTime: finalDateString });
-                            setCalendarOpen(false);
+                            const finalDateString = finalDate?.toISOString() || ''
+                            setDeadline({ ...deadline, deadlineTime: finalDateString })
+                            setCalendarOpen(false)
                           }}
                           onCancel={() => setCalendarOpen(false)}
                         />
@@ -117,7 +117,7 @@ export function Coordinator_Schedule_UpdateSchedule({
                       <Button.lg
                         key={day}
                         className={twMerge(
-                          'h-[40px] border border-primary-gray-300 bg-white text-primary-gray-700 disabled:border-primary-gray-200 disabled:bg-primary-gray-100 disabled:text-primary-gray-400',
+                          'border-primary-gray-300 text-primary-gray-700 disabled:border-primary-gray-200 disabled:bg-primary-gray-100 disabled:text-primary-gray-400 h-[40px] border bg-white',
                           deadline.remindDays?.includes(day) &&
                             'border-primary-orange-400 bg-primary-orange-100 text-primary-orange-800',
                         )}
@@ -143,7 +143,7 @@ export function Coordinator_Schedule_UpdateSchedule({
 
         <div
           className={
-            'sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-primary-gray-100 bg-white/70 pb-8 pt-6 backdrop-blur-[20px]'
+            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]'
           }
         >
           <div className="flex justify-end gap-3">
@@ -160,5 +160,5 @@ export function Coordinator_Schedule_UpdateSchedule({
         <AlertV2 confirmText="확인" message={`일정이 \n저장되었습니다`} onConfirm={() => setIsOpen(!isOpen)} />
       )}
     </div>
-  );
+  )
 }

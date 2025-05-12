@@ -1,6 +1,6 @@
-import { Typography } from 'src/components/common/Typography';
-import ResultCard from './ResultCard';
-import { ResponseCopykillerResponseDto } from 'src/generated/model';
+import { Typography } from '@/legacy/components/common/Typography'
+import ResultCard from './ResultCard'
+import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
 
 export default function ResultCardList({ data }: { data: ResponseCopykillerResponseDto[] }) {
   return (
@@ -16,5 +16,5 @@ export default function ResultCardList({ data }: { data: ResponseCopykillerRespo
           ))}
       </div>
     </div>
-  );
+  )
 }

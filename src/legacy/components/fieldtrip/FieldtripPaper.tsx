@@ -1,70 +1,70 @@
-import { add } from 'date-fns';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useRecoilValue } from 'recoil';
-import { Fieldtrip, ResponseUserDto } from 'src/generated/model';
-import { useSignedUrl } from 'src/lib/query';
-import { meState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { getNickName } from 'src/util/status';
-import { getCustomString } from 'src/util/string';
-import { fieldtripPeriodDayCnt, makeDateToString2 } from 'src/util/time';
-import { Td2 } from '../Td2';
-import { Checkbox } from '../common/Checkbox';
+import { add } from 'date-fns'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useRecoilValue } from 'recoil'
+import { Fieldtrip, ResponseUserDto } from '@/legacy/generated/model'
+import { useSignedUrl } from '@/legacy/lib/query'
+import { meState } from '@/stores'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { getNickName } from '@/legacy/util/status'
+import { getCustomString } from '@/legacy/util/string'
+import { fieldtripPeriodDayCnt, makeDateToString2 } from '@/legacy/util/time'
+import { Td2 } from '../Td2'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
 
 interface FieldtripPaperProps {
-  school: ResponseUserDto['school'] | undefined;
-  fieldtrip: Fieldtrip | undefined;
-  content?: any;
-  type: '신청서' | '통보서' | '결과보고서';
-  resultTextPage1?: string | undefined;
-  isPaper?: boolean;
+  school: ResponseUserDto['school'] | undefined
+  fieldtrip: Fieldtrip | undefined
+  content?: any
+  type: '신청서' | '통보서' | '결과보고서'
+  resultTextPage1?: string | undefined
+  isPaper?: boolean
 }
 
-const forms = ['가족동반여행', '친·인척 방문', '답사∙견학 활동', '체험활동'];
+const forms = ['가족동반여행', '친·인척 방문', '답사∙견학 활동', '체험활동']
 
 export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPage1, isPaper }: FieldtripPaperProps) {
-  const { data: approver1Signature } = useSignedUrl(fieldtrip?.approver1Signature);
-  const { data: approver2Signature } = useSignedUrl(fieldtrip?.approver2Signature);
-  const { data: approver3Signature } = useSignedUrl(fieldtrip?.approver3Signature);
-  const { data: approver4Signature } = useSignedUrl(fieldtrip?.approver4Signature);
-  const { data: approver5Signature } = useSignedUrl(fieldtrip?.approver5Signature);
-  const { data: resultApprover1Signature } = useSignedUrl(fieldtrip?.resultApprover1Signature);
-  const { data: resultApprover2Signature } = useSignedUrl(fieldtrip?.resultApprover2Signature);
-  const { data: resultApprover3Signature } = useSignedUrl(fieldtrip?.resultApprover3Signature);
-  const { data: resultApprover4Signature } = useSignedUrl(fieldtrip?.resultApprover4Signature);
-  const { data: resultApprover5Signature } = useSignedUrl(fieldtrip?.resultApprover5Signature);
+  const { data: approver1Signature } = useSignedUrl(fieldtrip?.approver1Signature)
+  const { data: approver2Signature } = useSignedUrl(fieldtrip?.approver2Signature)
+  const { data: approver3Signature } = useSignedUrl(fieldtrip?.approver3Signature)
+  const { data: approver4Signature } = useSignedUrl(fieldtrip?.approver4Signature)
+  const { data: approver5Signature } = useSignedUrl(fieldtrip?.approver5Signature)
+  const { data: resultApprover1Signature } = useSignedUrl(fieldtrip?.resultApprover1Signature)
+  const { data: resultApprover2Signature } = useSignedUrl(fieldtrip?.resultApprover2Signature)
+  const { data: resultApprover3Signature } = useSignedUrl(fieldtrip?.resultApprover3Signature)
+  const { data: resultApprover4Signature } = useSignedUrl(fieldtrip?.resultApprover4Signature)
+  const { data: resultApprover5Signature } = useSignedUrl(fieldtrip?.resultApprover5Signature)
 
-  const meRecoil = useRecoilValue(meState);
+  const meRecoil = useRecoilValue(meState)
 
-  const schoolName = school?.name;
-  const [agree, setAgree] = useState(true);
+  const schoolName = school?.name
+  const [agree, setAgree] = useState(true)
 
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const { sHalfUsedDayCnt, wholeUsedDayCnt, eHalfUsedDayCnt } = fieldtripPeriodDayCnt(
     fieldtrip?.usedDays,
     fieldtrip?.startPeriodS,
     fieldtrip?.endPeriodE,
-  );
+  )
 
-  let homeContentType = 'Time';
+  let homeContentType = 'Time'
 
   if (type === '신청서') {
     // if (!content) {
     if (fieldtrip?.type === 'HOME') {
       try {
-        content = JSON.parse(fieldtrip?.content || '');
+        content = JSON.parse(fieldtrip?.content || '')
       } catch (err) {
-        console.log(err);
+        console.log(err)
       }
     } else if (fieldtrip?.type === 'SUBURBS') {
-      content = fieldtrip?.content;
+      content = fieldtrip?.content
     }
     // }
 
     if (fieldtrip?.type === 'HOME' && content && content[0].day) {
-      homeContentType = 'Day';
+      homeContentType = 'Day'
     }
     return (
       <div className="text-xs md:px-12 md:pt-12 md:text-base">
@@ -135,13 +135,13 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
               <th className="border border-black" colSpan={5}>
                 {fieldtrip?.studentGradeKlass} {fieldtrip?.studentNumber}번
               </th>
-              <td className="break-words border border-black" colSpan={4}>
+              <td className="border border-black break-words" colSpan={4}>
                 {fieldtrip?.student?.phone}
               </td>
             </tr>
 
             <tr className="h-0">
-              <th className="break-normal border border-black bg-gray-200" colSpan={3} rowSpan={4}>
+              <th className="border border-black bg-gray-200 break-normal" colSpan={3} rowSpan={4}>
                 본교 출석인정기간 연간({school?.fieldtripDays}
                 )일
               </th>
@@ -284,7 +284,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
               <th className="border border-black" colSpan={4}>
                 휴대폰
               </th>
-              <td className="break-words border border-black" colSpan={5}>
+              <td className="border border-black break-words" colSpan={5}>
                 {fieldtrip?.student?.nokPhone}
               </td>
             </tr>
@@ -305,7 +305,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
               <th className="border border-black" colSpan={4}>
                 휴대폰
               </th>
-              <td className="break-words border border-black" colSpan={5}>
+              <td className="border border-black break-words" colSpan={5}>
                 {fieldtrip?.guidePhone}
               </td>
             </tr>
@@ -483,7 +483,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                     교외<p></p>체험<p></p>학습<p></p>계획
                   </th>
                   <td
-                    className="h-96 overflow-hidden whitespace-pre-line border border-black px-4 text-left"
+                    className="h-96 overflow-hidden border border-black px-4 text-left whitespace-pre-line"
                     colSpan={20}
                   >
                     {content}
@@ -496,7 +496,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                 학생<p></p>안전
               </th>
               <td
-                className="overflow-hidden whitespace-pre-line border border-black bg-gray-200 text-left"
+                className="overflow-hidden border border-black bg-gray-200 text-left whitespace-pre-line"
                 colSpan={17}
               >
                 {school?.studentSafeText}
@@ -523,7 +523,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                   <div className="flex w-full items-center justify-end space-x-2">
                     <div className="whitespace-pre">학생 : {fieldtrip?.student?.name} </div>
                     <div className="relative" style={{ width: '75px', minHeight: '50px' }}>
-                      <div className="absolute text-littleblack" style={{ top: '13px', left: '27px' }}>
+                      <div className="text-littleblack absolute" style={{ top: '13px', left: '27px' }}>
                         (인)
                       </div>
                       {fieldtrip?.studentSignature && (
@@ -535,7 +535,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                   <div className="-mt-6 flex w-full items-center justify-end space-x-2">
                     <div className="whitespace-pre">보호자 : {fieldtrip?.student?.nokName} </div>
                     <div className="relative" style={{ width: '75px', minHeight: '50px' }}>
-                      <div className="absolute text-littleblack" style={{ top: '13px', left: '27px' }}>
+                      <div className="text-littleblack absolute" style={{ top: '13px', left: '27px' }}>
                         (인)
                       </div>
 
@@ -567,11 +567,11 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
           {/* <p>※ {school?.studentSafeText} 미이행의 경우 시‧군‧구 아동복지과 또는 수사기관에 통보될 수 있음을 알려드립니다. </p> */}
         </div>
       </div>
-    );
+    )
   } else if (type === '통보서') {
     return (
       <div className="col-span-3 col-start-2 text-xs md:px-12 md:pt-12 md:text-base">
-        <div className="mb-2 mt-4 flex w-full justify-center">
+        <div className="mt-4 mb-2 flex w-full justify-center">
           <h5 className="text-sm font-bold md:text-2xl">
             「학교장허가 {fieldtrip?.type === 'HOME' ? '가정학습' : '교외체험학습'}」 통보서
           </h5>
@@ -755,7 +755,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                       {schoolName} {fieldtrip?.studentGradeKlass} {fieldtrip?.approver1Title} 교사{' '}
                     </div>
                     <div className="relative" style={{ width: '75px', minHeight: '50px' }}>
-                      <div className="absolute text-littleblack" style={{ top: '15px', left: '37px' }}>
+                      <div className="text-littleblack absolute" style={{ top: '15px', left: '37px' }}>
                         (인)
                       </div>
                       {fieldtrip?.approver1Signature && (
@@ -798,15 +798,16 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
             연락을 하도록 합니다.
           </p>
           <p className="font-extrabold">
-            ※ {school?.studentSafeText} 미이행의 경우 시‧군‧구 아동복지과 또는 수사기관에 통보될 수 있음을 알려드립니다.{' '}
+            ※ {school?.studentSafeText} 미이행의 경우 시‧군‧구 아동복지과 또는 수사기관에 통보될 수 있음을
+            알려드립니다.{' '}
           </p>
         </div>
       </div>
-    );
+    )
   } else if (type === '결과보고서') {
     if (fieldtrip?.type === 'HOME' && (!content || content.day)) {
-      content = content = JSON.parse(fieldtrip?.content || '');
-      homeContentType = 'Day';
+      content = content = JSON.parse(fieldtrip?.content || '')
+      homeContentType = 'Day'
     }
 
     return (
@@ -1163,7 +1164,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                     </td>
                   </tr>
                   <tr className="h-128 max-h-128">
-                    <td className="whitespace-pre-line border border-dashed border-black text-left" colSpan={23}>
+                    <td className="border border-dashed border-black text-left whitespace-pre-line" colSpan={23}>
                       <div className={`h-128 px-4 ${isPaper ? '' : 'overflow-y-auto'}`}>
                         {resultTextPage1 ? resultTextPage1 : fieldtrip?.resultText}
                       </div>
@@ -1190,7 +1191,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                   <div className="flex w-full items-center justify-end space-x-2">
                     <div className="whitespace-pre">보호자 {fieldtrip?.student?.nokName}:</div>
                     <div className="relative" style={{ width: '75px', minHeight: '50px' }}>
-                      <div className="absolute text-littleblack" style={{ top: '13px', left: '37px' }}>
+                      <div className="text-littleblack absolute" style={{ top: '13px', left: '37px' }}>
                         (인)
                       </div>
                       {fieldtrip?.parentResultSignature && (
@@ -1201,7 +1202,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                   <div className="-mt-5 flex w-full items-center justify-end space-x-2">
                     <div className="whitespace-pre">학생 {fieldtrip?.student?.name}:</div>
                     <div className="relative" style={{ width: '75px', minHeight: '50px' }}>
-                      <div className="absolute text-littleblack" style={{ top: '13px', left: '37px' }}>
+                      <div className="text-littleblack absolute" style={{ top: '13px', left: '37px' }}>
                         (인)
                       </div>
                       {fieldtrip?.studentResultSignature && (
@@ -1219,11 +1220,11 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
             </tr>
           </table>
         </div>
-        <p className="mb-10 mt-5 font-bold">
+        <p className="mt-5 mb-10 font-bold">
           ※ 보고서 제출 기한: 체험학습 종료 후 {meRecoil?.school.fieldtripResultDueDays || 5}일 이내
         </p>
       </div>
-    );
+    )
   }
-  return <></>;
+  return <></>
 }

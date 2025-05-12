@@ -1,34 +1,34 @@
-import _ from 'lodash';
-import { FC, useEffect, useRef, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useRecoilState } from 'recoil';
-import SvgUser from 'src/assets/svg/user.svg';
-import { Avatar, Label, Radio, RadioGroup, Select, Textarea } from 'src/components/common';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { Coachmark2 } from 'src/components/common/CoachMark2';
-import ConfirmDialog from 'src/components/common/ConfirmDialog';
-import { Icon } from 'src/components/common/icons';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { TextInput } from 'src/components/common/TextInput';
-import { SuperModal } from 'src/components/SuperModal';
-import { Constants } from 'src/constants';
+import _ from 'lodash'
+import { FC, useEffect, useRef, useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { useRecoilState } from 'recoil'
+import SvgUser from 'src/assets/svg/user.svg'
+import { Avatar, Label, Radio, RadioGroup, Select, Textarea } from '@/legacy/components/common'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Coachmark2 } from '@/legacy/components/common/CoachMark2'
+import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
+import { Icon } from '@/legacy/components/common/icons'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { SuperModal } from 'src/components/SuperModal'
+import { Constants } from '@/legacy/constants'
 import {
   useAchievementCriteriaGetByIds,
   useActivityV3GetGPTReport,
   useStudentRecordontrollerCreate,
-} from 'src/generated/endpoint';
-import { ActivityV3, ResponseStudentCardStudentDto, SubjectType } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { toastState } from 'src/store';
-import 'swiper/swiper.min.css';
+} from '@/legacy/generated/endpoint'
+import { ActivityV3, ResponseStudentCardStudentDto, SubjectType } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { toastState } from '@/stores'
+import 'swiper/swiper.min.css'
 
 interface ActivityV3GPTModalProps {
-  activityV3s?: ActivityV3[];
-  checkedCardIds: number[];
-  setCheckedCardIds: (cardIds: number[]) => void;
-  onClose: () => void;
-  studentInfo: ResponseStudentCardStudentDto;
-  refetch: () => void;
+  activityV3s?: ActivityV3[]
+  checkedCardIds: number[]
+  setCheckedCardIds: (cardIds: number[]) => void
+  onClose: () => void
+  studentInfo: ResponseStudentCardStudentDto
+  refetch: () => void
 }
 
 export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
@@ -39,50 +39,50 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
   studentInfo,
   refetch,
 }) => {
-  const { t, currentLang } = useLanguage();
-  const [toastMsg, setToastMsg] = useRecoilState(toastState);
-  const [currentStep, setCurrentStep] = useState(1);
-  const [modalStep, setModalStep] = useState(1);
-  const [question, setQuestion] = useState('');
-  const [subject, setSubject] = useState('');
-  const [creativeType, setCreativeType] = useState('');
-  const [conversationId, setConversationId] = useState('');
+  const { t, currentLang } = useLanguage()
+  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [currentStep, setCurrentStep] = useState(1)
+  const [modalStep, setModalStep] = useState(1)
+  const [question, setQuestion] = useState('')
+  const [subject, setSubject] = useState('')
+  const [creativeType, setCreativeType] = useState('')
+  const [conversationId, setConversationId] = useState('')
 
-  const [title, setTitle] = useState('');
-  const [reportContents, setReportContents] = useState<any[]>([]);
-  const [selectedContentIndex, setSelectedContentIndex] = useState<number | undefined>();
-  const [content, setContent] = useState('');
-  const [type, setType] = useState<string>('');
-  const [confirmOpen, setConfirmOpen] = useState(false);
-  const [isEvidenceOpen, setEvidenceOpen] = useState<boolean>(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const titleInputRef = useRef<HTMLInputElement>(null);
-  const [achievement, setAchievement] = useState<string>('상');
-  const selectedActivityV3s = activityV3s?.filter((av3) => checkedCardIds.includes(av3.id));
-  const [coachmarkVisible, setCoachmarkVisible] = useState<boolean>(true);
+  const [title, setTitle] = useState('')
+  const [reportContents, setReportContents] = useState<any[]>([])
+  const [selectedContentIndex, setSelectedContentIndex] = useState<number | undefined>()
+  const [content, setContent] = useState('')
+  const [type, setType] = useState<string>('')
+  const [confirmOpen, setConfirmOpen] = useState(false)
+  const [isEvidenceOpen, setEvidenceOpen] = useState<boolean>(false)
+  const [modalOpen, setModalOpen] = useState(false)
+  const titleInputRef = useRef<HTMLInputElement>(null)
+  const [achievement, setAchievement] = useState<string>('상')
+  const selectedActivityV3s = activityV3s?.filter((av3) => checkedCardIds.includes(av3.id))
+  const [coachmarkVisible, setCoachmarkVisible] = useState<boolean>(true)
 
   useEffect(() => {
-    const hasSeenCoachmark = localStorage.getItem('GPTIsFirst');
+    const hasSeenCoachmark = localStorage.getItem('GPTIsFirst')
     if (hasSeenCoachmark) {
-      setCoachmarkVisible(false);
+      setCoachmarkVisible(false)
     }
-  }, []);
+  }, [])
 
   const handleCoachmarkClose = () => {
-    setCoachmarkVisible(false);
-    localStorage.setItem('GPTIsFirst', 'not');
-  };
+    setCoachmarkVisible(false)
+    localStorage.setItem('GPTIsFirst', 'not')
+  }
 
   const handleCoachmarOpen = () => {
-    setCoachmarkVisible(true);
-    localStorage.removeItem('GPTIsFirst');
-    setCurrentStep(1);
-  };
+    setCoachmarkVisible(true)
+    localStorage.removeItem('GPTIsFirst')
+    setCurrentStep(1)
+  }
 
   const selectedCriteriaIds = selectedActivityV3s.reduce(
     (acc: number[], cur) => acc.concat(cur.achievementCriteriaIds),
     [],
-  );
+  )
 
   const { data: achievementCriterias } = useAchievementCriteriaGetByIds(
     {
@@ -93,12 +93,12 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
         enabled: !!selectedCriteriaIds.length,
       },
     },
-  );
+  )
 
   const { mutate: getGptReport, isLoading } = useActivityV3GetGPTReport({
     mutation: {
       onMutate: () => {
-        setContent('');
+        setContent('')
       },
       onSuccess: (data: any) => {
         try {
@@ -110,46 +110,46 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                 ...(!data.content && { content: data.report?.map((el: any) => el.content)?.join(' ') }),
               },
             }),
-          );
+          )
           if (!conversationId) {
-            setConversationId(data.report?.[0]?.conversation_id || '');
+            setConversationId(data.report?.[0]?.conversation_id || '')
           }
         } catch (err) {
-          console.log('error : ', err);
+          console.log('error : ', err)
         }
       },
       onError: (error) => {
-        setToastMsg(error.message);
+        setToastMsg(error.message)
       },
     },
-  });
+  })
 
   const { mutate: createStudentRecord } = useStudentRecordontrollerCreate({
     mutation: {
       onSuccess: () => {
-        setToastMsg('변경 사항이 저장되었습니다.');
-        onClose();
-        setContent('');
-        setType('');
-        setTitle('');
-        setAchievement('');
-        setCheckedCardIds([]);
-        setReportContents([]);
-        refetch();
+        setToastMsg('변경 사항이 저장되었습니다.')
+        onClose()
+        setContent('')
+        setType('')
+        setTitle('')
+        setAchievement('')
+        setCheckedCardIds([])
+        setReportContents([])
+        refetch()
       },
       onError: (error) => {
-        setToastMsg(error.message);
+        setToastMsg(error.message)
       },
     },
-  });
+  })
 
   const handleSaveClick = () => {
     if (!title) {
       if (titleInputRef.current) {
-        titleInputRef.current.focus();
-        alert('활동기록부 초안의 제목을 입력해 주세요.');
+        titleInputRef.current.focus()
+        alert('활동기록부 초안의 제목을 입력해 주세요.')
       }
-      return;
+      return
     }
 
     createStudentRecord({
@@ -161,15 +161,15 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
         creativeType,
       },
       params: { studentId: studentInfo.id },
-    });
-  };
+    })
+  }
 
   const handleQuestionSend = () => {
     if (!question) {
-      alert('질문 내용을 입력해 주세요!');
-      return;
+      alert('질문 내용을 입력해 주세요!')
+      return
     }
-    setReportContents((reportContents) => reportContents.concat({ type: 'question', question }));
+    setReportContents((reportContents) => reportContents.concat({ type: 'question', question }))
     getGptReport({
       data: {
         studentId: studentInfo.id,
@@ -180,9 +180,9 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
         followUpQuestion: question,
         conversationId,
       },
-    });
-    setQuestion('');
-  };
+    })
+    setQuestion('')
+  }
 
   const steps = [
     {
@@ -231,7 +231,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
         { text: '마치기', onClick: () => handleCoachmarkClose() },
       ],
     },
-  ];
+  ]
 
   const activitiesViews = [
     {
@@ -249,17 +249,17 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
       name: '기타',
       type: SubjectType.ETC,
     },
-  ];
+  ]
 
-  const byteLength = new TextEncoder().encode(content).length;
-  const trimmedContent = content.replaceAll(' ', '');
-  const trimmedByteLength = new TextEncoder().encode(trimmedContent).length;
+  const byteLength = new TextEncoder().encode(content).length
+  const trimmedContent = content.replaceAll(' ', '')
+  const trimmedByteLength = new TextEncoder().encode(trimmedContent).length
 
   return (
     <>
       <div className="flex h-full w-full flex-row">
         {/* 좌측 영역 - 학생 기본 정보 */}
-        <section className="flex h-full min-w-[25%] max-w-[260px] flex-col space-y-2 rounded-l-lg bg-white px-6 py-4 pl-6">
+        <section className="flex h-full max-w-[260px] min-w-[25%] flex-col space-y-2 rounded-l-lg bg-white px-6 py-4 pl-6">
           <Icon.AI className="h-20 w-24" />
           <div className="mt-2 flex flex-col items-start gap-2 border-b border-gray-300 pb-4">
             <p className="font-bold">학생 정보</p>
@@ -270,7 +270,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                 alt=""
                 loading="lazy"
               />
-              <div className="flex h-full flex-col justify-center gap-1 text-xs lg:text-14">
+              <div className="lg:text-14 flex h-full flex-col justify-center gap-1 text-xs">
                 <div className="flex flex-row items-center gap-2">
                   <p className="font-semibold">이름</p>
                   <p>{studentInfo.name}</p>
@@ -297,8 +297,8 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
             <p className="pt-2 font-bold">참여 활동</p>
             {currentStep === 1 && coachmarkVisible && (
               <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brandblue-1 opacity-75"></span>
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brandblue-1"></span>
+                <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
+                <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full"></span>
                 <Coachmark2 steps={steps} currentStep={currentStep} position="top" arrowDirection="bottom" />
               </span>
             )}
@@ -307,26 +307,26 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
           <div className="mt-1 flex h-full flex-col space-y-2 overflow-y-auto px-1">
             {activitiesViews.map((el) => (
               <>
-                <div className="-mx-1 font-bold text-brandblue-1">{el.name}</div>
+                <div className="text-brandblue-1 -mx-1 font-bold">{el.name}</div>
                 <div className="flex flex-col space-y-3">
                   {_.chain(activityV3s || [])
                     .filter(['type', el.type])
                     .sortBy(['subject'])
                     .map((activityv3) => {
-                      const sav = activityv3.studentActivityV3s?.[0];
+                      const sav = activityv3.studentActivityV3s?.[0]
 
                       const getIsSessionSubmitted = () => {
                         if (sav?.studentText || sav?.records?.length || sav?.summary) {
-                          return true;
+                          return true
                         }
-                        let isSubmitted = false;
+                        let isSubmitted = false
                         activityv3.activitySessions?.map((session) => {
                           if (session?.studentActivitySessions?.[0]?.isSubmitted) {
-                            isSubmitted = true;
+                            isSubmitted = true
                           }
-                        });
-                        return isSubmitted;
-                      };
+                        })
+                        return isSubmitted
+                      }
                       return (
                         <div key={activityv3.id} className="flex items-start space-x-2">
                           <Checkbox
@@ -348,7 +348,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                             {activityv3.title}
                           </label>
                         </div>
-                      );
+                      )
                     })
                     .value()}
                 </div>
@@ -358,13 +358,13 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
         </section>
 
         {/* 우측 영역 - 활동 초안 부분 */}
-        <section className="flex h-full min-w-[75%] max-w-[600px] overflow-visible rounded-r-lg bg-[#e8ebf7] px-6 py-4">
+        <section className="flex h-full max-w-[600px] min-w-[75%] overflow-visible rounded-r-lg bg-[#e8ebf7] px-6 py-4">
           <div className="flex w-full rounded-lg bg-white">
             <div className={`flex h-full w-2/5 flex-col border-r border-gray-300 py-5`}>
               <div className="mb-2 h-full w-full overflow-y-scroll px-5 pb-4">
                 <div className="flex items-center gap-2">
                   <div className="text-xl font-bold">
-                    활동기록부 초안 작성<span className="ml-1 align-top text-sm text-brandblue-1">AI</span>
+                    활동기록부 초안 작성<span className="text-brandblue-1 ml-1 align-top text-sm">AI</span>
                   </div>
                   <div
                     className="text-md flex h-4 w-4 cursor-pointer items-center justify-center rounded-full border border-gray-500 text-sm"
@@ -382,8 +382,8 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                     <div className="text-lg font-semibold">종류</div>
                     {currentStep === 2 && coachmarkVisible && (
                       <span className="relative flex h-1.5 w-1.5">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brandblue-1 opacity-75"></span>
-                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brandblue-1"></span>
+                        <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
+                        <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full"></span>
                         <Coachmark2 steps={steps} currentStep={currentStep} position="bottom" arrowDirection="top" />
                       </span>
                     )}
@@ -396,9 +396,9 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                         name="교과활동"
                         checked={type === '교과'}
                         onChange={() => setType('교과')}
-                        className="h-6 w-6 text-brandblue-1 checked:ring-0"
+                        className="text-brandblue-1 h-6 w-6 checked:ring-0"
                       />
-                      <Label htmlFor="교과활동" children="교과활동" className="cursor-pointer whitespace-pre text-14" />
+                      <Label htmlFor="교과활동" children="교과활동" className="text-14 cursor-pointer whitespace-pre" />
                     </div>
                     <div className="flex items-center space-x-1">
                       <Radio
@@ -406,12 +406,12 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                         name="창의적체험활동"
                         checked={type === '창의적체험활동'}
                         onChange={() => setType('창의적체험활동')}
-                        className="h-6 w-6 text-brandblue-1 checked:ring-0"
+                        className="text-brandblue-1 h-6 w-6 checked:ring-0"
                       />
                       <Label
                         htmlFor="창의적체험활동"
                         children="창의적 체험활동"
-                        className="cursor-pointer whitespace-pre text-14"
+                        className="text-14 cursor-pointer whitespace-pre"
                       />
                     </div>
                     {/* <div className="flex items-center space-x-1">
@@ -428,15 +428,15 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                   <div className="text-lg font-semibold">선택한 활동</div>
                   {currentStep === 3 && coachmarkVisible && (
                     <span className="relative flex h-1.5 w-1.5">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brandblue-1 opacity-75"></span>
-                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brandblue-1"></span>
+                      <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
+                      <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full"></span>
                       <Coachmark2 steps={steps} currentStep={currentStep} position="bottom" arrowDirection="top" />
                     </span>
                   )}
                 </div>
                 <div className="mt-2 flex w-max flex-col gap-2 overflow-x-auto">
                   {selectedActivityV3s.length === 0 ? (
-                    <div className="flex w-full justify-center bg-gray-500 px-4 py-2 text-14 text-white">
+                    <div className="text-14 flex w-full justify-center bg-gray-500 px-4 py-2 text-white">
                       활동을 선택해주세요.
                     </div>
                   ) : (
@@ -447,7 +447,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                           className="h-6 w-6 cursor-pointer rounded-full border border-gray-300 bg-[#466af0] p-1 text-3xl"
                           onClick={() => setCheckedCardIds(checkedCardIds.filter((el) => el !== activityv3.id))}
                         />
-                        <div className="whitespace-pre text-14 font-semibold text-[#466af0]">
+                        <div className="text-14 font-semibold whitespace-pre text-[#466af0]">
                           [{activityv3.subject}]&nbsp;
                           {activityv3.title}
                         </div>
@@ -487,8 +487,8 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                     <div className="text-lg font-semibold">성취수준</div>
                     {currentStep === 4 && coachmarkVisible && (
                       <span className="relative flex h-1.5 w-1.5">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brandblue-1 opacity-75"></span>
-                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brandblue-1"></span>
+                        <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
+                        <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full"></span>
                         <Coachmark2 steps={steps} currentStep={currentStep} position="top" arrowDirection="bottom" />
                       </span>
                     )}
@@ -501,9 +501,9 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                         name="상"
                         checked={achievement === '상'}
                         onChange={() => setAchievement('상')}
-                        className="h-6 w-6 text-brandblue-1 checked:ring-0"
+                        className="text-brandblue-1 h-6 w-6 checked:ring-0"
                       />
-                      <Label htmlFor="상" children="상" className="cursor-pointer whitespace-pre text-14" />
+                      <Label htmlFor="상" children="상" className="text-14 cursor-pointer whitespace-pre" />
                     </div>
                     <div className="flex items-center space-x-2">
                       <Radio
@@ -511,9 +511,9 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                         name="중"
                         checked={achievement === '중'}
                         onChange={() => setAchievement('중')}
-                        className="h-6 w-6 text-brandblue-1 checked:ring-0"
+                        className="text-brandblue-1 h-6 w-6 checked:ring-0"
                       />
-                      <Label htmlFor="중" children="중" className="cursor-pointer whitespace-pre text-14" />
+                      <Label htmlFor="중" children="중" className="text-14 cursor-pointer whitespace-pre" />
                     </div>
                     <div className="flex items-center space-x-2">
                       <Radio
@@ -521,9 +521,9 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                         name="하"
                         checked={achievement === '하'}
                         onChange={() => setAchievement('하')}
-                        className="h-6 w-6 text-brandblue-1 checked:ring-0"
+                        className="text-brandblue-1 h-6 w-6 checked:ring-0"
                       />
-                      <Label htmlFor="하" children="하" className="cursor-pointer whitespace-pre text-14" />
+                      <Label htmlFor="하" children="하" className="text-14 cursor-pointer whitespace-pre" />
                     </div>
                   </RadioGroup>
                 </div>
@@ -531,8 +531,8 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                   <div className="text-lg font-semibold">성취기준</div>
                   {currentStep === 5 && coachmarkVisible && (
                     <span className="relative flex h-1.5 w-1.5">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brandblue-1 opacity-75"></span>
-                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brandblue-1"></span>
+                      <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
+                      <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full"></span>
                       <Coachmark2 steps={steps} currentStep={currentStep} position="top" arrowDirection="bottom" />
                     </span>
                   )}
@@ -543,7 +543,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                     성취기준이 존재하지 않습니다.
                   </div>
                 ) : (
-                  <div className="mt-2 whitespace-pre-line rounded bg-[#F5F5F5] p-2 text-14 text-[#666]">
+                  <div className="text-14 mt-2 rounded bg-[#F5F5F5] p-2 whitespace-pre-line text-[#666]">
                     {achievementCriterias?.map((ac) => `[${ac.criteriaId}]\n ${ac.criteria}`).join('\n')}
                   </div>
                 )}
@@ -552,7 +552,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                 <button
                   className="w-full rounded-lg bg-[#163192] py-2 text-base text-white disabled:bg-gray-500"
                   onClick={() => {
-                    setConversationId('');
+                    setConversationId('')
                     getGptReport({
                       data: {
                         studentId: studentInfo.id,
@@ -563,7 +563,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                         followUpQuestion: '',
                         conversationId: '',
                       },
-                    });
+                    })
                   }}
                   disabled={isLoading || !checkedCardIds.length || !type || !studentInfo.id || !achievement}
                 >
@@ -571,7 +571,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                 </button>
               </div>
             </div>
-            <div className={`flex w-3/5 flex-col overflow-y-auto overflow-x-hidden p-5`}>
+            <div className={`flex w-3/5 flex-col overflow-x-hidden overflow-y-auto p-5`}>
               {!reportContents[0] && !isLoading && (
                 <div className="flex h-full w-full flex-col items-center justify-center gap-10">
                   <Icon.AIRobot className="h-60 w-60" />
@@ -590,13 +590,13 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                           </div>
                           <Avatar size={8} />
                         </div>
-                      );
+                      )
                     }
-                    const { data } = _data;
-                    const reportContent = data.content;
-                    const byteLength = new TextEncoder().encode(reportContent).length;
-                    const trimmedContent = reportContent.replaceAll(' ', '');
-                    const trimmedByteLength = new TextEncoder().encode(trimmedContent).length;
+                    const { data } = _data
+                    const reportContent = data.content
+                    const byteLength = new TextEncoder().encode(reportContent).length
+                    const trimmedContent = reportContent.replaceAll(' ', '')
+                    const trimmedByteLength = new TextEncoder().encode(trimmedContent).length
 
                     return (
                       <>
@@ -629,14 +629,14 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                               )}
                             </div>
                             {isEvidenceOpen && i === 0 && (
-                              <div className="mt-2 whitespace-pre-line rounded bg-[#F5F5F5] p-2 text-14 text-[#666]">
+                              <div className="text-14 mt-2 rounded bg-[#F5F5F5] p-2 whitespace-pre-line text-[#666]">
                                 {data.report?.map((el: any) => el.evidence).join('\n')}
                               </div>
                             )}
                           </div>
                         </div>
                       </>
-                    );
+                    )
                   })}
                   {isLoading && (
                     <div className="flex h-80 w-full flex-col items-center justify-center gap-10">
@@ -694,10 +694,10 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
             message="저장되지 않은 내용이 있습니다."
             onCancel={() => setConfirmOpen(!confirmOpen)}
             onConfirm={() => {
-              onClose();
-              setTitle('');
-              setContent('');
-              setAchievement('');
+              onClose()
+              setTitle('')
+              setContent('')
+              setAchievement('')
             }}
           />
         )}
@@ -705,17 +705,17 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
       <SuperModal
         modalOpen={modalOpen}
         setModalClose={() => {
-          setModalStep(1);
-          setModalOpen(false);
-          setSelectedContentIndex(undefined);
-          setContent('');
+          setModalStep(1)
+          setModalOpen(false)
+          setSelectedContentIndex(undefined)
+          setContent('')
         }}
         className="w-128 lg:w-256"
       >
         <div className="px-12 py-6">
           {modalStep === 1 && (
             <>
-              <div className="flex h-screen-18 flex-col">
+              <div className="h-screen-18 flex flex-col">
                 <div>
                   <h1 className="text-xl font-bold">활동기록부 초안</h1>
                   <span className="text-sm text-gray-600">
@@ -753,8 +753,8 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                 disabled={selectedContentIndex === undefined}
                 onClick={() => {
                   if (selectedContentIndex !== undefined) {
-                    setModalStep(2);
-                    setContent(reportContents[selectedContentIndex].data.content);
+                    setModalStep(2)
+                    setContent(reportContents[selectedContentIndex].data.content)
                   }
                 }}
                 className="mt-4 box-border w-full rounded-md border-2 border-gray-500 bg-[#163192] px-14 py-2 text-base font-semibold text-white"
@@ -802,5 +802,5 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
         </div>
       </SuperModal>
     </>
-  );
-};
+  )
+}

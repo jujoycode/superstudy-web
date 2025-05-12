@@ -1,4 +1,4 @@
-import { defineConfig } from 'orval';
+import { defineConfig } from 'orval'
 
 export default defineConfig({
   superStudy: {
@@ -8,8 +8,8 @@ export default defineConfig({
     },
     output: {
       mode: 'split',
-      target: './src/generated/endpoint.ts',
-      schemas: './src/generated/model',
+      target: './@/legacy/generated/endpoint.ts',
+      schemas: './@/legacy/generated/model',
       client: 'react-query',
       prettier: true,
       override: {
@@ -26,4 +26,4 @@ export default defineConfig({
       },
     },
   },
-});
+})

@@ -1,24 +1,24 @@
-import { useEffect, useRef, useState } from 'react';
-import { MergedGroupType } from 'src/container/teacher-chat-user-list';
-import { GroupType } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { makeDateToString } from 'src/util/time';
+import { useEffect, useRef, useState } from 'react'
+import { MergedGroupType } from '@/legacy/container/teacher-chat-user-list'
+import { GroupType } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { makeDateToString } from '@/legacy/util/time'
 
 interface CustomTuiModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (e: any) => void;
-  submitText: string;
-  calendars: any[];
-  schedule: any;
-  startDate: Date;
-  endDate: Date;
-  schoolType: string;
+  isOpen: boolean
+  onClose: () => void
+  onSubmit: (e: any) => void
+  submitText: string
+  calendars: any[]
+  schedule: any
+  startDate: Date
+  endDate: Date
+  schoolType: string
   groupProps: {
-    allGroups: any[];
-    selectedGroup: any;
-    setSelectedGroup: (group: any) => void;
-  };
+    allGroups: any[]
+    selectedGroup: any
+    setSelectedGroup: (group: any) => void
+  }
 }
 
 export function CustomTuiModal({
@@ -32,113 +32,113 @@ export function CustomTuiModal({
   schoolType,
   groupProps,
 }: CustomTuiModalProps) {
-  const [openSelectCalendars, setOpenSelectCalendars] = useState(false);
-  const [openSelectAttendees, setOpenSelectAttendees] = useState(false);
-  const [openSelectGrade, setOpenSelectGrade] = useState(false);
-  const [openSelectGroupType, setOpenSelectGroupType] = useState(false);
-  const [openSelectGroup, setOpenSelectGroup] = useState(false);
-  const wrapperSelectCalendarsRef = useRef<any>(null);
-  const wrapperSelectAttendeesRef = useRef<any>(null);
-  const wrapperSelectGradeRef = useRef<any>(null);
-  const wrapperSelectGroupTypeRef = useRef<any>(null);
-  const wrapperSelectGroupRef = useRef<any>(null);
-  const subjectRef = useRef<any>(null);
-  const { t } = useLanguage();
+  const [openSelectCalendars, setOpenSelectCalendars] = useState(false)
+  const [openSelectAttendees, setOpenSelectAttendees] = useState(false)
+  const [openSelectGrade, setOpenSelectGrade] = useState(false)
+  const [openSelectGroupType, setOpenSelectGroupType] = useState(false)
+  const [openSelectGroup, setOpenSelectGroup] = useState(false)
+  const wrapperSelectCalendarsRef = useRef<any>(null)
+  const wrapperSelectAttendeesRef = useRef<any>(null)
+  const wrapperSelectGradeRef = useRef<any>(null)
+  const wrapperSelectGroupTypeRef = useRef<any>(null)
+  const wrapperSelectGroupRef = useRef<any>(null)
+  const subjectRef = useRef<any>(null)
+  const { t } = useLanguage()
 
-  const [calendarId, setCalendarId] = useState(calendars[0].id);
-  const [title, setTitle] = useState('');
-  const [startAt, setStartAt] = useState('');
-  const [endAt, setEndAt] = useState('');
-  const [selectedGrade, setSelectedGrade] = useState('');
-  const { allGroups, selectedGroup, setSelectedGroup } = groupProps;
-  const [selectedGroupType, setSelectedGroupType] = useState<GroupType>(GroupType.KLASS);
+  const [calendarId, setCalendarId] = useState(calendars[0].id)
+  const [title, setTitle] = useState('')
+  const [startAt, setStartAt] = useState('')
+  const [endAt, setEndAt] = useState('')
+  const [selectedGrade, setSelectedGrade] = useState('')
+  const { allGroups, selectedGroup, setSelectedGroup } = groupProps
+  const [selectedGroupType, setSelectedGroupType] = useState<GroupType>(GroupType.KLASS)
   // 상세 일정 카테고리
   const baseAttendees = [
     { id: '1', name: t('general') },
     { id: '2', name: t('no_experiential_learning') },
     { id: '3', name: t('holiday') },
-  ];
+  ]
 
-  const attendees = calendarId !== '0' ? [baseAttendees[0]] : baseAttendees; // 학사일정이 아닐때는 일반 카테고리만 노출
+  const attendees = calendarId !== '0' ? [baseAttendees[0]] : baseAttendees // 학사일정이 아닐때는 일반 카테고리만 노출
 
-  const [attendee, setAttendee] = useState(attendees[0].name);
+  const [attendee, setAttendee] = useState(attendees[0].name)
 
   // 학교 타입에 따라 학년 배열 생성
   const gradeArray =
     schoolType === 'ES'
       ? ['1', '2', '3', '4', '5', '6'] // 초등학교
-      : ['1', '2', '3']; // 중학교/고등학교
+      : ['1', '2', '3'] // 중학교/고등학교
 
   const handleClick = (e: any) => {
     if (wrapperSelectCalendarsRef.current?.contains(e.target)) {
-      return;
+      return
     }
     if (wrapperSelectAttendeesRef.current?.contains(e.target)) {
-      return;
+      return
     }
     if (wrapperSelectGradeRef.current?.contains(e.target)) {
-      return;
+      return
     }
     if (wrapperSelectGroupTypeRef.current?.contains(e.target)) {
-      return;
+      return
     }
     if (wrapperSelectGroupRef.current?.contains(e.target)) {
-      return;
+      return
     }
-    setOpenSelectCalendars(false);
-    setOpenSelectAttendees(false);
-    setOpenSelectGrade(false);
-    setOpenSelectGroupType(false);
-    setOpenSelectGroup(false);
-  };
+    setOpenSelectCalendars(false)
+    setOpenSelectAttendees(false)
+    setOpenSelectGrade(false)
+    setOpenSelectGroupType(false)
+    setOpenSelectGroup(false)
+  }
 
   useEffect(() => {
-    document.addEventListener('click', handleClick, false);
+    document.addEventListener('click', handleClick, false)
 
     return () => {
-      document.removeEventListener('click', handleClick, false);
-    };
-  });
+      document.removeEventListener('click', handleClick, false)
+    }
+  })
 
   useEffect(() => {
     if (schedule) {
-      setCalendarId(schedule.calendarId);
-      setAttendee(schedule?.attendee);
-      setTitle(schedule.title);
-      setStartAt(makeDateToString(startDate));
-      setEndAt(makeDateToString(endDate));
-      setSelectedGrade(schedule?.grade || '');
-      setSelectedGroupType(schedule?.group?.type || GroupType.KLASS);
-      setSelectedGroup(schedule?.group || null);
+      setCalendarId(schedule.calendarId)
+      setAttendee(schedule?.attendee)
+      setTitle(schedule.title)
+      setStartAt(makeDateToString(startDate))
+      setEndAt(makeDateToString(endDate))
+      setSelectedGrade(schedule?.grade || '')
+      setSelectedGroupType(schedule?.group?.type || GroupType.KLASS)
+      setSelectedGroup(schedule?.group || null)
     }
-    return () => {};
-  }, [schedule, startDate, endDate]);
+    return () => {}
+  }, [schedule, startDate, endDate])
 
   useEffect(() => {
     if (startAt && endAt) {
-      if (startAt > endAt) setEndAt(startAt);
+      if (startAt > endAt) setEndAt(startAt)
     }
-  }, [startAt, endAt]);
+  }, [startAt, endAt])
 
   useEffect(() => {
     if (startDate && endDate) {
-      setStartAt(makeDateToString(startDate));
-      setEndAt(makeDateToString(endDate));
+      setStartAt(makeDateToString(startDate))
+      setEndAt(makeDateToString(endDate))
     }
-  }, [startDate, endDate]);
+  }, [startDate, endDate])
 
   useEffect(() => {
-    setTitle('');
-    setCalendarId('0');
-    setAttendee(attendees[0].name);
-    setSelectedGrade('');
-    setSelectedGroupType(GroupType.KLASS);
-    setSelectedGroup(null);
-  }, [isOpen]);
+    setTitle('')
+    setCalendarId('0')
+    setAttendee(attendees[0].name)
+    setSelectedGrade('')
+    setSelectedGroupType(GroupType.KLASS)
+    setSelectedGroup(null)
+  }, [isOpen])
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-littleblack ${
+      className={`bg-littleblack fixed inset-0 z-60 flex h-screen w-full items-center justify-center ${
         !isOpen && 'hidden'
       }`}
     >
@@ -146,7 +146,7 @@ export function CustomTuiModal({
         <div className="flex flex-row-reverse">
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none focus:ring-inset"
             onClick={() => onClose()}
           >
             <span className="sr-only">Close menu</span>
@@ -186,8 +186,8 @@ export function CustomTuiModal({
               {calendars.map((element, i) => (
                 <li
                   onClick={() => {
-                    setCalendarId(element.id);
-                    setOpenSelectCalendars(false);
+                    setCalendarId(element.id)
+                    setOpenSelectCalendars(false)
                   }}
                   key={i}
                   className="tui-full-calendar-popup-section-item tui-full-calendar-dropdown-menu-item"
@@ -226,8 +226,8 @@ export function CustomTuiModal({
               {attendees.map((element, i) => (
                 <li
                   onClick={() => {
-                    setAttendee(element.name);
-                    setOpenSelectAttendees(false);
+                    setAttendee(element.name)
+                    setOpenSelectAttendees(false)
                   }}
                   key={i}
                   className="tui-full-calendar-popup-section-item tui-full-calendar-dropdown-menu-item"
@@ -262,8 +262,8 @@ export function CustomTuiModal({
               <ul className="tui-full-calendar-dropdown-menu" style={{ zIndex: 1004 }}>
                 <li
                   onClick={() => {
-                    setSelectedGrade('');
-                    setOpenSelectGrade(false);
+                    setSelectedGrade('')
+                    setOpenSelectGrade(false)
                   }}
                   className="tui-full-calendar-popup-section-item tui-full-calendar-dropdown-menu-item"
                 >
@@ -274,8 +274,8 @@ export function CustomTuiModal({
                   <li
                     key={grade}
                     onClick={() => {
-                      setSelectedGrade(grade);
-                      setOpenSelectGrade(false);
+                      setSelectedGrade(grade)
+                      setOpenSelectGrade(false)
                     }}
                     className="tui-full-calendar-popup-section-item tui-full-calendar-dropdown-menu-item"
                   >
@@ -308,8 +308,8 @@ export function CustomTuiModal({
                 <ul className="tui-full-calendar-dropdown-menu" style={{ zIndex: 1004 }}>
                   <li
                     onClick={() => {
-                      setSelectedGroupType(GroupType.KLASS);
-                      setOpenSelectGroupType(false);
+                      setSelectedGroupType(GroupType.KLASS)
+                      setOpenSelectGroupType(false)
                     }}
                     className="tui-full-calendar-popup-section-item tui-full-calendar-dropdown-menu-item"
                   >
@@ -320,8 +320,8 @@ export function CustomTuiModal({
                   </li>
                   <li
                     onClick={() => {
-                      setSelectedGroupType(GroupType.KLUB);
-                      setOpenSelectGroupType(false);
+                      setSelectedGroupType(GroupType.KLUB)
+                      setOpenSelectGroupType(false)
                     }}
                     className="tui-full-calendar-popup-section-item tui-full-calendar-dropdown-menu-item"
                   >
@@ -359,8 +359,8 @@ export function CustomTuiModal({
                         <li
                           key={group.id}
                           onClick={() => {
-                            setSelectedGroup(group);
-                            setOpenSelectGroup(false);
+                            setSelectedGroup(group)
+                            setOpenSelectGroup(false)
                           }}
                           className="tui-full-calendar-popup-section-item tui-full-calendar-dropdown-menu-item"
                         >
@@ -397,14 +397,14 @@ export function CustomTuiModal({
           <input
             type="date"
             value={startAt}
-            className="mb-5 h-10 w-60 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+            className="focus:border-brand-1 mb-5 h-10 w-60 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
             onChange={(e) => setStartAt(e.target.value)}
           />
           <span className="tui-full-calendar-section-date-dash">-</span>
           <input
             type="date"
             value={endAt}
-            className="mb-5 h-10 w-60 rounded-md border border-gray-200 px-3 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+            className="focus:border-brand-1 mb-5 h-10 w-60 rounded-md border border-gray-200 px-3 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
             onChange={(e) => setEndAt(e.target.value)}
           />
         </div>
@@ -413,7 +413,7 @@ export function CustomTuiModal({
             children="저장"
             onClick={() => {
               if (!title) {
-                subjectRef.current.focus();
+                subjectRef.current.focus()
               } else {
                 const event: any = {
                   calendarId,
@@ -425,29 +425,29 @@ export function CustomTuiModal({
                   location: '',
                   grade: 0,
                   groupId: selectedGroup?.id,
-                };
+                }
 
                 // 학사일정이면서 체험학습지정불가인 경우
                 if (calendarId === calendars[0]?.id && attendee === attendees[1]?.name) {
                   // 전체 선택인 경우 0, 특정 학년 선택인 경우 해당 학년 값
-                  event.grade = selectedGrade === '' ? 0 : parseInt(selectedGrade);
+                  event.grade = selectedGrade === '' ? 0 : parseInt(selectedGrade)
                 }
 
                 // 그룹 일정인데 그룹이 선택되지 않은 경우
                 if (calendarId === calendars[2]?.id && !selectedGroup?.id) {
-                  alert('그룹을 선택해주세요.');
-                  return;
+                  alert('그룹을 선택해주세요.')
+                  return
                 }
 
-                const _start = new Date(startAt);
-                _start.setHours(0, 0, 0, 0);
-                event.start = _start;
+                const _start = new Date(startAt)
+                _start.setHours(0, 0, 0, 0)
+                event.start = _start
 
-                const _end = new Date(endAt);
-                _end.setHours(23, 59, 59, 999);
-                event.end = _end;
+                const _end = new Date(endAt)
+                _end.setHours(23, 59, 59, 999)
+                event.end = _end
 
-                onSubmit(event);
+                onSubmit(event)
               }
             }}
             className="tui-full-calendar-button tui-full-calendar-confirm tui-full-calendar-popup-save"
@@ -455,5 +455,5 @@ export function CustomTuiModal({
         </div>
       </div>
     </div>
-  );
+  )
 }

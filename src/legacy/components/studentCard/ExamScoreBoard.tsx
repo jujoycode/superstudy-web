@@ -1,16 +1,16 @@
-import _ from 'lodash';
-import React, { useEffect, useState } from 'react';
-import { useStudentSemetsersScore } from 'src/container/student-semesters-score';
-import { List } from '../common';
-import { IBBlank } from '../common/IBBlank';
-import { Typography } from '../common/Typography';
+import _ from 'lodash'
+import React, { useEffect, useState } from 'react'
+import { useStudentSemetsersScore } from '@/legacy/container/student-semesters-score'
+import { List } from '@/legacy/components/common'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
 
 interface ExamScoreBoardProps {
-  studentId: string;
+  studentId: string
 }
 
 export function ExamScoreBoard({ studentId }: ExamScoreBoardProps) {
-  const { scores, isLoading } = useStudentSemetsersScore(Number(studentId));
+  const { scores, isLoading } = useStudentSemetsersScore(Number(studentId))
   const semesterOptions = [
     '성적분석',
     '1학년 1학기',
@@ -19,27 +19,27 @@ export function ExamScoreBoard({ studentId }: ExamScoreBoardProps) {
     '2학년 2학기',
     '3학년 1학기',
     '3학년 2학기',
-  ];
-  const [selectedSemester, setSelectedSemester] = useState<string>('성적분석');
+  ]
+  const [selectedSemester, setSelectedSemester] = useState<string>('성적분석')
 
   useEffect(() => {
     if (scores) {
-      const newScoreDatas: any = {};
+      const newScoreDatas: any = {}
 
       scores.forEach((scoreData: any) => {
-        const label = `${scoreData.grade}학년 ${scoreData.semester}학기`;
+        const label = `${scoreData.grade}학년 ${scoreData.semester}학기`
 
         if (!newScoreDatas[label]) {
-          newScoreDatas[label] = [];
+          newScoreDatas[label] = []
         }
 
-        newScoreDatas[label].push(...scoreData.scores);
-      });
+        newScoreDatas[label].push(...scoreData.scores)
+      })
 
-      setScoreDatas(newScoreDatas);
+      setScoreDatas(newScoreDatas)
     }
-  }, [scores]);
-  const [scoreDatas, setScoreDatas] = useState<any>({});
+  }, [scores])
+  const [scoreDatas, setScoreDatas] = useState<any>({})
 
   // 교과별 성적 데이터 추출
   const groupedData = _.chain(scores)
@@ -47,7 +47,7 @@ export function ExamScoreBoard({ studentId }: ExamScoreBoardProps) {
     .flatten()
     .groupBy('subject_group')
     .mapValues((subjectScores) => _.groupBy(subjectScores, (score) => `${score.grade}학년 ${score.semester}학기`))
-    .value();
+    .value()
 
   return (
     <>
@@ -76,9 +76,9 @@ export function ExamScoreBoard({ studentId }: ExamScoreBoardProps) {
       ) : (
         <>
           {selectedSemester === '성적분석' ? (
-            <div className="scrollable-wide mt-4 text-12">
-              <table className="w-full table-auto border border-primary-gray-200 text-left text-gray-500 rtl:text-right">
-                <thead className="bg-gray-200 uppercase text-gray-700">
+            <div className="scrollable-wide text-12 mt-4">
+              <table className="border-primary-gray-200 w-full table-auto border text-left text-gray-500 rtl:text-right">
+                <thead className="bg-gray-200 text-gray-700 uppercase">
                   <tr>
                     <th scope="col" className="h-4 min-w-[120px] border-r border-gray-300 p-2 text-center">
                       교과
@@ -122,7 +122,7 @@ export function ExamScoreBoard({ studentId }: ExamScoreBoardProps) {
                               >
                                 {index === 0 && semesterIndex === 0 && (
                                   <td
-                                    className="border-b border-r border-gray-300 px-2 py-2 text-center"
+                                    className="border-r border-b border-gray-300 px-2 py-2 text-center"
                                     rowSpan={Object.values(groupedData[subjectGroup]).flat().length}
                                   >
                                     {subjectGroup}
@@ -157,9 +157,9 @@ export function ExamScoreBoard({ studentId }: ExamScoreBoardProps) {
               </table>
             </div>
           ) : (
-            <div className="scrollable-wide mt-4 text-12">
-              <table className="w-full table-auto border border-primary-gray-200 text-left text-gray-500 rtl:text-right">
-                <thead className="bg-gray-200 uppercase text-gray-700">
+            <div className="scrollable-wide text-12 mt-4">
+              <table className="border-primary-gray-200 w-full table-auto border text-left text-gray-500 rtl:text-right">
+                <thead className="bg-gray-200 text-gray-700 uppercase">
                   <tr>
                     <th scope="col" className="h-4 min-w-[120px] border-r border-gray-300 p-2 text-center">
                       교과
@@ -220,5 +220,5 @@ export function ExamScoreBoard({ studentId }: ExamScoreBoardProps) {
         </>
       )}
     </>
-  );
+  )
 }

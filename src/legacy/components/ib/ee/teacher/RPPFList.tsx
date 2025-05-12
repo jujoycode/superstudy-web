@@ -1,58 +1,58 @@
-import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import NODATA from 'src/assets/images/no-data.png';
-import { Blank } from 'src/components/common';
-import AlertV2 from 'src/components/common/AlertV2';
-import { BadgeV2 } from 'src/components/common/BadgeV2';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { TextareaV2 } from 'src/components/common/TextareaV2';
-import { Typography } from 'src/components/common/Typography';
-import RppfIbSubmitInformPopup from 'src/components/ib/ee/RppfIbSubmitInformPopup';
-import FeedbackViewer from 'src/components/ib/FeedbackViewer';
-import ColorSVGIcon from 'src/components/icon/ColorSVGIcon';
-import { PopupModal } from 'src/components/PopupModal';
-import { useGetFeedbackBatchExist } from 'src/container/ib-feedback';
-import { useIBApproveComplete } from 'src/container/ib-project';
-import { useIBGetById } from 'src/container/ib-project-get-student';
-import { useRPPFGetByIBIdFindAll } from 'src/container/ib-rppf-findAll';
-import { useInterviewQNAGetByStudentId } from 'src/container/ib-student-interview';
-import { useRPPFUpdateRPPFStatusReject } from 'src/generated/endpoint';
-import { FeedbackReferenceTable, ResponseIBDto } from 'src/generated/model';
-import { usePermission } from 'src/hooks/ib/usePermission';
-import { meState } from 'src/store';
-import { LocationState } from 'src/type/ib';
+import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import NODATA from 'src/assets/images/no-data.png'
+import { Blank } from '@/legacy/components/common'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import RppfIbSubmitInformPopup from 'src/components/ib/ee/RppfIbSubmitInformPopup'
+import FeedbackViewer from 'src/components/ib/FeedbackViewer'
+import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
+import { PopupModal } from 'src/components/PopupModal'
+import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
+import { useIBApproveComplete } from '@/legacy/container/ib-project'
+import { useIBGetById } from '@/legacy/container/ib-project-get-student'
+import { useRPPFGetByIBIdFindAll } from '@/legacy/container/ib-rppf-findAll'
+import { useInterviewQNAGetByStudentId } from '@/legacy/container/ib-student-interview'
+import { useRPPFUpdateRPPFStatusReject } from '@/legacy/generated/endpoint'
+import { FeedbackReferenceTable, ResponseIBDto } from '@/legacy/generated/model'
+import { usePermission } from '@/legacy/hooks/ib/usePermission'
+import { meState } from '@/stores'
+import { LocationState } from '@/legacy/types/ib'
 
 interface RppfListProps {
-  id: number;
-  data: ResponseIBDto;
-  studentData: LocationState['student'];
-  refetch: () => void;
+  id: number
+  data: ResponseIBDto
+  studentData: LocationState['student']
+  refetch: () => void
 }
 
 export const RPPFList = ({ id, data: proposalData, studentData, refetch }: RppfListProps) => {
-  const { push } = useHistory();
-  const me = useRecoilValue(meState);
+  const { push } = useHistory()
+  const me = useRecoilValue(meState)
 
-  const permission = usePermission(proposalData?.mentor ?? null, me?.id ?? 0);
-  const hasPermission = permission[0] === 'mentor' || permission[1] === 'IB_EE';
+  const permission = usePermission(proposalData?.mentor ?? null, me?.id ?? 0)
+  const hasPermission = permission[0] === 'mentor' || permission[1] === 'IB_EE'
 
-  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false);
+  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false)
   const [feedbackReference, setFeedbackReference] = useState<{
-    referenceId: number;
-    referenceTable: FeedbackReferenceTable;
-  }>();
-  const [localUnreadCounts, setLocalUnreadCounts] = useState<Record<string, number>>({});
-  const [rejectModalOpen, setRejectModalOpen] = useState(false); // 제안서 보완 요청 Modal
-  const [rejectReason, setRejectReason] = useState(''); // 제안서 보완 요청 피드백
-  const [ibModalType, setIbModalType] = useState<'CREATE' | 'VIEW' | null>(null); // IB Modal 타입 관리
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+    referenceId: number
+    referenceTable: FeedbackReferenceTable
+  }>()
+  const [localUnreadCounts, setLocalUnreadCounts] = useState<Record<string, number>>({})
+  const [rejectModalOpen, setRejectModalOpen] = useState(false) // 제안서 보완 요청 Modal
+  const [rejectReason, setRejectReason] = useState('') // 제안서 보완 요청 피드백
+  const [ibModalType, setIbModalType] = useState<'CREATE' | 'VIEW' | null>(null) // IB Modal 타입 관리
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
 
-  const { data: rppfData = [] } = useRPPFGetByIBIdFindAll(id);
-  const { data: interviewData = [] } = useInterviewQNAGetByStudentId(proposalData.leader.id, 'EE_RPPF');
-  const { data: ibData } = useIBGetById(id);
-  const interviewIdsString = interviewData.map((interview) => interview.qna.id).join(',');
+  const { data: rppfData = [] } = useRPPFGetByIBIdFindAll(id)
+  const { data: interviewData = [] } = useInterviewQNAGetByStudentId(proposalData.leader.id, 'EE_RPPF')
+  const { data: ibData } = useIBGetById(id)
+  const interviewIdsString = interviewData.map((interview) => interview.qna.id).join(',')
 
   const mergedData = [
     ...rppfData.map((rppf) => ({ ...rppf, type: 'RPPF' })),
@@ -62,7 +62,7 @@ export const RPPFList = ({ id, data: proposalData, studentData, refetch }: RppfL
         type: 'interview',
       }))
       .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()),
-  ];
+  ]
 
   const { data: interviewFeedbacks } = useGetFeedbackBatchExist(
     {
@@ -70,7 +70,7 @@ export const RPPFList = ({ id, data: proposalData, studentData, refetch }: RppfL
       referenceTable: 'INTERVIEW',
     },
     { enabled: !!interviewIdsString },
-  );
+  )
 
   const { data: rppfFeedbacks } = useGetFeedbackBatchExist(
     {
@@ -78,73 +78,73 @@ export const RPPFList = ({ id, data: proposalData, studentData, refetch }: RppfL
       referenceTable: 'RPPF',
     },
     { enabled: !!rppfData[0]?.id },
-  );
+  )
 
   const { mutate: rejectPlan, isLoading: rejectPlanLoading } = useRPPFUpdateRPPFStatusReject({
     mutation: {
       onSuccess: () => {
-        setAlertMessage(`RPPF 보완을\n요청하였습니다`);
-        setRejectModalOpen(!rejectModalOpen);
+        setAlertMessage(`RPPF 보완을\n요청하였습니다`)
+        setRejectModalOpen(!rejectModalOpen)
       },
     },
-  });
+  })
 
   const { approveIBProjectComplete } = useIBApproveComplete({
     onSuccess: () => {
-      setAlertMessage(`완료를\n승인하였습니다`);
+      setAlertMessage(`완료를\n승인하였습니다`)
     },
     onError: (error) => {
-      console.error('완료 승인 중 오류 발생:', error);
+      console.error('완료 승인 중 오류 발생:', error)
     },
-  });
+  })
 
   // unreadCount를 0으로 업데이트하는 함수
   const markAsRead = (referenceId: number, referenceTable: FeedbackReferenceTable) => {
-    const key = `${referenceTable}-${referenceId}`; // 문자열 키 생성
+    const key = `${referenceTable}-${referenceId}` // 문자열 키 생성
     setLocalUnreadCounts((prevCounts) => {
-      const newCounts = { ...prevCounts };
-      newCounts[key] = 0;
-      return newCounts;
-    });
-  };
+      const newCounts = { ...prevCounts }
+      newCounts[key] = 0
+      return newCounts
+    })
+  }
 
   const handleIbModalOpen = (type: 'CREATE' | 'VIEW') => {
-    setIbModalType(type); // 모달 타입 설정
-  };
+    setIbModalType(type) // 모달 타입 설정
+  }
 
   const handleIbModalClose = () => {
-    setIbModalType(null); // 모달 타입 초기화
-  };
+    setIbModalType(null) // 모달 타입 초기화
+  }
 
   const handleFeedbackOpen = (referenceId: number, referenceTable: FeedbackReferenceTable, unreadCount: number) => {
-    setFeedbackReference({ referenceId, referenceTable });
-    setFeedbackOpen(true);
+    setFeedbackReference({ referenceId, referenceTable })
+    setFeedbackOpen(true)
 
     if (unreadCount > 0) {
-      markAsRead(referenceId, referenceTable); // referenceTable 추가
+      markAsRead(referenceId, referenceTable) // referenceTable 추가
     }
-  };
+  }
 
   useEffect(() => {
-    const initialCounts: Record<string, number> = {};
+    const initialCounts: Record<string, number> = {}
 
     if (rppfFeedbacks?.items) {
       rppfFeedbacks.items.forEach((item) => {
-        initialCounts[`RPPF-${item.referenceId}`] = item.unreadCount || 0;
-      });
+        initialCounts[`RPPF-${item.referenceId}`] = item.unreadCount || 0
+      })
     }
 
     if (interviewFeedbacks?.items) {
       interviewFeedbacks.items.forEach((item) => {
-        initialCounts[`INTERVIEW-${item.referenceId}`] = item.unreadCount || 0;
-      });
+        initialCounts[`INTERVIEW-${item.referenceId}`] = item.unreadCount || 0
+      })
     }
 
-    setLocalUnreadCounts(initialCounts);
-  }, [rppfFeedbacks, interviewFeedbacks]);
+    setLocalUnreadCounts(initialCounts)
+  }, [rppfFeedbacks, interviewFeedbacks])
 
   if (!proposalData) {
-    return <Blank />;
+    return <Blank />
   }
 
   return (
@@ -206,7 +206,7 @@ export const RPPFList = ({ id, data: proposalData, studentData, refetch }: RppfL
       <main>
         {mergedData.length ? (
           <table className="w-full text-center">
-            <thead className="border-y border-y-primary-gray-100 text-[15px] text-primary-gray-500">
+            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px]">
               <tr className="flex w-full items-center justify-between gap-[16px] px-[24px] py-[9px] font-medium">
                 <th className="w-[176px]">종류</th>
                 <th className="w-[632px]">제목</th>
@@ -214,13 +214,13 @@ export const RPPFList = ({ id, data: proposalData, studentData, refetch }: RppfL
                 <th className="w-[188px]">학생 댓글</th>
               </tr>
             </thead>
-            <tbody className="text-[15px] font-medium text-primary-gray-900">
+            <tbody className="text-primary-gray-900 text-[15px] font-medium">
               {rppfData.map((rppf) => {
-                const feedback = rppfFeedbacks?.items?.find((item) => item.referenceId === rppf.id);
+                const feedback = rppfFeedbacks?.items?.find((item) => item.referenceId === rppf.id)
                 return (
                   <tr
                     key={rppf.id}
-                    className="flex w-full items-center justify-between gap-[16px] border-b border-b-primary-gray-100 px-[24px] py-[9px]"
+                    className="border-b-primary-gray-100 flex w-full items-center justify-between gap-[16px] border-b px-[24px] py-[9px]"
                   >
                     <td className="flex w-[176px] items-center justify-center">
                       <BadgeV2 type="solid_regular" color={'blue'} size={24}>
@@ -276,17 +276,17 @@ export const RPPFList = ({ id, data: proposalData, studentData, refetch }: RppfL
                       )}
                     </td>
                   </tr>
-                );
+                )
               })}
               {interviewData
                 ?.slice()
                 .sort((a, b) => new Date(b.qna.updatedAt).getTime() - new Date(a.qna.updatedAt).getTime())
                 .map((interview) => {
-                  const feedback = interviewFeedbacks?.items?.find((item) => item.referenceId === interview.qna.id);
+                  const feedback = interviewFeedbacks?.items?.find((item) => item.referenceId === interview.qna.id)
                   return (
                     <tr
                       key={interview.id}
-                      className="flex w-full items-center justify-between gap-[16px] border-b border-b-primary-gray-100 px-[24px] py-[9px]"
+                      className="border-b-primary-gray-100 flex w-full items-center justify-between gap-[16px] border-b px-[24px] py-[9px]"
                     >
                       <td className="flex w-[176px] items-center justify-center">
                         <BadgeV2 type="solid_regular" color={'gray'} size={24}>
@@ -348,7 +348,7 @@ export const RPPFList = ({ id, data: proposalData, studentData, refetch }: RppfL
                         )}
                       </td>
                     </tr>
-                  );
+                  )
                 })}
             </tbody>
           </table>
@@ -369,8 +369,8 @@ export const RPPFList = ({ id, data: proposalData, studentData, refetch }: RppfL
       <PopupModal
         modalOpen={rejectModalOpen}
         setModalClose={() => {
-          setRejectModalOpen(false);
-          setRejectReason('');
+          setRejectModalOpen(false)
+          setRejectReason('')
         }}
         title="RPPF 보완 요청"
         bottomBorder={false}
@@ -420,5 +420,5 @@ export const RPPFList = ({ id, data: proposalData, studentData, refetch }: RppfL
         />
       )}
     </section>
-  );
-};
+  )
+}

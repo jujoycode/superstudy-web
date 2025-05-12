@@ -1,29 +1,29 @@
-import { useRecoilValue } from 'recoil';
-import { OutingStatus, OutingTypeEnum, OutingUse, ResponseCreateOutingDto, Role } from 'src/generated/model';
-import { useSignedUrl } from 'src/lib/query';
-import { meState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { getNickName, getPeriodStrEx } from 'src/util/status';
-import { makeDateToString, makeDateToStringByFormat } from 'src/util/time';
-import { Button } from '../common/Button';
+import { useRecoilValue } from 'recoil'
+import { OutingStatus, OutingTypeEnum, OutingUse, ResponseCreateOutingDto, Role } from '@/legacy/generated/model'
+import { useSignedUrl } from '@/legacy/lib/query'
+import { meState } from '@/stores'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { getNickName, getPeriodStrEx } from '@/legacy/util/status'
+import { makeDateToString, makeDateToStringByFormat } from '@/legacy/util/time'
+import { Button } from '@/legacy/components/common/Button'
 
 interface OutingCardProps {
-  outing: ResponseCreateOutingDto | undefined;
-  onResendAlimtalk?: () => Promise<void>;
+  outing: ResponseCreateOutingDto | undefined
+  onResendAlimtalk?: () => Promise<void>
 }
 
 export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
-  const me = useRecoilValue(meState);
+  const me = useRecoilValue(meState)
 
-  const startAt = DateUtil.formatDate(outing?.startAt || '', DateFormat['YYYY-MM-DD HH:mm']);
-  const endAt = DateUtil.formatDate(outing?.endAt || '', DateFormat['YYYY-MM-DD HH:mm']);
+  const startAt = DateUtil.formatDate(outing?.startAt || '', DateFormat['YYYY-MM-DD HH:mm'])
+  const endAt = DateUtil.formatDate(outing?.endAt || '', DateFormat['YYYY-MM-DD HH:mm'])
 
-  const { data: parentSignature } = useSignedUrl(outing?.parentSignature);
-  const { data: approver1Signature } = useSignedUrl(outing?.approver1Signature);
-  const { data: approver2Signature } = useSignedUrl(outing?.approver2Signature);
-  const { data: approver3Signature } = useSignedUrl(outing?.approver3Signature);
-  const { data: approver4Signature } = useSignedUrl(outing?.approver4Signature);
-  const { data: approver5Signature } = useSignedUrl(outing?.approver5Signature);
+  const { data: parentSignature } = useSignedUrl(outing?.parentSignature)
+  const { data: approver1Signature } = useSignedUrl(outing?.approver1Signature)
+  const { data: approver2Signature } = useSignedUrl(outing?.approver2Signature)
+  const { data: approver3Signature } = useSignedUrl(outing?.approver3Signature)
+  const { data: approver4Signature } = useSignedUrl(outing?.approver4Signature)
+  const { data: approver5Signature } = useSignedUrl(outing?.approver5Signature)
 
   return (
     <>
@@ -38,7 +38,7 @@ export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
       <div className="relative">
         {/* 반투명 레이어 */}
         {outing?.outingStatus === 'PROCESSED' && new Date(endAt) < new Date() && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-30 text-3xl font-bold text-white">
+          <div className="bg-opacity-30 absolute inset-0 flex items-center justify-center bg-gray-900 text-3xl font-bold text-white">
             기 간 만 료
           </div>
         )}
@@ -100,7 +100,7 @@ export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
             <div>
               <div className="flex w-full flex-col items-end">
                 {
-                  <div className="mr-10 mt-5 min-w-max text-right">
+                  <div className="mt-5 mr-10 min-w-max text-right">
                     신고자 : <span className="font-bold"> {outing?.writerName}</span> 선생님
                   </div>
                 }
@@ -116,7 +116,7 @@ export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
                   className="h-20 bg-contain bg-right bg-no-repeat"
                   style={{ backgroundImage: `url(${parentSignature})` }}
                 >
-                  <div className="mr-10 mt-5 min-w-max text-right font-bold">
+                  <div className="mt-5 mr-10 min-w-max text-right font-bold">
                     보호자 : {outing?.parentName} &nbsp;&nbsp;&nbsp;
                     {outing?.parentSignature ? ' (인)' : '승인 전'}
                   </div>
@@ -133,7 +133,7 @@ export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
                   className="h-20 bg-contain bg-right bg-no-repeat"
                   style={{ backgroundImage: `url(${approver1Signature})` }}
                 >
-                  <div className="mr-10 mt-5 min-w-max text-right font-bold">
+                  <div className="mt-5 mr-10 min-w-max text-right font-bold">
                     {outing?.approver1Title}: {outing?.approver1Name} &nbsp;&nbsp;&nbsp;
                     {outing?.approver1Signature ? ' (인)' : '승인 전'}
                   </div>
@@ -152,7 +152,7 @@ export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
                     className="h-20 bg-contain bg-right bg-no-repeat"
                     style={{ backgroundImage: `url(${approver2Signature})` }}
                   >
-                    <div className="mr-10 mt-5 min-w-max text-right font-bold">
+                    <div className="mt-5 mr-10 min-w-max text-right font-bold">
                       {outing?.approver2Title}: {outing?.approver2Name} &nbsp;&nbsp;&nbsp;
                       {outing?.approver2Signature ? ' (인)' : '승인 전'}
                     </div>
@@ -172,7 +172,7 @@ export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
                     className="h-20 bg-contain bg-right bg-no-repeat"
                     style={{ backgroundImage: `url(${approver3Signature})` }}
                   >
-                    <div className="mr-10 mt-5 min-w-max text-right font-bold">
+                    <div className="mt-5 mr-10 min-w-max text-right font-bold">
                       {outing?.approver3Title}: {outing?.approver3Name} &nbsp;&nbsp;&nbsp;
                       {outing?.approver3Signature ? ' (인)' : '승인 전'}
                     </div>
@@ -192,7 +192,7 @@ export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
                     className="h-20 bg-contain bg-right bg-no-repeat"
                     style={{ backgroundImage: `url(${approver4Signature})` }}
                   >
-                    <div className="mr-10 mt-5 min-w-max text-right font-bold">
+                    <div className="mt-5 mr-10 min-w-max text-right font-bold">
                       {outing?.approver4Title}: {outing?.approver4Name} &nbsp;&nbsp;&nbsp;
                       {outing?.approver4Signature ? ' (인)' : '승인 전'}
                     </div>
@@ -211,7 +211,7 @@ export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
                   className="h-20 bg-contain bg-right bg-no-repeat"
                   style={{ backgroundImage: `url(${approver5Signature})` }}
                 >
-                  <div className="mr-10 mt-5 min-w-max text-right font-bold">
+                  <div className="mt-5 mr-10 min-w-max text-right font-bold">
                     {outing?.approver5Title}: {outing?.approver5Name} &nbsp;&nbsp;&nbsp;
                     {outing?.approver5Signature ? ' (인)' : '승인 전'}
                   </div>
@@ -239,7 +239,7 @@ export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
               children="승인 요청"
               onClick={() => {
                 if (onResendAlimtalk) {
-                  onResendAlimtalk();
+                  onResendAlimtalk()
                 }
               }}
               className="filled-primary"
@@ -247,5 +247,5 @@ export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
           </div>
         )}
     </>
-  );
+  )
 }

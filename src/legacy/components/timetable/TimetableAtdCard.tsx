@@ -1,19 +1,19 @@
-import clsx from 'clsx';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { useModals } from 'src/modals/ModalStack';
-import { StudentModal } from 'src/modals/StudentModal';
-import { Button } from '../common/Button';
+import clsx from 'clsx'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { useModals } from '@/legacy/modals/ModalStack'
+import { StudentModal } from '@/legacy/modals/StudentModal'
+import { Button } from '@/legacy/components/common/Button'
 
 interface TimetableAtdCardProps {
-  attendance: boolean;
-  student: any;
-  comment?: string;
-  setModalOpen: () => void;
+  attendance: boolean
+  student: any
+  comment?: string
+  setModalOpen: () => void
 }
 
 export function TimetableAtdCard({ attendance, student, comment, setModalOpen }: TimetableAtdCardProps) {
-  const { t } = useLanguage();
-  const { pushModal } = useModals();
+  const { t } = useLanguage()
+  const { pushModal } = useModals()
 
   return (
     <div>
@@ -50,5 +50,5 @@ export function TimetableAtdCard({ attendance, student, comment, setModalOpen }:
       </div>
       <div className="px-4 text-sm md:text-base">{comment}</div>
     </div>
-  );
+  )
 }

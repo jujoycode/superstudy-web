@@ -1,21 +1,21 @@
-import { cloneDeep } from 'lodash';
-import { useEffect, useState } from 'react';
-import { Label, Radio, RadioGroup, Section, Textarea } from 'src/components/common';
-import { Constants } from 'src/constants';
-import { Question } from 'src/types';
-import { downloadFile } from 'src/util/download-image';
-import { getFileNameFromUrl } from 'src/util/file';
-import { DocumentObjectComponentDel } from '../DocumentObjectComponentDel';
-import { ImageObjectComponentDel } from '../ImageObjectComponentDel';
-import { Checkbox } from '../common/Checkbox';
-import { TextInput } from '../common/TextInput';
-import { Icon } from '../common/icons';
+import { cloneDeep } from 'lodash'
+import { useEffect, useState } from 'react'
+import { Label, Radio, RadioGroup, Section, Textarea } from '@/legacy/components/common'
+import { Constants } from '@/legacy/constants'
+import { downloadFile } from '@/legacy/util/download-image'
+import { getFileNameFromUrl } from '@/legacy/util/file'
+import { DocumentObjectComponentDel } from '@/legacy/components/DocumentObjectComponentDel'
+import { ImageObjectComponentDel } from '@/legacy/components/ImageObjectComponentDel'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Icon } from '@/legacy/components/common/icons'
+import type { Question } from '@/legacy/types'
 
 interface SuperSurveyViewComponentProps {
-  surveyContent?: string;
-  setContent: (content: any) => void;
-  content: any;
-  readOnly?: boolean;
+  surveyContent?: string
+  setContent: (content: any) => void
+  content: any
+  readOnly?: boolean
 }
 
 export function SuperSurveyViewComponent({
@@ -24,43 +24,43 @@ export function SuperSurveyViewComponent({
   content = {},
   readOnly,
 }: SuperSurveyViewComponentProps) {
-  const [survey, setSurvey] = useState<Question[]>([]);
+  const [survey, setSurvey] = useState<Question[]>([])
   useEffect(() => {
     if (surveyContent) {
       try {
-        setSurvey(JSON.parse(surveyContent));
+        setSurvey(JSON.parse(surveyContent))
       } catch (err) {
-        console.error(err);
+        console.error(err)
       }
     }
-  }, [surveyContent]);
+  }, [surveyContent])
 
   if (survey.length === 0) {
-    return null;
+    return null
   }
 
   return (
     <Section className="w-full pb-5">
       {survey?.map((question) => {
         const onChangeValue = (value: string) => {
-          const _content = cloneDeep(content);
-          _content[question.id] = value;
-          setContent(_content);
-        };
+          const _content = cloneDeep(content)
+          _content[question.id] = value
+          setContent(_content)
+        }
         const onChangeCheckboxValue = (value: string) => {
-          const _content = cloneDeep(content);
+          const _content = cloneDeep(content)
           if (_content[question.id]) {
             if (_content[question.id].includes(value)) {
-              _content[question.id] = _content[question.id].filter((v: string) => v !== value);
+              _content[question.id] = _content[question.id].filter((v: string) => v !== value)
             } else {
-              _content[question.id].push(value);
+              _content[question.id].push(value)
             }
           } else {
-            _content[question.id] = [value];
+            _content[question.id] = [value]
           }
-          setContent(_content);
-        };
-        const value = content[question.id] || '';
+          setContent(_content)
+        }
+        const value = content[question.id] || ''
 
         switch (question.type) {
           case 'image':
@@ -69,7 +69,7 @@ export function SuperSurveyViewComponent({
                 <div className="text-lg font-bold">{question.title}</div>
                 {value && <ImageObjectComponentDel id={question.id} imageObjet={{ image: value, isDelete: false }} />}
               </div>
-            );
+            )
           case 'file':
             return (
               <div className="flex w-full flex-col space-y-2" key={question.id}>
@@ -89,7 +89,7 @@ export function SuperSurveyViewComponent({
                     <DocumentObjectComponentDel id={question.id} documentObjet={{ document: value, isDelete: false }} />
                   ))}
               </div>
-            );
+            )
           case 'text':
             return (
               <div className="flex w-full flex-col space-y-2" key={question.id}>
@@ -101,7 +101,7 @@ export function SuperSurveyViewComponent({
                   readOnly={readOnly}
                 />
               </div>
-            );
+            )
           case 'longtext':
             return (
               <div className="flex w-full flex-col space-y-2" key={question.id}>
@@ -114,7 +114,7 @@ export function SuperSurveyViewComponent({
                   readOnly={readOnly}
                 />
               </div>
-            );
+            )
           case 'checkbox':
             return (
               <div className="flex flex-col space-y-2" key={question.id}>
@@ -132,7 +132,7 @@ export function SuperSurveyViewComponent({
                   </Label.row>
                 ))}
               </div>
-            );
+            )
           case 'radiobutton':
             return (
               <div className="flex flex-col space-y-2" key={question.id}>
@@ -153,9 +153,9 @@ export function SuperSurveyViewComponent({
                   ))}
                 </RadioGroup>
               </div>
-            );
+            )
         }
       })}
     </Section>
-  );
+  )
 }

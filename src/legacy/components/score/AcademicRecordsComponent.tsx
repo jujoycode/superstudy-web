@@ -1,69 +1,69 @@
-import _, { range } from 'lodash';
-import { useEffect, useState } from 'react';
+import _, { range } from 'lodash'
+import { useEffect, useState } from 'react'
 import {
   useStudentExamScoreDelete,
   useStudentScoreFileCheck,
   useStudentScoreFileCheckTest,
   useStudentTestExamScoreDelete,
-} from 'src/container/insert-exam-score';
-import { useTargetScoreAnalysis } from 'src/container/student-score';
-import { useAdminCommonFindAllKlassBySchool, useSchoolManagementGetSchoolInfo } from 'src/generated/endpoint';
+} from '@/legacy/container/insert-exam-score'
+import { useTargetScoreAnalysis } from '@/legacy/container/student-score'
+import { useAdminCommonFindAllKlassBySchool, useSchoolManagementGetSchoolInfo } from '@/legacy/generated/endpoint'
 import {
   StudentExamScoreDeleteStudentExamScoreParams,
   StudentExamScoreDeleteTestScoreParams,
   StudentExamScorePatchStudentExamScoresParams,
-} from 'src/generated/model';
-import { getThisYear } from 'src/util/time';
-import { Blank, Select } from '../common';
-import { Admin } from '../common/Admin';
-import AlertDialog from '../common/AlertDialog';
-import AlertV2 from '../common/AlertV2';
-import ConfirmDialog from '../common/ConfirmDialog';
-import { IBBlank } from '../common/IBBlank';
-import { Typography } from '../common/Typography';
-import { ExamUploadModal } from './ExamUploadModal';
+} from '@/legacy/generated/model'
+import { getThisYear } from '@/legacy/util/time'
+import { Blank, Select } from '@/legacy/components/common'
+import { Admin } from '@/legacy/components/common/Admin'
+import AlertDialog from '@/legacy/components/common/AlertDialog'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
+import { ExamUploadModal } from './ExamUploadModal'
 
 export const AcademicRecordsComponent = () => {
   // const thisYear = new Date().getFullYear();
-  const thisYear = Number(getThisYear());
-  const [startYear, setStartYear] = useState(thisYear);
-  const [year, setYear] = useState(thisYear);
-  const [grade, setGrade] = useState(1);
-  const [semester, setSemester] = useState(1);
-  const [step, setStep] = useState(0);
-  const [klass, setKlass] = useState(0);
-  const [isUpdate, setIsUpdate] = useState(false);
-  const [modalOpen, setModalClose] = useState<boolean>(false);
-  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
-  const [alertOpen, setAlertOpen] = useState(false);
+  const thisYear = Number(getThisYear())
+  const [startYear, setStartYear] = useState(thisYear)
+  const [year, setYear] = useState(thisYear)
+  const [grade, setGrade] = useState(1)
+  const [semester, setSemester] = useState(1)
+  const [step, setStep] = useState(0)
+  const [klass, setKlass] = useState(0)
+  const [isUpdate, setIsUpdate] = useState(false)
+  const [modalOpen, setModalClose] = useState<boolean>(false)
+  const [dialogOpen, setDialogOpen] = useState<boolean>(false)
+  const [alertOpen, setAlertOpen] = useState(false)
   const [errorAlertOpen, setErrorAlertOpen] = useState({
     message: '',
     description: '',
-  });
-  const [submitAlertOpen, setSubmitAlertOpen] = useState(false);
-  const [successAlertOpen, setSuccessAlertOpen] = useState(false);
-  const [statusMessage, setStatusMessage] = useState<{ message: string; description: string } | null>(null);
+  })
+  const [submitAlertOpen, setSubmitAlertOpen] = useState(false)
+  const [successAlertOpen, setSuccessAlertOpen] = useState(false)
+  const [statusMessage, setStatusMessage] = useState<{ message: string; description: string } | null>(null)
   const deleteScoreFile = (step: number, klass: number) => {
-    setStep(step);
-    setKlass(klass);
-    setDialogOpen(true);
-  };
+    setStep(step)
+    setKlass(klass)
+    setDialogOpen(true)
+  }
 
-  const { data: school } = useSchoolManagementGetSchoolInfo();
-  const { data: klasses, isLoading: isLoadingKlasses } = useAdminCommonFindAllKlassBySchool({ year });
-  const uniqueGrades = _.uniq(_.map(klasses, 'grade'));
-  const { data: SCORE, isLoading } = useStudentScoreFileCheck(grade, year);
-  const { data: TESTSCORE, isLoading: isLoadingM } = useStudentScoreFileCheckTest(grade, year);
-  const { deleteExamScoreMutate } = useStudentExamScoreDelete();
-  const { deleteTestExamScoreMutate } = useStudentTestExamScoreDelete();
-  const { patchTargetScoreAnalysisMutate, isLoading: isLoadingPatchTargetScoreAnalysis } = useTargetScoreAnalysis();
+  const { data: school } = useSchoolManagementGetSchoolInfo()
+  const { data: klasses, isLoading: isLoadingKlasses } = useAdminCommonFindAllKlassBySchool({ year })
+  const uniqueGrades = _.uniq(_.map(klasses, 'grade'))
+  const { data: SCORE, isLoading } = useStudentScoreFileCheck(grade, year)
+  const { data: TESTSCORE, isLoading: isLoadingM } = useStudentScoreFileCheckTest(grade, year)
+  const { deleteExamScoreMutate } = useStudentExamScoreDelete()
+  const { deleteTestExamScoreMutate } = useStudentTestExamScoreDelete()
+  const { patchTargetScoreAnalysisMutate, isLoading: isLoadingPatchTargetScoreAnalysis } = useTargetScoreAnalysis()
 
   // 학년별 학급 정보 분리
-  const classesByGrade = _.groupBy(klasses, 'grade');
+  const classesByGrade = _.groupBy(klasses, 'grade')
 
   // 성적이 등록된 학급 정보를 추출
-  const registeredClasses = SCORE?.scores || [];
-  const mockScores = TESTSCORE?.res || [];
+  const registeredClasses = SCORE?.scores || []
+  const mockScores = TESTSCORE?.res || []
 
   const handleDeleteScoreFile = async ({
     grade,
@@ -72,18 +72,18 @@ export const AcademicRecordsComponent = () => {
     insertionYear,
   }: StudentExamScoreDeleteStudentExamScoreParams) => {
     try {
-      await deleteExamScoreMutate({ params: { grade, classNum, semester, insertionYear } });
-      setAlertOpen(true);
+      await deleteExamScoreMutate({ params: { grade, classNum, semester, insertionYear } })
+      setAlertOpen(true)
     } catch (error: any) {
-      console.error(error);
+      console.error(error)
       setErrorAlertOpen({
         message: '삭제 실패',
         description: '2학기 종합성적 데이터를<br/>먼저 삭제해주세요.',
-      });
+      })
     } finally {
-      setDialogOpen(false);
+      setDialogOpen(false)
     }
-  };
+  }
 
   const handleDeleteMockScoreFile = ({
     grade,
@@ -93,18 +93,18 @@ export const AcademicRecordsComponent = () => {
     insertionYear,
   }: StudentExamScoreDeleteTestScoreParams) => {
     try {
-      deleteTestExamScoreMutate({ params: { grade, classNum, semester, step, insertionYear } });
-      setAlertOpen(true);
+      deleteTestExamScoreMutate({ params: { grade, classNum, semester, step, insertionYear } })
+      setAlertOpen(true)
     } catch (error: any) {
-      console.error(error);
+      console.error(error)
       setErrorAlertOpen({
         message: '삭제 실패',
         description: error.message || '잠시 후 다시 시도해주세요.',
-      });
+      })
     } finally {
-      setDialogOpen(false);
+      setDialogOpen(false)
     }
-  };
+  }
 
   const handlePatchTargetScoreAnalysis = async ({
     year,
@@ -112,34 +112,34 @@ export const AcademicRecordsComponent = () => {
     semester,
   }: StudentExamScorePatchStudentExamScoresParams) => {
     try {
-      await patchTargetScoreAnalysisMutate({ params: { year, grade, semester } });
-      setSuccessAlertOpen(true);
-      setSubmitAlertOpen(false);
+      await patchTargetScoreAnalysisMutate({ params: { year, grade, semester } })
+      setSuccessAlertOpen(true)
+      setSubmitAlertOpen(false)
     } catch (error: any) {
-      console.error(error);
+      console.error(error)
       setErrorAlertOpen({
         message: '목표성적분석 실패',
         description: error.message || '잠시 후 다시 시도해주세요.',
-      });
+      })
     }
-  };
+  }
 
   const checkStatus = () => {
     // 종합성적 존재 여부 확인
-    const hasNextSemesterScores = registeredClasses.some((score) => score.semester === semester + 1);
+    const hasNextSemesterScores = registeredClasses.some((score) => score.semester === semester + 1)
 
     if (semester === 1) {
       const hasNextSemesterMockScores = TESTSCORE?.res?.some(
         (semesterData) =>
           semesterData.semester === 2 && semesterData.scores.some((score) => score.first_test || score.second_test),
-      );
+      )
 
       if (hasNextSemesterMockScores) {
         setStatusMessage({
           message: '현재 2학기 성적이 존재합니다.',
           description: `${semester + 1}학기를 선택 후 목표성적분석을 진행해주세요.`,
-        });
-        return;
+        })
+        return
       }
     }
 
@@ -147,11 +147,11 @@ export const AcademicRecordsComponent = () => {
       setStatusMessage({
         message: '현재 2학기 성적이 존재합니다.',
         description: `${semester + 1}학기를 선택 후 목표성적분석을 진행해주세요.`,
-      });
-      return;
+      })
+      return
     }
 
-    const hasOverallScores = registeredClasses.some((score) => score.semester === semester);
+    const hasOverallScores = registeredClasses.some((score) => score.semester === semester)
 
     if (hasOverallScores) {
       const unregisteredClassesOverall = classesByGrade[grade].filter(
@@ -159,7 +159,7 @@ export const AcademicRecordsComponent = () => {
           !registeredClasses.some(
             (score) => score.class === klass.klass && score.grade === grade && score.semester === semester,
           ),
-      );
+      )
 
       if (unregisteredClassesOverall.length > 0) {
         setStatusMessage({
@@ -167,26 +167,26 @@ export const AcademicRecordsComponent = () => {
           description: `미등록 학급 : ${unregisteredClassesOverall
             .map((klass) => `${klass.grade}-${klass.klass}`)
             .join(', ')}`,
-        });
-        return;
+        })
+        return
       } else {
-        setSubmitAlertOpen(true);
-        setStep(3);
-        return;
+        setSubmitAlertOpen(true)
+        setStep(3)
+        return
       }
     }
 
     const hasSubmittedSecondTest = TESTSCORE?.res?.some(
       (semesterData) => semesterData.semester === semester && semesterData.scores.some((score) => score.second_test),
-    );
+    )
 
     if (hasSubmittedSecondTest) {
       const unregisteredClassesSecondTest = classesByGrade[grade].filter((klass) => {
         const mockScore = TESTSCORE?.res
           .find((semesterData) => semesterData.semester === semester)
-          ?.scores.find((score) => score.class === klass.klass);
-        return !mockScore || !mockScore.second_test;
-      });
+          ?.scores.find((score) => score.class === klass.klass)
+        return !mockScore || !mockScore.second_test
+      })
 
       if (unregisteredClassesSecondTest.length > 0) {
         setStatusMessage({
@@ -194,26 +194,26 @@ export const AcademicRecordsComponent = () => {
           description: `미등록 학급 : ${unregisteredClassesSecondTest
             .map((klass) => `${klass.grade}-${klass.klass}`)
             .join(', ')}`,
-        });
-        return;
+        })
+        return
       } else {
-        setSubmitAlertOpen(true);
-        setStep(2);
-        return;
+        setSubmitAlertOpen(true)
+        setStep(2)
+        return
       }
     }
 
     const hasSubmittedFirstTest = TESTSCORE?.res?.some(
       (semesterData) => semesterData.semester === semester && semesterData.scores.some((score) => score.first_test),
-    );
+    )
 
     if (hasSubmittedFirstTest) {
       const unregisteredClassesFirstTest = classesByGrade[grade].filter((klass) => {
         const mockScore = TESTSCORE?.res
           .find((semesterData) => semesterData.semester === semester)
-          ?.scores.find((score) => score.class === klass.klass);
-        return !mockScore || (mockScore && !mockScore.first_test);
-      });
+          ?.scores.find((score) => score.class === klass.klass)
+        return !mockScore || (mockScore && !mockScore.first_test)
+      })
 
       if (unregisteredClassesFirstTest.length > 0) {
         setStatusMessage({
@@ -221,29 +221,29 @@ export const AcademicRecordsComponent = () => {
           description: `미등록 학급 : ${unregisteredClassesFirstTest
             .map((klass) => `${klass.grade}-${klass.klass}`)
             .join(', ')}`,
-        });
-        return;
+        })
+        return
       } else {
-        setSubmitAlertOpen(true);
-        setStep(1);
-        return;
+        setSubmitAlertOpen(true)
+        setStep(1)
+        return
       }
     }
-  };
+  }
 
   useEffect(() => {
-    if (!school?.createdAt) return;
+    if (!school?.createdAt) return
     // 학교 생성일과 현재 연도가 같으면 학교 생성일의 전년도를 시작 연도로 설정
     if (new Date(school.createdAt).getFullYear() === new Date().getFullYear()) {
       // TODO : 학교 생성일과 현재 연도가 같으면 학교 생성일의 2년 전을 시작 연도로 설정
-      setStartYear(new Date(school.createdAt).getFullYear() - 2);
+      setStartYear(new Date(school.createdAt).getFullYear() - 2)
     } else {
-      setStartYear(new Date(school.createdAt).getFullYear());
+      setStartYear(new Date(school.createdAt).getFullYear())
     }
-  }, [school?.createdAt]);
+  }, [school?.createdAt])
 
   if (isLoadingPatchTargetScoreAnalysis) {
-    return <Blank />;
+    return <Blank />
   }
 
   return (
@@ -313,7 +313,7 @@ export const AcademicRecordsComponent = () => {
                     <button
                       onClick={() => checkStatus()}
                       disabled={isLoadingPatchTargetScoreAnalysis}
-                      className={`min-w-[120px] rounded-lg border border-primary-blue-400 bg-primary-blue-400 px-3 py-2 text-white disabled:opacity-50`}
+                      className={`border-primary-blue-400 bg-primary-blue-400 min-w-[120px] rounded-lg border px-3 py-2 text-white disabled:opacity-50`}
                     >
                       {isLoadingPatchTargetScoreAnalysis ? '분석중' : '목표성적분석'}
                     </button>
@@ -363,7 +363,7 @@ export const AcademicRecordsComponent = () => {
                     const registeredScore = registeredClasses.find(
                       (score) =>
                         score.class === klass.klass && score.grade === grade && [semester, 2].includes(score.semester),
-                    );
+                    )
                     const mockScore =
                       semester === 1
                         ? TESTSCORE?.res
@@ -371,12 +371,12 @@ export const AcademicRecordsComponent = () => {
                             ?.scores.find((score) => score.class === klass.klass && TESTSCORE?.grade === grade)
                         : TESTSCORE?.res
                             .find((semesterData) => semesterData.semester === 2)
-                            ?.scores.find((score) => score.class === klass.klass && TESTSCORE?.grade === grade);
-                    const isLastRow = i === classesByGrade[grade].length - 1;
+                            ?.scores.find((score) => score.class === klass.klass && TESTSCORE?.grade === grade)
+                    const isLastRow = i === classesByGrade[grade].length - 1
                     return (
                       <Admin.TableRow
                         key={`${klass.klass}-${i}`}
-                        className={isLastRow ? 'rounded-bl-lg rounded-br-lg' : ''}
+                        className={isLastRow ? 'rounded-br-lg rounded-bl-lg' : ''}
                       >
                         <Admin.TableCell
                           className="h-14 text-lg font-normal text-[#333333]"
@@ -390,7 +390,7 @@ export const AcademicRecordsComponent = () => {
                                 mockScore?.first_test ? (
                                   <Admin.Box className="flex items-center justify-center gap-1">
                                     <button
-                                      className="rounded-lg border border-[#ff2525;] px-4 py-1 text-[15px] font-bold text-[#ff2525;]"
+                                      className="border-[#ff2525;] text-[#ff2525;] rounded-lg border px-4 py-1 text-[15px] font-bold"
                                       onClick={() => deleteScoreFile(1, klass.klass)}
                                     >
                                       삭제
@@ -408,7 +408,7 @@ export const AcademicRecordsComponent = () => {
                                 mockScore?.second_test ? (
                                   <Admin.Box className="flex items-center justify-center gap-1">
                                     <button
-                                      className="rounded-lg border border-[#ff2525;] px-4 py-1 text-[15px] font-bold text-[#ff2525;]"
+                                      className="border-[#ff2525;] text-[#ff2525;] rounded-lg border px-4 py-1 text-[15px] font-bold"
                                       onClick={() => deleteScoreFile(2, klass.klass)}
                                     >
                                       삭제
@@ -426,7 +426,7 @@ export const AcademicRecordsComponent = () => {
                                 registeredScore ? (
                                   <Admin.Box className="flex items-center justify-center gap-1">
                                     <button
-                                      className="rounded-lg border border-[#ff2525;] px-4 py-1 text-[15px] font-bold text-[#ff2525]"
+                                      className="border-[#ff2525;] rounded-lg border px-4 py-1 text-[15px] font-bold text-[#ff2525]"
                                       onClick={() => deleteScoreFile(3, klass.klass)}
                                     >
                                       삭제
@@ -459,7 +459,7 @@ export const AcademicRecordsComponent = () => {
                           </>
                         )}
                       </Admin.TableRow>
-                    );
+                    )
                   })
                 ) : (
                   <Admin.TableRow>
@@ -486,9 +486,9 @@ export const AcademicRecordsComponent = () => {
           onCancel={() => setDialogOpen(!dialogOpen)}
           onConfirm={() => {
             if (step === 3) {
-              handleDeleteScoreFile({ grade, classNum: klass, semester, insertionYear: year });
+              handleDeleteScoreFile({ grade, classNum: klass, semester, insertionYear: year })
             } else {
-              handleDeleteMockScoreFile({ grade, classNum: klass, semester, step, insertionYear: year });
+              handleDeleteMockScoreFile({ grade, classNum: klass, semester, step, insertionYear: year })
             }
           }}
           theme="delete"
@@ -556,5 +556,5 @@ export const AcademicRecordsComponent = () => {
         />
       )}
     </Admin.Section>
-  );
-};
+  )
+}

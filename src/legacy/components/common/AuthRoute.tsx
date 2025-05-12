@@ -1,27 +1,27 @@
-import { ComponentType } from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import { UserContainer } from 'src/container/user';
-import { useAuth } from 'src/util/hooks';
+import { ComponentType } from 'react'
+import { Redirect, Route } from 'react-router-dom'
+import { UserContainer } from '@/legacy/container/user'
+import { useAuth } from '@/legacy/util/hooks'
 
 interface AuthRouteProps {
-  path: string;
-  component: ComponentType;
-  guestOnly?: boolean;
+  path: string
+  component: ComponentType
+  guestOnly?: boolean
 }
 
 export function AuthRoute({ path, component: Component, guestOnly }: AuthRouteProps) {
-  const { authenticated, twoFactorAuthenticated } = useAuth();
-  const { isMeLoading } = UserContainer.useContext();
+  const { authenticated, twoFactorAuthenticated } = useAuth()
+  const { isMeLoading } = UserContainer.useContext()
 
   return (
     <Route
       path={path}
       render={({ location }) => {
         if (guestOnly && authenticated) {
-          return <Redirect to={{ pathname: '/', state: { from: location } }} />;
+          return <Redirect to={{ pathname: '/', state: { from: location } }} />
         }
         if (!guestOnly && !authenticated) {
-          return <Redirect to={{ pathname: '/login', state: { from: location } }} />;
+          return <Redirect to={{ pathname: '/login', state: { from: location } }} />
         }
 
         // FIXME: 2차인증 사용하지않아도 페이지 나오는 현상 수정 후 주석해제가 필요합니다.
@@ -39,8 +39,8 @@ export function AuthRoute({ path, component: Component, guestOnly }: AuthRoutePr
         //   return <Redirect to={{ pathname: '/', state: { from: location } }} />;
         // }
         // @ts-ignore
-        return <Component />;
+        return <Component />
       }}
     />
-  );
+  )
 }

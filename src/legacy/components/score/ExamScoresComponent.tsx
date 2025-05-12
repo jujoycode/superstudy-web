@@ -1,36 +1,36 @@
-import _, { range } from 'lodash';
-import { useEffect, useState } from 'react';
-import { useStudentMockExamScoreDelete, useStudentScoreFileCheckMock } from 'src/container/insert-exam-score';
-import { useAdminCommonFindAllKlassBySchool, useSchoolManagementGetSchoolInfo } from 'src/generated/endpoint';
-import { getThisYear } from 'src/util/time';
-import { Select } from '../common';
-import { Admin } from '../common/Admin';
-import AlertDialog from '../common/AlertDialog';
-import ConfirmDialog from '../common/ConfirmDialog';
-import { ExamScoresBatcbUploadComponent } from './ExamScoresBatchUploadComponent';
-import { MockExamUploadModal } from './MockExamUploadModal';
+import _, { range } from 'lodash'
+import { useEffect, useState } from 'react'
+import { useStudentMockExamScoreDelete, useStudentScoreFileCheckMock } from '@/legacy/container/insert-exam-score'
+import { useAdminCommonFindAllKlassBySchool, useSchoolManagementGetSchoolInfo } from '@/legacy/generated/endpoint'
+import { getThisYear } from '@/legacy/util/time'
+import { Select } from '@/legacy/components/common'
+import { Admin } from '@/legacy/components/common/Admin'
+import AlertDialog from '@/legacy/components/common/AlertDialog'
+import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
+import { ExamScoresBatcbUploadComponent } from './ExamScoresBatchUploadComponent'
+import { MockExamUploadModal } from './MockExamUploadModal'
 
 export const ExamScoresComponent = () => {
   // const thisYear = new Date().getFullYear();
-  const thisYear = Number(getThisYear());
-  const [startYear, setStartYear] = useState(thisYear);
-  const [year, setYear] = useState(thisYear);
-  const [grade, setGrade] = useState(1);
-  const [month, setMonth] = useState(0);
-  const [klass, setKlass] = useState(0);
-  const [isUpdate, setIsUpdate] = useState(false);
+  const thisYear = Number(getThisYear())
+  const [startYear, setStartYear] = useState(thisYear)
+  const [year, setYear] = useState(thisYear)
+  const [grade, setGrade] = useState(1)
+  const [month, setMonth] = useState(0)
+  const [klass, setKlass] = useState(0)
+  const [isUpdate, setIsUpdate] = useState(false)
 
-  const { data: school } = useSchoolManagementGetSchoolInfo();
-  const { data: klasses } = useAdminCommonFindAllKlassBySchool({ year });
-  const { data } = useStudentScoreFileCheckMock(grade, year);
-  const { deleteMockExamScore } = useStudentMockExamScoreDelete();
-  const uniqueGrades = _.uniq(_.map(klasses, 'grade'));
-  const [modalOpen, setModalClose] = useState<boolean>(false);
-  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
-  const [alertOpen, setAlertOpen] = useState(false);
+  const { data: school } = useSchoolManagementGetSchoolInfo()
+  const { data: klasses } = useAdminCommonFindAllKlassBySchool({ year })
+  const { data } = useStudentScoreFileCheckMock(grade, year)
+  const { deleteMockExamScore } = useStudentMockExamScoreDelete()
+  const uniqueGrades = _.uniq(_.map(klasses, 'grade'))
+  const [modalOpen, setModalClose] = useState<boolean>(false)
+  const [dialogOpen, setDialogOpen] = useState<boolean>(false)
+  const [alertOpen, setAlertOpen] = useState(false)
 
-  const MockScores = data?.scores || [];
-  const groupedScores = _.groupBy(MockScores, 'month');
+  const MockScores = data?.scores || []
+  const groupedScores = _.groupBy(MockScores, 'month')
 
   const completeScoresByMonth = Object.keys(groupedScores).reduce(
     (acc, month) => {
@@ -38,31 +38,31 @@ export const ExamScoresComponent = () => {
         acc[month] = klasses
           .filter((k) => k.grade === grade)
           .map((klass) => {
-            const existingScore = groupedScores[month].find((score) => score.class === klass.klass);
-            return existingScore || { class: klass.klass, month: Number(month), isSubmitted: false };
-          });
+            const existingScore = groupedScores[month].find((score) => score.class === klass.klass)
+            return existingScore || { class: klass.klass, month: Number(month), isSubmitted: false }
+          })
       } else {
-        acc[month] = [];
+        acc[month] = []
       }
-      return acc;
+      return acc
     },
     {} as Record<string, { class: number; month: number; isSubmitted: boolean }[]>,
-  );
+  )
 
   const deleteMockScoreFile = (month: number, klass: number) => {
-    setMonth(month);
-    setKlass(klass);
-    setDialogOpen(true);
-  };
+    setMonth(month)
+    setKlass(klass)
+    setDialogOpen(true)
+  }
 
   useEffect(() => {
-    if (!school?.createdAt) return;
+    if (!school?.createdAt) return
     if (new Date(school.createdAt).getFullYear() === new Date().getFullYear()) {
-      setStartYear(new Date(school.createdAt).getFullYear() - 2);
+      setStartYear(new Date(school.createdAt).getFullYear() - 2)
     } else {
-      setStartYear(new Date(school.createdAt).getFullYear());
+      setStartYear(new Date(school.createdAt).getFullYear())
     }
-  }, [school?.createdAt]);
+  }, [school?.createdAt])
 
   const handleConfirmDelete = async () => {
     await deleteMockExamScore({
@@ -70,10 +70,10 @@ export const ExamScoresComponent = () => {
       classNum: klass,
       month: month,
       insertionYear: year,
-    });
-    setDialogOpen(false);
-    setAlertOpen(true);
-  };
+    })
+    setDialogOpen(false)
+    setAlertOpen(true)
+  }
 
   return (
     <Admin.Section className="w-full gap-0 px-0 py-0">
@@ -157,7 +157,7 @@ export const ExamScoresComponent = () => {
                       <td>
                         {score.isSubmitted ? (
                           <button
-                            className="rounded-lg border border-[#ff2525;] px-4 py-1 text-[15px] font-bold text-[#ff2525;]"
+                            className="border-[#ff2525;] text-[#ff2525;] rounded-lg border px-4 py-1 text-[15px] font-bold"
                             onClick={() => deleteMockScoreFile(score.month, score.class)}
                           >
                             삭제
@@ -216,5 +216,5 @@ export const ExamScoresComponent = () => {
         />
       )}
     </Admin.Section>
-  );
-};
+  )
+}

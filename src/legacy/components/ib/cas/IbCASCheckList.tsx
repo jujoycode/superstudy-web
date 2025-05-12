@@ -1,17 +1,17 @@
-import clsx from 'clsx';
-import { PropsWithChildren, useState } from 'react';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { Check } from 'src/components/common/Check';
-import { ResponseChecklistDto } from 'src/generated/model';
-import { Typography } from '../../common/Typography';
-import ColorSVGIcon from '../../icon/ColorSVGIcon';
+import clsx from 'clsx'
+import { PropsWithChildren, useState } from 'react'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Check } from '@/legacy/components/common/Check'
+import { ResponseChecklistDto } from '@/legacy/generated/model'
+import { Typography } from '../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
 
 interface IbCASCheckListProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  onSuccess: () => void;
-  ablePropragation?: boolean;
-  checkList: ResponseChecklistDto[];
+  modalOpen: boolean
+  setModalClose: () => void
+  onSuccess: () => void
+  ablePropragation?: boolean
+  checkList: ResponseChecklistDto[]
 }
 
 // const CHECKLIST = [
@@ -50,46 +50,46 @@ export function IbCASCheckList({
   ablePropragation = false,
   checkList,
 }: PropsWithChildren<IbCASCheckListProps>) {
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [check, setChecked] = useState<boolean>(false);
+  const [selectedIds, setSelectedIds] = useState<number[]>([])
+  const [check, setChecked] = useState<boolean>(false)
   const handleGroupChange = (selectedValues: number[]) => {
-    setSelectedIds(selectedValues);
-    setChecked(selectedValues.length === checkList.length);
-  };
+    setSelectedIds(selectedValues)
+    setChecked(selectedValues.length === checkList.length)
+  }
 
   const handleAllCheck = () => {
     setChecked((prev) => {
-      const newCheckState = !prev;
+      const newCheckState = !prev
       if (newCheckState) {
         // 모든 아이템 선택
-        setSelectedIds(checkList.map((item) => item.id));
+        setSelectedIds(checkList.map((item) => item.id))
       } else {
         // 모든 아이템 선택 해제
-        setSelectedIds([]);
+        setSelectedIds([])
       }
-      return newCheckState;
-    });
-  };
+      return newCheckState
+    })
+  }
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black bg-opacity-50 ${
+      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
         }
       }}
     >
       <div className={`relative w-[632px] overflow-hidden rounded-xl bg-white`}>
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pb-6 pt-8 backdrop-blur-[20px]">
+        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6 backdrop-blur-[20px]">
           <Typography variant="title1">체크리스트 작성</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
         </div>
 
-        <div className="scroll-box flex max-h-[616px] flex-col gap-4 overflow-auto px-8 pb-8 pt-4">
+        <div className="scroll-box flex max-h-[616px] flex-col gap-4 overflow-auto px-8 pt-4 pb-8">
           <div className="flex flex-col gap-4">
             <Check.Group selectedValues={selectedIds} onChange={handleGroupChange} className="flex flex-col gap-3">
               {checkList?.map((item) => (
@@ -100,7 +100,7 @@ export function IbCASCheckList({
               <Check.Basic checked={check} onChange={handleAllCheck} />
               <Typography
                 variant="title3"
-                className="cursor-pointer font-medium text-primary-gray-900"
+                className="text-primary-gray-900 cursor-pointer font-medium"
                 onClick={handleAllCheck}
               >
                 모든 내용을 확인하였습니다.
@@ -110,7 +110,7 @@ export function IbCASCheckList({
         </div>
         <div
           className={clsx(
-            'sticky bottom-0 flex h-[104px] items-center justify-end gap-3 border-t border-t-primary-gray-100 bg-white/70 px-8 pb-8 pt-6 backdrop-blur-[20px]',
+            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] items-center justify-end gap-3 border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
           )}
         >
           <ButtonV2
@@ -125,5 +125,5 @@ export function IbCASCheckList({
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,11 +1,11 @@
-import { ResponseCopykillerResponseDto } from 'src/generated/model';
-import InspectorButtonContainer from './InspectorButtonContainer';
-import ResultCardList from './ResultCardList';
+import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
+import InspectorButtonContainer from './InspectorButtonContainer'
+import ResultCardList from './ResultCardList'
 
 interface PlagiarismInspectProps {
-  onInspectorClick: (type: 'upload' | 'input') => void;
-  onFileUpload: (files: File[]) => void;
-  data?: ResponseCopykillerResponseDto[];
+  onInspectorClick: (type: 'upload' | 'input') => void
+  onFileUpload: (files: File[]) => void
+  data?: ResponseCopykillerResponseDto[]
 }
 
 export default function PlagiarismInspect({ onInspectorClick, onFileUpload, data = [] }: PlagiarismInspectProps) {
@@ -20,5 +20,5 @@ export default function PlagiarismInspect({ onInspectorClick, onFileUpload, data
         <InspectorButtonContainer type="horizontal" onTypeSelect={onInspectorClick} onFileUpload={onFileUpload} />
       )}
     </div>
-  );
+  )
 }

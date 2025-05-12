@@ -1,33 +1,33 @@
-import { useMemo, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Linkify from 'react-linkify';
-import Viewer from 'react-viewer';
-import { ImageDecorator } from 'react-viewer/lib/ViewerProps';
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg';
-import SvgUser from 'src/assets/svg/user.svg';
-import { Constants } from 'src/constants';
+import { useMemo, useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import Linkify from 'react-linkify'
+import Viewer from 'react-viewer'
+import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg'
+import SvgUser from 'src/assets/svg/user.svg'
+import { Constants } from '@/legacy/constants'
 import {
   useActivityV3FindTitleByIds,
   useBoardFindTitleByIds,
   useNewsLettersFindTitleByIds,
   useNoticesFindTitleByIds,
-} from 'src/generated/endpoint';
-import { Chat, ResponseChatAttendeeDto, Role } from 'src/generated/model';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { downloadFile } from 'src/util/download-image';
-import { getFileNameFromUrl } from 'src/util/file';
-import { getRoleTitle } from 'src/util/permission';
-import { getNickName } from 'src/util/status';
-import { isSameMinute } from 'src/util/time';
-import { twMerge } from 'tailwind-merge';
-import { Icon } from '../common/icons';
+} from '@/legacy/generated/endpoint'
+import { Chat, ResponseChatAttendeeDto, Role } from '@/legacy/generated/model'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { downloadFile } from '@/legacy/util/download-image'
+import { getFileNameFromUrl } from '@/legacy/util/file'
+import { getRoleTitle } from '@/legacy/util/permission'
+import { getNickName } from '@/legacy/util/status'
+import { isSameMinute } from '@/legacy/util/time'
+import { twMerge } from 'tailwind-merge'
+import { Icon } from '@/legacy/components/common/icons'
 
 interface ReceiveMessageProps {
-  PreMessageData?: Chat;
-  MessageData?: Chat;
-  PostMessageData?: Chat;
-  AttendeeInfo?: ResponseChatAttendeeDto;
-  userRole: 'student' | 'teacher';
+  PreMessageData?: Chat
+  MessageData?: Chat
+  PostMessageData?: Chat
+  AttendeeInfo?: ResponseChatAttendeeDto
+  userRole: 'student' | 'teacher'
 }
 
 export function ReceiveMessage({
@@ -37,13 +37,13 @@ export function ReceiveMessage({
   AttendeeInfo,
   userRole,
 }: ReceiveMessageProps) {
-  const [hasImagesModalOpen, setImagesModalOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  const isFirst = PreMessageData?.senderId !== MessageData?.senderId;
+  const isFirst = PreMessageData?.senderId !== MessageData?.senderId
   const isLast =
     PostMessageData?.senderId !== MessageData?.senderId ||
-    !isSameMinute(MessageData?.createdAt || '', PostMessageData?.createdAt || '');
+    !isSameMinute(MessageData?.createdAt || '', PostMessageData?.createdAt || '')
 
   const urlsInContent = useMemo(
     () =>
@@ -51,44 +51,44 @@ export function ReceiveMessage({
         ? [...MessageData.content.matchAll(/https:\/\/web\.superschool\.link\/teacher\/([^\/]+)\/(\d+)/g)]
         : [],
     [MessageData],
-  );
+  )
 
-  const activityIds = urlsInContent.filter((el) => el[1] === 'activityv3').map((el) => Number(el[2])) || [];
-  const noticeIds = urlsInContent.filter((el) => el[1] === 'notice').map((el) => Number(el[2])) || [];
-  const boardIds = urlsInContent.filter((el) => el[1] === 'board').map((el) => Number(el[2])) || [];
-  const newsletterIds = urlsInContent.filter((el) => el[1] === 'newsletter').map((el) => Number(el[2])) || [];
+  const activityIds = urlsInContent.filter((el) => el[1] === 'activityv3').map((el) => Number(el[2])) || []
+  const noticeIds = urlsInContent.filter((el) => el[1] === 'notice').map((el) => Number(el[2])) || []
+  const boardIds = urlsInContent.filter((el) => el[1] === 'board').map((el) => Number(el[2])) || []
+  const newsletterIds = urlsInContent.filter((el) => el[1] === 'newsletter').map((el) => Number(el[2])) || []
 
   const { data: activities } = useActivityV3FindTitleByIds(
     { activityIds },
     { query: { enabled: !!activityIds.length } },
-  );
+  )
 
-  const { data: notices } = useNoticesFindTitleByIds({ noticeIds }, { query: { enabled: !!noticeIds.length } });
+  const { data: notices } = useNoticesFindTitleByIds({ noticeIds }, { query: { enabled: !!noticeIds.length } })
 
-  const { data: boards } = useBoardFindTitleByIds({ boardIds }, { query: { enabled: !!boardIds.length } });
+  const { data: boards } = useBoardFindTitleByIds({ boardIds }, { query: { enabled: !!boardIds.length } })
 
   const { data: newsletters } = useNewsLettersFindTitleByIds(
     { newsletterIds },
     { query: { enabled: !!newsletterIds.length } },
-  );
+  )
 
   const isMobile = () => {
     return (
       /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-    );
-  };
+    )
+  }
 
-  const content = MessageData?.content;
-  const images = MessageData?.images;
-  const imagesLen = images?.length || 0;
+  const content = MessageData?.content
+  const images = MessageData?.images
+  const imagesLen = images?.length || 0
 
-  const viewerImages: ImageDecorator[] = [];
+  const viewerImages: ImageDecorator[] = []
   if (images?.length) {
     for (const image of images) {
       viewerImages.push({
         src: `${Constants.imageUrl}${image}`,
-      });
+      })
     }
   }
 
@@ -102,9 +102,9 @@ export function ReceiveMessage({
               src={`${Constants.imageUrl}${AttendeeInfo?.customProfile || AttendeeInfo?.profile}`}
               alt=""
               onError={({ currentTarget }) => {
-                currentTarget.onerror = null; // prevents looping
-                currentTarget.src = SvgUser;
-                currentTarget.className = 'rounded-full mr-1 w-12 h-12 mx-auto';
+                currentTarget.onerror = null // prevents looping
+                currentTarget.src = SvgUser
+                currentTarget.className = 'rounded-full mr-1 w-12 h-12 mx-auto'
               }}
             />
           ) : (
@@ -115,12 +115,12 @@ export function ReceiveMessage({
           {isFirst &&
             (AttendeeInfo ? (
               AttendeeInfo?.role === Role.USER ? (
-                <h4 className="text-sm text-brand-1">
+                <h4 className="text-brand-1 text-sm">
                   {AttendeeInfo?.name}
                   {getNickName(AttendeeInfo?.nickName)} {AttendeeInfo?.studentNumber}
                 </h4>
               ) : AttendeeInfo?.role === Role.PARENT ? (
-                <h4 className="text-sm text-brandblue-1">
+                <h4 className="text-brandblue-1 text-sm">
                   {AttendeeInfo?.name}{' '}
                   {AttendeeInfo?.children &&
                     '[' +
@@ -145,7 +145,7 @@ export function ReceiveMessage({
             <div className="flex flex-col items-start gap-1">
               {content && (
                 <div className="mr-2 rounded-md bg-white p-1 px-6 text-gray-700">
-                  <p className="feedback_space whitespace-pre-wrap break-all text-sm">
+                  <p className="feedback_space text-sm break-all whitespace-pre-wrap">
                     <Linkify>{MessageData?.content}</Linkify>
                   </p>
                 </div>
@@ -168,8 +168,8 @@ export function ReceiveMessage({
                       key={image}
                       className="relative w-full cursor-pointer"
                       onClick={() => {
-                        setActiveIndex(i);
-                        setImagesModalOpen(true);
+                        setActiveIndex(i)
+                        setImagesModalOpen(true)
                       }}
                     >
                       <div className="aspect-square rounded border border-neutral-200">
@@ -190,7 +190,7 @@ export function ReceiveMessage({
                     <div key={fileUrl} className="flex h-8 w-max items-center space-x-2 rounded bg-stone-50 px-3 py-1">
                       <FileItemIcon />
                       <a
-                        className="ml-2 line-clamp-2 max-w-[140px] break-words text-xs text-neutral-500"
+                        className="ml-2 line-clamp-2 max-w-[140px] text-xs break-words text-neutral-500"
                         href={`${Constants.imageUrl}${fileUrl}`}
                         download={getFileNameFromUrl(fileUrl)}
                         title={getFileNameFromUrl(fileUrl)}
@@ -207,7 +207,7 @@ export function ReceiveMessage({
                     <a
                       key={el.id}
                       href={`https://web.dev.superschool.link/${userRole}/activityv3/` + el.id}
-                      className="block w-min max-w-2/3 cursor-pointer overflow-hidden whitespace-pre rounded-md bg-white px-4 py-2"
+                      className="block w-min max-w-2/3 cursor-pointer overflow-hidden rounded-md bg-white px-4 py-2 whitespace-pre"
                     >
                       <p className="truncate text-lg text-gray-700">{el.title}</p>
                       <p className="text-sm text-gray-500">
@@ -223,7 +223,7 @@ export function ReceiveMessage({
                     <a
                       key={el.id}
                       href={`https://web.dev.superschool.link/${userRole}/board/` + el.id}
-                      className="block w-min max-w-2/3 cursor-pointer overflow-hidden whitespace-pre rounded-md bg-white px-4 py-2"
+                      className="block w-min max-w-2/3 cursor-pointer overflow-hidden rounded-md bg-white px-4 py-2 whitespace-pre"
                     >
                       <p className="truncate text-lg text-gray-700">{el.title}</p>
                       <p className="text-sm text-gray-500">
@@ -239,7 +239,7 @@ export function ReceiveMessage({
                     <a
                       key={el.id}
                       href={`https://web.dev.superschool.link/${userRole}/newsletter/` + el.id}
-                      className="block w-min max-w-2/3 cursor-pointer overflow-hidden whitespace-pre rounded-md bg-white px-4 py-2"
+                      className="block w-min max-w-2/3 cursor-pointer overflow-hidden rounded-md bg-white px-4 py-2 whitespace-pre"
                     >
                       <p className="truncate text-lg text-gray-700">{el.title}</p>
                       <p className="text-sm text-gray-500">
@@ -255,7 +255,7 @@ export function ReceiveMessage({
                     <a
                       key={el.id}
                       href={`https://web.dev.superschool.link/${userRole}/notice/` + el.id}
-                      className="block w-min max-w-2/3 cursor-pointer overflow-hidden whitespace-pre rounded-md bg-white px-4 py-2"
+                      className="block w-min max-w-2/3 cursor-pointer overflow-hidden rounded-md bg-white px-4 py-2 whitespace-pre"
                     >
                       <p className="truncate text-lg text-gray-700">{el.title}</p>
                       <p className="text-sm text-gray-500">
@@ -281,20 +281,20 @@ export function ReceiveMessage({
         {hasImagesModalOpen &&
           (isMobile() ? (
             <a
-              className="fixed left-0 top-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full bg-littleblack"
+              className="bg-littleblack fixed top-0 left-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full"
               href={viewerImages[activeIndex].src}
               target="_blank"
               rel="noreferrer"
               download={viewerImages[activeIndex].src}
             >
-              <Icon.Download className="ml-1 mt-1" stroke="#FFF" />
+              <Icon.Download className="mt-1 ml-1" stroke="#FFF" />
             </a>
           ) : (
             <div
-              className="fixed left-0 top-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full bg-littleblack"
+              className="bg-littleblack fixed top-0 left-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full"
               onClick={() => downloadFile(viewerImages[activeIndex].src)}
             >
-              <Icon.Download className="ml-1 mt-1" stroke="#FFF" />
+              <Icon.Download className="mt-1 ml-1" stroke="#FFF" />
             </div>
           ))}
         <Viewer
@@ -309,5 +309,5 @@ export function ReceiveMessage({
         />
       </div>
     </>
-  );
+  )
 }

@@ -1,21 +1,21 @@
-import { Blank, Label, Section, Textarea } from 'src/components/common';
-import { useTeacherRecordCard } from 'src/container/teacher-record-card';
-import { StudentActivity } from 'src/generated/model';
-import { makeDateToString } from 'src/util/time';
-import { ErrorBlank } from '../ErrorBlank';
-import { Button } from '../common/Button';
-import { Checkbox } from '../common/Checkbox';
+import { Blank, Label, Section, Textarea } from '@/legacy/components/common'
+import { useTeacherRecordCard } from '@/legacy/container/teacher-record-card'
+import { StudentActivity } from '@/legacy/generated/model'
+import { makeDateToString } from '@/legacy/util/time'
+import { ErrorBlank } from '../ErrorBlank'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
 
 interface RecordCardProps {
-  record: StudentActivity;
-  selectedSAIds: number[];
-  setSelectedSAIds: (ids: number[]) => void;
+  record: StudentActivity
+  selectedSAIds: number[]
+  setSelectedSAIds: (ids: number[]) => void
 }
 
 export function RecordCard({ record, selectedSAIds, setSelectedSAIds }: RecordCardProps) {
-  const activity = record?.activity;
+  const activity = record?.activity
 
-  const { errorText, feedback, setFeedback, updateFeedback, isLoading } = useTeacherRecordCard({ record });
+  const { errorText, feedback, setFeedback, updateFeedback, isLoading } = useTeacherRecordCard({ record })
 
   return (
     <div className="overflow-hidden rounded-lg border-2 border-gray-200">
@@ -30,12 +30,12 @@ export function RecordCard({ record, selectedSAIds, setSelectedSAIds }: RecordCa
               <div className="min-w-11 text-red-500">미제출</div>
             )}
 
-            <a className=" text-blue-600" href={`/teacher/activity/${activity?.id}`}>
+            <a className="text-blue-600" href={`/teacher/activity/${activity?.id}`}>
               [{activity?.subject}] {activity?.title}
             </a>
           </div>
 
-          <h3 className="mt-2 text-sm text-grey-3">{makeDateToString(new Date(activity?.createdAt || ''), '.')}</h3>
+          <h3 className="text-grey-3 mt-2 text-sm">{makeDateToString(new Date(activity?.createdAt || ''), '.')}</h3>
         </div>
         <Checkbox
           className="h-6 w-6"
@@ -43,9 +43,9 @@ export function RecordCard({ record, selectedSAIds, setSelectedSAIds }: RecordCa
           onChange={() => {
             if (record?.id) {
               if (selectedSAIds.includes(record.id)) {
-                setSelectedSAIds(selectedSAIds.filter((id) => id !== record.id));
+                setSelectedSAIds(selectedSAIds.filter((id) => id !== record.id))
               } else {
-                setSelectedSAIds(selectedSAIds.concat(record.id));
+                setSelectedSAIds(selectedSAIds.concat(record.id))
               }
             }
           }}
@@ -75,5 +75,5 @@ export function RecordCard({ record, selectedSAIds, setSelectedSAIds }: RecordCa
         </div>
       </Section>
     </div>
-  );
+  )
 }

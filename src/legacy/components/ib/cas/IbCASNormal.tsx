@@ -1,14 +1,14 @@
-import { PropsWithChildren, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useRecoilValue } from 'recoil';
-import { IBBlank } from 'src/components/common/IBBlank';
-import ScheduleAndPeriodPicker from 'src/components/common/ScheduleAndPeriodPicker';
-import Stepper from 'src/components/common/Stepper';
-import SolidSVGIcon from 'src/components/icon/SolidSVGIcon';
-import SVGIcon from 'src/components/icon/SVGIcon';
-import { CAS_ATL, CAS_LEARNERPROFILE, CAS_LEARNINGOUTCOME } from 'src/constants/ib';
-import { useIBCreate } from 'src/container/ib-project';
-import { useInterviewGetByStudentId } from 'src/container/ib-student-interview';
+import { PropsWithChildren, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useRecoilValue } from 'recoil'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import ScheduleAndPeriodPicker from '@/legacy/components/common/ScheduleAndPeriodPicker'
+import Stepper from '@/legacy/components/common/Stepper'
+import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { CAS_ATL, CAS_LEARNERPROFILE, CAS_LEARNINGOUTCOME } from '@/legacy/constants/ib'
+import { useIBCreate } from '@/legacy/container/ib-project'
+import { useInterviewGetByStudentId } from '@/legacy/container/ib-student-interview'
 import {
   RequestIBCasDtoAtl,
   RequestIBCasDtoLearnerProfile,
@@ -16,22 +16,22 @@ import {
   RequestIBCasDtoRiskAssessmentItem,
   RequestIBCasDtoStrands,
   RequestIBDto,
-} from 'src/generated/model';
-import { meState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Check } from '../../common/Check';
-import { Typography } from '../../common/Typography';
-import ColorSVGIcon from '../../icon/ColorSVGIcon';
-import { InputField } from '../InputField';
+} from '@/legacy/generated/model'
+import { meState } from '@/stores'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Check } from '../@/legacy/components/common/Check'
+import { Typography } from '../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
+import { InputField } from '../InputField'
 
 interface IbCASNormalProps {
-  modalOpen: boolean;
-  setModalClose?: () => void;
-  size?: 'medium' | 'large';
-  handleBack?: () => void;
-  onSuccess: (action: 'CAS_NORMAL', data?: any) => void;
-  ablePropragation?: boolean;
+  modalOpen: boolean
+  setModalClose?: () => void
+  size?: 'medium' | 'large'
+  handleBack?: () => void
+  onSuccess: (action: 'CAS_NORMAL', data?: any) => void
+  ablePropragation?: boolean
 }
 
 export function IbCASNormal({
@@ -41,39 +41,39 @@ export function IbCASNormal({
   onSuccess,
   ablePropragation = false,
 }: PropsWithChildren<IbCASNormalProps>) {
-  const me = useRecoilValue(meState);
-  const [isFocused, setIsFocused] = useState(false);
-  const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [selectedATL, setSelectedATL] = useState<number[]>([]);
-  const [selectedLearnerProfile, setSelectedLearnerProfile] = useState<number[]>([]);
-  const [useRiskAssessment, setUseRiskAssessment] = useState<boolean>(false);
+  const me = useRecoilValue(meState)
+  const [isFocused, setIsFocused] = useState(false)
+  const [calendarOpen, setCalendarOpen] = useState<boolean>(false)
+  const [selectedIds, setSelectedIds] = useState<number[]>([])
+  const [selectedATL, setSelectedATL] = useState<number[]>([])
+  const [selectedLearnerProfile, setSelectedLearnerProfile] = useState<number[]>([])
+  const [useRiskAssessment, setUseRiskAssessment] = useState<boolean>(false)
   const [strands, setStrands] = useState<RequestIBCasDtoStrands>({
     creativity: 0,
     activity: 0,
     service: 0,
-  });
+  })
   const [date, setDate] = useState<{
-    startDate: Date | undefined;
-    endDate: Date | undefined;
-    cycle: string | undefined;
+    startDate: Date | undefined
+    endDate: Date | undefined
+    cycle: string | undefined
   }>({
     startDate: undefined,
     endDate: undefined,
     cycle: undefined,
-  });
+  })
 
   const { data: riskAssessment, isLoading: riskAssessmentLoading } = useInterviewGetByStudentId(
     me?.id || 0,
     'CAS_RISK_ASSESSMENT',
-  );
+  )
 
   const {
     control,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<RequestIBDto>();
+  } = useForm<RequestIBDto>()
 
   const requiredFields = watch([
     'title',
@@ -84,44 +84,44 @@ export function IbCASNormal({
     'cas.sixWhDescription.how',
     'cas.sixWhDescription.why',
     'cas.goal',
-  ]);
+  ])
 
   const areAllFieldsFilled =
     requiredFields.every((field) => field && field.trim() !== '') &&
     date.startDate &&
     date.endDate &&
     (strands.creativity || strands.activity || strands.service) &&
-    selectedIds.length > 0;
+    selectedIds.length > 0
 
   const { createIBProject, isLoading } = useIBCreate({
     onSuccess: (data) => {
-      onSuccess('CAS_NORMAL', data);
+      onSuccess('CAS_NORMAL', data)
     },
     onError: (error) => {
-      console.error('IB 프로젝트 생성 중 오류 발생:', error);
+      console.error('IB 프로젝트 생성 중 오류 발생:', error)
     },
-  });
+  })
 
   const handleGroupChange = (selectedValues: number[]) => {
-    setSelectedIds(selectedValues);
-  };
+    setSelectedIds(selectedValues)
+  }
 
   const handleLearnerProfileChange = (selectedValues: number[]) => {
-    setSelectedLearnerProfile(selectedValues);
-  };
+    setSelectedLearnerProfile(selectedValues)
+  }
 
   const handleATLChange = (selectedValues: number[]) => {
-    setSelectedATL(selectedValues);
-  };
+    setSelectedATL(selectedValues)
+  }
 
   const onSubmit = (data: RequestIBDto) => {
     if (!me?.id) {
-      console.error('Leader ID가 없습니다. 로그인 상태를 확인하세요.');
-      return;
+      console.error('Leader ID가 없습니다. 로그인 상태를 확인하세요.')
+      return
     }
 
     if (isLoading) {
-      return;
+      return
     }
 
     const learningOutcome: RequestIBCasDtoLearningOutcome = {
@@ -132,7 +132,7 @@ export function IbCASNormal({
       teamworkBenefits: selectedIds.includes(5),
       globalIssues: selectedIds.includes(6),
       ethicalChoices: selectedIds.includes(7),
-    };
+    }
 
     const learnerProfile: RequestIBCasDtoLearnerProfile = {
       inquirer: selectedLearnerProfile.includes(1),
@@ -145,7 +145,7 @@ export function IbCASNormal({
       riskTaker: selectedLearnerProfile.includes(8),
       balanced: selectedLearnerProfile.includes(9),
       reflective: selectedLearnerProfile.includes(10),
-    };
+    }
 
     const atl: RequestIBCasDtoAtl = {
       communication: selectedATL.includes(1),
@@ -153,14 +153,14 @@ export function IbCASNormal({
       selfManagement: selectedATL.includes(3),
       research: selectedATL.includes(4),
       thinking: selectedATL.includes(5),
-    };
+    }
 
     const riskAssessments: RequestIBCasDtoRiskAssessmentItem[] | null = useRiskAssessment
       ? riskAssessment?.[0]?.commonQuestion?.map((item, index) => ({
           question: item.question,
           answer: String(data.cas?.riskAssessment?.[index] || ''),
         })) || []
-      : null;
+      : null
 
     const requestData: RequestIBDto = {
       title: data.title,
@@ -171,34 +171,34 @@ export function IbCASNormal({
       endAt: date.endDate ? DateUtil.formatDate(new Date(date.endDate), DateFormat['YYYY-MM-DD']) : undefined,
       leaderId: me.id,
       cas: { ...data.cas, learningOutcome, learnerProfile, strands, atl, riskAssessment: riskAssessments },
-    };
+    }
 
-    createIBProject(requestData);
-  };
+    createIBProject(requestData)
+  }
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleFocus = () => setIsFocused(true)
+  const handleBlur = () => setIsFocused(false)
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black bg-opacity-50 ${
+      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
         }
       }}
     >
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white`}>
         {isLoading && <IBBlank type="section-opacity" />}
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pb-6 pt-8 backdrop-blur-[20px]">
+        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6 backdrop-blur-[20px]">
           <Typography variant="title1">일반 계획서 작성</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
         </div>
 
-        <div className="scroll-box flex max-h-[608px] flex-col overflow-auto pb-8 pt-4">
+        <div className="scroll-box flex max-h-[608px] flex-col overflow-auto pt-4 pb-8">
           <div className="flex flex-col gap-6 px-8 pb-8">
             <InputField label="활동 제목" name="title" control={control} placeholder="제목을 입력해주세요" required />
             <div className="flex flex-col gap-3">
@@ -208,7 +208,7 @@ export function IbCASNormal({
               </Typography>
               <div className="relative">
                 <div
-                  className={`flex h-10 items-center gap-2 rounded-lg border border-primary-gray-200 px-3 py-[9px] focus:outline-none focus:ring-0 ${
+                  className={`border-primary-gray-200 flex h-10 items-center gap-2 rounded-lg border px-3 py-[9px] focus:ring-0 focus:outline-none ${
                     isFocused && 'border-primary-gray-700'
                   }`}
                   onFocus={handleFocus}
@@ -217,7 +217,7 @@ export function IbCASNormal({
                 >
                   <SVGIcon.Calendar size={20} color="gray700" />
                   <input
-                    className="w-full flex-1 border-none p-0 text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 focus:outline-none focus:ring-0"
+                    className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
                     value={
                       date.startDate && date.endDate
                         ? `${date.startDate.getFullYear()}.${(date.startDate.getMonth() + 1)
@@ -236,12 +236,12 @@ export function IbCASNormal({
                   />
                 </div>
                 {calendarOpen && (
-                  <div className="absolute left-0 top-full z-50 mt-2">
+                  <div className="absolute top-full left-0 z-50 mt-2">
                     <ScheduleAndPeriodPicker
                       initialDate={date}
                       onSave={(finalDate) => {
-                        setDate(finalDate);
-                        setCalendarOpen(false);
+                        setDate(finalDate)
+                        setCalendarOpen(false)
                       }}
                       onCancel={() => setCalendarOpen(false)}
                     />
@@ -365,7 +365,7 @@ export function IbCASNormal({
               </Check.Group>
             </div>
           </div>
-          <div className="flex flex-col gap-6 border-t border-t-primary-gray-100 px-8 py-8">
+          <div className="border-t-primary-gray-100 flex flex-col gap-6 border-t px-8 py-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
                 <Typography variant="title3" className="font-semibold">
@@ -431,7 +431,7 @@ export function IbCASNormal({
               />
             </div>
           </div>
-          <div className="flex flex-col border-t border-t-primary-gray-100 px-8 py-8">
+          <div className="border-t-primary-gray-100 flex flex-col border-t px-8 py-8">
             <InputField
               label="개인적인 목표"
               name="cas.goal"
@@ -443,7 +443,7 @@ export function IbCASNormal({
             />
           </div>
           {riskAssessment && riskAssessment.length > 0 && (
-            <div className="flex flex-col border-t border-t-primary-gray-100 px-8 pt-8">
+            <div className="border-t-primary-gray-100 flex flex-col border-t px-8 pt-8">
               <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-2">
                   <Typography variant="title3" className="font-semibold">
@@ -498,7 +498,7 @@ export function IbCASNormal({
 
         <div
           className={
-            'sticky bottom-0 flex h-[104px] justify-between gap-4 border-t border-t-primary-gray-100 bg-white/70 px-8 pb-8 pt-6 backdrop-blur-[20px]'
+            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-between gap-4 border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]'
           }
         >
           <ButtonV2 variant="solid" color="gray100" size={48} onClick={handleBack}>
@@ -518,5 +518,5 @@ export function IbCASNormal({
         </div>
       </div>
     </div>
-  );
+  )
 }

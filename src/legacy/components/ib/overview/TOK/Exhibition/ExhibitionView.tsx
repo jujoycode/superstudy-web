@@ -1,48 +1,48 @@
-import { useEffect, useState } from 'react';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import { Typography } from 'src/components/common/Typography';
+import { useEffect, useState } from 'react'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import {
   useIBTOKExhibitionNotSubmittedNotification,
   useIBTOKExhibitionStatusCount,
   useIBTOKExhibitionSubmissionStatus,
-} from 'src/container/ib-overview';
-import { ExhibitionGetSubmissionStatusCountParams, ExhibitionGetSubmissionStatusStatus } from 'src/generated/model';
-import { useHistory } from 'react-router-dom';
-import ExhibitionOverviewPanel from './ExhibitionOverviewPanel';
-import { handleBatchBlobDownload } from 'src/hooks/useBatchDownload';
-import { Blank } from 'src/components/common/Blank';
-import { createTokExhibitionPdf } from 'src/util/ib/tok-exhibition-pdf';
+} from '@/legacy/container/ib-overview'
+import { ExhibitionGetSubmissionStatusCountParams, ExhibitionGetSubmissionStatusStatus } from '@/legacy/generated/model'
+import { useHistory } from 'react-router-dom'
+import ExhibitionOverviewPanel from './ExhibitionOverviewPanel'
+import { handleBatchBlobDownload } from '@/legacy/hooks/useBatchDownload'
+import { Blank } from '@/legacy/components/common/Blank'
+import { createTokExhibitionPdf } from '@/legacy/util/ib/tok-exhibition-pdf'
 
 export default function ExhibitionView({ grade, klass }: ExhibitionGetSubmissionStatusCountParams) {
-  const { push } = useHistory();
+  const { push } = useHistory()
 
   const [status, setStatus] = useState<ExhibitionGetSubmissionStatusStatus>(
     () =>
       (sessionStorage.getItem('PROJECT_EXHIBITION_EXHIBITION_STATUS') as ExhibitionGetSubmissionStatusStatus) ||
       'PENDING',
-  );
+  )
 
-  const [isDownloading, setIsDownloading] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false)
 
   const { data } = useIBTOKExhibitionStatusCount({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
-  });
+  })
 
   const { students = [] } = useIBTOKExhibitionSubmissionStatus({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
     status,
-  });
+  })
 
   const handleBulkDownload = async () => {
-    setIsDownloading(true);
-    const pdfFiles: { blob: Blob; fileName: string }[] = [];
+    setIsDownloading(true)
+    const pdfFiles: { blob: Blob; fileName: string }[] = []
 
     try {
       await Promise.all(
         students.map(async (student) => {
-          const klassNum = `${student.leader.studentGroup.group.grade}${String(student.leader.studentGroup.group.klass).padStart(2, '0')}${String(student.leader.studentGroup.studentNumber).padStart(2, '0')}`;
+          const klassNum = `${student.leader.studentGroup.group.grade}${String(student.leader.studentGroup.group.klass).padStart(2, '0')}${String(student.leader.studentGroup.studentNumber).padStart(2, '0')}`
 
           const doc = await createTokExhibitionPdf(
             {
@@ -50,27 +50,27 @@ export default function ExhibitionView({ grade, klass }: ExhibitionGetSubmission
               name: student.leader.name,
             },
             student.exhibition,
-          );
+          )
 
           if (!doc) {
-            console.error(`PDF 생성 실패: 학생 ID ${student.id}`);
-            return;
+            console.error(`PDF 생성 실패: 학생 ID ${student.id}`)
+            return
           }
 
           pdfFiles.push({
             blob: new Blob([doc]),
             fileName: `TOK_전시회_${klassNum}_${student.leader.name}_${student.exhibition?.themeQuestion}.pdf`,
-          });
+          })
         }),
-      );
+      )
 
-      await handleBatchBlobDownload(pdfFiles, '최종 TOK 전시회');
+      await handleBatchBlobDownload(pdfFiles, '최종 TOK 전시회')
     } catch (error) {
-      console.error('PDF 일괄 다운로드 실패:', error);
+      console.error('PDF 일괄 다운로드 실패:', error)
     } finally {
-      setIsDownloading(false);
+      setIsDownloading(false)
     }
-  };
+  }
 
   const { mutate: notiMutate, isLoading: notiLoading } = useIBTOKExhibitionNotSubmittedNotification({
     params: {
@@ -78,13 +78,13 @@ export default function ExhibitionView({ grade, klass }: ExhibitionGetSubmission
       klass,
     },
     onError: (error) => {
-      console.error('미제출자 알림 발송 실패:', error);
+      console.error('미제출자 알림 발송 실패:', error)
     },
-  });
+  })
 
   useEffect(() => {
-    sessionStorage.setItem('PROJECT_EXHIBITION_EXHIBITION_STATUS', status);
-  }, [status]);
+    sessionStorage.setItem('PROJECT_EXHIBITION_EXHIBITION_STATUS', status)
+  }, [status])
 
   return (
     <div>
@@ -172,5 +172,5 @@ export default function ExhibitionView({ grade, klass }: ExhibitionGetSubmission
         </div>
       )}
     </div>
-  );
+  )
 }

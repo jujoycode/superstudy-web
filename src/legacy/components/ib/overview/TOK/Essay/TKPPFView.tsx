@@ -1,80 +1,80 @@
-import { saveAs } from 'file-saver';
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import { Typography } from 'src/components/common/Typography';
+import { saveAs } from 'file-saver'
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import {
   useIBTOKPPFNotSubmittedNotification,
   useIBTOKPPFStatusCount,
   useIBTOKPPFSubmissionStatus,
-} from 'src/container/ib-overview';
-import { TKPPFGetSubmissionStatusCountParams, TKPPFGetSubmissionStatusStatus } from 'src/generated/model';
-import { modifyTkppfPdf } from 'src/util/ib_tkppf_pdf';
-import IBSubmitPdfPreviewPopup from '../../IBSubmitPdfPreviewPopup';
-import TKPPFOverviewPanel from './TKPPFOverviewPanel';
-import { handleBatchBlobDownload } from 'src/hooks/useBatchDownload';
-import { BlobDownloadItem } from 'src/hooks/useBatchDownload';
-import { Blank } from 'src/components/common';
+} from '@/legacy/container/ib-overview'
+import { TKPPFGetSubmissionStatusCountParams, TKPPFGetSubmissionStatusStatus } from '@/legacy/generated/model'
+import { modifyTkppfPdf } from '@/legacy/util/ib_tkppf_pdf'
+import IBSubmitPdfPreviewPopup from '../../IBSubmitPdfPreviewPopup'
+import TKPPFOverviewPanel from './TKPPFOverviewPanel'
+import { handleBatchBlobDownload } from '@/legacy/hooks/useBatchDownload'
+import { BlobDownloadItem } from '@/legacy/hooks/useBatchDownload'
+import { Blank } from '@/legacy/components/common'
 
 export default function TKPPFView({ grade, klass }: TKPPFGetSubmissionStatusCountParams) {
-  const { push } = useHistory();
+  const { push } = useHistory()
 
   const [status, setStatus] = useState<TKPPFGetSubmissionStatusStatus>(
     () => (sessionStorage.getItem('PROJECT_TOK_TKPPF_STATUS') as TKPPFGetSubmissionStatusStatus) || 'NOT_SUBMITTED',
-  );
-  const [previewPopup, setPreviewPopup] = useState<boolean>(false);
-  const [pdfData, setPdfData] = useState<any>({});
-  const [isDownloading, setIsDownloading] = useState<boolean>(false);
+  )
+  const [previewPopup, setPreviewPopup] = useState<boolean>(false)
+  const [pdfData, setPdfData] = useState<any>({})
+  const [isDownloading, setIsDownloading] = useState<boolean>(false)
   const { data } = useIBTOKPPFStatusCount({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
-  });
+  })
 
   const { students = [] } = useIBTOKPPFSubmissionStatus({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
     status,
-  });
+  })
 
   const openPreviewPopup = (studentIbId: number) => {
-    setPreviewPopup(true);
-    const studentData = students.find((data) => data.id === studentIbId);
-    setPdfData({ ...studentData?.tkppf, ...studentData?.leader });
-  };
+    setPreviewPopup(true)
+    const studentData = students.find((data) => data.id === studentIbId)
+    setPdfData({ ...studentData?.tkppf, ...studentData?.leader })
+  }
 
   const pdfAllDownload = async () => {
-    const pdfPath = '/TKPPF_en.pdf';
-    const pdfFiles: BlobDownloadItem[] = [];
+    const pdfPath = '/TKPPF_en.pdf'
+    const pdfFiles: BlobDownloadItem[] = []
 
-    setIsDownloading(true);
+    setIsDownloading(true)
 
     try {
       await Promise.all(
         students.map(async (student) => {
-          const data = { ...student.tkppf, ...student.leader };
-          const pdfBlob = await modifyTkppfPdf({ pdfPath, data });
+          const data = { ...student.tkppf, ...student.leader }
+          const pdfBlob = await modifyTkppfPdf({ pdfPath, data })
 
-          const klassNum = `${student.leader.studentGroup.group.grade}${String(student.leader.studentGroup.group.klass).padStart(2, '0')}${String(student.leader.studentGroup.studentNumber).padStart(2, '0')}`;
+          const klassNum = `${student.leader.studentGroup.group.grade}${String(student.leader.studentGroup.group.klass).padStart(2, '0')}${String(student.leader.studentGroup.studentNumber).padStart(2, '0')}`
 
           if (!pdfBlob) {
-            console.error(`PDF 생성 실패: 학생 ID ${student.id}`);
-            return;
+            console.error(`PDF 생성 실패: 학생 ID ${student.id}`)
+            return
           }
 
           pdfFiles.push({
             blob: pdfBlob,
             fileName: `TOK_TKPPF_${klassNum}_${student.leader.name}.pdf`,
-          });
+          })
         }),
-      );
+      )
 
-      await handleBatchBlobDownload(pdfFiles, '최종 TOK TKPPF');
+      await handleBatchBlobDownload(pdfFiles, '최종 TOK TKPPF')
     } catch (error) {
-      console.error('PDF 일괄 다운로드 실패:', error);
+      console.error('PDF 일괄 다운로드 실패:', error)
     } finally {
-      setIsDownloading(false);
+      setIsDownloading(false)
     }
-  };
+  }
 
   const { mutate: notiMutate, isLoading: notiLoading } = useIBTOKPPFNotSubmittedNotification({
     params: {
@@ -82,13 +82,13 @@ export default function TKPPFView({ grade, klass }: TKPPFGetSubmissionStatusCoun
       klass,
     },
     onError: (error) => {
-      console.error('미제출자 알림 발송 실패:', error);
+      console.error('미제출자 알림 발송 실패:', error)
     },
-  });
+  })
 
   useEffect(() => {
-    sessionStorage.setItem('PROJECT_TOK_TKPPF_STATUS', status);
-  }, [status]);
+    sessionStorage.setItem('PROJECT_TOK_TKPPF_STATUS', status)
+  }, [status])
 
   return (
     <div>
@@ -201,5 +201,5 @@ export default function TKPPFView({ grade, klass }: TKPPFGetSubmissionStatusCoun
         />
       )}
     </div>
-  );
+  )
 }

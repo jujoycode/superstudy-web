@@ -1,24 +1,24 @@
-import { t } from 'i18next';
-import { forwardRef } from 'react';
-import { Absent } from 'src/generated/model';
-import { useSignedUrl } from 'src/lib/query';
-import { cn } from 'src/lib/tailwind-merge';
-import { getNickName, getPeriodStr } from 'src/util/status';
-import { makeStartEndToString, makeTimeToString } from 'src/util/time';
-import { Td } from '../Td';
-import { Td2 } from '../Td2';
+import { t } from 'i18next'
+import { forwardRef } from 'react'
+import { Absent } from '@/legacy/generated/model'
+import { useSignedUrl } from '@/legacy/lib/query'
+import { cn } from 'src/lib/tailwind-merge'
+import { getNickName, getPeriodStr } from '@/legacy/util/status'
+import { makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
+import { Td } from '../Td'
+import { Td2 } from '../Td2'
 
 interface AbsentPaperProps {
-  absent?: Absent;
-  isMobileView?: boolean;
+  absent?: Absent
+  isMobileView?: boolean
 }
 
 export const AbsentPaper = forwardRef(({ absent, isMobileView = false }: AbsentPaperProps, ref: any) => {
-  const { data: approver1Signature } = useSignedUrl(absent?.approver1Signature);
-  const { data: approver2Signature } = useSignedUrl(absent?.approver2Signature);
-  const { data: approver3Signature } = useSignedUrl(absent?.approver3Signature);
-  const { data: approver4Signature } = useSignedUrl(absent?.approver4Signature);
-  const { data: approver5Signature } = useSignedUrl(absent?.approver5Signature);
+  const { data: approver1Signature } = useSignedUrl(absent?.approver1Signature)
+  const { data: approver2Signature } = useSignedUrl(absent?.approver2Signature)
+  const { data: approver3Signature } = useSignedUrl(absent?.approver3Signature)
+  const { data: approver4Signature } = useSignedUrl(absent?.approver4Signature)
+  const { data: approver5Signature } = useSignedUrl(absent?.approver5Signature)
 
   return (
     <div ref={ref} className={cn('w-full bg-white', !isMobileView && 'md:h-[1100px]')}>
@@ -143,7 +143,7 @@ export const AbsentPaper = forwardRef(({ absent, isMobileView = false }: AbsentP
             <>
               <div className="flex w-full items-center space-x-4">
                 <div className="w-full min-w-max text-right text-gray-600">신고일:</div>
-                <div className="min-w-[150px] whitespace-pre text-right font-bold text-gray-800">
+                <div className="min-w-[150px] text-right font-bold whitespace-pre text-gray-800">
                   {absent?.reportedAt}
                 </div>
               </div>
@@ -156,7 +156,7 @@ export const AbsentPaper = forwardRef(({ absent, isMobileView = false }: AbsentP
             <>
               <div className="flex w-full items-center">
                 <div className="w-full min-w-max text-right text-gray-600">신고일:</div>
-                <div className="min-w-[150px] whitespace-pre text-right font-bold text-gray-800">
+                <div className="min-w-[150px] text-right font-bold whitespace-pre text-gray-800">
                   {absent?.reportedAt}
                 </div>
               </div>
@@ -186,5 +186,5 @@ export const AbsentPaper = forwardRef(({ absent, isMobileView = false }: AbsentP
         </div>
       </div>
     </div>
-  );
-});
+  )
+})

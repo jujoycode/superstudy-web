@@ -1,32 +1,31 @@
-import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { toastState, warningState } from 'src/store';
+import { useEffect } from 'react'
+import { useRecoilState } from 'recoil'
+import { toastState, warningState } from '@/stores'
 
-// 사용법 :
-// const setToastMsg = useSetRecoilState(toastState);
-// setToastMsg("토스트 표시할 메시지");
-
-interface ToastProps {
-  setToast: (toast: boolean) => void;
-  text: string;
-}
-
+/**
+ * Toast
+ * @desc
+ * @author AIden
+ * @example
+ * const setToastMsg = useSetRecoilState(toastState);
+ * setToastMsg("토스트 표시할 메시지");
+ */
 export function Toast() {
-  const [toastMsg, setToastMsg] = useRecoilState(toastState);
-  const [warningMsg, setWarningMsg] = useRecoilState(warningState);
+  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [warningMsg, setWarningMsg] = useRecoilState(warningState)
 
   useEffect(() => {
     const timer = setTimeout(
       () => {
-        setToastMsg(undefined);
-        setWarningMsg(undefined);
+        setToastMsg(undefined)
+        setWarningMsg(undefined)
       },
       warningMsg ? 6000 : 3000,
-    );
+    )
     return () => {
-      clearTimeout(timer);
-    };
-  }, [toastMsg, warningMsg]);
+      clearTimeout(timer)
+    }
+  }, [toastMsg, warningMsg])
 
   return (
     <>
@@ -40,5 +39,5 @@ export function Toast() {
         </div>
       )}
     </>
-  );
+  )
 }

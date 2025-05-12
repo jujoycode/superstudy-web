@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import NODATA from 'src/assets/images/no-data.png';
-import AlertV2 from 'src/components/common/AlertV2';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { Check } from 'src/components/common/Check';
-import { IBBlank } from 'src/components/common/IBBlank';
-import ScheduleAndPeriodPicker from 'src/components/common/ScheduleAndPeriodPicker';
-import Stepper from 'src/components/common/Stepper';
-import { Typography } from 'src/components/common/Typography';
-import SolidSVGIcon from 'src/components/icon/SolidSVGIcon';
-import SVGIcon from 'src/components/icon/SVGIcon';
-import { CAS_ATL, CAS_LEARNERPROFILE, CAS_LEARNINGOUTCOME } from 'src/constants/ib';
-import { useIBDelete, useIBUpdate } from 'src/container/ib-project';
-import { useInterviewGetByStudentId } from 'src/container/ib-student-interview';
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import NODATA from 'src/assets/images/no-data.png'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Check } from '@/legacy/components/common/Check'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import ScheduleAndPeriodPicker from '@/legacy/components/common/ScheduleAndPeriodPicker'
+import Stepper from '@/legacy/components/common/Stepper'
+import { Typography } from '@/legacy/components/common/Typography'
+import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { CAS_ATL, CAS_LEARNERPROFILE, CAS_LEARNINGOUTCOME } from '@/legacy/constants/ib'
+import { useIBDelete, useIBUpdate } from '@/legacy/container/ib-project'
+import { useInterviewGetByStudentId } from '@/legacy/container/ib-student-interview'
 import {
   RequestIBCasDtoAtl,
   RequestIBCasDtoLearnerProfile,
@@ -26,40 +26,40 @@ import {
   ResponseIBCasDtoLearnerProfile,
   ResponseIBCasDtoLearningOutcome,
   ResponseIBDto,
-} from 'src/generated/model';
-import { useHandleGoBack } from 'src/hooks/useHandleGoBack';
-import { meState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { Feedback } from '../Feedback';
-import { InputField } from '../InputField';
+} from '@/legacy/generated/model'
+import { useHandleGoBack } from '@/legacy/hooks/useHandleGoBack'
+import { meState } from '@/stores'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { Feedback } from '../Feedback'
+import { InputField } from '../InputField'
 
 interface ActivityPlanProps {
-  data: ResponseIBDto;
-  refetch: () => void;
-  setEdit: (value: boolean) => void;
+  data: ResponseIBDto
+  refetch: () => void
+  setEdit: (value: boolean) => void
 }
 
 function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
-  const me = useRecoilValue(meState);
-  const handleGoBack = useHandleGoBack('/ib/student');
-  const [editMode, setEditMode] = useState<boolean>(false);
-  const [confirmOpen, setConfirmOpen] = useState<boolean>(false);
+  const me = useRecoilValue(meState)
+  const handleGoBack = useHandleGoBack('/ib/student')
+  const [editMode, setEditMode] = useState<boolean>(false)
+  const [confirmOpen, setConfirmOpen] = useState<boolean>(false)
   const [alertMessage, setAlertMessage] = useState<{ text: string; action?: () => void; description?: string } | null>(
     null,
-  );
+  )
   const handleChangeStatus = () => {
-    setEditMode(!editMode);
-    setEdit(!editMode);
-  };
-  const [isFocused, setIsFocused] = useState(false);
-  const history = useHistory();
-  const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [selectedATL, setSelectedATL] = useState<number[]>([]);
-  const [selectedLearnerProfile, setSelectedLearnerProfile] = useState<number[]>([]);
-  const [useRiskAssessment, setUseRiskAssessment] = useState<boolean>(data?.cas?.riskAssessment !== null);
+    setEditMode(!editMode)
+    setEdit(!editMode)
+  }
+  const [isFocused, setIsFocused] = useState(false)
+  const history = useHistory()
+  const [calendarOpen, setCalendarOpen] = useState<boolean>(false)
+  const [selectedIds, setSelectedIds] = useState<number[]>([])
+  const [selectedATL, setSelectedATL] = useState<number[]>([])
+  const [selectedLearnerProfile, setSelectedLearnerProfile] = useState<number[]>([])
+  const [useRiskAssessment, setUseRiskAssessment] = useState<boolean>(data?.cas?.riskAssessment !== null)
 
-  const { data: riskAssessment } = useInterviewGetByStudentId(me?.id || 0, 'CAS_RISK_ASSESSMENT');
+  const { data: riskAssessment } = useInterviewGetByStudentId(me?.id || 0, 'CAS_RISK_ASSESSMENT')
 
   const mapLearningOutcomeToIds = (learningOutcome: ResponseIBCasDtoLearningOutcome): number[] => {
     const mapping = [
@@ -70,12 +70,12 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
       { key: 'teamworkBenefits', id: 5 },
       { key: 'globalIssues', id: 6 },
       { key: 'ethicalChoices', id: 7 },
-    ];
+    ]
 
     return mapping
       .filter(({ key }) => learningOutcome[key as keyof ResponseIBCasDtoLearningOutcome])
-      .map(({ id }) => id);
-  };
+      .map(({ id }) => id)
+  }
 
   const mapLearnerProfileToIds = (learnerProfile: ResponseIBCasDtoLearnerProfile): number[] => {
     const mapping = [
@@ -89,10 +89,10 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
       { key: 'riskTaker', id: 8 },
       { key: 'balanced', id: 9 },
       { key: 'reflective', id: 10 },
-    ];
+    ]
 
-    return mapping.filter(({ key }) => learnerProfile[key as keyof ResponseIBCasDtoLearnerProfile]).map(({ id }) => id);
-  };
+    return mapping.filter(({ key }) => learnerProfile[key as keyof ResponseIBCasDtoLearnerProfile]).map(({ id }) => id)
+  }
 
   const mapATLToIds = (atl: ResponseIBCasDtoAtl): number[] => {
     const mapping = [
@@ -101,26 +101,26 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
       { key: 'selfManagement', id: 3 },
       { key: 'research', id: 4 },
       { key: 'thinking', id: 5 },
-    ];
+    ]
 
-    return mapping.filter(({ key }) => atl[key as keyof ResponseIBCasDtoAtl]).map(({ id }) => id);
-  };
+    return mapping.filter(({ key }) => atl[key as keyof ResponseIBCasDtoAtl]).map(({ id }) => id)
+  }
 
   const [strands, setStrands] = useState<RequestIBCasDtoStrands>({
     creativity: data.cas?.strands.creativity,
     activity: data.cas?.strands.activity,
     service: data.cas?.strands.service,
-  });
+  })
 
   const [date, setDate] = useState<{
-    startDate: Date | undefined;
-    endDate: Date | undefined;
-    cycle: string | undefined;
+    startDate: Date | undefined
+    endDate: Date | undefined
+    cycle: string | undefined
   }>({
     startDate: data.startAt ? new Date(data.startAt) : undefined,
     endDate: data.endAt ? new Date(data.endAt) : undefined,
     cycle: data.activityFrequency,
-  });
+  })
   const {
     control,
     handleSubmit,
@@ -129,7 +129,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
     formState: { errors },
   } = useForm<RequestIBDto>({
     defaultValues: data,
-  });
+  })
 
   const requiredFields = watch([
     'title',
@@ -140,7 +140,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
     'cas.sixWhDescription.how',
     'cas.sixWhDescription.why',
     'cas.goal',
-  ]);
+  ])
 
   const areAllFieldsFilled =
     requiredFields.every((field) => field && field.trim() !== '') &&
@@ -149,55 +149,55 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
     (strands.creativity || strands.activity || strands.service) &&
     selectedIds.length > 0 &&
     selectedATL.length > 0 &&
-    selectedLearnerProfile.length > 0;
+    selectedLearnerProfile.length > 0
 
   const { updateIBProject, isLoading } = useIBUpdate({
     onSuccess: () => {
-      setAlertMessage({ text: `계획서가\n저장되었습니다` });
-      refetch();
+      setAlertMessage({ text: `계획서가\n저장되었습니다` })
+      refetch()
     },
     onError: (error) => {
-      console.error('IB 프로젝트 수정 중 오류 발생:', error);
+      console.error('IB 프로젝트 수정 중 오류 발생:', error)
     },
-  });
+  })
 
   const { deleteIBProject } = useIBDelete({
     onSuccess: () => {
-      setConfirmOpen(!confirmOpen);
+      setConfirmOpen(!confirmOpen)
       history.push({
         pathname: '/ib/student',
         state: {
           alertMessage: `계획서가\n삭제되었습니다`,
         },
-      });
+      })
     },
     onError: () => {
-      setConfirmOpen(!confirmOpen);
+      setConfirmOpen(!confirmOpen)
       setAlertMessage({
         text: `계획서를 삭제할 수 없습니다.`,
         description: `이미 작성한 활동일지가 있습니다.\n계획서 삭제를 원하시면 활동일지를 삭제해주세요.`,
-      });
+      })
     },
-  });
+  })
 
   const handleGroupChange = (selectedValues: number[]) => {
-    setSelectedIds(selectedValues);
-  };
+    setSelectedIds(selectedValues)
+  }
 
   const handleLearnerProfileChange = (selectedValues: number[]) => {
-    setSelectedLearnerProfile(selectedValues);
-  };
+    setSelectedLearnerProfile(selectedValues)
+  }
 
   const handleATLChange = (selectedValues: number[]) => {
-    setSelectedATL(selectedValues);
-  };
+    setSelectedATL(selectedValues)
+  }
 
   const onSubmit = (formData: RequestIBDto) => {
-    if (isLoading) return;
+    if (isLoading) return
 
     if (!me?.id) {
-      console.error('Leader ID가 없습니다. 로그인 상태를 확인하세요.');
-      return;
+      console.error('Leader ID가 없습니다. 로그인 상태를 확인하세요.')
+      return
     }
 
     const learningOutcome: RequestIBCasDtoLearningOutcome = {
@@ -208,7 +208,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
       teamworkBenefits: selectedIds.includes(5),
       globalIssues: selectedIds.includes(6),
       ethicalChoices: selectedIds.includes(7),
-    };
+    }
 
     const learnerProfile: RequestIBCasDtoLearnerProfile = {
       inquirer: selectedLearnerProfile.includes(1),
@@ -221,7 +221,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
       riskTaker: selectedLearnerProfile.includes(8),
       balanced: selectedLearnerProfile.includes(9),
       reflective: selectedLearnerProfile.includes(10),
-    };
+    }
 
     const atl: RequestIBCasDtoAtl = {
       communication: selectedATL.includes(1),
@@ -229,13 +229,13 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
       selfManagement: selectedATL.includes(3),
       research: selectedATL.includes(4),
       thinking: selectedATL.includes(5),
-    };
+    }
 
     const riskAssessmentData =
       riskAssessment?.[0]?.commonQuestion?.map((item, index) => ({
         question: item.question,
         answer: formData.cas?.riskAssessment?.[index].answer,
-      })) || [];
+      })) || []
 
     const requestData: RequestIBUpdateDto = {
       title: formData.title,
@@ -253,14 +253,14 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
         strands,
         riskAssessment: useRiskAssessment ? riskAssessmentData : null,
       },
-    };
-    updateIBProject({ id: data.id, data: requestData });
-    setEditMode(!editMode);
-    setEdit(false);
-  };
+    }
+    updateIBProject({ id: data.id, data: requestData })
+    setEditMode(!editMode)
+    setEdit(false)
+  }
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleFocus = () => setIsFocused(true)
+  const handleBlur = () => setIsFocused(false)
 
   useEffect(() => {
     if (!editMode) {
@@ -268,30 +268,30 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
         creativity: data.cas?.strands.creativity || 0,
         activity: data.cas?.strands.activity || 0,
         service: data.cas?.strands.service || 0,
-      });
+      })
 
       setDate({
         startDate: data.startAt ? new Date(data.startAt) : undefined,
         endDate: data.endAt ? new Date(data.endAt) : undefined,
         cycle: data.activityFrequency || undefined,
-      });
+      })
 
       if (data.cas?.learningOutcome) {
-        setSelectedIds(mapLearningOutcomeToIds(data.cas.learningOutcome));
+        setSelectedIds(mapLearningOutcomeToIds(data.cas.learningOutcome))
       }
       if (data.cas?.learnerProfile) {
-        setSelectedLearnerProfile(mapLearnerProfileToIds(data.cas.learnerProfile));
+        setSelectedLearnerProfile(mapLearnerProfileToIds(data.cas.learnerProfile))
       }
       if (data.cas?.atl) {
-        setSelectedATL(mapATLToIds(data.cas.atl));
+        setSelectedATL(mapATLToIds(data.cas.atl))
       }
-      reset(data);
-      setUseRiskAssessment(data.cas?.riskAssessment !== null);
+      reset(data)
+      setUseRiskAssessment(data.cas?.riskAssessment !== null)
     }
-  }, [editMode, data]);
+  }, [editMode, data])
 
   if (me == null) {
-    return <IBBlank />;
+    return <IBBlank />
   }
 
   return (
@@ -319,7 +319,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     </Typography>
                     <div className="relative">
                       <div
-                        className={`flex h-12 items-center gap-2 rounded-lg border border-primary-gray-200 px-4 py-[9px] focus:outline-none focus:ring-0 ${
+                        className={`border-primary-gray-200 flex h-12 items-center gap-2 rounded-lg border px-4 py-[9px] focus:ring-0 focus:outline-none ${
                           isFocused && 'border-primary-gray-700'
                         }`}
                         onFocus={handleFocus}
@@ -328,7 +328,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                       >
                         <SVGIcon.Calendar size={20} color="gray700" />
                         <input
-                          className="w-full flex-1 border-none p-0 text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 focus:outline-none focus:ring-0"
+                          className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
                           placeholder="활동 일정 및 주기 선택"
                           value={
                             date.startDate && date.endDate
@@ -347,12 +347,12 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                         />
                       </div>
                       {calendarOpen && (
-                        <div className="absolute left-0 top-full z-50 mt-2">
+                        <div className="absolute top-full left-0 z-50 mt-2">
                           <ScheduleAndPeriodPicker
                             initialDate={date}
                             onSave={(finalDate) => {
-                              setDate(finalDate);
-                              setCalendarOpen(false);
+                              setDate(finalDate)
+                              setCalendarOpen(false)
                             }}
                             onCancel={() => setCalendarOpen(false)}
                           />
@@ -483,7 +483,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                       ))}
                     </Check.Group>
                   </div>
-                  <div className="flex flex-col gap-10 border-t border-t-primary-gray-100 pt-10">
+                  <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t pt-10">
                     <div className="flex flex-col gap-2">
                       <Typography variant="title2" className="font-semibold">
                         활동 설명
@@ -559,7 +559,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                       required
                     />
                   </div>
-                  <div className="flex flex-col border-t border-t-primary-gray-100 pt-10">
+                  <div className="border-t-primary-gray-100 flex flex-col border-t pt-10">
                     <InputField
                       label="개인적인 목표"
                       mode="page"
@@ -572,7 +572,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     />
                   </div>
                   {riskAssessment && riskAssessment.length > 0 && (
-                    <div className="flex flex-col border-t border-t-primary-gray-100 pt-10">
+                    <div className="border-t-primary-gray-100 flex flex-col border-t pt-10">
                       <div className="flex flex-col gap-8">
                         <div className="flex flex-col gap-2">
                           <Typography variant="title3" className="font-semibold">
@@ -635,11 +635,11 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                   </Typography>
                   <div className="relative">
                     <div
-                      className={`flex h-12 items-center gap-2 rounded-lg border border-primary-gray-200 px-4 py-[9px] focus:outline-none focus:ring-0`}
+                      className={`border-primary-gray-200 flex h-12 items-center gap-2 rounded-lg border px-4 py-[9px] focus:ring-0 focus:outline-none`}
                     >
                       <SVGIcon.Calendar size={20} color="gray700" />
                       <input
-                        className="w-full flex-1 border-none p-0 text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 focus:outline-none focus:ring-0"
+                        className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
                         readOnly
                         placeholder="활동 일정 및 주기 선택"
                         value={
@@ -673,8 +673,8 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <div
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.creativity && data.cas.strands.creativity > 0
-                          ? 'border border-primary-orange-100 bg-primary-orange-50'
-                          : 'border border-primary-gray-100'
+                          ? 'border-primary-orange-100 bg-primary-orange-50 border'
+                          : 'border-primary-gray-100 border'
                       } p-4`}
                     >
                       <SolidSVGIcon.C size={20} color="orange800" />
@@ -690,8 +690,8 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <div
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.activity && data.cas.strands.activity > 0
-                          ? 'border border-primary-blue-100 bg-primary-blue-50'
-                          : 'border border-primary-gray-100'
+                          ? 'border-primary-blue-100 bg-primary-blue-50 border'
+                          : 'border-primary-gray-100 border'
                       } p-4`}
                     >
                       <SolidSVGIcon.A size={20} color="orange800" />
@@ -707,8 +707,8 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <div
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.service && data.cas.strands.service > 0
-                          ? 'border border-primary-green-100 bg-primary-green-50'
-                          : 'border border-primary-gray-100'
+                          ? 'border-primary-green-100 bg-primary-green-50 border'
+                          : 'border-primary-gray-100 border'
                       } p-4`}
                     >
                       <SolidSVGIcon.S size={20} color="orange800" />
@@ -782,7 +782,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     ))}
                   </Check.Group>
                 </div>
-                <div className="flex flex-col gap-10 border-t border-t-primary-gray-100 pt-10">
+                <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t pt-10">
                   <div className="flex flex-col gap-2">
                     <Typography variant="title2" className="font-semibold">
                       활동 설명
@@ -795,8 +795,8 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <Typography variant="title2" className="font-semibold">
                       누가
                     </Typography>
-                    <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                      <Typography variant="body2" className="font-medium text-primary-gray-700">
+                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
                         {data.cas?.sixWhDescription.who || '-'}
                       </Typography>
                     </div>
@@ -805,8 +805,8 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <Typography variant="title2" className="font-semibold">
                       언제
                     </Typography>
-                    <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                      <Typography variant="body2" className="font-medium text-primary-gray-700">
+                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
                         {data.cas?.sixWhDescription.when || '-'}
                       </Typography>
                     </div>
@@ -815,8 +815,8 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <Typography variant="title2" className="font-semibold">
                       어디서
                     </Typography>
-                    <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                      <Typography variant="body2" className="font-medium text-primary-gray-700">
+                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
                         {data.cas?.sixWhDescription.where || '-'}
                       </Typography>
                     </div>
@@ -825,8 +825,8 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <Typography variant="title2" className="font-semibold">
                       무엇을
                     </Typography>
-                    <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                      <Typography variant="body2" className="font-medium text-primary-gray-700">
+                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
                         {data.cas?.sixWhDescription.what || '-'}
                       </Typography>
                     </div>
@@ -835,8 +835,8 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <Typography variant="title2" className="font-semibold">
                       어떻게
                     </Typography>
-                    <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                      <Typography variant="body2" className="font-medium text-primary-gray-700">
+                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
                         {data.cas?.sixWhDescription.how || '-'}
                       </Typography>
                     </div>
@@ -845,25 +845,25 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <Typography variant="title2" className="font-semibold">
                       왜
                     </Typography>
-                    <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                      <Typography variant="body2" className="font-medium text-primary-gray-700">
+                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
                         {data.cas?.sixWhDescription.why || '-'}
                       </Typography>
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col gap-4 border-t border-t-primary-gray-100 pt-10">
+                <div className="border-t-primary-gray-100 flex flex-col gap-4 border-t pt-10">
                   <Typography variant="title2" className="font-semibold">
                     개인적인 목표
                   </Typography>
-                  <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white px-4 py-[13px]">
-                    <Typography variant="body2" className="font-medium text-primary-gray-700">
+                  <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white px-4 py-[13px]">
+                    <Typography variant="body2" className="text-primary-gray-700 font-medium">
                       {data.cas?.goal || '-'}
                     </Typography>
                   </div>
                 </div>
                 {useRiskAssessment && (
-                  <div className="flex flex-col gap-10 border-t border-t-primary-gray-100 pt-10">
+                  <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t pt-10">
                     <div className="flex flex-col gap-2">
                       <Typography variant="title2" className="font-semibold">
                         위험평가
@@ -878,8 +878,8 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                         <Typography variant="title2" className="font-semibold">
                           {`${index + 1}. ${item.question}`}
                         </Typography>
-                        <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                          <Typography variant="body2" className="font-medium text-primary-gray-700">
+                        <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                          <Typography variant="body2" className="text-primary-gray-700 font-medium">
                             {item.answer || '-'}
                           </Typography>
                         </div>
@@ -963,8 +963,8 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
           confirmText="확인"
           description={alertMessage.description}
           onConfirm={() => {
-            if (alertMessage.action) alertMessage.action();
-            setAlertMessage(null);
+            if (alertMessage.action) alertMessage.action()
+            setAlertMessage(null)
           }}
         />
       )}
@@ -979,7 +979,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
         />
       )}
     </div>
-  );
+  )
 }
 
-export default ActivityPlan;
+export default ActivityPlan

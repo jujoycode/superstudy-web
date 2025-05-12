@@ -1,0 +1,24 @@
+{
+  "assign_point_modal": {
+    "assign_points": "Assign Points",
+    "assignees": "Assignees",
+    "details": "Details",
+    "enter_manually": "Enter manually",
+    "point_log_title": "Title",
+    "point_log_value": "Value",
+    "assign": "Assign"
+  },
+  "point_log_modal": {
+    "point_log": "Point Log",
+    "point_log_created_at": "Date",
+    "point_log_assigner": "Assigner",
+    "point_log_assignee": "Assignee",
+    "point_log_title": "Title",
+    "point_log_value": "Value"
+  },
+  "student_modal": {
+    "chat": "Chat",
+    "point_logs": "Point Logs",
+    "parents": "Parents"
+  }
+}

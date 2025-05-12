@@ -1,0 +1,35 @@
+{
+  "admin_main_page": {
+    "points": "Merit/Demerit Point"
+  },
+  "parent_page": {
+    "export_as_xlsx": "Export as xlsx"
+  },
+  "point_details_page": {
+    "point_details": "Merit/Demerit Point Details",
+    "point_title": "Title",
+    "point_value": "Value"
+  },
+  "point_edit_page": {
+    "add_point": "Add Merit/Demerit Point",
+    "edit_point": "Edit Merit/Demerit Point",
+    "point_title": "Title",
+    "point_value": "Value"
+  },
+  "point_page": {
+    "points": "Merit/Demerit Points",
+    "point_title": "Title",
+    "point_value": "Value"
+  },
+  "student_photos_page": {
+    "edit_student_photos": "Edit Student Photos",
+    "current_photos": "Current Photos",
+    "new_photos": "New Photos",
+    "select_image_files": "Select Image files",
+    "changes": "Changes",
+    "confirm_save": "Are you sure you want to save?"
+  },
+  "student_page": {
+    "edit_photos": "Edit Photos"
+  }
+}

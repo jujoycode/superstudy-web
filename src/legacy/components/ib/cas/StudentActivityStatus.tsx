@@ -1,57 +1,57 @@
-import { useEffect, useMemo } from 'react';
-import NODATA from 'src/assets/images/no-data.png';
-import { IBBlank } from 'src/components/common/IBBlank';
-import { Typography } from 'src/components/common/Typography';
-import { useGetIBProject } from 'src/container/ib-project-get-filter';
-import { ResponseIBCasDtoLearningOutcome, ResponseIBDto } from 'src/generated/model';
-import StudentActivityLearingOutcome from './StudentActivityLearingOutcome';
-import StudentActivityRatio from './StudentActivityRatio';
-import StudentActivityTimeline from './StudentActivityTimeline';
+import { useEffect, useMemo } from 'react'
+import NODATA from 'src/assets/images/no-data.png'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
+import { useGetIBProject } from '@/legacy/container/ib-project-get-filter'
+import { ResponseIBCasDtoLearningOutcome, ResponseIBDto } from '@/legacy/generated/model'
+import StudentActivityLearingOutcome from './StudentActivityLearingOutcome'
+import StudentActivityRatio from './StudentActivityRatio'
+import StudentActivityTimeline from './StudentActivityTimeline'
 interface StudentActivityStatusProps {
-  data: ResponseIBDto;
-  mentor?: string;
+  data: ResponseIBDto
+  mentor?: string
 }
 
 function StudentActivityStatus({ data, mentor }: StudentActivityStatusProps) {
-  const { data: projects, getIBProject, isLoading } = useGetIBProject();
+  const { data: projects, getIBProject, isLoading } = useGetIBProject()
   useEffect(() => {
     getIBProject({
       studentId: data.leader.id,
       ibTypes: 'CAS_NORMAL,CAS_PROJECT',
       statuses: 'IN_PROGRESS,REJECT_COMPLETE,WAIT_COMPLETE,COMPLETE',
-    });
-  }, []);
+    })
+  }, [])
 
   const before = useMemo(() => {
-    if (!projects) return { activity: 0, creativity: 0, service: 0 };
+    if (!projects) return { activity: 0, creativity: 0, service: 0 }
 
     return projects.items.reduce(
       (acc, project) => {
-        const { strands } = project.cas || {};
+        const { strands } = project.cas || {}
         if (strands) {
-          acc.activity += strands.activity || 0;
-          acc.creativity += strands.creativity || 0;
-          acc.service += strands.service || 0;
+          acc.activity += strands.activity || 0
+          acc.creativity += strands.creativity || 0
+          acc.service += strands.service || 0
         }
-        return acc;
+        return acc
       },
       { activity: 0, creativity: 0, service: 0 },
-    );
-  }, [projects]);
+    )
+  }, [projects])
 
   const after = useMemo(() => {
-    const { strands } = data.cas || {};
-    if (!strands) return before;
+    const { strands } = data.cas || {}
+    if (!strands) return before
 
     return {
       activity: before.activity + (strands.activity || 0),
       creativity: before.creativity + (strands.creativity || 0),
       service: before.service + (strands.service || 0),
-    };
-  }, [before, data]);
+    }
+  }, [before, data])
 
   const learningOutcomes = useMemo(() => {
-    if (!projects) return [];
+    if (!projects) return []
 
     const outcomeCounts: Record<keyof ResponseIBCasDtoLearningOutcome, number> = {
       ethicalChoices: 0,
@@ -61,24 +61,24 @@ function StudentActivityStatus({ data, mentor }: StudentActivityStatusProps) {
       perseverance: 0,
       strengthsDevelopment: 0,
       teamworkBenefits: 0,
-    };
+    }
 
     projects.items.forEach((project) => {
-      const { learningOutcome } = project.cas || {};
+      const { learningOutcome } = project.cas || {}
       if (learningOutcome) {
-        (Object.keys(outcomeCounts) as Array<keyof ResponseIBCasDtoLearningOutcome>).forEach((key) => {
+        ;(Object.keys(outcomeCounts) as Array<keyof ResponseIBCasDtoLearningOutcome>).forEach((key) => {
           if (learningOutcome[key]) {
-            outcomeCounts[key] += 1;
+            outcomeCounts[key] += 1
           }
-        });
+        })
       }
-    });
+    })
 
     return Object.entries(outcomeCounts).map(([key, count]) => ({
       name: key,
       count,
-    }));
-  }, [projects]);
+    }))
+  }, [projects])
 
   return (
     <div className="relative flex h-full flex-col gap-6">
@@ -95,7 +95,7 @@ function StudentActivityStatus({ data, mentor }: StudentActivityStatusProps) {
           희망 감독교사 · {mentor ? `${mentor} 선생님` : '미정'}
         </Typography>
       </header>
-      <Typography variant="title3" className="rounded-lg bg-primary-orange-50 px-4 py-3 font-medium">
+      <Typography variant="title3" className="bg-primary-orange-50 rounded-lg px-4 py-3 font-medium">
         {data.leader.studentGroup.group.grade}
         {String(data.leader.studentGroup.group.klass).padStart(2, '0')}
         {String(data.leader.studentGroup.studentNumber).padStart(2, '0')}
@@ -131,7 +131,7 @@ function StudentActivityStatus({ data, mentor }: StudentActivityStatusProps) {
         </section>
       </main>
     </div>
-  );
+  )
 }
 
-export default StudentActivityStatus;
+export default StudentActivityStatus

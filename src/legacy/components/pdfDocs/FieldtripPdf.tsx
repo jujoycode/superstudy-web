@@ -1,32 +1,32 @@
-import { useEffect, useRef, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { Fieldtrip } from 'src/generated/model';
-import { meState } from 'src/store';
-import { FieldtripPaperType } from 'src/types';
-import { splitStringByUnicode } from 'src/util/fieldtrip';
-import { getNickName } from 'src/util/status';
-import { FieldtripPaper } from '../fieldtrip/FieldtripPaper';
-import { FieldtripSeparatePaper } from '../fieldtrip/FieldtripSeparatePaper';
-import { FieldtripSuburbsSeparatePaper } from '../fieldtrip/FieldtripSuburbsSeparatePaper';
-import { FieldtripSuburbsTextSeparatePaper } from '../fieldtrip/FieldtripSuburbsTextSeparatePaper';
+import { useEffect, useRef, useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import { Fieldtrip } from '@/legacy/generated/model'
+import { meState } from '@/stores'
+import { FieldtripPaperType } from '@/legacy/types'
+import { splitStringByUnicode } from '@/legacy/util/fieldtrip'
+import { getNickName } from '@/legacy/util/status'
+import { FieldtripPaper } from '../fieldtrip/FieldtripPaper'
+import { FieldtripSeparatePaper } from '../fieldtrip/FieldtripSeparatePaper'
+import { FieldtripSuburbsSeparatePaper } from '../fieldtrip/FieldtripSuburbsSeparatePaper'
+import { FieldtripSuburbsTextSeparatePaper } from '../fieldtrip/FieldtripSuburbsTextSeparatePaper'
 
 interface FieldtripPdfProps {
-  orderBy: number;
-  fieldtrip: Fieldtrip;
+  orderBy: number
+  fieldtrip: Fieldtrip
   extractReactData: (
     orderBy: number,
     ref: any,
     type: FieldtripPaperType,
     fieldtrip: Fieldtrip,
-  ) => Promise<null | undefined>;
+  ) => Promise<null | undefined>
   extractArrayData: (
     orderBy: number,
     ref: any[],
     type: FieldtripPaperType,
     fieldtrip: Fieldtrip,
-  ) => Promise<null | undefined>;
-  nextExtractPdfData: () => void;
-  isDownload: boolean;
+  ) => Promise<null | undefined>
+  nextExtractPdfData: () => void
+  isDownload: boolean
 }
 
 export function FieldtripPdf({
@@ -37,177 +37,172 @@ export function FieldtripPdf({
   isDownload,
   nextExtractPdfData,
 }: FieldtripPdfProps) {
-  const me = useRecoilValue(meState);
+  const me = useRecoilValue(meState)
 
-  const fidletripPaperRef = useRef(null);
-  const separatePaperRefs = useRef<any[]>([]);
-  const separateImagePaperRefs = useRef<any[]>([]);
-  const fidletripResultPaperRef = useRef(null);
-  const separateResultPaperRefs = useRef<any[]>([]);
-  const separateResultImagePaperRefs = useRef<any[]>([]);
+  const fidletripPaperRef = useRef(null)
+  const separatePaperRefs = useRef<any[]>([])
+  const separateImagePaperRefs = useRef<any[]>([])
+  const fidletripResultPaperRef = useRef(null)
+  const separateResultPaperRefs = useRef<any[]>([])
+  const separateResultImagePaperRefs = useRef<any[]>([])
 
-  const [resultTextPages, setResultTextPages] = useState<string[]>([]);
-  const resultFilesWithTwo: any = [];
-  const applyFilesWithTwo: any = [];
+  const [resultTextPages, setResultTextPages] = useState<string[]>([])
+  const resultFilesWithTwo: any = []
+  const applyFilesWithTwo: any = []
 
-  let homeplans: any = [];
-  let homeresult: any = [];
-  let resultText;
+  let homeplans: any = []
+  let homeresult: any = []
+  let resultText
 
   const separateResultText = (resultText: string | undefined, maxLine = 21, charsOfLine = 42) => {
     if (resultText) {
-      resultText = resultText.replace(/\n{2,}/g, '\n'); // 줄바꿈하나로 합치기
-      resultText += '\n';
+      resultText = resultText.replace(/\n{2,}/g, '\n') // 줄바꿈하나로 합치기
+      resultText += '\n'
 
-      const sentences = resultText.split('\n');
+      const sentences = resultText.split('\n')
 
-      const lines: string[][] = [];
+      const lines: string[][] = []
 
       sentences.map((str) => {
-        const chunks = splitStringByUnicode(str, charsOfLine);
-        lines.push(chunks);
-      });
+        const chunks = splitStringByUnicode(str, charsOfLine)
+        lines.push(chunks)
+      })
 
-      let textPage1 = '';
-      let textPage2 = '';
+      let textPage1 = ''
+      let textPage2 = ''
 
-      let lineIndexLength = 0;
+      let lineIndexLength = 0
 
       lines.forEach((lineArr) => {
         lineArr.forEach((line) => {
           if (lineIndexLength < maxLine) {
-            textPage1 += line;
+            textPage1 += line
           } else {
-            textPage2 += line;
+            textPage2 += line
           }
-          lineIndexLength += 1;
-        });
+          lineIndexLength += 1
+        })
         if (lineIndexLength < maxLine) {
-          textPage1 += '\n';
+          textPage1 += '\n'
         } else {
-          textPage2 += '\n';
+          textPage2 += '\n'
         }
-      });
+      })
 
-      setResultTextPages((pages) => pages.concat(textPage1));
+      setResultTextPages((pages) => pages.concat(textPage1))
       if (textPage2) {
-        separateResultText(textPage2, 28, 40);
+        separateResultText(textPage2, 28, 40)
       }
     }
-  };
+  }
   useEffect(() => {
-    separateResultText(fieldtrip?.resultText);
-  }, [fieldtrip]);
+    separateResultText(fieldtrip?.resultText)
+  }, [fieldtrip])
 
   try {
     if (fieldtrip?.applyFiles instanceof Array) {
-      let chunk = [];
+      let chunk = []
 
       for (let i = 0; i < fieldtrip?.applyFiles?.length; i++) {
-        chunk.push(fieldtrip?.applyFiles[i]);
+        chunk.push(fieldtrip?.applyFiles[i])
         if (i % 2 === 1) {
-          applyFilesWithTwo.push(chunk);
-          chunk = [];
+          applyFilesWithTwo.push(chunk)
+          chunk = []
         }
       }
       if (chunk.length > 0) {
-        applyFilesWithTwo.push(chunk);
+        applyFilesWithTwo.push(chunk)
       }
     }
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
 
   try {
     if (fieldtrip?.resultFiles instanceof Array) {
-      let chunk = [];
+      let chunk = []
 
       for (let i = 0; i < fieldtrip?.resultFiles?.length; i++) {
-        chunk.push(fieldtrip?.resultFiles[i]);
+        chunk.push(fieldtrip?.resultFiles[i])
         if (i % 2 === 1) {
-          resultFilesWithTwo.push(chunk);
-          chunk = [];
+          resultFilesWithTwo.push(chunk)
+          chunk = []
         }
       }
       if (chunk.length > 0) {
-        resultFilesWithTwo.push(chunk);
+        resultFilesWithTwo.push(chunk)
       }
     }
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
 
   try {
     if (fieldtrip?.type === 'HOME') {
-      const content = JSON.parse(fieldtrip?.content || '[]');
+      const content = JSON.parse(fieldtrip?.content || '[]')
       if (content[0].subject1) {
-        homeplans = content?.slice(1);
+        homeplans = content?.slice(1)
       } else {
-        const subContent = content?.slice(5);
+        const subContent = content?.slice(5)
         homeplans = Array.from({ length: Math.ceil(subContent.length / 10) }, (_, index) =>
           subContent.slice(index * 10, index * 10 + 10),
-        );
+        )
       }
 
-      const _resultText = JSON.parse(fieldtrip?.resultText || '[]');
-      resultText = _resultText[0];
+      const _resultText = JSON.parse(fieldtrip?.resultText || '[]')
+      resultText = _resultText[0]
       if (resultText.subject1) {
-        homeresult = _resultText?.slice(1);
+        homeresult = _resultText?.slice(1)
       } else {
-        const subResult = _resultText?.slice(5);
+        const subResult = _resultText?.slice(5)
         homeresult = Array.from({ length: Math.ceil(subResult.length / 10) }, (_, index) =>
           subResult.slice(index * 10, index * 10 + 10),
-        );
+        )
       }
     }
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
 
   const _downloadPdf = async () => {
     if (fidletripPaperRef.current) {
-      await extractReactData(orderBy, fidletripPaperRef.current, FieldtripPaperType.APPLICATION, fieldtrip);
+      await extractReactData(orderBy, fidletripPaperRef.current, FieldtripPaperType.APPLICATION, fieldtrip)
       if (fieldtrip?.type === 'HOME' && separatePaperRefs.current) {
-        await extractArrayData(orderBy, separatePaperRefs.current, FieldtripPaperType.APPLICATIONSEPARATE, fieldtrip);
+        await extractArrayData(orderBy, separatePaperRefs.current, FieldtripPaperType.APPLICATIONSEPARATE, fieldtrip)
       }
       if (fieldtrip?.type === 'SUBURBS' && separateImagePaperRefs.current) {
-        await extractArrayData(orderBy, separateImagePaperRefs.current, FieldtripPaperType.APPLICATIONIMAGE, fieldtrip);
+        await extractArrayData(orderBy, separateImagePaperRefs.current, FieldtripPaperType.APPLICATIONIMAGE, fieldtrip)
       }
 
-      await extractReactData(orderBy, fidletripResultPaperRef.current, FieldtripPaperType.RESULT, fieldtrip);
+      await extractReactData(orderBy, fidletripResultPaperRef.current, FieldtripPaperType.RESULT, fieldtrip)
       if (fieldtrip?.type === 'HOME' && separateResultPaperRefs.current) {
-        await extractArrayData(orderBy, separateResultPaperRefs.current, FieldtripPaperType.RESULTSEPARATE, fieldtrip);
+        await extractArrayData(orderBy, separateResultPaperRefs.current, FieldtripPaperType.RESULTSEPARATE, fieldtrip)
       }
       if (fieldtrip?.type === 'SUBURBS' && separateResultPaperRefs.current) {
-        await extractArrayData(orderBy, separateResultPaperRefs.current, FieldtripPaperType.RESULTSEPARATE, fieldtrip);
+        await extractArrayData(orderBy, separateResultPaperRefs.current, FieldtripPaperType.RESULTSEPARATE, fieldtrip)
       }
       if (fieldtrip?.type === 'SUBURBS' && separateResultImagePaperRefs.current) {
-        await extractArrayData(
-          orderBy,
-          separateResultImagePaperRefs.current,
-          FieldtripPaperType.RESULTIMAGE,
-          fieldtrip,
-        );
+        await extractArrayData(orderBy, separateResultImagePaperRefs.current, FieldtripPaperType.RESULTIMAGE, fieldtrip)
       }
 
-      nextExtractPdfData();
+      nextExtractPdfData()
     }
-  };
+  }
 
   useEffect(() => {
     if (fieldtrip && isDownload) {
-      _downloadPdf();
+      _downloadPdf()
     }
-  }, [fieldtrip, isDownload]);
+  }, [fieldtrip, isDownload])
 
   if (!fieldtrip) {
-    return null;
+    return null
   }
 
   return (
     <>
       {/* 신청서 영역 */}
-      <div ref={fidletripPaperRef} className="h-[1100px] w-[778px] bg-white ">
+      <div ref={fidletripPaperRef} className="h-[1100px] w-[778px] bg-white">
         <FieldtripPaper school={me?.school} fieldtrip={fieldtrip} type="신청서" />
       </div>
       {fieldtrip?.type === 'HOME' && (
@@ -216,7 +211,7 @@ export function FieldtripPdf({
             <div
               key={i}
               ref={(el) => separatePaperRefs.current !== null && (separatePaperRefs.current[i] = el)}
-              className="h-[1100px] w-[778px] bg-white "
+              className="h-[1100px] w-[778px] bg-white"
             >
               <FieldtripSeparatePaper
                 studentName={fieldtrip?.student?.name + getNickName(fieldtrip?.student?.nickName)}
@@ -251,7 +246,7 @@ export function FieldtripPdf({
       )}
 
       {/* 결과보고서 영역 */}
-      <div ref={fidletripResultPaperRef} className="h-[1100px] w-[778px] bg-white ">
+      <div ref={fidletripResultPaperRef} className="h-[1100px] w-[778px] bg-white">
         <FieldtripPaper
           school={me?.school}
           fieldtrip={fieldtrip}
@@ -267,7 +262,7 @@ export function FieldtripPdf({
             <div
               key={i}
               ref={(el) => separateResultPaperRefs.current !== null && (separateResultPaperRefs.current[i] = el)}
-              className="h-[1100px] w-[778px] bg-white "
+              className="h-[1100px] w-[778px] bg-white"
             >
               <FieldtripSeparatePaper
                 studentName={fieldtrip?.student?.name + getNickName(fieldtrip?.student?.nickName)}
@@ -320,5 +315,5 @@ export function FieldtripPdf({
         </>
       )}
     </>
-  );
+  )
 }

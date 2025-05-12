@@ -1,34 +1,34 @@
-import _ from 'lodash';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { useNotificationLogFindAll, useNotificationLogRead } from 'src/generated/endpoint';
-import { meState } from 'src/store';
-import { makeDateToString } from 'src/util/time';
-import { Blank, Section } from '../common';
+import _ from 'lodash'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { useNotificationLogFindAll, useNotificationLogRead } from '@/legacy/generated/endpoint'
+import { meState } from '@/stores'
+import { makeDateToString } from '@/legacy/util/time'
+import { Blank, Section } from '@/legacy/components/common'
 
 export const NotificationModal = () => {
-  const me = useRecoilValue(meState);
-  const { data, refetch, isLoading } = useNotificationLogFindAll();
+  const me = useRecoilValue(meState)
+  const { data, refetch, isLoading } = useNotificationLogFindAll()
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   const { mutate: readNotification } = useNotificationLogRead({
     mutation: {
       onSuccess: () => {
-        refetch();
-        setLoading(false);
+        refetch()
+        setLoading(false)
       },
       onError: () => setLoading(false),
     },
-  });
+  })
 
-  const notifications = _.chain(data).orderBy('createdAt', 'desc').value();
+  const notifications = _.chain(data).orderBy('createdAt', 'desc').value()
 
   return (
     <>
       {(loading || isLoading) && <Blank />}
-      <div className="scroll-box h-full select-none overflow-y-auto rounded-lg border border-gray-300 bg-[#FFF8F2] md:pr-2">
+      <div className="scroll-box h-full overflow-y-auto rounded-lg border border-gray-300 bg-[#FFF8F2] select-none md:pr-2">
         <Section className="space-y-2">
           {notifications?.map((log) =>
             log.url === '/' ? (
@@ -36,8 +36,8 @@ export const NotificationModal = () => {
                 className="flex cursor-pointer items-center justify-between space-x-2 rounded-xl border border-gray-300 bg-white px-4 py-2"
                 key={log.id}
                 onClick={() => {
-                  setLoading(true);
-                  readNotification({ id: log.id });
+                  setLoading(true)
+                  readNotification({ id: log.id })
                 }}
               >
                 <div className="w-full overflow-hidden">
@@ -49,9 +49,9 @@ export const NotificationModal = () => {
                       </small>
                     )}
                   </div>
-                  <div className="truncate text-12 text-gray-500"> {log.body}</div>
+                  <div className="text-12 truncate text-gray-500"> {log.body}</div>
                 </div>
-                <div className="min-w-max text-12 text-gray-500"> {makeDateToString(log.createdAt)}</div>
+                <div className="text-12 min-w-max text-gray-500"> {makeDateToString(log.createdAt)}</div>
               </div>
             ) : (
               <Link
@@ -68,14 +68,14 @@ export const NotificationModal = () => {
                       </small>
                     )}
                   </div>
-                  <div className="truncate text-12 text-gray-500"> {log.body}</div>
+                  <div className="text-12 truncate text-gray-500"> {log.body}</div>
                 </div>
-                <div className="min-w-max text-12 text-gray-500"> {makeDateToString(log.createdAt)}</div>
+                <div className="text-12 min-w-max text-gray-500"> {makeDateToString(log.createdAt)}</div>
               </Link>
             ),
           )}
         </Section>
       </div>
     </>
-  );
-};
+  )
+}

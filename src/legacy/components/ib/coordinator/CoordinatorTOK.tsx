@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { LayeredTabs, Tab } from 'src/components/common/LayeredTabs';
-import Coordinator_Schedule from './Coordinator_Schedule';
-import FAQList from './FAQList';
-import CoordinatorTOK_Eval from './tok/CoordinatorTOK_Eval';
-import { CoordinatorTOK_Question } from './tok/CoordinatorTOK_Question';
-import CoordinatorTOK_Teacher from './tok/CoordinatorTOK_Teacher';
+import { useState } from 'react'
+import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
+import Coordinator_Schedule from './Coordinator_Schedule'
+import FAQList from './FAQList'
+import CoordinatorTOK_Eval from './tok/CoordinatorTOK_Eval'
+import { CoordinatorTOK_Question } from './tok/CoordinatorTOK_Question'
+import CoordinatorTOK_Teacher from './tok/CoordinatorTOK_Teacher'
 
 // TODO : 이미 등록된 타입 파일 찾을 시 변경 필요
-export type IBPreference = 'FAQ' | 'FORM' | 'EVAL' | 'SCHEDULE' | 'TEACHER';
+export type IBPreference = 'FAQ' | 'FORM' | 'EVAL' | 'SCHEDULE' | 'TEACHER'
 
 export default function CoordinatorTOK() {
-  const [TOKType, setTOKType] = useState<IBPreference>('FAQ');
+  const [TOKType, setTOKType] = useState<IBPreference>('FAQ')
 
   return (
     <main className="w-full">
@@ -43,5 +43,5 @@ export default function CoordinatorTOK() {
         {TOKType === 'TEACHER' && <CoordinatorTOK_Teacher />}
       </section>
     </main>
-  );
+  )
 }

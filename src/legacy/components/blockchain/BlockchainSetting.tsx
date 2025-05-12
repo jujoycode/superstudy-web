@@ -1,18 +1,18 @@
-import { t } from 'i18next';
-import { useState } from 'react';
-import { UseFormSetValue } from 'react-hook-form';
-import { useBlockChain } from 'src/container/block-chain';
-import { useBlockChainContract } from 'src/container/block-chain-contract';
-import { useBlockChainRequest } from 'src/container/block-chain-request';
-import { useBlockChainWallet } from 'src/container/block-chain-wallet';
-import { RequestUpdateSchoolInfoDto } from 'src/generated/model';
-import { PrivacyManager } from 'src/pages/admin/school/SchoolPage';
-import CertificationBadge from './CertificationBadge';
+import { t } from 'i18next'
+import { useState } from 'react'
+import { UseFormSetValue } from 'react-hook-form'
+import { useBlockChain } from '@/legacy/container/block-chain'
+import { useBlockChainContract } from '@/legacy/container/block-chain-contract'
+import { useBlockChainRequest } from '@/legacy/container/block-chain-request'
+import { useBlockChainWallet } from '@/legacy/container/block-chain-wallet'
+import { RequestUpdateSchoolInfoDto } from '@/legacy/generated/model'
+import { PrivacyManager } from 'src/pages/admin/school/SchoolPage'
+import CertificationBadge from './CertificationBadge'
 
 interface BlockchainSettingProps {
-  useBlockChainState: boolean | undefined;
-  setValue: UseFormSetValue<RequestUpdateSchoolInfoDto & { privacyManager: PrivacyManager }>;
-  updateUseBlockChain: () => Promise<void>;
+  useBlockChainState: boolean | undefined
+  setValue: UseFormSetValue<RequestUpdateSchoolInfoDto & { privacyManager: PrivacyManager }>
+  updateUseBlockChain: () => Promise<void>
 }
 
 export default function BlockchainSetting({
@@ -20,12 +20,12 @@ export default function BlockchainSetting({
   setValue,
   updateUseBlockChain,
 }: BlockchainSettingProps) {
-  const [coachMark1, setCoachMark1] = useState<boolean>(false);
-  const [coachMark2, setCoachMark2] = useState<boolean>(false);
-  const { wallet, contract, isContractLoading, isWalletLoading } = useBlockChain();
-  const { createWallet, isCreating, isError, error } = useBlockChainWallet();
-  const { createContract } = useBlockChainContract();
-  const { requestId } = useBlockChainRequest();
+  const [coachMark1, setCoachMark1] = useState<boolean>(false)
+  const [coachMark2, setCoachMark2] = useState<boolean>(false)
+  const { wallet, contract, isContractLoading, isWalletLoading } = useBlockChain()
+  const { createWallet, isCreating, isError, error } = useBlockChainWallet()
+  const { createContract } = useBlockChainContract()
+  const { requestId } = useBlockChainRequest()
 
   return (
     <>
@@ -40,8 +40,8 @@ export default function BlockchainSetting({
             className="flex w-max rounded-lg border border-[#333333] px-4 py-2 text-sm font-semibold text-[#333333]"
             onClick={(e) => {
               if (confirm('슈퍼스쿨 블록체인을 적용을 취소하시겠습니까?')) {
-                setValue('useBlockChain', false);
-                updateUseBlockChain();
+                setValue('useBlockChain', false)
+                updateUseBlockChain()
               }
             }}
           >
@@ -52,8 +52,8 @@ export default function BlockchainSetting({
             className="flex w-max rounded-lg border border-[#333333] px-4 py-2 text-sm font-semibold text-[#333333]"
             onClick={(e) => {
               if (confirm('슈퍼스쿨 블록체인을 사용하시겠습니까?')) {
-                setValue('useBlockChain', true);
-                updateUseBlockChain();
+                setValue('useBlockChain', true)
+                updateUseBlockChain()
               }
             }}
           >
@@ -71,9 +71,9 @@ export default function BlockchainSetting({
             >
               {coachMark1 && (
                 <span
-                  className={`absolute bottom-full right-4 z-10 mb-4 flex w-80 translate-x-full transform rounded-sm border border-black bg-white p-2.5 text-13 text-black after:absolute after:left-4 after:top-full after:block after:-translate-x-1/2 after:border-8 after:border-transparent after:border-t-black`}
+                  className={`text-13 absolute right-4 bottom-full z-10 mb-4 flex w-80 translate-x-full transform rounded-sm border border-black bg-white p-2.5 text-black after:absolute after:top-full after:left-4 after:block after:-translate-x-1/2 after:border-8 after:border-transparent after:border-t-black`}
                 >
-                  <p className="flex whitespace-normal text-14 font-normal leading-6">
+                  <p className="text-14 flex leading-6 font-normal whitespace-normal">
                     슈퍼스쿨의 블록체인 인증을 통해 학교 구성원들의 개인 정보를 더욱 안전하게 보호할 수 있습니다.
                   </p>
                 </span>
@@ -110,9 +110,9 @@ export default function BlockchainSetting({
             >
               {coachMark2 && (
                 <span
-                  className={`absolute bottom-full right-4 z-10 mb-4 flex w-80 translate-x-full transform rounded-sm border border-black bg-white p-2.5 text-13 text-black after:absolute after:left-4 after:top-full after:block after:-translate-x-1/2 after:border-8 after:border-transparent after:border-t-black`}
+                  className={`text-13 absolute right-4 bottom-full z-10 mb-4 flex w-80 translate-x-full transform rounded-sm border border-black bg-white p-2.5 text-black after:absolute after:top-full after:left-4 after:block after:-translate-x-1/2 after:border-8 after:border-transparent after:border-t-black`}
                 >
-                  <p className="flex whitespace-normal text-14 font-normal leading-6">
+                  <p className="text-14 flex leading-6 font-normal whitespace-normal">
                     확인증 및 결석신고서 문서를 더욱 안전하게 보호 및 보관하실 수 있습니다.
                   </p>
                 </span>
@@ -140,5 +140,5 @@ export default function BlockchainSetting({
         )}
       </div>
     </>
-  );
+  )
 }

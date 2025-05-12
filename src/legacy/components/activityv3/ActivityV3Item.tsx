@@ -1,16 +1,16 @@
-import { format } from 'date-fns';
-import { FC } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { ACTIVITYV3_TYPE_KOR } from 'src/constants/activityv3.enum';
-import { ActivitySession, ActivityV3 } from 'src/generated/model';
-import { twMerge } from 'tailwind-merge';
-import { Activityv3SessionItem } from './activityv3SessionItem';
+import { format } from 'date-fns'
+import { FC } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
+import { ActivitySession, ActivityV3 } from '@/legacy/generated/model'
+import { twMerge } from 'tailwind-merge'
+import { Activityv3SessionItem } from './activityv3SessionItem'
 
 interface Activityv3ItemProps {
-  activityv3: ActivityV3;
-  setOpenedActivityIds: (value: number[]) => void;
-  openedActivityIds?: number[];
-  activitySessions: ActivitySession[];
+  activityv3: ActivityV3
+  setOpenedActivityIds: (value: number[]) => void
+  openedActivityIds?: number[]
+  activitySessions: ActivitySession[]
 }
 
 export const Activityv3Item: FC<Activityv3ItemProps> = ({
@@ -19,19 +19,19 @@ export const Activityv3Item: FC<Activityv3ItemProps> = ({
   openedActivityIds,
   activitySessions,
 }) => {
-  const { pathname, search } = useLocation();
-  const sessionOpen = openedActivityIds ? openedActivityIds.includes(activityv3.id) : true;
+  const { pathname, search } = useLocation()
+  const sessionOpen = openedActivityIds ? openedActivityIds.includes(activityv3.id) : true
   const setSessionToggle = () => {
     if (sessionOpen) {
-      setOpenedActivityIds(openedActivityIds?.filter((id) => id !== activityv3.id) || []);
+      setOpenedActivityIds(openedActivityIds?.filter((id) => id !== activityv3.id) || [])
     } else {
-      setOpenedActivityIds((openedActivityIds || []).concat(activityv3.id));
+      setOpenedActivityIds((openedActivityIds || []).concat(activityv3.id))
     }
-  };
+  }
   return (
     <div key={activityv3.id} className={twMerge('rounded-md bg-gray-200')}>
       <div className="flex flex-col space-y-2 px-4 py-2">
-        <h1 className="w-full break-words text-16 font-semibold">{activityv3.title}</h1>
+        <h1 className="text-16 w-full font-semibold break-words">{activityv3.title}</h1>
         <div className="flex w-full items-center justify-between">
           <div className="text-12">
             {activityv3.subject} | {ACTIVITYV3_TYPE_KOR[activityv3.type]}
@@ -47,8 +47,8 @@ export const Activityv3Item: FC<Activityv3ItemProps> = ({
           <Link
             to={`/teacher/activityv3/${activityv3.id}/submit`}
             className={twMerge(
-              'rounded-full bg-black bg-opacity-10 px-4 py-2 text-sm',
-              pathname === `/teacher/activityv3/${activityv3.id}/submit` && 'bg-gray-600 bg-opacity-100 text-white',
+              'bg-opacity-10 rounded-full bg-black px-4 py-2 text-sm',
+              pathname === `/teacher/activityv3/${activityv3.id}/submit` && 'bg-opacity-100 bg-gray-600 text-white',
             )}
           >
             전달 대상
@@ -57,8 +57,8 @@ export const Activityv3Item: FC<Activityv3ItemProps> = ({
             to={`/teacher/activityv3/${activityv3.id}`}
             onClick={() => !sessionOpen && setOpenedActivityIds(openedActivityIds?.concat(activityv3.id) || [])}
             className={twMerge(
-              'rounded-full bg-black bg-opacity-10 px-4 py-2 text-sm',
-              pathname === `/teacher/activityv3/${activityv3.id}` && 'bg-gray-600 bg-opacity-100 text-white',
+              'bg-opacity-10 rounded-full bg-black px-4 py-2 text-sm',
+              pathname === `/teacher/activityv3/${activityv3.id}` && 'bg-opacity-100 bg-gray-600 text-white',
             )}
           >
             상세보기
@@ -85,8 +85,8 @@ export const Activityv3Item: FC<Activityv3ItemProps> = ({
           <div
             className="w-full cursor-pointer border-r border-gray-300 p-2 text-center"
             onClick={(e) => {
-              e.preventDefault();
-              setSessionToggle();
+              e.preventDefault()
+              setSessionToggle()
             }}
           >
             {sessionOpen ? '차시 접기' : '차시 전체보기'}
@@ -100,5 +100,5 @@ export const Activityv3Item: FC<Activityv3ItemProps> = ({
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}

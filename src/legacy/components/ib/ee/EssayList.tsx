@@ -1,68 +1,68 @@
-import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import NODATA from 'src/assets/images/no-data.png';
-import { IBBlank } from 'src/components/common/IBBlank';
-import { useGetFeedbackBatchExist } from 'src/container/ib-feedback';
-import { ResponseEssayDto, ResponseIBDto } from 'src/generated/model';
-import AlertV2 from '../../common/AlertV2';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Typography } from '../../common/Typography';
-import ColorSVGIcon from '../../icon/ColorSVGIcon';
-import FeedbackViewer from '../FeedbackViewer';
-import { IbEeEssay } from './IbEeEssay';
+import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import NODATA from 'src/assets/images/no-data.png'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
+import { ResponseEssayDto, ResponseIBDto } from '@/legacy/generated/model'
+import AlertV2 from '../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
+import FeedbackViewer from '../FeedbackViewer'
+import { IbEeEssay } from './IbEeEssay'
 
 interface EssayListProps {
-  data: ResponseIBDto;
-  essay?: ResponseEssayDto;
-  refetch: () => void;
-  userId: number;
+  data: ResponseIBDto
+  essay?: ResponseEssayDto
+  refetch: () => void
+  userId: number
 }
 
 export default function EssayList({ data, essay, refetch, userId }: EssayListProps) {
-  const approvedProposal = data.proposals?.find((proposal) => proposal.status === 'ACCEPT') || null;
+  const approvedProposal = data.proposals?.find((proposal) => proposal.status === 'ACCEPT') || null
 
-  const [modalType, setModalType] = useState<'create' | 'view'>('create');
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false);
-  const [localUnreadCounts, setLocalUnreadCounts] = useState<Record<string, number>>({});
+  const [modalType, setModalType] = useState<'create' | 'view'>('create')
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
+  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false)
+  const [localUnreadCounts, setLocalUnreadCounts] = useState<Record<string, number>>({})
 
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
   const handleSuccess = () => {
-    setModalOpen(!modalOpen);
-    refetch();
-    setAlertMessage(`에세이가\n저장되었습니다`);
-  };
+    setModalOpen(!modalOpen)
+    refetch()
+    setAlertMessage(`에세이가\n저장되었습니다`)
+  }
 
-  const essayId = essay?.id || null;
+  const essayId = essay?.id || null
   const { data: feedbacks, isLoading } = useGetFeedbackBatchExist(
     essayId
       ? { referenceIds: String(essayId), referenceTable: 'ESSAY' }
       : { referenceIds: '', referenceTable: 'ESSAY' },
     { enabled: !!essayId },
-  );
+  )
 
   useEffect(() => {
-    const initialCounts: Record<string, number> = {};
+    const initialCounts: Record<string, number> = {}
     if (feedbacks?.items) {
       feedbacks.items.forEach((item) => {
-        initialCounts[`ESSAY-${item.referenceId}`] = item.unreadCount || 0;
-      });
+        initialCounts[`ESSAY-${item.referenceId}`] = item.unreadCount || 0
+      })
     }
-    setLocalUnreadCounts(initialCounts);
-  }, [feedbacks]);
+    setLocalUnreadCounts(initialCounts)
+  }, [feedbacks])
 
   const handleFeedbackOpen = () => {
-    setFeedbackOpen(true);
+    setFeedbackOpen(true)
     if (localUnreadCounts[`ESSAY-${essayId}`] > 0) {
       setLocalUnreadCounts((prev) => ({
         ...prev,
         [`ESSAY-${essayId}`]: 0,
-      }));
+      }))
     }
-  };
+  }
 
-  const { push } = useHistory();
+  const { push } = useHistory()
 
   return (
     <section className="h-[664px]">
@@ -99,7 +99,7 @@ export default function EssayList({ data, essay, refetch, userId }: EssayListPro
         ) : essay ? (
           <>
             <table className="w-full text-center">
-              <thead className="border-y border-y-primary-gray-100 text-[15px] font-medium text-primary-gray-500">
+              <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
                 <tr className="flex w-full items-center justify-between gap-[16px] px-[24px] py-[9px]">
                   <td className="w-[176px]">과목</td>
                   <td className="w-[524px]">연구주제</td>
@@ -109,7 +109,7 @@ export default function EssayList({ data, essay, refetch, userId }: EssayListPro
                 </tr>
               </thead>
               <tbody>
-                <tr className="flex w-full items-center justify-between gap-[16px] border-b border-b-primary-gray-100 px-[24px] py-[9px]">
+                <tr className="border-b-primary-gray-100 flex w-full items-center justify-between gap-[16px] border-b px-[24px] py-[9px]">
                   <td className="line-clamp-1 w-[176px]" title={approvedProposal?.subject}>
                     {approvedProposal?.subject}
                   </td>
@@ -163,8 +163,8 @@ export default function EssayList({ data, essay, refetch, userId }: EssayListPro
                       color="gray400"
                       size={32}
                       onClick={() => {
-                        setModalType('view');
-                        setModalOpen(true);
+                        setModalType('view')
+                        setModalOpen(true)
                       }}
                     >
                       확인하기
@@ -188,8 +188,8 @@ export default function EssayList({ data, essay, refetch, userId }: EssayListPro
               color="orange100"
               size={40}
               onClick={() => {
-                setModalType('create');
-                setModalOpen(true);
+                setModalType('create')
+                setModalOpen(true)
               }}
             >
               에세이 업로드
@@ -222,10 +222,10 @@ export default function EssayList({ data, essay, refetch, userId }: EssayListPro
           confirmText="확인"
           message={alertMessage}
           onConfirm={() => {
-            setAlertMessage(null);
+            setAlertMessage(null)
           }}
         />
       )}
     </section>
-  );
+  )
 }

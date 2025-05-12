@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import { StudentSelfAssessment } from 'src/generated/model';
-import { Label } from '../common';
-import { Button } from '../common/Button';
+import { FC } from 'react'
+import { StudentSelfAssessment } from '@/legacy/generated/model'
+import { Label } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
 
 interface StudentSelfAssessmentViewProps {
-  studentSelfAssessment?: StudentSelfAssessment;
-  goToUpdate: () => void;
+  studentSelfAssessment?: StudentSelfAssessment
+  goToUpdate: () => void
 }
 
 export const StudentSelfAssessmentView: FC<StudentSelfAssessmentViewProps> = ({
@@ -26,7 +26,7 @@ export const StudentSelfAssessmentView: FC<StudentSelfAssessmentViewProps> = ({
       {studentSelfAssessment?.assessment && (
         <>
           <p className="mt-2 text-sm text-gray-500">자기 평가 내용</p>
-          <div className="mt-1 w-full whitespace-pre-line rounded-lg border border-gray-300 p-2">
+          <div className="mt-1 w-full rounded-lg border border-gray-300 p-2 whitespace-pre-line">
             {studentSelfAssessment.assessment}
           </div>
         </>
@@ -35,5 +35,5 @@ export const StudentSelfAssessmentView: FC<StudentSelfAssessmentViewProps> = ({
         자기 평가 수정하기
       </Button.lg>
     </div>
-  );
-};
+  )
+}

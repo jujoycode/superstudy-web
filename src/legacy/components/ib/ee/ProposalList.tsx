@@ -1,118 +1,118 @@
-import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { useHistory } from 'react-router-dom';
-import NODATA from 'src/assets/images/no-data.png';
-import { IBBlank } from 'src/components/common/IBBlank';
-import { useGetFeedbackExist, useGetUnreadFeedbackCount } from 'src/container/ib-feedback';
-import { useIBProposalRankChange } from 'src/container/ib-proposal-update';
-import { ResponseIBDto } from 'src/generated/model';
-import AlertV2 from '../../common/AlertV2';
-import { BadgeV2, BadgeV2Color } from '../../common/BadgeV2';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Typography } from '../../common/Typography';
-import ColorSVGIcon from '../../icon/ColorSVGIcon';
-import SolidSVGIcon from '../../icon/SolidSVGIcon';
-import { PopupModal } from '../../PopupModal';
-import FeedbackViewer from '../FeedbackViewer';
-import { IbEeProposal } from './IbEeProposal';
+import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+import { useHistory } from 'react-router-dom'
+import NODATA from 'src/assets/images/no-data.png'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { useGetFeedbackExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
+import { useIBProposalRankChange } from '@/legacy/container/ib-proposal-update'
+import { ResponseIBDto } from '@/legacy/generated/model'
+import AlertV2 from '../@/legacy/components/common/AlertV2'
+import { BadgeV2, BadgeV2Color } from '../@/legacy/components/common/BadgeV2'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
+import SolidSVGIcon from '../../icon/SolidSVGIcon'
+import { PopupModal } from '../../PopupModal'
+import FeedbackViewer from '../FeedbackViewer'
+import { IbEeProposal } from './IbEeProposal'
 
 interface ProposalListProps {
-  data: ResponseIBDto;
-  refetch: () => void;
+  data: ResponseIBDto
+  refetch: () => void
 }
 
 const statusBadge: Record<string, { color: BadgeV2Color; label: string }> = {
   SENT: { color: 'gray', label: '제안' },
   REJECT: { color: 'red', label: '반려' },
   ACCEPT: { color: 'blue', label: '채택' },
-};
+}
 
 export default function ProposalList({ data, refetch }: ProposalListProps) {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [proposalItems, setProposalItems] = useState(data?.proposals || []);
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false);
-  const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined);
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [proposalItems, setProposalItems] = useState(data?.proposals || [])
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
+  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false)
+  const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined)
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
   const { changeIBProposalRank, isLoading, error, isError } = useIBProposalRankChange({
     onSuccess: () => {
-      setAlertMessage(`제안서 순위 변경이\n완료되었습니다`);
-      setModalOpen(!modalOpen);
-      refetch();
+      setAlertMessage(`제안서 순위 변경이\n완료되었습니다`)
+      setModalOpen(!modalOpen)
+      refetch()
     },
     onError: (error) => {
-      console.error('IB 프로젝트 생성 중 오류 발생:', error);
+      console.error('IB 프로젝트 생성 중 오류 발생:', error)
     },
-  });
+  })
 
   const handleSuccess = (action: 'save' | 'requestApproval') => {
-    setIsOpen(!isOpen);
-    refetch();
-    setAlertMessage(action === 'save' ? `제안서가 \n저장되었습니다` : `제안서 승인 요청이\n완료되었습니다`);
-  };
+    setIsOpen(!isOpen)
+    refetch()
+    setAlertMessage(action === 'save' ? `제안서가 \n저장되었습니다` : `제안서 승인 요청이\n완료되었습니다`)
+  }
 
   const reorder = (list: any[], startIndex: number, endIndex: number) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-    return result;
-  };
+    const result = Array.from(list)
+    const [removed] = result.splice(startIndex, 1)
+    result.splice(endIndex, 0, removed)
+    return result
+  }
 
   const onDragEnd = (result: any) => {
-    if (!result.destination) return;
-    const reorderedItems = reorder(proposalItems, result.source.index, result.destination.index);
+    if (!result.destination) return
+    const reorderedItems = reorder(proposalItems, result.source.index, result.destination.index)
     setProposalItems(
       reorderedItems.map((item, index) => ({
         ...item,
         rank: index + 1,
       })),
-    );
-  };
+    )
+  }
 
   const handleSaveRank = () => {
     const rankItems = proposalItems.map(({ id, rank }) => ({
       id,
       rank,
-    }));
+    }))
 
     const requestData = {
       items: rankItems,
-    };
-    changeIBProposalRank({ id: data.id, data: requestData });
-  };
+    }
+    changeIBProposalRank({ id: data.id, data: requestData })
+  }
 
-  const approvedProposal = data.proposals?.find((proposal) => proposal.status === 'ACCEPT');
+  const approvedProposal = data.proposals?.find((proposal) => proposal.status === 'ACCEPT')
 
   const { data: count, isLoading: isCountFetch } = useGetUnreadFeedbackCount(
     approvedProposal ? { referenceId: data.id, referenceTable: 'IB' } : { referenceId: 0, referenceTable: 'IB' },
     {
       enabled: !!approvedProposal,
     },
-  );
+  )
   const { data: feedback, isLoading: isFeedbackFetch } = useGetFeedbackExist({
     referenceId: data?.id || 0,
     referenceTable: 'IB',
-  });
+  })
 
   useEffect(() => {
-    setProposalItems(data?.proposals || []);
-  }, [data.proposals]);
+    setProposalItems(data?.proposals || [])
+  }, [data.proposals])
 
   useEffect(() => {
     if (count !== undefined) {
-      setUnreadCount(count);
+      setUnreadCount(count)
     }
-  }, [count]);
+  }, [count])
 
   const handleFeedbackOpen = () => {
-    setFeedbackOpen(true);
+    setFeedbackOpen(true)
     if (unreadCount && unreadCount > 0) {
-      setUnreadCount(0);
+      setUnreadCount(0)
     }
-  };
+  }
 
-  const { push } = useHistory();
+  const { push } = useHistory()
   return (
     <section className="flex h-[664px] flex-col">
       {(isLoading || isCountFetch || isFeedbackFetch) && <IBBlank type="opacity" />}
@@ -134,13 +134,13 @@ export default function ProposalList({ data, refetch }: ProposalListProps) {
                 disabled={data.status === 'WAIT_COMPLETE'}
                 onClick={() => {
                   if (approvedProposal) {
-                    return setAlertMessage(`이미 채택된 제안서가 있어\n새로운 제안서를 작성할 수 없습니다`);
+                    return setAlertMessage(`이미 채택된 제안서가 있어\n새로운 제안서를 작성할 수 없습니다`)
                   }
-                  const pendingProposals = data.proposals?.filter((proposal) => proposal.status === 'PENDING') || [];
+                  const pendingProposals = data.proposals?.filter((proposal) => proposal.status === 'PENDING') || []
                   if (pendingProposals.length >= 2) {
-                    setAlertMessage(`최초 제출 가능한\n제안서는 2개 입니다`);
+                    setAlertMessage(`최초 제출 가능한\n제안서는 2개 입니다`)
                   } else {
-                    setIsOpen(!isOpen);
+                    setIsOpen(!isOpen)
                   }
                 }}
               >
@@ -162,7 +162,7 @@ export default function ProposalList({ data, refetch }: ProposalListProps) {
           </div>
         ) : (
           <table className="w-full text-center">
-            <thead className="border-y border-y-primary-gray-100 text-[15px] font-medium text-primary-gray-500">
+            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
               <tr className="flex w-full items-center justify-between gap-[16px] px-[24px] py-[9px]">
                 <td className="w-[68px]">순위</td>
                 <td className="w-[200px]">과목</td>
@@ -179,7 +179,7 @@ export default function ProposalList({ data, refetch }: ProposalListProps) {
                   return (
                     <tr
                       key={proposal.id}
-                      className="flex w-full items-center justify-between gap-[16px] border-b border-b-primary-gray-100 px-[24px] py-[9px] text-15 font-medium"
+                      className="border-b-primary-gray-100 text-15 flex w-full items-center justify-between gap-[16px] border-b px-[24px] py-[9px] font-medium"
                     >
                       <td className="w-[68px]">{proposal.rank}</td>
                       <td title={proposal.subject} className="line-clamp-1 w-[200px]">
@@ -204,9 +204,9 @@ export default function ProposalList({ data, refetch }: ProposalListProps) {
                             }`}
                             onClick={() => {
                               if (unreadCount) {
-                                handleFeedbackOpen();
+                                handleFeedbackOpen()
                               } else {
-                                push(`/ib/student/ee/${data.id}/proposal/${proposal.id}`);
+                                push(`/ib/student/ee/${data.id}/proposal/${proposal.id}`)
                               }
                             }}
                           >
@@ -241,7 +241,7 @@ export default function ProposalList({ data, refetch }: ProposalListProps) {
                         )}
                       </td>
                     </tr>
-                  );
+                  )
                 })}
             </tbody>
           </table>
@@ -294,7 +294,7 @@ export default function ProposalList({ data, refetch }: ProposalListProps) {
                             {proposal.rank}순위
                           </Typography>
                           <div
-                            className={`hover: flex w-full flex-row items-center gap-4 rounded-xl border border-primary-gray-200 p-6 hover:border-primary-orange-200 hover:bg-primary-orange-50 ${
+                            className={`hover: border-primary-gray-200 hover:border-primary-orange-200 hover:bg-primary-orange-50 flex w-full flex-row items-center gap-4 rounded-xl border p-6 ${
                               snapshot.isDragging
                                 ? 'border-primary-orange-400 bg-primary-orange-50 shadow-md'
                                 : 'border-primary-gray-200 hover:border-primary-orange-200 hover:bg-primary-orange-50'
@@ -323,5 +323,5 @@ export default function ProposalList({ data, refetch }: ProposalListProps) {
       )}
       {alertMessage && <AlertV2 message={alertMessage} confirmText="확인" onConfirm={() => setAlertMessage(null)} />}
     </section>
-  );
+  )
 }

@@ -1,30 +1,30 @@
-import { concat, find, map } from 'lodash';
-import { PropsWithChildren, useRef, useState } from 'react';
-import { PopupModal } from 'src/components/PopupModal';
-import { SuperModal } from 'src/components/SuperModal';
-import { Blank } from 'src/components/common';
-import { TextareaV2 } from 'src/components/common/TextareaV2';
-import SVGIcon from 'src/components/icon/SVGIcon';
-import { useTokEvaluationUpdateCriteria } from 'src/generated/endpoint';
+import { concat, find, map } from 'lodash'
+import { PropsWithChildren, useRef, useState } from 'react'
+import { PopupModal } from 'src/components/PopupModal'
+import { SuperModal } from 'src/components/SuperModal'
+import { Blank } from '@/legacy/components/common'
+import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { useTokEvaluationUpdateCriteria } from '@/legacy/generated/endpoint'
 import {
   ResponseTokEvaluationCriteriaDto,
   TokEvaluationGradeDto,
   UpdateTokEvaluationGradeDto,
-} from 'src/generated/model';
-import { useTokEvaluationGetCriteriaById } from '../../../../generated/endpoint';
-import AlertV2 from '../../../common/AlertV2';
-import { ButtonV2 } from '../../../common/ButtonV2';
-import { Typography } from '../../../common/Typography';
-import ColorSVGIcon from '../../../icon/ColorSVGIcon';
-import { EvalInputField } from '../../EvalInputField';
+} from '@/legacy/generated/model'
+import { useTokEvaluationGetCriteriaById } from '../../../../generated/endpoint'
+import AlertV2 from '../../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../../@/legacy/components/common/ButtonV2'
+import { Typography } from '../../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../../icon/ColorSVGIcon'
+import { EvalInputField } from '../../EvalInputField'
 
 interface CoordinatorTOK_Eval_UpdateEvalProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  onSuccess: () => void;
-  evaluationData: ResponseTokEvaluationCriteriaDto;
-  ablePropragation?: boolean;
-  viewType?: 'VIEW' | 'UPDATE';
+  modalOpen: boolean
+  setModalClose: () => void
+  onSuccess: () => void
+  evaluationData: ResponseTokEvaluationCriteriaDto
+  ablePropragation?: boolean
+  viewType?: 'VIEW' | 'UPDATE'
 }
 
 export function CoordinatorTOK_Eval_UpdateEval({
@@ -36,39 +36,39 @@ export function CoordinatorTOK_Eval_UpdateEval({
   viewType = 'UPDATE',
 }: PropsWithChildren<CoordinatorTOK_Eval_UpdateEvalProps>) {
   // 평가 아코디언 기준 뱃지를 만들기 위한 알파벳 배열 생성
-  const alphabetArray = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+  const alphabetArray = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i))
 
-  const [isOpen, setIsOpen] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [createGrades, setCreateGrades] = useState<TokEvaluationGradeDto[]>([]);
-  const [updateGrades, setUpdateGrades] = useState<UpdateTokEvaluationGradeDto[]>([]);
-  const [deleteGradeIds, setDeleteGradeIds] = useState<number[]>([]);
+  const [isOpen, setIsOpen] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [createGrades, setCreateGrades] = useState<TokEvaluationGradeDto[]>([])
+  const [updateGrades, setUpdateGrades] = useState<UpdateTokEvaluationGradeDto[]>([])
+  const [deleteGradeIds, setDeleteGradeIds] = useState<number[]>([])
 
   const reset = () => {
-    setCreateGrades([]);
-    setUpdateGrades([]);
-    setDeleteGradeIds([]);
-  };
+    setCreateGrades([])
+    setUpdateGrades([])
+    setDeleteGradeIds([])
+  }
 
   const { mutate: updateEvaluation, isLoading: updateLoading } = useTokEvaluationUpdateCriteria({
     mutation: {
       onSuccess: () => {
-        setIsOpen(true);
-        onSuccess();
-        reset();
+        setIsOpen(true)
+        onSuccess()
+        reset()
       },
     },
-  });
+  })
 
-  const { data: evaluation } = useTokEvaluationGetCriteriaById(evaluationData.id);
+  const { data: evaluation } = useTokEvaluationGetCriteriaById(evaluationData.id)
 
-  const [isContinue, setContinue] = useState(false);
+  const [isContinue, setContinue] = useState(false)
 
   if (modalOpen && !isContinue && viewType === 'UPDATE') {
     return (
       <SuperModal modalOpen={modalOpen} setModalClose={setModalClose} hasClose={false} className="w-[416px] rounded-xl">
         <div className="p-8 pb-5">
-          <div className="w-full text-center text-lg font-semibold leading-[26px] text-primary-gray-900">
+          <div className="text-primary-gray-900 w-full text-center text-lg leading-[26px] font-semibold">
             평가 항목을 수정하면
             <br />
             지금까지 평가된 학생의 데이터가 변경됩니다.
@@ -85,34 +85,34 @@ export function CoordinatorTOK_Eval_UpdateEval({
           </ButtonV2>
         </div>
       </SuperModal>
-    );
+    )
   }
 
   const updateGrade = (grade: UpdateTokEvaluationGradeDto, updateDto: Partial<UpdateTokEvaluationGradeDto>) => {
     setUpdateGrades((grades) => {
-      const newGrades = structuredClone(grades);
+      const newGrades = structuredClone(grades)
       if (map(grades, 'id').includes(grade.id)) {
-        const updateIndex = grades.findIndex(({ id }) => id === grade.id);
+        const updateIndex = grades.findIndex(({ id }) => id === grade.id)
         newGrades[updateIndex] = {
           ...grades[updateIndex],
           ...updateDto,
-        };
+        }
       } else {
-        newGrades.push({ ...grade, ...updateDto });
+        newGrades.push({ ...grade, ...updateDto })
       }
-      return newGrades;
-    });
-  };
+      return newGrades
+    })
+  }
 
-  if (!evaluation) return <Blank />;
+  if (!evaluation) return <Blank />
 
   const grades = evaluation.grades
     .filter((el) => !deleteGradeIds.includes(el.id))
     .map((el) =>
       map(updateGrades, 'id').includes(el.id) ? { ...el, ...find(updateGrades, ({ id }) => id === el.id) } : el,
-    );
+    )
 
-  const disabled = viewType === 'VIEW';
+  const disabled = viewType === 'VIEW'
 
   const footerButtons = disabled ? (
     <ButtonV2
@@ -120,9 +120,9 @@ export function CoordinatorTOK_Eval_UpdateEval({
       color="gray100"
       size={48}
       onClick={() => {
-        setModalClose();
-        setContinue(false);
-        reset();
+        setModalClose()
+        setContinue(false)
+        reset()
       }}
     >
       확인
@@ -134,9 +134,9 @@ export function CoordinatorTOK_Eval_UpdateEval({
         color="gray100"
         size={48}
         onClick={() => {
-          setModalClose();
-          setContinue(false);
-          reset();
+          setModalClose()
+          setContinue(false)
+          reset()
         }}
       >
         취소
@@ -147,8 +147,8 @@ export function CoordinatorTOK_Eval_UpdateEval({
         color="orange800"
         size={48}
         onClick={() => {
-          setModalClose();
-          setContinue(false);
+          setModalClose()
+          setContinue(false)
           evaluation?.id &&
             updateEvaluation({
               id: evaluation.id,
@@ -157,13 +157,13 @@ export function CoordinatorTOK_Eval_UpdateEval({
                 updateGrades,
                 deleteGradeIds,
               },
-            });
+            })
         }}
       >
         저장하기
       </ButtonV2>
     </div>
-  );
+  )
 
   return (
     <>
@@ -171,8 +171,8 @@ export function CoordinatorTOK_Eval_UpdateEval({
       <PopupModal
         modalOpen={modalOpen}
         setModalClose={() => {
-          setModalClose();
-          reset();
+          setModalClose()
+          reset()
         }}
         title={evaluation?.title}
         footerButtons={footerButtons}
@@ -190,7 +190,7 @@ export function CoordinatorTOK_Eval_UpdateEval({
                     color="gray700"
                     size={32}
                     onClick={() => {
-                      setDeleteGradeIds(deleteGradeIds.concat(grade.id));
+                      setDeleteGradeIds(deleteGradeIds.concat(grade.id))
                     }}
                   />
                 )}
@@ -242,9 +242,9 @@ export function CoordinatorTOK_Eval_UpdateEval({
                     size={32}
                     onClick={() =>
                       setCreateGrades((grades) => {
-                        const newGrades = structuredClone(grades);
-                        newGrades.splice(index, 1);
-                        return newGrades;
+                        const newGrades = structuredClone(grades)
+                        newGrades.splice(index, 1)
+                        return newGrades
                       })
                     }
                   />
@@ -258,9 +258,9 @@ export function CoordinatorTOK_Eval_UpdateEval({
                   className="w-2/3"
                   onChange={(e) =>
                     setCreateGrades((grades) => {
-                      const newGrades = structuredClone(grades);
-                      newGrades[index].name = e.target.value;
-                      return newGrades;
+                      const newGrades = structuredClone(grades)
+                      newGrades[index].name = e.target.value
+                      return newGrades
                     })
                   }
                 />
@@ -272,9 +272,9 @@ export function CoordinatorTOK_Eval_UpdateEval({
                     onChange: (e) =>
                       Number(e.target.value) <= grade.maxScore &&
                       setCreateGrades((grades) => {
-                        const newGrades = structuredClone(grades);
-                        newGrades[index].minScore = Number(e.target.value);
-                        return newGrades;
+                        const newGrades = structuredClone(grades)
+                        newGrades[index].minScore = Number(e.target.value)
+                        return newGrades
                       }),
                   }}
                   maxScoreProps={{
@@ -283,9 +283,9 @@ export function CoordinatorTOK_Eval_UpdateEval({
                     onChange: (e) =>
                       Number(e.target.value) <= 99 &&
                       setCreateGrades((grades) => {
-                        const newGrades = structuredClone(grades);
-                        newGrades[index].maxScore = Number(e.target.value);
-                        return newGrades;
+                        const newGrades = structuredClone(grades)
+                        newGrades[index].maxScore = Number(e.target.value)
+                        return newGrades
                       }),
                   }}
                   className="w-1/3"
@@ -299,9 +299,9 @@ export function CoordinatorTOK_Eval_UpdateEval({
                 placeholder="세부 평가 지표를 입력하세요."
                 onChange={(e) =>
                   setCreateGrades((grades) => {
-                    const newGrades = structuredClone(grades);
-                    newGrades[index].description = e.target.value;
-                    return newGrades;
+                    const newGrades = structuredClone(grades)
+                    newGrades[index].description = e.target.value
+                    return newGrades
                   })
                 }
               />
@@ -315,8 +315,8 @@ export function CoordinatorTOK_Eval_UpdateEval({
                 color="gray400"
                 className="flex items-center justify-center gap-1"
                 onClick={(e) => {
-                  e.stopPropagation();
-                  setCreateGrades(concat(createGrades, { name: '', minScore: 0, maxScore: 0, description: '' }));
+                  e.stopPropagation()
+                  setCreateGrades(concat(createGrades, { name: '', minScore: 0, maxScore: 0, description: '' }))
                 }}
               >
                 <SVGIcon.Plus color="gray700" size={16} weight="bold" />
@@ -330,5 +330,5 @@ export function CoordinatorTOK_Eval_UpdateEval({
         <AlertV2 confirmText="확인" message={`평가기준이 \n저장되었습니다`} onConfirm={() => setIsOpen(!isOpen)} />
       )}
     </>
-  );
+  )
 }

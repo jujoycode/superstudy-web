@@ -1,53 +1,53 @@
-import clsx from 'clsx';
-import QueryString from 'qs';
-import { useEffect, useRef, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import CAS from 'src/assets/images/CAS.png';
-import EE from 'src/assets/images/EE.png';
-import TOK from 'src/assets/images/TOK.png';
-import NODATA from 'src/assets/images/no-data.png';
-import { ResponsePaginatedIBDto } from 'src/generated/model';
-import { useQueryParams } from 'src/hooks/useQueryParams';
-import { CategoryType, IBProject, ModalType } from 'src/pages/ib/student/IBStudentMainPage';
-import { meState } from 'src/store';
-import { PopupModal } from '../PopupModal';
-import AlertV2 from '../common/AlertV2';
-import { ButtonV2 } from '../common/ButtonV2';
-import { IBBlank } from '../common/IBBlank';
-import { LayeredTabs, Tab } from '../common/LayeredTabs';
-import { RadioV2 } from '../common/RadioV2';
-import { Typography } from '../common/Typography';
-import ProjectList from './ProjectList';
-import { IbCASNormal } from './cas/IbCASNormal';
-import { IbCASProject } from './cas/IbCASProject';
-import { IbEeProposal } from './ee/IbEeProposal';
-import { IbExhibitionPlan } from './tok/IbExhibitionPlan';
-import { IbOutline } from './tok/IbOutline';
+import clsx from 'clsx'
+import QueryString from 'qs'
+import { useEffect, useRef, useState } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import CAS from 'src/assets/images/CAS.png'
+import EE from 'src/assets/images/EE.png'
+import TOK from 'src/assets/images/TOK.png'
+import NODATA from 'src/assets/images/no-data.png'
+import { ResponsePaginatedIBDto } from '@/legacy/generated/model'
+import { useQueryParams } from '@/legacy/hooks/useQueryParams'
+import { CategoryType, IBProject, ModalType } from 'src/pages/ib/student/IBStudentMainPage'
+import { meState } from '@/stores'
+import { PopupModal } from '../PopupModal'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import ProjectList from './ProjectList'
+import { IbCASNormal } from './cas/IbCASNormal'
+import { IbCASProject } from './cas/IbCASProject'
+import { IbEeProposal } from './ee/IbEeProposal'
+import { IbExhibitionPlan } from './tok/IbExhibitionPlan'
+import { IbOutline } from './tok/IbOutline'
 
 export const STATUS_GROUPS = {
   담당교사_지정대기: ['PENDING', 'WAIT_MENTOR', 'WAITING_FOR_NEXT_PROPOSAL'],
   계획중: ['WAIT_PLAN_APPROVE', 'REJECT_PLAN', 'REJECT_MENTOR'],
   진행중: ['IN_PROGRESS', 'REJECT_COMPLETE', 'WAIT_COMPLETE'],
   완료: ['COMPLETE'],
-};
+}
 
 interface StudentIBStatusProps {
-  data?: ResponsePaginatedIBDto;
+  data?: ResponsePaginatedIBDto
 }
 
 interface SelectedOptions {
-  projectType: IBProjectTypes;
-  pages: Record<string, number>;
+  projectType: IBProjectTypes
+  pages: Record<string, number>
 }
 
-type IBProjectTypes = 'NORMAL' | 'EE' | 'CAS' | 'TOK';
+type IBProjectTypes = 'NORMAL' | 'EE' | 'CAS' | 'TOK'
 
 export default function StudentIBStatus({ data }: StudentIBStatusProps) {
-  const me = useRecoilValue(meState);
-  const history = useHistory();
-  const { setQueryParamsWithStorage, removeStoredQueryParams } = useQueryParams();
-  const location = useLocation<{ alertMessage?: string }>();
+  const me = useRecoilValue(meState)
+  const history = useHistory()
+  const { setQueryParamsWithStorage, removeStoredQueryParams } = useQueryParams()
+  const location = useLocation<{ alertMessage?: string }>()
   const defaultOptions: SelectedOptions = {
     projectType: 'NORMAL',
     pages: {
@@ -56,10 +56,10 @@ export default function StudentIBStatus({ data }: StudentIBStatusProps) {
       page3: 1,
       page4: 1,
     },
-  };
+  }
 
   const parseQueryParams = () => {
-    const params = QueryString.parse(location.search, { ignoreQueryPrefix: true });
+    const params = QueryString.parse(location.search, { ignoreQueryPrefix: true })
     return {
       projectType: (params.projectType as IBProjectTypes) || 'NORMAL',
       pages: {
@@ -68,132 +68,132 @@ export default function StudentIBStatus({ data }: StudentIBStatusProps) {
         page3: Number(params.page3) || 1,
         page4: Number(params.page4) || 1,
       },
-    };
-  };
+    }
+  }
 
   const projectListRefs = useRef<Record<string, HTMLDivElement | null>>({
     page1: null,
     page2: null,
     page3: null,
     page4: null,
-  });
-  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(parseQueryParams);
-  const [pages, setPages] = useState(() => parseQueryParams().pages);
-  const [savedProjectData, setSavedProjectData] = useState<any>(null);
-  const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [selectedCategory, setSelectedCategory] = useState<CategoryType>('');
-  const [step, setStep] = useState<number>(0);
-  const [selectedValue, setSelectedValue] = useState<IBProject>('');
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
-  const { push } = useHistory();
-  const isEETypeExists = data?.items?.some((item) => item.ibType === 'EE');
-  const isESSAYTypeExists = data?.items?.some((item) => item.ibType === 'TOK_ESSAY');
-  const isEXHTypeExists = data?.items?.some((item) => item.ibType === 'TOK_EXHIBITION');
+  })
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(parseQueryParams)
+  const [pages, setPages] = useState(() => parseQueryParams().pages)
+  const [savedProjectData, setSavedProjectData] = useState<any>(null)
+  const [activeModal, setActiveModal] = useState<ModalType>(null)
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType>('')
+  const [step, setStep] = useState<number>(0)
+  const [selectedValue, setSelectedValue] = useState<IBProject>('')
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
+  const { push } = useHistory()
+  const isEETypeExists = data?.items?.some((item) => item.ibType === 'EE')
+  const isESSAYTypeExists = data?.items?.some((item) => item.ibType === 'TOK_ESSAY')
+  const isEXHTypeExists = data?.items?.some((item) => item.ibType === 'TOK_EXHIBITION')
 
   const handleOptionChange = (optionType: keyof SelectedOptions, value: any) => {
     const updatedOptions = {
       ...selectedOptions,
       [optionType]: value,
       ...(optionType === 'projectType' ? { pages: { ...defaultOptions.pages } } : {}),
-    };
+    }
 
-    setSelectedOptions(updatedOptions);
-    updateSearchParams(updatedOptions);
-  };
+    setSelectedOptions(updatedOptions)
+    updateSearchParams(updatedOptions)
+  }
 
   const updateSearchParams = (updatedOptions: SelectedOptions) => {
     const params = {
       projectType: updatedOptions.projectType !== defaultOptions.projectType ? updatedOptions.projectType : undefined,
       ...updatedOptions.pages,
-    };
+    }
 
     const filteredParams = Object.fromEntries(
       Object.entries(params).filter(([_, value]) => value !== undefined),
-    ) as Record<string, string>;
-    setQueryParamsWithStorage(filteredParams);
-    history.replace({ search: QueryString.stringify(filteredParams, { addQueryPrefix: true }) });
-  };
+    ) as Record<string, string>
+    setQueryParamsWithStorage(filteredParams)
+    history.replace({ search: QueryString.stringify(filteredParams, { addQueryPrefix: true }) })
+  }
 
   const handleBackToProjectSelection = () => {
-    setStep((prev) => prev - 1);
+    setStep((prev) => prev - 1)
     if (step === 1) {
-      setActiveModal('projectSelection');
+      setActiveModal('projectSelection')
     }
-  };
+  }
 
   const handleSuccess = (
     action: 'save' | 'requestApproval' | 'TOK_EXHIBITION' | 'TOK_ESSAY' | 'CAS_NORMAL' | 'CAS_PROJECT',
     data?: any,
   ) => {
-    setSavedProjectData(data);
+    setSavedProjectData(data)
 
     switch (action) {
       case 'save':
-        setAlertMessage(`제안서가 \n저장되었습니다`);
-        break;
+        setAlertMessage(`제안서가 \n저장되었습니다`)
+        break
       case 'requestApproval':
-        setAlertMessage(`제안서 승인 요청이\n완료되었습니다`);
-        break;
+        setAlertMessage(`제안서 승인 요청이\n완료되었습니다`)
+        break
       case 'TOK_EXHIBITION':
-        setAlertMessage(`기획안이\n저장되었습니다`);
-        break;
+        setAlertMessage(`기획안이\n저장되었습니다`)
+        break
       case 'TOK_ESSAY':
-        setAlertMessage(`아웃라인이\n저장되었습니다`);
-        break;
+        setAlertMessage(`아웃라인이\n저장되었습니다`)
+        break
       case 'CAS_NORMAL':
-        setAlertMessage(`CAS 일반 계획서가\n저장되었습니다`);
-        break;
+        setAlertMessage(`CAS 일반 계획서가\n저장되었습니다`)
+        break
       case 'CAS_PROJECT':
-        setAlertMessage(`CAS 프로젝트 계획서가\n저장되었습니다`);
-        break;
+        setAlertMessage(`CAS 프로젝트 계획서가\n저장되었습니다`)
+        break
     }
-  };
+  }
 
   const handleNext = () => {
     if (step === 0 && selectedValue !== '') {
-      setStep(step + 1);
+      setStep(step + 1)
       if (selectedValue === 'EE') {
-        setActiveModal('IbEeProposal');
+        setActiveModal('IbEeProposal')
       } else if (selectedValue === 'CAS') {
-        setActiveModal('IbCAS');
+        setActiveModal('IbCAS')
       } else {
-        setActiveModal('IbTok');
+        setActiveModal('IbTok')
       }
     } else if (step === 1) {
-      setStep(2);
+      setStep(2)
     }
-  };
+  }
 
   const toggleProjectSelectionModal = () => {
-    setActiveModal(activeModal === 'projectSelection' ? null : 'projectSelection');
-    setStep(0);
-  };
+    setActiveModal(activeModal === 'projectSelection' ? null : 'projectSelection')
+    setStep(0)
+  }
 
   useEffect(() => {
     if (location.state?.alertMessage) {
-      setAlertMessage(location.state.alertMessage);
+      setAlertMessage(location.state.alertMessage)
     }
-  }, [location.state]);
+  }, [location.state])
 
   useEffect(() => {
-    removeStoredQueryParams();
-  }, []);
+    removeStoredQueryParams()
+  }, [])
 
   useEffect(() => {
-    setSelectedOptions(parseQueryParams());
-  }, [location.search]);
+    setSelectedOptions(parseQueryParams())
+  }, [location.search])
 
   useEffect(() => {
     const currentPage = Object.keys(selectedOptions.pages).find(
       (key) => selectedOptions.pages[key] !== defaultOptions.pages[key],
-    );
+    )
     if (currentPage && projectListRefs.current[currentPage]) {
-      projectListRefs.current[currentPage]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      projectListRefs.current[currentPage]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
-  }, [selectedOptions.pages]);
+  }, [selectedOptions.pages])
 
   if (me == null) {
-    return <IBBlank />;
+    return <IBBlank />
   }
 
   return (
@@ -258,7 +258,7 @@ export default function StudentIBStatus({ data }: StudentIBStatusProps) {
           </div>
         ) : (
           <>
-            <div className="border-b border-b-primary-gray-200 pb-10 pt-5">
+            <div className="border-b-primary-gray-200 border-b pt-5 pb-10">
               <ProjectList
                 title="담당교사 지정대기"
                 params={{
@@ -274,7 +274,7 @@ export default function StudentIBStatus({ data }: StudentIBStatusProps) {
                 }
               />
             </div>
-            <div className="border-b border-b-primary-gray-200 py-10">
+            <div className="border-b-primary-gray-200 border-b py-10">
               <ProjectList
                 title="계획중"
                 params={{
@@ -290,7 +290,7 @@ export default function StudentIBStatus({ data }: StudentIBStatusProps) {
                 }
               />
             </div>
-            <div className="border-b border-b-primary-gray-200 py-10">
+            <div className="border-b-primary-gray-200 border-b py-10">
               <ProjectList
                 title="진행중"
                 params={{
@@ -306,7 +306,7 @@ export default function StudentIBStatus({ data }: StudentIBStatusProps) {
                 }
               />
             </div>
-            <div className="border-b border-b-primary-gray-200 py-10">
+            <div className="border-b-primary-gray-200 border-b py-10">
               <ProjectList
                 title="완료"
                 params={{
@@ -475,25 +475,25 @@ export default function StudentIBStatus({ data }: StudentIBStatusProps) {
           message={alertMessage}
           confirmText="확인"
           onConfirm={() => {
-            setAlertMessage(null);
+            setAlertMessage(null)
             if (savedProjectData) {
               if (activeModal === 'IbEeProposal') {
-                push(`/ib/student/ee/${savedProjectData.id}`);
+                push(`/ib/student/ee/${savedProjectData.id}`)
               } else if (activeModal === 'IbTok') {
                 if (selectedCategory === 'Essay') {
-                  push(`/ib/student/tok/essay/${savedProjectData.id}`);
+                  push(`/ib/student/tok/essay/${savedProjectData.id}`)
                 } else {
-                  push(`/ib/student/tok/exhibition/${savedProjectData.id}`);
+                  push(`/ib/student/tok/exhibition/${savedProjectData.id}`)
                 }
               } else {
-                push(`/ib/student/cas/${savedProjectData.id}/plan`);
+                push(`/ib/student/cas/${savedProjectData.id}/plan`)
               }
             }
 
-            setActiveModal(null);
+            setActiveModal(null)
           }}
         />
       )}
     </main>
-  );
+  )
 }

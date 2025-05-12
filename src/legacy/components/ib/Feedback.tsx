@@ -1,24 +1,24 @@
-import clsx from 'clsx';
-import { format } from 'date-fns';
-import { FC, useCallback, useEffect, useRef, useState } from 'react';
-import NODATA from 'src/assets/images/no-data.png';
-import { useFeedback } from 'src/container/ib-feedback';
-import { RequestFeedbackDto, ResponseFeedbackDtoReferenceTable, ResponseUserDto } from 'src/generated/model';
-import { twMerge } from 'tailwind-merge';
-import { ButtonV2 } from '../common/ButtonV2';
-import { IBBlank } from '../common/IBBlank';
-import { Typography } from '../common/Typography';
-import SolidSVGIcon from '../icon/SolidSVGIcon';
+import clsx from 'clsx'
+import { format } from 'date-fns'
+import { FC, useCallback, useEffect, useRef, useState } from 'react'
+import NODATA from 'src/assets/images/no-data.png'
+import { useFeedback } from '@/legacy/container/ib-feedback'
+import { RequestFeedbackDto, ResponseFeedbackDtoReferenceTable, ResponseUserDto } from '@/legacy/generated/model'
+import { twMerge } from 'tailwind-merge'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
+import SolidSVGIcon from '../icon/SolidSVGIcon'
 
 interface FeedbackProps {
-  referenceId: number;
-  referenceTable: ResponseFeedbackDtoReferenceTable;
-  user: ResponseUserDto;
-  readonly?: boolean;
-  disabled?: boolean;
-  readonlyBackground?: 'bg-white' | 'bg-primary-gray-100';
-  className?: string;
-  useTextarea?: boolean;
+  referenceId: number
+  referenceTable: ResponseFeedbackDtoReferenceTable
+  user: ResponseUserDto
+  readonly?: boolean
+  disabled?: boolean
+  readonlyBackground?: 'bg-white' | 'bg-primary-gray-100'
+  className?: string
+  useTextarea?: boolean
 }
 
 export const Feedback: FC<FeedbackProps> = ({
@@ -31,30 +31,30 @@ export const Feedback: FC<FeedbackProps> = ({
   className,
   useTextarea = true,
 }) => {
-  const { feedback, isFetching, createFeedback, isCreating } = useFeedback({ referenceId, referenceTable });
-  const [content, setContent] = useState<string>('');
-  const [isFocused, setIsFocused] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const { feedback, isFetching, createFeedback, isCreating } = useFeedback({ referenceId, referenceTable })
+  const [content, setContent] = useState<string>('')
+  const [isFocused, setIsFocused] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const handleFocus = () => setIsFocused(true)
+  const handleBlur = () => setIsFocused(false)
 
   const onSubmit = useCallback(() => {
-    if (!content.trim() || isCreating || isFetching) return;
+    if (!content.trim() || isCreating || isFetching) return
     const feedbackData: RequestFeedbackDto = {
       content,
       referenceId,
       referenceTable,
-    };
+    }
 
-    createFeedback({ data: feedbackData });
-    setContent('');
-  }, [content, isCreating, createFeedback, referenceId, referenceTable]);
+    createFeedback({ data: feedbackData })
+    setContent('')
+  }, [content, isCreating, createFeedback, referenceId, referenceTable])
 
   useEffect(() => {
     if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
-  }, [feedback]);
+  }, [feedback])
 
   return (
     <div className={twMerge('relative flex h-full flex-col justify-between gap-6', className)}>
@@ -64,7 +64,7 @@ export const Feedback: FC<FeedbackProps> = ({
         <div className="scroll-box flex h-[448px] flex-grow flex-col gap-3 overflow-y-auto" ref={scrollRef}>
           {feedback && feedback?.length > 0 ? (
             [...feedback].reverse().map((item) => {
-              const date = item.createdAt ? new Date(item.createdAt) : new Date();
+              const date = item.createdAt ? new Date(item.createdAt) : new Date()
               return (
                 <div
                   key={item.id}
@@ -72,8 +72,8 @@ export const Feedback: FC<FeedbackProps> = ({
                     item.sender === null
                       ? 'bg-primary-gray-50'
                       : item.sender.role !== 'USER'
-                      ? 'bg-primary-orange-50'
-                      : 'bg-primary-gray-50'
+                        ? 'bg-primary-orange-50'
+                        : 'bg-primary-gray-50'
                   }`}
                 >
                   {item.sender === null ? (
@@ -117,7 +117,7 @@ export const Feedback: FC<FeedbackProps> = ({
                           <Typography variant="body2" className="whitespace-pre-line">
                             {item.content.split('\n')[0]}
                           </Typography>
-                          <Typography variant="caption" className="whitespace-pre-line text-primary-gray-500">
+                          <Typography variant="caption" className="text-primary-gray-500 whitespace-pre-line">
                             {item.content.split('\n')[1]}
                           </Typography>
                         </>
@@ -133,7 +133,7 @@ export const Feedback: FC<FeedbackProps> = ({
                     </Typography>
                   )}
                 </div>
-              );
+              )
             })
           ) : (
             <div className="flex flex-col items-center gap-6 py-20">
@@ -148,7 +148,7 @@ export const Feedback: FC<FeedbackProps> = ({
       {useTextarea && (
         <div
           className={clsx(
-            'relative flex flex-col justify-between gap-4 rounded-lg border border-primary-gray-200 p-4 focus:outline-none focus:ring-0',
+            'border-primary-gray-200 relative flex flex-col justify-between gap-4 rounded-lg border p-4 focus:ring-0 focus:outline-none',
             {
               'bg-white': readonly && readonlyBackground === 'bg-white',
               'bg-primary-gray-100':
@@ -165,7 +165,7 @@ export const Feedback: FC<FeedbackProps> = ({
             value={content}
             onChange={(e) => setContent(e.target.value)}
             className={clsx(
-              `h-16 resize-none border-none p-0 text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-none focus:text-primary-gray-700 focus:ring-0 disabled:text-gray-400`,
+              `text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:text-primary-gray-700 h-16 resize-none border-none p-0 focus:border-none focus:ring-0 disabled:text-gray-400`,
               {
                 'bg-white': readonly && readonlyBackground === 'bg-white',
                 'bg-primary-gray-100':
@@ -197,5 +197,5 @@ export const Feedback: FC<FeedbackProps> = ({
         </div>
       )}
     </div>
-  );
-};
+  )
+}

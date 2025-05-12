@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { LayeredTabs, Tab } from 'src/components/common/LayeredTabs';
-import Coordinator_Schedule from './Coordinator_Schedule';
-import { IBPreference } from './CoordinatorTOK';
-import Coordinator_Teacher from './ee/Coordinator_Teacher';
-import CoordinatorEE_Eval from './ee/CoordinatorEE_Eval';
-import FAQList from './FAQList';
-import FormList from './FormList';
+import { useState } from 'react'
+import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
+import Coordinator_Schedule from './Coordinator_Schedule'
+import { IBPreference } from './CoordinatorTOK'
+import Coordinator_Teacher from './ee/Coordinator_Teacher'
+import CoordinatorEE_Eval from './ee/CoordinatorEE_Eval'
+import FAQList from './FAQList'
+import FormList from './FormList'
 
 export default function CoordinatorEE() {
-  const [EEType, setEEType] = useState<IBPreference>('FAQ');
+  const [EEType, setEEType] = useState<IBPreference>('FAQ')
 
   return (
     <main className="w-full">
@@ -41,5 +41,5 @@ export default function CoordinatorEE() {
         {EEType === 'TEACHER' && <Coordinator_Teacher />}
       </section>
     </main>
-  );
+  )
 }

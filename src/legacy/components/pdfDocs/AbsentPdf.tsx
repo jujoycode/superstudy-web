@@ -1,20 +1,20 @@
-import { useEffect, useRef, useState } from 'react';
-import { Document, Page } from 'react-pdf';
-import { Constants } from 'src/constants';
-import { Absent } from 'src/generated/model';
-import { AbsentEvidenceType, AbsentPaperType } from 'src/types';
-import { AbsentPaper } from '../absent/AbsentPaper';
-import { ParentConfirmPaper } from '../absent/ParentConfirmPaper';
-import { TeacherConfirmPaper } from '../absent/TeacherConfirmPaper';
+import { useEffect, useRef, useState } from 'react'
+import { Document, Page } from 'react-pdf'
+import { Constants } from '@/legacy/constants'
+import { Absent } from '@/legacy/generated/model'
+import { AbsentEvidenceType, AbsentPaperType } from '@/legacy/types'
+import { AbsentPaper } from '../absent/AbsentPaper'
+import { ParentConfirmPaper } from '../absent/ParentConfirmPaper'
+import { TeacherConfirmPaper } from '../absent/TeacherConfirmPaper'
 
 interface AbsentPdfProps {
-  orderBy: number;
-  absent: Absent;
-  extractReactData: (orderBy: number, ref: any, type: AbsentPaperType, absent: Absent) => Promise<null | undefined>;
-  extractArrayData: (orderBy: number, ref: any[], type: AbsentPaperType, absent: Absent) => Promise<null | undefined>;
-  extractImageData: (orderBy: number, absent: Absent, type: AbsentPaperType) => void;
-  nextExtractPdfData: () => void;
-  isDownload: boolean;
+  orderBy: number
+  absent: Absent
+  extractReactData: (orderBy: number, ref: any, type: AbsentPaperType, absent: Absent) => Promise<null | undefined>
+  extractArrayData: (orderBy: number, ref: any[], type: AbsentPaperType, absent: Absent) => Promise<null | undefined>
+  extractImageData: (orderBy: number, absent: Absent, type: AbsentPaperType) => void
+  nextExtractPdfData: () => void
+  isDownload: boolean
 }
 
 export function AbsentPdf({
@@ -26,77 +26,77 @@ export function AbsentPdf({
   isDownload,
   nextExtractPdfData,
 }: AbsentPdfProps) {
-  const absentPaperRef = useRef(null);
-  const pdfPaperRefs = useRef<any[]>([]);
-  const parentConfirmPaperRef = useRef(null);
-  const teacherConfirmPaperRef = useRef(null);
-  const pdf2PaperRefs = useRef<any[]>([]);
-  const imageRef = useRef<HTMLImageElement | null>(null);
-  const image2Ref = useRef<HTMLImageElement | null>(null);
+  const absentPaperRef = useRef(null)
+  const pdfPaperRefs = useRef<any[]>([])
+  const parentConfirmPaperRef = useRef(null)
+  const teacherConfirmPaperRef = useRef(null)
+  const pdf2PaperRefs = useRef<any[]>([])
+  const imageRef = useRef<HTMLImageElement | null>(null)
+  const image2Ref = useRef<HTMLImageElement | null>(null)
 
   //console.log('pdf2PaperRefs', pdf2PaperRefs);
 
-  const [numPages, setNumPages] = useState(0);
+  const [numPages, setNumPages] = useState(0)
 
   const _downloadPdf = async () => {
     if (absentPaperRef.current) {
-      await extractReactData(orderBy, absentPaperRef.current, AbsentPaperType.ABSENT, absent);
-      await extractArrayData(orderBy, pdfPaperRefs.current, AbsentPaperType.PDF, absent);
+      await extractReactData(orderBy, absentPaperRef.current, AbsentPaperType.ABSENT, absent)
+      await extractArrayData(orderBy, pdfPaperRefs.current, AbsentPaperType.PDF, absent)
       pdf2PaperRefs.current?.length &&
-        (await extractArrayData(orderBy, pdf2PaperRefs.current, AbsentPaperType.PDF, absent));
+        (await extractArrayData(orderBy, pdf2PaperRefs.current, AbsentPaperType.PDF, absent))
 
       if (
         (absent.evidenceType === AbsentEvidenceType.PARENT || absent.evidenceType2 === AbsentEvidenceType.PARENT) &&
         parentConfirmPaperRef.current
       ) {
-        await extractReactData(orderBy, parentConfirmPaperRef.current, AbsentPaperType.PARENT, absent);
+        await extractReactData(orderBy, parentConfirmPaperRef.current, AbsentPaperType.PARENT, absent)
       }
 
       if (
         (absent.evidenceType === AbsentEvidenceType.TEACHER || absent.evidenceType2 === AbsentEvidenceType.TEACHER) &&
         teacherConfirmPaperRef.current
       ) {
-        await extractReactData(orderBy, teacherConfirmPaperRef.current, AbsentPaperType.TEACHER, absent);
+        await extractReactData(orderBy, teacherConfirmPaperRef.current, AbsentPaperType.TEACHER, absent)
       }
 
       if (absent?.evidenceFiles?.length || absent?.evidenceFiles2?.length) {
         //console.log('image download');
-        await extractImageData(orderBy, absent, AbsentPaperType.IMAGE);
+        await extractImageData(orderBy, absent, AbsentPaperType.IMAGE)
       }
-      nextExtractPdfData();
+      nextExtractPdfData()
     }
-  };
+  }
 
   useEffect(() => {
     if (absent && isDownload) {
-      _downloadPdf();
+      _downloadPdf()
     }
-  }, [absent, isDownload]);
+  }, [absent, isDownload])
 
   const getUrl = (fileName: string) => {
-    let url = '';
+    let url = ''
 
     if (fileName.includes('blob')) {
-      const index = fileName.indexOf('?');
+      const index = fileName.indexOf('?')
 
       if (index !== -1) {
-        url = fileName.substring(0, index); // 0부터 ? 이전까지 문자열 추출
+        url = fileName.substring(0, index) // 0부터 ? 이전까지 문자열 추출
       } else {
-        url = fileName;
+        url = fileName
       }
     } else {
-      url = Constants.imageUrl + fileName;
+      url = Constants.imageUrl + fileName
     }
 
-    return url;
-  };
+    return url
+  }
 
   if (!absent) {
-    return null;
+    return null
   }
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
-    setNumPages(numPages);
+    setNumPages(numPages)
   }
 
   return (
@@ -182,5 +182,5 @@ export function AbsentPdf({
             )),
         )}
     </>
-  );
+  )
 }

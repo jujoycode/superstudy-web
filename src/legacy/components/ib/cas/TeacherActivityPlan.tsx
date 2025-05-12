@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import AlertV2 from 'src/components/common/AlertV2';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { Check } from 'src/components/common/Check';
-import { IBBlank } from 'src/components/common/IBBlank';
-import { LayeredTabs, Tab } from 'src/components/common/LayeredTabs';
-import ScheduleAndPeriodPicker from 'src/components/common/ScheduleAndPeriodPicker';
-import Stepper from 'src/components/common/Stepper';
-import { Typography } from 'src/components/common/Typography';
-import SolidSVGIcon from 'src/components/icon/SolidSVGIcon';
-import SVGIcon from 'src/components/icon/SVGIcon';
-import { CAS_ATL, CAS_LEARNERPROFILE, CAS_LEARNINGOUTCOME } from 'src/constants/ib';
-import { useIBUpdate } from 'src/container/ib-project';
-import { useInterviewGetByStudentId } from 'src/container/ib-student-interview';
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Check } from '@/legacy/components/common/Check'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
+import ScheduleAndPeriodPicker from '@/legacy/components/common/ScheduleAndPeriodPicker'
+import Stepper from '@/legacy/components/common/Stepper'
+import { Typography } from '@/legacy/components/common/Typography'
+import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { CAS_ATL, CAS_LEARNERPROFILE, CAS_LEARNINGOUTCOME } from '@/legacy/constants/ib'
+import { useIBUpdate } from '@/legacy/container/ib-project'
+import { useInterviewGetByStudentId } from '@/legacy/container/ib-student-interview'
 import {
   RequestIBCasDtoAtl,
   RequestIBCasDtoLearnerProfile,
@@ -26,39 +26,39 @@ import {
   ResponseIBCasDtoLearnerProfile,
   ResponseIBCasDtoLearningOutcome,
   ResponseIBDto,
-} from 'src/generated/model';
-import { useHandleGoBack } from 'src/hooks/useHandleGoBack';
-import { meState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { Feedback } from '../Feedback';
-import { InputField } from '../InputField';
-import StudentActivityStatus from './StudentActivityStatus';
+} from '@/legacy/generated/model'
+import { useHandleGoBack } from '@/legacy/hooks/useHandleGoBack'
+import { meState } from '@/stores'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { Feedback } from '../Feedback'
+import { InputField } from '../InputField'
+import StudentActivityStatus from './StudentActivityStatus'
 
 interface TeacherActivityPlanProps {
-  data: ResponseIBDto;
-  refetch: () => void;
-  hasPermission: boolean;
+  data: ResponseIBDto
+  refetch: () => void
+  hasPermission: boolean
 }
 
-type tabType = 'feedback' | 'activity';
+type tabType = 'feedback' | 'activity'
 
 function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPlanProps) {
-  const me = useRecoilValue(meState);
-  const [editMode, setEditMode] = useState<boolean>(false);
-  const [isFocused, setIsFocused] = useState(false);
-  const history = useHistory();
-  const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [selectedATL, setSelectedATL] = useState<number[]>([]);
-  const [selectedLearnerProfile, setSelectedLearnerProfile] = useState<number[]>([]);
-  const [useRiskAssessment, setUseRiskAssessment] = useState<boolean | undefined>(data.cas?.riskAssessment !== null);
-  const [type, setType] = useState<tabType>('activity');
-  const handleGoBack = useHandleGoBack('/teacher/project');
+  const me = useRecoilValue(meState)
+  const [editMode, setEditMode] = useState<boolean>(false)
+  const [isFocused, setIsFocused] = useState(false)
+  const history = useHistory()
+  const [calendarOpen, setCalendarOpen] = useState<boolean>(false)
+  const [selectedIds, setSelectedIds] = useState<number[]>([])
+  const [selectedATL, setSelectedATL] = useState<number[]>([])
+  const [selectedLearnerProfile, setSelectedLearnerProfile] = useState<number[]>([])
+  const [useRiskAssessment, setUseRiskAssessment] = useState<boolean | undefined>(data.cas?.riskAssessment !== null)
+  const [type, setType] = useState<tabType>('activity')
+  const handleGoBack = useHandleGoBack('/teacher/project')
   const [alertMessage, setAlertMessage] = useState<{ text: string; action?: () => void; description?: string } | null>(
     null,
-  );
+  )
 
-  const { data: riskAssessment } = useInterviewGetByStudentId(data.leader?.id || 0, 'CAS_RISK_ASSESSMENT');
+  const { data: riskAssessment } = useInterviewGetByStudentId(data.leader?.id || 0, 'CAS_RISK_ASSESSMENT')
 
   const mapLearningOutcomeToIds = (learningOutcome: ResponseIBCasDtoLearningOutcome): number[] => {
     const mapping = [
@@ -69,12 +69,12 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
       { key: 'teamworkBenefits', id: 5 },
       { key: 'globalIssues', id: 6 },
       { key: 'ethicalChoices', id: 7 },
-    ];
+    ]
 
     return mapping
       .filter(({ key }) => learningOutcome[key as keyof ResponseIBCasDtoLearningOutcome])
-      .map(({ id }) => id);
-  };
+      .map(({ id }) => id)
+  }
 
   const mapLearnerProfileToIds = (learnerProfile: ResponseIBCasDtoLearnerProfile): number[] => {
     const mapping = [
@@ -88,10 +88,10 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
       { key: 'riskTaker', id: 8 },
       { key: 'balanced', id: 9 },
       { key: 'reflective', id: 10 },
-    ];
+    ]
 
-    return mapping.filter(({ key }) => learnerProfile[key as keyof ResponseIBCasDtoLearnerProfile]).map(({ id }) => id);
-  };
+    return mapping.filter(({ key }) => learnerProfile[key as keyof ResponseIBCasDtoLearnerProfile]).map(({ id }) => id)
+  }
 
   const mapATLToIds = (atl: ResponseIBCasDtoAtl): number[] => {
     const mapping = [
@@ -100,26 +100,26 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
       { key: 'selfManagement', id: 3 },
       { key: 'research', id: 4 },
       { key: 'thinking', id: 5 },
-    ];
+    ]
 
-    return mapping.filter(({ key }) => atl[key as keyof ResponseIBCasDtoAtl]).map(({ id }) => id);
-  };
+    return mapping.filter(({ key }) => atl[key as keyof ResponseIBCasDtoAtl]).map(({ id }) => id)
+  }
 
   const [strands, setStrands] = useState<RequestIBCasDtoStrands>({
     creativity: data.cas?.strands.creativity,
     activity: data.cas?.strands.activity,
     service: data.cas?.strands.service,
-  });
+  })
 
   const [date, setDate] = useState<{
-    startDate: Date | undefined;
-    endDate: Date | undefined;
-    cycle: string | undefined;
+    startDate: Date | undefined
+    endDate: Date | undefined
+    cycle: string | undefined
   }>({
     startDate: data.startAt ? new Date(data.startAt) : undefined,
     endDate: data.endAt ? new Date(data.endAt) : undefined,
     cycle: data.activityFrequency,
-  });
+  })
   const {
     control,
     handleSubmit,
@@ -128,7 +128,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
     formState: { errors },
   } = useForm<RequestIBDto>({
     defaultValues: data,
-  });
+  })
 
   const requiredFields = watch([
     'title',
@@ -139,9 +139,9 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
     'cas.sixWhDescription.how',
     'cas.sixWhDescription.why',
     'cas.goal',
-  ]);
+  ])
 
-  const riskAssessmentRequiredFields = watch('cas.riskAssessment');
+  const riskAssessmentRequiredFields = watch('cas.riskAssessment')
 
   const areAllFieldsFilled =
     requiredFields.every((field) => field && field.trim() !== '') &&
@@ -154,33 +154,33 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
     (!useRiskAssessment ||
       (useRiskAssessment &&
         riskAssessmentRequiredFields &&
-        riskAssessmentRequiredFields.every((field) => field && field.answer && field.answer.trim() !== '')));
+        riskAssessmentRequiredFields.every((field) => field && field.answer && field.answer.trim() !== '')))
 
   const { updateIBProject, isLoading } = useIBUpdate({
     onSuccess: () => {
-      setAlertMessage({ text: `계획서가\n저장되었습니다` });
-      refetch();
+      setAlertMessage({ text: `계획서가\n저장되었습니다` })
+      refetch()
     },
     onError: (error) => {
-      console.error('IB 프로젝트 수정 중 오류 발생:', error);
+      console.error('IB 프로젝트 수정 중 오류 발생:', error)
     },
-  });
+  })
 
   const handleGroupChange = (selectedValues: number[]) => {
-    setSelectedIds(selectedValues);
-  };
+    setSelectedIds(selectedValues)
+  }
 
   const handleChange = (selectedType: tabType) => {
-    setType(selectedType);
-  };
+    setType(selectedType)
+  }
 
   const handleLearnerProfileChange = (selectedValues: number[]) => {
-    setSelectedLearnerProfile(selectedValues);
-  };
+    setSelectedLearnerProfile(selectedValues)
+  }
 
   const handleATLChange = (selectedValues: number[]) => {
-    setSelectedATL(selectedValues);
-  };
+    setSelectedATL(selectedValues)
+  }
 
   const onSubmit = (formData: RequestIBDto) => {
     const learningOutcome: RequestIBCasDtoLearningOutcome = {
@@ -191,7 +191,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
       teamworkBenefits: selectedIds.includes(5),
       globalIssues: selectedIds.includes(6),
       ethicalChoices: selectedIds.includes(7),
-    };
+    }
 
     const learnerProfile: RequestIBCasDtoLearnerProfile = {
       inquirer: selectedLearnerProfile.includes(1),
@@ -204,7 +204,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
       riskTaker: selectedLearnerProfile.includes(8),
       balanced: selectedLearnerProfile.includes(9),
       reflective: selectedLearnerProfile.includes(10),
-    };
+    }
 
     const atl: RequestIBCasDtoAtl = {
       communication: selectedATL.includes(1),
@@ -212,13 +212,13 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
       selfManagement: selectedATL.includes(3),
       research: selectedATL.includes(4),
       thinking: selectedATL.includes(5),
-    };
+    }
 
     const riskAssessmentData =
       riskAssessment?.[0].commonQuestion?.map((item, index) => ({
         question: item.question,
         answer: formData.cas?.riskAssessment?.[index].answer,
-      })) || [];
+      })) || []
 
     const requestData: RequestIBUpdateDto = {
       title: formData.title,
@@ -234,13 +234,13 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
         strands,
         riskAssessment: useRiskAssessment ? riskAssessmentData : null,
       },
-    };
-    updateIBProject({ id: data.id, data: requestData });
-    setEditMode(!editMode);
-  };
+    }
+    updateIBProject({ id: data.id, data: requestData })
+    setEditMode(!editMode)
+  }
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleFocus = () => setIsFocused(true)
+  const handleBlur = () => setIsFocused(false)
 
   useEffect(() => {
     if (!editMode) {
@@ -248,26 +248,26 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
         creativity: data.cas?.strands.creativity || 0,
         activity: data.cas?.strands.activity || 0,
         service: data.cas?.strands.service || 0,
-      });
+      })
 
       setDate({
         startDate: data.startAt ? new Date(data.startAt) : undefined,
         endDate: data.endAt ? new Date(data.endAt) : undefined,
         cycle: data.activityFrequency || undefined,
-      });
+      })
 
       if (data.cas?.learningOutcome) {
-        setSelectedIds(mapLearningOutcomeToIds(data.cas.learningOutcome));
+        setSelectedIds(mapLearningOutcomeToIds(data.cas.learningOutcome))
       }
       if (data.cas?.learnerProfile) {
-        setSelectedLearnerProfile(mapLearnerProfileToIds(data.cas.learnerProfile));
+        setSelectedLearnerProfile(mapLearnerProfileToIds(data.cas.learnerProfile))
       }
       if (data.cas?.atl) {
-        setSelectedATL(mapATLToIds(data.cas.atl));
+        setSelectedATL(mapATLToIds(data.cas.atl))
       }
-      reset(data);
+      reset(data)
     }
-  }, [editMode, data]);
+  }, [editMode, data])
 
   // useEffect(() => {
   //   if (data.cas?.learningOutcome) {
@@ -288,14 +288,14 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
 
   useEffect(() => {
     if (data.status === 'WAIT_MENTOR' || data.status === 'WAITING_FOR_NEXT_PROPOSAL' || data.status === 'REJECT_PLAN') {
-      setType('activity');
+      setType('activity')
     } else {
-      setType('feedback');
+      setType('feedback')
     }
-  }, []);
+  }, [])
 
   if (me == null) {
-    return <IBBlank />;
+    return <IBBlank />
   }
 
   const getUI = (type: tabType) => {
@@ -310,11 +310,11 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
               useTextarea={data?.status !== 'COMPLETE'}
             />
           </div>
-        );
+        )
       case 'activity':
-        return <StudentActivityStatus data={data} mentor={data.mentor?.name} />;
+        return <StudentActivityStatus data={data} mentor={data.mentor?.name} />
     }
-  };
+  }
 
   return (
     <div className="flex flex-grow flex-col">
@@ -341,7 +341,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     </Typography>
                     <div className="relative">
                       <div
-                        className={`flex h-12 items-center gap-2 rounded-lg border border-primary-gray-200 px-4 py-[9px] focus:outline-none focus:ring-0 ${
+                        className={`border-primary-gray-200 flex h-12 items-center gap-2 rounded-lg border px-4 py-[9px] focus:ring-0 focus:outline-none ${
                           isFocused && 'border-primary-gray-700'
                         }`}
                         onFocus={handleFocus}
@@ -350,7 +350,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                       >
                         <SVGIcon.Calendar size={20} color="gray700" />
                         <input
-                          className="w-full flex-1 border-none p-0 text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 focus:outline-none focus:ring-0"
+                          className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
                           placeholder="활동 일정 및 주기 선택"
                           value={
                             date.startDate && date.endDate
@@ -369,12 +369,12 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                         />
                       </div>
                       {calendarOpen && (
-                        <div className="absolute left-0 top-full z-50 mt-2">
+                        <div className="absolute top-full left-0 z-50 mt-2">
                           <ScheduleAndPeriodPicker
                             initialDate={date}
                             onSave={(finalDate) => {
-                              setDate(finalDate);
-                              setCalendarOpen(false);
+                              setDate(finalDate)
+                              setCalendarOpen(false)
                             }}
                             onCancel={() => setCalendarOpen(false)}
                           />
@@ -505,7 +505,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                       ))}
                     </Check.Group>
                   </div>
-                  <div className="flex flex-col gap-10 border-t border-t-primary-gray-100 pt-10">
+                  <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t pt-10">
                     <div className="flex flex-col gap-2">
                       <Typography variant="title2" className="font-semibold">
                         활동 설명
@@ -581,7 +581,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                       required
                     />
                   </div>
-                  <div className="flex flex-col border-t border-t-primary-gray-100 pt-10">
+                  <div className="border-t-primary-gray-100 flex flex-col border-t pt-10">
                     <InputField
                       label="개인적인 목표"
                       mode="page"
@@ -594,7 +594,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     />
                   </div>
                   {riskAssessment && (
-                    <div className="flex flex-col border-t border-t-primary-gray-100 pt-10">
+                    <div className="border-t-primary-gray-100 flex flex-col border-t pt-10">
                       <div className="flex flex-col gap-8">
                         <div className="flex flex-col gap-2">
                           <Typography variant="title3" className="font-semibold">
@@ -657,11 +657,11 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                   </Typography>
                   <div className="relative">
                     <div
-                      className={`flex h-12 items-center gap-2 rounded-lg border border-primary-gray-200 px-4 py-[9px] focus:outline-none focus:ring-0`}
+                      className={`border-primary-gray-200 flex h-12 items-center gap-2 rounded-lg border px-4 py-[9px] focus:ring-0 focus:outline-none`}
                     >
                       <SVGIcon.Calendar size={20} color="gray700" />
                       <input
-                        className="w-full flex-1 border-none p-0 text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 focus:outline-none focus:ring-0"
+                        className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
                         readOnly
                         placeholder="활동 일정 및 주기 선택"
                         value={
@@ -695,8 +695,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <div
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.creativity && data.cas.strands.creativity > 0
-                          ? 'border border-primary-orange-100 bg-primary-orange-50'
-                          : 'border border-primary-gray-100'
+                          ? 'border-primary-orange-100 bg-primary-orange-50 border'
+                          : 'border-primary-gray-100 border'
                       } p-4`}
                     >
                       <SolidSVGIcon.C size={20} color="orange800" />
@@ -712,8 +712,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <div
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.activity && data.cas.strands.activity > 0
-                          ? 'border border-primary-blue-100 bg-primary-blue-50'
-                          : 'border border-primary-gray-100'
+                          ? 'border-primary-blue-100 bg-primary-blue-50 border'
+                          : 'border-primary-gray-100 border'
                       } p-4`}
                     >
                       <SolidSVGIcon.A size={20} color="orange800" />
@@ -729,8 +729,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <div
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.service && data.cas.strands.service > 0
-                          ? 'border border-primary-green-100 bg-primary-green-50'
-                          : 'border border-primary-gray-100'
+                          ? 'border-primary-green-100 bg-primary-green-50 border'
+                          : 'border-primary-gray-100 border'
                       } p-4`}
                     >
                       <SolidSVGIcon.S size={20} color="orange800" />
@@ -804,7 +804,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     ))}
                   </Check.Group>
                 </div>
-                <div className="flex flex-col gap-10 border-t border-t-primary-gray-100 pt-10">
+                <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t pt-10">
                   <div className="flex flex-col gap-2">
                     <Typography variant="title2" className="font-semibold">
                       활동 설명
@@ -817,8 +817,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <Typography variant="title2" className="font-semibold">
                       누가
                     </Typography>
-                    <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                      <Typography variant="body2" className="font-medium text-primary-gray-700">
+                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
                         {data.cas?.sixWhDescription.who || '-'}
                       </Typography>
                     </div>
@@ -827,8 +827,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <Typography variant="title2" className="font-semibold">
                       언제
                     </Typography>
-                    <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                      <Typography variant="body2" className="font-medium text-primary-gray-700">
+                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
                         {data.cas?.sixWhDescription.when || '-'}
                       </Typography>
                     </div>
@@ -837,8 +837,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <Typography variant="title2" className="font-semibold">
                       어디서
                     </Typography>
-                    <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                      <Typography variant="body2" className="font-medium text-primary-gray-700">
+                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
                         {data.cas?.sixWhDescription.where || '-'}
                       </Typography>
                     </div>
@@ -847,8 +847,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <Typography variant="title2" className="font-semibold">
                       무엇을
                     </Typography>
-                    <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                      <Typography variant="body2" className="font-medium text-primary-gray-700">
+                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
                         {data.cas?.sixWhDescription.what || '-'}
                       </Typography>
                     </div>
@@ -857,8 +857,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <Typography variant="title2" className="font-semibold">
                       어떻게
                     </Typography>
-                    <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                      <Typography variant="body2" className="font-medium text-primary-gray-700">
+                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
                         {data.cas?.sixWhDescription.how || '-'}
                       </Typography>
                     </div>
@@ -867,25 +867,25 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <Typography variant="title2" className="font-semibold">
                       왜
                     </Typography>
-                    <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                      <Typography variant="body2" className="font-medium text-primary-gray-700">
+                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
                         {data.cas?.sixWhDescription.why || '-'}
                       </Typography>
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col gap-4 border-t border-t-primary-gray-100 pt-10">
+                <div className="border-t-primary-gray-100 flex flex-col gap-4 border-t pt-10">
                   <Typography variant="title2" className="font-semibold">
                     개인적인 목표
                   </Typography>
-                  <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white px-4 py-[13px]">
-                    <Typography variant="body2" className="font-medium text-primary-gray-700">
+                  <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white px-4 py-[13px]">
+                    <Typography variant="body2" className="text-primary-gray-700 font-medium">
                       {data.cas?.goal || '-'}
                     </Typography>
                   </div>
                 </div>
                 {useRiskAssessment && (
-                  <div className="flex flex-col gap-10 border-t border-t-primary-gray-100 pt-10">
+                  <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t pt-10">
                     <div className="flex flex-col gap-2">
                       <Typography variant="title2" className="font-semibold">
                         위험평가
@@ -900,8 +900,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                         <Typography variant="title2" className="font-semibold">
                           {`${index + 1}. ${item.question}`}
                         </Typography>
-                        <div className="shrink grow basis-0 rounded-lg border border-primary-gray-200 bg-white p-4">
-                          <Typography variant="body2" className="font-medium text-primary-gray-700">
+                        <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
+                          <Typography variant="body2" className="text-primary-gray-700 font-medium">
                             {item.answer || '-'}
                           </Typography>
                         </div>
@@ -987,13 +987,13 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
           confirmText="확인"
           description={alertMessage.description}
           onConfirm={() => {
-            if (alertMessage.action) alertMessage.action();
-            setAlertMessage(null);
+            if (alertMessage.action) alertMessage.action()
+            setAlertMessage(null)
           }}
         />
       )}
     </div>
-  );
+  )
 }
 
-export default TeacherActivityPlan;
+export default TeacherActivityPlan

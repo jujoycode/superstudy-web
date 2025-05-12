@@ -1,18 +1,18 @@
-import _, { map, max } from 'lodash';
-import { FC, useEffect, useState } from 'react';
-import { useTeacherStudentAssessmentCreate } from 'src/generated/endpoint';
-import { TeacherStudentAssessment } from 'src/generated/model';
-import { SELF_TEST_TYPES } from 'src/pages/student/self-test/self-test.type';
-import { twMerge } from 'tailwind-merge';
-import { Label, Select, Textarea } from '../common';
-import { Button } from '../common/Button';
-import { Icon } from '../common/icons';
-import { TextInput } from '../common/TextInput';
+import _, { map, max } from 'lodash'
+import { FC, useEffect, useState } from 'react'
+import { useTeacherStudentAssessmentCreate } from '@/legacy/generated/endpoint'
+import { TeacherStudentAssessment } from '@/legacy/generated/model'
+import { SELF_TEST_TYPES } from 'src/pages/student/self-test/self-test.type'
+import { twMerge } from 'tailwind-merge'
+import { Label, Select, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Icon } from '@/legacy/components/common/icons'
+import { TextInput } from '@/legacy/components/common/TextInput'
 
 interface TeacherStudentAssessmentUpdateProps {
-  studentId: number;
-  teacherStudentAssessment?: TeacherStudentAssessment;
-  goToView: () => void;
+  studentId: number
+  teacherStudentAssessment?: TeacherStudentAssessment
+  goToView: () => void
 }
 
 export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdateProps> = ({
@@ -20,48 +20,48 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
   teacherStudentAssessment,
   goToView,
 }) => {
-  const [category1, setCategory1] = useState('');
-  const [category2, setCategory2] = useState('');
-  const [category3, setCategory3] = useState('');
-  const [keywords, setKeywords] = useState<Record<number, { keyword: string; reason: string }>>({});
-  const [assessment, setAssessment] = useState<string>('');
+  const [category1, setCategory1] = useState('')
+  const [category2, setCategory2] = useState('')
+  const [category3, setCategory3] = useState('')
+  const [keywords, setKeywords] = useState<Record<number, { keyword: string; reason: string }>>({})
+  const [assessment, setAssessment] = useState<string>('')
 
   const reset = (data: TeacherStudentAssessment) => {
-    setCategory1(data?.category1);
-    setCategory2(data?.category2);
-    setCategory3(data?.category3);
-    setKeywords(data?.keywords);
-    setAssessment(data?.assessment);
-  };
+    setCategory1(data?.category1)
+    setCategory2(data?.category2)
+    setCategory3(data?.category3)
+    setKeywords(data?.keywords)
+    setAssessment(data?.assessment)
+  }
 
   const { mutate: createTeacherStudentAssessment } = useTeacherStudentAssessmentCreate({
     mutation: {
       onSuccess: (data) => {
-        reset(data);
-        goToView();
+        reset(data)
+        goToView()
       },
     },
-  });
+  })
 
   useEffect(() => {
     if (teacherStudentAssessment) {
-      reset(teacherStudentAssessment);
+      reset(teacherStudentAssessment)
     }
-  }, [teacherStudentAssessment]);
+  }, [teacherStudentAssessment])
 
   const category3Data =
     SELF_TEST_TYPES.filter((ct1) => ct1.name === category1)?.[0]?.values?.filter((ct2) => ct2.name === category2)?.[0]
-      ?.values || [];
+      ?.values || []
 
   const keywordDatas: string[] =
     typeof category3Data[0] === 'string'
       ? category3Data
       : category3
-      ? //@ts-ignore
-        category3Data.filter((ct3: any) => ct3.name === category3)?.[0]?.values || []
-      : [];
+        ? //@ts-ignore
+          category3Data.filter((ct3: any) => ct3.name === category3)?.[0]?.values || []
+        : []
 
-  const buttonDisabled = !Object.keys(keywords).length;
+  const buttonDisabled = !Object.keys(keywords).length
 
   return (
     <div className="flex flex-col space-y-4">
@@ -71,8 +71,8 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
           placeholder="선택"
           value={category1}
           onChange={(e) => {
-            setCategory1(e.target.value);
-            setCategory2('');
+            setCategory1(e.target.value)
+            setCategory2('')
           }}
         >
           <option selected hidden value="">
@@ -92,8 +92,8 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
           disabled={!category1}
           value={category2}
           onChange={(e) => {
-            setCategory2(e.target.value);
-            setCategory3('');
+            setCategory2(e.target.value)
+            setCategory3('')
           }}
         >
           <option selected hidden value="">
@@ -115,7 +115,7 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
             disabled={!category2}
             value={category3}
             onChange={(e) => {
-              setCategory3(e.target.value);
+              setCategory3(e.target.value)
             }}
           >
             <option selected hidden value="">
@@ -138,45 +138,45 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
           <Label.Text className="text-16">해당 학생을 나타내는 특성단어를 선택해주세요.</Label.Text>
           <div className="mt-2">
             {keywordDatas.map((el) => {
-              const selected = Object.values(keywords).some(({ keyword, reason }) => el === keyword);
+              const selected = Object.values(keywords).some(({ keyword, reason }) => el === keyword)
               return (
                 <div
                   className={twMerge(
-                    'mb-2 mr-2 inline-block cursor-pointer rounded-full border border-gray-600 px-4 py-2',
+                    'mr-2 mb-2 inline-block cursor-pointer rounded-full border border-gray-600 px-4 py-2',
                     selected && 'border-brand-1 bg-light_orange text-brand-1',
                   )}
                   onClick={() => {
                     if (Object.keys(keywords).length >= 5) {
-                      alert('단어는 최대 5개 입력할 수 있습니다.');
-                      return;
+                      alert('단어는 최대 5개 입력할 수 있습니다.')
+                      return
                     }
                     if (Object.values(keywords).some(({ keyword }) => keyword === '')) {
-                      alert('추가한 단어를 먼저 입력해주세요.');
-                      return;
+                      alert('추가한 단어를 먼저 입력해주세요.')
+                      return
                     }
                     if (selected) {
-                      setKeywords(_.omitBy(keywords, ({ keyword }) => keyword === el));
+                      setKeywords(_.omitBy(keywords, ({ keyword }) => keyword === el))
                     } else {
-                      const keys = map(Object.keys(keywords), (el) => Number(el));
-                      const key: number = (max(keys) || 0) + 1;
+                      const keys = map(Object.keys(keywords), (el) => Number(el))
+                      const key: number = (max(keys) || 0) + 1
                       setKeywords({
                         ...keywords,
                         [key]: { keyword: el, reason: '' },
-                      });
+                      })
                     }
                   }}
                   key={el}
                 >
                   {el}
                 </div>
-              );
+              )
             })}
           </div>
         </Label.col>
       )}
       <Label.col>
         <Label.Text children="선택단어/근거 (단어는 직접 수정할 수 있습니다)" />
-        <div className="flex flex-col space-y-2 ">
+        <div className="flex flex-col space-y-2">
           {Object.entries(keywords)
             .sort(([id1], [id2]) => Number(id1) - Number(id2))
             .map(([id, { keyword, reason }]) => (
@@ -185,15 +185,15 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
                   <TextInput
                     value={keyword}
                     onChange={(e) => {
-                      setKeywords({ ...keywords, [id]: { keyword: e.target.value, reason } });
+                      setKeywords({ ...keywords, [id]: { keyword: e.target.value, reason } })
                     }}
                   />
                   <Button.lg
                     className="bg-red-600 text-white"
                     onClick={() => {
-                      const _keywords = structuredClone(keywords);
-                      delete _keywords[Number(id)];
-                      setKeywords(_keywords);
+                      const _keywords = structuredClone(keywords)
+                      delete _keywords[Number(id)]
+                      setKeywords(_keywords)
                     }}
                   >
                     삭제
@@ -205,7 +205,7 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
                   placeholder="특성단어를 선택한 근거를 작성해주세요."
                   value={reason}
                   onChange={(e) => {
-                    setKeywords({ ...keywords, [id]: { keyword, reason: e.target.value } });
+                    setKeywords({ ...keywords, [id]: { keyword, reason: e.target.value } })
                   }}
                 />
               </div>
@@ -214,16 +214,16 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
             className="flex cursor-pointer items-center justify-center space-x-2 rounded-lg border border-gray-600 bg-slate-50 py-2 text-gray-600"
             onClick={() => {
               if (Object.keys(keywords).length >= 5) {
-                alert('단어는 최대 5개 입력할 수 있습니다.');
-                return;
+                alert('단어는 최대 5개 입력할 수 있습니다.')
+                return
               }
               if (Object.values(keywords).some(({ keyword }) => keyword === '')) {
-                alert('추가한 단어를 먼저 입력해주세요.');
-                return;
+                alert('추가한 단어를 먼저 입력해주세요.')
+                return
               }
-              const keys = map(Object.keys(keywords), (el) => Number(el));
-              const key: number = (max(keys) || 0) + 1;
-              setKeywords({ ...keywords, [key]: { keyword: '', reason: '' } });
+              const keys = map(Object.keys(keywords), (el) => Number(el))
+              const key: number = (max(keys) || 0) + 1
+              setKeywords({ ...keywords, [key]: { keyword: '', reason: '' } })
             }}
           >
             <div> 단어 추가 </div>
@@ -244,7 +244,7 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
           children="취소하기"
           className="bg-brand-1 text-white disabled:bg-gray-300 disabled:text-gray-600"
           onClick={() => {
-            goToView();
+            goToView()
           }}
         />
         <Button.lg
@@ -261,10 +261,10 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
                 year: new Date().getFullYear().toString(),
                 studentId,
               },
-            });
+            })
           }}
         />
       </div>
     </div>
-  );
-};
+  )
+}

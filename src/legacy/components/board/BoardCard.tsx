@@ -1,19 +1,19 @@
-import { useHistory, useLocation } from 'react-router-dom';
-import { Board } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { getNickName } from 'src/util/status';
-import { Badge } from '../common';
-import { Time } from '../common/Time';
+import { useHistory, useLocation } from 'react-router-dom'
+import { Board } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { getNickName } from '@/legacy/util/status'
+import { Badge } from '@/legacy/components/common'
+import { Time } from '@/legacy/components/common/Time'
 
 interface BoardCardProps {
-  board: Board;
-  isNew?: boolean;
+  board: Board
+  isNew?: boolean
 }
 
 export function BoardCard({ board, isNew }: BoardCardProps) {
-  const { push } = useHistory();
-  const { pathname, search } = useLocation();
-  const { t } = useLanguage();
+  const { push } = useHistory()
+  const { pathname, search } = useLocation()
+  const { t } = useLanguage()
 
   return (
     <>
@@ -29,7 +29,7 @@ export function BoardCard({ board, isNew }: BoardCardProps) {
             <div className="space-x-2">
               <Badge
                 children={t(`${board.category}`) || t('class_bulletin_board')}
-                className="rounded-md bg-brand-1 text-brand-5"
+                className="bg-brand-1 text-brand-5 rounded-md"
               />
               {(board.toStudent || board.toParent) && (
                 <Badge className="rounded-md bg-purple-100 text-purple-700">
@@ -41,7 +41,7 @@ export function BoardCard({ board, isNew }: BoardCardProps) {
           </div>
 
           <div className="flex items-center justify-between space-x-2">
-            <div className="mt-2 whitespace-pre-line break-all text-lg font-semibold">{board.title}</div>
+            <div className="mt-2 text-lg font-semibold break-all whitespace-pre-line">{board.title}</div>
             <div className="min-w-max text-sm text-gray-500">
               {board.writer?.name}
               {getNickName(board.writer?.nickName)}
@@ -56,7 +56,7 @@ export function BoardCard({ board, isNew }: BoardCardProps) {
               <div className="flex space-x-2">
                 <Badge
                   children={t(`${board.category}`) || t('class_bulletin_board')}
-                  className="rounded-md bg-brand-1 text-brand-5"
+                  className="bg-brand-1 text-brand-5 rounded-md"
                 />
                 {(board.toStudent || board.toParent) && (
                   <Badge className="rounded-md bg-purple-100 text-purple-700">
@@ -65,7 +65,7 @@ export function BoardCard({ board, isNew }: BoardCardProps) {
                 )}
               </div>
             </div>
-            <div className="text-lg font-bold text-grey-1">
+            <div className="text-grey-1 text-lg font-bold">
               {board.title}{' '}
               {isNew && (
                 <small className="inline-block h-6 w-6 rounded-full bg-red-500 text-center text-xs leading-6 text-white">
@@ -82,5 +82,5 @@ export function BoardCard({ board, isNew }: BoardCardProps) {
       </div>
       <div className="h-0.5 w-full bg-gray-100"></div>
     </>
-  );
+  )
 }

@@ -1,42 +1,42 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import SvgUser from 'src/assets/svg/user.svg';
-import { MessageBox } from 'src/components/chat/MessageBox';
-import { Section } from 'src/components/common';
-import { Constants } from 'src/constants';
-import { useTeacherChatRoomList } from 'src/container/teacher-chat-room-list';
-import { useDashboardGetDashBoardData } from 'src/generated/endpoint';
-import { ResponseChatroomInfoDto, ResponseDashboardDto } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { newMsgCntState } from 'src/store';
-import { SearchInput } from '../common/SearchInput';
-import { Icon } from '../common/icons';
+import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
+import SvgUser from 'src/assets/svg/user.svg'
+import { MessageBox } from 'src/components/chat/MessageBox'
+import { Section } from '@/legacy/components/common'
+import { Constants } from '@/legacy/constants'
+import { useTeacherChatRoomList } from '@/legacy/container/teacher-chat-room-list'
+import { useDashboardGetDashBoardData } from '@/legacy/generated/endpoint'
+import { ResponseChatroomInfoDto, ResponseDashboardDto } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { newMsgCntState } from '@/stores'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Icon } from '@/legacy/components/common/icons'
 
 interface ChatRoomListProps {}
 
 export function ChatRoomList({}: ChatRoomListProps) {
-  const { chatRooms } = useTeacherChatRoomList();
-  const { t } = useLanguage();
+  const { chatRooms } = useTeacherChatRoomList()
+  const { t } = useLanguage()
 
-  const setNewMsgCnt = useSetRecoilState(newMsgCntState);
+  const setNewMsgCnt = useSetRecoilState(newMsgCntState)
 
-  const [_name, set_Name] = useState('');
+  const [_name, set_Name] = useState('')
 
-  let userType = '';
-  const { pathname } = useLocation();
+  let userType = ''
+  const { pathname } = useLocation()
 
   if (pathname?.split('/').length > 2) {
-    userType = pathname?.split('/')[1];
+    userType = pathname?.split('/')[1]
   }
 
   useDashboardGetDashBoardData<ResponseDashboardDto>({
     query: {
       onSuccess: (res) => {
-        setNewMsgCnt(res?.unreadChatMessageCount || 0);
+        setNewMsgCnt(res?.unreadChatMessageCount || 0)
       },
     },
-  });
+  })
 
   return (
     <div className="h-screen-16">
@@ -84,12 +84,12 @@ export function ChatRoomList({}: ChatRoomListProps) {
                   <div className="flex cursor-pointer items-center">
                     <div className="relative">
                       <img
-                        className="flex-2 mx-auto mr-6 h-15 w-15 flex-shrink-0 items-start rounded-xl bg-gray-100"
+                        className="mx-auto mr-6 h-15 w-15 flex-2 flex-shrink-0 items-start rounded-xl bg-gray-100"
                         src={`${Constants.imageUrl}${cr.roomImage}`}
                         alt=""
                         onError={({ currentTarget }) => {
-                          currentTarget.onerror = null; // prevents looping
-                          currentTarget.src = SvgUser;
+                          currentTarget.onerror = null // prevents looping
+                          currentTarget.src = SvgUser
                           //currentTarget.className = 'w-full ';
                         }}
                       />
@@ -103,5 +103,5 @@ export function ChatRoomList({}: ChatRoomListProps) {
           </div>
         ))}
     </div>
-  );
+  )
 }

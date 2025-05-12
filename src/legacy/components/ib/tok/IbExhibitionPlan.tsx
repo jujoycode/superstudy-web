@@ -1,31 +1,31 @@
-import { PropsWithChildren, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useRecoilValue } from 'recoil';
-import { IBBlank } from 'src/components/common/IBBlank';
-import { useCodeByCategoryName } from 'src/container/category';
-import { useIBCreate } from 'src/container/ib-project';
-import { useThemeQuestionFindAll } from 'src/container/ib-themequestion';
-import { RequestIBDto, RequestIBTokExhibitionPlanDto } from 'src/generated/model';
-import { meState } from 'src/store';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Check } from '../../common/Check';
-import { Input } from '../../common/Input';
-import { Typography } from '../../common/Typography';
-import ColorSVGIcon from '../../icon/ColorSVGIcon';
-import { InputField } from '../InputField';
+import { PropsWithChildren, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useRecoilValue } from 'recoil'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { useCodeByCategoryName } from '@/legacy/container/category'
+import { useIBCreate } from '@/legacy/container/ib-project'
+import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
+import { RequestIBDto, RequestIBTokExhibitionPlanDto } from '@/legacy/generated/model'
+import { meState } from '@/stores'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Check } from '../@/legacy/components/common/Check'
+import { Input } from '../@/legacy/components/common/Input'
+import { Typography } from '../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
+import { InputField } from '../InputField'
 
 interface IbExhibitionProps {
-  modalOpen: boolean;
-  setModalClose?: () => void;
-  size?: 'medium' | 'large';
-  handleBack?: () => void;
-  onSuccess: (action: 'TOK_EXHIBITION', data?: any) => void;
-  ablePropragation?: boolean;
+  modalOpen: boolean
+  setModalClose?: () => void
+  size?: 'medium' | 'large'
+  handleBack?: () => void
+  onSuccess: (action: 'TOK_EXHIBITION', data?: any) => void
+  ablePropragation?: boolean
 }
 
 interface Commetary {
-  targetKey: string;
-  checkedAttributes: string[];
+  targetKey: string
+  checkedAttributes: string[]
 }
 
 export function IbExhibitionPlan({
@@ -35,20 +35,20 @@ export function IbExhibitionPlan({
   onSuccess,
   ablePropragation = false,
 }: PropsWithChildren<IbExhibitionProps>) {
-  const me = useRecoilValue(meState);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [selectedNames, setSelectedNames] = useState<string[]>([]);
+  const me = useRecoilValue(meState)
+  const [selectedIds, setSelectedIds] = useState<number[]>([])
+  const [selectedNames, setSelectedNames] = useState<string[]>([])
   const [checkedAttributes, setCheckedAttributes] = useState<Commetary[]>([
     { targetKey: 'target1', checkedAttributes: [] },
     { targetKey: 'target2', checkedAttributes: [] },
     { targetKey: 'target3', checkedAttributes: [] },
-  ]);
+  ])
   const {
     control,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<RequestIBDto>();
+  } = useForm<RequestIBDto>()
 
   const requiredFields = watch([
     'tokExhibitionPlan.themeQuestion',
@@ -61,12 +61,12 @@ export function IbExhibitionPlan({
     'tokExhibitionPlan.target3',
     'tokExhibitionPlan.conceptualLens3',
     'tokExhibitionPlan.knowledgeFrame3',
-  ]);
-  const areAllFieldsFilled = requiredFields.every((field) => field && field.trim() !== '') && selectedNames.length > 0;
+  ])
+  const areAllFieldsFilled = requiredFields.every((field) => field && field.trim() !== '') && selectedNames.length > 0
 
-  const { data, isLoading: isFetching } = useThemeQuestionFindAll('TOK_EXHIBITION');
-  const { categoryData: knowledgeArea } = useCodeByCategoryName('tokExhibitionPlanKnowledgeArea');
-  const { categoryData: commentary } = useCodeByCategoryName('tokCommentary');
+  const { data, isLoading: isFetching } = useThemeQuestionFindAll('TOK_EXHIBITION')
+  const { categoryData: knowledgeArea } = useCodeByCategoryName('tokExhibitionPlanKnowledgeArea')
+  const { categoryData: commentary } = useCodeByCategoryName('tokCommentary')
 
   const transformedOptions =
     data?.flatMap((item) =>
@@ -75,48 +75,48 @@ export function IbExhibitionPlan({
         value: question,
         text: question,
       })),
-    ) || [];
+    ) || []
 
   const { createIBProject, isLoading } = useIBCreate({
     onSuccess: (data) => {
-      onSuccess('TOK_EXHIBITION', data);
+      onSuccess('TOK_EXHIBITION', data)
     },
     onError: (error) => {
-      console.error('IB 프로젝트 생성 중 오류 발생:', error);
+      console.error('IB 프로젝트 생성 중 오류 발생:', error)
     },
-  });
+  })
 
   const handleGroupChange = (selectedValues: number[]) => {
-    setSelectedIds(selectedValues);
+    setSelectedIds(selectedValues)
     const selectedNames =
-      knowledgeArea?.filter((item) => selectedValues.includes(item.id)).map((item) => item.name) || [];
-    setSelectedNames(selectedNames);
-  };
+      knowledgeArea?.filter((item) => selectedValues.includes(item.id)).map((item) => item.name) || []
+    setSelectedNames(selectedNames)
+  }
 
   const handleCheckChange = (targetKey: string, attribute: string) => {
     setCheckedAttributes((prev) => {
-      const target = prev.find((item) => item.targetKey === targetKey);
-      if (!target) return prev;
+      const target = prev.find((item) => item.targetKey === targetKey)
+      if (!target) return prev
 
-      const isChecked = target.checkedAttributes.includes(attribute);
+      const isChecked = target.checkedAttributes.includes(attribute)
       const updatedAttributes = isChecked
         ? target.checkedAttributes.filter((attr) => attr !== attribute)
-        : [...target.checkedAttributes, attribute];
+        : [...target.checkedAttributes, attribute]
 
       return prev.map((item) =>
         item.targetKey === targetKey ? { ...item, checkedAttributes: updatedAttributes } : item,
-      );
-    });
-  };
+      )
+    })
+  }
 
   const onSubmit = (data: RequestIBDto) => {
     if (!me?.id) {
-      console.error('Leader ID가 없습니다. 로그인 상태를 확인하세요.');
-      return;
+      console.error('Leader ID가 없습니다. 로그인 상태를 확인하세요.')
+      return
     }
 
     if (isLoading) {
-      return;
+      return
     }
 
     const requestData: RequestIBDto = {
@@ -131,36 +131,36 @@ export function IbExhibitionPlan({
         description: data.tokExhibitionPlan?.description || '',
         commentary: checkedAttributes,
       } as RequestIBTokExhibitionPlanDto,
-    };
-    createIBProject(requestData);
-  };
+    }
+    createIBProject(requestData)
+  }
 
-  const target1Value = watch('tokExhibitionPlan.target1');
-  const target2Value = watch('tokExhibitionPlan.target2');
-  const target3Value = watch('tokExhibitionPlan.target3');
-  const themeQuestionValue = watch('tokExhibitionPlan.themeQuestion');
+  const target1Value = watch('tokExhibitionPlan.target1')
+  const target2Value = watch('tokExhibitionPlan.target2')
+  const target3Value = watch('tokExhibitionPlan.target3')
+  const themeQuestionValue = watch('tokExhibitionPlan.themeQuestion')
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black bg-opacity-50 ${
+      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
         }
       }}
     >
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white`}>
         {isLoading && <IBBlank type="section-opacity" />}
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pb-6 pt-8 backdrop-blur-[20px]">
+        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6 backdrop-blur-[20px]">
           <Typography variant="title1">기획안 작성</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
         </div>
 
-        <div className="scroll-box flex max-h-[608px] flex-col overflow-auto pb-8 pt-4">
-          <div className="border-b border-b-primary-gray-100">
+        <div className="scroll-box flex max-h-[608px] flex-col overflow-auto pt-4 pb-8">
+          <div className="border-b-primary-gray-100 border-b">
             <div className="flex flex-col gap-6 px-8 pb-8">
               <InputField
                 label="질문 선택"
@@ -203,7 +203,7 @@ export function IbExhibitionPlan({
               </div>
             </div>
           </div>
-          <div className="border-b border-b-primary-gray-100">
+          <div className="border-b-primary-gray-100 border-b">
             <div className="flex flex-col gap-6 p-8">
               <InputField
                 label="대상"
@@ -233,7 +233,7 @@ export function IbExhibitionPlan({
               />
             </div>
           </div>
-          <div className="border-b border-b-primary-gray-100">
+          <div className="border-b-primary-gray-100 border-b">
             <div className="flex flex-col gap-6 p-8">
               <InputField
                 label="대상"
@@ -291,7 +291,7 @@ export function IbExhibitionPlan({
               required
             />
           </div>
-          <div className="flex flex-col gap-3 border-t border-t-primary-gray-100 px-8 pt-8">
+          <div className="border-t-primary-gray-100 flex flex-col gap-3 border-t px-8 pt-8">
             <header className="flex flex-row items-center justify-between">
               <Typography variant="title3">Commentary 구성</Typography>
               <Typography variant="caption" className="text-primary-gray-500">
@@ -300,7 +300,7 @@ export function IbExhibitionPlan({
             </header>
             <div className="flex w-full flex-col">
               {/* Table Head */}
-              <div className="bottom-1 flex flex-row items-center gap-4 bg-white px-6 py-4 text-15 text-gray-500">
+              <div className="text-15 bottom-1 flex flex-row items-center gap-4 bg-white px-6 py-4 text-gray-500">
                 <div className="min-w-[172px] text-start">세 가지 대상</div>
                 <Input.Basic disabled={true} value={target1Value} size={32} placeholder="대상 1" />
                 <Input.Basic disabled={true} value={target2Value} size={32} placeholder="대상 2" />
@@ -310,7 +310,7 @@ export function IbExhibitionPlan({
               {commentary?.map((item, index) => (
                 <div
                   key={item.id}
-                  className={`flex h-[54px] flex-row items-center gap-4 px-6 text-15 font-medium text-primary-gray-700 ${
+                  className={`text-15 text-primary-gray-700 flex h-[54px] flex-row items-center gap-4 px-6 font-medium ${
                     index % 2 === 0 ? 'bg-primary-gray-50' : 'bg-white'
                   }`}
                 >
@@ -350,7 +350,7 @@ export function IbExhibitionPlan({
 
         <div
           className={
-            'sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-primary-gray-100 bg-white/70 px-8 pb-8 pt-6 backdrop-blur-[20px]'
+            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]'
           }
         >
           <ButtonV2 variant="solid" color="gray100" size={48} onClick={handleBack}>
@@ -371,5 +371,5 @@ export function IbExhibitionPlan({
         </div>
       </div>
     </div>
-  );
+  )
 }

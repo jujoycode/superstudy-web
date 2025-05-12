@@ -1,18 +1,18 @@
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg';
-import { Constants } from 'src/constants';
-import { DocumentObject } from 'src/type/document-object';
-import { getFileNameFromUrl } from 'src/util/file';
-import { Icon } from './common/icons';
+import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg'
+import { Constants } from '@/legacy/constants'
+import { DocumentObject } from '@/legacy/types/document-object'
+import { getFileNameFromUrl } from '@/legacy/util/file'
+import { Icon } from './common/icons'
 
 interface DocumentObjectComponentProps {
-  id: number;
-  documentObjet: DocumentObject;
-  onDeleteClick?: (key: number) => void;
+  id: number
+  documentObjet: DocumentObject
+  onDeleteClick?: (key: number) => void
 }
 
 export function DocumentObjectComponentDel({ id, documentObjet, onDeleteClick }: DocumentObjectComponentProps) {
   if (documentObjet.isDelete) {
-    return null;
+    return null
   }
   return (
     <div className={`relative flex items-center justify-between bg-white`}>
@@ -30,12 +30,12 @@ export function DocumentObjectComponentDel({ id, documentObjet, onDeleteClick }:
               {getFileNameFromUrl(documentObjet.document)}
             </a>
           ) : (
-            <div className="w-full whitespace-pre-wrap break-words text-xs text-neutral-500">
+            <div className="w-full text-xs break-words whitespace-pre-wrap text-neutral-500">
               {documentObjet.document.name}
             </div>
           )}
         </div>
-        <div className="flex min-w-max items-center justify-center bg-white px-2 text-lightpurple-4">
+        <div className="text-lightpurple-4 flex min-w-max items-center justify-center bg-white px-2">
           {onDeleteClick && (
             <div className="z-10 ml-2 block rounded-full text-center text-sm">
               <div
@@ -49,5 +49,5 @@ export function DocumentObjectComponentDel({ id, documentObjet, onDeleteClick }:
         </div>
       </div>
     </div>
-  );
+  )
 }

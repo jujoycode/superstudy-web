@@ -1,16 +1,16 @@
-import { useLocation } from 'react-router';
-import { StudentGroup, StudentNewsletter } from 'src/generated/model';
-import { cn } from 'src/lib/tailwind-merge';
-import { useModals } from 'src/modals/ModalStack';
-import { StudentModal } from 'src/modals/StudentModal';
-import { getNickName } from 'src/util/status';
+import { useLocation } from 'react-router'
+import { StudentGroup, StudentNewsletter } from '@/legacy/generated/model'
+import { cn } from 'src/lib/tailwind-merge'
+import { useModals } from 'src/modals/ModalStack'
+import { StudentModal } from 'src/modals/StudentModal'
+import { getNickName } from '@/legacy/util/status'
 
 interface NewsletterSubmitterItemProps {
-  filter: number;
-  studentGroup: StudentGroup;
-  studentNewsletter?: StudentNewsletter;
-  onClick: () => void;
-  id: string;
+  filter: number
+  studentGroup: StudentGroup
+  studentNewsletter?: StudentNewsletter
+  onClick: () => void
+  id: string
 }
 
 export function NewsletterSubmitterItem({
@@ -20,30 +20,30 @@ export function NewsletterSubmitterItem({
   onClick,
   id,
 }: NewsletterSubmitterItemProps) {
-  const { pathname } = useLocation();
-  const { pushModal } = useModals();
+  const { pathname } = useLocation()
+  const { pushModal } = useModals()
 
   if (filter === 1 && (!studentNewsletter || !studentNewsletter?.isSubmitted)) {
-    return <></>;
+    return <></>
   }
   if (filter === 2 && studentNewsletter && studentNewsletter.isSubmitted) {
-    return <></>;
+    return <></>
   }
 
   return (
-    <div className="inline-block min-w-1/2-2 p-1 text-center">
+    <div className="min-w-1/2-2 inline-block p-1 text-center">
       <div
         className={
           studentNewsletter?.id
             ? pathname.includes(`/teacher/activity/submit/${id}/${studentNewsletter?.id}`)
-              ? 'flex items-center justify-between space-x-2 rounded-md border border-brand-1 bg-light_orange p-2'
+              ? 'border-brand-1 bg-light_orange flex items-center justify-between space-x-2 rounded-md border p-2'
               : 'flex items-center justify-between space-x-2 rounded-md border p-2'
             : 'flex items-center justify-between space-x-2 rounded-md border p-2'
         }
       >
         {studentNewsletter?.isSubmitted ? (
           <div className="flex items-center">
-            <span onClick={onClick} className="cursor-pointer rounded-md bg-brand-1 px-2 py-1 text-sm text-white">
+            <span onClick={onClick} className="bg-brand-1 cursor-pointer rounded-md px-2 py-1 text-sm text-white">
               제출
             </span>
             <div className="ml-2 flex space-x-2">
@@ -76,5 +76,5 @@ export function NewsletterSubmitterItem({
         )}
       </div>
     </div>
-  );
+  )
 }

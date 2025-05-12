@@ -1,27 +1,27 @@
-import { PropsWithChildren, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useIBRRSCreate } from 'src/container/ib-rrs-create';
-import { RequestRRSDto, ResponseRRSDto, UploadFileTypeEnum } from 'src/generated/model';
-import { useFileUpload } from 'src/hooks/useFileUpload';
-import { fileType, useImageAndDocument } from 'src/hooks/useImageAndDocument';
-import { Blank } from '../../common';
-import AlertV2 from '../../common/AlertV2';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Typography } from '../../common/Typography';
-import ColorSVGIcon from '../../icon/ColorSVGIcon';
-import { DocumentCard } from '../DocumentCard';
-import { ImageCard } from '../ImageCard';
-import { InputField } from '../InputField';
+import { PropsWithChildren, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useIBRRSCreate } from '@/legacy/container/ib-rrs-create'
+import { RequestRRSDto, ResponseRRSDto, UploadFileTypeEnum } from '@/legacy/generated/model'
+import { useFileUpload } from '@/legacy/hooks/useFileUpload'
+import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
+import { Blank } from '../@/legacy/components/common'
+import AlertV2 from '../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
+import { DocumentCard } from '../DocumentCard'
+import { ImageCard } from '../ImageCard'
+import { InputField } from '../InputField'
 
 interface IbEeRRSProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  size?: 'medium' | 'large';
-  projectId?: number;
-  RRSData?: ResponseRRSDto;
-  onSuccess: () => void;
-  type: 'create' | 'update';
-  ablePropragation?: boolean;
+  modalOpen: boolean
+  setModalClose: () => void
+  size?: 'medium' | 'large'
+  projectId?: number
+  RRSData?: ResponseRRSDto
+  onSuccess: () => void
+  type: 'create' | 'update'
+  ablePropragation?: boolean
 }
 
 export function IbEeRRS({
@@ -31,86 +31,86 @@ export function IbEeRRS({
   onSuccess,
   ablePropragation = false,
 }: PropsWithChildren<IbEeRRSProps>) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false)
   const { addFiles, imageObjectMap, documentObjectMap, toggleDocumentDelete, toggleImageDelete } = useImageAndDocument(
     {},
-  );
-  const { isUploadLoading, handleUploadFile } = useFileUpload();
+  )
+  const { isUploadLoading, handleUploadFile } = useFileUpload()
   const {
     control,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<RequestRRSDto>();
-  const title = watch('title');
+  } = useForm<RequestRRSDto>()
+  const title = watch('title')
   const { createIBRRS, isLoading } = useIBRRSCreate({
     onSuccess: () => {
-      setModalClose();
-      onSuccess();
+      setModalClose()
+      onSuccess()
     },
     onError: (error) => {
-      console.error('IB 프로젝트 생성 중 오류 발생:', error);
+      console.error('IB 프로젝트 생성 중 오류 발생:', error)
     },
-  });
+  })
 
   const onSubmit = async (data: RequestRRSDto) => {
-    setIsSubmitLoading(true);
+    setIsSubmitLoading(true)
     try {
       const imageFiles = [...imageObjectMap.values()]
         .filter((value) => !value.isDelete && value.image instanceof File)
-        .map((value) => value.image) as File[];
-      const imageFileNames = await handleUploadFile(UploadFileTypeEnum['ib/rrs/images'], imageFiles);
+        .map((value) => value.image) as File[]
+      const imageFileNames = await handleUploadFile(UploadFileTypeEnum['ib/rrs/images'], imageFiles)
       // url image 처리
       const imageUrlNames = [...imageObjectMap.values()]
         .filter((value) => !value.isDelete && typeof value.image === 'string')
-        .map((value) => value.image) as string[];
-      const allImageNames = [...imageUrlNames, ...imageFileNames];
+        .map((value) => value.image) as string[]
+      const allImageNames = [...imageUrlNames, ...imageFileNames]
       // file document 처리
       const documentFiles = [...documentObjectMap.values()]
         .filter((value) => !value.isDelete && value.document instanceof File)
-        .map((value) => value.document) as File[];
-      const documentFileNames = await handleUploadFile(UploadFileTypeEnum['ib/rrs/files'], documentFiles);
+        .map((value) => value.document) as File[]
+      const documentFileNames = await handleUploadFile(UploadFileTypeEnum['ib/rrs/files'], documentFiles)
       const documentUrlNames = [...documentObjectMap.values()]
         .filter((value) => !value.isDelete && typeof value.document === 'string')
-        .map((value) => value.document) as string[];
+        .map((value) => value.document) as string[]
       const _data = {
         ...data,
         files: documentFileNames,
         images: imageFileNames,
-      };
+      }
       if (projectId !== undefined) {
-        createIBRRS({ ibId: projectId, data: _data });
+        createIBRRS({ ibId: projectId, data: _data })
       }
     } finally {
-      setIsSubmitLoading(false);
+      setIsSubmitLoading(false)
     }
-  };
+  }
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black bg-opacity-50 ${
+      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          const target = e.target as HTMLElement;
+          const target = e.target as HTMLElement
           if (!target.closest('.allow-click')) {
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault()
+            e.stopPropagation()
           }
         }
       }}
     >
       {isSubmitLoading && <Blank />}
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white px-8`}>
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pb-6 pt-8 backdrop-blur-[20px]">
+        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6 backdrop-blur-[20px]">
           <Typography variant="title1">RRS 작성</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
         </div>
 
         <form>
-          <div className="scroll-box flex max-h-[608px] flex-col gap-3 overflow-auto pb-8 pt-4">
+          <div className="scroll-box flex max-h-[608px] flex-col gap-3 overflow-auto pt-4 pb-8">
             <InputField name="title" control={control} placeholder="제목을 입력해주세요" />
             <InputField
               name="content"
@@ -136,9 +136,9 @@ export function IbEeRRS({
             )}
           </div>
 
-          <div className="sticky bottom-0 flex h-[104px] justify-between border-t border-t-primary-gray-100 bg-white/70 pb-8 pt-6 backdrop-blur-[20px]">
+          <div className="border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-between border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]">
             <label htmlFor="file-upload" className="allow-click cursor-pointer">
-              <div className="flex h-12 min-w-[80px] items-center rounded-[8px] border border-primary-gray-400 px-4 py-3 text-[16px] font-semibold text-primary-gray-700 active:border-primary-gray-100 active:bg-primary-gray-400 disabled:cursor-not-allowed disabled:border-primary-gray-100 disabled:bg-primary-gray-200 disabled:text-primary-gray-400">
+              <div className="border-primary-gray-400 text-primary-gray-700 active:border-primary-gray-100 active:bg-primary-gray-400 disabled:border-primary-gray-100 disabled:bg-primary-gray-200 disabled:text-primary-gray-400 flex h-12 min-w-[80px] items-center rounded-[8px] border px-4 py-3 text-[16px] font-semibold disabled:cursor-not-allowed">
                 파일 첨부하기
               </div>
               <input
@@ -148,10 +148,10 @@ export function IbEeRRS({
                 name="file-upload"
                 className="hidden"
                 onChange={(e) => {
-                  e.preventDefault();
-                  const files = e.target.files;
-                  if (!files) return;
-                  addFiles(files, [fileType.ANY]);
+                  e.preventDefault()
+                  const files = e.target.files
+                  if (!files) return
+                  addFiles(files, [fileType.ANY])
                 }}
               />
             </label>
@@ -172,5 +172,5 @@ export function IbEeRRS({
         <AlertV2 confirmText="확인" message={`제안서가 \n저장되었습니다`} onConfirm={() => setIsOpen(!isOpen)} />
       )}
     </div>
-  );
+  )
 }

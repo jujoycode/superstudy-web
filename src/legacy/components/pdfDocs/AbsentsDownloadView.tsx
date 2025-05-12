@@ -1,89 +1,95 @@
-import * as loadImage from 'blueimp-load-image';
-import imageCompression from 'browser-image-compression';
-import { toJpeg } from 'html-to-image';
-import { t } from 'i18next';
-import { jsPDF } from 'jspdf';
-import { filter, find, groupBy, map } from 'lodash';
-import { useRef, useState } from 'react';
-import { Constants } from 'src/constants';
-import { UserContainer } from 'src/container/user';
-import { Absent } from 'src/generated/model';
-import { AbsentEvidenceType, AbsentPaperType } from 'src/types';
-import { extractReactData, getArrayBufferByFile, getBlobByCanvas, getImageMeta, getPdfImageSize } from 'src/util/pdf';
-import { Select } from '../common';
-import { Button } from '../common/Button';
-import { AbsentPdf } from './AbsentPdf';
+import * as loadImage from 'blueimp-load-image'
+import imageCompression from 'browser-image-compression'
+import { toJpeg } from 'html-to-image'
+import { t } from 'i18next'
+import { jsPDF } from 'jspdf'
+import { filter, find, groupBy, map } from 'lodash'
+import { useRef, useState } from 'react'
+import { Constants } from '@/legacy/constants'
+import { UserContainer } from '@/legacy/container/user'
+import { Absent } from '@/legacy/generated/model'
+import { AbsentEvidenceType, AbsentPaperType } from '@/legacy/types'
+import {
+  extractReactData,
+  getArrayBufferByFile,
+  getBlobByCanvas,
+  getImageMeta,
+  getPdfImageSize,
+} from '@/legacy/util/pdf'
+import { Select } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { AbsentPdf } from './AbsentPdf'
 
 interface AbsentsDownloadViewProps {
-  absents?: Absent[];
-  fileName: string;
-  setCsvData: (b: boolean) => void;
-  isCsvData: boolean;
+  absents?: Absent[]
+  fileName: string
+  setCsvData: (b: boolean) => void
+  isCsvData: boolean
 }
 
 interface ReactPdfData {
-  id: number;
-  orderBy: number;
-  data: string | Uint8Array;
-  type: AbsentPaperType;
-  width?: number;
-  height?: number;
-  evidenceType: AbsentEvidenceType;
-  orientation?: number;
+  id: number
+  orderBy: number
+  data: string | Uint8Array
+  type: AbsentPaperType
+  width?: number
+  height?: number
+  evidenceType: AbsentEvidenceType
+  orientation?: number
 }
 
 export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvData }: AbsentsDownloadViewProps) {
-  const [open, setOpen] = useState(false);
-  const { me } = UserContainer.useContext();
-  const docRef = useRef<jsPDF>();
-  const [withEvidence, setWithEvidence] = useState(false);
-  const [isExtractData, setIsExtractData] = useState(false);
-  const [extractDataCount, setExtractDataCount] = useState(-1);
-  const [isProcessPdf, setIsProcessPdf] = useState(false);
-  const [prodcessPdfCount, setIsProcessPdfCount] = useState(0);
-  const reactPdfDatas = useRef<ReactPdfData[]>([]);
+  const [open, setOpen] = useState(false)
+  const { me } = UserContainer.useContext()
+  const docRef = useRef<jsPDF>()
+  const [withEvidence, setWithEvidence] = useState(false)
+  const [isExtractData, setIsExtractData] = useState(false)
+  const [extractDataCount, setExtractDataCount] = useState(-1)
+  const [isProcessPdf, setIsProcessPdf] = useState(false)
+  const [prodcessPdfCount, setIsProcessPdfCount] = useState(0)
+  const reactPdfDatas = useRef<ReactPdfData[]>([])
 
-  const [pdfQuality, setPdfQuality] = useState(0.8);
+  const [pdfQuality, setPdfQuality] = useState(0.8)
 
   const _initState = () => {
-    setIsExtractData(false);
-    setExtractDataCount(-1);
-    setIsProcessPdf(false);
-    setIsProcessPdfCount(0);
-  };
+    setIsExtractData(false)
+    setExtractDataCount(-1)
+    setIsProcessPdf(false)
+    setIsProcessPdfCount(0)
+  }
 
   const _addImageToPdf = async (imageData: ReactPdfData) => {
     if (!docRef.current || !imageData.width || !imageData.height) {
-      return null;
+      return null
     }
-    const { width: imageWidth, height: imageHeight, data } = imageData;
-    const [width, height] = getPdfImageSize(imageWidth, imageHeight);
+    const { width: imageWidth, height: imageHeight, data } = imageData
+    const [width, height] = getPdfImageSize(imageWidth, imageHeight)
     //console.log('_addImageToPdf', 'width', width, 'height', height);
     try {
-      docRef.current.addImage(data, 'JPEG', 0, 0, width, height, undefined, 'FAST');
-      docRef.current.addPage();
+      docRef.current.addImage(data, 'JPEG', 0, 0, width, height, undefined, 'FAST')
+      docRef.current.addPage()
     } catch (e) {
-      console.log('_addImageToPdf error  : ', e);
-      console.log('_addImageToPdf data  : ', data);
-      console.log('_addImageToPdf imageData  : ', imageData);
+      console.log('_addImageToPdf error  : ', e)
+      console.log('_addImageToPdf data  : ', data)
+      console.log('_addImageToPdf imageData  : ', imageData)
     }
-  };
+  }
 
   const addReactToPdf = async (reactData: ReactPdfData) => {
     if (!docRef.current) {
-      return null;
+      return null
     }
     try {
-      docRef.current.addImage(reactData.data, 'JPEG', -3, 0, 210, 297, undefined, 'FAST');
-      docRef.current.addPage();
+      docRef.current.addImage(reactData.data, 'JPEG', -3, 0, 210, 297, undefined, 'FAST')
+      docRef.current.addPage()
     } catch (e) {
-      console.log('addReactToPdf error  : ', e);
-      console.log('addReactToPdf error reactData : ', reactData);
+      console.log('addReactToPdf error  : ', e)
+      console.log('addReactToPdf error reactData : ', reactData)
     }
-  };
+  }
 
   const _extractReactData = async (orderBy: number, ref: any, type: AbsentPaperType, absent: Absent) => {
-    const imgData = await extractReactData(ref);
+    const imgData = await extractReactData(ref)
     if (imgData) {
       reactPdfDatas.current.push({
         id: absent.id,
@@ -91,38 +97,38 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
         data: imgData,
         type,
         evidenceType: absent.evidenceType as AbsentEvidenceType,
-      });
-      console.log('reactPdfDatas', reactPdfDatas.current.length, '_extractReactData');
+      })
+      console.log('reactPdfDatas', reactPdfDatas.current.length, '_extractReactData')
     }
-    return undefined;
-  };
+    return undefined
+  }
 
   const extractImageData = async (orderBy: number, absent: Absent, type: AbsentPaperType) => {
-    const { id, evidenceFiles, evidenceFiles2 } = absent;
+    const { id, evidenceFiles, evidenceFiles2 } = absent
 
     if ((!evidenceFiles?.length && !evidenceFiles2?.length) || !id) {
-      return null;
+      return null
     }
 
     for (const ef of evidenceFiles) {
       if (ef.split('.').pop()?.toLowerCase() !== 'pdf') {
         try {
-          const evidenceFile = `${Constants.imageUrl}${ef}`;
+          const evidenceFile = `${Constants.imageUrl}${ef}`
           //@ts-ignore
           const result = await loadImage(evidenceFile, {
             meta: true,
             orientation: true,
             canvas: true,
-          });
+          })
           //console.log('evidenceFile : ', evidenceFile);
           //console.log('result : ', result);
-          const blob = await getBlobByCanvas(result.image);
-          const file = new File([blob], 'temp_file.jpeg', { type: blob.type });
-          const compressedFile = await imageCompression(file, { initialQuality: pdfQuality });
-          const arrayBuffer = await getArrayBufferByFile(compressedFile);
-          const unit8Array = new Uint8Array(arrayBuffer);
-          const orientation = result.exif?.get('Orientation') || 1;
-          const isChangeWidthHeight = orientation === 5 || orientation === 6 || orientation === 7 || orientation === 8;
+          const blob = await getBlobByCanvas(result.image)
+          const file = new File([blob], 'temp_file.jpeg', { type: blob.type })
+          const compressedFile = await imageCompression(file, { initialQuality: pdfQuality })
+          const arrayBuffer = await getArrayBufferByFile(compressedFile)
+          const unit8Array = new Uint8Array(arrayBuffer)
+          const orientation = result.exif?.get('Orientation') || 1
+          const isChangeWidthHeight = orientation === 5 || orientation === 6 || orientation === 7 || orientation === 8
           //console.log('orientation : ', orientation);
           //console.log('isChangeWidthHeight : ', isChangeWidthHeight);
           reactPdfDatas.current.push({
@@ -134,11 +140,11 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
             height: isChangeWidthHeight ? result.originalWidth : result.originalHeight,
             evidenceType: absent.evidenceType as AbsentEvidenceType,
             orientation,
-          });
-          console.log('reactPdfDatas', reactPdfDatas.current.length, 'extractImageData');
+          })
+          console.log('reactPdfDatas', reactPdfDatas.current.length, 'extractImageData')
         } catch (e) {
-          console.log('extractImageData error  : ', e);
-          console.log('extractImageData error evidenceFile : ', ef);
+          console.log('extractImageData error  : ', e)
+          console.log('extractImageData error evidenceFile : ', ef)
         } finally {
         }
       }
@@ -146,22 +152,22 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
     for (const ef of evidenceFiles2) {
       if (ef.split('.').pop()?.toLowerCase() !== 'pdf') {
         try {
-          const evidenceFile = `${Constants.imageUrl}${ef}`;
+          const evidenceFile = `${Constants.imageUrl}${ef}`
           //@ts-ignore
           const result = await loadImage(evidenceFile, {
             meta: true,
             orientation: true,
             canvas: true,
-          });
+          })
           //console.log('evidenceFile : ', evidenceFile);
           //console.log('result : ', result);
-          const blob = await getBlobByCanvas(result.image);
-          const file = new File([blob], 'temp_file.jpeg', { type: blob.type });
-          const compressedFile = await imageCompression(file, { initialQuality: pdfQuality });
-          const arrayBuffer = await getArrayBufferByFile(compressedFile);
-          const unit8Array = new Uint8Array(arrayBuffer);
-          const orientation = result.exif?.get('Orientation') || 1;
-          const isChangeWidthHeight = orientation === 5 || orientation === 6 || orientation === 7 || orientation === 8;
+          const blob = await getBlobByCanvas(result.image)
+          const file = new File([blob], 'temp_file.jpeg', { type: blob.type })
+          const compressedFile = await imageCompression(file, { initialQuality: pdfQuality })
+          const arrayBuffer = await getArrayBufferByFile(compressedFile)
+          const unit8Array = new Uint8Array(arrayBuffer)
+          const orientation = result.exif?.get('Orientation') || 1
+          const isChangeWidthHeight = orientation === 5 || orientation === 6 || orientation === 7 || orientation === 8
           //console.log('orientation : ', orientation);
           //console.log('isChangeWidthHeight : ', isChangeWidthHeight);
           reactPdfDatas.current.push({
@@ -173,46 +179,46 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
             height: isChangeWidthHeight ? result.originalWidth : result.originalHeight,
             evidenceType: absent.evidenceType2 as AbsentEvidenceType,
             orientation,
-          });
-          console.log('reactPdfDatas', reactPdfDatas.current.length, 'extractImageData');
+          })
+          console.log('reactPdfDatas', reactPdfDatas.current.length, 'extractImageData')
         } catch (e) {
-          console.log('extractImageData error  : ', e);
-          console.log('extractImageData error evidenceFile : ', ef);
+          console.log('extractImageData error  : ', e)
+          console.log('extractImageData error evidenceFile : ', ef)
         } finally {
         }
       }
     }
-  };
+  }
 
   const extractReactDataArray = async (orderBy: number, ref: any[], type: AbsentPaperType, absent: Absent) => {
     if (!ref) {
-      return null;
+      return null
     }
 
     for (const ef of ref) {
       if (ef) {
-        let imgData;
+        let imgData
         try {
           imgData = await toJpeg(ef, {
             quality: pdfQuality,
             fontEmbedCSS: '',
             includeQueryParams: true,
             cacheBust: false,
-          });
-          await getImageMeta(imgData);
+          })
+          await getImageMeta(imgData)
           reactPdfDatas.current.push({
             id: absent.id,
             orderBy,
             data: imgData,
             type,
             evidenceType: absent.evidenceType as AbsentEvidenceType,
-          });
-          console.log('reactPdfDatas', reactPdfDatas.current.length, 'extractImageData');
+          })
+          console.log('reactPdfDatas', reactPdfDatas.current.length, 'extractImageData')
         } catch (e) {
-          console.log('extractReactData error  : ', e);
-          console.log('extractReactData error type : ', type);
-          console.log('extractReactData error fieldtrip : ', absent);
-          console.log('extractReactData error imgData : ', imgData);
+          console.log('extractReactData error  : ', e)
+          console.log('extractReactData error type : ', type)
+          console.log('extractReactData error fieldtrip : ', absent)
+          console.log('extractReactData error imgData : ', imgData)
         } finally {
           // if (type === FieldtripPaperType.RESULT) {
           //   _nextExtractPdfData();
@@ -220,86 +226,86 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
         }
       }
     }
-  };
+  }
 
   const _finishDownloadPdf = () => {
-    setIsExtractData(false);
-    setIsProcessPdf(true);
-    docRef.current = new jsPDF('p', 'mm', 'a4');
+    setIsExtractData(false)
+    setIsProcessPdf(true)
+    docRef.current = new jsPDF('p', 'mm', 'a4')
     console.log(
       '_finishDownloadPdf',
       reactPdfDatas.current.length,
       '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-    );
-    const groupbyPdfDatas = groupBy(reactPdfDatas.current, 'orderBy');
+    )
+    const groupbyPdfDatas = groupBy(reactPdfDatas.current, 'orderBy')
     map(groupbyPdfDatas, (pdfDatas) => {
-      const absentData = find(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.ABSENT);
-      const parentData = find(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.PARENT);
-      const teacherData = find(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.TEACHER);
-      const imageDatas = filter(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.IMAGE);
-      const attachedPdfDatas = filter(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.PDF);
+      const absentData = find(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.ABSENT)
+      const parentData = find(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.PARENT)
+      const teacherData = find(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.TEACHER)
+      const imageDatas = filter(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.IMAGE)
+      const attachedPdfDatas = filter(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.PDF)
       if (absentData && (parentData || teacherData || imageDatas || attachedPdfDatas)) {
-        addReactToPdf(absentData);
+        addReactToPdf(absentData)
 
         if (withEvidence) {
-          parentData && addReactToPdf(parentData);
+          parentData && addReactToPdf(parentData)
 
-          teacherData && addReactToPdf(teacherData);
+          teacherData && addReactToPdf(teacherData)
 
-          attachedPdfDatas?.length && map(attachedPdfDatas, (pdf) => addReactToPdf(pdf));
+          attachedPdfDatas?.length && map(attachedPdfDatas, (pdf) => addReactToPdf(pdf))
 
-          imageDatas?.length && map(imageDatas, (image) => _addImageToPdf(image));
+          imageDatas?.length && map(imageDatas, (image) => _addImageToPdf(image))
         }
       }
 
-      setIsProcessPdfCount((prev) => prev + 1);
-    });
-    docRef.current.deletePage(docRef.current.getNumberOfPages());
-    docRef.current.save(`${fileName}.pdf`);
-    setIsProcessPdf(false);
-  };
+      setIsProcessPdfCount((prev) => prev + 1)
+    })
+    docRef.current.deletePage(docRef.current.getNumberOfPages())
+    docRef.current.save(`${fileName}.pdf`)
+    setIsProcessPdf(false)
+  }
 
   const _nextExtractPdfData = () => {
     if (!absents) {
-      return null;
+      return null
     }
     if (extractDataCount === absents.length - 1) {
-      setExtractDataCount((prev) => prev + 1);
-      _finishDownloadPdf();
+      setExtractDataCount((prev) => prev + 1)
+      _finishDownloadPdf()
     }
     if (extractDataCount >= absents.length - 1) {
-      return;
+      return
     }
-    setExtractDataCount((prev) => prev + 1);
-  };
+    setExtractDataCount((prev) => prev + 1)
+  }
 
   const _getProgress = () => {
     if (!absents || !reactPdfDatas.current) {
-      return 0;
+      return 0
     }
 
     if (isExtractData) {
-      return (extractDataCount / absents.length) * 100;
+      return (extractDataCount / absents.length) * 100
     }
 
     if (isProcessPdf) {
-      return (prodcessPdfCount / reactPdfDatas.current.length) * 100;
+      return (prodcessPdfCount / reactPdfDatas.current.length) * 100
     }
-    return 0;
-  };
+    return 0
+  }
 
   return (
     <>
       {open && (
-        <div className="fixed inset-0 z-100 m-0 h-screen w-full overflow-y-scroll bg-littleblack">
+        <div className="bg-littleblack fixed inset-0 z-100 m-0 h-screen w-full overflow-y-scroll">
           <div className="flex h-full w-full items-start">
             <div className="py-6">
               <div className="mb-2 flex w-screen items-center justify-center">
                 <div
-                  className="fixed right-16 top-7 cursor-pointer text-3xl font-bold text-white"
+                  className="fixed top-7 right-16 cursor-pointer text-3xl font-bold text-white"
                   onClick={() => {
-                    setOpen(false);
-                    _initState();
+                    setOpen(false)
+                    _initState()
                   }}
                 >
                   닫기
@@ -315,12 +321,12 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
                       </div>
 
                       {isExtractData && (
-                        <div className="py-2 text-center font-bold text-brand-1">
+                        <div className="text-brand-1 py-2 text-center font-bold">
                           {`${extractDataCount < 0 ? 0 : extractDataCount} / ${absents.length} 데이터 추출중입니다.`}
                         </div>
                       )}
                       {isProcessPdf && (
-                        <div className="py-2 text-center font-bold text-brand-1">
+                        <div className="text-brand-1 py-2 text-center font-bold">
                           {`${prodcessPdfCount < 0 ? 0 : reactPdfDatas.current.length} / ${
                             absents.length
                           } 데이터 처리중입니다.`}
@@ -334,7 +340,7 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
                       placeholder="화질선택"
                       value={pdfQuality}
                       onChange={(e) => {
-                        setPdfQuality(Number(e.target.value));
+                        setPdfQuality(Number(e.target.value))
                       }}
                     >
                       <option value={0.3}>{'저화질'}</option>
@@ -345,10 +351,10 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
                       children="전체서류 PDF 내보내기"
                       disabled={isExtractData || isProcessPdf}
                       onClick={() => {
-                        reactPdfDatas.current = [];
-                        setWithEvidence(true);
-                        setIsExtractData(true);
-                        setExtractDataCount(0);
+                        reactPdfDatas.current = []
+                        setWithEvidence(true)
+                        setIsExtractData(true)
+                        setExtractDataCount(0)
                       }}
                       className="filled-primary z-[1000]"
                     />
@@ -357,10 +363,10 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
                       children="증빙서류 미포함 PDF 내보내기"
                       disabled={isExtractData || isProcessPdf}
                       onClick={() => {
-                        reactPdfDatas.current = [];
-                        setWithEvidence(false);
-                        setIsExtractData(true);
-                        setExtractDataCount(0);
+                        reactPdfDatas.current = []
+                        setWithEvidence(false)
+                        setIsExtractData(true)
+                        setExtractDataCount(0)
                       }}
                       style={{ zIndex: 1000 }}
                       className="filled-primary ml-2"
@@ -402,11 +408,11 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
         children="PDF"
         onClick={() => {
           //alert('승인 완료된 결석계만 다운로드됩니다. 계속 진행하시겠습니까?');
-          !isCsvData && setCsvData(true);
-          setOpen(true);
+          !isCsvData && setCsvData(true)
+          setOpen(true)
         }}
         className="filled-blue"
       />
     </>
-  );
+  )
 }

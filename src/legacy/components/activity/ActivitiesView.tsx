@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Badge, Blank } from 'src/components/common';
-import { useActivityFindBySubject } from 'src/generated/endpoint';
-import { Activity, ActivityType } from 'src/generated/model';
-import { Time } from '../common/Time';
+import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { Badge, Blank } from '@/legacy/components/common'
+import { useActivityFindBySubject } from '@/legacy/generated/endpoint'
+import { Activity, ActivityType } from '@/legacy/generated/model'
+import { Time } from '@/legacy/components/common/Time'
 
 interface ActivitiesViewProps {
-  groupId: number;
-  loadActivitiesView: boolean;
-  subjects: any;
-  setUpdateState: () => void;
-  subject?: string;
-  searchWriter?: string;
-  searchTitle?: string;
+  groupId: number
+  loadActivitiesView: boolean
+  subjects: any
+  setUpdateState: () => void
+  subject?: string
+  searchWriter?: string
+  searchTitle?: string
 }
 
 export function ActivitiesView({
@@ -22,8 +22,8 @@ export function ActivitiesView({
   searchWriter = '',
   searchTitle,
 }: ActivitiesViewProps) {
-  const { pathname } = useLocation();
-  const [activities, setActivities] = useState<Activity[]>([]);
+  const { pathname } = useLocation()
+  const [activities, setActivities] = useState<Activity[]>([])
 
   const { isLoading, error, refetch } = useActivityFindBySubject(subject || '', {
     query: {
@@ -31,20 +31,20 @@ export function ActivitiesView({
       onSuccess: (data) => {
         if (groupId) {
           data = data.filter((item) => {
-            return item.groupActivities.some((activity) => activity.group.id === groupId);
-          });
+            return item.groupActivities.some((activity) => activity.group.id === groupId)
+          })
         }
-        setActivities(data.sort((a, b) => b.id - a.id));
+        setActivities(data.sort((a, b) => b.id - a.id))
       },
     },
-  });
+  })
 
   useEffect(() => {
-    refetch();
-  }, [groupId, subject]);
+    refetch()
+  }, [groupId, subject])
 
-  if (error) return <div className="text-center">그룹 데이터를 불러오는 중 오류 발생</div>;
-  if (!activities || activities.length === 0) return <div className="text-center">등록된 활동이 없습니다.</div>;
+  if (error) return <div className="text-center">그룹 데이터를 불러오는 중 오류 발생</div>
+  if (!activities || activities.length === 0) return <div className="text-center">등록된 활동이 없습니다.</div>
 
   return (
     <>
@@ -89,8 +89,8 @@ export function ActivitiesView({
                     onClick={() => setUpdateState()}
                     className={
                       pathname.startsWith(`/teacher/activity/${activity.id}`)
-                        ? 'rounded-md border border-darkgray bg-darkgray px-4 py-2 text-sm text-white focus:outline-none'
-                        : 'rounded-md border border-darkgray bg-white px-4 py-2 text-sm text-darkgray hover:bg-darkgray hover:text-white focus:outline-none'
+                        ? 'border-darkgray bg-darkgray rounded-md border px-4 py-2 text-sm text-white focus:outline-none'
+                        : 'border-darkgray text-darkgray hover:bg-darkgray rounded-md border bg-white px-4 py-2 text-sm hover:text-white focus:outline-none'
                     }
                   />
                 </Link>
@@ -100,8 +100,8 @@ export function ActivitiesView({
                       children="제출자 보기"
                       className={
                         pathname.startsWith(`/teacher/activity/submit/${activity.id}`)
-                          ? 'rounded-md border border-darkgray bg-darkgray px-4 py-2 text-sm text-white focus:outline-none'
-                          : 'rounded-md border border-darkgray bg-white px-4 py-2 text-sm text-darkgray hover:bg-darkgray hover:text-white focus:outline-none'
+                          ? 'border-darkgray bg-darkgray rounded-md border px-4 py-2 text-sm text-white focus:outline-none'
+                          : 'border-darkgray text-darkgray hover:bg-darkgray rounded-md border bg-white px-4 py-2 text-sm hover:text-white focus:outline-none'
                       }
                     />
                   </Link>
@@ -113,8 +113,8 @@ export function ActivitiesView({
                       children="다운로드"
                       className={
                         pathname.startsWith(`/teacher/activity/download/${activity.id}`)
-                          ? 'rounded-md border border-darkgray bg-darkgray px-4 py-2 text-sm text-white focus:outline-none'
-                          : 'rounded-md border border-darkgray bg-white px-4 py-2 text-sm text-darkgray hover:bg-darkgray hover:text-white focus:outline-none'
+                          ? 'border-darkgray bg-darkgray rounded-md border px-4 py-2 text-sm text-white focus:outline-none'
+                          : 'border-darkgray text-darkgray hover:bg-darkgray rounded-md border bg-white px-4 py-2 text-sm hover:text-white focus:outline-none'
                       }
                     />
                   </Link>
@@ -125,5 +125,5 @@ export function ActivitiesView({
           </div>
         ))}
     </>
-  );
+  )
 }

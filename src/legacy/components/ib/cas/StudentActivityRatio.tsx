@@ -1,26 +1,26 @@
-import { Typography } from 'src/components/common/Typography';
-import SolidSVGIcon from 'src/components/icon/SolidSVGIcon';
+import { Typography } from '@/legacy/components/common/Typography'
+import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
 
-type strands = { activity?: number; creativity?: number; service?: number };
+type strands = { activity?: number; creativity?: number; service?: number }
 
 interface StudentActivityRatioProps {
-  before: strands;
-  after: strands;
+  before: strands
+  after: strands
 }
 
 function StudentActivityRatio({ before, after }: StudentActivityRatioProps) {
-  const totalSum = (before?.creativity || 0) + (before?.activity || 0) + (before?.service || 0);
-  const creativityPercent = ((before?.creativity || 0) / totalSum) * 100 || 0;
-  const activityPercent = ((before?.activity || 0) / totalSum) * 100 || 0;
-  const servicePercent = ((before?.service || 0) / totalSum) * 100 || 0;
+  const totalSum = (before?.creativity || 0) + (before?.activity || 0) + (before?.service || 0)
+  const creativityPercent = ((before?.creativity || 0) / totalSum) * 100 || 0
+  const activityPercent = ((before?.activity || 0) / totalSum) * 100 || 0
+  const servicePercent = ((before?.service || 0) / totalSum) * 100 || 0
 
-  const AftertotalSum = (after?.creativity || 0) + (after?.activity || 0) + (after?.service || 0);
-  const AftercreativityPercent = ((after?.creativity || 0) / AftertotalSum) * 100 || 0;
-  const AfteractivityPercent = ((after?.activity || 0) / AftertotalSum) * 100 || 0;
-  const AfterservicePercent = ((after?.service || 0) / AftertotalSum) * 100 || 0;
+  const AftertotalSum = (after?.creativity || 0) + (after?.activity || 0) + (after?.service || 0)
+  const AftercreativityPercent = ((after?.creativity || 0) / AftertotalSum) * 100 || 0
+  const AfteractivityPercent = ((after?.activity || 0) / AftertotalSum) * 100 || 0
+  const AfterservicePercent = ((after?.service || 0) / AftertotalSum) * 100 || 0
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex flex-col gap-2 rounded-lg border border-primary-gray-200 p-4">
+      <div className="border-primary-gray-200 flex flex-col gap-2 rounded-lg border p-4">
         <div className="flex flex-row items-center justify-between">
           <Typography variant="body3" className="font-medium">
             현재 진행중
@@ -48,12 +48,12 @@ function StudentActivityRatio({ before, after }: StudentActivityRatioProps) {
         </div>
         <div className="flex h-2 w-full">
           {totalSum === 0 ? (
-            <div className="h-full w-full rounded-[2px] bg-primary-gray-200"></div>
+            <div className="bg-primary-gray-200 h-full w-full rounded-[2px]"></div>
           ) : (
             <>
               {creativityPercent > 0 && (
                 <div
-                  className="rounded-l-[2px] border-dim-8 bg-gradient-orange-400 opacity-40"
+                  className="border-dim-8 bg-gradient-orange-400 rounded-l-[2px] opacity-40"
                   style={{
                     width: `${creativityPercent}%`,
                     marginRight: creativityPercent > 0 ? '1px' : '0',
@@ -74,7 +74,7 @@ function StudentActivityRatio({ before, after }: StudentActivityRatioProps) {
                   className={
                     creativityPercent === 0 && activityPercent === 0
                       ? 'rounded-l-[2px] rounded-r-[2px]'
-                      : 'rounded-r-[2px] border-dim-8 bg-gradient-green-400 opacity-40'
+                      : 'border-dim-8 bg-gradient-green-400 rounded-r-[2px] opacity-40'
                   }
                   style={{
                     width: `${servicePercent}%`,
@@ -85,7 +85,7 @@ function StudentActivityRatio({ before, after }: StudentActivityRatioProps) {
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-2 rounded-lg border border-primary-orange-200 p-4">
+      <div className="border-primary-orange-200 flex flex-col gap-2 rounded-lg border p-4">
         <div className="flex flex-row items-center justify-between">
           <Typography variant="body3" className="font-medium">
             계획서 승인 후
@@ -114,7 +114,7 @@ function StudentActivityRatio({ before, after }: StudentActivityRatioProps) {
         <div className="flex h-2 w-full">
           {AftercreativityPercent > 0 && (
             <div
-              className="rounded-l-[2px] border-dim-8 bg-gradient-orange-400"
+              className="border-dim-8 bg-gradient-orange-400 rounded-l-[2px]"
               style={{
                 width: `${AftercreativityPercent}%`,
                 marginRight: AftercreativityPercent > 0 ? '1px' : '0',
@@ -135,7 +135,7 @@ function StudentActivityRatio({ before, after }: StudentActivityRatioProps) {
               className={
                 AftercreativityPercent === 0 && AfteractivityPercent === 0
                   ? 'rounded-l-[2px] rounded-r-[2px]'
-                  : 'rounded-r-[2px] border-dim-8 bg-gradient-green-400'
+                  : 'border-dim-8 bg-gradient-green-400 rounded-r-[2px]'
               }
               style={{
                 width: `${AfterservicePercent}%`,
@@ -145,7 +145,7 @@ function StudentActivityRatio({ before, after }: StudentActivityRatioProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default StudentActivityRatio;
+export default StudentActivityRatio

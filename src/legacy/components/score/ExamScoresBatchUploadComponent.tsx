@@ -1,4 +1,4 @@
-import { Icon } from '../common/icons';
+import { Icon } from '@/legacy/components/common/icons'
 
 export const ExamScoresBatcbUploadComponent = () => {
   return (
@@ -95,5 +95,5 @@ export const ExamScoresBatcbUploadComponent = () => {
         </article>
       </section>
     </main>
-  );
-};
+  )
+}

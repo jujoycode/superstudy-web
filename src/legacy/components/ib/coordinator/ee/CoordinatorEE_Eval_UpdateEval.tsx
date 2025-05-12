@@ -1,26 +1,26 @@
-import clsx from 'clsx';
-import { map } from 'lodash';
-import { PropsWithChildren, useState } from 'react';
-import { PopupModal } from 'src/components/PopupModal';
-import { SuperModal } from 'src/components/SuperModal';
-import { Blank } from 'src/components/common';
-import { TextareaV2 } from 'src/components/common/TextareaV2';
-import SVGIcon from 'src/components/icon/SVGIcon';
-import { useUpdateEvaluation } from 'src/container/ib/update-evaluation';
-import { useEEEvaluationUpsertAndDeleteEEEvaluation } from 'src/generated/endpoint';
-import { ResponseEEEvaluationDto } from 'src/generated/model';
-import { ButtonV2 } from '../../../common/ButtonV2';
-import { Typography } from '../../../common/Typography';
-import ColorSVGIcon from '../../../icon/ColorSVGIcon';
-import { EvalInputField } from '../../EvalInputField';
+import clsx from 'clsx'
+import { map } from 'lodash'
+import { PropsWithChildren, useState } from 'react'
+import { PopupModal } from 'src/components/PopupModal'
+import { SuperModal } from 'src/components/SuperModal'
+import { Blank } from '@/legacy/components/common'
+import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { useUpdateEvaluation } from '@/legacy/container/ib/update-evaluation'
+import { useEEEvaluationUpsertAndDeleteEEEvaluation } from '@/legacy/generated/endpoint'
+import { ResponseEEEvaluationDto } from '@/legacy/generated/model'
+import { ButtonV2 } from '../../@/legacy/components/common/ButtonV2'
+import { Typography } from '../../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../../icon/ColorSVGIcon'
+import { EvalInputField } from '../../EvalInputField'
 
 interface CoordinatorEE_Eval_UpdateEvalProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  onSuccess: () => void;
-  evaluationData?: ResponseEEEvaluationDto;
-  ablePropragation?: boolean;
-  viewType?: 'VIEW' | 'UPDATE';
+  modalOpen: boolean
+  setModalClose: () => void
+  onSuccess: () => void
+  evaluationData?: ResponseEEEvaluationDto
+  ablePropragation?: boolean
+  viewType?: 'VIEW' | 'UPDATE'
 }
 
 export function CoordinatorEE_Eval_UpdateEval({
@@ -32,7 +32,7 @@ export function CoordinatorEE_Eval_UpdateEval({
   viewType = 'UPDATE',
 }: PropsWithChildren<CoordinatorEE_Eval_UpdateEvalProps>) {
   // 평가 아코디언 기준 뱃지를 만들기 위한 알파벳 배열 생성
-  const alphabetArray = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+  const alphabetArray = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i))
 
   const {
     state: {
@@ -63,24 +63,24 @@ export function CoordinatorEE_Eval_UpdateEval({
     handleUpdateItem,
     handleDeleteItem,
     reset,
-  } = useUpdateEvaluation(evaluationData?.id || 0);
+  } = useUpdateEvaluation(evaluationData?.id || 0)
 
   const { mutate: updateEvaluation, isLoading: updateLoading } = useEEEvaluationUpsertAndDeleteEEEvaluation({
     mutation: {
       onSuccess: () => {
-        onSuccess();
-        reset();
+        onSuccess()
+        reset()
       },
     },
-  });
+  })
 
-  const [isContinue, setContinue] = useState(false);
+  const [isContinue, setContinue] = useState(false)
 
   if (modalOpen && !isContinue && viewType === 'UPDATE') {
     return (
       <SuperModal modalOpen={modalOpen} setModalClose={setModalClose} hasClose={false} className="w-[416px] rounded-xl">
         <div className="p-8 pb-5">
-          <div className="w-full text-center text-lg font-semibold leading-[26px] text-primary-gray-900">
+          <div className="text-primary-gray-900 w-full text-center text-lg leading-[26px] font-semibold">
             평가 항목을 수정하면
             <br />
             지금까지 평가된 학생의 데이터가 변경됩니다.
@@ -97,12 +97,12 @@ export function CoordinatorEE_Eval_UpdateEval({
           </ButtonV2>
         </div>
       </SuperModal>
-    );
+    )
   }
 
-  const maxScore = selectedCriteria?.score === undefined ? 99 : selectedCriteria.score;
+  const maxScore = selectedCriteria?.score === undefined ? 99 : selectedCriteria.score
 
-  const disabled = viewType === 'VIEW';
+  const disabled = viewType === 'VIEW'
 
   const footerButtons = disabled ? (
     <ButtonV2
@@ -110,9 +110,9 @@ export function CoordinatorEE_Eval_UpdateEval({
       color="gray100"
       size={48}
       onClick={() => {
-        setModalClose();
-        setContinue(false);
-        reset();
+        setModalClose()
+        setContinue(false)
+        reset()
       }}
     >
       확인
@@ -124,9 +124,9 @@ export function CoordinatorEE_Eval_UpdateEval({
         color="gray100"
         size={48}
         onClick={() => {
-          setModalClose();
-          setContinue(false);
-          reset();
+          setModalClose()
+          setContinue(false)
+          reset()
         }}
       >
         취소
@@ -137,7 +137,7 @@ export function CoordinatorEE_Eval_UpdateEval({
         color="orange800"
         size={48}
         onClick={() => {
-          setContinue(false);
+          setContinue(false)
           evaluationData?.id &&
             updateEvaluation({
               id: evaluationData.id,
@@ -152,13 +152,13 @@ export function CoordinatorEE_Eval_UpdateEval({
                 updateItems,
                 deleteItemIds,
               },
-            });
+            })
         }}
       >
         저장하기
       </ButtonV2>
     </div>
-  );
+  )
 
   return (
     <>
@@ -166,8 +166,8 @@ export function CoordinatorEE_Eval_UpdateEval({
       <PopupModal
         modalOpen={modalOpen}
         setModalClose={() => {
-          setModalClose();
-          reset();
+          setModalClose()
+          reset()
         }}
         title={evaluationData?.title || ''}
         footerButtons={footerButtons}
@@ -184,7 +184,7 @@ export function CoordinatorEE_Eval_UpdateEval({
                   criteria.id ? setSelectedCriteriaId(criteria.id) : setSelectedCriteriaId(String(index))
                 }
                 className={clsx(
-                  'flex cursor-pointer items-center justify-center whitespace-pre rounded-lg px-4 py-[9px]',
+                  'flex cursor-pointer items-center justify-center rounded-lg px-4 py-[9px] whitespace-pre',
                   checkCriteriaSelected(criteria.id ? criteria : index)
                     ? 'bg-primary-gray-700 text-white'
                     : 'bg-primary-gray-50 text-primary-gray-700 hover:bg-primary-gray-200',
@@ -251,10 +251,10 @@ export function CoordinatorEE_Eval_UpdateEval({
         {selectedCriteria?.levels
           ?.concat(createLevels.filter((level) => level.criteriaId === selectedCriteriaId))
           .map((_level: any, index: number) => {
-            const updateLevel = updateLevels?.find((ul) => ul.id === _level.id);
-            const level = { ..._level, ...updateLevel };
+            const updateLevel = updateLevels?.find((ul) => ul.id === _level.id)
+            const level = { ..._level, ...updateLevel }
 
-            if (level.id && deleteLevelIds.includes(level.id)) return <></>;
+            if (level.id && deleteLevelIds.includes(level.id)) return <></>
 
             return (
               <div className="space-y-2 rounded-lg bg-gray-50 p-4" key={level.id || `new-${index}`}>
@@ -303,10 +303,10 @@ export function CoordinatorEE_Eval_UpdateEval({
                     ),
                   )
                   .map((_item: any, itemIndex: number) => {
-                    const updateItem = updateItems?.find((ul) => ul.id === _item.id);
-                    const item = { ..._item, ...updateItem };
+                    const updateItem = updateItems?.find((ul) => ul.id === _item.id)
+                    const item = { ..._item, ...updateItem }
 
-                    if (item.id && deleteItemIds.includes(item.id)) return <></>;
+                    if (item.id && deleteItemIds.includes(item.id)) return <></>
 
                     return (
                       <div className="flex items-center space-x-4" key={item.id || `new-${itemIndex}`}>
@@ -324,7 +324,7 @@ export function CoordinatorEE_Eval_UpdateEval({
                               size={40}
                               color="gray400"
                               onClick={() => handleCreateItem(index, level.id)}
-                              className="flex items-center justify-center gap-1 whitespace-pre bg-white"
+                              className="flex items-center justify-center gap-1 bg-white whitespace-pre"
                             >
                               <SVGIcon.Plus color="gray700" size={16} weight="bold" />
                               추가
@@ -340,7 +340,7 @@ export function CoordinatorEE_Eval_UpdateEval({
                             </div>
                           ))}
                       </div>
-                    );
+                    )
                   })}
                 <TextareaV2
                   value={level.description}
@@ -350,7 +350,7 @@ export function CoordinatorEE_Eval_UpdateEval({
                   onChange={(e) => handleUpdateLevel({ id: level.id, description: e.target.value }, index)}
                 />
               </div>
-            );
+            )
           })}
         {!disabled && (
           <div className="flex w-full justify-center py-2">
@@ -360,8 +360,8 @@ export function CoordinatorEE_Eval_UpdateEval({
               color="gray400"
               className="flex items-center justify-center gap-1"
               onClick={(e) => {
-                e.stopPropagation();
-                handleCreateLevel();
+                e.stopPropagation()
+                handleCreateLevel()
               }}
             >
               <SVGIcon.Plus color="gray700" size={16} weight="bold" />
@@ -371,5 +371,5 @@ export function CoordinatorEE_Eval_UpdateEval({
         )}
       </PopupModal>
     </>
-  );
+  )
 }

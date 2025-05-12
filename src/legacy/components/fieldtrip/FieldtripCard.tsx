@@ -1,41 +1,41 @@
-import { Link, useLocation } from 'react-router-dom';
-import { Badge } from 'src/components/common';
-import { FieldtripStatus, ResponsePaginatedFieldtripDto } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { getNickName } from 'src/util/status';
-import { makeStartEndToString } from 'src/util/time';
+import { Link, useLocation } from 'react-router-dom'
+import { Badge } from '@/legacy/components/common'
+import { FieldtripStatus, ResponsePaginatedFieldtripDto } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { getNickName } from '@/legacy/util/status'
+import { makeStartEndToString } from '@/legacy/util/time'
 
 interface FieldtripCardProps {
-  fieldtrip: ResponsePaginatedFieldtripDto['items'][number];
-  type: string;
+  fieldtrip: ResponsePaginatedFieldtripDto['items'][number]
+  type: string
 }
 
 export function FieldtripCard({ fieldtrip, type }: FieldtripCardProps) {
-  const { pathname, search } = useLocation();
-  const { t } = useLanguage();
-  let text;
-  let textResult;
+  const { pathname, search } = useLocation()
+  const { t } = useLanguage()
+  let text
+  let textResult
 
   switch (fieldtrip?.fieldtripStatus) {
     case FieldtripStatus.BEFORE_PARENT_CONFIRM:
-      text = <div className="text-sm text-red-500">{t('before_parent_approval', '학부모 승인 전')}</div>;
-      break;
+      text = <div className="text-sm text-red-500">{t('before_parent_approval', '학부모 승인 전')}</div>
+      break
     case FieldtripStatus.PROCESSING:
       text = (
         <div className="text-sm text-red-500">
           {fieldtrip?.nextApproverTitle} {t('pending_approval', '승인 전')}
         </div>
-      );
-      break;
+      )
+      break
     case FieldtripStatus.PROCESSED:
-      text = <div className="text-sm text-gray-600">{t('approved', '승인 완료')}</div>;
-      break;
+      text = <div className="text-sm text-gray-600">{t('approved', '승인 완료')}</div>
+      break
     case FieldtripStatus.RETURNED:
-      text = <div className="text-sm text-brand-1">{t('rejected', '반려됨')}</div>;
-      break;
+      text = <div className="text-brand-1 text-sm">{t('rejected', '반려됨')}</div>
+      break
     case FieldtripStatus.DELETE_APPEAL:
-      text = <div className="text-sm text-red-800">{t('delete_request', '삭제 요청')}</div>;
-      break;
+      text = <div className="text-sm text-red-800">{t('delete_request', '삭제 요청')}</div>
+      break
   }
 
   if (fieldtrip?.fieldtripStatus === FieldtripStatus.PROCESSED) {
@@ -46,47 +46,47 @@ export function FieldtripCard({ fieldtrip, type }: FieldtripCardProps) {
             {t('report_form', '결과보고서')} : {t('before_parent_approval', '학부모 승인 전')}
           </div>
         ) : (
-          <div className="text-xs text-grey-3">
+          <div className="text-grey-3 text-xs">
             {t('report_form', '결과보고서')} : {t('before_writing', '작성 전')}
           </div>
-        );
-        break;
+        )
+        break
       case FieldtripStatus.PROCESSING:
         textResult = (
           <div className="text-xs text-red-500">
             {t('report_form', '결과보고서')} : {fieldtrip?.nextResultApproverTitle}
             {t('pending_approval', '승인 전')}
           </div>
-        );
-        break;
+        )
+        break
       case FieldtripStatus.PROCESSED:
         textResult = (
           <div className="text-xs text-gray-600">
             {t('report_form', '결과보고서')} : {t('approved', '승인 완료')}
           </div>
-        );
-        break;
+        )
+        break
       case FieldtripStatus.RETURNED:
         textResult = (
-          <div className="text-xs text-brand-1">
+          <div className="text-brand-1 text-xs">
             {t('report_form', '결과보고서')} : {t('rejected', '반려됨')}
           </div>
-        );
-        break;
+        )
+        break
       case FieldtripStatus.DELETE_APPEAL:
         textResult = (
           <div className="text-xs text-red-800">
             {t('report_form', '결과보고서')} : {t('delete_request', '삭제 요청')}
           </div>
-        );
-        break;
+        )
+        break
       default:
         textResult = (
-          <div className="text-xs text-grey-3">
+          <div className="text-grey-3 text-xs">
             {t('report_form', '결과보고서')} : {t('before_writing', '작성 전')}
           </div>
-        );
-        break;
+        )
+        break
     }
   }
 
@@ -131,5 +131,5 @@ export function FieldtripCard({ fieldtrip, type }: FieldtripCardProps) {
         <div className="h-0.5 bg-gray-100"></div>
       </Link>
     </>
-  );
+  )
 }

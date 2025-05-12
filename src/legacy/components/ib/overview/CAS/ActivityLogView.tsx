@@ -1,50 +1,50 @@
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import { Typography } from 'src/components/common/Typography';
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import {
   useIBActivityLogNotSubmittedNotification,
   useIBActivityLogStatus,
   useIBActivityLogSubmissionStatus,
-} from 'src/container/ib-overview';
+} from '@/legacy/container/ib-overview'
 import {
   IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus,
   IBGetSubmissionStatusCountParams,
-} from 'src/generated/model';
-import ActivityLogOverviewPanel from './ActivitLogOverviewPanel';
-import { Blank } from 'src/components/common/Blank';
+} from '@/legacy/generated/model'
+import ActivityLogOverviewPanel from './ActivitLogOverviewPanel'
+import { Blank } from '@/legacy/components/common/Blank'
 
 export default function ActivityLogView({ grade, klass }: IBGetSubmissionStatusCountParams) {
-  const { push } = useHistory();
+  const { push } = useHistory()
 
   const [status, setStatus] = useState<IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus>(
     () =>
       (sessionStorage.getItem(
         'PROJECT_ACTIVITYLOG_STATUS',
       ) as IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus) || 'NOT_SUBMITTED',
-  );
+  )
 
   const { data } = useIBActivityLogStatus({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
-  });
+  })
 
   const { students = [] } = useIBActivityLogSubmissionStatus({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
     status,
-  });
+  })
 
   const { mutate: notiMutate, isLoading: notiLoading } = useIBActivityLogNotSubmittedNotification({
     params: { grade, klass },
     onError: (error) => {
-      console.error('CAS 성찰일지 미제출자 알림 발송 실패:', error);
+      console.error('CAS 성찰일지 미제출자 알림 발송 실패:', error)
     },
-  });
+  })
 
   useEffect(() => {
-    sessionStorage.setItem('PROJECT_ACTIVITYLOG_STATUS', status);
-  }, [status]);
+    sessionStorage.setItem('PROJECT_ACTIVITYLOG_STATUS', status)
+  }, [status])
 
   return (
     <div>
@@ -102,5 +102,5 @@ export default function ActivityLogView({ grade, klass }: IBGetSubmissionStatusC
         </div>
       )}
     </div>
-  );
+  )
 }

@@ -1,74 +1,74 @@
-import { useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Linkify from 'react-linkify';
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg';
-import { Constants } from 'src/constants';
-import { AnnouncementType, ResponseAnnouncementDto } from 'src/generated/model';
-import { getFileNameFromUrl, getFileNameFromUrlToAnn } from 'src/util/file';
-import { isHTML } from 'src/util/validator';
-import { PdfCard } from '../common/PdfCard';
-import { PdfViewer } from '../common/PdfViewer';
-import { Time } from '../common/Time';
+import { useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import Linkify from 'react-linkify'
+import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg'
+import { Constants } from '@/legacy/constants'
+import { AnnouncementType, ResponseAnnouncementDto } from '@/legacy/generated/model'
+import { getFileNameFromUrl, getFileNameFromUrlToAnn } from '@/legacy/util/file'
+import { isHTML } from '@/legacy/util/validator'
+import { PdfCard } from '@/legacy/components/common/PdfCard'
+import { PdfViewer } from '@/legacy/components/common/PdfViewer'
+import { Time } from '@/legacy/components/common/Time'
 
 interface AnnouncementProps {
-  announcement: ResponseAnnouncementDto;
+  announcement: ResponseAnnouncementDto
 }
 
 export default function AnnouncementDetailCard({ announcement }: AnnouncementProps) {
-  const [hasPdfModalOpen, setPdfModalOpen] = useState(false);
-  const [focusPdfFile, setFocusPdfFile] = useState('');
+  const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
+  const [focusPdfFile, setFocusPdfFile] = useState('')
 
   const getUrl = (fileName: string) => {
-    let url = '';
+    let url = ''
 
     if (fileName.includes('blob')) {
-      const index = fileName.indexOf('?');
+      const index = fileName.indexOf('?')
 
       if (index !== -1) {
-        url = fileName.substring(0, index); // 0부터 ? 이전까지 문자열 추출
+        url = fileName.substring(0, index) // 0부터 ? 이전까지 문자열 추출
       } else {
-        url = fileName;
+        url = fileName
       }
     } else {
-      url = Constants.imageUrl + fileName;
+      url = Constants.imageUrl + fileName
     }
 
-    return url;
-  };
+    return url
+  }
 
   const handleDownload = (pdfFile: string) => {
     fetch(getUrl(pdfFile)) // PDF 파일에 대한 URL 가져오기
       .then((response) => response.blob()) // 파일 데이터를 Blob 형식으로 변환
       .then((blob) => {
         // Blob 데이터로부터 URL 생성
-        const url = window.URL.createObjectURL(new Blob([blob]));
+        const url = window.URL.createObjectURL(new Blob([blob]))
         // 가상 링크 생성
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', getFileNameFromUrl(pdfFile)); // 파일명 설정
-        document.body.appendChild(link);
-        link.click();
-        link.parentNode?.removeChild(link);
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', getFileNameFromUrl(pdfFile)) // 파일명 설정
+        document.body.appendChild(link)
+        link.click()
+        link.parentNode?.removeChild(link)
       })
-      .catch((error) => console.error('Error downloading PDF:', error));
-  };
+      .catch((error) => console.error('Error downloading PDF:', error))
+  }
 
   const getTypeName = (type: AnnouncementType) => {
     if (type === 'SERVICE') {
-      return '서비스';
+      return '서비스'
     } else if (type === 'UPDATE') {
-      return '업데이트';
+      return '업데이트'
     } else {
-      return '작업';
+      return '작업'
     }
-  };
+  }
 
   const recipients = [
     { label: '관리자', isActive: announcement?.toAdmin, color: 'bg-users-admin' },
     { label: '선생님', isActive: announcement?.toTeacher, color: 'bg-users-teacher' },
     { label: '학생', isActive: announcement?.toStudent, color: 'bg-users-student' },
     { label: '보호자', isActive: announcement?.toParent, color: 'bg-users-parent' },
-  ];
+  ]
 
   return (
     <div className="my-2 p-3">
@@ -99,7 +99,7 @@ export default function AnnouncementDetailCard({ announcement }: AnnouncementPro
           {isHTML(announcement.content) ? (
             <div className="text-xl" dangerouslySetInnerHTML={{ __html: announcement.content }}></div>
           ) : (
-            <pre className="whitespace-pre-line break-words text-base">
+            <pre className="text-base break-words whitespace-pre-line">
               <Linkify>{announcement.content}</Linkify>
             </pre>
           )}
@@ -125,20 +125,20 @@ export default function AnnouncementDetailCard({ announcement }: AnnouncementPro
           <>
             <div key={pdfFile}>
               <div className="mb-10 w-full">
-                <div className="relative ">
+                <div className="relative">
                   <PdfCard
                     fileUrl={getUrl(pdfFile)}
                     visibleButton
                     onClick={() => {
-                      setFocusPdfFile(getUrl(pdfFile));
-                      setPdfModalOpen(true);
+                      setFocusPdfFile(getUrl(pdfFile))
+                      setPdfModalOpen(true)
                     }}
                   />
                 </div>
               </div>
             </div>
           </>
-        );
+        )
       })}
 
       {announcement?.files?.map((pdfFile: string, index) => (
@@ -162,5 +162,5 @@ export default function AnnouncementDetailCard({ announcement }: AnnouncementPro
       <br />
       <br />
     </div>
-  );
+  )
 }

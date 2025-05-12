@@ -1,52 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import { useStudentTestScore } from 'src/container/student-semesters-score';
-import { List } from '../common';
-import { IBBlank } from '../common/IBBlank';
-import { Typography } from '../common/Typography';
+import React, { useEffect, useState } from 'react'
+import { useStudentTestScore } from '@/legacy/container/student-semesters-score'
+import { List } from '@/legacy/components/common'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
 
 interface ExamScoreBoardProps {
-  studentId: string;
-  grade: number;
+  studentId: string
+  grade: number
 }
 
-const semesterOptions = ['1학기 1차 지필', '1학기 2차 지필', '2학기 1차 지필', '2학기 2차 지필'];
+const semesterOptions = ['1학기 1차 지필', '1학기 2차 지필', '2학기 1차 지필', '2학기 2차 지필']
 
 export function INDIExamScoreBoard({ studentId, grade }: ExamScoreBoardProps) {
-  const { scores, isLoading } = useStudentTestScore(Number(studentId));
-  const [selectedSemester, setSelectedSemester] = useState<string>('1학기 1차 지필');
-  const [structuredScores, setStructuredScores] = useState<any>({});
+  const { scores, isLoading } = useStudentTestScore(Number(studentId))
+  const [selectedSemester, setSelectedSemester] = useState<string>('1학기 1차 지필')
+  const [structuredScores, setStructuredScores] = useState<any>({})
   useEffect(() => {
     if (scores) {
       const newScoreDatas = scores.reduce((acc: any, scoreData: any) => {
-        const gradeLabel = `${scoreData.grade}학년`;
-        const firstSemesterLabel = `${scoreData.semester}학기 1차 지필`;
-        const secondSemesterLabel = `${scoreData.semester}학기 2차 지필`;
+        const gradeLabel = `${scoreData.grade}학년`
+        const firstSemesterLabel = `${scoreData.semester}학기 1차 지필`
+        const secondSemesterLabel = `${scoreData.semester}학기 2차 지필`
 
         // 1차 지필 점수 추가
         if (scoreData.first_test_scores) {
-          acc[`${gradeLabel} ${firstSemesterLabel}`] = scoreData.first_test_scores;
+          acc[`${gradeLabel} ${firstSemesterLabel}`] = scoreData.first_test_scores
         }
 
         // 2차 지필 점수 추가
         if (scoreData.second_test_scores) {
-          acc[`${gradeLabel} ${secondSemesterLabel}`] = scoreData.second_test_scores;
+          acc[`${gradeLabel} ${secondSemesterLabel}`] = scoreData.second_test_scores
         }
 
-        return acc;
-      }, {});
+        return acc
+      }, {})
 
-      setStructuredScores(newScoreDatas);
+      setStructuredScores(newScoreDatas)
     }
-  }, [scores]);
+  }, [scores])
 
-  const currentKey = `${grade}학년 ${selectedSemester}`;
-  const currentScores = structuredScores[currentKey] || {};
+  const currentKey = `${grade}학년 ${selectedSemester}`
+  const currentScores = structuredScores[currentKey] || {}
 
   const formatSubject = (subject: string) => {
-    if (subject === 'total_score') return '총점';
-    if (subject === 'average_score') return '평균';
-    return subject;
-  };
+    if (subject === 'total_score') return '총점'
+    if (subject === 'average_score') return '평균'
+    return subject
+  }
 
   return (
     <>
@@ -74,9 +74,9 @@ export function INDIExamScoreBoard({ studentId, grade }: ExamScoreBoardProps) {
           </Typography>
         </div>
       ) : (
-        <div className="relative mt-4 overflow-x-auto rounded-lg text-14 shadow-md">
+        <div className="text-14 relative mt-4 overflow-x-auto rounded-lg shadow-md">
           <table className="w-full text-left text-gray-500 rtl:text-right">
-            <thead className="bg-gray-200 uppercase text-gray-700">
+            <thead className="bg-gray-200 text-gray-700 uppercase">
               <tr>
                 <th scope="col" className="h-4 w-1/6 border-r border-gray-300 p-2 text-center">
                   과목
@@ -124,5 +124,5 @@ export function INDIExamScoreBoard({ studentId, grade }: ExamScoreBoardProps) {
         </div>
       )}
     </>
-  );
+  )
 }

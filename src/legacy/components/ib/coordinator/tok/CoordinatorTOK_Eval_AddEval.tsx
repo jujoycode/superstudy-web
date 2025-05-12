@@ -1,27 +1,27 @@
-import { PropsWithChildren, useRef, useState } from 'react';
-import { Blank } from 'src/components/common';
-import AlertV2 from 'src/components/common/AlertV2';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { TextareaV2 } from 'src/components/common/TextareaV2';
-import { Typography } from 'src/components/common/Typography';
-import ColorSVGIcon from 'src/components/icon/ColorSVGIcon';
-import SVGIcon from 'src/components/icon/SVGIcon';
-import { PopupModal } from 'src/components/PopupModal';
-import { useTokEvaluationCreateCriteria } from 'src/generated/endpoint';
-import { RequestCreateTokEvaluationDtoType, TokEvaluationGradeDto } from 'src/generated/model';
-import { EvalInputField } from '../../EvalInputField';
+import { PropsWithChildren, useRef, useState } from 'react'
+import { Blank } from '@/legacy/components/common'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { PopupModal } from 'src/components/PopupModal'
+import { useTokEvaluationCreateCriteria } from '@/legacy/generated/endpoint'
+import { RequestCreateTokEvaluationDtoType, TokEvaluationGradeDto } from '@/legacy/generated/model'
+import { EvalInputField } from '../../EvalInputField'
 
 const TOK_TYPE_KOR = {
   [RequestCreateTokEvaluationDtoType.ESSAY]: '에세이',
   [RequestCreateTokEvaluationDtoType.EXHIBITION]: '전시회',
-};
+}
 
 interface CoordinatorTOK_Eval_AddEvalProps {
-  type: RequestCreateTokEvaluationDtoType;
-  modalOpen: boolean;
-  setModalClose: () => void;
-  onSuccess: () => void;
-  ablePropragation?: boolean;
+  type: RequestCreateTokEvaluationDtoType
+  modalOpen: boolean
+  setModalClose: () => void
+  onSuccess: () => void
+  ablePropragation?: boolean
 }
 
 export function CoordinatorTOK_Eval_AddEval({
@@ -32,31 +32,31 @@ export function CoordinatorTOK_Eval_AddEval({
   ablePropragation = false,
 }: PropsWithChildren<CoordinatorTOK_Eval_AddEvalProps>) {
   // 평가 아코디언 기준 뱃지를 만들기 위한 알파벳 배열 생성
-  const alphabetArray = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+  const alphabetArray = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i))
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
   const [grades, setGrades] = useState<TokEvaluationGradeDto[]>([
     { name: '', maxScore: 0, minScore: 0, description: '' },
-  ]);
+  ])
 
   const reset = () => {
-    setGrades([{ name: '', maxScore: 0, minScore: 0, description: '' }]);
-  };
+    setGrades([{ name: '', maxScore: 0, minScore: 0, description: '' }])
+  }
 
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   const { mutate: createCriteria, isLoading: createLoading } = useTokEvaluationCreateCriteria({
     mutation: {
       onSuccess: () => {
-        onSuccess();
-        reset();
+        onSuccess()
+        reset()
       },
     },
-  });
+  })
 
   const updateGrades = (index: number, updateDto: Partial<TokEvaluationGradeDto>) => {
-    setGrades((prevGrades) => prevGrades.map((g, i) => (i === index ? { ...g, ...updateDto } : g)));
-  };
+    setGrades((prevGrades) => prevGrades.map((g, i) => (i === index ? { ...g, ...updateDto } : g)))
+  }
 
   const footerButtons = (
     <div className="flex justify-end gap-3">
@@ -73,7 +73,7 @@ export function CoordinatorTOK_Eval_AddEval({
         저장하기
       </ButtonV2>
     </div>
-  );
+  )
 
   return (
     <>
@@ -81,8 +81,8 @@ export function CoordinatorTOK_Eval_AddEval({
       <PopupModal
         modalOpen={modalOpen}
         setModalClose={() => {
-          setModalClose();
-          reset();
+          setModalClose()
+          reset()
         }}
         title={`${TOK_TYPE_KOR[type]} 평가기준 작성`}
         footerButtons={footerButtons}
@@ -101,9 +101,9 @@ export function CoordinatorTOK_Eval_AddEval({
                     size={32}
                     onClick={() =>
                       setGrades((grades) => {
-                        const newGrades = structuredClone(grades);
-                        newGrades.splice(index, 1);
-                        return newGrades;
+                        const newGrades = structuredClone(grades)
+                        newGrades.splice(index, 1)
+                        return newGrades
                       })
                     }
                   />
@@ -137,7 +137,7 @@ export function CoordinatorTOK_Eval_AddEval({
                   onChange={(e) => updateGrades(index, { description: e.target.value })}
                 />
               </div>
-            );
+            )
           })}
           <div className="flex w-full justify-center py-2">
             <ButtonV2
@@ -146,8 +146,8 @@ export function CoordinatorTOK_Eval_AddEval({
               color="gray400"
               className="flex items-center justify-center gap-1"
               onClick={(e) => {
-                e.stopPropagation();
-                setGrades(grades.concat({ name: '', maxScore: 0, minScore: 0, description: '' }));
+                e.stopPropagation()
+                setGrades(grades.concat({ name: '', maxScore: 0, minScore: 0, description: '' }))
               }}
             >
               <SVGIcon.Plus color="gray700" size={16} weight="bold" />
@@ -160,5 +160,5 @@ export function CoordinatorTOK_Eval_AddEval({
         <AlertV2 confirmText="확인" message={`평가기준이 \n저장되었습니다`} onConfirm={() => setIsOpen(!isOpen)} />
       )}
     </>
-  );
+  )
 }

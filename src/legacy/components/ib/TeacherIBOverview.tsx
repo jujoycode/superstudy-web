@@ -1,64 +1,64 @@
-import clsx from 'clsx';
-import _ from 'lodash';
-import { useEffect, useState } from 'react';
-import { useGroupsFindAllKlassBySchool } from 'src/generated/endpoint';
-import { LayeredTabs, Tab } from '../common/LayeredTabs';
-import SelectBar from '../common/SelectBar';
-import ActivityLogView from './overview/CAS/ActivityLogView';
-import InterviewView from './overview/CAS/InterviewView';
-import EssayView from './overview/EE/EssayView';
-import ProposalView from './overview/EE/ProposalView';
-import RPPFView from './overview/EE/RPPFView';
-import RRSView from './overview/EE/RRSView';
-import TOKEssayView from './overview/TOK/Essay/EssayView';
-import OutlineView from './overview/TOK/Essay/OutlineView';
-import TOKRRSView from './overview/TOK/Essay/RRSView';
-import TKPPFView from './overview/TOK/Essay/TKPPFView';
-import ExhibitionView from './overview/TOK/Exhibition/ExhibitionView';
-import PlanView from './overview/TOK/Exhibition/PlanView';
+import clsx from 'clsx'
+import _ from 'lodash'
+import { useEffect, useState } from 'react'
+import { useGroupsFindAllKlassBySchool } from '@/legacy/generated/endpoint'
+import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
+import SelectBar from '@/legacy/components/common/SelectBar'
+import ActivityLogView from './overview/CAS/ActivityLogView'
+import InterviewView from './overview/CAS/InterviewView'
+import EssayView from './overview/EE/EssayView'
+import ProposalView from './overview/EE/ProposalView'
+import RPPFView from './overview/EE/RPPFView'
+import RRSView from './overview/EE/RRSView'
+import TOKEssayView from './overview/TOK/Essay/EssayView'
+import OutlineView from './overview/TOK/Essay/OutlineView'
+import TOKRRSView from './overview/TOK/Essay/RRSView'
+import TKPPFView from './overview/TOK/Essay/TKPPFView'
+import ExhibitionView from './overview/TOK/Exhibition/ExhibitionView'
+import PlanView from './overview/TOK/Exhibition/PlanView'
 // TODO : 이미 등록된 타입 파일 찾을 시 변경 필요
-type IBProject = 'CAS' | 'EE' | 'TOK';
-type CASProject = 'ACTIVITY_LOG' | 'INTERVIEW' | '';
-type EEProject = 'PROPOSAL' | 'ESSAY' | 'RPPF' | 'RRS' | '';
-type TOKProject = 'EXHIBITION' | 'ESSAY';
-type TOKExhibitionType = 'PLAN' | 'EXHIBITION';
-type TOKEssayType = 'OUTLINE' | 'ESSAY' | 'TKPPF' | 'RRS';
+type IBProject = 'CAS' | 'EE' | 'TOK'
+type CASProject = 'ACTIVITY_LOG' | 'INTERVIEW' | ''
+type EEProject = 'PROPOSAL' | 'ESSAY' | 'RPPF' | 'RRS' | ''
+type TOKProject = 'EXHIBITION' | 'ESSAY'
+type TOKExhibitionType = 'PLAN' | 'EXHIBITION'
+type TOKEssayType = 'OUTLINE' | 'ESSAY' | 'TKPPF' | 'RRS'
 
 export default function TeacherIBOverview() {
   const [projectType, setProjectType] = useState<IBProject>(
     () => (sessionStorage.getItem('projectIBType') as IBProject) || 'EE',
-  );
+  )
   const [CASType, setCASType] = useState<CASProject>(
     () => (sessionStorage.getItem('projectCASType') as CASProject) || 'ACTIVITY_LOG',
-  );
+  )
   const [EEType, setEEType] = useState<EEProject>(
     () => (sessionStorage.getItem('projectEEType') as EEProject) || 'PROPOSAL',
-  );
+  )
   const [TOKType, setTOKType] = useState<TOKProject>(
     () => (sessionStorage.getItem('projectTOKType') as TOKProject) || 'EXHIBITION',
-  );
+  )
   const [TOKExhibitionType, setTOKExhibitionType] = useState<TOKExhibitionType>(
     () => (sessionStorage.getItem('projectTOKExhibitionType') as TOKExhibitionType) || 'PLAN',
-  );
+  )
 
   const [TOKEssayType, setTOKEssayType] = useState<TOKEssayType>(
     () => (sessionStorage.getItem('projectTOKEssayType') as TOKEssayType) || 'OUTLINE',
-  );
+  )
 
   const [selectedOptions, setSelectedOptions] = useState(() => ({
     // 시연 위해 기본으로 2학년 지정
     // grade: 1,
     grade: Number(sessionStorage.getItem('projectGrade')) || 2,
     klass: Number(sessionStorage.getItem('projectKlass')) || 0,
-  }));
+  }))
 
-  const { data: klassGroups } = useGroupsFindAllKlassBySchool();
+  const { data: klassGroups } = useGroupsFindAllKlassBySchool()
 
   const grades = [
     { id: 0, value: 0, text: '학년 전체' },
     { id: 1, value: 2, text: '2학년' },
     { id: 2, value: 3, text: '3학년' },
-  ];
+  ]
 
   const klasses = _(klassGroups)
     .filter((group) => group.grade === selectedOptions.grade)
@@ -67,51 +67,51 @@ export default function TeacherIBOverview() {
     .map((klass, index) => ({ id: index + 1, value: klass, text: `${klass}반` }))
     .concat([{ id: 0, value: 0, text: '반 전체' }])
     .orderBy('value')
-    .value();
+    .value()
 
   const handleOptionChange = (optionType: 'grade' | 'klass', value: number) => {
     setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       [optionType]: value,
-    }));
-  };
+    }))
+  }
 
   useEffect(() => {
-    sessionStorage.setItem('projectGrade', String(selectedOptions.grade));
-    sessionStorage.setItem('projectKlass', String(selectedOptions.klass));
-  }, [selectedOptions]);
+    sessionStorage.setItem('projectGrade', String(selectedOptions.grade))
+    sessionStorage.setItem('projectKlass', String(selectedOptions.klass))
+  }, [selectedOptions])
 
   useEffect(() => {
-    sessionStorage.setItem('projectIBType', projectType);
-  }, [projectType]);
+    sessionStorage.setItem('projectIBType', projectType)
+  }, [projectType])
 
   useEffect(() => {
-    sessionStorage.setItem('projectCASType', CASType);
-  }, [CASType]);
+    sessionStorage.setItem('projectCASType', CASType)
+  }, [CASType])
 
   useEffect(() => {
-    sessionStorage.setItem('projectEEType', EEType);
-  }, [EEType]);
+    sessionStorage.setItem('projectEEType', EEType)
+  }, [EEType])
 
   useEffect(() => {
-    sessionStorage.setItem('projectTOKType', TOKType);
-  }, [TOKType]);
+    sessionStorage.setItem('projectTOKType', TOKType)
+  }, [TOKType])
 
   useEffect(() => {
-    sessionStorage.setItem('projectTOKExhibitionType', TOKExhibitionType);
-  }, [TOKExhibitionType]);
+    sessionStorage.setItem('projectTOKExhibitionType', TOKExhibitionType)
+  }, [TOKExhibitionType])
 
   useEffect(() => {
-    sessionStorage.setItem('projectTOKEssayType', TOKEssayType);
-  }, [TOKEssayType]);
+    sessionStorage.setItem('projectTOKEssayType', TOKEssayType)
+  }, [TOKEssayType])
 
   // 선택한 학년 변경 시 선택한 반 초기화
   useEffect(() => {
     setSelectedOptions({
       ...selectedOptions,
       klass: 0,
-    });
-  }, [selectedOptions.grade]);
+    })
+  }, [selectedOptions.grade])
 
   return (
     <main className="w-full">
@@ -170,7 +170,7 @@ export default function TeacherIBOverview() {
         </div>
       </header>
       <section className="flex flex-col">
-        <nav className="pb-10 pt-3">
+        <nav className="pt-3 pb-10">
           {projectType === 'CAS' && (
             <LayeredTabs.ThirdDepth onChange={(selectedType: CASProject) => setCASType(selectedType)} value={CASType}>
               <Tab value="ACTIVITY_LOG">
@@ -268,5 +268,5 @@ export default function TeacherIBOverview() {
         )}
       </section>
     </main>
-  );
+  )
 }

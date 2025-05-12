@@ -1,27 +1,27 @@
-import { forwardRef } from 'react';
-import { useRecoilValue } from 'recoil';
-import { Role } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { useSignedUrl } from 'src/lib/query';
-import { childState, meState } from 'src/store';
-import { Time } from '../common/Time';
-import { SuperSurveyComponent } from '../survey/SuperSurveyComponent';
+import { forwardRef } from 'react'
+import { useRecoilValue } from 'recoil'
+import { Role } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { useSignedUrl } from '@/legacy/lib/query'
+import { childState, meState } from '@/stores'
+import { Time } from '@/legacy/components/common/Time'
+import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
 
 interface NewsletterPaperProps {
-  newsletter?: any;
-  studentNewsletter?: any;
-  suid?: any;
+  newsletter?: any
+  studentNewsletter?: any
+  suid?: any
 }
 
 export const NewsletterPaper = forwardRef(({ newsletter, studentNewsletter }: NewsletterPaperProps, ref: any) => {
-  const { data: studentSignature } = useSignedUrl(studentNewsletter?.studentSignature);
-  const { data: parentSignature } = useSignedUrl(studentNewsletter?.parentSignature);
+  const { data: studentSignature } = useSignedUrl(studentNewsletter?.studentSignature)
+  const { data: parentSignature } = useSignedUrl(studentNewsletter?.parentSignature)
 
-  const meRecoil = useRecoilValue(meState);
-  const myChild = useRecoilValue(childState);
-  const { t } = useLanguage();
-  const schoolName = meRecoil?.role === Role.PARENT ? myChild?.school.name : meRecoil?.school.name;
-  const schoolMark = meRecoil?.role === Role.PARENT ? myChild?.school.mark : meRecoil?.school.mark;
+  const meRecoil = useRecoilValue(meState)
+  const myChild = useRecoilValue(childState)
+  const { t } = useLanguage()
+  const schoolName = meRecoil?.role === Role.PARENT ? myChild?.school.name : meRecoil?.school.name
+  const schoolMark = meRecoil?.role === Role.PARENT ? myChild?.school.mark : meRecoil?.school.mark
 
   return (
     <div ref={ref} className="w-full bg-white md:h-[1100px]">
@@ -31,7 +31,7 @@ export const NewsletterPaper = forwardRef(({ newsletter, studentNewsletter }: Ne
           {/* {t(`absentTitle`, '결석신고서')} */}
         </div>
         <>
-          <div className="relative h-screen-4.5 overflow-x-hidden border border-gray-100 text-sm">
+          <div className="h-screen-4.5 relative overflow-x-hidden border border-gray-100 text-sm">
             <div className="bg-gray-50 p-4">
               <div className="space-y-0.5">
                 <div className="mt-2 text-lg font-semibold">{newsletter?.title}</div>
@@ -134,5 +134,5 @@ export const NewsletterPaper = forwardRef(({ newsletter, studentNewsletter }: Ne
         {schoolName}장 귀하
       </div>
     </div>
-  );
-});
+  )
+})

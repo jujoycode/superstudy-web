@@ -1,32 +1,32 @@
-import { useEffect, useState } from 'react';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import { Typography } from 'src/components/common/Typography';
-import { useIBRRSNotSubmittedNotification, useIBRRSSubmissionStatus } from 'src/container/ib-overview';
-import { useRRSGetSubmissionStatusCount } from 'src/generated/endpoint';
-import { RRSGetSubmissionStatusCountParams, RRSGetSubmissionStatusStatus } from 'src/generated/model';
-import RRSOverviewPanel from './RRSOverviewPanel';
-import { useHistory } from 'react-router-dom';
-import { Blank } from 'src/components/common/Blank';
+import { useEffect, useState } from 'react'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import { useIBRRSNotSubmittedNotification, useIBRRSSubmissionStatus } from '@/legacy/container/ib-overview'
+import { useRRSGetSubmissionStatusCount } from '@/legacy/generated/endpoint'
+import { RRSGetSubmissionStatusCountParams, RRSGetSubmissionStatusStatus } from '@/legacy/generated/model'
+import RRSOverviewPanel from './RRSOverviewPanel'
+import { useHistory } from 'react-router-dom'
+import { Blank } from '@/legacy/components/common/Blank'
 
 export default function RRSView({ grade, klass }: RRSGetSubmissionStatusCountParams) {
-  const { push } = useHistory();
+  const { push } = useHistory()
 
   const [status, setStatus] = useState<RRSGetSubmissionStatusStatus>(
     () => (sessionStorage.getItem('PROJECT_TOK_RRS_STATUS') as RRSGetSubmissionStatusStatus) || 'NOT_SUBMITTED',
-  );
+  )
 
   const { data } = useRRSGetSubmissionStatusCount({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
     ibType: 'TOK_ESSAY',
-  });
+  })
 
   const { students = [] } = useIBRRSSubmissionStatus({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
     status,
     ibType: 'TOK_ESSAY',
-  });
+  })
 
   const { mutate: notiMutate, isLoading: notiLoading } = useIBRRSNotSubmittedNotification({
     params: {
@@ -35,13 +35,13 @@ export default function RRSView({ grade, klass }: RRSGetSubmissionStatusCountPar
       ibType: 'TOK_ESSAY',
     },
     onError: (error) => {
-      console.error('미제출자 알림 발송 실패:', error);
+      console.error('미제출자 알림 발송 실패:', error)
     },
-  });
+  })
 
   useEffect(() => {
-    sessionStorage.setItem('PROJECT_TOK_RRS_STATUS', status);
-  }, [status]);
+    sessionStorage.setItem('PROJECT_TOK_RRS_STATUS', status)
+  }, [status])
 
   return (
     <div>
@@ -93,5 +93,5 @@ export default function RRSView({ grade, klass }: RRSGetSubmissionStatusCountPar
         </div>
       )}
     </div>
-  );
+  )
 }

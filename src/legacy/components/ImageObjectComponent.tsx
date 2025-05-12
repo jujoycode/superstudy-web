@@ -1,36 +1,36 @@
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import undoArrow from 'src/assets/images/undo-arrow.png';
-import { Constants } from 'src/constants';
-import { ImageObject } from 'src/type/image-object';
-import { isPdfFile } from 'src/util/file';
-import { PdfCard } from './common/PdfCard';
+import clsx from 'clsx'
+import { useEffect, useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import undoArrow from 'src/assets/images/undo-arrow.png'
+import { Constants } from '@/legacy/constants'
+import type { ImageObject } from '@/legacy/types/image-object'
+import { isPdfFile } from '@/legacy/util/file'
+import { PdfCard } from './common/PdfCard'
 
 interface ImageObjectComponentProps {
-  id: number;
-  imageObjet: ImageObject;
-  onDeleteClick?: (key: number) => void;
-  cardType?: boolean;
+  id: number
+  imageObjet: ImageObject
+  onDeleteClick?: (key: number) => void
+  cardType?: boolean
 }
 
 export function ImageObjectComponent({ id, imageObjet, onDeleteClick, cardType }: ImageObjectComponentProps) {
-  const [objUrl, setObjUrl] = useState('');
+  const [objUrl, setObjUrl] = useState('')
 
   useEffect(() => {
-    setObjUrl(typeof imageObjet.image == 'string' ? imageObjet.image : URL.createObjectURL(imageObjet.image));
-  }, [imageObjet]);
+    setObjUrl(typeof imageObjet.image == 'string' ? imageObjet.image : URL.createObjectURL(imageObjet.image))
+  }, [imageObjet])
 
   return (
     <div
       className={clsx(
         'relative',
-        cardType ? 'aspect-5/3 rounded border-2 border-dashed border-grey-5' : 'aspect-square',
+        cardType ? 'border-grey-5 aspect-5/3 rounded border-2 border-dashed' : 'aspect-square',
         imageObjet.isDelete && 'opacity-50',
       )}
     >
       {onDeleteClick && (
-        <span className="absolute -right-3 -top-3 z-40 block h-6 w-6 rounded-full bg-red-700 ring-2 ring-white">
+        <span className="absolute -top-3 -right-3 z-40 block h-6 w-6 rounded-full bg-red-700 ring-2 ring-white">
           <div
             className="flex h-full w-full cursor-pointer items-center justify-center text-white"
             onClick={() => onDeleteClick(id)}
@@ -62,5 +62,5 @@ export function ImageObjectComponent({ id, imageObjet, onDeleteClick, cardType }
         </div>
       )}
     </div>
-  );
+  )
 }

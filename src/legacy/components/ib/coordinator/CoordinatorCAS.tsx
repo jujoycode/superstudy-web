@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { LayeredTabs, Tab } from 'src/components/common/LayeredTabs';
-import { CoordinatorCAS_Question } from './cas/CoordinatorCAS_Question';
-import CoordinatorCAS_Teacher from './cas/CoordinatorCAS_Teacher';
-import Coordinator_Schedule from './Coordinator_Schedule';
-import { IBPreference } from './CoordinatorTOK';
-import FAQList from './FAQList';
+import { useState } from 'react'
+import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
+import { CoordinatorCAS_Question } from './cas/CoordinatorCAS_Question'
+import CoordinatorCAS_Teacher from './cas/CoordinatorCAS_Teacher'
+import Coordinator_Schedule from './Coordinator_Schedule'
+import { IBPreference } from './CoordinatorTOK'
+import FAQList from './FAQList'
 
 export default function CoordinatorCAS() {
-  const [CASType, setCASType] = useState<IBPreference>('FAQ');
+  const [CASType, setCASType] = useState<IBPreference>('FAQ')
 
   return (
     <main className="w-full">
@@ -36,5 +36,5 @@ export default function CoordinatorCAS() {
         {CASType === 'TEACHER' && <CoordinatorCAS_Teacher />}
       </section>
     </main>
-  );
+  )
 }

@@ -1,53 +1,53 @@
-import { filter, maxBy, orderBy } from 'lodash';
-import { useState } from 'react';
-import { BadgeV2 } from 'src/components/common/BadgeV2';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import { PopupModal } from 'src/components/PopupModal';
-import { useTokEvaluationGetCriteriaItems } from 'src/generated/endpoint';
+import { filter, maxBy, orderBy } from 'lodash'
+import { useState } from 'react'
+import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { PopupModal } from 'src/components/PopupModal'
+import { useTokEvaluationGetCriteriaItems } from '@/legacy/generated/endpoint'
 import {
   RequestCreateTokEvaluationDtoType,
   ResponseTokEvaluationCriteriaDto,
   ResponseTokEvaluationCriteriaDtoType,
   TokEvaluationGetCriteriaItemsType,
-} from 'src/generated/model';
-import { DateFormat, DateUtil } from 'src/util/date';
-import AlertV2 from '../../../common/AlertV2';
-import { ButtonV2 } from '../../../common/ButtonV2';
-import { Typography } from '../../../common/Typography';
-import FrontPaginatedList from '../../../FrontPaginatedList ';
-import { CoordinatorTOK_Eval_AddEval } from './CoordinatorTOK_Eval_AddEval';
-import { CoordinatorTOK_Eval_UpdateEval } from './CoordinatorTOK_Eval_UpdateEval';
-import NODATA from 'src/assets/images/no-data.png';
-import { useCoordinatorCheck } from 'src/container/ib-coordinator';
+} from '@/legacy/generated/model'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import AlertV2 from '../../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../../@/legacy/components/common/ButtonV2'
+import { Typography } from '../../@/legacy/components/common/Typography'
+import FrontPaginatedList from '../../../FrontPaginatedList '
+import { CoordinatorTOK_Eval_AddEval } from './CoordinatorTOK_Eval_AddEval'
+import { CoordinatorTOK_Eval_UpdateEval } from './CoordinatorTOK_Eval_UpdateEval'
+import NODATA from 'src/assets/images/no-data.png'
+import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 
-export type ModalType = 'Category' | 'Update' | 'Add' | null;
-export type CategoryType = 'Ref' | 'FAQ' | '';
+export type ModalType = 'Category' | 'Update' | 'Add' | null
+export type CategoryType = 'Ref' | 'FAQ' | ''
 
 const EVALUATION_TYPE_KOR = {
   [TokEvaluationGetCriteriaItemsType.ESSAY]: '에세이',
   [TokEvaluationGetCriteriaItemsType.EXHIBITION]: '전시회',
-};
+}
 
 export default function CoordinatorTOK_Eval() {
-  const { data } = useTokEvaluationGetCriteriaItems();
-  const { permission } = useCoordinatorCheck();
-  const items = orderBy(data?.items || [], 'id', 'desc');
+  const { data } = useTokEvaluationGetCriteriaItems()
+  const { permission } = useCoordinatorCheck()
+  const items = orderBy(data?.items || [], 'id', 'desc')
 
   const essayLastId = maxBy(
     filter(items, (el) => el.type === ResponseTokEvaluationCriteriaDtoType.ESSAY),
     'id',
-  )?.id;
+  )?.id
   const exhibitionLastId = maxBy(
     filter(items, (el) => el.type === ResponseTokEvaluationCriteriaDtoType.EXHIBITION),
     'id',
-  )?.id;
+  )?.id
 
-  const [selectedType, setSelectedType] = useState<RequestCreateTokEvaluationDtoType>();
-  const [viewType, setViewType] = useState<'VIEW' | 'UPDATE'>('UPDATE');
+  const [selectedType, setSelectedType] = useState<RequestCreateTokEvaluationDtoType>()
+  const [viewType, setViewType] = useState<'VIEW' | 'UPDATE'>('UPDATE')
 
-  const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [selectedEval, setSelectedEval] = useState<ResponseTokEvaluationCriteriaDto>();
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+  const [activeModal, setActiveModal] = useState<ModalType>(null)
+  const [selectedEval, setSelectedEval] = useState<ResponseTokEvaluationCriteriaDto>()
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
 
   const Header = () => (
     <>
@@ -57,7 +57,7 @@ export default function CoordinatorTOK_Eval() {
       <div className="flex-[2] px-2 text-center">작성일</div>
       <div className="flex-[2] px-2 text-center">관리</div>
     </>
-  );
+  )
 
   // Item 컴포넌트
   const Item = ({ item, index }: { item: any; index: number }) => (
@@ -76,13 +76,13 @@ export default function CoordinatorTOK_Eval() {
           size={32}
           color="gray400"
           onClick={(e) => {
-            e.stopPropagation();
+            e.stopPropagation()
             if (item.id !== essayLastId && item.id !== exhibitionLastId) {
-              setViewType('VIEW');
-              handleEditClick(item);
+              setViewType('VIEW')
+              handleEditClick(item)
             } else {
-              setViewType('UPDATE');
-              handleEditClick(item);
+              setViewType('UPDATE')
+              handleEditClick(item)
             }
           }}
         >
@@ -90,21 +90,21 @@ export default function CoordinatorTOK_Eval() {
         </ButtonV2>
       </div>
     </>
-  );
+  )
 
   const handleNext = () => {
     if (selectedType) {
-      setActiveModal('Add');
+      setActiveModal('Add')
     }
-  };
+  }
 
   const handleEditClick = (item: any) => {
-    setSelectedEval(item);
-    setActiveModal('Update');
-  };
+    setSelectedEval(item)
+    setActiveModal('Update')
+  }
   const handleBackToProjectSelection = () => {
-    setActiveModal('Category');
-  };
+    setActiveModal('Category')
+  }
 
   return (
     <div className="min-h-[664px] rounded-xl bg-white">
@@ -134,7 +134,7 @@ export default function CoordinatorTOK_Eval() {
           </div>
           {permission === 'IB_TOK' ? (
             <>
-              <Typography variant="body2" className="text-center font-medium text-primary-gray-700">
+              <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
                 생성된 평가가 없습니다.
                 <br />
                 평가를 추가해주세요.
@@ -144,7 +144,7 @@ export default function CoordinatorTOK_Eval() {
               </ButtonV2>
             </>
           ) : (
-            <Typography variant="body2" className="text-center font-medium text-primary-gray-700">
+            <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
               생성된 평가가 없습니다.
             </Typography>
           )}
@@ -191,7 +191,7 @@ export default function CoordinatorTOK_Eval() {
           modalOpen={activeModal === 'Update'}
           setModalClose={() => setActiveModal(null)}
           onSuccess={() => {
-            setActiveModal(null);
+            setActiveModal(null)
           }}
         />
       )}
@@ -203,5 +203,5 @@ export default function CoordinatorTOK_Eval() {
         />
       )}
     </div>
-  );
+  )
 }

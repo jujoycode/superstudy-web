@@ -1,31 +1,31 @@
-import { useMemo, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Linkify from 'react-linkify';
-import Viewer from 'react-viewer';
-import { ImageDecorator } from 'react-viewer/lib/ViewerProps';
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg';
-import { Constants } from 'src/constants';
+import { useMemo, useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import Linkify from 'react-linkify'
+import Viewer from 'react-viewer'
+import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg'
+import { Constants } from '@/legacy/constants'
 import {
   useActivityV3FindTitleByIds,
   useBoardFindTitleByIds,
   useNewsLettersFindTitleByIds,
   useNoticesFindTitleByIds,
-} from 'src/generated/endpoint';
-import { Chat } from 'src/generated/model';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { downloadFile } from 'src/util/download-image';
-import { getFileNameFromUrl } from 'src/util/file';
-import { isSameMinute } from 'src/util/time';
-import { twMerge } from 'tailwind-merge';
-import { Icon } from '../common/icons';
+} from '@/legacy/generated/endpoint'
+import { Chat } from '@/legacy/generated/model'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { downloadFile } from '@/legacy/util/download-image'
+import { getFileNameFromUrl } from '@/legacy/util/file'
+import { isSameMinute } from '@/legacy/util/time'
+import { twMerge } from 'tailwind-merge'
+import { Icon } from '@/legacy/components/common/icons'
 
 interface SendMessageProps {
-  PreMessageData?: Chat;
-  MessageData: Chat;
-  PostMessageData: Chat;
-  userRole: 'student' | 'teacher';
-  openDeleteModal: () => void;
-  isDeleteMode?: boolean;
+  PreMessageData?: Chat
+  MessageData: Chat
+  PostMessageData: Chat
+  userRole: 'student' | 'teacher'
+  openDeleteModal: () => void
+  isDeleteMode?: boolean
 }
 
 export function SendMessage({
@@ -36,48 +36,48 @@ export function SendMessage({
   openDeleteModal,
   isDeleteMode = false,
 }: SendMessageProps) {
-  const [hasImagesModalOpen, setImagesModalOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  const isFirst = PreMessageData?.senderId !== MessageData?.senderId;
+  const isFirst = PreMessageData?.senderId !== MessageData?.senderId
   const isLast =
     PostMessageData?.senderId !== MessageData?.senderId ||
-    !isSameMinute(MessageData?.createdAt || '', PostMessageData?.createdAt || '');
+    !isSameMinute(MessageData?.createdAt || '', PostMessageData?.createdAt || '')
 
   const urlsInContent = useMemo(
     () => [...MessageData.content.matchAll(/https:\/\/web\.dev\.superschool\.link\/teacher\/([^\/]+)\/(\d+)/g)],
     [MessageData],
-  );
+  )
 
-  const activityIds = urlsInContent.filter((el) => el[1] === 'activityv3').map((el) => Number(el[2])) || [];
-  const noticeIds = urlsInContent.filter((el) => el[1] === 'notice').map((el) => Number(el[2])) || [];
-  const boardIds = urlsInContent.filter((el) => el[1] === 'board').map((el) => Number(el[2])) || [];
-  const newsletterIds = urlsInContent.filter((el) => el[1] === 'newsletter').map((el) => Number(el[2])) || [];
+  const activityIds = urlsInContent.filter((el) => el[1] === 'activityv3').map((el) => Number(el[2])) || []
+  const noticeIds = urlsInContent.filter((el) => el[1] === 'notice').map((el) => Number(el[2])) || []
+  const boardIds = urlsInContent.filter((el) => el[1] === 'board').map((el) => Number(el[2])) || []
+  const newsletterIds = urlsInContent.filter((el) => el[1] === 'newsletter').map((el) => Number(el[2])) || []
 
   const { data: activities } = useActivityV3FindTitleByIds(
     { activityIds },
     { query: { enabled: !!activityIds.length } },
-  );
+  )
 
-  const { data: notices } = useNoticesFindTitleByIds({ noticeIds }, { query: { enabled: !!noticeIds.length } });
+  const { data: notices } = useNoticesFindTitleByIds({ noticeIds }, { query: { enabled: !!noticeIds.length } })
 
-  const { data: boards } = useBoardFindTitleByIds({ boardIds }, { query: { enabled: !!boardIds.length } });
+  const { data: boards } = useBoardFindTitleByIds({ boardIds }, { query: { enabled: !!boardIds.length } })
 
   const { data: newsletters } = useNewsLettersFindTitleByIds(
     { newsletterIds },
     { query: { enabled: !!newsletterIds.length } },
-  );
+  )
 
-  const content = MessageData?.content;
-  const images = MessageData?.images;
-  const imagesLen = images?.length || 0;
+  const content = MessageData?.content
+  const images = MessageData?.images
+  const imagesLen = images?.length || 0
 
-  const viewerImages: ImageDecorator[] = [];
+  const viewerImages: ImageDecorator[] = []
   if (images?.length) {
     for (const image of images) {
       viewerImages.push({
         src: `${Constants.imageUrl}${image}`,
-      });
+      })
     }
   }
 
@@ -85,8 +85,8 @@ export function SendMessage({
     return (
       /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-    );
-  };
+    )
+  }
 
   return (
     <>
@@ -94,8 +94,8 @@ export function SendMessage({
         <div className="flex w-full flex-row-reverse items-end space-x-0 px-2">
           <div className="overflow-hidden">
             {content && (
-              <div className="rounded-md bg-brand-1 p-1 px-6 text-white">
-                <p className="feedback_space whitespace-pre-wrap break-all text-left text-sm">
+              <div className="bg-brand-1 rounded-md p-1 px-6 text-white">
+                <p className="feedback_space text-left text-sm break-all whitespace-pre-wrap">
                   <Linkify>{content}</Linkify>
                 </p>
               </div>
@@ -116,8 +116,8 @@ export function SendMessage({
                             : 'w-1/4-2 lg:w-1/6-2',
                     )}
                     onClick={() => {
-                      setActiveIndex(i);
-                      setImagesModalOpen(true);
+                      setActiveIndex(i)
+                      setImagesModalOpen(true)
                     }}
                   >
                     <div className="aspect-square rounded border border-neutral-200">
@@ -141,7 +141,7 @@ export function SendMessage({
                   >
                     <FileItemIcon className="min-w-[14px]" />
                     <a
-                      className="ml-2 line-clamp-2 max-w-[160px] break-words text-xs text-neutral-500"
+                      className="ml-2 line-clamp-2 max-w-[160px] text-xs break-words text-neutral-500"
                       href={`${Constants.imageUrl}${fileUrl}`}
                       target="_blank"
                       rel="noreferrer"
@@ -160,7 +160,7 @@ export function SendMessage({
                   <a
                     key={el.id}
                     href={`https://web.dev.superschool.link/${userRole}/activityv3/` + el.id}
-                    className="block w-min max-w-2/3 cursor-pointer overflow-hidden whitespace-pre rounded-md bg-white px-4 py-2"
+                    className="block w-min max-w-2/3 cursor-pointer overflow-hidden rounded-md bg-white px-4 py-2 whitespace-pre"
                   >
                     <p className="truncate text-lg text-gray-700">{el.title}</p>
                     <p className="text-sm text-gray-500">
@@ -176,7 +176,7 @@ export function SendMessage({
                   <a
                     key={el.id}
                     href={`https://web.dev.superschool.link/${userRole}/board/` + el.id}
-                    className="block w-min max-w-2/3 cursor-pointer overflow-hidden whitespace-pre rounded-md bg-white px-4 py-2"
+                    className="block w-min max-w-2/3 cursor-pointer overflow-hidden rounded-md bg-white px-4 py-2 whitespace-pre"
                   >
                     <p className="truncate text-lg text-gray-700">{el.title}</p>
                     <p className="text-sm text-gray-500">
@@ -192,7 +192,7 @@ export function SendMessage({
                   <a
                     key={el.id}
                     href={`https://web.dev.superschool.link/${userRole}/newsletter/` + el.id}
-                    className="block w-min max-w-2/3 cursor-pointer overflow-hidden whitespace-pre rounded-md bg-white px-4 py-2"
+                    className="block w-min max-w-2/3 cursor-pointer overflow-hidden rounded-md bg-white px-4 py-2 whitespace-pre"
                   >
                     <p className="truncate text-lg text-gray-700">{el.title}</p>
                     <p className="text-sm text-gray-500">
@@ -208,7 +208,7 @@ export function SendMessage({
                   <a
                     key={el.id}
                     href={`https://web.dev.superschool.link/${userRole}/notice/` + el.id}
-                    className="block w-min max-w-2/3 cursor-pointer overflow-hidden whitespace-pre rounded-md bg-white px-4 py-2"
+                    className="block w-min max-w-2/3 cursor-pointer overflow-hidden rounded-md bg-white px-4 py-2 whitespace-pre"
                   >
                     <p className="truncate text-lg text-gray-700">{el.title}</p>
                     <p className="text-sm text-gray-500">
@@ -220,7 +220,7 @@ export function SendMessage({
             )}
           </div>
           {isLast && (
-            <div className="pl-7 pr-2">
+            <div className="pr-2 pl-7">
               <small className="text-gray-500">
                 {MessageData?.createdAt && DateUtil.formatDate(MessageData?.createdAt, DateFormat['HH:mm'])}
               </small>
@@ -239,20 +239,20 @@ export function SendMessage({
         {hasImagesModalOpen &&
           (isMobile() ? (
             <a
-              className="fixed left-0 top-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full bg-littleblack"
+              className="bg-littleblack fixed top-0 left-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full"
               href={viewerImages[activeIndex].src}
               target="_blank"
               rel="noreferrer"
               download={viewerImages[activeIndex].src}
             >
-              <Icon.Download className="ml-1 mt-1" stroke="#FFF" />
+              <Icon.Download className="mt-1 ml-1" stroke="#FFF" />
             </a>
           ) : (
             <div
-              className="fixed left-0 top-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full bg-littleblack"
+              className="bg-littleblack fixed top-0 left-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full"
               onClick={() => downloadFile(viewerImages[activeIndex].src)}
             >
-              <Icon.Download className="ml-1 mt-1" stroke="#FFF" />
+              <Icon.Download className="mt-1 ml-1" stroke="#FFF" />
             </div>
           ))}
         <Viewer
@@ -267,5 +267,5 @@ export function SendMessage({
         />
       </div>
     </>
-  );
+  )
 }

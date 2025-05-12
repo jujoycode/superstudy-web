@@ -1,35 +1,35 @@
-import * as loadImage from 'blueimp-load-image';
-import imageCompression from 'browser-image-compression';
-import { toJpeg } from 'html-to-image';
-import { jsPDF } from 'jspdf';
-import { filter, find, groupBy, map } from 'lodash';
-import { useRef, useState } from 'react';
-import { Constants } from 'src/constants';
-import { UserContainer } from 'src/container/user';
-import { ResponseNewsletterDetailDto } from 'src/generated/model';
-import { AbsentPaperType } from 'src/types';
-import { getArrayBufferByFile, getBlobByCanvas, getImageMeta } from 'src/util/pdf';
-import { Select } from '../common';
-import { Button } from '../common/Button';
-import { NewsletterPdf } from './NewsletterPdf';
+import * as loadImage from 'blueimp-load-image'
+import imageCompression from 'browser-image-compression'
+import { toJpeg } from 'html-to-image'
+import { jsPDF } from 'jspdf'
+import { filter, find, groupBy, map } from 'lodash'
+import { useRef, useState } from 'react'
+import { Constants } from '@/legacy/constants'
+import { UserContainer } from '@/legacy/container/user'
+import { ResponseNewsletterDetailDto } from '@/legacy/generated/model'
+import { AbsentPaperType } from '@/legacy/types'
+import { getArrayBufferByFile, getBlobByCanvas, getImageMeta } from '@/legacy/util/pdf'
+import { Select } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { NewsletterPdf } from './NewsletterPdf'
 
 interface NewslettersDownloadViewProps {
-  newsletter?: ResponseNewsletterDetailDto;
-  studentNewsletter: any;
-  submitPerson: any;
-  nowDate: string;
-  setCsvData: (b: boolean) => void;
-  isCsvData: boolean;
+  newsletter?: ResponseNewsletterDetailDto
+  studentNewsletter: any
+  submitPerson: any
+  nowDate: string
+  setCsvData: (b: boolean) => void
+  isCsvData: boolean
 }
 
 interface ReactPdfData {
-  id: number;
-  orderBy: number;
-  data: string | Uint8Array;
-  type: AbsentPaperType;
-  width?: number;
-  height?: number;
-  orientation?: number;
+  id: number
+  orderBy: number
+  data: string | Uint8Array
+  type: AbsentPaperType
+  width?: number
+  height?: number
+  orientation?: number
 }
 
 export function NewslettersDownloadView({
@@ -40,91 +40,91 @@ export function NewslettersDownloadView({
   setCsvData,
   isCsvData,
 }: NewslettersDownloadViewProps) {
-  const [open, setOpen] = useState(false);
-  const docRef = useRef<jsPDF>();
-  const [isExtractData, setIsExtractData] = useState(false);
-  const [extractDataCount, setExtractDataCount] = useState(-1);
-  const [isProcessPdf, setIsProcessPdf] = useState(false);
-  const [prodcessPdfCount, setIsProcessPdfCount] = useState(0);
-  const reactPdfDatas = useRef<ReactPdfData[]>([]);
+  const [open, setOpen] = useState(false)
+  const docRef = useRef<jsPDF>()
+  const [isExtractData, setIsExtractData] = useState(false)
+  const [extractDataCount, setExtractDataCount] = useState(-1)
+  const [isProcessPdf, setIsProcessPdf] = useState(false)
+  const [prodcessPdfCount, setIsProcessPdfCount] = useState(0)
+  const reactPdfDatas = useRef<ReactPdfData[]>([])
 
-  const [pdfQuality, setPdfQuality] = useState(0.8);
+  const [pdfQuality, setPdfQuality] = useState(0.8)
 
   const _initState = () => {
-    setIsExtractData(false);
-    setExtractDataCount(-1);
-    setIsProcessPdf(false);
-    setIsProcessPdfCount(0);
-  };
+    setIsExtractData(false)
+    setExtractDataCount(-1)
+    setIsProcessPdf(false)
+    setIsProcessPdfCount(0)
+  }
 
   const addReactToPdf = async (reactData: ReactPdfData) => {
     if (!docRef.current) {
-      return null;
+      return null
     }
     try {
-      docRef.current.addImage(reactData.data, 'JPEG', -3, 0, 210, 297, undefined, 'FAST');
-      docRef.current.addPage();
+      docRef.current.addImage(reactData.data, 'JPEG', -3, 0, 210, 297, undefined, 'FAST')
+      docRef.current.addPage()
     } catch (e) {
-      console.log('addReactToPdf error  : ', e);
-      console.log('addReactToPdf error reactData : ', reactData);
+      console.log('addReactToPdf error  : ', e)
+      console.log('addReactToPdf error reactData : ', reactData)
     }
-  };
+  }
 
   const extractReactData = async (orderBy: number, ref: any, type: AbsentPaperType, submitPerson: any) => {
     if (!ref) {
-      return null;
+      return null
     }
-    let imgData;
+    let imgData
     try {
-      imgData = await toJpeg(ref, { quality: pdfQuality, fontEmbedCSS: '' });
-      await getImageMeta(imgData);
+      imgData = await toJpeg(ref, { quality: pdfQuality, fontEmbedCSS: '' })
+      await getImageMeta(imgData)
       reactPdfDatas.current.push({
         id: submitPerson.id,
         orderBy,
         data: imgData,
         type,
-      });
+      })
     } catch (e) {
-      console.log('extractReactData error  : ', e);
-      console.log('extractReactData error type : ', type);
-      console.log('extractReactData error submitPerson : ', submitPerson);
-      console.log('extractReactData error imgData : ', imgData);
+      console.log('extractReactData error  : ', e)
+      console.log('extractReactData error type : ', type)
+      console.log('extractReactData error submitPerson : ', submitPerson)
+      console.log('extractReactData error imgData : ', imgData)
     } finally {
       if (type === AbsentPaperType.PARENT || type === AbsentPaperType.TEACHER) {
-        _nextExtractPdfData();
+        _nextExtractPdfData()
       }
     }
-  };
+  }
 
   const extractImageData = async (orderBy: number, studentNewsletter: any, type: AbsentPaperType) => {
-    console.log('extractImageData');
-    const { id, evidenceFiles } = studentNewsletter;
+    console.log('extractImageData')
+    const { id, evidenceFiles } = studentNewsletter
 
     if (!evidenceFiles?.length || !id) {
-      return null;
+      return null
     }
 
     for (const ef of evidenceFiles) {
       if (ef.split('.').pop()?.toLowerCase() !== 'pdf') {
         try {
-          const evidenceFile = `${Constants.imageUrl}${ef}`;
+          const evidenceFile = `${Constants.imageUrl}${ef}`
           //@ts-ignore
           const result = await loadImage(evidenceFile, {
             meta: true,
             orientation: true,
             canvas: true,
-          });
-          console.log('evidenceFile : ', evidenceFile);
-          console.log('result : ', result);
-          const blob = await getBlobByCanvas(result.image);
-          const file = new File([blob], 'temp_file.jpeg', { type: blob.type });
-          const compressedFile = await imageCompression(file, { initialQuality: pdfQuality });
-          const arrayBuffer = await getArrayBufferByFile(compressedFile);
-          const unit8Array = new Uint8Array(arrayBuffer);
-          const orientation = result.exif?.get('Orientation') || 1;
-          const isChangeWidthHeight = orientation === 5 || orientation === 6 || orientation === 7 || orientation === 8;
-          console.log('orientation : ', orientation);
-          console.log('isChangeWidthHeight : ', isChangeWidthHeight);
+          })
+          console.log('evidenceFile : ', evidenceFile)
+          console.log('result : ', result)
+          const blob = await getBlobByCanvas(result.image)
+          const file = new File([blob], 'temp_file.jpeg', { type: blob.type })
+          const compressedFile = await imageCompression(file, { initialQuality: pdfQuality })
+          const arrayBuffer = await getArrayBufferByFile(compressedFile)
+          const unit8Array = new Uint8Array(arrayBuffer)
+          const orientation = result.exif?.get('Orientation') || 1
+          const isChangeWidthHeight = orientation === 5 || orientation === 6 || orientation === 7 || orientation === 8
+          console.log('orientation : ', orientation)
+          console.log('isChangeWidthHeight : ', isChangeWidthHeight)
           reactPdfDatas.current.push({
             id,
             orderBy,
@@ -134,44 +134,44 @@ export function NewslettersDownloadView({
             height: isChangeWidthHeight ? result.originalWidth : result.originalHeight,
             //evidenceType: absent.evidenceType as AbsentEvidenceType,
             orientation,
-          });
+          })
         } catch (e) {
-          console.log('extractImageData error  : ', e);
-          console.log('extractImageData error evidenceFile : ', ef);
+          console.log('extractImageData error  : ', e)
+          console.log('extractImageData error evidenceFile : ', ef)
         } finally {
         }
       }
     }
-    _nextExtractPdfData();
-  };
+    _nextExtractPdfData()
+  }
 
   const extractReactDataArray = async (orderBy: number, ref: any[], type: AbsentPaperType, submitPerson: any) => {
     if (!ref) {
-      return null;
+      return null
     }
     for (const ef of ref) {
       if (ef) {
-        let imgData;
+        let imgData
         try {
           imgData = await toJpeg(ef, {
             quality: pdfQuality,
             fontEmbedCSS: '',
             includeQueryParams: true,
             cacheBust: false,
-          });
-          await getImageMeta(imgData);
+          })
+          await getImageMeta(imgData)
           reactPdfDatas.current.push({
             id: submitPerson.id,
             orderBy,
             data: imgData,
             type,
             //evidenceType: absent.evidenceType as AbsentEvidenceType,
-          });
+          })
         } catch (e) {
-          console.log('extractReactData error  : ', e);
-          console.log('extractReactData error type : ', type);
-          console.log('extractReactData error submitPerson : ', submitPerson);
-          console.log('extractReactData error imgData : ', imgData);
+          console.log('extractReactData error  : ', e)
+          console.log('extractReactData error type : ', type)
+          console.log('extractReactData error submitPerson : ', submitPerson)
+          console.log('extractReactData error imgData : ', imgData)
         } finally {
           // if (type === FieldtripPaperType.RESULT) {
           //   _nextExtractPdfData();
@@ -179,74 +179,74 @@ export function NewslettersDownloadView({
         }
       }
     }
-  };
+  }
 
   const _finishDownloadPdf = () => {
-    console.log('_finishDownloadPdf');
-    setIsExtractData(false);
-    setIsProcessPdf(true);
-    docRef.current = new jsPDF('p', 'mm', 'a4');
-    const groupbyPdfDatas = groupBy(reactPdfDatas.current, 'orderBy');
+    console.log('_finishDownloadPdf')
+    setIsExtractData(false)
+    setIsProcessPdf(true)
+    docRef.current = new jsPDF('p', 'mm', 'a4')
+    const groupbyPdfDatas = groupBy(reactPdfDatas.current, 'orderBy')
     map(groupbyPdfDatas, (pdfDatas) => {
-      const submitData = find(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.ABSENT);
+      const submitData = find(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.ABSENT)
       // const absentData = find(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.ABSENT);
       // const parentData = find(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.PARENT);
       // const teacherData = find(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.TEACHER);
-      const imageDatas = filter(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.IMAGE);
-      const attachedPdfDatas = filter(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.PDF);
+      const imageDatas = filter(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.IMAGE)
+      const attachedPdfDatas = filter(pdfDatas, (pdfData) => pdfData.type === AbsentPaperType.PDF)
       if (submitData && (imageDatas || attachedPdfDatas)) {
-        addReactToPdf(submitData);
+        addReactToPdf(submitData)
       }
 
-      setIsProcessPdfCount((prev) => prev + 1);
-    });
-    docRef.current.deletePage(docRef.current.getNumberOfPages());
-    docRef.current.save(`가정통신문 ${nowDate}.pdf`);
-    setIsProcessPdf(false);
-  };
+      setIsProcessPdfCount((prev) => prev + 1)
+    })
+    docRef.current.deletePage(docRef.current.getNumberOfPages())
+    docRef.current.save(`가정통신문 ${nowDate}.pdf`)
+    setIsProcessPdf(false)
+  }
 
   const _nextExtractPdfData = () => {
     if (!studentNewsletter) {
-      return null;
+      return null
     }
 
     if (extractDataCount === studentNewsletter.length - 1) {
-      setExtractDataCount((prev) => prev + 1);
-      _finishDownloadPdf();
+      setExtractDataCount((prev) => prev + 1)
+      _finishDownloadPdf()
     }
     if (extractDataCount >= studentNewsletter.length - 1) {
-      return;
+      return
     }
-    setExtractDataCount((prev) => prev + 1);
-  };
+    setExtractDataCount((prev) => prev + 1)
+  }
 
   const _getProgress = () => {
     if (!studentNewsletter || !reactPdfDatas.current) {
-      return 0;
+      return 0
     }
 
     if (isExtractData) {
-      return (extractDataCount / studentNewsletter.length) * 100;
+      return (extractDataCount / studentNewsletter.length) * 100
     }
 
     if (isProcessPdf) {
-      return (prodcessPdfCount / reactPdfDatas.current.length) * 100;
+      return (prodcessPdfCount / reactPdfDatas.current.length) * 100
     }
-    return 0;
-  };
+    return 0
+  }
 
   return (
     <>
       {open && (
-        <div className="fixed inset-0 z-100 m-0 h-screen w-full overflow-y-scroll bg-littleblack">
+        <div className="bg-littleblack fixed inset-0 z-100 m-0 h-screen w-full overflow-y-scroll">
           <div className="flex h-full w-full items-start">
             <div className="py-6">
               <div className="mb-2 flex w-screen items-center justify-center">
                 <div
-                  className="fixed right-16 top-7 cursor-pointer text-3xl font-bold text-white"
+                  className="fixed top-7 right-16 cursor-pointer text-3xl font-bold text-white"
                   onClick={() => {
-                    setOpen(false);
-                    _initState();
+                    setOpen(false)
+                    _initState()
                   }}
                 >
                   닫기
@@ -262,14 +262,14 @@ export function NewslettersDownloadView({
                       </div>
 
                       {isExtractData && (
-                        <div className="py-2 text-center font-bold text-brand-1">
+                        <div className="text-brand-1 py-2 text-center font-bold">
                           {`${
                             extractDataCount < 0 ? 0 : extractDataCount
                           } / ${studentNewsletter?.length} 데이터 추출중입니다.`}
                         </div>
                       )}
                       {isProcessPdf && (
-                        <div className="py-2 text-center font-bold text-brand-1">
+                        <div className="text-brand-1 py-2 text-center font-bold">
                           {`${
                             prodcessPdfCount < 0 ? 0 : reactPdfDatas.current.length
                           } / ${studentNewsletter?.length} 데이터 처리중입니다.`}
@@ -283,7 +283,7 @@ export function NewslettersDownloadView({
                       placeholder="화질선택"
                       value={pdfQuality}
                       onChange={(e) => {
-                        setPdfQuality(Number(e.target.value));
+                        setPdfQuality(Number(e.target.value))
                       }}
                     >
                       <option value={0.3}>{'저화질'}</option>
@@ -294,10 +294,10 @@ export function NewslettersDownloadView({
                       children="전체서류 PDF 내보내기"
                       disabled={isExtractData || isProcessPdf}
                       onClick={() => {
-                        reactPdfDatas.current = [];
+                        reactPdfDatas.current = []
                         //setWithEvidence(true);
-                        setIsExtractData(true);
-                        setExtractDataCount(0);
+                        setIsExtractData(true)
+                        setExtractDataCount(0)
                       }}
                       className="filled-primary z-[1000]"
                     />
@@ -340,11 +340,11 @@ export function NewslettersDownloadView({
         children="PDF"
         onClick={() => {
           //alert('승인 완료된 결석계만 다운로드됩니다. 계속 진행하시겠습니까?');
-          !isCsvData && setCsvData(true);
-          setOpen(true);
+          !isCsvData && setCsvData(true)
+          setOpen(true)
         }}
         className="filled-blue"
       />
     </>
-  );
+  )
 }

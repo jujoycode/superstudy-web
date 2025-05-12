@@ -10,27 +10,27 @@ import {
   RadialLinearScale,
   Title,
   Tooltip,
-} from 'chart.js';
-import clsx from 'clsx';
-import _ from 'lodash';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Chart } from 'react-chartjs-2';
-import { SubjectEnum, SubjectGroups } from 'src/constants/score.enum';
-import { useStudentAnalysisScore } from 'src/container/student-score';
-import { useStudentMockScore, useStudentSemetsersScore } from 'src/container/student-semesters-score';
-import { calculateAverageGrades } from 'src/util/exam-score';
-import { ButtonV2 } from '../common/ButtonV2';
-import { Check } from '../common/Check';
-import { IBBlank } from '../common/IBBlank';
-import { LayeredTabs, Tab } from '../common/LayeredTabs';
-import { Typography } from '../common/Typography';
-import SolidSVGIcon from '../icon/SolidSVGIcon';
-import { PopupModal } from '../PopupModal';
-import MockRankTable from './MockRankTable';
-import MockScoreTable from './MockScoreTable';
+} from 'chart.js'
+import clsx from 'clsx'
+import _ from 'lodash'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { Chart } from 'react-chartjs-2'
+import { SubjectEnum, SubjectGroups } from '@/legacy/constants/score.enum'
+import { useStudentAnalysisScore } from '@/legacy/container/student-score'
+import { useStudentMockScore, useStudentSemetsersScore } from '@/legacy/container/student-semesters-score'
+import { calculateAverageGrades } from '@/legacy/util/exam-score'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Check } from '@/legacy/components/common/Check'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
+import { Typography } from '@/legacy/components/common/Typography'
+import SolidSVGIcon from '../icon/SolidSVGIcon'
+import { PopupModal } from '../PopupModal'
+import MockRankTable from './MockRankTable'
+import MockScoreTable from './MockScoreTable'
 
 interface ScoreAnalysisProps {
-  studentId: string;
+  studentId: string
 }
 ChartJS.register(
   CategoryScale,
@@ -42,29 +42,29 @@ ChartJS.register(
   Tooltip,
   Legend,
   RadialLinearScale,
-);
+)
 
 interface Score {
-  구분: string;
-  등급: number;
-  z점: number;
-  원점: number;
+  구분: string
+  등급: number
+  z점: number
+  원점: number
 }
 
 interface AnalysedExamScore {
-  subjects: string;
-  scores: Score[];
+  subjects: string
+  scores: Score[]
 }
 
-const chartEvents: ('mousemove' | 'mouseout' | 'click')[] = ['mousemove', 'mouseout', 'click'];
+const chartEvents: ('mousemove' | 'mouseout' | 'click')[] = ['mousemove', 'mouseout', 'click']
 
 const SCORE_FILTER = [
   { label: '등급', value: '등급' },
   { label: 'Z점수', value: 'z점' },
   { label: '원점수', value: '원점' },
-];
+]
 
-const SCORE_LABELS = ['전교과', '국영수사과', '국영수사', '국영수과', '국영수', '국영사', '영수과', '국영'];
+const SCORE_LABELS = ['전교과', '국영수사과', '국영수사', '국영수과', '국영수', '국영사', '영수과', '국영']
 const MOCK_SCORE_LABELS = [
   '국어영역',
   '수학영역',
@@ -74,23 +74,23 @@ const MOCK_SCORE_LABELS = [
   '국영수사',
   '국영수과',
   '국영수',
-];
+]
 const SUBJECT_GROUPS = {
   국영수사과: '국영수사과',
   국영수사: '국영수사',
   국영수과: '국영수과',
   국영수: '국영수',
-} as const;
+} as const
 
 const transformData = (data: AnalysedExamScore[]) => {
   return data.reduce(
     (acc, curr) => {
-      acc[curr.subjects] = curr.scores;
-      return acc;
+      acc[curr.subjects] = curr.scores
+      return acc
     },
     {} as Record<string, Score[]>,
-  );
-};
+  )
+}
 
 export const ScoreAnalysis = ({ studentId }: ScoreAnalysisProps) => {
   return (
@@ -98,15 +98,15 @@ export const ScoreAnalysis = ({ studentId }: ScoreAnalysisProps) => {
       <AcademicScore studentId={studentId} />
       <MockExamScore studentId={studentId} />
     </main>
-  );
-};
+  )
+}
 
 const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
-  const { data, isLoading, error } = useStudentAnalysisScore(Number(studentId));
-  const { scores, isLoading: isLoading2 } = useStudentSemetsersScore(Number(studentId));
-  const score = data?.analysed_exam_scores;
-  const transformedData = !isLoading && score ? transformData(score) : {};
-  const [openModal, setOpenModal] = useState(false);
+  const { data, isLoading, error } = useStudentAnalysisScore(Number(studentId))
+  const { scores, isLoading: isLoading2 } = useStudentSemetsersScore(Number(studentId))
+  const score = data?.analysed_exam_scores
+  const transformedData = !isLoading && score ? transformData(score) : {}
+  const [openModal, setOpenModal] = useState(false)
 
   if (isLoading || isLoading2) {
     return (
@@ -119,7 +119,7 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
           </Typography>
         </div>
       </div>
-    );
+    )
   }
 
   if (error || !data) {
@@ -128,33 +128,33 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
         <Typography variant="title1">내신성적</Typography>
         <div className="scrollable-wide">
           <table className="w-full table-auto border-collapse">
-            <thead className="text-center text-13 font-normal text-primary-gray-600">
+            <thead className="text-13 text-primary-gray-600 text-center font-normal">
               <tr>
-                <td className="min-w-[80px] bg-primary-gray-50 p-2" rowSpan={2}>
+                <td className="bg-primary-gray-50 min-w-[80px] p-2" rowSpan={2}>
                   구분
                 </td>
-                <td colSpan={3} className={`border-x border-gray-200 bg-primary-orange-50 p-2`}>
+                <td colSpan={3} className={`bg-primary-orange-50 border-x border-gray-200 p-2`}>
                   전교과
                 </td>
-                <td colSpan={3} className={`border-x border-gray-200 bg-primary-gray-50 p-2`}>
+                <td colSpan={3} className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>
                   국영수사과
                 </td>
-                <td colSpan={3} className={`border-x border-gray-200 bg-primary-gray-50 p-2`}>
+                <td colSpan={3} className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>
                   국영수사
                 </td>
-                <td colSpan={3} className={`border-x border-gray-200 bg-primary-gray-50 p-2`}>
+                <td colSpan={3} className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>
                   국영수과
                 </td>
-                <td colSpan={3} className={`border-x border-gray-200 bg-primary-gray-50 p-2`}>
+                <td colSpan={3} className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>
                   국영수
                 </td>
-                <td colSpan={3} className={`border-x border-gray-200 bg-primary-gray-50 p-2`}>
+                <td colSpan={3} className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>
                   국영사
                 </td>
-                <td colSpan={3} className={`border-x border-gray-200 bg-primary-gray-50 p-2`}>
+                <td colSpan={3} className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>
                   영수과
                 </td>
-                <td colSpan={3} className={`border-l border-gray-200 bg-primary-gray-50 p-2`}>
+                <td colSpan={3} className={`bg-primary-gray-50 border-l border-gray-200 p-2`}>
                   국영
                 </td>
               </tr>
@@ -164,21 +164,21 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
                   .map((_, index) => (
                     <React.Fragment key={index}>
                       <td
-                        className={`whitespace-nowrap border border-gray-200 ${
+                        className={`border border-gray-200 whitespace-nowrap ${
                           index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
                         } p-2`}
                       >
                         등급
                       </td>
                       <td
-                        className={`whitespace-nowrap border border-gray-200 ${
+                        className={`border border-gray-200 whitespace-nowrap ${
                           index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
                         } p-2`}
                       >
                         Z점수
                       </td>
                       <td
-                        className={`whitespace-nowrap border-gray-200 ${
+                        className={`border-gray-200 whitespace-nowrap ${
                           index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
                         } ${index === 7 ? 'border-y border-l' : 'border'} p-2`}
                       >
@@ -188,9 +188,9 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
                   ))}
               </tr>
             </thead>
-            <tbody className="text-center text-13 text-primary-gray-900">
+            <tbody className="text-13 text-primary-gray-900 text-center">
               <tr>
-                <td className="border-r border-t border-r-gray-100 border-t-primary-gray-200 p-2">-</td>
+                <td className="border-t-primary-gray-200 border-t border-r border-r-gray-100 p-2">-</td>
                 <td className="border border-gray-100 p-2">-</td>
                 <td className="border border-gray-100 p-2">-</td>
                 <td className="border border-gray-100 p-2">-</td>
@@ -220,10 +220,10 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
           </table>
         </div>
       </div>
-    );
+    )
   }
 
-  const averages = scores ? calculateAverageGrades(scores) : [];
+  const averages = scores ? calculateAverageGrades(scores) : []
 
   return (
     <section className="flex flex-col gap-6">
@@ -236,28 +236,28 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
 
       <div className="scrollable-wide">
         <table className="w-full table-fixed border-collapse">
-          <thead className="text-center text-13 font-normal text-primary-gray-600">
+          <thead className="text-13 text-primary-gray-600 text-center font-normal">
             <tr>
               <td className="bg-primary-gray-50 p-2">학기</td>
-              <td className={`border-x border-gray-200 bg-primary-gray-50 p-2`}>국영수사과</td>
-              <td className={`border-x border-gray-200 bg-primary-gray-50 p-2`}>국영수사</td>
-              <td className={`border-x border-gray-200 bg-primary-gray-50 p-2`}>국영수과</td>
-              <td className={`border-gray-200 bg-primary-gray-50 p-2`}>국영수</td>
+              <td className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>국영수사과</td>
+              <td className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>국영수사</td>
+              <td className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>국영수과</td>
+              <td className={`bg-primary-gray-50 border-gray-200 p-2`}>국영수</td>
             </tr>
           </thead>
-          <tbody className="text-center text-13 text-primary-gray-900">
+          <tbody className="text-13 text-primary-gray-900 text-center">
             {['1-1', '1-2', '2-1', '2-2', '3-1', '3-2'].map((semester, index) => (
               <tr key={semester}>
-                <td className={`border-r border-t border-gray-100 p-2 ${index === 5 ? 'border-b' : ''}`}>{semester}</td>
+                <td className={`border-t border-r border-gray-100 p-2 ${index === 5 ? 'border-b' : ''}`}>{semester}</td>
                 {Object.keys(SUBJECT_GROUPS).map((groupKey) => {
-                  const semesterData = averages?.find((score) => score.semester === semester);
-                  const groupAverage = semesterData?.averages[groupKey]?.[0]?.average;
+                  const semesterData = averages?.find((score) => score.semester === semester)
+                  const groupAverage = semesterData?.averages[groupKey]?.[0]?.average
 
                   return (
                     <td key={groupKey} className="border border-gray-100 p-2">
                       {groupAverage || '-'}
                     </td>
-                  );
+                  )
                 })}
               </tr>
             ))}
@@ -266,9 +266,9 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
       </div>
       <div className="scrollable-wide">
         <table className="w-full table-auto border-collapse">
-          <thead className="text-center text-13 font-normal text-primary-gray-600">
+          <thead className="text-13 text-primary-gray-600 text-center font-normal">
             <tr>
-              <td className="w-20 bg-primary-gray-50 p-2" rowSpan={2}>
+              <td className="bg-primary-gray-50 w-20 p-2" rowSpan={2}>
                 구분
               </td>
               {Object.keys(transformedData).map((subject, index) => (
@@ -287,21 +287,21 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
               {Object.keys(transformedData).map((subject, index) => (
                 <React.Fragment key={subject}>
                   <td
-                    className={`whitespace-nowrap border border-gray-200 ${
+                    className={`border border-gray-200 whitespace-nowrap ${
                       index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
                     } p-2`}
                   >
                     등급
                   </td>
                   <td
-                    className={`whitespace-nowrap border border-gray-200 ${
+                    className={`border border-gray-200 whitespace-nowrap ${
                       index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
                     } p-2`}
                   >
                     Z점수
                   </td>
                   <td
-                    className={`whitespace-nowrap border-gray-200 ${
+                    className={`border-gray-200 whitespace-nowrap ${
                       index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
                     } ${index === Object.keys(transformedData).length - 1 ? 'border-y border-l' : 'border'} p-2`}
                   >
@@ -311,10 +311,10 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
               ))}
             </tr>
           </thead>
-          <tbody className="text-center text-13 text-primary-gray-900">
+          <tbody className="text-13 text-primary-gray-900 text-center">
             {transformedData['전교과'].map((score, rowIndex) => (
               <tr key={rowIndex}>
-                <td className="border-r border-t border-r-gray-100 border-t-primary-gray-200 p-2">{score.구분}</td>
+                <td className="border-t-primary-gray-200 border-t border-r border-r-gray-100 p-2">{score.구분}</td>
                 {Object.keys(transformedData).map((subject) => (
                   <React.Fragment key={subject}>
                     <td className="border border-gray-100 p-2">{transformedData[subject][rowIndex].등급}</td>
@@ -339,11 +339,11 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
         </PopupModal>
       )}
     </section>
-  );
-};
+  )
+}
 
 const MockExamScore = ({ studentId }: ScoreAnalysisProps) => {
-  const { scores, isLoading } = useStudentMockScore(Number(studentId));
+  const { scores, isLoading } = useStudentMockScore(Number(studentId))
 
   if (isLoading) {
     return (
@@ -356,7 +356,7 @@ const MockExamScore = ({ studentId }: ScoreAnalysisProps) => {
           </Typography>
         </div>
       </div>
-    );
+    )
   }
 
   if (!scores || scores.length === 0) {
@@ -366,26 +366,26 @@ const MockExamScore = ({ studentId }: ScoreAnalysisProps) => {
           <Typography variant="title1">모의고사 최저/최고 등급 비교</Typography>
           <div className="scrollable-wide">
             <table className="w-full table-fixed border-collapse">
-              <thead className="text-center text-13 font-normal text-primary-gray-600">
+              <thead className="text-13 text-primary-gray-600 text-center font-normal">
                 <tr>
-                  <td className="w-[80px] bg-primary-gray-50 p-2">과목</td>
-                  <td className="border-x border-b border-gray-200 bg-primary-gray-50 p-2">국어영역</td>
-                  <td className="border-x border-b border-gray-200 bg-primary-gray-50 p-2">수학영역</td>
-                  <td className="border-x border-b border-gray-200 bg-primary-gray-50 p-2">영어영역</td>
-                  <td className="border-x border-b border-gray-200 bg-primary-gray-50 p-2">
+                  <td className="bg-primary-gray-50 w-[80px] p-2">과목</td>
+                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">국어영역</td>
+                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">수학영역</td>
+                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">영어영역</td>
+                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">
                     탐구영역
                     <br />
                     (과목별)
                   </td>
-                  <td className="border-x border-b border-gray-200 bg-primary-gray-50 p-2">전과목</td>
-                  <td className="border-x border-b border-gray-200 bg-primary-gray-50 p-2">국영수사</td>
-                  <td className="border-x border-b border-gray-200 bg-primary-gray-50 p-2">국영수과</td>
-                  <td className="border-b border-l border-gray-200 bg-primary-gray-50 p-2">국영수</td>
+                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">전과목</td>
+                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">국영수사</td>
+                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">국영수과</td>
+                  <td className="bg-primary-gray-50 border-b border-l border-gray-200 p-2">국영수</td>
                 </tr>
               </thead>
-              <tbody className="text-center text-13 text-primary-gray-900">
+              <tbody className="text-13 text-primary-gray-900 text-center">
                 <tr>
-                  <td className="border-r border-t border-r-gray-100 border-t-primary-gray-200 p-2">최고등급</td>
+                  <td className="border-t-primary-gray-200 border-t border-r border-r-gray-100 p-2">최고등급</td>
                   {Array(8)
                     .fill(null)
                     .map((_, index) => (
@@ -405,7 +405,7 @@ const MockExamScore = ({ studentId }: ScoreAnalysisProps) => {
                     ))}
                 </tr>
                 <tr>
-                  <td className="border-b border-r border-gray-100 p-2">최저등급</td>
+                  <td className="border-r border-b border-gray-100 p-2">최저등급</td>
                   {Array(8)
                     .fill(null)
                     .map((_, index) => (
@@ -422,80 +422,80 @@ const MockExamScore = ({ studentId }: ScoreAnalysisProps) => {
           <Typography variant="title1">모의고사 점수</Typography>
           <div className="scrollable-wide">
             <table className="table-auto border-collapse">
-              <thead className="text-center text-13 font-normal text-primary-gray-600">
+              <thead className="text-13 text-primary-gray-600 text-center font-normal">
                 <tr>
-                  <td className="min-w-[120px] bg-primary-gray-50 p-2" rowSpan={2}>
+                  <td className="bg-primary-gray-50 min-w-[120px] p-2" rowSpan={2}>
                     구분
                   </td>
-                  <td colSpan={3} className="border-x border-gray-200 bg-primary-gray-50 p-2">
+                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
                     국영수탐
                   </td>
-                  <td colSpan={3} className="border-x border-gray-200 bg-primary-gray-50 p-2">
+                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
                     국영수
                   </td>
-                  <td colSpan={3} className="border-x border-gray-200 bg-primary-gray-50 p-2">
+                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
                     국수탐
                   </td>
-                  <td colSpan={3} className="border-x border-gray-200 bg-primary-gray-50 p-2">
+                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
                     국어영역
                   </td>
-                  <td colSpan={3} className="border-x border-gray-200 bg-primary-gray-50 p-2">
+                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
                     영어영역
                   </td>
-                  <td colSpan={3} className="border-x border-gray-200 bg-primary-gray-50 p-2">
+                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
                     수학영역
                   </td>
-                  <td colSpan={3} className="border-x border-gray-200 bg-primary-gray-50 p-2">
+                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
                     탐구1
                   </td>
-                  <td colSpan={3} className="border-x border-gray-200 bg-primary-gray-50 p-2">
+                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
                     탐구2
                   </td>
-                  <td colSpan={3} className="border-l border-gray-200 bg-primary-gray-50 p-2">
+                  <td colSpan={3} className="bg-primary-gray-50 border-l border-gray-200 p-2">
                     한국사
                   </td>
                 </tr>
                 <tr>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">표점</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">등급</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">백분</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">표점</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">등급</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">백분</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">표점</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">등급</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">백분</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">표점</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">등급</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">백분</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">표점</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">등급</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">백분</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">표점</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">등급</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">백분</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">표점</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">등급</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">백분</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">표점</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">등급</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">백분</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">표점</td>
-                  <td className="whitespace-nowrap border border-gray-200 bg-primary-gray-50 p-2">등급</td>
-                  <td className="whitespace-nowrap border-y border-l border-gray-200 bg-primary-gray-50 p-2">백분</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
+                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
+                  <td className="bg-primary-gray-50 border-y border-l border-gray-200 p-2 whitespace-nowrap">백분</td>
                 </tr>
               </thead>
-              <tbody className="text-center text-13 text-primary-gray-900">
+              <tbody className="text-13 text-primary-gray-900 text-center">
                 <tr>
-                  <td className="border-r border-t border-r-gray-100 border-t-primary-gray-200 p-2">-</td>
+                  <td className="border-t-primary-gray-200 border-t border-r border-r-gray-100 p-2">-</td>
                   {Array(27)
                     .fill(null)
                     .map((_, index) => (
@@ -509,211 +509,211 @@ const MockExamScore = ({ studentId }: ScoreAnalysisProps) => {
           </div>
         </div>
       </div>
-    );
+    )
   }
   return (
     <section className="flex flex-col gap-10">
       <MockRankTable scores={scores} isLoading={isLoading} />
       <MockScoreTable scores={scores} />
     </section>
-  );
-};
+  )
+}
 
 const ScoreAnalysisModal = ({ data, averages }: any) => {
-  const [scoreType, setScoreType] = useState(SCORE_FILTER[0].value);
+  const [scoreType, setScoreType] = useState(SCORE_FILTER[0].value)
 
   const [chartData, setChartData] = useState<ChartData<'bar', number[], string>>({
     labels: SCORE_LABELS,
     datasets: [],
-  });
-  const chartRef = useRef<any>(null);
+  })
+  const chartRef = useRef<any>(null)
 
   const getOrCreateTooltip = (chart: any) => {
-    let tooltipEl = chart.canvas.parentNode.querySelector('div');
+    let tooltipEl = chart.canvas.parentNode.querySelector('div')
 
     if (!tooltipEl) {
-      tooltipEl = document.createElement('div');
-      tooltipEl.style.background = 'white';
-      tooltipEl.style.borderRadius = '8px';
-      tooltipEl.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.08)';
-      tooltipEl.style.color = '#121417';
-      tooltipEl.style.opacity = 1;
-      tooltipEl.style.pointerEvents = 'none';
-      tooltipEl.style.position = 'absolute';
-      tooltipEl.style.transform = 'translate(-50%, 0)';
-      tooltipEl.style.transition = 'all .1s ease';
-      tooltipEl.style.border = '1px solid #E8EAED';
+      tooltipEl = document.createElement('div')
+      tooltipEl.style.background = 'white'
+      tooltipEl.style.borderRadius = '8px'
+      tooltipEl.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.08)'
+      tooltipEl.style.color = '#121417'
+      tooltipEl.style.opacity = 1
+      tooltipEl.style.pointerEvents = 'none'
+      tooltipEl.style.position = 'absolute'
+      tooltipEl.style.transform = 'translate(-50%, 0)'
+      tooltipEl.style.transition = 'all .1s ease'
+      tooltipEl.style.border = '1px solid #E8EAED'
 
-      const table = document.createElement('table');
-      table.style.margin = '0px';
+      const table = document.createElement('table')
+      table.style.margin = '0px'
 
-      tooltipEl.appendChild(table);
-      chart.canvas.parentNode.appendChild(tooltipEl);
+      tooltipEl.appendChild(table)
+      chart.canvas.parentNode.appendChild(tooltipEl)
     }
 
-    return tooltipEl;
-  };
+    return tooltipEl
+  }
 
   const externalTooltipHandler = (context: any) => {
-    const { chart, tooltip } = context;
-    const tooltipEl = getOrCreateTooltip(chart);
+    const { chart, tooltip } = context
+    const tooltipEl = getOrCreateTooltip(chart)
 
     if (tooltip.opacity === 0) {
-      tooltipEl.style.opacity = 0;
-      return;
+      tooltipEl.style.opacity = 0
+      return
     }
 
     if (tooltip.body) {
-      const titleLines = tooltip.title || [];
-      const bodyLines = tooltip.body.map((b: any) => b.lines);
+      const titleLines = tooltip.title || []
+      const bodyLines = tooltip.body.map((b: any) => b.lines)
       const extractedData = bodyLines.flat().map((line: string) => {
-        const [key] = line.split(': ');
-        return key;
-      });
-      const formattedValue = tooltip.dataPoints[0]?.formattedValue || '';
+        const [key] = line.split(': ')
+        return key
+      })
+      const formattedValue = tooltip.dataPoints[0]?.formattedValue || ''
       const adjustedValue =
         scoreType === '등급'
           ? Math.floor((10 - Number(formattedValue)) * 10) / 10 // 소수점 첫째 자리에서 끊기
-          : formattedValue;
-      const dataIndex = tooltip.dataPoints[0]?.dataset.label;
+          : formattedValue
+      const dataIndex = tooltip.dataPoints[0]?.dataset.label
 
-      let color = '#000';
+      let color = '#000'
       switch (dataIndex) {
         case '100(1/2/3)':
-          color = '#06F';
-          break;
+          color = '#06F'
+          break
         case '20:30:50':
-          color = '#00A876';
-          break;
+          color = '#00A876'
+          break
         case '20:40:40':
-          color = '#FF600C';
-          break;
+          color = '#FF600C'
+          break
         default:
-          color = '#000';
+          color = '#000'
       }
 
-      const tableHead = document.createElement('thead');
+      const tableHead = document.createElement('thead')
 
       titleLines.forEach((title: any) => {
-        const tr = document.createElement('tr');
-        tr.style.borderWidth = '0';
+        const tr = document.createElement('tr')
+        tr.style.borderWidth = '0'
 
-        const th = document.createElement('th');
-        th.style.borderWidth = '0';
-        th.style.fontSize = '16px';
-        th.style.fontWeight = '600';
-        th.style.textAlign = 'left';
-        th.style.padding = '16px 16px 8px 16px';
+        const th = document.createElement('th')
+        th.style.borderWidth = '0'
+        th.style.fontSize = '16px'
+        th.style.fontWeight = '600'
+        th.style.textAlign = 'left'
+        th.style.padding = '16px 16px 8px 16px'
 
-        const titleText = document.createElement('span');
-        titleText.style.color = '#121417';
-        titleText.style.marginRight = '8px';
-        titleText.textContent = title;
+        const titleText = document.createElement('span')
+        titleText.style.color = '#121417'
+        titleText.style.marginRight = '8px'
+        titleText.textContent = title
 
         // FormattedValue 스타일
-        const valueText = document.createElement('span');
-        valueText.style.fontSize = '16px';
-        valueText.style.color = color;
-        valueText.textContent = adjustedValue;
+        const valueText = document.createElement('span')
+        valueText.style.fontSize = '16px'
+        valueText.style.color = color
+        valueText.textContent = adjustedValue
 
-        th.appendChild(titleText);
-        th.appendChild(valueText);
-        tr.appendChild(th);
-        tableHead.appendChild(tr);
-      });
+        th.appendChild(titleText)
+        th.appendChild(valueText)
+        tr.appendChild(th)
+        tableHead.appendChild(tr)
+      })
 
-      const tableBody = document.createElement('tbody');
+      const tableBody = document.createElement('tbody')
       extractedData.forEach((body: any, i: number) => {
-        const span = document.createElement('span');
-        span.style.borderWidth = '1px';
-        span.style.borderRadius = '4px';
-        span.style.border = '1px solid #E0E0E0';
-        span.style.height = '12px';
-        span.style.width = '12px';
-        span.style.marginRight = '6px';
-        span.style.display = 'inline-block';
+        const span = document.createElement('span')
+        span.style.borderWidth = '1px'
+        span.style.borderRadius = '4px'
+        span.style.border = '1px solid #E0E0E0'
+        span.style.height = '12px'
+        span.style.width = '12px'
+        span.style.marginRight = '6px'
+        span.style.display = 'inline-block'
 
         switch (body) {
           case '100(1/2/3)':
-            span.style.background = 'linear-gradient(to right, #356FFF, #66BDFF)';
-            break;
+            span.style.background = 'linear-gradient(to right, #356FFF, #66BDFF)'
+            break
           case '20:30:50':
-            span.style.background = 'linear-gradient(to right, #00BE85, #76DABC)';
-            break;
+            span.style.background = 'linear-gradient(to right, #00BE85, #76DABC)'
+            break
           case '20:40:40':
-            span.style.background = 'linear-gradient(to right, #FF803D, #FFBC99)';
-            break;
+            span.style.background = 'linear-gradient(to right, #FF803D, #FFBC99)'
+            break
           default:
-            span.style.background = 'linear-gradient(to right, #CCCCCC, #EEEEEE)';
+            span.style.background = 'linear-gradient(to right, #CCCCCC, #EEEEEE)'
         }
 
-        const tr = document.createElement('tr');
-        tr.style.backgroundColor = 'inherit';
-        tr.style.borderWidth = '0';
+        const tr = document.createElement('tr')
+        tr.style.backgroundColor = 'inherit'
+        tr.style.borderWidth = '0'
 
-        const td = document.createElement('td');
-        td.style.borderWidth = '0';
-        td.style.fontSize = '12px';
-        td.style.fontFamily = 'Pretendard';
-        td.style.padding = '0 16px 16px 16px';
-        td.style.color = '#121417';
-        td.style.fontWeight = '500';
-        td.style.textAlign = 'left';
-        td.style.display = 'flex';
-        td.style.alignItems = 'center';
-        const text = document.createTextNode(body);
+        const td = document.createElement('td')
+        td.style.borderWidth = '0'
+        td.style.fontSize = '12px'
+        td.style.fontFamily = 'Pretendard'
+        td.style.padding = '0 16px 16px 16px'
+        td.style.color = '#121417'
+        td.style.fontWeight = '500'
+        td.style.textAlign = 'left'
+        td.style.display = 'flex'
+        td.style.alignItems = 'center'
+        const text = document.createTextNode(body)
 
-        td.appendChild(span);
-        td.appendChild(text);
-        tr.appendChild(td);
-        tableBody.appendChild(tr);
-      });
+        td.appendChild(span)
+        td.appendChild(text)
+        tr.appendChild(td)
+        tableBody.appendChild(tr)
+      })
 
-      const tableRoot = tooltipEl.querySelector('table');
+      const tableRoot = tooltipEl.querySelector('table')
 
       while (tableRoot.firstChild) {
-        tableRoot.firstChild.remove();
+        tableRoot.firstChild.remove()
       }
 
-      tableRoot.appendChild(tableHead);
-      tableRoot.appendChild(tableBody);
+      tableRoot.appendChild(tableHead)
+      tableRoot.appendChild(tableBody)
     }
 
-    const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas;
-    const tooltipWidth = tooltipEl.offsetWidth;
-    const tooltipHeight = tooltipEl.offsetHeight;
-    const chartWidth = chart.width;
-    const chartHeight = chart.height;
+    const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas
+    const tooltipWidth = tooltipEl.offsetWidth
+    const tooltipHeight = tooltipEl.offsetHeight
+    const chartWidth = chart.width
+    const chartHeight = chart.height
 
-    let left = positionX + tooltip.caretX;
-    let top = positionY + tooltip.caretY;
+    let left = positionX + tooltip.caretX
+    let top = positionY + tooltip.caretY
 
     // 화면의 오른쪽을 넘어가는 경우
     if (left + tooltipWidth > chartWidth) {
-      left = chartWidth - tooltipWidth + 60; // 10px 여유를 두고 조정
+      left = chartWidth - tooltipWidth + 60 // 10px 여유를 두고 조정
     }
 
     // 화면의 아래쪽을 넘어가는 경우
     if (top + tooltipHeight > chartHeight) {
-      top = chartHeight - tooltipHeight + 60; // 10px 여유를 두고 조정
+      top = chartHeight - tooltipHeight + 60 // 10px 여유를 두고 조정
     }
 
     // 화면의 왼쪽을 넘어가는 경우
     if (left < 0) {
-      left = 4; // 10px 여유를 두고 조정
+      left = 4 // 10px 여유를 두고 조정
     }
 
     // 화면의 위쪽을 넘어가는 경우
     if (top < 0) {
-      top = 10; // 10px 여유를 두고 조정
+      top = 10 // 10px 여유를 두고 조정
     }
 
-    tooltipEl.style.opacity = 1;
-    tooltipEl.style.left = left + 'px';
-    tooltipEl.style.top = top + 'px';
-    tooltipEl.style.font = tooltip.options.bodyFont.string;
-    tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px';
-  };
+    tooltipEl.style.opacity = 1
+    tooltipEl.style.left = left + 'px'
+    tooltipEl.style.top = top + 'px'
+    tooltipEl.style.font = tooltip.options.bodyFont.string
+    tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px'
+  }
 
   const options = useMemo(
     () => ({
@@ -750,12 +750,12 @@ const ScoreAnalysisModal = ({ data, averages }: any) => {
             color: '#121417',
             padding: 2,
             callback: function (value: string | number, index: number, values: any) {
-              const label = chartData?.labels?.[index];
-              const maxLength = 6;
+              const label = chartData?.labels?.[index]
+              const maxLength = 6
               if (label && typeof label === 'string' && label.length > maxLength) {
-                return label.substring(0, maxLength) + '...';
+                return label.substring(0, maxLength) + '...'
               }
-              return label;
+              return label
             },
           },
         },
@@ -780,35 +780,35 @@ const ScoreAnalysisModal = ({ data, averages }: any) => {
             stepSize: scoreType === '등급' ? 1 : scoreType === 'z점' ? 0.25 : null,
             callback: function (tickValue: number | string) {
               if (scoreType === '등급') {
-                return 10 - Number(tickValue); // 0~9를 9~1로 변환
+                return 10 - Number(tickValue) // 0~9를 9~1로 변환
               }
-              return tickValue;
+              return tickValue
             },
           },
         },
       },
     }),
     [scoreType],
-  );
+  )
 
   useEffect(() => {
-    const chartInstance = chartRef.current;
+    const chartInstance = chartRef.current
     if (chartInstance) {
-      const ctx = chartInstance.ctx;
+      const ctx = chartInstance.ctx
 
       const getGradient = (ctx: any, chartArea: any, colorStart: string, colorEnd: string) => {
-        const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-        gradient.addColorStop(0, colorStart);
-        gradient.addColorStop(1, colorEnd);
-        return gradient;
-      };
+        const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top)
+        gradient.addColorStop(0, colorStart)
+        gradient.addColorStop(1, colorEnd)
+        return gradient
+      }
 
       // "구분" 값에 따른 색상 매핑
       const colorMap = {
         '100(1/2/3)': getGradient(ctx, chartInstance.chartArea, '#356FFF', '#66BDFF'),
         '20:30:50': getGradient(ctx, chartInstance.chartArea, '#00BE85', '#76DABC'),
         '20:40:40': getGradient(ctx, chartInstance.chartArea, '#FF803D', '#FFBC99'),
-      };
+      }
 
       // Chart 데이터 설정
       setChartData({
@@ -816,8 +816,8 @@ const ScoreAnalysisModal = ({ data, averages }: any) => {
         datasets: ['100(1/2/3)', '20:30:50', '20:40:40'].map((label, dIndex) => ({
           label,
           data: data.analysed_exam_scores.map((subjectData: any) => {
-            const score = subjectData.scores.find((s: any) => s.구분 === label);
-            return score ? (scoreType === '등급' ? 10 - score[scoreType] : score[scoreType]) : null; // '등급'일 경우 반전
+            const score = subjectData.scores.find((s: any) => s.구분 === label)
+            return score ? (scoreType === '등급' ? 10 - score[scoreType] : score[scoreType]) : null // '등급'일 경우 반전
           }),
           borderColor: 'rgba(0, 0, 0, 0.08)',
           backgroundColor: data.analysed_exam_scores.map(() => colorMap[label as keyof typeof colorMap]), // 기본 색상
@@ -835,9 +835,9 @@ const ScoreAnalysisModal = ({ data, averages }: any) => {
           barPercentage: 0.7,
           categoryPercentage: 0.7,
         })),
-      });
+      })
     }
-  }, [data, scoreType]);
+  }, [data, scoreType])
 
   return (
     <div className="flex flex-col items-center gap-6">
@@ -881,21 +881,21 @@ const ScoreAnalysisModal = ({ data, averages }: any) => {
       </div>
       <div className="flex w-full flex-row items-center">
         <div className="min-w-0 flex-1"></div>
-        <div className="mx-auto flex w-fit items-center justify-center gap-4 rounded-lg bg-primary-gray-100 px-5 py-2">
+        <div className="bg-primary-gray-100 mx-auto flex w-fit items-center justify-center gap-4 rounded-lg px-5 py-2">
           <div className="flex flex-row items-center gap-1.5">
-            <span className="h-3 w-3 rounded-[4px] border-dim-8 bg-gradient-blue-400" />
+            <span className="border-dim-8 bg-gradient-blue-400 h-3 w-3 rounded-[4px]" />
             <Typography variant="caption2" className="font-medium">
               100(1/2/3)
             </Typography>
           </div>
           <div className="flex flex-row items-center gap-1.5">
-            <span className="h-3 w-3 rounded-[4px] border-dim-8 bg-gradient-green-400" />
+            <span className="border-dim-8 bg-gradient-green-400 h-3 w-3 rounded-[4px]" />
             <Typography variant="caption2" className="font-medium">
               20:30:50
             </Typography>
           </div>
           <div className="flex flex-row items-center gap-1.5">
-            <span className="h-3 w-3 rounded-[4px] border-dim-8 bg-gradient-orange-400" />
+            <span className="border-dim-8 bg-gradient-orange-400 h-3 w-3 rounded-[4px]" />
             <Typography variant="caption2" className="font-medium">
               20:40:40
             </Typography>
@@ -911,206 +911,206 @@ const ScoreAnalysisModal = ({ data, averages }: any) => {
         </span>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const MockExamScoreModal = ({ data, examDates }: any) => {
   const [chartData, setChartData] = useState<ChartData<'radar', number[], string>>({
     labels: MOCK_SCORE_LABELS,
     datasets: [],
-  });
+  })
 
-  const [selectedLabels, setSelectedLabels] = useState<string[]>(['최고등급', '평균등급', '최저등급']);
+  const [selectedLabels, setSelectedLabels] = useState<string[]>(['최고등급', '평균등급', '최저등급'])
 
   const toggleLabel = (label: string) => {
-    setSelectedLabels((prev) => (prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]));
-  };
+    setSelectedLabels((prev) => (prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]))
+  }
 
-  const chartRef = useRef<any>(null);
+  const chartRef = useRef<any>(null)
   const getOrCreateTooltip = (chart: any) => {
-    let tooltipEl = chart.canvas.parentNode.querySelector('div');
+    let tooltipEl = chart.canvas.parentNode.querySelector('div')
 
     if (!tooltipEl) {
-      tooltipEl = document.createElement('div');
-      tooltipEl.style.background = 'white';
-      tooltipEl.style.borderRadius = '8px';
-      tooltipEl.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.08)';
-      tooltipEl.style.color = '#121417';
-      tooltipEl.style.opacity = 1;
-      tooltipEl.style.pointerEvents = 'none';
-      tooltipEl.style.position = 'absolute';
-      tooltipEl.style.transform = 'translate(-50%, 0)';
-      tooltipEl.style.transition = 'all .1s ease';
-      tooltipEl.style.border = '1px solid #E8EAED';
+      tooltipEl = document.createElement('div')
+      tooltipEl.style.background = 'white'
+      tooltipEl.style.borderRadius = '8px'
+      tooltipEl.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.08)'
+      tooltipEl.style.color = '#121417'
+      tooltipEl.style.opacity = 1
+      tooltipEl.style.pointerEvents = 'none'
+      tooltipEl.style.position = 'absolute'
+      tooltipEl.style.transform = 'translate(-50%, 0)'
+      tooltipEl.style.transition = 'all .1s ease'
+      tooltipEl.style.border = '1px solid #E8EAED'
 
-      const table = document.createElement('table');
-      table.style.margin = '0px';
+      const table = document.createElement('table')
+      table.style.margin = '0px'
 
-      tooltipEl.appendChild(table);
-      chart.canvas.parentNode.appendChild(tooltipEl);
+      tooltipEl.appendChild(table)
+      chart.canvas.parentNode.appendChild(tooltipEl)
     }
 
-    return tooltipEl;
-  };
+    return tooltipEl
+  }
 
   const externalTooltipHandler = (context: any) => {
-    const { chart, tooltip } = context;
-    const tooltipEl = getOrCreateTooltip(chart);
+    const { chart, tooltip } = context
+    const tooltipEl = getOrCreateTooltip(chart)
 
     if (tooltip.opacity === 0) {
-      tooltipEl.style.opacity = 0;
-      return;
+      tooltipEl.style.opacity = 0
+      return
     }
 
     if (tooltip.body) {
-      const titleLines = tooltip.title || [];
-      const bodyLines = tooltip.body.map((b: any) => b.lines);
+      const titleLines = tooltip.title || []
+      const bodyLines = tooltip.body.map((b: any) => b.lines)
       const extractedData = bodyLines.flat().map((line: string) => {
-        const [key] = line.split(': ');
-        return key;
-      });
+        const [key] = line.split(': ')
+        return key
+      })
       const formattedValue = tooltip.dataPoints[0]?.formattedValue
         ? Number(tooltip.dataPoints[0].formattedValue).toFixed(1)
-        : '';
-      const dataIndex = tooltip.dataPoints[0]?.dataset.label;
+        : ''
+      const dataIndex = tooltip.dataPoints[0]?.dataset.label
 
-      let color = '#000';
+      let color = '#000'
       switch (dataIndex) {
         case '최고등급':
-          color = '#06F';
-          break;
+          color = '#06F'
+          break
         case '평균등급':
-          color = '#00A876';
-          break;
+          color = '#00A876'
+          break
         case '최저등급':
-          color = '#FF600C';
-          break;
+          color = '#FF600C'
+          break
         default:
-          color = '#000';
+          color = '#000'
       }
 
-      const tableHead = document.createElement('thead');
+      const tableHead = document.createElement('thead')
 
       titleLines.forEach((title: any) => {
-        const tr = document.createElement('tr');
-        tr.style.borderWidth = '0';
+        const tr = document.createElement('tr')
+        tr.style.borderWidth = '0'
 
-        const th = document.createElement('th');
-        th.style.borderWidth = '0';
-        th.style.fontSize = '16px';
-        th.style.fontWeight = '600';
-        th.style.textAlign = 'left';
-        th.style.padding = '16px 16px 8px 16px';
+        const th = document.createElement('th')
+        th.style.borderWidth = '0'
+        th.style.fontSize = '16px'
+        th.style.fontWeight = '600'
+        th.style.textAlign = 'left'
+        th.style.padding = '16px 16px 8px 16px'
 
-        const titleText = document.createElement('span');
-        titleText.style.color = '#121417';
-        titleText.style.marginRight = '8px';
-        titleText.textContent = title;
+        const titleText = document.createElement('span')
+        titleText.style.color = '#121417'
+        titleText.style.marginRight = '8px'
+        titleText.textContent = title
 
         // FormattedValue 스타일
-        const valueText = document.createElement('span');
-        valueText.style.fontSize = '16px';
-        valueText.style.color = color;
-        valueText.textContent = (11 - Number(formattedValue)).toFixed(1);
+        const valueText = document.createElement('span')
+        valueText.style.fontSize = '16px'
+        valueText.style.color = color
+        valueText.textContent = (11 - Number(formattedValue)).toFixed(1)
 
-        th.appendChild(titleText);
-        th.appendChild(valueText);
-        tr.appendChild(th);
-        tableHead.appendChild(tr);
-      });
+        th.appendChild(titleText)
+        th.appendChild(valueText)
+        tr.appendChild(th)
+        tableHead.appendChild(tr)
+      })
 
-      const tableBody = document.createElement('tbody');
+      const tableBody = document.createElement('tbody')
       extractedData.forEach((body: any, i: number) => {
-        const span = document.createElement('span');
-        span.style.borderWidth = '1px';
-        span.style.borderRadius = '4px';
-        span.style.border = '1px solid #E0E0E0';
-        span.style.height = '12px';
-        span.style.width = '12px';
-        span.style.marginRight = '6px';
-        span.style.display = 'inline-block';
+        const span = document.createElement('span')
+        span.style.borderWidth = '1px'
+        span.style.borderRadius = '4px'
+        span.style.border = '1px solid #E0E0E0'
+        span.style.height = '12px'
+        span.style.width = '12px'
+        span.style.marginRight = '6px'
+        span.style.display = 'inline-block'
 
         switch (body) {
           case '최고등급':
-            span.style.background = 'linear-gradient(to right, #356FFF, #66BDFF)';
-            break;
+            span.style.background = 'linear-gradient(to right, #356FFF, #66BDFF)'
+            break
           case '평균등급':
-            span.style.background = 'linear-gradient(to right, #00BE85, #76DABC)';
-            break;
+            span.style.background = 'linear-gradient(to right, #00BE85, #76DABC)'
+            break
           case '최저등급':
-            span.style.background = 'linear-gradient(to right, #FF803D, #FFBC99)';
-            break;
+            span.style.background = 'linear-gradient(to right, #FF803D, #FFBC99)'
+            break
           default:
-            span.style.background = 'linear-gradient(to right, #CCCCCC, #EEEEEE)';
+            span.style.background = 'linear-gradient(to right, #CCCCCC, #EEEEEE)'
         }
 
-        const tr = document.createElement('tr');
-        tr.style.backgroundColor = 'inherit';
-        tr.style.borderWidth = '0';
+        const tr = document.createElement('tr')
+        tr.style.backgroundColor = 'inherit'
+        tr.style.borderWidth = '0'
 
-        const td = document.createElement('td');
-        td.style.borderWidth = '0';
-        td.style.fontSize = '12px';
-        td.style.fontFamily = 'Pretendard';
-        td.style.padding = '0 16px 16px 16px';
-        td.style.color = '#121417';
-        td.style.fontWeight = '500';
-        td.style.textAlign = 'left';
-        td.style.display = 'flex';
-        td.style.alignItems = 'center';
-        const text = document.createTextNode(body);
+        const td = document.createElement('td')
+        td.style.borderWidth = '0'
+        td.style.fontSize = '12px'
+        td.style.fontFamily = 'Pretendard'
+        td.style.padding = '0 16px 16px 16px'
+        td.style.color = '#121417'
+        td.style.fontWeight = '500'
+        td.style.textAlign = 'left'
+        td.style.display = 'flex'
+        td.style.alignItems = 'center'
+        const text = document.createTextNode(body)
 
-        td.appendChild(span);
-        td.appendChild(text);
-        tr.appendChild(td);
-        tableBody.appendChild(tr);
-      });
+        td.appendChild(span)
+        td.appendChild(text)
+        tr.appendChild(td)
+        tableBody.appendChild(tr)
+      })
 
-      const tableRoot = tooltipEl.querySelector('table');
+      const tableRoot = tooltipEl.querySelector('table')
 
       while (tableRoot.firstChild) {
-        tableRoot.firstChild.remove();
+        tableRoot.firstChild.remove()
       }
 
-      tableRoot.appendChild(tableHead);
-      tableRoot.appendChild(tableBody);
+      tableRoot.appendChild(tableHead)
+      tableRoot.appendChild(tableBody)
     }
 
-    const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas;
-    const tooltipWidth = tooltipEl.offsetWidth;
-    const tooltipHeight = tooltipEl.offsetHeight;
-    const chartWidth = chart.width;
-    const chartHeight = chart.height;
+    const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas
+    const tooltipWidth = tooltipEl.offsetWidth
+    const tooltipHeight = tooltipEl.offsetHeight
+    const chartWidth = chart.width
+    const chartHeight = chart.height
 
-    let left = positionX + tooltip.caretX;
-    let top = positionY + tooltip.caretY;
+    let left = positionX + tooltip.caretX
+    let top = positionY + tooltip.caretY
 
     // 화면의 오른쪽을 넘어가는 경우
     if (left + tooltipWidth > chartWidth) {
-      left = chartWidth - tooltipWidth + 60; // 10px 여유를 두고 조정
+      left = chartWidth - tooltipWidth + 60 // 10px 여유를 두고 조정
     }
 
     // 화면의 아래쪽을 넘어가는 경우
     if (top + tooltipHeight > chartHeight) {
-      top = chartHeight - tooltipHeight + 60; // 10px 여유를 두고 조정
+      top = chartHeight - tooltipHeight + 60 // 10px 여유를 두고 조정
     }
 
     // 화면의 왼쪽을 넘어가는 경우
     if (left < 0) {
-      left = 4; // 10px 여유를 두고 조정
+      left = 4 // 10px 여유를 두고 조정
     }
 
     // 화면의 위쪽을 넘어가는 경우
     if (top < 0) {
-      top = 10; // 10px 여유를 두고 조정
+      top = 10 // 10px 여유를 두고 조정
     }
 
-    tooltipEl.style.opacity = 1;
-    tooltipEl.style.left = left + 'px';
-    tooltipEl.style.top = top + 'px';
-    tooltipEl.style.font = tooltip.options.bodyFont.string;
-    tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px';
-  };
+    tooltipEl.style.opacity = 1
+    tooltipEl.style.left = left + 'px'
+    tooltipEl.style.top = top + 'px'
+    tooltipEl.style.font = tooltip.options.bodyFont.string
+    tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px'
+  }
 
   const options = useMemo(
     () => ({
@@ -1124,18 +1124,18 @@ export const MockExamScoreModal = ({ data, examDates }: any) => {
         intersect: false,
       },
       onHover: (_: any, elements: any) => {
-        const chart = chartRef.current;
-        if (!chart) return; // chartRef가 null인지 확인
+        const chart = chartRef.current
+        if (!chart) return // chartRef가 null인지 확인
 
         if (elements && elements.length > 0) {
-          const datasetIndex = elements[0].datasetIndex;
-          const datasets = [...chart.data.datasets];
-          const datasetToMove = datasets[datasetIndex];
-          datasets.splice(datasetIndex, 1);
-          datasets.unshift(datasetToMove);
+          const datasetIndex = elements[0].datasetIndex
+          const datasets = [...chart.data.datasets]
+          const datasetToMove = datasets[datasetIndex]
+          datasets.splice(datasetIndex, 1)
+          datasets.unshift(datasetToMove)
 
-          chart.data.datasets = datasets;
-          chart.update();
+          chart.data.datasets = datasets
+          chart.update()
         }
       },
       hover: {
@@ -1160,9 +1160,9 @@ export const MockExamScoreModal = ({ data, examDates }: any) => {
           ticks: {
             stepSize: 2,
             callback: (value: number | string) => {
-              if (value === 10) return '1'; // 외곽을 1로 표시
-              if (value === 0) return '11'; // 중앙을 11로 표시
-              return 11 - Number(value); // 변환된 값 출력
+              if (value === 10) return '1' // 외곽을 1로 표시
+              if (value === 0) return '11' // 중앙을 11로 표시
+              return 11 - Number(value) // 변환된 값 출력
             },
             font: {
               size: 12,
@@ -1202,7 +1202,7 @@ export const MockExamScoreModal = ({ data, examDates }: any) => {
       },
     }),
     [],
-  );
+  )
 
   useEffect(() => {
     if (data) {
@@ -1210,81 +1210,81 @@ export const MockExamScoreModal = ({ data, examDates }: any) => {
         국어영역: '국어',
         수학영역: '수학',
         영어영역: '영어',
-      };
-      const chartInstance = chartRef.current;
+      }
+      const chartInstance = chartRef.current
       if (chartInstance) {
-        const ctx = chartInstance.ctx;
+        const ctx = chartInstance.ctx
 
         const hexToRGBA = (hex: string, opacity: number) => {
-          const r = parseInt(hex.slice(1, 3), 16);
-          const g = parseInt(hex.slice(3, 5), 16);
-          const b = parseInt(hex.slice(5, 7), 16);
-          return `rgba(${r}, ${g}, ${b}, ${opacity})`;
-        };
+          const r = parseInt(hex.slice(1, 3), 16)
+          const g = parseInt(hex.slice(3, 5), 16)
+          const b = parseInt(hex.slice(5, 7), 16)
+          return `rgba(${r}, ${g}, ${b}, ${opacity})`
+        }
 
         const getGradient = (ctx: any, chartArea: any, colorStart: string, colorEnd: string, opacity: number) => {
-          const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-          gradient.addColorStop(0, hexToRGBA(colorStart, opacity));
-          gradient.addColorStop(1, hexToRGBA(colorEnd, opacity));
-          return gradient;
-        };
+          const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top)
+          gradient.addColorStop(0, hexToRGBA(colorStart, opacity))
+          gradient.addColorStop(1, hexToRGBA(colorEnd, opacity))
+          return gradient
+        }
 
         // "구분" 값에 따른 색상 매핑
         const colorMap = {
           최고등급: getGradient(ctx, chartInstance.chartArea, '#356FFF', '#66BDFF', 0.6),
           평균등급: getGradient(ctx, chartInstance.chartArea, '#00BE85', '#76DABC', 0.6),
           최저등급: getGradient(ctx, chartInstance.chartArea, '#FF803D', '#FFBC99', 0.6),
-        };
+        }
 
         const calculateValue = (subjects: string[], type: 'maxRank' | 'minRank' | 'avgRank') => {
           const values = subjects
             .map((subject) => data[subject]?.[0]?.[type])
-            .filter((value) => value !== undefined && value !== null);
+            .filter((value) => value !== undefined && value !== null)
 
-          if (values.length === 0) return null;
+          if (values.length === 0) return null
 
           switch (type) {
             case 'maxRank':
-              return Math.max(...values);
+              return Math.max(...values)
             case 'minRank':
-              return Math.min(...values);
+              return Math.min(...values)
             case 'avgRank':
-              return _.mean(values);
+              return _.mean(values)
             default:
-              return null;
+              return null
           }
-        };
+        }
 
         const maxRankData = MOCK_SCORE_LABELS.map((label) => {
           if (label === '탐구영역(과목별)') {
-            return calculateValue(SubjectGroups[SubjectEnum.사회].concat(SubjectGroups[SubjectEnum.과학]), 'maxRank');
+            return calculateValue(SubjectGroups[SubjectEnum.사회].concat(SubjectGroups[SubjectEnum.과학]), 'maxRank')
           }
-          const key = labelMap[label] || label;
-          const subjectData = data[key]?.[0];
-          return subjectData ? subjectData.maxRank : null;
-        });
+          const key = labelMap[label] || label
+          const subjectData = data[key]?.[0]
+          return subjectData ? subjectData.maxRank : null
+        })
 
         const minRankData = MOCK_SCORE_LABELS.map((label) => {
           if (label === '탐구영역(과목별)') {
-            return calculateValue(SubjectGroups[SubjectEnum.사회].concat(SubjectGroups[SubjectEnum.과학]), 'minRank');
+            return calculateValue(SubjectGroups[SubjectEnum.사회].concat(SubjectGroups[SubjectEnum.과학]), 'minRank')
           }
-          const key = labelMap[label] || label;
-          const subjectData = data[key]?.[0];
-          return subjectData ? subjectData.minRank : null;
-        });
+          const key = labelMap[label] || label
+          const subjectData = data[key]?.[0]
+          return subjectData ? subjectData.minRank : null
+        })
 
         const avgRankData = MOCK_SCORE_LABELS.map((label) => {
           if (label === '탐구영역(과목별)') {
-            return calculateValue(SubjectGroups[SubjectEnum.사회].concat(SubjectGroups[SubjectEnum.과학]), 'avgRank');
+            return calculateValue(SubjectGroups[SubjectEnum.사회].concat(SubjectGroups[SubjectEnum.과학]), 'avgRank')
           }
-          const key = labelMap[label] || label;
-          const subjectData = data[key]?.[0];
-          return subjectData ? subjectData.avgRank : null;
-        });
+          const key = labelMap[label] || label
+          const subjectData = data[key]?.[0]
+          return subjectData ? subjectData.avgRank : null
+        })
 
         const transformDataValue = (value: number) => {
-          return 11 - value; // 1을 10으로, 10을 1로 변환
-        };
+          return 11 - value // 1을 10으로, 10을 1로 변환
+        }
 
         const datasets = [
           {
@@ -1314,14 +1314,14 @@ export const MockExamScoreModal = ({ data, examDates }: any) => {
             borderWidth: 0,
             hoverRadius: 0,
           },
-        ].filter((dataset) => selectedLabels.includes(dataset.label));
+        ].filter((dataset) => selectedLabels.includes(dataset.label))
         setChartData({
           labels: MOCK_SCORE_LABELS,
           datasets: datasets,
-        });
+        })
       }
     }
-  }, [data, selectedLabels]);
+  }, [data, selectedLabels])
 
   return (
     <div className="flex flex-col items-center gap-6">
@@ -1330,9 +1330,9 @@ export const MockExamScoreModal = ({ data, examDates }: any) => {
       </div>
       <div className="flex w-full flex-row items-center">
         <div className="min-w-0 flex-1"></div>
-        <div className="mx-auto flex w-fit items-center justify-center gap-4 rounded-lg bg-primary-gray-100 px-5 py-2">
+        <div className="bg-primary-gray-100 mx-auto flex w-fit items-center justify-center gap-4 rounded-lg px-5 py-2">
           <div className="flex cursor-pointer flex-row items-center gap-1.5" onClick={() => toggleLabel('최고등급')}>
-            <span className="h-3 w-3 rounded-[4px] border-dim-8 bg-gradient-blue-400" />
+            <span className="border-dim-8 bg-gradient-blue-400 h-3 w-3 rounded-[4px]" />
             <Typography variant="caption2" className="font-medium">
               최고등급
             </Typography>
@@ -1343,7 +1343,7 @@ export const MockExamScoreModal = ({ data, examDates }: any) => {
             />
           </div>
           <div className="flex cursor-pointer flex-row items-center gap-1.5" onClick={() => toggleLabel('평균등급')}>
-            <span className="h-3 w-3 rounded-[4px] border-dim-8 bg-gradient-green-400" />
+            <span className="border-dim-8 bg-gradient-green-400 h-3 w-3 rounded-[4px]" />
             <Typography variant="caption2" className="font-medium">
               평균등급
             </Typography>
@@ -1354,7 +1354,7 @@ export const MockExamScoreModal = ({ data, examDates }: any) => {
             />
           </div>
           <div className="flex cursor-pointer flex-row items-center gap-1.5" onClick={() => toggleLabel('최저등급')}>
-            <span className="h-3 w-3 rounded-[4px] border-dim-8 bg-gradient-orange-400" />
+            <span className="border-dim-8 bg-gradient-orange-400 h-3 w-3 rounded-[4px]" />
             <Typography variant="caption2" className="font-medium">
               최저등급
             </Typography>
@@ -1375,5 +1375,5 @@ export const MockExamScoreModal = ({ data, examDates }: any) => {
         </span>
       </div>
     </div>
-  );
-};
+  )
+}

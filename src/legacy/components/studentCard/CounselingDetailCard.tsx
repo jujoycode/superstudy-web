@@ -1,39 +1,39 @@
-import { useState } from 'react';
-import { Constants } from 'src/constants';
-import { UserContainer } from 'src/container/user';
-import { ResponseCounselingDetailDto } from 'src/generated/model';
-import { AccessLevels } from 'src/types';
-import { SuperModal } from '../SuperModal';
-import { Button } from '../common/Button';
-import { Time } from '../common/Time';
-import WAVPlayer from '../rec/wavPlayer';
+import { useState } from 'react'
+import { Constants } from '@/legacy/constants'
+import { UserContainer } from '@/legacy/container/user'
+import { ResponseCounselingDetailDto } from '@/legacy/generated/model'
+import { AccessLevels } from '@/legacy/types'
+import { SuperModal } from '../SuperModal'
+import { Button } from '@/legacy/components/common/Button'
+import { Time } from '@/legacy/components/common/Time'
+import WAVPlayer from '../rec/wavPlayer'
 
 interface StudentCounselingProps {
-  data: ResponseCounselingDetailDto;
-  deleteCounseling: (id: number) => void;
-  editCounseling: (id: number) => void;
+  data: ResponseCounselingDetailDto
+  deleteCounseling: (id: number) => void
+  editCounseling: (id: number) => void
 }
 
 export default function CounselingDetailCard({ data, deleteCounseling, editCounseling }: StudentCounselingProps) {
-  const { me } = UserContainer.useContext();
-  const [alertDelete, setAlertDelete] = useState(false);
+  const { me } = UserContainer.useContext()
+  const [alertDelete, setAlertDelete] = useState(false)
 
-  let categoryColorClass = '';
+  let categoryColorClass = ''
   switch (data.category) {
     case '진로':
-      categoryColorClass = 'bg-counselingCategory-0';
-      break;
+      categoryColorClass = 'bg-counselingCategory-0'
+      break
     case '교우관계':
-      categoryColorClass = 'bg-counselingCategory-1';
-      break;
+      categoryColorClass = 'bg-counselingCategory-1'
+      break
     case '기타':
-      categoryColorClass = 'bg-counselingCategory-2';
-      break;
+      categoryColorClass = 'bg-counselingCategory-2'
+      break
     case '학교폭력':
-      categoryColorClass = 'bg-counselingCategory-3';
-      break;
+      categoryColorClass = 'bg-counselingCategory-3'
+      break
     default:
-      categoryColorClass = 'bg-lightgreen-2';
+      categoryColorClass = 'bg-lightgreen-2'
   }
   return (
     <div className={`p-4 ${categoryColorClass} relative flex h-[308px] flex-col rounded-md md:h-64`}>
@@ -48,7 +48,7 @@ export default function CounselingDetailCard({ data, deleteCounseling, editCouns
         </div>
       </div>
       <h5 className="font-bold">상담내용</h5>
-      <div className="h-[200px] overflow-y-auto whitespace-pre-line break-all text-sm">
+      <div className="h-[200px] overflow-y-auto text-sm break-all whitespace-pre-line">
         {data.content}
         <br />
         {data.transcript}
@@ -82,13 +82,13 @@ export default function CounselingDetailCard({ data, deleteCounseling, editCouns
           <Button.lg
             children="삭제하기"
             onClick={() => {
-              deleteCounseling(data.id);
-              setAlertDelete(false);
+              deleteCounseling(data.id)
+              setAlertDelete(false)
             }}
             className="filled-primary w-full"
           />
         </div>
       </SuperModal>
     </div>
-  );
+  )
 }

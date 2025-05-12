@@ -1,14 +1,14 @@
-import { PropsWithChildren, useEffect, useState } from 'react';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { Label } from './common';
-import { Button } from './common/Button';
-import { Checkbox } from './common/Checkbox';
+import { PropsWithChildren, useEffect, useState } from 'react'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { Label } from './common'
+import { Button } from './common/Button'
+import { Checkbox } from './common/Checkbox'
 
 interface NoticePopupProps {
-  noticeOpen: boolean;
-  setNoticeClose: () => void;
-  width?: string;
-  ablePropragation?: boolean;
+  noticeOpen: boolean
+  setNoticeClose: () => void
+  width?: string
+  ablePropragation?: boolean
 }
 
 export function NoticePopup2({
@@ -17,33 +17,33 @@ export function NoticePopup2({
   width = 'w-80',
   ablePropragation = false,
 }: PropsWithChildren<NoticePopupProps>) {
-  const [showNever, setShowNever] = useState(false);
-  const { t } = useLanguage();
+  const [showNever, setShowNever] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
-    const noticeShow = localStorage.getItem('noticeShow3');
+    const noticeShow = localStorage.getItem('noticeShow3')
     if (noticeShow) {
-      setNoticeClose();
+      setNoticeClose()
     }
-  }, [setNoticeClose]);
+  }, [setNoticeClose])
 
   const handleClose = () => {
     if (showNever) {
-      localStorage.setItem('noticeShow3', 'not');
+      localStorage.setItem('noticeShow3', 'not')
     }
-    setNoticeClose();
-  };
+    setNoticeClose()
+  }
 
-  const imageSrc = 'https://kr.object.gov-ncloudstorage.com/superschool/storage/notice/loginpopup3.jpg';
+  const imageSrc = 'https://kr.object.gov-ncloudstorage.com/superschool/storage/notice/loginpopup3.jpg'
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-littleblack ${
+      className={`bg-littleblack fixed inset-0 z-60 flex h-screen w-full items-center justify-center ${
         !noticeOpen && 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
         }
       }}
     >
@@ -56,7 +56,7 @@ export function NoticePopup2({
           <img src={imageSrc} alt="Security Notice" className="rounded-lg" />
         </div>
 
-        <div className="my-3 h-0.5 bg-brand-1"></div>
+        <div className="bg-brand-1 my-3 h-0.5"></div>
         <div className="flex items-center justify-between">
           <div className="flex space-x-3">
             <Checkbox checked={showNever} onChange={() => setShowNever(!showNever)} />
@@ -66,5 +66,5 @@ export function NoticePopup2({
         </div>
       </div>
     </div>
-  );
+  )
 }

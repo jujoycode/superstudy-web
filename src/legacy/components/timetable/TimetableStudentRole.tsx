@@ -1,23 +1,23 @@
-import { useEffect, useState } from 'react';
-import { makeStudNum5 } from 'src/util/status';
-import { TextInput } from '../common/TextInput';
-import { Icon } from '../common/icons';
+import { useEffect, useState } from 'react'
+import { makeStudNum5 } from '@/legacy/util/status'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Icon } from '@/legacy/components/common/icons'
 
 interface TimetableStudentRoleProps {
-  editmode: boolean;
-  student: any;
-  order: number;
-  setOrder: (order: number, isUpDir: boolean) => void;
+  editmode: boolean
+  student: any
+  order: number
+  setOrder: (order: number, isUpDir: boolean) => void
 }
 
 export function TimetableStudentRole({ editmode, student, order, setOrder }: TimetableStudentRoleProps) {
-  const [stateRole, setStateRole] = useState(student.role);
-  const [stateJob, setStateJob] = useState(student.job);
+  const [stateRole, setStateRole] = useState(student.role)
+  const [stateJob, setStateJob] = useState(student.job)
 
   useEffect(() => {
-    setStateRole(student.role);
-    setStateJob(student.job);
-  }, [student]);
+    setStateRole(student.role)
+    setStateJob(student.job)
+  }, [student])
 
   return (
     <>
@@ -47,8 +47,8 @@ export function TimetableStudentRole({ editmode, student, order, setOrder }: Tim
                 placeholder="역할"
                 value={stateRole}
                 onChange={(e) => {
-                  setStateRole(e.target.value);
-                  student.role = e.target.value;
+                  setStateRole(e.target.value)
+                  student.role = e.target.value
                 }}
                 className="ml-2 w-1/4"
               />
@@ -56,8 +56,8 @@ export function TimetableStudentRole({ editmode, student, order, setOrder }: Tim
                 placeholder="하는 일"
                 value={stateJob}
                 onChange={(e) => {
-                  setStateJob(e.target.value);
-                  student.job = e.target.value;
+                  setStateJob(e.target.value)
+                  student.job = e.target.value
                 }}
                 className="ml-1 w-2/4"
               />
@@ -81,5 +81,5 @@ export function TimetableStudentRole({ editmode, student, order, setOrder }: Tim
         </div>
       )}
     </>
-  );
+  )
 }

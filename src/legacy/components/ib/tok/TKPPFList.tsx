@@ -1,68 +1,68 @@
-import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import NODATA from 'src/assets/images/no-data.png';
-import AlertV2 from 'src/components/common/AlertV2';
-import ColorSVGIcon from 'src/components/icon/ColorSVGIcon';
-import { useGetFeedbackBatchExist, useGetUnreadFeedbackCount } from 'src/container/ib-feedback';
-import { ResponseIBDto, ResponseTKPPFDto } from 'src/generated/model';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Typography } from '../../common/Typography';
-import FeedbackViewer from '../FeedbackViewer';
-import { IbTKPPF } from './IbTKPPF';
+import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import NODATA from 'src/assets/images/no-data.png'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
+import { useGetFeedbackBatchExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
+import { ResponseIBDto, ResponseTKPPFDto } from '@/legacy/generated/model'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
+import FeedbackViewer from '../FeedbackViewer'
+import { IbTKPPF } from './IbTKPPF'
 
 interface TKPPFListProps {
-  data?: ResponseTKPPFDto | undefined;
-  ibData: ResponseIBDto;
-  refetch: () => void;
+  data?: ResponseTKPPFDto | undefined
+  ibData: ResponseIBDto
+  refetch: () => void
 }
 
 export default function TKPPFList({ data, ibData, refetch }: TKPPFListProps) {
-  const [feedbackOpen, setFeedbackOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined);
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+  const [feedbackOpen, setFeedbackOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
+  const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined)
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
   const handleSuccess = () => {
-    setModalOpen(!modalOpen);
-    refetch();
-    setAlertMessage(`TKPPF가\n저장되었습니다`);
-  };
+    setModalOpen(!modalOpen)
+    refetch()
+    setAlertMessage(`TKPPF가\n저장되었습니다`)
+  }
 
-  const { push } = useHistory();
+  const { push } = useHistory()
   const { data: Feedback } = useGetFeedbackBatchExist(
     {
       referenceIds: String(data?.id),
       referenceTable: 'TKPPF',
     },
     { enabled: !!data },
-  );
+  )
 
   const { data: count } = useGetUnreadFeedbackCount(
     { referenceId: data?.id || 0, referenceTable: 'TKPPF' },
     {
       enabled: !!data,
     },
-  );
+  )
 
   const handleFeedbackOpen = () => {
-    setFeedbackOpen(true);
+    setFeedbackOpen(true)
     if (unreadCount && unreadCount > 0) {
-      setUnreadCount(0);
+      setUnreadCount(0)
     }
-  };
+  }
 
   const isTKPPFComplete = (tkppf: ResponseTKPPFDto | undefined): boolean => {
-    if (!tkppf) return false;
+    if (!tkppf) return false
 
     // 모든 필드가 작성되었는지 확인
-    return !!tkppf?.sequence1?.text && !!tkppf?.sequence2?.text && !!tkppf?.sequence3?.text;
-  };
+    return !!tkppf?.sequence1?.text && !!tkppf?.sequence2?.text && !!tkppf?.sequence3?.text
+  }
 
   useEffect(() => {
     if (count !== undefined) {
-      setUnreadCount(count);
+      setUnreadCount(count)
     }
-  }, [count]);
+  }, [count])
 
   return (
     <section className="h-[664px]">
@@ -102,7 +102,7 @@ export default function TKPPFList({ data, ibData, refetch }: TKPPFListProps) {
               color="orange100"
               size={40}
               onClick={() => {
-                setModalOpen(true);
+                setModalOpen(true)
               }}
             >
               작성하기
@@ -110,17 +110,17 @@ export default function TKPPFList({ data, ibData, refetch }: TKPPFListProps) {
           </div>
         ) : (
           <table className="w-full">
-            <thead className="border-y border-y-primary-gray-100 text-[15px] font-medium text-primary-gray-500">
+            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
               <tr>
-                <td className="w-[964px] py-[9px] pl-6 pr-2 text-center">주제</td>
+                <td className="w-[964px] py-[9px] pr-2 pl-6 text-center">주제</td>
                 <td className="w-[150px] px-2 py-[9px] text-center">수정일</td>
-                <td className="w-[166px] py-[9px] pl-2 pr-6 text-center">피드백</td>
+                <td className="w-[166px] py-[9px] pr-6 pl-2 text-center">피드백</td>
               </tr>
             </thead>
-            <tbody className="text-15 font-medium text-primary-gray-900">
-              <tr className="border-b border-b-primary-gray-100">
+            <tbody className="text-15 text-primary-gray-900 font-medium">
+              <tr className="border-b-primary-gray-100 border-b">
                 <td
-                  className="cursor-pointer py-3 pl-6 pr-2 text-center text-15 font-medium text-primary-gray-900"
+                  className="text-15 text-primary-gray-900 cursor-pointer py-3 pr-2 pl-6 text-center font-medium"
                   onClick={() =>
                     push(`/ib/student/tok/essay/${ibData.id}/tkppf/${data.id}`, {
                       data: ibData,
@@ -131,7 +131,7 @@ export default function TKPPFList({ data, ibData, refetch }: TKPPFListProps) {
                   공식 TKPPF
                 </td>
                 <td className="px-2 py-3 text-center">{format(new Date(data?.updatedAt), 'yyyy.MM.dd')}</td>
-                <td className="flex items-center justify-center py-3 pl-2 pr-6">
+                <td className="flex items-center justify-center py-3 pr-6 pl-2">
                   {Feedback?.items[0].totalCount && Feedback?.items[0].totalCount > 0 ? (
                     <ButtonV2
                       variant="outline"
@@ -140,12 +140,12 @@ export default function TKPPFList({ data, ibData, refetch }: TKPPFListProps) {
                       className={`${unreadCount && unreadCount > 0 && 'flex flex-row items-center gap-1'}`}
                       onClick={() => {
                         if (unreadCount) {
-                          handleFeedbackOpen();
+                          handleFeedbackOpen()
                         } else {
                           push(`/ib/student/tok/essay/${ibData.id}/tkppf/${data.id}`, {
                             data: ibData,
                             title: ibData.title,
-                          });
+                          })
                         }
                       }}
                     >
@@ -188,10 +188,10 @@ export default function TKPPFList({ data, ibData, refetch }: TKPPFListProps) {
           confirmText="확인"
           message={alertMessage}
           onConfirm={() => {
-            setAlertMessage(null);
+            setAlertMessage(null)
           }}
         />
       )}
     </section>
-  );
+  )
 }

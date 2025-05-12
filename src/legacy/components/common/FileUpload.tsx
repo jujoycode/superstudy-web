@@ -1,30 +1,30 @@
-import clsx from 'clsx';
-import { ChangeEvent, InputHTMLAttributes, useState } from 'react';
-import { useLanguage } from 'src/hooks/useLanguage';
+import clsx from 'clsx'
+import { ChangeEvent, InputHTMLAttributes, useState } from 'react'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
 
 export interface FileUploadProps extends InputHTMLAttributes<HTMLInputElement> {}
 
 export function FileUpload({ children, className, ...props }: FileUploadProps) {
-  const { t } = useLanguage();
-  const [isDragging, setIsDragging] = useState(false);
+  const { t } = useLanguage()
+  const [isDragging, setIsDragging] = useState(false)
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
+    e.preventDefault()
+    setIsDragging(true)
+  }
 
   const handleDragLeave = () => {
-    setIsDragging(false);
-  };
+    setIsDragging(false)
+  }
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const files = e.dataTransfer?.files;
+    e.preventDefault()
+    setIsDragging(false)
+    const files = e.dataTransfer?.files
     if (files && props.onChange) {
-      props.onChange({ target: { files } } as ChangeEvent<HTMLInputElement>);
+      props.onChange({ target: { files } } as ChangeEvent<HTMLInputElement>)
     }
-  };
+  }
 
   return (
     <div
@@ -34,11 +34,11 @@ export function FileUpload({ children, className, ...props }: FileUploadProps) {
       onDrop={handleDrop}
     >
       {children}
-      <label className="flex h-12 cursor-pointer items-center justify-center space-x-1 text-brand-1">
-        <span className="mb-1 text-2xl text-grey-3">+</span>
+      <label className="text-brand-1 flex h-12 cursor-pointer items-center justify-center space-x-1">
+        <span className="text-grey-3 mb-1 text-2xl">+</span>
         <span className="text-sm">{t('select_file')}</span>
         <input type="file" multiple className="sr-only" {...props} />
       </label>
     </div>
-  );
+  )
 }

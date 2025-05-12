@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Constants } from 'src/constants';
-import { ResponseAnnouncementDto } from 'src/generated/model';
-import { isHTML, jsonParseSafe } from 'src/util/validator';
-import { Label } from '../common';
+import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { Constants } from '@/legacy/constants'
+import { ResponseAnnouncementDto } from '@/legacy/generated/model'
+import { isHTML, jsonParseSafe } from '@/legacy/util/validator'
+import { Label } from '@/legacy/components/common'
 
 interface AnnouncementCardProps {
-  ann: ResponseAnnouncementDto;
-  leftPosition?: string;
-  topPosition?: string;
-  index?: number;
-  type: string;
+  ann: ResponseAnnouncementDto
+  leftPosition?: string
+  topPosition?: string
+  index?: number
+  type: string
 }
 
 export default function AnnouncementCard({
@@ -20,21 +20,21 @@ export default function AnnouncementCard({
   index = 0,
   type,
 }: AnnouncementCardProps) {
-  const [show, setShow] = useState(true);
-  const { push } = useHistory();
+  const [show, setShow] = useState(true)
+  const { push } = useHistory()
   const dismissAnnouncement = (duration: number, id: number) => {
-    const until = new Date();
-    until.setDate(until.getDate() + duration);
-    const dismissed = { id: id, until };
-    const currentDismissals = jsonParseSafe(localStorage.getItem('serviceNoticeShow'), []);
-    localStorage.setItem('serviceNoticeShow', JSON.stringify([...currentDismissals, dismissed]));
-    setShow(false);
-  };
+    const until = new Date()
+    until.setDate(until.getDate() + duration)
+    const dismissed = { id: id, until }
+    const currentDismissals = jsonParseSafe(localStorage.getItem('serviceNoticeShow'), [])
+    localStorage.setItem('serviceNoticeShow', JSON.stringify([...currentDismissals, dismissed]))
+    setShow(false)
+  }
   return (
     <>
       {/* Mobile V */}
       <div
-        className={`absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 md:hidden`}
+        className={`absolute top-1/2 left-1/2 block -translate-x-1/2 -translate-y-1/2 md:hidden`}
         style={{ zIndex: 60 - index }}
       >
         <div
@@ -54,7 +54,7 @@ export default function AnnouncementCard({
                 {isHTML(ann.content) ? (
                   <div className="text-xs" dangerouslySetInnerHTML={{ __html: ann.content }}></div>
                 ) : (
-                  <pre className="whitespace-pre-wrap break-words text-base">{ann.content}</pre>
+                  <pre className="text-base break-words whitespace-pre-wrap">{ann.content}</pre>
                 )}
               </div>
             )}
@@ -71,7 +71,7 @@ export default function AnnouncementCard({
               </button>
               <button
                 onClick={() => dismissAnnouncement(999, ann.id)}
-                className="w-full rounded-md bg-brand-1 py-2 font-semibold text-white"
+                className="bg-brand-1 w-full rounded-md py-2 font-semibold text-white"
               >
                 다시보지 않기
               </button>
@@ -91,7 +91,7 @@ export default function AnnouncementCard({
           }`}
         >
           <div className="h-[500px] w-[500px]">
-            <h1 className="mb-2 h-[30px] bg-brand-1 px-1 text-xl font-bold text-white">{ann.title}</h1>
+            <h1 className="bg-brand-1 mb-2 h-[30px] px-1 text-xl font-bold text-white">{ann.title}</h1>
             <div
               className="scroll-box h-[440px] cursor-pointer overflow-y-scroll"
               onClick={() => push(`/${type}/announcement/${ann.id}`)}
@@ -105,7 +105,7 @@ export default function AnnouncementCard({
                   {isHTML(ann.content) ? (
                     <div className="text-xl" dangerouslySetInnerHTML={{ __html: ann.content }}></div>
                   ) : (
-                    <pre className="whitespace-pre-line break-words text-xl">{ann.content}</pre>
+                    <pre className="text-xl break-words whitespace-pre-line">{ann.content}</pre>
                   )}
                 </>
               )}
@@ -129,7 +129,7 @@ export default function AnnouncementCard({
                   <Label.Text children="7일간 보지 않기" />
                 </button>
               </div>
-              <button onClick={() => setShow(false)} className="rounded-md bg-brand-1 px-2 font-semibold text-white">
+              <button onClick={() => setShow(false)} className="bg-brand-1 rounded-md px-2 font-semibold text-white">
                 닫기
               </button>
             </div>
@@ -137,5 +137,5 @@ export default function AnnouncementCard({
         </div>
       </div>
     </>
-  );
+  )
 }

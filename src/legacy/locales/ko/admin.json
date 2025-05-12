@@ -1,0 +1,35 @@
+{
+  "admin_main_page": {
+    "points": "상벌점"
+  },
+  "parent_page": {
+    "export_as_xlsx": "보호자 정보 다운로드"
+  },
+  "point_details_page": {
+    "point_details": "상벌점 상세",
+    "point_title": "항목",
+    "point_value": "점수"
+  },
+  "point_edit_page": {
+    "add_point": "상벌점 추가",
+    "edit_point": "상벌점 수정",
+    "point_title": "항목",
+    "point_value": "점수"
+  },
+  "point_page": {
+    "points": "상벌점",
+    "point_title": "항목",
+    "point_value": "점수"
+  },
+  "student_photos_page": {
+    "edit_student_photos": "학생 사진 변경",
+    "current_photos": "현재 사진",
+    "new_photos": "변경할 사진",
+    "select_image_files": "이미지 파일 선택",
+    "changes": "변경 내용",
+    "confirm_save": "저장하시겠습니까?"
+  },
+  "student_page": {
+    "edit_photos": "사진 변경"
+  }
+}

@@ -1,16 +1,16 @@
-import { cloneDeep } from 'lodash';
-import React, { FC } from 'react';
-import { ReactComponent as DeleteQuestionIcon } from 'src/assets/icons/survey-delete.svg';
-import { SelectValues } from '../SelectValues';
-import { Radio } from '../common';
-import { Checkbox } from '../common/Checkbox';
-import { TextInput } from '../common/TextInput';
+import { cloneDeep } from 'lodash'
+import React, { FC } from 'react'
+import { ReactComponent as DeleteQuestionIcon } from 'src/assets/icons/survey-delete.svg'
+import { SelectValues } from '../SelectValues'
+import { Radio } from '@/legacy/components/common'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { TextInput } from '@/legacy/components/common/TextInput'
 
 interface SuperSurveyQuestionProps {
-  question: any;
-  setContent: (content: any) => void;
-  content: any;
-  i: number;
+  question: any
+  setContent: (content: any) => void
+  content: any
+  i: number
 }
 
 const questionTypes = [
@@ -19,73 +19,73 @@ const questionTypes = [
   { value: 'checkbox', text: '중복선택형' },
   { value: 'radiobutton', text: '단일선택형' },
   { value: 'file', text: '파일형' },
-];
+]
 
 export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, setContent, content = [], i }) => {
-  const value = question.title;
-  const required = question.required || false;
+  const value = question.title
+  const required = question.required || false
 
   const onChangeType = (value: string) => {
-    const _content = cloneDeep(content);
-    _content[i].type = value;
+    const _content = cloneDeep(content)
+    _content[i].type = value
     if (_content[i].title === '파일을 첨부해주세요.' || _content[i].title === '이미지를 첨부해주세요.') {
-      _content[i].title = '';
+      _content[i].title = ''
     }
     switch (value) {
       case 'text':
-        delete _content[i].choices;
-        break;
+        delete _content[i].choices
+        break
       case 'longtext':
-        delete _content[i].choices;
-        break;
+        delete _content[i].choices
+        break
       case 'checkbox':
-        _content[i].choices = [''];
-        break;
+        _content[i].choices = ['']
+        break
       case 'radiobutton':
-        _content[i].choices = [''];
-        break;
+        _content[i].choices = ['']
+        break
       case 'file':
-        _content[i].title = '파일을 첨부해주세요.';
-        break;
+        _content[i].title = '파일을 첨부해주세요.'
+        break
       case 'image':
-        _content[i].title = '이미지를 첨부해주세요.';
-        break;
+        _content[i].title = '이미지를 첨부해주세요.'
+        break
     }
-    setContent(_content);
-  };
+    setContent(_content)
+  }
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const _content = cloneDeep(content);
-    _content[i].title = e.target.value;
-    setContent(_content);
-  };
+    const _content = cloneDeep(content)
+    _content[i].title = e.target.value
+    setContent(_content)
+  }
   const onChangeRequired = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const _content = cloneDeep(content);
-    _content[i].required = !required;
-    setContent(_content);
-  };
+    const _content = cloneDeep(content)
+    _content[i].required = !required
+    setContent(_content)
+  }
   const onChangeChoices = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
-    const _content = cloneDeep(content);
-    _content[i].choices[index] = e.target.value;
-    setContent(_content);
-  };
+    const _content = cloneDeep(content)
+    _content[i].choices[index] = e.target.value
+    setContent(_content)
+  }
 
   const deleteChoice = (index: number) => {
-    const _content = cloneDeep(content);
-    _content[i].choices.splice(index, 1);
-    setContent(_content);
-  };
+    const _content = cloneDeep(content)
+    _content[i].choices.splice(index, 1)
+    setContent(_content)
+  }
   const addChoice = () => {
-    const _content = JSON.parse(JSON.stringify(content));
-    _content[i].choices.push('');
-    setContent(_content);
-  };
+    const _content = JSON.parse(JSON.stringify(content))
+    _content[i].choices.push('')
+    setContent(_content)
+  }
 
   const deleteContent = (id: number) => {
-    let _content = JSON.parse(JSON.stringify(content || []));
-    _content = _content.filter((q: any) => q.id !== id);
-    setContent(_content);
-  };
+    let _content = JSON.parse(JSON.stringify(content || []))
+    _content = _content.filter((q: any) => q.id !== id)
+    setContent(_content)
+  }
 
   switch (question.type) {
     case 'file':
@@ -100,7 +100,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
                 className="my-0 px-4 py-1"
               />
             </div>
-            <div className="flex w-16 items-center space-x-1 ">
+            <div className="flex w-16 items-center space-x-1">
               <Checkbox checked={required} onChange={onChangeRequired} />
               <p className="text-sm">필수</p>
             </div>
@@ -120,7 +120,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
             />
           </div>
         </div>
-      );
+      )
     case 'image':
       return (
         <div className="border-b border-gray-300 py-2" key={question.id}>
@@ -133,7 +133,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
                 className="my-0 px-4 py-1"
               />
             </div>
-            <div className="flex w-16 items-center space-x-1 ">
+            <div className="flex w-16 items-center space-x-1">
               <Checkbox checked={required} onChange={onChangeRequired} />
               <p className="text-sm">필수</p>
             </div>
@@ -153,7 +153,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
             />
           </div>
         </div>
-      );
+      )
     case 'text':
       return (
         <div className="border-b border-gray-300 py-2" key={question.id}>
@@ -166,7 +166,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
                 className="my-0 px-4 py-1"
               />
             </div>
-            <div className="flex w-16 items-center space-x-1 ">
+            <div className="flex w-16 items-center space-x-1">
               <Checkbox checked={required} onChange={onChangeRequired} />
               <p className="text-sm">필수</p>
             </div>
@@ -186,7 +186,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
             />
           </div>
         </div>
-      );
+      )
     case 'longtext':
       return (
         <div className="border-b border-gray-300 py-2" key={question.id}>
@@ -199,7 +199,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
                 className="my-0 px-4 py-1"
               />
             </div>
-            <div className="flex w-16 items-center space-x-1 ">
+            <div className="flex w-16 items-center space-x-1">
               <Checkbox checked={required} onChange={onChangeRequired} />
               <p className="text-sm">필수</p>
             </div>
@@ -219,7 +219,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
             />
           </div>
         </div>
-      );
+      )
     case 'checkbox':
       return (
         <div className="border-b border-gray-300 py-2" key={question.id}>
@@ -232,7 +232,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
                 className="my-0 px-4 py-1"
               />
             </div>
-            <div className="flex w-16 items-center space-x-1 ">
+            <div className="flex w-16 items-center space-x-1">
               <Checkbox checked={required} onChange={onChangeRequired} />
               <p className="text-sm">필수</p>
             </div>
@@ -266,16 +266,16 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
             </div>
           ))}
           <div
-            className="flex cursor-pointer items-center justify-center space-x-2 rounded-lg bg-gray-100 py-2 hover:bg-brand-5"
+            className="hover:bg-brand-5 flex cursor-pointer items-center justify-center space-x-2 rounded-lg bg-gray-100 py-2"
             onClick={addChoice}
           >
-            <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-brand-1 pb-0.5 text-2xl text-brand-1">
+            <div className="border-brand-1 text-brand-1 flex h-6 w-6 items-center justify-center rounded-full border-2 pb-0.5 text-2xl">
               +
             </div>
             <div className="text-brand-1">항목 추가</div>
           </div>
         </div>
-      );
+      )
     case 'radiobutton':
       return (
         <div className="border-b border-gray-300 py-2" key={question.id}>
@@ -288,7 +288,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
                 className="my-0 px-4 py-1"
               />
             </div>
-            <div className="flex w-16 items-center space-x-1 ">
+            <div className="flex w-16 items-center space-x-1">
               <Checkbox checked={required} onChange={onChangeRequired} />
               <p className="text-sm">필수</p>
             </div>
@@ -322,16 +322,16 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
             </div>
           ))}
           <div
-            className="flex cursor-pointer items-center justify-center space-x-2 rounded-lg bg-gray-100 py-2 hover:bg-brand-5"
+            className="hover:bg-brand-5 flex cursor-pointer items-center justify-center space-x-2 rounded-lg bg-gray-100 py-2"
             onClick={addChoice}
           >
-            <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-brand-1 pb-0.5 text-2xl text-brand-1">
+            <div className="border-brand-1 text-brand-1 flex h-6 w-6 items-center justify-center rounded-full border-2 pb-0.5 text-2xl">
               +
             </div>
             <div className="text-brand-1">항목 추가</div>
           </div>
         </div>
-      );
+      )
   }
-  return <></>;
-};
+  return <></>
+}

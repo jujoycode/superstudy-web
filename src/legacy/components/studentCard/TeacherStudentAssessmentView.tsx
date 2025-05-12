@@ -1,13 +1,13 @@
-import { FC, useEffect } from 'react';
-import { TeacherStudentAssessment } from 'src/generated/model';
-import { Button } from '../common/Button';
-import { Checkbox } from '../common/Checkbox';
+import { FC, useEffect } from 'react'
+import { TeacherStudentAssessment } from '@/legacy/generated/model'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
 
 interface TeacherStudentAssessmentViewProps {
-  teacherStudentAssessment?: TeacherStudentAssessment;
-  selectedTeacherIds: number[];
-  setSelectedTeacherIds: (ids: number[]) => void;
-  goToUpdate: () => void;
+  teacherStudentAssessment?: TeacherStudentAssessment
+  selectedTeacherIds: number[]
+  setSelectedTeacherIds: (ids: number[]) => void
+  goToUpdate: () => void
 }
 
 export const TeacherStudentAssessmentView: FC<TeacherStudentAssessmentViewProps> = ({
@@ -18,9 +18,9 @@ export const TeacherStudentAssessmentView: FC<TeacherStudentAssessmentViewProps>
 }) => {
   useEffect(() => {
     if (teacherStudentAssessment) {
-      setSelectedTeacherIds(Object.keys(teacherStudentAssessment.keywords).map((el) => Number(el)));
+      setSelectedTeacherIds(Object.keys(teacherStudentAssessment.keywords).map((el) => Number(el)))
     }
-  }, []);
+  }, [])
   return (
     <div>
       {teacherStudentAssessment?.keywords &&
@@ -42,7 +42,7 @@ export const TeacherStudentAssessmentView: FC<TeacherStudentAssessmentViewProps>
       {teacherStudentAssessment?.assessment && (
         <>
           <p className="mt-2 text-sm text-gray-500">교사 학생 평가 내용</p>
-          <div className="mt-1 w-full whitespace-pre-line rounded-lg border border-gray-300 p-2">
+          <div className="mt-1 w-full rounded-lg border border-gray-300 p-2 whitespace-pre-line">
             {teacherStudentAssessment.assessment}
           </div>
         </>
@@ -51,5 +51,5 @@ export const TeacherStudentAssessmentView: FC<TeacherStudentAssessmentViewProps>
         교사 학생 평가 수정하기
       </Button.lg>
     </div>
-  );
-};
+  )
+}

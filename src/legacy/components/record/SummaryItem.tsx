@@ -1,32 +1,32 @@
-import { SetStateAction, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { Blank, Textarea } from 'src/components/common';
-import { useTeacherRecordSummaryItem } from 'src/container/teacher-record-summary-item';
-import { Summary } from 'src/generated/model';
-import { forbiddenWords } from 'src/pages/teacher/ForbiddenWords';
-import { meState } from 'src/store';
-import { SuperModal } from '../SuperModal';
-import { Button } from '../common/Button';
-import { TextInput } from '../common/TextInput';
+import { SetStateAction, useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import { Blank, Textarea } from '@/legacy/components/common'
+import { useTeacherRecordSummaryItem } from '@/legacy/container/teacher-record-summary-item'
+import { Summary } from '@/legacy/generated/model'
+import { forbiddenWords } from 'src/pages/teacher/ForbiddenWords'
+import { meState } from '@/stores'
+import { SuperModal } from '../SuperModal'
+import { Button } from '@/legacy/components/common/Button'
+import { TextInput } from '@/legacy/components/common/TextInput'
 
 interface SummaryItemProps {
-  summary: Summary;
+  summary: Summary
 }
 
 export function SummaryItem({ summary }: SummaryItemProps) {
-  const me = useRecoilValue(meState);
-  const [recordSummary, setRecordSummary] = useState(summary.content ?? '');
-  const [updateState, setUpdateState] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [forbiddenText, setForbiddenText] = useState('');
-  const [recordSubject, setRecordSubject] = useState(summary.subject ?? '');
+  const me = useRecoilValue(meState)
+  const [recordSummary, setRecordSummary] = useState(summary.content ?? '')
+  const [updateState, setUpdateState] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
+  const [forbiddenText, setForbiddenText] = useState('')
+  const [recordSubject, setRecordSubject] = useState(summary.subject ?? '')
 
   const { errorText, updateRecordSummary, deleteRecordSummary, isLoading } = useTeacherRecordSummaryItem({
     id: summary?.id ?? 0,
     recordSummary,
     recordSubject,
-  });
+  })
 
   // 로그인 유저와 작성자가 다른 경우
   if (!(me?.id === summary.userId)) {
@@ -42,7 +42,7 @@ export function SummaryItem({ summary }: SummaryItemProps) {
 
         <div className="h-0 w-full border border-gray-50" />
       </>
-    );
+    )
   }
 
   return (
@@ -69,13 +69,13 @@ export function SummaryItem({ summary }: SummaryItemProps) {
               <Button.lg
                 children="수정 완료"
                 onClick={() => {
-                  const match = recordSummary.match(new RegExp(forbiddenWords.join('|'), 'g'));
+                  const match = recordSummary.match(new RegExp(forbiddenWords.join('|'), 'g'))
                   if (match?.length) {
-                    setModalOpen(true);
-                    setForbiddenText(match.join(', '));
+                    setModalOpen(true)
+                    setForbiddenText(match.join(', '))
                   } else {
-                    updateRecordSummary();
-                    setForbiddenText('');
+                    updateRecordSummary()
+                    setForbiddenText('')
                   }
                 }}
                 className="filled-primary"
@@ -83,8 +83,8 @@ export function SummaryItem({ summary }: SummaryItemProps) {
               <Button.lg
                 children="취소"
                 onClick={() => {
-                  setUpdateState(false);
-                  setRecordSummary(summary?.content || '');
+                  setUpdateState(false)
+                  setRecordSummary(summary?.content || '')
                 }}
                 className="filled-gray"
               />
@@ -112,8 +112,8 @@ export function SummaryItem({ summary }: SummaryItemProps) {
           <Button.lg
             children="삭제하기"
             onClick={async () => {
-              await deleteRecordSummary();
-              await setDeleteModalOpen(false);
+              await deleteRecordSummary()
+              await setDeleteModalOpen(false)
             }}
             className="filled-primary w-full"
           />
@@ -130,14 +130,14 @@ export function SummaryItem({ summary }: SummaryItemProps) {
           <Button.lg
             children="저장하기"
             onClick={() => {
-              updateRecordSummary();
-              setForbiddenText('');
-              setRecordSummary('');
+              updateRecordSummary()
+              setForbiddenText('')
+              setRecordSummary('')
             }}
             className="filled-primary w-full"
           />
         </div>
       </SuperModal>
     </>
-  );
+  )
 }

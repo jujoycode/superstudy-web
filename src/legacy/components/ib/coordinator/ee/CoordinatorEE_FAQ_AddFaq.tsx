@@ -1,30 +1,30 @@
-import { PropsWithChildren, useEffect, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useIBFAQCreate, useIBFAQUpdate } from 'src/container/ib-coordinator';
+import { PropsWithChildren, useEffect, useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useIBFAQCreate, useIBFAQUpdate } from '@/legacy/container/ib-coordinator'
 import {
   FAQContentDto,
   ReferenceInfoGetReferenceInfoListCategory,
   RequestCreateFAQDto,
   RequestFAQDto,
   ResponseFAQDto,
-} from 'src/generated/model';
-import AlertV2 from '../../../common/AlertV2';
-import { ButtonV2 } from '../../../common/ButtonV2';
-import { Typography } from '../../../common/Typography';
-import ColorSVGIcon from '../../../icon/ColorSVGIcon';
-import SVGIcon from '../../../icon/SVGIcon';
-import { FaqInputField } from '../../FaqInputField';
-import { InputField } from '../../InputField';
+} from '@/legacy/generated/model'
+import AlertV2 from '../../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../../@/legacy/components/common/ButtonV2'
+import { Typography } from '../../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../../icon/ColorSVGIcon'
+import SVGIcon from '../../../icon/SVGIcon'
+import { FaqInputField } from '../../FaqInputField'
+import { InputField } from '../../InputField'
 
 interface CoordinatorEE_FAQ_AddFaqProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  handleBack?: () => void;
-  onSuccess: () => void;
-  ablePropragation?: boolean;
-  type?: 'create' | 'update';
-  category?: ReferenceInfoGetReferenceInfoListCategory;
-  data?: ResponseFAQDto;
+  modalOpen: boolean
+  setModalClose: () => void
+  handleBack?: () => void
+  onSuccess: () => void
+  ablePropragation?: boolean
+  type?: 'create' | 'update'
+  category?: ReferenceInfoGetReferenceInfoListCategory
+  data?: ResponseFAQDto
 }
 
 export function CoordinatorEE_FAQ_AddFaq({
@@ -37,59 +37,59 @@ export function CoordinatorEE_FAQ_AddFaq({
   type = 'create',
   data: FAQData,
 }: PropsWithChildren<CoordinatorEE_FAQ_AddFaqProps>) {
-  const [isOpen, setIsOpen] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
   const { createIBFAQ, isLoading } = useIBFAQCreate({
     onSuccess: () => {
-      setModalClose();
-      onSuccess();
+      setModalClose()
+      onSuccess()
     },
     onError: (error) => {
-      console.error('IB 프로젝트 생성 중 오류 발생:', error);
+      console.error('IB 프로젝트 생성 중 오류 발생:', error)
     },
-  });
+  })
 
   const { updateIBFAQ } = useIBFAQUpdate({
     onSuccess: () => {
-      setModalClose();
-      onSuccess();
+      setModalClose()
+      onSuccess()
     },
     onError: (error) => {
-      console.error('FAQ 업데이트 중 오류 발생:', error);
+      console.error('FAQ 업데이트 중 오류 발생:', error)
     },
-  });
+  })
 
-  const [qaList, setQaList] = useState<FAQContentDto[]>(FAQData?.content || [{ question: '', answer: '' }]);
+  const [qaList, setQaList] = useState<FAQContentDto[]>(FAQData?.content || [{ question: '', answer: '' }])
 
-  const prevMessageCount = useRef(qaList.length); // 이전 메시지 개수를 저장
+  const prevMessageCount = useRef(qaList.length) // 이전 메시지 개수를 저장
 
   const addQA = () => {
-    setQaList([...qaList, { question: '', answer: '' }]);
-    scrollToBottom();
-  };
+    setQaList([...qaList, { question: '', answer: '' }])
+    scrollToBottom()
+  }
 
   const updateQA = (index: number, updatedContent: FAQContentDto) => {
-    const updatedList = qaList.map((item, i) => (i === index ? updatedContent : item));
-    setQaList(updatedList);
-  };
+    const updatedList = qaList.map((item, i) => (i === index ? updatedContent : item))
+    setQaList(updatedList)
+  }
 
   const deleteQA = (index: number) => {
-    const updatedList = qaList.filter((_, i) => i !== index);
-    setQaList(updatedList);
-  };
+    const updatedList = qaList.filter((_, i) => i !== index)
+    setQaList(updatedList)
+  }
 
   const scrollToBottom = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
-  };
+  }
 
   useEffect(() => {
     if (qaList.length > prevMessageCount.current) {
-      scrollToBottom();
+      scrollToBottom()
     }
-    prevMessageCount.current = qaList.length;
-  }, [qaList]);
+    prevMessageCount.current = qaList.length
+  }, [qaList])
 
   const {
     control,
@@ -104,72 +104,72 @@ export function CoordinatorEE_FAQ_AddFaq({
             content: [],
             title: '',
           },
-  });
+  })
 
-  const title = watch('title');
-  const isDisabled = !title || qaList.some((qa) => !qa.question || !qa.answer);
+  const title = watch('title')
+  const isDisabled = !title || qaList.some((qa) => !qa.question || !qa.answer)
 
   const onSubmit = (data: RequestFAQDto) => {
-    if (isLoading) return;
+    if (isLoading) return
     const _data = {
       ...data,
       content: qaList,
-    };
+    }
 
     const createData: RequestCreateFAQDto = {
       ...data,
       content: qaList,
       category: category,
-    };
+    }
 
     if (type === 'create') {
-      createIBFAQ(createData);
+      createIBFAQ(createData)
     } else {
-      updateIBFAQ({ id: Number(FAQData?.id), data: _data });
+      updateIBFAQ({ id: Number(FAQData?.id), data: _data })
     }
-  };
+  }
 
   const onPreview = () => {
-    const formData = watch();
+    const formData = watch()
 
     const previewData = {
       ...formData,
       content: qaList,
-    };
+    }
 
-    const previewWindow = window.open('/reference/preview', '_blank');
+    const previewWindow = window.open('/reference/preview', '_blank')
 
     if (previewWindow) {
       previewWindow.onload = () => {
         previewWindow.opener.previewData = {
           type: 'FAQ',
           data: previewData,
-        };
-      };
+        }
+      }
     }
-  };
+  }
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black bg-opacity-50 ${
+      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
         }
       }}
     >
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white px-8`}>
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pb-6 pt-8 backdrop-blur-[20px]">
+        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6 backdrop-blur-[20px]">
           <Typography variant="title1" className="text-primary-gray-900">
             {type === 'create' ? 'FAQ 작성' : 'FAQ 수정'}
           </Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} />
         </div>
 
-        <div ref={scrollRef} className="scroll-box flex max-h-[608px] flex-col gap-6 overflow-auto pb-8 pt-4">
+        <div ref={scrollRef} className="scroll-box flex max-h-[608px] flex-col gap-6 overflow-auto pt-4 pb-8">
           <InputField name="title" control={control} placeholder="제목을 입력해주세요" />
 
           {qaList.map((qa, index) => (
@@ -192,7 +192,7 @@ export function CoordinatorEE_FAQ_AddFaq({
 
         <div
           className={
-            'sticky bottom-0 flex h-[104px] justify-between gap-4 border-t border-t-primary-gray-100 bg-white/70 pb-8 pt-6 backdrop-blur-[20px]'
+            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-between gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]'
           }
         >
           <div>
@@ -219,5 +219,5 @@ export function CoordinatorEE_FAQ_AddFaq({
       </div>
       {isOpen && <AlertV2 confirmText="확인" message={`FAQ가\n저장되었습니다`} onConfirm={() => setIsOpen(!isOpen)} />}
     </div>
-  );
+  )
 }

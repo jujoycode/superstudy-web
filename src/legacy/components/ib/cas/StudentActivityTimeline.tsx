@@ -1,63 +1,63 @@
-import { Typography } from 'src/components/common/Typography';
-import SolidSVGIcon from 'src/components/icon/SolidSVGIcon';
-import { ResponseIBDto, ResponseIBStudentDto } from 'src/generated/model';
-import { DateFormat, DateUtil } from 'src/util/date';
+import { Typography } from '@/legacy/components/common/Typography'
+import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
+import { ResponseIBDto, ResponseIBStudentDto } from '@/legacy/generated/model'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 interface StudentActivityTimelineProps {
-  data: ResponseIBDto[];
-  user: ResponseIBStudentDto;
+  data: ResponseIBDto[]
+  user: ResponseIBStudentDto
 }
 
 const getLastDayOfMonth = (year: number, month: number) => {
-  return new Date(year, month, 0).getDate();
-};
+  return new Date(year, month, 0).getDate()
+}
 
 function StudentActivityTimeline({ data, user }: StudentActivityTimelineProps) {
-  const startYear = user.studentGroup.group.grade === 2 ? new Date().getFullYear() : new Date().getFullYear() - 1;
+  const startYear = user.studentGroup.group.grade === 2 ? new Date().getFullYear() : new Date().getFullYear() - 1
   // const startYear = new Date().getFullYear();
-  const endYear = startYear + 1;
-  const timelineStartDate = new Date(`${startYear}-03-01`);
-  const timelineEndDate = new Date(`${endYear}-12-31`);
+  const endYear = startYear + 1
+  const timelineStartDate = new Date(`${startYear}-03-01`)
+  const timelineEndDate = new Date(`${endYear}-12-31`)
   const totalMonths =
     (timelineEndDate.getFullYear() - timelineStartDate.getFullYear()) * 12 +
     timelineEndDate.getMonth() -
     timelineStartDate.getMonth() +
-    1;
+    1
 
   const calculatePositionUnified = (date: Date, timelineStartDate: Date, timelineEndDate: Date) => {
     const totalMonths =
       (timelineEndDate.getFullYear() - timelineStartDate.getFullYear()) * 12 +
       timelineEndDate.getMonth() -
       timelineStartDate.getMonth() +
-      1;
+      1
 
     const totalOffset =
-      (date.getFullYear() - timelineStartDate.getFullYear()) * 12 + date.getMonth() - timelineStartDate.getMonth();
+      (date.getFullYear() - timelineStartDate.getFullYear()) * 12 + date.getMonth() - timelineStartDate.getMonth()
 
-    const dayPercentage = (date.getDate() - 1) / getLastDayOfMonth(date.getFullYear(), date.getMonth() + 1);
+    const dayPercentage = (date.getDate() - 1) / getLastDayOfMonth(date.getFullYear(), date.getMonth() + 1)
 
-    return ((totalOffset + dayPercentage) / totalMonths) * 100;
-  };
+    return ((totalOffset + dayPercentage) / totalMonths) * 100
+  }
 
-  const currentDate = new Date();
-  const isCurrentInRange = currentDate >= timelineStartDate && currentDate <= timelineEndDate;
+  const currentDate = new Date()
+  const isCurrentInRange = currentDate >= timelineStartDate && currentDate <= timelineEndDate
   const currentPercent = isCurrentInRange
     ? calculatePositionUnified(currentDate, timelineStartDate, timelineEndDate)
-    : null;
+    : null
 
-  const projectHeight = 20;
-  const projectGap = 8;
-  const projectCount = data?.length ?? 0;
-  const calculatedHeight = projectCount * projectHeight + (projectCount > 0 ? (projectCount - 1) * projectGap : 0);
+  const projectHeight = 20
+  const projectGap = 8
+  const projectCount = data?.length ?? 0
+  const calculatedHeight = projectCount * projectHeight + (projectCount > 0 ? (projectCount - 1) * projectGap : 0)
 
   return (
-    <div className="relative flex w-full flex-col gap-2 rounded-lg border border-primary-gray-200 px-4 pb-[7px] pt-4">
+    <div className="border-primary-gray-200 relative flex w-full flex-col gap-2 rounded-lg border px-4 pt-4 pb-[7px]">
       {/* 텍스트 영역 */}
       <div className="flex w-full gap-3">
         <div className="flex min-w-[204px] flex-col gap-2 pb-[9px]">
           {data?.map((project, index) => (
             <div key={index} className="flex flex-row items-center gap-2">
-              <Typography variant="body3" className="min-w-[140px] overflow-hidden truncate whitespace-nowrap">
+              <Typography variant="body3" className="min-w-[140px] truncate overflow-hidden whitespace-nowrap">
                 {project.title}
               </Typography>
               <span className="flex flex-row items-center gap-1">
@@ -67,7 +67,7 @@ function StudentActivityTimeline({ data, user }: StudentActivityTimelineProps) {
               </span>
             </div>
           ))}
-          <Typography variant="caption3" className="flex h-5 items-center font-medium text-primary-gray-500">
+          <Typography variant="caption3" className="text-primary-gray-500 flex h-5 items-center font-medium">
             {`${DateUtil.formatDate(timelineStartDate, DateFormat['YYYY.MM.DD'])} ~ ${DateUtil.formatDate(
               timelineEndDate,
               DateFormat['YYYY.MM.DD'],
@@ -101,14 +101,14 @@ function StudentActivityTimeline({ data, user }: StudentActivityTimelineProps) {
           {/* 막대 그래프 */}
           <div className="flex flex-col gap-2">
             {data?.map((project, index) => {
-              const startAtDate = new Date(project.startAt ?? timelineStartDate);
-              const endAtDate = new Date(project.endAt ?? timelineEndDate);
-              const totalDays = (timelineEndDate.getTime() - timelineStartDate.getTime()) / (1000 * 60 * 60 * 24);
-              const startDays = (startAtDate.getTime() - timelineStartDate.getTime()) / (1000 * 60 * 60 * 24);
-              const endDays = (endAtDate.getTime() - timelineStartDate.getTime()) / (1000 * 60 * 60 * 24);
+              const startAtDate = new Date(project.startAt ?? timelineStartDate)
+              const endAtDate = new Date(project.endAt ?? timelineEndDate)
+              const totalDays = (timelineEndDate.getTime() - timelineStartDate.getTime()) / (1000 * 60 * 60 * 24)
+              const startDays = (startAtDate.getTime() - timelineStartDate.getTime()) / (1000 * 60 * 60 * 24)
+              const endDays = (endAtDate.getTime() - timelineStartDate.getTime()) / (1000 * 60 * 60 * 24)
 
-              const startPixel = (startDays / totalDays) * 485;
-              const endPixel = (endDays / totalDays) * 485;
+              const startPixel = (startDays / totalDays) * 485
+              const endPixel = (endDays / totalDays) * 485
 
               return (
                 <div key={index} className="flex h-5 items-center">
@@ -116,7 +116,7 @@ function StudentActivityTimeline({ data, user }: StudentActivityTimelineProps) {
                     <div
                       className={`absolute h-full ${
                         project.startAt && project.endAt
-                          ? 'rounded-[4px] border-dim-8 bg-gradient-navy-400'
+                          ? 'border-dim-8 bg-gradient-navy-400 rounded-[4px]'
                           : 'bg-primary-gray-200'
                       }`}
                       style={{
@@ -126,12 +126,12 @@ function StudentActivityTimeline({ data, user }: StudentActivityTimelineProps) {
                     />
                   </div>
                 </div>
-              );
+              )
             })}
             <div className="relative flex h-5 w-full">
               {Array.from({ length: totalMonths }, (_, i) => {
-                const currentMonth = new Date(timelineStartDate.getFullYear(), timelineStartDate.getMonth() + i, 1);
-                const left = i * 16;
+                const currentMonth = new Date(timelineStartDate.getFullYear(), timelineStartDate.getMonth() + i, 1)
+                const left = i * 16
 
                 return (
                   <div
@@ -139,11 +139,11 @@ function StudentActivityTimeline({ data, user }: StudentActivityTimelineProps) {
                     className="absolute w-4 text-center"
                     style={{ left: `${left}px`, transform: 'translateX(-50%)' }}
                   >
-                    <Typography variant="body3" className="text-[11px] text-primary-gray-400">
+                    <Typography variant="body3" className="text-primary-gray-400 text-[11px]">
                       {currentMonth.getMonth() + 1}
                     </Typography>
                   </div>
-                );
+                )
               })}
             </div>
           </div>
@@ -161,11 +161,11 @@ function StudentActivityTimeline({ data, user }: StudentActivityTimelineProps) {
         </div>
       </div>
       <div
-        className="pointer-events-none absolute right-4 top-0 z-10 w-6 bg-gradient-to-l from-white to-transparent"
+        className="pointer-events-none absolute top-0 right-4 z-10 w-6 bg-gradient-to-l from-white to-transparent"
         style={{ height: `${calculatedHeight}px` }}
       />
     </div>
-  );
+  )
 }
 
-export default StudentActivityTimeline;
+export default StudentActivityTimeline

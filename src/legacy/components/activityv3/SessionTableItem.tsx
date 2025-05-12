@@ -1,21 +1,21 @@
-import _ from 'lodash';
-import { useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
-import { ACTIVITY_SESSION_TYPE_KOR } from 'src/constants/activityv3.enum';
-import { useActivitySessionFindSubmitters } from 'src/generated/endpoint';
-import { ActivitySession, RequestUpdateActivitySessionOrderDto, StudentGroup } from 'src/generated/model';
-import { makeDateToString, makeTimeToString } from 'src/util/time';
-import { Button } from '../common/Button';
-import { Icon } from '../common/icons';
+import _ from 'lodash'
+import { useMemo } from 'react'
+import { useHistory } from 'react-router-dom'
+import { ACTIVITY_SESSION_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
+import { useActivitySessionFindSubmitters } from '@/legacy/generated/endpoint'
+import { ActivitySession, RequestUpdateActivitySessionOrderDto, StudentGroup } from '@/legacy/generated/model'
+import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
+import { Button } from '@/legacy/components/common/Button'
+import { Icon } from '@/legacy/components/common/icons'
 
 interface SesstionTableItemProps {
-  session: ActivitySession;
-  groupIds: number[];
-  activityId: number;
-  index: number;
-  order: RequestUpdateActivitySessionOrderDto;
-  setSelectedSessionId: (value: number) => void;
-  setDownloadModalOpen: (value: boolean) => void;
+  session: ActivitySession
+  groupIds: number[]
+  activityId: number
+  index: number
+  order: RequestUpdateActivitySessionOrderDto
+  setSelectedSessionId: (value: number) => void
+  setDownloadModalOpen: (value: boolean) => void
 }
 
 export const SessionTableItem = ({
@@ -36,15 +36,15 @@ export const SessionTableItem = ({
         staleTime: 60000,
       },
     },
-  );
-  const { push } = useHistory();
+  )
+  const { push } = useHistory()
   const studentGroups: StudentGroup[] = useMemo(() => {
-    if (!data) return [];
-    return _.chain(data).uniqBy('user.id').sortBy('groupId').value();
-  }, [data]);
+    if (!data) return []
+    return _.chain(data).uniqBy('user.id').sortBy('groupId').value()
+  }, [data])
   const submittedStudentAmount =
-    studentGroups?.filter((sg) => sg.user?.studentActivitySessions?.[0]?.isSubmitted).length || 0;
-  const unSubmittedStudentAmount = (studentGroups?.length || 0) - submittedStudentAmount;
+    studentGroups?.filter((sg) => sg.user?.studentActivitySessions?.[0]?.isSubmitted).length || 0
+  const unSubmittedStudentAmount = (studentGroups?.length || 0) - submittedStudentAmount
 
   return (
     <>
@@ -74,13 +74,13 @@ export const SessionTableItem = ({
         <Button
           className="w-full rounded-lg border border-[#333333] bg-white"
           onClick={() => {
-            setSelectedSessionId(session.id);
-            setDownloadModalOpen(true);
+            setSelectedSessionId(session.id)
+            setDownloadModalOpen(true)
           }}
         >
           제출현황 다운로드
         </Button>
       </td>
     </>
-  );
-};
+  )
+}

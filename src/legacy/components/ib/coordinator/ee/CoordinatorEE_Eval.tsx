@@ -1,32 +1,32 @@
-import { map, max, orderBy } from 'lodash';
-import { useState } from 'react';
-import NODATA from 'src/assets/images/no-data.png';
-import { useCoordinatorCheck } from 'src/container/ib-coordinator';
-import { useEEEvaluationGetItems } from 'src/generated/endpoint';
-import { ResponseEEEvaluationDto } from 'src/generated/model';
-import { DateFormat, DateUtil } from 'src/util/date';
-import AlertV2 from '../../../common/AlertV2';
-import { ButtonV2 } from '../../../common/ButtonV2';
-import { Typography } from '../../../common/Typography';
-import FrontPaginatedList from '../../../FrontPaginatedList ';
-import { CoordinatorEE_Eval_AddEval } from './CoordinatorEE_Eval_AddEval';
-import { CoordinatorEE_Eval_UpdateEval } from './CoordinatorEE_Eval_UpdateEval';
+import { map, max, orderBy } from 'lodash'
+import { useState } from 'react'
+import NODATA from 'src/assets/images/no-data.png'
+import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
+import { useEEEvaluationGetItems } from '@/legacy/generated/endpoint'
+import { ResponseEEEvaluationDto } from '@/legacy/generated/model'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import AlertV2 from '../../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../../@/legacy/components/common/ButtonV2'
+import { Typography } from '../../@/legacy/components/common/Typography'
+import FrontPaginatedList from '../../../FrontPaginatedList '
+import { CoordinatorEE_Eval_AddEval } from './CoordinatorEE_Eval_AddEval'
+import { CoordinatorEE_Eval_UpdateEval } from './CoordinatorEE_Eval_UpdateEval'
 
-export type ModalType = 'Update' | 'Add' | null;
-export type CategoryType = 'Ref' | 'FAQ' | '';
+export type ModalType = 'Update' | 'Add' | null
+export type CategoryType = 'Ref' | 'FAQ' | ''
 
 export default function CoordinatorEE_Eval() {
-  const { data } = useEEEvaluationGetItems({ location: 'ESSAY' });
-  const { permission } = useCoordinatorCheck();
+  const { data } = useEEEvaluationGetItems({ location: 'ESSAY' })
+  const { permission } = useCoordinatorCheck()
 
-  const items = orderBy(data?.items || [], 'id', 'desc');
+  const items = orderBy(data?.items || [], 'id', 'desc')
 
-  const lastId = max(map(items, 'id'));
+  const lastId = max(map(items, 'id'))
 
-  const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [selectedEval, setSelectedEval] = useState<ResponseEEEvaluationDto>();
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
-  const [viewType, setViewType] = useState<'VIEW' | 'UPDATE'>('UPDATE');
+  const [activeModal, setActiveModal] = useState<ModalType>(null)
+  const [selectedEval, setSelectedEval] = useState<ResponseEEEvaluationDto>()
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
+  const [viewType, setViewType] = useState<'VIEW' | 'UPDATE'>('UPDATE')
 
   const Header = () => (
     <>
@@ -35,7 +35,7 @@ export default function CoordinatorEE_Eval() {
       <div className="flex-[2] px-2 text-center">작성일</div>
       <div className="flex-[2] px-2 text-center">관리</div>
     </>
-  );
+  )
 
   // Item 컴포넌트
   const Item = ({ item, index }: { item: any; index: number }) => (
@@ -49,13 +49,13 @@ export default function CoordinatorEE_Eval() {
           size={32}
           color="gray400"
           onClick={(e) => {
-            e.stopPropagation();
+            e.stopPropagation()
             if (item.id !== lastId) {
-              setViewType('VIEW');
-              handleEditClick(item);
+              setViewType('VIEW')
+              handleEditClick(item)
             } else {
-              setViewType('UPDATE');
-              handleEditClick(item);
+              setViewType('UPDATE')
+              handleEditClick(item)
             }
           }}
         >
@@ -63,12 +63,12 @@ export default function CoordinatorEE_Eval() {
         </ButtonV2>
       </div>
     </>
-  );
+  )
 
   const handleEditClick = (item: any) => {
-    setSelectedEval(item);
-    setActiveModal('Update');
-  };
+    setSelectedEval(item)
+    setActiveModal('Update')
+  }
 
   return (
     <div className="min-h-[664px] rounded-xl bg-white">
@@ -98,7 +98,7 @@ export default function CoordinatorEE_Eval() {
           </div>
           {permission === 'IB_EE' ? (
             <>
-              <Typography variant="body2" className="text-center font-medium text-primary-gray-700">
+              <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
                 작성한 평가가 없습니다.
                 <br />
                 평가를 추가해주세요.
@@ -108,7 +108,7 @@ export default function CoordinatorEE_Eval() {
               </ButtonV2>
             </>
           ) : (
-            <Typography variant="body2" className="text-center font-medium text-primary-gray-700">
+            <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
               작성한 평가가 없습니다.
             </Typography>
           )}
@@ -126,7 +126,7 @@ export default function CoordinatorEE_Eval() {
           modalOpen={activeModal === 'Update'}
           setModalClose={() => setActiveModal(null)}
           onSuccess={() => {
-            setActiveModal(null);
+            setActiveModal(null)
           }}
           evaluationData={selectedEval}
         />
@@ -139,5 +139,5 @@ export default function CoordinatorEE_Eval() {
         />
       )}
     </div>
-  );
+  )
 }

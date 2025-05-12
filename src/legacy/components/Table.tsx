@@ -1,24 +1,25 @@
-import { FC } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { type FC } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 interface TableProps {
-  headers?: string[];
-  isLoading?: boolean;
-  isError?: boolean;
-  className?: string;
-  headerColor?: string;
+  headers?: string[]
+  isLoading?: boolean
+  isError?: boolean
+  className?: string
+  headerColor?: string
+  children: React.ReactNode
 }
 
 export const Table: FC<TableProps> = ({ headers, isLoading, isError, children, className, headerColor }) => {
   return (
-    <table className={twMerge('w-full border-separate border-spacing-0 text-center text-10 md:text-sm', className)}>
+    <table className={twMerge('text-10 w-full border-separate border-spacing-0 text-center md:text-sm', className)}>
       {headers && (
         <thead>
           <tr className="sticky top-0 z-10 bg-white">
             {headers.map((header, i) => (
               <th
                 key={`${header}${i}`}
-                className={twMerge('border-b border-t border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]', headerColor)}
+                className={twMerge('border-t border-b border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]', headerColor)}
               >
                 {header}
               </th>
@@ -44,5 +45,5 @@ export const Table: FC<TableProps> = ({ headers, isLoading, isError, children, c
         {children}
       </tbody>
     </table>
-  );
-};
+  )
+}

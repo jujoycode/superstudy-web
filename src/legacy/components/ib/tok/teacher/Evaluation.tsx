@@ -1,25 +1,25 @@
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import AccordionV2 from 'src/components/common/AccordionV2';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import Stepper from 'src/components/common/Stepper';
-import { TextareaV2 } from 'src/components/common/TextareaV2';
-import { TooltipV2 } from 'src/components/common/TooltipV2';
-import { ResponseTokEvaluationCriteriaDto, ResponseTokEvaluationSummaryDto } from 'src/generated/model';
-import { meState } from 'src/store';
-import { EvaluationData } from './EvaluationList';
+import clsx from 'clsx'
+import { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import AccordionV2 from '@/legacy/components/common/AccordionV2'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import Stepper from '@/legacy/components/common/Stepper'
+import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
+import { TooltipV2 } from '@/legacy/components/common/TooltipV2'
+import { ResponseTokEvaluationCriteriaDto, ResponseTokEvaluationSummaryDto } from '@/legacy/generated/model'
+import { meState } from '@/stores'
+import { EvaluationData } from './EvaluationList'
 
 interface EvaluationProps {
-  accordionTitle: string;
-  evaluationData: ResponseTokEvaluationSummaryDto;
-  isFinal?: boolean;
-  score?: number;
-  disabled?: boolean;
-  onChange?: (data: EvaluationData) => void;
-  evaluationComment?: string;
-  criteria?: ResponseTokEvaluationCriteriaDto;
-  placeholder?: string;
+  accordionTitle: string
+  evaluationData: ResponseTokEvaluationSummaryDto
+  isFinal?: boolean
+  score?: number
+  disabled?: boolean
+  onChange?: (data: EvaluationData) => void
+  evaluationComment?: string
+  criteria?: ResponseTokEvaluationCriteriaDto
+  placeholder?: string
 }
 
 export default function Evaluation({
@@ -33,48 +33,48 @@ export default function Evaluation({
   criteria = {} as ResponseTokEvaluationCriteriaDto,
   placeholder,
 }: EvaluationProps) {
-  const me = useRecoilValue(meState);
+  const me = useRecoilValue(meState)
 
-  const [accordionIsOpen, setAccordionIsOpen] = useState<boolean>(false);
-  const [gradeScores, setGradeScores] = useState<Record<number, number>>({});
-  const [isError, setIsError] = useState<boolean>(false);
-  const grades = criteria.grades || [];
-  const [comment, setComment] = useState<string>(evaluationComment || '');
+  const [accordionIsOpen, setAccordionIsOpen] = useState<boolean>(false)
+  const [gradeScores, setGradeScores] = useState<Record<number, number>>({})
+  const [isError, setIsError] = useState<boolean>(false)
+  const grades = criteria.grades || []
+  const [comment, setComment] = useState<string>(evaluationComment || '')
 
   // 에러 체크
   const hasError = (gradeScores: Record<number, number>) =>
     grades.some((grade) => {
-      const gradeScore = gradeScores[grade.id];
-      return gradeScore ? gradeScore < grade.minScore || gradeScore > grade.maxScore : false;
-    });
+      const gradeScore = gradeScores[grade.id]
+      return gradeScore ? gradeScore < grade.minScore || gradeScore > grade.maxScore : false
+    })
 
   const handleScoreChange = (gradeId: number, score: number) => {
-    if (!onChange) return;
+    if (!onChange) return
 
     // gradeScores만 업데이트
     const newGradeScores = {
       [gradeId]: score,
-    };
-    setGradeScores(newGradeScores);
+    }
+    setGradeScores(newGradeScores)
 
     // 다른 grade 선택 시 이전 선택 초기화
     Object.keys(newGradeScores).forEach((key) => {
       if (Number(key) !== gradeId) {
-        delete newGradeScores[Number(key)];
+        delete newGradeScores[Number(key)]
       }
-    });
+    })
 
-    setGradeScores(newGradeScores);
-    setIsError(hasError(newGradeScores));
-  };
+    setGradeScores(newGradeScores)
+    setIsError(hasError(newGradeScores))
+  }
 
   // gradeScores, comment, isError 변경 시 onChange 호출
   useEffect(() => {
-    if (!onChange || disabled) return;
+    if (!onChange || disabled) return
 
-    const currentScore = Object.values(gradeScores)[0];
+    const currentScore = Object.values(gradeScores)[0]
     if (currentScore !== undefined) {
-      setIsError(hasError(gradeScores));
+      setIsError(hasError(gradeScores))
 
       onChange({
         id: evaluationData.evaluator.id,
@@ -82,30 +82,30 @@ export default function Evaluation({
         comment,
         isFinal,
         hasError: isError,
-      });
+      })
     }
-  }, [gradeScores, comment, isError]);
+  }, [gradeScores, comment, isError])
 
   useEffect(() => {
     // 점수가 있으면 해당 점수에 맞는 grade를 찾아서 설정
     if (score) {
-      const selectedGrade = grades.find((grade) => score >= grade.minScore && score <= grade.maxScore);
+      const selectedGrade = grades.find((grade) => score >= grade.minScore && score <= grade.maxScore)
       if (selectedGrade) {
         setGradeScores({
           [selectedGrade.id]: score,
-        });
+        })
       }
     }
 
     if (!score) {
-      setGradeScores({});
-      setComment('');
+      setGradeScores({})
+      setComment('')
     }
-  }, [score]);
+  }, [score])
 
   useEffect(() => {
-    setComment(evaluationComment || '');
-  }, [evaluationComment]);
+    setComment(evaluationComment || '')
+  }, [evaluationComment])
 
   return (
     <div className="flex flex-col gap-3">
@@ -168,7 +168,7 @@ export default function Evaluation({
                 wrapperClassName={clsx({ 'bg-white': !disabled && score })}
                 placeholder={placeholder}
                 onChange={(e) => {
-                  setComment(e.target.value);
+                  setComment(e.target.value)
                 }}
                 value={comment}
                 disabled={disabled || !score}
@@ -178,5 +178,5 @@ export default function Evaluation({
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,19 +1,19 @@
-import _ from 'lodash';
-import { FC, useState } from 'react';
-import { GroupType, ResponseSubjectGroupDto, SubjectType } from 'src/generated/model';
-import { twMerge } from 'tailwind-merge';
-import { Button } from '../common/Button';
-import { Checkbox } from '../common/Checkbox';
-import { Icon } from '../common/icons';
-import { SuperModal } from '../SuperModal';
+import _ from 'lodash'
+import { FC, useState } from 'react'
+import { GroupType, ResponseSubjectGroupDto, SubjectType } from '@/legacy/generated/model'
+import { twMerge } from 'tailwind-merge'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Icon } from '@/legacy/components/common/icons'
+import { SuperModal } from '../SuperModal'
 
 interface ActivityGroupSelectModalProps {
-  groups: ResponseSubjectGroupDto[];
-  activityv3type: SubjectType;
-  modalOpen: boolean;
-  setModalOpen: (value: boolean) => void;
-  selectedGroupIds: number[];
-  setSelectedGroupIds: (ids: number[]) => void;
+  groups: ResponseSubjectGroupDto[]
+  activityv3type: SubjectType
+  modalOpen: boolean
+  setModalOpen: (value: boolean) => void
+  selectedGroupIds: number[]
+  setSelectedGroupIds: (ids: number[]) => void
 }
 
 export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
@@ -24,13 +24,13 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
   selectedGroupIds,
   setSelectedGroupIds,
 }) => {
-  const [modalGroupType, setModalGroupType] = useState<string>('KLASS');
+  const [modalGroupType, setModalGroupType] = useState<string>('KLASS')
 
-  const klassGrades = _.uniqBy(groups, 'group.grade').map((el) => el.group.grade);
+  const klassGrades = _.uniqBy(groups, 'group.grade').map((el) => el.group.grade)
 
   return (
     <SuperModal
-      className="h-3/4 w-[960px] max-w-7xl 3xl:h-2/3"
+      className="3xl:h-2/3 h-3/4 w-[960px] max-w-7xl"
       modalOpen={selectGroupModalOpen}
       setModalClose={() => setSelectGroupModalOpen(false)}
     >
@@ -85,8 +85,8 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
               {modalGroupType === 'KLASS' && (
                 <div className="flex w-full items-start space-x-2 overflow-y-auto">
                   {klassGrades.map((grade) => {
-                    const groupData = groups.filter((el) => el.group.type === 'KLASS' && el.group.grade === grade);
-                    if (!groupData.length) return <></>;
+                    const groupData = groups.filter((el) => el.group.type === 'KLASS' && el.group.grade === grade)
+                    if (!groupData.length) return <></>
 
                     return (
                       <div className="w-full gap-2 space-y-2" key={grade}>
@@ -118,7 +118,7 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
                                 groupData.length
                               }
                               onChange={(e) => {
-                                e.stopPropagation();
+                                e.stopPropagation()
                                 groupData.filter((g) => selectedGroupIds.includes(g.group.id)).length ===
                                 groupData.length
                                   ? setSelectedGroupIds(
@@ -133,10 +133,10 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
                                         .concat(groupData.map((el) => el.group.id))
                                         .uniq()
                                         .value(),
-                                    );
+                                    )
                               }}
                             />
-                            <div className="whitespace-pre font-semibold">{grade}학년 전체</div>
+                            <div className="font-semibold whitespace-pre">{grade}학년 전체</div>
                           </label>
                         )}
                         {groupData?.map((el) => (
@@ -154,17 +154,17 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
                               id={'check-' + el.group?.id}
                               checked={selectedGroupIds.includes(el.group?.id)}
                               onChange={(e) => {
-                                e.stopPropagation();
+                                e.stopPropagation()
                                 selectedGroupIds.includes(el.group?.id)
                                   ? setSelectedGroupIds(selectedGroupIds.filter((id) => id !== el.group?.id))
-                                  : setSelectedGroupIds(selectedGroupIds.concat(el.group?.id));
+                                  : setSelectedGroupIds(selectedGroupIds.concat(el.group?.id))
                               }}
                             />
                             <div>{el.group?.name}</div>
                           </label>
                         ))}
                       </div>
-                    );
+                    )
                   })}
                 </div>
               )}
@@ -186,10 +186,10 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
                         id={'check-' + el.id}
                         checked={selectedGroupIds.includes(el.id)}
                         onChange={(e) => {
-                          e.stopPropagation();
+                          e.stopPropagation()
                           selectedGroupIds.includes(el.id)
                             ? setSelectedGroupIds(selectedGroupIds.filter((id) => id !== el.id))
-                            : setSelectedGroupIds(selectedGroupIds.concat(el.id));
+                            : setSelectedGroupIds(selectedGroupIds.concat(el.id))
                         }}
                       />
                       <div>{el.name}</div>
@@ -216,10 +216,10 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
                           id={'check-' + el.group?.id}
                           checked={selectedGroupIds.includes(el.group?.id)}
                           onChange={(e) => {
-                            e.stopPropagation();
+                            e.stopPropagation()
                             selectedGroupIds.includes(el.group?.id)
                               ? setSelectedGroupIds(selectedGroupIds.filter((id) => id !== el.group?.id))
-                              : setSelectedGroupIds(selectedGroupIds.concat(el.group?.id));
+                              : setSelectedGroupIds(selectedGroupIds.concat(el.group?.id))
                           }}
                         />
                         <div>{el.group?.name}</div>
@@ -231,7 +231,7 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
           </div>
 
           {/* 내가 선택한 그룹 박스 */}
-          <div className="flex w-full min-w-[210px] max-w-[20%] flex-col rounded border border-[#777777] p-4">
+          <div className="flex w-full max-w-[20%] min-w-[210px] flex-col rounded border border-[#777777] p-4">
             <div className="mb-2 font-bold">선택한 그룹</div>
             <div className="flex h-full w-full flex-col space-y-2 overflow-y-auto">
               {selectedGroupIds
@@ -239,7 +239,7 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
                 .sort((a, b) => a - b)
                 .map((groupId) => (
                   <div
-                    className="flex w-full items-center justify-between space-x-2 rounded border border-stone-300 p-2 text-14"
+                    className="text-14 flex w-full items-center justify-between space-x-2 rounded border border-stone-300 p-2"
                     key={groupId}
                   >
                     {groups?.find((el) => el.group?.id === groupId)?.group?.name}
@@ -256,8 +256,8 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
           <Button
             className="h-12 w-28 rounded-lg border border-neutral-500 bg-white text-lg font-semibold"
             onClick={() => {
-              setSelectGroupModalOpen(false);
-              setSelectedGroupIds([]);
+              setSelectGroupModalOpen(false)
+              setSelectedGroupIds([])
             }}
           >
             취소
@@ -272,5 +272,5 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
         </div>
       </div>
     </SuperModal>
-  );
-};
+  )
+}

@@ -1,56 +1,56 @@
-import _, { map, max } from 'lodash';
-import { FC, useEffect, useState } from 'react';
-import { useStudentSelfAssessmentCreate } from 'src/generated/endpoint';
-import { StudentSelfAssessment } from 'src/generated/model';
-import { SELF_TEST_TYPES } from 'src/pages/student/self-test/self-test.type';
-import { getDayOfYear } from 'src/util/time';
-import { twMerge } from 'tailwind-merge';
-import { Label, Select, Textarea } from '../common';
-import { Button } from '../common/Button';
-import { Icon } from '../common/icons';
-import { TextInput } from '../common/TextInput';
+import _, { map, max } from 'lodash'
+import { FC, useEffect, useState } from 'react'
+import { useStudentSelfAssessmentCreate } from '@/legacy/generated/endpoint'
+import { StudentSelfAssessment } from '@/legacy/generated/model'
+import { SELF_TEST_TYPES } from 'src/pages/student/self-test/self-test.type'
+import { getDayOfYear } from '@/legacy/util/time'
+import { twMerge } from 'tailwind-merge'
+import { Label, Select, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Icon } from '@/legacy/components/common/icons'
+import { TextInput } from '@/legacy/components/common/TextInput'
 
 interface StudentSelfAssessmentUpdateProps {
-  studentSelfAssessment?: StudentSelfAssessment;
-  goToView: () => void;
+  studentSelfAssessment?: StudentSelfAssessment
+  goToView: () => void
 }
 
 export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> = ({
   studentSelfAssessment,
   goToView,
 }) => {
-  const [category1, setCategory1] = useState('');
-  const [category2, setCategory2] = useState('');
-  const [category3, setCategory3] = useState('');
-  const [keywords, setKeywords] = useState<Record<number, { keyword: string; reason: string }>>({});
-  const [assessment, setAssessment] = useState<string>('');
+  const [category1, setCategory1] = useState('')
+  const [category2, setCategory2] = useState('')
+  const [category3, setCategory3] = useState('')
+  const [keywords, setKeywords] = useState<Record<number, { keyword: string; reason: string }>>({})
+  const [assessment, setAssessment] = useState<string>('')
 
   const reset = (data: StudentSelfAssessment) => {
-    setCategory1(data?.category1);
-    setCategory2(data?.category2);
-    setCategory3(data?.category3);
-    setKeywords(data?.keywords);
-    setAssessment(data?.assessment);
-  };
+    setCategory1(data?.category1)
+    setCategory2(data?.category2)
+    setCategory3(data?.category3)
+    setKeywords(data?.keywords)
+    setAssessment(data?.assessment)
+  }
 
   const { mutate: createStudentSelfAssessment } = useStudentSelfAssessmentCreate({
     mutation: {
       onSuccess: (data) => {
-        reset(data);
-        goToView();
+        reset(data)
+        goToView()
       },
     },
-  });
+  })
 
   useEffect(() => {
     if (studentSelfAssessment) {
-      reset(studentSelfAssessment);
+      reset(studentSelfAssessment)
     }
-  }, [studentSelfAssessment]);
+  }, [studentSelfAssessment])
 
   const category3Data =
     SELF_TEST_TYPES.filter((ct1) => ct1.name === category1)?.[0]?.values?.filter((ct2) => ct2.name === category2)?.[0]
-      ?.values || [];
+      ?.values || []
 
   const keywordDatas: string[] =
     typeof category3Data[0] === 'string'
@@ -58,9 +58,9 @@ export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> =
       : category3
         ? //@ts-ignore
           category3Data.filter((ct3: any) => ct3.name === category3)?.[0]?.values || []
-        : [];
+        : []
 
-  const buttonDisabled = !Object.keys(keywords).length;
+  const buttonDisabled = !Object.keys(keywords).length
 
   return (
     <div className="flex flex-col space-y-4">
@@ -70,8 +70,8 @@ export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> =
           placeholder="선택"
           value={category1}
           onChange={(e) => {
-            setCategory1(e.target.value);
-            setCategory2('');
+            setCategory1(e.target.value)
+            setCategory2('')
           }}
         >
           <option selected hidden value="">
@@ -91,8 +91,8 @@ export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> =
           disabled={!category1}
           value={category2}
           onChange={(e) => {
-            setCategory2(e.target.value);
-            setCategory3('');
+            setCategory2(e.target.value)
+            setCategory3('')
           }}
         >
           <option selected hidden value="">
@@ -114,7 +114,7 @@ export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> =
             disabled={!category2}
             value={category3}
             onChange={(e) => {
-              setCategory3(e.target.value);
+              setCategory3(e.target.value)
             }}
           >
             <option selected hidden value="">
@@ -137,38 +137,38 @@ export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> =
           <Label.Text className="text-16">해당 학생을 나타내는 특성단어를 선택해주세요.</Label.Text>
           <div className="mt-2">
             {keywordDatas.map((el) => {
-              const selected = Object.values(keywords).some(({ keyword, reason }) => el === keyword);
+              const selected = Object.values(keywords).some(({ keyword, reason }) => el === keyword)
               return (
                 <div
                   className={twMerge(
-                    'mb-2 mr-2 inline-block cursor-pointer rounded-full border border-gray-600 px-4 py-2',
+                    'mr-2 mb-2 inline-block cursor-pointer rounded-full border border-gray-600 px-4 py-2',
                     selected && 'border-brand-1 bg-light_orange text-brand-1',
                   )}
                   onClick={() => {
                     if (Object.keys(keywords).length >= 5) {
-                      alert('단어는 최대 5개 입력할 수 있습니다.');
-                      return;
+                      alert('단어는 최대 5개 입력할 수 있습니다.')
+                      return
                     }
                     if (Object.values(keywords).some(({ keyword }) => keyword === '')) {
-                      alert('추가한 단어를 먼저 입력해주세요.');
-                      return;
+                      alert('추가한 단어를 먼저 입력해주세요.')
+                      return
                     }
                     if (selected) {
-                      setKeywords(_.omitBy(keywords, ({ keyword }) => keyword === el));
+                      setKeywords(_.omitBy(keywords, ({ keyword }) => keyword === el))
                     } else {
-                      const keys = map(Object.keys(keywords), (el) => Number(el));
-                      const key: number = (max(keys) || 0) + 1;
+                      const keys = map(Object.keys(keywords), (el) => Number(el))
+                      const key: number = (max(keys) || 0) + 1
                       setKeywords({
                         ...keywords,
                         [key]: { keyword: el, reason: '' },
-                      });
+                      })
                     }
                   }}
                   key={el}
                 >
                   {el}
                 </div>
-              );
+              )
             })}
           </div>
         </Label.col>
@@ -184,15 +184,15 @@ export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> =
                   <TextInput
                     value={keyword}
                     onChange={(e) => {
-                      setKeywords({ ...keywords, [id]: { keyword: e.target.value, reason } });
+                      setKeywords({ ...keywords, [id]: { keyword: e.target.value, reason } })
                     }}
                   />
                   <Button.lg
                     className="bg-red-600 text-white"
                     onClick={() => {
-                      const _keywords = structuredClone(keywords);
-                      delete _keywords[Number(id)];
-                      setKeywords(_keywords);
+                      const _keywords = structuredClone(keywords)
+                      delete _keywords[Number(id)]
+                      setKeywords(_keywords)
                     }}
                   >
                     삭제
@@ -204,7 +204,7 @@ export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> =
                   placeholder="특성단어를 선택한 근거를 작성해주세요."
                   value={reason}
                   onChange={(e) => {
-                    setKeywords({ ...keywords, [id]: { keyword, reason: e.target.value } });
+                    setKeywords({ ...keywords, [id]: { keyword, reason: e.target.value } })
                   }}
                 />
               </div>
@@ -213,16 +213,16 @@ export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> =
             className="flex cursor-pointer items-center justify-center space-x-2 rounded-lg border border-gray-600 bg-slate-50 py-2 text-gray-600"
             onClick={() => {
               if (Object.keys(keywords).length >= 5) {
-                alert('단어는 최대 5개 입력할 수 있습니다.');
-                return;
+                alert('단어는 최대 5개 입력할 수 있습니다.')
+                return
               }
               if (Object.values(keywords).some(({ keyword }) => keyword === '')) {
-                alert('추가한 단어를 먼저 입력해주세요.');
-                return;
+                alert('추가한 단어를 먼저 입력해주세요.')
+                return
               }
-              const keys = map(Object.keys(keywords), (el) => Number(el));
-              const key: number = (max(keys) || 0) + 1;
-              setKeywords({ ...keywords, [key]: { keyword: '', reason: '' } });
+              const keys = map(Object.keys(keywords), (el) => Number(el))
+              const key: number = (max(keys) || 0) + 1
+              setKeywords({ ...keywords, [key]: { keyword: '', reason: '' } })
             }}
           >
             <div> 단어 추가 </div>
@@ -241,14 +241,14 @@ export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> =
       <div className="flex w-full space-x-2">
         <Button.lg
           children="취소하기"
-          className="w-full bg-brand-1 text-white disabled:bg-gray-300 disabled:text-gray-600"
+          className="bg-brand-1 w-full text-white disabled:bg-gray-300 disabled:text-gray-600"
           onClick={() => {
-            goToView();
+            goToView()
           }}
         />
         <Button.lg
           children="저장하기"
-          className="w-full bg-brand-1 text-white disabled:bg-gray-300 disabled:text-gray-600"
+          className="bg-brand-1 w-full text-white disabled:bg-gray-300 disabled:text-gray-600"
           onClick={() => {
             createStudentSelfAssessment({
               data: {
@@ -259,10 +259,10 @@ export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> =
                 assessment,
                 year: getDayOfYear(new Date()),
               },
-            });
+            })
           }}
         />
       </div>
     </div>
-  );
-};
+  )
+}

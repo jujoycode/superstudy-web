@@ -1,37 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { Constants } from 'src/constants';
+import React, { useEffect, useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { useParams } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { Constants } from '@/legacy/constants'
 import {
   useRecordCreate,
   useStudentActivityV3FindByTeacher,
   useStudentActivityV3SaveByTeacher,
-} from 'src/generated/endpoint';
-import { toastState } from 'src/store';
-import { getNickName, padLeftstr } from 'src/util/status';
-import { Avatar, Blank, Textarea } from '../common';
-import { Button } from '../common/Button';
-import { TextInput } from '../common/TextInput';
-import { Time } from '../common/Time';
-import { Icon } from '../common/icons';
-import { RecordItem } from './RecordItem';
+} from '@/legacy/generated/endpoint'
+import { toastState } from '@/stores'
+import { getNickName, padLeftstr } from '@/legacy/util/status'
+import { Avatar, Blank, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Time } from '@/legacy/components/common/Time'
+import { Icon } from '@/legacy/components/common/icons'
+import { RecordItem } from './RecordItem'
 
 interface StudentActivityDetailProps {
-  activityv3: any;
-  studentGroups: any[];
+  activityv3: any
+  studentGroups: any[]
 }
 
 export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ activityv3, studentGroups }) => {
-  const { id } = useParams<{ id: string }>();
-  const [toastMsg, setToastMsg] = useRecoilState(toastState);
-  const { studentId } = useParams<{ studentId: string }>();
-  const [selectedUserId, setSelectedUserId] = useState<number>(Number(studentId));
-  const [userSelectView, setUserSelectView] = useState(false);
-  const [record, setRecord] = useState('');
-  const [summary, setSummary] = useState('');
-  const [title, setTitle] = useState('');
-  const [isUpdate, setIsUpate] = useState<boolean>(false);
+  const { id } = useParams<{ id: string }>()
+  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const { studentId } = useParams<{ studentId: string }>()
+  const [selectedUserId, setSelectedUserId] = useState<number>(Number(studentId))
+  const [userSelectView, setUserSelectView] = useState(false)
+  const [record, setRecord] = useState('')
+  const [summary, setSummary] = useState('')
+  const [title, setTitle] = useState('')
+  const [isUpdate, setIsUpate] = useState<boolean>(false)
 
   const {
     data: studentActivityV3,
@@ -43,92 +43,92 @@ export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ ac
       userId: Number(selectedUserId),
     },
     { query: { enabled: !!selectedUserId && !!id } },
-  );
+  )
 
   const { mutate: saveStudentActivityV3 } = useStudentActivityV3SaveByTeacher({
     mutation: {
       onSuccess: () => {
-        setToastMsg('변경 사항이 저장되었습니다.');
+        setToastMsg('변경 사항이 저장되었습니다.')
       },
       onError: (error) => setToastMsg(error.message),
     },
-  });
+  })
 
   const { mutate: createRecord, isLoading: createRecordLoading } = useRecordCreate({
     mutation: {
       onSuccess: () => {
-        setRecord('');
-        setToastMsg('관찰 기록이 저장되었습니다.');
-        refetchSAV();
+        setRecord('')
+        setToastMsg('관찰 기록이 저장되었습니다.')
+        refetchSAV()
       },
       onError: (error) => setToastMsg(error.message),
     },
-  });
+  })
 
-  const isRecordLoading = createRecordLoading;
+  const isRecordLoading = createRecordLoading
 
   useEffect(() => {
-    const activityTitle = studentActivityV3?.title;
-    const activitySummary = studentActivityV3?.summary;
-    setTitle(activityTitle || '');
-    setSummary(activitySummary || '');
+    const activityTitle = studentActivityV3?.title
+    const activitySummary = studentActivityV3?.summary
+    setTitle(activityTitle || '')
+    setSummary(activitySummary || '')
 
     if (!activityTitle && !activitySummary) {
-      setIsUpate(true);
+      setIsUpate(true)
     } else {
-      setIsUpate(false);
+      setIsUpate(false)
     }
-  }, [studentActivityV3]);
+  }, [studentActivityV3])
 
-  const selectedUserIndex = studentGroups?.findIndex((el) => el.userId === Number(selectedUserId));
-  const selectedUser = studentGroups?.[selectedUserIndex]?.user;
-  const prevUser = selectedUserIndex > 0 ? studentGroups[selectedUserIndex - 1]?.user : null;
-  const nextUser = selectedUserIndex < studentGroups.length - 1 ? studentGroups[selectedUserIndex + 1]?.user : null;
+  const selectedUserIndex = studentGroups?.findIndex((el) => el.userId === Number(selectedUserId))
+  const selectedUser = studentGroups?.[selectedUserIndex]?.user
+  const prevUser = selectedUserIndex > 0 ? studentGroups[selectedUserIndex - 1]?.user : null
+  const nextUser = selectedUserIndex < studentGroups.length - 1 ? studentGroups[selectedUserIndex + 1]?.user : null
 
-  if (!studentActivityV3) return <></>;
-  if (savLoading) return <Blank />;
+  if (!studentActivityV3) return <></>
+  if (savLoading) return <Blank />
 
-  const canRecord = !!studentActivityV3.studentText;
+  const canRecord = !!studentActivityV3.studentText
 
   const generateSummary = () => {
-    let summary = '';
+    let summary = ''
 
     if (activityv3.commonText) {
-      summary += activityv3.commonText;
+      summary += activityv3.commonText
     }
 
     if (studentActivityV3?.studentText) {
-      if (summary) summary += '\n';
-      summary += studentActivityV3.studentText;
+      if (summary) summary += '\n'
+      summary += studentActivityV3.studentText
     }
 
-    const recordsContent = studentActivityV3?.records?.map((r) => r.content).join('\n');
+    const recordsContent = studentActivityV3?.records?.map((r) => r.content).join('\n')
     if (recordsContent) {
-      if (summary) summary += '\n';
-      summary += recordsContent;
+      if (summary) summary += '\n'
+      summary += recordsContent
     }
 
-    return summary;
-  };
+    return summary
+  }
 
   const handleSave = () => {
-    const data = { record, summary, title };
+    const data = { record, summary, title }
     if (summary.trim() === '') {
-      alert('내용을 입력해 주세요.');
-      return;
+      alert('내용을 입력해 주세요.')
+      return
     }
 
     saveStudentActivityV3({
       params: { activityv3Id: Number(activityv3.id), userId: Number(selectedUserId) },
       data,
-    });
-  };
+    })
+  }
 
   return (
     <>
-      <div className="mt-16 flex h-full max-h-screen-12 items-stretch space-x-2 overflow-hidden">
+      <div className="max-h-screen-12 mt-16 flex h-full items-stretch space-x-2 overflow-hidden">
         <div className="flex w-2/3 flex-col pb-4">
-          <div className="mb-4 text-24 font-bold">학생 활동 보고서</div>
+          <div className="text-24 mb-4 font-bold">학생 활동 보고서</div>
           <div className="flex h-full w-full flex-col overflow-hidden rounded border border-neutral-400">
             <div className="flex h-full w-full flex-col space-y-5 overflow-hidden bg-white px-8 py-5">
               <div className="flex w-full items-center justify-center space-x-4">
@@ -170,8 +170,8 @@ export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ ac
                             key={sg.id}
                             className="flex cursor-pointer items-center justify-evenly gap-2"
                             onClick={() => {
-                              setUserSelectView(false);
-                              setSelectedUserId(sg.userId);
+                              setUserSelectView(false)
+                              setSelectedUserId(sg.userId)
                             }}
                           >
                             {sg.user?.profile ? (
@@ -203,9 +203,9 @@ export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ ac
                 />
               </div>
               <div className="flex h-full flex-col justify-between overflow-y-auto">
-                <div className="h-full w-full whitespace-pre-line text-sm">{studentActivityV3.studentText}</div>
+                <div className="h-full w-full text-sm whitespace-pre-line">{studentActivityV3.studentText}</div>
                 {studentActivityV3.studentText && (
-                  <div className="mt-auto flex items-center justify-end space-x-2 px-2 text-12 font-bold">
+                  <div className="text-12 mt-auto flex items-center justify-end space-x-2 px-2 font-bold">
                     <span className="font-semibold text-gray-400">글자 수 (공백 제외)</span>&nbsp;
                     {studentActivityV3.studentText?.replaceAll(' ', '').length}자&nbsp;
                     {new TextEncoder().encode(studentActivityV3.studentText?.replaceAll(' ', '')).length} Byte
@@ -217,7 +217,7 @@ export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ ac
               </div>
             </div>
             <div className="flex min-h-[80px] items-center justify-between border-t border-gray-300 bg-gray-50 px-6 py-4">
-              <div className="flex flex-col gap-2 text-14">
+              <div className="text-14 flex flex-col gap-2">
                 {canRecord ? (
                   <>
                     <p>
@@ -238,11 +238,11 @@ export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ ac
         </div>
 
         {/* 관찰기록 영역 */}
-        <div className="min-w-40 flex w-1/3 flex-col pb-4">
-          <div className="mb-4 text-24 font-bold">관찰기록</div>
+        <div className="flex w-1/3 min-w-40 flex-col pb-4">
+          <div className="text-24 mb-4 font-bold">관찰기록</div>
           <div className="flex h-full w-full flex-col overflow-hidden rounded border border-neutral-400">
             <div className="relative h-full w-full flex-col space-y-4 overflow-y-auto bg-white p-5">
-              {isRecordLoading && <div className="absolute inset-0 bg-littleblack">로딩 중...</div>}
+              {isRecordLoading && <div className="bg-littleblack absolute inset-0">로딩 중...</div>}
               {studentActivityV3.records
                 ?.slice()
                 .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
@@ -360,5 +360,5 @@ export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ ac
         </div>
       </div>
     </>
-  );
-};
+  )
+}

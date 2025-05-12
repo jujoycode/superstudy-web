@@ -1,30 +1,30 @@
-import { format } from 'date-fns';
-import { useGetUnreadFeedback } from 'src/container/ib-feedback';
-import { FeedbackReferenceTable } from 'src/generated/model';
-import { IBBlank } from '../common/IBBlank';
-import { Typography } from '../common/Typography';
-import ColorSVGIcon from '../icon/ColorSVGIcon';
-import SolidSVGIcon from '../icon/SolidSVGIcon';
+import { format } from 'date-fns'
+import { useGetUnreadFeedback } from '@/legacy/container/ib-feedback'
+import { FeedbackReferenceTable } from '@/legacy/generated/model'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
+import ColorSVGIcon from '../icon/ColorSVGIcon'
+import SolidSVGIcon from '../icon/SolidSVGIcon'
 
 interface FeedbackViewerProps {
-  referenceId: number;
-  referenceTable: FeedbackReferenceTable;
-  modalOpen: boolean;
-  setModalClose: () => void;
+  referenceId: number
+  referenceTable: FeedbackReferenceTable
+  modalOpen: boolean
+  setModalClose: () => void
 }
 
 export default function FeedbackViewer({ referenceId, referenceTable, modalOpen, setModalClose }: FeedbackViewerProps) {
-  const { data, isLoading } = useGetUnreadFeedback({ referenceId, referenceTable });
-  const date = data?.items[0].createdAt ? new Date(data.items[0].createdAt) : new Date();
-  const sender = data?.items[0].sender;
+  const { data, isLoading } = useGetUnreadFeedback({ referenceId, referenceTable })
+  const date = data?.items[0].createdAt ? new Date(data.items[0].createdAt) : new Date()
+  const sender = data?.items[0].sender
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black bg-opacity-50 ${
+      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
+        e.preventDefault()
+        e.stopPropagation()
       }}
     >
       <div className={`relative w-[632px] overflow-hidden rounded-xl bg-white p-8`}>
@@ -49,8 +49,8 @@ export default function FeedbackViewer({ referenceId, referenceTable, modalOpen,
                 sender === null
                   ? 'bg-primary-gray-50'
                   : data?.items[0].sender.role === 'USER'
-                  ? 'bg-primary-gray-50'
-                  : 'bg-primary-orange-50'
+                    ? 'bg-primary-gray-50'
+                    : 'bg-primary-orange-50'
               } p-5`}
             >
               {sender === null ? (
@@ -88,7 +88,7 @@ export default function FeedbackViewer({ referenceId, referenceTable, modalOpen,
                       <Typography variant="body2" className="whitespace-pre-line">
                         {data.items[0].content.split('\n')[0]}
                       </Typography>
-                      <Typography variant="caption" className="whitespace-pre-line text-primary-gray-500">
+                      <Typography variant="caption" className="text-primary-gray-500 whitespace-pre-line">
                         {data.items[0].content.split('\n')[1]}
                       </Typography>
                     </>
@@ -108,5 +108,5 @@ export default function FeedbackViewer({ referenceId, referenceTable, modalOpen,
         )}
       </div>
     </div>
-  );
+  )
 }

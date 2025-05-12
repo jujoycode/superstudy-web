@@ -1,12 +1,13 @@
 import fs from 'fs'
 import path from 'path'
-import { defineConfig, loadEnv } from 'vite'
-import tailwindcssPostcss from '@tailwindcss/postcss'
 import autoprefixer from 'autoprefixer'
 import { execSync } from 'child_process'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import tailwindcssPostcss from '@tailwindcss/postcss'
 
-function generateMetaTag() {
+// 메타 태그 생성 함수
+const generateMetaTag = () => {
   try {
     execSync('node ./node_modules/react-cache-buster/dist/generate-meta-tag.js')
     console.log('✅ Generate meta tag success.')
@@ -15,37 +16,64 @@ function generateMetaTag() {
   }
 }
 
+// 환경 설정 함수
+const setupEnvironment = (mode: string) => {
+  const script = mode === 'production' ? 'npm run env:prod' : 'npm run env:dev'
+  const message = `${mode === 'production' ? 'Production' : 'Development'} environment variables are set.`
+
+  try {
+    execSync(script)
+    console.log(`✅ ${message}`)
+  } catch (error) {
+    console.error(
+      `❌ ${mode === 'production' ? 'Production' : 'Development'} environment variable setting error:`,
+      error,
+    )
+  }
+}
+
+// meta.json 파일 복사 함수
+const copyMetaJson = () => {
+  try {
+    const metaFile = path.resolve(__dirname, 'meta.json')
+    const destDir = path.resolve(__dirname, 'build')
+
+    if (fs.existsSync(metaFile)) {
+      fs.copyFileSync(metaFile, path.join(destDir, 'meta.json'))
+      console.log('✅ Copy meta.json file to build folder.')
+    }
+  } catch (err) {
+    console.error('Copy meta.json file error:', err)
+  }
+}
+
+// 프론트엔드에 노출할 환경 변수 필터링 함수
+const filterExposedEnvs = (env: Record<string, string>) => {
+  return Object.entries(env).reduce(
+    (acc, [key, value]) => {
+      if (key.startsWith('VITE_') || key.startsWith('REACT_APP_')) {
+        acc[key] = value
+      }
+      return acc
+    },
+    {} as Record<string, string>,
+  )
+}
+
 export default defineConfig(({ mode }) => {
   // 환경 변수 로드
   const env = loadEnv(mode, process.cwd(), '')
 
-  if (mode === 'production') {
-    try {
-      execSync('npm run env:prod')
-      console.log('✅ Production environment variables are set.')
-    } catch (error) {
-      console.error('❌ Production environment variable setting error:', error)
-    }
-  } else {
-    try {
-      execSync('npm run env:dev')
-      console.log('✅ Development environment variables are set.')
-    } catch (error) {
-      console.error('❌ Development environment variable setting error:', error)
-    }
-  }
+  // 환경 설정
+  setupEnvironment(mode)
 
-  // 프론트엔드에 노출할 환경 변수만 선택
-  const exposedEnvs: Record<string, string> = {}
-  Object.keys(env).forEach((key) => {
-    // VITE_ 또는 REACT_APP_ 접두사가 있는 환경변수만 노출
-    if (key.startsWith('VITE_') || key.startsWith('REACT_APP_')) {
-      exposedEnvs[key] = env[key]
-    }
-  })
+  // 프론트엔드에 노출할 환경 변수 필터링
+  const exposedEnvs = filterExposedEnvs(env)
 
+  // Vite 설정 반환
   return {
     plugins: [
+      // 메타 태그 생성 플러그인
       {
         name: 'generate-meta-tag',
         buildStart() {
@@ -54,43 +82,38 @@ export default defineConfig(({ mode }) => {
           }
         },
       },
+      // React 플러그인
       react({
         jsxImportSource: 'react',
         tsDecorators: true,
         plugins: [],
       }),
-      // 빌드 후 meta.json 파일 복사 (캐시 버스팅 기능 유지)
+      // 빌드 후 meta.json 파일 복사 플러그인
       {
         name: 'copy-meta-json',
         closeBundle() {
           if (mode === 'production') {
-            try {
-              const metaFile = path.resolve(__dirname, 'meta.json')
-              const destDir = path.resolve(__dirname, 'build') // CRA와 동일한 출력 폴더 사용
-
-              if (fs.existsSync(metaFile)) {
-                fs.copyFileSync(metaFile, path.join(destDir, 'meta.json'))
-                console.log('✅ meta.json 파일이 build 폴더로 복사되었습니다.')
-              }
-            } catch (err) {
-              console.error('meta.json 파일 복사 중 오류 발생:', err)
-            }
+            copyMetaJson()
           }
         },
       },
     ],
+    // 환경 변수 정의
     define: {
       'process.env': exposedEnvs,
     },
+    // 서버 설정
     server: {
       port: 3000,
       host: true,
     },
+    // CSS 설정
     css: {
       postcss: {
         plugins: [tailwindcssPostcss(), autoprefixer],
       },
     },
+    // 빌드 설정
     build: {
       outDir: 'build',
       sourcemap: true,
@@ -103,10 +126,11 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-    // 경로 별칭 설정 (tsconfig.json과 일치)
+    // 경로 별칭 설정
     resolve: {
       alias: {
         '@/legacy': '/src/legacy',
+        '@/stores': '/src/store',
         '@/routers': '/src/routers',
       },
     },

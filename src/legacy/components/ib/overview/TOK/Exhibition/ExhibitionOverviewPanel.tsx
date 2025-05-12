@@ -1,39 +1,39 @@
-import clsx from 'clsx';
-import { useMemo } from 'react';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { Typography } from 'src/components/common/Typography';
-import SVGIcon from 'src/components/icon/SVGIcon';
+import clsx from 'clsx'
+import { useMemo } from 'react'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import {
   ResponseIBExhibitionSubmissionStatusDto,
   ResponseIBExhibitionSubmissionStatusDtoDetailStatus,
-} from 'src/generated/model';
+} from '@/legacy/generated/model'
 
 interface OverviewPanelProps {
-  goDetailPage?: (studentIbId: number, exhibitionId: number) => void;
-  data: ResponseIBExhibitionSubmissionStatusDto[];
-  type?: ResponseIBExhibitionSubmissionStatusDtoDetailStatus;
-  title: string;
-  buttonText?: string;
-  buttonHandler?: () => void;
-  className?: string;
+  goDetailPage?: (studentIbId: number, exhibitionId: number) => void
+  data: ResponseIBExhibitionSubmissionStatusDto[]
+  type?: ResponseIBExhibitionSubmissionStatusDtoDetailStatus
+  title: string
+  buttonText?: string
+  buttonHandler?: () => void
+  className?: string
 }
 
 export default function ExhibitionOverviewPanel(props: OverviewPanelProps) {
-  const { goDetailPage, data, title, buttonText, buttonHandler, type, className } = props;
+  const { goDetailPage, data, title, buttonText, buttonHandler, type, className } = props
 
   const studentsToDisplay = useMemo(() => {
     if (!type) {
-      return data;
+      return data
     }
-    return data.filter((student) => student.detailStatus === type);
-  }, [data, type]);
+    return data.filter((student) => student.detailStatus === type)
+  }, [data, type])
 
   const groupedByKlass = useMemo(() => {
     return studentsToDisplay.reduce(
       (acc, student) => {
-        const grade = student.leader.studentGroup.group.grade;
-        const klass = student.leader.studentGroup.group.klass;
-        const groupKey = `${grade}-${klass}`; // 학년-반 형식의 키 생성
+        const grade = student.leader.studentGroup.group.grade
+        const klass = student.leader.studentGroup.group.klass
+        const groupKey = `${grade}-${klass}` // 학년-반 형식의 키 생성
 
         if (!acc[groupKey]) {
           acc[groupKey] = {
@@ -41,22 +41,22 @@ export default function ExhibitionOverviewPanel(props: OverviewPanelProps) {
             grade,
             klass,
             students: [],
-          };
+          }
         }
-        acc[groupKey].students.push(student);
-        return acc;
+        acc[groupKey].students.push(student)
+        return acc
       },
       {} as Record<
         string,
         {
-          name: string;
-          grade: number;
-          klass: number;
-          students: ResponseIBExhibitionSubmissionStatusDto[];
+          name: string
+          grade: number
+          klass: number
+          students: ResponseIBExhibitionSubmissionStatusDto[]
         }
       >,
-    );
-  }, [studentsToDisplay]);
+    )
+  }, [studentsToDisplay])
 
   const renderGroupedStudents = () => {
     return Object.entries(groupedByKlass)
@@ -65,10 +65,10 @@ export default function ExhibitionOverviewPanel(props: OverviewPanelProps) {
         <div key={groupKey}>
           {/* 반 이름 출력 */}
           <div className="mb-4 flex items-center gap-3">
-            <Typography variant="body3" className="font-medium text-primary-gray-500">
+            <Typography variant="body3" className="text-primary-gray-500 font-medium">
               {group.name}
             </Typography>
-            <hr className="flex-1 border-t border-primary-gray-100" />
+            <hr className="border-primary-gray-100 flex-1 border-t" />
           </div>
 
           {/* 해당 반의 학생 목록 출력 */}
@@ -78,7 +78,7 @@ export default function ExhibitionOverviewPanel(props: OverviewPanelProps) {
               .map((student) => (
                 <div
                   key={student.id}
-                  className={`flex h-[48px] w-[195px] items-center justify-between rounded-lg bg-primary-gray-50 py-[14px] pl-4 pr-4 text-14 text-primary-gray-700 ${
+                  className={`bg-primary-gray-50 text-14 text-primary-gray-700 flex h-[48px] w-[195px] items-center justify-between rounded-lg py-[14px] pr-4 pl-4 ${
                     goDetailPage && 'hover:cursor-pointer'
                   }`}
                   onClick={goDetailPage ? () => goDetailPage(student.id, student.exhibition.id) : undefined}
@@ -99,11 +99,11 @@ export default function ExhibitionOverviewPanel(props: OverviewPanelProps) {
               ))}
           </div>
         </div>
-      ));
-  };
+      ))
+  }
 
-  const totalStudents = useMemo(() => studentsToDisplay.length, [studentsToDisplay]);
-  const containerStyles = clsx('w-full rounded-xl border border-primary-gray-200 p-6 flex flex-col gap-6', className);
+  const totalStudents = useMemo(() => studentsToDisplay.length, [studentsToDisplay])
+  const containerStyles = clsx('w-full rounded-xl border border-primary-gray-200 p-6 flex flex-col gap-6', className)
 
   return (
     <div className={containerStyles}>
@@ -119,5 +119,5 @@ export default function ExhibitionOverviewPanel(props: OverviewPanelProps) {
       </div>
       {renderGroupedStudents()}
     </div>
-  );
+  )
 }

@@ -1,32 +1,32 @@
-import { concat, sortBy } from 'lodash';
-import { useState } from 'react';
-import NODATA from 'src/assets/images/no-data.png';
-import { BadgeV2 } from 'src/components/common/BadgeV2';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import { useCoordinatorCheck } from 'src/container/ib-coordinator';
-import { useChecklistGetitems, useInterviewFindAllInterview } from 'src/generated/endpoint';
-import { DateFormat, DateUtil } from 'src/util/date';
-import AlertV2 from '../../common/AlertV2';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Typography } from '../../common/Typography';
-import FrontPaginatedList from '../../FrontPaginatedList ';
-import { PopupModal } from '../../PopupModal';
-import { CoordinatorEE_Form_AddCheckList } from './ee/CoordinatorEE_Form_AddCheckList';
-import { CoordinatorEE_Form_AddInterview } from './ee/CoordinatorEE_Form_AddInterview';
-export type ModalType = 'Category' | 'Add' | null;
-export type CategoryType = 'CheckList' | 'Interview' | '';
+import { concat, sortBy } from 'lodash'
+import { useState } from 'react'
+import NODATA from 'src/assets/images/no-data.png'
+import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
+import { useChecklistGetitems, useInterviewFindAllInterview } from '@/legacy/generated/endpoint'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import AlertV2 from '../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
+import FrontPaginatedList from '../../FrontPaginatedList '
+import { PopupModal } from '../../PopupModal'
+import { CoordinatorEE_Form_AddCheckList } from './ee/CoordinatorEE_Form_AddCheckList'
+import { CoordinatorEE_Form_AddInterview } from './ee/CoordinatorEE_Form_AddInterview'
+export type ModalType = 'Category' | 'Add' | null
+export type CategoryType = 'CheckList' | 'Interview' | ''
 
 interface FormListProps {
-  type?: string;
+  type?: string
 }
 
 export default function FormList({ type = 'EE_RPPF' }: FormListProps) {
-  const { permission } = useCoordinatorCheck();
+  const { permission } = useCoordinatorCheck()
 
-  const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [selectedCategory, setSelectedCategory] = useState<CategoryType>('');
-  const [activeModalType, setActiveModalType] = useState<'Create' | 'Update'>();
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+  const [activeModal, setActiveModal] = useState<ModalType>(null)
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType>('')
+  const [activeModalType, setActiveModalType] = useState<'Create' | 'Update'>()
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
 
   const {
     data: interviews,
@@ -34,7 +34,7 @@ export default function FormList({ type = 'EE_RPPF' }: FormListProps) {
     refetch: interviewRefetch,
   } = useInterviewFindAllInterview({
     category: type,
-  });
+  })
 
   const {
     data: checklists,
@@ -42,9 +42,9 @@ export default function FormList({ type = 'EE_RPPF' }: FormListProps) {
     refetch: checkListRefetch,
   } = useChecklistGetitems({
     location: 'ESSAY',
-  });
+  })
 
-  const isLoading = interviewLoading || checkListLoading;
+  const isLoading = interviewLoading || checkListLoading
 
   const Header = () => (
     <>
@@ -54,7 +54,7 @@ export default function FormList({ type = 'EE_RPPF' }: FormListProps) {
       <div className="w-[188px] text-center">수정일</div>
       <div className="w-[188px] text-center">관리</div>
     </>
-  );
+  )
 
   // Item 컴포넌트
   const Item = ({ item, index }: { item: any; index: number }) => (
@@ -73,51 +73,51 @@ export default function FormList({ type = 'EE_RPPF' }: FormListProps) {
           size={32}
           color="gray400"
           onClick={(e) => {
-            e.stopPropagation();
-            handleEditClick(item);
+            e.stopPropagation()
+            handleEditClick(item)
           }}
         >
           수정
         </ButtonV2>
       </div>
     </>
-  );
+  )
 
   const handleCreateClick = () => {
-    setActiveModalType('Create');
-    setActiveModal('Category');
-  };
+    setActiveModalType('Create')
+    setActiveModal('Category')
+  }
 
   const handleEditClick = (item: any) => {
-    setActiveModal('Add');
-    setActiveModalType('Update');
-    setSelectedCategory(item.commonQuestion ? 'Interview' : 'CheckList');
-  };
+    setActiveModal('Add')
+    setActiveModalType('Update')
+    setSelectedCategory(item.commonQuestion ? 'Interview' : 'CheckList')
+  }
 
   const handleNext = () => {
     if (selectedCategory !== '') {
-      setActiveModal('Add');
+      setActiveModal('Add')
     }
-  };
+  }
 
   const handleBackToProjectSelection = () => {
-    setActiveModal(null);
-  };
+    setActiveModal(null)
+  }
 
   const handleSuccess = () => {
-    setActiveModal(null);
-    interviewRefetch();
-    checkListRefetch();
+    setActiveModal(null)
+    interviewRefetch()
+    checkListRefetch()
     if (selectedCategory === 'CheckList') {
-      setAlertMessage('체크리스트가 저장되었습니다.');
+      setAlertMessage('체크리스트가 저장되었습니다.')
     }
-  };
+  }
 
   const items = concat(
     [] as any[],
     interviews?.items || [],
     checklists?.total ? [{ ...sortBy(checklists.items, 'createdAt')[0], id: 0, title: '체크리스트' }] : [],
-  );
+  )
 
   return (
     <div className="flex min-h-[664px] flex-col rounded-xl bg-white">
@@ -147,7 +147,7 @@ export default function FormList({ type = 'EE_RPPF' }: FormListProps) {
           </div>
           {permission === 'IB_EE' ? (
             <>
-              <Typography variant="body2" className="text-center font-medium text-primary-gray-700">
+              <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
                 작성한 양식이 없습니다.
                 <br />
                 양식을 추가해주세요.
@@ -157,7 +157,7 @@ export default function FormList({ type = 'EE_RPPF' }: FormListProps) {
               </ButtonV2>
             </>
           ) : (
-            <Typography variant="body2" className="text-center font-medium text-primary-gray-700">
+            <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
               작성한 양식이 없습니다.
             </Typography>
           )}
@@ -220,5 +220,5 @@ export default function FormList({ type = 'EE_RPPF' }: FormListProps) {
         />
       )}
     </div>
-  );
+  )
 }

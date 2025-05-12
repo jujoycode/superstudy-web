@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
 import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
 import { RN } from '@/legacy/lib/rn'
-import { childState, isStayLoggedInState, refreshTokenState, tokenState, twoFactorState } from 'src/store'
+import { childState, isStayLoggedInState, refreshTokenState, tokenState, twoFactorState } from '@/stores'
 
 export function useAuth() {
   const token = useRecoilValue(tokenState)

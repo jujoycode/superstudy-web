@@ -1,68 +1,68 @@
-import { format } from 'date-fns';
-import { FC, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { useSessionCommentDelete, useSessionCommentUpdate } from 'src/generated/endpoint';
-import { ResponseUserDto, SessionComment } from 'src/generated/model';
-import { toastState } from 'src/store';
-import { twMerge } from 'tailwind-merge';
-import { SuperModal } from '../SuperModal';
-import { Section } from '../common';
-import { Button } from '../common/Button';
+import { format } from 'date-fns'
+import { FC, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { useSessionCommentDelete, useSessionCommentUpdate } from '@/legacy/generated/endpoint'
+import { ResponseUserDto, SessionComment } from '@/legacy/generated/model'
+import { toastState } from '@/stores'
+import { twMerge } from 'tailwind-merge'
+import { SuperModal } from '../SuperModal'
+import { Section } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
 
 interface SessionCommentItemProps {
-  me?: ResponseUserDto;
-  sessionComment: SessionComment;
-  refetch: () => void;
+  me?: ResponseUserDto
+  sessionComment: SessionComment
+  refetch: () => void
 }
 
 export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionComment, refetch }) => {
-  const [toastMsg, setToastMsg] = useRecoilState(toastState);
-  const [updateView, setUpdateView] = useState(false);
-  const [content, setContent] = useState<string>(sessionComment.content || '');
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [updateView, setUpdateView] = useState(false)
+  const [content, setContent] = useState<string>(sessionComment.content || '')
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
 
   const { mutate: updateSessionComment, isLoading: updateSessionCommentLoading } = useSessionCommentUpdate({
     mutation: {
       onSuccess: (data) => {
-        refetch();
-        setUpdateView(false);
-        setContent(data.content);
+        refetch()
+        setUpdateView(false)
+        setContent(data.content)
       },
       onError: (error) => setToastMsg(error.message),
     },
-  });
+  })
   const { mutate: deleteSessionComment, isLoading: deleteSessionCommentLoading } = useSessionCommentDelete({
     mutation: {
       onSuccess: () => {
-        setDeleteModalOpen(false);
-        setToastMsg('피드백이 삭제되었습니다.');
-        refetch();
+        setDeleteModalOpen(false)
+        setToastMsg('피드백이 삭제되었습니다.')
+        refetch()
       },
       onError: (error) => {
-        setDeleteModalOpen(false);
-        setToastMsg(error.message);
+        setDeleteModalOpen(false)
+        setToastMsg(error.message)
       },
     },
-  });
+  })
 
-  const isSessionCommentLoading = updateSessionCommentLoading || deleteSessionCommentLoading;
+  const isSessionCommentLoading = updateSessionCommentLoading || deleteSessionCommentLoading
 
   return (
     <>
-      {isSessionCommentLoading && <div className="absolute inset-0 bg-littleblack">로딩 중...</div>}
+      {isSessionCommentLoading && <div className="bg-littleblack absolute inset-0">로딩 중...</div>}
       <div>
         {updateView ? (
           <>
             <div
               className={twMerge(
-                'whitespace-pre-line rounded bg-blue-100 p-2',
+                'rounded bg-blue-100 p-2 whitespace-pre-line',
                 me?.id === sessionComment.userId && 'bg-light_orange',
               )}
             >
               <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                className="flex h-auto w-full resize-none whitespace-pre-wrap border-none bg-white p-2 text-sm"
+                className="flex h-auto w-full resize-none border-none bg-white p-2 text-sm whitespace-pre-wrap"
               />
             </div>
 
@@ -77,8 +77,8 @@ export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionCom
               </div>
               <Button
                 onClick={() => {
-                  setUpdateView(false);
-                  setContent(sessionComment.content || '');
+                  setUpdateView(false)
+                  setContent(sessionComment.content || '')
                 }}
                 disabled={isSessionCommentLoading}
                 className="px-2 py-0.5 hover:bg-gray-50 disabled:bg-gray-50 disabled:text-gray-500"
@@ -87,7 +87,7 @@ export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionCom
               </Button>
               <Button
                 disabled={isSessionCommentLoading}
-                className="px-2 py-1 text-brand-1 hover:bg-light_orange disabled:bg-gray-50 disabled:text-gray-500"
+                className="text-brand-1 hover:bg-light_orange px-2 py-1 disabled:bg-gray-50 disabled:text-gray-500"
                 onClick={() => updateSessionComment({ id: sessionComment.id, data: { content } })}
               >
                 저장
@@ -98,7 +98,7 @@ export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionCom
           <>
             <div
               className={twMerge(
-                'whitespace-pre-line rounded bg-blue-100 p-4 text-sm',
+                'rounded bg-blue-100 p-4 text-sm whitespace-pre-line',
                 me?.id === sessionComment.userId && 'bg-light_orange',
               )}
             >
@@ -149,5 +149,5 @@ export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionCom
         </SuperModal>
       </div>
     </>
-  );
-};
+  )
+}

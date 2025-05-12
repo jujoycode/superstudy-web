@@ -10,20 +10,20 @@ import {
   RadialLinearScale,
   Title,
   Tooltip,
-} from 'chart.js';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Chart } from 'react-chartjs-2';
-import { SubjectMapping, SubjectOrder } from 'src/constants/score.enum';
-import { useStudentAnalysisTargetScore } from 'src/container/student-score';
-import { getThisSemester } from 'src/util/time';
-import HintMessage from '../common/HintMessage';
-import { IBBlank } from '../common/IBBlank';
-import { Typography } from '../common/Typography';
-import SolidSVGIcon from '../icon/SolidSVGIcon';
+} from 'chart.js'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { Chart } from 'react-chartjs-2'
+import { SubjectMapping, SubjectOrder } from '@/legacy/constants/score.enum'
+import { useStudentAnalysisTargetScore } from '@/legacy/container/student-score'
+import { getThisSemester } from '@/legacy/util/time'
+import HintMessage from '@/legacy/components/common/HintMessage'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
+import SolidSVGIcon from '../icon/SolidSVGIcon'
 
 interface TargetScoreProps {
-  studentId: string;
-  grade: number;
+  studentId: string
+  grade: number
 }
 
 ChartJS.register(
@@ -36,20 +36,20 @@ ChartJS.register(
   Tooltip,
   Legend,
   RadialLinearScale,
-);
+)
 
-const chartEvents: ('mousemove' | 'mouseout' | 'click')[] = ['mousemove', 'mouseout', 'click'];
+const chartEvents: ('mousemove' | 'mouseout' | 'click')[] = ['mousemove', 'mouseout', 'click']
 
 export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
-  const thisSemester = getThisSemester();
-  const { data, isLoading } = useStudentAnalysisTargetScore(Number(studentId), grade, Number(thisSemester));
-  const scores = data?.analysed_target_score?.scores || [];
+  const thisSemester = getThisSemester()
+  const { data, isLoading } = useStudentAnalysisTargetScore(Number(studentId), grade, Number(thisSemester))
+  const scores = data?.analysed_target_score?.scores || []
 
   const sortedScores = scores.sort((a: any, b: any) => {
-    const orderA = SubjectMapping[a.subject_name] ?? SubjectOrder.기타;
-    const orderB = SubjectMapping[b.subject_name] ?? SubjectOrder.기타;
-    return orderA - orderB;
-  });
+    const orderA = SubjectMapping[a.subject_name] ?? SubjectOrder.기타
+    const orderB = SubjectMapping[b.subject_name] ?? SubjectOrder.기타
+    return orderA - orderB
+  })
 
   if (isLoading) {
     return (
@@ -62,7 +62,7 @@ export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
           </Typography>
         </div>
       </div>
-    );
+    )
   }
 
   if (!data || data.analysed_target_score.error === '데이터가 없습니다') {
@@ -72,44 +72,44 @@ export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
           <Typography variant="title1">목표성적</Typography>
           <div className="scrollable w-full">
             <table className="w-full table-auto border-collapse">
-              <thead className="text-center text-13 font-normal text-primary-gray-600">
+              <thead className="text-13 text-primary-gray-600 text-center font-normal">
                 <tr>
-                  <td className="w-[120px] bg-primary-gray-50 p-2">과목</td>
-                  <td className="border-x border-b border-primary-gray-200 bg-primary-gray-50 p-2">단위수</td>
-                  <td className="border-x border-b border-primary-gray-200 bg-primary-gray-50 p-2">점수</td>
-                  <td className="border-x border-b border-primary-gray-200 bg-primary-gray-50 p-2">석차등급</td>
-                  <td className="border-x border-b border-primary-gray-200 bg-primary-gray-50 p-2">
+                  <td className="bg-primary-gray-50 w-[120px] p-2">과목</td>
+                  <td className="border-primary-gray-200 bg-primary-gray-50 border-x border-b p-2">단위수</td>
+                  <td className="border-primary-gray-200 bg-primary-gray-50 border-x border-b p-2">점수</td>
+                  <td className="border-primary-gray-200 bg-primary-gray-50 border-x border-b p-2">석차등급</td>
+                  <td className="border-primary-gray-200 bg-primary-gray-50 border-x border-b p-2">
                     석차(동점자수)
                     <br />/ 수강자수
                   </td>
-                  <td className="border-x border-b border-primary-gray-200 bg-primary-gray-50 p-2">
+                  <td className="border-primary-gray-200 bg-primary-gray-50 border-x border-b p-2">
                     과목평균(표준편차)
                   </td>
-                  <td className="border-x border-b border-primary-gray-200 bg-primary-orange-50 p-2">목표등급</td>
-                  <td className="border-x border-b border-primary-gray-200 bg-primary-orange-50 p-2">목표석차</td>
-                  <td className="border-x border-b border-primary-gray-200 bg-primary-orange-50 p-2">목표점수</td>
-                  <td className="border-b border-l border-primary-gray-200 bg-primary-orange-50 p-2">경쟁자수</td>
+                  <td className="border-primary-gray-200 bg-primary-orange-50 border-x border-b p-2">목표등급</td>
+                  <td className="border-primary-gray-200 bg-primary-orange-50 border-x border-b p-2">목표석차</td>
+                  <td className="border-primary-gray-200 bg-primary-orange-50 border-x border-b p-2">목표점수</td>
+                  <td className="border-primary-gray-200 bg-primary-orange-50 border-b border-l p-2">경쟁자수</td>
                 </tr>
               </thead>
-              <tbody className="text-center text-13 text-primary-gray-900">
+              <tbody className="text-13 text-primary-gray-900 text-center">
                 <tr>
-                  <td className={`border-b border-t border-b-primary-gray-100 border-t-primary-gray-200 p-2`}>-</td>
-                  <td className="border border-primary-gray-100 p-2">-</td>
-                  <td className="border border-primary-gray-100 p-2">-</td>
-                  <td className="border border-primary-gray-100 p-2">-</td>
-                  <td className="border border-primary-gray-100 p-2 text-center">-</td>
-                  <td className="border border-primary-gray-100 p-2">-</td>
-                  <td className="border border-primary-gray-100 p-2">-</td>
-                  <td className="border border-primary-gray-100 p-2">-</td>
-                  <td className="border border-primary-gray-100 p-2">-</td>
-                  <td className="border-y border-l border-primary-gray-100 p-2">-</td>
+                  <td className={`border-b-primary-gray-100 border-t-primary-gray-200 border-t border-b p-2`}>-</td>
+                  <td className="border-primary-gray-100 border p-2">-</td>
+                  <td className="border-primary-gray-100 border p-2">-</td>
+                  <td className="border-primary-gray-100 border p-2">-</td>
+                  <td className="border-primary-gray-100 border p-2 text-center">-</td>
+                  <td className="border-primary-gray-100 border p-2">-</td>
+                  <td className="border-primary-gray-100 border p-2">-</td>
+                  <td className="border-primary-gray-100 border p-2">-</td>
+                  <td className="border-primary-gray-100 border p-2">-</td>
+                  <td className="border-primary-gray-100 border-y border-l p-2">-</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </section>
       </main>
-    );
+    )
   }
   return (
     <main className="flex flex-col gap-10">
@@ -129,8 +129,8 @@ export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
                       data.analysed_target_score.step === 'final'
                         ? '종합성적'
                         : data.analysed_target_score.step === '2'
-                        ? '2차 지필고사'
-                        : '1차 지필고사'
+                          ? '2차 지필고사'
+                          : '1차 지필고사'
                     } `}
                 </Typography>
                 <Typography variant="caption2" className="text-primary-gray-500">
@@ -138,42 +138,42 @@ export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
                 </Typography>
               </div>
             </span>
-            <Typography variant="caption2" className="text-right text-primary-gray-500">
+            <Typography variant="caption2" className="text-primary-gray-500 text-right">
               9 등급 체계의 과목만 목표성적에 보여집니다.
             </Typography>
           </div>
         </div>
         <div className="scrollable w-full">
           <table className="w-full table-auto border-collapse">
-            <thead className="text-center text-13 font-normal text-primary-gray-600">
+            <thead className="text-13 text-primary-gray-600 text-center font-normal">
               <tr>
-                <td className="min-w-[120px] border-b border-primary-gray-200 bg-primary-gray-50 p-2">과목</td>
-                <td className="min-w-[120px] border-x border-b border-primary-gray-200 bg-primary-gray-50 p-2">
+                <td className="border-primary-gray-200 bg-primary-gray-50 min-w-[120px] border-b p-2">과목</td>
+                <td className="border-primary-gray-200 bg-primary-gray-50 min-w-[120px] border-x border-b p-2">
                   단위수
                 </td>
-                <td className="min-w-[120px] border-x border-b border-primary-gray-200 bg-primary-gray-50 p-2">점수</td>
-                <td className="min-w-[120px] border-x border-b border-primary-gray-200 bg-primary-gray-50 p-2">
+                <td className="border-primary-gray-200 bg-primary-gray-50 min-w-[120px] border-x border-b p-2">점수</td>
+                <td className="border-primary-gray-200 bg-primary-gray-50 min-w-[120px] border-x border-b p-2">
                   석차등급
                 </td>
-                <td className="min-w-[120px] border-x border-b border-primary-gray-200 bg-primary-gray-50 p-2">
+                <td className="border-primary-gray-200 bg-primary-gray-50 min-w-[120px] border-x border-b p-2">
                   석차(동점자수)
                   <br />/ 수강자수
                 </td>
-                <td className="min-w-[120px] border-x border-b border-primary-gray-200 bg-primary-gray-50 p-2">
+                <td className="border-primary-gray-200 bg-primary-gray-50 min-w-[120px] border-x border-b p-2">
                   과목평균(표준편차)
                 </td>
-                <td className="min-w-[120px] border-x border-b border-primary-gray-200 bg-primary-orange-50 p-2">
+                <td className="border-primary-gray-200 bg-primary-orange-50 min-w-[120px] border-x border-b p-2">
                   목표등급
                 </td>
-                <td className="min-w-[120px] border-x border-b border-primary-gray-200 bg-primary-orange-50 p-2">
+                <td className="border-primary-gray-200 bg-primary-orange-50 min-w-[120px] border-x border-b p-2">
                   목표석차
                 </td>
-                <td className="min-w-[120px] border-x border-b border-primary-gray-200 bg-primary-orange-50 p-2">
+                <td className="border-primary-gray-200 bg-primary-orange-50 min-w-[120px] border-x border-b p-2">
                   목표점수
                 </td>
-                <td className="relative min-w-[120px] border-b border-l border-primary-gray-200 bg-primary-orange-50 p-2">
+                <td className="border-primary-gray-200 bg-primary-orange-50 relative min-w-[120px] border-b border-l p-2">
                   경쟁자수
-                  <div className="absolute right-1.5 top-1.5">
+                  <div className="absolute top-1.5 right-1.5">
                     <HintMessage
                       direction="left"
                       message={`목표등급 : 현재 성적보다 한 등급 향상된 등급입니다.\n목표석차 : 목표 등급에 도달하기 위한 석차입니다.\n목표점수 : 이번 시험에서 목표 석차에 해당하는 점수입니다.\n위 데이터는 모두 [관리자 - 성적관리] 목표성적 분석 기능을 통해 생성되는 데이터입니다.`}
@@ -182,32 +182,32 @@ export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
                 </td>
               </tr>
             </thead>
-            <tbody className="text-center text-13 text-primary-gray-900">
+            <tbody className="text-13 text-primary-gray-900 text-center">
               {sortedScores.map((score: any, index: number) => (
                 <tr key={index}>
                   <td
-                    className={`whitespace-nowrap border-r border-t border-r-primary-gray-100 border-t-primary-gray-100 p-2 ${
-                      index === sortedScores.length - 1 ? 'border-b border-b-primary-gray-100' : ''
+                    className={`border-r-primary-gray-100 border-t-primary-gray-100 border-t border-r p-2 whitespace-nowrap ${
+                      index === sortedScores.length - 1 ? 'border-b-primary-gray-100 border-b' : ''
                     }`}
                   >
                     {score.subject_name}
                   </td>
-                  <td className="whitespace-nowrap border border-primary-gray-100 p-2">{score.credit}</td>
-                  <td className="whitespace-nowrap border border-primary-gray-100 p-2">{score.score}</td>
-                  <td className="whitespace-nowrap border border-primary-gray-100 p-2">{score.rank_score}</td>
-                  <td className="whitespace-nowrap border border-primary-gray-100 p-2 text-center">
+                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">{score.credit}</td>
+                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">{score.score}</td>
+                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">{score.rank_score}</td>
+                  <td className="border-primary-gray-100 border p-2 text-center whitespace-nowrap">
                     {score.position || '-'}({score.num_same_score || '-'})/
                     {score.subject_total_student_sum_real || '-'}
                   </td>
-                  <td className="whitespace-nowrap border border-primary-gray-100 p-2">
+                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">
                     {score.score_mean || '-'} ({score.score_std || '-'})
                   </td>
-                  <td className="whitespace-nowrap border border-primary-gray-100 p-2">{score.target_rank || '-'}</td>
-                  <td className="whitespace-nowrap border border-primary-gray-100 p-2">
+                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">{score.target_rank || '-'}</td>
+                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">
                     {score.target_position || '-'}
                   </td>
-                  <td className="whitespace-nowrap border border-primary-gray-100 p-2">{score.target_score || '-'}</td>
-                  <td className="whitespace-nowrap border-y border-l border-primary-gray-100 p-2">
+                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">{score.target_score || '-'}</td>
+                  <td className="border-primary-gray-100 border-y border-l p-2 whitespace-nowrap">
                     {score.n_people_ahead || '-'}
                   </td>
                 </tr>
@@ -221,191 +221,191 @@ export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
         <TargetScoreBarChart data={sortedScores} />
       </section>
     </main>
-  );
-};
+  )
+}
 
 const TargetScoreBarChart = ({ data }: { data: any }) => {
   const [chartData, setChartData] = useState<ChartData<'bar', number[], string>>({
     labels: data.map((subjectData: any) => subjectData.subject_name),
     datasets: [],
-  });
+  })
 
-  const chartRef = useRef<any>(null);
+  const chartRef = useRef<any>(null)
   const getOrCreateTooltip = (chart: any) => {
-    let tooltipEl = chart.canvas.parentNode.querySelector('div');
+    let tooltipEl = chart.canvas.parentNode.querySelector('div')
 
     if (!tooltipEl) {
-      tooltipEl = document.createElement('div');
-      tooltipEl.style.background = 'white';
-      tooltipEl.style.borderRadius = '8px';
-      tooltipEl.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.08)';
-      tooltipEl.style.color = '#121417';
-      tooltipEl.style.opacity = 1;
-      tooltipEl.style.pointerEvents = 'none';
-      tooltipEl.style.position = 'absolute';
-      tooltipEl.style.transform = 'translate(-50%, 0)';
-      tooltipEl.style.transition = 'all .1s ease';
-      tooltipEl.style.border = '1px solid #E8EAED';
+      tooltipEl = document.createElement('div')
+      tooltipEl.style.background = 'white'
+      tooltipEl.style.borderRadius = '8px'
+      tooltipEl.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.08)'
+      tooltipEl.style.color = '#121417'
+      tooltipEl.style.opacity = 1
+      tooltipEl.style.pointerEvents = 'none'
+      tooltipEl.style.position = 'absolute'
+      tooltipEl.style.transform = 'translate(-50%, 0)'
+      tooltipEl.style.transition = 'all .1s ease'
+      tooltipEl.style.border = '1px solid #E8EAED'
 
-      const table = document.createElement('table');
-      table.style.margin = '0px';
+      const table = document.createElement('table')
+      table.style.margin = '0px'
 
-      tooltipEl.appendChild(table);
-      chart.canvas.parentNode.appendChild(tooltipEl);
+      tooltipEl.appendChild(table)
+      chart.canvas.parentNode.appendChild(tooltipEl)
     }
 
-    return tooltipEl;
-  };
+    return tooltipEl
+  }
 
   const externalTooltipHandler = (context: any) => {
-    const { chart, tooltip } = context;
-    const tooltipEl = getOrCreateTooltip(chart);
+    const { chart, tooltip } = context
+    const tooltipEl = getOrCreateTooltip(chart)
     if (tooltip.opacity === 0) {
-      tooltipEl.style.opacity = 0;
-      return;
+      tooltipEl.style.opacity = 0
+      return
     }
 
     if (tooltip.body) {
-      const titleLines = tooltip.title || [];
-      const bodyLines = tooltip.body.map((b: any) => b.lines);
+      const titleLines = tooltip.title || []
+      const bodyLines = tooltip.body.map((b: any) => b.lines)
       const extractedData = bodyLines.flat().map((line: string) => {
-        const [key] = line.split(': ');
-        return key;
-      });
-      const formattedValue = tooltip.dataPoints[0]?.formattedValue ? Number(tooltip.dataPoints[0].formattedValue) : '';
-      const dataIndex = tooltip.dataPoints[0]?.dataset.label;
+        const [key] = line.split(': ')
+        return key
+      })
+      const formattedValue = tooltip.dataPoints[0]?.formattedValue ? Number(tooltip.dataPoints[0].formattedValue) : ''
+      const dataIndex = tooltip.dataPoints[0]?.dataset.label
 
-      let color = '#000';
+      let color = '#000'
       switch (dataIndex) {
         case '학생점수':
-          color = '#FF600C';
-          break;
+          color = '#FF600C'
+          break
         case '과목평균':
-          color = '#121417';
-          break;
+          color = '#121417'
+          break
         default:
-          color = '#000';
+          color = '#000'
       }
 
-      const tableHead = document.createElement('thead');
+      const tableHead = document.createElement('thead')
 
       titleLines.forEach((title: any) => {
-        const tr = document.createElement('tr');
-        tr.style.borderWidth = '0';
+        const tr = document.createElement('tr')
+        tr.style.borderWidth = '0'
 
-        const th = document.createElement('th');
-        th.style.borderWidth = '0';
-        th.style.fontSize = '16px';
-        th.style.fontWeight = '600';
-        th.style.textAlign = 'left';
-        th.style.padding = '16px 16px 8px 16px';
+        const th = document.createElement('th')
+        th.style.borderWidth = '0'
+        th.style.fontSize = '16px'
+        th.style.fontWeight = '600'
+        th.style.textAlign = 'left'
+        th.style.padding = '16px 16px 8px 16px'
 
-        const titleText = document.createElement('span');
-        titleText.style.color = '#121417';
-        titleText.style.marginRight = '8px';
-        titleText.textContent = title;
+        const titleText = document.createElement('span')
+        titleText.style.color = '#121417'
+        titleText.style.marginRight = '8px'
+        titleText.textContent = title
 
         // FormattedValue 스타일
-        const valueText = document.createElement('span');
-        valueText.style.fontSize = '16px';
-        valueText.style.color = color;
-        valueText.textContent = formattedValue.toString();
+        const valueText = document.createElement('span')
+        valueText.style.fontSize = '16px'
+        valueText.style.color = color
+        valueText.textContent = formattedValue.toString()
 
-        th.appendChild(titleText);
-        th.appendChild(valueText);
-        tr.appendChild(th);
-        tableHead.appendChild(tr);
-      });
+        th.appendChild(titleText)
+        th.appendChild(valueText)
+        tr.appendChild(th)
+        tableHead.appendChild(tr)
+      })
 
-      const tableBody = document.createElement('tbody');
+      const tableBody = document.createElement('tbody')
       extractedData.forEach((body: any, i: number) => {
-        const span = document.createElement('span');
-        span.style.borderWidth = '1px';
-        span.style.borderRadius = '4px';
-        span.style.border = '1px solid #E0E0E0';
-        span.style.height = '12px';
-        span.style.width = '12px';
-        span.style.marginRight = '6px';
-        span.style.display = 'inline-block';
+        const span = document.createElement('span')
+        span.style.borderWidth = '1px'
+        span.style.borderRadius = '4px'
+        span.style.border = '1px solid #E0E0E0'
+        span.style.height = '12px'
+        span.style.width = '12px'
+        span.style.marginRight = '6px'
+        span.style.display = 'inline-block'
 
         switch (body) {
           case '학생점수':
-            span.style.background = 'linear-gradient(to right, #FF803D, #FFBC99)';
-            break;
+            span.style.background = 'linear-gradient(to right, #FF803D, #FFBC99)'
+            break
           case '과목평균':
-            span.style.background = 'linear-gradient(to right, #6E83A3, #A4C0CF)';
-            break;
+            span.style.background = 'linear-gradient(to right, #6E83A3, #A4C0CF)'
+            break
           default:
-            span.style.background = 'linear-gradient(to right, #CCCCCC, #EEEEEE)';
+            span.style.background = 'linear-gradient(to right, #CCCCCC, #EEEEEE)'
         }
 
-        const tr = document.createElement('tr');
-        tr.style.backgroundColor = 'inherit';
-        tr.style.borderWidth = '0';
+        const tr = document.createElement('tr')
+        tr.style.backgroundColor = 'inherit'
+        tr.style.borderWidth = '0'
 
-        const td = document.createElement('td');
-        td.style.borderWidth = '0';
-        td.style.fontSize = '12px';
-        td.style.fontFamily = 'Pretendard';
-        td.style.padding = '0 16px 16px 16px';
-        td.style.color = '#121417';
-        td.style.fontWeight = '500';
-        td.style.textAlign = 'left';
-        td.style.display = 'flex';
-        td.style.alignItems = 'center';
-        const text = document.createTextNode(body);
+        const td = document.createElement('td')
+        td.style.borderWidth = '0'
+        td.style.fontSize = '12px'
+        td.style.fontFamily = 'Pretendard'
+        td.style.padding = '0 16px 16px 16px'
+        td.style.color = '#121417'
+        td.style.fontWeight = '500'
+        td.style.textAlign = 'left'
+        td.style.display = 'flex'
+        td.style.alignItems = 'center'
+        const text = document.createTextNode(body)
 
-        td.appendChild(span);
-        td.appendChild(text);
-        tr.appendChild(td);
-        tableBody.appendChild(tr);
-      });
+        td.appendChild(span)
+        td.appendChild(text)
+        tr.appendChild(td)
+        tableBody.appendChild(tr)
+      })
 
-      const tableRoot = tooltipEl.querySelector('table');
+      const tableRoot = tooltipEl.querySelector('table')
 
       while (tableRoot.firstChild) {
-        tableRoot.firstChild.remove();
+        tableRoot.firstChild.remove()
       }
 
-      tableRoot.appendChild(tableHead);
-      tableRoot.appendChild(tableBody);
+      tableRoot.appendChild(tableHead)
+      tableRoot.appendChild(tableBody)
     }
 
-    const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas;
-    const tooltipWidth = tooltipEl.offsetWidth;
-    const tooltipHeight = tooltipEl.offsetHeight;
-    const chartWidth = chart.width;
-    const chartHeight = chart.height;
+    const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas
+    const tooltipWidth = tooltipEl.offsetWidth
+    const tooltipHeight = tooltipEl.offsetHeight
+    const chartWidth = chart.width
+    const chartHeight = chart.height
 
-    let left = positionX + tooltip.caretX;
-    let top = positionY + tooltip.caretY;
+    let left = positionX + tooltip.caretX
+    let top = positionY + tooltip.caretY
 
     // 화면의 오른쪽을 넘어가는 경우
     if (left + tooltipWidth > chartWidth) {
-      left = chartWidth - tooltipWidth + 60; // 10px 여유를 두고 조정
+      left = chartWidth - tooltipWidth + 60 // 10px 여유를 두고 조정
     }
 
     // 화면의 아래쪽을 넘어가는 경우
     if (top + tooltipHeight > chartHeight) {
-      top = chartHeight - tooltipHeight + 60; // 10px 여유를 두고 조정
+      top = chartHeight - tooltipHeight + 60 // 10px 여유를 두고 조정
     }
 
     // 화면의 왼쪽을 넘어가는 경우
     if (left < 0) {
-      left = 4; // 10px 여유를 두고 조정
+      left = 4 // 10px 여유를 두고 조정
     }
 
     // 화면의 위쪽을 넘어가는 경우
     if (top < 0) {
-      top = 10; // 10px 여유를 두고 조정
+      top = 10 // 10px 여유를 두고 조정
     }
 
-    tooltipEl.style.opacity = 1;
-    tooltipEl.style.left = left + 'px';
-    tooltipEl.style.top = top + 'px';
-    tooltipEl.style.font = tooltip.options.bodyFont.string;
-    tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px';
-  };
+    tooltipEl.style.opacity = 1
+    tooltipEl.style.left = left + 'px'
+    tooltipEl.style.top = top + 'px'
+    tooltipEl.style.font = tooltip.options.bodyFont.string
+    tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px'
+  }
 
   const options = useMemo(
     () => ({
@@ -442,12 +442,12 @@ const TargetScoreBarChart = ({ data }: { data: any }) => {
             color: '#121417',
             padding: 2,
             callback: function (value: string | number, index: number, values: any) {
-              const label = chartData?.labels?.[index];
-              const maxLength = 6;
+              const label = chartData?.labels?.[index]
+              const maxLength = 6
               if (label && typeof label === 'string' && label.length > maxLength) {
-                return label.substring(0, maxLength) + '...';
+                return label.substring(0, maxLength) + '...'
               }
-              return label;
+              return label
             },
           },
         },
@@ -471,32 +471,32 @@ const TargetScoreBarChart = ({ data }: { data: any }) => {
             color: '#c7cbd1',
             stepSize: 20,
             callback: function (tickValue: number | string) {
-              return tickValue;
+              return tickValue
             },
           },
         },
       },
     }),
     [],
-  );
+  )
 
   useEffect(() => {
-    const chartInstance = chartRef.current;
+    const chartInstance = chartRef.current
     if (chartInstance) {
-      const ctx = chartInstance.ctx;
+      const ctx = chartInstance.ctx
 
       const getGradient = (ctx: any, chartArea: any, colorStart: string, colorEnd: string) => {
-        const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-        gradient.addColorStop(0, colorStart);
-        gradient.addColorStop(1, colorEnd);
-        return gradient;
-      };
+        const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top)
+        gradient.addColorStop(0, colorStart)
+        gradient.addColorStop(1, colorEnd)
+        return gradient
+      }
 
       // "구분" 값에 따른 색상 매핑
       const colorMap = {
         학생점수: getGradient(ctx, chartInstance.chartArea, '#FF803D', '#FFBC99'),
         과목평균: getGradient(ctx, chartInstance.chartArea, '#6E83A3', '#A4C0CF'),
-      };
+      }
 
       const datasets = [
         {
@@ -521,221 +521,221 @@ const TargetScoreBarChart = ({ data }: { data: any }) => {
           categoryPercentage: 0.7,
           barPercentage: 0.7,
         },
-      ];
+      ]
 
       // Chart 데이터 설정
       setChartData({
         labels: data.map((subjectData: any) => subjectData.subject_name),
         datasets,
-      });
+      })
     }
-  }, [data]);
+  }, [data])
 
   return (
     <div className="flex w-full min-w-[704px] flex-col items-center gap-6 py-2">
       <div className="h-[432px] w-full min-w-[704px]">
         <Chart type="bar" options={options} datasetIdKey="id" data={chartData} ref={chartRef} />
       </div>
-      <div className="flex w-fit items-center justify-center gap-4 rounded-lg bg-primary-gray-100 px-5 py-2">
+      <div className="bg-primary-gray-100 flex w-fit items-center justify-center gap-4 rounded-lg px-5 py-2">
         <div className="flex flex-row items-center gap-1.5">
-          <span className="h-3 w-3 rounded-[4px] border-dim-8 bg-gradient-orange-400" />
+          <span className="border-dim-8 bg-gradient-orange-400 h-3 w-3 rounded-[4px]" />
           <Typography variant="caption2" className="font-medium">
             학생점수
           </Typography>
         </div>
         <div className="flex flex-row items-center gap-1.5">
-          <span className="h-3 w-3 rounded-[4px] border-dim-8 bg-gradient-navy-400" />
+          <span className="border-dim-8 bg-gradient-navy-400 h-3 w-3 rounded-[4px]" />
           <Typography variant="caption2" className="font-medium">
             과목평균
           </Typography>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const TargetScoreRadarChart = ({ data }: { data: any }) => {
   const [chartData, setChartData] = useState<ChartData<'radar', number[], string>>({
     labels: [],
     datasets: [],
-  });
+  })
 
-  const chartRef = useRef<any>(null);
+  const chartRef = useRef<any>(null)
   const getOrCreateTooltip = (chart: any) => {
-    let tooltipEl = chart.canvas.parentNode.querySelector('div');
+    let tooltipEl = chart.canvas.parentNode.querySelector('div')
 
     if (!tooltipEl) {
-      tooltipEl = document.createElement('div');
-      tooltipEl.style.background = 'white';
-      tooltipEl.style.borderRadius = '8px';
-      tooltipEl.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.08)';
-      tooltipEl.style.color = '#121417';
-      tooltipEl.style.opacity = 1;
-      tooltipEl.style.pointerEvents = 'none';
-      tooltipEl.style.position = 'absolute';
-      tooltipEl.style.transform = 'translate(-50%, 0)';
-      tooltipEl.style.transition = 'all .1s ease';
-      tooltipEl.style.border = '1px solid #E8EAED';
+      tooltipEl = document.createElement('div')
+      tooltipEl.style.background = 'white'
+      tooltipEl.style.borderRadius = '8px'
+      tooltipEl.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.08)'
+      tooltipEl.style.color = '#121417'
+      tooltipEl.style.opacity = 1
+      tooltipEl.style.pointerEvents = 'none'
+      tooltipEl.style.position = 'absolute'
+      tooltipEl.style.transform = 'translate(-50%, 0)'
+      tooltipEl.style.transition = 'all .1s ease'
+      tooltipEl.style.border = '1px solid #E8EAED'
 
-      const table = document.createElement('table');
-      table.style.margin = '0px';
+      const table = document.createElement('table')
+      table.style.margin = '0px'
 
-      tooltipEl.appendChild(table);
-      chart.canvas.parentNode.appendChild(tooltipEl);
+      tooltipEl.appendChild(table)
+      chart.canvas.parentNode.appendChild(tooltipEl)
     }
 
-    return tooltipEl;
-  };
+    return tooltipEl
+  }
 
   const externalTooltipHandler = (context: any) => {
-    const { chart, tooltip } = context;
-    const tooltipEl = getOrCreateTooltip(chart);
+    const { chart, tooltip } = context
+    const tooltipEl = getOrCreateTooltip(chart)
     if (tooltip.opacity === 0) {
-      tooltipEl.style.opacity = 0;
-      return;
+      tooltipEl.style.opacity = 0
+      return
     }
 
     if (tooltip.body) {
-      const titleLines = tooltip.title || [];
-      const bodyLines = tooltip.body.map((b: any) => b.lines);
+      const titleLines = tooltip.title || []
+      const bodyLines = tooltip.body.map((b: any) => b.lines)
       const extractedData = bodyLines.flat().map((line: string) => {
-        const [key] = line.split(': ');
-        return key;
-      });
-      const formattedValue = tooltip.dataPoints[0]?.formattedValue ? Number(tooltip.dataPoints[0].formattedValue) : '';
-      const dataIndex = tooltip.dataPoints[0]?.dataset.label;
+        const [key] = line.split(': ')
+        return key
+      })
+      const formattedValue = tooltip.dataPoints[0]?.formattedValue ? Number(tooltip.dataPoints[0].formattedValue) : ''
+      const dataIndex = tooltip.dataPoints[0]?.dataset.label
 
-      let color = '#000';
+      let color = '#000'
       switch (dataIndex) {
         case '학생점수':
-          color = '#FF600C';
-          break;
+          color = '#FF600C'
+          break
         case '과목평균':
-          color = '#121417';
-          break;
+          color = '#121417'
+          break
         default:
-          color = '#000';
+          color = '#000'
       }
 
-      const tableHead = document.createElement('thead');
+      const tableHead = document.createElement('thead')
 
       titleLines.forEach((title: any) => {
-        const tr = document.createElement('tr');
-        tr.style.borderWidth = '0';
+        const tr = document.createElement('tr')
+        tr.style.borderWidth = '0'
 
-        const th = document.createElement('th');
-        th.style.borderWidth = '0';
-        th.style.fontSize = '16px';
-        th.style.fontWeight = '600';
-        th.style.textAlign = 'left';
-        th.style.padding = '16px 16px 8px 16px';
+        const th = document.createElement('th')
+        th.style.borderWidth = '0'
+        th.style.fontSize = '16px'
+        th.style.fontWeight = '600'
+        th.style.textAlign = 'left'
+        th.style.padding = '16px 16px 8px 16px'
 
-        const titleText = document.createElement('span');
-        titleText.style.color = '#121417';
-        titleText.style.marginRight = '8px';
-        titleText.textContent = title;
+        const titleText = document.createElement('span')
+        titleText.style.color = '#121417'
+        titleText.style.marginRight = '8px'
+        titleText.textContent = title
 
         // FormattedValue 스타일
-        const valueText = document.createElement('span');
-        valueText.style.fontSize = '16px';
-        valueText.style.color = color;
-        valueText.textContent = formattedValue.toString();
+        const valueText = document.createElement('span')
+        valueText.style.fontSize = '16px'
+        valueText.style.color = color
+        valueText.textContent = formattedValue.toString()
 
-        th.appendChild(titleText);
-        th.appendChild(valueText);
-        tr.appendChild(th);
-        tableHead.appendChild(tr);
-      });
+        th.appendChild(titleText)
+        th.appendChild(valueText)
+        tr.appendChild(th)
+        tableHead.appendChild(tr)
+      })
 
-      const tableBody = document.createElement('tbody');
+      const tableBody = document.createElement('tbody')
       extractedData.forEach((body: any, i: number) => {
-        const span = document.createElement('span');
-        span.style.borderWidth = '1px';
-        span.style.borderRadius = '4px';
-        span.style.border = '1px solid #E0E0E0';
-        span.style.height = '12px';
-        span.style.width = '12px';
-        span.style.marginRight = '6px';
-        span.style.display = 'inline-block';
+        const span = document.createElement('span')
+        span.style.borderWidth = '1px'
+        span.style.borderRadius = '4px'
+        span.style.border = '1px solid #E0E0E0'
+        span.style.height = '12px'
+        span.style.width = '12px'
+        span.style.marginRight = '6px'
+        span.style.display = 'inline-block'
 
         switch (body) {
           case '학생점수':
-            span.style.background = 'linear-gradient(to right, #FF803D, #FFBC99)';
-            break;
+            span.style.background = 'linear-gradient(to right, #FF803D, #FFBC99)'
+            break
           case '과목평균':
-            span.style.background = 'linear-gradient(to right, #6E83A3, #A4C0CF)';
-            break;
+            span.style.background = 'linear-gradient(to right, #6E83A3, #A4C0CF)'
+            break
           default:
-            span.style.background = 'linear-gradient(to right, #CCCCCC, #EEEEEE)';
+            span.style.background = 'linear-gradient(to right, #CCCCCC, #EEEEEE)'
         }
 
-        const tr = document.createElement('tr');
-        tr.style.backgroundColor = 'inherit';
-        tr.style.borderWidth = '0';
+        const tr = document.createElement('tr')
+        tr.style.backgroundColor = 'inherit'
+        tr.style.borderWidth = '0'
 
-        const td = document.createElement('td');
-        td.style.borderWidth = '0';
-        td.style.fontSize = '12px';
-        td.style.fontFamily = 'Pretendard';
-        td.style.padding = '0 16px 16px 16px';
-        td.style.color = '#121417';
-        td.style.fontWeight = '500';
-        td.style.textAlign = 'left';
-        td.style.display = 'flex';
-        td.style.alignItems = 'center';
-        const text = document.createTextNode(body);
+        const td = document.createElement('td')
+        td.style.borderWidth = '0'
+        td.style.fontSize = '12px'
+        td.style.fontFamily = 'Pretendard'
+        td.style.padding = '0 16px 16px 16px'
+        td.style.color = '#121417'
+        td.style.fontWeight = '500'
+        td.style.textAlign = 'left'
+        td.style.display = 'flex'
+        td.style.alignItems = 'center'
+        const text = document.createTextNode(body)
 
-        td.appendChild(span);
-        td.appendChild(text);
-        tr.appendChild(td);
-        tableBody.appendChild(tr);
-      });
+        td.appendChild(span)
+        td.appendChild(text)
+        tr.appendChild(td)
+        tableBody.appendChild(tr)
+      })
 
-      const tableRoot = tooltipEl.querySelector('table');
+      const tableRoot = tooltipEl.querySelector('table')
 
       while (tableRoot.firstChild) {
-        tableRoot.firstChild.remove();
+        tableRoot.firstChild.remove()
       }
 
-      tableRoot.appendChild(tableHead);
-      tableRoot.appendChild(tableBody);
+      tableRoot.appendChild(tableHead)
+      tableRoot.appendChild(tableBody)
     }
 
-    const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas;
-    const tooltipWidth = tooltipEl.offsetWidth;
-    const tooltipHeight = tooltipEl.offsetHeight;
-    const chartWidth = chart.width;
-    const chartHeight = chart.height;
+    const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas
+    const tooltipWidth = tooltipEl.offsetWidth
+    const tooltipHeight = tooltipEl.offsetHeight
+    const chartWidth = chart.width
+    const chartHeight = chart.height
 
-    let left = positionX + tooltip.caretX;
-    let top = positionY + tooltip.caretY;
+    let left = positionX + tooltip.caretX
+    let top = positionY + tooltip.caretY
 
     // 화면의 오른쪽을 넘어가는 경우
     if (left + tooltipWidth > chartWidth) {
-      left = chartWidth - tooltipWidth + 60; // 10px 여유를 두고 조정
+      left = chartWidth - tooltipWidth + 60 // 10px 여유를 두고 조정
     }
 
     // 화면의 아래쪽을 넘어가는 경우
     if (top + tooltipHeight > chartHeight) {
-      top = chartHeight - tooltipHeight + 60; // 10px 여유를 두고 조정
+      top = chartHeight - tooltipHeight + 60 // 10px 여유를 두고 조정
     }
 
     // 화면의 왼쪽을 넘어가는 경우
     if (left < 0) {
-      left = 4; // 10px 여유를 두고 조정
+      left = 4 // 10px 여유를 두고 조정
     }
 
     // 화면의 위쪽을 넘어가는 경우
     if (top < 0) {
-      top = 10; // 10px 여유를 두고 조정
+      top = 10 // 10px 여유를 두고 조정
     }
 
-    tooltipEl.style.opacity = 1;
-    tooltipEl.style.left = left + 'px';
-    tooltipEl.style.top = top + 'px';
-    tooltipEl.style.font = tooltip.options.bodyFont.string;
-    tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px';
-  };
+    tooltipEl.style.opacity = 1
+    tooltipEl.style.left = left + 'px'
+    tooltipEl.style.top = top + 'px'
+    tooltipEl.style.font = tooltip.options.bodyFont.string
+    tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px'
+  }
 
   const options = useMemo(
     () => ({
@@ -749,18 +749,18 @@ const TargetScoreRadarChart = ({ data }: { data: any }) => {
         intersect: false,
       },
       onHover: (_: any, elements: any) => {
-        const chart = chartRef.current;
-        if (!chart) return; // chartRef가 null인지 확인
+        const chart = chartRef.current
+        if (!chart) return // chartRef가 null인지 확인
 
         if (elements && elements.length > 0) {
-          const datasetIndex = elements[0].datasetIndex;
-          const datasets = [...chart.data.datasets];
-          const datasetToMove = datasets[datasetIndex];
-          datasets.splice(datasetIndex, 1);
-          datasets.unshift(datasetToMove);
+          const datasetIndex = elements[0].datasetIndex
+          const datasets = [...chart.data.datasets]
+          const datasetToMove = datasets[datasetIndex]
+          datasets.splice(datasetIndex, 1)
+          datasets.unshift(datasetToMove)
 
-          chart.data.datasets = datasets;
-          chart.update();
+          chart.data.datasets = datasets
+          chart.update()
         }
       },
       hover: {
@@ -822,33 +822,33 @@ const TargetScoreRadarChart = ({ data }: { data: any }) => {
       },
     }),
     [],
-  );
+  )
 
   useEffect(() => {
     if (data) {
-      const chartInstance = chartRef.current;
+      const chartInstance = chartRef.current
       if (chartInstance) {
-        const ctx = chartInstance.ctx;
+        const ctx = chartInstance.ctx
 
         const hexToRGBA = (hex: string, opacity: number) => {
-          const r = parseInt(hex.slice(1, 3), 16);
-          const g = parseInt(hex.slice(3, 5), 16);
-          const b = parseInt(hex.slice(5, 7), 16);
-          return `rgba(${r}, ${g}, ${b}, ${opacity})`;
-        };
+          const r = parseInt(hex.slice(1, 3), 16)
+          const g = parseInt(hex.slice(3, 5), 16)
+          const b = parseInt(hex.slice(5, 7), 16)
+          return `rgba(${r}, ${g}, ${b}, ${opacity})`
+        }
 
         const getGradient = (ctx: any, chartArea: any, colorStart: string, colorEnd: string, opacity: number) => {
-          const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-          gradient.addColorStop(0, hexToRGBA(colorStart, opacity));
-          gradient.addColorStop(1, hexToRGBA(colorEnd, opacity));
-          return gradient;
-        };
+          const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top)
+          gradient.addColorStop(0, hexToRGBA(colorStart, opacity))
+          gradient.addColorStop(1, hexToRGBA(colorEnd, opacity))
+          return gradient
+        }
 
         // "구분" 값에 따른 색상 매핑
         const colorMap = {
           학생점수: getGradient(ctx, chartInstance.chartArea, '#FF803D', '#FFBC99', 0.6),
           과목평균: getGradient(ctx, chartInstance.chartArea, '#6E83A3', '#A4C0CF', 0.6),
-        };
+        }
 
         const datasets = [
           {
@@ -869,34 +869,34 @@ const TargetScoreRadarChart = ({ data }: { data: any }) => {
             borderWidth: 0,
             hoverRadius: 0,
           },
-        ];
+        ]
         setChartData({
           labels: data?.map((score: any) => score.subject_name),
           datasets: datasets,
-        });
+        })
       }
     }
-  }, [data]);
+  }, [data])
 
   return (
     <div className="flex w-[480px] flex-col items-center gap-6 py-2">
       <div className="h-[432px] w-[480px]">
         <Chart type="radar" options={options} datasetIdKey="id" data={chartData} ref={chartRef} />
       </div>
-      <div className="flex w-fit items-center justify-center gap-4 rounded-lg bg-primary-gray-100 px-5 py-2">
+      <div className="bg-primary-gray-100 flex w-fit items-center justify-center gap-4 rounded-lg px-5 py-2">
         <div className="flex cursor-pointer flex-row items-center gap-1.5">
-          <span className="h-3 w-3 rounded-[4px] border-dim-8 bg-gradient-orange-400" />
+          <span className="border-dim-8 bg-gradient-orange-400 h-3 w-3 rounded-[4px]" />
           <Typography variant="caption2" className="font-medium">
             학생점수
           </Typography>
         </div>
         <div className="flex cursor-pointer flex-row items-center gap-1.5">
-          <span className="h-3 w-3 rounded-[4px] border-dim-8 bg-gradient-navy-400" />
+          <span className="border-dim-8 bg-gradient-navy-400 h-3 w-3 rounded-[4px]" />
           <Typography variant="caption2" className="font-medium">
             과목평균
           </Typography>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

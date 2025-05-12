@@ -1,20 +1,20 @@
-import clsx from 'clsx';
-import _ from 'lodash';
-import { PropsWithChildren, useState } from 'react';
-import { Icon } from 'src/components/common/icons';
-import { useImageAndDocument } from 'src/hooks/useImageAndDocument';
-import { isExcelFile } from 'src/util/file';
+import clsx from 'clsx'
+import _ from 'lodash'
+import { PropsWithChildren, useState } from 'react'
+import { Icon } from '@/legacy/components/common/icons'
+import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
+import { isExcelFile } from '@/legacy/util/file'
 
 interface ExamUpdateModalProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  width?: string;
-  ablePropragation?: boolean;
-  grade: number;
-  semester: number;
-  year: number;
-  class: number;
-  step: number;
+  modalOpen: boolean
+  setModalClose: () => void
+  width?: string
+  ablePropragation?: boolean
+  grade: number
+  semester: number
+  year: number
+  class: number
+  step: number
 }
 
 export function ExamUpdateModal({
@@ -28,38 +28,38 @@ export function ExamUpdateModal({
   step,
   ablePropragation = false,
 }: PropsWithChildren<ExamUpdateModalProps>) {
-  const [uploading, setUploading] = useState(false);
+  const [uploading, setUploading] = useState(false)
 
-  const { documentObjectMap, toggleDocumentDelete, addFiles } = useImageAndDocument({});
+  const { documentObjectMap, toggleDocumentDelete, addFiles } = useImageAndDocument({})
   const documentFiles = [...documentObjectMap.values()]
     .filter((value) => !value.isDelete && value.document instanceof File)
-    .map((value) => value.document) as File[];
+    .map((value) => value.document) as File[]
 
   const validateAndAddFiles = (files: FileList) => {
-    const normalizedName = (name: string) => name.normalize('NFC');
+    const normalizedName = (name: string) => name.normalize('NFC')
     const invalidFiles = _.filter(files, (file) => {
-      const fileName = file.name.split('.')[0];
-      return !/^\d+-\d+$/.test(fileName) || !isExcelFile(file.name);
-    });
+      const fileName = file.name.split('.')[0]
+      return !/^\d+-\d+$/.test(fileName) || !isExcelFile(file.name)
+    })
 
     if (invalidFiles.length > 0) {
-      alert('파일 이름이 "학년-반" 형식을 따르지 않거나 Excel 파일 형식이 아닌 파일이 있습니다.');
-      return;
+      alert('파일 이름이 "학년-반" 형식을 따르지 않거나 Excel 파일 형식이 아닌 파일이 있습니다.')
+      return
     }
 
     const existingFileNames = [...documentObjectMap.values()]
       .filter((value) => !value.isDelete && value.document instanceof File)
-      .map((value) => (value.document as File).name);
+      .map((value) => (value.document as File).name)
 
-    const duplicateFiles = _.filter(files, (file) => existingFileNames.includes(file.name));
+    const duplicateFiles = _.filter(files, (file) => existingFileNames.includes(file.name))
 
     if (duplicateFiles.length > 0) {
-      alert('동일한 파일이 존재합니다.');
-      return;
+      alert('동일한 파일이 존재합니다.')
+      return
     }
 
-    addFiles(files);
-  };
+    addFiles(files)
+  }
 
   return (
     <div
@@ -68,8 +68,8 @@ export function ExamUpdateModal({
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
         }
       }}
     >
@@ -95,13 +95,12 @@ export function ExamUpdateModal({
                       return (
                         <div className="w-full" key={key}>
                           <div
-                            className={`flex h-12 w-full items-center justify-between rounded-lg border bg-white
-                          px-4 py-3`}
+                            className={`flex h-12 w-full items-center justify-between rounded-lg border bg-white px-4 py-3`}
                           >
                             <div className={`flex h-8 items-center space-x-2 rounded px-3 py-1`}>
-                              <div className={`w-full whitespace-pre-wrap break-words text-15`}>{value.name}</div>
+                              <div className={`text-15 w-full break-words whitespace-pre-wrap`}>{value.name}</div>
                             </div>
-                            <div className="flex min-w-max items-center justify-center bg-white px-2 text-lightpurple-4">
+                            <div className="text-lightpurple-4 flex min-w-max items-center justify-center bg-white px-2">
                               {!uploading && (
                                 <div className="z-40 ml-2 block rounded-full text-center text-sm">
                                   <div
@@ -115,7 +114,7 @@ export function ExamUpdateModal({
                             </div>
                           </div>
                         </div>
-                      );
+                      )
                     })}
                   </div>
                 </div>
@@ -127,10 +126,10 @@ export function ExamUpdateModal({
                     name="score-file"
                     className="hidden"
                     onChange={(e) => {
-                      e.preventDefault();
-                      const files = e.target.files;
-                      if (!files || files.length === 0) return;
-                      validateAndAddFiles(files);
+                      e.preventDefault()
+                      const files = e.target.files
+                      if (!files || files.length === 0) return
+                      validateAndAddFiles(files)
                     }}
                   />
                   <label
@@ -171,5 +170,5 @@ export function ExamUpdateModal({
         </main>
       </div>
     </div>
-  );
+  )
 }

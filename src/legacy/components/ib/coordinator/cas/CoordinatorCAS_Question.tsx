@@ -1,46 +1,46 @@
-import { concat, sortBy } from 'lodash';
-import { useState } from 'react';
-import NODATA from 'src/assets/images/no-data.png';
-import AlertV2 from 'src/components/common/AlertV2';
-import { BadgeV2 } from 'src/components/common/BadgeV2';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import { Typography } from 'src/components/common/Typography';
-import FrontPaginatedList from 'src/components/FrontPaginatedList ';
-import { PopupModal } from 'src/components/PopupModal';
-import { useCoordinatorCheck } from 'src/container/ib-coordinator';
-import { useIBInterview } from 'src/container/ib-interview';
-import { useChecklistGetitems, useIBProfileGetTemplateItemByStudent } from 'src/generated/endpoint';
-import { RequestCreateInterviewDtoCategory } from 'src/generated/model';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { CoordinatorEE_Form_AddCheckList } from '../ee/CoordinatorEE_Form_AddCheckList';
-import { ModalType } from '../FAQList';
-import { CoordinatorCAS_Question_AddQuestion } from './CoordinatorCAS_Question_AddQuestion';
+import { concat, sortBy } from 'lodash'
+import { useState } from 'react'
+import NODATA from 'src/assets/images/no-data.png'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import FrontPaginatedList from 'src/components/FrontPaginatedList '
+import { PopupModal } from 'src/components/PopupModal'
+import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
+import { useIBInterview } from '@/legacy/container/ib-interview'
+import { useChecklistGetitems, useIBProfileGetTemplateItemByStudent } from '@/legacy/generated/endpoint'
+import { RequestCreateInterviewDtoCategory } from '@/legacy/generated/model'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { CoordinatorEE_Form_AddCheckList } from '../ee/CoordinatorEE_Form_AddCheckList'
+import { ModalType } from '../FAQList'
+import { CoordinatorCAS_Question_AddQuestion } from './CoordinatorCAS_Question_AddQuestion'
 
 export const CAS_QUESTION_TYPES: Record<string, string> = {
   CAS_PROFILE: 'CAS 프로필',
   INTERVIEW: '인터뷰',
   CHECKLIST: '체크리스트',
   RISK_ASSESSMENT: '위험평가',
-};
+}
 
 export const CoordinatorCAS_Question = () => {
-  const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [activeModalType, setActiveModalType] = useState<'Create' | 'Update'>();
-  const [type, setType] = useState<string>('CAS_PROFILE');
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+  const [activeModal, setActiveModal] = useState<ModalType>(null)
+  const [activeModalType, setActiveModalType] = useState<'Create' | 'Update'>()
+  const [type, setType] = useState<string>('CAS_PROFILE')
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
 
-  const { data: interviews, isLoading: interviewLoading, refetch: interviewRefetch } = useIBInterview();
+  const { data: interviews, isLoading: interviewLoading, refetch: interviewRefetch } = useIBInterview()
   const {
     data: checklists,
     isLoading: checkListLoading,
     refetch: checkListRefetch,
   } = useChecklistGetitems({
     location: 'CAS',
-  });
-  const { data: profile, isLoading: profileLoading, refetch: profileRefetch } = useIBProfileGetTemplateItemByStudent();
-  const { permission } = useCoordinatorCheck();
-  const [selectedInterviewType, setSelectedInterviewType] = useState<RequestCreateInterviewDtoCategory>();
+  })
+  const { data: profile, isLoading: profileLoading, refetch: profileRefetch } = useIBProfileGetTemplateItemByStudent()
+  const { permission } = useCoordinatorCheck()
+  const [selectedInterviewType, setSelectedInterviewType] = useState<RequestCreateInterviewDtoCategory>()
 
   const questions = concat(
     [] as any[],
@@ -52,12 +52,12 @@ export const CoordinatorCAS_Question = () => {
     checklists?.total
       ? [{ ...sortBy(checklists.items, 'createdAt')[0], id: 0, title: '체크리스트', type: 'CHECKLIST' }]
       : [],
-  );
+  )
 
   const refetch = () => {
-    interviewRefetch();
-    profileRefetch();
-  };
+    interviewRefetch()
+    profileRefetch()
+  }
 
   const Header = () => (
     <>
@@ -67,7 +67,7 @@ export const CoordinatorCAS_Question = () => {
       <div className="w-[188px] text-center">수정일</div>
       <div className="w-[188px] text-center">관리</div>
     </>
-  );
+  )
 
   // Item 컴포넌트
   const Item = ({ item, index }: { item: any; index: number }) => (
@@ -86,53 +86,53 @@ export const CoordinatorCAS_Question = () => {
           size={32}
           color="gray400"
           onClick={(e) => {
-            e.stopPropagation();
-            handleEditClick(item);
+            e.stopPropagation()
+            handleEditClick(item)
           }}
         >
           수정
         </ButtonV2>
       </div>
     </>
-  );
+  )
 
   const handleCreateClick = () => {
-    setActiveModal('Category');
-  };
+    setActiveModal('Category')
+  }
 
   const handleEditClick = (item: any) => {
     if (item.type === 'CHECKLIST') {
-      setActiveModal('CHECKLIST');
-      setType('CHECKLIST');
-      setActiveModalType('Update');
+      setActiveModal('CHECKLIST')
+      setType('CHECKLIST')
+      setActiveModalType('Update')
     } else {
-      setActiveModal('Add');
-      setType(item?.type);
+      setActiveModal('Add')
+      setType(item?.type)
       if (item.type === 'INTERVIEW' || item.type === 'RISK_ASSESSMENT') {
-        setSelectedInterviewType(item.category);
+        setSelectedInterviewType(item.category)
       }
     }
-  };
+  }
 
   const handleNext = () => {
     if (type === 'CHECKLIST') {
-      setActiveModal('CHECKLIST');
+      setActiveModal('CHECKLIST')
     } else {
-      setActiveModal('Add');
+      setActiveModal('Add')
     }
-  };
+  }
 
   const handleBackToProjectSelection = () => {
-    setActiveModal(null);
-    setSelectedInterviewType(undefined);
-  };
+    setActiveModal(null)
+    setSelectedInterviewType(undefined)
+  }
 
   const handleSuccess = () => {
-    setActiveModal(null);
-    refetch();
-    setSelectedInterviewType(undefined);
-    setAlertMessage(`${CAS_QUESTION_TYPES[type]} 양식이 저장되었습니다.`);
-  };
+    setActiveModal(null)
+    refetch()
+    setSelectedInterviewType(undefined)
+    setAlertMessage(`${CAS_QUESTION_TYPES[type]} 양식이 저장되었습니다.`)
+  }
 
   return (
     <div className="min-h-[664px] rounded-xl bg-white">
@@ -162,7 +162,7 @@ export const CoordinatorCAS_Question = () => {
           </div>
           {permission === 'IB_CAS' ? (
             <>
-              <Typography variant="body2" className="text-center font-medium text-primary-gray-700">
+              <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
                 생성한 양식이 없습니다.
                 <br />
                 양식을 추가해주세요.
@@ -172,7 +172,7 @@ export const CoordinatorCAS_Question = () => {
               </ButtonV2>
             </>
           ) : (
-            <Typography variant="body2" className="text-center font-medium text-primary-gray-700">
+            <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
               생성한 양식이 없습니다.
             </Typography>
           )}
@@ -207,8 +207,8 @@ export const CoordinatorCAS_Question = () => {
           selectedInterviewType={selectedInterviewType}
           modalOpen={true}
           setModalClose={() => {
-            setActiveModal(null);
-            setSelectedInterviewType(undefined);
+            setActiveModal(null)
+            setSelectedInterviewType(undefined)
           }}
           handleBack={handleBackToProjectSelection}
           onSuccess={handleSuccess}
@@ -232,5 +232,5 @@ export const CoordinatorCAS_Question = () => {
         />
       )}
     </div>
-  );
-};
+  )
+}

@@ -1,11 +1,11 @@
-import SvgUser from 'src/assets/images/no_profile.png';
-import { Typography } from 'src/components/common/Typography';
-import { Constants } from 'src/constants';
-import { ResponseIBPortfolioDto } from 'src/generated/model';
-import { makeStudNum5 } from 'src/util/status';
+import SvgUser from 'src/assets/images/no_profile.png'
+import { Typography } from '@/legacy/components/common/Typography'
+import { Constants } from '@/legacy/constants'
+import { ResponseIBPortfolioDto } from '@/legacy/generated/model'
+import { makeStudNum5 } from '@/legacy/util/status'
 
 interface TeacherCASProfileProps {
-  data: ResponseIBPortfolioDto;
+  data: ResponseIBPortfolioDto
 }
 
 function TeacherCASProfile({ data }: TeacherCASProfileProps) {
@@ -17,7 +17,7 @@ function TeacherCASProfile({ data }: TeacherCASProfileProps) {
           <Typography variant="body3" className="text-primary-gray-700">
             지도교사
           </Typography>
-          <Typography variant="body3" className="mx-1 text-primary-gray-400">
+          <Typography variant="body3" className="text-primary-gray-400 mx-1">
             ·
           </Typography>
           <Typography variant="body3" className="text-primary-gray-700">
@@ -25,7 +25,7 @@ function TeacherCASProfile({ data }: TeacherCASProfileProps) {
           </Typography>
         </div>
       </div>
-      <div className="flex select-none items-center gap-4 py-2">
+      <div className="flex items-center gap-4 py-2 select-none">
         <div className="flex h-12 w-12 overflow-hidden rounded-xl">
           <img
             className="mx-auto h-12 w-12 rounded-xl"
@@ -33,9 +33,9 @@ function TeacherCASProfile({ data }: TeacherCASProfileProps) {
             alt=""
             loading="lazy"
             onError={({ currentTarget }) => {
-              currentTarget.onerror = null; // prevents looping
-              currentTarget.src = SvgUser;
-              currentTarget.className = 'w-full';
+              currentTarget.onerror = null // prevents looping
+              currentTarget.src = SvgUser
+              currentTarget.className = 'w-full'
             }}
           />
         </div>
@@ -57,7 +57,7 @@ function TeacherCASProfile({ data }: TeacherCASProfileProps) {
           {/* <Typography variant="caption2" className="font-medium text-primary-gray-500">
             응시코드 18472
           </Typography> */}
-          <Typography variant="caption2" className="font-medium text-primary-gray-500">
+          <Typography variant="caption2" className="text-primary-gray-500 font-medium">
             응시코드 {data?.profile.ibCode || '-'}
           </Typography>
         </div>
@@ -74,12 +74,12 @@ function TeacherCASProfile({ data }: TeacherCASProfileProps) {
                   {qna.answer}
                 </Typography>
               </div>
-            );
+            )
           })}
         </div>
       </span>
     </>
-  );
+  )
 }
 
-export default TeacherCASProfile;
+export default TeacherCASProfile

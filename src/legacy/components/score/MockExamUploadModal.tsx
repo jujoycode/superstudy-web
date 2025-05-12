@@ -1,29 +1,29 @@
-import clsx from 'clsx';
-import _ from 'lodash';
-import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
-import { Icon } from 'src/components/common/icons';
-import { useStudentInsertMockScores } from 'src/container/insert-exam-score';
-import { useImageAndDocument } from 'src/hooks/useImageAndDocument';
-import { isExcelFile } from 'src/util/file';
-import { Select } from '../common';
-import AlertDialog from '../common/AlertDialog';
-import ConfirmDialog from '../common/ConfirmDialog';
-import { Typography } from '../common/Typography';
-import SVGIcon from '../icon/SVGIcon';
+import clsx from 'clsx'
+import _ from 'lodash'
+import { PropsWithChildren, useCallback, useEffect, useState } from 'react'
+import { Icon } from '@/legacy/components/common/icons'
+import { useStudentInsertMockScores } from '@/legacy/container/insert-exam-score'
+import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
+import { isExcelFile } from '@/legacy/util/file'
+import { Select } from '@/legacy/components/common'
+import AlertDialog from '@/legacy/components/common/AlertDialog'
+import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
+import { Typography } from '@/legacy/components/common/Typography'
+import SVGIcon from '../icon/SVGIcon'
 
 interface ExamUploadModalProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  width?: string;
-  ablePropragation?: boolean;
-  grade: number;
-  year: number;
+  modalOpen: boolean
+  setModalClose: () => void
+  width?: string
+  ablePropragation?: boolean
+  grade: number
+  year: number
 }
 
-type MOCKTYPE = 'preliminary' | 'tong' | 'daegeo' | 'univ' | '';
-type MOCKMONTH = 3 | 5 | 6 | 7 | 9 | 10 | 11;
+type MOCKTYPE = 'preliminary' | 'tong' | 'daegeo' | 'univ' | ''
+type MOCKMONTH = 3 | 5 | 6 | 7 | 9 | 10 | 11
 
-const MONTHS: MOCKMONTH[] = [3, 5, 6, 7, 9, 10, 11];
+const MONTHS: MOCKMONTH[] = [3, 5, 6, 7, 9, 10, 11]
 
 const MOCKTYPES: { label: string; value: MOCKTYPE; subType?: string }[] = [
   { label: '파일 유형을 선택하세요.', value: '' },
@@ -31,7 +31,7 @@ const MOCKTYPES: { label: string; value: MOCKTYPE; subType?: string }[] = [
   { label: '대교협', value: 'daegeo', subType: 'download' },
   { label: '통', value: 'tong', subType: 'tentative' },
   { label: '유니브', value: 'univ', subType: 'tentative' },
-];
+]
 
 export function MockExamUploadModal({
   modalOpen,
@@ -41,45 +41,45 @@ export function MockExamUploadModal({
   ablePropragation = false,
   year,
 }: PropsWithChildren<ExamUploadModalProps>) {
-  const [type, setType] = useState<MOCKTYPE>('');
-  const [step, setStep] = useState<number>(0);
-  const [month, setMonth] = useState<MOCKMONTH>(3);
-  const [uploading, setUploading] = useState(false);
-  const [alertOpen, setAlertOpen] = useState(false);
-  const [errorAlertOpen, setErrorAlertOpen] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const { documentObjectMap, toggleDocumentDelete, addFiles, resetDocuments } = useImageAndDocument({});
-  const { insertMockScore } = useStudentInsertMockScores();
+  const [type, setType] = useState<MOCKTYPE>('')
+  const [step, setStep] = useState<number>(0)
+  const [month, setMonth] = useState<MOCKMONTH>(3)
+  const [uploading, setUploading] = useState(false)
+  const [alertOpen, setAlertOpen] = useState(false)
+  const [errorAlertOpen, setErrorAlertOpen] = useState(false)
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const { documentObjectMap, toggleDocumentDelete, addFiles, resetDocuments } = useImageAndDocument({})
+  const { insertMockScore } = useStudentInsertMockScores()
   const documentFiles = [...documentObjectMap.values()]
     .filter((value) => !value.isDelete && value.document instanceof File)
-    .map((value) => value.document) as File[];
+    .map((value) => value.document) as File[]
 
   const validateAndAddFiles = (files: FileList) => {
-    const invalidFiles = _.filter(files, (file) => !isExcelFile(file.name));
+    const invalidFiles = _.filter(files, (file) => !isExcelFile(file.name))
 
     if (invalidFiles.length > 0) {
-      alert('Excel 파일 형식이 아닌 파일이 있습니다.');
-      return;
+      alert('Excel 파일 형식이 아닌 파일이 있습니다.')
+      return
     }
-    addFiles(files);
-  };
+    addFiles(files)
+  }
 
   const handleMonthSelect = useCallback((month: MOCKMONTH) => {
-    setMonth(month);
-    setStep(1);
-  }, []);
+    setMonth(month)
+    setStep(1)
+  }, [])
 
   useEffect(() => {
-    resetDocuments();
-  }, [step]);
+    resetDocuments()
+  }, [step])
 
   const handleUpload = async () => {
     if (type === '') {
-      return alert('파일 유형을 선택해주세요');
+      return alert('파일 유형을 선택해주세요')
     }
 
-    setUploading(true);
-    let hasError = false;
+    setUploading(true)
+    let hasError = false
     try {
       await insertMockScore({
         file: documentFiles[0],
@@ -87,35 +87,35 @@ export function MockExamUploadModal({
         month,
         insertionYear: year,
         excelDataType: type,
-      });
+      })
     } catch (error) {
-      console.error(error);
-      hasError = true;
+      console.error(error)
+      hasError = true
     } finally {
-      setUploading(false);
+      setUploading(false)
       if (hasError) {
-        setErrorAlertOpen(true);
+        setErrorAlertOpen(true)
       } else {
-        setAlertOpen(true);
+        setAlertOpen(true)
       }
     }
-    setAlertOpen(!alertOpen);
-  };
+    setAlertOpen(!alertOpen)
+  }
 
   const handleCancelUpload = () => {
-    setDialogOpen(!dialogOpen);
-    setUploading(false);
-  };
+    setDialogOpen(!dialogOpen)
+    setUploading(false)
+  }
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-littlegray ${
+      className={`bg-littlegray fixed inset-0 z-60 flex h-screen w-full items-center justify-center ${
         modalOpen ? 'backdrop-blur-sm' : 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
         }
       }}
     >
@@ -185,9 +185,9 @@ export function MockExamUploadModal({
                               className={`flex h-12 w-full items-center justify-between rounded-lg border bg-white px-4 py-3`}
                             >
                               <div className={`flex h-8 items-center space-x-2 rounded px-3 py-1`}>
-                                <div className={`w-full whitespace-pre-wrap break-words text-15`}>{value.name}</div>
+                                <div className={`text-15 w-full break-words whitespace-pre-wrap`}>{value.name}</div>
                               </div>
-                              <div className="flex min-w-max items-center justify-center bg-white px-2 text-lightpurple-4">
+                              <div className="text-lightpurple-4 flex min-w-max items-center justify-center bg-white px-2">
                                 {!uploading && (
                                   <div className="z-40 ml-2 block rounded-full text-center text-sm">
                                     <div
@@ -201,7 +201,7 @@ export function MockExamUploadModal({
                               </div>
                             </div>
                           </div>
-                        );
+                        )
                       })}
                       {/* <label
                         className={clsx(
@@ -234,10 +234,10 @@ export function MockExamUploadModal({
                       name="score-file"
                       className="hidden"
                       onChange={(e) => {
-                        e.preventDefault();
-                        const files = e.target.files;
-                        if (!files || files.length === 0) return;
-                        validateAndAddFiles(files);
+                        e.preventDefault()
+                        const files = e.target.files
+                        if (!files || files.length === 0) return
+                        validateAndAddFiles(files)
                       }}
                     />
                     <label
@@ -308,5 +308,5 @@ export function MockExamUploadModal({
         />
       )}
     </div>
-  );
+  )
 }

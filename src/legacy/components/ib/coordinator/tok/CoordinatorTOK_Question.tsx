@@ -1,54 +1,54 @@
-import { concat } from 'lodash';
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import NODATA from 'src/assets/images/no-data.png';
-import AlertV2 from 'src/components/common/AlertV2';
-import { BadgeV2 } from 'src/components/common/BadgeV2';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import { Typography } from 'src/components/common/Typography';
-import FrontPaginatedList from 'src/components/FrontPaginatedList ';
-import { PopupModal } from 'src/components/PopupModal';
-import { useCoordinatorCheck } from 'src/container/ib-coordinator';
-import { useThemeQuestionGetThemeQuestionItemsByType } from 'src/generated/endpoint';
-import { ThemeQuestionGetThemeQuestionItemsByTypeType } from 'src/generated/model';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { ModalType } from '../FAQList';
-import { CoordinatorTOK_Question_AddQuestion } from './CoordinatorTOK_Question_AddQuestion';
+import { concat } from 'lodash'
+import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import NODATA from 'src/assets/images/no-data.png'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import FrontPaginatedList from 'src/components/FrontPaginatedList '
+import { PopupModal } from 'src/components/PopupModal'
+import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
+import { useThemeQuestionGetThemeQuestionItemsByType } from '@/legacy/generated/endpoint'
+import { ThemeQuestionGetThemeQuestionItemsByTypeType } from '@/legacy/generated/model'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { ModalType } from '../FAQList'
+import { CoordinatorTOK_Question_AddQuestion } from './CoordinatorTOK_Question_AddQuestion'
 
 export const THEME_QUESTION_TYPE_KOR: Record<string, string> = {
   TOK_ESSAY: '에세이',
   TOK_EXHIBITION: '전시회',
-};
+}
 export const CoordinatorTOK_Question = () => {
-  const { push } = useHistory();
-  const { permission } = useCoordinatorCheck();
-  const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [type, setType] = useState<ThemeQuestionGetThemeQuestionItemsByTypeType>('TOK_ESSAY');
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+  const { push } = useHistory()
+  const { permission } = useCoordinatorCheck()
+  const [activeModal, setActiveModal] = useState<ModalType>(null)
+  const [type, setType] = useState<ThemeQuestionGetThemeQuestionItemsByTypeType>('TOK_ESSAY')
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
 
   const {
     data: essayData,
     isLoading: essayLoading,
     refetch: essayRefetch,
-  } = useThemeQuestionGetThemeQuestionItemsByType({ type: 'TOK_ESSAY' });
+  } = useThemeQuestionGetThemeQuestionItemsByType({ type: 'TOK_ESSAY' })
 
   const {
     data: exhibitionData,
     isLoading: exhibitionLoading,
     refetch: exhibitionRefetch,
-  } = useThemeQuestionGetThemeQuestionItemsByType({ type: 'TOK_EXHIBITION' });
+  } = useThemeQuestionGetThemeQuestionItemsByType({ type: 'TOK_EXHIBITION' })
 
   const questions = concat(
     [],
     essayData?.map((el) => ({ ...el, type: 'TOK_ESSAY' })) || [],
     exhibitionData?.map((el) => ({ ...el, type: 'TOK_EXHIBITION' })) || [],
-  );
+  )
 
   const refetch = () => {
-    essayRefetch();
-    exhibitionRefetch();
-  };
+    essayRefetch()
+    exhibitionRefetch()
+  }
 
   const Header = () => (
     <>
@@ -58,7 +58,7 @@ export const CoordinatorTOK_Question = () => {
       <div className="w-[188px] text-center">수정일</div>
       <div className="w-[188px] text-center">관리</div>
     </>
-  );
+  )
 
   // Item 컴포넌트
   const Item = ({ item, index }: { item: any; index: number }) => (
@@ -77,38 +77,38 @@ export const CoordinatorTOK_Question = () => {
           size={32}
           color="gray400"
           onClick={(e) => {
-            e.stopPropagation();
-            handleEditClick(item);
+            e.stopPropagation()
+            handleEditClick(item)
           }}
         >
           수정
         </ButtonV2>
       </div>
     </>
-  );
+  )
 
   const handleCreateClick = () => {
-    setActiveModal('Category');
-  };
+    setActiveModal('Category')
+  }
 
   const handleEditClick = (item: any) => {
-    setActiveModal('Add');
-    setType(item?.type);
-  };
+    setActiveModal('Add')
+    setType(item?.type)
+  }
 
   const handleNext = () => {
-    setActiveModal('Add');
-  };
+    setActiveModal('Add')
+  }
 
   const handleBackToProjectSelection = () => {
-    setActiveModal(null);
-  };
+    setActiveModal(null)
+  }
 
   const handleSuccess = () => {
-    setActiveModal(null);
-    refetch();
-    setAlertMessage(`${THEME_QUESTION_TYPE_KOR[type]}가 저장되었습니다.`);
-  };
+    setActiveModal(null)
+    refetch()
+    setAlertMessage(`${THEME_QUESTION_TYPE_KOR[type]}가 저장되었습니다.`)
+  }
 
   return (
     <div className="min-h-[664px] rounded-xl bg-white">
@@ -138,7 +138,7 @@ export const CoordinatorTOK_Question = () => {
           </div>
           {permission === 'IB_TOK' ? (
             <>
-              <Typography variant="body2" className="text-center font-medium text-primary-gray-700">
+              <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
                 생성된 양식이 없습니다.
                 <br />
                 양식을 추가해주세요.
@@ -148,7 +148,7 @@ export const CoordinatorTOK_Question = () => {
               </ButtonV2>
             </>
           ) : (
-            <Typography variant="body2" className="text-center font-medium text-primary-gray-700">
+            <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
               생성된 양식이 없습니다.
             </Typography>
           )}
@@ -199,5 +199,5 @@ export const CoordinatorTOK_Question = () => {
         />
       )}
     </div>
-  );
-};
+  )
+}

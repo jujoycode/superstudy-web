@@ -5,21 +5,21 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { User } from './user';
+import type { User } from './user'
 
 export interface Comment {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 내용 */
-  content: string | null;
+  content: string | null
   /** 유저 ID */
-  userId: number;
+  userId: number
   /** 학생유저 */
-  user: User;
+  user: User
   /** 학생활동 ID */
-  studentActivityId: number;
+  studentActivityId: number
 }

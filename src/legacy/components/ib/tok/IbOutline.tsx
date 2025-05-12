@@ -1,24 +1,24 @@
-import { PropsWithChildren } from 'react';
-import { useForm } from 'react-hook-form';
-import { useRecoilValue } from 'recoil';
-import { IBBlank } from 'src/components/common/IBBlank';
-import { useCodeByCategoryName } from 'src/container/category';
-import { useIBCreate } from 'src/container/ib-project';
-import { useThemeQuestionFindAll } from 'src/container/ib-themequestion';
-import { RequestIBDto, RequestIBTokOutlineDto } from 'src/generated/model';
-import { meState } from 'src/store';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Typography } from '../../common/Typography';
-import ColorSVGIcon from '../../icon/ColorSVGIcon';
-import { InputField } from '../InputField';
+import { PropsWithChildren } from 'react'
+import { useForm } from 'react-hook-form'
+import { useRecoilValue } from 'recoil'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { useCodeByCategoryName } from '@/legacy/container/category'
+import { useIBCreate } from '@/legacy/container/ib-project'
+import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
+import { RequestIBDto, RequestIBTokOutlineDto } from '@/legacy/generated/model'
+import { meState } from '@/stores'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
+import { InputField } from '../InputField'
 
 interface IbOutlineProps {
-  modalOpen: boolean;
-  setModalClose?: () => void;
-  size?: 'medium' | 'large';
-  handleBack?: () => void;
-  onSuccess: (action: 'TOK_ESSAY', data?: any) => void;
-  ablePropragation?: boolean;
+  modalOpen: boolean
+  setModalClose?: () => void
+  size?: 'medium' | 'large'
+  handleBack?: () => void
+  onSuccess: (action: 'TOK_ESSAY', data?: any) => void
+  ablePropragation?: boolean
 }
 
 export function IbOutline({
@@ -28,13 +28,13 @@ export function IbOutline({
   onSuccess,
   ablePropragation = false,
 }: PropsWithChildren<IbOutlineProps>) {
-  const me = useRecoilValue(meState);
+  const me = useRecoilValue(meState)
   const {
     control,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<RequestIBTokOutlineDto>();
+  } = useForm<RequestIBTokOutlineDto>()
 
   const requiredFields = watch([
     'themeQuestion',
@@ -50,19 +50,19 @@ export function IbOutline({
     'argument2Example',
     'counterArgument2',
     'counterArgument2Example',
-  ]);
+  ])
 
-  const areAllFieldsFilled = requiredFields.every((field) => field && field.trim() !== '');
+  const areAllFieldsFilled = requiredFields.every((field) => field && field.trim() !== '')
 
-  const { data, isLoading: isFetching } = useThemeQuestionFindAll('TOK_ESSAY');
-  const { categoryData: knowledgeArea } = useCodeByCategoryName('tokOutlineKnowledgeArea');
+  const { data, isLoading: isFetching } = useThemeQuestionFindAll('TOK_ESSAY')
+  const { categoryData: knowledgeArea } = useCodeByCategoryName('tokOutlineKnowledgeArea')
 
   const knowledgeAreaOptions =
     knowledgeArea?.map((subject) => ({
       id: subject.id,
       value: subject.name,
       text: subject.name,
-    })) || [];
+    })) || []
 
   const transformedOptions =
     data?.flatMap((item) =>
@@ -71,25 +71,25 @@ export function IbOutline({
         value: question,
         text: question,
       })),
-    ) || [];
+    ) || []
 
   const { createIBProject, isLoading } = useIBCreate({
     onSuccess: (data) => {
-      onSuccess('TOK_ESSAY', data);
+      onSuccess('TOK_ESSAY', data)
     },
     onError: (error) => {
-      console.error('IB 프로젝트 생성 중 오류 발생:', error);
+      console.error('IB 프로젝트 생성 중 오류 발생:', error)
     },
-  });
+  })
 
   const onSubmit = (data: RequestIBTokOutlineDto) => {
     if (!me?.id) {
-      console.error('Leader ID가 없습니다. 로그인 상태를 확인하세요.');
-      return;
+      console.error('Leader ID가 없습니다. 로그인 상태를 확인하세요.')
+      return
     }
 
     if (isLoading) {
-      return;
+      return
     }
 
     const requestData: RequestIBDto = {
@@ -98,32 +98,32 @@ export function IbOutline({
       description: 'TOK 아웃라인입니다.',
       leaderId: me.id,
       tokOutline: data,
-    };
-    createIBProject(requestData);
-  };
+    }
+    createIBProject(requestData)
+  }
 
-  const themeQuestionValue = watch('themeQuestion');
+  const themeQuestionValue = watch('themeQuestion')
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black bg-opacity-50 ${
+      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
         }
       }}
     >
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white`}>
         {isLoading && <IBBlank type="section-opacity" />}
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pb-6 pt-8 backdrop-blur-[20px]">
+        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6 backdrop-blur-[20px]">
           <Typography variant="title1">아웃라인 작성</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
         </div>
 
-        <div className="scroll-box flex max-h-[608px] flex-col gap-8 overflow-auto pb-8 pt-4">
+        <div className="scroll-box flex max-h-[608px] flex-col gap-8 overflow-auto pt-4 pb-8">
           <div className="flex flex-col gap-6 px-8 pb-2">
             <InputField
               label="주제"
@@ -156,7 +156,7 @@ export function IbOutline({
               required
             />
           </div>
-          <div className="flex flex-col gap-6 border-t border-t-primary-gray-100 px-8 pt-8">
+          <div className="border-t-primary-gray-100 flex flex-col gap-6 border-t px-8 pt-8">
             <InputField
               label="지식영역"
               subLabel="1"
@@ -203,7 +203,7 @@ export function IbOutline({
               />
             </div>
           </div>
-          <div className="flex flex-col gap-6 border-t border-t-primary-gray-100 px-8 pt-8">
+          <div className="border-t-primary-gray-100 flex flex-col gap-6 border-t px-8 pt-8">
             <InputField
               label="지식영역"
               subLabel="2"
@@ -254,7 +254,7 @@ export function IbOutline({
 
         <div
           className={
-            'sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-primary-gray-100 bg-white/70 px-8 pb-8 pt-6 backdrop-blur-[20px]'
+            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]'
           }
         >
           <ButtonV2 variant="solid" color="gray100" size={48} onClick={handleBack}>
@@ -275,5 +275,5 @@ export function IbOutline({
         </div>
       </div>
     </div>
-  );
+  )
 }

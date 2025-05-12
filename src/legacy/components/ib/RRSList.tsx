@@ -1,78 +1,78 @@
-import { format } from 'date-fns';
-import { memo, useCallback, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import NODATA from 'src/assets/images/no-data.png';
-import { useGetFeedbackBatchExist } from 'src/container/ib-feedback';
-import { useRRSGetByIBIdFindAll } from 'src/container/ib-rrs-findAll';
-import { FeedbackReferenceTable, ResponseIBDtoStatus } from 'src/generated/model';
-import AlertV2 from '../common/AlertV2';
-import { ButtonV2 } from '../common/ButtonV2';
-import { IBBlank } from '../common/IBBlank';
-import { Typography } from '../common/Typography';
-import ColorSVGIcon from '../icon/ColorSVGIcon';
-import { IbEeRRS } from './ee/IbEeRRS';
-import FeedbackViewer from './FeedbackViewer';
-import { IBPagination } from './ProjectList';
+import { format } from 'date-fns'
+import { memo, useCallback, useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import NODATA from 'src/assets/images/no-data.png'
+import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
+import { useRRSGetByIBIdFindAll } from '@/legacy/container/ib-rrs-findAll'
+import { FeedbackReferenceTable, ResponseIBDtoStatus } from '@/legacy/generated/model'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
+import ColorSVGIcon from '../icon/ColorSVGIcon'
+import { IbEeRRS } from './ee/IbEeRRS'
+import FeedbackViewer from './FeedbackViewer'
+import { IBPagination } from './ProjectList'
 
 interface RRSListProps {
-  id: number;
-  title: string;
-  status: ResponseIBDtoStatus;
+  id: number
+  title: string
+  status: ResponseIBDtoStatus
 }
 
 const RRSList = memo(({ id, title, status }: RRSListProps) => {
-  const { push } = useHistory();
-  const [currentPage, setCurrentPage] = useState(1);
-  const { data, isLoading } = useRRSGetByIBIdFindAll(id, { page: currentPage });
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [alertOpen, setAlertOpen] = useState<boolean>(false);
-  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false);
+  const { push } = useHistory()
+  const [currentPage, setCurrentPage] = useState(1)
+  const { data, isLoading } = useRRSGetByIBIdFindAll(id, { page: currentPage })
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [alertOpen, setAlertOpen] = useState<boolean>(false)
+  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false)
   const [feedbackReference, setFeedbackReference] = useState<{
-    referenceId: number;
-    referenceTable: FeedbackReferenceTable;
-  }>();
-  const [localUnreadCounts, setLocalUnreadCounts] = useState<Record<string, number>>({});
+    referenceId: number
+    referenceTable: FeedbackReferenceTable
+  }>()
+  const [localUnreadCounts, setLocalUnreadCounts] = useState<Record<string, number>>({})
   const handleSuccess = useCallback(() => {
-    setIsOpen(!isOpen);
-    setAlertOpen(!alertOpen);
-  }, [isOpen, alertOpen]);
+    setIsOpen(!isOpen)
+    setAlertOpen(!alertOpen)
+  }, [isOpen, alertOpen])
 
-  const rrsIds = data?.total ? data.items.map((rrs) => rrs.id).join(',') : null;
+  const rrsIds = data?.total ? data.items.map((rrs) => rrs.id).join(',') : null
 
   const { data: feedbacks } = useGetFeedbackBatchExist(
     rrsIds ? { referenceIds: rrsIds, referenceTable: 'RRS' } : { referenceIds: '', referenceTable: 'RRS' }, // 기본값 전달
     { enabled: !!rrsIds }, // 쿼리 활성화 조건
-  );
+  )
 
   useEffect(() => {
-    const initialCounts: Record<string, number> = {};
+    const initialCounts: Record<string, number> = {}
     if (feedbacks?.items) {
       feedbacks.items.forEach((item) => {
-        initialCounts[`RRS-${item.referenceId}`] = item.unreadCount || 0;
-      });
+        initialCounts[`RRS-${item.referenceId}`] = item.unreadCount || 0
+      })
     }
-    setLocalUnreadCounts(initialCounts);
-  }, [feedbacks]);
+    setLocalUnreadCounts(initialCounts)
+  }, [feedbacks])
 
   const markAsRead = useCallback((referenceId: number) => {
-    const key = `RRS-${referenceId}`;
+    const key = `RRS-${referenceId}`
     setLocalUnreadCounts((prevCounts) => ({
       ...prevCounts,
       [key]: 0,
-    }));
-  }, []);
+    }))
+  }, [])
 
   const handleFeedbackOpen = useCallback(
     (referenceId: number, referenceTable: FeedbackReferenceTable, unreadCount: number) => {
-      setFeedbackReference({ referenceId, referenceTable });
-      setFeedbackOpen(true);
+      setFeedbackReference({ referenceId, referenceTable })
+      setFeedbackOpen(true)
 
       if (unreadCount > 0) {
-        markAsRead(referenceId);
+        markAsRead(referenceId)
       }
     },
     [markAsRead],
-  );
+  )
 
   return (
     <section className="flex h-[664px] flex-col">
@@ -108,7 +108,7 @@ const RRSList = memo(({ id, title, status }: RRSListProps) => {
           </div>
         ) : (
           <table className="w-full text-center">
-            <thead className="border-y border-y-primary-gray-100 text-[15px] font-medium text-primary-gray-500">
+            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
               <tr className="flex w-full items-center justify-between gap-[16px] px-[24px] py-[9px]">
                 <td className="w-[68px]">번호</td>
                 <td className="w-[740px]">제목</td>
@@ -118,12 +118,12 @@ const RRSList = memo(({ id, title, status }: RRSListProps) => {
             </thead>
             <tbody>
               {data?.items?.slice().map((rrs, index) => {
-                const feedback = feedbacks?.items?.find((item) => item.referenceId === rrs.id);
-                const itemNumber = (currentPage - 1) * 10 + index + 1;
+                const feedback = feedbacks?.items?.find((item) => item.referenceId === rrs.id)
+                const itemNumber = (currentPage - 1) * 10 + index + 1
                 return (
                   <tr
                     key={rrs.id}
-                    className="flex w-full items-center justify-between gap-[16px] border-b border-b-primary-gray-100 px-[24px] py-[9px]"
+                    className="border-b-primary-gray-100 flex w-full items-center justify-between gap-[16px] border-b px-[24px] py-[9px]"
                   >
                     <td className="w-[68px]">{itemNumber}</td>
                     <td
@@ -165,7 +165,7 @@ const RRSList = memo(({ id, title, status }: RRSListProps) => {
                       )}
                     </td>
                   </tr>
-                );
+                )
               })}
             </tbody>
           </table>
@@ -202,7 +202,7 @@ const RRSList = memo(({ id, title, status }: RRSListProps) => {
         <AlertV2 message={`RRS가\n저장되었습니다`} confirmText="확인" onConfirm={() => setAlertOpen(!alertOpen)} />
       )}
     </section>
-  );
-});
+  )
+})
 
-export default RRSList;
+export default RRSList

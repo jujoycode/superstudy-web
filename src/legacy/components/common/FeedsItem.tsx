@@ -1,39 +1,39 @@
-import clsx from 'clsx';
-import parse from 'html-react-parser';
-import { useEffect, useRef, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { ImageDecorator } from 'react-viewer/lib/ViewerProps';
-import { useRecoilValue } from 'recoil';
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg';
-import SvgImage from 'src/assets/svg/upload-image.svg';
-import { ListItem } from 'src/components/common';
-import { Constants } from 'src/constants';
-import { Role } from 'src/generated/model';
-import useIntersectionObserver from 'src/hooks/useIntersectionObserver';
-import { childState, meState } from 'src/store';
-import { isPdfFile } from 'src/util/file';
-import { PdfCard } from './PdfCard';
-import { Icon } from './icons';
+import clsx from 'clsx'
+import parse from 'html-react-parser'
+import { useEffect, useRef, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { useRecoilValue } from 'recoil'
+import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg'
+import SvgImage from 'src/assets/svg/upload-image.svg'
+import { ListItem } from '@/legacy/components/common'
+import { Constants } from '@/legacy/constants'
+import { Role } from '@/legacy/generated/model'
+import useIntersectionObserver from '@/legacy/hooks/useIntersectionObserver'
+import { childState, meState } from '@/stores'
+import { isPdfFile } from '@/legacy/util/file'
+import { PdfCard } from './PdfCard'
+import { Icon } from './icons'
 
 interface FeedsItemProps {
-  to: string;
-  pageType: string;
-  id: number;
-  category1?: string;
-  category1Color?: string;
-  category2?: string;
-  category2Color?: string;
-  useSubmit?: boolean;
-  submitDate?: string;
-  submitYN?: boolean;
-  submitText?: string;
-  title?: string;
-  newYN?: boolean;
-  contentText?: string;
-  contentFiles?: string[];
-  contentImages?: string[];
-  writer?: string;
-  createAt?: string;
+  to: string
+  pageType: string
+  id: number
+  category1?: string
+  category1Color?: string
+  category2?: string
+  category2Color?: string
+  useSubmit?: boolean
+  submitDate?: string
+  submitYN?: boolean
+  submitText?: string
+  title?: string
+  newYN?: boolean
+  contentText?: string
+  contentFiles?: string[]
+  contentImages?: string[]
+  writer?: string
+  createAt?: string
 }
 
 export function FeedsItem({
@@ -56,46 +56,46 @@ export function FeedsItem({
   writer,
   createAt,
 }: FeedsItemProps) {
-  const { push } = useHistory();
+  const { push } = useHistory()
 
-  const meRecoil = useRecoilValue(meState);
+  const meRecoil = useRecoilValue(meState)
 
-  const myChild = useRecoilValue(childState);
+  const myChild = useRecoilValue(childState)
 
-  const itemRef = useRef<HTMLDivElement>(null);
+  const itemRef = useRef<HTMLDivElement>(null)
 
-  const [isVisibled, setIsVisibled] = useState(false);
+  const [isVisibled, setIsVisibled] = useState(false)
 
-  const isVisible = useIntersectionObserver(itemRef, { threshold: 0.1 });
+  const isVisible = useIntersectionObserver(itemRef, { threshold: 0.1 })
 
   useEffect(() => {
     if (isVisible) {
-      setIsVisibled(true);
+      setIsVisibled(true)
     }
-  }, [isVisible]);
+  }, [isVisible])
 
-  const schoolName = meRecoil?.role === Role.PARENT ? myChild?.school.name : meRecoil?.school.name;
-  const schoolMark = meRecoil?.role === Role.PARENT ? myChild?.school.mark : meRecoil?.school.mark;
+  const schoolName = meRecoil?.role === Role.PARENT ? myChild?.school.name : meRecoil?.school.name
+  const schoolMark = meRecoil?.role === Role.PARENT ? myChild?.school.mark : meRecoil?.school.mark
 
-  const Pdfs = contentImages?.filter((image) => isPdfFile(image)) || [];
-  const images = contentImages?.filter((image) => !isPdfFile(image)) || [];
+  const Pdfs = contentImages?.filter((image) => isPdfFile(image)) || []
+  const images = contentImages?.filter((image) => !isPdfFile(image)) || []
 
-  const contentJson = contentText?.startsWith(`{"content"`) ? JSON.parse(contentText || '[]') : undefined;
+  const contentJson = contentText?.startsWith(`{"content"`) ? JSON.parse(contentText || '[]') : undefined
 
-  const viewerImages: ImageDecorator[] = [];
+  const viewerImages: ImageDecorator[] = []
   for (const image of images) {
     if (isPdfFile(image) == false) {
       viewerImages.push({
         src: `${Constants.imageUrl}${image}`,
-      });
+      })
     }
   }
 
   const removeStyleAttribute = (htmlString: string) => {
     // 스타일 속성을 정규 표현식을 사용하여 제거
-    const cleanedHTML = htmlString.replace(/style="[^"]*"/g, '');
-    return cleanedHTML;
-  };
+    const cleanedHTML = htmlString.replace(/style="[^"]*"/g, '')
+    return cleanedHTML
+  }
 
   return (
     <ListItem onClick={() => push(`/${to}/${pageType}/${id}`)}>
@@ -141,22 +141,22 @@ export function FeedsItem({
                         <div className="py-1 text-sm font-bold text-red-500">~{submitDate}</div>
                       )}
                       {submitDate && new Date(submitDate) < new Date() ? (
-                        <div className="rounded-md bg-grey-7 px-2  py-1 text-sm">기간만료</div>
+                        <div className="bg-grey-7 rounded-md px-2 py-1 text-sm">기간만료</div>
                       ) : (
-                        <div className="filled-red rounded-md px-2  py-1 text-sm">제출필요</div>
+                        <div className="filled-red rounded-md px-2 py-1 text-sm">제출필요</div>
                       )}
                     </>
                   ) : (
-                    <div className="rounded-md bg-grey-7 px-2  py-1 text-sm">제출완료</div>
+                    <div className="bg-grey-7 rounded-md px-2 py-1 text-sm">제출완료</div>
                   )}
-                  {submitText && <div className="rounded-md bg-grey-7 px-2  py-1 text-sm">{submitText}</div>}
+                  {submitText && <div className="bg-grey-7 rounded-md px-2 py-1 text-sm">{submitText}</div>}
                 </div>
               </div>
             )}
           </div>
 
           <div className="flex items-start justify-between">
-            <span className={clsx('w-[90%] text-18 font-bold', newYN ? 'text-black' : 'text-[#aaa]')}>{title}</span>
+            <span className={clsx('text-18 w-[90%] font-bold', newYN ? 'text-black' : 'text-[#aaa]')}>{title}</span>
             {newYN ? <Icon.Unread className="scale-75" /> : <Icon.Read className="scale-75" />}
           </div>
 
@@ -170,13 +170,13 @@ export function FeedsItem({
           )}
 
           {!contentJson && (
-            <div className="feedback_space whitespace-pre-line break-all">
+            <div className="feedback_space break-all whitespace-pre-line">
               {Pdfs?.length === 0 && images?.length === 0 ? (
-                <span className={clsx('line-clamp-5 text-15', newYN ? 'text-black' : 'text-[#aaa]')}>
+                <span className={clsx('text-15 line-clamp-5', newYN ? 'text-black' : 'text-[#aaa]')}>
                   {contentText}
                 </span>
               ) : (
-                <span className={clsx('line-clamp-3 text-15', newYN ? 'text-black' : 'text-[#aaa]')}>
+                <span className={clsx('text-15 line-clamp-3', newYN ? 'text-black' : 'text-[#aaa]')}>
                   {contentText}
                 </span>
               )}
@@ -187,8 +187,8 @@ export function FeedsItem({
           {(isVisible || isVisibled) && (
             <>
               {Pdfs?.length > 0 ? (
-                <div className="my-2 aspect-1/1 w-full grid-flow-row grid-cols-1 gap-2 ">
-                  <div className="relative aspect-auto rounded border-2 ">
+                <div className="my-2 aspect-1/1 w-full grid-flow-row grid-cols-1 gap-2">
+                  <div className="relative aspect-auto rounded border-2">
                     <PdfCard fileUrl={`${Constants.imageUrl}${Pdfs[0]}`} visibleButton={false} />
                   </div>
                 </div>
@@ -205,7 +205,7 @@ export function FeedsItem({
                             src={`${Constants.imageUrl}${image}`}
                             className="rounded-lg"
                             onError={({ currentTarget }) => {
-                              currentTarget.src = SvgImage;
+                              currentTarget.src = SvgImage
                             }}
                           />
                         </div>
@@ -219,13 +219,13 @@ export function FeedsItem({
 
           {!contentJson && contentFiles?.length != undefined && contentFiles?.length > 0 && (
             <div className="filled-gray-light rounded-lg px-3 py-2">
-              <div className="flex items-center space-x-2 text-13">
+              <div className="text-13 flex items-center space-x-2">
                 <FileItemIcon /> &nbsp; 첨부파일 {contentFiles?.length}개
               </div>
             </div>
           )}
 
-          <div className="mt-1 flex items-center space-x-1 text-13  text-gray-500">
+          <div className="text-13 mt-1 flex items-center space-x-1 text-gray-500">
             <img className="w-6 rounded-md" src={`${Constants.imageUrl}${schoolMark}`} />
             <div>{schoolName}</div>
             <div>{writer}</div>
@@ -235,5 +235,5 @@ export function FeedsItem({
         </div>
       </div>
     </ListItem>
-  );
+  )
 }

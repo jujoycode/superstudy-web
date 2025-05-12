@@ -1,21 +1,21 @@
-import { Link, useLocation } from 'react-router-dom';
-import { Badge } from 'src/components/common';
-import { Newsletter, NewsletterType } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { Routes } from 'src/routes';
-import { getNickName } from 'src/util/status';
-import { Time } from '../common/Time';
+import { Link, useLocation } from 'react-router-dom'
+import { Badge } from '@/legacy/components/common'
+import { Newsletter, NewsletterType } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { Routes } from 'src/routes'
+import { getNickName } from '@/legacy/util/status'
+import { Time } from '@/legacy/components/common/Time'
 
 interface NewsletterCardProps {
-  newsletter: Newsletter;
-  isNew?: boolean;
-  onClick?: () => void;
+  newsletter: Newsletter
+  isNew?: boolean
+  onClick?: () => void
 }
 
 export function NewsletterCard({ newsletter, isNew, onClick }: NewsletterCardProps) {
-  const { pathname } = useLocation();
-  const { id } = newsletter;
-  const { t } = useLanguage();
+  const { pathname } = useLocation()
+  const { id } = newsletter
+  const { t } = useLanguage()
 
   return (
     <div key={newsletter.id || 0}>
@@ -24,7 +24,7 @@ export function NewsletterCard({ newsletter, isNew, onClick }: NewsletterCardPro
           <div className="space-x-2">
             <Badge
               children={t(`${newsletter.category}`) || t('parent_letters')}
-              className="rounded-md bg-brand-1 text-brand-5"
+              className="bg-brand-1 text-brand-5 rounded-md"
             />
             <Badge className="rounded-md bg-purple-100 text-purple-700">
               {newsletter.toPerson && t('individual')} {newsletter.toStudent && t('student')}{' '}
@@ -32,7 +32,7 @@ export function NewsletterCard({ newsletter, isNew, onClick }: NewsletterCardPro
               {newsletter.type === NewsletterType.NOTICE ? `- ${t('notice')}` : `- ${t('survey')}`}
             </Badge>
 
-            {newsletter.isTemp && <Badge className="px-4 py-1 text-sm text-brand-1">{t('save_draft')}</Badge>}
+            {newsletter.isTemp && <Badge className="text-brand-1 px-4 py-1 text-sm">{t('save_draft')}</Badge>}
           </div>
 
           <div className="text-sm font-light">
@@ -68,8 +68,8 @@ export function NewsletterCard({ newsletter, isNew, onClick }: NewsletterCardPro
               onClick={onClick}
               className={
                 pathname.startsWith(`${Routes.teacher.newsletter}/${newsletter.id}`)
-                  ? 'rounded-md border border-darkgray bg-darkgray px-4 py-2 text-xs text-white focus:outline-none'
-                  : 'rounded-md border border-darkgray bg-white px-4 py-2 text-xs text-darkgray hover:bg-darkgray hover:text-white focus:outline-none'
+                  ? 'border-darkgray bg-darkgray rounded-md border px-4 py-2 text-xs text-white focus:outline-none'
+                  : 'border-darkgray text-darkgray hover:bg-darkgray rounded-md border bg-white px-4 py-2 text-xs hover:text-white focus:outline-none'
               }
             />
           </Link>
@@ -83,8 +83,8 @@ export function NewsletterCard({ newsletter, isNew, onClick }: NewsletterCardPro
                       onClick={onClick}
                       className={
                         pathname.startsWith(`/teacher/newsletter/submit/${id}`)
-                          ? 'rounded-md border border-darkgray bg-darkgray px-4 py-2 text-xs text-white focus:outline-none'
-                          : 'rounded-md border border-darkgray bg-white px-4 py-2 text-xs text-darkgray hover:bg-darkgray hover:text-white focus:outline-none'
+                          ? 'border-darkgray bg-darkgray rounded-md border px-4 py-2 text-xs text-white focus:outline-none'
+                          : 'border-darkgray text-darkgray hover:bg-darkgray rounded-md border bg-white px-4 py-2 text-xs hover:text-white focus:outline-none'
                       }
                     />
                   </Link>
@@ -93,8 +93,8 @@ export function NewsletterCard({ newsletter, isNew, onClick }: NewsletterCardPro
                       children={t('download')}
                       className={
                         pathname.startsWith(`/teacher/newsletter/download/${id}`)
-                          ? 'rounded-md border border-darkgray bg-darkgray px-4 py-2 text-xs text-white focus:outline-none'
-                          : 'rounded-md border border-darkgray bg-white px-4 py-2 text-xs text-darkgray hover:bg-darkgray hover:text-white focus:outline-none'
+                          ? 'border-darkgray bg-darkgray rounded-md border px-4 py-2 text-xs text-white focus:outline-none'
+                          : 'border-darkgray text-darkgray hover:bg-darkgray rounded-md border bg-white px-4 py-2 text-xs hover:text-white focus:outline-none'
                       }
                     />
                   </Link>
@@ -107,8 +107,8 @@ export function NewsletterCard({ newsletter, isNew, onClick }: NewsletterCardPro
                       onClick={onClick}
                       className={
                         pathname.startsWith(`/teacher/newsletter/check/${id}`)
-                          ? 'rounded-md border border-darkgray bg-darkgray px-4 py-2 text-xs text-white focus:outline-none'
-                          : 'rounded-md border border-darkgray bg-white px-4 py-2 text-xs text-darkgray hover:bg-darkgray hover:text-white focus:outline-none'
+                          ? 'border-darkgray bg-darkgray rounded-md border px-4 py-2 text-xs text-white focus:outline-none'
+                          : 'border-darkgray text-darkgray hover:bg-darkgray rounded-md border bg-white px-4 py-2 text-xs hover:text-white focus:outline-none'
                       }
                     />
                   </Link>
@@ -117,8 +117,8 @@ export function NewsletterCard({ newsletter, isNew, onClick }: NewsletterCardPro
                       children={t('download_excel')}
                       className={
                         pathname.startsWith(`/teacher/newsletter/unread-student-download/${id}`)
-                          ? 'rounded-md border border-darkgray bg-darkgray px-4 py-2 text-xs text-white focus:outline-none'
-                          : 'rounded-md border border-darkgray bg-white px-4 py-2 text-xs text-darkgray hover:bg-darkgray hover:text-white focus:outline-none'
+                          ? 'border-darkgray bg-darkgray rounded-md border px-4 py-2 text-xs text-white focus:outline-none'
+                          : 'border-darkgray text-darkgray hover:bg-darkgray rounded-md border bg-white px-4 py-2 text-xs hover:text-white focus:outline-none'
                       }
                     />
                   </Link>
@@ -130,5 +130,5 @@ export function NewsletterCard({ newsletter, isNew, onClick }: NewsletterCardPro
       </div>
       <div className="h-0.5 w-full bg-gray-100"></div>
     </div>
-  );
+  )
 }

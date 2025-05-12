@@ -1,13 +1,13 @@
-import undoArrow from 'src/assets/images/undo-arrow.png';
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg';
-import { Constants } from 'src/constants';
-import { DocumentObject } from 'src/type/document-object';
-import { getFileNameFromUrl } from 'src/util/file';
+import undoArrow from 'src/assets/images/undo-arrow.png'
+import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg'
+import { Constants } from '@/legacy/constants'
+import { DocumentObject } from '@/legacy/types/document-object'
+import { getFileNameFromUrl } from '@/legacy/util/file'
 
 interface DocumentObjectComponentProps {
-  id: number;
-  documentObjet: DocumentObject;
-  onDeleteClick?: (key: number) => void;
+  id: number
+  documentObjet: DocumentObject
+  onDeleteClick?: (key: number) => void
 }
 
 export function DocumentObjectComponent({ id, documentObjet, onDeleteClick }: DocumentObjectComponentProps) {
@@ -23,7 +23,7 @@ export function DocumentObjectComponent({ id, documentObjet, onDeleteClick }: Do
             <FileItemIcon />
             <div className="ml-2">{getFileNameFromUrl(documentObjet.document)}</div>
           </div>
-          <div className="flex min-w-max items-center justify-center bg-white px-2 text-lightpurple-4">
+          <div className="text-lightpurple-4 flex min-w-max items-center justify-center bg-white px-2">
             <a
               href={`${Constants.imageUrl}${documentObjet.document}`}
               target="_blank"
@@ -55,5 +55,5 @@ export function DocumentObjectComponent({ id, documentObjet, onDeleteClick }: Do
         </div>
       )}
     </div>
-  );
+  )
 }

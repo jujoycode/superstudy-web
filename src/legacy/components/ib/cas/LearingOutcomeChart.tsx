@@ -1,53 +1,53 @@
-import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from 'chart.js';
-import { Typography } from 'src/components/common/Typography';
-import { CAS_LEARNINGOUTCOME } from 'src/constants/ib';
-import { ResponseIBCasDtoLearningOutcome, ResponseIBOnlyCasDto } from 'src/generated/model';
+import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from 'chart.js'
+import { Typography } from '@/legacy/components/common/Typography'
+import { CAS_LEARNINGOUTCOME } from '@/legacy/constants/ib'
+import { ResponseIBCasDtoLearningOutcome, ResponseIBOnlyCasDto } from '@/legacy/generated/model'
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 interface LearningOutcomeChartProps {
-  projects?: ResponseIBOnlyCasDto[];
+  projects?: ResponseIBOnlyCasDto[]
 }
 
 const LearningOutcomeChart = ({ projects }: LearningOutcomeChartProps) => {
   const calculateLearningOutcomes = (projects?: ResponseIBOnlyCasDto[]) => {
-    if (!projects) return {};
+    if (!projects) return {}
 
-    const counts: Record<string, number> = {};
+    const counts: Record<string, number> = {}
 
     projects
       .filter((p) => p.status)
       .forEach((project) => {
-        const outcomes = project.cas?.learningOutcome;
+        const outcomes = project.cas?.learningOutcome
         if (outcomes) {
           Object.keys(outcomes).map((key) => {
-            if (!counts[key]) counts[key] = 0;
+            if (!counts[key]) counts[key] = 0
             if (outcomes[key as keyof ResponseIBCasDtoLearningOutcome]) {
-              counts[key]++;
+              counts[key]++
             }
-          });
+          })
         }
-      });
+      })
 
-    return counts;
-  };
+    return counts
+  }
 
-  const learningOutcomeCounts = calculateLearningOutcomes(projects);
-  const hasData = Object.values(learningOutcomeCounts).some((count) => count > 0);
-  const maxDataValue = 8;
-  const barWidthPerUnit = maxDataValue > 0 ? 100 / maxDataValue : 0;
+  const learningOutcomeCounts = calculateLearningOutcomes(projects)
+  const hasData = Object.values(learningOutcomeCounts).some((count) => count > 0)
+  const maxDataValue = 8
+  const barWidthPerUnit = maxDataValue > 0 ? 100 / maxDataValue : 0
 
   return (
     <div className="relative flex w-full flex-col gap-2">
       {/* 기준선 배경 */}
       <div className="flex w-full flex-row gap-6">
         <div className="w-[192px]"></div>
-        <div className="absolute left-[224px] top-2 h-[188px] w-[264px]">
+        <div className="absolute top-2 left-[224px] h-[188px] w-[264px]">
           <div className="relative flex h-full w-full justify-between">
             {Array.from({ length: 9 }, (_, i) => (
               <div className="relative" key={i}>
                 {/* 기준선 */}
-                <div className="absolute left-0 top-0 h-full w-[1px] -translate-x-1/2 transform bg-primary-gray-100" />
+                <div className="bg-primary-gray-100 absolute top-0 left-0 h-full w-[1px] -translate-x-1/2 transform" />
               </div>
             ))}
           </div>
@@ -63,7 +63,7 @@ const LearningOutcomeChart = ({ projects }: LearningOutcomeChartProps) => {
           <div className="z-10 ml-2 h-3 w-[264px]">
             <div
               className={`h-full ${
-                hasData ? 'rounded-r-[4px] border-dim-8 bg-gradient-navy-400' : 'bg-primary-gray-200'
+                hasData ? 'border-dim-8 bg-gradient-navy-400 rounded-r-[4px]' : 'bg-primary-gray-200'
               }`}
               style={{
                 width: hasData
@@ -80,17 +80,17 @@ const LearningOutcomeChart = ({ projects }: LearningOutcomeChartProps) => {
           {Array.from({ length: 9 }, (_, i) => i).map((month) => {
             return (
               <div className="relative w-4 text-center" key={month}>
-                <div className="bg-dim-300 absolute left-1/2 top-0 h-full w-px -translate-x-1/2 transform" />
+                <div className="bg-dim-300 absolute top-0 left-1/2 h-full w-px -translate-x-1/2 transform" />
                 <Typography variant="caption3" className="text-primary-gray-400">
                   {month}
                 </Typography>
               </div>
-            );
+            )
           })}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LearningOutcomeChart;
+export default LearningOutcomeChart

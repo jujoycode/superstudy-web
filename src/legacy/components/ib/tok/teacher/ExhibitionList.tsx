@@ -1,63 +1,63 @@
-import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import NODATA from 'src/assets/images/no-data.png';
-import { Blank } from 'src/components/common';
-import AlertV2 from 'src/components/common/AlertV2';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { Typography } from 'src/components/common/Typography';
-import ColorSVGIcon from 'src/components/icon/ColorSVGIcon';
-import { useGetFeedbackBatchExist, useGetUnreadFeedbackCount } from 'src/container/ib-feedback';
-import { useexhibitionGetByIBId } from 'src/container/ib-tok-exhibition';
-import { ResponseIBDto } from 'src/generated/model';
-import { meState } from 'src/store';
-import FeedbackViewer from '../../FeedbackViewer';
+import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import NODATA from 'src/assets/images/no-data.png'
+import { Blank } from '@/legacy/components/common'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
+import { useGetFeedbackBatchExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
+import { useexhibitionGetByIBId } from '@/legacy/container/ib-tok-exhibition'
+import { ResponseIBDto } from '@/legacy/generated/model'
+import { meState } from '@/stores'
+import FeedbackViewer from '../../FeedbackViewer'
 
 interface ExhibitionListProps {
-  data: ResponseIBDto;
-  refetch: () => void;
+  data: ResponseIBDto
+  refetch: () => void
 }
 
 export default function ExhibitionList({ data, refetch }: ExhibitionListProps) {
-  const me = useRecoilValue(meState);
-  const [feedbackOpen, setFeedbackOpen] = useState(false);
-  const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined);
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const me = useRecoilValue(meState)
+  const [feedbackOpen, setFeedbackOpen] = useState(false)
+  const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined)
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
 
-  const { data: Exhibition, isLoading } = useexhibitionGetByIBId(data.id);
+  const { data: Exhibition, isLoading } = useexhibitionGetByIBId(data.id)
 
-  const { push } = useHistory();
+  const { push } = useHistory()
   const { data: Feedback } = useGetFeedbackBatchExist(
     {
       referenceIds: String(Exhibition?.id),
       referenceTable: 'EXHIBITION',
     },
     { enabled: !!data },
-  );
+  )
 
   const { data: count } = useGetUnreadFeedbackCount(
     { referenceId: Exhibition?.id || 0, referenceTable: 'EXHIBITION' },
     {
       enabled: !!data,
     },
-  );
+  )
 
   const handleFeedbackOpen = () => {
-    setFeedbackOpen(true);
+    setFeedbackOpen(true)
     if (unreadCount && unreadCount > 0) {
-      setUnreadCount(0);
+      setUnreadCount(0)
     }
-  };
+  }
 
   useEffect(() => {
     if (count !== undefined) {
-      setUnreadCount(count);
+      setUnreadCount(count)
     }
-  }, [count]);
+  }, [count])
 
-  if (data === undefined) return null;
+  if (data === undefined) return null
 
   return (
     <section className="h-[664px]">
@@ -74,7 +74,7 @@ export default function ExhibitionList({ data, refetch }: ExhibitionListProps) {
               <img src={NODATA} className="h-12 w-[43px] object-cover" />
             </div>
             <span className="text-center">
-              <Typography variant="body2" className="font-medium text-primary-gray-700">
+              <Typography variant="body2" className="text-primary-gray-700 font-medium">
                 기획안 승인 후, 학생이 전시회를 작성해야
                 <br />
                 확인할 수 있습니다.
@@ -83,17 +83,17 @@ export default function ExhibitionList({ data, refetch }: ExhibitionListProps) {
           </div>
         ) : (
           <table className="w-full">
-            <thead className="border-y border-y-primary-gray-100 text-[15px] font-medium text-primary-gray-500">
+            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
               <tr>
-                <td className="w-[964px] py-[9px] pl-6 pr-2 text-center">질문</td>
+                <td className="w-[964px] py-[9px] pr-2 pl-6 text-center">질문</td>
                 <td className="w-[150px] px-2 py-[9px] text-center">수정일</td>
-                <td className="w-[166px] py-[9px] pl-2 pr-6 text-center">피드백</td>
+                <td className="w-[166px] py-[9px] pr-6 pl-2 text-center">피드백</td>
               </tr>
             </thead>
-            <tbody className="text-[15px] font-medium text-primary-gray-900">
-              <tr className="border-b border-b-primary-gray-100">
+            <tbody className="text-primary-gray-900 text-[15px] font-medium">
+              <tr className="border-b-primary-gray-100 border-b">
                 <td
-                  className="cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-4 pl-6 pr-2 text-center"
+                  className="cursor-pointer overflow-hidden py-4 pr-2 pl-6 text-center text-ellipsis whitespace-nowrap"
                   onClick={() =>
                     push(`/teacher/ib/tok/exhibition/${data.id}/detail/${Exhibition.id}`, {
                       project: data,
@@ -103,7 +103,7 @@ export default function ExhibitionList({ data, refetch }: ExhibitionListProps) {
                   {data?.tokExhibitionPlan?.themeQuestion}
                 </td>
                 <td className="px-2 py-4 text-center">{format(new Date(data?.updatedAt), 'yyyy.MM.dd')}</td>
-                <td className="flex justify-center py-4 pl-2 pr-6">
+                <td className="flex justify-center py-4 pr-6 pl-2">
                   {Feedback?.items[0].totalCount && Feedback?.items[0].totalCount > 0 ? (
                     <ButtonV2
                       variant="outline"
@@ -112,9 +112,9 @@ export default function ExhibitionList({ data, refetch }: ExhibitionListProps) {
                       className={`${unreadCount && unreadCount > 0 && 'flex flex-row items-center gap-1'}`}
                       onClick={() => {
                         if (unreadCount) {
-                          handleFeedbackOpen();
+                          handleFeedbackOpen()
                         } else {
-                          push(`/teacher/ib/tok/exhibition/${data.id}/detail/${Exhibition.id}`);
+                          push(`/teacher/ib/tok/exhibition/${data.id}/detail/${Exhibition.id}`)
                         }
                       }}
                     >
@@ -149,10 +149,10 @@ export default function ExhibitionList({ data, refetch }: ExhibitionListProps) {
           confirmText="확인"
           message={alertMessage}
           onConfirm={() => {
-            setAlertMessage(null);
+            setAlertMessage(null)
           }}
         />
       )}
     </section>
-  );
+  )
 }

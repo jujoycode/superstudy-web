@@ -1,64 +1,64 @@
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Blank } from 'src/components/common';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import { Typography } from 'src/components/common/Typography';
-import EssayOverviewPanel from 'src/components/ib/overview/TOK/Essay/EssayOverviewPanel';
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { Blank } from '@/legacy/components/common'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import EssayOverviewPanel from 'src/components/ib/overview/TOK/Essay/EssayOverviewPanel'
 import {
   useIBEssayNotSubmittedNotification,
   useIBEssayStatus,
   useIBEssaySubmissionStatus,
-} from 'src/container/ib-overview';
+} from '@/legacy/container/ib-overview'
 import {
   EssayGetSubmissionStatusCountParams,
   EssayGetSubmissionStatusStatus,
   EssayUnsubmitNotificationType,
-} from 'src/generated/model';
-import { handleBatchBlobDownload } from 'src/hooks/useBatchDownload';
-import { getUrlFromFile } from 'src/util/file';
+} from '@/legacy/generated/model'
+import { handleBatchBlobDownload } from '@/legacy/hooks/useBatchDownload'
+import { getUrlFromFile } from '@/legacy/util/file'
 
 export default function EssayView({ grade, klass, ibType }: EssayGetSubmissionStatusCountParams) {
-  const { push } = useHistory();
+  const { push } = useHistory()
 
   const [status, setStatus] = useState<EssayGetSubmissionStatusStatus>(
     () => (sessionStorage.getItem('PROJECT_TOK_ESSAY_STATUS') as EssayGetSubmissionStatusStatus) || 'NOT_SUBMITTED',
-  );
-  const [isDownloading, setIsDownloading] = useState(false);
+  )
+  const [isDownloading, setIsDownloading] = useState(false)
 
   const { data } = useIBEssayStatus({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
     ibType,
-  });
+  })
 
   const { students = [] } = useIBEssaySubmissionStatus({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
     ibType,
     status,
-  });
+  })
 
-  const filePathArray = students.map((student) => student.essay?.filePath);
+  const filePathArray = students.map((student) => student.essay?.filePath)
 
   // TODO: 파일명 응시코드로 수정 필요
   const finalSubmittedDownload = async () => {
-    setIsDownloading(true);
+    setIsDownloading(true)
     const pdfFiles = await Promise.all(
       filePathArray.map(async (filePath, index) => {
-        const url = getUrlFromFile(filePath);
-        const response = await fetch(url);
-        const blob = await response.blob();
+        const url = getUrlFromFile(filePath)
+        const response = await fetch(url)
+        const blob = await response.blob()
 
         return {
           blob,
           fileName: `TOK_T${211 + index}_Essay.pdf`,
-        };
+        }
       }),
-    );
+    )
 
-    await handleBatchBlobDownload(pdfFiles, '최종 TOK 에세이');
-    setIsDownloading(false);
-  };
+    await handleBatchBlobDownload(pdfFiles, '최종 TOK 에세이')
+    setIsDownloading(false)
+  }
 
   const { mutate: notiMutate, isLoading: notiLoading } = useIBEssayNotSubmittedNotification({
     params: {
@@ -67,13 +67,13 @@ export default function EssayView({ grade, klass, ibType }: EssayGetSubmissionSt
       klass,
     },
     onError: (error) => {
-      console.error('미제출자 알림 발송 실패:', error);
+      console.error('미제출자 알림 발송 실패:', error)
     },
-  });
+  })
 
   useEffect(() => {
-    sessionStorage.setItem('PROJECT_TOK_ESSAY_STATUS', status);
-  }, [status]);
+    sessionStorage.setItem('PROJECT_TOK_ESSAY_STATUS', status)
+  }, [status])
 
   return (
     <div>
@@ -162,5 +162,5 @@ export default function EssayView({ grade, klass, ibType }: EssayGetSubmissionSt
         </div>
       )}
     </div>
-  );
+  )
 }

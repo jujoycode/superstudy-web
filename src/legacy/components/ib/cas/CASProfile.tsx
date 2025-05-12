@@ -1,39 +1,39 @@
-import { useState } from 'react';
-import NODATA from 'src/assets/images/no-data.png';
-import SvgUser from 'src/assets/images/no_profile.png';
-import AlertV2 from 'src/components/common/AlertV2';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { IBBlank } from 'src/components/common/IBBlank';
-import { Typography } from 'src/components/common/Typography';
-import { Constants } from 'src/constants';
-import { useIBProfileGetById } from 'src/container/ib-cas';
-import { ResponseIBPortfolioDto, ResponseUserDto } from 'src/generated/model';
-import { makeStudNum5 } from 'src/util/status';
-import { IbCASProfile } from './IbCASProfile';
+import { useState } from 'react'
+import NODATA from 'src/assets/images/no-data.png'
+import SvgUser from 'src/assets/images/no_profile.png'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
+import { Constants } from '@/legacy/constants'
+import { useIBProfileGetById } from '@/legacy/container/ib-cas'
+import { ResponseIBPortfolioDto, ResponseUserDto } from '@/legacy/generated/model'
+import { makeStudNum5 } from '@/legacy/util/status'
+import { IbCASProfile } from './IbCASProfile'
 
-type ProfileType = 'create' | 'update';
+type ProfileType = 'create' | 'update'
 interface CASProfileProps {
-  data?: ResponseIBPortfolioDto;
-  refetch: () => void;
-  me: ResponseUserDto;
+  data?: ResponseIBPortfolioDto
+  refetch: () => void
+  me: ResponseUserDto
 }
 
 function CASProfile({ data, refetch, me }: CASProfileProps) {
-  const [profileModal, setProfileModal] = useState<boolean>(false);
-  const [type, setType] = useState<ProfileType>('create');
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
-  const { data: profile, isLoading } = useIBProfileGetById(me?.id || 0);
+  const [profileModal, setProfileModal] = useState<boolean>(false)
+  const [type, setType] = useState<ProfileType>('create')
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
+  const { data: profile, isLoading } = useIBProfileGetById(me?.id || 0)
 
   const handleSuccess = () => {
-    setAlertMessage(`프로필이\n저장되었습니다`);
-    setProfileModal(!profileModal);
-    refetch();
-  };
+    setAlertMessage(`프로필이\n저장되었습니다`)
+    setProfileModal(!profileModal)
+    refetch()
+  }
 
   const handleClick = (type: ProfileType) => {
-    setProfileModal(!profileModal);
-    setType(type);
-  };
+    setProfileModal(!profileModal)
+    setType(type)
+  }
 
   return (
     <>
@@ -44,7 +44,7 @@ function CASProfile({ data, refetch, me }: CASProfileProps) {
       ) : (
         <section
           className={`flex w-[416px] flex-col gap-6 self-start rounded-xl bg-white p-6 ${
-            data === undefined && 'border border-primary-orange-400 shadow-[0_0_15px_5px_0_4px_8px_0_#ffe8db]'
+            data === undefined && 'border-primary-orange-400 border shadow-[0_0_15px_5px_0_4px_8px_0_#ffe8db]'
           }`}
         >
           <div className="flex flex-row items-center justify-between">
@@ -53,7 +53,7 @@ function CASProfile({ data, refetch, me }: CASProfileProps) {
               <Typography variant="body3" className="text-primary-gray-700">
                 지도교사
               </Typography>
-              <Typography variant="body3" className="mx-1 text-primary-gray-400">
+              <Typography variant="body3" className="text-primary-gray-400 mx-1">
                 ·
               </Typography>
               <Typography variant="body3" className="text-primary-gray-700">
@@ -61,7 +61,7 @@ function CASProfile({ data, refetch, me }: CASProfileProps) {
               </Typography>
             </div>
           </div>
-          <div className="flex select-none items-center gap-4 py-2">
+          <div className="flex items-center gap-4 py-2 select-none">
             <div className="flex h-12 w-12 overflow-hidden rounded-xl">
               <img
                 className="mx-auto h-12 w-12 rounded-xl"
@@ -69,9 +69,9 @@ function CASProfile({ data, refetch, me }: CASProfileProps) {
                 alt=""
                 loading="lazy"
                 onError={({ currentTarget }) => {
-                  currentTarget.onerror = null; // prevents looping
-                  currentTarget.src = SvgUser;
-                  currentTarget.className = 'w-full';
+                  currentTarget.onerror = null // prevents looping
+                  currentTarget.src = SvgUser
+                  currentTarget.className = 'w-full'
                 }}
               />
             </div>
@@ -88,7 +88,7 @@ function CASProfile({ data, refetch, me }: CASProfileProps) {
                 </Typography>
               </div>
               {/* TODO : 서버에서 전달받은 코드 사용 */}
-              <Typography variant="caption2" className="font-medium text-primary-gray-500">
+              <Typography variant="caption2" className="text-primary-gray-500 font-medium">
                 응시코드 {profile?.ibCode || '-'}
               </Typography>
             </div>
@@ -119,7 +119,7 @@ function CASProfile({ data, refetch, me }: CASProfileProps) {
                         {qna.answer}
                       </Typography>
                     </div>
-                  );
+                  )
                 })}
               </div>
             )}
@@ -146,7 +146,7 @@ function CASProfile({ data, refetch, me }: CASProfileProps) {
         </section>
       )}
     </>
-  );
+  )
 }
 
-export default CASProfile;
+export default CASProfile

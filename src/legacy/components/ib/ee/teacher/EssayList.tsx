@@ -1,32 +1,32 @@
-import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import NODATA from 'src/assets/images/no-data.png';
-import { useGetFeedbackExist, useGetUnreadFeedbackCount } from 'src/container/ib-feedback';
-import { useEssayGetEssay } from 'src/generated/endpoint';
-import { ResponseIBDto } from 'src/generated/model';
-import { LocationState } from 'src/type/ib';
-import { PopupModal } from '../../../PopupModal';
-import { ButtonV2 } from '../../../common/ButtonV2';
-import { Typography } from '../../../common/Typography';
-import ColorSVGIcon from '../../../icon/ColorSVGIcon';
-import { CheckList } from '../../CheckList';
-import FeedbackViewer from '../../FeedbackViewer';
+import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import NODATA from 'src/assets/images/no-data.png'
+import { useGetFeedbackExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
+import { useEssayGetEssay } from '@/legacy/generated/endpoint'
+import { ResponseIBDto } from '@/legacy/generated/model'
+import { LocationState } from '@/legacy/types/ib'
+import { PopupModal } from '../../../PopupModal'
+import { ButtonV2 } from '../../@/legacy/components/common/ButtonV2'
+import { Typography } from '../../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../../icon/ColorSVGIcon'
+import { CheckList } from '../../CheckList'
+import FeedbackViewer from '../../FeedbackViewer'
 
 interface EssayListProps {
-  data: ResponseIBDto;
-  studentData: LocationState['student'];
-  refetch: () => void;
+  data: ResponseIBDto
+  studentData: LocationState['student']
+  refetch: () => void
 }
 
 export default function EssayList({ data, studentData, refetch }: EssayListProps) {
-  const { push } = useHistory();
-  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false);
-  const [checkListOpen, setCheckListOpen] = useState<boolean>(false);
-  const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined);
+  const { push } = useHistory()
+  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false)
+  const [checkListOpen, setCheckListOpen] = useState<boolean>(false)
+  const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined)
 
-  const approvedProposal = data.proposals?.find((proposal) => proposal.status === 'ACCEPT');
-  const { data: essayData } = useEssayGetEssay(data.id);
+  const approvedProposal = data.proposals?.find((proposal) => proposal.status === 'ACCEPT')
+  const { data: essayData } = useEssayGetEssay(data.id)
 
   const { data: feedback } = useGetFeedbackExist(
     {
@@ -34,25 +34,25 @@ export default function EssayList({ data, studentData, refetch }: EssayListProps
       referenceTable: 'ESSAY',
     },
     { enabled: essayData?.status === 'SUBMIT' },
-  );
+  )
 
   const { data: count } = useGetUnreadFeedbackCount(
     { referenceId: essayData?.id || 0, referenceTable: 'ESSAY' },
     { enabled: essayData?.status === 'SUBMIT' },
-  );
+  )
 
   useEffect(() => {
     if (count !== undefined) {
-      setUnreadCount(count);
+      setUnreadCount(count)
     }
-  }, [count]);
+  }, [count])
 
   const handleFeedbackOpen = () => {
-    setFeedbackOpen(true);
+    setFeedbackOpen(true)
     if (unreadCount && unreadCount > 0) {
-      setUnreadCount(0);
+      setUnreadCount(0)
     }
-  };
+  }
 
   return (
     <>
@@ -72,7 +72,7 @@ export default function EssayList({ data, studentData, refetch }: EssayListProps
           </div>
         ) : (
           <table className="w-full text-center">
-            <thead className="border-y border-y-primary-gray-100 text-[15px] text-primary-gray-500">
+            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px]">
               <tr className="flex w-full items-center justify-between gap-[16px] px-[24px] py-[9px] font-medium">
                 <th className="w-[176px]">과목</th>
                 <th className="w-[524px]">연구주제</th>
@@ -81,8 +81,8 @@ export default function EssayList({ data, studentData, refetch }: EssayListProps
                 <th className="w-[156px]">체크리스트</th>
               </tr>
             </thead>
-            <tbody className="text-[15px] font-medium text-primary-gray-900">
-              <tr className="flex w-full items-center justify-between gap-[16px] border-b border-b-primary-gray-100 px-[24px] py-[9px]">
+            <tbody className="text-primary-gray-900 text-[15px] font-medium">
+              <tr className="border-b-primary-gray-100 flex w-full items-center justify-between gap-[16px] border-b px-[24px] py-[9px]">
                 <td className="line-clamp-1 w-[176px]">{approvedProposal?.subject}</td>
                 <td
                   className="line-clamp-1 w-[524px] cursor-pointer"
@@ -155,5 +155,5 @@ export default function EssayList({ data, studentData, refetch }: EssayListProps
         <CheckList.Teacher student={data.leader} charCount={essayData?.charCount || 0} />
       </PopupModal>
     </>
-  );
+  )
 }

@@ -1,0 +1,24 @@
+{
+  "assign_point_modal": {
+    "assign_points": "상벌점 부여",
+    "assignees": "상벌점 받을 학생",
+    "details": "내용",
+    "enter_manually": "직접 입력",
+    "point_log_title": "항목",
+    "point_log_value": "점수",
+    "assign": "부여하기"
+  },
+  "point_log_modal": {
+    "point_log": "상벌점 기록",
+    "point_log_created_at": "날짜",
+    "point_log_assigner": "부여자",
+    "point_log_assignee": "학생",
+    "point_log_title": "항목",
+    "point_log_value": "점수"
+  },
+  "student_modal": {
+    "chat": "채팅",
+    "point_logs": "상벌점 기록",
+    "parents": "보호자"
+  }
+}

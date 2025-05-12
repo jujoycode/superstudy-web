@@ -1,31 +1,31 @@
-import clsx from 'clsx';
-import { PropsWithChildren, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { useRecoilValue } from 'recoil';
-import { IBBlank } from 'src/components/common/IBBlank';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import { EE_SUBJECT_CATEGORY_언어와문학, EE_SUBJECT_CATEGORY_영어B, EE_SUBJECTS_CREATE } from 'src/constants/ib';
-import { useIBCreate } from 'src/container/ib-project';
-import { useIBProposalCreate } from 'src/container/ib-proposal-create';
-import { useIBProposalUpdate } from 'src/container/ib-proposal-update';
-import { RequestIBDto, RequestIBProposalDto, ResponseIBProposalDto } from 'src/generated/model';
-import { meState } from 'src/store';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Typography } from '../../common/Typography';
-import ColorSVGIcon from '../../icon/ColorSVGIcon';
-import { InputField } from '../InputField';
+import clsx from 'clsx'
+import { PropsWithChildren, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { useRecoilValue } from 'recoil'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { EE_SUBJECT_CATEGORY_언어와문학, EE_SUBJECT_CATEGORY_영어B, EE_SUBJECTS_CREATE } from '@/legacy/constants/ib'
+import { useIBCreate } from '@/legacy/container/ib-project'
+import { useIBProposalCreate } from '@/legacy/container/ib-proposal-create'
+import { useIBProposalUpdate } from '@/legacy/container/ib-proposal-update'
+import { RequestIBDto, RequestIBProposalDto, ResponseIBProposalDto } from '@/legacy/generated/model'
+import { meState } from '@/stores'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
+import { InputField } from '../InputField'
 
 interface IbEeProposalProps {
-  modalOpen: boolean;
-  setModalClose?: () => void;
-  size?: 'medium' | 'large';
-  projectId?: number;
-  handleBack?: () => void;
-  proposalData?: ResponseIBProposalDto;
-  onSuccess: (action: 'save' | 'requestApproval', data?: any) => void;
+  modalOpen: boolean
+  setModalClose?: () => void
+  size?: 'medium' | 'large'
+  projectId?: number
+  handleBack?: () => void
+  proposalData?: ResponseIBProposalDto
+  onSuccess: (action: 'save' | 'requestApproval', data?: any) => void
   // create : 프로젝트 생성 / update : 제안서 수정 / proposal : 후순위 제안서 생성
-  type: 'create' | 'update' | 'proposal';
-  ablePropragation?: boolean;
+  type: 'create' | 'update' | 'proposal'
+  ablePropragation?: boolean
 }
 
 export function IbEeProposal({
@@ -38,7 +38,7 @@ export function IbEeProposal({
   proposalData,
   ablePropragation = false,
 }: PropsWithChildren<IbEeProposalProps>) {
-  const me = useRecoilValue(meState);
+  const me = useRecoilValue(meState)
   const {
     control,
     handleSubmit,
@@ -61,19 +61,19 @@ export function IbEeProposal({
             category: '',
           },
     mode: 'onChange',
-  });
+  })
 
-  const selectedSubject = watch('subject');
-  const selectedCategory = watch('category');
+  const selectedSubject = watch('subject')
+  const selectedCategory = watch('category')
 
   // 저장 버튼 disabled 여부를 확인하는 함수
   // 언어와문학, 영어B 과목일 경우 category 선택 여부 확인
   const isSubmitDisabled = () => {
     if (selectedSubject === '언어와문학' || selectedSubject === '영어B') {
-      return !selectedCategory;
+      return !selectedCategory
     }
-    return false;
-  };
+    return false
+  }
 
   const requiredFields = watch([
     'subject',
@@ -83,58 +83,58 @@ export function IbEeProposal({
     'researchQuestion',
     'researchNeed',
     'researchMethod',
-  ]);
+  ])
 
-  const areAllFieldsFilled = requiredFields.every((field) => field && field.trim() !== '');
+  const areAllFieldsFilled = requiredFields.every((field) => field && field.trim() !== '')
 
   const { createIBProject, isLoading } = useIBCreate({
     onSuccess: (data) => {
-      onSuccess('save', data);
+      onSuccess('save', data)
     },
     onError: (error) => {
-      console.error('IB 프로젝트 생성 중 오류 발생:', error);
+      console.error('IB 프로젝트 생성 중 오류 발생:', error)
     },
-  });
+  })
 
   const { createIBProposal, isLoading: isCreatingProposal } = useIBProposalCreate({
     onSuccess: () => {
-      onSuccess('save');
+      onSuccess('save')
     },
     onError: (error) => {
-      console.error('IB 프로젝트 생성 중 오류 발생:', error);
+      console.error('IB 프로젝트 생성 중 오류 발생:', error)
     },
-  });
+  })
 
   const { updateIBProposal, isLoading: isUpdatingProposal } = useIBProposalUpdate({
     onSuccess: () => {
-      onSuccess('save');
+      onSuccess('save')
     },
     onError: (error) => {
-      console.error('IB 프로젝트 생성 중 오류 발생:', error);
+      console.error('IB 프로젝트 생성 중 오류 발생:', error)
     },
-  });
+  })
 
   const onSubmit = (formProposalData: RequestIBProposalDto) => {
-    if (isLoading) return;
+    if (isLoading) return
 
     const processedProposalData = {
       ...formProposalData,
       rank: type === 'create' ? 1 : type === 'proposal' ? undefined : formProposalData.rank,
-    };
+    }
 
     if (type === 'proposal' && projectId !== undefined) {
-      createIBProposal({ id: projectId, data: processedProposalData });
+      createIBProposal({ id: projectId, data: processedProposalData })
     } else if (type === 'update' && projectId !== undefined && proposalData) {
-      const proposalId = proposalData.id;
+      const proposalId = proposalData.id
       if (proposalId !== undefined) {
-        updateIBProposal({ id: projectId, proposalId, data: processedProposalData });
+        updateIBProposal({ id: projectId, proposalId, data: processedProposalData })
       } else {
-        console.error('수정할 제안서 ID가 없습니다.');
+        console.error('수정할 제안서 ID가 없습니다.')
       }
     } else {
       if (!me?.id) {
-        console.error('Leader ID가 없습니다. 로그인 상태를 확인하세요.');
-        return;
+        console.error('Leader ID가 없습니다. 로그인 상태를 확인하세요.')
+        return
       }
       const requestData: RequestIBDto = {
         title: 'EE 제안서',
@@ -142,37 +142,37 @@ export function IbEeProposal({
         description: 'EE 제안서입니다.',
         leaderId: me.id,
         proposals: [formProposalData],
-      };
+      }
 
-      createIBProject(requestData);
+      createIBProject(requestData)
     }
-  };
+  }
 
   // subject 변경 시 category 초기화
   useEffect(() => {
-    setValue('category', '');
-  }, [selectedSubject]);
+    setValue('category', '')
+  }, [selectedSubject])
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black bg-opacity-50 ${
+      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
         }
       }}
     >
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white px-8`}>
         {(isLoading || isCreatingProposal || isUpdatingProposal) && <IBBlank type="section-opacity" />}
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pb-6 pt-8 backdrop-blur-[20px]">
+        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6 backdrop-blur-[20px]">
           <Typography variant="title1">제안서 작성</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
         </div>
 
-        <div className="scroll-box flex max-h-[608px] flex-col gap-6 overflow-auto pb-8 pt-4">
+        <div className="scroll-box flex max-h-[608px] flex-col gap-6 overflow-auto pt-4 pb-8">
           <InputField
             label="과목"
             name="subject"
@@ -186,7 +186,7 @@ export function IbEeProposal({
           />
           {(selectedSubject === '언어와문학' || selectedSubject === '영어B') && (
             <div className="flex flex-col gap-2 px-[1px]">
-              <Typography variant="title3" className="font-semibold text-primary-gray-900">
+              <Typography variant="title3" className="text-primary-gray-900 font-semibold">
                 세부 카테고리<span className="text-primary-red-800">*</span>
               </Typography>
               <RadioV2.Group
@@ -260,7 +260,7 @@ export function IbEeProposal({
 
         <div
           className={clsx(
-            'sticky bottom-0 flex h-[104px] gap-4 border-t border-t-primary-gray-100 bg-white/70 pb-8 pt-6 backdrop-blur-[20px]',
+            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]',
             {
               'justify-between': type === 'create',
               'justify-end': type !== 'create',
@@ -287,5 +287,5 @@ export function IbEeProposal({
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,10 +1,10 @@
-import { Fieldtrip } from 'src/generated/model';
-import { makeStartEndToString } from 'src/util/time';
+import { Fieldtrip } from '@/legacy/generated/model'
+import { makeStartEndToString } from '@/legacy/util/time'
 
 interface FieldtripSuburbsTextSeparatePaperProps {
-  fieldtrip: Fieldtrip;
-  studentName: string;
-  resultTextPage: string;
+  fieldtrip: Fieldtrip
+  studentName: string
+  resultTextPage: string
 }
 
 export function FieldtripSuburbsTextSeparatePaper({
@@ -16,7 +16,7 @@ export function FieldtripSuburbsTextSeparatePaper({
     <div>
       <div className="w-full text-center text-xl font-bold">「학교장허가 교외체험학습」 결과보고서(별지)</div>
       <div className="flex justify-center">
-        <table className="w-full table-fixed border-2 border-black ">
+        <table className="w-full table-fixed border-2 border-black">
           <thead>
             <tr className="h-12">
               <th className="border border-black bg-gray-200" colSpan={3}>
@@ -45,7 +45,7 @@ export function FieldtripSuburbsTextSeparatePaper({
             </tr>
 
             <tr>
-              <td colSpan={21} className="relative whitespace-pre-line border border-black ">
+              <td colSpan={21} className="relative border border-black whitespace-pre-line">
                 <div className="h-[800px] overflow-y-auto px-4">{resultTextPage}</div>
               </td>
             </tr>
@@ -53,5 +53,5 @@ export function FieldtripSuburbsTextSeparatePaper({
         </table>
       </div>
     </div>
-  );
+  )
 }

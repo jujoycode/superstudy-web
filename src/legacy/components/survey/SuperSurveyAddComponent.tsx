@@ -1,32 +1,32 @@
-import { cloneDeep } from 'lodash';
-import { Question } from 'src/types';
-import { twMerge } from 'tailwind-merge';
-import { Section } from '../common';
-import { Button } from '../common/Button';
-import { SuperSurveyQuestion } from './SuperSurveyQuestion';
+import { cloneDeep } from 'lodash'
+import { Question } from '@/legacy/types'
+import { twMerge } from 'tailwind-merge'
+import { Section } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { SuperSurveyQuestion } from './SuperSurveyQuestion'
 
 interface SuperSurveyAddComponentProps {
-  setContent: (content: any) => void;
-  content: string | any[];
-  className?: string;
+  setContent: (content: any) => void
+  content: string | any[]
+  className?: string
 }
 
 export function SuperSurveyAddComponent({ setContent, content, className }: SuperSurveyAddComponentProps) {
-  let parsedContent: any[] = [];
+  let parsedContent: any[] = []
   try {
     if (typeof content === 'string') {
-      parsedContent = JSON.parse(content);
+      parsedContent = JSON.parse(content)
     } else if (Array.isArray(content)) {
-      parsedContent = content;
+      parsedContent = content
     }
   } catch (err) {}
   const addContent = () => {
-    const _content = cloneDeep(parsedContent);
-    let id = 1;
-    _content.forEach((c: any) => (c.id >= id ? (id = c.id + 1) : ''));
-    _content.push({ type: 'text', title: '', id, required: true });
-    setContent(_content);
-  };
+    const _content = cloneDeep(parsedContent)
+    let id = 1
+    _content.forEach((c: any) => (c.id >= id ? (id = c.id + 1) : ''))
+    _content.push({ type: 'text', title: '', id, required: true })
+    setContent(_content)
+  }
 
   return (
     <Section className={twMerge('min-h-screen-48 rounded border border-neutral-400 bg-white', className)}>
@@ -42,5 +42,5 @@ export function SuperSurveyAddComponent({ setContent, content, className }: Supe
         <div>질문 추가</div>
       </Button.lg>
     </Section>
-  );
+  )
 }

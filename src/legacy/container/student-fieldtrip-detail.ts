@@ -1,0 +1,93 @@
+import { addYears, format } from 'date-fns'
+import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import {
+  useFieldtripsDelete,
+  useFieldtripsFindOne,
+  useFieldtripsResend,
+  useSchedulesFindRejectSchedule,
+} from '@/legacy/generated/endpoint'
+import { childState } from '@/stores'
+import type { errorType } from '@/legacy/types'
+
+export function useStudentFieldtripDetail(id: number) {
+  const { push } = useHistory()
+  const [errorMessage, setErrorMessage] = useState('')
+  const child = useRecoilValue(childState)
+
+  const {
+    data: fieldtrip,
+    isLoading: isGetFieldtripLoading,
+    error,
+    refetch: refetchFieldtrip,
+  } = useFieldtripsFindOne(id, {
+    request: {
+      headers: {
+        'child-user-id': child?.id,
+      },
+    },
+  })
+
+  const { data: cannotSchedules, isLoading: isGetRejectScheduleLoading } = useSchedulesFindRejectSchedule(
+    {
+      startDate: fieldtrip?.startAt
+        ? format(new Date(fieldtrip?.startAt).setDate(1), 'yyyy-MM-dd')
+        : format(new Date().setDate(1), 'yyyy-MM-dd'),
+      endDate: format(addYears(new Date(), 1), 'yyyy-MM-dd'),
+    },
+    {
+      request: {
+        headers: {
+          'child-user-id': child?.id,
+        },
+      },
+    },
+  )
+
+  const { mutate: deleteFieldtripMutate, isLoading: isDeleteFieldtripLoading } = useFieldtripsDelete({
+    mutation: {
+      onSuccess: () => {
+        alert('삭제되었습니다.')
+        push('/student/fieldtrip')
+      },
+      onError: (e) => {
+        const errorMsg: errorType | undefined = e?.response?.data ? (e?.response?.data as errorType) : undefined
+
+        setErrorMessage(errorMsg?.message || '일시적 오류 입니다. 잠시 후 다시 시도해주세요.')
+      },
+    },
+  })
+
+  const deleteFieldtrip = () => {
+    deleteFieldtripMutate({ id })
+  }
+
+  const { refetch: resendAlimtalk, isLoading: isResendAlimtalkLoading } = useFieldtripsResend(id, {
+    query: {
+      enabled: false,
+      onSuccess: () => {
+        alert('신청서 알림톡이 재전송되었습니다.')
+        push('/student/fieldtrip')
+      },
+      onError: (e) => {
+        const errorMsg: errorType | undefined = e?.response?.data ? (e?.response?.data as errorType) : undefined
+
+        setErrorMessage(errorMsg?.message || '일시적 오류 입니다. 잠시 후 다시 시도해주세요.')
+      },
+    },
+  })
+
+  const isFieldtripLoading = isGetFieldtripLoading || isDeleteFieldtripLoading || isResendAlimtalkLoading
+
+  return {
+    cannotSchedules,
+    isFieldtripLoading,
+    fieldtrip,
+    error,
+    errorMessage,
+    refetchFieldtrip,
+    deleteFieldtrip,
+    resendAlimtalk,
+  }
+}

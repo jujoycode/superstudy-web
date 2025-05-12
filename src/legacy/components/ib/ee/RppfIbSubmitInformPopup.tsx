@@ -1,25 +1,25 @@
-import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useIBRPPFUpdateInfo } from 'src/container/ib-rppf';
-import { useRPPFGetById } from 'src/container/ib-rppf-findId';
-import { RequestRPPFInfoUpdateDto, ResponseIBDto, ResponseRPPFDto } from 'src/generated/model';
-import { PopupModal } from '../../PopupModal';
-import AlertV2 from '../../common/AlertV2';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Check } from '../../common/Check';
-import { Input } from '../../common/Input';
-import Stepper from '../../common/Stepper';
-import { TextareaV2 } from '../../common/TextareaV2';
-import { Typography } from '../../common/Typography';
+import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
+import { useIBRPPFUpdateInfo } from '@/legacy/container/ib-rppf'
+import { useRPPFGetById } from '@/legacy/container/ib-rppf-findId'
+import { RequestRPPFInfoUpdateDto, ResponseIBDto, ResponseRPPFDto } from '@/legacy/generated/model'
+import { PopupModal } from '../../PopupModal'
+import AlertV2 from '../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Check } from '../@/legacy/components/common/Check'
+import { Input } from '../@/legacy/components/common/Input'
+import Stepper from '../@/legacy/components/common/Stepper'
+import { TextareaV2 } from '../@/legacy/components/common/TextareaV2'
+import { Typography } from '../@/legacy/components/common/Typography'
 
 interface RppfListPopupProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  ibId: number;
-  rppfId: number;
-  rppfData?: ResponseRPPFDto;
-  IBData: ResponseIBDto;
-  type?: 'VIEW' | 'CREATE' | null;
+  modalOpen: boolean
+  setModalClose: () => void
+  ibId: number
+  rppfId: number
+  rppfData?: ResponseRPPFDto
+  IBData: ResponseIBDto
+  type?: 'VIEW' | 'CREATE' | null
 }
 
 export default function RppfIbSubmitInformPopup({
@@ -31,42 +31,42 @@ export default function RppfIbSubmitInformPopup({
   type = 'CREATE',
   rppfData,
 }: RppfListPopupProps) {
-  const [rppfState, setRppfState] = useState<ResponseRPPFDto | null>(rppfData || null);
-  const { data: fetchedRppf, isLoading: isRppfLoading } = useRPPFGetById(Number(ibId), Number(rppfId), rppfData);
-  const [guidanceTime, setGuidanceTime] = useState<number>(rppfState?.guidanceHours || 3);
+  const [rppfState, setRppfState] = useState<ResponseRPPFDto | null>(rppfData || null)
+  const { data: fetchedRppf, isLoading: isRppfLoading } = useRPPFGetById(Number(ibId), Number(rppfId), rppfData)
+  const [guidanceTime, setGuidanceTime] = useState<number>(rppfState?.guidanceHours || 3)
   const [academicIntegrityConsent, setAcademicIntegrityConsent] = useState<boolean>(
     rppfState?.academicIntegrityConsent || false,
-  );
-  const [check, setChecked] = useState<boolean>(rppfState?.academicIntegrityConsent || false);
-  const [teacherFeedback, setTeacherFeedback] = useState<string>(rppfState?.teacherFeedback || '');
-  const [teacherSignature, setTeacherSignature] = useState<string>(rppfState?.teacherSignature || '');
-  const [wordCounts, setWordCounts] = useState<number[]>([]);
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+  )
+  const [check, setChecked] = useState<boolean>(rppfState?.academicIntegrityConsent || false)
+  const [teacherFeedback, setTeacherFeedback] = useState<string>(rppfState?.teacherFeedback || '')
+  const [teacherSignature, setTeacherSignature] = useState<string>(rppfState?.teacherSignature || '')
+  const [wordCounts, setWordCounts] = useState<number[]>([])
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
 
   const { updateIBRPPFInfo } = useIBRPPFUpdateInfo({
     onSuccess: () => {
-      setAlertMessage(`RPPF 정보가\n저장되었습니다`);
+      setAlertMessage(`RPPF 정보가\n저장되었습니다`)
     },
     onError: (error) => {
-      console.error('IB 프로젝트 생성 중 오류 발생:', error);
+      console.error('IB 프로젝트 생성 중 오류 발생:', error)
     },
-  });
+  })
 
   useEffect(() => {
     if (!rppfData && fetchedRppf) {
-      setRppfState(fetchedRppf);
+      setRppfState(fetchedRppf)
     }
-  }, [rppfData, fetchedRppf]);
+  }, [rppfData, fetchedRppf])
 
   useEffect(() => {
     if (rppfState?.contents) {
-      const initialWordCounts = rppfState.contents.map((content) => Number(content.wordCount) || 0);
-      setWordCounts(initialWordCounts);
+      const initialWordCounts = rppfState.contents.map((content) => Number(content.wordCount) || 0)
+      setWordCounts(initialWordCounts)
     }
-  }, [rppfState]);
+  }, [rppfState])
 
   if (!rppfState) {
-    return <div>RPPF 정보를 불러오지 못하였습니다.</div>;
+    return <div>RPPF 정보를 불러오지 못하였습니다.</div>
   }
 
   return (
@@ -92,13 +92,13 @@ export default function RppfIbSubmitInformPopup({
                 guidanceHours: guidanceTime,
                 teacherFeedback: teacherFeedback || '',
                 academicIntegrityConsent,
-              };
+              }
 
               updateIBRPPFInfo({
                 ibId,
                 rppfId: rppfId,
                 data: requestData,
-              });
+              })
             }}
           >
             저장하기
@@ -107,9 +107,9 @@ export default function RppfIbSubmitInformPopup({
       })}
     >
       <div className="flex flex-col">
-        <div className="border-b border-b-primary-gray-100 px-8">
+        <div className="border-b-primary-gray-100 border-b px-8">
           {/* 학생 정보 */}
-          <div className="flex items-center gap-[6px] rounded-lg border border-primary-gray-200 bg-primary-gray-50 px-4 py-[6px]">
+          <div className="border-primary-gray-200 bg-primary-gray-50 flex items-center gap-[6px] rounded-lg border px-4 py-[6px]">
             <Typography variant="title3" className="text-primary-gray-900">
               {IBData?.leader.studentGroup.group.grade}
               {String(IBData?.leader.studentGroup.group.klass).padStart(2, '0')}
@@ -118,7 +118,7 @@ export default function RppfIbSubmitInformPopup({
             <Typography variant="title3" className="text-primary-gray-900">
               {IBData?.leader.name}
             </Typography>
-            <Typography variant="caption" className="w-[428px] text-right text-primary-gray-500">
+            <Typography variant="caption" className="text-primary-gray-500 w-[428px] text-right">
               Candidate personal code: {'IBPSH394_312'}
             </Typography>
           </div>
@@ -128,7 +128,7 @@ export default function RppfIbSubmitInformPopup({
             <Typography variant="title3" className="text-primary-gray-900">
               학문적 진실성 지도교사 서약서
             </Typography>
-            <Typography variant="body2" className="rounded-lg bg-primary-gray-50 px-4 py-[13px] text-primary-gray-700">
+            <Typography variant="body2" className="bg-primary-gray-50 text-primary-gray-700 rounded-lg px-4 py-[13px]">
               에세이는 전적으로 학생 본인에 의해 쓰였으며, 인용하였다고 출처 표시를 한 부분을 제외하고 어떠한 부분도
               다른 저자(인공지능)의 자료를 사용하지 않았음을 약속합니다. 추후 학업적 진실성에 어긋난다고 확인되는 경우
               IB 졸업장이 취소될 수 있음을 인지하고 있습니다.
@@ -139,7 +139,7 @@ export default function RppfIbSubmitInformPopup({
                 onChange={() => setAcademicIntegrityConsent(!academicIntegrityConsent)}
                 disabled={type === 'VIEW'}
               />
-              <Typography variant="title3" className="font-medium text-primary-gray-900">
+              <Typography variant="title3" className="text-primary-gray-900 font-medium">
                 위 내용을 확인 하였으며, 동의합니다.
               </Typography>
             </div>
@@ -147,7 +147,7 @@ export default function RppfIbSubmitInformPopup({
         </div>
 
         {/* 지도 시간 입력 */}
-        <div className="mt-8 flex items-center justify-between border-b border-b-primary-gray-100 px-8 pb-8">
+        <div className="border-b-primary-gray-100 mt-8 flex items-center justify-between border-b px-8 pb-8">
           <div className="flex flex-col gap-2">
             <Typography variant="title3" className="text-primary-gray-900">
               지도 시간 입력
@@ -162,7 +162,7 @@ export default function RppfIbSubmitInformPopup({
         </div>
 
         {/* 제출내역 */}
-        <div className="mt-8 flex flex-col gap-3 border-b border-b-primary-gray-100 px-8">
+        <div className="border-b-primary-gray-100 mt-8 flex flex-col gap-3 border-b px-8">
           <div className="flex justify-between">
             <Typography variant="title3" className="text-primary-gray-900">
               제출내역
@@ -174,7 +174,7 @@ export default function RppfIbSubmitInformPopup({
           </div>
 
           {/* RPPF 1차 */}
-          <div className="flex flex-col gap-3 rounded-lg border border-primary-gray-200 p-4">
+          <div className="border-primary-gray-200 flex flex-col gap-3 rounded-lg border p-4">
             <div className="flex items-center justify-between">
               <Typography variant="title3" className="text-primary-gray-900">
                 RPPF 1차
@@ -192,7 +192,7 @@ export default function RppfIbSubmitInformPopup({
           </div>
 
           {/* RPPF 2차 */}
-          <div className="flex flex-col gap-3 rounded-lg border border-primary-gray-200 p-4">
+          <div className="border-primary-gray-200 flex flex-col gap-3 rounded-lg border p-4">
             <div className="flex items-center justify-between">
               <Typography variant="title3" className="text-primary-gray-900">
                 RPPF 2차
@@ -210,7 +210,7 @@ export default function RppfIbSubmitInformPopup({
           </div>
 
           {/* RPPF 3차 */}
-          <div className="flex flex-col gap-3 rounded-lg border border-primary-gray-200 p-4">
+          <div className="border-primary-gray-200 flex flex-col gap-3 rounded-lg border p-4">
             <div className="flex items-center justify-between">
               <Typography variant="title3" className="text-primary-gray-900">
                 RPPF 3차
@@ -227,14 +227,14 @@ export default function RppfIbSubmitInformPopup({
             </Typography>
           </div>
 
-          <div className="flex flex-col gap-3 ">
-            <Typography variant="body2" className="rounded-lg bg-primary-gray-50 px-4 py-[13px] text-primary-gray-700">
+          <div className="flex flex-col gap-3">
+            <Typography variant="body2" className="bg-primary-gray-50 text-primary-gray-700 rounded-lg px-4 py-[13px]">
               학생의 소논문이 학문적 진실성에 어긋나지 않고, 학생 스스로 힘으로 작성되었다는 것을 지도교사로서
               확인했습니다.
             </Typography>
             <div className="mb-8 flex items-center gap-2">
               <Check.Basic checked={check} onChange={() => setChecked(!check)} disabled={type === 'VIEW'} />
-              <Typography variant="title3" className="font-medium text-primary-gray-900">
+              <Typography variant="title3" className="text-primary-gray-900 font-medium">
                 위 내용을 확인 하였으며, 동의합니다.
               </Typography>
             </div>
@@ -247,7 +247,7 @@ export default function RppfIbSubmitInformPopup({
             지도교사 의견 작성
           </Typography>
           {type === 'VIEW' ? (
-            <div className="flex flex-col gap-3 rounded-lg border border-primary-gray-200 bg-primary-gray-100 p-4">
+            <div className="border-primary-gray-200 bg-primary-gray-100 flex flex-col gap-3 rounded-lg border p-4">
               {teacherFeedback}
             </div>
           ) : (
@@ -275,5 +275,5 @@ export default function RppfIbSubmitInformPopup({
       </div>
       {alertMessage && <AlertV2 message={alertMessage} confirmText="확인" onConfirm={() => setModalClose()} />}
     </PopupModal>
-  );
+  )
 }

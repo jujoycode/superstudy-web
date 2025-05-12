@@ -1,17 +1,17 @@
-import React from 'react';
-import { ActivitySession, StudentActivitySession } from 'src/generated/model';
-import { DocumentObject } from 'src/type/document-object';
-import { ImageObject } from 'src/type/image-object';
-import { ActivitySessionDetailView } from './ActivitySessionDetailView';
-import { StudentActivitySessionDetailView } from './StudentActivitySessionDetailView';
-import { StudentActivitySessionSubmitView } from './StudentActivitySessionSubmitView';
+import React from 'react'
+import { ActivitySession, StudentActivitySession } from '@/legacy/generated/model'
+import { DocumentObject } from '@/legacy/types/document-object'
+import type { ImageObject } from '@/legacy/types/image-object'
+import { ActivitySessionDetailView } from './ActivitySessionDetailView'
+import { StudentActivitySessionDetailView } from './StudentActivitySessionDetailView'
+import { StudentActivitySessionSubmitView } from './StudentActivitySessionSubmitView'
 
 interface ActivitySessionTeacherViewProps {
-  activitySession: ActivitySession;
-  studentActivitySession?: StudentActivitySession;
-  page?: 'CREATE' | 'VIEW';
-  dummyImages?: Map<number, ImageObject>;
-  dummyFiles?: Map<number, DocumentObject>;
+  activitySession: ActivitySession
+  studentActivitySession?: StudentActivitySession
+  page?: 'CREATE' | 'VIEW'
+  dummyImages?: Map<number, ImageObject>
+  dummyFiles?: Map<number, DocumentObject>
 }
 
 export const ActivitySessionTeacherView: React.FC<ActivitySessionTeacherViewProps> = ({
@@ -48,5 +48,5 @@ export const ActivitySessionTeacherView: React.FC<ActivitySessionTeacherViewProp
         )}
       </div>
     </>
-  );
-};
+  )
+}

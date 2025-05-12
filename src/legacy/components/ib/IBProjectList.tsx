@@ -1,71 +1,71 @@
-import { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { useHistory } from 'react-router-dom';
-import { useIBGetByStudent } from 'src/container/ib-project-get-student';
-import { ResponseIBDto } from 'src/generated/model';
-import { BadgeV2 } from '../common/BadgeV2';
-import { IBBlank } from '../common/IBBlank';
-import { Typography } from '../common/Typography';
-import SVGIcon from '../icon/SVGIcon';
+import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { useHistory } from 'react-router-dom'
+import { useIBGetByStudent } from '@/legacy/container/ib-project-get-student'
+import { ResponseIBDto } from '@/legacy/generated/model'
+import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
+import SVGIcon from '../icon/SVGIcon'
 
 interface IBProjectListProps {
-  studentId: number;
-  currentProjectId: number;
-  children: React.ReactNode;
+  studentId: number
+  currentProjectId: number
+  children: React.ReactNode
 }
 
 function IBProjectList({ studentId, currentProjectId, children }: IBProjectListProps) {
-  const { data, isLoading } = useIBGetByStudent(studentId);
-  const history = useHistory();
-  const [open, setOpen] = useState<boolean>(false);
-  const [tooltipStyle, setTooltipStyle] = useState<React.CSSProperties>({});
-  const triggerRef = useRef<HTMLDivElement>(null);
-  const tooltipRef = useRef<HTMLDivElement>(null);
+  const { data, isLoading } = useIBGetByStudent(studentId)
+  const history = useHistory()
+  const [open, setOpen] = useState<boolean>(false)
+  const [tooltipStyle, setTooltipStyle] = useState<React.CSSProperties>({})
+  const triggerRef = useRef<HTMLDivElement>(null)
+  const tooltipRef = useRef<HTMLDivElement>(null)
 
   const handleProjectClick = (project: ResponseIBDto) => {
-    let path = '';
+    let path = ''
 
     if (project.ibType.startsWith('CAS')) {
-      path = `/ib/student/cas/${project.id}/plan`;
+      path = `/ib/student/cas/${project.id}/plan`
     } else if (project.ibType.startsWith('EE')) {
-      path = `/ib/student/ee/${project.id}`;
+      path = `/ib/student/ee/${project.id}`
     } else if (project.ibType === 'TOK_ESSAY') {
-      path = `/ib/student/tok/essay/${project.id}`;
+      path = `/ib/student/tok/essay/${project.id}`
     } else if (project.ibType === 'TOK_EXHIBITION') {
-      path = `/ib/student/tok/exhibition/${project.id}`;
+      path = `/ib/student/tok/exhibition/${project.id}`
     }
 
     if (path) {
-      history.push(path);
-      setOpen(false);
+      history.push(path)
+      setOpen(false)
     }
-  };
+  }
 
   const groupedProjects = data?.items.reduce(
     (acc, project) => {
       if (project.ibType.startsWith('CAS')) {
-        acc.CAS.push(project);
+        acc.CAS.push(project)
       } else if (project.ibType.startsWith('EE')) {
-        acc.EE.push(project);
+        acc.EE.push(project)
       } else if (project.ibType.startsWith('TOK')) {
-        acc.TOK.push(project);
+        acc.TOK.push(project)
       }
-      return acc;
+      return acc
     },
     { CAS: [], EE: [], TOK: [] } as Record<'CAS' | 'EE' | 'TOK', typeof data.items>,
-  );
+  )
 
   useEffect(() => {
     if (triggerRef.current) {
-      const rect = triggerRef.current.getBoundingClientRect();
+      const rect = triggerRef.current.getBoundingClientRect()
       setTooltipStyle({
         position: 'absolute',
         top: rect.bottom,
         left: rect.left,
         transform: 'none',
-      });
+      })
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -75,27 +75,27 @@ function IBProjectList({ studentId, currentProjectId, children }: IBProjectListP
         triggerRef.current &&
         !triggerRef.current.contains(event.target as Node)
       ) {
-        setOpen(false);
+        setOpen(false)
       }
-    };
+    }
 
     if (open) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside)
     } else {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside)
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [open]);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [open])
 
-  const tooltipRoot = document.getElementById('tooltip-root') || document.body;
+  const tooltipRoot = document.getElementById('tooltip-root') || document.body
   const tooltipContent = open && (
     <div
       style={tooltipStyle}
       ref={tooltipRef}
-      className={`z-100 mt-2 flex w-[632px] flex-col rounded-lg border border-primary-gray-200 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]`}
+      className={`border-primary-gray-200 z-100 mt-2 flex w-[632px] flex-col rounded-lg border shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]`}
     >
       <div className={`relative flex w-[632px] flex-col rounded-xl bg-white p-1.5`}>
         {isLoading ? (
@@ -119,31 +119,29 @@ function IBProjectList({ studentId, currentProjectId, children }: IBProjectListP
                       {/* 프로젝트 리스트 */}
                       <ul className="flex flex-col">
                         {projects.map((project) => {
-                          const selectProject = project.id === currentProjectId;
+                          const selectProject = project.id === currentProjectId
                           const casTitle =
-                            project.ibType === 'CAS_PROJECT'
-                              ? `[프로젝트] ${project.title}`
-                              : `[일반] ${project.title}`;
-                          const approvedProposal = project.proposals?.find((proposal) => proposal.status === 'ACCEPT');
+                            project.ibType === 'CAS_PROJECT' ? `[프로젝트] ${project.title}` : `[일반] ${project.title}`
+                          const approvedProposal = project.proposals?.find((proposal) => proposal.status === 'ACCEPT')
 
                           const tokTitle =
                             project.status === 'PENDING' || project.status === 'WAIT_MENTOR'
                               ? project.title
                               : project.ibType === 'TOK_ESSAY'
                                 ? `[에세이] ${project.tokOutline?.themeQuestion}`
-                                : `[전시회] ${project.tokExhibitionPlan?.themeQuestion}`;
+                                : `[전시회] ${project.tokExhibitionPlan?.themeQuestion}`
 
                           const displayTitle = project.ibType.startsWith('CAS')
                             ? casTitle
                             : project.ibType.startsWith('EE')
                               ? approvedProposal?.researchTopic || project.title
-                              : tokTitle;
+                              : tokTitle
                           const truncatedTitle =
-                            displayTitle.length > 45 ? displayTitle.slice(0, 45) + '...' : displayTitle;
+                            displayTitle.length > 45 ? displayTitle.slice(0, 45) + '...' : displayTitle
                           return (
                             <div
                               key={project.id}
-                              className="flex max-w-[600px] cursor-pointer items-center justify-between px-[10px] py-[6px] hover:rounded-lg hover:bg-primary-gray-100"
+                              className="hover:bg-primary-gray-100 flex max-w-[600px] cursor-pointer items-center justify-between px-[10px] py-[6px] hover:rounded-lg"
                               onClick={() => handleProjectClick(project)}
                             >
                               <Typography
@@ -157,7 +155,7 @@ function IBProjectList({ studentId, currentProjectId, children }: IBProjectListP
                               </Typography>
                               {selectProject && <SVGIcon.Check color="orange800" weight="bold" size={16} />}
                             </div>
-                          );
+                          )
                         })}
                       </ul>
                     </div>
@@ -167,7 +165,7 @@ function IBProjectList({ studentId, currentProjectId, children }: IBProjectListP
         )}
       </div>
     </div>
-  );
+  )
 
   return (
     <div className="relative" ref={triggerRef}>
@@ -176,7 +174,7 @@ function IBProjectList({ studentId, currentProjectId, children }: IBProjectListP
       </div>
       {open && createPortal(tooltipContent, tooltipRoot)}
     </div>
-  );
+  )
 }
 
-export default IBProjectList;
+export default IBProjectList

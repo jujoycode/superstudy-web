@@ -1,13 +1,13 @@
-import { Constants } from 'src/constants';
-import { Fieldtrip } from 'src/generated/model';
-import { makeStartEndToString } from 'src/util/time';
+import { Constants } from '@/legacy/constants'
+import { Fieldtrip } from '@/legacy/generated/model'
+import { makeStartEndToString } from '@/legacy/util/time'
 
 interface FieldtripSuburbsSeparatePaperProps {
-  fieldtrip: Fieldtrip;
-  studentName: string;
-  resultFile1: string;
-  resultFile2: string;
-  title?: string;
+  fieldtrip: Fieldtrip
+  studentName: string
+  resultFile1: string
+  resultFile2: string
+  title?: string
 }
 
 export function FieldtripSuburbsSeparatePaper({
@@ -24,7 +24,7 @@ export function FieldtripSuburbsSeparatePaper({
       </div>
 
       <div className="flex justify-center">
-        <table className="w-full table-fixed border-2 border-black ">
+        <table className="w-full table-fixed border-2 border-black">
           <thead>
             <tr className="h-12">
               <th className="border border-black bg-gray-200" colSpan={3}>
@@ -78,5 +78,5 @@ export function FieldtripSuburbsSeparatePaper({
         </table>
       </div>
     </div>
-  );
+  )
 }

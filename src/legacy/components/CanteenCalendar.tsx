@@ -1,11 +1,11 @@
-import Calendar, { CalendarProps } from 'react-calendar';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { Icon } from './common/icons';
+import Calendar, { CalendarProps } from 'react-calendar'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { Icon } from './common/icons'
 
 export interface CanteenCalendarProps extends CalendarProps {}
 
 export function CanteenCalendar({ ...props }: CanteenCalendarProps) {
-  const { t } = useLanguage();
+  const { t } = useLanguage()
 
   return (
     <Calendar
@@ -18,5 +18,5 @@ export function CanteenCalendar({ ...props }: CanteenCalendarProps) {
       formatDay={(_, date) => date.getDate().toString()}
       {...props}
     />
-  );
+  )
 }

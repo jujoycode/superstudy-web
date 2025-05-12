@@ -1,43 +1,48 @@
-import { map } from 'lodash';
-import { PropsWithChildren, useRef, useState } from 'react';
-import NODATA from 'src/assets/images/no-data.png';
-import SelectBar, { SelectBarOptionProps } from 'src/components/common/SelectBar';
-import SVGIcon from 'src/components/icon/SVGIcon';
-import { useIBDeadlineCreateDeadline } from 'src/generated/endpoint';
-import { DeadlineType, IBDeadlineGetItemsType, RequestIBDeadlineDto, ResponseIBDeadlineDto } from 'src/generated/model';
-import AlertV2 from '../../common/AlertV2';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Typography } from '../../common/Typography';
-import ColorSVGIcon from '../../icon/ColorSVGIcon';
-import { CreateDeadlineField } from '../CreateDeadlineField';
+import { map } from 'lodash'
+import { PropsWithChildren, useRef, useState } from 'react'
+import NODATA from 'src/assets/images/no-data.png'
+import SelectBar, { SelectBarOptionProps } from '@/legacy/components/common/SelectBar'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { useIBDeadlineCreateDeadline } from '@/legacy/generated/endpoint'
+import {
+  DeadlineType,
+  IBDeadlineGetItemsType,
+  RequestIBDeadlineDto,
+  ResponseIBDeadlineDto,
+} from '@/legacy/generated/model'
+import AlertV2 from '../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
+import { CreateDeadlineField } from '../CreateDeadlineField'
 
 interface Coordinator_Schedule_AddScheduleProps {
-  type: IBDeadlineGetItemsType;
-  modalOpen: boolean;
-  setModalClose: () => void;
-  handleBack?: () => void;
-  scheduleData?: ResponseIBDeadlineDto;
-  onSuccess?: () => void;
-  items?: ResponseIBDeadlineDto[];
+  type: IBDeadlineGetItemsType
+  modalOpen: boolean
+  setModalClose: () => void
+  handleBack?: () => void
+  scheduleData?: ResponseIBDeadlineDto
+  onSuccess?: () => void
+  items?: ResponseIBDeadlineDto[]
 }
 
 interface SelectBarProps extends SelectBarOptionProps {
-  items?: SelectBarOptionProps[];
+  items?: SelectBarOptionProps[]
 }
 
 type Item = {
-  id: number;
-  value: DeadlineType;
-  text: string;
-};
+  id: number
+  value: DeadlineType
+  text: string
+}
 
 type DeadLineTypeItem = {
-  id: number;
-  type: string;
-  value: DeadlineType;
-  text: string;
-  items?: Item[];
-};
+  id: number
+  type: string
+  value: DeadlineType
+  text: string
+  items?: Item[]
+}
 
 const DeadLineTypeItems: DeadLineTypeItem[] = [
   {
@@ -181,7 +186,7 @@ const DeadLineTypeItems: DeadLineTypeItem[] = [
     type: IBDeadlineGetItemsType.IB_CAS,
     text: '계획서',
   },
-];
+]
 
 export function Coordinator_Schedule_AddSchedule({
   type,
@@ -191,68 +196,68 @@ export function Coordinator_Schedule_AddSchedule({
   onSuccess,
   items = [],
 }: PropsWithChildren<Coordinator_Schedule_AddScheduleProps>) {
-  const [isOpen, setIsOpen] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [deadlineType, setDeadlineType] = useState<DeadlineType>();
-  const [item, setItem] = useState<DeadlineType>();
-  const [createDeadlines, setCreateDeadlines] = useState<RequestIBDeadlineDto[]>([]);
+  const [isOpen, setIsOpen] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [deadlineType, setDeadlineType] = useState<DeadlineType>()
+  const [item, setItem] = useState<DeadlineType>()
+  const [createDeadlines, setCreateDeadlines] = useState<RequestIBDeadlineDto[]>([])
 
   const reset = () => {
-    setCreateDeadlines([]);
-    setItem(undefined);
-    setDeadlineType(undefined);
-  };
+    setCreateDeadlines([])
+    setItem(undefined)
+    setDeadlineType(undefined)
+  }
 
-  const { mutate: createDeadline } = useIBDeadlineCreateDeadline({ mutation: { onSuccess } });
+  const { mutate: createDeadline } = useIBDeadlineCreateDeadline({ mutation: { onSuccess } })
 
   const handleUpdateDeadline = (dto: Partial<RequestIBDeadlineDto>, index: number) => {
     setCreateDeadlines((prev) => {
-      const value = structuredClone(prev);
-      value[index] = { ...prev[index], ...dto };
-      return value;
-    });
-  };
+      const value = structuredClone(prev)
+      value[index] = { ...prev[index], ...dto }
+      return value
+    })
+  }
 
   const handleDeleteDeadline = (index: number) => {
     setCreateDeadlines((prev) => {
-      const value = structuredClone(prev);
-      value.splice(index, 1);
-      return value;
-    });
-  };
+      const value = structuredClone(prev)
+      value.splice(index, 1)
+      return value
+    })
+  }
 
   const handleSubmit = () => {
     for (const deadline of createDeadlines) {
-      createDeadline({ data: deadline });
+      createDeadline({ data: deadline })
     }
-    reset();
-  };
+    reset()
+  }
 
-  const existTypes = items.map((el) => el.type);
+  const existTypes = items.map((el) => el.type)
 
   const selectBarOptions = DeadLineTypeItems.filter((el) => el.type === type && !existTypes.includes(el.value)).map(
     (el) => (el.items ? { ...el, items: el.items.filter((item) => !existTypes.includes(item.value)) } : el),
-  );
+  )
 
   const disabled = !createDeadlines.every(
     (deadline) => deadline.deadlineTime && deadline.remindDays?.length && deadline.type,
-  );
+  )
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black bg-opacity-50 ${
+      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
         !modalOpen && 'hidden'
       }`}
     >
       <div className={`relative w-[632px] overflow-hidden rounded-xl bg-white px-8`}>
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pb-6 pt-8 backdrop-blur-[20px]">
+        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6 backdrop-blur-[20px]">
           <Typography variant="title1">마감기한 설정</Typography>
           <ColorSVGIcon.Close
             color="gray700"
             size={32}
             onClick={() => {
-              setModalClose();
-              reset();
+              setModalClose()
+              reset()
             }}
           />
         </div>
@@ -263,8 +268,8 @@ export function Coordinator_Schedule_AddSchedule({
               options={selectBarOptions}
               value={deadlineType}
               onChange={(value: any) => {
-                setDeadlineType(value);
-                setItem(undefined);
+                setDeadlineType(value)
+                setItem(undefined)
               }}
               placeholder="항목"
               size={40}
@@ -287,16 +292,16 @@ export function Coordinator_Schedule_AddSchedule({
             disabled={!deadlineType}
             className="flex items-center justify-center gap-1 whitespace-pre"
             onClick={() => {
-              const _deadlineType = item || deadlineType;
-              if (!_deadlineType) return;
-              if (map(createDeadlines, 'type').includes(_deadlineType)) return;
+              const _deadlineType = item || deadlineType
+              if (!_deadlineType) return
+              if (map(createDeadlines, 'type').includes(_deadlineType)) return
               setCreateDeadlines(
                 createDeadlines.concat({
                   type: _deadlineType,
                   deadlineTime: '',
                   remindDays: [],
                 }),
-              );
+              )
             }}
           >
             <SVGIcon.Plus color="gray700" size={16} weight="bold" />
@@ -304,7 +309,7 @@ export function Coordinator_Schedule_AddSchedule({
           </ButtonV2>
         </div>
 
-        <div ref={scrollRef} className="scroll-box flex max-h-[608px] flex-col gap-4 overflow-auto pb-8 pt-4">
+        <div ref={scrollRef} className="scroll-box flex max-h-[608px] flex-col gap-4 overflow-auto pt-4 pb-8">
           {!createDeadlines.length && (
             <div className="flex flex-col items-center space-y-4 p-4">
               <img src={NODATA} className="h-12 w-[43px] object-cover" />
@@ -324,7 +329,7 @@ export function Coordinator_Schedule_AddSchedule({
 
         <div
           className={
-            'sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-primary-gray-100 bg-white/70 pb-8 pt-6 backdrop-blur-[20px]'
+            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]'
           }
         >
           <div className="flex justify-end gap-3">
@@ -333,8 +338,8 @@ export function Coordinator_Schedule_AddSchedule({
               color="gray100"
               size={48}
               onClick={() => {
-                handleBack && handleBack();
-                reset();
+                handleBack && handleBack()
+                reset()
               }}
             >
               이전
@@ -356,5 +361,5 @@ export function Coordinator_Schedule_AddSchedule({
         <AlertV2 confirmText="확인" message={`일정이 \n저장되었습니다`} onConfirm={() => setIsOpen(!isOpen)} />
       )}
     </div>
-  );
+  )
 }

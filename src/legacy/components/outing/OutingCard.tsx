@@ -1,32 +1,32 @@
-import { Link, useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { OutingStatus, OutingTypeEnum, ResponseCreateOutingDto } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { getNickName, getPeriodStr } from 'src/util/status';
-import { makeDateToString } from 'src/util/time';
+import { Link, useLocation } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { OutingStatus, OutingTypeEnum, ResponseCreateOutingDto } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { meState } from '@/stores'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { getNickName, getPeriodStr } from '@/legacy/util/status'
+import { makeDateToString } from '@/legacy/util/time'
 
 interface OutingCardProps {
-  outing: ResponseCreateOutingDto;
-  type: string;
+  outing: ResponseCreateOutingDto
+  type: string
 }
 
 export function OutingCard({ outing, type }: OutingCardProps) {
-  const { pathname, search } = useLocation();
-  const { t } = useLanguage();
+  const { pathname, search } = useLocation()
+  const { t } = useLanguage()
 
-  const me = useRecoilValue(meState);
+  const me = useRecoilValue(meState)
 
-  const startAt = DateUtil.formatDate(outing.startAt, DateFormat['YYYY-MM-DD HH:mm']);
-  const endAt = DateUtil.formatDate(outing.endAt, DateFormat['YYYY-MM-DD HH:mm']);
+  const startAt = DateUtil.formatDate(outing.startAt, DateFormat['YYYY-MM-DD HH:mm'])
+  const endAt = DateUtil.formatDate(outing.endAt, DateFormat['YYYY-MM-DD HH:mm'])
 
   const myConfirmState =
     (outing.approver1Id === me?.id && !!outing.approver1Signature) ||
     (outing.approver2Id === me?.id && !!outing.approver2Signature) ||
     (outing.approver3Id === me?.id && !!outing.approver3Signature) ||
     (outing.approver4Id === me?.id && !!outing.approver4Signature) ||
-    (outing.approver5Id === me?.id && !!outing.approver5Signature);
+    (outing.approver5Id === me?.id && !!outing.approver5Signature)
 
   return (
     <>
@@ -81,11 +81,11 @@ export function OutingCard({ outing, type }: OutingCardProps) {
                 {t('approved', '승인 완료')}
               </span>
             ) : outing?.outingStatus === 'RETURNED' ? (
-              <span className="my-1 mr-1 inline-block rounded-md px-1 py-2 text-xs text-brand-1 md:mr-2 md:px-3 md:text-sm">
+              <span className="text-brand-1 my-1 mr-1 inline-block rounded-md px-1 py-2 text-xs md:mr-2 md:px-3 md:text-sm">
                 {t('rejected', '반려됨')}
               </span>
             ) : outing?.outingStatus === 'DELETE_APPEAL' ? (
-              <span className="my-1 mr-1 inline-block rounded-md px-1 py-2 text-xs text-brand-1 md:mr-2 md:px-3 md:text-sm">
+              <span className="text-brand-1 my-1 mr-1 inline-block rounded-md px-1 py-2 text-xs md:mr-2 md:px-3 md:text-sm">
                 {t('delete_request', '삭제 요청')}
               </span>
             ) : (
@@ -96,5 +96,5 @@ export function OutingCard({ outing, type }: OutingCardProps) {
         <div className="h-0.5 bg-gray-100"></div>
       </Link>
     </>
-  );
+  )
 }

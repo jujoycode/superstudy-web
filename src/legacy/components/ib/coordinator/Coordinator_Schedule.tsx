@@ -1,25 +1,25 @@
-import { format } from 'date-fns';
-import { ko } from 'date-fns/locale';
-import { FC, useState } from 'react';
-import NODATA from 'src/assets/images/no-data.png';
-import { Blank, Section } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { SuperModal } from 'src/components/SuperModal';
-import { useCoordinatorCheck } from 'src/container/ib-coordinator';
-import { useIBDeadline } from 'src/container/ib-deadline';
-import { useIBDeadlineDeleteDeadline } from 'src/generated/endpoint';
+import { format } from 'date-fns'
+import { ko } from 'date-fns/locale'
+import { FC, useState } from 'react'
+import NODATA from 'src/assets/images/no-data.png'
+import { Blank, Section } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { SuperModal } from 'src/components/SuperModal'
+import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
+import { useIBDeadline } from '@/legacy/container/ib-deadline'
+import { useIBDeadlineDeleteDeadline } from '@/legacy/generated/endpoint'
 import {
   DeadlineType,
   IBDeadlineGetItemsType,
   ResponseIBDeadlineDto,
   ResponseIBDeadlineitemsDto,
-} from 'src/generated/model';
-import AlertV2 from '../../common/AlertV2';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Typography } from '../../common/Typography';
-import FrontPaginatedList from '../../FrontPaginatedList ';
-import { Coordinator_Schedule_AddSchedule } from './Coordinator_Schedule_AddSchedule';
-import { Coordinator_Schedule_UpdateSchedule } from './Coordinator_Schedule_UpdateSchedule';
+} from '@/legacy/generated/model'
+import AlertV2 from '../@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Typography } from '../@/legacy/components/common/Typography'
+import FrontPaginatedList from '../../FrontPaginatedList '
+import { Coordinator_Schedule_AddSchedule } from './Coordinator_Schedule_AddSchedule'
+import { Coordinator_Schedule_UpdateSchedule } from './Coordinator_Schedule_UpdateSchedule'
 
 // NOTE: 백엔드에서 마감기한 타입이 추가되면 그에 따라 항목 추가해야 함
 export const DEADLINE_TYPE_KOR: Record<DeadlineType, string> = {
@@ -44,58 +44,58 @@ export const DEADLINE_TYPE_KOR: Record<DeadlineType, string> = {
   CAS_REFLECTION_DIARY: '성찰일지',
   CAS_ACTIVITY_LOG: '활동일지',
   CAS_PLAN: '계획서',
-};
+}
 
 interface Coordinator_ScheduleProps {
-  type?: IBDeadlineGetItemsType;
+  type?: IBDeadlineGetItemsType
 }
 
 const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' }) => {
-  const [activeModal, setActiveModal] = useState<boolean>(false);
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
-  const [selectedSchedule, setSelectedSchedule] = useState<ResponseIBDeadlineDto>();
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [activeModal, setActiveModal] = useState<boolean>(false)
+  const [alertMessage, setAlertMessage] = useState<string | null>(null)
+  const [selectedSchedule, setSelectedSchedule] = useState<ResponseIBDeadlineDto>()
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
 
-  const { permission } = useCoordinatorCheck();
+  const { permission } = useCoordinatorCheck()
 
-  const { data: deadlineData, isFetching, refetch } = useIBDeadline({ type });
+  const { data: deadlineData, isFetching, refetch } = useIBDeadline({ type })
 
   const { mutate: deleteDeadline, isLoading } = useIBDeadlineDeleteDeadline({
     mutation: {
       onSuccess: () => {
-        setDeleteModalOpen(false);
-        setSelectedSchedule(undefined);
-        refetch();
+        setDeleteModalOpen(false)
+        setSelectedSchedule(undefined)
+        refetch()
       },
     },
-  });
+  })
 
-  const items = deadlineData?.items || [];
+  const items = deadlineData?.items || []
 
   const formatRemindDays = (daysArr: number[]) => {
-    const sortingArray = daysArr.sort((a, b) => b - a);
-    return sortingArray.map((day) => (day === 0 ? '당일' : `${day}일전`));
-  };
+    const sortingArray = daysArr.sort((a, b) => b - a)
+    return sortingArray.map((day) => (day === 0 ? '당일' : `${day}일전`))
+  }
 
   const Header = () => (
     <>
-      <Typography variant="body2" className="w-[68px] text-center font-medium text-primary-gray-500">
+      <Typography variant="body2" className="text-primary-gray-500 w-[68px] text-center font-medium">
         번호
       </Typography>
-      <Typography variant="body2" className="w-[304px] text-center font-medium text-primary-gray-500">
+      <Typography variant="body2" className="text-primary-gray-500 w-[304px] text-center font-medium">
         항목
       </Typography>
-      <Typography variant="body2" className="w-[304px] text-center font-medium text-primary-gray-500">
+      <Typography variant="body2" className="text-primary-gray-500 w-[304px] text-center font-medium">
         마감기한
       </Typography>
-      <Typography variant="body2" className="w-[304px] text-center font-medium text-primary-gray-500">
+      <Typography variant="body2" className="text-primary-gray-500 w-[304px] text-center font-medium">
         알림주기
       </Typography>
-      <Typography variant="body2" className="w-[188px] text-center font-medium text-primary-gray-500">
+      <Typography variant="body2" className="text-primary-gray-500 w-[188px] text-center font-medium">
         관리
       </Typography>
     </>
-  );
+  )
 
   // Item 컴포넌트
   const Item = ({ item, index }: { item: ResponseIBDeadlineitemsDto['items'][0]; index: number }) => (
@@ -112,8 +112,8 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
           size={32}
           color="gray400"
           onClick={(e) => {
-            e.stopPropagation();
-            handleEditClick(item);
+            e.stopPropagation()
+            handleEditClick(item)
           }}
         >
           수정
@@ -123,27 +123,27 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
           size={32}
           color="gray400"
           onClick={() => {
-            setSelectedSchedule(item);
-            setDeleteModalOpen(true);
+            setSelectedSchedule(item)
+            setDeleteModalOpen(true)
           }}
         >
           삭제
         </ButtonV2>
       </div>
     </>
-  );
+  )
 
   const handleEditClick = (item: any) => {
-    setActiveModal(true);
-    setSelectedSchedule(item);
-  };
+    setActiveModal(true)
+    setSelectedSchedule(item)
+  }
 
   const isIBPermission = {
     IB_ALL: permission === 'IB_ALL',
     IB_EE: permission === 'IB_EE',
     IB_TOK: permission === 'IB_TOK',
     IB_CAS: permission === 'IB_CAS',
-  };
+  }
 
   return (
     <div className="min-h-[664px] rounded-xl bg-white">
@@ -158,8 +158,8 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
             size={40}
             color="orange800"
             onClick={() => {
-              setSelectedSchedule(undefined);
-              setActiveModal(true);
+              setSelectedSchedule(undefined)
+              setActiveModal(true)
             }}
           >
             추가하기
@@ -184,7 +184,7 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
           </div>
           {isIBPermission[type] ? (
             <>
-              <Typography variant="body2" className="text-center font-medium text-primary-gray-700">
+              <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
                 작성한 일정 및 알림발송이 없습니다.
                 <br />
                 일정 및 알림발송을 추가해주세요.
@@ -194,7 +194,7 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
               </ButtonV2>
             </>
           ) : (
-            <Typography variant="body2" className="text-center font-medium text-primary-gray-700">
+            <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
               작성한 일정 및 알림발송이 없습니다.
             </Typography>
           )}
@@ -206,8 +206,8 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
         setModalClose={() => setActiveModal(false)}
         handleBack={() => setActiveModal(false)}
         onSuccess={() => {
-          setActiveModal(false);
-          refetch();
+          setActiveModal(false)
+          refetch()
         }}
         items={items}
       />
@@ -216,8 +216,8 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
         setModalClose={() => setActiveModal(false)}
         handleBack={() => setActiveModal(false)}
         onSuccess={() => {
-          setActiveModal(false);
-          refetch();
+          setActiveModal(false)
+          refetch()
         }}
         scheduleData={selectedSchedule}
       />
@@ -231,7 +231,7 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
               children="삭제하기"
               disabled={isLoading}
               onClick={() => deleteDeadline({ id: selectedSchedule.id })}
-              className="bg-primary-orange-800 text-white disabled:filled-gray-dark"
+              className="bg-primary-orange-800 disabled:filled-gray-dark text-white"
             />
           </Section>
         </SuperModal>
@@ -244,7 +244,7 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
         />
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Coordinator_Schedule;
+export default Coordinator_Schedule

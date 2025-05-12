@@ -1,16 +1,16 @@
-import { PropsWithChildren, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useRecoilValue } from 'recoil';
-import { BadgeV2 } from 'src/components/common/BadgeV2';
-import { IBBlank } from 'src/components/common/IBBlank';
-import MemberSearch from 'src/components/common/MemberSearch';
-import ScheduleAndPeriodPicker from 'src/components/common/ScheduleAndPeriodPicker';
-import Stepper from 'src/components/common/Stepper';
-import SolidSVGIcon from 'src/components/icon/SolidSVGIcon';
-import SVGIcon from 'src/components/icon/SVGIcon';
-import { CAS_ATL, CAS_LEARNERPROFILE, CAS_LEARNINGOUTCOME } from 'src/constants/ib';
-import { useIBCreate } from 'src/container/ib-project';
-import { useInterviewGetByStudentId } from 'src/container/ib-student-interview';
+import { PropsWithChildren, useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useRecoilValue } from 'recoil'
+import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import MemberSearch from '@/legacy/components/common/MemberSearch'
+import ScheduleAndPeriodPicker from '@/legacy/components/common/ScheduleAndPeriodPicker'
+import Stepper from '@/legacy/components/common/Stepper'
+import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { CAS_ATL, CAS_LEARNERPROFILE, CAS_LEARNINGOUTCOME } from '@/legacy/constants/ib'
+import { useIBCreate } from '@/legacy/container/ib-project'
+import { useInterviewGetByStudentId } from '@/legacy/container/ib-student-interview'
 import {
   RequestIBCasDtoAtl,
   RequestIBCasDtoLearnerProfile,
@@ -19,22 +19,22 @@ import {
   RequestIBCasDtoStrands,
   RequestIBDto,
   ResponseIBStudentDto,
-} from 'src/generated/model';
-import { meState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { ButtonV2 } from '../../common/ButtonV2';
-import { Check } from '../../common/Check';
-import { Typography } from '../../common/Typography';
-import ColorSVGIcon from '../../icon/ColorSVGIcon';
-import { InputField } from '../InputField';
+} from '@/legacy/generated/model'
+import { meState } from '@/stores'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
+import { Check } from '../@/legacy/components/common/Check'
+import { Typography } from '../@/legacy/components/common/Typography'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
+import { InputField } from '../InputField'
 
 interface IbCASProjectProps {
-  modalOpen: boolean;
-  setModalClose?: () => void;
-  size?: 'medium' | 'large';
-  handleBack?: () => void;
-  onSuccess: (action: 'CAS_PROJECT', data?: any) => void;
-  ablePropragation?: boolean;
+  modalOpen: boolean
+  setModalClose?: () => void
+  size?: 'medium' | 'large'
+  handleBack?: () => void
+  onSuccess: (action: 'CAS_PROJECT', data?: any) => void
+  ablePropragation?: boolean
 }
 
 export function IbCASProject({
@@ -44,36 +44,36 @@ export function IbCASProject({
   onSuccess,
   ablePropragation = false,
 }: PropsWithChildren<IbCASProjectProps>) {
-  const me = useRecoilValue(meState);
-  const [isFocused, setIsFocused] = useState(false);
-  const [isFocused2, setIsFocused2] = useState(false);
-  const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
-  const [searchOpen, setSearchOpen] = useState<boolean>(false);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [leader, setLeader] = useState<ResponseIBStudentDto>();
-  const [group, setGroup] = useState<ResponseIBStudentDto[]>([]);
-  const [selectedATL, setSelectedATL] = useState<number[]>([]);
-  const [selectedLearnerProfile, setSelectedLearnerProfile] = useState<number[]>([]);
-  const [useRiskAssessment, setUseRiskAssessment] = useState<boolean>(false);
+  const me = useRecoilValue(meState)
+  const [isFocused, setIsFocused] = useState(false)
+  const [isFocused2, setIsFocused2] = useState(false)
+  const [calendarOpen, setCalendarOpen] = useState<boolean>(false)
+  const [searchOpen, setSearchOpen] = useState<boolean>(false)
+  const [selectedIds, setSelectedIds] = useState<number[]>([])
+  const [leader, setLeader] = useState<ResponseIBStudentDto>()
+  const [group, setGroup] = useState<ResponseIBStudentDto[]>([])
+  const [selectedATL, setSelectedATL] = useState<number[]>([])
+  const [selectedLearnerProfile, setSelectedLearnerProfile] = useState<number[]>([])
+  const [useRiskAssessment, setUseRiskAssessment] = useState<boolean>(false)
   const [strands, setStrands] = useState<RequestIBCasDtoStrands>({
     creativity: 0,
     activity: 0,
     service: 0,
-  });
+  })
   const [date, setDate] = useState<{
-    startDate: Date | undefined;
-    endDate: Date | undefined;
-    cycle: string | undefined;
+    startDate: Date | undefined
+    endDate: Date | undefined
+    cycle: string | undefined
   }>({
     startDate: undefined,
     endDate: undefined,
     cycle: undefined,
-  });
+  })
 
   const { data: riskAssessment, isLoading: riskAssessmentLoading } = useInterviewGetByStudentId(
     me?.id || 0,
     'CAS_RISK_ASSESSMENT',
-  );
+  )
 
   const {
     control,
@@ -81,7 +81,7 @@ export function IbCASProject({
     watch,
     register,
     formState: { errors },
-  } = useForm<RequestIBDto>();
+  } = useForm<RequestIBDto>()
 
   const requiredFields = watch([
     'title',
@@ -92,7 +92,7 @@ export function IbCASProject({
     'cas.step.reflection',
     'cas.step.evidence',
     'cas.externalContacts',
-  ]);
+  ])
 
   const areAllFieldsFilled =
     requiredFields.every((field) => field && field.trim() !== '') &&
@@ -100,41 +100,41 @@ export function IbCASProject({
     date.endDate &&
     group.length > 1 &&
     (strands.creativity || strands.activity || strands.service) &&
-    selectedIds.length > 0;
+    selectedIds.length > 0
 
   const { createIBProject, isLoading } = useIBCreate({
     onSuccess: (data) => {
-      onSuccess('CAS_PROJECT', data);
+      onSuccess('CAS_PROJECT', data)
     },
     onError: (error) => {
-      console.error('IB 프로젝트 생성 중 오류 발생:', error);
+      console.error('IB 프로젝트 생성 중 오류 발생:', error)
     },
-  });
+  })
 
   const handleGroupChange = (selectedValues: number[]) => {
-    setSelectedIds(selectedValues);
-  };
+    setSelectedIds(selectedValues)
+  }
 
   const handleLearnerProfileChange = (selectedValues: number[]) => {
-    setSelectedLearnerProfile(selectedValues);
-  };
+    setSelectedLearnerProfile(selectedValues)
+  }
 
   const handleATLChange = (selectedValues: number[]) => {
-    setSelectedATL(selectedValues);
-  };
+    setSelectedATL(selectedValues)
+  }
 
   const handleMemberRemove = (memberId: number) => {
-    setGroup((prevGroup) => prevGroup.filter((member) => member.id !== memberId));
-  };
+    setGroup((prevGroup) => prevGroup.filter((member) => member.id !== memberId))
+  }
 
   const onSubmit = (data: RequestIBDto) => {
     if (leader === undefined) {
-      console.error('Leader ID가 없습니다. 로그인 상태를 확인하세요.');
-      return;
+      console.error('Leader ID가 없습니다. 로그인 상태를 확인하세요.')
+      return
     }
 
     if (isLoading) {
-      return;
+      return
     }
 
     const learningOutcome: RequestIBCasDtoLearningOutcome = {
@@ -145,7 +145,7 @@ export function IbCASProject({
       teamworkBenefits: selectedIds.includes(5),
       globalIssues: selectedIds.includes(6),
       ethicalChoices: selectedIds.includes(7),
-    };
+    }
 
     const learnerProfile: RequestIBCasDtoLearnerProfile = {
       inquirer: selectedLearnerProfile.includes(1),
@@ -158,7 +158,7 @@ export function IbCASProject({
       riskTaker: selectedLearnerProfile.includes(8),
       balanced: selectedLearnerProfile.includes(9),
       reflective: selectedLearnerProfile.includes(10),
-    };
+    }
 
     const atl: RequestIBCasDtoAtl = {
       communication: selectedATL.includes(1),
@@ -166,14 +166,14 @@ export function IbCASProject({
       selfManagement: selectedATL.includes(3),
       research: selectedATL.includes(4),
       thinking: selectedATL.includes(5),
-    };
+    }
 
     const riskAssessments: RequestIBCasDtoRiskAssessmentItem[] | null = useRiskAssessment
       ? riskAssessment?.[0]?.commonQuestion?.map((item, index) => ({
           question: item.question,
           answer: String(data.cas?.riskAssessment?.[index] || ''),
         })) || []
-      : null;
+      : null
 
     const requestData: RequestIBDto = {
       title: data.title,
@@ -185,15 +185,15 @@ export function IbCASProject({
       leaderId: leader.id,
       memberIds: group.filter((member) => member.id !== leader.id).map((member) => member.id),
       cas: { ...data.cas, learningOutcome, learnerProfile, atl, riskAssessment: riskAssessments, strands },
-    };
-    createIBProject(requestData);
-  };
+    }
+    createIBProject(requestData)
+  }
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleFocus = () => setIsFocused(true)
+  const handleBlur = () => setIsFocused(false)
 
-  const handleFocus2 = () => setIsFocused2(true);
-  const handleBlur2 = () => setIsFocused2(false);
+  const handleFocus2 = () => setIsFocused2(true)
+  const handleBlur2 = () => setIsFocused2(false)
 
   useEffect(() => {
     if (me !== undefined) {
@@ -206,35 +206,35 @@ export function IbCASProject({
           studentNumber: me?.studentNumber,
           group: { grade: me?.groupGrade || 0, klass: me?.groupKlass || 0, name: '', type: '', year: '' },
         },
-      };
-      setLeader(newLeader);
-      setGroup([newLeader]);
+      }
+      setLeader(newLeader)
+      setGroup([newLeader])
     }
-  }, [me]);
+  }, [me])
 
   if (me == null) {
-    return <IBBlank />;
+    return <IBBlank />
   }
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black bg-opacity-50 ${
+      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
         }
       }}
     >
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white`}>
         {isLoading && <IBBlank type="section-opacity" />}
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pb-6 pt-8 backdrop-blur-[20px]">
+        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6 backdrop-blur-[20px]">
           <Typography variant="title1">프로젝트 계획서 작성</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
         </div>
 
-        <div className="scroll-box flex max-h-[608px] flex-col overflow-auto pb-8 pt-4">
+        <div className="scroll-box flex max-h-[608px] flex-col overflow-auto pt-4 pb-8">
           <div className="flex flex-col gap-6 px-8 pb-8">
             <InputField label="활동 제목" name="title" control={control} placeholder="제목을 입력해주세요" required />
             <div className="flex flex-col gap-3">
@@ -254,7 +254,7 @@ export function IbCASProject({
               </Typography>
               <div className="relative">
                 <div
-                  className={`flex h-10 items-center gap-2 rounded-lg border border-primary-gray-200 px-3 py-[9px] focus:outline-none focus:ring-0 ${
+                  className={`border-primary-gray-200 flex h-10 items-center gap-2 rounded-lg border px-3 py-[9px] focus:ring-0 focus:outline-none ${
                     isFocused && 'border-primary-gray-700'
                   }`}
                   onFocus={handleFocus}
@@ -263,7 +263,7 @@ export function IbCASProject({
                 >
                   <SVGIcon.Calendar size={20} color="gray700" />
                   <input
-                    className="w-full flex-1 border-none p-0 text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 focus:outline-none focus:ring-0"
+                    className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
                     value={
                       date.startDate && date.endDate
                         ? `${date.startDate.getFullYear()}.${(date.startDate.getMonth() + 1)
@@ -282,12 +282,12 @@ export function IbCASProject({
                   />
                 </div>
                 {calendarOpen && (
-                  <div className="absolute left-0 top-full z-50 mt-2">
+                  <div className="absolute top-full left-0 z-50 mt-2">
                     <ScheduleAndPeriodPicker
                       initialDate={date}
                       onSave={(finalDate) => {
-                        setDate(finalDate);
-                        setCalendarOpen(false);
+                        setDate(finalDate)
+                        setCalendarOpen(false)
                       }}
                       onCancel={() => setCalendarOpen(false)}
                     />
@@ -306,7 +306,7 @@ export function IbCASProject({
               </div>
               <div className="relative">
                 <div
-                  className={`flex h-12 items-center gap-2 rounded-lg border border-primary-gray-200 px-3 py-[9px] focus:outline-none focus:ring-0 ${
+                  className={`border-primary-gray-200 flex h-12 items-center gap-2 rounded-lg border px-3 py-[9px] focus:ring-0 focus:outline-none ${
                     isFocused2 && 'border-primary-gray-700'
                   }`}
                   onFocus={handleFocus2}
@@ -315,20 +315,20 @@ export function IbCASProject({
                 >
                   <SVGIcon.Profile size={20} color="gray700" />
                   <input
-                    className="w-full flex-1 border-none p-0 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 focus:outline-none focus:ring-0"
+                    className="text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
                     placeholder="멤버 선택"
                     readOnly
                   />
                 </div>
                 {searchOpen && (
-                  <div className="relative left-0 top-2 z-50">
+                  <div className="relative top-2 left-0 z-50">
                     <MemberSearch
                       onCancel={() => setSearchOpen(false)}
                       initialStudents={group}
                       id={me.id}
                       onSave={(finalMember) => {
-                        setGroup(finalMember);
-                        setSearchOpen(false);
+                        setGroup(finalMember)
+                        setSearchOpen(false)
                       }}
                     />
                   </div>
@@ -340,12 +340,12 @@ export function IbCASProject({
                         <div
                           key={member.id}
                           onClick={() => {
-                            if (leader.id !== member.id) setLeader(member);
+                            if (leader.id !== member.id) setLeader(member)
                           }}
                           className={`flex h-[48px] flex-row items-center gap-2 rounded-lg px-4 py-[9px] ${
                             leader.id === member.id
                               ? 'bg-primary-orange-100'
-                              : 'cursor-pointer bg-primary-gray-50 hover:border hover:border-primary-orange-400 hover:bg-primary-orange-50'
+                              : 'bg-primary-gray-50 hover:border-primary-orange-400 hover:bg-primary-orange-50 cursor-pointer hover:border'
                           }`}
                         >
                           {leader.id === member.id && (
@@ -353,7 +353,7 @@ export function IbCASProject({
                               리더
                             </BadgeV2>
                           )}
-                          <Typography variant="body2" className={`font-medium text-primary-gray-700`}>
+                          <Typography variant="body2" className={`text-primary-gray-700 font-medium`}>
                             {member.name}&nbsp;
                             {member.studentGroup.group.grade}
                             {String(member.studentGroup.group.klass).padStart(2, '0')}
@@ -365,13 +365,13 @@ export function IbCASProject({
                               color="dimmed"
                               size={24}
                               onClick={(e) => {
-                                e.stopPropagation();
-                                handleMemberRemove(member.id);
+                                e.stopPropagation()
+                                handleMemberRemove(member.id)
                               }}
                             />
                           )}
                         </div>
-                      );
+                      )
                     })}
                   </div>
                 )}
@@ -494,7 +494,7 @@ export function IbCASProject({
               </Check.Group>
             </div>
           </div>
-          <div className="flex flex-col gap-6 border-t border-t-primary-gray-100 px-8 py-8">
+          <div className="border-t-primary-gray-100 flex flex-col gap-6 border-t px-8 py-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
                 <Typography variant="title3" className="font-semibold">
@@ -551,7 +551,7 @@ export function IbCASProject({
               />
             </div>
           </div>
-          <div className="flex flex-col gap-3 border-t border-t-primary-gray-100 px-8 py-8">
+          <div className="border-t-primary-gray-100 flex flex-col gap-3 border-t px-8 py-8">
             <div className="flex flex-row items-center justify-between">
               <Typography variant="title3" className="font-semibold">
                 단체명(강사명) 및 연락처
@@ -571,7 +571,7 @@ export function IbCASProject({
             />
           </div>
           {riskAssessment && riskAssessment.length > 0 && (
-            <div className="flex flex-col border-t border-t-primary-gray-100 px-8 pt-8">
+            <div className="border-t-primary-gray-100 flex flex-col border-t px-8 pt-8">
               <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-2">
                   <Typography variant="title3" className="font-semibold">
@@ -626,7 +626,7 @@ export function IbCASProject({
 
         <div
           className={
-            'sticky bottom-0 flex h-[104px] justify-between gap-4 border-t border-t-primary-gray-100 bg-white/70 px-8 pb-8 pt-6 backdrop-blur-[20px]'
+            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-between gap-4 border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]'
           }
         >
           <ButtonV2 variant="solid" color="gray100" size={48} onClick={handleBack}>
@@ -646,5 +646,5 @@ export function IbCASProject({
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,19 +1,19 @@
-import { forwardRef } from 'react';
-import { Absent } from 'src/generated/model';
-import { useSignedUrl } from 'src/lib/query';
-import { cn } from 'src/lib/tailwind-merge';
-import { getNickName } from 'src/util/status';
-import { makeStartEndToString } from 'src/util/time';
-import { Td } from '../Td';
+import { forwardRef } from 'react'
+import { Absent } from '@/legacy/generated/model'
+import { useSignedUrl } from '@/legacy/lib/query'
+import { cn } from 'src/lib/tailwind-merge'
+import { getNickName } from '@/legacy/util/status'
+import { makeStartEndToString } from '@/legacy/util/time'
+import { Td } from '../Td'
 
 interface TeacherConfirmPaperProps {
-  absent: Absent;
-  isMobileView?: boolean;
+  absent: Absent
+  isMobileView?: boolean
 }
 
 export const TeacherConfirmPaper = forwardRef((props: TeacherConfirmPaperProps, ref: any) => {
-  const { absent, isMobileView = false } = props;
-  const { data: approver1Signature } = useSignedUrl(absent?.approver1Signature);
+  const { absent, isMobileView = false } = props
+  const { data: approver1Signature } = useSignedUrl(absent?.approver1Signature)
 
   return (
     <div ref={ref} className={cn('w-full bg-white', !isMobileView && 'md:h-[1100px]')}>
@@ -66,7 +66,7 @@ export const TeacherConfirmPaper = forwardRef((props: TeacherConfirmPaperProps, 
               <Td innerClassName="text-left"> {absent?.teacherComment}</Td>
             </tr>
           </table>
-          <div className="whitespace-pre-line pt-1 text-brand-1">
+          <div className="text-brand-1 pt-1 whitespace-pre-line">
             *{absent?.student?.name} 학생이{' '}
             {absent?.startAt &&
               absent?.endAt &&
@@ -82,7 +82,7 @@ export const TeacherConfirmPaper = forwardRef((props: TeacherConfirmPaperProps, 
         <div>
           <div className="flex w-full items-center space-x-4 pr-4">
             <div className="w-full min-w-max text-right text-gray-600">신고일:</div>
-            <div className="w-2/5 min-w-max whitespace-pre text-right font-bold text-gray-800">
+            <div className="w-2/5 min-w-max text-right font-bold whitespace-pre text-gray-800">
               {absent?.reportedAt}
             </div>
           </div>
@@ -99,5 +99,5 @@ export const TeacherConfirmPaper = forwardRef((props: TeacherConfirmPaperProps, 
         </div>
       </div>
     </div>
-  );
-});
+  )
+})

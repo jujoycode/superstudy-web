@@ -1,56 +1,56 @@
-import { useEffect, useState } from 'react';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import { Typography } from 'src/components/common/Typography';
+import { useEffect, useState } from 'react'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import {
   useIBTOKOutlineNotSubmittedNotification,
   useIBTOKOutlineStatusCount,
   useIBTOKOutlineSubmissionStatus,
-} from 'src/container/ib-overview';
+} from '@/legacy/container/ib-overview'
 import {
   IBGetTokOutlineSubmissionStatusCountParams,
   IBGetTokOutlineSubmissionStatusStatus,
   ResponseIBTokOutlineSubmissionStatusDto,
   ResponseIBTokOutlineSubmissionStatusDtoDetailStatus,
-} from 'src/generated/model';
-import { useHistory } from 'react-router-dom';
-import OutlineOverviewPanel from './OutlineOverviewPanel';
-import { handleBatchBlobDownload } from 'src/hooks/useBatchDownload';
-import { createTokOutlinePdf } from 'src/util/ib/tok-outline-pdf';
-import { Blank } from 'src/components/common/Blank';
+} from '@/legacy/generated/model'
+import { useHistory } from 'react-router-dom'
+import OutlineOverviewPanel from './OutlineOverviewPanel'
+import { handleBatchBlobDownload } from '@/legacy/hooks/useBatchDownload'
+import { createTokOutlinePdf } from '@/legacy/util/ib/tok-outline-pdf'
+import { Blank } from '@/legacy/components/common/Blank'
 
 export default function OutlineView({ grade, klass }: IBGetTokOutlineSubmissionStatusCountParams) {
-  const { push } = useHistory();
+  const { push } = useHistory()
 
   const [status, setStatus] = useState<IBGetTokOutlineSubmissionStatusStatus>(
     () =>
       (sessionStorage.getItem('PROJECT_TOK_OUTLINE_STATUS') as IBGetTokOutlineSubmissionStatusStatus) ||
       'NOT_SUBMITTED',
-  );
-  const [isDownloading, setIsDownloading] = useState(false);
+  )
+  const [isDownloading, setIsDownloading] = useState(false)
 
   const { data } = useIBTOKOutlineStatusCount({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
-  });
+  })
 
   const { students = [] } = useIBTOKOutlineSubmissionStatus({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
     status,
-  });
+  })
 
   const submitStudents = (students as ResponseIBTokOutlineSubmissionStatusDto[]).filter(
     (student) => student.detailStatus === ResponseIBTokOutlineSubmissionStatusDtoDetailStatus.SUBMIT,
-  );
+  )
 
   const handleBulkDownload = async () => {
-    setIsDownloading(true);
-    const pdfFiles: { blob: Blob; fileName: string }[] = [];
+    setIsDownloading(true)
+    const pdfFiles: { blob: Blob; fileName: string }[] = []
 
     try {
       await Promise.all(
         submitStudents.map(async (student) => {
-          const klassNum = `${student.leader.studentGroup.group.grade}${String(student.leader.studentGroup.group.klass).padStart(2, '0')}${String(student.leader.studentGroup.studentNumber).padStart(2, '0')}`;
+          const klassNum = `${student.leader.studentGroup.group.grade}${String(student.leader.studentGroup.group.klass).padStart(2, '0')}${String(student.leader.studentGroup.studentNumber).padStart(2, '0')}`
 
           const doc = await createTokOutlinePdf(
             {
@@ -58,27 +58,27 @@ export default function OutlineView({ grade, klass }: IBGetTokOutlineSubmissionS
               name: student.leader.name,
             },
             student.tokOutline,
-          );
+          )
 
           if (!doc) {
-            console.error(`PDF 생성 실패: 학생 ID ${student.id}`);
-            return;
+            console.error(`PDF 생성 실패: 학생 ID ${student.id}`)
+            return
           }
 
           pdfFiles.push({
             blob: new Blob([doc]),
             fileName: `TOK_아웃라인_${klassNum}_${student.leader.name}_${student.tokOutline?.themeQuestion}.pdf`,
-          });
+          })
         }),
-      );
+      )
 
-      await handleBatchBlobDownload(pdfFiles, 'TOK 아웃라인');
+      await handleBatchBlobDownload(pdfFiles, 'TOK 아웃라인')
     } catch (error) {
-      console.error('PDF 일괄 다운로드 실패:', error);
+      console.error('PDF 일괄 다운로드 실패:', error)
     } finally {
-      setIsDownloading(false);
+      setIsDownloading(false)
     }
-  };
+  }
 
   const { mutate: notiMutate, isLoading: notiLoading } = useIBTOKOutlineNotSubmittedNotification({
     params: {
@@ -86,13 +86,13 @@ export default function OutlineView({ grade, klass }: IBGetTokOutlineSubmissionS
       klass,
     },
     onError: (error) => {
-      console.error('미제출자 알림 발송 실패:', error);
+      console.error('미제출자 알림 발송 실패:', error)
     },
-  });
+  })
 
   useEffect(() => {
-    sessionStorage.setItem('PROJECT_TOK_OUTLINE_STATUS', status);
-  }, [status]);
+    sessionStorage.setItem('PROJECT_TOK_OUTLINE_STATUS', status)
+  }, [status])
 
   return (
     <div>
@@ -175,5 +175,5 @@ export default function OutlineView({ grade, klass }: IBGetTokOutlineSubmissionS
         </div>
       )}
     </div>
-  );
+  )
 }

@@ -1,21 +1,22 @@
-import { useState } from 'react';
-import { useQueryClient } from 'react-query';
-import icon from 'src/assets/icons/more-vertical.svg';
-import { useTeacherStudentUpdateParent } from 'src/container/teacher-student-update-parent';
-import { useCounselingSendParentSignUpV2 } from 'src/generated/endpoint';
-import { ResponseParentUserDto } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { errorType } from 'src/types';
-import { Validator } from 'src/util/validator';
-import { TextInput } from '../common/TextInput';
-import { Icon } from '../common/icons';
-import { DropdownMenu } from './DropdownMenu';
+import { useState } from 'react'
+import { useQueryClient } from 'react-query'
+import icon from 'src/assets/icons/more-vertical.svg'
+import { useTeacherStudentUpdateParent } from '@/legacy/container/teacher-student-update-parent'
+import { useCounselingSendParentSignUpV2 } from '@/legacy/generated/endpoint'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import type { ResponseParentUserDto } from '@/legacy/generated/model'
+import type { errorType } from '@/legacy/types'
+
+import { Validator } from '@/legacy/util/validator'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Icon } from '@/legacy/components/common/icons'
+import { DropdownMenu } from './DropdownMenu'
 
 interface ParentInfoCard {
-  parentInfo?: ResponseParentUserDto[] | null;
-  studentId?: number;
-  nokName?: string;
-  nokPhone?: string;
+  parentInfo?: ResponseParentUserDto[] | null
+  studentId?: number
+  nokName?: string
+  nokPhone?: string
 }
 
 export default function Parentv3InfoCard({
@@ -24,68 +25,68 @@ export default function Parentv3InfoCard({
   nokName: nokNameArg,
   nokPhone: nokPhoneArg,
 }: ParentInfoCard) {
-  const queryClient = useQueryClient();
-  const { updateStudentParent } = useTeacherStudentUpdateParent();
-  const [nokName, setNokName] = useState('');
-  const [nokPhone, setNokPhone] = useState('');
-  const [addBtnParent, setAddBtnParent] = useState(false);
-  const { t } = useLanguage();
+  const queryClient = useQueryClient()
+  const { updateStudentParent } = useTeacherStudentUpdateParent()
+  const [nokName, setNokName] = useState('')
+  const [nokPhone, setNokPhone] = useState('')
+  const [addBtnParent, setAddBtnParent] = useState(false)
+  const { t } = useLanguage()
 
   // useCounselingFindCounselingDetialStudentByStudentId<ResponseCounselingDetailStudentDto>(studentId || 0, {
   //   query: { enabled: !!studentId },
   // });
 
-  const keyName = studentId || 0;
-  const reqParentName = localStorage.getItem(keyName.toString())?.split('|')[0];
-  const id = Number(localStorage.getItem(keyName.toString())?.split('|')[1]);
-  const reqParentPhone = localStorage.getItem(keyName.toString())?.split('|')[2];
+  const keyName = studentId || 0
+  const reqParentName = localStorage.getItem(keyName.toString())?.split('|')[0]
+  const id = Number(localStorage.getItem(keyName.toString())?.split('|')[1])
+  const reqParentPhone = localStorage.getItem(keyName.toString())?.split('|')[2]
 
   // 가입요청중인 보호자가 있는 지
-  const isParentJoinPending = reqParentName && id === studentId;
+  const isParentJoinPending = reqParentName && id === studentId
   // 가입대기중인 보호자가 있는 지
-  const isParentAlreadyAdded = parentInfo?.some((parent) => parent.phone === nokPhoneArg);
-  const totalParent = parentInfo?.length || 0;
-  const totalPendingParents = isParentJoinPending ? 1 : 0;
-  const totalPendingParents2 = !isParentAlreadyAdded ? 1 : 0;
-  const canAddParent = totalParent + totalPendingParents + totalPendingParents2 < 2;
+  const isParentAlreadyAdded = parentInfo?.some((parent) => parent.phone === nokPhoneArg)
+  const totalParent = parentInfo?.length || 0
+  const totalPendingParents = isParentJoinPending ? 1 : 0
+  const totalPendingParents2 = !isParentAlreadyAdded ? 1 : 0
+  const canAddParent = totalParent + totalPendingParents + totalPendingParents2 < 2
 
-  let key = studentId || 0;
+  let key = studentId || 0
   const { mutate: sendParentSignUpV2Mutate } = useCounselingSendParentSignUpV2({
     mutation: {
       onSuccess: () => {
-        alert('보호자 회원가입 메시지 발송이 완료되었습니다.');
+        alert('보호자 회원가입 메시지 발송이 완료되었습니다.')
 
-        localStorage.setItem(key.toString(), nokName + '|' + studentId + '|' + nokPhone);
+        localStorage.setItem(key.toString(), nokName + '|' + studentId + '|' + nokPhone)
       },
       onError: (error) => {
-        const errorMsg: errorType | undefined = error?.response?.data as errorType;
-        localStorage.removeItem(key.toString());
-        setAddBtnParent(false);
-        alert(errorMsg?.message || '메시지 발송 중 오류가 발생하였습니다.');
+        const errorMsg: errorType | undefined = error?.response?.data as errorType
+        localStorage.removeItem(key.toString())
+        setAddBtnParent(false)
+        alert(errorMsg?.message || '메시지 발송 중 오류가 발생하였습니다.')
       },
     },
-  });
+  })
 
   const cancel = () => {
-    setAddBtnParent(false);
-    setNokName('');
-    setNokPhone('');
-  };
+    setAddBtnParent(false)
+    setNokName('')
+    setNokPhone('')
+  }
 
   const checkParentJoin = () => {
-    let rst = false;
+    let rst = false
 
     if (nokPhoneArg) {
       parentInfo?.map((item: ResponseParentUserDto) => {
         if (nokPhoneArg === item.phone) {
-          rst = true;
+          rst = true
         }
-      });
+      })
     } else {
-      rst = true;
+      rst = true
     }
-    return rst;
-  };
+    return rst
+  }
 
   return (
     <section className="relative mt-4 flex h-full flex-col rounded-md border-2 bg-white p-4 md:mt-0">
@@ -96,7 +97,7 @@ export default function Parentv3InfoCard({
             {canAddParent && (
               <button
                 onClick={() => setAddBtnParent(!addBtnParent)}
-                className={`block h-8 rounded-md border border-darkgray px-4 font-semibold transition-all hover:bg-darkgray hover:text-white ${
+                className={`border-darkgray hover:bg-darkgray block h-8 rounded-md border px-4 font-semibold transition-all hover:text-white ${
                   addBtnParent && 'hidden'
                 }`}
               >
@@ -105,7 +106,7 @@ export default function Parentv3InfoCard({
             )}
           </section>
 
-          <p className="text-13 font-semibold text-brand-1">
+          <p className="text-13 text-brand-1 font-semibold">
             {t('parent_info_edit_my_page', '보호자 정보 수정은 보호자의 MY페이지에서만 가능합니다.')}
           </p>
         </div>
@@ -156,25 +157,25 @@ export default function Parentv3InfoCard({
               <nav className="flex items-center justify-between space-x-2">
                 <button
                   onClick={() => cancel()}
-                  className="flex w-16 items-center rounded-md border border-darkgray font-semibold transition-all hover:bg-darkgray hover:text-white"
+                  className="border-darkgray hover:bg-darkgray flex w-16 items-center rounded-md border font-semibold transition-all hover:text-white"
                 >
                   <Icon.Close />
                   {t('cancel', '취소')}
                 </button>
                 <button
                   onClick={() => {
-                    const regExp = /^010(?:\d{4})\d{4}$/;
+                    const regExp = /^010(?:\d{4})\d{4}$/
                     if (nokPhone && !regExp.test(nokPhone.replace(/-/g, ''))) {
-                      alert('보호자 연락처를 확인해 주세요.');
-                      return;
+                      alert('보호자 연락처를 확인해 주세요.')
+                      return
                     }
                     sendParentSignUpV2Mutate({
                       studentId: Number(studentId),
                       data: { name: nokName, phone: nokPhone },
-                    });
-                    cancel();
+                    })
+                    cancel()
                   }}
-                  className="w-12 rounded-md border border-darkgray font-semibold transition-all hover:bg-darkgray hover:text-white"
+                  className="border-darkgray hover:bg-darkgray w-12 rounded-md border font-semibold transition-all hover:text-white"
                 >
                   {t('add', '추가')}
                 </button>
@@ -189,7 +190,7 @@ export default function Parentv3InfoCard({
                   onChange={(e) => setNokName(e.target.value)}
                   onKeyDown={(e) => {
                     if (Validator.onlyEngAndHan(e.key) === false) {
-                      e.preventDefault();
+                      e.preventDefault()
                     }
                   }}
                   className="h-5 w-full rounded-none border-0 border-b border-gray-400 focus:border-b-2 focus:border-black focus:ring-0"
@@ -214,11 +215,11 @@ export default function Parentv3InfoCard({
             <p className="font-bold">{t('signup_request_in_progress', '가입요청중')}</p>
             <button
               onClick={() => {
-                alert('가입 요청을 취소합니다.');
-                localStorage.removeItem(studentId.toString());
-                queryClient.refetchQueries({ active: true });
+                alert('가입 요청을 취소합니다.')
+                localStorage.removeItem(studentId.toString())
+                queryClient.refetchQueries({ active: true })
               }}
-              className="h-6 rounded-md border border-darkgray px-2 py-px text-sm font-semibold transition-all hover:bg-darkgray hover:text-white"
+              className="border-darkgray hover:bg-darkgray h-6 rounded-md border px-2 py-px text-sm font-semibold transition-all hover:text-white"
             >
               {t('cancel', '취소')}
             </button>
@@ -230,5 +231,5 @@ export default function Parentv3InfoCard({
         <></>
       )}
     </section>
-  );
+  )
 }

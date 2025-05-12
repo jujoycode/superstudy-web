@@ -1,28 +1,28 @@
-import clsx from 'clsx';
-import _ from 'lodash';
-import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
-import { Icon } from 'src/components/common/icons';
-import { useInsertScoreBatch, useStudentInsertTestScores } from 'src/container/insert-exam-score';
-import { useImageAndDocument } from 'src/hooks/useImageAndDocument';
-import { validateAndExtract, validateAndExtractMock } from 'src/util/exam-score';
-import { isExcelFile } from 'src/util/file';
-import AlertDialog from '../common/AlertDialog';
-import ConfirmDialog from '../common/ConfirmDialog';
+import clsx from 'clsx'
+import _ from 'lodash'
+import { PropsWithChildren, useCallback, useEffect, useState } from 'react'
+import { Icon } from '@/legacy/components/common/icons'
+import { useInsertScoreBatch, useStudentInsertTestScores } from '@/legacy/container/insert-exam-score'
+import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
+import { validateAndExtract, validateAndExtractMock } from '@/legacy/util/exam-score'
+import { isExcelFile } from '@/legacy/util/file'
+import AlertDialog from '@/legacy/components/common/AlertDialog'
+import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
 
 interface ExamUploadModalProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  width?: string;
-  ablePropragation?: boolean;
-  grade: number;
-  semester: number;
-  year: number;
+  modalOpen: boolean
+  setModalClose: () => void
+  width?: string
+  ablePropragation?: boolean
+  grade: number
+  semester: number
+  year: number
 }
 
 type IBProjectItem = {
-  label: string;
-  name: 1 | 2 | 3;
-};
+  label: string
+  name: 1 | 2 | 3
+}
 
 const IBProjects: IBProjectItem[] = [
   {
@@ -37,7 +37,7 @@ const IBProjects: IBProjectItem[] = [
     label: '종합 성적',
     name: 3,
   },
-];
+]
 
 export function ExamUploadModal({
   modalOpen,
@@ -48,141 +48,141 @@ export function ExamUploadModal({
   year,
   ablePropragation = false,
 }: PropsWithChildren<ExamUploadModalProps>) {
-  const [type, setType] = useState<IBProjectItem['name'] | undefined>();
-  const [step, setStep] = useState<number>(0);
-  const [uploading, setUploading] = useState(false);
-  const [alertOpen, setAlertOpen] = useState(false);
-  const [errorAlertOpen, setErrorAlertOpen] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [uploadStatus, setUploadStatus] = useState<{ name: string; uploaded: boolean }[]>([]);
+  const [type, setType] = useState<IBProjectItem['name'] | undefined>()
+  const [step, setStep] = useState<number>(0)
+  const [uploading, setUploading] = useState(false)
+  const [alertOpen, setAlertOpen] = useState(false)
+  const [errorAlertOpen, setErrorAlertOpen] = useState(false)
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const [uploadStatus, setUploadStatus] = useState<{ name: string; uploaded: boolean }[]>([])
 
-  const { insertTestScore } = useStudentInsertTestScores();
-  const { insertScoreBatch } = useInsertScoreBatch();
-  const { documentObjectMap, toggleDocumentDelete, addFiles, resetDocuments } = useImageAndDocument({});
+  const { insertTestScore } = useStudentInsertTestScores()
+  const { insertScoreBatch } = useInsertScoreBatch()
+  const { documentObjectMap, toggleDocumentDelete, addFiles, resetDocuments } = useImageAndDocument({})
   const documentFiles = [...documentObjectMap.values()]
     .filter((value) => !value.isDelete && value.document instanceof File)
-    .map((value) => value.document) as File[];
+    .map((value) => value.document) as File[]
 
   const validateAndAddFiles = (files: FileList, type: number | undefined) => {
     if (type === undefined) {
-      alert('성적 유형을 선택해주세요.');
-      return;
+      alert('성적 유형을 선택해주세요.')
+      return
     }
 
-    const normalizedName = (name: string) => name.normalize('NFC');
+    const normalizedName = (name: string) => name.normalize('NFC')
 
     const invalidFiles = _.filter(files, (file) => {
-      const fileNameWithoutExtension = normalizedName(file.name.split('.')[0]);
-      if (!isExcelFile(file.name)) return true;
+      const fileNameWithoutExtension = normalizedName(file.name.split('.')[0])
+      if (!isExcelFile(file.name)) return true
 
       if (type === 1 || type === 2) {
         // "2-4-1-1", "2-4-1-2" 유효성 검증
-        const isValidFormat = /^\d+-\d+-\d+-\d+$/.test(fileNameWithoutExtension);
-        return !isValidFormat;
+        const isValidFormat = /^\d+-\d+-\d+-\d+$/.test(fileNameWithoutExtension)
+        return !isValidFormat
       } else if (type === 3) {
         // "2-4-1-종합" 유효성 검증
-        const isValidFormat = /^\d+-\d+-[^()]*$/.test(fileNameWithoutExtension);
-        return !isValidFormat;
+        const isValidFormat = /^\d+-\d+-[^()]*$/.test(fileNameWithoutExtension)
+        return !isValidFormat
       }
-      return true;
-    });
+      return true
+    })
 
     if (invalidFiles.length > 0) {
-      alert('파일 이름 형식이 올바르지 않거나 .XLSX 파일 형식이 아닌 파일이 있습니다.');
-      return;
+      alert('파일 이름 형식이 올바르지 않거나 .XLSX 파일 형식이 아닌 파일이 있습니다.')
+      return
     }
 
     const existingFileNames = [...documentObjectMap.values()]
       .filter((value) => !value.isDelete && value.document instanceof File)
-      .map((value) => (value.document as File).name);
-    const duplicateFiles = _.filter(files, (file) => existingFileNames.includes(file.name));
+      .map((value) => (value.document as File).name)
+    const duplicateFiles = _.filter(files, (file) => existingFileNames.includes(file.name))
     if (duplicateFiles.length > 0) {
-      alert('동일한 파일이 존재합니다.');
-      return;
+      alert('동일한 파일이 존재합니다.')
+      return
     }
 
-    addFiles(files);
-  };
+    addFiles(files)
+  }
 
   const handleTypeSelect = useCallback((name: IBProjectItem['name']) => {
-    setType(name);
-    setStep(1);
-  }, []);
+    setType(name)
+    setStep(1)
+  }, [])
 
   useEffect(() => {
-    resetDocuments();
-  }, [step]);
+    resetDocuments()
+  }, [step])
 
   const handleUpload = async () => {
     if (!type) {
-      alert('성적 유형을 선택해주세요.');
-      return;
+      alert('성적 유형을 선택해주세요.')
+      return
     }
 
-    setUploading(true);
-    let hasError = false;
+    setUploading(true)
+    let hasError = false
 
-    setUploadStatus(documentFiles.map((file) => ({ name: file.name, uploaded: false })));
+    setUploadStatus(documentFiles.map((file) => ({ name: file.name, uploaded: false })))
     try {
       if (type === 1 || type === 2) {
-        const validFiles = validateAndExtractMock(documentFiles, semester, type, year);
-        if (validFiles.length === 0) return;
+        const validFiles = validateAndExtractMock(documentFiles, semester, type, year)
+        if (validFiles.length === 0) return
 
         for (const file of validFiles) {
           try {
-            await insertTestScore(file);
+            await insertTestScore(file)
             setUploadStatus((prevStatus) =>
               prevStatus.map((status) => (status.name === file.file.name ? { ...status, uploaded: true } : status)),
-            );
+            )
           } catch (error: any) {
-            console.error(error.message);
-            hasError = true;
+            console.error(error.message)
+            hasError = true
           }
         }
       } else if (type === 3) {
-        const validFiles = validateAndExtract(documentFiles, year);
-        if (validFiles.length === 0) return;
+        const validFiles = validateAndExtract(documentFiles, year)
+        if (validFiles.length === 0) return
 
         for (const file of validFiles) {
           try {
-            await insertScoreBatch(file);
+            await insertScoreBatch(file)
             setUploadStatus((prevStatus) =>
               prevStatus.map((status) => (status.name === file.file.name ? { ...status, uploaded: true } : status)),
-            );
+            )
           } catch (error: any) {
-            console.error(error.message);
-            hasError = true;
+            console.error(error.message)
+            hasError = true
           }
         }
       }
     } catch (error) {
-      console.error(error);
-      hasError = true;
+      console.error(error)
+      hasError = true
     } finally {
-      setUploading(false);
+      setUploading(false)
       if (hasError) {
-        setErrorAlertOpen(true);
+        setErrorAlertOpen(true)
       } else {
-        setAlertOpen(true);
+        setAlertOpen(true)
       }
     }
-  };
+  }
 
   const handleCancelUpload = () => {
-    setDialogOpen(!dialogOpen);
-    setUploading(false);
-    setUploadStatus([]);
-  };
+    setDialogOpen(!dialogOpen)
+    setUploading(false)
+    setUploadStatus([])
+  }
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-littlegray ${
+      className={`bg-littlegray fixed inset-0 z-60 flex h-screen w-full items-center justify-center ${
         modalOpen ? 'backdrop-blur-sm' : 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
         }
       }}
     >
@@ -243,7 +243,7 @@ export function ExamUploadModal({
                   <div className="scroll-box flex w-full flex-col overflow-y-auto rounded-lg bg-white">
                     <div className="flex flex-wrap gap-2">
                       {documentFiles.map((value, key) => {
-                        const isUploaded = uploadStatus.find((status) => status.name === value.name)?.uploaded;
+                        const isUploaded = uploadStatus.find((status) => status.name === value.name)?.uploaded
                         return (
                           <div className="w-full" key={key}>
                             <div
@@ -252,9 +252,9 @@ export function ExamUploadModal({
                               } px-4 py-3`}
                             >
                               <div className={`flex h-8 items-center space-x-2 rounded px-3 py-1`}>
-                                <div className={`w-full whitespace-pre-wrap break-words text-15`}>{value.name}</div>
+                                <div className={`text-15 w-full break-words whitespace-pre-wrap`}>{value.name}</div>
                               </div>
-                              <div className="flex min-w-max items-center justify-center bg-white px-2 text-lightpurple-4">
+                              <div className="text-lightpurple-4 flex min-w-max items-center justify-center bg-white px-2">
                                 {!uploading && (
                                   <div className="z-40 ml-2 block rounded-full text-center text-sm">
                                     <div
@@ -268,12 +268,12 @@ export function ExamUploadModal({
                               </div>
                             </div>
                           </div>
-                        );
+                        )
                       })}
                       {!uploading && (
                         <label
                           className={clsx(
-                            'flex h-12 w-full items-center justify-center gap-2 rounded-lg border border-dashed border-[#cccccc] text-15 text-[#222222] hover:bg-indigo-50',
+                            'text-15 flex h-12 w-full items-center justify-center gap-2 rounded-lg border border-dashed border-[#cccccc] text-[#222222] hover:bg-indigo-50',
                           )}
                           htmlFor="score-file"
                         >
@@ -286,9 +286,9 @@ export function ExamUploadModal({
                             className="sr-only"
                             multiple
                             onChange={(e) => {
-                              const files = e.target.files;
-                              if (!files || files.length === 0) return;
-                              validateAndAddFiles(files, type);
+                              const files = e.target.files
+                              if (!files || files.length === 0) return
+                              validateAndAddFiles(files, type)
                             }}
                           />
                         </label>
@@ -304,10 +304,10 @@ export function ExamUploadModal({
                       className="hidden"
                       multiple
                       onChange={(e) => {
-                        e.preventDefault();
-                        const files = e.target.files;
-                        if (!files || files.length === 0) return;
-                        validateAndAddFiles(files, type);
+                        e.preventDefault()
+                        const files = e.target.files
+                        if (!files || files.length === 0) return
+                        validateAndAddFiles(files, type)
                       }}
                     />
                     <label
@@ -378,5 +378,5 @@ export function ExamUploadModal({
         />
       )}
     </div>
-  );
+  )
 }

@@ -1,25 +1,25 @@
-import { HTMLAttributes, useRef, useState } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
-import { useWindowSize } from 'src/util/hooks';
+import { HTMLAttributes, useRef, useState } from 'react'
+import { Document, Page, pdfjs } from 'react-pdf'
+import { useWindowSize } from '@/legacy/util/hooks'
 
-import 'react-pdf/dist/esm/Page/TextLayer.css';
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+import 'react-pdf/dist/esm/Page/TextLayer.css'
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 interface PdfViewerProps extends HTMLAttributes<HTMLDivElement> {
-  isOpen: boolean;
-  fileUrl?: string;
-  onClose: () => void;
+  isOpen: boolean
+  fileUrl?: string
+  onClose: () => void
 }
 
 export function PdfViewer({ fileUrl, isOpen, onClose, ...props }: PdfViewerProps) {
-  const windowSize = useWindowSize();
-  const divRef = useRef<HTMLDivElement>(null);
-  const [numPages, setNumPages] = useState(0);
-  const [pageNumber, setPageNumber] = useState(1);
+  const windowSize = useWindowSize()
+  const divRef = useRef<HTMLDivElement>(null)
+  const [numPages, setNumPages] = useState(0)
+  const [pageNumber, setPageNumber] = useState(1)
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
-    setNumPages(numPages);
-    setPageNumber(1);
+    setNumPages(numPages)
+    setPageNumber(1)
   }
   return (
     <>
@@ -31,13 +31,13 @@ export function PdfViewer({ fileUrl, isOpen, onClose, ...props }: PdfViewerProps
             : 'hidden scale-95 opacity-0 duration-200 ease-out'
         } fixed inset-x-0 top-0 origin-top-right transform p-2 transition`}
       >
-        <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-          <div className="px-1 pb-6 pt-5">
+        <div className="ring-opacity-5 divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black">
+          <div className="px-1 pt-5 pb-6">
             <div className="flex items-center justify-between">
               <div className="-mr-2">
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                  className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none focus:ring-inset"
                   onClick={() => onClose()}
                 >
                   <span className="sr-only">Close menu</span>
@@ -75,5 +75,5 @@ export function PdfViewer({ fileUrl, isOpen, onClose, ...props }: PdfViewerProps
         </div>
       </div>
     </>
-  );
+  )
 }

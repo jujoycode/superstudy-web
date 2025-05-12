@@ -1,30 +1,30 @@
-import { useEffect, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { Constants } from 'src/constants';
-import { ImageObject } from 'src/type/image-object';
-import ColorSVGIcon from '../icon/ColorSVGIcon';
+import { useEffect, useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { Constants } from '@/legacy/constants'
+import type { ImageObject } from '@/legacy/types/image-object'
+import ColorSVGIcon from '../icon/ColorSVGIcon'
 
 interface ImageCardProps {
-  id: number;
-  imageObjet: ImageObject;
-  onDeleteClick?: (key: number) => void;
+  id: number
+  imageObjet: ImageObject
+  onDeleteClick?: (key: number) => void
 }
 
 export function ImageCard({ id, imageObjet, onDeleteClick }: ImageCardProps) {
   if (imageObjet.isDelete) {
-    return null;
+    return null
   }
 
-  const [objUrl, setObjUrl] = useState('');
+  const [objUrl, setObjUrl] = useState('')
 
   useEffect(() => {
-    setObjUrl(typeof imageObjet.image === 'string' ? imageObjet.image : URL.createObjectURL(imageObjet.image));
-  }, [imageObjet]);
+    setObjUrl(typeof imageObjet.image === 'string' ? imageObjet.image : URL.createObjectURL(imageObjet.image))
+  }, [imageObjet])
 
   return (
     <div className="border-dim-8 relative aspect-square h-20 w-20 rounded-lg border">
       {onDeleteClick && (
-        <span className="absolute right-1 top-1 z-10 block">
+        <span className="absolute top-1 right-1 z-10 block">
           <div
             className="flex h-full w-full cursor-pointer items-center justify-center text-white"
             onClick={() => onDeleteClick(id)}
@@ -45,5 +45,5 @@ export function ImageCard({ id, imageObjet, onDeleteClick }: ImageCardProps) {
         <LazyLoadImage src={objUrl} alt="" loading="lazy" className="object-fit absolute h-full w-full rounded-lg" />
       )}
     </div>
-  );
+  )
 }

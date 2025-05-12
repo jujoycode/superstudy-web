@@ -1,78 +1,78 @@
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { RadioV2 } from 'src/components/common/RadioV2';
-import { Typography } from 'src/components/common/Typography';
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import {
   useIBRppfNotSubmittedNotification,
   useIBRPPFStatus,
   useIBRPPFSubmissionStatus,
-} from 'src/container/ib-overview';
-import { IBGetSubmissionStatusCountParams, RPPFGetSubmissionStatusStatus } from 'src/generated/model';
-import { modifyRppfPdf } from 'src/util/ib_rppf_pdf';
-import IBSubmitPdfPreviewPopup from '../IBSubmitPdfPreviewPopup';
-import RPPFOverviewPanel from './RPPFOverviewPanel';
-import { handleBatchBlobDownload, BlobDownloadItem } from 'src/hooks/useBatchDownload';
-import { Blank } from 'src/components/common';
+} from '@/legacy/container/ib-overview'
+import { IBGetSubmissionStatusCountParams, RPPFGetSubmissionStatusStatus } from '@/legacy/generated/model'
+import { modifyRppfPdf } from '@/legacy/util/ib_rppf_pdf'
+import IBSubmitPdfPreviewPopup from '../IBSubmitPdfPreviewPopup'
+import RPPFOverviewPanel from './RPPFOverviewPanel'
+import { handleBatchBlobDownload, BlobDownloadItem } from '@/legacy/hooks/useBatchDownload'
+import { Blank } from '@/legacy/components/common'
 export default function RPPFView({ grade, klass }: IBGetSubmissionStatusCountParams) {
-  const { push } = useHistory();
+  const { push } = useHistory()
 
   const [status, setStatus] = useState<RPPFGetSubmissionStatusStatus>(
     () => (sessionStorage.getItem('PROJECT_RPPF_STATUS') as RPPFGetSubmissionStatusStatus) || 'NOT_SUBMITTED',
-  );
-  const [previewPopup, setPreviewPopup] = useState<boolean>(false);
-  const [pdfData, setPdfData] = useState<any>({});
-  const [isDownloading, setIsDownloading] = useState<boolean>(false);
+  )
+  const [previewPopup, setPreviewPopup] = useState<boolean>(false)
+  const [pdfData, setPdfData] = useState<any>({})
+  const [isDownloading, setIsDownloading] = useState<boolean>(false)
 
   const { data } = useIBRPPFStatus({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
-  });
+  })
 
   const { students = [] } = useIBRPPFSubmissionStatus({
     grade: grade === 0 ? undefined : grade,
     klass: klass === 0 ? undefined : klass,
     status,
-  });
+  })
 
   const openPreviewPopup = (studentIbId: number) => {
-    setPreviewPopup(true);
-    const studentData = students.find((data) => data.id === studentIbId);
-    setPdfData({ ...studentData?.rppf, ...studentData?.leader });
-  };
+    setPreviewPopup(true)
+    const studentData = students.find((data) => data.id === studentIbId)
+    setPdfData({ ...studentData?.rppf, ...studentData?.leader })
+  }
 
   const pdfAllDownload = async () => {
-    const pdfPath = '/EE-RPPF.pdf';
-    const pdfFiles: BlobDownloadItem[] = [];
+    const pdfPath = '/EE-RPPF.pdf'
+    const pdfFiles: BlobDownloadItem[] = []
 
-    setIsDownloading(true);
+    setIsDownloading(true)
 
     try {
       await Promise.all(
         students.map(async (student) => {
-          const data = { ...student.rppf, ...student.leader };
-          const pdfBlob = await modifyRppfPdf({ pdfPath, data });
+          const data = { ...student.rppf, ...student.leader }
+          const pdfBlob = await modifyRppfPdf({ pdfPath, data })
 
-          const klassNum = `${student.leader.studentGroup.group.grade}${String(student.leader.studentGroup.group.klass).padStart(2, '0')}${String(student.leader.studentGroup.studentNumber).padStart(2, '0')}`;
+          const klassNum = `${student.leader.studentGroup.group.grade}${String(student.leader.studentGroup.group.klass).padStart(2, '0')}${String(student.leader.studentGroup.studentNumber).padStart(2, '0')}`
 
           if (!pdfBlob) {
-            console.error(`PDF 생성 실패: 학생 ID ${student.id}`);
-            return;
+            console.error(`PDF 생성 실패: 학생 ID ${student.id}`)
+            return
           }
 
           pdfFiles.push({
             blob: pdfBlob,
             fileName: `EE_RPPF_${klassNum}_${student.leader.name}.pdf`,
-          });
+          })
         }),
-      );
+      )
 
-      await handleBatchBlobDownload(pdfFiles, '최종 EE RPPF');
+      await handleBatchBlobDownload(pdfFiles, '최종 EE RPPF')
     } catch (error) {
-      console.error('PDF 일괄 다운로드 실패:', error);
+      console.error('PDF 일괄 다운로드 실패:', error)
     } finally {
-      setIsDownloading(false);
+      setIsDownloading(false)
     }
-  };
+  }
 
   const { mutate: notiMutate, isLoading: notiLoading } = useIBRppfNotSubmittedNotification({
     params: {
@@ -80,13 +80,13 @@ export default function RPPFView({ grade, klass }: IBGetSubmissionStatusCountPar
       klass,
     },
     onError: (error) => {
-      console.error('미제출자 알림 발송 실패:', error);
+      console.error('미제출자 알림 발송 실패:', error)
     },
-  });
+  })
 
   useEffect(() => {
-    sessionStorage.setItem('PROJECT_RPPF_STATUS', status);
-  }, [status]);
+    sessionStorage.setItem('PROJECT_RPPF_STATUS', status)
+  }, [status])
 
   return (
     <div>
@@ -203,5 +203,5 @@ export default function RPPFView({ grade, klass }: IBGetSubmissionStatusCountPar
         />
       )}
     </div>
-  );
+  )
 }

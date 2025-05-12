@@ -1,12 +1,12 @@
-import clsx from 'clsx';
+import clsx from 'clsx'
 
 export interface SolidSVGIconProps {
-  color?: 'gray700' | 'gray400' | 'orange800' | 'white';
-  size?: number;
-  rotate?: number;
-  weight?: 'normal' | 'bold';
-  onClick?: () => void;
-  className?: string;
+  color?: 'gray700' | 'gray400' | 'orange800' | 'white'
+  size?: number
+  rotate?: number
+  weight?: 'normal' | 'bold'
+  onClick?: () => void
+  className?: string
 }
 
 // 공통 SVG 설정 함수
@@ -31,8 +31,8 @@ const SVGIconBase = ({
     >
       {children}
     </svg>
-  );
-};
+  )
+}
 
 const HandleIcon = ({ color = 'gray700', ...props }: SolidSVGIconProps) => {
   const colors = {
@@ -40,7 +40,7 @@ const HandleIcon = ({ color = 'gray700', ...props }: SolidSVGIconProps) => {
     gray400: '#C7CBD1',
     orange800: '#FF600C',
     white: '#FFFFFF',
-  };
+  }
 
   return (
     <SVGIconBase {...props}>
@@ -69,8 +69,8 @@ const HandleIcon = ({ color = 'gray700', ...props }: SolidSVGIconProps) => {
         fill={colors[color]}
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 const BellIcon = ({ color = 'gray700', ...props }: SolidSVGIconProps) => {
   const colors = {
     gray700: {
@@ -89,9 +89,9 @@ const BellIcon = ({ color = 'gray700', ...props }: SolidSVGIconProps) => {
       primary: 'white',
       secondary: 'white',
     },
-  };
+  }
 
-  const selectedColors = colors[color];
+  const selectedColors = colors[color]
 
   return (
     <SVGIconBase {...props}>
@@ -104,8 +104,8 @@ const BellIcon = ({ color = 'gray700', ...props }: SolidSVGIconProps) => {
         fill={selectedColors.secondary}
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const HomeIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIconProps) => {
   const colors = {
@@ -125,9 +125,9 @@ const HomeIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIc
       primary: 'white',
       secondary: weight === 'bold' ? '#E8EAED' : 'white',
     },
-  };
+  }
 
-  const selectedColors = colors[color];
+  const selectedColors = colors[color]
 
   return (
     <SVGIconBase {...props}>
@@ -151,8 +151,8 @@ const HomeIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIc
         </>
       )}
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const TalkIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIconProps) => {
   const colors = {
@@ -172,9 +172,9 @@ const TalkIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIc
       primary: 'white',
       secondary: '#E8EAED',
     },
-  };
+  }
 
-  const selectedColors = colors[color];
+  const selectedColors = colors[color]
 
   return (
     <SVGIconBase {...props}>
@@ -218,8 +218,8 @@ const TalkIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIc
         </>
       )}
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const InfoIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIconProps) => {
   const colors = {
@@ -239,9 +239,9 @@ const InfoIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIc
       primary: 'white',
       secondary: '#E8EAED',
     },
-  };
+  }
 
-  const selectedColors = colors[color];
+  const selectedColors = colors[color]
 
   return (
     <SVGIconBase {...props}>
@@ -270,11 +270,11 @@ const InfoIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIc
         </>
       )}
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const MoreIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIconProps) => {
-  const isBold = weight === 'bold';
+  const isBold = weight === 'bold'
 
   const colors = {
     gray700: {
@@ -289,9 +289,9 @@ const MoreIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIc
     white: {
       primary: 'white',
     },
-  };
+  }
 
-  const selectedColors = colors[color];
+  const selectedColors = colors[color]
 
   return (
     <svg
@@ -316,8 +316,8 @@ const MoreIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIc
         </>
       )}
     </svg>
-  );
-};
+  )
+}
 
 const ProfileIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIconProps) => {
   const colors = {
@@ -333,9 +333,9 @@ const ProfileIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSV
     white: {
       primary: 'white',
     },
-  };
+  }
 
-  const selectedColors = colors[color];
+  const selectedColors = colors[color]
 
   return (
     <SVGIconBase {...props}>
@@ -348,8 +348,8 @@ const ProfileIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSV
         fill={selectedColors.primary}
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const BulletIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIconProps) => {
   const colors = {
@@ -365,16 +365,16 @@ const BulletIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVG
     white: {
       primary: 'white',
     },
-  };
+  }
 
-  const selectedColors = colors[color];
+  const selectedColors = colors[color]
 
   return (
     <SVGIconBase {...props}>
       <circle cx="8" cy="10" r="2" fill={selectedColors.primary} />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const CreIcon = ({ color = 'orange800', ...props }: SolidSVGIconProps) => {
   switch (color) {
@@ -396,7 +396,7 @@ const CreIcon = ({ color = 'orange800', ...props }: SolidSVGIconProps) => {
             fill="#4C5057"
           />
         </svg>
-      );
+      )
     case 'orange800':
       return (
         <SVGIconBase {...props}>
@@ -429,11 +429,11 @@ const CreIcon = ({ color = 'orange800', ...props }: SolidSVGIconProps) => {
             </>
           )}
         </SVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 const ActIcon = ({ color = 'orange800', ...props }: SolidSVGIconProps) => {
   switch (color) {
     case 'gray700':
@@ -446,7 +446,7 @@ const ActIcon = ({ color = 'orange800', ...props }: SolidSVGIconProps) => {
             fill="#4C5057"
           />
         </SVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <SVGIconBase {...props}>
@@ -479,11 +479,11 @@ const ActIcon = ({ color = 'orange800', ...props }: SolidSVGIconProps) => {
             </>
           )}
         </SVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 const SerIcon = ({ color = 'orange800', ...props }: SolidSVGIconProps) => {
   switch (color) {
     case 'gray700':
@@ -496,7 +496,7 @@ const SerIcon = ({ color = 'orange800', ...props }: SolidSVGIconProps) => {
             fill="#4C5057"
           />
         </SVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <SVGIconBase {...props}>
@@ -529,11 +529,11 @@ const SerIcon = ({ color = 'orange800', ...props }: SolidSVGIconProps) => {
             </>
           )}
         </SVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 
 const TooltipIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSVGIconProps) => {
   switch (color) {
@@ -563,7 +563,7 @@ const TooltipIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSV
             </svg>
           )}
         </SVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <SVGIconBase {...props}>
@@ -590,7 +590,7 @@ const TooltipIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSV
             </svg>
           )}
         </SVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <SVGIconBase {...props}>
@@ -617,7 +617,7 @@ const TooltipIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSV
             </svg>
           )}
         </SVGIconBase>
-      );
+      )
     case 'white':
       return (
         <SVGIconBase {...props}>
@@ -644,11 +644,11 @@ const TooltipIcon = ({ color = 'gray700', weight = 'normal', ...props }: SolidSV
             </svg>
           )}
         </SVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 
 const SolidSVGIcon = {
   Bell: BellIcon,
@@ -663,6 +663,6 @@ const SolidSVGIcon = {
   S: SerIcon,
   A: ActIcon,
   Tooltip: TooltipIcon,
-};
+}
 
-export default SolidSVGIcon;
+export default SolidSVGIcon
