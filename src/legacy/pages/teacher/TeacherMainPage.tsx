@@ -82,8 +82,8 @@ import { PointDashboard } from './pointlogs/PointDashboard'
 import { RecordPage } from './record/RecordPage'
 import { StudentCardPage } from './studentcard/StudentCardPage'
 import { TimetablePage } from './timetable/TimetablePage'
-import Logo from '@/asset/svg/logo.svg'
-import SvgUser from '@/asset/svg/user.svg'
+import { ReactComponent as Logo } from '@/asset/svg/logo.svg'
+import { ReactComponent as SvgUser } from '@/asset/svg/user.svg'
 
 export function TeacherMainPage() {
   const { replace } = useHistory()

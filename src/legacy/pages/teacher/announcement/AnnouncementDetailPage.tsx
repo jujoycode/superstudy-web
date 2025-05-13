@@ -12,10 +12,10 @@ import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { useAnnouncementDetail } from '@/legacy/container/announcement-detail'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { getFileNameFromUrl, getFileNameFromUrlToAnn } from '@/legacy/util/file'
+import { getFileNameFromUrlToAnn } from '@/legacy/util/file'
 import { isHTML } from '@/legacy/util/validator'
 import { languageState } from '@/stores'
-import FileItemIcon from '@/asset/svg/file-item-icon.svg'
+import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
 
 export default function AnnouncementDetailPage() {
   const { id } = useParams<{ id: string }>()

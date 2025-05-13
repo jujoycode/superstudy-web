@@ -33,7 +33,7 @@ import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { getNickName } from '@/legacy/util/status'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
 import { meState, toastState } from '@/stores'
-import FileItemIcon from '@/asset/svg/file-item-icon.svg'
+import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
 
 interface ActivityV3SessionReportPageProps {}
 

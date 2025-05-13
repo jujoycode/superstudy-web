@@ -7,7 +7,7 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { globalEnv } from '@/legacy/util/global-env'
 import { useAuth } from '@/legacy/util/hooks'
 import superstudyLight from '@/asset/images/superstudy-light.png'
-import Logo from '@/asset/svg/logo.svg'
+import { ReactComponent as Logo } from '@/asset/svg/logo.svg'
 
 export function HomePage() {
   const { authenticated } = useAuth()
