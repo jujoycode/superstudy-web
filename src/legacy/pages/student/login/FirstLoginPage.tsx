@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 
+import Logo from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { BackButton, Blank, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -12,8 +13,6 @@ import { useStudentFirstLogin } from '@/legacy/container/student-first-login'
 import { useLogout } from '@/legacy/util/hooks'
 import { Validator } from '@/legacy/util/validator'
 import { meState } from '@/stores'
-
-import Logo from '@/assets/svg/logo.svg'
 
 export function FirstLoginPage() {
   const { push } = useHistory()

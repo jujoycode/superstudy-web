@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
@@ -17,8 +18,6 @@ import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { meState } from '@/stores'
 
 import PortfolioCard from './cas/PortfolioCard'
-
-import NODATA from '@/assets/images/no-data.png'
 
 interface FilterOption {
   grade: number

@@ -3,6 +3,7 @@ import { FC, useEffect, useRef, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useRecoilState } from 'recoil'
 
+import SvgUser from '@/assets/svg/user.svg'
 import { Avatar, Label, Radio, RadioGroup, Select, Textarea } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Coachmark2 } from '@/legacy/components/common/CoachMark2'
@@ -21,7 +22,6 @@ import { ActivityV3, ResponseStudentCardStudentDto, SubjectType } from '@/legacy
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { toastState } from '@/stores'
 
-import SvgUser from '@/assets/svg/user.svg'
 import 'swiper/swiper.min.css'
 
 interface ActivityV3GPTModalProps {

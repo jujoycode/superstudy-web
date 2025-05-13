@@ -4,12 +4,11 @@ import { createPortal } from 'react-dom'
 import { useUserSearch } from '@/legacy/container/ib-find-user'
 import { ResponseIBStudentDto } from '@/legacy/generated/model'
 
-import SVGIcon from '../icon/SVGIcon'
-
 import { ButtonV2 } from './ButtonV2'
 import { Check } from './Check'
 import { Input } from './Input'
 import { Typography } from './Typography'
+import SVGIcon from '../icon/SVGIcon'
 
 interface MemberSearchPortalProps {
   initialStudents?: ResponseIBStudentDto[]

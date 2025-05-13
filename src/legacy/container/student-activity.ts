@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
+import { useHistory } from '@/hooks/useHistory'
 import { ActivityFilterEnum } from '@/legacy/constants/activity-filter.enum'
 import { useActivityFindByStudent } from '@/legacy/generated/endpoint'
 import { childState, meState } from '@/stores'

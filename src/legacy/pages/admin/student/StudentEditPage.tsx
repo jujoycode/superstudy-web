@@ -19,10 +19,9 @@ import {
 import { Category, RequestCreateStudentDto, RequestModifyStudentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getErrorMsg } from '@/legacy/util/status'
 import { toastState, warningState } from '@/stores'
-
-import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 export function StudentEditPage() {
   const { goBack } = useHistory()

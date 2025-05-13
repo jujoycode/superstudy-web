@@ -1,13 +1,12 @@
 import { cloneDeep } from 'lodash'
 import React, { FC } from 'react'
 
+import DeleteQuestionIcon from '@/assets/icons/survey-delete.svg'
 import { Radio } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { TextInput } from '@/legacy/components/common/TextInput'
 
 import { SelectValues } from '../SelectValues'
-
-import DeleteQuestionIcon from '@/assets/icons/survey-delete.svg'
 
 interface SuperSurveyQuestionProps {
   question: any

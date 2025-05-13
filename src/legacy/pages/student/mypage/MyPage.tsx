@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { StudentIDCard } from '@/legacy/components'
 import { Blank, IconButton, Section, TopNavbar } from '@/legacy/components/common'
@@ -16,8 +17,6 @@ import { ResponseUserDto, Role, ScoreUse } from '@/legacy/generated/model'
 import { globalEnv } from '@/legacy/util/global-env'
 import { useLogout } from '@/legacy/util/hooks'
 import { meState } from '@/stores'
-
-import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 
 export function MyPage() {
   const logout = useLogout()

@@ -1,10 +1,9 @@
 import { PropsWithChildren, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import SVGIcon from '../icon/SVGIcon'
-
 import { Typography } from './Typography'
 import type { TypographyProps } from './Typography'
+import SVGIcon from '../icon/SVGIcon'
 
 // 아코디언 Props 인터페이스
 interface AccordionProps {

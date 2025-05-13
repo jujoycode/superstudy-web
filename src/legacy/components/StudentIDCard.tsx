@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import Edit from '@/assets/svg/edit.svg'
 import { Blank, CloseButton, IconButton, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Constants } from '@/legacy/constants'
@@ -13,7 +14,6 @@ import { makeDateToString } from '@/legacy/util/time'
 import { Validator } from '@/legacy/util/validator'
 
 // ? 추후 고도화
-import Edit from '@/assets/svg/edit.svg'
 
 interface StudentIDCardProps {
   meRecoil: ResponseUserDto

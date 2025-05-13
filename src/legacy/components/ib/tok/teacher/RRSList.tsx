@@ -1,6 +1,7 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
@@ -12,8 +13,6 @@ import { LocationState } from '@/legacy/types/ib'
 
 import FeedbackViewer from '../../FeedbackViewer'
 import { IBPagination } from '../../ProjectList'
-
-import NODATA from '@/assets/images/no-data.png'
 
 interface RRSListProps {
   title?: string

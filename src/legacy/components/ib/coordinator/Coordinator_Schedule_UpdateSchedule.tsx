@@ -11,9 +11,8 @@ import { useIBDeadlineUpdateDeadline } from '@/legacy/generated/endpoint'
 import { ResponseIBDeadlineDto } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
-import ColorSVGIcon from '../../icon/ColorSVGIcon'
-
 import { DEADLINE_TYPE_KOR } from './Coordinator_Schedule'
+import ColorSVGIcon from '../../icon/ColorSVGIcon'
 
 interface Coordinator_Schedule_UpdateScheduleProps {
   modalOpen: boolean

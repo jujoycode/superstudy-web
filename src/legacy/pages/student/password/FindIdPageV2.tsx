@@ -2,13 +2,12 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import Logo from '@/assets/svg/logo_superschool.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { Alert, BackButton, Label, TopNavbar } from '@/legacy/components/common'
 import AlertDialog from '@/legacy/components/common/AlertDialog'
 import { InputDel } from '@/legacy/components/common/InputDel'
 import { useFindId } from '@/legacy/container/find-id'
-
-import Logo from '@/assets/svg/logo_superschool.svg'
 
 export function FindIdPageV2() {
   const { push } = useHistory()

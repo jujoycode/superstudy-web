@@ -1,6 +1,7 @@
 import { concat, sortBy } from 'lodash'
 import { useState } from 'react'
 
+import NODATA from '@/assets/images/no-data.png'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -16,7 +17,6 @@ import { PopupModal } from '../../PopupModal'
 import { CoordinatorEE_Form_AddCheckList } from './ee/CoordinatorEE_Form_AddCheckList'
 import { CoordinatorEE_Form_AddInterview } from './ee/CoordinatorEE_Form_AddInterview'
 
-import NODATA from '@/assets/images/no-data.png'
 export type ModalType = 'Category' | 'Add' | null
 export type CategoryType = 'CheckList' | 'Interview' | ''
 

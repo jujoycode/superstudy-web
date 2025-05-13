@@ -1,6 +1,7 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -12,8 +13,6 @@ import { ResponseExhibitionDto } from '@/legacy/generated/model'
 import FeedbackViewer from '../FeedbackViewer'
 
 import { IbExhibition } from './IbExhibition'
-
-import NODATA from '@/assets/images/no-data.png'
 
 interface ExhibitionListProps {
   data?: ResponseExhibitionDto

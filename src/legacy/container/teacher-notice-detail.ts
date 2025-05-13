@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { useHistory } from '@/hooks/useHistory'
-import { Routes } from '@/legacy/constants/routes'
 import { Constants } from '@/legacy/constants'
 import { QueryKey } from '@/legacy/constants/query-key'
+import { Routes } from '@/legacy/constants/routes'
 import { useNoticesDelete, useNoticesFindOne } from '@/legacy/generated/endpoint'
 import { isPdfFile } from '@/legacy/util/file'
 

@@ -1,6 +1,7 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -14,8 +15,6 @@ import { FeedbackReferenceTable, ResponseIBDtoStatus } from '@/legacy/generated/
 import { IbEeRRS } from '../ee/IbEeRRS'
 import FeedbackViewer from '../FeedbackViewer'
 import { IBPagination } from '../ProjectList'
-
-import NODATA from '@/assets/images/no-data.png'
 
 interface RRSListProps {
   id: number

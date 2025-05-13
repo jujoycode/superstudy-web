@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Routes } from 'src/routes'
 import { useHistory } from '@/hooks/useHistory'
 import {
   useGroupsDelete,
@@ -6,7 +7,6 @@ import {
   useTeacherGroupsFindTeachersWithKlassByGroupId,
 } from '@/legacy/generated/endpoint'
 import { ResponseGroupDto, ResponseStudentGroupWithKlassDto, TeacherGroup } from '@/legacy/generated/model'
-import { Routes } from 'src/routes'
 import { GroupContainer } from './group'
 
 export function useTeacherGroupDetail(groupId?: number) {

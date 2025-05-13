@@ -7,8 +7,8 @@ import {
   useStudentNewsletterFindAllByNewsletterId,
 } from '@/legacy/generated/endpoint'
 import { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup, StudentNewsletter } from '@/legacy/generated/model'
-import { toastState } from '@/stores'
 import { makeDateToString } from '@/legacy/util/time'
+import { toastState } from '@/stores'
 import { useTeacherKlassGroup } from './teacher-klass-groups'
 
 type NewData = ResponseGroupDto & {

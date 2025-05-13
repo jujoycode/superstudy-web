@@ -21,10 +21,9 @@ import {
 import { Category, RequestCreateTeacherDto, RequestModifyTeacherDto, Role, ScoreUse } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getErrorMsg } from '@/legacy/util/status'
 import { meState, toastState } from '@/stores'
-
-import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 export function TeacherEditPage() {
   const me = useRecoilValue(meState)

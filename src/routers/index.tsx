@@ -1,5 +1,4 @@
 import { createBrowserRouter, type RouteObject } from 'react-router-dom'
-
 import { StudentRedirect } from '@/legacy/components/StudentRedirect'
 import { ApprovalLinePage } from '@/legacy/pages/admin/approval-line/ApprovalLinePage'
 import { ExpiredUserPage } from '@/legacy/pages/admin/expired-user/ExpiredUserPage'

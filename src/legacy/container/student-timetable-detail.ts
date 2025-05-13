@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil'
 import { useTimetablev3GetTimetableByStudentId } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
-import { childState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { childState } from '@/stores'
 import { UserContainer } from './user'
 
 export function useStudentTimetableDetail() {

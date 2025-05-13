@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 
+import NODATA from '@/assets/images/no-data.png'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
@@ -18,8 +19,6 @@ import CASProfile from './CASProfile'
 import CASRefNInt from './CASRefNInt'
 import { IbCASNormal } from './IbCASNormal'
 import { IbCASProject } from './IbCASProject'
-
-import NODATA from '@/assets/images/no-data.png'
 
 type ModalType = 'SELECT' | 'IBCAS' | 'IBPROJECT' | null
 type CategoryType = 'IBCAS' | 'IBPROJECT' | null

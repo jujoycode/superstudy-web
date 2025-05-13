@@ -5,12 +5,12 @@ import { useFieldtripsCreate, useFieldtripsUpdate, useSchedulesFindRejectSchedul
 import { Fieldtrip, FieldtripType, Role, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { childState } from '@/stores'
-import { ImageObject } from '@/legacy/types/image-object'
 import { errorType } from '@/legacy/types'
+import { ImageObject } from '@/legacy/types/image-object'
 import { usePrevious } from '@/legacy/util/hooks'
-import { UserContainer } from './user'
+import { childState } from '@/stores'
 import { useSchoolWording } from './school-wording'
+import { UserContainer } from './user'
 
 type Props<T> = {
   startAt: Date | null

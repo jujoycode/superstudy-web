@@ -4,8 +4,8 @@ import { useRecoilValue } from 'recoil'
 import { Constants } from '@/legacy/constants'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useBoardFindOne } from '@/legacy/generated/endpoint'
-import { childState, meState } from '@/stores'
 import { isPdfFile } from '@/legacy/util/file'
+import { childState, meState } from '@/stores'
 
 export function useStudentBoardDetail(boardId?: number) {
   const [errorMessage, setErrorMessage] = useState('')

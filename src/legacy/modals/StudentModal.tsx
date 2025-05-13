@@ -1,16 +1,16 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import SvgUser from '@/assets/svg/user.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { SuperModal } from '@/legacy/components'
 import { Button } from '@/legacy/components/common/Button'
 import { Constants } from '@/legacy/constants'
+import { chatroomCreateChatRoom, useTeacherStudentGroupGet, useTeacherUserGetOne } from '@/legacy/generated/endpoint'
 import { GroupType } from '@/legacy/generated/model'
 import { useModals } from '@/legacy/modals/ModalStack'
 import { getNickName } from '@/legacy/util/status'
 import { getThisYear } from '@/legacy/util/time'
-import { chatroomCreateChatRoom, useTeacherStudentGroupGet, useTeacherUserGetOne } from '@/legacy/generated/endpoint'
-import SvgUser from '@/assets/svg/user.svg'
 
 export interface StudentModalProps {
   id: number

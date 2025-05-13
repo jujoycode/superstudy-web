@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
 import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
+import NODATA from '@/assets/images/no-data.png'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -19,8 +20,6 @@ import { PopupModal } from '../../PopupModal'
 
 import { CoordinatorEE_FAQ_AddFaq } from './ee/CoordinatorEE_FAQ_AddFaq'
 import { CoordinatorEE_FAQ_AddRef } from './ee/CoordinatorEE_FAQ_AddRef'
-
-import NODATA from '@/assets/images/no-data.png'
 
 export type ModalType = 'Category' | 'Add' | 'Update' | 'CHECKLIST' | null
 export type CategoryType = 'Ref' | 'FAQ' | ''

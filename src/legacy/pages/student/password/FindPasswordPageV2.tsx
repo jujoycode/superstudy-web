@@ -2,13 +2,12 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import Logo from '@/assets/svg/logo_superschool.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { Alert, BackButton, Blank, Label, TopNavbar } from '@/legacy/components/common'
 import AlertDialog from '@/legacy/components/common/AlertDialog'
 import { InputDel } from '@/legacy/components/common/InputDel'
 import { useFindPassword } from '@/legacy/container/find-password'
-
-import Logo from '@/assets/svg/logo_superschool.svg'
 
 // TODO 카카오톡 수신 확인 필요
 export function FindPasswordPageV2() {

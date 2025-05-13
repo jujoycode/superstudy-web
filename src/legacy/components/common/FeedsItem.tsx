@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
 
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
+import SvgImage from '@/assets/svg/upload-image.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ListItem } from '@/legacy/components/common'
 import { Constants } from '@/legacy/constants'
@@ -14,9 +16,6 @@ import { childState, meState } from '@/stores'
 
 import { Icon } from './icons'
 import { PdfCard } from './PdfCard'
-
-import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
-import SvgImage from '@/assets/svg/upload-image.svg'
 
 interface FeedsItemProps {
   to: string

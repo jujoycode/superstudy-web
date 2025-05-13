@@ -2,6 +2,7 @@ import { omit } from 'lodash'
 import { FC, useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 
+import NODATA from '@/assets/images/no-data.png'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -16,8 +17,6 @@ import {
 import { meState } from '@/stores'
 
 import Evaluation from './Evaluation'
-
-import NODATA from '@/assets/images/no-data.png'
 
 interface EvaluationListProps {
   evaluationData?: ResponseTokEvaluationInitialDataDto

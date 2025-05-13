@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import NODATA from '@/assets/images/no-data.png'
+import SvgUser from '@/assets/images/no_profile.png'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
@@ -10,9 +12,6 @@ import { ResponseIBPortfolioDto, ResponseUserDto } from '@/legacy/generated/mode
 import { makeStudNum5 } from '@/legacy/util/status'
 
 import { IbCASProfile } from './IbCASProfile'
-
-import NODATA from '@/assets/images/no-data.png'
-import SvgUser from '@/assets/images/no_profile.png'
 
 type ProfileType = 'create' | 'update'
 interface CASProfileProps {

@@ -3,6 +3,8 @@ import clsx from 'clsx'
 import _ from 'lodash'
 import { useState } from 'react'
 
+import superstudyLogo from '@/assets/images/logo.png'
+import neisLogo from '@/assets/images/neis.png'
 import { useHistory } from '@/hooks/useHistory'
 import AlertDialog from '@/legacy/components/common/AlertDialog'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
@@ -11,9 +13,6 @@ import { useInsertScoreBatch } from '@/legacy/container/insert-exam-score'
 import { validateAndExtract } from '@/legacy/util/exam-score'
 import { isExcelFile } from '@/legacy/util/file'
 import { getThisYear } from '@/legacy/util/time'
-
-import superstudyLogo from '@/assets/images/logo.png'
-import neisLogo from '@/assets/images/neis.png'
 
 interface LinearProgressWithLabelProps extends LinearProgressProps {
   value: number

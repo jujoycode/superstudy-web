@@ -1,9 +1,9 @@
+import SomeIcon from '@/assets/svg/edit_orange.svg'
+import SaveIcon from '@/assets/svg/save.svg'
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
 import { Time } from '@/legacy/components/common/Time'
 import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'
-import SomeIcon from '@/assets/svg/edit_orange.svg'
-import SaveIcon from '@/assets/svg/save.svg'
 
 interface StudyInfoCard {
   studentId?: number

@@ -5,11 +5,10 @@ import { ResponseCoordinatorSelfCheckDtoType, ResponseIBDto, ResponseUserDto } f
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
+import { STATUS_GROUPS } from './TeacherIBStatus'
 import ColorSVGIcon from '../icon/ColorSVGIcon'
 import SolidSVGIcon from '../icon/SolidSVGIcon'
 import SVGIcon from '../icon/SVGIcon'
-
-import { STATUS_GROUPS } from './TeacherIBStatus'
 
 interface ProjectCardProps {
   data: ResponseIBDto

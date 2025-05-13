@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useHistory } from '@/hooks/useHistory'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { useHistory } from '@/hooks/useHistory'
 import { Constants } from '@/legacy/constants'
 import { useActivityDelete, useActivityFindOne } from '@/legacy/generated/endpoint'
 import { isPdfFile } from '@/legacy/util/file'

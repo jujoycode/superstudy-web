@@ -3,8 +3,8 @@ import { useFieldtripResultUpdateResultByTeacher } from '@/legacy/generated/endp
 import { UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { ImageObject } from '@/legacy/types/image-object'
 import { errorType } from '@/legacy/types'
+import { ImageObject } from '@/legacy/types/image-object'
 
 type UseTeacherFieldtripResultUpdateProps = {
   fieldtripId?: number

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
+import { Routes } from 'src/routes'
 import { useHistory } from '@/hooks/useHistory'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useBoardCreate, useBoardUpdate } from '@/legacy/generated/endpoint'
@@ -7,7 +8,6 @@ import { BoardCategoryEnum, Group, RequestCreateBoardDto, UploadFileTypeEnum } f
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 // ! 지훈쌤 개선안 적용
-import { Routes } from 'src/routes'
 import { DocumentObject } from '@/legacy/types/document-object'
 import { ImageObject } from '@/legacy/types/image-object'
 import { useTeacherBoardDetail } from './teacher-board-detail'

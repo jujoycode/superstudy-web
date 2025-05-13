@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 
+import icon from '@/assets/icons/more-vertical.svg'
 import { Icon } from '@/legacy/components/common/icons'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useTeacherStudentUpdateParent } from '@/legacy/container/teacher-student-update-parent'
@@ -11,8 +12,6 @@ import type { errorType } from '@/legacy/types'
 import { Validator } from '@/legacy/util/validator'
 
 import { DropdownMenu } from './DropdownMenu'
-
-import icon from '@/assets/icons/more-vertical.svg'
 
 interface ParentInfoCard {
   parentInfo?: ResponseParentUserDto[] | null

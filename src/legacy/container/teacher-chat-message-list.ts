@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Routes } from 'src/routes'
 import { useHistory } from '@/hooks/useHistory'
 import {
   useChatCreateMessage,
@@ -8,7 +9,6 @@ import {
 } from '@/legacy/generated/endpoint'
 import { Chat, RequestCreateChatMessageDto, ResponsePaginatedChatMessageDto } from '@/legacy/generated/model'
 // ! 지훈쌤 개선안 적용
-import { Routes } from 'src/routes'
 import { errorType } from '@/legacy/types'
 
 export function useTeacherChatMessageList(chatroomId: number) {

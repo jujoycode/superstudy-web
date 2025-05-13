@@ -2,12 +2,12 @@ import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 
 import 'tailwindcss/tailwind.css'
-import SVGIcon from '../icon/SVGIcon'
 
 import { ButtonV2 } from './ButtonV2'
 import { LayeredTabs, Tab } from './LayeredTabs'
 import SelectBar from './SelectBar'
 import { Typography } from './Typography'
+import SVGIcon from '../icon/SVGIcon'
 
 const hourOptions = Array.from({ length: 12 }, (_, i) => ({
   id: i + 1,

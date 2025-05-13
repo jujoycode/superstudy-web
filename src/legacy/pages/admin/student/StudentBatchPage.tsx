@@ -9,9 +9,8 @@ import { Button } from '@/legacy/components/common/Button'
 import { studentManagementBulkCreateStudent } from '@/legacy/generated/endpoint'
 import { RequestCreateStudentDto, RequestCreateUserBulkDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { toastState, warningState } from '@/stores'
-
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
+import { toastState, warningState } from '@/stores'
 
 export function StudentBatchPage() {
   const { goBack } = useHistory()

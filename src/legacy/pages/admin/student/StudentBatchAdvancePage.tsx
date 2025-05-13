@@ -9,9 +9,8 @@ import { Button } from '@/legacy/components/common/Button'
 import { studentManagementAdvancedStudent } from '@/legacy/generated/endpoint'
 import { RequestAdvancedStudentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { toastState, warningState } from '@/stores'
-
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
+import { toastState, warningState } from '@/stores'
 
 export function StudentBatchAdvancePage() {
   const { goBack } = useHistory()

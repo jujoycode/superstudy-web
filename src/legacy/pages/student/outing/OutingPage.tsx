@@ -1,3 +1,4 @@
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
@@ -5,8 +6,6 @@ import { useStudentOuting } from '@/legacy/container/student-outing'
 import { UserContainer } from '@/legacy/container/user'
 import { OutingStatus, Role } from '@/legacy/generated/model'
 import { makeDateToString } from '@/legacy/util/time'
-
-import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 
 function getDate(stromg: string) {
   const week = ['일', '월', '화', '수', '목', '금', '토']

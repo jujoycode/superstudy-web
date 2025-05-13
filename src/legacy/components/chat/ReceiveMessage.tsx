@@ -5,6 +5,8 @@ import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { twMerge } from 'tailwind-merge'
 
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
+import SvgUser from '@/assets/svg/user.svg'
 import { Icon } from '@/legacy/components/common/icons'
 import { Constants } from '@/legacy/constants'
 import {
@@ -20,9 +22,6 @@ import { getFileNameFromUrl } from '@/legacy/util/file'
 import { getRoleTitle } from '@/legacy/util/permission'
 import { getNickName } from '@/legacy/util/status'
 import { isSameMinute } from '@/legacy/util/time'
-
-import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
-import SvgUser from '@/assets/svg/user.svg'
 
 interface ReceiveMessageProps {
   PreMessageData?: Chat

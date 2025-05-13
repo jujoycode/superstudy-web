@@ -6,8 +6,8 @@ import {
   useFieldtripsFindOne,
   useFieldtripsFindOneByUUID,
 } from '@/legacy/generated/endpoint'
-import { childState } from '@/stores'
 import { errorType } from '@/legacy/types'
+import { childState } from '@/stores'
 
 type Props = {
   uuid: string

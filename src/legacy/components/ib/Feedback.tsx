@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+import NODATA from '@/assets/images/no-data.png'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'
@@ -10,8 +11,6 @@ import { useFeedback } from '@/legacy/container/ib-feedback'
 import { RequestFeedbackDto, ResponseFeedbackDtoReferenceTable, ResponseUserDto } from '@/legacy/generated/model'
 
 import SolidSVGIcon from '../icon/SolidSVGIcon'
-
-import NODATA from '@/assets/images/no-data.png'
 
 interface FeedbackProps {
   referenceId: number

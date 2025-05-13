@@ -8,8 +8,8 @@ import {
   useGroupsFindSubjectByUser,
 } from '@/legacy/generated/endpoint'
 import { ResponseGroupDto, ResponseSubjectGroupDto, Role } from '@/legacy/generated/model'
-import { meState, tokenState } from '@/stores'
 import { getThisYear } from '@/legacy/util/time'
+import { meState, tokenState } from '@/stores'
 import { createContainer } from './createContainer'
 
 export function groupHook() {

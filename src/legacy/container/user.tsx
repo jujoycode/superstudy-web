@@ -10,6 +10,9 @@ import { Role } from '@/legacy/generated/model'
 import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
 import { useLogoutOnIdle } from '@/legacy/hooks/useLogoutOnIdle'
 import { RN } from '@/legacy/lib/rn'
+import { errorType } from '@/legacy/types'
+import { useLogout } from '@/legacy/util/hooks'
+import { isEmail } from '@/legacy/util/validator'
 import {
   childState,
   isStayLoggedInState,
@@ -19,9 +22,6 @@ import {
   tokenState,
   twoFactorState,
 } from '@/stores'
-import { errorType } from '@/legacy/types'
-import { useLogout } from '@/legacy/util/hooks'
-import { isEmail } from '@/legacy/util/validator'
 import { createContainer } from './createContainer'
 
 export function userHook() {
