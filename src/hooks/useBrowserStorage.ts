@@ -1,13 +1,13 @@
-import { useRecoilValue } from 'recoil'
-import { isStayLoggedInState } from '@/stores'
+// src/legacy/hooks/useBrowserStorage.ts
+import { useAuthStore } from '@/stores2/auth'
 
 /**
  * 브라우저 스토리지(localStorage/sessionStorage)를 관리하는 훅
  * isStayLoggedIn 상태에 따라 localStorage 또는 sessionStorage를 사용합니다.
  */
 const useBrowserStorage = () => {
-  // Recoil에서 로그인 유지 상태값 가져오기
-  const isStayLoggedIn = useRecoilValue(isStayLoggedInState)
+  // Zustand에서 로그인 유지 상태값 가져오기
+  const isStayLoggedIn = useAuthStore((state) => state.isStayLoggedIn)
 
   // 스토리지에서 값 가져오기
   const getStorage = (key: string) => {

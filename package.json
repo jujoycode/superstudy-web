@@ -96,7 +96,8 @@
     "tailwind-merge": "^3.3.0",
     "tui-calendar": "^1.14.1",
     "web-vitals": "^5.0.0",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz",
+    "zustand": "^5.0.4"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "3",

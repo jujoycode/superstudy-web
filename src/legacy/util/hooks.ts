@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router'
+import { Navigate } from 'react-router'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
-
+import { useSchoolPropertyGetProperties } from '@/legacy/generated/endpoint'
 import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
 import { RN } from '@/legacy/lib/rn'
-import { childState, isStayLoggedInState, refreshTokenState, tokenState, twoFactorState } from '@/stores'
+import { childState, isStayLoggedInState, meState, refreshTokenState, tokenState, twoFactorState } from '@/stores'
 
 export function useAuth() {
   const token = useRecoilValue(tokenState)
@@ -20,7 +20,6 @@ export function useLogout() {
   const resetTwoFactor = useResetRecoilState(twoFactorState)
   const resetStayedLoggedIn = useResetRecoilState(isStayLoggedInState)
   const resetChild = useResetRecoilState(childState)
-  const navigate = useNavigate()
   return () => {
     const tagValue = { schoolId: null, role: null }
     RN.flareLane('setUserId', null)
@@ -39,7 +38,7 @@ export function useLogout() {
     resetStayedLoggedIn()
     resetChild()
 
-    navigate('/login')
+    Navigate({ to: '/login' })
   }
 }
 
@@ -79,4 +78,20 @@ export function useWindowSize() {
     }
   }, [])
   return windowSize
+}
+
+/**
+ * 학교 속성 정보를 가져오는 hook
+ * @returns 학교 속성 정보 데이터
+ */
+export function useSchoolProperties() {
+  const me = useRecoilValue(meState)
+
+  const { data } = useSchoolPropertyGetProperties({
+    query: {
+      enabled: !!me?.schoolId,
+    },
+  })
+
+  return data || {}
 }
