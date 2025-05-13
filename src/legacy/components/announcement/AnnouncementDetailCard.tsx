@@ -8,7 +8,7 @@ import { PdfViewer } from '@/legacy/components/common/PdfViewer'
 import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { AnnouncementType, ResponseAnnouncementDto } from '@/legacy/generated/model'
-import { getFileNameFromUrl, getFileNameFromUrlToAnn } from '@/legacy/util/file'
+import { getFileNameFromUrlToAnn } from '@/legacy/util/file'
 import { isHTML } from '@/legacy/util/validator'
 
 interface AnnouncementProps {
