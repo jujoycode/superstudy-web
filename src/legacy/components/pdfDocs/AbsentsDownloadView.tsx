@@ -7,6 +7,8 @@ import { filter, find, groupBy, map } from 'lodash'
 import { useRef, useState } from 'react'
 import { Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
+import { AbsentPdf } from '@/legacy/components/pdfDocs/AbsentPdf'
+
 import { Constants } from '@/legacy/constants'
 import { Absent } from '@/legacy/generated/model'
 import { AbsentEvidenceType, AbsentPaperType } from '@/legacy/types'
@@ -17,8 +19,6 @@ import {
   getImageMeta,
   getPdfImageSize,
 } from '@/legacy/util/pdf'
-
-import { AbsentPdf } from '@/legacy/pages/teacher/absentPdf'
 
 interface AbsentsDownloadViewProps {
   absents?: Absent[]
