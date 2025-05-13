@@ -18,14 +18,7 @@ import { StudentModal } from '@/legacy/modals/StudentModal'
 import { AbsentSave, PeriodSubjectTeacher } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName } from '@/legacy/util/status'
-import {
-  getDayOfSemester,
-  getDayOfYear,
-  getThisSemester,
-  getThisYear,
-  toLocaleDateFormatString,
-  weekCount,
-} from '@/legacy/util/time'
+import { getDayOfSemester, getDayOfYear, toLocaleDateFormatString, weekCount } from '@/legacy/util/time'
 import { languageState, meState, toastState } from '@/stores'
 
 type TimeTableInfo = {
@@ -89,7 +82,7 @@ const makeSubjectMap = (
   studentIdList: string[],
   row1: Row,
   row2: Row,
-  row3: Row,
+  _: Row,
   rest: Row[],
   periodCount: number,
 ): Map<string, Map<number, PeriodSubjectTeacher[]>> => {

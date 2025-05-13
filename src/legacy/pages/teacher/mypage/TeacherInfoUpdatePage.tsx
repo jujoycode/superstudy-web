@@ -239,7 +239,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
                     onChange={(e) => setEndH(Number(e.target.value))}
                     className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
-                    {new Array(24).fill(null).map((item, num: number) => (
+                    {new Array(24).fill(null).map((_, num: number) => (
                       <option key={num} value={num}>
                         {num}
                       </option>

@@ -12,6 +12,7 @@ import { AbsentCard } from '@/legacy/components/absent/AbsentCard'
 import { AbsentsExcelDownloadView } from '@/legacy/components/absent/AbsentsExcelDownloadView'
 import { AttendeeInfoDownloadView } from '@/legacy/components/absent/AttendeeInfoDownloadView'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
+
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
@@ -20,11 +21,10 @@ import { GroupContainer } from '@/legacy/container/group'
 import { useTeacherAbsent } from '@/legacy/container/teacher-absent'
 import { UserContainer } from '@/legacy/container/user'
 import { AbsentStatus, FilterAbsentStatus, Role } from '@/legacy/generated/model'
+import { AbsentAddPage } from '@/legacy/pages/teacher/absent/AbsentAddPage'
+import { AbsentDetailPage } from '@/legacy/pages/teacher/absent/AbsentDetailPage'
 import { compareAbsents } from '@/legacy/util/document'
 import { getCurrentSchoolYear, isValidDate, makeStartEndToString } from '@/legacy/util/time'
-
-import { AbsentAddPage } from '@/legacy/pages/teacher/absentAddPage'
-import { AbsentDetailPage } from '@/legacy/pages/teacher/absentDetailPage'
 
 export function AbsentPage() {
   const { replace } = useHistory()

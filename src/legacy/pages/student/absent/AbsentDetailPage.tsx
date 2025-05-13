@@ -20,7 +20,7 @@ import { UserContainer } from '@/legacy/container/user'
 import { AbsentStatus, Role } from '@/legacy/generated/model'
 import { isPdfFile } from '@/legacy/util/file'
 
-import { AbsentAddPage } from '@/legacy/pages/teacher/absentAddPage'
+import { AbsentAddPage } from './AbsentAddPage'
 
 export function AbsentDetailPage() {
   const { push } = useHistory()

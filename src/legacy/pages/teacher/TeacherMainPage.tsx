@@ -83,7 +83,7 @@ import { RecordPage } from './record/RecordPage'
 import { StudentCardPage } from './studentcard/StudentCardPage'
 import { TimetablePage } from './timetable/TimetablePage'
 import { ReactComponent as Logo } from '@/asset/svg/logo.svg'
-import { ReactComponent as SvgUser } from '@/asset/svg/user.svg'
+import svgUser from '@/asset/svg/user.svg'
 
 export function TeacherMainPage() {
   const { replace } = useHistory()
@@ -296,7 +296,7 @@ export function TeacherMainPage() {
                 loading="lazy"
                 onError={({ currentTarget }) => {
                   currentTarget.onerror = null // prevents looping
-                  currentTarget.src = SvgUser
+                  currentTarget.src = svgUser
                   currentTarget.className = 'w-full rounded-xl'
                 }}
               />

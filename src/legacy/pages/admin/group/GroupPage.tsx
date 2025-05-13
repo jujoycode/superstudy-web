@@ -63,8 +63,6 @@ export function GroupPage() {
   const { categoryData: codeCreativeActivities } = useCodeByCategoryName(Category.creativeActivity)
   const { categoryData: codeSubjects } = useCodeByCategoryName(Category.subjectType)
 
-  const [subject, setSubject] = useState<string>('')
-
   const { data: allTeachers } = useAdminCommonSearchTeachers({ year })
   const { data: allStudents } = useAdminCommonSearchStudents(
     { year, keyword: studentKeyword },
@@ -81,11 +79,7 @@ export function GroupPage() {
     query: { keepPreviousData: true, enabled: !!groupId },
   })
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isValid },
-  } = useForm<RequestModifyGroupOnlyDto>()
+  const { handleSubmit, register } = useForm<RequestModifyGroupOnlyDto>()
 
   const {
     handleSubmit: handleGroupTeacherSubmit,
@@ -93,14 +87,13 @@ export function GroupPage() {
     reset: resetGroupTeacher,
   } = useForm<RequestGroupTeacherDto>()
 
-  async function saveGroupName(params: any) {
+  async function saveGroupName(params: RequestModifyGroupOnlyDto) {
     if (!groupId) return
-    const group = await groupManagementUpdateGroup(groupId, { ...params, year: `${year}` })
     setToastMsg(`${params.name} 그룹명이 변경되었습니다`)
     setEditGroup(false)
   }
 
-  async function addGroupTeacher(params: any) {
+  async function addGroupTeacher(params: RequestGroupTeacherDto) {
     if (!groupId) return
     await groupManagementAddTeachers(groupId, { groupTeachers: [params] })
     resetGroupTeacher({ userId: undefined, subject: '', room: '' })

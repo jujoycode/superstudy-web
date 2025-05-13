@@ -31,6 +31,7 @@ type SmsInfoType = {
 interface SmsPageProps {
   isMobileView: boolean
   selectedUsers: UserDatas[]
+  setSelectedUsers: React.Dispatch<React.SetStateAction<UserDatas[]>>
 }
 
 export function ChatSMSPage({ isMobileView, selectedUsers }: SmsPageProps) {

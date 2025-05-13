@@ -62,20 +62,20 @@ export function TeacherEditPage() {
     }
     id
       ? await teacherManagementUpdateTeacher(id, params)
-          .then((result) => {
+          .then(() => {
             setToastMsg(`${params.name} 님 수정완료`)
             goBack()
           })
-          .catch((result) => {
-            setToastMsg(getErrorMsg(result))
+          .catch((error) => {
+            setToastMsg(getErrorMsg(error))
           })
       : await teacherManagementCreateTeacher(params)
-          .then((result) => {
+          .then(() => {
             setToastMsg(`${params.name} 님 추가완료`)
             goBack()
           })
-          .catch((result) => {
-            setToastMsg(getErrorMsg(result))
+          .catch((error) => {
+            setToastMsg(getErrorMsg(error))
           })
   }
 
