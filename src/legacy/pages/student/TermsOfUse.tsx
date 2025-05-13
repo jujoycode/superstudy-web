@@ -433,5 +433,5 @@ export function TermsOfUse() {
       <p className={'font-bold'}>부칙</p>
       <p className={'font-bold'}>제1조 (시행일)</p>본 약관은 2022. 3. 2.부터 시행한다.
     </div>
-  );
+  )
 }

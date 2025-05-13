@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import { t } from 'i18next'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SelectValues } from '@/legacy/components'
 import { BackButton, Badge, Blank, BottomFixed, Label, Section, TopNavbar } from '@/legacy/components/common'

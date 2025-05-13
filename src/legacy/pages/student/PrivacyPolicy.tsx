@@ -1,5 +1,4 @@
 import { useParams } from 'react-router'
-
 import { useSchools } from '@/legacy/container/schools'
 
 export function PrivacyPolicy() {

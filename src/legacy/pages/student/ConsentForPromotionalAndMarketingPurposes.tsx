@@ -42,5 +42,5 @@ export function ConsentForPromotionalAndMarketingPurposes() {
         처리와 관련된 일반 사항은 주식회사 슈퍼스쿨 개인정보처리방침에 따릅니다.
       </p>
     </div>
-  );
+  )
 }
