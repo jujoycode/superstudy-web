@@ -3,7 +3,7 @@ import { Link, Route, Switch, useLocation, useParams } from 'react-router-dom'
 import { AllScore } from '@/legacy/components/score/AllScore'
 import { ScoreAnalysis } from '@/legacy/components/score/ScoreAnalysis'
 import { TargetScore } from '@/legacy/components/score/TargetScore'
-import { useTeacherStudentCard } from 'src/container/teacher-studentcard'
+import { useTeacherStudentCard } from '@/legacy/container/teacher-studentcard'
 import { twMerge } from 'tailwind-merge'
 
 export type ScoreType = 'EXAM' | 'MOCKEXAM'

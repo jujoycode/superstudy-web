@@ -4,7 +4,7 @@ import AnnouncementBadge from '@/legacy/components/announcement/AnnouncementBadg
 import { BackButton, Blank, Chip, HorizontalScrollView, TopNavbar } from '@/legacy/components/common'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Icon } from '@/legacy/components/common/icons'
-import { useAnnouncementByCategory } from 'src/container/announcement-category'
+import { useAnnouncementByCategory } from '@/legacy/container/announcement-category'
 import { Announcement } from '@/legacy/generated/model/announcement'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import AnnouncementDetailPage from './AnnouncementDetailPage'

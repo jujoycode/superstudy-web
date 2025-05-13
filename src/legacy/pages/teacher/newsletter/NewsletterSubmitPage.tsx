@@ -9,9 +9,9 @@ import { Blank } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
 import { NewsletterSubmitterItem } from '@/legacy/components/newsletter/NewsletterSubmitterItem'
-import { useTeacherNewsletterSubmit } from 'src/container/teacher-newsletter-submit'
+import { useTeacherNewsletterSubmit } from '@/legacy/container/teacher-newsletter-submit'
 import { ResponseGroupDto, StudentGroup, StudentNewsletter } from '@/legacy/generated/model'
-import { newsletterOpenedGroupState } from 'src/store'
+import { newsletterOpenedGroupState } from '@/stores'
 import { NewsletterSubmitDetailPage } from './NewsletterSubmitDetailPage'
 
 export function NewsletterSubmitPage() {

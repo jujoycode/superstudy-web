@@ -8,7 +8,7 @@ import { Icon } from '@/legacy/components/common/icons'
 import { AnnualReviewRecordItem } from '@/legacy/components/studentCard/AnnualReviewRecordItem'
 import { TeacherStudentAssessmentUpdate } from '@/legacy/components/studentCard/TeacherStudentAssessmentUpdate'
 import { TeacherStudentAssessmentView } from '@/legacy/components/studentCard/TeacherStudentAssessmentView'
-import { useTeacherCounseling } from 'src/container/teacher-counseling'
+import { useTeacherCounseling } from '@/legacy/container/teacher-counseling'
 import {
   useStudentCardFindStudent,
   useStudentRecordontrollerFindAnnualReviewByStudentId,

@@ -28,7 +28,7 @@ import {
   useStudentActivitySessionFindOneByTeacher,
 } from '@/legacy/generated/endpoint'
 import { ActivityType, Role, StudentGroup } from '@/legacy/generated/model'
-import { meState, toastState } from 'src/store'
+import { meState, toastState } from '@/stores'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
 

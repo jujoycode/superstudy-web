@@ -4,7 +4,7 @@ import { Blank, Chip, HorizontalScrollView, List } from '@/legacy/components/com
 import { NoItem } from '@/legacy/components/common/NoItem'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Icon } from '@/legacy/components/common/icons'
-import { useAnnouncementByCategory } from 'src/container/announcement-category'
+import { useAnnouncementByCategory } from '@/legacy/container/announcement-category'
 import { Announcement } from '@/legacy/generated/model/announcement'
 
 export default function AnnouncementMobilePage() {

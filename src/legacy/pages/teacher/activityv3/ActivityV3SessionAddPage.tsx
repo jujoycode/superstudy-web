@@ -25,7 +25,7 @@ import {
 } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { toastState } from 'src/store'
+import { toastState } from '@/stores'
 
 interface ActivityV3SessionAddPageProps {
   activitySessionData?: ActivitySession

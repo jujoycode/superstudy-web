@@ -3,9 +3,9 @@ import { useParams } from 'react-router'
 import { Route, Switch, useHistory } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { NewsletterCheckerItem } from '@/legacy/components/newsletter/NewsletterCheckerItem'
-import { useTeacherNewsletterCheck } from 'src/container/teacher-newsletter-check'
+import { useTeacherNewsletterCheck } from '@/legacy/container/teacher-newsletter-check'
 import { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup } from '@/legacy/generated/model'
-import { newsletterOpenedGroupState } from 'src/store'
+import { newsletterOpenedGroupState } from '@/stores'
 import { NewsletterCheckDetailPage } from './NewsletterCheckDetailPage'
 
 export function NewsletterCheckPage() {

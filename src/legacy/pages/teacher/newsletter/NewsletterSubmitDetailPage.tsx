@@ -2,7 +2,7 @@ import { useParams } from 'react-router'
 import { Blank } from '@/legacy/components/common'
 import { Time } from '@/legacy/components/common/Time'
 import { SuperSurveyComponent } from '@/legacy/components/survey/SuperSurveyComponent'
-import { useTeacherNewsletterSubmitDetail } from 'src/container/teacher-newsletter-submit-detail'
+import { useTeacherNewsletterSubmitDetail } from '@/legacy/container/teacher-newsletter-submit-detail'
 
 export function NewsletterSubmitDetailPage() {
   const { id, snid } = useParams<{ id: string; snid: string }>()

@@ -13,9 +13,9 @@ import { Time } from '@/legacy/components/common/Time'
 import { TimetableAtdCard } from '@/legacy/components/timetable/TimetableAtdCard'
 import { TimetableStudentRole } from '@/legacy/components/timetable/TimetableStudentRole'
 import { Constants } from '@/legacy/constants'
-import { GroupContainer } from 'src/container/group'
-import { useTeacherSeatPosition } from 'src/container/teacher-seat-position'
-import { useTimeTableAttendancePageV3 } from 'src/container/teacher-timetable-attendance-page-v3'
+import { GroupContainer } from '@/legacy/container/group'
+import { useTeacherSeatPosition } from '@/legacy/container/teacher-seat-position'
+import { useTimeTableAttendancePageV3 } from '@/legacy/container/teacher-timetable-attendance-page-v3'
 import {
   LectureType,
   RequestUpsertStudentRoleDto,
@@ -23,12 +23,12 @@ import {
   ResponseUserAttendanceDto,
 } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import ConfirmModal from 'src/modals/ConfirmModal'
-import { useModals } from 'src/modals/ModalStack'
-import { StudentModal } from 'src/modals/StudentModal'
-import { meState } from 'src/store'
-import { dayOfEngWeek, dayOfKorWeek } from '@/legacy/util/date'
+import ConfirmModal from '@/legacy/modals/ConfirmModal'
+import { useModals } from '@/legacy/modals/ModalStack'
+import { StudentModal } from '@/legacy/modals/StudentModal'
+import { meState } from '@/stores'
 import { getNickName } from '@/legacy/util/status'
+import { dayOfEngWeek, dayOfKorWeek } from '@/legacy/util/date'
 import { getThisSemester, getThisYear } from '@/legacy/util/time'
 import { TimetableNeisForm } from './TimetableNeisForm'
 
@@ -225,6 +225,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
     const newStudentsAbsent: number[] = []
 
     students.forEach((student: ResponseUserAttendanceDto) => {
+      // @ts-ignore ! type
       if (student.expired || student.not_attend) {
         newRemoveStudents.set(student.id, true)
         newAbsentCommentOfSelectedPeriod.set(student.id, '')
@@ -238,12 +239,13 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
           newAbsentCommentOfSelectedPeriod.set(student.id, hasData ? (attendanceItem?.comment ?? '') : '')
 
           if (hasData && attendanceItem?.absent && student.student_number) {
+            // @ts-ignore ! type
             newStudentsAbsent.push(student.student_number)
           }
 
           if (hasData && attendanceItem?.type1 !== '' && attendanceItem?.type2 !== '') {
-            student.type1 = attendanceItem?.type1
-            student.type2 = attendanceItem?.type2
+            student.type1 = attendanceItem?.type1 || ''
+            student.type2 = attendanceItem?.type2 || ''
           }
         } else {
           newAbsentOfSelectedPeriod.set(student.id, false)
@@ -454,6 +456,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
       (seatinfo: { studentid: number; seat: string }) => seatinfo.studentid === student.id,
     )
 
+    // @ts-ignore ! type
     if (!student.expired && !student.not_attend) {
       if (rst === undefined) {
         seatPositionMap.push({

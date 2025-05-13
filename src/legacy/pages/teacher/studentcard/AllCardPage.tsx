@@ -4,7 +4,7 @@ import Groupv3InfoCard from '@/legacy/components/studentCard/Groupv3InfoCard'
 import Parentv3InfoCard from '@/legacy/components/studentCard/Parentv3InfoCard'
 import Studentv3InfoCard from '@/legacy/components/studentCard/Studentv3InfoCard'
 import { TimeTableCard } from '@/legacy/components/studentCard/TimeTableCard'
-import { useTeacherStudentCard } from 'src/container/teacher-studentcard'
+import { useTeacherStudentCard } from '@/legacy/container/teacher-studentcard'
 
 export const AllCardPage: FC = () => {
   const { id } = useParams<{ id: string }>()

@@ -6,10 +6,10 @@ import { Blank, Label, PhoneNumberField, Section } from '@/legacy/components/com
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { TextInput } from '@/legacy/components/common/TextInput'
-import { GroupContainer } from 'src/container/group'
-import { useTeacherFirstLogin } from 'src/container/teacher-first-login'
+import { GroupContainer } from '@/legacy/container/group'
+import { useTeacherFirstLogin } from '@/legacy/container/teacher-first-login'
 import { ResponseGroupDto } from '@/legacy/generated/model'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { Validator } from '@/legacy/util/validator'
 
 export function TeacherFirstLoginPage() {

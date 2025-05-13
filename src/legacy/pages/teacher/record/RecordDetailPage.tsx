@@ -7,7 +7,7 @@ import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { RecordCard } from '@/legacy/components/record/RecordCard'
 import { SummaryItem } from '@/legacy/components/record/SummaryItem'
-import { useTeacherRecordDetail } from 'src/container/teacher-record-detail'
+import { useTeacherRecordDetail } from '@/legacy/container/teacher-record-detail'
 import { Group, StudentGroup } from '@/legacy/generated/model'
 import { forbiddenWords } from '../ForbiddenWords'
 

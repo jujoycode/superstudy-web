@@ -26,7 +26,7 @@ import {
   useActivityV3FindOne,
 } from '@/legacy/generated/endpoint'
 import { Role, StudentGroup, SubjectType } from '@/legacy/generated/model'
-import { meState, toastState } from 'src/store'
+import { meState, toastState } from '@/stores'
 import { checkSubmitted } from '@/legacy/util/activityv3'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { twMerge } from 'tailwind-merge'

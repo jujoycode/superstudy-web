@@ -2,8 +2,8 @@ import { useParams } from 'react-router'
 import { Td } from '@/legacy/components'
 import { Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
-import { useTeacherNewsletterCheckDownload } from 'src/container/teacher-newsletter-checkDownload'
-import { useTeacherNewsletterDetail } from 'src/container/teacher-newsletter-detail'
+import { useTeacherNewsletterCheckDownload } from '@/legacy/container/teacher-newsletter-checkDownload'
+import { useTeacherNewsletterDetail } from '@/legacy/container/teacher-newsletter-detail'
 
 export function NewsletterCheckDownloadPage() {
   const { id } = useParams<{ id: string }>()

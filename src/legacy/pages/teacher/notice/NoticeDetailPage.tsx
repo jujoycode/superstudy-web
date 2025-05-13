@@ -7,10 +7,10 @@ import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/commo
 import { Button } from '@/legacy/components/common/Button'
 import { FeedsDetail } from '@/legacy/components/common/FeedsDetail'
 import { PdfViewer } from '@/legacy/components/common/PdfViewer'
-import { useTeacherNoticeDetail } from 'src/container/teacher-notice-detail'
+import { useTeacherNoticeDetail } from '@/legacy/container/teacher-notice-detail'
 import { Code, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { isUpdateNoticeState, meState } from 'src/store'
+import { isUpdateNoticeState, meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { NoticeAddPage } from './NoticeAddPage'
 interface NoticeAddProps {

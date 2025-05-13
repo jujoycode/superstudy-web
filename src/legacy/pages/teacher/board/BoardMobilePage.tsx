@@ -7,10 +7,10 @@ import { FeedsItem } from '@/legacy/components/common/FeedsItem'
 import { NoItem } from '@/legacy/components/common/NoItem'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Icon } from '@/legacy/components/common/icons'
-import { useTeacherBoard } from 'src/container/teacher-board'
-import { useTeacherKlassGroup } from 'src/container/teacher-klass-groups'
+import { useTeacherBoard } from '@/legacy/container/teacher-board'
+import { useTeacherKlassGroup } from '@/legacy/container/teacher-klass-groups'
 import { Board, Group } from '@/legacy/generated/model'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 const filters = ['제목', '작성자']

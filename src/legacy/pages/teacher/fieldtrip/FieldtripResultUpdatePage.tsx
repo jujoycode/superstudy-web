@@ -5,7 +5,7 @@ import { Blank, Label, Section, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { ImageUpload } from '@/legacy/components/common/ImageUpload'
 import { TextInput } from '@/legacy/components/common/TextInput'
-import { useTeacherFieldtripResultUpdate } from 'src/container/teacher-fieldtrip-result-update'
+import { useTeacherFieldtripResultUpdate } from '@/legacy/container/teacher-fieldtrip-result-update'
 import { Fieldtrip, FieldtripType, School } from '@/legacy/generated/model'
 import { makeDateToString } from '@/legacy/util/time'
 

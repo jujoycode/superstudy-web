@@ -5,9 +5,9 @@ import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { Time } from '@/legacy/components/common/Time'
 import { useTeacherPointLogGet } from '@/legacy/generated/endpoint'
-import { AssignPointModal } from 'src/modals/AssignPointModal'
-import { useModals } from 'src/modals/ModalStack'
-import { PointLogModal } from 'src/modals/PointLogModal'
+import { AssignPointModal } from '@/legacy/modals/AssignPointModal'
+import { useModals } from '@/legacy/modals/ModalStack'
+import { PointLogModal } from '@/legacy/modals/PointLogModal'
 import { numberWithSign } from '@/legacy/util/string'
 
 export function PointLogsPage() {

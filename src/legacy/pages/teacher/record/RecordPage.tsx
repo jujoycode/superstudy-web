@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Route, Switch, useHistory } from 'react-router-dom'
 import { ErrorBlank, SelectMenus } from '@/legacy/components'
 import { Button } from '@/legacy/components/common/Button'
-import { useTeacherRecord } from 'src/container/teacher-record'
+import { useTeacherRecord } from '@/legacy/container/teacher-record'
 import { makeStudNum5 } from '@/legacy/util/status'
 import { RecordDetailPage } from './RecordDetailPage'
 

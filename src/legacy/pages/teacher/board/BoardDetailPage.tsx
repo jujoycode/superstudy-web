@@ -8,10 +8,10 @@ import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/commo
 import { Button } from '@/legacy/components/common/Button'
 import { FeedsDetail } from '@/legacy/components/common/FeedsDetail'
 import { PdfViewer } from '@/legacy/components/common/PdfViewer'
-import { useTeacherBoardDetail } from 'src/container/teacher-board-detail'
+import { useTeacherBoardDetail } from '@/legacy/container/teacher-board-detail'
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from 'src/store'
+import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 interface BoardDetailPageProps {

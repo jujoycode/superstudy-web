@@ -5,7 +5,7 @@ import { GroupInfoCard } from '@/legacy/components/studentCard/GroupInfoCard'
 import { ParentInfoCard } from '@/legacy/components/studentCard/ParentInfoCard'
 import { StudentInfoCard } from '@/legacy/components/studentCard/StudentInfoCard'
 import { TimeTableCard } from '@/legacy/components/studentCard/TimeTableCard'
-import { useTeacherStudentCard } from 'src/container/teacher-studentcard'
+import { useTeacherStudentCard } from '@/legacy/container/teacher-studentcard'
 
 export const BasicCardPage: FC = () => {
   const { id } = useParams<{ id: string }>()
