@@ -5,6 +5,7 @@ import svgr from 'vite-plugin-svgr'
 import tailwindcssPostcss from '@tailwindcss/postcss'
 import react from '@vitejs/plugin-react-swc'
 import { defineConfig, loadEnv } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
 
 // 메타 태그 생성 함수
 const generateMetaTag = () => {
@@ -109,6 +110,7 @@ export default defineConfig(({ mode }) => {
           }
         },
       },
+      tailwindcss(),
     ],
     // 환경 변수 정의
     define: {

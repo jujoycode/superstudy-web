@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+@theme {
+  /* Font Family */
+  --font-sans: 'Pretendard', 'sans-serif';
+
+  /* Colors */
+  --color-primary-orange-50: #fff8f5;
+  --color-primary-orange-100: #ffe8db;
+  --color-primary-orange-200: #ffd8c2;
+  --color-primary-orange-300: #ffcbad;
+  --color-primary-orange-400: #ffbc99;
+  --color-primary-orange-700: #ff803d;
+  --color-primary-orange-800: #ff600c;
+  --color-primary-orange-850: #cc4700;
+
+  --color-primary-green-800: #00a876;
+  --color-primary-blue-800: #0066ff;
+
+  /* Grayscale */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f4f6f8;
+  --color-gray-200: #e8eaed;
+  --color-gray-300: #d8dbdf;
+  --color-gray-400: #c7cbd1;
+  --color-gray-500: #898d94;
+  --color-gray-600: #61656b;
+  --color-gray-700: #4c5057;
+  --color-gray-800: #24282d;
+  --color-gray-900: #121417;
+
+  /* System Colors */
+  --color-red-50: #fff3f3;
+  --color-red-100: #ffebeb;
+  --color-red-400: #ffadad;
+  --color-red-800: #ff2626;
+
+  --color-green-50: #f3fbf9;
+  --color-green-100: #ddf4ed;
+  --color-green-400: #78ceb9;
+  --color-green-800: #00a876;
+  --color-green-850: #007d58;
+
+  --color-blue-50: #f2f9ff;
+  --color-blue-100: #dbeeff;
+  --color-blue-400: #66b2ff;
+  --color-blue-800: #0066ff;
+
+  /* Dimmed Effect */
+  --color-dimmed-60: rgba(0, 0, 0, 0.6); /* Dialogs */
+  --color-dimmed-8: rgba(0, 0, 0, 0.08); /* Border */
+
+  /* Gradient */
+  --color-gradient-green-400: linear-gradient(rgba(0, 190, 133, 1), rgba(118, 218, 188, 1));
+  --color-gradient-green-800: linear-gradient(rgba(0, 168, 118, 1), rgba(92, 202, 175, 1));
+  --color-gradient-blue-400: linear-gradient(rgba(53, 111, 255, 1), rgba(102, 178, 255, 1));
+  --color-gradient-blue-800: linear-gradient(rgba(0, 102, 255, 1), rgba(67, 161, 255, 1));
+  --color-gradient-orange-400: linear-gradient(rgba(255, 128, 61, 1), rgba(255, 188, 153, 1));
+  --color-gradient-orange-800: linear-gradient(rgba(255, 96, 12, 1), rgba(255, 128, 61, 1));
+  --color-gradient-navy-400: linear-gradient(rgba(110, 131, 163, 1), rgba(164, 192, 207, 1));
+}

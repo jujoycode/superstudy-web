@@ -3,6 +3,7 @@ import { RouterProvider } from 'react-router'
 import { Blank } from '@/legacy/components/common'
 import { router } from '@/routers'
 import { version } from '../package.json' with { type: 'json' }
+import './index.css'
 
 export function App() {
   return (
