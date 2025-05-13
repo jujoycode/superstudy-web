@@ -178,7 +178,7 @@ export const EEProposalDetailPage = () => {
   // subject 변경 시 category 초기화
   useEffect(() => {
     setValue('category', '')
-  }, [selectedSubject])
+  }, [selectedSubject, setValue])
 
   if (!data || !me) {
     return <IBBlank />

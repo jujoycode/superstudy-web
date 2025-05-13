@@ -52,7 +52,7 @@ export const EERppfInterviewDetailPage = () => {
     },
   })
 
-  const { handleSubmit, register, reset } = useForm<RequestCreateQnaDto>({
+  const { handleSubmit, register } = useForm<RequestCreateQnaDto>({
     defaultValues: {
       content: interview?.qna.content.map((item) => ({
         question: item.question,

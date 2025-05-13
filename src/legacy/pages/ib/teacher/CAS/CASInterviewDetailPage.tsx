@@ -26,16 +26,11 @@ export default function CASInterviewDetailPage() {
   const history = useHistory()
 
   const me = useRecoilValue(meState)
-  const {
-    id: idParam,
-    qnaId: qnaIdParam,
-    studentId: studentIdParam,
-  } = useParams<{
+  const { qnaId: qnaIdParam, studentId: studentIdParam } = useParams<{
     id: string
     qnaId: string
     studentId: string
   }>()
-  const id = Number(idParam)
   const qnaId = Number(qnaIdParam)
   const studentId = Number(studentIdParam)
   const { data: interview, isLoading } = useInterviewQNA(qnaId)
@@ -105,7 +100,7 @@ export default function CASInterviewDetailPage() {
       })
       setQuestionList([])
     }
-  }, [interview, editMode])
+  }, [interview, editMode, reset])
 
   useEffect(() => {
     setQuestionListAdded(interview?.qna.content || [])
