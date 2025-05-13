@@ -255,12 +255,18 @@ const Group = <T,>({ children, selectedValue, onChange, className }: RadioGroupP
   return (
     <div className={className}>
       {React.Children.map(children, (child) =>
-        React.isValidElement(child) && 'value' in child.props
-          ? React.cloneElement(child, {
-              // @ts-ignore
-              checked: child.props.value === selected,
-              onChange: () => handleRadioChange(child.props.value),
-            })
+        React.isValidElement(child) && child.props && typeof child.props === 'object' && 'value' in child.props
+          ? React.cloneElement(
+              child as React.ReactElement<{
+                value: T
+                checked?: boolean
+                onChange?: () => void
+              }>,
+              {
+                checked: child.props.value === selected,
+                onChange: () => handleRadioChange((child.props as { value: T }).value),
+              },
+            )
           : child,
       )}
     </div>

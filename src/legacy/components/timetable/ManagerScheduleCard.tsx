@@ -17,6 +17,7 @@ export function ManagerScheduleCard({ manager, userRole }: ManagerScheduleCardPr
     role = '교무부장'
   }
 
+  // @ts-ignore
   let text = <div className="text-sm text-red-500">{role} 승인 전</div>
 
   switch (manager.managerStatus) {
