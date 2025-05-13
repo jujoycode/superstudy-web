@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { useRecoilValue } from 'recoil'
 
+import ChatIcon from '@/assets/svg/chat.svg'
+import ClockIcon from '@/assets/svg/clock.svg'
+import Refresh from '@/assets/svg/refresh.svg'
 import { ErrorBlank } from '@/legacy/components'
 import AnnouncementPopup from '@/legacy/components/announcement/Announcement'
 import { CanteenCalendar } from '@/legacy/components/CanteenCalendar'
@@ -21,9 +24,6 @@ import { meState, newMsgCntState } from '@/stores'
 
 import { CanteenDetailPage } from './CanteenDetailPage'
 import { CanteenSubmitPage } from './CanteenSubmitPage'
-import ChatIcon from '@/assets/svg/chat.svg'
-import ClockIcon from '@/assets/svg/clock.svg'
-import Refresh from '@/assets/svg/refresh.svg'
 
 export function CanteenPage() {
   const me = useRecoilValue(meState)

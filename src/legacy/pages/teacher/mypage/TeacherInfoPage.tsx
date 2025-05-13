@@ -1,6 +1,8 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 
+import BgLogo from '@/assets/images/Intersect.png'
+import SvgUser from '@/assets/svg/user.svg'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, IconButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -18,9 +20,6 @@ import { getNickName } from '@/legacy/util/status'
 import { getHoursfromHHmmString, getMinutesfromHHmmString } from '@/legacy/util/time'
 import { Validator } from '@/legacy/util/validator'
 import { meState } from '@/stores'
-
-import BgLogo from '@/assets/images/Intersect.png'
-import SvgUser from '@/assets/svg/user.svg'
 
 export function TeacherInfoPage() {
   const meRecoil = useRecoilValue(meState)

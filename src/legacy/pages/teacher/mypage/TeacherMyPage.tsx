@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 
+import BgLogo from '@/assets/images/Intersect.png'
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
+import SvgUser from '@/assets/svg/user.svg'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, IconButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
@@ -10,10 +13,6 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useLogout } from '@/legacy/util/hooks'
 import { checkNewVersion } from '@/legacy/util/status'
 import { meState } from '@/stores'
-
-import BgLogo from '@/assets/images/Intersect.png'
-import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
-import SvgUser from '@/assets/svg/user.svg'
 
 enum selectedType {
   none = 1,

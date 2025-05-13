@@ -10,9 +10,9 @@ import { MobileImageUpload } from '@/legacy/components/common/MobileImageUpload'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
 import { useTeacherAbsentUpdate } from '@/legacy/container/teacher-absent-update'
+import { Absent } from '@/legacy/generated/model/absent'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { AbsentTimeType } from '@/legacy/types'
-import { Absent } from '@/legacy/generated/model/absent'
 
 interface AbsentUpdatePageProps {
   absentData?: Absent
