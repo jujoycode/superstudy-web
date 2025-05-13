@@ -1,23 +1,25 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Link, useHistory, useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
 import { useSetRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
+import { Routes } from '@/legacy/constants/routes'
 import { adminPointCreate, adminPointUpdate, useAdminPointGetOne } from '@/legacy/generated/endpoint'
 import { PointCreateBody, PointUpdateBody } from '@/legacy/generated/model'
 import { form } from '@/legacy/lib/form'
 import { cn } from '@/legacy/lib/tailwind-merge'
-import { Routes } from '@/legacy/routes'
-import { toastState } from '@/stores'
 import { getErrorMsg } from '@/legacy/util/status'
+import { toastState } from '@/stores'
 
 type PointSaveBody = PointCreateBody | PointUpdateBody
 
-function isCreating(id: number, body: PointSaveBody): body is PointCreateBody {
+function isCreating(id: number) {
   return Number.isNaN(id)
 }
 
@@ -40,11 +42,11 @@ export function PointEditPage() {
 
   const { data: point } = useAdminPointGetOne(id)
 
-  useEffect(() => point && reset(point), [point])
+  useEffect(() => point && reset(point), [point, reset])
 
   async function save(params: PointSaveBody) {
     try {
-      isCreating(id, params) ? await adminPointCreate(params) : await adminPointUpdate(id, params)
+      isCreating(id) ? await adminPointCreate(params as PointCreateBody) : await adminPointUpdate(id, params)
     } catch (error) {
       setToastMsg(getErrorMsg(error))
     }

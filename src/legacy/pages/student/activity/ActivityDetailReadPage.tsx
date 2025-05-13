@@ -2,14 +2,15 @@ import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import Viewer from 'react-viewer'
-import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { type ImageDecorator } from 'react-viewer/lib/ViewerProps'
+
 import { CommentItem } from '@/legacy/components/CommentItem'
 import { BottomFixed, Divider, Label, List, Section, Textarea } from '@/legacy/components/common'
+import { Icon } from '@/legacy/components/common/icons'
 import { PdfCard } from '@/legacy/components/common/PdfCard'
 import { PdfViewer } from '@/legacy/components/common/PdfViewer'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Time } from '@/legacy/components/common/Time'
-import { Icon } from '@/legacy/components/common/icons'
 import { Constants } from '@/legacy/constants'
 import { useStudentActivityDetailRead } from '@/legacy/container/student-activity-detail-read'
 import { Activity, StudentActivity } from '@/legacy/generated/model'
@@ -31,12 +32,8 @@ export function ActivityDetailReadPage({
   setLoading,
   userId,
 }: ActivityDetailReadPageProps) {
-  if (!studentActivity) {
-    return null
-  }
-
   const { text, setText, comments, handleCommentCreate, handleCommentUpdate, handleCommentDelete } =
-    useStudentActivityDetailRead(studentActivity.id || 0, setLoading)
+    useStudentActivityDetailRead(studentActivity?.id || 0, setLoading)
 
   const handleCommentCreateSubmit = async () => {
     if (text === '') {
@@ -44,7 +41,7 @@ export function ActivityDetailReadPage({
       return
     }
 
-    handleCommentCreate({ content: text, studentActivityId: studentActivity.id || 0 })
+    handleCommentCreate({ content: text, studentActivityId: studentActivity?.id || 0 })
   }
 
   const files = studentActivity?.files || []
@@ -63,6 +60,10 @@ export function ActivityDetailReadPage({
         src: `${Constants.imageUrl}${image}`,
       })
     }
+  }
+
+  if (!studentActivity) {
+    return null
   }
 
   return (

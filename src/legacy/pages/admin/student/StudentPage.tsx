@@ -3,12 +3,14 @@ import { type ChangeEvent, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { useSetRecoilState } from 'recoil'
+
 import { Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox, useCheckbox } from '@/legacy/components/common/Checkbox'
 import { Pagination } from '@/legacy/components/common/Pagination'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Routes } from '@/legacy/constants/routes'
 import {
   studentManagementDeleteStudent,
   studentManagementGetStudents,
@@ -16,14 +18,14 @@ import {
   useAdminCommonFindAllKlassBySchool,
   useStudentManagementGetStudents,
 } from '@/legacy/generated/endpoint'
+import type { ResponseGroupDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSearch } from '@/legacy/lib/router'
-import { Routes } from '@/legacy/constants/routes'
-import { toastState, warningState } from '@/stores'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
+import { toastState, warningState } from '@/stores'
+
 import { AdminContext } from '../AdminMainPage'
-import type { ResponseGroupDto } from '@/legacy/generated/model'
 
 export function StudentPage() {
   const { t } = useLanguage()

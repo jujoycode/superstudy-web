@@ -2,6 +2,7 @@ import { range } from 'lodash'
 import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
 import { useSetRecoilState } from 'recoil'
+
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
@@ -28,8 +29,9 @@ import {
   Role,
 } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { toastState } from '@/stores'
 import { getNickName } from '@/legacy/util/status'
+import { toastState } from '@/stores'
+
 import { AdminContext } from '../AdminMainPage'
 
 const steps = range(1, 6) as (1 | 2 | 3 | 4 | 5)[]

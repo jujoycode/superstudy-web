@@ -1,13 +1,16 @@
 // @ts-ignore
 import { addHours, differenceInSeconds, format } from 'date-fns'
 import { useState } from 'react'
-import { useHistory, useLocation } from 'react-router'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import sugang from '@/legacy/assets/images/sugang.png'
-import { ReactComponent as Logo } from '@/legacy/assets/svg/logo.svg'
+import { useLocation } from 'react-router'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Blank, Section } from '@/legacy/components/common'
 import { externalCreateToken, externalUpdateQueue, useCourseSeasonGet } from '@/legacy/generated/endpoint'
 import { childState, toastState } from '@/stores'
+
+import sugang from '@/assets/images/sugang.png'
+import Logo from '@/assets/svg/logo.svg'
 
 export function CourseEntrancePage() {
   const { push } = useHistory()
@@ -23,7 +26,7 @@ export function CourseEntrancePage() {
   const [seasonName, setSeasonName] = useState('')
   const [isSeason, setIsSeason] = useState(false)
 
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const setToastMsg = useSetRecoilState(toastState)
 
   const params = new URLSearchParams(location.search)
 
@@ -121,14 +124,6 @@ export function CourseEntrancePage() {
       })
   }
 
-  // useEffect(() => {
-  //   const params = new URLSearchParams(location.search);
-  //   if (params.get('enter') === 'true') {
-  //     openSugang();
-  //   }
-  // }, [location.search]); // URL 변경될 때만 실행
-
-  //if (me?.role === Role.PARENT ? myChild?.school?.isCourseActive : me?.school?.isCourseActive) {
   return (
     <>
       {showLoading && <Blank />}

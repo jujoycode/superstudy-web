@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Link, useParams } from 'react-router'
+
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'

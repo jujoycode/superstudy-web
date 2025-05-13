@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory, useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
 import { useSetRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox, useCheckbox } from '@/legacy/components/common/Checkbox'
 import { NumberInput } from '@/legacy/components/common/NumberInput'
 import { TextInput } from '@/legacy/components/common/TextInput'
+import { Routes } from '@/legacy/constants/routes'
 import {
   groupManagementAddStudent,
   groupManagementAddTeachers,
@@ -22,9 +25,9 @@ import {
 } from '@/legacy/generated/endpoint'
 import { RequestGroupTeacherDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { Routes } from '@/legacy/routes'
-import { toastState, warningState } from '@/stores'
 import { getNickName } from '@/legacy/util/status'
+import { toastState, warningState } from '@/stores'
+
 import { AdminContext } from '../AdminMainPage'
 
 export function KlassPage() {

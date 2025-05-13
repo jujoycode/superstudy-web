@@ -3,6 +3,8 @@ import _ from 'lodash'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router'
+import { twMerge } from 'tailwind-merge'
+
 import { Admin } from '@/legacy/components/common/Admin'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { Typography } from '@/legacy/components/common/Typography'
@@ -10,7 +12,6 @@ import ConfirmSelectBar from '@/legacy/components/ib/coordinator/ConfirmSelectBa
 import { useGetIBCoordinators, useUpateIBCoordinator } from '@/legacy/container/ib-admin'
 import { useUserGetAllTeachers } from '@/legacy/generated/endpoint'
 import { RequestCoordinatorDto } from '@/legacy/generated/model'
-import { twMerge } from 'tailwind-merge'
 
 export function IbCoordinatorPage() {
   const { t } = useTranslation()

@@ -1,18 +1,21 @@
 import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { Link } from 'react-router'
 import { useSetRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
+import { Routes } from '@/legacy/constants/routes'
 import { parentManagementUpdateParent, useParentManagementGetParentInfo } from '@/legacy/generated/endpoint'
 import { RequestModifyParentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
-import { Routes } from '@/legacy/routes'
 import { toastState } from '@/stores'
+
 import { AdminContext } from '../AdminMainPage'
 
 export function ParentEditPage() {

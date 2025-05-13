@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { Admin } from '@/legacy/components/common/Admin'
 import { AcademicRecordsComponent } from '@/legacy/components/score/AcademicRecordsComponent'
 import { ExamScoresComponent } from '@/legacy/components/score/ExamScoresComponent'

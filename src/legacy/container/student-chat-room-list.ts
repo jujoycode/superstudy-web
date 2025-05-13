@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 // ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 
 import type { ResponseChatroomInfoDto } from '@/legacy/generated/model'
 import { useChatroomCreateChatRoom, useChatroomGetChatroomInfo } from '@/legacy/generated/endpoint'

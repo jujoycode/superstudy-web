@@ -1,12 +1,15 @@
 import { useState } from 'react'
-import { Route, Switch, useHistory, useLocation } from 'react-router'
+import { Route, Routes, useLocation } from 'react-router'
+
+import { useHistory } from '@/hooks/useHistory'
 import AnnouncementBadge from '@/legacy/components/announcement/AnnouncementBadge'
 import { BackButton, Blank, Chip, HorizontalScrollView, List, TopNavbar } from '@/legacy/components/common'
+import { Icon } from '@/legacy/components/common/icons'
 import { NoItem } from '@/legacy/components/common/NoItem'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
-import { Icon } from '@/legacy/components/common/icons'
 import { useAnnouncementByCategory } from '@/legacy/container/announcement-category'
 import { Announcement } from '@/legacy/generated/model'
+
 import AnnouncementDetailPage from './AnnouncementDetailPage'
 
 export default function AnnouncementPage() {
@@ -80,9 +83,9 @@ export default function AnnouncementPage() {
           </div>
         </div>
       </div>
-      <Switch>
-        <Route path="/student/announcement/:id" render={() => <AnnouncementDetailPage />} />
-      </Switch>
+      <Routes>
+        <Route path="/student/announcement/:id" Component={() => <AnnouncementDetailPage />} />
+      </Routes>
     </>
   )
 }

@@ -1,24 +1,26 @@
 import { debounce } from 'lodash'
 import { type ChangeEvent, useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
 import { Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox, useCheckbox } from '@/legacy/components/common/Checkbox'
 import { Pagination } from '@/legacy/components/common/Pagination'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Routes } from '@/legacy/constants/routes'
 import {
   parentManagementGetParents,
   useAdminCommonFindAllKlassBySchool,
   useParentManagementGetParents,
 } from '@/legacy/generated/endpoint'
+import type { ResponseGroupDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSearch } from '@/legacy/lib/router'
-import { Routes } from '@/legacy/constants/routes'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
+
 import { AdminContext } from '../AdminMainPage'
-import type { ResponseGroupDto } from '@/legacy/generated/model'
 
 export function ParentPage() {
   const { t } = useLanguage()

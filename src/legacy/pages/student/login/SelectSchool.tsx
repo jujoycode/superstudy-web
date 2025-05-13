@@ -7,7 +7,7 @@ import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useSchoolsFindAll } from '@/legacy/generated/endpoint'
 import { buildSearch } from '@/legacy/lib/router'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 
 interface SelectSchoolForm {
   schoolCode: string

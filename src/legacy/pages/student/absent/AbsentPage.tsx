@@ -1,7 +1,7 @@
 import { t } from 'i18next'
 import { useState } from 'react'
+
 import { useHistory } from '@/hooks/useHistory'
-import { ReactComponent as RightArrow } from '@/legacy/assets/svg/mypage-right-arrow.svg'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { useStudentAbsent } from '@/legacy/container/student-absent'
@@ -9,9 +9,11 @@ import { AbsentStatus, Role } from '@/legacy/generated/model'
 import { getPeriodStr } from '@/legacy/util/status'
 import { makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
 
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
+
 export function AbsentPage() {
   const { push } = useHistory()
-  const { isLoading, data, me, error, isPrimaryGuardian } = useStudentAbsent()
+  const { isLoading, data, me, error } = useStudentAbsent()
   const [blankOpen, setBlankOpen] = useState(false)
   const isParent = me?.role === 'PARENT'
 

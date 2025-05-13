@@ -3,6 +3,7 @@ import { t } from 'i18next'
 import moment from 'moment'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import { ErrorBlank, SelectValues, SuperModal } from '@/legacy/components'
 import { BackButton, Badge, Blank, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -18,9 +19,9 @@ import { useStudentAbsentAdd } from '@/legacy/container/student-absent-add'
 import { UserContainer } from '@/legacy/container/user'
 import { Absent, AbsentStatus, Role } from '@/legacy/generated/model'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { childState } from '@/stores'
 import { AbsentTimeType } from '@/legacy/types'
 import { makeDateToString } from '@/legacy/util/time'
+import { childState } from '@/stores'
 
 const reportType = ['결석', '지각', '조퇴', '결과']
 const descriptionType = ['인정', '질병', '기타', '미인정']

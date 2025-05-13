@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+
 import { Divider, Label, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { FileUpload } from '@/legacy/components/common/FileUpload'
@@ -10,7 +11,7 @@ import { useStudentActivityDetailSubmit } from '@/legacy/container/student-activ
 import { Activity, RequestUpdateStudentActivityDto, StudentActivity } from '@/legacy/generated/model'
 
 interface ActivityDetailSubmitPageProps {
-  studentActivity?: StudentActivity
+  studentActivity: StudentActivity
   activity?: Activity
   setReadState: () => void
   setLoading: (state: boolean) => void
@@ -22,10 +23,6 @@ export function ActivityDetailSubmitPage({
   setReadState,
   setLoading,
 }: ActivityDetailSubmitPageProps) {
-  if (!studentActivity) {
-    return null
-  }
-
   const {
     imageObjectMap,
     documentObjectMap,
@@ -34,7 +31,6 @@ export function ActivityDetailSubmitPage({
     toggleImageDelete,
     handleDocumentAdd,
     toggleDocumentDelete,
-    uploadFiles,
   } = useStudentActivityDetailSubmit(studentActivity, setReadState, setLoading)
 
   const [content, setContent] = useState(studentActivity?.content || '')

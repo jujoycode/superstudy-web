@@ -1,4 +1,5 @@
 import { useParams } from 'react-router'
+
 import { ErrorBlank } from '@/legacy/components'
 import AnnouncementDetailCard from '@/legacy/components/announcement/AnnouncementDetailCard'
 import { BackButton, Blank, TopNavbar } from '@/legacy/components/common'
@@ -6,7 +7,7 @@ import { useAnnouncementDetail } from '@/legacy/container/announcement-detail'
 
 export default function AnnouncementDetailPage() {
   const { id } = useParams<{ id: string }>()
-  const { errorMessage, isLoading, announcement } = useAnnouncementDetail(+id)
+  const { errorMessage, isLoading, announcement } = useAnnouncementDetail(Number(id))
 
   return (
     <>

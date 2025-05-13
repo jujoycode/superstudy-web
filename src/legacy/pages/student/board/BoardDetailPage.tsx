@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import { useParams } from 'react-router'
+
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, TopNavbar } from '@/legacy/components/common'
 import { FeedsDetail } from '@/legacy/components/common/FeedsDetail'
@@ -9,12 +9,7 @@ import { DateFormat, DateUtil } from '@/legacy/util/date'
 export function BoardDetailPage() {
   const { id } = useParams<{ id: string }>()
 
-  const { board, isBoardLoading, images, Pdfs, documents, viewerImages, errorMessage } = useStudentBoardDetail(+id)
-
-  const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
-  const [focusPdfFile, setFocusPdfFile] = useState('')
+  const { board, isBoardLoading, errorMessage } = useStudentBoardDetail(Number(id))
 
   return (
     <div>

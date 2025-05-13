@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router'
+import { twMerge } from 'tailwind-merge'
+
 import { Admin } from '@/legacy/components/common/Admin'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -11,7 +13,6 @@ import { Typography } from '@/legacy/components/common/Typography'
 import { InputField } from '@/legacy/components/ib/InputField'
 import { useCreateIBSchool, useGetIBSchoolInfo, useUpateIBSchool } from '@/legacy/container/ib-admin'
 import { type RequestIBSchoolManagementDto } from '@/legacy/generated/model'
-import { twMerge } from 'tailwind-merge'
 
 export function IbPage() {
   //@ts-expect-error useTranslation type instantiation error

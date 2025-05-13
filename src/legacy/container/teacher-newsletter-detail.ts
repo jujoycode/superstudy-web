@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 
 // ! 로직 개선
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { useHistory } from '@/hooks/useHistory'
 
 import {

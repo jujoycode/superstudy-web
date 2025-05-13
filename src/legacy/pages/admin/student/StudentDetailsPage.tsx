@@ -1,14 +1,16 @@
 import { ChangeEvent, useContext } from 'react'
 import { Link, useParams } from 'react-router'
+
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
+import { Routes } from '@/legacy/constants/routes'
 import { studentManagementUpdateStudent, useStudentManagementGetStudentInfo } from '@/legacy/generated/endpoint'
 import { GroupType, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignedUrl } from '@/legacy/lib/query'
-import { Routes } from '@/legacy/routes'
+
 import { AdminContext } from '../AdminMainPage'
 
 export function StudentDetailsPage() {
