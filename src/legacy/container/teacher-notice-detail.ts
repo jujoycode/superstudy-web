@@ -40,7 +40,7 @@ export function useTeacherNoticeDetail(noticeId?: number) {
   const Pdfs = notice?.images.filter((image) => isPdfFile(image)) || []
   const files = notice?.files || []
 
-  const viewerImages: ImageDecorator[] = []
+  const viewerImages = []
   for (const image of images) {
     if (isPdfFile(image) == false) {
       viewerImages.push({

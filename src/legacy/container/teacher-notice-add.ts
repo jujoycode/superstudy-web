@@ -8,7 +8,6 @@ import { useNoticesCreate, useNoticesUpdate } from '@/legacy/generated/endpoint'
 import { Notice, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-// ! 지훈쌤 개선안 적용
 import { DocumentObject } from '@/legacy/types/document-object'
 import { ImageObject } from '@/legacy/types/image-object'
 import { isUpdateNoticeState } from '@/stores'

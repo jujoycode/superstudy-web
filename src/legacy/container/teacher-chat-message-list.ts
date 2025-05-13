@@ -8,7 +8,6 @@ import {
   useChatroomGetMessageList,
 } from '@/legacy/generated/endpoint'
 import { Chat, RequestCreateChatMessageDto, ResponsePaginatedChatMessageDto } from '@/legacy/generated/model'
-// ! 지훈쌤 개선안 적용
 import { errorType } from '@/legacy/types'
 
 export function useTeacherChatMessageList(chatroomId: number) {
