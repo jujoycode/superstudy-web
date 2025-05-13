@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Link, Route, Switch, useLocation, useParams } from 'react-router-dom'
+import { Link, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import { AllScore } from '@/legacy/components/score/AllScore'
 import { ScoreAnalysis } from '@/legacy/components/score/ScoreAnalysis'
 import { TargetScore } from '@/legacy/components/score/TargetScore'
@@ -60,22 +60,20 @@ export const ScoreCardPage = () => {
           </Link>
         </div>
         <div className="px-8 pb-4">
-          <Switch>
+          <Routes>
             <Route
-              exact
               path={`/teacher/studentcard/${groupId}/${id}/score`}
-              render={() => <AllScore studentId={id} grade={Number(grade)} />}
+              Component={() => <AllScore studentId={id || ''} grade={Number(grade)} />}
             />
             <Route
-              exact
               path={`/teacher/studentcard/${groupId}/${id}/score/analysis`}
-              render={() => <ScoreAnalysis studentId={id} />}
+              Component={() => <ScoreAnalysis studentId={id || ''} />}
             />
             <Route
               path={`/teacher/studentcard/${groupId}/${id}/score/target-score`}
-              render={() => <TargetScore studentId={id} grade={Number(grade)} />}
+              Component={() => <TargetScore studentId={id || ''} grade={Number(grade)} />}
             />
-          </Switch>
+          </Routes>
         </div>
       </div>
     </div>

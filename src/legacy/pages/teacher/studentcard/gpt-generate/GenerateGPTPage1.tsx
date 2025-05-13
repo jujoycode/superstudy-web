@@ -18,7 +18,6 @@ export const GenerateGPTPage1: FC<GenerateGPTPage1Props> = ({
   goNextPage,
 }) => {
   const [type, setType] = useState<string>('')
-  const [criteria, setCriteria] = useState<string>('')
   return (
     <div className="w-full p-4">
       <div className="flex w-full items-center space-x-2">
@@ -67,7 +66,7 @@ export const GenerateGPTPage1: FC<GenerateGPTPage1Props> = ({
               <RadioGroup onChange={(e) => setType(e.target.value)} className="mt-1 flex items-center space-x-4">
                 {['교과', '창체', '행발'].map((el) => (
                   <div key={el} className="flex items-center space-x-2">
-                    <Radio id={el} name={el} onChange={(e) => setType(el)} checked={type === el} value={el} />
+                    <Radio id={el} name={el} onChange={() => setType(el)} checked={type === el} value={el} />
                     <Label className="cursor-pointer" htmlFor={el}>
                       {el}
                     </Label>
@@ -82,7 +81,7 @@ export const GenerateGPTPage1: FC<GenerateGPTPage1Props> = ({
               <RadioGroup onChange={(e) => setType(e.target.value)} className="mt-1 flex items-center space-x-4">
                 {['상', '중', '하'].map((el) => (
                   <div key={el} className="flex items-center space-x-2">
-                    <Radio id={el} name={el} onChange={(e) => setType(el)} checked={type === el} value={el} />
+                    <Radio id={el} name={el} onChange={() => setType(el)} checked={type === el} value={el} />
                     <Label className="cursor-pointer" htmlFor={el}>
                       {el}
                     </Label>
