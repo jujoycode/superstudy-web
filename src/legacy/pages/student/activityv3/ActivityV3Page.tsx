@@ -1,5 +1,6 @@
 import { format } from 'date-fns'
 import { useState } from 'react'
+
 import { useHistory } from '@/hooks/useHistory'
 import { Chip, HorizontalScrollView, List, ListItem, Section, TopNavbar } from '@/legacy/components/common'
 import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
@@ -16,7 +17,7 @@ export function ActivityV3Page() {
     { query: { enabled: !!studentGroups?.length } },
   )
 
-  const [selectedGroupId, setSelectedGroupId] = useState<any>()
+  const [selectedGroupId, setSelectedGroupId] = useState<number | undefined>()
 
   return (
     <>

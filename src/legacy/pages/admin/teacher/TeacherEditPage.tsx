@@ -1,13 +1,16 @@
 import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory, useParams } from 'react-router'
+import { Link, useParams } from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { NumberInput } from '@/legacy/components/common/NumberInput'
 import { TextInput } from '@/legacy/components/common/TextInput'
+import { Routes } from '@/legacy/constants/routes'
 import { teacherRoles } from '@/legacy/constants/teacher-roles'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import {
@@ -18,9 +21,9 @@ import {
 import { Category, RequestCreateTeacherDto, RequestModifyTeacherDto, Role, ScoreUse } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
-import { Routes } from '@/legacy/routes'
-import { meState, toastState } from '@/stores'
 import { getErrorMsg } from '@/legacy/util/status'
+import { meState, toastState } from '@/stores'
+
 import { AdminContext } from '../AdminMainPage'
 
 export function TeacherEditPage() {

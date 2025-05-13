@@ -5,6 +5,7 @@ import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
+
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { PdfCard } from '@/legacy/components/common/PdfCard'
@@ -12,8 +13,9 @@ import { PdfViewer } from '@/legacy/components/common/PdfViewer'
 import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { useActivityFindOne, useStudentActivityFindOneByActivityId } from '@/legacy/generated/endpoint'
-import { meState } from '@/stores'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { meState } from '@/stores'
+
 import { ActivityDetailReadPage } from './ActivityDetailReadPage'
 import { ActivityDetailSubmitPage } from './ActivityDetailSubmitPage'
 
@@ -21,7 +23,7 @@ export function ActivityDetailPage() {
   const me = useRecoilValue(meState)
   const { id } = useParams<{ id: string }>()
 
-  const { error, data: activity } = useActivityFindOne(+id, {
+  const { error, data: activity } = useActivityFindOne(Number(id), {
     query: {
       refetchOnWindowFocus: false,
       refetchOnMount: false,
@@ -30,7 +32,7 @@ export function ActivityDetailPage() {
     },
   })
 
-  const { data: studentActivity } = useStudentActivityFindOneByActivityId(+id)
+  const { data: studentActivity } = useStudentActivityFindOneByActivityId(Number(id))
 
   const [readState, setReadState] = useState(true)
   const [isLoading, setLoading] = useState(false)
@@ -296,12 +298,14 @@ export function ActivityDetailPage() {
           userId={me?.id}
         />
       ) : (
-        <ActivityDetailSubmitPage
-          studentActivity={studentActivity}
-          activity={activity}
-          setReadState={() => setReadState(true)}
-          setLoading={(state: boolean) => setLoading(state)}
-        />
+        studentActivity && (
+          <ActivityDetailSubmitPage
+            studentActivity={studentActivity}
+            activity={activity}
+            setReadState={() => setReadState(true)}
+            setLoading={(state: boolean) => setLoading(state)}
+          />
+        )
       )}
     </div>
   )

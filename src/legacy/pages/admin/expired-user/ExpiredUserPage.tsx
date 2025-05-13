@@ -1,14 +1,15 @@
 import { useSetRecoilState } from 'recoil'
+
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox, useCheckbox } from '@/legacy/components/common/Checkbox'
 import { Pagination } from '@/legacy/components/common/Pagination'
+import { Routes } from '@/legacy/constants/routes'
 import { adminCommonDeleteUser, useAdminCommonGetExpiredUsers } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSearch } from '@/legacy/lib/router'
 import { toastState } from '@/stores'
-import { Routes } from '@/legacy/constants/routes'
 
 export function ExpiredUserPage() {
   const { page, size } = useSearch({ page: 1, size: 25 })

@@ -2,13 +2,14 @@ import { sumBy } from 'lodash'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { useSetRecoilState } from 'recoil'
+
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox, useCheckbox } from '@/legacy/components/common/Checkbox'
 import { Pagination } from '@/legacy/components/common/Pagination'
+import { Routes } from '@/legacy/constants/routes'
 import { adminPointDelete, useAdminPointGet } from '@/legacy/generated/endpoint'
 import { useSearch } from '@/legacy/lib/router'
-import { Routes } from '@/legacy/constants/routes'
 import { toastState } from '@/stores'
 
 export function PointPage() {

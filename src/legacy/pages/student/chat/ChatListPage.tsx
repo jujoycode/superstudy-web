@@ -1,25 +1,23 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { useHistory, useLocation } from 'react-router'
-import { ReactComponent as Close } from '@/legacy/assets/svg/close.svg'
+import { useLocation } from 'react-router'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ChatRoomList } from '@/legacy/components/chat/ChatRoomList'
-import { BackButton, Blank, Divider, Label, Section, TopNavbar } from '@/legacy/components/common'
+import { BackButton, Divider, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
-import { GroupContainer } from '@/legacy/container/group'
+import { Routes } from '@/legacy/constants/routes'
 import { useStudentChatRoomList } from '@/legacy/container/student-chat-room-list'
 import { useStudentChatUserList } from '@/legacy/container/student-chat-user-list'
-import { ResponseGroupDto } from '@/legacy/generated/model'
-import { Routes } from '@/legacy/constants/routes'
 import { UserDatas } from '@/legacy/types'
+
 import { ChatDetailPage } from './ChatDetailPage'
 
-interface ChatListPageProps {
-  groupData?: ResponseGroupDto
-}
+import Close from '@/assets/svg/close.svg'
 
-export function ChatListPage({ groupData }: ChatListPageProps) {
+export function ChatListPage() {
   const { push } = useHistory()
   const { pathname } = useLocation()
   const [chatRoomId, setChatRoomId] = useState('')
@@ -28,25 +26,17 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
     setChatRoomId(pathRoomId)
   }, [pathRoomId])
 
-  const { allKlassGroups } = GroupContainer.useContext()
-
-  const { selectedGroup, setSelectedGroup, selectedUserDatas } = useStudentChatUserList()
+  const { selectedUserDatas } = useStudentChatUserList()
 
   const { selectedUsers, setSelectedUsers, createNewRoom } = useStudentChatRoomList()
   const userIds = selectedUsers.map((el) => el.id)
-
-  //////////////////
 
   const [selectedMenu, setSelectedMenu] = useState(false)
   const [, setStudentName] = useState('')
   const [_studentName, set_studentName] = useState('')
 
-  const [content, setContent] = useState(groupData ? groupData.name : '')
-  const [isLoading, setLoading] = useState(false)
-
   return (
     <>
-      {isLoading && <Blank reversed />}
       <div
         className={`scroll-box h-screen-4 w-full overflow-y-scroll bg-white ${
           !chatRoomId || chatRoomId === '' ? '' : 'hidden'
@@ -69,7 +59,6 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
             onClick={() => {
               setSelectedMenu(true)
               setSelectedUsers([])
-              setContent('')
               set_studentName('')
               push(`${Routes.student.chat}`)
             }}

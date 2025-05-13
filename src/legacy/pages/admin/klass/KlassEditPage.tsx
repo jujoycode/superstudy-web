@@ -1,17 +1,20 @@
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory, useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
 import { useSetRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { NumberInput } from '@/legacy/components/common/NumberInput'
+import { Routes } from '@/legacy/constants/routes'
 import { klassManagementCreateKlass } from '@/legacy/generated/endpoint'
 import { RequestCreateKlassDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
-import { Routes } from '@/legacy/routes'
 import { toastState } from '@/stores'
+
 import { AdminContext } from '../AdminMainPage'
 
 export function KlassEditPage() {

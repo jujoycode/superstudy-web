@@ -1,11 +1,12 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { BackButton, List, ListItem, Textarea, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Time } from '@/legacy/components/common/Time'
@@ -18,15 +19,17 @@ import {
   useStudentActivityV3SaveStudentText,
 } from '@/legacy/generated/endpoint'
 import { ActivityType } from '@/legacy/generated/model'
-import { meState, toastState } from '@/stores'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { meState, toastState } from '@/stores'
+
+import FileItemIcon from '@/assets/svg/file-item-icon.svg'
 
 export function ActivitySessionPage() {
   const { id } = useParams<{ id: string }>()
   const meRecoil = useRecoilValue(meState)
 
   const { push } = useHistory()
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const setToastMsg = useSetRecoilState(toastState)
 
   const { data: activityv3 } = useActivityV3FindOne(Number(id))
   const { data: studentActivityV3 } = useStudentActivityV3FindByStudent({ activityv3Id: Number(id) })

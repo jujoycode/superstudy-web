@@ -14,6 +14,7 @@ import { range } from 'lodash'
 import { useState } from 'react'
 import { Line } from 'react-chartjs-2'
 import { CoachMark } from 'react-coach-mark'
+
 import { FrontPagination } from '@/legacy/components'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'

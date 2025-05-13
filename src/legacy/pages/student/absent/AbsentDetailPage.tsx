@@ -1,9 +1,11 @@
 import { t } from 'i18next'
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { AbsentPaper } from '@/legacy/components/absent/AbsentPaper'
 import { ParentConfirmPaper } from '@/legacy/components/absent/ParentConfirmPaper'
@@ -17,6 +19,7 @@ import { useStudentAbsentDetail } from '@/legacy/container/student-absent-detail
 import { UserContainer } from '@/legacy/container/user'
 import { AbsentStatus, Role } from '@/legacy/generated/model'
 import { isPdfFile } from '@/legacy/util/file'
+
 import { AbsentAddPage } from './AbsentAddPage'
 
 export function AbsentDetailPage() {
@@ -28,8 +31,6 @@ export function AbsentDetailPage() {
   const { absent, error, isLoading, deleteAbsent, errorMessage, refetch, resendAlimtalk } = useStudentAbsentDetail(
     Number(id),
   )
-
-  const parentsName = me?.role === 'USER' ? me?.nokName : me?.name
 
   const isReturned = absent?.absentStatus === AbsentStatus.RETURNED
 

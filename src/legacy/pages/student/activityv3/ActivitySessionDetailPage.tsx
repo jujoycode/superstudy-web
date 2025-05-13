@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useParams } from 'react-router'
-import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { type ImageDecorator } from 'react-viewer/lib/ViewerProps'
+
 import { ActivitySessionDetailView } from '@/legacy/components/activityv3/ActivitySessionDetailView'
 import { StudentActivitySessionDetailView } from '@/legacy/components/activityv3/StudentActivitySessionDetailView'
 import { StudentActivitySessionSubmitView } from '@/legacy/components/activityv3/StudentActivitySessionSubmitView'

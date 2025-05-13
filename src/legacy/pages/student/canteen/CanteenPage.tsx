@@ -1,27 +1,29 @@
 import { useEffect, useRef, useState } from 'react'
-// @ts-ignore
-import ExifOrientationImg from 'react-exif-orientation-img'
-import { Link, useHistory } from 'react-router'
+import { Link } from 'react-router'
 import Viewer from 'react-viewer'
 import { useRecoilValue } from 'recoil'
-import { ReactComponent as ChatIcon } from '@/legacy/assets/svg/chat.svg'
-import { ReactComponent as ClockIcon } from '@/legacy/assets/svg/clock.svg'
-import { ReactComponent as Refresh } from '@/legacy/assets/svg/refresh.svg'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
-import { CanteenCalendar } from '@/legacy/components/CanteenCalendar'
-import { Dashboard } from '@/legacy/components/Dashboard'
 import AnnouncementPopup from '@/legacy/components/announcement/Announcement'
+import { CanteenCalendar } from '@/legacy/components/CanteenCalendar'
 import { Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
+import { Dashboard } from '@/legacy/components/Dashboard'
 import { Constants } from '@/legacy/constants'
 import { useStudentCanteen } from '@/legacy/container/student-canteen'
 import { UserContainer } from '@/legacy/container/user'
 import { useNotificationLogFindRecent } from '@/legacy/generated/endpoint'
-import { Role, Schedule } from '@/legacy/generated/model'
-import { childState, newMsgCntState } from '@/stores'
+import { Role } from '@/legacy/generated/model'
+import { Schedule } from '@/legacy/types'
 import { checkNewVersion } from '@/legacy/util/status'
 import { makeDateToString, makeMonthDayToString } from '@/legacy/util/time'
+import { childState, newMsgCntState } from '@/stores'
+
+import ChatIcon from '@/legacy/assets/svg/chat.svg'
+import ClockIcon from '@/legacy/assets/svg/clock.svg'
+import Refresh from '@/legacy/assets/svg/refresh.svg'
 
 export function CanteenPage() {
   const { push } = useHistory()
@@ -133,7 +135,7 @@ export function CanteenPage() {
         {selectedCanteen?.image && (
           <div onClick={() => setImageModalOpen(true)}>
             <div className="aspect-5/3 rounded bg-gray-50">
-              <ExifOrientationImg
+              <img
                 src={`${Constants.imageUrl}${selectedCanteen.image}`}
                 alt=""
                 className="h-full w-full rounded-lg object-cover"

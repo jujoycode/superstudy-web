@@ -1,12 +1,15 @@
 import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory, useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
 import { useSetRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { NumberInput } from '@/legacy/components/common/NumberInput'
 import { TextInput } from '@/legacy/components/common/TextInput'
+import { Routes } from '@/legacy/constants/routes'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import {
   studentManagementCreateStudent,
@@ -16,9 +19,9 @@ import {
 import { Category, RequestCreateStudentDto, RequestModifyStudentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
-import { Routes } from '@/legacy/routes'
-import { toastState, warningState } from '@/stores'
 import { getErrorMsg } from '@/legacy/util/status'
+import { toastState, warningState } from '@/stores'
+
 import { AdminContext } from '../AdminMainPage'
 
 export function StudentEditPage() {
@@ -125,7 +128,7 @@ export function StudentEditPage() {
                 const state = studentStates.find((s) => s.name === e.target.value)
                 setValue('expired', state?.etc1 === 'true')
                 setValue('expiredReason', e.target.value)
-                setValue('notAttend', state?.etc2 === 'true')
+                // setValue('notAttend', state?.etc2 === 'true')
 
                 if (state?.etc1 === 'true') {
                   setToastWarnMsg(`${state?.name} 상태의 학생은 슈퍼스쿨 사용이 중지 됩니다.`)

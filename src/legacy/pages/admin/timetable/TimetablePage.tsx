@@ -3,6 +3,7 @@ import { range } from 'lodash'
 import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
+
 import { Label, Section, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
@@ -12,6 +13,7 @@ import { Tooltip } from '@/legacy/components/common/Tooltip'
 import { TooltipButton } from '@/legacy/components/common/TooltipButton'
 import { DocumentObjectComponent } from '@/legacy/components/DocumentObjectComponent'
 import { Constants } from '@/legacy/constants'
+import { Routes } from '@/legacy/constants/routes'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import {
   schoolManagementGetRegistTimetable,
@@ -42,12 +44,12 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
-import { Routes } from '@/legacy/constants/routes'
-import { meState, toastState, warningState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getFileNameFromUrl } from '@/legacy/util/file'
 import { getNickName } from '@/legacy/util/status'
 import { getThisSemester, WeekList } from '@/legacy/util/time'
+import { meState, toastState, warningState } from '@/stores'
+
 import { AdminContext } from '../AdminMainPage'
 
 export enum TimetableTarget {

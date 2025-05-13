@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { ReactComponent as ChatSendDisabled } from '@/legacy/assets/svg/chat-send-disabled.svg'
-import { ReactComponent as ChatSendEnabled } from '@/legacy/assets/svg/chat-send-enabled.svg'
+
 import { ChatSetting } from '@/legacy/components/chat/ChatSetting'
 import { DateMessage } from '@/legacy/components/chat/DateMessage'
 import { ReceiveMessage } from '@/legacy/components/chat/ReceiveMessage'
@@ -17,8 +16,11 @@ import { Chat, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { useSocket } from '@/legacy/lib/socket'
-import { meState } from '@/stores'
 import { isNowOrFuture } from '@/legacy/util/time'
+import { meState } from '@/stores'
+
+import ChatSendDisabled from '@/legacy/assets/svg/chat-send-disabled.svg'
+import ChatSendEnabled from '@/legacy/assets/svg/chat-send-enabled.svg'
 
 interface ChatDetailPageProps {
   id: string
@@ -48,9 +50,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
   const {
     imageObjectMap,
     documentObjectMap,
-    handleImageAdd,
     toggleImageDelete,
-    handleDocumentAdd,
     addFiles,
     toggleDocumentDelete,
     resetDocuments,
@@ -61,9 +61,6 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
 
   const [socket, disconnect] = useSocket(`chat-${id}`)
 
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
-
-  const [isDeleteMode, setDeleteMode] = useState(false)
   const [isSubmitLoading, setIsSubmitLoading] = useState(false)
 
   const [myReadTime, setMyReadTime] = useState('')
@@ -233,8 +230,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
                     MessageData={c}
                     PostMessageData={chatMessages?.items[idx + 1]}
                     userRole="student"
-                    isDeleteMode={isDeleteMode}
-                    openDeleteModal={() => setDeleteModalOpen(true)}
+                    openDeleteModal={() => {}}
                   />
                 ) : (
                   <ReceiveMessage
@@ -306,7 +302,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
                 }}
               />
               {(newMessage || imageObjectMap.size || documentObjectMap.size) && chatOpenTime ? (
-                <ChatSendEnabled onClick={() => OnSendMessage()} />
+                <ChatSendEnabled onClick={OnSendMessage} />
               ) : (
                 <ChatSendDisabled />
               )}

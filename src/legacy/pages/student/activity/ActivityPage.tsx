@@ -1,4 +1,3 @@
-import { useRecoilValue } from 'recoil'
 import { ErrorBlank } from '@/legacy/components'
 import { Blank, Chip, HorizontalScrollView, List, ListItem, Section, TopNavbar } from '@/legacy/components/common'
 import { FeedsItem } from '@/legacy/components/common/FeedsItem'
@@ -6,12 +5,9 @@ import { Tabs } from '@/legacy/components/common/Tabs'
 import { ActivityFilterEnum } from '@/legacy/constants/activity-filter.enum'
 import { useStudentActivity } from '@/legacy/container/student-activity'
 import { ActivityType } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 export function ActivityPage() {
-  const meRecoil = useRecoilValue(meState)
-
   const {
     activities,
     isLoading,

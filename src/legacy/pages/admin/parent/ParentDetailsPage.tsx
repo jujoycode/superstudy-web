@@ -1,11 +1,13 @@
 import { useContext } from 'react'
 import { Link, useParams } from 'react-router'
+
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { parentManagementUpdateParent, useParentManagementGetParentInfo } from '@/legacy/generated/endpoint'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName } from '@/legacy/util/status'
+
 import { AdminContext } from '../AdminMainPage'
 
 export function ParentDetailsPage() {

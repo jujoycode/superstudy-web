@@ -18,7 +18,7 @@ import {
 import { ResponseTeacherInfoDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSearch } from '@/legacy/lib/router'
-import { Routes } from '@/legacy/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { toastState, warningState } from '@/stores'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
