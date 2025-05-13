@@ -17,7 +17,6 @@ import {
   groupManagementDeleteGroup,
   groupManagementDeleteStudent,
   groupManagementDeleteTeacher,
-  groupManagementUpdateGroup,
   useAdminCommonSearchStudents,
   useAdminCommonSearchTeachers,
   useGroupManagementGetGroupDetailInfo,

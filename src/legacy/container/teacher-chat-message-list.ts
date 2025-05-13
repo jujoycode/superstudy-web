@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Routes } from '@/legacy/constants/routes'
 import { useHistory } from '@/hooks/useHistory'
+import { Routes } from '@/legacy/constants/routes'
 import {
   useChatCreateMessage,
   useChatDeleteMessage,
@@ -8,7 +8,6 @@ import {
   useChatroomGetMessageList,
 } from '@/legacy/generated/endpoint'
 import { Chat, RequestCreateChatMessageDto, ResponsePaginatedChatMessageDto } from '@/legacy/generated/model'
-// ! 지훈쌤 개선안 적용
 import { errorType } from '@/legacy/types'
 
 export function useTeacherChatMessageList(chatroomId: number) {
@@ -36,7 +35,7 @@ export function useTeacherChatMessageList(chatroomId: number) {
         setNewMessage('')
         refetchChatMessages()
           .then(() => {})
-          .catch((error) => {
+          .catch(() => {
             // refetch 중에 발생한 에러를 처리하는 작업
             //alert(error?.message);
           })
