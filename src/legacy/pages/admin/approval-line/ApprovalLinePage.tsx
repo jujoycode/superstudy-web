@@ -32,7 +32,7 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName } from '@/legacy/util/status'
 import { toastState } from '@/stores'
 
-import { AdminContext } from '../AdminMainPage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 const steps = range(1, 6) as (1 | 2 | 3 | 4 | 5)[]
 

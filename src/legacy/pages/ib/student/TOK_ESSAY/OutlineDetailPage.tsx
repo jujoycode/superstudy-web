@@ -85,7 +85,7 @@ export const OutlineDetailPage = () => {
     handleSubmit,
     reset,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBTokOutlineDto>({
     defaultValues: data?.tokOutline,
   })

@@ -50,7 +50,7 @@ import { getNickName } from '@/legacy/util/status'
 import { getThisSemester, WeekList } from '@/legacy/util/time'
 import { meState, toastState, warningState } from '@/stores'
 
-import { AdminContext } from '../AdminMainPage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 export enum TimetableTarget {
   KLASS = '학급',

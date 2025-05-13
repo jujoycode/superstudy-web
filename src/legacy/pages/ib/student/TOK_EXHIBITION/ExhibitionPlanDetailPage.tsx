@@ -112,7 +112,7 @@ export const ExhibitionPlanDetailPage = () => {
     handleSubmit,
     watch,
     reset,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBTokExhibitionPlanDto>({
     defaultValues: data?.tokExhibitionPlan,
   })

@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { t } from 'i18next'
 import { useEffect, useState } from 'react'
-
 import { SelectMenus, SelectValues } from '@/legacy/components'
 import { BackButton, Badge, Blank, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -12,7 +11,6 @@ import { FieldtripDatePicker } from '@/legacy/components/fieldtrip/FieldtripDate
 import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
 import { useCommonGetHolidays } from '@/legacy/container/common-get-holidays'
 import { useTeacherAbsentAdd } from '@/legacy/container/teacher-absent-add'
-import { UserContainer } from '@/legacy/container/user'
 import { Absent, GroupType, StudentGroup } from '@/legacy/generated/model'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { AbsentTimeType } from '@/legacy/types'

@@ -10,7 +10,6 @@ import { useModals } from '@/legacy/modals/ModalStack'
 import { getNickName } from '@/legacy/util/status'
 import { getThisYear } from '@/legacy/util/time'
 import { chatroomCreateChatRoom, useTeacherStudentGroupGet, useTeacherUserGetOne } from '@/legacy/generated/endpoint'
-
 import SvgUser from '@/assets/svg/user.svg'
 
 export interface StudentModalProps {

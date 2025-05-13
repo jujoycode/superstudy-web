@@ -108,7 +108,7 @@ export const ExhibitionDetailPage = () => {
     watch,
     reset,
     setValue,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestExhibitionDto>({
     defaultValues: data,
   })

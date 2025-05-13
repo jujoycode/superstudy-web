@@ -10,7 +10,7 @@ import { RequestCreateTeacherDto, RequestCreateUserBulkDto, Role } from '@/legac
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { toastState, warningState } from '@/stores'
 
-import { AdminContext } from '../AdminMainPage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 export function TeacherBatchPage() {
   const { year } = useContext(AdminContext)

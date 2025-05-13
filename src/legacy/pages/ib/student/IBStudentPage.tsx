@@ -1,6 +1,5 @@
-import { Link, Route, Routes, useLocation } from 'react-router'
+import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -13,7 +12,6 @@ import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/student/Plag
 import { useLogout } from '@/legacy/util/hooks'
 import { makeStudNum5 } from '@/legacy/util/status'
 import { meState, schoolPropertiesState } from '@/stores'
-
 import CASInterviewDetailPage from './CAS/CASInterviewDetailPage'
 import { CASMainPage } from './CAS/CASMainPage'
 import { CASReflectionDiaryDetailPage } from './CAS/CASReflectionDiaryDetailPage'

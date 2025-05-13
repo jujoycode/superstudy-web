@@ -32,7 +32,7 @@ export function SelectSchool() {
 
   function signup() {
     if (!schoolId) return
-    push({ pathname: Routes.auth.signup, search: buildSearch({ schoolId }) })
+    push(Routes.auth.signup, { search: buildSearch({ schoolId }) })
   }
 
   return (

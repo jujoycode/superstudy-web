@@ -73,7 +73,7 @@ export function ActivitySubmitDetailPage({ activityId }: ActivitySubmitDetailPag
       return
     }
 
-    handleCommentCreate({ content: text, studentActivityId: +said })
+    handleCommentCreate({ content: text, studentActivityId: Number(said) })
   }
 
   if (errorMessage) {
@@ -138,7 +138,7 @@ export function ActivitySubmitDetailPage({ activityId }: ActivitySubmitDetailPag
                   </div>
                 </div>
               ))}
-              {Pdfs?.map((pdfFile: string, i: number) => {
+              {Pdfs?.map((pdfFile: string) => {
                 return (
                   <>
                     <div key={pdfFile}>

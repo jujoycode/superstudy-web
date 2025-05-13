@@ -91,7 +91,7 @@ export default function TOKRRSDetailPage() {
     handleSubmit,
     watch,
     reset,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestRRSDto>({
     defaultValues: data,
   })
@@ -378,7 +378,7 @@ export default function TOKRRSDetailPage() {
           noImgDetails
           scalable={false}
           images={viewerImages}
-          onChange={(activeImage, index) => setActiveIndex(index)}
+          onChange={(_, index) => setActiveIndex(index)}
           onClose={() => setImagesModalOpen(false)}
           activeIndex={activeIndex}
         />

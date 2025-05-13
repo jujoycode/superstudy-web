@@ -25,7 +25,7 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { Routes } from '@/legacy/constants/routes'
 import { toastState, warningState } from '@/stores'
 import { getErrorMsg, getNickName } from '@/legacy/util/status'
-import { AdminContext } from '../AdminMainPage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 const SubjectTypes = [
   { id: 0, name: '과목', value: SubjectType.LECTURE },
