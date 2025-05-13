@@ -44,7 +44,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
     ref,
   ) => {
     const [isShowOptions, setShowOptions] = useState(false)
-    const [isFocused, setIsFocused] = useState(false)
+    const [, setIsFocused] = useState(false)
     const handleFocus = () => setIsFocused(true)
     const handleBlur = () => setIsFocused(false)
     const dropdownRef = useRef<HTMLDivElement>(null)

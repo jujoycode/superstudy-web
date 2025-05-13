@@ -23,7 +23,7 @@ export function UnderlineTabs<T>({ children, value, onChange }: UnderlineTabsPro
 
   return (
     <div className="flex h-12 w-max items-end">
-      {children.map((tab, index) => (
+      {children.map((tab) => (
         <div
           key={String(tab.props.value)}
           onClick={() => handleTabClick(tab.props.value)}

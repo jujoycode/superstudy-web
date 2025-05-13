@@ -82,7 +82,7 @@ export function FieldtripSeparatePaper({
                   </tr>
                   {/* 첫째 줄 end */}
 
-                  {new Array(7).fill('').map((dlldl: any, i: number) => (
+                  {new Array(7).fill('').map((_: any, i: number) => (
                     <>
                       <tr>
                         <td className="h-20 border border-black text-center text-blue-700" colSpan={2}>
@@ -100,7 +100,7 @@ export function FieldtripSeparatePaper({
                 </>
               ) : (
                 <>
-                  {new Array(10).fill('').map((dlldl: any, i: number) => (
+                  {new Array(10).fill('').map((_: any, i: number) => (
                     <>
                       <tr>
                         <td className="h-16 border border-black text-center" colSpan={4}>
@@ -188,7 +188,7 @@ export function FieldtripSeparatePaper({
                   </tr> */}
                   {/* 첫째 줄 end */}
 
-                  {new Array(7).fill('').map((dlldl: any, i: number) => (
+                  {new Array(7).fill('').map((_: any, i: number) => (
                     <>
                       <tr>
                         <td className="h-20 border border-black px-4 text-center text-blue-700" colSpan={2}>
@@ -213,7 +213,7 @@ export function FieldtripSeparatePaper({
                 </>
               ) : (
                 <>
-                  {new Array(10).fill('').map((dlldl: any, i: number) => (
+                  {new Array(10).fill('').map((_: any, i: number) => (
                     <>
                       <tr>
                         <td className="h-16 border border-black text-center" colSpan={4}>

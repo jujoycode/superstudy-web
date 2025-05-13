@@ -19,7 +19,7 @@ interface MemberSearchPortalProps {
 }
 
 const MemberSearchPortal: React.FC<MemberSearchPortalProps> = ({ initialStudents, onSave, onCancel, id, children }) => {
-  const { data, isLoading } = useUserSearch()
+  const { data } = useUserSearch()
   const [open, setOpen] = useState<boolean>(false)
   const [localData, setLocalData] = useState<ResponseIBStudentDto[]>(initialStudents || [])
   const [searchText, setSearchText] = useState('')
@@ -46,7 +46,6 @@ const MemberSearchPortal: React.FC<MemberSearchPortalProps> = ({ initialStudents
     if (!data) return {}
 
     const grouped = data.reduce((acc: any, student: ResponseIBStudentDto) => {
-      const key = `${student.studentGroup.group.grade}학년 ${student.studentGroup.group.klass}반`
       if (!acc[student.studentGroup.group.grade]) {
         acc[student.studentGroup.group.grade] = {}
       }

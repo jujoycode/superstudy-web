@@ -140,7 +140,7 @@ export function IbEeEssay({
   const {
     handleSubmit,
     register,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm<RequestEssayDto>({
     defaultValues: (type === 'update' || type === 'update_check') && essayData ? essayData : {},
     mode: 'onChange',

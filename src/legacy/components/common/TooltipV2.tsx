@@ -11,7 +11,7 @@ interface TooltipV2Props {
   content: string
 }
 
-export function TooltipV2({ position = 'right', content }: TooltipV2Props) {
+export function TooltipV2({ content }: TooltipV2Props) {
   const [open, setOpen] = useState<boolean>(false)
   const [tooltipStyle, setTooltipStyle] = useState<React.CSSProperties>({})
   const triggerRef = useRef<HTMLDivElement>(null)

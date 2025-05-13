@@ -35,7 +35,7 @@ export default function PdfPreviewPopup({
 }: PdfPreviewPopupProps) {
   const divRef = useRef<HTMLDivElement>(null)
   const [numPages, setNumPages] = useState(0)
-  const [pageNumber, setPageNumber] = useState(1)
+  const [, setPageNumber] = useState(1)
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages)
