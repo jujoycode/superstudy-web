@@ -49,7 +49,7 @@ export function FieldtripDatePicker({
         onChange(newDate)
       }
     }
-  }, [])
+  })
 
   const CustomInput = (props: any) => {
     return (
@@ -76,8 +76,8 @@ export function FieldtripDatePicker({
       locale={ko}
       dateFormat="yyyy-MM-dd"
       wrapperClassName="flex flex-1 mr-4"
-      minDate={minDate}
-      maxDate={maxDate}
+      minDate={minDate || undefined}
+      maxDate={maxDate || undefined}
       filterDate={isWeekday}
       closeOnScroll
       placeholderText={placeholderText}
