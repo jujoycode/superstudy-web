@@ -3,7 +3,6 @@ import { useHistory } from '@/hooks/useHistory'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { Constants } from '@/legacy/constants'
 import { useActivityDelete, useActivityFindOne } from '@/legacy/generated/endpoint'
-import { Routes } from 'src/routes'
 import { isPdfFile } from '@/legacy/util/file'
 import { DayAfter } from '@/legacy/util/time'
 

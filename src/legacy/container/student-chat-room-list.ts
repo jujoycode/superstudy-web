@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useHistory } from '@/hooks/useHistory'
+import { Routes } from '@/legacy/constants/routes'
 import { useChatroomCreateChatRoom, useChatroomGetChatroomInfo } from '@/legacy/generated/endpoint'
-import { ResponseChatroomInfoDto } from '@/legacy/generated/model'
-import { Routes } from 'src/routes'
+import type { ResponseChatroomInfoDto } from '@/legacy/generated/model'
 import { UserDatas, errorType } from '@/legacy/types'
 
 export function useStudentChatRoomList() {

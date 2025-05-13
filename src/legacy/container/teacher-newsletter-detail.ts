@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
+import { Routes } from '@/legacy/constants/routes'
 import { useHistory } from '@/hooks/useHistory'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { Constants } from '@/legacy/constants'
@@ -13,8 +14,6 @@ import {
 import { NewsletterCategoryEnum, NewsletterType, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-// ! 지훈쌤 개선안 적용
-import { Routes } from 'src/routes'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isPdfFile } from '@/legacy/util/file'
 import { DocumentObject } from '@/legacy/types/document-object'
