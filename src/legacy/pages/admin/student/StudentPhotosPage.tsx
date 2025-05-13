@@ -21,7 +21,6 @@ import { getNickName } from '@/legacy/util/status'
 const MAX_UPLOAD_FILES = 25
 
 export function StudentPhotosPage() {
-  //@ts-expect-error useTranslation type instantiation error
   const { t } = useTranslation()
   const { t: ta } = useTranslation('admin', { keyPrefix: 'student_photos_page' })
   const { year } = useContext(AdminContext)
