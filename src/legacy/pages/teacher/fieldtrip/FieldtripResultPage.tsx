@@ -1,51 +1,54 @@
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
-import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from 'src/components';
-import { BackButton, Blank, Section, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { TextInput } from 'src/components/common/TextInput';
-import { Icon } from 'src/components/common/icons';
-import { FieldtripResultCard } from 'src/components/fieldtrip/FieldtripResultCard';
-import { useTeacherFieldtripResult } from 'src/container/teacher-fieldtrip-result';
-import { UserContainer } from 'src/container/user';
-import { Role } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { useSignature } from 'src/hooks/useSignature';
-import { useStamp } from 'src/hooks/useStamp';
-import { getCurrentSchoolYear, isValidDate, makeDateToString } from 'src/util/time';
-import { FieldtripResultDetailPage } from './FieldtripResultDetailPage';
+import clsx from 'clsx'
+import { useEffect, useState } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
+
+import { useHistory } from '@/hooks/useHistory'
+import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
+import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Icon } from '@/legacy/components/common/icons'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { FieldtripResultCard } from '@/legacy/components/fieldtrip/FieldtripResultCard'
+import { useTeacherFieldtripResult } from '@/legacy/container/teacher-fieldtrip-result'
+import { UserContainer } from '@/legacy/container/user'
+import { Role } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { useSignature } from '@/legacy/hooks/useSignature'
+import { useStamp } from '@/legacy/hooks/useStamp'
+import { getCurrentSchoolYear, isValidDate, makeDateToString } from '@/legacy/util/time'
+
+import { FieldtripResultDetailPage } from './FieldtripResultDetailPage'
 
 export function FieldtripResultPage() {
-  const { replace } = useHistory();
-  const { pathname } = useLocation();
-  const isDetail = !pathname.endsWith('/teacher/fieldtrip/result');
-  const { canvasRef, sigPadData, clearSignature } = useSignature();
-  const { t } = useLanguage();
+  const { replace } = useHistory()
+  const { pathname } = useLocation()
+  const isDetail = !pathname.endsWith('/teacher/fieldtrip/result')
+  const { canvasRef, sigPadData, clearSignature } = useSignature()
+  const { t } = useLanguage()
 
   const filters = [
     { id: 1, name: t('show_all', '전체보기'), value: 'ALL' },
     { id: 2, name: t('pending_approval', '승인 전'), value: 'BEFORE_APPROVAL' },
     { id: 3, name: t('approved', '승인 완료'), value: 'PROCESSED' },
     { id: 4, name: t('rejected', '반려됨'), value: 'RETURNED' },
-  ];
+  ]
 
-  const { me } = UserContainer.useContext();
+  const { me } = UserContainer.useContext()
 
-  const { stamp, stampImgUrl, stampMode, setStampMode, updateStamp } = useStamp();
+  const { stamp, stampImgUrl, stampMode, setStampMode, updateStamp } = useStamp()
 
-  const [frontSortType, setFrontSortType] = useState('');
-  const schoolYear = getCurrentSchoolYear();
+  const [frontSortType, setFrontSortType] = useState('')
+  const schoolYear = getCurrentSchoolYear()
 
   const frontSort = (sortType: string) => {
-    setFrontSortType(sortType);
-  };
+    setFrontSortType(sortType)
+  }
 
   function makeStudentNumber(studentGradeKlass: string, studentNumber: string): number {
-    const grade = parseInt(studentGradeKlass.split(' ')[0]);
-    const klass = parseInt(studentGradeKlass.split(' ')[1]);
-    return grade * 10000 + klass * 100 + parseInt(studentNumber);
+    const grade = parseInt(studentGradeKlass.split(' ')[0])
+    const klass = parseInt(studentGradeKlass.split(' ')[1])
+    return grade * 10000 + klass * 100 + parseInt(studentNumber)
   }
 
   const {
@@ -78,32 +81,32 @@ export function FieldtripResultPage() {
     approveFieldtripResult,
     approveFieldtripResults,
     searchAlert,
-  } = useTeacherFieldtripResult({ clearSignature, sigPadData, stampMode, stampImgUrl, stamp });
+  } = useTeacherFieldtripResult({ clearSignature, sigPadData, stampMode, stampImgUrl, stamp })
 
   const onClickApproveByStamp = () => {
-    setLoading(true);
+    setLoading(true)
     if (!stamp) {
-      alert('도장이 등록되어 있지 않습니다.');
-      setLoading(false);
+      alert('도장이 등록되어 있지 않습니다.')
+      setLoading(false)
     } else {
       if (agreeAll) {
-        approveFieldtripResults();
+        approveFieldtripResults()
       } else {
-        approveFieldtripResult();
+        approveFieldtripResult()
       }
-      setStampMode(false);
+      setStampMode(false)
     }
-  };
+  }
 
   useEffect(() => {
     if (open) {
       if (stamp) {
-        setStampMode(true);
+        setStampMode(true)
       } else {
-        setStampMode(false);
+        setStampMode(false)
       }
     }
-  }, [open]);
+  }, [open])
 
   return (
     <>
@@ -113,7 +116,7 @@ export function FieldtripResultPage() {
       <div className="md:hidden">
         <TopNavbar title="체험학습 결과보고서" left={<BackButton />} />
       </div>
-      <div className={`col-span-3 h-screen-7 md:h-screen ${isDetail && 'hidden'} md:block`}>
+      <div className={`h-screen-7 col-span-3 md:h-screen ${isDetail && 'hidden'} md:block`}>
         <div className="scroll-box flex flex-col overflow-x-scroll px-3 py-2 md:px-6 md:py-4">
           <div className="hidden md:block">
             <div className="flex justify-between">
@@ -128,15 +131,15 @@ export function FieldtripResultPage() {
                 min={schoolYear.start}
                 max={schoolYear.end}
                 onChange={(e) => {
-                  const selectedDate = new Date(e.target.value);
+                  const selectedDate = new Date(e.target.value)
                   if (!isValidDate(selectedDate)) {
-                    return;
+                    return
                   }
                   if (endDate && selectedDate > new Date(endDate)) {
-                    setEndDate(e.target.value);
+                    setEndDate(e.target.value)
                   }
-                  setStartDate(e.target.value);
-                  setPage(1);
+                  setStartDate(e.target.value)
+                  setPage(1)
                 }}
               />
               <div className="px-4 text-xl font-bold">~</div>
@@ -146,15 +149,15 @@ export function FieldtripResultPage() {
                 min={schoolYear.start}
                 max={schoolYear.end}
                 onChange={(e) => {
-                  const selectedDate = new Date(e.target.value);
+                  const selectedDate = new Date(e.target.value)
                   if (!isValidDate(selectedDate)) {
-                    return;
+                    return
                   }
                   if (startDate && selectedDate < new Date(startDate)) {
-                    setStartDate(e.target.value);
+                    setStartDate(e.target.value)
                   }
-                  setEndDate(e.target.value);
-                  setPage(1);
+                  setEndDate(e.target.value)
+                  setPage(1)
                 }}
               />
             </div>
@@ -200,8 +203,8 @@ export function FieldtripResultPage() {
                   placeholder={`${t('search_by_name', '이름 검색')}`}
                   value={_studentName}
                   onChange={(e) => {
-                    set_studentName(e.target.value);
-                    if (e.target.value === '') replace(`/teacher/fieldtrip`);
+                    set_studentName(e.target.value)
+                    if (e.target.value === '') replace(`/teacher/fieldtrip`)
                   }}
                   onSearch={() => _studentName && replace(`/teacher/fieldtrip/result?username=${_studentName}`)}
                   className="w-full"
@@ -210,7 +213,7 @@ export function FieldtripResultPage() {
                   onClick={() => {
                     _studentName === ''
                       ? alert('텍스트 내용을 입력해주세요.')
-                      : replace(`/teacher/fieldtrip/result?username=${_studentName}`);
+                      : replace(`/teacher/fieldtrip/result?username=${_studentName}`)
                   }}
                   className="cursor-pointer"
                 />
@@ -221,13 +224,13 @@ export function FieldtripResultPage() {
                   onClick={() => {
                     if (filter.value === 'BEFORE_APPROVAL') {
                       if (data && data.total > 0) {
-                        setOpen(true);
-                        setAgreeAll(true);
+                        setOpen(true)
+                        setAgreeAll(true)
                       } else {
-                        alert('승인할 서류가 없습니다.');
+                        alert('승인할 서류가 없습니다.')
                       }
                     } else {
-                      searchAlert();
+                      searchAlert()
                     }
                   }}
                   className="filled-primary h-auto min-w-max py-2.5"
@@ -261,17 +264,17 @@ export function FieldtripResultPage() {
             {data?.items
               ?.sort((a, b) => {
                 if (frontSortType === 'period') {
-                  return a.startAt < b.startAt ? 1 : a.startAt > b.startAt ? -1 : 0;
+                  return a.startAt < b.startAt ? 1 : a.startAt > b.startAt ? -1 : 0
                 } else if (frontSortType === 'request') {
-                  return a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0;
+                  return a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0
                 } else if (frontSortType === 'num') {
-                  const studentNumberA = makeStudentNumber(a.studentGradeKlass, a.studentNumber.toString());
-                  const studentNumberB = makeStudentNumber(b.studentGradeKlass, b.studentNumber.toString());
-                  return studentNumberA < studentNumberB ? -1 : studentNumberA > studentNumberB ? 1 : 0;
+                  const studentNumberA = makeStudentNumber(a.studentGradeKlass, a.studentNumber.toString())
+                  const studentNumberB = makeStudentNumber(b.studentGradeKlass, b.studentNumber.toString())
+                  return studentNumberA < studentNumberB ? -1 : studentNumberA > studentNumberB ? 1 : 0
                 } else if (frontSortType === 'name') {
-                  return a.student?.name < b.student?.name ? -1 : a.student?.name > b.student?.name ? 1 : 0;
+                  return a.student?.name < b.student?.name ? -1 : a.student?.name > b.student?.name ? 1 : 0
                 }
-                return 0;
+                return 0
               })
               .map((fieldtrip) => <FieldtripResultCard key={fieldtrip.id} fieldtrip={fieldtrip} />)}
           </div>
@@ -289,10 +292,10 @@ export function FieldtripResultPage() {
         )}
       </div>
       <div className="col-span-3 bg-gray-50 md:p-6">
-        <Switch>
+        <Routes>
           <Route
             path="/teacher/fieldtrip/result/:id"
-            component={() => (
+            Component={() => (
               <FieldtripResultDetailPage
                 school={me?.school}
                 setOpen={(b: boolean) => setOpen(b)}
@@ -302,14 +305,14 @@ export function FieldtripResultPage() {
               />
             )}
           />
-        </Switch>
+        </Routes>
       </div>
       <SuperModal
         modalOpen={open}
         setModalClose={() => {
-          setStampMode(false);
-          clearSignature();
-          setOpen(false);
+          setStampMode(false)
+          clearSignature()
+          setOpen(false)
         }}
         className="w-max"
         ablePropragation
@@ -333,7 +336,7 @@ export function FieldtripResultPage() {
                   style={{ backgroundImage: `url("${stampImgUrl}")` }}
                 ></div>
               ) : (
-                <div className="absolute inset-0 z-10 overflow-hidden rounded bg-grey-4">
+                <div className="bg-grey-4 absolute inset-0 z-10 overflow-hidden rounded">
                   <div className="flex h-full w-full items-center justify-center">
                     <div className="min-w-max text-center">도장을 등록해주세요.</div>
                   </div>
@@ -345,16 +348,16 @@ export function FieldtripResultPage() {
           </div>
           <div className="grid grid-cols-2 gap-2">
             <label>
-              <Button.xl as="p" className="cursor-pointer border border-brandblue-1 bg-white text-current">
+              <Button.xl as="p" className="border-brandblue-1 cursor-pointer border bg-white text-current">
                 도장등록
               </Button.xl>
               <input
                 type="file"
                 accept=".png, .jpeg, .jpg"
                 onChange={(e) => {
-                  if (!e.target?.files) return;
-                  updateStamp(e.target.files[0]);
-                  setStampMode(true);
+                  if (!e.target?.files) return
+                  updateStamp(e.target.files[0])
+                  setStampMode(true)
                 }}
                 className="sr-only"
               />
@@ -363,10 +366,10 @@ export function FieldtripResultPage() {
               <Button.xl
                 children="도장 사용하기"
                 onClick={() => {
-                  setStampMode(true);
-                  clearSignature();
+                  setStampMode(true)
+                  clearSignature()
                 }}
-                className="min-w-max border border-brandblue-1 bg-white text-brand-1"
+                className="border-brandblue-1 text-brand-1 min-w-max border bg-white"
               />
             ) : (
               <Button.xl
@@ -374,15 +377,15 @@ export function FieldtripResultPage() {
                 onClick={onClickApproveByStamp}
                 className={clsx(
                   'text-white',
-                  stampImgUrl ? 'border-4 border-red-500 bg-brandblue-1' : 'bg-brandblue-5',
+                  stampImgUrl ? 'bg-brandblue-1 border-4 border-red-500' : 'bg-brandblue-5',
                 )}
               />
             )}
             <Button.xl
               children="서명 다시하기"
               onClick={() => {
-                setStampMode(false);
-                clearSignature();
+                setStampMode(false)
+                clearSignature()
               }}
               className="outlined-primary text-current"
             />
@@ -393,18 +396,18 @@ export function FieldtripResultPage() {
                 children="서명으로 승인"
                 onClick={() => {
                   if (!sigPadData) {
-                    alert('서명 후 승인해 주세요.');
+                    alert('서명 후 승인해 주세요.')
                   } else {
-                    setLoading(true);
-                    agreeAll ? approveFieldtripResults() : approveFieldtripResult();
+                    setLoading(true)
+                    agreeAll ? approveFieldtripResults() : approveFieldtripResult()
                   }
                 }}
-                className={clsx('text-white', sigPadData ? 'border-4 border-green-500 bg-brand-1' : 'bg-brand-5')}
+                className={clsx('text-white', sigPadData ? 'bg-brand-1 border-4 border-green-500' : 'bg-brand-5')}
               />
             )}
           </div>
         </Section>
       </SuperModal>
     </>
-  );
+  )
 }

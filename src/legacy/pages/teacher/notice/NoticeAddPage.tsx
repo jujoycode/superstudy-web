@@ -1,29 +1,30 @@
-import { useRecoilValue } from 'recoil';
-import { ErrorBlank } from 'src/components';
-import { DocumentObjectComponent } from 'src/components/DocumentObjectComponent';
-import { ImageObjectComponent } from 'src/components/ImageObjectComponent';
-import { Blank, Label, Section, Select, Textarea } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { FeedsDetail } from 'src/components/common/FeedsDetail';
-import { FileUpload } from 'src/components/common/FileUpload';
-import { ImageUpload } from 'src/components/common/ImageUpload';
-import { TextInput } from 'src/components/common/TextInput';
-import { useTeacherNoticeAdd } from 'src/container/teacher-notice-add';
-import { Code, Notice } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { getExtOfFilename } from 'src/util/file';
+import { useRecoilValue } from 'recoil'
+
+import { ErrorBlank } from '@/legacy/components'
+import { Blank, Label, Section, Select, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { FeedsDetail } from '@/legacy/components/common/FeedsDetail'
+import { FileUpload } from '@/legacy/components/common/FileUpload'
+import { ImageUpload } from '@/legacy/components/common/ImageUpload'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { DocumentObjectComponent } from '@/legacy/components/DocumentObjectComponent'
+import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
+import { useTeacherNoticeAdd } from '@/legacy/container/teacher-notice-add'
+import { Code, Notice } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { getExtOfFilename } from '@/legacy/util/file'
+import { meState } from '@/stores'
 
 interface NoticeAddProps {
-  noticeData?: Notice;
-  categoryData?: Code[];
+  noticeData?: Notice
+  categoryData?: Code[]
 }
 
 export function NoticeAddPage({ noticeData, categoryData }: NoticeAddProps) {
-  const meRecoil = useRecoilValue(meState);
-  const { t } = useLanguage();
+  const meRecoil = useRecoilValue(meState)
+  const { t } = useLanguage()
 
   const {
     notice,
@@ -42,7 +43,7 @@ export function NoticeAddPage({ noticeData, categoryData }: NoticeAddProps) {
     handleSubmit,
     setToStudent,
     setToParent,
-  } = useTeacherNoticeAdd(noticeData);
+  } = useTeacherNoticeAdd(noticeData)
 
   const imageObjectMapPaths = (): string[] => {
     // imageObjectMap의 값들을 배열로 변환 후 filter와 map 함수를 사용하여 조건을 충족하는 imageObject의 image만 추출하여 string[]로 반환
@@ -50,14 +51,14 @@ export function NoticeAddPage({ noticeData, categoryData }: NoticeAddProps) {
       .filter((imageObject) => !imageObject.isDelete)
       .map((imageObject) => {
         if (typeof imageObject.image === 'string') {
-          return imageObject.image;
+          return imageObject.image
         } else {
-          return URL.createObjectURL(imageObject.image) + '?ext=' + getExtOfFilename(imageObject.image.name);
+          return URL.createObjectURL(imageObject.image) + '?ext=' + getExtOfFilename(imageObject.image.name)
         }
-      });
+      })
 
-    return pathsArray;
-  };
+    return pathsArray
+  }
 
   const documentObjectMapPaths = (): string[] => {
     // imageObjectMap의 값들을 배열로 변환 후 filter와 map 함수를 사용하여 조건을 충족하는 imageObject의 image만 추출하여 string[]로 반환
@@ -65,21 +66,21 @@ export function NoticeAddPage({ noticeData, categoryData }: NoticeAddProps) {
       .filter((documentObject) => !documentObject.isDelete)
       .map((documentObject) => {
         if (typeof documentObject?.document === 'string') {
-          return documentObject?.document;
+          return documentObject?.document
         } else {
-          return documentObject.document.name;
+          return documentObject.document.name
         }
-      });
+      })
 
-    return pathsArray;
-  };
+    return pathsArray
+  }
 
   return (
     <div className="h-screen-8 md:h-screen-3">
       {isLoading && <Blank />}
       {errorMessage && <ErrorBlank text={errorMessage} />}
       <div className="flex space-x-3">
-        <div className="scroll-box flex flex-col space-y-2 overflow-y-scroll md:h-screen-3">
+        <div className="scroll-box md:h-screen-3 flex flex-col space-y-2 overflow-y-scroll">
           <Section>
             <Label.col>
               <Label.Text>
@@ -110,9 +111,9 @@ export function NoticeAddPage({ noticeData, categoryData }: NoticeAddProps) {
                 <Checkbox
                   checked={toStudent}
                   onChange={() => {
-                    setToStudent(!toStudent);
+                    setToStudent(!toStudent)
                     if (toStudent && !toParent) {
-                      setToParent(true);
+                      setToParent(true)
                     }
                   }}
                 />
@@ -120,9 +121,9 @@ export function NoticeAddPage({ noticeData, categoryData }: NoticeAddProps) {
                 <Checkbox
                   checked={toParent}
                   onChange={() => {
-                    setToParent(!toParent);
+                    setToParent(!toParent)
                     if (!toStudent && toParent) {
-                      setToStudent(true);
+                      setToStudent(true)
                     }
                   }}
                 />
@@ -182,9 +183,9 @@ export function NoticeAddPage({ noticeData, categoryData }: NoticeAddProps) {
             </div>
           </Section>
         </div>
-        <div className="scroll-box hidden h-screen-3 overflow-scroll py-4 md:block md:w-1/2">
+        <div className="scroll-box h-screen-3 hidden overflow-scroll py-4 md:block md:w-1/2">
           <div className="mb-3 text-lg font-bold">{t('preview')}</div>
-          <div className=" w-full rounded-lg border p-3">
+          <div className="w-full rounded-lg border p-3">
             <FeedsDetail
               category1={notice?.category}
               category1Color="peach_orange"
@@ -211,5 +212,5 @@ export function NoticeAddPage({ noticeData, categoryData }: NoticeAddProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,46 +1,43 @@
-import { t } from 'i18next';
-import { useRef, useState } from 'react';
-import { Document, Page } from 'react-pdf';
-import { useParams } from 'react-router';
-import { useRecoilValue } from 'recoil';
-import { SuperModal } from 'src/components';
-import { AbsentPaper } from 'src/components/absent/AbsentPaper';
-import { ParentConfirmPaper } from 'src/components/absent/ParentConfirmPaper';
-import { TeacherConfirmPaper } from 'src/components/absent/TeacherConfirmPaper';
-import { BackButton, Blank, Section, Textarea, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Constants } from 'src/constants';
-import { useTeacherAbsentDeatil } from 'src/container/teacher-absent-detail';
-import { AbsentStatus } from 'src/generated/model';
-import { meState } from 'src/store';
-import { AbsentEvidenceType, approveButtonType } from 'src/types';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { extractImageData, extractReactData, extractReactDataArray, getDoc, getPdfImageSize } from 'src/util/pdf';
-import { buttonEnableState } from 'src/util/permission';
-import { makeStartEndToString } from 'src/util/time';
+import { t } from 'i18next'
+import { useRef, useState } from 'react'
+import { Document, Page } from 'react-pdf'
+import { useParams } from 'react-router'
+import { useRecoilValue } from 'recoil'
+
+import { SuperModal } from '@/legacy/components'
+import { AbsentPaper } from '@/legacy/components/absent/AbsentPaper'
+import { ParentConfirmPaper } from '@/legacy/components/absent/ParentConfirmPaper'
+import { TeacherConfirmPaper } from '@/legacy/components/absent/TeacherConfirmPaper'
+import { BackButton, Blank, Section, Textarea, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Constants } from '@/legacy/constants'
+import { useTeacherAbsentDeatil } from '@/legacy/container/teacher-absent-detail'
+import { AbsentStatus } from '@/legacy/generated/model'
+import { AbsentEvidenceType, approveButtonType } from '@/legacy/types'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { extractImageData, extractReactData, extractReactDataArray, getDoc, getPdfImageSize } from '@/legacy/util/pdf'
+import { buttonEnableState } from '@/legacy/util/permission'
+import { makeStartEndToString } from '@/legacy/util/time'
+import { meState } from '@/stores'
 
 interface HistoryAbsentDetailPageProps {
-  setOpen: (b: boolean) => void;
-  setAbsentId: (n: number) => void;
-  setAgreeAll: (b: boolean) => void;
-  userId?: number;
+  setAbsentId: (n: number) => void
+  userId?: number
 }
 
-export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, userId }: HistoryAbsentDetailPageProps) {
-  const { id } = useParams<{ id: string }>();
-  const ref = useRef(null);
-  const parentRef = useRef(null);
-  const pdfPaperRefs = useRef<any[]>([]);
-  const parent2Ref = useRef(null);
-  const pdf2PaperRefs = useRef<any[]>([]);
-  const teacherRef = useRef(null);
-  const me = useRecoilValue(meState);
+export function HistoryAbsentDetailPage({ setAbsentId, userId }: HistoryAbsentDetailPageProps) {
+  const { id } = useParams<{ id: string }>()
+  const ref = useRef(null)
+  const parentRef = useRef(null)
+  const pdfPaperRefs = useRef<any[]>([])
+  const parent2Ref = useRef(null)
+  const pdf2PaperRefs = useRef<any[]>([])
+  const me = useRecoilValue(meState)
 
-  const [changeMode, setChangeMode] = useState(false);
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(false)
 
-  const [download, setDownload] = useState(false);
-  const [numPages, setNumPages] = useState(0);
+  const [download, setDownload] = useState(false)
+  const [numPages, setNumPages] = useState(0)
 
   const {
     deny,
@@ -55,7 +52,7 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
     denyAbsent,
     deleteAppealAbsent,
     isLoading,
-  } = useTeacherAbsentDeatil({ id: Number(id), setAbsentId });
+  } = useTeacherAbsentDeatil({ id: Number(id), setAbsentId })
 
   // 결재권자 인지. 결재라인에 있으면 true, 없으면 false
   const approver =
@@ -63,7 +60,7 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
     absent?.approver2Id === userId ||
     absent?.approver3Id === userId ||
     absent?.approver4Id === userId ||
-    absent?.approver5Id === userId;
+    absent?.approver5Id === userId
 
   const approvedLine = [
     absent?.approver1Signature && absent?.approver1Id,
@@ -71,12 +68,10 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
     absent?.approver3Signature && absent?.approver3Id,
     absent?.approver4Signature && absent?.approver4Id,
     absent?.approver5Signature && absent?.approver5Id,
-  ];
-  // 내가 승인한 건 : ture , 승인 안한 건 : false
-  const isApproved = approvedLine.includes(userId);
+  ]
 
   // 승인할 차례 : true, 승인전/승인후 : false
-  const nowApprove = absent?.nextApproverId === userId;
+  const nowApprove = absent?.nextApproverId === userId
 
   // 승인 전 = !isApproved && !nowApprove
   // 승인 후 = isApproved && !nowApprove
@@ -85,33 +80,32 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
     return !buttonEnableState(
       bottonType,
       approver,
-      isApproved,
       nowApprove,
       absent?.absentStatus || '',
       absent?.studentGradeKlass === me?.klassGroupName,
-    );
-  };
+    )
+  }
 
   const getUrl = (fileName: string) => {
-    let url = '';
+    let url = ''
 
     if (fileName.includes('blob')) {
-      const index = fileName.indexOf('?');
+      const index = fileName.indexOf('?')
 
       if (index !== -1) {
-        url = fileName.substring(0, index); // 0부터 ? 이전까지 문자열 추출
+        url = fileName.substring(0, index) // 0부터 ? 이전까지 문자열 추출
       } else {
-        url = fileName;
+        url = fileName
       }
     } else {
-      url = Constants.imageUrl + fileName;
+      url = Constants.imageUrl + fileName
     }
 
-    return url;
-  };
+    return url
+  }
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
-    setNumPages(numPages);
+    setNumPages(numPages)
   }
 
   return (
@@ -122,9 +116,9 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
       </div>
       <div className="relative rounded-lg border bg-white md:py-5">
         {/* Desktop V */}
-        <div className="relative h-screen-10 w-auto overflow-scroll md:mb-0 md:h-screen-6">
+        <div className="h-screen-10 md:h-screen-6 relative w-auto overflow-scroll md:mb-0">
           {absent?.updateReason && (
-            <div className="m-2 flex items-center justify-between rounded-lg bg-brand-5 px-5 py-2">
+            <div className="bg-brand-5 m-2 flex items-center justify-between rounded-lg px-5 py-2">
               <div className="text-brand-1">{absent?.updateReason}</div>
               <div className="text-sm text-gray-500">
                 {DateUtil.formatDate(absent?.updatedAt, DateFormat['YYYY-MM-DD HH:mm'])}에 마지막으로 수정
@@ -132,8 +126,8 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
             </div>
           )}
           {absent?.absentStatus === AbsentStatus.RETURNED && (
-            <div className="m-2 flex items-center justify-between rounded-lg bg-brand-5 px-5 py-2">
-              <div className="text-sm text-brand-1">{absent?.notApprovedReason}</div>
+            <div className="bg-brand-5 m-2 flex items-center justify-between rounded-lg px-5 py-2">
+              <div className="text-brand-1 text-sm">{absent?.notApprovedReason}</div>
               <div className="text-red-500">반려 이유</div>
             </div>
           )}
@@ -163,7 +157,7 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
                     {Array.from(new Array(numPages), (_, index) => (
                       <div
                         key={index}
-                        ref={(el) => pdfPaperRefs.current !== null && (pdfPaperRefs.current[index] = el)}
+                        ref={pdfPaperRefs.current[index]}
                         className="h-[1100px] w-[778px] overflow-hidden bg-white"
                       >
                         <Page
@@ -220,7 +214,7 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
                     {Array.from(new Array(numPages), (_, index) => (
                       <div
                         key={index}
-                        ref={(el) => pdf2PaperRefs.current !== null && (pdf2PaperRefs.current[index] = el)}
+                        ref={pdf2PaperRefs.current[index]}
                         className="h-[1100px] w-[778px] overflow-hidden bg-white"
                       >
                         <Page
@@ -272,7 +266,7 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
                 disabled={clicked || checkButtonDisable(approveButtonType.DOWNLOAD)}
                 onClick={async () => {
                   if (ref?.current) {
-                    setDownload(true);
+                    setDownload(true)
                   }
                 }}
                 className="filled-green max-md:hidden"
@@ -317,57 +311,57 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
                 children="다운로드"
                 disabled={clicked}
                 onClick={async () => {
-                  setClicked(true);
+                  setClicked(true)
                   if (ref?.current) {
-                    const { addPage, download } = getDoc();
+                    const { addPage, download } = getDoc()
 
-                    const absentPdfData = await extractReactData(ref.current);
-                    await addPage(absentPdfData);
+                    const absentPdfData = await extractReactData(ref.current)
+                    await addPage(absentPdfData)
 
                     if (absent?.evidenceType === AbsentEvidenceType.PARENT && parentRef?.current) {
-                      const parentPdfData = await extractReactData(parentRef.current);
-                      await addPage(parentPdfData);
+                      const parentPdfData = await extractReactData(parentRef.current)
+                      await addPage(parentPdfData)
                     }
                     if (absent?.evidenceType === AbsentEvidenceType.TEACHER && parentRef?.current) {
-                      const parentPdfData = await extractReactData(parentRef.current);
-                      await addPage(parentPdfData);
+                      const parentPdfData = await extractReactData(parentRef.current)
+                      await addPage(parentPdfData)
                     }
                     if (absent?.evidenceType !== AbsentEvidenceType.PARENT && absent?.evidenceFiles?.length) {
                       // PDF 출력
                       if (pdfPaperRefs.current !== null) {
-                        const absentPdfDataArray = await extractReactDataArray(pdfPaperRefs.current);
+                        const absentPdfDataArray = await extractReactDataArray(pdfPaperRefs.current)
                         if (absentPdfDataArray) {
                           for (const absentPdfData of absentPdfDataArray) {
-                            addPage(absentPdfData);
+                            addPage(absentPdfData)
                           }
                         }
                       }
                       for (const ef of absent.evidenceFiles) {
-                        const evidenceFile = `${Constants.imageUrl}${ef}`;
-                        const imgData = await extractImageData(evidenceFile);
-                        if (!imgData) continue;
-                        const { width: imageWidth = 0, height: imageHeight = 0, data } = imgData;
-                        const [width, height] = getPdfImageSize(imageWidth, imageHeight);
+                        const evidenceFile = `${Constants.imageUrl}${ef}`
+                        const imgData = await extractImageData(evidenceFile)
+                        if (!imgData) continue
+                        const { width: imageWidth = 0, height: imageHeight = 0, data } = imgData
+                        const [width, height] = getPdfImageSize(imageWidth, imageHeight)
 
-                        await addPage(data, 'JPEG', width, height);
+                        await addPage(data, 'JPEG', width, height)
                       }
                     }
 
                     if (absent?.evidenceType2 === AbsentEvidenceType.PARENT && parent2Ref?.current) {
-                      const parent2PdfData = await extractReactData(parent2Ref.current);
-                      await addPage(parent2PdfData);
+                      const parent2PdfData = await extractReactData(parent2Ref.current)
+                      await addPage(parent2PdfData)
                     }
                     if (absent?.evidenceType2 === AbsentEvidenceType.TEACHER && parent2Ref?.current) {
-                      const parent2PdfData = await extractReactData(parent2Ref.current);
-                      await addPage(parent2PdfData);
+                      const parent2PdfData = await extractReactData(parent2Ref.current)
+                      await addPage(parent2PdfData)
                     }
                     if (absent?.evidenceType2 !== AbsentEvidenceType.PARENT && absent?.evidenceFiles2?.length) {
                       // PDF 출력
                       if (pdf2PaperRefs.current !== null) {
-                        const absentPdfDataArray = await extractReactDataArray(pdf2PaperRefs.current);
+                        const absentPdfDataArray = await extractReactDataArray(pdf2PaperRefs.current)
                         if (absentPdfDataArray) {
                           for (const absentPdfData of absentPdfDataArray) {
-                            addPage(absentPdfData);
+                            addPage(absentPdfData)
                           }
                         }
                       }
@@ -375,31 +369,31 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
                       // 이미지 출력
                       for (const ef of absent.evidenceFiles2) {
                         if (ef.split('.').pop()?.toLowerCase() !== 'pdf') {
-                          const evidenceFile = `${Constants.imageUrl}${ef}`;
-                          const imgData = await extractImageData(evidenceFile);
-                          if (!imgData) continue;
-                          const { width: imageWidth = 0, height: imageHeight = 0, data } = imgData;
-                          const [width, height] = getPdfImageSize(imageWidth, imageHeight);
-                          await addPage(data, 'JPEG', width, height);
+                          const evidenceFile = `${Constants.imageUrl}${ef}`
+                          const imgData = await extractImageData(evidenceFile)
+                          if (!imgData) continue
+                          const { width: imageWidth = 0, height: imageHeight = 0, data } = imgData
+                          const [width, height] = getPdfImageSize(imageWidth, imageHeight)
+                          await addPage(data, 'JPEG', width, height)
                         }
                       }
                     }
 
                     const fileName = `결석신고서_${
                       absent?.startAt && absent?.endAt && makeStartEndToString(absent.startAt, absent.endAt)
-                    }_${absent?.student?.name}.pdf`;
-                    await download(fileName);
+                    }_${absent?.student?.name}.pdf`
+                    await download(fileName)
                   }
-                  setClicked(false);
-                  setDownload(false);
+                  setClicked(false)
+                  setDownload(false)
                 }}
                 className="filled-green w-full"
               />
               <Button.lg
                 children="취소"
                 onClick={async () => {
-                  setClicked(false);
-                  setDownload(false);
+                  setClicked(false)
+                  setDownload(false)
                 }}
                 className="filled-gray w-full"
               />
@@ -441,5 +435,5 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
         </SuperModal>
       </div>
     </>
-  );
+  )
 }

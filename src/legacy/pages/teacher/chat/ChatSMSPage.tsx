@@ -1,53 +1,53 @@
-import { clsx } from 'clsx';
-import { useEffect, useRef, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { ReactComponent as Refresh } from 'src/assets/svg/refresh.svg';
-import { FrontPagination } from 'src/components';
-import { Blank, Label, Section, Select, Textarea } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Icon } from 'src/components/common/icons';
-import { Tabs } from 'src/components/common/Tabs';
-import { TextInput } from 'src/components/common/TextInput';
-import { ToggleSwitch } from 'src/components/common/ToggleSwitch';
-import SolidSVGIcon from 'src/components/icon/SolidSVGIcon';
-import { SmsCard } from 'src/components/sms/SmsCard';
-import { useTeacherSms } from 'src/container/teacher-sms';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState } from 'src/store';
-import { UserDatas } from 'src/types';
-import { isValidDate, makeDateToString } from 'src/util/time';
+import { clsx } from 'clsx'
+import { useEffect, useRef, useState } from 'react'
+import { useRecoilValue } from 'recoil'
+
+import { FrontPagination } from '@/legacy/components'
+import { Blank, Label, Section, Select, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Tabs } from '@/legacy/components/common/Tabs'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { ToggleSwitch } from '@/legacy/components/common/ToggleSwitch'
+import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
+import { SmsCard } from '@/legacy/components/sms/SmsCard'
+import { useTeacherSms } from '@/legacy/container/teacher-sms'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { UserDatas } from '@/legacy/types'
+import { isValidDate, makeDateToString } from '@/legacy/util/time'
+import { meState } from '@/stores'
+
+import Refresh from '@/assets/svg/refresh.svg'
 
 type SmsInfoType = {
-  receiverId: number;
-  receiverNum: string;
-  receiverName: string;
-  userText1: string;
-  userText2: string;
-  userText3: string;
-  message: string;
-  useNokInfo: boolean;
-};
-
-interface SmsPageProps {
-  isMobileView: boolean;
-  selectedUsers: UserDatas[];
-  setSelectedUsers: (data: UserDatas[]) => void;
+  receiverId: number
+  receiverNum: string
+  receiverName: string
+  userText1: string
+  userText2: string
+  userText3: string
+  message: string
+  useNokInfo: boolean
 }
 
-export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: SmsPageProps) {
-  const me = useRecoilValue(meState);
-  const { t } = useLanguage();
+interface SmsPageProps {
+  isMobileView: boolean
+  selectedUsers: UserDatas[]
+}
 
-  const [smsInfos, setSmsInfos] = useState<SmsInfoType[]>([]);
-  const [messageFormat, setMessageFormat] = useState<string>('');
-  const [userText1, setUserText1] = useState<string[]>([]);
-  const [userText2, setUserText2] = useState<string[]>([]);
-  const [userText3, setUserText3] = useState<string[]>([]);
-  const [addSender, setAddSender] = useState<boolean>(false);
-  const [isSecret, setIsSecret] = useState<boolean>(false);
-  const [typeSMS, setTypeSMS] = useState<boolean>(true);
+export function ChatSMSPage({ isMobileView, selectedUsers }: SmsPageProps) {
+  const me = useRecoilValue(meState)
+  const { t } = useLanguage()
 
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [smsInfos, setSmsInfos] = useState<SmsInfoType[]>([])
+  const [messageFormat, setMessageFormat] = useState<string>('')
+  const [userText1, setUserText1] = useState<string[]>([])
+  const [userText2, setUserText2] = useState<string[]>([])
+  const [userText3, setUserText3] = useState<string[]>([])
+  const [addSender, setAddSender] = useState<boolean>(false)
+  const [isSecret, setIsSecret] = useState<boolean>(false)
+  const [typeSMS, setTypeSMS] = useState<boolean>(true)
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const {
     wait,
@@ -67,36 +67,36 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
     limit,
     listResultType,
     setListResultType,
-  } = useTeacherSms();
+  } = useTeacherSms()
 
   const getSenderName = () => {
     const schoolName =
-      me?.school.smsHeader === '' ? me?.school.name.replace('등학교', '').replace('학교', '') : me?.school.smsHeader;
+      me?.school.smsHeader === '' ? me?.school.name.replace('등학교', '').replace('학교', '') : me?.school.smsHeader
 
     if (addSender) {
-      return '[' + schoolName + ' ' + me?.name + '] ';
+      return '[' + schoolName + ' ' + me?.name + '] '
     } else {
-      return '[' + schoolName + '] ';
+      return '[' + schoolName + '] '
     }
-  };
+  }
 
   const checkSMSType = (message: string) => {
-    let charBytes = 0;
+    let charBytes = 0
 
     for (const char of message) {
-      const charCode = char.charCodeAt(0);
+      const charCode = char.charCodeAt(0)
 
-      charBytes += charCode > 127 ? 2 : 1;
+      charBytes += charCode > 127 ? 2 : 1
     }
 
-    return charBytes < 90;
-  };
+    return charBytes < 90
+  }
 
   useEffect(() => {
-    let isSMSType = true;
+    let isSMSType = true
 
     const smsInfoTemp = selectedUsers
-      .map((item, index) => ({
+      .map((item) => ({
         id: item.id,
         receiverNum: item.title,
         name: item.name,
@@ -107,12 +107,12 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
         userText3: item.userText3,
       }))
       .sort((a, b) => {
-        return a.receiverNum > b.receiverNum ? 1 : -1;
+        return a.receiverNum > b.receiverNum ? 1 : -1
       })
       .map((item, index) => {
-        const itemText1 = !!item.userText1 ? item.userText1 : userText1[index];
-        const itemText2 = !!item.userText2 ? item.userText2 : userText2[index];
-        const itemText3 = !!item.userText3 ? item.userText3 : userText3[index];
+        const itemText1 = !!item.userText1 ? item.userText1 : userText1[index]
+        const itemText2 = !!item.userText2 ? item.userText2 : userText2[index]
+        const itemText3 = !!item.userText3 ? item.userText3 : userText3[index]
 
         const personalMessage =
           getSenderName() +
@@ -122,9 +122,9 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
             .replace(new RegExp('{번호}', 'g'), item.receiverNum || '')
             .replace(new RegExp('{문구1}', 'g'), itemText1 || '')
             .replace(new RegExp('{문구2}', 'g'), itemText2 || '')
-            .replace(new RegExp('{문구3}', 'g'), itemText3 || '');
+            .replace(new RegExp('{문구3}', 'g'), itemText3 || '')
 
-        isSMSType = checkSMSType(personalMessage);
+        isSMSType = checkSMSType(personalMessage)
 
         return {
           receiverId: item.id,
@@ -135,34 +135,32 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
           userText3: itemText3 || '',
           message: personalMessage,
           useNokInfo: item.useNokInfo,
-        };
-      });
+        }
+      })
 
-    setTypeSMS(isSMSType);
+    setTypeSMS(isSMSType)
 
-    console.log('smsInfoTemp', smsInfoTemp);
-
-    setSmsInfos(smsInfoTemp);
-  }, [selectedUsers, messageFormat, userText1, userText2, userText3, addSender]);
+    setSmsInfos(smsInfoTemp)
+  }, [selectedUsers, messageFormat, userText1, userText2, userText3, addSender])
 
   const insertTextAtCursor = (textToInsert: string) => {
-    const textarea = textareaRef.current;
+    const textarea = textareaRef.current
     if (textarea) {
-      const startPos = textarea.selectionStart;
-      const endPos = textarea.selectionEnd;
+      const startPos = textarea.selectionStart
+      const endPos = textarea.selectionEnd
 
-      const text = textarea.value;
-      const newText = text.substring(0, startPos) + textToInsert + text.substring(endPos, text.length);
+      const text = textarea.value
+      const newText = text.substring(0, startPos) + textToInsert + text.substring(endPos, text.length)
 
-      setMessageFormat(newText);
+      setMessageFormat(newText)
       // textarea.value = newText;
       // // 커서 위치 설정
       // textarea.selectionStart = startPos + textToInsert.length;
       // textarea.selectionEnd = startPos + textToInsert.length;
     }
 
-    textarea?.focus();
-  };
+    textarea?.focus()
+  }
 
   const sendSMSMessage = () => {
     const temp = smsInfos.map((item) => ({
@@ -172,27 +170,27 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
       isSecret: isSecret,
       content: item.message,
       useNokInfo: item.useNokInfo,
-    }));
-    createNewMessage(temp);
-  };
+    }))
+    createNewMessage(temp)
+  }
 
   const handlePaste = async (textNum: number) => {
     try {
-      const clipboardText = await navigator.clipboard.readText();
-      console.log('클립보드 내용:', clipboardText);
-      const rows = clipboardText.split('\n');
+      const clipboardText = await navigator.clipboard.readText()
+      console.log('클립보드 내용:', clipboardText)
+      const rows = clipboardText.split('\n')
 
       if (textNum === 1) {
-        setUserText1(rows);
+        setUserText1(rows)
       } else if (textNum === 2) {
-        setUserText2(rows);
+        setUserText2(rows)
       } else if (textNum === 3) {
-        setUserText3(rows);
+        setUserText3(rows)
       }
     } catch (err) {
-      console.error('클립보드 가져오기 실패:', err);
+      console.error('클립보드 가져오기 실패:', err)
     }
-  };
+  }
 
   return (
     <div className="h-screen-10 border-l-2 px-2">
@@ -203,7 +201,7 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
             children={t('compose_new_message')}
             selected={isSendPage}
             onClick={() => {
-              setIsSendPage(true);
+              setIsSendPage(true)
             }}
             className="md:flex-none md:px-5"
           />
@@ -211,8 +209,8 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
             children={t('send_results')}
             selected={!isSendPage}
             onClick={() => {
-              refetchHistory();
-              setIsSendPage(false);
+              refetchHistory()
+              setIsSendPage(false)
             }}
             className="md:flex-none md:px-5"
           />
@@ -272,7 +270,7 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
                 <ToggleSwitch
                   checked={addSender}
                   onChange={() => {
-                    setAddSender(!addSender);
+                    setAddSender(!addSender)
                   }}
                 />
               </div>
@@ -281,7 +279,7 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
                 <ToggleSwitch
                   checked={isSecret}
                   onChange={() => {
-                    setIsSecret(!isSecret);
+                    setIsSecret(!isSecret)
                   }}
                 />
               </div>
@@ -356,12 +354,12 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
                         <td className="border border-gray-300">{row.receiverName}</td>
                         {!isMobileView && (
                           <>
-                            <td className="break-all border border-gray-300">{row.userText1}</td>
-                            <td className="break-all border border-gray-300">{row.userText2}</td>
-                            <td className="break-all border border-gray-300">{row.userText3}</td>
+                            <td className="border border-gray-300 break-all">{row.userText1}</td>
+                            <td className="border border-gray-300 break-all">{row.userText2}</td>
+                            <td className="border border-gray-300 break-all">{row.userText3}</td>
                           </>
                         )}
-                        <td className="break-all border border-gray-300">{row.message}</td>
+                        <td className="border border-gray-300 break-all">{row.message}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -378,8 +376,8 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
                   placeholder="전송결과"
                   value={listResultType}
                   onChange={(e) => {
-                    setPage(1);
-                    setListResultType(Number(e.target.value));
+                    setPage(1)
+                    setListResultType(Number(e.target.value))
                   }}
                 >
                   <option value={0}>{'전체'}</option>
@@ -391,15 +389,15 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
                 type="date"
                 value={makeDateToString(new Date(startDate || ''))}
                 onChange={(e) => {
-                  const selectedDate = new Date(e.target.value);
+                  const selectedDate = new Date(e.target.value)
                   if (!isValidDate(selectedDate)) {
-                    return;
+                    return
                   }
                   if (endDate && selectedDate > new Date(endDate || '')) {
-                    setEndDate(e.target.value);
+                    setEndDate(e.target.value)
                   }
-                  setStartDate(e.target.value);
-                  setPage(1);
+                  setStartDate(e.target.value)
+                  setPage(1)
                 }}
               />
               <div className="px-4 text-xl font-bold">~</div>
@@ -407,22 +405,22 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
                 type="date"
                 value={makeDateToString(new Date(endDate || ''))}
                 onChange={(e) => {
-                  const selectedDate = new Date(e.target.value);
+                  const selectedDate = new Date(e.target.value)
                   if (!isValidDate(selectedDate)) {
-                    return;
+                    return
                   }
                   if (startDate && selectedDate < new Date(startDate || '')) {
-                    setStartDate(e.target.value);
+                    setStartDate(e.target.value)
                   }
-                  setEndDate(e.target.value);
-                  setPage(1);
+                  setEndDate(e.target.value)
+                  setPage(1)
                 }}
               />
               <div
                 onClick={() => {
-                  refetchHistory();
+                  refetchHistory()
                 }}
-                className="text-sm text-brand-1"
+                className="text-brand-1 text-sm"
               >
                 <Refresh />
               </div>
@@ -456,5 +454,5 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
         )}
       </div>
     </div>
-  );
+  )
 }

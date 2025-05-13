@@ -1,29 +1,31 @@
-import { useState } from 'react';
-import { useParams } from 'react-router';
-import { useRecoilValue } from 'recoil';
-import { ErrorBlank, SuperModal } from 'src/components';
-import { Divider, Section } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { TeacharAllGroup } from 'src/container/teacher-group-all';
-import { useTeacherGroupDetail } from 'src/container/teacher-group-detail';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState } from 'src/store';
-import { getNickName, makeStudNum5 } from 'src/util/status';
-import { GroupAddPage } from './GroupAddPage';
+import { useState } from 'react'
+import { useParams } from 'react-router'
+import { useRecoilValue } from 'recoil'
+
+import { ErrorBlank, SuperModal } from '@/legacy/components'
+import { Divider, Section } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { TeacharAllGroup } from '@/legacy/container/teacher-group-all'
+import { useTeacherGroupDetail } from '@/legacy/container/teacher-group-detail'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { getNickName, makeStudNum5 } from '@/legacy/util/status'
+import { meState } from '@/stores'
+
+import { GroupAddPage } from './GroupAddPage'
 
 interface GroupDetailPageProps {
-  selectedGroup?: TeacharAllGroup;
+  selectedGroup?: TeacharAllGroup
 }
 
 export function GroupDetailPage({ selectedGroup }: GroupDetailPageProps) {
-  const { id } = useParams<{ id: string }>();
-  const { t, currentLang } = useLanguage();
-  const me = useRecoilValue(meState);
-  const { group, studentGroups, teacherGroups, errorMessage, handleGroupDelete } = useTeacherGroupDetail(+id);
-  const [updateState, setUpdateState] = useState(false);
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const { id } = useParams<{ id: string }>()
+  const { t, currentLang } = useLanguage()
+  const me = useRecoilValue(meState)
+  const { group, studentGroups, teacherGroups, errorMessage, handleGroupDelete } = useTeacherGroupDetail(Number(id))
+  const [updateState, setUpdateState] = useState(false)
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
 
-  if (errorMessage) return <ErrorBlank />;
+  if (errorMessage) return <ErrorBlank />
 
   if (updateState) {
     return (
@@ -31,10 +33,10 @@ export function GroupDetailPage({ selectedGroup }: GroupDetailPageProps) {
         groupData={group}
         //groupStudentsData={studentGroups.map((el) => el.user)}
         onSubmit={() => {
-          setUpdateState(false);
+          setUpdateState(false)
         }}
       />
-    );
+    )
   }
 
   return (
@@ -86,7 +88,7 @@ export function GroupDetailPage({ selectedGroup }: GroupDetailPageProps) {
         <label className="text-sm text-gray-800">{t('supervising_teacher', '담당선생님')}</label>
         {teacherGroups && teacherGroups.length > 0 ? (
           teacherGroups.map((teacher) => (
-            <div key={teacher.id} className="m-1 w-full rounded-lg border-2 border-grey-6 px-3 py-3">
+            <div key={teacher.id} className="border-grey-6 m-1 w-full rounded-lg border-2 px-3 py-3">
               <div className="">
                 {t('supervisor', '담당')} : {teacher.user.name}
                 {getNickName(teacher.user.nickName)} {t('teacher', '선생님')}
@@ -100,7 +102,7 @@ export function GroupDetailPage({ selectedGroup }: GroupDetailPageProps) {
             </div>
           ))
         ) : (
-          <div key={selectedGroup?.id} className="m-1 w-full rounded-lg border-2 border-grey-6 px-3 py-3">
+          <div key={selectedGroup?.id} className="border-grey-6 m-1 w-full rounded-lg border-2 px-3 py-3">
             <div className="">
               {t('supervisor', '담당')} : {me?.name}
               {getNickName(me?.nickName)} {t('teacher', '선생님')}
@@ -122,7 +124,7 @@ export function GroupDetailPage({ selectedGroup }: GroupDetailPageProps) {
         </label>
         <div className="grid w-full grid-flow-row grid-cols-2 gap-2 pr-4 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {studentGroups.map((student) => (
-            <div key={student.id} className="w-full rounded-lg border-2 border-grey-6 px-3 py-1">
+            <div key={student.id} className="border-grey-6 w-full rounded-lg border-2 px-3 py-1">
               <div className="w-full">{makeStudNum5(student.klass + student.studentNumber.toString())}</div>
               <div className="w-full">
                 {student.userName}
@@ -133,5 +135,5 @@ export function GroupDetailPage({ selectedGroup }: GroupDetailPageProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

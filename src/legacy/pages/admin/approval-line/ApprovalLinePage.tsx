@@ -29,10 +29,9 @@ import {
   Role,
 } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getNickName } from '@/legacy/util/status'
 import { toastState } from '@/stores'
-
-import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 const steps = range(1, 6) as (1 | 2 | 3 | 4 | 5)[]
 
@@ -100,7 +99,7 @@ export function ApprovalLinePage() {
     }
 
     return types
-  }, [categoryData, AbsentData, school])
+  }, [categoryData, AbsentData, school, t])
 
   const [type1, setType1] = useState((types && types[0].name) || '')
   const [type2, setType2] = useState((types && types[0].subTypes[0].name) || '')
@@ -110,7 +109,7 @@ export function ApprovalLinePage() {
       setType1(types[0].name)
       setType2(types[0].subTypes[0].name)
     }
-  }, [types])
+  }, [types, type1, type2])
 
   const { year } = useContext(AdminContext)
 

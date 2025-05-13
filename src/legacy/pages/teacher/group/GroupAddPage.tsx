@@ -1,43 +1,45 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { ReactComponent as Close } from 'src/assets/svg/close.svg';
-import { ErrorBlank, SelectMenus } from 'src/components';
-import { Blank, Label } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { TextInput } from 'src/components/common/TextInput';
-import { useCodeByCategoryName } from 'src/container/category';
-import { GroupContainer } from 'src/container/group';
-import { useTeacherGroupAdd } from 'src/container/teacher-group-add';
-import { Category, GroupType, ResponseGroupDto, StudentGroup, SubjectType, User } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState, toastState } from 'src/store';
-import { getNickName } from 'src/util/status';
-import { getThisYear } from 'src/util/time';
+import { useEffect, useMemo, useState } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+
+import { ErrorBlank, SelectMenus } from '@/legacy/components'
+import { Blank, Label } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { useCodeByCategoryName } from '@/legacy/container/category'
+import { GroupContainer } from '@/legacy/container/group'
+import { useTeacherGroupAdd } from '@/legacy/container/teacher-group-add'
+import { Category, GroupType, ResponseGroupDto, StudentGroup, SubjectType, User } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { getNickName } from '@/legacy/util/status'
+import { getThisYear } from '@/legacy/util/time'
+import { meState, toastState } from '@/stores'
+
+import Close from '@/assets/svg/close.svg'
 
 interface GroupAddPageProps {
-  groupData?: ResponseGroupDto;
-  onSubmit?: () => void;
+  groupData?: ResponseGroupDto
+  onSubmit?: () => void
 }
 
 interface userTeacher {
-  id: number;
-  name: string;
+  id: number
+  name: string
 }
 
 export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
-  const me = useRecoilValue(meState);
-  const { t } = useLanguage();
+  const me = useRecoilValue(meState)
+  const { t } = useLanguage()
 
   const SubjectTypes = [
     { id: 0, name: t('subject'), value: SubjectType.LECTURE },
     { id: 1, name: t('creative_activity'), value: SubjectType.ACTIVITY },
     { id: 2, name: t('other'), value: SubjectType.ETC },
-  ];
+  ]
 
-  const setToastMsg = useSetRecoilState(toastState);
+  const setToastMsg = useSetRecoilState(toastState)
 
-  const { allKlassGroupsUnique: allKlassGroups } = GroupContainer.useContext();
+  const { allKlassGroupsUnique: allKlassGroups } = GroupContainer.useContext()
   const {
     teachers,
     teacherGroups,
@@ -48,53 +50,53 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
     groupStudentsData,
     selectedGroup,
     setSelectedGroup,
-  } = useTeacherGroupAdd({ groupId: groupData?.id, onSubmit });
+  } = useTeacherGroupAdd({ groupId: groupData?.id, onSubmit })
 
   const uniqueTeacher = useMemo(() => {
     return teachers?.reduce((acc: any[], current) => {
-      const x = acc.find((item) => item.id === current.id);
+      const x = acc.find((item) => item.id === current.id)
       if (!x) {
-        acc.push(current);
+        acc.push(current)
       }
-      return acc;
-    }, []);
-  }, [teachers]);
+      return acc
+    }, [])
+  }, [teachers])
 
-  const { categoryData: codeCreativeActivities } = useCodeByCategoryName(Category.creativeActivity);
+  const { categoryData: codeCreativeActivities } = useCodeByCategoryName(Category.creativeActivity)
 
-  const { categoryData: codeSubjects } = useCodeByCategoryName(Category.subjectType);
+  const { categoryData: codeSubjects } = useCodeByCategoryName(Category.subjectType)
 
-  const [nowYear] = useState(getThisYear());
-  const [subject, setSubject] = useState<string>(groupData?.teacherGroupSubject || '');
-  const [room, setRoom] = useState<string>(groupData?.teacherGroupRoom || '');
-  const [name, setName] = useState(groupData?.name || '');
+  const [nowYear] = useState(getThisYear())
+  const [subject, setSubject] = useState<string>(groupData?.teacherGroupSubject || '')
+  const [room, setRoom] = useState<string>(groupData?.teacherGroupRoom || '')
+  const [name, setName] = useState(groupData?.name || '')
 
-  const [categoryType, setCategoryType] = useState<any>(SubjectTypes[0]);
+  const [categoryType, setCategoryType] = useState<any>(SubjectTypes[0])
 
-  const [selectedUsers, setSelectedUsers] = useState<User[]>(groupStudentsData || []);
-  let userIds = selectedUsers.map((el) => el.id);
+  const [selectedUsers, setSelectedUsers] = useState<User[]>(groupStudentsData || [])
+  let userIds = selectedUsers.map((el) => el.id)
 
-  const [selectedTeachers, setSelectedTeachers] = useState<userTeacher[]>(me ? [{ id: me.id, name: me.name }] : []);
-  let teacherIds = selectedTeachers.map((el) => el.id);
+  const [selectedTeachers, setSelectedTeachers] = useState<userTeacher[]>(me ? [{ id: me.id, name: me.name }] : [])
+  let teacherIds = selectedTeachers.map((el) => el.id)
 
   useEffect(() => {
-    setSelectedUsers(groupStudentsData);
-    userIds = groupStudentsData.map((el) => el.id);
-  }, [groupStudentsData]);
+    setSelectedUsers(groupStudentsData)
+    userIds = groupStudentsData.map((el) => el.id)
+  }, [groupStudentsData])
 
   useEffect(() => {
     if (teacherGroups && teacherGroups.length > 0) {
       setSelectedTeachers(
         teacherGroups.map((el) => {
-          return { id: el.userId, name: el.user.name };
+          return { id: el.userId, name: el.user.name }
         }),
-      );
-      const subjectType = SubjectTypes.find((item) => item.value === teacherGroups[0].subjectType);
-      setCategoryType(subjectType);
+      )
+      const subjectType = SubjectTypes.find((item) => item.value === teacherGroups[0].subjectType)
+      setCategoryType(subjectType)
     }
-  }, [teacherGroups]);
+  }, [teacherGroups])
 
-  if (errorMessage) return <ErrorBlank />;
+  if (errorMessage) return <ErrorBlank />
 
   return (
     <div className="h-screen overflow-auto bg-gray-50 p-4">
@@ -133,7 +135,7 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
                   allText={t('selection', '선택')}
                   value={codeSubjects?.find((item) => item.name === subject)}
                   items={codeSubjects?.sort((a, b) => {
-                    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+                    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0
                   })}
                   onChange={(item) => setSubject(item.name)}
                 />
@@ -175,13 +177,13 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
               allText={t('select_teacher', '선생님 선택')}
               items={uniqueTeacher?.map((tg) => ({ id: tg.id, name: tg.name }))}
               onChange={({ id }: { id: number }) => {
-                const tc = teachers?.find((item) => item?.id === id);
+                const tc = teachers?.find((item) => item?.id === id)
                 if (tc) {
-                  const userT: userTeacher = { id: tc.id, name: tc.name };
+                  const userT: userTeacher = { id: tc.id, name: tc.name }
                   if (selectedTeachers.find((item) => item?.id === userT.id)) {
-                    setToastMsg('이미 선택된 선생님 입니다.');
+                    setToastMsg('이미 선택된 선생님 입니다.')
                   } else {
-                    setSelectedTeachers(selectedTeachers.concat(userT));
+                    setSelectedTeachers(selectedTeachers.concat(userT))
                   }
                 }
               }}
@@ -194,7 +196,7 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
                 <div
                   key={el.id}
                   onClick={() => setSelectedTeachers(selectedTeachers.filter((u) => u.id !== el.id))}
-                  className="m-1s text-2sm mr-2 mt-2 flex w-max cursor-pointer items-center space-x-2 whitespace-nowrap rounded-full border-2 border-brand-1 bg-white px-2.5 py-1.5 font-bold text-brand-1"
+                  className="m-1s text-2sm border-brand-1 text-brand-1 mt-2 mr-2 flex w-max cursor-pointer items-center space-x-2 rounded-full border-2 bg-white px-2.5 py-1.5 font-bold whitespace-nowrap"
                 >
                   <div className="whitespace-pre">{el.name}</div>
                   <Close />
@@ -248,9 +250,9 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
                 onClick={() => {
                   if (el?.user) {
                     if (userIds.includes(el.user.id)) {
-                      setSelectedUsers(selectedUsers.filter((u) => u.id !== el.user?.id));
+                      setSelectedUsers(selectedUsers.filter((u) => u.id !== el.user?.id))
                     } else {
-                      setSelectedUsers(selectedUsers.concat(el.user));
+                      setSelectedUsers(selectedUsers.concat(el.user))
                     }
                   }
                 }}
@@ -270,7 +272,7 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
               <div
                 key={el.id}
                 onClick={() => setSelectedUsers(selectedUsers.filter((u) => u.id !== el.id))}
-                className="m-1s text-2sm mr-2 mt-2 flex w-max cursor-pointer items-center space-x-2 whitespace-nowrap rounded-full border-2 border-brand-1 bg-white px-2.5 py-1.5 font-bold text-brand-1"
+                className="m-1s text-2sm border-brand-1 text-brand-1 mt-2 mr-2 flex w-max cursor-pointer items-center space-x-2 rounded-full border-2 bg-white px-2.5 py-1.5 font-bold whitespace-nowrap"
               >
                 <div className="whitespace-pre">{el.name}</div>
                 <Close />
@@ -299,5 +301,5 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
         />
       </div>
     </div>
-  );
+  )
 }
