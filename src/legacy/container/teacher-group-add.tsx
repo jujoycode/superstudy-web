@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Routes } from 'src/routes'
 import { useHistory } from '@/hooks/useHistory'
+import { Routes } from '@/legacy/constants/routes'
 import {
   useGroupsCreate,
   useGroupsUpdate,

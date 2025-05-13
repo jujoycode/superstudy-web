@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { Routes } from 'src/routes'
 import { useHistory } from '@/hooks/useHistory'
 import { Constants } from '@/legacy/constants'
 import { QueryKey } from '@/legacy/constants/query-key'
+import { Routes } from '@/legacy/constants/routes'
 import { useBoardDelete, useBoardFindOne } from '@/legacy/generated/endpoint'
 import { isPdfFile } from '@/legacy/util/file'
 // ! 지훈쌤 개선안 적용
