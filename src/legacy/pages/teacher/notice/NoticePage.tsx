@@ -1,7 +1,8 @@
 import { range } from 'lodash'
 import { useEffect, useState } from 'react'
-import { Route, Switch, useHistory, useLocation } from 'react-router'
+import { Route, Routes, useLocation } from 'react-router'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Chip, HorizontalScrollView, Select, TopNavbar } from '@/legacy/components/common'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -196,10 +197,10 @@ function NoticePageView() {
           isDetail ? 'block' : 'hidden'
         }`}
       >
-        <Switch>
-          <Route path="/teacher/notice/add" component={() => <NoticeAddPage categoryData={categoryData} />} />
-          <Route path="/teacher/notice/:id" component={() => <NoticeDetailPage categoryData={categoryData} />} />
-        </Switch>
+        <Routes>
+          <Route path="/teacher/notice/add" Component={() => <NoticeAddPage categoryData={categoryData} />} />
+          <Route path="/teacher/notice/:id" Component={() => <NoticeDetailPage categoryData={categoryData} />} />
+        </Routes>
       </div>
     </>
   )

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { List, Select } from '@/legacy/components/common'
 import { FeedsItem } from '@/legacy/components/common/FeedsItem'
 import { NoItem } from '@/legacy/components/common/NoItem'
@@ -7,15 +6,12 @@ import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Icon } from '@/legacy/components/common/icons'
 import { useTeacherNewsletter } from '@/legacy/container/teacher-newsletter'
 import { Newsletter, NewsletterType } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 const filters = ['제목', '작성자']
 
 export function NewsletterMobilePage() {
-  const meRecoil = useRecoilValue(meState)
-
-  const { newsletters, unReadnewslettersList } = useTeacherNewsletter()
+  const { newsletters } = useTeacherNewsletter()
   const [filter, setFilter] = useState(filters[0])
   const [searchWriter, setSearchWriter] = useState('')
   const [searchTitle, setSearchTitle] = useState('')

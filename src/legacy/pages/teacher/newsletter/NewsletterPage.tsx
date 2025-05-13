@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { Route, Switch, useHistory } from 'react-router'
+import { Route, Routes } from 'react-router'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { Blank, Chip, HorizontalScrollView, Select } from '@/legacy/components/common'
+import { useHistory } from '@/hooks/useHistory'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Icon } from '@/legacy/components/common/icons'
@@ -126,15 +127,15 @@ export function NewsletterPage() {
 
       {/* Desktop V */}
       <div className="bg-gray-50 md:col-span-4 md:overflow-y-auto md:p-6">
-        <Switch>
-          <Route path="/teacher/newsletter/add" component={NewsletterAddPage} />
-          <Route path="/teacher/newsletter/:id/edit" component={NewsletterAddPage} />
-          <Route path="/teacher/newsletter/submit/:id" component={NewsletterSubmitPage} />
-          <Route path="/teacher/newsletter/check/:id" component={NewsletterCheckPage} />
-          <Route path="/teacher/newsletter/download/:id" component={NewsletterDownloadPage} />
-          <Route path="/teacher/newsletter/unread-student-download/:id" component={NewsletterCheckDownloadPage} />
-          <Route path="/teacher/newsletter/:id" component={() => <NewsletterDetailPage />} />
-        </Switch>
+        <Routes>
+          <Route path="/teacher/newsletter/add" Component={NewsletterAddPage} />
+          <Route path="/teacher/newsletter/:id/edit" Component={NewsletterAddPage} />
+          <Route path="/teacher/newsletter/submit/:id" Component={NewsletterSubmitPage} />
+          <Route path="/teacher/newsletter/check/:id" Component={NewsletterCheckPage} />
+          <Route path="/teacher/newsletter/download/:id" Component={NewsletterDownloadPage} />
+          <Route path="/teacher/newsletter/unread-student-download/:id" Component={NewsletterCheckDownloadPage} />
+          <Route path="/teacher/newsletter/:id" Component={() => <NewsletterDetailPage />} />
+        </Routes>
       </div>
     </>
   )

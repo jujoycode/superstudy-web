@@ -1,11 +1,7 @@
 import clsx from 'clsx'
 import { useState } from 'react'
-<<<<<<< HEAD
-import { useHistory } from '@/hooks/useHistory'
-=======
-
->>>>>>> cdac7395c291b0907936f2f737132eae3f2798a6
 import { useRecoilValue } from 'recoil'
+import { useHistory } from '@/hooks/useHistory'
 import { BackButton, Blank, Divider, TopNavbar } from '@/legacy/components/common'
 import { useSchoolsFindOne } from '@/legacy/generated/endpoint'
 import { Course, ResponseTimetableV3Dto } from '@/legacy/generated/model'

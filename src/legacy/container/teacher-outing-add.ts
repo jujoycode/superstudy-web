@@ -133,7 +133,7 @@ export function useTeacherOutingAdd(outingData?: Outing) {
   }
   const { mutate: updateOutingMutate, isLoading: isUpdateOutingLoading } = useOutingsUpdate({
     mutation: {
-      onSuccess: () => { },
+      onSuccess: () => {},
       onError: (error) => {
         const errorMsg: errorType | undefined = error?.response?.data ? (error?.response?.data as errorType) : undefined
 

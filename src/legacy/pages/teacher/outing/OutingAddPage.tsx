@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { useState } from 'react'
-import { useHistory } from '@/hooks/useHistory'
-import { ReactComponent as Close } from '@/legacy/assets/svg/close.svg'
+import Close from '@/legacy/assets/svg/close.svg'
 import { ErrorBlank, SelectMenus, SelectValues } from '@/legacy/components'
 import { BackButton, Badge, Blank, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -18,13 +17,10 @@ const reportType = [OutingTypeEnum.조퇴, OutingTypeEnum.외출, OutingTypeEnum
 
 interface OutingAddPageProps {
   outingData?: Outing
-  goDetail?: () => void
 }
 
-export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
-  const { push } = useHistory()
+export function OutingAddPage({ outingData }: OutingAddPageProps) {
   const { me, errorMessage: meErrorMessage } = UserContainer.useContext()
-  const hasSaturdayClass = me?.school.hasSaturdayClass || false
 
   const { holidays } = useCommonGetHolidays()
 
@@ -59,7 +55,6 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
     outingValueSel,
     setOutingValueSel,
     outingValue,
-    approverName,
     allKlassGroups,
     selectedGroup,
     studentGroups,
@@ -67,9 +62,7 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
     selectedUsers,
     setSelectedUsers,
     userIds,
-    useParentApprove,
-    setUseParentApprove,
-  } = useTeacherOutingAdd(outingData, goDetail)
+  } = useTeacherOutingAdd(outingData)
 
   const startDateTime = new Date()
   startDateTime.setHours(startHour)
@@ -433,7 +426,8 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
           {me?.school.isOutingActive === OutingUse.USE_PARENT_APPROVE && (
             <Label.col>
               <Label.row>
-                <Checkbox checked={useParentApprove} onChange={() => setUseParentApprove(!useParentApprove)} />
+                // ! 확인 필요, 사용하지 않는 state를 통해 동작하고 있음
+                {/* <Checkbox checked={useParentApprove} onChange={() => setUseParentApprove(!useParentApprove)} /> */}
                 <p className="text-base font-semibold">보호자 승인 요청</p>
               </Label.row>
               <div className="mb-2 text-sm whitespace-pre-line text-red-600">

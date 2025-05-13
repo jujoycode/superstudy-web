@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { useParams } from 'react-router'
-import { Route, Switch, useHistory } from 'react-router'
+import { Route, Routes } from 'react-router'
 import { useRecoilState } from 'recoil'
-import { ReactComponent as RightArrow } from '@/legacy/assets/svg/mypage-right-arrow.svg'
+import { useHistory } from '@/hooks/useHistory'
+import RightArrow from '@/legacy/assets/svg/mypage-right-arrow.svg'
 import { SuperModal, Tab } from '@/legacy/components'
 import { Blank } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -35,7 +36,7 @@ export function NewsletterSubmitPage() {
     selectKlassGroup,
     handleRePush,
     submiterLoding,
-  } = useTeacherNewsletterSubmit(+id)
+  } = useTeacherNewsletterSubmit(Number(id))
 
   const selectedFilter = Number(localStorage.getItem('selectedFilter'))
 
@@ -153,7 +154,7 @@ export function NewsletterSubmitPage() {
                             ? handleNewsletterSubmitterItemClick(studentGroup, submitPerson)
                             : handleNewsletterSubmitterItemClick(studentGroup, studentNewsletters)
                         }
-                        id={id}
+                        id={id || ''}
                       />
                     ))}
               </div>
@@ -162,9 +163,9 @@ export function NewsletterSubmitPage() {
         </div>
       </div>
       <div className="col-span-3">
-        <Switch>
-          <Route path={`/teacher/newsletter/submit/:id/:snid`} component={() => <NewsletterSubmitDetailPage />} />
-        </Switch>
+        <Routes>
+          <Route path={`/teacher/newsletter/submit/:id/:snid`} Component={() => <NewsletterSubmitDetailPage />} />
+        </Routes>
       </div>
       <SuperModal modalOpen={modalOpen} setModalClose={() => setModalOpen(false)} className="w-max">
         <div className="px-12 py-6">
@@ -174,7 +175,7 @@ export function NewsletterSubmitPage() {
           <Button.lg
             children="재알림하기"
             onClick={async () => {
-              await handleRePush(+id)
+              await handleRePush(Number(id))
               await setModalOpen(false)
             }}
             className="filled-primary w-full"

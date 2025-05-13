@@ -7,7 +7,7 @@ import { useTeacherNewsletterSubmitDetail } from '@/legacy/container/teacher-new
 export function NewsletterSubmitDetailPage() {
   const { id, snid } = useParams<{ id: string; snid: string }>()
 
-  const { newsletter, studentNewsletter, isLoading } = useTeacherNewsletterSubmitDetail(+id, +snid)
+  const { newsletter, studentNewsletter, isLoading } = useTeacherNewsletterSubmitDetail(Number(id), Number(snid))
 
   return (
     <>
@@ -22,7 +22,7 @@ export function NewsletterSubmitDetailPage() {
         {newsletter?.surveyContent && studentNewsletter?.content && (
           <SuperSurveyComponent
             surveyContent={newsletter?.surveyContent || ''}
-            setContent={(c: any) => {}}
+            setContent={() => {}}
             content={JSON.parse(studentNewsletter?.content || '{}')}
             readOnly={true}
           />

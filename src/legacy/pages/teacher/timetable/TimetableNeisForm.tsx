@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
 import { makeStudNum5 } from '@/legacy/util/status'
 import { AttendanceContent } from './TimetableAttendancePage'
 
@@ -20,8 +19,6 @@ interface TimetableNeisFormProps {
 }
 
 export function TimetableNeisForm({ students, lastPeriod }: TimetableNeisFormProps) {
-  const { t } = useTranslation()
-
   const studentsAbsent = useMemo(() => {
     return students
       .filter((student: any) => !student.expired && !student.not_attend) // expired가 false인 학생만 필터링

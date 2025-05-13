@@ -13,6 +13,7 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { isUpdateNoticeState, meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { NoticeAddPage } from './NoticeAddPage'
+
 interface NoticeAddProps {
   categoryData?: Code[]
 }
@@ -22,15 +23,14 @@ export function NoticeDetailPage({ categoryData }: NoticeAddProps) {
 
   const me = useRecoilValue(meState)
   const [isUpdateNotice, setIsUpdateNotice] = useRecoilState(isUpdateNoticeState)
-  const { notice, isNoticeLoading, images, Pdfs, files, viewerImages, errorMessage, handleNoticeDelete } =
-    useTeacherNoticeDetail(+id)
+  const { notice, isNoticeLoading, viewerImages, errorMessage, handleNoticeDelete } = useTeacherNoticeDetail(Number(id))
   const { t } = useLanguage()
 
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
-  const [focusPdfFile, setFocusPdfFile] = useState('')
   const [activeIndex, setActiveIndex] = useState(0)
+  const [focusPdfFile] = useState('')
 
   if (isUpdateNotice) {
     return <NoticeAddPage noticeData={notice} categoryData={categoryData} />
@@ -123,7 +123,7 @@ export function NoticeDetailPage({ categoryData }: NoticeAddProps) {
               noImgDetails={false}
               scalable={false}
               images={viewerImages}
-              onChange={(activeImage, index) => setActiveIndex(index)}
+              onChange={(_, index) => setActiveIndex(index)}
               onClose={() => setImagesModalOpen(false)}
               activeIndex={activeIndex}
             />
