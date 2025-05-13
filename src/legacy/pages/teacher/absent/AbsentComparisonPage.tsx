@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import _, { range } from 'lodash'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import * as XLSX from 'xlsx'
@@ -231,59 +231,62 @@ const AbsentComparisonPage: React.FC = () => {
     return mergedData
   }
 
-  const getNiceComparisonContent = (niceFileContent: any[]) => {
-    let differenceNS = 0
-    let niceEmptyNumber = 0
-    let schoolEmptyNumber = 0
-    const content = niceFileContent
-      .slice(5)
-      .filter((row) =>
-        attendeeData?.find(
-          (attendee) =>
-            String(row['성명']).includes(attendee?.studentName) &&
-            Number(attendee?.studentNumber) === Number(row['번호']) &&
-            attendee?.studentExpired === false,
-        ),
-      )
-      .map((row) => {
-        return headers
-          .map((header) => {
-            if (['번호', '성명', '수업일수', '결석총계', '지각총계', '조퇴총계', '결과총계'].includes(header)) {
-              return { [header]: { value: row[header] } }
-            }
-            const studentInfo = attendeeData?.filter(
-              (attendee) =>
-                String(row['성명']).includes(attendee?.studentName) &&
-                Number(attendee?.studentNumber) === Number(row['번호']) &&
-                attendee?.studentExpired === false,
-            )?.[0]
-            if (!studentInfo) return { [header]: { value: row[header] } }
-
-            const [header1, header2] = header.split('-')
-            const schoolRowData = studentInfo[header1]?.[header2] || 0
-
-            if (row[header] !== 0 && schoolRowData !== 0 && row[header] == schoolRowData) {
-              return { [header]: { schoolData: schoolRowData, niceData: row[header] } }
-            }
-            if (schoolRowData !== row[header]) {
-              differenceNS++
-              if (schoolRowData < row[header]) {
-                schoolEmptyNumber++
-              } else if (schoolRowData > row[header]) {
-                niceEmptyNumber++
+  const getNiceComparisonContent = useCallback(
+    (niceFileContent: any[]) => {
+      let differenceNS = 0
+      let niceEmptyNumber = 0
+      let schoolEmptyNumber = 0
+      const content = niceFileContent
+        .slice(5)
+        .filter((row) =>
+          attendeeData?.find(
+            (attendee) =>
+              String(row['성명']).includes(attendee?.studentName) &&
+              Number(attendee?.studentNumber) === Number(row['번호']) &&
+              attendee?.studentExpired === false,
+          ),
+        )
+        .map((row) => {
+          return headers
+            .map((header) => {
+              if (['번호', '성명', '수업일수', '결석총계', '지각총계', '조퇴총계', '결과총계'].includes(header)) {
+                return { [header]: { value: row[header] } }
               }
-              return { [header]: { schoolData: schoolRowData, niceData: row[header] } }
-            }
-          })
-          .filter((el) => !!el)
-      })
-    return {
-      differenceNS,
-      niceEmptyNumber,
-      schoolEmptyNumber,
-      content,
-    }
-  }
+              const studentInfo = attendeeData?.filter(
+                (attendee) =>
+                  String(row['성명']).includes(attendee?.studentName) &&
+                  Number(attendee?.studentNumber) === Number(row['번호']) &&
+                  attendee?.studentExpired === false,
+              )?.[0]
+              if (!studentInfo) return { [header]: { value: row[header] } }
+
+              const [header1, header2] = header.split('-')
+              const schoolRowData = studentInfo[header1]?.[header2] || 0
+
+              if (row[header] !== 0 && schoolRowData !== 0 && row[header] == schoolRowData) {
+                return { [header]: { schoolData: schoolRowData, niceData: row[header] } }
+              }
+              if (schoolRowData !== row[header]) {
+                differenceNS++
+                if (schoolRowData < row[header]) {
+                  schoolEmptyNumber++
+                } else if (schoolRowData > row[header]) {
+                  niceEmptyNumber++
+                }
+                return { [header]: { schoolData: schoolRowData, niceData: row[header] } }
+              }
+            })
+            .filter((el) => !!el)
+        })
+      return {
+        differenceNS,
+        niceEmptyNumber,
+        schoolEmptyNumber,
+        content,
+      }
+    },
+    [attendeeData],
+  )
 
   const handleDrop: React.DragEventHandler<HTMLLabelElement> = (e) => {
     e.stopPropagation()
@@ -323,7 +326,17 @@ const AbsentComparisonPage: React.FC = () => {
         }
       }
     }
-  }, [niceFileContent, attendeeData])
+  }, [
+    niceFileContent,
+    attendeeData,
+    createNiceComparison,
+    getNiceComparisonContent,
+    month,
+    niceComparison,
+    selectedGroupId,
+    updateNiceComparison,
+    year,
+  ])
 
   useEffect(() => {
     if (!niceComparison) return

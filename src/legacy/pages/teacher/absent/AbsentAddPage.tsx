@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { t } from 'i18next'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Close from '@/assets/svg/close.svg'
 import { SelectMenus, SelectValues } from '@/legacy/components'
 import { BackButton, Badge, Blank, Label, Section, TopNavbar } from '@/legacy/components/common'
@@ -99,12 +99,12 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
     returnToDetail,
   })
 
-  let userIds = selectedUsers.map((el) => el.id)
+  const userIdsRef = useRef<number[]>([])
 
   useEffect(() => {
     setSelectedUsers(groupStudentsData)
-    userIds = groupStudentsData.map((el) => el.id)
-  }, [groupStudentsData])
+    userIdsRef.current = groupStudentsData.map((el) => el.id)
+  }, [groupStudentsData, setSelectedUsers])
 
   const buttonDisabled =
     !agree ||
@@ -143,9 +143,9 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
             {!!studentGroups?.length && (
               <Label.row>
                 <Checkbox
-                  checked={!studentGroups?.filter((el) => !userIds.includes(el.user?.id)).length}
+                  checked={!studentGroups?.filter((el) => !userIdsRef.current.includes(el.user?.id)).length}
                   onChange={() =>
-                    !studentGroups?.filter((el) => !userIds.includes(el.user?.id)).length
+                    !studentGroups?.filter((el) => !userIdsRef.current.includes(el.user?.id)).length
                       ? setSelectedUsers(
                           selectedUsers.filter((el) => !studentGroups?.map((sg) => sg.user?.id).includes(el.id)),
                         )
@@ -171,11 +171,11 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                 <div
                   key={el.id}
                   className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-1 text-sm ${
-                    userIds.includes(el.user?.id) ? 'border-brand-1 bg-light_orange' : 'border-grey-6'
+                    userIdsRef.current.includes(el.user?.id) ? 'border-brand-1 bg-light_orange' : 'border-grey-6'
                   }`}
                   onClick={() => {
                     if (el?.user) {
-                      if (userIds.includes(el.user.id)) {
+                      if (userIdsRef.current.includes(el.user.id)) {
                         setSelectedUsers(selectedUsers.filter((u) => u.id !== el.user?.id))
                       } else {
                         setSelectedUsers(selectedUsers.concat(el.user))
