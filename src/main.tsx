@@ -8,6 +8,7 @@ import { UserContainer } from '@/legacy/container/user'
 import { queryClient } from '@/legacy/lib/query'
 
 import { App } from './App'
+import './recoil-patch'
 
 import 'swiper/css'
 import './legacy/styles/CalendarPage.css'

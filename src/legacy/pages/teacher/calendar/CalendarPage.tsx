@@ -7,7 +7,6 @@ import { useRecoilValue } from 'recoil'
 import { ErrorBlank } from '@/legacy/components'
 import { CustomTuiModal } from '@/legacy/components/calendar/CustomTuiModal'
 import { LnbCalendarsItem } from '@/legacy/components/calendar/LnbCalendarsItem'
-import ReactCalendarWrapper from '@/legacy/components/calendar/ReactCalendarWrapper'
 import { Blank, Label } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Guide, useCoachMark } from '@/legacy/components/common/CoachMark'
@@ -340,47 +339,6 @@ export function CalendarPage() {
                   </button>
                 </div>
               </div>
-              <ReactCalendarWrapper
-                key={calendarKey}
-                height="100%"
-                calendars={calendars}
-                disableDblClick
-                disableClick={false}
-                isReadOnly={readOnly}
-                month={{
-                  startDayOfWeek: 0,
-                }}
-                scheduleView
-                taskView
-                template={{
-                  monthDayname: (model: any) => getDayName(model),
-                  milestone(schedule: any) {
-                    return `<span style="color:#fff;background-color: ${schedule.bgColor};">${schedule.title}</span>`
-                  },
-                  milestoneTitle() {
-                    return '<div class="w-full h-full flex items-center justify-end">Milestone</div>'
-                  },
-                  allday(schedule: any) {
-                    return `<span style="color:#fff;">${schedule.title}<i class="fa fa-refresh"></i></span>`
-                  },
-                  alldayTitle() {
-                    return '<div class="w-full h-full flex items-center justify-end">All Day</div>'
-                  },
-                }}
-                theme={{}}
-                timezones={[
-                  {
-                    timezoneOffset: 540,
-                    displayLabel: 'GMT+09:00',
-                    tooltip: 'Seoul',
-                    timezoneName: 'Asia/Seoul',
-                  },
-                ]}
-                useDetailPopup
-                defaultView="month"
-                view="month"
-                ref={calendarRef}
-              />
               <CustomTuiModal
                 {...{
                   isOpen: modalOpen,

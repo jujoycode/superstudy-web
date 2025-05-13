@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router'
+import { Navigate } from 'react-router'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
 
 import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
@@ -20,7 +20,6 @@ export function useLogout() {
   const resetTwoFactor = useResetRecoilState(twoFactorState)
   const resetStayedLoggedIn = useResetRecoilState(isStayLoggedInState)
   const resetChild = useResetRecoilState(childState)
-  const navigate = useNavigate()
   return () => {
     const tagValue = { schoolId: null, role: null }
     RN.flareLane('setUserId', null)
@@ -39,7 +38,7 @@ export function useLogout() {
     resetStayedLoggedIn()
     resetChild()
 
-    navigate('/login')
+    Navigate({ to: '/login' })
   }
 }
 

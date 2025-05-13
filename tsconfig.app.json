@@ -37,6 +37,7 @@
       "@/layouts/*": ["src/components/layouts/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/stores": ["src/store.ts"],
+      "@/stores2/*": ["src/stores/*"],
       "@/routers": ["src/routers/index.tsx"]
     }
   },

@@ -160,6 +160,7 @@ export default defineConfig(({ mode }) => {
         '@/layouts': '/src/components/layouts',
         '@/hooks': '/src/hooks',
         '@/stores': '/src/store',
+        '@/stores2': '/src/stores',
         '@/routers': '/src/routers',
         '@/assets': '/src/assets',
       },
