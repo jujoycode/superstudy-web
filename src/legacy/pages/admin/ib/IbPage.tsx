@@ -15,7 +15,6 @@ import { useCreateIBSchool, useGetIBSchoolInfo, useUpateIBSchool } from '@/legac
 import { type RequestIBSchoolManagementDto } from '@/legacy/generated/model'
 
 export function IbPage() {
-  //@ts-expect-error useTranslation type instantiation error
   const { t } = useTranslation()
   const { pathname } = useLocation()
   const [editMode, setEditMode] = useState(false)

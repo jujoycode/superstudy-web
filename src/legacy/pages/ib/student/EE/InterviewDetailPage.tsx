@@ -47,12 +47,7 @@ export default function InterviewDetailPage() {
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
   const [editMode, setEditMode] = useState<boolean>(false)
 
-  const {
-    handleSubmit,
-    reset,
-    register,
-    formState: { errors },
-  } = useForm<RequestCreateQnaDto>({
+  const { handleSubmit, reset, register } = useForm<RequestCreateQnaDto>({
     defaultValues: {
       content: interview?.qna.content.map((item) => ({
         question: item.question,
