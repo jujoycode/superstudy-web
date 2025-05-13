@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { Document, Page } from 'react-pdf'
 
+import { AbsentPaper } from '@/legacy/components/absent/AbsentPaper'
+import { ParentConfirmPaper } from '@/legacy/components/absent/ParentConfirmPaper'
+import { TeacherConfirmPaper } from '@/legacy/components/absent/TeacherConfirmPaper'
 import { Constants } from '@/legacy/constants'
 import { Absent } from '@/legacy/generated/model'
 import { AbsentEvidenceType, AbsentPaperType } from '@/legacy/types'
-
-import { AbsentPaper } from '.@/legacy/pages/teacher/absent/AbsentPaper'
-import { ParentConfirmPaper } from '.@/legacy/pages/teacher/absent/ParentConfirmPaper'
-import { TeacherConfirmPaper } from '.@/legacy/pages/teacher/absent/TeacherConfirmPaper'
 
 interface AbsentPdfProps {
   orderBy: number

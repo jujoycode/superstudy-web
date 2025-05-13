@@ -63,8 +63,6 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
           category3Data.filter((ct3: any) => ct3.name === category3)?.[0]?.values || []
         : []
 
-  const buttonDisabled = !Object.keys(keywords).length
-
   return (
     <div className="flex flex-col space-y-4">
       <Label.col>
