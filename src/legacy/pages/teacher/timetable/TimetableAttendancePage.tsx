@@ -831,8 +831,10 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                                     alt=""
                                     loading="lazy"
                                     className="h-full w-full rounded object-cover"
-                                    onError={({ currentTarget }) => {
-                                      currentTarget.src = SvgUser
+                                    onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                                      const target = event.currentTarget
+                                      target.onerror = null // prevents looping
+                                      target.src = SvgUser
                                     }}
                                   />
                                 </p>
@@ -985,8 +987,10 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                 alt=""
                 loading="lazy"
                 className="h-full w-full rounded object-cover"
-                onError={({ currentTarget }) => {
-                  currentTarget.src = SvgUser
+                onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                  const target = event.currentTarget
+                  target.onerror = null // prevents looping
+                  target.src = SvgUser
                 }}
               />
             </div>

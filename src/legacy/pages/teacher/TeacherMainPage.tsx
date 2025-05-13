@@ -294,10 +294,11 @@ export function TeacherMainPage() {
                 src={`${Constants.imageUrl}${me?.profile}`}
                 alt=""
                 loading="lazy"
-                onError={({ currentTarget }) => {
-                  currentTarget.onerror = null // prevents looping
-                  currentTarget.src = svgUser
-                  currentTarget.className = 'w-full rounded-xl'
+                onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                  const target = event.currentTarget
+                  target.onerror = null // prevents looping
+                  target.src = svgUser
+                  target.className = 'w-full rounded-xl'
                 }}
               />
             </div>
