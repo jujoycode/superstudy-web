@@ -77,6 +77,6 @@ export const useNotificationStore = create<NotificationState>()((set) => ({
     })),
 
   clearAll: () => set(initialState),
-  
+
   setIsUpdateNotice: (isUpdateNotice) => set({ isUpdateNotice }),
 }))

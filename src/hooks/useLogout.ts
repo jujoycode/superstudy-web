@@ -2,20 +2,19 @@
 import { useNavigate } from 'react-router'
 import { useBrowserStorage } from '@/hooks/useBrowserStorage'
 import { RN } from '@/legacy/lib/rn'
-import { useAppStore } from '@/stores2/app'
 import { useAuthStore } from '@/stores2/auth'
 
 export function useAuth() {
-  const token = useAppStore((state) => state.token)
-  const twoFactor = useAppStore((state) => state.twoFactor)
+  const token = useAuthStore((state) => state.token)
+  const twoFactor = useAuthStore((state) => state.twoFactor)
 
   return { authenticated: token !== null, twoFactorAuthenticated: twoFactor !== null && twoFactor !== 'false' }
 }
 
 export function useLogout() {
   const { removeStorage } = useBrowserStorage()
-  const resetAppState = useAppStore((state) => state.resetState)
   const setIsStayLoggedIn = useAuthStore((state) => state.setIsStayLoggedIn)
+  const resetAuthStore = useAuthStore((state) => state.reset)
   const navigate = useNavigate()
 
   return () => {
@@ -30,7 +29,7 @@ export function useLogout() {
     localStorage.removeItem('tabType')
     localStorage.removeItem('isStayLoggedIn')
     localStorage.removeItem('reqParent_userInfo')
-    resetAppState()
+    resetAuthStore()
     setIsStayLoggedIn(false)
 
     navigate('/login')
