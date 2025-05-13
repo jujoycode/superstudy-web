@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useHistory } from '@/hooks/useHistory'
 import { Constants } from '@/legacy/constants'
 import { QueryKey } from '@/legacy/constants/query-key'

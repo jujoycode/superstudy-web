@@ -4,6 +4,8 @@ import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { Typography } from '@/legacy/components/common/Typography'
+import IBSubmitPdfPreviewPopup from '@/legacy/components/ib/overview/IBSubmitPdfPreviewPopup'
+
 import {
   useIBTOKPPFNotSubmittedNotification,
   useIBTOKPPFStatusCount,
@@ -15,7 +17,6 @@ import { BlobDownloadItem } from '@/legacy/hooks/useBatchDownload'
 import { modifyTkppfPdf } from '@/legacy/util/ib_tkppf_pdf'
 
 import TKPPFOverviewPanel from './TKPPFOverviewPanel'
-import IBSubmitPdfPreviewPopup from '../@/legacy/pages/ibSubmitPdfPreviewPopup'
 
 export default function TKPPFView({ grade, klass }: TKPPFGetSubmissionStatusCountParams) {
   const { push } = useHistory()

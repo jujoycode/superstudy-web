@@ -4,6 +4,8 @@ import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { Typography } from '@/legacy/components/common/Typography'
+import IBSubmitPdfPreviewPopup from '@/legacy/components/ib/overview/IBSubmitPdfPreviewPopup'
+
 import {
   useIBRppfNotSubmittedNotification,
   useIBRPPFStatus,
@@ -14,7 +16,6 @@ import { handleBatchBlobDownload, BlobDownloadItem } from '@/legacy/hooks/useBat
 import { modifyRppfPdf } from '@/legacy/util/ib_rppf_pdf'
 
 import RPPFOverviewPanel from './RPPFOverviewPanel'
-import IBSubmitPdfPreviewPopup from '@/legacy/pages/ibSubmitPdfPreviewPopup'
 
 export default function RPPFView({ grade, klass }: IBGetSubmissionStatusCountParams) {
   const { push } = useHistory()
