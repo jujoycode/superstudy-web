@@ -1,88 +1,88 @@
-import { differenceInSeconds, format } from 'date-fns';
-import _ from 'lodash';
-import { useMemo, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Linkify from 'react-linkify';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
-import Viewer from 'react-viewer';
-import { ImageDecorator } from 'react-viewer/lib/ViewerProps';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg';
-import { SuperModal } from 'src/components';
-import { Activityv3SubmitterItem } from 'src/components/activityv3/ActivityV3SubmitterItem';
-import { SessionDownloadModal } from 'src/components/activityv3/SessionDownloadModal';
-import { BackButton, Label, Radio, RadioGroup, Select, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import ConfirmDialog from 'src/components/common/ConfirmDialog';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { Icon } from 'src/components/common/icons';
-import { SuperSurveyComponent } from 'src/components/survey/SuperSurveyComponent';
-import { Constants } from 'src/constants';
-import { ACTIVITYV3_TYPE_KOR } from 'src/constants/activityv3.enum';
+import { differenceInSeconds, format } from 'date-fns'
+import _ from 'lodash'
+import { useMemo, useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import Linkify from 'react-linkify'
+import { useHistory, useLocation, useParams } from 'react-router-dom'
+import Viewer from 'react-viewer'
+import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
+import { SuperModal } from '@/legacy/components'
+import { Activityv3SubmitterItem } from '@/legacy/components/activityv3/ActivityV3SubmitterItem'
+import { SessionDownloadModal } from '@/legacy/components/activityv3/SessionDownloadModal'
+import { BackButton, Label, Radio, RadioGroup, Select, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Icon } from '@/legacy/components/common/icons'
+import { SuperSurveyComponent } from '@/legacy/components/survey/SuperSurveyComponent'
+import { Constants } from '@/legacy/constants'
+import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import {
   useActivitySessionDelete,
   useActivitySessionFindOne,
   useActivitySessionFindSubmitters,
   useActivityV3FindOne,
   useStudentActivitySessionFindOneByTeacher,
-} from 'src/generated/endpoint';
-import { ActivityType, Role, StudentGroup } from 'src/generated/model';
-import { meState, toastState } from 'src/store';
-import { getFileNameFromUrl, isPdfFile } from 'src/util/file';
-import { makeDateToString, makeTimeToString } from 'src/util/time';
+} from '@/legacy/generated/endpoint'
+import { ActivityType, Role, StudentGroup } from '@/legacy/generated/model'
+import { meState, toastState } from '@/stores'
+import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
 
 interface ActivityV3SessionDetailPageProps {}
 
 const SELECT_VIEWS = [
   { value: 'student', label: '학생별 보기' },
   { value: 'group', label: '그룹별 보기' },
-];
+]
 
 const SELECT_SUBMITTED = [
   { value: 'all', label: '전체' },
   { value: 'IS_SUBMITTED', label: '제출' },
   { value: 'NOT_SUBMITTED', label: '미제출' },
-];
+]
 
 export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPageProps> = () => {
-  const { id: activityId, sessionId } = useParams<{ id: string; sessionId: string }>();
-  const id = Number(sessionId);
-  const { pathname, search } = useLocation();
-  const { push, replace } = useHistory();
-  const searchParams = new URLSearchParams(search);
-  const selectedUserId = searchParams.get('selectedUserId');
-  const view = searchParams.get('view') || 'group';
-  const selectedFilter = searchParams.get('selectedFilter') || 'all';
+  const { id: activityId, sessionId } = useParams<{ id: string; sessionId: string }>()
+  const id = Number(sessionId)
+  const { pathname, search } = useLocation()
+  const { push, replace } = useHistory()
+  const searchParams = new URLSearchParams(search)
+  const selectedUserId = searchParams.get('selectedUserId')
+  const view = searchParams.get('view') || 'group'
+  const selectedFilter = searchParams.get('selectedFilter') || 'all'
 
-  const me = useRecoilValue(meState);
-  const [toastMsg, setToastMsg] = useRecoilState(toastState);
-  const [searchedStudentname, setSearchedStudentName] = useState('');
-  const [hasImagesModalOpen, setImagesModalOpen] = useState(false);
-  const [isDownloadModalOpen, setDownloadModalOpen] = useState(false);
-  const [isSurveyModalOpen, setSurveyModalOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [showDialog, setShowDialog] = useState(false);
+  const me = useRecoilValue(meState)
+  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [searchedStudentname, setSearchedStudentName] = useState('')
+  const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
+  const [isDownloadModalOpen, setDownloadModalOpen] = useState(false)
+  const [isSurveyModalOpen, setSurveyModalOpen] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [showDialog, setShowDialog] = useState(false)
 
   const handleConfirm = () => {
-    deleteActivitySession({ id: Number(id) });
-    setShowDialog(false);
-  };
+    deleteActivitySession({ id: Number(id) })
+    setShowDialog(false)
+  }
 
   const handleCancel = () => {
-    setShowDialog(false);
-  };
+    setShowDialog(false)
+  }
 
   const { data: activitySession } = useActivitySessionFindOne(Number(id), {
     query: { enabled: !!id },
-  });
+  })
   const { data: activityv3 } = useActivityV3FindOne(Number(activitySession?.activityv3Id), undefined, {
     query: { enabled: !!activitySession?.activityv3Id },
-  });
+  })
 
   const [selectedGroupIds, setSelectedGroupIds] = useState<number[]>(
     activityv3?.groupActivityV3s?.map((gav) => gav.groupId) || [],
-  );
+  )
   const {
     data: studentActivitySession,
     refetch: refetchSAS,
@@ -93,9 +93,9 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
       sessionId: activitySession?.id || 0,
     },
     { query: { enabled: !!selectedUserId && !!activitySession?.id } },
-  );
+  )
 
-  const groupIds = activityv3?.groupActivityV3s?.map((el) => el.groupId) || [];
+  const groupIds = activityv3?.groupActivityV3s?.map((el) => el.groupId) || []
 
   const { data } = useActivitySessionFindSubmitters(
     { id: activitySession?.id || 0, groupIds },
@@ -106,83 +106,83 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
         staleTime: 60000,
       },
     },
-  );
+  )
 
   const { mutate: deleteActivitySession } = useActivitySessionDelete({
     mutation: {
       onSuccess: () => {
-        push('/teacher/activityv3');
+        push('/teacher/activityv3')
       },
       onError: (error) => setToastMsg(error.message),
     },
-  });
+  })
 
   const studentGroups: StudentGroup[] = useMemo(() => {
-    if (!data) return [];
-    return _.chain(data).uniqBy('user.id').sortBy('groupId').value();
-  }, [data]);
+    if (!data) return []
+    return _.chain(data).uniqBy('user.id').sortBy('groupId').value()
+  }, [data])
   const submittedStudentAmount =
-    studentGroups?.filter((sg) => sg.user?.studentActivitySessions?.[0]?.isSubmitted).length || 0;
-  const unSubmittedStudentAmount = (studentGroups?.length || 0) - submittedStudentAmount;
+    studentGroups?.filter((sg) => sg.user?.studentActivitySessions?.[0]?.isSubmitted).length || 0
+  const unSubmittedStudentAmount = (studentGroups?.length || 0) - submittedStudentAmount
 
   const studentsByGroupData =
     studentGroups?.reduce((acc: Record<number, StudentGroup[]>, cur) => {
       return {
         ...acc,
         [cur.groupId]: [...(acc[cur.groupId] || []), cur],
-      };
-    }, {}) || {};
+      }
+    }, {}) || {}
 
-  if (!activitySession) return <></>;
+  if (!activitySession) return <></>
 
-  const type = activitySession.type;
+  const type = activitySession.type
 
-  const viewerImages: ImageDecorator[] = [];
+  const viewerImages: ImageDecorator[] = []
   for (const image of activitySession.images) {
     if (isPdfFile(image) == false) {
       viewerImages.push({
         src: `${Constants.imageUrl}${image}`,
-      });
+      })
     }
   }
 
   const getDDayLabel = (endDate: string) => {
-    const now = new Date();
-    const end = new Date(endDate);
-    const diffSeconds = differenceInSeconds(end, now);
+    const now = new Date()
+    const end = new Date(endDate)
+    const diffSeconds = differenceInSeconds(end, now)
 
     if (diffSeconds > 0) {
-      return `D-${Math.floor(diffSeconds / (60 * 60 * 24))}`; // D-Day 계산
+      return `D-${Math.floor(diffSeconds / (60 * 60 * 24))}` // D-Day 계산
     } else if (diffSeconds === 0) {
-      return 'D-Day';
+      return 'D-Day'
     } else {
-      return `D+${Math.abs(Math.floor(diffSeconds / (60 * 60 * 24)))}`; // 경과한 D-Day 계산
+      return `D+${Math.abs(Math.floor(diffSeconds / (60 * 60 * 24)))}` // 경과한 D-Day 계산
     }
-  };
+  }
 
   const sortStudentGroups = (studentGroups: StudentGroup[]) => {
     return studentGroups?.sort((a, b) => {
-      const Agroup = a.user?.studentGroups?.[0]?.group;
-      const Bgroup = b.user?.studentGroups?.[0]?.group;
+      const Agroup = a.user?.studentGroups?.[0]?.group
+      const Bgroup = b.user?.studentGroups?.[0]?.group
 
       if (Agroup?.grade === Bgroup?.grade && Agroup?.klass === Bgroup?.klass) {
-        return (a.user?.studentGroups?.[0]?.studentNumber || 0) - (b.user?.studentGroups?.[0]?.studentNumber || 0);
+        return (a.user?.studentGroups?.[0]?.studentNumber || 0) - (b.user?.studentGroups?.[0]?.studentNumber || 0)
       } else if (Agroup?.grade === Bgroup?.grade) {
-        return (a.user?.studentGroups?.[0]?.group?.klass || 0) - (b.user?.studentGroups?.[0]?.group?.klass || 0);
+        return (a.user?.studentGroups?.[0]?.group?.klass || 0) - (b.user?.studentGroups?.[0]?.group?.klass || 0)
       } else {
-        return (a.user?.studentGroups?.[0]?.group?.grade || 0) - (b.user?.studentGroups?.[0]?.group?.grade || 0);
+        return (a.user?.studentGroups?.[0]?.group?.grade || 0) - (b.user?.studentGroups?.[0]?.group?.grade || 0)
       }
-    });
-  };
+    })
+  }
 
-  if (!activityv3) return <></>;
+  if (!activityv3) return <></>
   return (
     <div className="col-span-6">
       <div className="md:hidden">
         <TopNavbar title={activitySession.title} left={<BackButton />} />
       </div>
       {/* 활동기록부 상세 */}
-      <div className="flex h-screen-6 flex-col bg-gray-50 p-2 md:h-screen md:px-10 md:pb-20 md:pt-10 3xl:px-[208px] 3xl:pb-[128px] 3xl:pt-[64px]">
+      <div className="h-screen-6 3xl:px-[208px] 3xl:pb-[128px] 3xl:pt-[64px] flex flex-col bg-gray-50 p-2 md:h-screen md:px-10 md:pt-10 md:pb-20">
         <div className="relative h-full">
           {/* 브레드크럼 */}
           <div className="absolute -top-6 left-0 flex h-6 items-center justify-evenly text-sm text-neutral-500">
@@ -200,33 +200,33 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                 : activitySession.title || '차시명'}
             </p>
           </div>
-          <div className="h-full overflow-y-auto bg-white p-2 md:px-10 md:py-5 3xl:px-30 3xl:py-20">
+          <div className="3xl:px-30 3xl:py-20 h-full overflow-y-auto bg-white p-2 md:px-10 md:py-5">
             <div className="flex flex-col rounded border border-neutral-200">
-              <div className="border-b border-neutral-200 px-10 pb-8 pt-8">
+              <div className="border-b border-neutral-200 px-10 pt-8 pb-8">
                 <div className="flex pb-4">
-                  <h1 className="flex-1 whitespace-pre-line break-words text-2xl font-bold">
+                  <h1 className="flex-1 text-2xl font-bold break-words whitespace-pre-line">
                     [{ACTIVITYV3_TYPE_KOR[activityv3.type]}] {activityv3.title}
                   </h1>
                 </div>
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center">
-                    <div className="whitespace-pre text-sm font-semibold md:w-40">활동 기간</div>
+                    <div className="text-sm font-semibold whitespace-pre md:w-40">활동 기간</div>
                     <div className="w-full text-sm">
                       {activityv3.startDate && format(new Date(activityv3.startDate), 'yyyy.MM.dd')} ~{' '}
                       {activityv3.endDate && format(new Date(activityv3.endDate), 'yyyy.MM.dd')}
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="whitespace-pre text-sm font-semibold md:w-40">활동 설명</div>
-                    <div className="w-full whitespace-pre-line break-words text-sm">{activityv3?.description}</div>
+                    <div className="text-sm font-semibold whitespace-pre md:w-40">활동 설명</div>
+                    <div className="w-full text-sm break-words whitespace-pre-line">{activityv3?.description}</div>
                   </div>
                   <div className="flex items-start">
-                    <div className="whitespace-pre text-sm font-semibold md:w-40">공통문구</div>
-                    <div className="w-full whitespace-pre-line break-words text-sm">{activityv3?.commonText}</div>
+                    <div className="text-sm font-semibold whitespace-pre md:w-40">공통문구</div>
+                    <div className="w-full text-sm break-words whitespace-pre-line">{activityv3?.commonText}</div>
                   </div>
                   {(activityv3.images?.length > 0 || activityv3.files?.length > 0) && (
                     <div className="flex items-start">
-                      <div className="whitespace-pre text-sm font-semibold md:w-40">첨부파일</div>
+                      <div className="text-sm font-semibold whitespace-pre md:w-40">첨부파일</div>
                       <div className="w-full">
                         {!!activityv3.images?.length && (
                           <div className="grid w-full grid-flow-row grid-cols-6 gap-2 pb-2">
@@ -234,7 +234,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                               <div
                                 key={i}
                                 onClick={() => {
-                                  setActiveIndex(i);
+                                  setActiveIndex(i)
                                 }}
                                 className="w-full"
                               >
@@ -278,14 +278,14 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
               </div>
               {/* 내부 하단 영역 */}
               <div className="flex items-center px-10 py-5">
-                <div className="whitespace-pre text-sm font-semibold md:w-40">전달 대상</div>
+                <div className="text-sm font-semibold whitespace-pre md:w-40">전달 대상</div>
                 <div className="flex w-full flex-wrap gap-1">
                   {_.chain(activityv3?.groupActivityV3s || [])
                     .sortBy(['group.grade', 'group.klass'])
                     .map((el) => (
                       <div
                         key={el.group?.id}
-                        className="h-8 whitespace-pre rounded-lg border border-stone-300 px-2 py-1 text-center"
+                        className="h-8 rounded-lg border border-stone-300 px-2 py-1 text-center whitespace-pre"
                       >
                         {el.group?.name}
                       </div>
@@ -297,15 +297,15 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
 
             {/* 차시 설명 영역 */}
             <div className="mt-4 flex flex-col rounded border-2 border-zinc-800">
-              <div className="border-b border-neutral-200 px-10 pb-8 pt-8">
+              <div className="border-b border-neutral-200 px-10 pt-8 pb-8">
                 <div className="flex items-baseline justify-between pb-4">
-                  <h1 className="flex-1 whitespace-pre-line break-words text-2xl font-bold">{activitySession.title}</h1>
+                  <h1 className="flex-1 text-2xl font-bold break-words whitespace-pre-line">{activitySession.title}</h1>
                   {(me?.role === Role.ADMIN || activityv3?.writerId === me?.id) && (
                     <div className="ml-4 flex flex-shrink-0 items-center space-x-2">
                       <Button
                         className="h-8 w-16 rounded-lg border border-neutral-500 bg-white font-semibold text-neutral-500"
                         onClick={() => {
-                          push(`/teacher/activityv3/${activityv3?.id}/session/${id}/update`);
+                          push(`/teacher/activityv3/${activityv3?.id}/session/${id}/update`)
                         }}
                       >
                         수정
@@ -323,7 +323,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                 <div className="flex flex-col gap-2">
                   {type !== 'NOTICE' && (
                     <div className="flex w-full">
-                      <div className="whitespace-pre text-sm font-semibold md:w-40">마감기한</div>
+                      <div className="text-sm font-semibold whitespace-pre md:w-40">마감기한</div>
                       <div className="w-full">
                         {activitySession.endDate
                           ? `${makeDateToString(activitySession.endDate)} ${makeTimeToString(activitySession.endDate)}`
@@ -333,15 +333,15 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                   )}
                   {activitySession.content && (
                     <div className="flex w-full">
-                      <div className="whitespace-pre text-sm font-semibold md:w-40">차시 설명</div>
-                      <div className="feedback_space w-full whitespace-pre-line break-words text-base text-gray-500">
+                      <div className="text-sm font-semibold whitespace-pre md:w-40">차시 설명</div>
+                      <div className="feedback_space w-full text-base break-words whitespace-pre-line text-gray-500">
                         <Linkify>{activitySession?.content}</Linkify>
                       </div>
                     </div>
                   )}
                   {(activitySession.images?.length > 0 || activitySession.files?.length > 0) && (
                     <div className="flex items-start">
-                      <div className="whitespace-pre text-sm font-semibold md:w-40">첨부파일</div>
+                      <div className="text-sm font-semibold whitespace-pre md:w-40">첨부파일</div>
                       <div className="w-full">
                         {!!activitySession.images?.length && (
                           <div className="grid w-full grid-flow-row grid-cols-6 gap-2 pb-2">
@@ -349,8 +349,8 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                               <div
                                 key={i}
                                 onClick={() => {
-                                  setActiveIndex(i);
-                                  setImagesModalOpen(true);
+                                  setActiveIndex(i)
+                                  setImagesModalOpen(true)
                                 }}
                                 className="w-full"
                               >
@@ -393,7 +393,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                 </div>
                 {activitySession.type === ActivityType.SURVEY && (
                   <div className="mt-2 flex w-full items-center">
-                    <div className="whitespace-pre text-sm font-semibold md:w-40">설문 내용</div>
+                    <div className="text-sm font-semibold whitespace-pre md:w-40">설문 내용</div>
                     <div className="w-full">
                       <Button
                         className="h-8 w-28 rounded-lg border border-zinc-800"
@@ -411,30 +411,30 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
               <>
                 <div className="mt-16">
                   <div className="flex items-center justify-between">
-                    <div className="whitespace-pre text-24 font-bold">제출자 현황</div>
+                    <div className="text-24 font-bold whitespace-pre">제출자 현황</div>
                     <Button
                       className="border border-gray-600"
                       onClick={() => {
-                        setDownloadModalOpen(true);
+                        setDownloadModalOpen(true)
                       }}
                     >
                       제출현황 다운로드
                     </Button>
                   </div>
                   <div className="mt-4 flex rounded border border-zinc-800 text-[#333333]">
-                    <div className="flex w-full items-center justify-between border-r border-zinc-800 p-4 text-16 font-bold">
+                    <div className="text-16 flex w-full items-center justify-between border-r border-zinc-800 p-4 font-bold">
                       <div>제출</div>
                       <div className="flex items-center">
                         <span className="mr-1 text-3xl font-bold">{submittedStudentAmount}</span>명
                       </div>
                     </div>
-                    <div className="flex w-full items-center justify-between border-r border-zinc-800 p-4 text-16 font-bold">
+                    <div className="text-16 flex w-full items-center justify-between border-r border-zinc-800 p-4 font-bold">
                       <div>미제출</div>
                       <div className="flex items-center">
                         <span className="mr-1 text-3xl font-bold">{unSubmittedStudentAmount}</span>명
                       </div>
                     </div>
-                    <div className="flex w-full items-center justify-between p-4 text-16 font-bold">
+                    <div className="text-16 flex w-full items-center justify-between p-4 font-bold">
                       <div>제출 마감</div>
                       {activitySession?.endDate ? (
                         <div className="text-center text-3xl font-bold">{getDDayLabel(activitySession?.endDate)}</div>
@@ -445,9 +445,9 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                   </div>
                   <div className="mt-2 bg-gray-50 p-4">
                     <div className="flex space-x-6">
-                      <div className="whitespace-pre border-r border-[#DDD] px-2 text-15 md:w-40">전달 대상</div>
+                      <div className="text-15 border-r border-[#DDD] px-2 whitespace-pre md:w-40">전달 대상</div>
                       <div className="w-full">
-                        <div className="mb-2 flex items-center space-x-2 text-14">
+                        <div className="text-14 mb-2 flex items-center space-x-2">
                           <Checkbox
                             id="select-all"
                             checked={selectedGroupIds.length === activityv3?.groupActivityV3s?.length}
@@ -466,9 +466,9 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                           .map((el) => (
                             <div
                               key={el.groupId}
-                              className="mb-2 mr-4 inline-block whitespace-pre rounded-md bg-gray-50 text-14"
+                              className="text-14 mr-4 mb-2 inline-block rounded-md bg-gray-50 whitespace-pre"
                             >
-                              <div className="flex items-center space-x-2 text-14">
+                              <div className="text-14 flex items-center space-x-2">
                                 <Checkbox
                                   id={String(el.groupId)}
                                   checked={selectedGroupIds.includes(el.groupId)}
@@ -488,7 +488,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                       </div>
                     </div>
                     <div className="flex space-x-6">
-                      <div className="whitespace-pre border-r border-[#DDD] px-2 pt-2 text-15 md:w-40">제출 여부</div>
+                      <div className="text-15 border-r border-[#DDD] px-2 pt-2 whitespace-pre md:w-40">제출 여부</div>
                       <div className="w-full pt-2">
                         <RadioGroup className="flex items-center space-x-4" onChange={() => {}}>
                           {SELECT_SUBMITTED.map(({ value, label }) => (
@@ -499,14 +499,14 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                                 value={value}
                                 checked={selectedFilter === value}
                                 onChange={() => {
-                                  searchParams.set('selectedFilter', value);
+                                  searchParams.set('selectedFilter', value)
                                   replace({
                                     pathname,
                                     search: searchParams.toString(),
-                                  });
+                                  })
                                 }}
                               ></Radio>
-                              <Label htmlFor={value} children={label} className="cursor-pointer text-14" />
+                              <Label htmlFor={value} children={label} className="text-14 cursor-pointer" />
                             </div>
                           ))}
                         </RadioGroup>
@@ -520,11 +520,11 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                         value={view}
                         className="h-10 w-48 rounded-lg border border-neutral-200"
                         onChange={(e) => {
-                          searchParams.set('view', e.target.value);
+                          searchParams.set('view', e.target.value)
                           replace({
                             pathname,
                             search: searchParams.toString(),
-                          });
+                          })
                         }}
                       >
                         {SELECT_VIEWS.map((filter) => (
@@ -571,31 +571,31 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                       .map((ga, i) => {
                         const studentGroups = studentsByGroupData[ga.groupId]
                           ?.filter((sg) => !selectedGroupIds.length || selectedGroupIds.includes(sg.groupId))
-                          ?.filter((sg) => !searchedStudentname || sg.user.name.includes(searchedStudentname));
+                          ?.filter((sg) => !searchedStudentname || sg.user.name.includes(searchedStudentname))
 
                         const submittedStudentGroups = studentGroups?.filter(
                           (el) => el?.user?.studentActivitySessions?.[0]?.isSubmitted,
-                        );
+                        )
                         const unSubmittedStudentGroups = studentGroups?.filter(
                           (el) => !el?.user?.studentActivitySessions?.[0]?.isSubmitted,
-                        );
+                        )
 
                         if (!studentGroups?.length) {
-                          return <></>;
+                          return <></>
                         }
 
                         if (view === 'student') {
                           return sortStudentGroups(
                             studentGroups?.filter((sg) => {
                               if (selectedFilter === 'NOT_SUBMITTED') {
-                                return !sg?.user?.studentActivitySessions?.[0]?.isSubmitted;
+                                return !sg?.user?.studentActivitySessions?.[0]?.isSubmitted
                               }
 
                               if (selectedFilter === 'IS_SUBMITTED') {
-                                return sg?.user?.studentActivitySessions?.[0]?.isSubmitted;
+                                return sg?.user?.studentActivitySessions?.[0]?.isSubmitted
                               }
 
-                              return true;
+                              return true
                             }),
                           )?.map((sg: any) => (
                             <Activityv3SubmitterItem
@@ -607,7 +607,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                               submittedAt={sg?.user?.studentActivitySessions?.[0]?.submittedAt}
                               endDate={activitySession.endDate}
                             />
-                          ));
+                          ))
                         }
 
                         return (
@@ -668,7 +668,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                               </div>
                             )}
                           </div>
-                        );
+                        )
                       })
                       .value()}
                   </div>
@@ -718,5 +718,5 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
         />
       </div>
     </div>
-  );
-};
+  )
+}

@@ -22,8 +22,8 @@ import { AbsentStatus, FilterAbsentStatus, Role } from '@/legacy/generated/model
 import { compareAbsents } from '@/legacy/util/document'
 import { getCurrentSchoolYear, isValidDate, makeStartEndToString } from '@/legacy/util/time'
 
-import { AbsentAddPage } from './AbsentAddPage'
-import { AbsentDetailPage } from './AbsentDetailPage'
+import { AbsentAddPage } from '@/legacy/pages/teacher/absentAddPage'
+import { AbsentDetailPage } from '@/legacy/pages/teacher/absentDetailPage'
 
 import Refresh from '@/assets/svg/refresh.svg'
 

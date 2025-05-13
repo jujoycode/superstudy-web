@@ -1,14 +1,14 @@
-import { Autocomplete, TextField } from '@mui/material';
-import { FC, useState } from 'react';
-import { Label, Radio, RadioGroup } from 'src/components/common';
-import { Icon } from 'src/components/common/icons';
-import { StudentActivityV3 } from 'src/generated/model';
+import { Autocomplete, TextField } from '@mui/material'
+import { FC, useState } from 'react'
+import { Label, Radio, RadioGroup } from '@/legacy/components/common'
+import { Icon } from '@/legacy/components/common/icons'
+import { StudentActivityV3 } from '@/legacy/generated/model'
 
 interface GenerateGPTPage1Props {
-  selectedStudentActivityV3s?: StudentActivityV3[];
-  checkedCardIds: number[];
-  setCheckedCardIds: (cardIds: number[]) => void;
-  goNextPage: () => void;
+  selectedStudentActivityV3s?: StudentActivityV3[]
+  checkedCardIds: number[]
+  setCheckedCardIds: (cardIds: number[]) => void
+  goNextPage: () => void
 }
 
 export const GenerateGPTPage1: FC<GenerateGPTPage1Props> = ({
@@ -17,8 +17,8 @@ export const GenerateGPTPage1: FC<GenerateGPTPage1Props> = ({
   checkedCardIds,
   goNextPage,
 }) => {
-  const [type, setType] = useState<string>('');
-  const [criteria, setCriteria] = useState<string>('');
+  const [type, setType] = useState<string>('')
+  const [criteria, setCriteria] = useState<string>('')
   return (
     <div className="w-full p-4">
       <div className="flex w-full items-center space-x-2">
@@ -29,7 +29,7 @@ export const GenerateGPTPage1: FC<GenerateGPTPage1Props> = ({
         <div className="flex h-6 w-6 items-center justify-center rounded-full border border-gray-600">3</div>
         <div className="flex h-6 w-6 items-center justify-center rounded-full border border-gray-600">4</div>
       </div>
-      <div className="flex h-screen-10 w-full flex-col">
+      <div className="h-screen-10 flex w-full flex-col">
         <div className="grid h-full grid-cols-2">
           <div className="flex h-full w-full items-center justify-center">
             <div className="max-h-40 w-full max-w-sm">
@@ -38,12 +38,12 @@ export const GenerateGPTPage1: FC<GenerateGPTPage1Props> = ({
                 {selectedStudentActivityV3s.map((sav) => (
                   <div
                     key={sav.id}
-                    className="relative mb-2 mr-2 inline-block whitespace-pre rounded-lg border border-brand-1 px-3 py-1.5 text-15 text-brand-1"
+                    className="border-brand-1 text-15 text-brand-1 relative mr-2 mb-2 inline-block rounded-lg border px-3 py-1.5 whitespace-pre"
                   >
                     {sav.activityv3.title}
                     <div
                       onClick={() => setCheckedCardIds(checkedCardIds.filter((id) => id !== sav.id))}
-                      className="absolute -right-2 -top-2 z-20 flex h-4 w-4 cursor-pointer items-center justify-center rounded-full border border-gray-600 bg-white text-sm text-gray-600"
+                      className="absolute -top-2 -right-2 z-20 flex h-4 w-4 cursor-pointer items-center justify-center rounded-full border border-gray-600 bg-white text-sm text-gray-600"
                     >
                       X
                     </div>
@@ -55,7 +55,7 @@ export const GenerateGPTPage1: FC<GenerateGPTPage1Props> = ({
           <div className="flex h-full w-full items-center justify-center">
             <div className="max-h-40 w-full max-w-sm">
               <div className="text-xl text-gray-500">성취기준</div>
-              <div className="w-full whitespace-pre-line rounded-md border border-gray-500 px-4 py-2 leading-6">
+              <div className="w-full rounded-md border border-gray-500 px-4 py-2 leading-6 whitespace-pre-line">
                 {`[6실05-03] 생활 속에 적용된 발명과 문제해결의 사례를 통해 발명의 의미와 중요성을 이해한다.
               [6실05-04] 다양한 재료를 사용하여 창의적인 제품을 구상하고 제작한다.`}
               </div>
@@ -121,5 +121,5 @@ export const GenerateGPTPage1: FC<GenerateGPTPage1Props> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

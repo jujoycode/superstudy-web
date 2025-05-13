@@ -1,48 +1,51 @@
-import { useQueryClient } from 'react-query';
-import { useParams } from 'react-router';
-import { Route, Switch, useHistory } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { NewsletterCheckerItem } from 'src/components/newsletter/NewsletterCheckerItem';
-import { useTeacherNewsletterCheck } from 'src/container/teacher-newsletter-check';
-import { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup } from 'src/generated/model';
-import { newsletterOpenedGroupState } from 'src/store';
-import { NewsletterCheckDetailPage } from './NewsletterCheckDetailPage';
+import { useQueryClient } from 'react-query'
+import { Routes, useParams } from 'react-router'
+import { Route } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
+import { NewsletterCheckerItem } from '@/legacy/components/newsletter/NewsletterCheckerItem'
+import { useTeacherNewsletterCheck } from '@/legacy/container/teacher-newsletter-check'
+import { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup } from '@/legacy/generated/model'
+import { newsletterOpenedGroupState } from '@/stores'
+
+import { NewsletterCheckDetailPage } from './NewsletterCheckDetailPage'
 
 export function NewsletterCheckPage() {
-  const { push } = useHistory();
-  const { id } = useParams<{ id: string }>();
-  const queryClient = useQueryClient();
+  const { push } = useHistory()
+  const { id = '' } = useParams<{ id: string }>()
+  const queryClient = useQueryClient()
 
-  const [newsletterOpenedGroup, setNewsletterOpenedGroup] = useRecoilState(newsletterOpenedGroupState);
+  const [newsletterOpenedGroup, setNewsletterOpenedGroup] = useRecoilState(newsletterOpenedGroupState)
   const { result, newsletter, studentsCount, unCheckCount, unCheckPerson, totalPerson, selectKlassGroup } =
-    useTeacherNewsletterCheck(+id);
+    useTeacherNewsletterCheck(Number(id))
 
   const handleSelectKlassGroup = (klassGroup: ResponseGroupDto) => {
     newsletterOpenedGroup.includes(klassGroup.name as string)
       ? setNewsletterOpenedGroup(newsletterOpenedGroup.filter((el) => el !== klassGroup.name))
-      : setNewsletterOpenedGroup((prevState) => [...prevState, klassGroup.name as string]);
+      : setNewsletterOpenedGroup((prevState) => [...prevState, klassGroup.name as string])
 
-    selectKlassGroup(klassGroup.id);
-    push(`/teacher/newsletter/check/${id}`);
-  };
+    selectKlassGroup(klassGroup.id)
+    push(`/teacher/newsletter/check/${id}`)
+  }
 
   const handleNewsletterCheckerItemClick = (
     studentGroup: StudentGroup,
     studentNewsletters?: ResponseChatAttendeeDto[],
   ) => {
     if (!studentNewsletters || !studentNewsletters.length) {
-      return;
+      return
     }
     const studentNewsletter = studentNewsletters.filter(
       (sn: ResponseChatAttendeeDto) => sn?.id === studentGroup.user?.id,
-    )[0];
+    )[0]
 
     if (studentNewsletter) {
-      push(`/teacher/newsletter/check/${id}/${studentNewsletter}`);
+      push(`/teacher/newsletter/check/${id}/${studentNewsletter}`)
     } else {
-      push(`/teacher/newsletter/check/${id}`);
+      push(`/teacher/newsletter/check/${id}`)
     }
-  };
+  }
 
   return (
     <div className="ml-0.5 grid h-screen grid-cols-7 bg-white">
@@ -57,11 +60,11 @@ export function NewsletterCheckPage() {
               미확인 {unCheckCount}명 / 총 {newsletter?.toPerson ? totalPerson.length : studentsCount}명
             </div>
           </div>
-          <div className="cursor-pointer text-brand-1" onClick={() => queryClient.refetchQueries({ active: true })}>
+          <div className="text-brand-1 cursor-pointer" onClick={() => queryClient.refetchQueries({ active: true })}>
             새로고침
           </div>
         </div>
-        <div className="h-0.5 bg-gray-100 "></div>
+        <div className="h-0.5 bg-gray-100"></div>
         <div className="h-screen-8 overflow-y-scroll p-4">
           {result?.map((group) => (
             <div key={group.id} className="my-5">
@@ -99,10 +102,10 @@ export function NewsletterCheckPage() {
         </div>
       </div>
       <div className="col-span-3">
-        <Switch>
-          <Route path={`/teacher/newsletter/check/:id/:snid`} component={() => <NewsletterCheckDetailPage />} />
-        </Switch>
+        <Routes>
+          <Route path={`/teacher/newsletter/check/:id/:snid`} Component={() => <NewsletterCheckDetailPage />} />
+        </Routes>
       </div>
     </div>
-  );
+  )
 }

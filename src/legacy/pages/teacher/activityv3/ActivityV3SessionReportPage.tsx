@@ -1,61 +1,61 @@
-import { format } from 'date-fns';
-import _ from 'lodash';
-import { useEffect, useMemo, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Linkify from 'react-linkify';
-import { useHistory, useParams } from 'react-router-dom';
-import Viewer from 'react-viewer';
-import { ImageDecorator } from 'react-viewer/lib/ViewerProps';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg';
-import { SuperModal } from 'src/components';
-import { SessionCommentItem } from 'src/components/activityv3/SessionCommentItem';
-import { Avatar, BackButton, Textarea, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Time } from 'src/components/common/Time';
-import { Icon } from 'src/components/common/icons';
-import { SuperSurveyComponent } from 'src/components/survey/SuperSurveyComponent';
-import { SuperSurveyViewComponent } from 'src/components/survey/SuperSurveyViewComponent';
-import { Constants } from 'src/constants';
-import { ACTIVITYV3_TYPE_KOR } from 'src/constants/activityv3.enum';
+import { format } from 'date-fns'
+import _ from 'lodash'
+import { useEffect, useMemo, useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import Linkify from 'react-linkify'
+import { useHistory, useParams } from 'react-router-dom'
+import Viewer from 'react-viewer'
+import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
+import { SuperModal } from '@/legacy/components'
+import { SessionCommentItem } from '@/legacy/components/activityv3/SessionCommentItem'
+import { Avatar, BackButton, Textarea, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Time } from '@/legacy/components/common/Time'
+import { Icon } from '@/legacy/components/common/icons'
+import { SuperSurveyComponent } from '@/legacy/components/survey/SuperSurveyComponent'
+import { SuperSurveyViewComponent } from '@/legacy/components/survey/SuperSurveyViewComponent'
+import { Constants } from '@/legacy/constants'
+import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import {
   useActivitySessionFindOne,
   useActivityV3FindByGroupIds,
   useActivityV3FindOne,
   useSessionCommentCreate,
   useStudentActivitySessionFindOneByTeacher,
-} from 'src/generated/endpoint';
-import { ActivityType, StudentGroup } from 'src/generated/model';
-import { handleBulkDownload } from 'src/hooks/useBatchDownload';
-import { meState, toastState } from 'src/store';
-import { downloadFile } from 'src/util/download-image';
-import { getFileNameFromUrl, isPdfFile } from 'src/util/file';
-import { getNickName } from 'src/util/status';
-import { makeDateToString, makeTimeToString } from 'src/util/time';
+} from '@/legacy/generated/endpoint'
+import { ActivityType, StudentGroup } from '@/legacy/generated/model'
+import { handleBulkDownload } from '@/legacy/hooks/useBatchDownload'
+import { meState, toastState } from '@/stores'
+import { downloadFile } from '@/legacy/util/download-image'
+import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { getNickName } from '@/legacy/util/status'
+import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
 
 interface ActivityV3SessionReportPageProps {}
 
 export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPageProps> = () => {
-  const { id: activityId, sessionId, studentId } = useParams<{ id: string; sessionId: string; studentId: string }>();
-  const [hasImagesModalOpen, setImagesModalOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isSurveyModalOpen, setSurveyModalOpen] = useState(false);
-  const [userSelectView, setUserSelectView] = useState(false);
-  const [toastMsg, setToastMsg] = useRecoilState(toastState);
-  const { replace } = useHistory();
-  const [selectedUserId, setSelectedUserId] = useState<number>(Number(studentId));
-  const [sessionComment, setSessionComment] = useState('');
-  const me = useRecoilValue(meState);
+  const { id: activityId, sessionId, studentId } = useParams<{ id: string; sessionId: string; studentId: string }>()
+  const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [isSurveyModalOpen, setSurveyModalOpen] = useState(false)
+  const [userSelectView, setUserSelectView] = useState(false)
+  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const { replace } = useHistory()
+  const [selectedUserId, setSelectedUserId] = useState<number>(Number(studentId))
+  const [sessionComment, setSessionComment] = useState('')
+  const me = useRecoilValue(meState)
 
   const { data: activityv3 } = useActivityV3FindOne(Number(activityId), undefined, {
     query: { enabled: !!Number(activityId) },
-  });
+  })
 
   useEffect(() => {
     if (studentId) {
-      setSelectedUserId(Number(studentId));
+      setSelectedUserId(Number(studentId))
     }
-  }, [studentId]);
+  }, [studentId])
   const {
     data: studentActivitySession,
     refetch: refetchSAS,
@@ -69,90 +69,90 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
       query: {
         enabled: !!selectedUserId && !!sessionId,
         onError: (err) => {
-          setToastMsg(err.message);
+          setToastMsg(err.message)
         },
       },
     },
-  );
+  )
 
   const { data: activitySession } = useActivitySessionFindOne(Number(sessionId), {
     query: { enabled: !!Number(sessionId) },
-  });
+  })
 
   const { data } = useActivityV3FindByGroupIds(
     Number(sessionId),
     { ids: activityv3?.groupActivityV3s?.map((el) => el.group.id) || [] },
     { query: { enabled: !!activityv3?.groupActivityV3s?.length, staleTime: 100000 } },
-  );
+  )
 
   const sortStudentGroups = (studentGroups: StudentGroup[]) => {
     return studentGroups?.sort((a, b) => {
-      const Agroup = a.user?.studentGroups?.[0]?.group;
-      const Bgroup = b.user?.studentGroups?.[0]?.group;
+      const Agroup = a.user?.studentGroups?.[0]?.group
+      const Bgroup = b.user?.studentGroups?.[0]?.group
 
       if (Agroup?.grade === Bgroup?.grade && Agroup?.klass === Bgroup?.klass) {
-        return (a.user?.studentGroups?.[0]?.studentNumber || 0) - (b.user?.studentGroups?.[0]?.studentNumber || 0);
+        return (a.user?.studentGroups?.[0]?.studentNumber || 0) - (b.user?.studentGroups?.[0]?.studentNumber || 0)
       } else if (Agroup?.grade === Bgroup?.grade) {
-        return (a.user?.studentGroups?.[0]?.group?.klass || 0) - (b.user?.studentGroups?.[0]?.group?.klass || 0);
+        return (a.user?.studentGroups?.[0]?.group?.klass || 0) - (b.user?.studentGroups?.[0]?.group?.klass || 0)
       } else {
-        return (a.user?.studentGroups?.[0]?.group?.grade || 0) - (b.user?.studentGroups?.[0]?.group?.grade || 0);
+        return (a.user?.studentGroups?.[0]?.group?.grade || 0) - (b.user?.studentGroups?.[0]?.group?.grade || 0)
       }
-    });
-  };
+    })
+  }
 
   const studentGroups = useMemo(() => {
-    if (!data) return [];
-    return sortStudentGroups(_.chain(data).uniqBy('user.id').sortBy('groupId').value());
-  }, [data]);
+    if (!data) return []
+    return sortStudentGroups(_.chain(data).uniqBy('user.id').sortBy('groupId').value())
+  }, [data])
 
   const { mutate: createSessionComment, isLoading: createSessionCommentLoading } = useSessionCommentCreate({
     mutation: {
       onSuccess: () => {
-        refetchSAS();
-        setSessionComment('');
+        refetchSAS()
+        setSessionComment('')
       },
       onError: (error) => setToastMsg(error.message),
     },
-  });
+  })
 
-  const files = studentActivitySession?.files || [];
-  const images = studentActivitySession?.images || [];
+  const files = studentActivitySession?.files || []
+  const images = studentActivitySession?.images || []
 
-  const batchData = [...files, ...images];
+  const batchData = [...files, ...images]
 
-  let surveyContent = {};
+  let surveyContent = {}
   try {
-    surveyContent = JSON.parse(studentActivitySession?.content || '{}');
+    surveyContent = JSON.parse(studentActivitySession?.content || '{}')
   } catch (err) {}
 
-  const viewerImages: ImageDecorator[] = [];
+  const viewerImages: ImageDecorator[] = []
 
   if (studentActivitySession) {
     for (const image of images) {
       if (isPdfFile(image) === false) {
         viewerImages.push({
           src: `${Constants.imageUrl}${image}`,
-        });
+        })
       }
     }
   }
 
-  const isSessionCommentLoading = createSessionCommentLoading || sessionLoading;
-  const selectedUserIndex = studentGroups?.findIndex((el) => el.userId === Number(selectedUserId));
-  const selectedUser: any = studentGroups?.[selectedUserIndex]?.user;
-  const prevUser = selectedUserIndex > 0 ? studentGroups[selectedUserIndex - 1]?.user : null;
-  const nextUser = selectedUserIndex < studentGroups.length - 1 ? studentGroups[selectedUserIndex + 1]?.user : null;
-  const type = activitySession?.type;
+  const isSessionCommentLoading = createSessionCommentLoading || sessionLoading
+  const selectedUserIndex = studentGroups?.findIndex((el) => el.userId === Number(selectedUserId))
+  const selectedUser: any = studentGroups?.[selectedUserIndex]?.user
+  const prevUser = selectedUserIndex > 0 ? studentGroups[selectedUserIndex - 1]?.user : null
+  const nextUser = selectedUserIndex < studentGroups.length - 1 ? studentGroups[selectedUserIndex + 1]?.user : null
+  const type = activitySession?.type
 
   const isMobile = () => {
     return (
       /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-    );
-  };
+    )
+  }
 
-  if (!activityv3) return <></>;
-  if (!activitySession) return <></>;
+  if (!activityv3) return <></>
+  if (!activitySession) return <></>
 
   return (
     <div className="col-span-6">
@@ -160,7 +160,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
         <TopNavbar title={activitySession.title} left={<BackButton />} />
       </div>
       {/* 활동기록부 상세 */}
-      <div className="flex h-screen-6 flex-col bg-gray-50 p-2 md:h-screen md:px-10 md:pb-20 md:pt-10 3xl:px-[208px] 3xl:pb-[128px] 3xl:pt-[64px]">
+      <div className="h-screen-6 3xl:px-[208px] 3xl:pb-[128px] 3xl:pt-[64px] flex flex-col bg-gray-50 p-2 md:h-screen md:px-10 md:pt-10 md:pb-20">
         <div className="relative h-full">
           {/* 브레드크럼 */}
           <div className="absolute -top-6 left-0 flex h-6 items-center justify-evenly text-sm text-neutral-500">
@@ -178,33 +178,33 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                 : activitySession.title || '차시명'}
             </p>
           </div>
-          <div className="h-full overflow-y-auto bg-white p-2 md:px-10 md:py-5 3xl:px-30 3xl:py-20">
+          <div className="3xl:px-30 3xl:py-20 h-full overflow-y-auto bg-white p-2 md:px-10 md:py-5">
             <div className="flex flex-col rounded border border-neutral-200">
-              <div className="border-b border-neutral-200 px-10 pb-8 pt-8">
+              <div className="border-b border-neutral-200 px-10 pt-8 pb-8">
                 <div className="flex pb-4">
-                  <h1 className="flex-1 whitespace-pre-line break-words text-2xl font-bold">
+                  <h1 className="flex-1 text-2xl font-bold break-words whitespace-pre-line">
                     [{ACTIVITYV3_TYPE_KOR[activityv3.type]}] {activityv3.title}
                   </h1>
                 </div>
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center">
-                    <div className="whitespace-pre text-sm font-semibold md:w-40">활동 기간</div>
+                    <div className="text-sm font-semibold whitespace-pre md:w-40">활동 기간</div>
                     <div className="w-full text-sm">
                       {activityv3.startDate && format(new Date(activityv3.startDate), 'yyyy.MM.dd')} ~{' '}
                       {activityv3.endDate && format(new Date(activityv3.endDate), 'yyyy.MM.dd')}
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="whitespace-pre text-sm font-semibold md:w-40">활동 설명</div>
-                    <div className="w-full whitespace-pre-line break-words text-sm">{activityv3?.description}</div>
+                    <div className="text-sm font-semibold whitespace-pre md:w-40">활동 설명</div>
+                    <div className="w-full text-sm break-words whitespace-pre-line">{activityv3?.description}</div>
                   </div>
                   <div className="flex items-start">
-                    <div className="whitespace-pre text-sm font-semibold md:w-40">공통문구</div>
-                    <div className="w-full whitespace-pre-line break-words text-sm">{activityv3?.commonText}</div>
+                    <div className="text-sm font-semibold whitespace-pre md:w-40">공통문구</div>
+                    <div className="w-full text-sm break-words whitespace-pre-line">{activityv3?.commonText}</div>
                   </div>
                   {(activityv3.images?.length > 0 || activityv3.files?.length > 0) && (
                     <div className="flex items-start">
-                      <div className="whitespace-pre text-sm font-semibold md:w-40">첨부파일</div>
+                      <div className="text-sm font-semibold whitespace-pre md:w-40">첨부파일</div>
                       <div className="w-full">
                         {!!activityv3.images?.length && (
                           <div className="grid w-full grid-flow-row grid-cols-6 gap-2 pb-2">
@@ -212,7 +212,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                               <div
                                 key={i}
                                 onClick={() => {
-                                  setActiveIndex(i);
+                                  setActiveIndex(i)
                                 }}
                                 className="w-full"
                               >
@@ -256,14 +256,14 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
               </div>
               {/* 내부 하단 영역 */}
               <div className="flex items-center px-10 py-5">
-                <div className="whitespace-pre text-sm font-semibold md:w-40">전달 대상</div>
+                <div className="text-sm font-semibold whitespace-pre md:w-40">전달 대상</div>
                 <div className="flex w-full flex-wrap gap-1">
                   {_.chain(activityv3?.groupActivityV3s || [])
                     .sortBy(['group.grade', 'group.klass'])
                     .map((el) => (
                       <div
                         key={el.group?.id}
-                        className="h-8 whitespace-pre rounded-lg border border-stone-300 px-2 py-1 text-center"
+                        className="h-8 rounded-lg border border-stone-300 px-2 py-1 text-center whitespace-pre"
                       >
                         {el.group?.name}
                       </div>
@@ -274,16 +274,16 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
             </div>
 
             {/* 차시 설명 영역 */}
-            <div className="mb-16 mt-4 flex flex-col rounded border-2 border-zinc-800">
-              <div className="border-b border-neutral-200 px-10 pb-8 pt-8">
+            <div className="mt-4 mb-16 flex flex-col rounded border-2 border-zinc-800">
+              <div className="border-b border-neutral-200 px-10 pt-8 pb-8">
                 <div className="flex items-baseline justify-between pb-4">
-                  <h1 className="flex-1 whitespace-pre-line break-words text-2xl font-bold">{activitySession.title}</h1>
+                  <h1 className="flex-1 text-2xl font-bold break-words whitespace-pre-line">{activitySession.title}</h1>
                 </div>
                 {/* 차시 Content */}
                 <div className="flex flex-col gap-2">
                   {type !== 'NOTICE' && (
                     <div className="flex w-full">
-                      <div className="whitespace-pre text-sm font-semibold md:w-40">마감기한</div>
+                      <div className="text-sm font-semibold whitespace-pre md:w-40">마감기한</div>
                       <div className="w-full">
                         {activitySession.endDate
                           ? `${makeDateToString(activitySession.endDate)} ${makeTimeToString(activitySession.endDate)}`
@@ -293,15 +293,15 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                   )}
                   {activitySession.content && (
                     <div className="flex w-full">
-                      <div className="whitespace-pre text-sm font-semibold md:w-40">차시 설명</div>
-                      <div className="feedback_space w-full whitespace-pre-line break-words text-base text-gray-500">
+                      <div className="text-sm font-semibold whitespace-pre md:w-40">차시 설명</div>
+                      <div className="feedback_space w-full text-base break-words whitespace-pre-line text-gray-500">
                         <Linkify>{activitySession?.content}</Linkify>
                       </div>
                     </div>
                   )}
                   {(activitySession.images?.length > 0 || activitySession.files?.length > 0) && (
                     <div className="flex items-start">
-                      <div className="whitespace-pre text-sm font-semibold md:w-40">첨부파일</div>
+                      <div className="text-sm font-semibold whitespace-pre md:w-40">첨부파일</div>
                       <div className="w-full">
                         {!!activitySession.images?.length && (
                           <div className="grid w-full grid-flow-row grid-cols-6 gap-2 pb-2">
@@ -346,7 +346,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                 </div>
                 {activitySession.type === ActivityType.SURVEY && (
                   <div className="mt-2 flex w-full items-center">
-                    <div className="whitespace-pre text-sm font-semibold md:w-40">설문 내용</div>
+                    <div className="text-sm font-semibold whitespace-pre md:w-40">설문 내용</div>
                     <div className="w-full">
                       <Button
                         className="h-8 w-28 rounded-lg border border-zinc-800"
@@ -362,8 +362,8 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
             <>
               {/* 제목 영역 */}
               <div className="flex w-full gap-1">
-                <div className="mb-4 w-2/3 text-24 font-bold">차시 제출물</div>
-                <div className="mb-4 w-1/3 text-24 font-bold">1:1 피드백</div>
+                <div className="text-24 mb-4 w-2/3 font-bold">차시 제출물</div>
+                <div className="text-24 mb-4 w-1/3 font-bold">1:1 피드백</div>
               </div>
 
               {/* 내용 영역 */}
@@ -420,8 +420,8 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                                 key={sg.id}
                                 className="flex cursor-pointer items-center gap-2"
                                 onClick={() => {
-                                  setUserSelectView(false);
-                                  replace(`/teacher/activityv3/${activityId}/session/${sessionId}/${sg.user.id}`);
+                                  setUserSelectView(false)
+                                  replace(`/teacher/activityv3/${activityId}/session/${sessionId}/${sg.user.id}`)
                                 }}
                               >
                                 {sg.user?.profile ? (
@@ -469,7 +469,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                       </div>
                     ) : (
                       <div className="flex h-full flex-col gap-4 overflow-y-auto">
-                        <div className="flex w-full whitespace-pre-line px-8">{studentActivitySession?.content}</div>
+                        <div className="flex w-full px-8 whitespace-pre-line">{studentActivitySession?.content}</div>
                         <div className="flex flex-col gap-2">
                           {!!images?.length && (
                             <div className="grid w-full grid-flow-row grid-cols-6 gap-2 px-8 pb-2">
@@ -478,8 +478,8 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                                   key={image}
                                   className="aspect-square cursor-pointer rounded border border-neutral-200"
                                   onClick={() => {
-                                    setActiveIndex(i);
-                                    setImagesModalOpen(true);
+                                    setActiveIndex(i)
+                                    setImagesModalOpen(true)
                                   }}
                                 >
                                   <LazyLoadImage
@@ -539,7 +539,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                           </div>
                         </div>
                         {studentActivitySession?.content && (
-                          <div className="mt-auto flex items-center justify-end space-x-2 px-2 text-12 font-bold">
+                          <div className="text-12 mt-auto flex items-center justify-end space-x-2 px-2 font-bold">
                             <span className="font-semibold text-gray-400">글자 수 (공백 제외)</span>&nbsp;
                             {studentActivitySession?.content?.replaceAll(' ', '').length}자&nbsp;
                             {new TextEncoder().encode(studentActivitySession?.content?.replaceAll(' ', '')).length} Byte
@@ -552,7 +552,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                     )}
                   </div>
                   <div className="mt-auto min-h-[80px] w-full rounded-b border-t border-t-gray-300 bg-gray-50 px-6 py-4">
-                    <div className="flex flex-col gap-2 text-14">
+                    <div className="text-14 flex flex-col gap-2">
                       {studentActivitySession ? (
                         <div className="flex flex-row items-center justify-between">
                           <div className="flex flex-col gap-1">
@@ -600,7 +600,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                 {/* 1:1 피드백 영역 */}
                 <div className="flex h-full w-1/3 flex-col overflow-hidden rounded border border-neutral-400">
                   <div className="relative h-full w-full flex-col space-y-4 overflow-y-auto bg-white p-5">
-                    {isSessionCommentLoading && <div className="absolute inset-0 bg-littleblack">로딩 중...</div>}
+                    {isSessionCommentLoading && <div className="bg-littleblack absolute inset-0">로딩 중...</div>}
                     {studentActivitySession?.sessionComments
                       ?.sort((a, b) => (new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1))
                       ?.map((sessionComment) => (
@@ -672,5 +672,5 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
         />
       </div>
     </div>
-  );
-};
+  )
+}

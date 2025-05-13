@@ -1,14 +1,14 @@
-import clsx from 'clsx';
-import { format } from 'date-fns';
-import { useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import userSvg from 'src/assets/svg/user.svg';
-import { SuperModal } from 'src/components';
-import { Divider, Label, Section, Select } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { TextInput } from 'src/components/common/TextInput';
-import { Constants } from 'src/constants';
+import clsx from 'clsx'
+import { format } from 'date-fns'
+import { useEffect, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import userSvg from '@/asset/svg/user.svg'
+import { SuperModal } from '@/legacy/components'
+import { Divider, Label, Section, Select } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Constants } from '@/legacy/constants'
 import {
   lectureAttendanceSave,
   useCourseLectureGet,
@@ -16,84 +16,84 @@ import {
   useCourseTermGetOne,
   useCourseTraineeGet,
   useLectureAttendanceGetOneByForeignKeys,
-} from 'src/generated/endpoint';
-import { Course, CourseTrainee, User } from 'src/generated/model';
-import { exportCSVToExcel } from 'src/util/download-excel';
-import { getNickName } from 'src/util/status';
+} from '@/legacy/generated/endpoint'
+import { Course, CourseTrainee, User } from '@/legacy/generated/model'
+import { exportCSVToExcel } from '@/legacy/util/download-excel'
+import { getNickName } from '@/legacy/util/status'
 
 interface TimetableCoursePageProps {
-  course: Course;
+  course: Course
 }
 
 export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
-  const { t } = useTranslation();
-  const [tab, setTab] = useState<'list' | 'table'>('list');
-  const [traineeFilter, setTraineeFilter] = useState<'total' | 'present' | 'absent'>('total');
-  const [courseLectureId, setCourseLectureId] = useState<number>();
-  const [selectedUser, setSelectedUser] = useState<User>();
+  const { t } = useTranslation()
+  const [tab, setTab] = useState<'list' | 'table'>('list')
+  const [traineeFilter, setTraineeFilter] = useState<'total' | 'present' | 'absent'>('total')
+  const [courseLectureId, setCourseLectureId] = useState<number>()
+  const [selectedUser, setSelectedUser] = useState<User>()
 
-  const { data: courseSeason } = useCourseSeasonGetOne(course.courseSeasonId);
+  const { data: courseSeason } = useCourseSeasonGetOne(course.courseSeasonId)
   const { data: courseTerm } = useCourseTermGetOne(courseSeason?.courseTermId ?? 0, {
     query: { enabled: !!courseSeason },
-  });
-  const { data: courseLectures = [] } = useCourseLectureGet({ courseId: course.id });
-  const { data: courseTrainees = [] } = useCourseTraineeGet({ courseId: course.id });
+  })
+  const { data: courseLectures = [] } = useCourseLectureGet({ courseId: course.id })
+  const { data: courseTrainees = [] } = useCourseTraineeGet({ courseId: course.id })
 
   useEffect(() => {
-    if (courseLectureId || courseLectures.length === 0) return;
-    setCourseLectureId(courseLectures[0].id);
-  }, [courseLectures]);
+    if (courseLectureId || courseLectures.length === 0) return
+    setCourseLectureId(courseLectures[0].id)
+  }, [courseLectures])
 
   const courseLecture = useMemo(
     () => courseLectures.find((cl) => cl.id === courseLectureId),
     [courseLectures, courseLectureId],
-  );
+  )
   const [presentTrainees, absentTrainees] = useMemo(() => {
-    if (!courseLecture) return [[], []];
-    const presentTrainees: CourseTrainee[] = [];
-    const absentTrainees: CourseTrainee[] = [];
+    if (!courseLecture) return [[], []]
+    const presentTrainees: CourseTrainee[] = []
+    const absentTrainees: CourseTrainee[] = []
     courseTrainees.forEach((trainee) => {
       if (courseLecture.lectureAttendances.some((la) => la.userId === trainee.id)) {
-        presentTrainees.push(trainee);
+        presentTrainees.push(trainee)
       } else {
-        absentTrainees.push(trainee);
+        absentTrainees.push(trainee)
       }
-    });
-    return [presentTrainees, absentTrainees];
-  }, [courseTrainees, courseLecture]);
+    })
+    return [presentTrainees, absentTrainees]
+  }, [courseTrainees, courseLecture])
 
   async function downloadAsExcel() {
     if (courseLectures.length == 0 || courseTrainees.length == 0) {
-      alert('데이터가 존재하지 않습니다.');
-      return;
+      alert('데이터가 존재하지 않습니다.')
+      return
     }
 
-    const defaultContent = '이름,학년,반,번호';
-    const rounds = courseLectures.map((_, idx) => `${idx + 1}차`).join(',');
-    let content = `${defaultContent},${rounds}`;
+    const defaultContent = '이름,학년,반,번호'
+    const rounds = courseLectures.map((_, idx) => `${idx + 1}차`).join(',')
+    let content = `${defaultContent},${rounds}`
 
     content =
       `${content}\n` +
       courseTrainees
         .map((trainee) => {
-          const studentGroup = trainee.user.studentGroups![0];
+          const studentGroup = trainee.user.studentGroups![0]
           const result = [
             trainee.user.name,
             studentGroup.group.grade,
             studentGroup.group.klass,
             studentGroup.studentNumber,
-          ];
+          ]
           courseLectures.forEach((courseLecture) => {
             result.push(
               courseLecture.lectureAttendances.some((la) => la.userId === trainee.userId && !la.isAttended) ? 'X' : 'O',
-            );
-          });
+            )
+          })
 
-          return result;
+          return result
         })
-        .join('\n');
+        .join('\n')
 
-    exportCSVToExcel(content, `${course.name}_출결현황`);
+    exportCSVToExcel(content, `${course.name}_출결현황`)
   }
 
   return (
@@ -184,7 +184,7 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
             </p>
           </div>
 
-          <div className="md:scroll-box md:h-screen-13 md:overflow-y-auto md:overflow-x-hidden">
+          <div className="md:scroll-box md:h-screen-13 md:overflow-x-hidden md:overflow-y-auto">
             <div className="mb-10">
               {(traineeFilter === 'total'
                 ? courseTrainees
@@ -192,8 +192,8 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
                   ? presentTrainees
                   : absentTrainees
               ).map((trainee) => {
-                const studentGroup = trainee.user.studentGroups![0];
-                const lectureAttendance = courseLecture?.lectureAttendances.find((la) => la.userId == trainee.userId);
+                const studentGroup = trainee.user.studentGroups![0]
+                const lectureAttendance = courseLecture?.lectureAttendances.find((la) => la.userId == trainee.userId)
                 return (
                   <div key={trainee.id} className="flex items-center justify-between py-2 md:px-4">
                     <div className="flex items-center gap-2">
@@ -217,7 +217,7 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
                       className="filled-primary"
                     />
                   </div>
-                );
+                )
               })}
             </div>
           </div>
@@ -239,7 +239,7 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
             </thead>
             <tbody>
               {courseTrainees.map((trainee) => {
-                const studentGroup = trainee.user.studentGroups![0];
+                const studentGroup = trainee.user.studentGroups![0]
                 return (
                   <tr key={trainee.id} className="border-y">
                     <td className="p-2 text-center">{`${studentGroup.group.grade}학년 ${studentGroup.group.klass}반 ${studentGroup.studentNumber}번 ${trainee.user.name}`}</td>
@@ -251,7 +251,7 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
                       </td>
                     ))}
                   </tr>
-                );
+                )
               })}
             </tbody>
           </table>
@@ -266,13 +266,13 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
         />
       )}
     </div>
-  );
+  )
 }
 
 interface TimetableCoursePageAttendanceManagementModalProps {
-  courseLectureId: number;
-  user: User;
-  onClose: () => void;
+  courseLectureId: number
+  user: User
+  onClose: () => void
 }
 
 function TimetableCoursePageAttendanceManagementModal({
@@ -280,30 +280,30 @@ function TimetableCoursePageAttendanceManagementModal({
   user,
   onClose,
 }: TimetableCoursePageAttendanceManagementModalProps) {
-  const [isAttended, setIsAttended] = useState(true);
-  const [note, setNote] = useState('');
-  const [disabled, setDisabled] = useState(false);
+  const [isAttended, setIsAttended] = useState(true)
+  const [note, setNote] = useState('')
+  const [disabled, setDisabled] = useState(false)
 
   const {
     data: lectureAttendance,
     isLoading,
     remove,
-  } = useLectureAttendanceGetOneByForeignKeys({ courseLectureId, userId: user.id });
+  } = useLectureAttendanceGetOneByForeignKeys({ courseLectureId, userId: user.id })
 
   useEffect(() => {
-    if (isLoading) return;
-    console.log(lectureAttendance);
+    if (isLoading) return
+    console.log(lectureAttendance)
 
-    setIsAttended(lectureAttendance?.isAttended !== false);
-    setNote(lectureAttendance?.note ?? '');
-  }, [lectureAttendance, isLoading]);
+    setIsAttended(lectureAttendance?.isAttended !== false)
+    setNote(lectureAttendance?.note ?? '')
+  }, [lectureAttendance, isLoading])
 
   async function save() {
-    setDisabled(true);
-    await lectureAttendanceSave({ id: lectureAttendance?.id, isAttended, note, courseLectureId, userId: user.id });
-    remove();
-    onClose();
-    setDisabled(false);
+    setDisabled(true)
+    await lectureAttendanceSave({ id: lectureAttendance?.id, isAttended, note, courseLectureId, userId: user.id })
+    remove()
+    onClose()
+    setDisabled(false)
   }
 
   return (
@@ -318,7 +318,7 @@ function TimetableCoursePageAttendanceManagementModal({
               loading="lazy"
               className="h-full w-full rounded object-cover"
               onError={({ currentTarget }) => {
-                currentTarget.src = userSvg;
+                currentTarget.src = userSvg
               }}
             />
           </div>
@@ -349,5 +349,5 @@ function TimetableCoursePageAttendanceManagementModal({
         <Button children="저장하기" disabled={disabled} onClick={save} className="filled-primary" />
       </Section>
     </SuperModal>
-  );
+  )
 }

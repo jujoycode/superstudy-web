@@ -1,96 +1,97 @@
-import clsx from 'clsx';
-import preval from 'preval.macro';
-import { useEffect, useMemo, useState } from 'react';
-import { Link, LinkProps, Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { ReactComponent as RightArrow } from 'src/assets/svg/RightFillArrow.svg';
-import { ReactComponent as Logo } from 'src/assets/svg/logo.svg';
-import SvgUser from 'src/assets/svg/user.svg';
-import { Toast } from 'src/components/Toast';
-import { AuthRoute, Blank } from 'src/components/common';
-import { Icon } from 'src/components/common/icons';
-import { NotificationModal } from 'src/components/notification/NotificationModal';
-import { Constants } from 'src/constants';
+import clsx from 'clsx'
+import preval from 'preval.macro'
+import { useEffect, useMemo, useState } from 'react'
+import { Link, LinkProps, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useHistory } from '@/hooks/useHistory'
+import RightArrow from '@/assets/svg/RightFillArrow.svg'
+import Logo from '@/asset/svg/logo.svg'
+import SvgUser from '@/asset/svg/user.svg'
+import { Toast } from '@/legacy/components/Toast'
+import { AuthRoute, Blank } from '@/legacy/components/common'
+import { Icon } from '@/legacy/components/common/icons'
+import { NotificationModal } from '@/legacy/components/notification/NotificationModal'
+import { Constants } from '@/legacy/constants'
 import {
   externalCreateToken,
   useDashboardGetDashBoardData,
   useNotificationLogFindRecent,
-} from 'src/generated/endpoint';
-import { OutingUse, ResponseDashboardDto, Role } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { cn } from 'src/lib/tailwind-merge';
-import { meState, newMsgCntState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { globalEnv } from 'src/util/global-env';
-import { useAuth, useLogout } from 'src/util/hooks';
-import { getNickName } from 'src/util/status';
-import CASInterviewDetailPage from '../ib/teacher/CAS/CASInterviewDetailPage';
-import { CASMainPage } from '../ib/teacher/CAS/CASMainPage';
-import CASPortfolioPage from '../ib/teacher/CAS/CASPortfolioPage';
-import { CASReflectionDiaryDetailPage } from '../ib/teacher/CAS/CASReflectionDiaryDetailPage';
-import { EEEssayPage } from '../ib/teacher/EE/EEEssayPage';
-import { EEMainPage } from '../ib/teacher/EE/EEMainPage';
-import { EEProposalDetailPage } from '../ib/teacher/EE/EEProposalDetailPage';
-import { EERppfDetailPage } from '../ib/teacher/EE/EERppfDetailPage';
-import { EERppfInterviewDetailPage } from '../ib/teacher/EE/EERppfInterviewDetailPage';
-import EERrsDetailPage from '../ib/teacher/EE/EERrsDetailPage';
-import IBTeacherMainPage from '../ib/teacher/IBTeacherMainPage';
-import { IBTeacherReferenceDetailPage } from '../ib/teacher/IBTeacherReferenceDetailPage';
-import { IBTeacherReferencePage } from '../ib/teacher/IBTeacherReferencePage';
-import { EssayDetailPage } from '../ib/teacher/TOK_ESSAY/EssayDetailPage';
-import { EssayMainPage } from '../ib/teacher/TOK_ESSAY/EssayMainPage';
-import { OutlineDetailPage } from '../ib/teacher/TOK_ESSAY/OutlineDetailPage';
-import RRSDetailPage from '../ib/teacher/TOK_ESSAY/RRSDetailPage';
-import { TKPPFDetailPage } from '../ib/teacher/TOK_ESSAY/TKPPFDetailPage';
-import { ExhibitionDetailPage } from '../ib/teacher/TOK_EXHIBITION/ExhibitionDetailPage';
-import { ExhibitionMainPage } from '../ib/teacher/TOK_EXHIBITION/ExhibitionMainPage';
-import { ExhibitionPlanDetailPage } from '../ib/teacher/TOK_EXHIBITION/ExhibitionPlanDetailPage';
-import { CoordinatorPage } from '../ib/teacher/coordinator/CoordinatorPage';
-import AbsentComparisonPage from './absent/AbsentComparisonPage';
-import { AbsentPage } from './absent/AbsentPage';
-import { TeacherApplyPage } from './absent/TeacherApplyPage';
-import { ActivityDetailPage } from './activity/ActivityDetailPage';
-import { ActivityPage } from './activity/ActivityPage';
-import { ActivityV3AddPage } from './activityv3/ActivityV3AddPage';
-import { ActivityV3DetailPage } from './activityv3/ActivityV3DetailPage';
-import { ActivityV3Page } from './activityv3/ActivityV3Page';
-import { ActivityV3ReportPage } from './activityv3/ActivityV3ReportPage';
-import { ActivityV3SessionAddPage } from './activityv3/ActivityV3SessionAddPage';
-import { ActivityV3SessionDetailPage } from './activityv3/ActivityV3SessionDetailPage';
-import { ActivityV3SessionReportPage } from './activityv3/ActivityV3SessionReportPage';
-import { ActivityV3SessionUpdatePage } from './activityv3/ActivityV3SessionUpdatePage';
-import { ActivityV3UpdatePage } from './activityv3/ActivityV3UpdatePage';
-import AnnouncementPage from './announcement/AnnouncementPage';
-import { AttendancePage } from './attendance/AttendancePage';
-import { BoardsPage } from './board/BoardPage';
-import { CalendarPage } from './calendar/CalendarPage';
-import { CanteenPage } from './canteen/CanteenPage';
-import { ChatListPage } from './chat/ChatListPage';
-import { FieldtripMainPage } from './fieldtrip/FieldtripMainPage';
-import { FieldtripNoticePage } from './fieldtrip/FieldtripNoticePage';
-import { FieldtripResultPage } from './fieldtrip/FieldtripResultPage';
-import { GroupPage } from './group/GroupPage';
-import { HistoryPage } from './history/HistoryPage';
-import { LoginPage } from './login/LoginPage';
-import { TeacherFirstLoginPage } from './login/TeacherFirstLoginPage';
-import { NotificationSettingsPage } from './mypage/NotificationSettingsPage';
-import { TeacherInfoPage } from './mypage/TeacherInfoPage';
-import { TeacherMyPage } from './mypage/TeacherMyPage';
-import { NewsletterPage } from './newsletter/NewsletterPage';
-import { NoticePage } from './notice/NoticePage';
-import { OutingPage } from './outing/OutingPage';
-import { PointDashboard } from './pointlogs/PointDashboard';
-import { RecordPage } from './record/RecordPage';
-import { StudentCardPage } from './studentcard/StudentCardPage';
-import { TimetablePage } from './timetable/TimetablePage';
+} from '@/legacy/generated/endpoint'
+import { OutingUse, ResponseDashboardDto, Role } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { cn } from '@/legacy/lib/tailwind-merge'
+import { meState, newMsgCntState } from '@/stores'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { globalEnv } from '@/legacy/util/global-env'
+import { useAuth, useLogout } from '@/legacy/util/hooks'
+import { getNickName } from '@/legacy/util/status'
+import CASInterviewDetailPage from '@/legacy/pages/ib/teacher/CAS/CASInterviewDetailPage'
+import { CASMainPage } from '@/legacy/pages/ib/teacher/CAS/CASMainPage'
+import CASPortfolioPage from '@/legacy/pages/ib/teacher/CAS/CASPortfolioPage'
+import { CASReflectionDiaryDetailPage } from '@/legacy/pages/ib/teacher/CAS/CASReflectionDiaryDetailPage'
+import { EEEssayPage } from '@/legacy/pages/ib/teacher/EE/EEEssayPage'
+import { EEMainPage } from '@/legacy/pages/ib/teacher/EE/EEMainPage'
+import { EEProposalDetailPage } from '@/legacy/pages/ib/teacher/EE/EEProposalDetailPage'
+import { EERppfDetailPage } from '@/legacy/pages/ib/teacher/EE/EERppfDetailPage'
+import { EERppfInterviewDetailPage } from '@/legacy/pages/ib/teacher/EE/EERppfInterviewDetailPage'
+import EERrsDetailPage from '@/legacy/pages/ib/teacher/EE/EERrsDetailPage'
+import IBTeacherMainPage from '@/legacy/pages/ib/teacher/IBTeacherMainPage'
+import { IBTeacherReferenceDetailPage } from '@/legacy/pages/ib/teacher/IBTeacherReferenceDetailPage'
+import { IBTeacherReferencePage } from '@/legacy/pages/ib/teacher/IBTeacherReferencePage'
+import { EssayDetailPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/EssayDetailPage'
+import { EssayMainPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/EssayMainPage'
+import { OutlineDetailPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/OutlineDetailPage'
+import RRSDetailPage from '@/legacy/pages/ib/teacher/TOK_ESSAY/RRSDetailPage'
+import { TKPPFDetailPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/TKPPFDetailPage'
+import { ExhibitionDetailPage } from '@/legacy/pages/ib/teacher/TOK_EXHIBITION/ExhibitionDetailPage'
+import { ExhibitionMainPage } from '@/legacy/pages/ib/teacher/TOK_EXHIBITION/ExhibitionMainPage'
+import { ExhibitionPlanDetailPage } from '@/legacy/pages/ib/teacher/TOK_EXHIBITION/ExhibitionPlanDetailPage'
+import { CoordinatorPage } from '@/legacy/pages/ib/teacher/coordinator/CoordinatorPage'
+import AbsentComparisonPage from '@/legacy/pages/teacher/absent/AbsentComparisonPage'
+import { AbsentPage } from '@/legacy/pages/teacher/absent/AbsentPage'
+import { TeacherApplyPage } from '@/legacy/pages/teacher/absent/TeacherApplyPage'
+import { ActivityDetailPage } from './activity/ActivityDetailPage'
+import { ActivityV3AddPage } from './activityv3/ActivityV3AddPage'
+import { ActivityPage } from './activity/ActivityPage'
+import { ActivityV3DetailPage } from './activityv3/ActivityV3DetailPage'
+import { ActivityV3Page } from './activityv3/ActivityV3Page'
+import { ActivityV3ReportPage } from './activityv3/ActivityV3ReportPage'
+import { ActivityV3SessionAddPage } from './activityv3/ActivityV3SessionAddPage'
+import { ActivityV3SessionDetailPage } from './activityv3/ActivityV3SessionDetailPage'
+import { ActivityV3SessionReportPage } from './activityv3/ActivityV3SessionReportPage'
+import { ActivityV3SessionUpdatePage } from './activityv3/ActivityV3SessionUpdatePage'
+import { ActivityV3UpdatePage } from './activityv3/ActivityV3UpdatePage'
+import AnnouncementPage from './announcement/AnnouncementPage'
+import { AttendancePage } from './attendance/AttendancePage'
+import { BoardsPage } from './board/BoardPage'
+import { CalendarPage } from './calendar/CalendarPage'
+import { CanteenPage } from './canteen/CanteenPage'
+import { ChatListPage } from './chat/ChatListPage'
+import { FieldtripMainPage } from './fieldtrip/FieldtripMainPage'
+import { FieldtripNoticePage } from './fieldtrip/FieldtripNoticePage'
+import { FieldtripResultPage } from './fieldtrip/FieldtripResultPage'
+import { GroupPage } from './group/GroupPage'
+import { HistoryPage } from './history/HistoryPage'
+import { LoginPage } from './login/LoginPage'
+import { TeacherFirstLoginPage } from './login/TeacherFirstLoginPage'
+import { NotificationSettingsPage } from './mypage/NotificationSettingsPage'
+import { TeacherInfoPage } from './mypage/TeacherInfoPage'
+import { TeacherMyPage } from './mypage/TeacherMyPage'
+import { NewsletterPage } from './newsletter/NewsletterPage'
+import { NoticePage } from './notice/NoticePage'
+import { OutingPage } from './outing/OutingPage'
+import { PointDashboard } from './pointlogs/PointDashboard'
+import { RecordPage } from './record/RecordPage'
+import { StudentCardPage } from './studentcard/StudentCardPage'
+import { TimetablePage } from './timetable/TimetablePage'
 
 export function TeacherMainPage() {
-  const { replace } = useHistory();
-  const { pathname } = useLocation();
-  const { t, changeLanguage, currentLang } = useLanguage();
+  const { replace } = useHistory()
+  const { pathname } = useLocation()
+  const { t, changeLanguage, currentLang } = useLanguage()
 
-  const setNewMsgCnt = useSetRecoilState(newMsgCntState);
-  const me = useRecoilValue(meState);
+  const setNewMsgCnt = useSetRecoilState(newMsgCntState)
+  const me = useRecoilValue(meState)
   const manuals = [
     {
       id: 1,
@@ -142,26 +143,26 @@ export function TeacherMainPage() {
     //   url: 'https://superstudy-image.s3.ap-northeast-2.amazonaws.com/tutorials/%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC%20%ED%95%99%EB%B6%80%EB%AA%A8%EC%9A%A9_2022.10.31.pdf',
     //   title: '보호자용',
     // },
-  ];
+  ]
 
-  const logout = useLogout();
-  const [openFieldTrip, setOpenFieldTrip] = useState(false);
-  const [openGuide, setOpenGuide] = useState(false);
-  const [blankOpen, setBlankOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const { authenticated } = useAuth();
-  const { data: notificationLog } = useNotificationLogFindRecent();
+  const logout = useLogout()
+  const [openFieldTrip, setOpenFieldTrip] = useState(false)
+  const [openGuide, setOpenGuide] = useState(false)
+  const [blankOpen, setBlankOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
+  const { authenticated } = useAuth()
+  const { data: notificationLog } = useNotificationLogFindRecent()
 
   if (me?.role === 'USER' || me?.role === 'PARENT') {
-    replace('/student');
+    replace('/student')
   }
 
   if (me?.firstVisit && !pathname.startsWith('/teacher/first-login')) {
-    replace('/teacher/first-login');
+    replace('/teacher/first-login')
   }
 
   // TODO 채팅 머지 후, 재 수정, 신규 메시지
-  const newMsgCnt = useRecoilValue(newMsgCntState);
+  const newMsgCnt = useRecoilValue(newMsgCntState)
 
   const tabs = useMemo(
     () => [
@@ -199,7 +200,7 @@ export function TeacherMainPage() {
       },
     ],
     [me?.role, authenticated, pathname],
-  );
+  )
 
   const adminPermission = useMemo(
     () =>
@@ -214,70 +215,70 @@ export function TeacherMainPage() {
       me?.teacherPermission?.adminTimetable ||
       me?.teacherPermission?.adminIb,
     [me],
-  );
+  )
 
   useEffect(() => {
-    if (!pathname.startsWith('/teacher/fieldtrip')) setOpenFieldTrip(false);
-    setOpenGuide(false);
-  }, [pathname]);
+    if (!pathname.startsWith('/teacher/fieldtrip')) setOpenFieldTrip(false)
+    setOpenGuide(false)
+  }, [pathname])
 
   function openSugang() {
     externalCreateToken().then((token) => {
       // 실서버
-      let url = `https://${window.location.hostname}/course/teacher?sso=${token}`;
+      let url = `https://${window.location.hostname}/course/teacher?sso=${token}`
       if (process.env.REACT_APP_API_URL && process.env.REACT_APP_API_URL.startsWith('http://')) {
         // 로컬
-        url = `http://localhost:3100/course/teacher?sso=${token}`;
+        url = `http://localhost:3100/course/teacher?sso=${token}`
       }
 
-      window.open(url, '_self');
-    });
+      window.open(url, '_self')
+    })
   }
 
   useDashboardGetDashBoardData<ResponseDashboardDto>({
     query: {
       onSuccess: (res) => {
-        setNewMsgCnt(res?.unreadChatMessageCount || 0);
+        setNewMsgCnt(res?.unreadChatMessageCount || 0)
       },
     },
-  });
+  })
 
-  const hasConfirmedAll = !notificationLog;
+  const hasConfirmedAll = !notificationLog
 
   return (
     <div className="flex">
       {blankOpen && <Blank />}
 
       <div className="hidden w-[270px] flex-shrink-0 md:block">
-        <div className="flex flex-grow flex-col border-r border-gray-200 bg-gray-50 pb-4 pt-1">
+        <div className="flex flex-grow flex-col border-r border-gray-200 bg-gray-50 pt-1 pb-4">
           <div className="flex items-center justify-between px-4">
             <Link to={`/teacher/canteen/${DateUtil.formatDate(new Date().toISOString(), DateFormat['YYYY-MM-DD'])}`}>
               <Logo className="w-20" />
             </Link>
             <div className="flex items-center space-x-4">
               {me?.schoolId === 2 || me?.schoolId === 171 || me?.schoolId === 183 ? (
-                <div onClick={() => changeLanguage()} className="cursor-pointer text-sm text-brand-1">
+                <div onClick={() => changeLanguage()} className="text-brand-1 cursor-pointer text-sm">
                   {t('select_language')}
                 </div>
               ) : (
                 <div
                   onClick={() => {
-                    setBlankOpen(true);
-                    window?.location?.reload();
+                    setBlankOpen(true)
+                    window?.location?.reload()
                   }}
-                  className="cursor-pointer text-sm text-brand-1"
+                  className="text-brand-1 cursor-pointer text-sm"
                 >
                   새로고침
                 </div>
               )}
               <div className="relative h-6 w-6">
                 <Icon.Bell className="h-6 w-6 cursor-pointer" onClick={() => setModalOpen(!modalOpen)} />
-                {!hasConfirmedAll && <div className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500" />}
+                {!hasConfirmedAll && <div className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500" />}
                 {modalOpen && (
-                  <div className="scroll-box absolute -top-2 left-12 z-50 h-128 w-96 overflow-y-auto overflow-x-hidden">
+                  <div className="scroll-box absolute -top-2 left-12 z-50 h-128 w-96 overflow-x-hidden overflow-y-auto">
                     <NotificationModal />
                     <Icon.Close
-                      className="absolute left-[22.5rem] top-2 h-4 w-4 cursor-pointer"
+                      className="absolute top-2 left-[22.5rem] h-4 w-4 cursor-pointer"
                       onClick={() => setModalOpen(false)}
                     />
                   </div>
@@ -287,7 +288,7 @@ export function TeacherMainPage() {
           </div>
 
           {/* 선생님 프로필 */}
-          <div className="mx-4 flex select-none items-center gap-4 py-2">
+          <div className="mx-4 flex items-center gap-4 py-2 select-none">
             <div className="flex h-[72px] w-[60px] rounded-xl">
               <img
                 className="mx-auto rounded-xl"
@@ -295,9 +296,9 @@ export function TeacherMainPage() {
                 alt=""
                 loading="lazy"
                 onError={({ currentTarget }) => {
-                  currentTarget.onerror = null; // prevents looping
-                  currentTarget.src = SvgUser;
-                  currentTarget.className = 'w-full rounded-xl';
+                  currentTarget.onerror = null // prevents looping
+                  currentTarget.src = SvgUser
+                  currentTarget.className = 'w-full rounded-xl'
                 }}
               />
             </div>
@@ -313,26 +314,26 @@ export function TeacherMainPage() {
                   </p>
                   <RightArrow />
                 </div>
-                <p className="flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-medium leading-none">
+                <p className="flex-1 overflow-hidden text-xs leading-none font-medium text-ellipsis whitespace-nowrap">
                   {me?.email}
                 </p>
               </div>
-              <div className="flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-normal leading-none">
+              <div className="flex-1 overflow-hidden text-xs leading-none font-normal text-ellipsis whitespace-nowrap">
                 {me?.school?.name}
               </div>
             </div>
           </div>
 
           {/* 메뉴바 */}
-          <div className="scroll-box mt-5 flex h-screen-13 flex-grow flex-col overflow-y-auto tracking-tighter">
+          <div className="scroll-box h-screen-13 mt-5 flex flex-grow flex-col overflow-y-auto tracking-tighter">
             <nav
               className={`flex-1 space-y-1 px-4 ${currentLang === 'en' ? 'text-14' : 'text-16'}`}
               aria-label="Sidebar"
             >
               {/* 출결 start */}
               <div className="flex">
-                <div className="w-20 self-center text-center font-bold text-darkgray">{t(`attendance`)}</div>
-                <div className="my-2.5 ml-3 mr-2 border border-grey-6" />
+                <div className="text-darkgray w-20 self-center text-center font-bold">{t(`attendance`)}</div>
+                <div className="border-grey-6 my-2.5 mr-2 ml-3 border" />
                 <div className="w-40">
                   <TeacherMainPageLink to="/teacher/attendance">{t(`attendance_register`)}</TeacherMainPageLink>
                   <TeacherMainPageLink to="/teacher/timetable">
@@ -367,8 +368,8 @@ export function TeacherMainPage() {
                     onClick={() => setOpenFieldTrip(!openFieldTrip)}
                     className={
                       openFieldTrip
-                        ? 'font-base group flex cursor-pointer select-none items-center rounded-t-md bg-gray-200 px-3 pb-1 pt-3 text-sm text-darkgray'
-                        : 'font-base group flex cursor-pointer select-none items-center rounded-t-md px-3 py-3 text-sm text-darkgray hover:bg-gray-100 hover:text-gray-900'
+                        ? 'font-base group text-darkgray flex cursor-pointer items-center rounded-t-md bg-gray-200 px-3 pt-3 pb-1 text-sm select-none'
+                        : 'font-base group text-darkgray flex cursor-pointer items-center rounded-t-md px-3 py-3 text-sm select-none hover:bg-gray-100 hover:text-gray-900'
                     }
                   >
                     {t(`experiential_learning_activity`)}
@@ -408,14 +409,14 @@ export function TeacherMainPage() {
                   )}
                 </div>
               </div>
-              <div className="w-full border border-grey-6" />
+              <div className="border-grey-6 w-full border" />
               {/* 출결 end */}
 
               {/* 정보 start */}
               <div className="flex">
-                <div className="w-20 self-center text-center font-bold text-darkgray">{t(`information`)}</div>
+                <div className="text-darkgray w-20 self-center text-center font-bold">{t(`information`)}</div>
 
-                <div className="my-2.5 ml-3 mr-2 border border-grey-6" />
+                <div className="border-grey-6 my-2.5 mr-2 ml-3 border" />
 
                 <div className="w-40">
                   <TeacherMainPageLink to="/teacher/studentcard">{t(`student_information`)}</TeacherMainPageLink>
@@ -423,13 +424,13 @@ export function TeacherMainPage() {
                   <TeacherMainPageLink to="/teacher/pointlogs">{t(`상벌점관리`)}</TeacherMainPageLink>
                 </div>
               </div>
-              <div className="w-full border border-grey-6" />
+              <div className="border-grey-6 w-full border" />
               {/* 정보 end */}
 
               {/* 활동 start*/}
               <div className="flex">
-                <div className="w-20 self-center text-center font-bold text-darkgray">{t(`activity`)}</div>
-                <div className="my-2.5 ml-3 mr-2 border border-grey-6" />
+                <div className="text-darkgray w-20 self-center text-center font-bold">{t(`activity`)}</div>
+                <div className="border-grey-6 my-2.5 mr-2 ml-3 border" />
                 <div className="w-40">
                   <TeacherMainPageLink
                     to="/teacher/activityv3"
@@ -442,8 +443,8 @@ export function TeacherMainPage() {
                       to="/teacher/activity"
                       className={
                         pathname.startsWith('/teacher/groups')
-                          ? 'group flex items-center rounded-md bg-darkgray px-3 py-3 text-sm font-bold text-white'
-                          : 'font-base group flex cursor-pointer items-center rounded-md px-3 py-3 text-sm text-darkgray hover:bg-gray-100 hover:text-gray-900'
+                          ? 'group bg-darkgray flex items-center rounded-md px-3 py-3 text-sm font-bold text-white'
+                          : 'font-base group text-darkgray flex cursor-pointer items-center rounded-md px-3 py-3 text-sm hover:bg-gray-100 hover:text-gray-900'
                       }
                     >
                       활동 기록부(old)
@@ -463,8 +464,8 @@ export function TeacherMainPage() {
                       to="/teacher/record"
                       className={
                         pathname.startsWith('/teacher/record')
-                          ? 'group flex items-center rounded-md bg-darkgray px-3 py-3 text-sm font-bold text-white'
-                          : 'font-base group flex cursor-pointer items-center rounded-md px-3 py-3 text-sm text-darkgray hover:bg-gray-100 hover:text-gray-900'
+                          ? 'group bg-darkgray flex items-center rounded-md px-3 py-3 text-sm font-bold text-white'
+                          : 'font-base group text-darkgray flex cursor-pointer items-center rounded-md px-3 py-3 text-sm hover:bg-gray-100 hover:text-gray-900'
                       }
                     >
                       생활 기록부(old)
@@ -472,14 +473,14 @@ export function TeacherMainPage() {
                   )}
                 </div>
               </div>
-              <div className="w-full border border-grey-6" />
+              <div className="border-grey-6 w-full border" />
               {/* 활동 end*/}
 
               {/* 일정 start */}
               <div className="flex">
-                <div className="w-20 self-center text-center font-bold text-darkgray">{t(`schedule`)}</div>
+                <div className="text-darkgray w-20 self-center text-center font-bold">{t(`schedule`)}</div>
 
-                <div className="my-2.5 ml-3 mr-2 border border-grey-6" />
+                <div className="border-grey-6 my-2.5 mr-2 ml-3 border" />
 
                 <div className="w-40">
                   <TeacherMainPageLink to="/teacher/calendar">{t(`calendar`)}</TeacherMainPageLink>
@@ -491,14 +492,14 @@ export function TeacherMainPage() {
                   </TeacherMainPageLink>
                 </div>
               </div>
-              <div className="w-full border border-grey-6" />
+              <div className="border-grey-6 w-full border" />
               {/* 일정 end */}
 
               {/* 공지 start */}
               <div className="flex">
-                <div className="w-20 self-center text-center font-bold text-darkgray">{t(`notice`)}</div>
+                <div className="text-darkgray w-20 self-center text-center font-bold">{t(`notice`)}</div>
 
-                <div className="my-2.5 ml-3 mr-2 border border-grey-6" />
+                <div className="border-grey-6 my-2.5 mr-2 ml-3 border" />
 
                 <div className="w-40">
                   <TeacherMainPageLink to="/teacher/notice">{t(`announcement`)}</TeacherMainPageLink>
@@ -518,19 +519,19 @@ export function TeacherMainPage() {
                   </TeacherMainPageLink>
                 </div>
               </div>
-              <div className="w-full border border-grey-6" />
+              <div className="border-grey-6 w-full border" />
               {/*공지 end*/}
 
               {/* 서비스 start */}
               <div className="flex">
-                <div className="w-20 self-center text-center font-bold text-darkgray">{t(`more`)}</div>
-                <div className="my-2.5 ml-3 mr-2 border border-grey-6" />
+                <div className="text-darkgray w-20 self-center text-center font-bold">{t(`more`)}</div>
+                <div className="border-grey-6 my-2.5 mr-2 ml-3 border" />
                 <div className="w-40">
                   <TeacherMainPageLink to="/teacher/update">{t(`my_information`)}</TeacherMainPageLink>
                   <a
                     href="http://superstudy.channel.io/"
                     target="blank"
-                    className="font-base group flex cursor-pointer items-center rounded-md px-3 py-3 text-sm text-darkgray hover:bg-gray-100 hover:text-gray-900"
+                    className="font-base group text-darkgray flex cursor-pointer items-center rounded-md px-3 py-3 text-sm hover:bg-gray-100 hover:text-gray-900"
                   >
                     {t(`contact_us`)}
                   </a>
@@ -538,8 +539,8 @@ export function TeacherMainPage() {
                     onClick={() => setOpenGuide(!openGuide)}
                     className={
                       openGuide
-                        ? 'font-base group flex cursor-pointer select-none items-center rounded-t-md bg-gray-200 px-3 py-3 text-sm text-darkgray'
-                        : 'font-base group flex cursor-pointer select-none items-center rounded-t-md px-3 py-3 text-sm text-darkgray hover:bg-gray-100 hover:text-gray-900'
+                        ? 'font-base group text-darkgray flex cursor-pointer items-center rounded-t-md bg-gray-200 px-3 py-3 text-sm select-none'
+                        : 'font-base group text-darkgray flex cursor-pointer items-center rounded-t-md px-3 py-3 text-sm select-none hover:bg-gray-100 hover:text-gray-900'
                     }
                   >
                     {t(`usage_guide`)}
@@ -548,7 +549,7 @@ export function TeacherMainPage() {
                     <div className="rounded-b-md bg-gray-200">
                       {manuals.map(({ id, url, title }) => (
                         <a key={id} href={url} target="_blank" rel="noreferrer">
-                          <div className="font-base group flex cursor-pointer select-none items-center px-3 py-3 text-sm text-darkgray hover:bg-gray-100 hover:text-gray-900">
+                          <div className="font-base group text-darkgray flex cursor-pointer items-center px-3 py-3 text-sm select-none hover:bg-gray-100 hover:text-gray-900">
                             {title}
                           </div>
                         </a>
@@ -558,20 +559,20 @@ export function TeacherMainPage() {
 
                   <TeacherMainPageLink to="/teacher/announcement">{t(`superschool_announcement`)}</TeacherMainPageLink>
                   <div
-                    className="font-base group flex cursor-pointer items-center rounded-md px-3 py-3 text-sm text-darkgray hover:bg-gray-100 hover:text-gray-900"
+                    className="font-base group text-darkgray flex cursor-pointer items-center rounded-md px-3 py-3 text-sm hover:bg-gray-100 hover:text-gray-900"
                     onClick={() => logout()}
                   >
                     {t(`logout`)}
                   </div>
                 </div>
               </div>
-              <div className="w-full border border-grey-6" />
+              <div className="border-grey-6 w-full border" />
               {/* 서비스 end */}
 
               {(me?.role === Role.ADMIN || adminPermission) && (
                 <Link
                   to="/admin"
-                  className="flex items-center justify-between rounded-md border-2 border-darkgray py-3 text-sm font-semibold"
+                  className="border-darkgray flex items-center justify-between rounded-md border-2 py-3 text-sm font-semibold"
                 >
                   <div className="flex w-full justify-center">{t('admin_mode')}</div>
                   <Icon.ChevronRight />
@@ -581,16 +582,16 @@ export function TeacherMainPage() {
               {me?.school?.isCourseActive && (
                 <div
                   onClick={() => {
-                    openSugang();
+                    openSugang()
                   }}
-                  className="flex cursor-pointer items-center justify-between rounded-md border-2 border-darkgray py-3 text-sm font-semibold"
+                  className="border-darkgray flex cursor-pointer items-center justify-between rounded-md border-2 py-3 text-sm font-semibold"
                 >
                   <div className="flex w-full justify-center">신청관리모드</div>
                   <Icon.ChevronRight />
                 </div>
               )}
 
-              <div className="py-2 text-12 text-gray-400">
+              <div className="text-12 py-2 text-gray-400">
                 <div className="text-white">
                   v{globalEnv.version} build at <br />
                   {preval`module.exports = new Date().toLocaleString().split("├")[0]`}
@@ -606,106 +607,106 @@ export function TeacherMainPage() {
       {/*/!* Mobile V *!/*/}
       <nav className="bottom-nav z-100 md:hidden">
         {tabs.map((tab) => {
-          const active = [tab.path, ...(tab.extra ?? [])].some((path) => pathname.startsWith(path));
+          const active = [tab.path, ...(tab.extra ?? [])].some((path) => pathname.startsWith(path))
           return (
             <Link key={tab.path} to={tab.path} className={clsx('bottom-nav-item', active && 'text-darkgray')}>
               <tab.icon className="stroke-current" />
               <span>{tab.name}</span>
             </Link>
-          );
+          )
         })}
       </nav>
 
       <div className="scroll-box h-screen w-full grid-cols-6 overflow-x-hidden overflow-y-scroll md:grid md:overflow-y-hidden">
-        <Switch>
-          <Route path="/teacher/canteen" component={CanteenPage} />
-          <Route path="/teacher/timetable" component={TimetablePage} />
-          <Route path="/teacher/attendance" component={AttendancePage} />
-          <Route path="/teacher/absent/comparison" component={AbsentComparisonPage} />
-          <Route path="/teacher/absent" component={AbsentPage} />
-          <Route path="/teacher/history" component={HistoryPage} />
-          <Route path="/teacher/update" component={TeacherInfoPage} />
+        <Routes>
+          <Route path="/teacher/canteen" Component={CanteenPage} />
+          <Route path="/teacher/timetable" Component={TimetablePage} />
+          <Route path="/teacher/attendance" Component={AttendancePage} />
+          <Route path="/teacher/absent/comparison" Component={AbsentComparisonPage} />
+          <Route path="/teacher/absent" Component={AbsentPage} />
+          <Route path="/teacher/history" Component={HistoryPage} />
+          <Route path="/teacher/update" Component={TeacherInfoPage} />
           <AuthRoute path="/teacher/first-login" component={TeacherFirstLoginPage} />
-          <Route path="/teacher/fieldtrip/notice" component={FieldtripNoticePage} />
-          <Route path="/teacher/fieldtrip/result" component={FieldtripResultPage} />
-          <Route path="/teacher/board" component={BoardsPage} />
-          <Route path="/teacher/chat" component={ChatListPage} />
-          <Route path="/teacher/fieldtrip" component={FieldtripMainPage} />
-          <Route path="/teacher/calendar" component={CalendarPage} />
-          <Route path="/teacher/project" component={IBTeacherMainPage} />
+          <Route path="/teacher/fieldtrip/notice" Component={FieldtripNoticePage} />
+          <Route path="/teacher/fieldtrip/result" Component={FieldtripResultPage} />
+          <Route path="/teacher/board" Component={BoardsPage} />
+          <Route path="/teacher/chat" Component={ChatListPage} />
+          <Route path="/teacher/fieldtrip" Component={FieldtripMainPage} />
+          <Route path="/teacher/calendar" Component={CalendarPage} />
+          <Route path="/teacher/project" Component={IBTeacherMainPage} />
           <Route
             path="/teacher/ib/portfolio/:studentId/reflection-diary/:id"
-            component={CASReflectionDiaryDetailPage}
+            Component={CASReflectionDiaryDetailPage}
           />
-          <Route path="/teacher/ib/portfolio/:studentId/interview/:id/:qnaId" component={CASInterviewDetailPage} />
-          <Route path="/teacher/ib/cas/portfolio/:id" component={CASPortfolioPage} />
-          <Route path="/teacher/ib/cas/:id" component={CASMainPage} />
-          <Route path="/teacher/ib/ee/:id/proposal/:proposalId" component={EEProposalDetailPage} />
-          <Route path="/teacher/ib/ee/:id/essay/:essayId" component={EEEssayPage} />
-          <Route path="/teacher/ib/ee/:id/rppf/:rppfId" component={EERppfDetailPage} />
-          <Route path="/teacher/ib/ee/:id/interview/:qnaId" component={EERppfInterviewDetailPage} />
-          <Route path="/teacher/ib/ee/:id/rrs/:rrsId" component={EERrsDetailPage} />
-          <Route path="/teacher/ib/ee/:id" component={EEMainPage} />
-          <Route path="/teacher/ib/coordinatorPage/:type" component={CoordinatorPage} />
-          <Route path="/teacher/ib/reference/:id" component={IBTeacherReferenceDetailPage} />
-          <Route path="/teacher/ib/reference" component={IBTeacherReferencePage} />
-          <Route path="/teacher/ib/tok/exhibition/:ibId/detail/:exhibitionId" component={ExhibitionDetailPage} />
-          <Route path="/teacher/ib/tok/exhibition/:ibId" component={ExhibitionMainPage} />
-          <Route path="/teacher/ib/tok/plan/:ibId" component={ExhibitionPlanDetailPage} />
-          <Route path="/teacher/ib/tok/essay/:ibId/detail/:essayId" component={EssayDetailPage} />
-          <Route path="/teacher/ib/tok/essay/:ibId" component={EssayMainPage} />
-          <Route path="/teacher/ib/tok/outline/:ibId/detail/:outlineId" component={OutlineDetailPage} />
-          <Route path="/teacher/ib/tok/tkppf/:ibId/detail/:tkppfId" component={TKPPFDetailPage} />
-          <Route path="/teacher/ib/tok/rrs/:ibId/detail/:rrsId" component={RRSDetailPage} />
-          <Route path="/teacher/activityv3/:id/session/add" component={ActivityV3SessionAddPage} />
-          <Route path="/teacher/activityv3/:id/session/:sessionId/update" component={ActivityV3SessionUpdatePage} />
-          <Route path="/teacher/activityv3/:id/session/:sessionId/:studentId" component={ActivityV3SessionReportPage} />
-          <Route path="/teacher/activityv3/:id/session/:sessionId" component={ActivityV3SessionDetailPage} />
-          <Route path="/teacher/activityv3/add" component={ActivityV3AddPage} />
-          <Route path="/teacher/activityv3/:id/update" component={ActivityV3UpdatePage} />
-          <Route path="/teacher/activityv3/:id/:studentId" component={ActivityV3ReportPage} />
-          <Route path="/teacher/activityv3/:id" component={ActivityV3DetailPage} />
-          <Route path="/teacher/activityv3" component={ActivityV3Page} />
-          <Route path="/teacher/activity/:id" component={ActivityDetailPage} />
-          <Route path="/teacher/activity" component={ActivityPage} />
-          <Route path="/teacher/record" component={RecordPage} />
-          <Route path="/teacher/outing" component={OutingPage} />
-          <Route path="/teacher/studentcard" component={StudentCardPage} />
-          <Route path="/teacher/groups" component={GroupPage} />
-          <Route path="/teacher/pointlogs" component={PointDashboard} />
-          <Route path="/teacher/notice" component={NoticePage} />
-          <Route path="/teacher/newsletter" component={NewsletterPage} />
-          <Route path="/teacher/apply" component={TeacherApplyPage} />
-          <Route path="/teacher/mypage" component={TeacherMyPage} />
-          <Route path="/teacher/notification-settings" component={NotificationSettingsPage} />
-          <Route path="/teacher/login" component={LoginPage} />
-          <Route path="/teacher/announcement" component={AnnouncementPage} />
+          <Route path="/teacher/ib/portfolio/:studentId/interview/:id/:qnaId" Component={CASInterviewDetailPage} />
+          <Route path="/teacher/ib/cas/portfolio/:id" Component={CASPortfolioPage} />
+          <Route path="/teacher/ib/cas/:id" Component={CASMainPage} />
+          <Route path="/teacher/ib/ee/:id/proposal/:proposalId" Component={EEProposalDetailPage} />
+          <Route path="/teacher/ib/ee/:id/essay/:essayId" Component={EEEssayPage} />
+          <Route path="/teacher/ib/ee/:id/rppf/:rppfId" Component={EERppfDetailPage} />
+          <Route path="/teacher/ib/ee/:id/interview/:qnaId" Component={EERppfInterviewDetailPage} />
+          <Route path="/teacher/ib/ee/:id/rrs/:rrsId" Component={EERrsDetailPage} />
+          <Route path="/teacher/ib/ee/:id" Component={EEMainPage} />
+          <Route path="/teacher/ib/coordinatorPage/:type" Component={CoordinatorPage} />
+          <Route path="/teacher/ib/reference/:id" Component={IBTeacherReferenceDetailPage} />
+          <Route path="/teacher/ib/reference" Component={IBTeacherReferencePage} />
+          <Route path="/teacher/ib/tok/exhibition/:ibId/detail/:exhibitionId" Component={ExhibitionDetailPage} />
+          <Route path="/teacher/ib/tok/exhibition/:ibId" Component={ExhibitionMainPage} />
+          <Route path="/teacher/ib/tok/plan/:ibId" Component={ExhibitionPlanDetailPage} />
+          <Route path="/teacher/ib/tok/essay/:ibId/detail/:essayId" Component={EssayDetailPage} />
+          <Route path="/teacher/ib/tok/essay/:ibId" Component={EssayMainPage} />
+          <Route path="/teacher/ib/tok/outline/:ibId/detail/:outlineId" Component={OutlineDetailPage} />
+          <Route path="/teacher/ib/tok/tkppf/:ibId/detail/:tkppfId" Component={TKPPFDetailPage} />
+          <Route path="/teacher/ib/tok/rrs/:ibId/detail/:rrsId" Component={RRSDetailPage} />
+          <Route path="/teacher/activityv3/:id/session/add" Component={ActivityV3SessionAddPage} />
+          <Route path="/teacher/activityv3/:id/session/:sessionId/update" Component={ActivityV3SessionUpdatePage} />
+          <Route path="/teacher/activityv3/:id/session/:sessionId/:studentId" Component={ActivityV3SessionReportPage} />
+          <Route path="/teacher/activityv3/:id/session/:sessionId" Component={ActivityV3SessionDetailPage} />
+          <Route path="/teacher/activityv3/add" Component={ActivityV3AddPage} />
+          <Route path="/teacher/activityv3/:id/update" Component={ActivityV3UpdatePage} />
+          <Route path="/teacher/activityv3/:id/:studentId" Component={ActivityV3ReportPage} />
+          <Route path="/teacher/activityv3/:id" Component={ActivityV3DetailPage} />
+          <Route path="/teacher/activityv3" Component={ActivityV3Page} />
+          <Route path="/teacher/activity/:id" Component={ActivityDetailPage} />
+          <Route path="/teacher/activity" Component={ActivityPage} />
+          <Route path="/teacher/record" Component={RecordPage} />
+          <Route path="/teacher/outing" Component={OutingPage} />
+          <Route path="/teacher/studentcard" Component={StudentCardPage} />
+          <Route path="/teacher/groups" Component={GroupPage} />
+          <Route path="/teacher/pointlogs" Component={PointDashboard} />
+          <Route path="/teacher/notice" Component={NoticePage} />
+          <Route path="/teacher/newsletter" Component={NewsletterPage} />
+          <Route path="/teacher/apply" Component={TeacherApplyPage} />
+          <Route path="/teacher/mypage" Component={TeacherMyPage} />
+          <Route path="/teacher/notification-settings" Component={NotificationSettingsPage} />
+          <Route path="/teacher/login" Component={LoginPage} />
+          <Route path="/teacher/announcement" Component={AnnouncementPage} />
 
           <Route path="/teacher">
             {process.env.REACT_APP_MENU_TYPE === '2' ? (
-              <Redirect to="/teacher/absent" />
+              <Navigate to="/teacher/absent" />
             ) : (
-              <Redirect
+              <Navigate
                 to={`/teacher/canteen/${DateUtil.formatDate(new Date().toISOString(), DateFormat['YYYY-MM-DD'])}`}
               />
             )}
           </Route>
-        </Switch>
+        </Routes>
       </div>
 
       <Toast />
     </div>
-  );
+  )
 }
 
 interface TeacherMainPageLinkProps extends LinkProps {
-  selected?: boolean;
+  selected?: boolean
 }
 
 function TeacherMainPageLink({ selected, to, className, ...props }: TeacherMainPageLinkProps) {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
 
-  const active = selected ?? (typeof to === 'string' && pathname.startsWith(to));
+  const active = selected ?? (typeof to === 'string' && pathname.startsWith(to))
 
   return (
     <Link
@@ -717,5 +718,5 @@ function TeacherMainPageLink({ selected, to, className, ...props }: TeacherMainP
       )}
       {...props}
     />
-  );
+  )
 }

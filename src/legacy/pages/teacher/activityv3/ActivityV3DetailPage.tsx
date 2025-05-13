@@ -1,35 +1,35 @@
-import { differenceInDays, format } from 'date-fns';
-import _, { sortBy } from 'lodash';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
-import Viewer from 'react-viewer';
-import { ImageDecorator } from 'react-viewer/lib/ViewerProps';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg';
-import { Activityv3SubmitterItem } from 'src/components/activityv3/ActivityV3SubmitterItem';
-import { SessionDownloadModal } from 'src/components/activityv3/SessionDownloadModal';
-import { SessionTable } from 'src/components/activityv3/SessionTable';
-import { BackButton, Label, Radio, RadioGroup, Select, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { Coachmark2 } from 'src/components/common/CoachMark2';
-import ConfirmDialog from 'src/components/common/ConfirmDialog';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { Icon } from 'src/components/common/icons';
-import { Constants } from 'src/constants';
-import { ACTIVITYV3_TYPE_KOR } from 'src/constants/activityv3.enum';
+import { differenceInDays, format } from 'date-fns'
+import _, { sortBy } from 'lodash'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { useHistory, useLocation, useParams } from 'react-router-dom'
+import Viewer from 'react-viewer'
+import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
+import { Activityv3SubmitterItem } from '@/legacy/components/activityv3/ActivityV3SubmitterItem'
+import { SessionDownloadModal } from '@/legacy/components/activityv3/SessionDownloadModal'
+import { SessionTable } from '@/legacy/components/activityv3/SessionTable'
+import { BackButton, Label, Radio, RadioGroup, Select, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Coachmark2 } from '@/legacy/components/common/CoachMark2'
+import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Icon } from '@/legacy/components/common/icons'
+import { Constants } from '@/legacy/constants'
+import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import {
   useAchievementCriteriaGetByIds,
   useActivityV3Delete,
   useActivityV3FindByGroupIds,
   useActivityV3FindOne,
-} from 'src/generated/endpoint';
-import { Role, StudentGroup, SubjectType } from 'src/generated/model';
-import { meState, toastState } from 'src/store';
-import { checkSubmitted } from 'src/util/activityv3';
-import { getFileNameFromUrl, isPdfFile } from 'src/util/file';
-import { twMerge } from 'tailwind-merge';
+} from '@/legacy/generated/endpoint'
+import { Role, StudentGroup, SubjectType } from '@/legacy/generated/model'
+import { meState, toastState } from '@/stores'
+import { checkSubmitted } from '@/legacy/util/activityv3'
+import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { twMerge } from 'tailwind-merge'
 
 interface ActivityV3DetailPageProps {}
 
@@ -38,133 +38,133 @@ const SELECT_FILTERS = [
   { value: 'studentText', label: '학생 활동 보고서' },
   { value: 'record', label: '관찰 기록' },
   { value: 'summary', label: '활동 요약' },
-];
+]
 
 const SELECT_VIEWS = [
   { value: 'student', label: '학생별 보기' },
   { value: 'group', label: '그룹별 보기' },
-];
+]
 
 const SELECT_SUBMITTED = [
   { value: 'all', label: '전체' },
   { value: 'IS_SUBMITTED', label: '제출' },
   { value: 'NOT_SUBMITTED', label: '미제출' },
-];
+]
 
 export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
-  const { id } = useParams<{ id: string }>();
-  const { push, replace } = useHistory();
-  const { pathname, search } = useLocation();
-  const searchParams = new URLSearchParams(search);
-  const filter = searchParams.get('filter') || 'studentText';
-  const view = searchParams.get('view') || 'group';
-  const selectedFilter = searchParams.get('selectedFilter') || 'all';
+  const { id } = useParams<{ id: string }>()
+  const { push, replace } = useHistory()
+  const { pathname, search } = useLocation()
+  const searchParams = new URLSearchParams(search)
+  const filter = searchParams.get('filter') || 'studentText'
+  const view = searchParams.get('view') || 'group'
+  const selectedFilter = searchParams.get('selectedFilter') || 'all'
 
-  const me = useRecoilValue(meState);
-  const [toastMsg, setToastMsg] = useRecoilState(toastState);
+  const me = useRecoilValue(meState)
+  const [toastMsg, setToastMsg] = useRecoilState(toastState)
 
-  const [selectedGroupIds, setSelectedGroupIds] = useState<number[]>([]);
-  const [showDialog, setShowDialog] = useState(false);
+  const [selectedGroupIds, setSelectedGroupIds] = useState<number[]>([])
+  const [showDialog, setShowDialog] = useState(false)
 
   const handleConfirm = () => {
-    deleteActivityV3({ id: Number(id) });
-    setShowDialog(false);
-  };
+    deleteActivityV3({ id: Number(id) })
+    setShowDialog(false)
+  }
 
   const handleCancel = () => {
-    setShowDialog(false);
-  };
-  const [isDownloadModalOpen, setDownloadModalOpen] = useState(false);
-  const [selectedSessionId, setSelectedSessionId] = useState<number>();
-  const [searchedStudentname, setSearchedStudentName] = useState('');
-  const [groupDatas, setGroupDatas] = useState<Record<number, StudentGroup[]>>({});
-  const [hasImagesModalOpen, setImagesModalOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [coachmarkVisible, setCoachmarkVisible] = useState<boolean>(false);
+    setShowDialog(false)
+  }
+  const [isDownloadModalOpen, setDownloadModalOpen] = useState(false)
+  const [selectedSessionId, setSelectedSessionId] = useState<number>()
+  const [searchedStudentname, setSearchedStudentName] = useState('')
+  const [groupDatas, setGroupDatas] = useState<Record<number, StudentGroup[]>>({})
+  const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [coachmarkVisible, setCoachmarkVisible] = useState<boolean>(false)
 
   const { data: activityv3 } = useActivityV3FindOne(Number(id), undefined, {
     query: { enabled: !!id },
-  });
+  })
 
   const { data: achievementCriterias } = useAchievementCriteriaGetByIds({
     ids: activityv3?.achievementCriteriaIds,
-  });
+  })
 
   const { data, isLoading, refetch } = useActivityV3FindByGroupIds(
     Number(id),
     { ids: activityv3?.groupActivityV3s?.map((el) => el.group.id) || [] },
     { query: { enabled: !!activityv3?.groupActivityV3s?.length, staleTime: 100000 } },
-  );
+  )
 
   const { mutate: deleteActivityV3 } = useActivityV3Delete({
     mutation: {
       onSuccess: () => {
-        setToastMsg('활동이 삭제되었습니다.');
-        push('/teacher/activityv3');
+        setToastMsg('활동이 삭제되었습니다.')
+        push('/teacher/activityv3')
       },
       onError: (error) => setToastMsg(error.message),
     },
-  });
+  })
 
   const studentGroups = useMemo(() => {
-    if (!data) return [];
-    return _.chain(data).uniqBy('user.id').sortBy('groupId').value();
-  }, [data]);
+    if (!data) return []
+    return _.chain(data).uniqBy('user.id').sortBy('groupId').value()
+  }, [data])
 
   const submittedStudentAmount =
-    studentGroups?.filter((sg) => checkSubmitted(sortBy(sg?.user?.studentActivityV3s, 'id')?.[0], filter))?.length || 0;
-  const unSubmittedStudentAmount = (studentGroups?.length || 0) - submittedStudentAmount;
+    studentGroups?.filter((sg) => checkSubmitted(sortBy(sg?.user?.studentActivityV3s, 'id')?.[0], filter))?.length || 0
+  const unSubmittedStudentAmount = (studentGroups?.length || 0) - submittedStudentAmount
 
-  const viewerImages: ImageDecorator[] = [];
+  const viewerImages: ImageDecorator[] = []
   if (activityv3) {
     for (const image of activityv3.images) {
       if (isPdfFile(image) === false) {
         viewerImages.push({
           src: `${Constants.imageUrl}${image}`,
-        });
+        })
       }
     }
   }
 
   useEffect(() => {
-    if (isLoading) return;
+    if (isLoading) return
     setGroupDatas(
       studentGroups?.reduce((acc: any, cur: StudentGroup) => {
-        return { ...acc, [cur.groupId]: [...(acc[cur.groupId] || []), cur] };
+        return { ...acc, [cur.groupId]: [...(acc[cur.groupId] || []), cur] }
       }, []) || {},
-    );
-  }, [studentGroups]);
+    )
+  }, [studentGroups])
 
   useEffect(() => {
     if (activityv3?.groupActivityV3s?.length) {
-      setSelectedGroupIds(activityv3.groupActivityV3s.map((gav) => gav.groupId));
+      setSelectedGroupIds(activityv3.groupActivityV3s.map((gav) => gav.groupId))
     }
-  }, [activityv3]);
+  }, [activityv3])
 
-  const addSessionButtonRef = useRef<HTMLDivElement>(null);
+  const addSessionButtonRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (addSessionButtonRef.current) {
-      addSessionButtonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      addSessionButtonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
-  }, [activityv3]);
+  }, [activityv3])
 
-  if (!activityv3) return <></>;
+  if (!activityv3) return <></>
 
   const sortStudentGroups = (studentGroups: StudentGroup[]) => {
     return studentGroups?.sort((a, b) => {
-      const Agroup = a.user?.studentGroups?.[0]?.group;
-      const Bgroup = b.user?.studentGroups?.[0]?.group;
+      const Agroup = a.user?.studentGroups?.[0]?.group
+      const Bgroup = b.user?.studentGroups?.[0]?.group
 
       if (Agroup?.grade === Bgroup?.grade && Agroup?.klass === Bgroup?.klass) {
-        return (a.user?.studentGroups?.[0]?.studentNumber || 0) - (b.user?.studentGroups?.[0]?.studentNumber || 0);
+        return (a.user?.studentGroups?.[0]?.studentNumber || 0) - (b.user?.studentGroups?.[0]?.studentNumber || 0)
       } else if (Agroup?.grade === Bgroup?.grade) {
-        return (a.user?.studentGroups?.[0]?.group?.klass || 0) - (b.user?.studentGroups?.[0]?.group?.klass || 0);
+        return (a.user?.studentGroups?.[0]?.group?.klass || 0) - (b.user?.studentGroups?.[0]?.group?.klass || 0)
       } else {
-        return (a.user?.studentGroups?.[0]?.group?.grade || 0) - (b.user?.studentGroups?.[0]?.group?.grade || 0);
+        return (a.user?.studentGroups?.[0]?.group?.grade || 0) - (b.user?.studentGroups?.[0]?.group?.grade || 0)
       }
-    });
-  };
+    })
+  }
 
   return (
     <div className="col-span-6">
@@ -172,7 +172,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
         <TopNavbar title={activityv3.title} left={<BackButton />} />
       </div>
       {/* 활동 상세페이지 배경 */}
-      <div className="flex h-screen-6 flex-col bg-gray-50 p-2 md:h-screen md:px-10 md:pb-20 md:pt-10 3xl:px-[208px] 3xl:pb-[128px] 3xl:pt-[64px]">
+      <div className="h-screen-6 3xl:px-[208px] 3xl:pb-[128px] 3xl:pt-[64px] flex flex-col bg-gray-50 p-2 md:h-screen md:px-10 md:pt-10 md:pb-20">
         {/* 활동 상세 박스 */}
         <div className="relative h-full">
           {/* 브레드크럼 */}
@@ -186,12 +186,12 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
             </p>
           </div>
 
-          <div className="h-full overflow-y-auto bg-white p-2 md:px-10 md:py-5 3xl:px-30 3xl:py-20">
+          <div className="3xl:px-30 3xl:py-20 h-full overflow-y-auto bg-white p-2 md:px-10 md:py-5">
             {/* 활동 정보 */}
             <div className="flex flex-col rounded border-2 border-zinc-800">
-              <div className="border-b border-neutral-200 px-10 pb-8 pt-8">
+              <div className="border-b border-neutral-200 px-10 pt-8 pb-8">
                 <div className="flex items-baseline justify-between pb-4">
-                  <h1 className="flex-1 whitespace-pre-line break-words text-2xl font-bold">
+                  <h1 className="flex-1 text-2xl font-bold break-words whitespace-pre-line">
                     [{ACTIVITYV3_TYPE_KOR[activityv3.type]}] {activityv3.subject}: {activityv3.title}
                   </h1>
                   {(me?.role === Role.ADMIN || activityv3.writerId === me?.id) && (
@@ -213,23 +213,23 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center">
-                    <div className="whitespace-pre text-sm font-semibold md:w-40">활동 기간</div>
+                    <div className="text-sm font-semibold whitespace-pre md:w-40">활동 기간</div>
                     <div className="w-full text-sm">
                       {activityv3.startDate && format(new Date(activityv3.startDate), 'yyyy.MM.dd')} ~{' '}
                       {activityv3.endDate && format(new Date(activityv3.endDate), 'yyyy.MM.dd')}
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="whitespace-pre text-sm font-semibold md:w-40">활동 설명</div>
-                    <div className="w-full whitespace-pre-line break-words text-sm">{activityv3?.description}</div>
+                    <div className="text-sm font-semibold whitespace-pre md:w-40">활동 설명</div>
+                    <div className="w-full text-sm break-words whitespace-pre-line">{activityv3?.description}</div>
                   </div>
                   <div className="flex items-start">
-                    <div className="whitespace-pre text-sm font-semibold md:w-40">공통문구</div>
-                    <div className="w-full whitespace-pre-line break-words text-sm">{activityv3?.commonText}</div>
+                    <div className="text-sm font-semibold whitespace-pre md:w-40">공통문구</div>
+                    <div className="w-full text-sm break-words whitespace-pre-line">{activityv3?.commonText}</div>
                   </div>
                   {(activityv3.images?.length > 0 || activityv3.files?.length > 0) && (
                     <div className="flex items-start">
-                      <div className="whitespace-pre text-sm font-semibold md:w-40">첨부파일</div>
+                      <div className="text-sm font-semibold whitespace-pre md:w-40">첨부파일</div>
                       <div className="w-full">
                         {!!activityv3.images?.length && (
                           <div className="grid w-full grid-flow-row grid-cols-6 gap-2 pb-2">
@@ -237,8 +237,8 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                               <div
                                 key={i}
                                 onClick={() => {
-                                  setActiveIndex(i);
-                                  setImagesModalOpen(true);
+                                  setActiveIndex(i)
+                                  setImagesModalOpen(true)
                                 }}
                                 className="w-full"
                               >
@@ -282,12 +282,12 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
               </div>
               {activityv3.type === SubjectType.LECTURE && (
                 <div className="flex items-center border-b border-neutral-200 px-10 py-5">
-                  <div className="whitespace-pre text-sm font-semibold md:w-40">성취 기준</div>
+                  <div className="text-sm font-semibold whitespace-pre md:w-40">성취 기준</div>
                   <div className="flex w-full flex-wrap gap-1">
                     {achievementCriterias == undefined ? (
                       <div className="flex w-full justify-center rounded px-4 py-2">성취기준이 존재하지 않습니다.</div>
                     ) : (
-                      <div className="whitespace-pre-line text-14">
+                      <div className="text-14 whitespace-pre-line">
                         {achievementCriterias?.map((ac) => (
                           <div className="flex flex-col gap-2">
                             [{ac.criteriaId}]&nbsp; {ac.criteria}
@@ -300,14 +300,14 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
               )}
 
               <div className="flex items-center px-10 py-5">
-                <div className="whitespace-pre text-sm font-semibold md:w-40">전달 대상</div>
+                <div className="text-sm font-semibold whitespace-pre md:w-40">전달 대상</div>
                 <div className="flex w-full flex-wrap gap-1">
                   {_.chain(activityv3?.groupActivityV3s || [])
                     .sortBy(['group.grade', 'group.klass'])
                     .map((el) => (
                       <div
                         key={el.group?.id}
-                        className="h-8 whitespace-pre rounded-lg border border-stone-300 px-2 py-1 text-center"
+                        className="h-8 rounded-lg border border-stone-300 px-2 py-1 text-center whitespace-pre"
                       >
                         {el.group?.name}
                       </div>
@@ -320,12 +320,12 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
             {/* 차시 영역 */}
             <div className="mt-16">
               <div className="flex items-center justify-between pb-4">
-                <div className="whitespace-pre text-3xl font-bold">활동 차시</div>
+                <div className="text-3xl font-bold whitespace-pre">활동 차시</div>
                 {activityv3.activitySessions?.length !== 0 && (
                   <div className="relative">
                     <button
                       className={twMerge(
-                        'rounded-lg bg-brand-1 px-8 py-3 font-semibold text-white',
+                        'bg-brand-1 rounded-lg px-8 py-3 font-semibold text-white',
                         activityv3.writerId !== me?.id && 'bg-gray-500',
                       )}
                       onClick={() =>
@@ -363,7 +363,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                   >
                     <div className="flex flex-col items-center justify-center gap-4 rounded-lg">
                       <button
-                        className="rounded-lg bg-brand-1 px-6 py-4 text-lg font-semibold text-white"
+                        className="bg-brand-1 rounded-lg px-6 py-4 text-lg font-semibold text-white"
                         onClick={() => push(`/teacher/activityv3/${activityv3.id}/session/add`)}
                       >
                         차시 추가하기
@@ -385,7 +385,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
             {!activityv3.hasStudentText ? (
               <div className="mt-16">
                 <div className="flex items-center justify-between pb-4">
-                  <div className="whitespace-pre text-3xl font-bold">활동 보고서</div>
+                  <div className="text-3xl font-bold whitespace-pre">활동 보고서</div>
                 </div>
                 <div className="border-t border-t-[#333333] py-8">
                   <p className="text-center text-neutral-500">활동 보고서를 요청하지 않는 활동입니다.</p>
@@ -395,7 +395,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
               <>
                 <div className="mt-16">
                   <div className="flex items-center justify-between">
-                    <div className="whitespace-pre text-24 font-bold">활동 보고서</div>
+                    <div className="text-24 font-bold whitespace-pre">활동 보고서</div>
                     <Button className="border border-gray-600" disabled={isLoading} onClick={() => refetch()}>
                       새로고침
                     </Button>
@@ -403,19 +403,19 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
 
                   {/* 제출자 목록 화면 */}
                   <div className="mt-4 flex rounded border border-zinc-800 text-[#333333]">
-                    <div className="flex w-full items-center justify-between border-r border-zinc-800 p-4 text-16 font-bold">
+                    <div className="text-16 flex w-full items-center justify-between border-r border-zinc-800 p-4 font-bold">
                       <div>제출</div>
                       <div className="flex items-center">
                         <span className="mr-1 text-3xl font-bold">{submittedStudentAmount}</span>명
                       </div>
                     </div>
-                    <div className="flex w-full items-center justify-between border-r border-zinc-800 p-4 text-16 font-bold">
+                    <div className="text-16 flex w-full items-center justify-between border-r border-zinc-800 p-4 font-bold">
                       <div>미제출</div>
                       <div className="flex items-center">
                         <span className="mr-1 text-3xl font-bold">{unSubmittedStudentAmount}</span>명
                       </div>
                     </div>
-                    <div className="flex w-full items-center justify-between p-4 text-16 font-bold">
+                    <div className="text-16 flex w-full items-center justify-between p-4 font-bold">
                       <div>제출 마감</div>
                       {activityv3.studentTextEndDate ? (
                         <div className="text-3xl font-bold">
@@ -430,9 +430,9 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                   {/* 전달 대상, 제출 여부 화면 */}
                   <div className="mt-2 bg-gray-50 p-4">
                     <div className="flex space-x-6">
-                      <div className="whitespace-pre border-r border-[#DDD] px-2 text-15 md:w-40">전달 대상</div>
+                      <div className="text-15 border-r border-[#DDD] px-2 whitespace-pre md:w-40">전달 대상</div>
                       <div className="w-full">
-                        <div className="mb-2 flex items-center space-x-2 text-14">
+                        <div className="text-14 mb-2 flex items-center space-x-2">
                           <Checkbox
                             id="select-all"
                             checked={selectedGroupIds.length === activityv3?.groupActivityV3s?.length}
@@ -451,9 +451,9 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                           .map((el) => (
                             <div
                               key={el.groupId}
-                              className="mb-2 mr-4 inline-block whitespace-pre rounded-md bg-gray-50 text-14"
+                              className="text-14 mr-4 mb-2 inline-block rounded-md bg-gray-50 whitespace-pre"
                             >
-                              <div className="flex items-center space-x-2 text-14">
+                              <div className="text-14 flex items-center space-x-2">
                                 <Checkbox
                                   id={String(el.groupId)}
                                   checked={selectedGroupIds.includes(el.groupId)}
@@ -473,7 +473,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                       </div>
                     </div>
                     <div className="flex space-x-6">
-                      <div className="whitespace-pre border-r border-[#DDD] px-2 pt-2 text-15 md:w-40">제출 여부</div>
+                      <div className="text-15 border-r border-[#DDD] px-2 pt-2 whitespace-pre md:w-40">제출 여부</div>
                       <div className="w-full pt-2">
                         <RadioGroup className="flex items-center space-x-4" onChange={() => {}}>
                           {SELECT_SUBMITTED.map(({ value, label }) => (
@@ -484,14 +484,14 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                                 value={value}
                                 checked={selectedFilter === value}
                                 onChange={() => {
-                                  searchParams.set('selectedFilter', value);
+                                  searchParams.set('selectedFilter', value)
                                   replace({
                                     pathname,
                                     search: searchParams.toString(),
-                                  });
+                                  })
                                 }}
                               ></Radio>
-                              <Label htmlFor={value} children={label} className="cursor-pointer text-14" />
+                              <Label htmlFor={value} children={label} className="text-14 cursor-pointer" />
                             </div>
                           ))}
                         </RadioGroup>
@@ -506,11 +506,11 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                         value={filter}
                         className="h-10 w-48 rounded-lg border border-neutral-200"
                         onChange={(e) => {
-                          searchParams.set('filter', e.target.value);
+                          searchParams.set('filter', e.target.value)
                           replace({
                             pathname,
                             search: searchParams.toString(),
-                          });
+                          })
                         }}
                       >
                         {SELECT_FILTERS.map((filter) => (
@@ -523,11 +523,11 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                         value={view}
                         className="h-10 w-48 rounded-lg border border-neutral-200"
                         onChange={(e) => {
-                          searchParams.set('view', e.target.value);
+                          searchParams.set('view', e.target.value)
                           replace({
                             pathname,
                             search: searchParams.toString(),
-                          });
+                          })
                         }}
                       >
                         {SELECT_VIEWS.map((filter) => (
@@ -577,32 +577,32 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                       .map((ga, i) => {
                         const studentGroups = groupDatas[ga.group.id]
                           ?.filter((sg) => !selectedGroupIds.length || selectedGroupIds.includes(sg.groupId))
-                          ?.filter((sg) => !searchedStudentname || sg.user.name.includes(searchedStudentname));
+                          ?.filter((sg) => !searchedStudentname || sg.user.name.includes(searchedStudentname))
 
                         const submittedStudentGroups = studentGroups?.filter((sg: any) =>
                           checkSubmitted(sortBy(sg?.user?.studentActivityV3s, 'id')?.[0], filter),
-                        );
+                        )
                         const unSubmittedStudentGroups = studentGroups?.filter((el: any) =>
                           submittedStudentGroups.every((sg: any) => sg.id !== el.id),
-                        );
+                        )
                         if (!studentGroups?.length) {
-                          return <></>;
+                          return <></>
                         }
 
                         if (view === 'student') {
                           return sortStudentGroups(studentGroups)
                             ?.filter((sg) => {
-                              const studentActivity = sortBy(sg?.user?.studentActivityV3s, 'id')?.[0];
+                              const studentActivity = sortBy(sg?.user?.studentActivityV3s, 'id')?.[0]
 
                               if (selectedFilter === 'NOT_SUBMITTED') {
-                                return !checkSubmitted(studentActivity, filter);
+                                return !checkSubmitted(studentActivity, filter)
                               }
 
                               if (selectedFilter === 'IS_SUBMITTED') {
-                                return checkSubmitted(studentActivity, filter);
+                                return checkSubmitted(studentActivity, filter)
                               }
 
-                              return true;
+                              return true
                             })
                             ?.map((sg: any) => (
                               <Activityv3SubmitterItem
@@ -611,7 +611,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                                 studentGroup={sg}
                                 submitted={checkSubmitted(sortBy(sg?.user?.studentActivityV3s, 'id')?.[0], filter)}
                               />
-                            ));
+                            ))
                         }
 
                         return (
@@ -663,7 +663,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                               </div>
                             )}
                           </div>
-                        );
+                        )
                       })
                       .value()}
                   </div>
@@ -701,5 +701,5 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}

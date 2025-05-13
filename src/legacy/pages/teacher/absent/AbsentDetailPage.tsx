@@ -21,7 +21,7 @@ import { extractImageData, extractReactData, extractReactDataArray, getDoc, getP
 import { buttonEnableState } from '@/legacy/util/permission'
 import { makeStartEndToString } from '@/legacy/util/time'
 
-import { AbsentUpdatePage } from './AbsentUpdatePage'
+import { AbsentUpdatePage } from '@/legacy/pages/teacher/absentUpdatePage'
 
 interface AbsentDetailPageProps {
   setOpen: (b: boolean) => void

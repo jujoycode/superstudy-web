@@ -1,25 +1,25 @@
-import Calendar from '@toast-ui/react-calendar';
-import { t } from 'i18next';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { CoachMark } from 'react-coach-mark';
-import { useRecoilValue } from 'recoil';
-import { ErrorBlank } from 'src/components';
-import { CustomTuiModal } from 'src/components/calendar/CustomTuiModal';
-import { LnbCalendarsItem } from 'src/components/calendar/LnbCalendarsItem';
-import { Blank, Label } from 'src/components/common';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { Guide, useCoachMark } from 'src/components/common/CoachMark';
-import { Icon } from 'src/components/common/icons';
-import { useTeacherCalendarDetail } from 'src/container/teacher-calendar-detail';
-import { useTeacherChatUserList } from 'src/container/teacher-chat-user-list';
-import { CalendarIdEnum, Role } from 'src/generated/model';
-import { languageState, meState } from 'src/store';
-import { MenuType } from 'src/types';
-import { DayAfter, DayAgo, makeDateToString } from 'src/util/time';
-import 'tui-calendar/dist/tui-calendar.css';
-import 'tui-date-picker/dist/tui-date-picker.css';
-import 'tui-time-picker/dist/tui-time-picker.css';
-import './CalendarPage.css';
+import Calendar from '@toast-ui/react-calendar'
+import { t } from 'i18next'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { CoachMark } from 'react-coach-mark'
+import { useRecoilValue } from 'recoil'
+import { ErrorBlank } from '@/legacy/components'
+import { CustomTuiModal } from '@/legacy/components/calendar/CustomTuiModal'
+import { LnbCalendarsItem } from '@/legacy/components/calendar/LnbCalendarsItem'
+import { Blank, Label } from '@/legacy/components/common'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Guide, useCoachMark } from '@/legacy/components/common/CoachMark'
+import { Icon } from '@/legacy/components/common/icons'
+import { useTeacherCalendarDetail } from '@/legacy/container/teacher-calendar-detail'
+import { useTeacherChatUserList } from '@/legacy/container/teacher-chat-user-list'
+import { CalendarIdEnum, Role } from '@/legacy/generated/model'
+import { languageState, meState } from '@/stores'
+import { MenuType } from 'src/types'
+import { DayAfter, DayAgo, makeDateToString } from '@/legacy/util/time'
+import 'tui-calendar/dist/tui-calendar.css'
+import 'tui-date-picker/dist/tui-date-picker.css'
+import 'tui-time-picker/dist/tui-time-picker.css'
+import './CalendarPage.css'
 
 // export const attendees = [
 //   { id: '1', name: t('general') },
@@ -39,18 +39,18 @@ export function CalendarPage() {
     handleCalendarDelete,
     calendarId: filterId,
     setCalendarId: setFilterId,
-  } = useTeacherCalendarDetail();
+  } = useTeacherCalendarDetail()
 
   // 그룹 조회
-  const groupProps = useTeacherChatUserList(MenuType.List);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [event, setEvent] = useState<any>(null);
-  const calendarRef = useRef<any>(null);
-  const [currentDateString, setCurrentDateString] = useState('');
-  const [isLoading, setLoading] = useState(false);
+  const groupProps = useTeacherChatUserList(MenuType.List)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [event, setEvent] = useState<any>(null)
+  const calendarRef = useRef<any>(null)
+  const [currentDateString, setCurrentDateString] = useState('')
+  const [isLoading, setLoading] = useState(false)
 
-  const me = useRecoilValue(meState);
-  const language = useRecoilValue(languageState);
+  const me = useRecoilValue(meState)
+  const language = useRecoilValue(languageState)
 
   const calendars = [
     {
@@ -71,63 +71,63 @@ export function CalendarPage() {
       bgColor: '#8CD23C',
       borderColor: '#8CD23C',
     },
-  ];
+  ]
 
   const getDayName = useMemo(() => {
-    console.log(language);
+    console.log(language)
     return (model: any) => {
-      let dayName = '';
+      let dayName = ''
       switch (model.label) {
         case 'Sun':
-          dayName = language === 'ko' ? '일' : 'Sun';
-          break;
+          dayName = language === 'ko' ? '일' : 'Sun'
+          break
         case 'Mon':
-          dayName = language === 'ko' ? '월' : 'Mon';
-          break;
+          dayName = language === 'ko' ? '월' : 'Mon'
+          break
         case 'Tue':
-          dayName = language === 'ko' ? '화' : 'Tue';
-          break;
+          dayName = language === 'ko' ? '화' : 'Tue'
+          break
         case 'Wed':
-          dayName = language === 'ko' ? '수' : 'Wed';
-          break;
+          dayName = language === 'ko' ? '수' : 'Wed'
+          break
         case 'Thu':
-          dayName = language === 'ko' ? '목' : 'Thu';
-          break;
+          dayName = language === 'ko' ? '목' : 'Thu'
+          break
         case 'Fri':
-          dayName = language === 'ko' ? '금' : 'Fri';
-          break;
+          dayName = language === 'ko' ? '금' : 'Fri'
+          break
         case 'Sat':
-          dayName = language === 'ko' ? '토' : 'Sat';
-          break;
+          dayName = language === 'ko' ? '토' : 'Sat'
+          break
       }
-      return `<span class="tui-full-calendar-dayname-name" style="padding-left:calc(50% - 4px);">${dayName}</span>`;
-    };
-  }, [language]);
+      return `<span class="tui-full-calendar-dayname-name" style="padding-left:calc(50% - 4px);">${dayName}</span>`
+    }
+  }, [language])
 
-  const readOnly = me?.role !== Role.ADMIN && me?.canEditTimetable === false;
+  const readOnly = me?.role !== Role.ADMIN && me?.canEditTimetable === false
 
   const onClickNavi = (event: any) => {
-    const calendar = calendarRef?.current?.getInstance();
+    const calendar = calendarRef?.current?.getInstance()
     if (calendar) {
-      const { target } = event;
-      let action = target.dataset ? target.dataset.action : target.getAttribute('data-action');
-      action = action?.replace('move-', '');
+      const { target } = event
+      let action = target.dataset ? target.dataset.action : target.getAttribute('data-action')
+      action = action?.replace('move-', '')
 
-      const _date = calendar.getDate().toDate();
-      _date.setDate(1);
-      calendar.setDate(_date);
+      const _date = calendar.getDate().toDate()
+      _date.setDate(1)
+      calendar.setDate(_date)
 
-      typeof calendar[action] === 'function' && calendar[action]();
-      calendar.render();
+      typeof calendar[action] === 'function' && calendar[action]()
+      calendar.render()
 
-      setCurrentDateString(makeDateToString(calendar.getDate()) || '');
+      setCurrentDateString(makeDateToString(calendar.getDate()) || '')
     }
-  };
+  }
 
   const handleCreateSchedule = (scheduleData: any) => {
     try {
-      setModalOpen(false);
-      setEvent(null);
+      setModalOpen(false)
+      setEvent(null)
       handleCalendarCreate({
         title: scheduleData?.title,
         location: scheduleData?.location,
@@ -141,9 +141,9 @@ export function CalendarPage() {
         groupId: scheduleData?.groupId,
       })
         .then(() => setLoading(false))
-        .then(() => refetchCalendar());
+        .then(() => refetchCalendar())
     } catch (err: any) {}
-  };
+  }
 
   const handleUpdateSchedule = (schedule: any) => {
     try {
@@ -162,39 +162,39 @@ export function CalendarPage() {
         .then(() => setLoading(false))
         .then(() => refetchCalendar())
         .then(() => setEvent(null))
-        .then(() => setModalOpen(false));
+        .then(() => setModalOpen(false))
     } catch (err: any) {
-      console.log(err?.message);
+      console.log(err?.message)
     }
-  };
+  }
 
   useEffect(() => {
-    const calendar = calendarRef?.current?.getInstance();
+    const calendar = calendarRef?.current?.getInstance()
 
     if (calendar) {
       setDateRange({
         startDate: DayAgo(calendar.getDateRangeStart().toDate()),
         endDate: DayAfter(calendar.getDateRangeEnd().toDate()),
-      });
+      })
 
       if (!calendar?.events?.beforeCreateSchedule?.length) {
         calendar.on('beforeCreateSchedule', (event: any) => {
-          setModalOpen(true);
-          setEvent(event);
+          setModalOpen(true)
+          setEvent(event)
           //calendar.setDate();
-        });
+        })
       }
 
       if (!calendar?.events?.beforeUpdateSchedule?.length) {
         calendar.on('beforeUpdateSchedule', (event: any) => {
-          calendar.setDate();
+          calendar.setDate()
           if (event?.triggerEventName === 'click') {
             refetchCalendar().then(() => {
-              setModalOpen(true);
-              setEvent(event);
-            });
+              setModalOpen(true)
+              setEvent(event)
+            })
           } else {
-            const { schedule, changes } = event;
+            const { schedule, changes } = event
             handleUpdateSchedule({
               title: schedule.title,
               location: schedule.location,
@@ -205,44 +205,44 @@ export function CalendarPage() {
               start: changes?.start?.toDate() || schedule.start?.toDate(),
               end: changes?.end?.toDate() || schedule.end?.toDate(),
               groupId: changes?.groupId || schedule.groupId,
-            });
+            })
           }
-        });
+        })
       }
 
       if (!calendar?.events?.beforeDeleteSchedule?.length) {
         calendar.on('beforeDeleteSchedule', (scheduleData: any) => {
-          calendar.setDate();
-          const { schedule } = scheduleData;
+          calendar.setDate()
+          const { schedule } = scheduleData
           try {
-            refetchCalendar().then(() => handleCalendarDelete(schedule.id));
+            refetchCalendar().then(() => handleCalendarDelete(schedule.id))
           } catch (err: any) {
-            console.log(err?.message);
+            console.log(err?.message)
           }
-        });
+        })
       }
 
-      setCurrentDateString(makeDateToString(calendar.getDate()) || '');
+      setCurrentDateString(makeDateToString(calendar.getDate()) || '')
     }
-  }, [currentDateString]);
+  }, [currentDateString])
 
   useEffect(() => {
-    const calendar = calendarRef?.current?.getInstance();
+    const calendar = calendarRef?.current?.getInstance()
 
     if (calendar) {
-      const _schedules = schedules && JSON.parse(JSON.stringify(schedules));
+      const _schedules = schedules && JSON.parse(JSON.stringify(schedules))
 
       const updatedArray = _schedules?.map((obj: any) => ({
         ...obj,
         title:
           (obj.grade ? `[${obj.grade}학년] ${obj.title}` : obj.group ? `[${obj.group.name}] ${obj.title}` : obj.title) +
           (obj.attendee === '일반' ? '' : ' (' + obj.attendee + ')'),
-      }));
+      }))
 
-      calendar.clear();
-      calendar.createSchedules(updatedArray);
+      calendar.clear()
+      calendar.createSchedules(updatedArray)
     }
-  }, [schedules]);
+  }, [schedules])
 
   const coachList: Array<Guide> = [
     {
@@ -263,9 +263,9 @@ export function CalendarPage() {
         </div>
       ),
     },
-  ];
-  const { coach, refs, reOpenCoach } = useCoachMark('calenderLineAdmin', coachList);
-  const calendarKey = useMemo(() => `calendar-${language}`, [language]);
+  ]
+  const { coach, refs, reOpenCoach } = useCoachMark('calenderLineAdmin', coachList)
+  const calendarKey = useMemo(() => `calendar-${language}`, [language])
 
   return (
     <>
@@ -284,9 +284,9 @@ export function CalendarPage() {
                   data-toggle="modal"
                   onClick={() => {
                     if (readOnly) {
-                      alert('일정 추가 권한이 없습니다.');
+                      alert('일정 추가 권한이 없습니다.')
                     } else {
-                      setModalOpen(true);
+                      setModalOpen(true)
                     }
                   }}
                   className="h-full rounded-full bg-[#FF6618] px-5 py-2.5 text-sm font-bold text-white hover:bg-[#E55B15] active:bg-[#D95614]"
@@ -365,16 +365,16 @@ export function CalendarPage() {
                 template={{
                   monthDayname: (model) => getDayName(model),
                   milestone(schedule) {
-                    return `<span style="color:#fff;background-color: ${schedule.bgColor};">${schedule.title}</span>`;
+                    return `<span style="color:#fff;background-color: ${schedule.bgColor};">${schedule.title}</span>`
                   },
                   milestoneTitle() {
-                    return '<div class="w-full h-full flex items-center justify-end">Milestone</div>';
+                    return '<div class="w-full h-full flex items-center justify-end">Milestone</div>'
                   },
                   allday(schedule) {
-                    return `<span style="color:#fff;">${schedule.title}<i class="fa fa-refresh"></i></span>`;
+                    return `<span style="color:#fff;">${schedule.title}<i class="fa fa-refresh"></i></span>`
                   },
                   alldayTitle() {
-                    return '<div class="w-full h-full flex items-center justify-end">All Day</div>';
+                    return '<div class="w-full h-full flex items-center justify-end">All Day</div>'
                   },
                 }}
                 theme={{}}
@@ -395,8 +395,8 @@ export function CalendarPage() {
                 {...{
                   isOpen: modalOpen,
                   onClose: () => {
-                    setModalOpen(false);
-                    setEvent(null);
+                    setModalOpen(false)
+                    setEvent(null)
                   },
                   onSubmit: !event?.schedule?.id ? handleCreateSchedule : handleUpdateSchedule,
                   submitText: event?.triggerEventName === 'mouseup' ? 'Save' : 'Update',
@@ -413,5 +413,5 @@ export function CalendarPage() {
         </div>
       </div>
     </>
-  );
+  )
 }

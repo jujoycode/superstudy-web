@@ -1,31 +1,31 @@
-import { format } from 'date-fns';
-import { useState } from 'react';
+import { format } from 'date-fns'
+import { useState } from 'react'
 // @ts-ignore
-import ExifOrientationImg from 'react-exif-orientation-img';
-import Viewer from 'react-viewer';
-import { useRecoilValue } from 'recoil';
-import { Divider, Section } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Constants } from 'src/constants';
-import { Canteen, Role } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState } from 'src/store';
+import ExifOrientationImg from 'react-exif-orientation-img'
+import Viewer from 'react-viewer'
+import { useRecoilValue } from 'recoil'
+import { Divider, Section } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Constants } from '@/legacy/constants'
+import { Canteen, Role } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { meState } from '@/stores'
 
 interface CanteenDetailPageProps {
-  selectedDate: Date;
-  canteen?: Canteen;
-  setSubmitState: () => void;
+  selectedDate: Date
+  canteen?: Canteen
+  setSubmitState: () => void
 }
 
 export function CanteenDetailPage({ selectedDate, canteen, setSubmitState }: CanteenDetailPageProps) {
-  const me = useRecoilValue(meState);
-  const { t } = useLanguage();
-  const [isImageModalOpen, setImageModalOpen] = useState(false);
+  const me = useRecoilValue(meState)
+  const { t } = useLanguage()
+  const [isImageModalOpen, setImageModalOpen] = useState(false)
 
   return (
     <>
-      <div className="scroll-box relative h-screen-4.5 w-full overflow-y-scroll border-l border-grey-6 bg-white">
-        <div className="relative flex w-full items-center justify-between border-b border-grey-6 px-6 py-4">
+      <div className="scroll-box h-screen-4.5 border-grey-6 relative w-full overflow-y-scroll border-l bg-white">
+        <div className="border-grey-6 relative flex w-full items-center justify-between border-b px-6 py-4">
           <div className="text-xl font-bold">
             {t('language') === 'ko'
               ? `${selectedDate?.getFullYear()}년 ${selectedDate?.getMonth() + 1}월 ${selectedDate?.getDate()}일`
@@ -84,5 +84,5 @@ export function CanteenDetailPage({ selectedDate, canteen, setSubmitState }: Can
         <Divider />
       </div>
     </>
-  );
+  )
 }

@@ -1,24 +1,27 @@
-import { format } from 'date-fns';
-import _ from 'lodash';
-import { useEffect, useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg';
-import { SuperModal } from 'src/components';
-import { DocumentObjectComponentDel } from 'src/components/DocumentObjectComponentDel';
-import { ImageObjectComponentDel } from 'src/components/ImageObjectComponentDel';
-import { ActivityCriteriaSelectModal, getCriteriaTitle } from 'src/components/activityv3/ActivityCriteriaSelectModal';
-import { ActivityGroupSelectModal } from 'src/components/activityv3/ActivityGroupSelectModal';
-import { CloseButton, Label, Radio, RadioGroup, Select, Textarea } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { Coachmark2 } from 'src/components/common/CoachMark2';
-import ConfirmDialog from 'src/components/common/ConfirmDialog';
-import { TextInput } from 'src/components/common/TextInput';
-import { Icon } from 'src/components/common/icons';
-import { Constants } from 'src/constants';
-import { ACTIVITYV3_TYPE_KOR } from 'src/constants/activityv3.enum';
+import { format } from 'date-fns'
+import _ from 'lodash'
+import { useEffect, useMemo, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
+import { SuperModal } from '@/legacy/components'
+import { DocumentObjectComponentDel } from '@/legacy/components/DocumentObjectComponentDel'
+import { ImageObjectComponentDel } from '@/legacy/components/ImageObjectComponentDel'
+import {
+  ActivityCriteriaSelectModal,
+  getCriteriaTitle,
+} from '@/legacy/components/activityv3/ActivityCriteriaSelectModal'
+import { ActivityGroupSelectModal } from '@/legacy/components/activityv3/ActivityGroupSelectModal'
+import { CloseButton, Label, Radio, RadioGroup, Select, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Coachmark2 } from '@/legacy/components/common/CoachMark2'
+import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Icon } from '@/legacy/components/common/icons'
+import { Constants } from '@/legacy/constants'
+import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import {
   useAchievementCriteriaGetAll,
   useActivityV3Create,
@@ -26,7 +29,7 @@ import {
   useGroupsFindAllKlassBySchool,
   useGroupsFindLectureGroupsByTeacher,
   useTeacherGroupsFindBySubject,
-} from 'src/generated/endpoint';
+} from '@/legacy/generated/endpoint'
 import {
   AchievementChapter,
   AchievementCriteria,
@@ -38,25 +41,25 @@ import {
   SubjectType,
   TeacherGroupsFindBySubjectSubjectType,
   UploadFileTypeEnum,
-} from 'src/generated/model';
-import { useFileUpload } from 'src/hooks/useFileUpload';
-import { useImageAndDocument } from 'src/hooks/useImageAndDocument';
-import { toastState } from 'src/store';
-import { nameWithId } from 'src/types';
-import { getFileNameFromUrl } from 'src/util/file';
+} from '@/legacy/generated/model'
+import { useFileUpload } from '@/legacy/hooks/useFileUpload'
+import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
+import { toastState } from '@/stores'
+import { nameWithId } from 'src/types'
+import { getFileNameFromUrl } from '@/legacy/util/file'
 
 interface ActivityV3AddPageProps {
-  activityv3Data?: ActivityV3;
+  activityv3Data?: ActivityV3
 }
 
-export const DEFAULT_EXPLAIN_TEXT = '예) 주제, 주요활동을 중심으로 200자 이내로 활동요약을 작성해주세요.';
+export const DEFAULT_EXPLAIN_TEXT = '예) 주제, 주요활동을 중심으로 200자 이내로 활동요약을 작성해주세요.'
 
 export const SUBJECTS_TYPE_ACTIVITY = [
   { id: 1, name: '자율' },
   { id: 2, name: '봉사' },
   { id: 3, name: '진로' },
   { id: 4, name: '동아리' },
-];
+]
 
 const subjectExclusionValues = [
   '자율',
@@ -69,70 +72,68 @@ const subjectExclusionValues = [
   '진로활동',
   '교내활동',
   '우리반',
-];
+]
 
 export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3Data }) => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [toastMsg, setToastMsg] = useRecoilState(toastState);
-  const [selectedGroupIds, setSelectedGroupIds] = useState<number[]>([]);
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [selectGroupModalOpen, setSelectGroupModalOpen] = useState(false);
-  const [selectCriteriaModalOpen, setSelectCriteriaModalOpen] = useState(false);
-  const [achievementChapters, setAchievementChapters] = useState<AchievementChapter[]>([]);
-  const [hasStudentText, setHasStudentText] = useState(!!activityv3Data?.hasStudentText || false);
-  const [selectedCriteriaIds, setSelectedCriteriaIds] = useState<number[]>(
-    activityv3Data?.achievementCriteriaIds || [],
-  );
-  const [docYear, setDocYear] = useState<string>('2015');
-  const [code, setCode] = useState<string>('');
+  const [currentStep, setCurrentStep] = useState(1)
+  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [selectedGroupIds, setSelectedGroupIds] = useState<number[]>([])
+  const [previewOpen, setPreviewOpen] = useState(false)
+  const [selectGroupModalOpen, setSelectGroupModalOpen] = useState(false)
+  const [selectCriteriaModalOpen, setSelectCriteriaModalOpen] = useState(false)
+  const [achievementChapters, setAchievementChapters] = useState<AchievementChapter[]>([])
+  const [hasStudentText, setHasStudentText] = useState(!!activityv3Data?.hasStudentText || false)
+  const [selectedCriteriaIds, setSelectedCriteriaIds] = useState<number[]>(activityv3Data?.achievementCriteriaIds || [])
+  const [docYear, setDocYear] = useState<string>('2015')
+  const [code, setCode] = useState<string>('')
 
   const { data: initialAchievementChapters } = useAchievementCriteriaGetAll(
     { docYear: '' },
     {
       query: {
         onSuccess: (data) => {
-          setAchievementChapters(data);
+          setAchievementChapters(data)
         },
       },
     },
-  );
+  )
 
   const allCriterias = useMemo(() => {
-    const chapters = achievementChapters || [];
-    return chapters.reduce((acc: AchievementCriteria[], cur) => acc.concat(cur.achievementCriterias), []);
-  }, [achievementChapters]);
+    const chapters = achievementChapters || []
+    return chapters.reduce((acc: AchievementCriteria[], cur) => acc.concat(cur.achievementCriterias), [])
+  }, [achievementChapters])
 
-  const { push, goBack } = useHistory();
-  const [activityv3type, setActivityV3Type] = useState<TeacherGroupsFindBySubjectSubjectType>(SubjectType.LECTURE);
-  const [showDialog, setShowDialog] = useState(false);
-  const [coachmarkVisible, setCoachmarkVisible] = useState<boolean>(true);
+  const { push, goBack } = useHistory()
+  const [activityv3type, setActivityV3Type] = useState<TeacherGroupsFindBySubjectSubjectType>(SubjectType.LECTURE)
+  const [showDialog, setShowDialog] = useState(false)
+  const [coachmarkVisible, setCoachmarkVisible] = useState<boolean>(true)
 
   useEffect(() => {
-    const hasSeenCoachmark = localStorage.getItem('activityAddIsFirst');
+    const hasSeenCoachmark = localStorage.getItem('activityAddIsFirst')
     if (hasSeenCoachmark) {
-      setCoachmarkVisible(false);
+      setCoachmarkVisible(false)
     }
-  }, []);
+  }, [])
 
   const handleCoachmarkClose = () => {
-    setCoachmarkVisible(false);
-    localStorage.setItem('activityAddIsFirst', 'not');
-  };
+    setCoachmarkVisible(false)
+    localStorage.setItem('activityAddIsFirst', 'not')
+  }
 
   const handleCoachmarOpen = () => {
-    setCoachmarkVisible(true);
-    localStorage.removeItem('activityAddIsFirst');
-    setCurrentStep(1);
-  };
+    setCoachmarkVisible(true)
+    localStorage.removeItem('activityAddIsFirst')
+    setCurrentStep(1)
+  }
 
   const handleConfirm = () => {
-    setShowDialog(false);
-    goBack();
-  };
+    setShowDialog(false)
+    goBack()
+  }
 
   const handleCancel = () => {
-    setShowDialog(false);
-  };
+    setShowDialog(false)
+  }
 
   const {
     handleSubmit,
@@ -140,7 +141,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
     formState: { errors },
     watch,
     reset,
-  } = useForm<RequestCreateActivityV3Dto>();
+  } = useForm<RequestCreateActivityV3Dto>()
 
   const {
     imageObjectMap,
@@ -150,25 +151,25 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
     handleDocumentAdd,
     toggleDocumentDelete,
     addFiles,
-  } = useImageAndDocument({ images: activityv3Data?.images, documents: activityv3Data?.files });
+  } = useImageAndDocument({ images: activityv3Data?.images, documents: activityv3Data?.files })
 
-  const { isUploadLoading, handleUploadFile } = useFileUpload();
+  const { isUploadLoading, handleUploadFile } = useFileUpload()
 
-  const { data: klassGroups } = useGroupsFindAllKlassBySchool();
+  const { data: klassGroups } = useGroupsFindAllKlassBySchool()
 
   const { data: teacherGroups } = useTeacherGroupsFindBySubject(
     { subjectType: activityv3type },
     { query: { enabled: !!activityv3type } },
-  );
+  )
 
   const { data: lectureGroups = [] } = useGroupsFindLectureGroupsByTeacher({
     query: { enabled: activityv3type === SubjectType.LECTURE },
-  });
+  })
 
   const subjectArray: nameWithId[] = useMemo(() => {
     switch (activityv3type) {
       case SubjectType.ACTIVITY:
-        return SUBJECTS_TYPE_ACTIVITY;
+        return SUBJECTS_TYPE_ACTIVITY
       case SubjectType.LECTURE:
         return (
           _.chain(teacherGroups)
@@ -178,17 +179,17 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
             .filter((el) => !subjectExclusionValues.includes(el.name))
             .uniqBy('name')
             .value()
-        );
+        )
       case SubjectType.ETC:
         return _.chain(teacherGroups)
           .map((el) => ({ id: el.id, name: el.subject }))
           .filter((el) => !subjectExclusionValues.includes(el.name))
           .uniqBy('name')
-          .value();
+          .value()
       default:
-        return [];
+        return []
     }
-  }, [activityv3type, teacherGroups, lectureGroups]);
+  }, [activityv3type, teacherGroups, lectureGroups])
 
   useEffect(() => {
     if (activityv3Data) {
@@ -200,100 +201,100 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
         studentTextEndDate: activityv3Data.studentTextEndDate
           ? format(new Date(activityv3Data.studentTextEndDate), "yyyy-MM-dd'T'HH:mm")
           : '',
-      });
-      setActivityV3Type(activityv3Data.type);
-      setHasStudentText(activityv3Data.hasStudentText);
-      setSelectedGroupIds(activityv3Data.groupActivityV3s?.map((el) => el.group?.id) || []);
-      setSelectedCriteriaIds(activityv3Data.achievementCriteriaIds || []);
+      })
+      setActivityV3Type(activityv3Data.type)
+      setHasStudentText(activityv3Data.hasStudentText)
+      setSelectedGroupIds(activityv3Data.groupActivityV3s?.map((el) => el.group?.id) || [])
+      setSelectedCriteriaIds(activityv3Data.achievementCriteriaIds || [])
     }
-  }, [activityv3Data]);
+  }, [activityv3Data])
 
   const groupData: Record<string, Group[]> = useMemo(() => {
     switch (activityv3type) {
       case SubjectType.ACTIVITY: {
-        const result: any = {};
+        const result: any = {}
         teacherGroups
           ?.filter((el) => el.group.type === GroupType.KLUB)
           ?.forEach((el: any) => {
-            result[el.subject] = result[el.subject] || [];
-            result[el.subject].push(el.group);
-          });
-        return result;
+            result[el.subject] = result[el.subject] || []
+            result[el.subject].push(el.group)
+          })
+        return result
       }
       case SubjectType.LECTURE: {
-        const result: any = {};
+        const result: any = {}
         teacherGroups?.forEach((el) => {
-          result[el.subject] = result[el.subject] || [];
-          result[el.subject].push(el.group);
-        });
+          result[el.subject] = result[el.subject] || []
+          result[el.subject].push(el.group)
+        })
         lectureGroups?.forEach((el: any) => {
-          result[el.subject] = result[el.subject] || [];
-          result[el.subject].push(el);
-        });
-        return result;
+          result[el.subject] = result[el.subject] || []
+          result[el.subject].push(el)
+        })
+        return result
       }
       case SubjectType.ETC: {
-        const result: any = {};
+        const result: any = {}
         teacherGroups?.forEach((el) => {
-          result[el.subject] = result[el.subject] || [];
-          result[el.subject].push(el.group);
-        });
+          result[el.subject] = result[el.subject] || []
+          result[el.subject].push(el.group)
+        })
         lectureGroups?.forEach((el: any) => {
-          result[el.subject] = result[el.subject] || [];
-          result[el.subject].push(el);
-        });
-        return result;
+          result[el.subject] = result[el.subject] || []
+          result[el.subject].push(el)
+        })
+        return result
       }
     }
-    return {};
-  }, [teacherGroups, lectureGroups]);
+    return {}
+  }, [teacherGroups, lectureGroups])
 
   const teacherSubjects =
     groupData[watch('subject')]?.map(
       (el: any) => ({ subject: watch('subject'), group: el }) as ResponseSubjectGroupDto,
-    ) || [];
+    ) || []
 
   const { mutateAsync: createActivityV3 } = useActivityV3Create({
     mutation: {
       onSuccess: (data) => {
-        setToastMsg('활동이 추가되었습니다.');
-        data && push(`/teacher/activityv3/${data.id}/session/add`);
-        reset();
+        setToastMsg('활동이 추가되었습니다.')
+        data && push(`/teacher/activityv3/${data.id}/session/add`)
+        reset()
       },
       onError: (error) => {
-        setToastMsg(error.message);
+        setToastMsg(error.message)
       },
     },
-  });
+  })
   const { mutateAsync: updateActivityV3 } = useActivityV3Update({
     mutation: {
       onSuccess: (data) => {
-        setToastMsg('활동이 수정되었습니다.');
-        data && push(`/teacher/activityv3/${data.id}`);
-        reset();
+        setToastMsg('활동이 수정되었습니다.')
+        data && push(`/teacher/activityv3/${data.id}`)
+        reset()
       },
       onError: (error) => {
-        setToastMsg(error.message);
+        setToastMsg(error.message)
       },
     },
-  });
+  })
   const teacherGroupSubjectInfos = _.chain(teacherSubjects)
     .filter((tg) => tg?.subject === watch('subject'))
     .slice()
     .sort((a, b) => {
       if (!a.group.name || !b.group.name) {
-        return 0;
+        return 0
       }
-      const aData = a.group.name.match('([0-9]|[0-9][0-9])학년 ([0-9]|[0-9][0-9])반');
-      const bData = b.group.name.match('([0-9]|[0-9][0-9])학년 ([0-9]|[0-9][0-9])반');
+      const aData = a.group.name.match('([0-9]|[0-9][0-9])학년 ([0-9]|[0-9][0-9])반')
+      const bData = b.group.name.match('([0-9]|[0-9][0-9])학년 ([0-9]|[0-9][0-9])반')
 
       if (aData?.[1] === bData?.[1]) {
-        return Number(aData?.[2]) - Number(bData?.[2]);
+        return Number(aData?.[2]) - Number(bData?.[2])
       } else {
-        return Number(aData?.[1]) - Number(bData?.[1]);
+        return Number(aData?.[1]) - Number(bData?.[1])
       }
     })
-    .value();
+    .value()
 
   const groups = watch('subject')
     ? activityv3type === SubjectType.ACTIVITY || activityv3type === SubjectType.ETC
@@ -307,13 +308,13 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
           .concat(lectureGroups.map((el) => ({ group: el, subject: el.subject }) as ResponseSubjectGroupDto))
           .uniqBy('group.name')
           .value()
-    : [];
+    : []
 
-  const klassGrades = _.uniqBy(groups, 'group.grade').map((el) => el.group.grade);
+  const klassGrades = _.uniqBy(groups, 'group.grade').map((el) => el.group.grade)
 
   const isFormValid = useMemo(() => {
-    return activityv3type && watch('subject') && watch('title') && selectedGroupIds.length > 0;
-  }, [activityv3type, watch('subject'), watch('title'), selectedGroupIds]);
+    return activityv3type && watch('subject') && watch('title') && selectedGroupIds.length > 0
+  }, [activityv3type, watch('subject'), watch('title'), selectedGroupIds])
 
   const steps = [
     {
@@ -342,18 +343,18 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
         { text: '마치기', onClick: () => handleCoachmarkClose() },
       ],
     },
-  ];
+  ]
 
   return (
     <>
       <div className="col-span-6">
         {/* 배경 */}
-        <div className="flex h-screen-6 flex-col bg-gray-50 p-2 md:h-screen md:px-10 md:pb-20 md:pt-10 3xl:px-[208px] 3xl:pb-[128px] 3xl:pt-[64px]">
+        <div className="h-screen-6 3xl:px-[208px] 3xl:pb-[128px] 3xl:pt-[64px] flex flex-col bg-gray-50 p-2 md:h-screen md:px-10 md:pt-10 md:pb-20">
           {/* 활동 생성 박스 */}
           <div className="relative h-full">
-            <div className="h-full overflow-y-auto bg-white p-2 md:py-5 3xl:py-20">
+            <div className="3xl:py-20 h-full overflow-y-auto bg-white p-2 md:py-5">
               {/* 활동 생성하기 박스 */}
-              <div className="flex w-full flex-col gap-2 bg-white pb-8 md:px-10 3xl:px-30">
+              <div className="3xl:px-30 flex w-full flex-col gap-2 bg-white pb-8 md:px-10">
                 <div className="flex items-center gap-2">
                   <div className="text-3xl font-bold">활동 {activityv3Data ? '수정' : '생성'}하기</div>
                   <div
@@ -372,13 +373,13 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
             </Button.lg> */}
               </div>
 
-              <div className="min-w-2/3 h-full md:px-10 3xl:px-30">
+              <div className="3xl:px-30 h-full min-w-2/3 md:px-10">
                 <div className="flex w-full gap-x-0.5 border-b border-[#333333] py-2">
                   <div className="text-xl font-bold">활동</div>
                   {currentStep === 1 && coachmarkVisible && (
                     <span className="relative flex h-1.5 w-1.5">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brandblue-1 opacity-75"></span>
-                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brandblue-1"></span>
+                      <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
+                      <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full"></span>
                       <Coachmark2 steps={steps} currentStep={currentStep} position="bottom" arrowDirection="top" />
                     </span>
                   )}
@@ -387,7 +388,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
 
                 <div className="flex w-full flex-col">
                   <div className="border-gray-[#444] flex h-14 items-center border-b">
-                    <div className="text-[#333333 w-30 whitespace-pre py-3 font-bold">
+                    <div className="text-[#333333 w-30 py-3 font-bold whitespace-pre">
                       <div className="flex gap-x-0.5">
                         <p>타입</p>
                         <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
@@ -404,8 +405,8 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                               value={type}
                               checked={activityv3type === type}
                               onChange={() => {
-                                setActivityV3Type(type as SubjectType);
-                                setSelectedGroupIds([]);
+                                setActivityV3Type(type as SubjectType)
+                                setSelectedGroupIds([])
                               }}
                               disabled={!!activityv3Data}
                             ></Radio>
@@ -421,7 +422,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                   </div>
 
                   <div className="border-gray-[#444] flex h-14 items-center border-b py-3">
-                    <div className="w-30 whitespace-pre font-bold text-[#333333]">
+                    <div className="w-30 font-bold whitespace-pre text-[#333333]">
                       <div className="flex gap-x-0.5">
                         <p>과목</p>
                         <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
@@ -451,7 +452,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                   </div>
 
                   <div className="border-gray-[#444] flex h-14 items-center border-b">
-                    <div className="w-30 whitespace-pre font-bold text-[#333333]">활동 기간</div>
+                    <div className="w-30 font-bold whitespace-pre text-[#333333]">활동 기간</div>
                     <div className="py-3">
                       <div className="flex items-center space-x-2 overflow-hidden">
                         <TextInput
@@ -474,7 +475,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                   </div>
 
                   <div className="border-gray-[#444] flex h-14 w-full flex-1 items-center border-b">
-                    <div className="w-30 flex-shrink-0 whitespace-pre py-3 font-bold text-[#333333]">
+                    <div className="w-30 flex-shrink-0 py-3 font-bold whitespace-pre text-[#333333]">
                       <div className="flex gap-x-0.5">
                         <p>활동명</p>
                         <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
@@ -492,7 +493,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                   </div>
 
                   <div className="border-gray-[#444] flex w-full flex-1 items-center border-b">
-                    <div className="w-30 flex-shrink-0 whitespace-pre py-3 font-bold text-[#333333]">활동 설명</div>
+                    <div className="w-30 flex-shrink-0 py-3 font-bold whitespace-pre text-[#333333]">활동 설명</div>
                     <div className="flex-grow py-3">
                       <Textarea
                         id="description"
@@ -505,13 +506,13 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                     </div>
                   </div>
                   <div className="border-gray-[#444] flex h-14 w-full flex-1 items-center border-b">
-                    <div className="w-30 flex-shrink-0 whitespace-pre py-3 font-bold text-[#333333]">
+                    <div className="w-30 flex-shrink-0 py-3 font-bold whitespace-pre text-[#333333]">
                       <div className="flex gap-x-0.5">
                         <p>공통문구</p>
                         {currentStep === 2 && coachmarkVisible && (
                           <span className="relative flex h-1.5 w-1.5">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brandblue-1 opacity-75" />
-                            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brandblue-1" />
+                            <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" />
+                            <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full" />
                             <Coachmark2 steps={steps} currentStep={currentStep} />
                           </span>
                         )}
@@ -530,7 +531,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                   </div>
                   {activityv3type === SubjectType.LECTURE && (
                     <div className="border-gray-[#444] flex h-14 w-full flex-1 items-center border-b">
-                      <div className="w-30 flex-shrink-0 whitespace-pre py-3 font-bold text-[#333333]">
+                      <div className="w-30 flex-shrink-0 py-3 font-bold whitespace-pre text-[#333333]">
                         <div className="flex gap-x-0.5">
                           <p>성취기준</p>
                         </div>
@@ -539,7 +540,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         <div
                           className="flex h-10 w-28 cursor-pointer items-center justify-center rounded-lg border border-dashed border-[#CCCCCC] bg-gray-50 px-6 py-2"
                           onClick={() => {
-                            setSelectCriteriaModalOpen(true);
+                            setSelectCriteriaModalOpen(true)
                           }}
                         >
                           <Icon.Plus />
@@ -574,7 +575,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                     </div>
                   )}
                   <div className="border-gray-[#444] flex h-14 flex-1 items-center border-b">
-                    <div className="w-30 flex-shrink-0 whitespace-pre py-3 font-bold text-[#333333]">
+                    <div className="w-30 flex-shrink-0 py-3 font-bold whitespace-pre text-[#333333]">
                       <div className="flex gap-x-0.5">
                         <p>전달대상</p>
                         <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
@@ -586,7 +587,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                           <div className="flex w-full flex-wrap gap-2 space-x-2">
                             {selectedGroupIds.map((groupId) => (
                               <div
-                                className="flex h-10 items-center justify-between gap-2 space-x-2 whitespace-pre rounded-lg border border-orange-500 px-2 py-1"
+                                className="flex h-10 items-center justify-between gap-2 space-x-2 rounded-lg border border-orange-500 px-2 py-1 whitespace-pre"
                                 key={groupId}
                               >
                                 {groups?.find((el) => el.group?.id === groupId)?.group?.name}
@@ -600,10 +601,10 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                               className="flex h-10 w-28 cursor-pointer items-center justify-center rounded-lg border border-dashed border-[#CCCCCC] bg-gray-50"
                               onClick={() => {
                                 if (!watch('subject')) {
-                                  setToastMsg('먼저 과목을 선택해주세요.');
-                                  return;
+                                  setToastMsg('먼저 과목을 선택해주세요.')
+                                  return
                                 }
-                                setSelectGroupModalOpen(true);
+                                setSelectGroupModalOpen(true)
                               }}
                             >
                               <Icon.Plus />
@@ -614,10 +615,10 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                             className="flex h-10 w-28 cursor-pointer items-center justify-center rounded-lg border border-dashed border-[#CCCCCC] bg-gray-50 px-6 py-2"
                             onClick={() => {
                               if (!watch('subject')) {
-                                setToastMsg('먼저 과목을 선택해주세요.');
-                                return;
+                                setToastMsg('먼저 과목을 선택해주세요.')
+                                return
                               }
-                              setSelectGroupModalOpen(true);
+                              setSelectGroupModalOpen(true)
                             }}
                           >
                             <Icon.Plus />
@@ -628,7 +629,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                   </div>
 
                   <div className="border-gray-[#444] flex h-14 flex-1 items-center border-b">
-                    <div className="w-30 flex-shrink-0 whitespace-pre font-bold text-[#333333]">첨부파일</div>
+                    <div className="w-30 flex-shrink-0 font-bold whitespace-pre text-[#333333]">첨부파일</div>
                     <div className="py-3">
                       {/* 이미지 */}
                       {[...imageObjectMap].length > 0 && (
@@ -663,10 +664,10 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         className="hidden"
                         multiple
                         onChange={(e) => {
-                          e.preventDefault();
-                          const files = e.target.files;
-                          if (!files || files.length === 0) return;
-                          addFiles(files);
+                          e.preventDefault()
+                          const files = e.target.files
+                          if (!files || files.length === 0) return
+                          addFiles(files)
                         }}
                       />
                       <div className="flex items-center gap-4">
@@ -690,8 +691,8 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         <span className="relative flex h-1.5 w-1.5">
                           {currentStep === 3 && coachmarkVisible ? (
                             <>
-                              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brandblue-1 opacity-75" />
-                              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brandblue-1" />
+                              <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" />
+                              <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full" />
                               <Coachmark2 steps={steps} currentStep={currentStep} />
                             </>
                           ) : (
@@ -699,7 +700,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                           )}
                         </span>
                       </div>
-                      <div className="flex items-center space-x-2 text-14">
+                      <div className="text-14 flex items-center space-x-2">
                         <Checkbox
                           id="hasStudentText"
                           checked={!hasStudentText}
@@ -727,7 +728,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                       </td>
                     </tr>
                     <tr className="border-gray-[#444] border-b">
-                      <td className="h-14 whitespace-pre py-3">활동보고서 예시</td>
+                      <td className="h-14 py-3 whitespace-pre">활동보고서 예시</td>
                       <td className="py-3">
                         <Textarea
                           id="exampleText"
@@ -741,7 +742,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                       </td>
                     </tr>
                     <tr className="border-gray-[#444] border-b">
-                      <td className="h-14 whitespace-pre py-3">활동보고서 작성 가이드</td>
+                      <td className="h-14 py-3 whitespace-pre">활동보고서 작성 가이드</td>
                       <td className="py-3">
                         <Textarea
                           id="explainText"
@@ -758,7 +759,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
               </div>
             </div>
             {/* 하단 버튼 영역 */}
-            <div className="absolute -bottom-14 left-0 w-full 3xl:-bottom-20">
+            <div className="3xl:-bottom-20 absolute -bottom-14 left-0 w-full">
               <div className="flex items-center justify-between">
                 <div>
                   <Button
@@ -784,28 +785,25 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                       // file image 처리
                       const imageFiles = [...imageObjectMap.values()]
                         .filter((value) => !value.isDelete && value.image instanceof File)
-                        .map((value) => value.image) as File[];
-                      const imageFileNames = await handleUploadFile(
-                        UploadFileTypeEnum['activityv3/images'],
-                        imageFiles,
-                      );
+                        .map((value) => value.image) as File[]
+                      const imageFileNames = await handleUploadFile(UploadFileTypeEnum['activityv3/images'], imageFiles)
                       // url image 처리
                       const imageUrlNames = [...imageObjectMap.values()]
                         .filter((value) => !value.isDelete && typeof value.image === 'string')
-                        .map((value) => value.image) as string[];
-                      const allImageNames = [...imageUrlNames, ...imageFileNames];
+                        .map((value) => value.image) as string[]
+                      const allImageNames = [...imageUrlNames, ...imageFileNames]
                       // file document 처리
                       const documentFiles = [...documentObjectMap.values()]
                         .filter((value) => !value.isDelete && value.document instanceof File)
-                        .map((value) => value.document) as File[];
+                        .map((value) => value.document) as File[]
                       const documentFileNames = await handleUploadFile(
                         UploadFileTypeEnum['activityv3/files'],
                         documentFiles,
-                      );
+                      )
                       const documentUrlNames = [...documentObjectMap.values()]
                         .filter((value) => !value.isDelete && typeof value.document === 'string')
-                        .map((value) => value.document) as string[];
-                      const allDocumentNames = [...documentUrlNames, ...documentFileNames];
+                        .map((value) => value.document) as string[]
+                      const allDocumentNames = [...documentUrlNames, ...documentFileNames]
                       const _data = {
                         ...data,
                         ...(!data.explainText && { explainText: DEFAULT_EXPLAIN_TEXT }),
@@ -815,11 +813,11 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         type: activityv3type as SubjectType,
                         hasStudentText,
                         achievementCriteriaIds: selectedCriteriaIds,
-                      };
+                      }
                       if (activityv3Data) {
-                        updateActivityV3({ id: activityv3Data.id, data: _data });
+                        updateActivityV3({ id: activityv3Data.id, data: _data })
                       } else {
-                        createActivityV3({ data: _data });
+                        createActivityV3({ data: _data })
                       }
                     })}
                   >
@@ -869,11 +867,11 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
             modalOpen={previewOpen}
             setModalClose={() => setPreviewOpen(false)}
           >
-            <div className="flex max-h-screen-12 flex-col lg:border-r lg:border-gray-300">
+            <div className="max-h-screen-12 flex flex-col lg:border-r lg:border-gray-300">
               <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-300 bg-gray-50 px-4 py-2">
                 <div className="flex items-center gap-2">
                   <span className="text-lg font-bold">미리보기</span>
-                  <span className="ml-2 text-14 text-gray-600">학생에게 보여지는 화면입니다.</span>
+                  <span className="text-14 ml-2 text-gray-600">학생에게 보여지는 화면입니다.</span>
                 </div>
                 <CloseButton onClick={() => setPreviewOpen(false)} />
               </div>
@@ -885,13 +883,13 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                       ?.map((el) => (
                         <div
                           key={el.group?.id}
-                          className="whitespace-pre rounded-md bg-brand-5 px-2 py-1 text-sm font-bold text-gray-800"
+                          className="bg-brand-5 rounded-md px-2 py-1 text-sm font-bold whitespace-pre text-gray-800"
                         >
                           {el.group?.name}
                         </div>
                       ))}
                   </div>
-                  <div className="max-w-min whitespace-pre rounded-md bg-gray-300 px-2 py-1 text-sm font-bold text-gray-800">
+                  <div className="max-w-min rounded-md bg-gray-300 px-2 py-1 text-sm font-bold whitespace-pre text-gray-800">
                     {activityv3type && ACTIVITYV3_TYPE_KOR[activityv3type as SubjectType]}
                   </div>
                   <div className={`text-18 font-bold`}>{watch('title')}</div>
@@ -923,7 +921,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                               {getFileNameFromUrl(value.document)}
                             </a>
                           ) : (
-                            <div className="w-full overflow-x-hidden whitespace-pre text-xs text-neutral-500">
+                            <div className="w-full overflow-x-hidden text-xs whitespace-pre text-neutral-500">
                               {value?.document.name}
                             </div>
                           )}
@@ -935,20 +933,20 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                 {watch('description') && (
                   <div className="mb-2 px-4">
                     <div className="text-16 font-semibold">활동 설명</div>
-                    <div className="w-full whitespace-pre-line break-words text-15">{watch('description')}</div>
+                    <div className="text-15 w-full break-words whitespace-pre-line">{watch('description')}</div>
                   </div>
                 )}
                 {hasStudentText && watch('exampleText') && (
                   <div className="px-4">
                     <div className="text-16 font-semibold">학생 활동 보고서 예시</div>
-                    <div className="mt-1 whitespace-pre-line border border-gray-300 p-2 text-15">
+                    <div className="text-15 mt-1 border border-gray-300 p-2 whitespace-pre-line">
                       {watch('exampleText')}
                     </div>
                   </div>
                 )}
                 {hasStudentText && (
                   <div className="bg-gray-50 p-4">
-                    <div className="w-full cursor-pointer border-b border-gray-300 pb-2 text-16 font-semibold">
+                    <div className="text-16 w-full cursor-pointer border-b border-gray-300 pb-2 font-semibold">
                       학생 활동 보고서
                     </div>
                     <div className="text-gray-600">
@@ -957,11 +955,11 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                     </div>
                     <Textarea className="my-2 resize-none" placeholder={watch('explainText') || DEFAULT_EXPLAIN_TEXT} />
                     <Button.lg
-                      className="w-full bg-brand-1 text-white disabled:bg-gray-500"
+                      className="bg-brand-1 w-full text-white disabled:bg-gray-500"
                       disabled
                       children="제출하기"
                     />
-                    <div className="mt-4 w-full text-center text-13 text-red-500">
+                    <div className="text-13 mt-4 w-full text-center text-red-500">
                       *미리보기 화면에선 제출이 불가합니다.
                     </div>
                   </div>
@@ -972,5 +970,5 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
         </div>
       </div>
     </>
-  );
-};
+  )
+}

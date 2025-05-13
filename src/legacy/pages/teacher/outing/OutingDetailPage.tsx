@@ -1,26 +1,28 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import { useRecoilValue } from 'recoil';
-import { ErrorBlank, SuperModal } from 'src/components';
-import CertificationBadge from 'src/components/blockchain/CertificationBadge';
-import { BackButton, Blank, Section, Textarea, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { OutingDetail } from 'src/components/outing/OutingDetail';
-import { useBlockChainDocument } from 'src/container/block-chain-document-status';
-import { useTeacherOutingDetail } from 'src/container/teacher-outing-detail';
-import { OutingStatus, Role } from 'src/generated/model';
-import { meState } from 'src/store';
-import { approveButtonType } from 'src/types';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { PermissionUtil, buttonEnableState } from 'src/util/permission';
-import { OutingUpdatePage } from './OutingUpdatePage';
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router'
+import { useRecoilValue } from 'recoil'
+
+import { ErrorBlank, SuperModal } from '@/legacy/components'
+import CertificationBadge from '@/legacy/components/blockchain/CertificationBadge'
+import { BackButton, Blank, Section, Textarea, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { OutingDetail } from '@/legacy/components/outing/OutingDetail'
+import { useBlockChainDocument } from '@/legacy/container/block-chain-document-status'
+import { useTeacherOutingDetail } from '@/legacy/container/teacher-outing-detail'
+import { OutingStatus, Role } from '@/legacy/generated/model'
+import { approveButtonType } from '@/legacy/types'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { PermissionUtil, buttonEnableState } from '@/legacy/util/permission'
+import { meState } from '@/stores'
+
+import { OutingUpdatePage } from './OutingUpdatePage'
 
 interface OutingDetailPageProps {
-  userRole?: Role;
-  setOpen: (b: boolean) => void;
-  setOutingId: (n: number) => void;
-  setAgreeAll: (b: boolean) => void;
-  isLoading: boolean;
+  userRole?: Role
+  setOpen: (b: boolean) => void
+  setOutingId: (n: number) => void
+  setAgreeAll: (b: boolean) => void
+  isLoading: boolean
 }
 
 export function OutingDetailPage({
@@ -30,13 +32,13 @@ export function OutingDetailPage({
   setAgreeAll,
   isLoading: isLoadingProps,
 }: OutingDetailPageProps) {
-  const { id } = useParams<{ id: string }>();
-  const me = useRecoilValue(meState);
-  const [changeMode, setChangeMode] = useState(false);
+  const { id } = useParams<{ id: string }>()
+  const me = useRecoilValue(meState)
+  const [changeMode, setChangeMode] = useState(false)
   const { data, isLoading: isLoadingBlockChain } = useBlockChainDocument({
     referenceTable: 'OUTING',
     referenceId: Number(id),
-  });
+  })
 
   const {
     deny,
@@ -56,24 +58,24 @@ export function OutingDetailPage({
     isLoadingDoc,
     errorDoc,
     resendAlimtalk,
-  } = useTeacherOutingDetail(Number(id));
+  } = useTeacherOutingDetail(Number(id))
 
   useEffect(() => {
-    setOutingId(Number(id));
-    setChangeMode(false);
-  }, [id, setOutingId]);
+    setOutingId(Number(id))
+    setChangeMode(false)
+  }, [id, setOutingId])
 
   if (isLoadingProps || isLoading || isLoadingBlockChain) {
-    return <Blank reversed />;
+    return <Blank reversed />
   }
 
   if (!outing && !isLoadingDoc) {
-    return <ErrorBlank text="이미 삭제되었거나 더 이상 유효하지 않습니다." />;
+    return <ErrorBlank text="이미 삭제되었거나 더 이상 유효하지 않습니다." />
   }
 
-  const isConfirmed = outing?.outingStatus === 'PROCESSED';
+  const isConfirmed = outing?.outingStatus === 'PROCESSED'
 
-  const updatedAt = DateUtil.formatDate(outing ? outing.updatedAt : '', DateFormat['YYYY-MM-DD HH:mm']);
+  const updatedAt = DateUtil.formatDate(outing ? outing.updatedAt : '', DateFormat['YYYY-MM-DD HH:mm'])
   // const startAt = DateUtil.formatDate(outing.startAt, DateFormat['YYYY-MM-DD HH:mm']);
   // const endAt = DateUtil.formatDate(outing.endAt, DateFormat['YYYY-MM-DD HH:mm']);
 
@@ -84,7 +86,7 @@ export function OutingDetailPage({
         isConfirmed={isConfirmed}
         setChangeMode={(b: boolean) => setChangeMode(b)}
       />
-    );
+    )
   }
 
   // 결재권자 인지. 결재라인에 있으면 true, 없으면 false
@@ -93,7 +95,7 @@ export function OutingDetailPage({
     outing?.approver2Id === me?.id ||
     outing?.approver3Id === me?.id ||
     outing?.approver4Id === me?.id ||
-    outing?.approver5Id === me?.id;
+    outing?.approver5Id === me?.id
 
   const approvedLine = [
     outing?.approver1Signature && outing?.approver1Id,
@@ -101,14 +103,14 @@ export function OutingDetailPage({
     outing?.approver3Signature && outing?.approver3Id,
     outing?.approver4Signature && outing?.approver4Id,
     outing?.approver5Signature && outing?.approver5Id,
-  ];
+  ]
   // 내가 승인한 건 : ture , 승인 안한 건 : false
-  const isApproved = approvedLine.includes(me?.id || 0);
+  const isApproved = approvedLine.includes(me?.id || 0)
 
   // 승인할 차례 : true, 승인전/승인후 : false
   // 지금은 순서가 없으므로, 결재유무만 판단
   //const nowApprove = outing?.nextApproverId === me?.id;
-  const nowApprove = !isApproved;
+  const nowApprove = !isApproved
 
   // 승인 전 = !isApproved && !nowApprove
   // 승인 후 = isApproved && !nowApprove
@@ -117,35 +119,34 @@ export function OutingDetailPage({
     return !buttonEnableState(
       bottonType,
       approver,
-      isApproved,
       nowApprove,
       outing?.outingStatus || '',
       outing?.studentGradeKlass === me?.klassGroupName,
-    );
-  };
+    )
+  }
 
   const handleResendAlimtalk = () =>
     resendAlimtalk().then(() => {
-      alert('보호자에게 승인요청 알림을 보냈습니다.');
-    });
+      alert('보호자에게 승인요청 알림을 보냈습니다.')
+    })
 
   return (
     <>
       <div className="md:hidden">
         <TopNavbar title="상세보기" left={<BackButton />} />
       </div>
-      <div className="bg-white py-5 md:m-6 md:h-screen-3 md:rounded-lg md:border">
-        <div className="h-screen-13 overflow-y-auto md:h-screen-8">
+      <div className="md:h-screen-3 bg-white py-5 md:m-6 md:rounded-lg md:border">
+        <div className="h-screen-13 md:h-screen-8 overflow-y-auto">
           <Section>
             {outing?.updateReason && (
-              <div className="flex items-center justify-between rounded-lg bg-brand-5 px-5 py-2">
+              <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
                 <div className="text-brand-1">{outing?.updateReason}</div>
                 <div className="text-sm text-gray-500">{updatedAt}에 마지막으로 수정</div>
               </div>
             )}
             {outing?.outingStatus === 'RETURNED' && (
-              <div className="flex items-center justify-between rounded-lg bg-brand-5 px-5 py-2">
-                <div className="text-sm text-brand-1">{outing?.notApprovedReason}</div>
+              <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
+                <div className="text-brand-1 text-sm">{outing?.notApprovedReason}</div>
                 <div className="text-red-500">반려 이유</div>
               </div>
             )}
@@ -167,7 +168,7 @@ export function OutingDetailPage({
                   children={'삭제'}
                   onClick={() => {
                     if (confirm('확인증을 삭제하시겠습니까?')) {
-                      deleteOuting();
+                      deleteOuting()
                     }
                   }}
                   className="filled-red"
@@ -196,8 +197,8 @@ export function OutingDetailPage({
                 children={outing?.outingStatus === 'PROCESSED' ? '승인 완료' : '승인'}
                 disabled={checkButtonDisable(approveButtonType.APPROVE)}
                 onClick={() => {
-                  setOpen(true);
-                  setAgreeAll(false);
+                  setOpen(true)
+                  setAgreeAll(false)
                 }}
                 className="filled-primary"
               />
@@ -240,5 +241,5 @@ export function OutingDetailPage({
         </SuperModal>
       </div>
     </>
-  );
+  )
 }

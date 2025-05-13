@@ -1,36 +1,36 @@
-import clsx from 'clsx';
-import moment from 'moment';
-import { useEffect, useMemo, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useRecoilValue } from 'recoil';
-import SvgUser from 'src/assets/svg/user.svg';
-import { SelectMenus, SuperModal } from 'src/components';
-import { Divider, Label, Section, Select } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Tabs } from 'src/components/common/Tabs';
-import { TextInput } from 'src/components/common/TextInput';
-import { Time } from 'src/components/common/Time';
-import { TimetableAtdCard } from 'src/components/timetable/TimetableAtdCard';
-import { TimetableStudentRole } from 'src/components/timetable/TimetableStudentRole';
-import { Constants } from 'src/constants';
-import { GroupContainer } from 'src/container/group';
-import { useTeacherSeatPosition } from 'src/container/teacher-seat-position';
-import { useTimeTableAttendancePageV3 } from 'src/container/teacher-timetable-attendance-page-v3';
+import clsx from 'clsx'
+import moment from 'moment'
+import { useEffect, useMemo, useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { useRecoilValue } from 'recoil'
+import SvgUser from '@/asset/svg/user.svg'
+import { SelectMenus, SuperModal } from '@/legacy/components'
+import { Divider, Label, Section, Select } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Tabs } from '@/legacy/components/common/Tabs'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Time } from '@/legacy/components/common/Time'
+import { TimetableAtdCard } from '@/legacy/components/timetable/TimetableAtdCard'
+import { TimetableStudentRole } from '@/legacy/components/timetable/TimetableStudentRole'
+import { Constants } from '@/legacy/constants'
+import { GroupContainer } from '@/legacy/container/group'
+import { useTeacherSeatPosition } from '@/legacy/container/teacher-seat-position'
+import { useTimeTableAttendancePageV3 } from '@/legacy/container/teacher-timetable-attendance-page-v3'
 import {
   LectureType,
   RequestUpsertStudentRoleDto,
   ResponseTimetableV3Dto,
   ResponseUserAttendanceDto,
-} from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import ConfirmModal from 'src/modals/ConfirmModal';
-import { useModals } from 'src/modals/ModalStack';
-import { StudentModal } from 'src/modals/StudentModal';
-import { meState } from 'src/store';
-import { dayOfEngWeek, dayOfKorWeek } from 'src/util/date';
-import { getNickName } from 'src/util/status';
-import { getThisSemester, getThisYear } from 'src/util/time';
-import { TimetableNeisForm } from './TimetableNeisForm';
+} from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import ConfirmModal from '@/legacy/modals/ConfirmModal'
+import { useModals } from '@/legacy/modals/ModalStack'
+import { StudentModal } from '@/legacy/modals/StudentModal'
+import { meState } from '@/stores'
+import { getNickName } from '@/legacy/util/status'
+import { dayOfEngWeek, dayOfKorWeek } from '@/legacy/util/date'
+import { getThisSemester, getThisYear } from '@/legacy/util/time'
+import { TimetableNeisForm } from './TimetableNeisForm'
 
 const groups = [
   { id: 1, name: '1' },
@@ -42,7 +42,7 @@ const groups = [
   { id: 7, name: '7' },
   { id: 8, name: '8' },
   { id: 9, name: '9' },
-];
+]
 
 enum contentType {
   list = 1,
@@ -59,21 +59,21 @@ enum listType {
 }
 
 interface AbsentUser {
-  id: number;
-  profile: string;
-  klassname: string;
-  student_number: string;
-  name: string;
-  nick_name?: string;
-  hope: string;
-  major: string;
-  absent: boolean;
-  content: string;
-  comment: string;
-  type1: string;
-  type2: string;
-  role: string;
-  job: string;
+  id: number
+  profile: string
+  klassname: string
+  student_number: string
+  name: string
+  nick_name?: string
+  hope: string
+  major: string
+  absent: boolean
+  content: string
+  comment: string
+  type1: string
+  type2: string
+  role: string
+  job: string
 }
 
 const defaultSelectedUser = {
@@ -91,83 +91,83 @@ const defaultSelectedUser = {
   type2: '',
   role: '',
   job: '',
-};
+}
 
 interface SeatType2 {
-  id: number;
-  name: string;
+  id: number
+  name: string
 }
 
 export interface AttendanceContent {
-  absent: boolean;
-  comment: string;
-  createtime: string;
-  creator: string;
-  editor: string;
-  edittime: string;
-  period: number;
-  subject: string;
-  type1: string;
-  type2: string;
+  absent: boolean
+  comment: string
+  createtime: string
+  creator: string
+  editor: string
+  edittime: string
+  period: number
+  subject: string
+  type1: string
+  type2: string
 }
 
 interface RoleInfoType {
-  id: number;
-  klassname: string;
-  student_number: number;
-  name: string;
-  role: string;
-  job: string;
-  displayOrder: number;
+  id: number
+  klassname: string
+  student_number: number
+  name: string
+  role: string
+  job: string
+  displayOrder: number
 }
 
 const getTargetDay = (dayOfWeek: number) => {
-  const currentDate = new Date();
-  const startOfWeek = moment(currentDate).startOf('week').add(1, 'day');
-  const datesOfWeek = [];
-  let tempDate = startOfWeek;
+  const currentDate = new Date()
+  const startOfWeek = moment(currentDate).startOf('week').add(1, 'day')
+  const datesOfWeek = []
+  let tempDate = startOfWeek
   while (datesOfWeek.length <= 7) {
-    datesOfWeek.push(tempDate.format('YYYY-MM-DD'));
-    tempDate = moment(tempDate).add(1, 'day');
+    datesOfWeek.push(tempDate.format('YYYY-MM-DD'))
+    tempDate = moment(tempDate).add(1, 'day')
   }
 
-  return datesOfWeek[dayOfWeek - 1];
-};
+  return datesOfWeek[dayOfWeek - 1]
+}
 
 interface TimetableAttendancePageProps {
-  lectureInfo: ResponseTimetableV3Dto;
-  isKlass: boolean;
+  lectureInfo: ResponseTimetableV3Dto
+  isKlass: boolean
 }
 
 export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAttendancePageProps) {
-  const year = +getThisYear();
-  const semester = +getThisSemester();
-  const { t, currentLang } = useLanguage();
-  const { pushModal } = useModals();
+  const year = +getThisYear()
+  const semester = +getThisSemester()
+  const { t, currentLang } = useLanguage()
+  const { pushModal } = useModals()
 
-  const me = useRecoilValue(meState);
-  const lastPeriod = me?.school.lastPeriod || 8;
+  const me = useRecoilValue(meState)
+  const lastPeriod = me?.school.lastPeriod || 8
 
-  const { allKlassGroups } = GroupContainer.useContext();
-  const selectedKlassInfo = allKlassGroups.find((item) => item.name === lectureInfo.groupName);
+  const { allKlassGroups } = GroupContainer.useContext()
+  const selectedKlassInfo = allKlassGroups.find((item) => item.name === lectureInfo.groupName)
 
-  const myKlass = selectedKlassInfo?.homeRoomTeacherId === me?.id;
+  const myKlass = selectedKlassInfo?.homeRoomTeacherId === me?.id
 
   // klassInfo.timeCode = 요일_몇교시 ex: "monday_1", "wednesday_3"
   // const [dayOfWeek, selectedPeriodString] = selectedLectureInfo;
-  const targetDay = getTargetDay(lectureInfo.day);
-  const selectedPeriod = lectureInfo.time;
+  const targetDay = getTargetDay(lectureInfo.day)
+  const selectedPeriod = lectureInfo.time
 
-  const [teacherName, setTeacherName] = useState(selectedKlassInfo?.homeRoomTeacherName);
-  const teacherNickName = getNickName(selectedKlassInfo?.homeRoomTeacherNickName);
+  const [teacherName, setTeacherName] = useState(selectedKlassInfo?.homeRoomTeacherName)
+  const teacherNickName = getNickName(selectedKlassInfo?.homeRoomTeacherNickName)
 
   useEffect(() => {
-    setTeacherName(selectedKlassInfo ? selectedKlassInfo?.homeRoomTeacherName : lectureInfo.teacherName);
-  }, [selectedKlassInfo]);
+    setTeacherName(selectedKlassInfo ? selectedKlassInfo?.homeRoomTeacherName : lectureInfo.teacherName)
+  }, [selectedKlassInfo])
 
   const { seatPositionId, seatPosition, updateSeatPosition } = useTeacherSeatPosition({
     groupId: selectedKlassInfo ? selectedKlassInfo.id : lectureInfo.groupId,
-  });
+  })
 
   const { userAttendance, createAttendanceAbsent, updateStudentRole, AttendanceCheckInfo, createAttendanceCheck } =
     useTimeTableAttendancePageV3({
@@ -175,9 +175,9 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
       groupId: lectureInfo.groupId.toString() || '0',
       year: year.toString(),
       day: targetDay,
-    });
+    })
 
-  const students: ResponseUserAttendanceDto[] = userAttendance; // me 데이터와 유사
+  const students: ResponseUserAttendanceDto[] = userAttendance // me 데이터와 유사
 
   const tempRoleInfo = useMemo(() => {
     return userAttendance
@@ -191,72 +191,74 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
         job: student.job ? student.job : '',
         displayOrder: student?.display_order ? student.display_order : 0,
       }))
-      .sort((a, b) => a.displayOrder - b.displayOrder);
-  }, [userAttendance]);
+      .sort((a, b) => a.displayOrder - b.displayOrder)
+  }, [userAttendance])
 
-  const [roleInfo, setRoleInfo] = useState<RoleInfoType[]>([...tempRoleInfo]);
+  const [roleInfo, setRoleInfo] = useState<RoleInfoType[]>([...tempRoleInfo])
 
-  const [showAbsent, setShowAbsent] = useState(listType.total);
+  const [showAbsent, setShowAbsent] = useState(listType.total)
 
-  const [showSeat, setShowSeat] = useState(contentType.list);
-  const [selectedUserId, setSelectedUserId] = useState<AbsentUser>(defaultSelectedUser);
-  const [isAttendanceModalOpen, setIsAttendanceModalOpen] = useState(false);
-  const [showConfirmOpen, setShowConfirmOpen] = useState(false);
+  const [showSeat, setShowSeat] = useState(contentType.list)
+  const [selectedUserId, setSelectedUserId] = useState<AbsentUser>(defaultSelectedUser)
+  const [isAttendanceModalOpen, setIsAttendanceModalOpen] = useState(false)
+  const [showConfirmOpen, setShowConfirmOpen] = useState(false)
 
-  const [seatSizeRows, setSeatSizeRows] = useState<SeatType2>({ id: 0, name: '0' });
-  const [seatSizeCols, setSeatSizeCols] = useState<SeatType2>({ id: 6, name: '6' });
+  const [seatSizeRows, setSeatSizeRows] = useState<SeatType2>({ id: 0, name: '0' })
+  const [seatSizeCols, setSeatSizeCols] = useState<SeatType2>({ id: 6, name: '6' })
 
-  const [seatEditMode, setSeatEditMode] = useState(false);
-  const [roleEditMode, setRoleEditMode] = useState(false);
+  const [seatEditMode, setSeatEditMode] = useState(false)
+  const [roleEditMode, setRoleEditMode] = useState(false)
 
-  const [showSubject, setShowSubject] = useState(false);
+  const [showSubject, setShowSubject] = useState(false)
 
-  const [removeStudents, setRemoveStudents] = useState<Map<number, boolean>>(new Map());
-  const [absentOfSelectedPeriod, setAbsentOfSelectedPeriod] = useState<Map<number, boolean>>(new Map());
-  const [absentCommentOfSelectedPeriod, setAbsentCommentOfSelectedPeriod] = useState<Map<number, string>>(new Map());
-  const [studentsAbsent, setStudentsAbsent] = useState<number[]>([]);
+  const [removeStudents, setRemoveStudents] = useState<Map<number, boolean>>(new Map())
+  const [absentOfSelectedPeriod, setAbsentOfSelectedPeriod] = useState<Map<number, boolean>>(new Map())
+  const [absentCommentOfSelectedPeriod, setAbsentCommentOfSelectedPeriod] = useState<Map<number, string>>(new Map())
+  const [studentsAbsent, setStudentsAbsent] = useState<number[]>([])
 
   useEffect(() => {
-    if (!students) return;
+    if (!students) return
 
-    const newRemoveStudents = new Map<number, boolean>();
-    const newAbsentOfSelectedPeriod = new Map<number, boolean>();
-    const newAbsentCommentOfSelectedPeriod = new Map<number, string>();
-    const newStudentsAbsent: number[] = [];
+    const newRemoveStudents = new Map<number, boolean>()
+    const newAbsentOfSelectedPeriod = new Map<number, boolean>()
+    const newAbsentCommentOfSelectedPeriod = new Map<number, string>()
+    const newStudentsAbsent: number[] = []
 
     students.forEach((student: ResponseUserAttendanceDto) => {
+      // @ts-ignore ! type
       if (student.expired || student.not_attend) {
-        newRemoveStudents.set(student.id, true);
-        newAbsentCommentOfSelectedPeriod.set(student.id, '');
+        newRemoveStudents.set(student.id, true)
+        newAbsentCommentOfSelectedPeriod.set(student.id, '')
       } else {
         if (student.content) {
-          const contentJson: { attendance: AttendanceContent[] } = JSON.parse(student.content);
-          const hasData = contentJson.attendance.length > lectureInfo.time;
-          const attendanceItem = hasData ? contentJson.attendance[lectureInfo.time] : undefined;
+          const contentJson: { attendance: AttendanceContent[] } = JSON.parse(student.content)
+          const hasData = contentJson.attendance.length > lectureInfo.time
+          const attendanceItem = hasData ? contentJson.attendance[lectureInfo.time] : undefined
 
-          newAbsentOfSelectedPeriod.set(student.id, hasData ? (attendanceItem?.absent ?? false) : false);
-          newAbsentCommentOfSelectedPeriod.set(student.id, hasData ? (attendanceItem?.comment ?? '') : '');
+          newAbsentOfSelectedPeriod.set(student.id, hasData ? (attendanceItem?.absent ?? false) : false)
+          newAbsentCommentOfSelectedPeriod.set(student.id, hasData ? (attendanceItem?.comment ?? '') : '')
 
           if (hasData && attendanceItem?.absent && student.student_number) {
-            newStudentsAbsent.push(student.student_number);
+            // @ts-ignore ! type
+            newStudentsAbsent.push(student.student_number)
           }
 
           if (hasData && attendanceItem?.type1 !== '' && attendanceItem?.type2 !== '') {
-            student.type1 = attendanceItem?.type1;
-            student.type2 = attendanceItem?.type2;
+            student.type1 = attendanceItem?.type1 || ''
+            student.type2 = attendanceItem?.type2 || ''
           }
         } else {
-          newAbsentOfSelectedPeriod.set(student.id, false);
-          newAbsentCommentOfSelectedPeriod.set(student.id, '');
+          newAbsentOfSelectedPeriod.set(student.id, false)
+          newAbsentCommentOfSelectedPeriod.set(student.id, '')
         }
       }
-    });
+    })
 
-    setRemoveStudents(newRemoveStudents);
-    setAbsentOfSelectedPeriod(newAbsentOfSelectedPeriod);
-    setAbsentCommentOfSelectedPeriod(newAbsentCommentOfSelectedPeriod);
-    setStudentsAbsent(newStudentsAbsent);
-  }, [students]);
+    setRemoveStudents(newRemoveStudents)
+    setAbsentOfSelectedPeriod(newAbsentOfSelectedPeriod)
+    setAbsentCommentOfSelectedPeriod(newAbsentCommentOfSelectedPeriod)
+    setStudentsAbsent(newStudentsAbsent)
+  }, [students])
 
   const handleModalOpen = (student: any) => {
     setSelectedUserId({
@@ -275,15 +277,15 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
       type2: student.type2 || '',
       role: student?.role || '',
       job: student?.job || '',
-    });
-    setIsAttendanceModalOpen(true);
-  };
+    })
+    setIsAttendanceModalOpen(true)
+  }
 
   const getAttendanceArray = () => {
-    let contentJson: { attendance: AttendanceContent[] } = { attendance: [] };
+    let contentJson: { attendance: AttendanceContent[] } = { attendance: [] }
     // 기초데이터 생성
     if (selectedUserId.content) {
-      contentJson = JSON.parse(selectedUserId.content) as { attendance: AttendanceContent[] };
+      contentJson = JSON.parse(selectedUserId.content) as { attendance: AttendanceContent[] }
     } else {
       for (let i = 0; i <= lastPeriod; i++) {
         const t = {
@@ -297,78 +299,78 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
           absent: false,
           type1: '',
           type2: '',
-        };
+        }
 
-        contentJson.attendance.push(t);
+        contentJson.attendance.push(t)
       }
     }
-    return contentJson;
-  };
+    return contentJson
+  }
 
   const confirmAttendanceCheck = () => {
     const result = confirm(
       `${lectureInfo.room} ${dayOfKorWeek(lectureInfo.day)}요일 ${
         lectureInfo.time === 0 ? '조회' : lectureInfo.time + '교시'
       } 의 출석체크를 하셨습니까? `,
-    );
+    )
 
     if (result) {
-      createAttendanceCheck();
+      createAttendanceCheck()
     }
-  };
+  }
 
   /// userId : 결석처리할 학색,
   /// absent : true : 미출석, false : 출석
   /// content : 이전시간 출석 기록
   const submitAbsentUser = (submit: boolean) => {
     if (!submit || selectedUserId.id <= 0) {
-      setSelectedUserId(defaultSelectedUser);
-      setIsAttendanceModalOpen(false);
-      return;
+      setSelectedUserId(defaultSelectedUser)
+      setIsAttendanceModalOpen(false)
+      return
     }
 
-    const contentJson = getAttendanceArray();
+    const contentJson = getAttendanceArray()
 
-    let type1 = '';
-    let type2 = '';
+    let type1 = ''
+    let type2 = ''
 
     if (selectedUserId.absent) {
-      type1 = !selectedUserId.type1 || selectedUserId.type1 === '' ? '기타' : selectedUserId.type1;
-      type2 = !selectedUserId.type2 || selectedUserId.type2 === '' ? '기타' : selectedUserId.type2;
+      type1 = !selectedUserId.type1 || selectedUserId.type1 === '' ? '기타' : selectedUserId.type1
+      type2 = !selectedUserId.type2 || selectedUserId.type2 === '' ? '기타' : selectedUserId.type2
     }
 
-    contentJson.attendance[selectedPeriod].subject = lectureInfo.subject;
-    contentJson.attendance[selectedPeriod].comment = selectedUserId.comment || '';
-    contentJson.attendance[selectedPeriod].type1 = type1;
-    contentJson.attendance[selectedPeriod].type2 = type2;
-    contentJson.attendance[selectedPeriod].editor = me?.name ? me?.name : '';
-    contentJson.attendance[selectedPeriod].edittime = new Date().toLocaleString();
-    contentJson.attendance[selectedPeriod].absent = selectedUserId.absent;
+    contentJson.attendance[selectedPeriod].subject = lectureInfo.subject
+    contentJson.attendance[selectedPeriod].comment = selectedUserId.comment || ''
+    contentJson.attendance[selectedPeriod].type1 = type1
+    contentJson.attendance[selectedPeriod].type2 = type2
+    contentJson.attendance[selectedPeriod].editor = me?.name ? me?.name : ''
+    contentJson.attendance[selectedPeriod].edittime = new Date().toLocaleString()
+    contentJson.attendance[selectedPeriod].absent = selectedUserId.absent
 
     if (isKlass) {
       // 학급별인 경우, 출석부와 같이 지각은 이전시간, 조퇴는 이후 시간, 결석/출석은 전시간에 반영
       if (type1 !== '결과') {
         // 결과는 다음시간에 영향을 미치지 않음.
 
-        let loopStart = 0;
-        let loopEnd = -1;
+        let loopStart = 0
+        let loopEnd = -1
 
         if (type1 === '지각') {
-          loopStart = 0;
-          loopEnd = selectedPeriod;
+          loopStart = 0
+          loopEnd = selectedPeriod
         } else if (type1 === '조퇴') {
-          loopStart = selectedPeriod;
-          loopEnd = lastPeriod;
+          loopStart = selectedPeriod
+          loopEnd = lastPeriod
         } else if (type1 === '결석' || selectedUserId.absent === false) {
-          loopStart = 0;
-          loopEnd = lastPeriod;
+          loopStart = 0
+          loopEnd = lastPeriod
         }
 
         for (let i = loopStart; i <= loopEnd; i++) {
-          contentJson.attendance[i].type1 = type1;
-          contentJson.attendance[i].type2 = type2;
-          contentJson.attendance[i].absent = selectedUserId.absent;
-          contentJson.attendance[i].comment = selectedUserId.comment || '';
+          contentJson.attendance[i].type1 = type1
+          contentJson.attendance[i].type2 = type2
+          contentJson.attendance[i].absent = selectedUserId.absent
+          contentJson.attendance[i].comment = selectedUserId.comment || ''
         }
       }
     } // 교사별인경우, 출석체크한 시간만 인정
@@ -388,169 +390,170 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
       notiType: 'simple',
       period: lectureInfo.time,
     }).then(() => {
-      setShowConfirmOpen(false);
-      setSelectedUserId(defaultSelectedUser);
-      setIsAttendanceModalOpen(false);
-    });
-  };
+      setShowConfirmOpen(false)
+      setSelectedUserId(defaultSelectedUser)
+      setIsAttendanceModalOpen(false)
+    })
+  }
 
   const getAbsentString = () => {
-    let type1 = '';
-    let type2 = '';
+    let type1 = ''
+    let type2 = ''
 
     if (selectedUserId.absent) {
-      type1 = !selectedUserId.type1 || selectedUserId.type1 === '' ? '기타' : selectedUserId.type1;
-      type2 = !selectedUserId.type2 || selectedUserId.type2 === '' ? '기타' : selectedUserId.type2;
+      type1 = !selectedUserId.type1 || selectedUserId.type1 === '' ? '기타' : selectedUserId.type1
+      type2 = !selectedUserId.type2 || selectedUserId.type2 === '' ? '기타' : selectedUserId.type2
 
-      let rangeStr = '';
+      let rangeStr = ''
 
       if (type1 === '지각') {
-        rangeStr = `조회부터 ${selectedPeriod}교시까지 `;
+        rangeStr = `조회부터 ${selectedPeriod}교시까지 `
       } else if (type1 === '조퇴') {
-        rangeStr = `${selectedPeriod}교시부터 종례까지 `;
+        rangeStr = `${selectedPeriod}교시부터 종례까지 `
       } else if (type1 === '결석') {
-        rangeStr = `전 교시 `;
+        rangeStr = `전 교시 `
       }
 
-      return `${rangeStr} ${type2}${type1} 처리하시겠습니까?`;
+      return `${rangeStr} ${type2}${type1} 처리하시겠습니까?`
     } else {
-      return '전 교시 출석으로 처리하시겠습니까?';
+      return '전 교시 출석으로 처리하시겠습니까?'
     }
-  };
+  }
 
-  let seatPositionMap: { studentid: number; seat: string }[] = seatPosition;
+  let seatPositionMap: { studentid: number; seat: string }[] = seatPosition
 
-  let maxCol = 6;
-  let maxRow = 0;
+  let maxCol = 6
+  let maxRow = 0
 
   // 설정된 자리 크기를 가져온다. to-do
   if (seatPositionMap.length > 0) {
-    let tmpRow = 1;
-    let tmpCol = 1;
+    let tmpRow = 1
+    let tmpCol = 1
     seatPositionMap.map((seatInfo: { studentid: number; seat: string }) => {
-      const row = Math.floor(Number(seatInfo?.seat) / 10);
-      const col = Number(seatInfo?.seat) % 10;
+      const row = Math.floor(Number(seatInfo?.seat) / 10)
+      const col = Number(seatInfo?.seat) % 10
 
-      tmpRow = row > tmpRow ? row : tmpRow;
-      tmpCol = col > tmpCol ? col : tmpCol;
-    });
+      tmpRow = row > tmpRow ? row : tmpRow
+      tmpCol = col > tmpCol ? col : tmpCol
+    })
 
-    maxCol = tmpCol + 1;
-    maxRow = tmpRow;
+    maxCol = tmpCol + 1
+    maxRow = tmpRow
   }
 
-  let newSeatCount = 0;
+  let newSeatCount = 0
   // 누락된 학생 찾아서 넣기 start
   const getNewSeat = () => {
-    const newRow = maxRow + Math.floor(newSeatCount / maxCol);
-    const newCol = newSeatCount % maxCol;
+    const newRow = maxRow + Math.floor(newSeatCount / maxCol)
+    const newCol = newSeatCount % maxCol
 
-    newSeatCount++;
-    return newRow.toString() + newCol.toString();
-  };
+    newSeatCount++
+    return newRow.toString() + newCol.toString()
+  }
 
   students?.map((student: ResponseUserAttendanceDto) => {
     const rst = seatPositionMap?.find(
       (seatinfo: { studentid: number; seat: string }) => seatinfo.studentid === student.id,
-    );
+    )
 
+    // @ts-ignore ! type
     if (!student.expired && !student.not_attend) {
       if (rst === undefined) {
         seatPositionMap.push({
           studentid: student.id,
           seat: `${getNewSeat()}`,
-        });
+        })
       }
     } else {
       if (rst) {
-        seatPositionMap = seatPositionMap.filter((item) => item.studentid !== student.id);
+        seatPositionMap = seatPositionMap.filter((item) => item.studentid !== student.id)
       }
     }
-  });
-  maxRow = maxRow + Math.floor(newSeatCount / maxCol);
+  })
+  maxRow = maxRow + Math.floor(newSeatCount / maxCol)
 
   // dom 에서 자리의 학생 가져오기
-  const seatSudentMap = new Map<string, any>();
+  const seatSudentMap = new Map<string, any>()
   const getStudentSeat = (row: number, col: number): ResponseUserAttendanceDto | undefined => {
-    const seat = row.toString() + col.toString();
+    const seat = row.toString() + col.toString()
 
-    let rststudent: ResponseUserAttendanceDto | undefined;
+    let rststudent: ResponseUserAttendanceDto | undefined
 
     if (!seatSudentMap.has(seat)) {
-      const rst = seatPositionMap?.find((seatinfo: any) => seatinfo.seat === seat);
-      const studentId = rst?.studentid;
+      const rst = seatPositionMap?.find((seatinfo: any) => seatinfo.seat === seat)
+      const studentId = rst?.studentid
 
-      rststudent = students?.find((student: any) => student.id === studentId);
+      rststudent = students?.find((student: any) => student.id === studentId)
 
       if (rststudent?.expired) {
-        rststudent = undefined;
+        rststudent = undefined
       }
 
       if (rststudent) {
-        seatSudentMap.set(seat, rststudent);
+        seatSudentMap.set(seat, rststudent)
       } else {
         // 자리설정은 되었지만 삭제된 학생
         seatPositionMap = seatPositionMap.filter((obj: any) => {
-          return obj !== rst;
-        });
+          return obj !== rst
+        })
       }
     } else {
-      rststudent = seatSudentMap.get(seat);
+      rststudent = seatSudentMap.get(seat)
     }
 
-    return rststudent;
-  };
+    return rststudent
+  }
 
-  const [selSeat, setSelSeat] = useState('');
+  const [selSeat, setSelSeat] = useState('')
 
   const swapSeat = (row: number, col: number) => {
-    const seat = row.toString() + col.toString();
+    const seat = row.toString() + col.toString()
 
     if (selSeat === '') {
-      setSelSeat(seat);
+      setSelSeat(seat)
     } else {
       // selSeat 와 seat 변경
-      const selInfo = seatPositionMap?.find((seatinfo: any) => seatinfo.seat === selSeat);
-      const nowInfo = seatPositionMap?.find((seatinfo: any) => seatinfo.seat === seat);
+      const selInfo = seatPositionMap?.find((seatinfo: any) => seatinfo.seat === selSeat)
+      const nowInfo = seatPositionMap?.find((seatinfo: any) => seatinfo.seat === seat)
 
-      if (selInfo !== undefined) selInfo.seat = seat;
-      if (nowInfo !== undefined) nowInfo.seat = selSeat;
+      if (selInfo !== undefined) selInfo.seat = seat
+      if (nowInfo !== undefined) nowInfo.seat = selSeat
 
-      saveStudentSeat();
-      setSelSeat('');
+      saveStudentSeat()
+      setSelSeat('')
     }
-  };
+  }
 
   const swapSeatDrop = (selSeat: string, nowSeat: string) => {
     // selSeat 와 seat 변경
-    const selInfo = seatPositionMap?.find((seatinfo: any) => seatinfo.seat === selSeat);
-    const nowInfo = seatPositionMap?.find((seatinfo: any) => seatinfo.seat === nowSeat);
+    const selInfo = seatPositionMap?.find((seatinfo: any) => seatinfo.seat === selSeat)
+    const nowInfo = seatPositionMap?.find((seatinfo: any) => seatinfo.seat === nowSeat)
 
-    if (selInfo !== undefined) selInfo.seat = nowSeat;
-    if (nowInfo !== undefined) nowInfo.seat = selSeat;
+    if (selInfo !== undefined) selInfo.seat = nowSeat
+    if (nowInfo !== undefined) nowInfo.seat = selSeat
 
-    saveStudentSeat();
-  };
+    saveStudentSeat()
+  }
 
   const saveStudentSeat = () => {
     if (seatEditMode) {
-      const seatPosition = JSON.stringify(seatPositionMap);
-      updateSeatPosition({ id: seatPositionId || 0, seatPosition });
+      const seatPosition = JSON.stringify(seatPositionMap)
+      updateSeatPosition({ id: seatPositionId || 0, seatPosition })
     }
-  };
+  }
 
   const checkSeatSize = (isCol: boolean, size: number) => {
     if ((isCol && maxCol > size) || (!isCol && maxRow + 1 > size)) {
-      alert('학생이 설정되어 있는 자리는 삭제할 수 없습니다.');
-      return false;
+      alert('학생이 설정되어 있는 자리는 삭제할 수 없습니다.')
+      return false
     } else {
-      return true;
+      return true
     }
-  };
+  }
 
   const saveRole = () => {
     if (!roleEditMode) {
-      return;
+      return
     }
 
     const roleInfos: RequestUpsertStudentRoleDto[] = roleInfo.map((student: RoleInfoType, i: number) => {
@@ -560,30 +563,30 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
         job: student.job,
         displayOrder: i,
         year: year,
-      };
-    });
+      }
+    })
 
-    updateStudentRole(roleInfos);
-  };
+    updateStudentRole(roleInfos)
+  }
 
-  let from = -1;
+  let from = -1
 
-  const disabledSaveButton = false;
+  const disabledSaveButton = false
   // selectedUserId.absent
   //   ? !selectedUserId.type1 || !selectedUserId.type2 //|| !selectedUserId.comment
   //   : false;
 
   useEffect(() => {
     if (maxRow >= 0) {
-      setSeatSizeRows(groups[maxRow]);
-      setSeatSizeCols(groups[maxCol - 1]); // 인덱스가 0부터 시작하므로,
+      setSeatSizeRows(groups[maxRow])
+      setSeatSizeCols(groups[maxCol - 1]) // 인덱스가 0부터 시작하므로,
     }
-  }, [maxRow]);
+  }, [maxRow])
 
   useEffect(() => {
-    setRoleEditMode(false);
-    setRoleInfo(tempRoleInfo);
-  }, [students]);
+    setRoleEditMode(false)
+    setRoleInfo(tempRoleInfo)
+  }, [students])
 
   return (
     <div className="scroll-box h-screen-8 overflow-y-auto md:h-screen">
@@ -614,7 +617,8 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                 ) : (
                   <>
                     {lectureInfo.subject}{' '}
-                    {(lectureInfo.type === LectureType.FIX || lectureInfo.type === LectureType.MOVE) && !!lectureInfo.teacherName &&
+                    {(lectureInfo.type === LectureType.FIX || lectureInfo.type === LectureType.MOVE) &&
+                      !!lectureInfo.teacherName &&
                       '| ' + lectureInfo.teacherName + getNickName(lectureInfo?.teacherNickName)}
                   </>
                 )}{' '}
@@ -684,16 +688,16 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
             children={tab.name}
             selected={showSeat === tab.type}
             onClick={() => {
-              setSeatEditMode(false);
-              setRoleEditMode(false);
-              setShowSeat(tab.type);
+              setSeatEditMode(false)
+              setRoleEditMode(false)
+              setShowSeat(tab.type)
             }}
             className="md:flex-none md:px-5"
           />
         ))}
       </Tabs>
 
-      <div className="md:scroll-box md:h-screen-13 md:overflow-y-auto md:overflow-x-hidden">
+      <div className="md:scroll-box md:h-screen-13 md:overflow-x-hidden md:overflow-y-auto">
         {/* 출석부 tab */}
         {showSeat === contentType.list && (
           <div className="mb-10">
@@ -710,21 +714,21 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                         : true,
               )
               .sort((a, b) => {
-                const aData = a?.klassname?.match(`([0-9]|[0-9][0-9])학년 ([0-9]|[0-9][0-9])반`);
-                const bData = b?.klassname?.match(`([0-9]|[0-9][0-9])학년 ([0-9]|[0-9][0-9])반`);
+                const aData = a?.klassname?.match(`([0-9]|[0-9][0-9])학년 ([0-9]|[0-9][0-9])반`)
+                const bData = b?.klassname?.match(`([0-9]|[0-9][0-9])학년 ([0-9]|[0-9][0-9])반`)
 
                 if (!aData || !bData) {
-                  return 0;
+                  return 0
                 }
 
                 if (aData[1] && bData[1]) {
                   if (aData[1] === bData[1]) {
-                    return Number(aData[2]) - Number(bData[2]);
+                    return Number(aData[2]) - Number(bData[2])
                   } else {
-                    return Number(aData[1]) - Number(bData[1]);
+                    return Number(aData[1]) - Number(bData[1])
                   }
                 } else {
-                  return 0;
+                  return 0
                 }
               })
               .map((student: ResponseUserAttendanceDto, i: number) => (
@@ -742,7 +746,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
               <div className="flex w-full flex-col items-center justify-center">
                 <div className="mt-6 cursor-pointer">
                   {AttendanceCheckInfo ? (
-                    <div className="mt-3 text-brandblue-1">
+                    <div className="text-brandblue-1 mt-3">
                       출석체크 완료 : {AttendanceCheckInfo.teacherName} (
                       <Time date={AttendanceCheckInfo.updatedAt} className="text-16 text-inherit" />)
                     </div>
@@ -779,7 +783,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                         .map((_: any, c: number) => (
                           <td
                             key={c}
-                            className={`border border-grey-7 ${
+                            className={`border-grey-7 border ${
                               selSeat === r.toString() + c.toString()
                                 ? 'bg-blue-300'
                                 : getStudentSeat(r, c)?.absent
@@ -787,30 +791,30 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                                     ? 'bg-red-300'
                                     : 'bg-white'
                                   : 'bg-grey-6'
-                            } min-h-24 h-24 w-16 cursor-pointer rounded-md ${seatEditMode ? '' : 'not-draggable'}`}
+                            } h-24 min-h-24 w-16 cursor-pointer rounded-md ${seatEditMode ? '' : 'not-draggable'}`}
                             draggable
                             onClick={() => {
                               if (seatEditMode) {
-                                swapSeat(r, c);
+                                swapSeat(r, c)
                               } else {
-                                const student = getStudentSeat(r, c);
-                                student && handleModalOpen(student);
+                                const student = getStudentSeat(r, c)
+                                student && handleModalOpen(student)
                               }
                             }}
                             onDragStart={(ev) => {
                               if (seatEditMode) {
-                                ev.dataTransfer.setData('location', r.toString() + c.toString());
+                                ev.dataTransfer.setData('location', r.toString() + c.toString())
                               }
                             }}
                             onDrop={(ev) => {
                               if (seatEditMode) {
-                                ev.preventDefault();
-                                swapSeatDrop(ev.dataTransfer.getData('location'), r.toString() + c.toString());
+                                ev.preventDefault()
+                                swapSeatDrop(ev.dataTransfer.getData('location'), r.toString() + c.toString())
                               }
                             }}
                             onDragOver={(ev) => {
                               if (seatEditMode) {
-                                ev.preventDefault();
+                                ev.preventDefault()
                               }
                             }}
                           >
@@ -828,7 +832,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                                     loading="lazy"
                                     className="h-full w-full rounded object-cover"
                                     onError={({ currentTarget }) => {
-                                      currentTarget.src = SvgUser;
+                                      currentTarget.src = SvgUser
                                     }}
                                   />
                                 </p>
@@ -845,7 +849,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
 
             <br />
             <div className="mb-6 flex w-full items-center justify-center space-x-2">
-              <div className="rounded-md border border-grey-7 bg-grey-6 px-3 py-2">교탁</div>
+              <div className="border-grey-7 bg-grey-6 rounded-md border px-3 py-2">교탁</div>
             </div>
 
             {me?.name === teacherName ? (
@@ -879,8 +883,8 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                     <Button.xl
                       children={seatEditMode ? '변경완료' : '자리변경'}
                       onClick={() => {
-                        setSelSeat('');
-                        setSeatEditMode(!seatEditMode);
+                        setSelSeat('')
+                        setSeatEditMode(!seatEditMode)
                       }}
                       className="filled-primary"
                     />
@@ -907,26 +911,26 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                   className="w-full cursor-pointer"
                   onDragStart={(e) => {
                     if (roleEditMode) {
-                      const item = e.currentTarget;
-                      from = Number(item.dataset.id);
+                      const item = e.currentTarget
+                      from = Number(item.dataset.id)
                     }
                   }}
                   onDrop={(e) => {
                     if (roleEditMode) {
                       if (from >= 0) {
-                        const item = e.currentTarget;
-                        const to = Number(item.dataset.id);
+                        const item = e.currentTarget
+                        const to = Number(item.dataset.id)
 
-                        const tempList = roleInfo;
+                        const tempList = roleInfo
 
-                        tempList.splice(to, 0, tempList.splice(from, 1)[0]);
-                        setRoleInfo(tempList?.map((el) => el));
+                        tempList.splice(to, 0, tempList.splice(from, 1)[0])
+                        setRoleInfo(tempList?.map((el) => el))
                       }
                     }
                   }}
                   onDragOver={(ev) => {
                     if (roleEditMode) {
-                      ev.preventDefault();
+                      ev.preventDefault()
                     }
                   }}
                 >
@@ -935,14 +939,14 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                     editmode={roleEditMode}
                     order={i}
                     setOrder={(order: number, isUpDir: boolean) => {
-                      const from = order;
-                      const to = isUpDir ? from - 1 : from + 1;
+                      const from = order
+                      const to = isUpDir ? from - 1 : from + 1
 
                       if (to >= 0) {
-                        const tempList = roleInfo;
+                        const tempList = roleInfo
 
-                        tempList.splice(to, 0, tempList.splice(from, 1)[0]);
-                        setRoleInfo(tempList?.map((el) => el));
+                        tempList.splice(to, 0, tempList.splice(from, 1)[0])
+                        setRoleInfo(tempList?.map((el) => el))
                       }
                     }}
                   />
@@ -955,8 +959,8 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                   <Button.xl
                     children={roleEditMode ? '저장하기' : '수정하기'}
                     onClick={() => {
-                      if (roleEditMode) saveRole();
-                      setRoleEditMode(!roleEditMode);
+                      if (roleEditMode) saveRole()
+                      setRoleEditMode(!roleEditMode)
                     }}
                     className="filled-primary"
                   />
@@ -982,7 +986,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                 loading="lazy"
                 className="h-full w-full rounded object-cover"
                 onError={({ currentTarget }) => {
-                  currentTarget.src = SvgUser;
+                  currentTarget.src = SvgUser
                 }}
               />
             </div>
@@ -998,8 +1002,8 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
               </div>
               <div className="text-sm">{selectedUserId.role}</div>
               <div className="text-sm">{selectedUserId.job}</div>
-              <div className="text-sm text-grey-2">희망학과 | {selectedUserId.major}</div>
-              <div className="text-sm text-grey-2">장래희망 | {selectedUserId.hope}</div>
+              <div className="text-grey-2 text-sm">희망학과 | {selectedUserId.major}</div>
+              <div className="text-grey-2 text-sm">장래희망 | {selectedUserId.hope}</div>
             </div>
           </div>
           <Divider />
@@ -1066,10 +1070,10 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
             children="저장하기"
             onClick={() => {
               if (isKlass) {
-                setIsAttendanceModalOpen(false);
-                setShowConfirmOpen(true);
+                setIsAttendanceModalOpen(false)
+                setShowConfirmOpen(true)
               } else {
-                submitAbsentUser(true);
+                submitAbsentUser(true)
               }
             }}
             disabled={disabledSaveButton}
@@ -1089,5 +1093,5 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
         onConfirm={() => submitAbsentUser(true)}
       />
     </div>
-  );
+  )
 }

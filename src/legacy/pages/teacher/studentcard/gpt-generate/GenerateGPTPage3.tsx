@@ -1,12 +1,12 @@
-import { Radio, TextField } from '@mui/material';
+import { Radio, TextField } from '@mui/material'
 
-import { FC } from 'react';
-import { Textarea } from 'src/components/common';
-import { Icon } from 'src/components/common/icons';
+import { FC } from 'react'
+import { Textarea } from '@/legacy/components/common'
+import { Icon } from '@/legacy/components/common/icons'
 
 interface GenerateGPTPage3Props {
-  goPrevPage: () => void;
-  goNextPage: () => void;
+  goPrevPage: () => void
+  goNextPage: () => void
 }
 
 export const GenerateGPTPage3: FC<GenerateGPTPage3Props> = ({ goPrevPage, goNextPage }) => {
@@ -20,15 +20,15 @@ export const GenerateGPTPage3: FC<GenerateGPTPage3Props> = ({ goPrevPage, goNext
           4
         </div>
       </div>
-      <div className="flex h-screen-13 w-full flex-col">
+      <div className="h-screen-13 flex w-full flex-col">
         <div className="mx-auto flex h-full w-full max-w-xl flex-col items-center justify-center space-y-2">
           <TextField className="w-full rounded-none" placeholder="제목을 입력해주세요" />
 
-          <div className="flex flex-col space-y-4  overflow-y-scroll">
+          <div className="flex flex-col space-y-4 overflow-y-scroll">
             <label className="flex items-start space-x-2" htmlFor="radio-1">
               <Radio id="radio-1" name="radio-1" />
 
-              <div className="whitespace-pre-line rounded-xl rounded-tl-none border border-gray-500 bg-light_orange px-5 py-3 leading-6">
+              <div className="bg-light_orange rounded-xl rounded-tl-none border border-gray-500 px-5 py-3 leading-6 whitespace-pre-line">
                 {`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                 industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
                 scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
@@ -40,7 +40,7 @@ export const GenerateGPTPage3: FC<GenerateGPTPage3Props> = ({ goPrevPage, goNext
             <label className="flex items-start space-x-2" htmlFor="radio-1">
               <Radio id="radio-1" name="radio-1" />
 
-              <div className="whitespace-pre-line rounded-xl rounded-tl-none border border-gray-500 bg-light_orange px-5 py-3 leading-6">
+              <div className="bg-light_orange rounded-xl rounded-tl-none border border-gray-500 px-5 py-3 leading-6 whitespace-pre-line">
                 {`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                 industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
                 scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
@@ -52,7 +52,7 @@ export const GenerateGPTPage3: FC<GenerateGPTPage3Props> = ({ goPrevPage, goNext
             <label className="flex items-start space-x-2" htmlFor="radio-1">
               <Radio id="radio-1" name="radio-1" />
 
-              <div className="whitespace-pre-line rounded-xl rounded-tl-none border border-gray-500 bg-light_orange px-5 py-3 leading-6">
+              <div className="bg-light_orange rounded-xl rounded-tl-none border border-gray-500 px-5 py-3 leading-6 whitespace-pre-line">
                 {`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                 industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
                 scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
@@ -81,5 +81,5 @@ export const GenerateGPTPage3: FC<GenerateGPTPage3Props> = ({ goPrevPage, goNext
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

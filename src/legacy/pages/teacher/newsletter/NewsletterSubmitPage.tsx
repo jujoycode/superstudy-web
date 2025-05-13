@@ -1,26 +1,29 @@
-import { useState } from 'react';
-import { useQueryClient } from 'react-query';
-import { useParams } from 'react-router';
-import { Route, Switch, useHistory } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { ReactComponent as RightArrow } from 'src/assets/svg/mypage-right-arrow.svg';
-import { SuperModal, Tab } from 'src/components';
-import { Blank } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Icon } from 'src/components/common/icons';
-import { NewsletterSubmitterItem } from 'src/components/newsletter/NewsletterSubmitterItem';
-import { useTeacherNewsletterSubmit } from 'src/container/teacher-newsletter-submit';
-import { ResponseGroupDto, StudentGroup, StudentNewsletter } from 'src/generated/model';
-import { newsletterOpenedGroupState } from 'src/store';
-import { NewsletterSubmitDetailPage } from './NewsletterSubmitDetailPage';
+import { useState } from 'react'
+import { useQueryClient } from 'react-query'
+import { Routes, useParams } from 'react-router'
+import { Route } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
+import { SuperModal, Tab } from '@/legacy/components'
+import { Blank } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Icon } from '@/legacy/components/common/icons'
+import { NewsletterSubmitterItem } from '@/legacy/components/newsletter/NewsletterSubmitterItem'
+import { useTeacherNewsletterSubmit } from '@/legacy/container/teacher-newsletter-submit'
+import { ResponseGroupDto, StudentGroup, StudentNewsletter } from '@/legacy/generated/model'
+import { newsletterOpenedGroupState } from '@/stores'
+
+import { NewsletterSubmitDetailPage } from './NewsletterSubmitDetailPage'
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 
 export function NewsletterSubmitPage() {
-  const { push } = useHistory();
-  const { id } = useParams<{ id: string }>();
-  const queryClient = useQueryClient();
-  const [modalOpen, setModalOpen] = useState(false);
+  const { push } = useHistory()
+  const { id = '' } = useParams<{ id: string }>()
+  const queryClient = useQueryClient()
+  const [modalOpen, setModalOpen] = useState(false)
 
-  const [newsletterOpenedGroup, setNewsletterOpenedGroup] = useRecoilState(newsletterOpenedGroupState);
+  const [newsletterOpenedGroup, setNewsletterOpenedGroup] = useRecoilState(newsletterOpenedGroupState)
 
   const {
     result,
@@ -35,35 +38,35 @@ export function NewsletterSubmitPage() {
     selectKlassGroup,
     handleRePush,
     submiterLoding,
-  } = useTeacherNewsletterSubmit(+id);
+  } = useTeacherNewsletterSubmit(Number(id))
 
-  const selectedFilter = Number(localStorage.getItem('selectedFilter'));
+  const selectedFilter = Number(localStorage.getItem('selectedFilter'))
 
-  const [filter, setFilter] = useState(selectedFilter || 0);
+  const [filter, setFilter] = useState(selectedFilter || 0)
 
   const handleSelectKlassGroup = (klassGroup: ResponseGroupDto) => {
     newsletterOpenedGroup.includes(klassGroup.name as string)
       ? setNewsletterOpenedGroup(newsletterOpenedGroup.filter((el) => el !== klassGroup.name))
-      : setNewsletterOpenedGroup((prevState) => [...prevState, klassGroup.name as string]);
-    selectKlassGroup(klassGroup.id);
-    push(`/teacher/newsletter/submit/${id}`);
-  };
+      : setNewsletterOpenedGroup((prevState) => [...prevState, klassGroup.name as string])
+    selectKlassGroup(klassGroup.id)
+    push(`/teacher/newsletter/submit/${id}`)
+  }
 
   const handleNewsletterSubmitterItemClick = (studentGroup: StudentGroup, studentNewsletters?: StudentNewsletter[]) => {
     if (!studentNewsletters || !studentNewsletters.length) {
-      return;
+      return
     }
 
     const studentNewsletter = studentNewsletters.filter(
       (sn: StudentNewsletter) => sn.student?.id === studentGroup.user?.id,
-    )[0];
+    )[0]
 
     if (studentNewsletter) {
-      push(`/teacher/newsletter/submit/${id}/${studentNewsletter.id}`);
+      push(`/teacher/newsletter/submit/${id}/${studentNewsletter.id}`)
     } else {
-      push(`/teacher/newsletter/submit/${id}`);
+      push(`/teacher/newsletter/submit/${id}`)
     }
-  };
+  }
 
   return (
     <div className="ml-0.5 grid h-screen grid-cols-7 bg-white">
@@ -79,7 +82,7 @@ export function NewsletterSubmitPage() {
               / 총{newsletter?.toPerson ? studentPerson.length : studentsCount}명
             </div>
           </div>
-          <div className="cursor-pointer text-brand-1" onClick={() => queryClient.refetchQueries({ active: true })}>
+          <div className="text-brand-1 cursor-pointer" onClick={() => queryClient.refetchQueries({ active: true })}>
             새로고침
           </div>
         </div>
@@ -90,8 +93,8 @@ export function NewsletterSubmitPage() {
               type="submit"
               filter={filter}
               setFilter={(n: number) => {
-                localStorage.setItem('selectedFilter', n.toString());
-                setFilter(n);
+                localStorage.setItem('selectedFilter', n.toString())
+                setFilter(n)
               }}
             />
           </div>
@@ -102,7 +105,7 @@ export function NewsletterSubmitPage() {
               children="미제출자 재알림"
               title="미제출 학생(보호자)에게 다시 알림을 보냅니다."
               onClick={() => setModalOpen(true)}
-              className="filled-primary mr-5 mt-5"
+              className="filled-primary mt-5 mr-5"
             />
           )}
         </div>
@@ -111,10 +114,10 @@ export function NewsletterSubmitPage() {
             const totalCount =
               (newsletter?.toPerson
                 ? totalPerson?.filter((person) => person?.student?.klass === group.name)?.length
-                : group.studentCount) || 0;
+                : group.studentCount) || 0
             const submittedCount =
-              submitPerson?.filter((person) => person?.studentGradeKlass === group.name)?.length || 0;
-            const unSubmittedCount = Math.max(totalCount - submittedCount, 0);
+              submitPerson?.filter((person) => person?.studentGradeKlass === group.name)?.length || 0
+            const unSubmittedCount = Math.max(totalCount - submittedCount, 0)
             return (
               <div key={group.id} className="my-5">
                 <div
@@ -157,14 +160,14 @@ export function NewsletterSubmitPage() {
                       />
                     ))}
               </div>
-            );
+            )
           })}
         </div>
       </div>
       <div className="col-span-3">
-        <Switch>
-          <Route path={`/teacher/newsletter/submit/:id/:snid`} component={() => <NewsletterSubmitDetailPage />} />
-        </Switch>
+        <Routes>
+          <Route path={`/teacher/newsletter/submit/:id/:snid`} Component={() => <NewsletterSubmitDetailPage />} />
+        </Routes>
       </div>
       <SuperModal modalOpen={modalOpen} setModalClose={() => setModalOpen(false)} className="w-max">
         <div className="px-12 py-6">
@@ -174,13 +177,13 @@ export function NewsletterSubmitPage() {
           <Button.lg
             children="재알림하기"
             onClick={async () => {
-              await handleRePush(+id);
-              await setModalOpen(false);
+              await handleRePush(Number(id))
+              await setModalOpen(false)
             }}
             className="filled-primary w-full"
           />
         </div>
       </SuperModal>
     </div>
-  );
+  )
 }

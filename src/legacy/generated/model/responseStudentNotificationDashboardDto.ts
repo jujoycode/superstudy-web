@@ -5,7 +5,7 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Absent } from './absent'
+import type { Absent } from '@/legacy/pages/teacher/absent'
 import type { ActivityV3 } from './activityV3'
 import type { Board } from './board'
 import type { Fieldtrip } from './fieldtrip'

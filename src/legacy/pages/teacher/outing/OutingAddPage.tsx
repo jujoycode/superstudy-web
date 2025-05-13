@@ -1,34 +1,32 @@
-import clsx from 'clsx';
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { ReactComponent as Close } from 'src/assets/svg/close.svg';
-import { ErrorBlank, SelectMenus, SelectValues } from 'src/components';
-import { BackButton, Badge, Blank, Label, Section, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { TextInput } from 'src/components/common/TextInput';
-import { FieldtripDatePicker } from 'src/components/fieldtrip/FieldtripDatePicker';
-import { useCommonGetHolidays } from 'src/container/common-get-holidays';
-import { useTeacherOutingAdd } from 'src/container/teacher-outing-add';
-import { UserContainer } from 'src/container/user';
-import { GroupType, Outing, OutingTypeEnum, OutingUse, StudentGroup } from 'src/generated/model';
-import { AbsentTimeType, periodArray } from 'src/types';
+import clsx from 'clsx'
+import { useState } from 'react'
 
-const reportType = [OutingTypeEnum.조퇴, OutingTypeEnum.외출, OutingTypeEnum.확인];
+import { ErrorBlank, SelectMenus, SelectValues } from '@/legacy/components'
+import { BackButton, Badge, Blank, Label, Section, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { FieldtripDatePicker } from '@/legacy/components/fieldtrip/FieldtripDatePicker'
+import { useCommonGetHolidays } from '@/legacy/container/common-get-holidays'
+import { useTeacherOutingAdd } from '@/legacy/container/teacher-outing-add'
+import { UserContainer } from '@/legacy/container/user'
+import { GroupType, Outing, OutingTypeEnum, OutingUse, StudentGroup } from '@/legacy/generated/model'
+import { AbsentTimeType, periodArray } from '@/legacy/types'
+
+import Close from '@/assets/svg/close.svg'
+
+const reportType = [OutingTypeEnum.조퇴, OutingTypeEnum.외출, OutingTypeEnum.확인]
 
 interface OutingAddPageProps {
-  outingData?: Outing;
-  goDetail?: () => void;
+  outingData?: Outing
 }
 
-export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
-  const { push } = useHistory();
-  const { me, errorMessage: meErrorMessage } = UserContainer.useContext();
-  const hasSaturdayClass = me?.school.hasSaturdayClass || false;
+export function OutingAddPage({ outingData }: OutingAddPageProps) {
+  const { me, errorMessage: meErrorMessage } = UserContainer.useContext()
 
-  const { holidays } = useCommonGetHolidays();
+  const { holidays } = useCommonGetHolidays()
 
-  const [agree, setAgree] = useState(outingData ? true : false);
+  const [agree, setAgree] = useState(outingData ? true : false)
   const {
     errorMessage,
     startAt,
@@ -59,7 +57,6 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
     outingValueSel,
     setOutingValueSel,
     outingValue,
-    approverName,
     allKlassGroups,
     selectedGroup,
     studentGroups,
@@ -69,17 +66,17 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
     userIds,
     useParentApprove,
     setUseParentApprove,
-  } = useTeacherOutingAdd(outingData, goDetail);
+  } = useTeacherOutingAdd(outingData)
 
-  const startDateTime = new Date();
-  startDateTime.setHours(startHour);
-  startDateTime.setMinutes(startMinute);
-  startDateTime.setSeconds(0);
+  const startDateTime = new Date()
+  startDateTime.setHours(startHour)
+  startDateTime.setMinutes(startMinute)
+  startDateTime.setSeconds(0)
 
-  const endDateTime = new Date();
-  endDateTime.setHours(endHour);
-  endDateTime.setMinutes(endMinute);
-  endDateTime.setSeconds(0);
+  const endDateTime = new Date()
+  endDateTime.setHours(endHour)
+  endDateTime.setMinutes(endMinute)
+  endDateTime.setSeconds(0)
 
   return (
     <>
@@ -93,7 +90,7 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
           </div>
         }
       />
-      <div className="h-screen-7 overflow-y-auto md:h-screen-5">
+      <div className="h-screen-7 md:h-screen-5 overflow-y-auto">
         <Section>
           <div>
             <div className="w-36 py-2">
@@ -141,9 +138,9 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                     onClick={() => {
                       if (el?.user) {
                         if (userIds.includes(el.user.id)) {
-                          setSelectedUsers(selectedUsers.filter((u) => u.id !== el.user?.id));
+                          setSelectedUsers(selectedUsers.filter((u) => u.id !== el.user?.id))
                         } else {
-                          setSelectedUsers(selectedUsers.concat(el.user));
+                          setSelectedUsers(selectedUsers.concat(el.user))
                         }
                       }
                     }}
@@ -158,17 +155,17 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
               <div
                 className={
                   selectedUsers.length > 0
-                    ? 'mt-2 flex flex-wrap whitespace-pre-line rounded-lg border border-gray-300 px-4 py-3'
-                    : 'mt-2 flex flex-wrap whitespace-pre-line rounded-lg border-2 border-red-700 px-4 py-3'
+                    ? 'mt-2 flex flex-wrap rounded-lg border border-gray-300 px-4 py-3 whitespace-pre-line'
+                    : 'mt-2 flex flex-wrap rounded-lg border-2 border-red-700 px-4 py-3 whitespace-pre-line'
                 }
               >
                 {selectedUsers.map((el) => (
                   <div
                     key={el.id}
                     onClick={() => setSelectedUsers(selectedUsers.filter((u) => u.id !== el.id))}
-                    className="m-1s text-2sm border-1 mr-1 mt-1 flex w-max cursor-pointer items-center space-x-2 whitespace-nowrap rounded-full border-brand-1 bg-white px-2.5 py-1 text-brand-1"
+                    className="m-1s text-2sm border-brand-1 text-brand-1 mt-1 mr-1 flex w-max cursor-pointer items-center space-x-2 rounded-full border-1 bg-white px-2.5 py-1 whitespace-nowrap"
                   >
-                    <div className="whitespace-pre text-sm">{el.name}</div>
+                    <div className="text-sm whitespace-pre">{el.name}</div>
                     <Close />
                   </div>
                 ))}
@@ -183,12 +180,12 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
               selectValues={reportType}
               value={report}
               onChange={(group) => {
-                setReport(group);
+                setReport(group)
                 if (group === OutingTypeEnum.외출) {
-                  setStartHour(12);
-                  setStartMinute(50);
-                  setEndHour(13);
-                  setEndMinute(50);
+                  setStartHour(12)
+                  setStartMinute(50)
+                  setEndHour(13)
+                  setEndMinute(50)
                 }
               }}
               className={reportType.includes(report) ? 'border border-gray-300' : 'border-2 border-red-700'}
@@ -229,23 +226,23 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                 placeholderText="시작 날짜"
                 onChange={(selectedDate) => {
                   if (!selectedDate) {
-                    return;
+                    return
                   }
-                  const _startAt = selectedDate;
+                  const _startAt = selectedDate
                   if (selectedDate > endAt) {
-                    setEndAt(_startAt);
+                    setEndAt(_startAt)
                   } else if (selectedDate === endAt) {
                     if (startHour > endHour) {
-                      setEndHour(startHour);
+                      setEndHour(startHour)
                       if (startMinute > endMinute) {
-                        setEndMinute(startMinute);
+                        setEndMinute(startMinute)
                       }
                     }
                     if (startHour === endHour && startMinute > endMinute) {
-                      setEndMinute(startMinute);
+                      setEndMinute(startMinute)
                     }
                   }
-                  setStartAt(selectedDate);
+                  setStartAt(selectedDate)
                 }}
               />
               {timeType === AbsentTimeType.TIME && (
@@ -253,16 +250,16 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                   <select
                     value={startHour}
                     onChange={(e) => {
-                      const _startHour = Number(e.target.value);
+                      const _startHour = Number(e.target.value)
                       if (_startHour > endHour) {
-                        setEndHour(_startHour);
+                        setEndHour(_startHour)
                       }
                       if (_startHour === endHour && startMinute > endMinute) {
-                        setEndMinute(startMinute);
+                        setEndMinute(startMinute)
                       }
-                      setStartHour(_startHour);
+                      setStartHour(_startHour)
                     }}
-                    className="h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     {new Array(24).fill(null).map((_, index) => (
                       <option key={index} value={index}>
@@ -272,13 +269,13 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                   </select>
                   <span>시</span>
                   <select
-                    className="h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                     onChange={(e) => {
-                      const _startMinute = Number(e.target.value);
+                      const _startMinute = Number(e.target.value)
                       if (startHour === endHour && _startMinute > endMinute) {
-                        setEndMinute(_startMinute);
+                        setEndMinute(_startMinute)
                       }
-                      setStartMinute(_startMinute);
+                      setStartMinute(_startMinute)
                     }}
                     value={startMinute}
                   >
@@ -306,9 +303,9 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                     value={startPeriod}
                     onChange={(stime: string) => {
                       if (periodArray.indexOf(stime) > periodArray.indexOf(endPeriod)) {
-                        setEndPeriod(stime);
+                        setEndPeriod(stime)
                       }
-                      setStartPeriod(stime);
+                      setStartPeriod(stime)
                     }}
                     className={startPeriod !== '0' ? 'w-16 border border-gray-300' : 'w-16 border-2 border-red-700'}
                   />
@@ -323,22 +320,22 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                   placeholderText="종료 날짜"
                   onChange={(selectedDate) => {
                     if (!selectedDate) {
-                      return;
+                      return
                     }
                     if (startAt > selectedDate) {
-                      setStartAt(selectedDate);
+                      setStartAt(selectedDate)
                     } else if (selectedDate === startAt) {
                       if (startHour > endHour) {
-                        setStartHour(endHour);
+                        setStartHour(endHour)
                         if (startMinute > endMinute) {
-                          setStartMinute(endMinute);
+                          setStartMinute(endMinute)
                         }
                       }
                       if (startHour === endHour && startMinute > endMinute) {
-                        setStartMinute(endMinute);
+                        setStartMinute(endMinute)
                       }
                     }
-                    setEndAt(selectedDate);
+                    setEndAt(selectedDate)
                   }}
                 />
               )}
@@ -347,16 +344,16 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                   <select
                     value={endHour}
                     onChange={(e) => {
-                      const _endHour = Number(e.target.value);
+                      const _endHour = Number(e.target.value)
                       if (startHour > _endHour) {
-                        setStartHour(_endHour);
+                        setStartHour(_endHour)
                       }
                       if (startHour === _endHour && startMinute > endMinute) {
-                        setEndMinute(startMinute);
+                        setEndMinute(startMinute)
                       }
-                      setEndHour(_endHour);
+                      setEndHour(_endHour)
                     }}
-                    className="h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     {new Array(24).fill(null).map((_, index) => (
                       <option key={index} value={index}>
@@ -366,13 +363,13 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                   </select>
                   <span>시</span>
                   <select
-                    className="h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                     onChange={(e) => {
-                      const _endMinute = Number(e.target.value);
+                      const _endMinute = Number(e.target.value)
                       if (startHour === endHour && startMinute > _endMinute) {
-                        setStartMinute(_endMinute);
+                        setStartMinute(_endMinute)
                       }
-                      setEndMinute(_endMinute);
+                      setEndMinute(_endMinute)
                     }}
                     value={endMinute}
                   >
@@ -400,9 +397,9 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                     value={endPeriod}
                     onChange={(etime: string) => {
                       if (periodArray.indexOf(startPeriod) > periodArray.indexOf(etime)) {
-                        setStartPeriod(etime);
+                        setStartPeriod(etime)
                       }
-                      setEndPeriod(etime);
+                      setEndPeriod(etime)
                     }}
                     className={endPeriod !== '0' ? 'w-16 border border-gray-300' : 'w-16 border-2 border-red-700'}
                   />
@@ -421,8 +418,8 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
             </Label.col>
           </div>
           <div>
-            <div className="mb-2 whitespace-pre-line text-sm text-red-600">*민감정보의 수집/이용/제3자 제공에 동의</div>
-            <div className="whitespace-pre-line rounded-lg border border-gray-300 px-4 py-3">
+            <div className="mb-2 text-sm whitespace-pre-line text-red-600">*민감정보의 수집/이용/제3자 제공에 동의</div>
+            <div className="rounded-lg border border-gray-300 px-4 py-3 whitespace-pre-line">
               진료 확인서 등 건강 관련 민감 정보는 소속 학교에 제공되어 출결 관리 목적으로만 사용됩니다.
             </div>
           </div>
@@ -436,7 +433,7 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                 <Checkbox checked={useParentApprove} onChange={() => setUseParentApprove(!useParentApprove)} />
                 <p className="text-base font-semibold">보호자 승인 요청</p>
               </Label.row>
-              <div className="mb-2 whitespace-pre-line text-sm text-red-600">
+              <div className="mb-2 text-sm whitespace-pre-line text-red-600">
                 * 보호자 승인 필요 여부는 학교 교칙을 확인하세요.
               </div>
             </Label.col>
@@ -458,10 +455,10 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
             onClick={() =>
               outingData
                 ? selectedUsers.map(async (user) => {
-                    updateOuting(user.id);
+                    updateOuting(user.id)
                   })
                 : selectedUsers.map(async (user) => {
-                    createOuting(user.id);
+                    createOuting(user.id)
                   })
             }
             className="filled-primary"
@@ -471,5 +468,5 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
         </Section>
       </div>
     </>
-  );
+  )
 }

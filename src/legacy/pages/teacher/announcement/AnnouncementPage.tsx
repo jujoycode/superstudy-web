@@ -1,22 +1,22 @@
-import { useState } from 'react';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
-import AnnouncementBadge from 'src/components/announcement/AnnouncementBadge';
-import { BackButton, Blank, Chip, HorizontalScrollView, TopNavbar } from 'src/components/common';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { Icon } from 'src/components/common/icons';
-import { useAnnouncementByCategory } from 'src/container/announcement-category';
-import { Announcement } from 'src/generated/model/announcement';
-import { useLanguage } from 'src/hooks/useLanguage';
-import AnnouncementDetailPage from './AnnouncementDetailPage';
-import AnnouncementMobilePage from './AnnouncementMobilePage';
+import { useState } from 'react'
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import AnnouncementBadge from '@/legacy/components/announcement/AnnouncementBadge'
+import { BackButton, Blank, Chip, HorizontalScrollView, TopNavbar } from '@/legacy/components/common'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Icon } from '@/legacy/components/common/icons'
+import { useAnnouncementByCategory } from '@/legacy/container/announcement-category'
+import { Announcement } from '@/legacy/generated/model/announcement'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import AnnouncementDetailPage from './AnnouncementDetailPage'
+import AnnouncementMobilePage from './AnnouncementMobilePage'
 
 export default function AnnouncementPage() {
-  const { pathname } = useLocation();
-  const isDetail = !pathname.endsWith('/teacher/announcement');
-  const { t } = useLanguage();
-  const { push } = useHistory();
-  const [searchTitle, setSearchTitle] = useState('');
-  const { announcements, category, setCategory, isLoading } = useAnnouncementByCategory();
+  const { pathname } = useLocation()
+  const isDetail = !pathname.endsWith('/teacher/announcement')
+  const { t } = useLanguage()
+  const { push } = useHistory()
+  const [searchTitle, setSearchTitle] = useState('')
+  const { announcements, category, setCategory, isLoading } = useAnnouncementByCategory()
   return (
     <>
       {/* Mobile V */}
@@ -28,7 +28,7 @@ export default function AnnouncementPage() {
       {/* Desktop V */}
       {isLoading && <Blank reversed />}
       <div className="col-span-2 hidden h-screen md:block">
-        <div className="flex place-items-center justify-between px-6 pb-3 pt-6">
+        <div className="flex place-items-center justify-between px-6 pt-6 pb-3">
           <h1 className="text-2xl font-semibold">{t('superschool_announcement')}</h1>
         </div>
         <div className="scroll-box h-0.5 bg-gray-100"></div>
@@ -58,7 +58,7 @@ export default function AnnouncementPage() {
             className="min-w-max py-1.5"
           />
         </HorizontalScrollView>
-        <div className="flex items-center space-x-2 px-6 pb-4 pt-4">
+        <div className="flex items-center space-x-2 px-6 pt-4 pb-4">
           <div className="flex w-full items-center space-x-2">
             <SearchInput
               placeholder={`${t('enter_title')}`}
@@ -86,5 +86,5 @@ export default function AnnouncementPage() {
         </Switch>
       </div>
     </>
-  );
+  )
 }

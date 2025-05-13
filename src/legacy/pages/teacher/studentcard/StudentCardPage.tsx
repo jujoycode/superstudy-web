@@ -1,20 +1,20 @@
-import { chain, filter, some, uniqBy } from 'lodash';
-import { useEffect, useMemo, useState } from 'react';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { ErrorBlank } from 'src/components';
-import { BackButton, Select, TopNavbar } from 'src/components/common';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { Icon } from 'src/components/common/icons';
-import { StudentItem } from 'src/components/studentCard/StudentItem';
-import { GroupContainer } from 'src/container/group';
-import { useTeacherSearchUser } from 'src/container/teacher-search-user';
-import { useGroupsFindLectureGroupsByTeacher } from 'src/generated/endpoint';
-import { Group, GroupType, Role } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState } from 'src/store';
-import { getNickName } from 'src/util/status';
-import { StudentCardDetailPage } from './StudentCardDetailPage';
+import { chain, filter, some, uniqBy } from 'lodash'
+import { useEffect, useMemo, useState } from 'react'
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { ErrorBlank } from '@/legacy/components'
+import { BackButton, Select, TopNavbar } from '@/legacy/components/common'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Icon } from '@/legacy/components/common/icons'
+import { StudentItem } from '@/legacy/components/studentCard/StudentItem'
+import { GroupContainer } from '@/legacy/container/group'
+import { useTeacherSearchUser } from '@/legacy/container/teacher-search-user'
+import { useGroupsFindLectureGroupsByTeacher } from '@/legacy/generated/endpoint'
+import { Group, GroupType, Role } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { meState } from '@/stores'
+import { getNickName } from '@/legacy/util/status'
+import { StudentCardDetailPage } from './StudentCardDetailPage'
 
 const GroupTypes: { id: number; type: '' | GroupType | 'LECTURE'; name: string }[] = [
   {
@@ -37,33 +37,33 @@ const GroupTypes: { id: number; type: '' | GroupType | 'LECTURE'; name: string }
     type: GroupType.KLUB,
     name: '사용자 정의 그룹',
   },
-];
+]
 
 export function StudentCardPage() {
-  const { pathname } = useLocation();
-  const { push, replace } = useHistory();
-  const { t } = useLanguage();
-  const me = useRecoilValue(meState);
+  const { pathname } = useLocation()
+  const { push, replace } = useHistory()
+  const { t } = useLanguage()
+  const me = useRecoilValue(meState)
 
   // Get path param
-  const groupIdMatch = pathname.match(/\/teacher\/studentcard\/(\d+)/);
-  const groupId = groupIdMatch?.[1] ? Number(groupIdMatch[1]) : 0;
-  const cardTypeMatch = pathname.match(/\/teacher\/studentcard\/\d+\/\d+\/([^/]+)/);
-  const cardType = cardTypeMatch ? cardTypeMatch[1] : 'default';
+  const groupIdMatch = pathname.match(/\/teacher\/studentcard\/(\d+)/)
+  const groupId = groupIdMatch?.[1] ? Number(groupIdMatch[1]) : 0
+  const cardTypeMatch = pathname.match(/\/teacher\/studentcard\/\d+\/\d+\/([^/]+)/)
+  const cardType = cardTypeMatch ? cardTypeMatch[1] : 'default'
 
   // Fetching Group Data
   const { allTeacherGroups, teacherKlubGroups, teacherKlassGroups, isLoadingGroups, allKlassGroups, errorGroups } =
-    GroupContainer.useContext();
-  const { data: lectureGroups, isLoading: isLoadingLectureGroups } = useGroupsFindLectureGroupsByTeacher();
+    GroupContainer.useContext()
+  const { data: lectureGroups, isLoading: isLoadingLectureGroups } = useGroupsFindLectureGroupsByTeacher()
 
   const allGroups = chain(allTeacherGroups as Group[])
     .concat(lectureGroups || [])
     .sortBy(['grade', 'klass'])
-    .value();
+    .value()
 
-  const selectedGroup = allGroups.find((item) => item.id === groupId);
+  const selectedGroup = allGroups.find((item) => item.id === groupId)
 
-  const [groupType, setGroupType] = useState<'' | GroupType | 'LECTURE'>('');
+  const [groupType, setGroupType] = useState<'' | GroupType | 'LECTURE'>('')
 
   const groups = useMemo(() => {
     switch (groupType) {
@@ -78,38 +78,38 @@ export function StudentCardPage() {
           me?.role === Role.SECURITY ||
           me?.role === Role.ADMIN
         ) {
-          return chain(allKlassGroups).uniqBy('name').sortBy(['grade', 'klass']).value();
+          return chain(allKlassGroups).uniqBy('name').sortBy(['grade', 'klass']).value()
         } else {
-          return chain(teacherKlassGroups).uniqBy('name').sortBy(['grade', 'klass']).value();
+          return chain(teacherKlassGroups).uniqBy('name').sortBy(['grade', 'klass']).value()
         }
       case 'LECTURE':
         return chain(lectureGroups || [])
           .uniqBy('name')
           .sortBy(['grade', 'klass'])
-          .value();
+          .value()
       case GroupType.KLUB:
-        return filter(teacherKlubGroups, (tg) => !some(lectureGroups, (lg) => lg.id === tg.id));
+        return filter(teacherKlubGroups, (tg) => !some(lectureGroups, (lg) => lg.id === tg.id))
       default:
-        return uniqBy(allGroups, 'name');
+        return uniqBy(allGroups, 'name')
     }
-  }, [groupType]);
+  }, [groupType])
 
   // 담임 교사일 경우 첫 로딩 시에 담당 반이 보이도록 설정
   useEffect(() => {
     if (!groupIdMatch && me?.klassGroupId) {
-      replace(`/teacher/studentcard/${me.klassGroupId}`);
-      setGroupType(selectedGroup?.type || '');
+      replace(`/teacher/studentcard/${me.klassGroupId}`)
+      setGroupType(selectedGroup?.type || '')
     }
-  }, []);
+  }, [])
 
-  const isDetail = pathname !== '/teacher/studentcard' && !pathname.endsWith(`/teacher/studentcard/${groupId}`);
+  const isDetail = pathname !== '/teacher/studentcard' && !pathname.endsWith(`/teacher/studentcard/${groupId}`)
 
   // Fetching User Data
-  const { userDatas, isLoading: isLoadingUserData, setSearchName } = useTeacherSearchUser(groupId);
+  const { userDatas, isLoading: isLoadingUserData, setSearchName } = useTeacherSearchUser(groupId)
 
-  const [username, setUsername] = useState<string>();
+  const [username, setUsername] = useState<string>()
 
-  const isLoading = isLoadingGroups || isLoadingLectureGroups || isLoadingUserData;
+  const isLoading = isLoadingGroups || isLoadingLectureGroups || isLoadingUserData
 
   return (
     <div className="col-span-6 md:grid md:grid-cols-8 2xl:grid 2xl:grid-cols-5">
@@ -144,9 +144,9 @@ export function StudentCardPage() {
                 value={groupId}
                 onChange={(e) => {
                   if (e.target.value === '') {
-                    replace(`/teacher/studentcard`);
+                    replace(`/teacher/studentcard`)
                   } else {
-                    replace(`/teacher/studentcard/${e.target.value}`);
+                    replace(`/teacher/studentcard/${e.target.value}`)
                   }
                 }}
                 className="w-30 flex-shrink-0"
@@ -174,7 +174,7 @@ export function StudentCardPage() {
             </div>
           </div>
           <div className="h-0.5 bg-gray-100"></div>
-          <div className="scroll-box h-screen-15 overflow-y-auto pb-20 md:h-screen-13">
+          <div className="scroll-box h-screen-15 md:h-screen-13 overflow-y-auto pb-20">
             {isLoading && (
               <div className="text-center text-2xl text-gray-600">
                 {t('loading_data', '데이터를 불러오는 중입니다...')}
@@ -215,5 +215,5 @@ export function StudentCardPage() {
         <Route path="/teacher/studentcard/:groupId/:id/:cardType" component={StudentCardDetailPage} />
       </Switch>
     </div>
-  );
+  )
 }

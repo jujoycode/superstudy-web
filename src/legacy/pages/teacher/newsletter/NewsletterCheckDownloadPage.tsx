@@ -1,19 +1,20 @@
-import { useParams } from 'react-router';
-import { Td } from 'src/components';
-import { Section } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { useTeacherNewsletterCheckDownload } from 'src/container/teacher-newsletter-checkDownload';
-import { useTeacherNewsletterDetail } from 'src/container/teacher-newsletter-detail';
+import { useParams } from 'react-router'
+
+import { Td } from '@/legacy/components'
+import { Section } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { useTeacherNewsletterCheckDownload } from '@/legacy/container/teacher-newsletter-checkDownload'
+import { useTeacherNewsletterDetail } from '@/legacy/container/teacher-newsletter-detail'
 
 export function NewsletterCheckDownloadPage() {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>()
 
-  const { newsletter: newData } = useTeacherNewsletterDetail({ id: +id });
+  const { newsletter: newData } = useTeacherNewsletterDetail({ id: Number(id) })
 
   const { download, rows } = useTeacherNewsletterCheckDownload({
-    newsletterId: +id,
+    newsletterId: Number(id),
     surveyTitle: newData?.title,
-  });
+  })
 
   return (
     <div className="rounded-lg border bg-white p-5">
@@ -28,7 +29,7 @@ export function NewsletterCheckDownloadPage() {
               <tr key={i}>
                 {row.map((cell, j) => (
                   <Td key={j} innerClassName="min-w-max">
-                    {cell}
+                    {cell.toString()}
                   </Td>
                 ))}
               </tr>
@@ -38,5 +39,5 @@ export function NewsletterCheckDownloadPage() {
         </table>
       </Section>
     </div>
-  );
+  )
 }

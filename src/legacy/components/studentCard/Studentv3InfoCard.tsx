@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
-import SvgUser from 'src/assets/svg/user.svg'
+import SvgUser from '@/asset/svg/user.svg'
 import { Constants } from '@/legacy/constants'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'

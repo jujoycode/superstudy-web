@@ -5,7 +5,7 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { AbsentSort } from './absentSort'
+import type { AbsentSort } from '@/legacy/pages/teacher/absentSort'
 import type { FilterAbsentStatus } from './filterAbsentStatus'
 import type { FilterDescription } from './filterDescription'
 import type { FilterReportType } from './filterReportType'

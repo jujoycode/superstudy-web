@@ -1,34 +1,31 @@
-import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { List, Select } from 'src/components/common';
-import { FeedsItem } from 'src/components/common/FeedsItem';
-import { NoItem } from 'src/components/common/NoItem';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { Icon } from 'src/components/common/icons';
-import { useTeacherNewsletter } from 'src/container/teacher-newsletter';
-import { Newsletter, NewsletterType } from 'src/generated/model';
-import { meState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
+import { ChangeEventHandler, useState } from 'react'
 
-const filters = ['제목', '작성자'];
+import { List, Select } from '@/legacy/components/common'
+import { FeedsItem } from '@/legacy/components/common/FeedsItem'
+import { Icon } from '@/legacy/components/common/icons'
+import { NoItem } from '@/legacy/components/common/NoItem'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { useTeacherNewsletter } from '@/legacy/container/teacher-newsletter'
+import { Newsletter, NewsletterType } from '@/legacy/generated/model'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+
+const filters = ['제목', '작성자']
 
 export function NewsletterMobilePage() {
-  const meRecoil = useRecoilValue(meState);
-
-  const { newsletters, unReadnewslettersList } = useTeacherNewsletter();
-  const [filter, setFilter] = useState(filters[0]);
-  const [searchWriter, setSearchWriter] = useState('');
-  const [searchTitle, setSearchTitle] = useState('');
-  const handleFilterChange = (e: any) => {
-    setSearchWriter('');
-    setSearchTitle('');
-    setFilter(e.target.value);
-  };
+  const { newsletters } = useTeacherNewsletter()
+  const [filter, setFilter] = useState(filters[0])
+  const [searchWriter, setSearchWriter] = useState('')
+  const [searchTitle, setSearchTitle] = useState('')
+  const handleFilterChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
+    setSearchWriter('')
+    setSearchTitle('')
+    setFilter(e.target.value)
+  }
 
   return (
     <>
-      <div className="w-full flex-col ">
-        <div className="flex items-center space-x-2 px-6 pb-6 pt-3">
+      <div className="w-full flex-col">
+        <div className="flex items-center space-x-2 px-6 pt-3 pb-6">
           <div className="cursor-pointer">
             <Select.lg value={filter} onChange={handleFilterChange}>
               {filters.map((option, index) => (
@@ -96,5 +93,5 @@ export function NewsletterMobilePage() {
         </div>
       </div>
     </>
-  );
+  )
 }

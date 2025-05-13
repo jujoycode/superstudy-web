@@ -1,50 +1,51 @@
-import { format } from 'date-fns';
-import { useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { BackButton, Select, TopNavbar } from 'src/components/common';
-import { Admin } from 'src/components/common/Admin';
-import { Button } from 'src/components/common/Button';
-import { TextInput } from 'src/components/common/TextInput';
-import { Time } from 'src/components/common/Time';
-import SVGIcon from 'src/components/icon/SVGIcon';
-import { GroupContainer } from 'src/container/group';
-import { teacherPointLogGet, useStudentGroupsFindByGroupId, useTeacherPointLogGet } from 'src/generated/endpoint';
-import { PointLog, User } from 'src/generated/model';
-import { AssignPointModal } from 'src/modals/AssignPointModal';
-import { useModals } from 'src/modals/ModalStack';
-import { PointLogModal } from 'src/modals/PointLogModal';
-import { exportCSVToExcel } from 'src/util/download-excel';
-import { numberWithSign, roundToFirstDecimal } from 'src/util/string';
-import { getThisYear } from 'src/util/time';
+import { format } from 'date-fns'
+import { useEffect, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+
+import { BackButton, Select, TopNavbar } from '@/legacy/components/common'
+import { Admin } from '@/legacy/components/common/Admin'
+import { Button } from '@/legacy/components/common/Button'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Time } from '@/legacy/components/common/Time'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { GroupContainer } from '@/legacy/container/group'
+import { teacherPointLogGet, useStudentGroupsFindByGroupId, useTeacherPointLogGet } from '@/legacy/generated/endpoint'
+import { PointLog, User } from '@/legacy/generated/model'
+import { AssignPointModal } from '@/legacy/modals/AssignPointModal'
+import { useModals } from '@/legacy/modals/ModalStack'
+import { PointLogModal } from '@/legacy/modals/PointLogModal'
+import { exportCSVToExcel } from '@/legacy/util/download-excel'
+import { numberWithSign, roundToFirstDecimal } from '@/legacy/util/string'
+import { getThisYear } from '@/legacy/util/time'
 
 export function PointDashboard() {
-  const { t: tt } = useTranslation('teacher', { keyPrefix: 'point_dashboard' });
-  const { pushModal } = useModals();
-  const [groupId, setGroupId] = useState(0);
-  const [q, setQ] = useState('');
+  const { t: tt } = useTranslation('teacher', { keyPrefix: 'point_dashboard' })
+  const { pushModal } = useModals()
+  const [groupId, setGroupId] = useState(0)
+  const [q, setQ] = useState('')
 
-  const { allKlassGroupsUnique } = GroupContainer.useContext();
+  const { allKlassGroupsUnique } = GroupContainer.useContext()
 
-  const { data: studentGroups } = useStudentGroupsFindByGroupId(groupId);
+  const { data: studentGroups } = useStudentGroupsFindByGroupId(groupId)
   const { data: pointLogs } = useTeacherPointLogGet(
     { size: 10000, studentIds: studentGroups?.map((sg) => sg.userId), join: ['teacher', 'student'] },
     { query: { enabled: !!studentGroups } },
-  );
+  )
 
   const students = useMemo(() => {
     const grouped = pointLogs?.items.reduce(
       (acc, pointLog) => {
-        const { studentId } = pointLog;
-        acc[studentId] ??= { ...pointLog.student, poingLogs: [], merits: 0, demerits: 0 };
-        acc[studentId].poingLogs.push(pointLog);
-        if (pointLog.value > 0) acc[studentId].merits += pointLog.value;
-        if (pointLog.value < 0) acc[studentId].demerits += pointLog.value;
-        return acc;
+        const { studentId } = pointLog
+        acc[studentId] ??= { ...pointLog.student, poingLogs: [], merits: 0, demerits: 0 }
+        acc[studentId].poingLogs.push(pointLog)
+        if (pointLog.value > 0) acc[studentId].merits += pointLog.value
+        if (pointLog.value < 0) acc[studentId].demerits += pointLog.value
+        return acc
       },
       {} as Record<number, User & { poingLogs: PointLog[]; merits: number; demerits: number }>,
-    );
-    return Object.entries(grouped ?? {}).map(([_, student]) => student);
-  }, [pointLogs]);
+    )
+    return Object.entries(grouped ?? {}).map(([_, student]) => student)
+  }, [pointLogs])
   const topMeritScorers = useMemo(
     () =>
       [...students]
@@ -52,7 +53,7 @@ export function PointDashboard() {
         .sort((a, b) => b.merits - a.merits)
         .slice(0, 5),
     [students],
-  );
+  )
   const topDemeritReceivers = useMemo(
     () =>
       [...students]
@@ -60,25 +61,25 @@ export function PointDashboard() {
         .sort((a, b) => a.demerits - b.demerits)
         .slice(0, 5),
     [students],
-  );
+  )
   const filteredLogs = useMemo(() => {
-    if (!q) return pointLogs?.items ?? [];
+    if (!q) return pointLogs?.items ?? []
     return (pointLogs?.items ?? []).filter(
       (pointLog) => pointLog.teacher.name.includes(q) || pointLog.student.name.includes(q),
-    );
-  }, [q, pointLogs]);
+    )
+  }, [q, pointLogs])
 
   useEffect(() => {
-    if (groupId || allKlassGroupsUnique.length === 0) return;
-    setGroupId(allKlassGroupsUnique[0].id);
-  }, [allKlassGroupsUnique]);
+    if (groupId || allKlassGroupsUnique.length === 0) return
+    setGroupId(allKlassGroupsUnique[0].id)
+  }, [allKlassGroupsUnique])
 
   async function downloadAsExcel() {
     const { items } = await teacherPointLogGet({
       size: 10000,
       studentIds: studentGroups?.map((sg) => sg.userId),
       join: ['student', 'student.studentGroups', 'teacher'],
-    });
+    })
     const content =
       '학급,출석번호,이름,항목,점수,날짜,부여자\n' +
       items
@@ -96,9 +97,9 @@ export function PointDashboard() {
             item.teacher.name,
           ].join(),
         )
-        .join('\n');
-    const group = allKlassGroupsUnique.find((g) => g.id === groupId);
-    exportCSVToExcel(content, `상벌점 ${group.name}`);
+        .join('\n')
+    const group = allKlassGroupsUnique.find((g) => g.id === groupId)
+    exportCSVToExcel(content, `상벌점 ${group.name}`)
   }
 
   return (
@@ -172,7 +173,7 @@ export function PointDashboard() {
                 ))}
                 {topMeritScorers.length === 0 && (
                   <Admin.TableRow>
-                    <Admin.TableCell colSpan={4} children={tt('no_items_found')} className="py-8 text-center text-15" />
+                    <Admin.TableCell colSpan={4} children={tt('no_items_found')} className="text-15 py-8 text-center" />
                   </Admin.TableRow>
                 )}
               </Admin.TableBody>
@@ -205,7 +206,7 @@ export function PointDashboard() {
                 ))}
                 {topDemeritReceivers.length === 0 && (
                   <Admin.TableRow>
-                    <Admin.TableCell colSpan={4} children={tt('no_items_found')} className="py-8 text-center text-15" />
+                    <Admin.TableCell colSpan={4} children={tt('no_items_found')} className="text-15 py-8 text-center" />
                   </Admin.TableRow>
                 )}
               </Admin.TableBody>
@@ -238,7 +239,7 @@ export function PointDashboard() {
                 ))}
                 {pointLogs?.total === 0 && (
                   <Admin.TableRow>
-                    <Admin.TableCell colSpan={4} children={tt('no_items_found')} className="py-8 text-center text-15" />
+                    <Admin.TableCell colSpan={4} children={tt('no_items_found')} className="text-15 py-8 text-center" />
                   </Admin.TableRow>
                 )}
               </Admin.TableBody>
@@ -256,9 +257,9 @@ export function PointDashboard() {
                 placeholder="이름"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
-                className="h-8 w-40 pl-7 pr-2"
+                className="h-8 w-40 pr-2 pl-7"
               />
-              <SVGIcon.Search className="absolute left-2 top-2" />
+              <SVGIcon.Search className="absolute top-2 left-2" />
             </div>
 
             <Admin.Table>
@@ -288,7 +289,7 @@ export function PointDashboard() {
                 ))}
                 {filteredLogs.length === 0 && (
                   <Admin.TableRow>
-                    <Admin.TableCell colSpan={5} children={tt('no_items_found')} className="py-8 text-center text-15" />
+                    <Admin.TableCell colSpan={5} children={tt('no_items_found')} className="text-15 py-8 text-center" />
                   </Admin.TableRow>
                 )}
               </Admin.TableBody>
@@ -297,5 +298,5 @@ export function PointDashboard() {
         </div>
       </div>
     </>
-  );
+  )
 }
