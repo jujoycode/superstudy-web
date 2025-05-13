@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import { t } from 'i18next'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SelectValues } from '@/legacy/components'
 import { BackButton, Badge, Blank, BottomFixed, Label, Section, TopNavbar } from '@/legacy/components/common'
@@ -19,8 +20,8 @@ import { childState } from '@/stores'
 const reportType = [OutingTypeEnum.조퇴, OutingTypeEnum.외출, OutingTypeEnum.확인]
 
 interface OutingAddPageProps {
-  outingData: ResponseCreateOutingDto
-  goDetail: () => void
+  outingData?: ResponseCreateOutingDto
+  goDetail?: () => void
 }
 
 export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
