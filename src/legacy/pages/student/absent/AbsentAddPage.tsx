@@ -3,6 +3,7 @@ import { t } from 'i18next'
 import moment from 'moment'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import { ErrorBlank, SelectValues, SuperModal } from '@/legacy/components'
 import { BackButton, Badge, Blank, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -32,11 +33,7 @@ interface AbsentAddPageProps {
 
 export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps) {
   const { me } = UserContainer.useContext()
-  let hasSaturdayClass = me?.school.hasSaturdayClass || false
   const myChild = useRecoilValue(childState)
-  if (me?.role === Role.PARENT) {
-    hasSaturdayClass = myChild?.school.hasSaturdayClass || false
-  }
 
   const [agree, setAgree] = useState(false)
 

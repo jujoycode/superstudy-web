@@ -39,7 +39,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
   const meRecoil = useRecoilValue(meState)
 
   const schoolName = school?.name
-  const [agree, setAgree] = useState(true)
+  const [agree] = useState(true)
 
   const { t } = useTranslation()
 

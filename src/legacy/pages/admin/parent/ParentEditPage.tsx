@@ -38,7 +38,7 @@ export function ParentEditPage() {
   useEffect(() => parentInfo && reset(parentInfo), [parentInfo])
 
   async function save(params: any) {
-    await parentManagementUpdateParent(id, params).then((result) => {
+    await parentManagementUpdateParent(id, params).then(() => {
       setToastMsg(`${params.name} 님 수정완료`)
     })
     goBack()

@@ -41,8 +41,6 @@ export function StudentEditPage() {
     formState: { errors, isValid },
   } = useForm<RequestModifyStudentDto & RequestCreateStudentDto>()
 
-  console.log('errors', errors)
-
   const { categoryData: studentStates } = useCodeByCategoryName(Category.studentstatus)
   const { data: studentInfo } = useStudentManagementGetStudentInfo(id, { year }, { query: { enabled: !!id } })
 
@@ -54,20 +52,20 @@ export function StudentEditPage() {
     }
     id
       ? await studentManagementUpdateStudent(id, params)
-          .then((result) => {
+          .then(() => {
             setToastMsg(`${params.name} 님 수정완료`)
             goBack()
           })
-          .catch((result) => {
-            setToastMsg(getErrorMsg(result))
+          .catch((error) => {
+            setToastMsg(getErrorMsg(error))
           })
       : await studentManagementCreateStudent({ ...params, year })
-          .then((result) => {
+          .then(() => {
             setToastMsg(`${params.name} 님 추가완료`)
             goBack()
           })
-          .catch((result) => {
-            setToastMsg(getErrorMsg(result))
+          .catch((error) => {
+            setToastMsg(getErrorMsg(error))
           })
   }
 

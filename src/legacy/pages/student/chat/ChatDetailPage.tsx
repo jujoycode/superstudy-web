@@ -19,8 +19,8 @@ import { useSocket } from '@/legacy/lib/socket'
 import { isNowOrFuture } from '@/legacy/util/time'
 import { meState } from '@/stores'
 
-import ChatSendDisabled from '@/legacy/assets/svg/chat-send-disabled.svg'
-import ChatSendEnabled from '@/legacy/assets/svg/chat-send-enabled.svg'
+import ChatSendDisabled from '@/assets/svg/chat-send-disabled.svg'
+import ChatSendEnabled from '@/assets/svg/chat-send-enabled.svg'
 
 interface ChatDetailPageProps {
   id: string
