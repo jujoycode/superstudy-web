@@ -38,15 +38,15 @@ export function IbEeRRS({
   const { addFiles, imageObjectMap, documentObjectMap, toggleDocumentDelete, toggleImageDelete } = useImageAndDocument(
     {},
   )
-  const { isUploadLoading, handleUploadFile } = useFileUpload()
+  const { handleUploadFile } = useFileUpload()
   const {
     control,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestRRSDto>()
   const title = watch('title')
-  const { createIBRRS, isLoading } = useIBRRSCreate({
+  const { createIBRRS } = useIBRRSCreate({
     onSuccess: () => {
       setModalClose()
       onSuccess()
@@ -63,19 +63,11 @@ export function IbEeRRS({
         .filter((value) => !value.isDelete && value.image instanceof File)
         .map((value) => value.image) as File[]
       const imageFileNames = await handleUploadFile(UploadFileTypeEnum['ib/rrs/images'], imageFiles)
-      // url image 처리
-      const imageUrlNames = [...imageObjectMap.values()]
-        .filter((value) => !value.isDelete && typeof value.image === 'string')
-        .map((value) => value.image) as string[]
-      const allImageNames = [...imageUrlNames, ...imageFileNames]
       // file document 처리
       const documentFiles = [...documentObjectMap.values()]
         .filter((value) => !value.isDelete && value.document instanceof File)
         .map((value) => value.document) as File[]
       const documentFileNames = await handleUploadFile(UploadFileTypeEnum['ib/rrs/files'], documentFiles)
-      const documentUrlNames = [...documentObjectMap.values()]
-        .filter((value) => !value.isDelete && typeof value.document === 'string')
-        .map((value) => value.document) as string[]
       const _data = {
         ...data,
         files: documentFileNames,

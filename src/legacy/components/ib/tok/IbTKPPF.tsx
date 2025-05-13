@@ -29,7 +29,6 @@ export function IbTKPPF({
   setModalClose,
   projectId,
   onSuccess,
-  TKPPFData,
   ablePropragation = false,
 }: PropsWithChildren<IbTKPPFProps>) {
   const { createIBTKPPF, isLoading } = useIBTKPPFCreate({
@@ -48,12 +47,7 @@ export function IbTKPPF({
     : { data: null, isLoading: false }
 
   const [isOpen, setIsOpen] = useState(false)
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<RequestCreateTKPPFDto>()
+  const { register, handleSubmit, watch } = useForm<RequestCreateTKPPFDto>()
 
   const onSubmit = (data: RequestCreateTKPPFDto) => {
     const filteredData = {
@@ -96,7 +90,7 @@ export function IbTKPPF({
 
   const isSaveButtonDisabled = () => {
     // 모든 텍스트가 readonly 인 경우 버튼 비활성화
-    const allReadonly = watchedContents?.every((content, index) => isTextareaReadonly(index))
+    const allReadonly = watchedContents?.every((_, index) => isTextareaReadonly(index))
 
     // 텍스트가 readonly가 아니고 비어있는 경우 버튼 비활성화
     const isEmpty = watchedContents?.some((content, index) => {

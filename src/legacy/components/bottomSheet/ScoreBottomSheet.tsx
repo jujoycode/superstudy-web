@@ -7,7 +7,7 @@ import SVGIcon from '../icon/SVGIcon'
 
 import BottomSheetListSelection from './BottomSheetListSelection'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface BottomSheetProps {
   data?: SchoolScore[]

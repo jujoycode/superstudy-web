@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import {
   useStudentActivityCommentCreate,
   useStudentActivityCommentDelete,
@@ -7,8 +6,7 @@ import {
   useStudentActivityCommentUpdate,
   useStudentActivityFindOne,
 } from '@/legacy/generated/endpoint'
-import type { RequestCreateActivityCommentDto } from '@/legacy/generated/model'
-
+import { RequestCreateActivityCommentDto } from '@/legacy/generated/model'
 import { useTeacherActivityDetail } from './teacher-activity-detail'
 
 export function useTeacherActivitySubmitDetail(activityId: number, studentActivityId: number) {

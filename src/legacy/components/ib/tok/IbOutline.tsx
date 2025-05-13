@@ -35,7 +35,7 @@ export function IbOutline({
     control,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBTokOutlineDto>()
 
   const requiredFields = watch([
@@ -56,7 +56,7 @@ export function IbOutline({
 
   const areAllFieldsFilled = requiredFields.every((field) => field && field.trim() !== '')
 
-  const { data, isLoading: isFetching } = useThemeQuestionFindAll('TOK_ESSAY')
+  const { data } = useThemeQuestionFindAll('TOK_ESSAY')
   const { categoryData: knowledgeArea } = useCodeByCategoryName('tokOutlineKnowledgeArea')
 
   const knowledgeAreaOptions =
@@ -103,8 +103,6 @@ export function IbOutline({
     }
     createIBProject(requestData)
   }
-
-  const themeQuestionValue = watch('themeQuestion')
 
   return (
     <div

@@ -19,7 +19,7 @@ import FeedbackViewer from '../FeedbackViewer'
 
 import { IbEeProposal } from './IbEeProposal'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface ProposalListProps {
   data: ResponseIBDto
@@ -39,7 +39,7 @@ export default function ProposalList({ data, refetch }: ProposalListProps) {
   const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false)
   const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined)
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
-  const { changeIBProposalRank, isLoading, error, isError } = useIBProposalRankChange({
+  const { changeIBProposalRank, isLoading } = useIBProposalRankChange({
     onSuccess: () => {
       setAlertMessage(`제안서 순위 변경이\n완료되었습니다`)
       setModalOpen(!modalOpen)

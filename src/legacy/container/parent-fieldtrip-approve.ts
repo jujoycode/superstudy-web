@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-
 import {
   useFieldtripsApproveByParent,
   useFieldtripsApproveByParentApp,
   useFieldtripsFindOne,
   useFieldtripsFindOneByUUID,
 } from '@/legacy/generated/endpoint'
-import type { errorType } from '@/legacy/types'
 import { childState } from '@/stores'
+import { errorType } from '@/legacy/types'
 
 export function useParentFieldtripApprove({ sigPadData, uuid }: { sigPadData: string; uuid: string }) {
   const [isShowSignModal, setIsShowSignModal] = useState(false)

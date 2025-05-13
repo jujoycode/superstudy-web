@@ -11,7 +11,7 @@ import { RequestFeedbackDto, ResponseFeedbackDtoReferenceTable, ResponseUserDto 
 
 import SolidSVGIcon from '../icon/SolidSVGIcon'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface FeedbackProps {
   referenceId: number

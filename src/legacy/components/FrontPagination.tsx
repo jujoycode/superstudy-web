@@ -1,7 +1,7 @@
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
-import ArrowLeftIcon from '@/legacy/assets/svg/icon-arrow-left.svg'
-import ArrowRightIcon from '@/legacy/assets/svg/icon-arrow-right.svg'
+import ArrowLeftIcon from '@/assets/svg/icon-arrow-left.svg'
+import ArrowRightIcon from '@/assets/svg/icon-arrow-right.svg'
 
 export interface FrontPaginationProps {
   basePath: string

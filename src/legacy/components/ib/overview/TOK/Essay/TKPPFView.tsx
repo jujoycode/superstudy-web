@@ -1,4 +1,3 @@
-import { saveAs } from 'file-saver'
 import { useEffect, useState } from 'react'
 
 import { useHistory } from '@/hooks/useHistory'

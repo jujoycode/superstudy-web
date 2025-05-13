@@ -19,7 +19,6 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
   const { me } = UserContainer.useContext()
 
   const {
-    isEditMode,
     setIsEditMode,
     isAddMode,
     setIsAddMode,
@@ -27,12 +26,9 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
     setContent,
     counselingAt,
     setCounselingAt,
-    category,
     setCategory,
     counselorName,
     setCoulselorName,
-    userId,
-    setUserId,
     counselingData,
     createCounseling,
     deleteCounseling,

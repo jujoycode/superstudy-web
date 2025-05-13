@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-
 import { meState } from '@/stores'
 
 export function useStudentMyPage() {

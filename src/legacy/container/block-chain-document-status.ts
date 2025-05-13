@@ -1,5 +1,4 @@
 import { useRecoilValue } from 'recoil'
-
 import { useBlockChainGetDocumentStatus } from '@/legacy/generated/endpoint'
 import { BlockChainGetDocumentStatusParams } from '@/legacy/generated/model'
 import { meState } from '@/stores'

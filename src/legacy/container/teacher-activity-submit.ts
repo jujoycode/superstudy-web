@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import { useActivityFindActivitySubmitUsers } from '@/legacy/generated/endpoint'
 
 enum FilterType {

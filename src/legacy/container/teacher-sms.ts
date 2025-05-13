@@ -1,13 +1,11 @@
-// ! date-fns 사용
 import moment from 'moment'
 import { useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-
 import { useSmsGetFieldtripsByTeacher, useSmsRemainSmsCredit, useSmsSendMessage } from '@/legacy/generated/endpoint'
-import type { RequestCreateSmsMessageDto } from '@/legacy/generated/model'
-import type { errorType } from '@/legacy/types'
-import { makeDateToString } from '@/legacy/util/time'
+import { RequestCreateSmsMessageDto } from '@/legacy/generated/model'
 import { meState, toastState } from '@/stores'
+import { errorType } from '@/legacy/types'
+import { makeDateToString } from '@/legacy/util/time'
 
 export function useTeacherSms() {
   const me = useRecoilValue(meState)
@@ -22,6 +20,9 @@ export function useTeacherSms() {
   const limit = 10
 
   const [listResultType, setListResultType] = useState(0)
+
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const [totalIndex, setTotalIndex] = useState(0);
 
   const { data: remainCredit, isLoading: creditLoading } = useSmsRemainSmsCredit()
 
@@ -46,6 +47,8 @@ export function useTeacherSms() {
     mutation: {
       onSuccess: (_) => {
         setWait(false)
+        // const responsefail = rst?.find((response) => response.result === false);
+
         setIsSendPage(false)
         setStartDate(moment(new Date()).subtract(30, 'seconds').toISOString())
         setEndDate(moment(new Date()).add(30, 'seconds').toISOString())
@@ -61,9 +64,12 @@ export function useTeacherSms() {
 
   const createNewMessage = (smsMsg: RequestCreateSmsMessageDto[]) => {
     let currentIndex = 0
+    // setCurrentIndex(current);
+    // setTotalIndex(smsMsg.length);
     const intervalId = setInterval(() => {
       const slicedMessages = smsMsg.slice(currentIndex, currentIndex + 5)
       currentIndex += slicedMessages.length
+      //setCurrentIndex(current);
 
       if (slicedMessages.length > 0) {
         setWait(true)
@@ -73,7 +79,7 @@ export function useTeacherSms() {
       }
 
       if (currentIndex >= smsMsg.length) {
-        clearInterval(intervalId)
+        clearInterval(intervalId) // 배열의 끝에 도달하면 interval 중단
         setToastMsg(`문자메시지 전송 요청을 완료했습니다.`)
       } else {
         setToastMsg(`문자메시지 전송 요청 ( ${currentIndex} / ${smsMsg.length} 완료)`)

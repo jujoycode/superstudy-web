@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { useHistory, useLocation, useParams } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
-
+import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -28,10 +28,6 @@ import { Feedback } from '../Feedback'
 import { ImageCard } from '../ImageCard'
 import { InputField } from '../InputField'
 
-interface LocationState {
-  page: number
-}
-
 interface AcitivityLogDetailProps {
   type?: 'student' | 'teacher'
   status?: ResponseIBDtoStatus
@@ -48,7 +44,7 @@ function AcitivityLogDetail({ type = 'student', status, hasPermission = true }: 
   const { id: idParam, activitylogId: activitylogIdParam } = useParams<{ id: string; activitylogId: string }>()
   const id = Number(idParam)
   const history = useHistory()
-  const location = useLocation<LocationState>()
+  const location = useLocation()
   const page = location.state.page
   const activitylogId = Number(activitylogIdParam)
   const { data, isLoading } = useActivityLogGetById(id, activitylogId)
@@ -96,7 +92,7 @@ function AcitivityLogDetail({ type = 'student', status, hasPermission = true }: 
     handleSubmit,
     watch,
     reset,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBActivityLogUpdateDto>({
     defaultValues: data,
   })
@@ -337,7 +333,7 @@ function AcitivityLogDetail({ type = 'student', status, hasPermission = true }: 
           noImgDetails
           scalable={false}
           images={viewerImages}
-          onChange={(activeImage, index) => setActiveIndex(index)}
+          onChange={(_, index) => setActiveIndex(index)}
           onClose={() => setImagesModalOpen(false)}
           activeIndex={activeIndex}
         />

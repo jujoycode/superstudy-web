@@ -10,7 +10,7 @@ import { AnnouncementType, ResponseAnnouncementDto } from '@/legacy/generated/mo
 import { getFileNameFromUrl, getFileNameFromUrlToAnn } from '@/legacy/util/file'
 import { isHTML } from '@/legacy/util/validator'
 
-import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 
 interface AnnouncementProps {
   announcement: ResponseAnnouncementDto

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Input } from '@/legacy/components/common/Input'
@@ -30,12 +29,7 @@ export default function InputInspector({ handleBack }: InputInspectorProps) {
     setData({ ...data, [field]: value })
   }
 
-  const {
-    uploadPlagiarism,
-    isError,
-    error,
-    isLoading: uploadLoading,
-  } = usePlagiarismUpload({
+  const { uploadPlagiarism, isLoading: uploadLoading } = usePlagiarismUpload({
     onSuccess: (data: ResponseCopykillerResponseDto) => {
       setIsLoading(true)
       setResultData(data)
@@ -55,7 +49,7 @@ export default function InputInspector({ handleBack }: InputInspectorProps) {
   })
 
   // 폴링 훅 사용
-  const { isPolling, stopPolling } = usePolling<ResponseCopykillerResponseDto>({
+  const { stopPolling } = usePolling<ResponseCopykillerResponseDto>({
     enabled: shouldPollResult,
     maxPollingCount: 20,
     fetchFn: refetch,

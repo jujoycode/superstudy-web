@@ -1,7 +1,6 @@
 import { useState } from 'react'
-
 import { useIBGetIBBycoordinator } from '@/legacy/generated/endpoint'
-import type { IBGetIBBycoordinatorParams } from '@/legacy/generated/model'
+import { IBGetIBBycoordinatorParams } from '@/legacy/generated/model'
 
 export function useGetIBProject() {
   const [param, setParam] = useState<IBGetIBBycoordinatorParams>()

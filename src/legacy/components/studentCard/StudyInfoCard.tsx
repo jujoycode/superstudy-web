@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { Time } from '@/legacy/components/common/Time'
@@ -12,7 +10,6 @@ interface StudyInfoCard {
 }
 
 export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard) {
-  const [barcode, setBarcode] = useState('aaa')
   const {
     isEditMode,
     setIsEditMode,

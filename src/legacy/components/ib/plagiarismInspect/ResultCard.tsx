@@ -7,7 +7,7 @@ import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import { PopupModal } from '@/legacy/components/PopupModal'
 import { Constants } from '@/legacy/constants'
-import { useGetPlagiarismInspectDetail, useGetPlagiarismInspectResult } from '@/legacy/container/plagiarism-inspector'
+import { useGetPlagiarismInspectResult } from '@/legacy/container/plagiarism-inspector'
 import { ResponseCopykillerResponseDto, ResponseCopykillerWithContentDto } from '@/legacy/generated/model'
 import { cn } from '@/legacy/lib/tailwind-merge'
 import { downloadFile } from '@/legacy/util/download-image'
@@ -21,12 +21,6 @@ export default function ResultCard({ data }: { data: ResponseCopykillerResponseD
   const [isTextPreviewOpen, setIsTextPreviewOpen] = useState(false)
   const [textPreviewData, setTextPreviewData] = useState<{ title: string; content: string } | null>(null)
   const [isAlertOpen, setIsAlertOpen] = useState(false)
-
-  const { refetch } = useGetPlagiarismInspectDetail(data.id, {
-    query: {
-      enabled: false,
-    },
-  })
 
   const { refetch: refetchStatus, isLoading: isRefetchStatusLoading } = useGetPlagiarismInspectResult(data.id, {
     query: {

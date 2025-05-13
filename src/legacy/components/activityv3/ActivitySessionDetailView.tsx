@@ -14,7 +14,7 @@ import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { DocumentObjectComponent } from '../DocumentObjectComponent'
 import { ImageObjectComponent } from '../ImageObjectComponent'
 
-import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 
 interface ActivitySessionDetailViewProps {
   activitySession: ActivitySession

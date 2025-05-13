@@ -1,7 +1,5 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -11,7 +9,6 @@ import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
 import { useGetFeedbackBatchExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
 import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { ResponseIBDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 
 import FeedbackViewer from '../../FeedbackViewer'
 
@@ -21,15 +18,13 @@ interface OutlineListProps {
   isLoading: boolean
 }
 
-export default function OutlineList({ data, refetch, isLoading }: OutlineListProps) {
+export default function OutlineList({ data, isLoading }: OutlineListProps) {
   const { push } = useHistory()
-  const me = useRecoilValue(meState)
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined)
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
-  const [modalOpen, setModalOpen] = useState<boolean>(false)
 
-  const { data: ibData, klassNum } = useIBGetById(Number(data.id))
+  const { data: ibData } = useIBGetById(Number(data.id))
   const outlineData = ibData?.tokOutline
 
   const { data: Feedback } = useGetFeedbackBatchExist(

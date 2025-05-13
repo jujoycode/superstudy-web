@@ -2,8 +2,8 @@ import { Constants } from '@/legacy/constants'
 import { DocumentObject } from '@/legacy/types/document-object'
 import { getFileNameFromUrl } from '@/legacy/util/file'
 
-import undoArrow from '@/legacy/assets/images/undo-arrow.png'
-import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
+import undoArrow from '@/assets/images/undo-arrow.png'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 
 interface DocumentObjectComponentProps {
   id: number

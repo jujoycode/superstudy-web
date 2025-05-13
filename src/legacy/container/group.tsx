@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { useRecoilValue } from 'recoil'
-
 import {
   useGroupsFindAllKlassBySchool,
   useGroupsFindKlassByUser,
   useGroupsFindKlubBySchoolIdAndUserId,
   useGroupsFindSubjectByUser,
 } from '@/legacy/generated/endpoint'
-import { Role, type ResponseGroupDto, type ResponseSubjectGroupDto } from '@/legacy/generated/model'
-import { getThisYear } from '@/legacy/util/time'
+import { ResponseGroupDto, ResponseSubjectGroupDto, Role } from '@/legacy/generated/model'
 import { meState, tokenState } from '@/stores'
-
+import { getThisYear } from '@/legacy/util/time'
 import { createContainer } from './createContainer'
 
 export function groupHook() {

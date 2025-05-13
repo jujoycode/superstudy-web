@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react'
-
-// ! 개선 필요
-import { useHistory } from 'react-router'
+import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
-
 import { useOutingsApproveByParentApp, useOutingsDelete, useOutingsFindOne } from '@/legacy/generated/endpoint'
-import type { errorType } from '@/legacy/types'
 import { childState, meState } from '@/stores'
+import { errorType } from '@/legacy/types'
+import { useDialog } from './DialogContext'
 
 export function useStudentOutingDetail(id: number) {
   const { push } = useHistory()
@@ -15,6 +13,8 @@ export function useStudentOutingDetail(id: number) {
   const child = useRecoilValue(childState)
 
   const [openSignModal, setSignModal] = useState(false)
+
+  const { alert } = useDialog()
 
   const {
     data: outing,
@@ -33,7 +33,7 @@ export function useStudentOutingDetail(id: number) {
   })
 
   useEffect(() => {
-    if (child) {
+    if (!!child) {
       refetchOutings()
     }
   }, [child])
@@ -41,7 +41,7 @@ export function useStudentOutingDetail(id: number) {
   const { mutate: deleteOutingMutate } = useOutingsDelete({
     mutation: {
       onSuccess: () => {
-        alert('삭제되었습니다')
+        void alert('삭제되었습니다')
         push('/student/outing')
       },
       onError: (e) => {

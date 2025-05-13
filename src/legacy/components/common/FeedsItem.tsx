@@ -15,8 +15,8 @@ import { childState, meState } from '@/stores'
 import { Icon } from './icons'
 import { PdfCard } from './PdfCard'
 
-import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
-import SvgImage from '@/legacy/assets/svg/upload-image.svg'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
+import SvgImage from '@/assets/svg/upload-image.svg'
 
 interface FeedsItemProps {
   to: string

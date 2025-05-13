@@ -1,12 +1,10 @@
 import { useState } from 'react'
-
 import { useAbsentsUpdateByTeacher } from '@/legacy/generated/endpoint'
-import { UploadFileTypeEnum, type Absent } from '@/legacy/generated/model'
+import { Absent, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-// ! ENUM 명칭 변경 필요
-import { AbsentTimeType, type AbsentDescription } from '@/legacy/types'
-import type { ImageObject } from '@/legacy/types/image-object'
+import { ImageObject } from '@/legacy/types/image-object'
+import { AbsentDescription, AbsentTimeType } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
 import { makeTimeToString } from '@/legacy/util/time'

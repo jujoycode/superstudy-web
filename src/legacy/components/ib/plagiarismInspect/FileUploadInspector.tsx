@@ -47,7 +47,7 @@ export default function FileUploadInspector({ fileData, handleBack }: FileUpload
   })
 
   // 폴링 훅 사용
-  const { isPolling, stopPolling } = usePolling<ResponseCopykillerResponseDto>({
+  const { stopPolling } = usePolling<ResponseCopykillerResponseDto>({
     enabled: shouldPollResult,
     maxPollingCount: 20,
     fetchFn: refetch,

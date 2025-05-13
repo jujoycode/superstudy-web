@@ -1,14 +1,12 @@
-import * as loadImage from 'blueimp-load-image'
+import loadImage from 'blueimp-load-image'
 import imageCompression from 'browser-image-compression'
 import { toJpeg } from 'html-to-image'
 import { jsPDF } from 'jspdf'
 import { filter, find, groupBy, map } from 'lodash'
 import { useRef, useState } from 'react'
-
 import { Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Constants } from '@/legacy/constants'
-import { UserContainer } from '@/legacy/container/user'
 import { ResponseNewsletterDetailDto } from '@/legacy/generated/model'
 import { AbsentPaperType } from '@/legacy/types'
 import { getArrayBufferByFile, getBlobByCanvas, getImageMeta } from '@/legacy/util/pdf'
@@ -43,7 +41,7 @@ export function NewslettersDownloadView({
   isCsvData,
 }: NewslettersDownloadViewProps) {
   const [open, setOpen] = useState(false)
-  const docRef = useRef<jsPDF>()
+  const docRef = useRef<jsPDF>(null)
   const [isExtractData, setIsExtractData] = useState(false)
   const [extractDataCount, setExtractDataCount] = useState(-1)
   const [isProcessPdf, setIsProcessPdf] = useState(false)
@@ -135,7 +133,7 @@ export function NewslettersDownloadView({
             width: isChangeWidthHeight ? result.originalHeight : result.originalWidth,
             height: isChangeWidthHeight ? result.originalWidth : result.originalHeight,
             //evidenceType: absent.evidenceType as AbsentEvidenceType,
-            orientation,
+            orientation: orientation as number,
           })
         } catch (e) {
           console.log('extractImageData error  : ', e)

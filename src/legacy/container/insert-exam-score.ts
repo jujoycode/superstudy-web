@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import {
   useStudentExamScoreCheckMockScoreFile,
   useStudentExamScoreCheckScoreFile,
@@ -11,7 +10,7 @@ import {
   useStudentExamScoreInsertTestScores,
   useStudentExamScoreInsetClassScoresBulk,
 } from '@/legacy/generated/endpoint'
-import type {
+import {
   StudentExamScoreDeleteMockScoreParams,
   StudentExamScoreInsertMockScoresBody,
   StudentExamScoreInsertMockScoresParams,
@@ -19,7 +18,7 @@ import type {
   StudentExamScoreInsertTestScoresParams,
 } from '@/legacy/generated/model'
 import { queryClient } from '@/legacy/lib/query'
-import type { examsScoreFiles } from '@/legacy/util/exam-score'
+import { examsScoreFiles } from '@/legacy/util/exam-score'
 
 interface Score {
   grade: number
@@ -92,7 +91,7 @@ export function useInsertScoreBatch() {
 }
 
 export function useStudentScoreFileCheck(grade: number, insertionYear: number) {
-  const [errorMessage, setErrorMessage] = useState<string | undefined>()
+  const [errorMessage, setErrorMessage] = useState<String | undefined>()
   const { data, isLoading, error } = useStudentExamScoreCheckScoreFile<SCORE_DATA>(
     { grade, insertionYear },
     {
@@ -112,7 +111,7 @@ export function useStudentScoreFileCheck(grade: number, insertionYear: number) {
 }
 
 export function useStudentScoreFileCheckMock(grade: number, insertionYear: number) {
-  const [errorMessage, setErrorMessage] = useState<string | undefined>()
+  const [errorMessage, setErrorMessage] = useState<String | undefined>()
   const { data, isLoading, error } = useStudentExamScoreCheckMockScoreFile<MOCK_DATA>(
     { grade, insertionYear },
     {
@@ -133,7 +132,7 @@ export function useStudentScoreFileCheckMock(grade: number, insertionYear: numbe
 }
 
 export function useStudentScoreFileCheckTest(grade: number, insertionYear: number) {
-  const [errorMessage, setErrorMessage] = useState<string | undefined>()
+  const [errorMessage, setErrorMessage] = useState<String | undefined>()
   const { data, isLoading, error } = useStudentExamScoreCheckTestScoreFile<TestScore>(
     { grade, insertionYear },
     {

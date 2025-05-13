@@ -1,12 +1,9 @@
-import { useState } from 'react'
-
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
 import { Time } from '@/legacy/components/common/Time'
 import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'
-
-import { ReactComponent as SomeIcon } from '@/legacy/assets/svg/edit_orange.svg'
-import { ReactComponent as SaveIcon } from '@/legacy/assets/svg/save.svg'
+import SomeIcon from '@/assets/svg/edit_orange.svg'
+import SaveIcon from '@/assets/svg/save.svg'
 
 interface StudyInfoCard {
   studentId?: number
@@ -15,7 +12,6 @@ interface StudyInfoCard {
 }
 
 export function StudyInfoCard2({ studentId, isCard, isForbidden }: StudyInfoCard) {
-  const [barcode, setBarcode] = useState('aaa')
   const {
     isEditMode,
     setIsEditMode,

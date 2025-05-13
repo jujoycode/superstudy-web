@@ -1,11 +1,10 @@
 import { useState } from 'react'
-
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useNewsLettersFindAll } from '@/legacy/generated/endpoint'
-import type { Newsletter, NewsletterCategoryEnum } from '@/legacy/generated/model'
+import { Newsletter, NewsletterCategoryEnum } from '@/legacy/generated/model'
 
 export function useTeacherNewsletter() {
-  const [pageIngo, _] = useState({ page: 1, limit: 500 })
+  const [pageIngo] = useState({ page: 1, limit: 500 })
   const [category, setCategory] = useState<NewsletterCategoryEnum>()
 
   const { data: newsletterList, isLoading } = useNewsLettersFindAll(

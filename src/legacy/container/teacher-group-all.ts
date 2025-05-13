@@ -1,9 +1,9 @@
-import { GroupContainer } from '@/legacy/container/group'
-import { UserContainer } from '@/legacy/container/user'
 import { useTimetablev3GetTimetableByTeacherId } from '@/legacy/generated/endpoint'
-import type { ResponseGroupDto, ResponseSubjectGroupDto, ResponseTimetableV3Dto } from '@/legacy/generated/model'
+import { ResponseGroupDto, ResponseSubjectGroupDto, ResponseTimetableV3Dto } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getThisYear } from '@/legacy/util/time'
+import { GroupContainer } from './group'
+import { UserContainer } from './user'
 
 export interface TeacharAllGroup {
   id: number

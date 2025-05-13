@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-
 import { useStudentActivityUpdateFeedback } from '@/legacy/generated/endpoint'
-import type { StudentActivity } from '@/legacy/generated/model'
+import { StudentActivity } from '@/legacy/generated/model'
 
 type Props = {
   record: StudentActivity

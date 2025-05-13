@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-
 import { useCommonUserSearchtest } from '@/legacy/generated/endpoint'
 import { ResponseIBStudentDto } from '@/legacy/generated/model'
 

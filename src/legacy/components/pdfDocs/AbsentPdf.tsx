@@ -132,7 +132,11 @@ export function AbsentPdf({
                 {Array.from(new Array(numPages), (_, index) => (
                   <div
                     key={index}
-                    ref={(el) => pdfPaperRefs.current !== null && (pdfPaperRefs.current[index] = el)}
+                    ref={(el) => {
+                      if (pdfPaperRefs.current !== null) {
+                        pdfPaperRefs.current[index] = el
+                      }
+                    }}
                     className="h-[1100px] w-[778px] overflow-hidden bg-white"
                   >
                     <Page
@@ -164,7 +168,11 @@ export function AbsentPdf({
                 {Array.from(new Array(numPages), (_, index) => (
                   <div
                     key={index}
-                    ref={(el) => pdf2PaperRefs.current !== null && (pdf2PaperRefs.current[index] = el)}
+                    ref={(el) => {
+                      if (pdf2PaperRefs.current !== null) {
+                        pdf2PaperRefs.current[index] = el
+                      }
+                    }}
                     className="h-[1100px] w-[778px] overflow-hidden bg-white"
                   >
                     <Page

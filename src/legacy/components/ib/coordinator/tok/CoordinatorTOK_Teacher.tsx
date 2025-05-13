@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import _ from 'lodash'
-import { FC, useContext, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { Check } from '@/legacy/components/common/Check'
@@ -12,10 +12,7 @@ import { useIBSetMentor } from '@/legacy/container/ib-coordinator'
 import { useGetIBProject } from '@/legacy/container/ib-project-get-filter'
 import { useGroupsFindAllKlassBySchool, useUserGetAllTeachers } from '@/legacy/generated/endpoint'
 import { ResponseIBDto } from '@/legacy/generated/model'
-
 import ConfirmSelectBar from '../ConfirmSelectBar'
-
-import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 const CoordinatorTOK_Teacher: FC = () => {
   const [selectedOptions, setSelectedOptions] = useState({
@@ -27,7 +24,6 @@ const CoordinatorTOK_Teacher: FC = () => {
   const [selectedIds, setSelectedIds] = useState<number[]>([])
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
   const [isHeaderChecked, setIsHeaderChecked] = useState(false)
-  const { year } = useContext(AdminContext)
   const [type, setType] = useState('TOK_ESSAY')
   const { data: klassGroups } = useGroupsFindAllKlassBySchool()
   const { data: teachersData } = useUserGetAllTeachers()

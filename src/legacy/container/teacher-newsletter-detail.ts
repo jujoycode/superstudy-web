@@ -1,10 +1,7 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-
-// ! 로직 개선
-import type { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-
 import { useHistory } from '@/hooks/useHistory'
+import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { Constants } from '@/legacy/constants'
 import { QueryKey } from '@/legacy/constants/query-key'
 import {
@@ -16,12 +13,12 @@ import {
 import { NewsletterCategoryEnum, NewsletterType, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import type { DocumentObject } from '@/legacy/types/document-object'
-import type { ImageObject } from '@/legacy/types/image-object'
+// ! 지훈쌤 개선안 적용
+import { Routes } from 'src/routes'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isPdfFile } from '@/legacy/util/file'
-
-import { Routes } from '@/legacy/routes'
+import { DocumentObject } from '@/legacy/types/document-object'
+import { ImageObject } from '@/legacy/types/image-object'
 
 interface NewsletterCore {
   id: number

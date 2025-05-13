@@ -9,7 +9,7 @@ import { TextInput } from '@/legacy/components/common/TextInput'
 import { useStudentSelfAssessmentCreate } from '@/legacy/generated/endpoint'
 import { StudentSelfAssessment } from '@/legacy/generated/model'
 import { getDayOfYear } from '@/legacy/util/time'
-
+// * 추후 types로 이관
 import { SELF_TEST_TYPES } from '@/legacy/pages/student/self-test/self-test.type'
 
 interface StudentSelfAssessmentUpdateProps {
@@ -61,8 +61,6 @@ export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> =
         ? //@ts-ignore
           category3Data.filter((ct3: any) => ct3.name === category3)?.[0]?.values || []
         : []
-
-  const buttonDisabled = !Object.keys(keywords).length
 
   return (
     <div className="flex flex-col space-y-4">
@@ -139,7 +137,7 @@ export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> =
           <Label.Text className="text-16">해당 학생을 나타내는 특성단어를 선택해주세요.</Label.Text>
           <div className="mt-2">
             {keywordDatas.map((el) => {
-              const selected = Object.values(keywords).some(({ keyword, reason }) => el === keyword)
+              const selected = Object.values(keywords).some(({ keyword }) => el === keyword)
               return (
                 <div
                   className={twMerge(

@@ -1,5 +1,5 @@
 import { useIBChangeProposalRank, useIBUpdateProposal } from '@/legacy/generated/endpoint'
-import type { RequestIBProposalRankItemDto, RequestIBProposalUpdateDto } from '@/legacy/generated/model'
+import { RequestIBProposalRankItemDto, RequestIBProposalUpdateDto } from '@/legacy/generated/model'
 
 interface UseIBProposalUpdateOptions {
   onSuccess?: (data: any) => void

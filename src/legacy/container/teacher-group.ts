@@ -1,7 +1,6 @@
 import { useState } from 'react'
-
 import { useStudentGroupsFindByGroupId } from '@/legacy/generated/endpoint'
-import type { StudentGroup } from '@/legacy/generated/model'
+import { StudentGroup } from '@/legacy/generated/model'
 
 export function useTeacherGroup(groupId?: number) {
   const [studentGroups, setStudentGroups] = useState<StudentGroup[]>([])

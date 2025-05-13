@@ -17,7 +17,7 @@ import { meState } from '@/stores'
 
 import Evaluation from './Evaluation'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface EvaluationListProps {
   evaluationData?: ResponseTokEvaluationInitialDataDto

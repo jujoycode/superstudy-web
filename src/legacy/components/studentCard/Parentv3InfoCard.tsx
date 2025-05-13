@@ -12,7 +12,7 @@ import { Validator } from '@/legacy/util/validator'
 
 import { DropdownMenu } from './DropdownMenu'
 
-import icon from '@/legacy/assets/icons/more-vertical.svg'
+import icon from '@/assets/icons/more-vertical.svg'
 
 interface ParentInfoCard {
   parentInfo?: ResponseParentUserDto[] | null

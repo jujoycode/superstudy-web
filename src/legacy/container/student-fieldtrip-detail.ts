@@ -1,16 +1,15 @@
 import { addYears, format } from 'date-fns'
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
+import { useRecoilValue } from 'recoil'
 import {
   useFieldtripsDelete,
   useFieldtripsFindOne,
   useFieldtripsResend,
   useSchedulesFindRejectSchedule,
 } from '@/legacy/generated/endpoint'
-import type { errorType } from '@/legacy/types'
 import { childState } from '@/stores'
+import { errorType } from '@/legacy/types'
 
 export function useStudentFieldtripDetail(id: number) {
   const { push } = useHistory()
@@ -30,7 +29,7 @@ export function useStudentFieldtripDetail(id: number) {
     },
   })
 
-  const { data: cannotSchedules, isLoading: isGetRejectScheduleLoading } = useSchedulesFindRejectSchedule(
+  const { data: cannotSchedules } = useSchedulesFindRejectSchedule(
     {
       startDate: fieldtrip?.startAt
         ? format(new Date(fieldtrip?.startAt).setDate(1), 'yyyy-MM-dd')

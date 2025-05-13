@@ -1,25 +1,14 @@
 import { useEffect, useState } from 'react'
-
-// ! 개선 필요
-
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
-import { useCodeByCategoryName } from '@/legacy/container/category'
-import { GroupContainer } from '@/legacy/container/group'
+import { useRecoilValue } from 'recoil'
 import { useOutingsCreate, useOutingsUpdate, useStudentGroupsFindByGroupId } from '@/legacy/generated/endpoint'
-import {
-  Category,
-  OutingTypeEnum,
-  type Outing,
-  type ResponseGroupDto,
-  type StudentGroup,
-  type User,
-} from '@/legacy/generated/model'
-import { AbsentTimeType, type errorType } from '@/legacy/types'
+import { Category, Outing, OutingTypeEnum, ResponseGroupDto, StudentGroup, User } from '@/legacy/generated/model'
+import { childState } from '@/stores'
+import { AbsentTimeType, errorType } from '@/legacy/types'
 import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
-import { childState } from '@/stores'
+import { useCodeByCategoryName } from './category'
+import { GroupContainer } from './group'
 
 const getMeridiemHours = (date?: string) => {
   if (!date) return 0
@@ -50,6 +39,8 @@ export function useTeacherOutingAdd(outingData?: Outing) {
   const [studentGroups, setStudentGroups] = useState<StudentGroup[]>([])
   const [groupStudentsData, setGroupStudentsData] = useState<User[]>([])
   const [selectedUsers, setSelectedUsers] = useState<User[]>(groupStudentsData || [])
+
+  const [useParentApprove, setUseParentApprove] = useState(false)
 
   const makeStartAt = () => {
     let date = new Date()
@@ -119,7 +110,6 @@ export function useTeacherOutingAdd(outingData?: Outing) {
 
   const createOuting = async (userId: number) => {
     createOutingMutate({
-      // @ts-ignore 기존 소스 에러, 리팩토링 필요
       data: {
         studentId: userId,
         type: report,
@@ -129,6 +119,7 @@ export function useTeacherOutingAdd(outingData?: Outing) {
         startPeriod: timeType === AbsentTimeType.PERIOD ? getPeriodNum(startPeriod) : 0,
         endPeriod: timeType === AbsentTimeType.PERIOD ? getPeriodNum(endPeriod) : 0,
         reason,
+        useParentApprove,
       },
     })
   }
@@ -153,7 +144,6 @@ export function useTeacherOutingAdd(outingData?: Outing) {
   const updateOuting = async (userId: number) => {
     updateOutingMutate({
       id: outingData?.id || 0,
-      // @ts-ignore 기존 소스 에러, 리팩토링 필요
       data: {
         studentId: userId,
         type: report,
@@ -163,6 +153,7 @@ export function useTeacherOutingAdd(outingData?: Outing) {
         startPeriod: timeType === AbsentTimeType.PERIOD ? getPeriodNum(startPeriod) : 0,
         endPeriod: timeType === AbsentTimeType.PERIOD ? getPeriodNum(endPeriod) : 0,
         reason,
+        useParentApprove,
       },
     })
   }
@@ -231,5 +222,7 @@ export function useTeacherOutingAdd(outingData?: Outing) {
     selectedUsers,
     setSelectedUsers,
     userIds,
+    useParentApprove,
+    setUseParentApprove,
   }
 }

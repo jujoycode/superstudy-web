@@ -1,5 +1,5 @@
 import { concat, find, map } from 'lodash'
-import { PropsWithChildren, useRef, useState } from 'react'
+import { PropsWithChildren, useState } from 'react'
 
 import { Blank } from '@/legacy/components/common'
 import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
@@ -16,9 +16,9 @@ import {
 import { useTokEvaluationGetCriteriaById } from '../../../../generated/endpoint'
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import { EvalInputField } from '../../EvalInputField'
-import AlertV2 from '../@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { Typography } from '../@/legacy/components/common/Typography'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 
 interface CoordinatorTOK_Eval_UpdateEvalProps {
   modalOpen: boolean
@@ -34,14 +34,11 @@ export function CoordinatorTOK_Eval_UpdateEval({
   setModalClose,
   onSuccess,
   evaluationData,
-  ablePropragation = false,
   viewType = 'UPDATE',
 }: PropsWithChildren<CoordinatorTOK_Eval_UpdateEvalProps>) {
   // 평가 아코디언 기준 뱃지를 만들기 위한 알파벳 배열 생성
-  const alphabetArray = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i))
 
   const [isOpen, setIsOpen] = useState(false)
-  const scrollRef = useRef<HTMLDivElement>(null)
   const [createGrades, setCreateGrades] = useState<TokEvaluationGradeDto[]>([])
   const [updateGrades, setUpdateGrades] = useState<UpdateTokEvaluationGradeDto[]>([])
   const [deleteGradeIds, setDeleteGradeIds] = useState<number[]>([])

@@ -15,14 +15,14 @@ import {
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 import FrontPaginatedList from '../../../FrontPaginatedList '
-import AlertV2 from '../@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { Typography } from '../@/legacy/components/common/Typography'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 
 import { CoordinatorTOK_Eval_AddEval } from './CoordinatorTOK_Eval_AddEval'
 import { CoordinatorTOK_Eval_UpdateEval } from './CoordinatorTOK_Eval_UpdateEval'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 export type ModalType = 'Category' | 'Update' | 'Add' | null
 export type CategoryType = 'Ref' | 'FAQ' | ''
@@ -105,9 +105,6 @@ export default function CoordinatorTOK_Eval() {
   const handleEditClick = (item: any) => {
     setSelectedEval(item)
     setActiveModal('Update')
-  }
-  const handleBackToProjectSelection = () => {
-    setActiveModal('Category')
   }
 
   return (

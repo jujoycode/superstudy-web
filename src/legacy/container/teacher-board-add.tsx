@@ -1,17 +1,16 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-
-// ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
 import { QueryKey } from '@/legacy/constants/query-key'
-import { useTeacherBoardDetail } from '@/legacy/container/teacher-board-detail'
 import { useBoardCreate, useBoardUpdate } from '@/legacy/generated/endpoint'
-import { BoardCategoryEnum, UploadFileTypeEnum, type Group, type RequestCreateBoardDto } from '@/legacy/generated/model'
+import { BoardCategoryEnum, Group, RequestCreateBoardDto, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import type { DocumentObject } from '@/legacy/types/document-object'
-import type { ImageObject } from '@/legacy/types/image-object'
-import { Routes } from '@/routers'
+// ! 지훈쌤 개선안 적용
+import { Routes } from 'src/routes'
+import { DocumentObject } from '@/legacy/types/document-object'
+import { ImageObject } from '@/legacy/types/image-object'
+import { useTeacherBoardDetail } from './teacher-board-detail'
 
 export function useTeacherBoardAdd({
   homeKlass,

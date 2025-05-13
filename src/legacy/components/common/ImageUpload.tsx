@@ -3,7 +3,7 @@ import { InputHTMLAttributes } from 'react'
 
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 
-import { ReactComponent as FileUploadImg } from '@/legacy/assets/svg/upload-image.svg'
+import { ReactComponent as FileUploadImg } from '@/assets/svg/upload-image.svg'
 
 export interface ImageUploadProps extends InputHTMLAttributes<HTMLInputElement> {}
 

@@ -15,7 +15,7 @@ import { IbEeRRS } from '../ee/IbEeRRS'
 import FeedbackViewer from '../FeedbackViewer'
 import { IBPagination } from '../ProjectList'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface RRSListProps {
   id: number

@@ -1,20 +1,17 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-
-// ! 개선 필요
-
-import { useSetRecoilState } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
+import { useSetRecoilState } from 'recoil'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useNoticesCreate, useNoticesUpdate } from '@/legacy/generated/endpoint'
-import { UploadFileTypeEnum, type Notice } from '@/legacy/generated/model'
+import { Notice, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import type { DocumentObject } from '@/legacy/types/document-object'
-import type { ImageObject } from '@/legacy/types/image-object'
-import { Routes } from '@/routers'
+// ! 지훈쌤 개선안 적용
+import { Routes } from 'src/routes'
 import { isUpdateNoticeState } from '@/stores'
+import { DocumentObject } from '@/legacy/types/document-object'
+import { ImageObject } from '@/legacy/types/image-object'
 
 const initialNoticeState: Notice = {
   id: 0,

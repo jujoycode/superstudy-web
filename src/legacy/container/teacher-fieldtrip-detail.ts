@@ -1,14 +1,11 @@
 import { useState } from 'react'
-
-// ! 개선 필요
-import { useHistory } from '@/hooks/useHistory'
 import {
   useFieldtripsDeny,
   useFieldtripsFindOne,
   useFieldtripsRequestDelete,
   useFieldtripsResend,
 } from '@/legacy/generated/endpoint'
-import type { errorType } from '@/legacy/types'
+import { errorType } from '@/legacy/types'
 
 interface UseFieldtripDetailProps {
   id: string
@@ -19,7 +16,6 @@ export function useTeacherFieldtripDetail({ id }: UseFieldtripDetailProps) {
   const [loading, setLoading] = useState(false)
   const [deny, setDeny] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const { push } = useHistory()
 
   const {
     data: fieldtrip,

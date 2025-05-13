@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 
 import { useDashboard } from '@/legacy/container/dashboard'
@@ -7,9 +7,9 @@ import { Role } from '@/legacy/generated/model'
 import { dashboardNewItem } from '@/legacy/types'
 import { meState } from '@/stores'
 
-import dashboard1 from '@/legacy/assets/images/dashboard1.png'
-import dashboard2 from '@/legacy/assets/images/dashboard2.png'
-import RightArrow from '@/legacy/assets/svg/mypage-right-arrow.svg'
+import dashboard1 from '@/assets/images/dashboard1.png'
+import dashboard2 from '@/assets/images/dashboard2.png'
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 
 export function Dashboard() {
   const [showAll, setShowAll] = useState(false)

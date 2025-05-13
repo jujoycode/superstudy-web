@@ -39,7 +39,7 @@ import { meState } from '@/stores'
 import { Feedback } from '../Feedback'
 import { InputField } from '../InputField'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface ProjectActivityPlanProps {
   data: ResponseIBDto
@@ -150,7 +150,7 @@ function ProjectActivityPlan({
     handleSubmit,
     reset,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBDto>({
     defaultValues: data,
   })
@@ -188,11 +188,8 @@ function ProjectActivityPlan({
   const { deleteIBProject } = useIBDelete({
     onSuccess: () => {
       setConfirmOpen(!confirmOpen)
-      history.push({
-        pathname: '/ib/student',
-        state: {
-          alertMessage: `계획서가\n삭제되었습니다`,
-        },
+      history.push('/ib/student', {
+        alertMessage: `계획서가\n삭제되었습니다`,
       })
     },
     onError: () => {

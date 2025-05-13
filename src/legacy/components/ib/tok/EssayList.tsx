@@ -13,7 +13,7 @@ import FeedbackViewer from '../FeedbackViewer'
 
 import { IbEssay } from './IbEssay'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface EssayListProps {
   data?: ResponseEssayDto

@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
-
 import { QueryKey } from '@/legacy/constants/query-key'
-import { createContainer } from '@/legacy/container/createContainer'
 import { useNoticesFindAll } from '@/legacy/generated/endpoint'
+import { createContainer } from './createContainer'
 
 export function useTeacherNoticeHook() {
-  const [pageIngo, _] = useState({ page: 1, limit: 500 })
   const [category, setCategory] = useState<string>('전체')
   const [year, setYear] = useState(new Date().getFullYear())
+  const [pageIngo] = useState({ page: 1, limit: 500 })
 
   const {
     data: noticeList,

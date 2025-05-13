@@ -1,11 +1,7 @@
 import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
-import { Select } from '@/legacy/components/common'
-import { Icon } from '@/legacy/components/common/icons'
-import { TextInput } from '@/legacy/components/common/TextInput'
-import { Time } from '@/legacy/components/common/Time'
+import { useSetRecoilState } from 'recoil'
+import SvgUser from 'src/assets/svg/user.svg'
 import { Constants } from '@/legacy/constants'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'
@@ -15,12 +11,14 @@ import { Category, Code, ResponseParentUserDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useModals } from '@/legacy/modals/ModalStack'
 import { StudentModal } from '@/legacy/modals/StudentModal'
+import { warningState } from '@/stores'
 import { getNickName } from '@/legacy/util/status'
 import { getThisYear } from '@/legacy/util/time'
 import { Validator } from '@/legacy/util/validator'
-import { meState } from '@/stores'
-
-import SvgUser from '@/legacy/assets/svg/user.svg'
+import { Select } from '../common'
+import { TextInput } from '../common/TextInput'
+import { Time } from '../common/Time'
+import { Icon } from '../common/icons'
 
 interface StudentInfoCardProps {
   id: number
@@ -29,7 +27,8 @@ interface StudentInfoCardProps {
 export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
   const { t } = useLanguage()
   const { pushModal } = useModals()
-  const me = useRecoilValue(meState)
+  const setToastMsg = useSetRecoilState(warningState)
+
   const thisYear = getThisYear()
   const [studentStatesKey, setStudentStatesKey] = useState(0)
   const [modalOpen, setModalOpen] = useState(false)
@@ -86,6 +85,12 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
   const setStudExpiredObj = (exp: Code) => {
     setExpired(exp.etc1 === 'true' ? true : false)
     setExpiredReason(exp.name)
+
+    if (exp.etc1 === 'true') {
+      setToastMsg(`${exp.name} 상태의 학생은 슈퍼스쿨 사용이 중지 됩니다.`)
+    } else if (exp.etc2 === 'true') {
+      setToastMsg(`${exp.name} 상태의 학생은 출석부에 표시되지 않습니다.`)
+    }
   }
 
   const klassName = studentInfo?.klassGroupName

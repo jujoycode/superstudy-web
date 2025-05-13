@@ -23,7 +23,7 @@ export const StudentRecordItem: FC<StudentRecordItemProps> = ({ record, refetch 
 
   const reportContent = updateView ? content : record.content
   const byteLength = new TextEncoder().encode(reportContent).length
-  const trimmedContent = reportContent.replaceAll(' ', '')
+  const trimmedContent = reportContent.replace(/ /g, '')
   const trimmedByteLength = new TextEncoder().encode(trimmedContent).length
 
   const { mutate: updateStudentRecord } = useStudentRecordontrollerUpdate({

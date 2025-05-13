@@ -13,7 +13,7 @@ import { makeDateToString } from '@/legacy/util/time'
 import { Validator } from '@/legacy/util/validator'
 
 // ? 추후 고도화
-import Edit from '@/legacy/assets/svg/edit.svg'
+import Edit from '@/assets/svg/edit.svg'
 
 interface StudentIDCardProps {
   meRecoil: ResponseUserDto

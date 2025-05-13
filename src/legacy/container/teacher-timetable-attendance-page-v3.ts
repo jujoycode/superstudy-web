@@ -1,13 +1,12 @@
 import { useQueryClient } from 'react-query'
-
 import {
-  useUserGetUserAttendance,
   useAttendanceAttendanceCheck,
+  useAttendanceCreateAttendanceAbsent,
   useAttendanceGetAttendanceCheck,
   useStudentRolesUpsertStudentRole,
-  useAttendanceCreateAttendanceAbsent,
+  useUserGetUserAttendance,
 } from '@/legacy/generated/endpoint'
-import type { RequestCreateAttendanceAbsentDto, RequestUpsertStudentRoleDto } from '@/legacy/generated/model'
+import { RequestCreateAttendanceAbsentDto, RequestUpsertStudentRoleDto } from '@/legacy/generated/model'
 
 export function useTimeTableAttendancePageV3({
   lectureId,

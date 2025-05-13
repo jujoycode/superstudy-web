@@ -34,7 +34,7 @@ export default function RppfIbSubmitInformPopup({
   rppfData,
 }: RppfListPopupProps) {
   const [rppfState, setRppfState] = useState<ResponseRPPFDto | null>(rppfData || null)
-  const { data: fetchedRppf, isLoading: isRppfLoading } = useRPPFGetById(Number(ibId), Number(rppfId), rppfData)
+  const { data: fetchedRppf } = useRPPFGetById(Number(ibId), Number(rppfId), rppfData)
   const [guidanceTime, setGuidanceTime] = useState<number>(rppfState?.guidanceHours || 3)
   const [academicIntegrityConsent, setAcademicIntegrityConsent] = useState<boolean>(
     rppfState?.academicIntegrityConsent || false,

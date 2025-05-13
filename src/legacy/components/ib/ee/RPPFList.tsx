@@ -17,7 +17,7 @@ import FeedbackViewer from '../FeedbackViewer'
 import { IbEeInterview } from './IbEeInterview'
 import { IbEeRPPF } from './IbEeRPPF'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface RPPFListProps {
   data: ResponseIBDto

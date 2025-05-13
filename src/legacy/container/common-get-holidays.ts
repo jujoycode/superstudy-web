@@ -2,7 +2,6 @@ import { addYears, eachDayOfInterval, format } from 'date-fns'
 import { chain, concat, flatten } from 'lodash'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-
 import { useSchedulesFindRejectSchedule } from '@/legacy/generated/endpoint'
 import { childState } from '@/stores'
 

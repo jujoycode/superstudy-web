@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-
 import {
   useCounselingCreate,
   useCounselingDelete,
   useCounselingFindByStudentId,
   useCounselingUpdate,
 } from '@/legacy/generated/endpoint'
-import type { ResponseCounselingDetailDto } from '@/legacy/generated/model'
+import { ResponseCounselingDetailDto } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 export function useTeacherCounseling(studentId?: number) {

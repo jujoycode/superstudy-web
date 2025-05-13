@@ -30,7 +30,6 @@ interface IbExhibitionProps {
 export function IbExhibition({
   modalOpen,
   setModalClose,
-  handleBack,
   ibId,
   onSuccess,
   ablePropragation = false,
@@ -72,10 +71,10 @@ export function IbExhibition({
     register,
     watch,
     setValue,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestExhibitionDto>()
 
-  const { data: Questions, isLoading: isFetching } = useThemeQuestionFindAll('TOK_EXHIBITION')
+  const { data: Questions } = useThemeQuestionFindAll('TOK_EXHIBITION')
 
   const transformedOptions =
     Questions?.flatMap((item) =>

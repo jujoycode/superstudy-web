@@ -21,7 +21,7 @@ import { ActivityV3, ResponseStudentCardStudentDto, SubjectType } from '@/legacy
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { toastState } from '@/stores'
 
-import SvgUser from '@/legacy/assets/svg/user.svg'
+import SvgUser from '@/assets/svg/user.svg'
 import 'swiper/swiper.min.css'
 
 interface ActivityV3GPTModalProps {

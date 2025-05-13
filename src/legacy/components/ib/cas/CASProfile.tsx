@@ -11,8 +11,8 @@ import { makeStudNum5 } from '@/legacy/util/status'
 
 import { IbCASProfile } from './IbCASProfile'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
-import SvgUser from '@/legacy/assets/images/no_profile.png'
+import NODATA from '@/assets/images/no-data.png'
+import SvgUser from '@/assets/images/no_profile.png'
 
 type ProfileType = 'create' | 'update'
 interface CASProfileProps {

@@ -22,7 +22,7 @@ import { getNickName } from '@/legacy/util/status'
 import { getHoursfromHHmmString, getMinutesfromHHmmString, makeHHmmString } from '@/legacy/util/time'
 import { meState } from '@/stores'
 
-import SvgUser from '@/legacy/assets/svg/user.svg'
+import SvgUser from '@/assets/svg/user.svg'
 
 enum contentType {
   setting = 1,

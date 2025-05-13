@@ -40,7 +40,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
 }) => {
   const { t } = useLanguage()
   const me = useRecoilValue(meState)
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [, setToastMsg] = useRecoilState(toastState)
 
   const sav = activityv3.studentActivityV3s?.[0]
   const [isSubmitSummary, setSubmitSummary] = useState(false)

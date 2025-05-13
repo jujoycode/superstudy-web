@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-
 import { Fieldtrip } from '@/legacy/generated/model'
 import { FieldtripPaperType } from '@/legacy/types'
 import { splitStringByUnicode } from '@/legacy/util/fieldtrip'
 import { getNickName } from '@/legacy/util/status'
 import { meState } from '@/stores'
-
 import { FieldtripPaper } from '../fieldtrip/FieldtripPaper'
 import { FieldtripSeparatePaper } from '../fieldtrip/FieldtripSeparatePaper'
 import { FieldtripSuburbsSeparatePaper } from '../fieldtrip/FieldtripSuburbsSeparatePaper'
@@ -212,7 +210,11 @@ export function FieldtripPdf({
           {homeplans?.map((content: any, i: number) => (
             <div
               key={i}
-              ref={(el) => separatePaperRefs.current !== null && (separatePaperRefs.current[i] = el)}
+              ref={(el) => {
+                if (separatePaperRefs.current !== null) {
+                  separatePaperRefs.current[i] = el
+                }
+              }}
               className="h-[1100px] w-[778px] bg-white"
             >
               <FieldtripSeparatePaper
@@ -232,7 +234,11 @@ export function FieldtripPdf({
           {applyFilesWithTwo.map((el: any, i: number) => (
             <div
               key={i}
-              ref={(el) => separateImagePaperRefs.current !== null && (separateImagePaperRefs.current[i] = el)}
+              ref={(el) => {
+                if (separateImagePaperRefs.current !== null) {
+                  separateImagePaperRefs.current[i] = el
+                }
+              }}
               className="h-[1100px] w-[778px] bg-white p-15"
             >
               <FieldtripSuburbsSeparatePaper
@@ -263,7 +269,11 @@ export function FieldtripPdf({
           {homeresult?.map((content: any, i: number) => (
             <div
               key={i}
-              ref={(el) => separateResultPaperRefs.current !== null && (separateResultPaperRefs.current[i] = el)}
+              ref={(el) => {
+                if (separateResultPaperRefs.current !== null) {
+                  separateResultPaperRefs.current[i] = el
+                }
+              }}
               className="h-[1100px] w-[778px] bg-white"
             >
               <FieldtripSeparatePaper
@@ -284,7 +294,11 @@ export function FieldtripPdf({
           {resultTextPages.slice(1).map((el: any, i: number) => (
             <div
               key={i}
-              ref={(el) => separateResultPaperRefs.current !== null && (separateResultPaperRefs.current[i] = el)}
+              ref={(el) => {
+                if (separateResultPaperRefs.current !== null) {
+                  separateResultPaperRefs.current[i] = el
+                }
+              }}
               className="h-[1100px] w-[778px] bg-white p-5"
             >
               <FieldtripSuburbsTextSeparatePaper
@@ -301,9 +315,11 @@ export function FieldtripPdf({
           {resultFilesWithTwo.map((el: any, i: number) => (
             <div
               key={i}
-              ref={(el) =>
-                separateResultImagePaperRefs.current !== null && (separateResultImagePaperRefs.current[i] = el)
-              }
+              ref={(el) => {
+                if (separateResultImagePaperRefs.current !== null) {
+                  separateResultImagePaperRefs.current[i] = el
+                }
+              }}
               className="h-[1100px] w-[778px] bg-white p-12"
             >
               <FieldtripSuburbsSeparatePaper

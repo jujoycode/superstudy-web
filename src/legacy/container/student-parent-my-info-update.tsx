@@ -1,9 +1,8 @@
 import { useQueryClient } from 'react-query'
 import { useSetRecoilState } from 'recoil'
-
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useUserUpdateMe } from '@/legacy/generated/endpoint'
-import type { UpdateUserDto } from '@/legacy/generated/model'
+import { UpdateUserDto } from '@/legacy/generated/model'
 import { isUpdateMeState } from '@/stores'
 
 export function useStudentParentMyInfoUpdate() {

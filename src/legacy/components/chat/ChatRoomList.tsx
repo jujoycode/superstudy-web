@@ -13,7 +13,7 @@ import { ResponseChatroomInfoDto, ResponseDashboardDto } from '@/legacy/generate
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { newMsgCntState } from '@/stores'
 
-import SvgUser from '@/legacy/assets/svg/user.svg'
+import SvgUser from '@/assets/svg/user.svg'
 
 interface ChatRoomListProps {}
 

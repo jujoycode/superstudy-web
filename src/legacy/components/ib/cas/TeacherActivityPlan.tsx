@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
-
-import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
@@ -49,7 +47,6 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
   const me = useRecoilValue(meState)
   const [editMode, setEditMode] = useState<boolean>(false)
   const [isFocused, setIsFocused] = useState(false)
-  const history = useHistory()
   const [calendarOpen, setCalendarOpen] = useState<boolean>(false)
   const [selectedIds, setSelectedIds] = useState<number[]>([])
   const [selectedATL, setSelectedATL] = useState<number[]>([])
@@ -128,7 +125,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
     handleSubmit,
     watch,
     reset,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBDto>({
     defaultValues: data,
   })

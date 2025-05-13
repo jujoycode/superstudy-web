@@ -1,19 +1,18 @@
-import _ from 'lodash'
+import _, { uniqBy } from 'lodash'
 import { useState } from 'react'
-
-import { GroupContainer } from '@/legacy/container/group'
-import { useTeacherAllGroup, type TeacharAllGroup } from '@/legacy/container/teacher-group-all'
-import { useCommonUserSearch } from '@/legacy/generated/endpoint'
+import { useCommonUserSearch, useGroupsFindLectureGroupsByTeacher } from '@/legacy/generated/endpoint'
 import {
+  ResponseGetParentsByStudentGroupDto,
+  ResponseGroupDto,
+  ResponseSearchUserDto,
+  ResponseTeachersDto,
   Role,
-  type StudentGroup,
-  type ResponseGroupDto,
-  type ResponseSearchUserDto,
-  type ResponseTeachersDto,
-  type ResponseGetParentsByStudentGroupDto,
+  StudentGroup,
 } from '@/legacy/generated/model'
 import { MenuType } from '@/legacy/types'
 import { getNickName } from '@/legacy/util/status'
+import { GroupContainer } from './group'
+import { TeacharAllGroup, useTeacherAllGroup } from './teacher-group-all'
 
 export interface MergedGroupType {
   id: number
@@ -38,6 +37,8 @@ export function useTeacherChatUserList(selectedMenu: MenuType) {
   const { allKlassGroups } = GroupContainer.useContext()
 
   const { allGroups: teacherAllGroups } = useTeacherAllGroup()
+
+  const { data: lectureGroups = [] } = useGroupsFindLectureGroupsByTeacher()
 
   function mergeGroups(allKlassGroups: ResponseGroupDto[], teacherAllGroups: TeacharAllGroup[]): MergedGroupType[] {
     const mergedGroups: MergedGroupType[] = []
@@ -210,7 +211,9 @@ export function useTeacherChatUserList(selectedMenu: MenuType) {
   )
 
   const reSearch = (userType: number, searchKeyword: string, searchKlass?: number) => {
-    const selGroup = allGroups.find((item: MergedGroupType) => item?.id === searchKlass)
+    const selGroup = uniqBy(allGroups.concat(lectureGroups as MergedGroupType[]), 'id').find(
+      (item: MergedGroupType) => item?.id === searchKlass,
+    )
     if (userType === 2 || searchKeyword !== '' || selGroup) {
       setKeyword(searchKeyword)
 
@@ -239,6 +242,7 @@ export function useTeacherChatUserList(selectedMenu: MenuType) {
       }
       return acc
     }, []),
+    lectureGroups,
     selectedGroup,
     setStudentGroups,
     setSelectedGroup,

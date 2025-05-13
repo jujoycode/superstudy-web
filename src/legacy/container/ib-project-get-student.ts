@@ -1,5 +1,5 @@
 import { useIBGetIB, useIBGetIBBycoordinator } from '@/legacy/generated/endpoint'
-import type { ResponseIBDto } from '@/legacy/generated/model'
+import { ResponseIBDto } from '@/legacy/generated/model'
 import { makeStudNum5 } from '@/legacy/util/status'
 
 export const useIBGetByStudent = (id: number) => {

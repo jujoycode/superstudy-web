@@ -7,7 +7,7 @@ import { TextInput } from '@/legacy/components/common/TextInput'
 
 import { SelectValues } from '../SelectValues'
 
-import { ReactComponent as DeleteQuestionIcon } from '@/legacy/assets/icons/survey-delete.svg'
+import DeleteQuestionIcon from '@/assets/icons/survey-delete.svg'
 
 interface SuperSurveyQuestionProps {
   question: any
@@ -62,7 +62,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
     _content[i].title = e.target.value
     setContent(_content)
   }
-  const onChangeRequired = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeRequired = () => {
     const _content = cloneDeep(content)
     _content[i].required = !required
     setContent(_content)

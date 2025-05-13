@@ -2,9 +2,9 @@ import clsx from 'clsx'
 import _ from 'lodash'
 import QueryString from 'qs'
 import { useEffect, useRef, useState } from 'react'
-import { useHistory, useLocation } from 'react-router'
+import { useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
-
+import { useHistory } from '@/hooks/useHistory'
 import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Input } from '@/legacy/components/common/Input'
@@ -353,7 +353,9 @@ export default function TeacherIBStatus() {
             </div>
           )}
           <div
-            ref={(el) => (projectListRefs.current.page1 = el)}
+            ref={(el) => {
+              projectListRefs.current.page1 = el
+            }}
             className="border-b-primary-gray-200 border-b pt-5 pb-10"
           >
             <ProjectList
@@ -378,7 +380,12 @@ export default function TeacherIBStatus() {
               }
             />
           </div>
-          <div ref={(el) => (projectListRefs.current.page2 = el)} className="border-b-primary-gray-200 border-b py-10">
+          <div
+            ref={(el) => {
+              projectListRefs.current.page2 = el
+            }}
+            className="border-b-primary-gray-200 border-b py-10"
+          >
             <ProjectList
               title="계획중"
               params={{
@@ -401,7 +408,12 @@ export default function TeacherIBStatus() {
               }
             />
           </div>
-          <div ref={(el) => (projectListRefs.current.page3 = el)} className="border-b-primary-gray-200 border-b py-10">
+          <div
+            ref={(el) => {
+              projectListRefs.current.page3 = el
+            }}
+            className="border-b-primary-gray-200 border-b py-10"
+          >
             <ProjectList
               title="진행중"
               params={{
@@ -424,7 +436,12 @@ export default function TeacherIBStatus() {
               permission={permission}
             />
           </div>
-          <div ref={(el) => (projectListRefs.current.page4 = el)} className="border-b-primary-gray-200 border-b py-10">
+          <div
+            ref={(el) => {
+              projectListRefs.current.page4 = el
+            }}
+            className="border-b-primary-gray-200 border-b py-10"
+          >
             <ProjectList
               title="완료"
               params={{

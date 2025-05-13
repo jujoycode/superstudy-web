@@ -1,15 +1,13 @@
-import * as loadImage from 'blueimp-load-image'
+import loadImage from 'blueimp-load-image'
 import imageCompression from 'browser-image-compression'
 import { toJpeg } from 'html-to-image'
 import { t } from 'i18next'
 import { jsPDF } from 'jspdf'
 import { filter, find, groupBy, map } from 'lodash'
 import { useRef, useState } from 'react'
-
 import { Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Constants } from '@/legacy/constants'
-import { UserContainer } from '@/legacy/container/user'
 import { Absent } from '@/legacy/generated/model'
 import { AbsentEvidenceType, AbsentPaperType } from '@/legacy/types'
 import {
@@ -42,8 +40,7 @@ interface ReactPdfData {
 
 export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvData }: AbsentsDownloadViewProps) {
   const [open, setOpen] = useState(false)
-  const { me } = UserContainer.useContext()
-  const docRef = useRef<jsPDF>()
+  const docRef = useRef<jsPDF>(null)
   const [withEvidence, setWithEvidence] = useState(false)
   const [isExtractData, setIsExtractData] = useState(false)
   const [extractDataCount, setExtractDataCount] = useState(-1)
@@ -141,7 +138,7 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
             width: isChangeWidthHeight ? result.originalHeight : result.originalWidth,
             height: isChangeWidthHeight ? result.originalWidth : result.originalHeight,
             evidenceType: absent.evidenceType as AbsentEvidenceType,
-            orientation,
+            orientation: orientation as number,
           })
           console.log('reactPdfDatas', reactPdfDatas.current.length, 'extractImageData')
         } catch (e) {
@@ -180,7 +177,7 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
             width: isChangeWidthHeight ? result.originalHeight : result.originalWidth,
             height: isChangeWidthHeight ? result.originalWidth : result.originalHeight,
             evidenceType: absent.evidenceType2 as AbsentEvidenceType,
-            orientation,
+            orientation: orientation as number,
           })
           console.log('reactPdfDatas', reactPdfDatas.current.length, 'extractImageData')
         } catch (e) {

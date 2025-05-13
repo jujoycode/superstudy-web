@@ -1,6 +1,11 @@
 import { useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router'
 
+type ReplaceOptions = {
+  pathname?: string
+  search?: string
+}
+
 export function useHistory() {
   const navigate = useNavigate()
   const location = useLocation()
@@ -13,10 +18,21 @@ export function useHistory() {
   )
 
   const replace = useCallback(
-    (path: string) => {
-      navigate(path, { replace: true })
+    (pathOrOptions: string | ReplaceOptions, search?: string) => {
+      if (typeof pathOrOptions === 'string') {
+        navigate(search ? `${pathOrOptions}${search}` : pathOrOptions, { replace: true })
+      } else {
+        const { pathname = location.pathname, search = '' } = pathOrOptions
+        navigate(
+          {
+            pathname,
+            search: search.startsWith('?') ? search : `?${search}`,
+          },
+          { replace: true },
+        )
+      }
     },
-    [navigate],
+    [navigate, location.pathname],
   )
 
   const goBack = useCallback(() => {

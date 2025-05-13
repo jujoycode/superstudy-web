@@ -13,8 +13,8 @@ import { ResponseEEEvaluationDto } from '@/legacy/generated/model'
 
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import { EvalInputField } from '../../EvalInputField'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { Typography } from '../@/legacy/components/common/Typography'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 
 interface CoordinatorEE_Eval_UpdateEvalProps {
   modalOpen: boolean
@@ -30,7 +30,6 @@ export function CoordinatorEE_Eval_UpdateEval({
   setModalClose,
   onSuccess,
   evaluationData,
-  ablePropragation = false,
   viewType = 'UPDATE',
 }: PropsWithChildren<CoordinatorEE_Eval_UpdateEvalProps>) {
   // 평가 아코디언 기준 뱃지를 만들기 위한 알파벳 배열 생성

@@ -65,16 +65,13 @@ export function IbCASNormal({
     cycle: undefined,
   })
 
-  const { data: riskAssessment, isLoading: riskAssessmentLoading } = useInterviewGetByStudentId(
-    me?.id || 0,
-    'CAS_RISK_ASSESSMENT',
-  )
+  const { data: riskAssessment } = useInterviewGetByStudentId(me?.id || 0, 'CAS_RISK_ASSESSMENT')
 
   const {
     control,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBDto>()
 
   const requiredFields = watch([

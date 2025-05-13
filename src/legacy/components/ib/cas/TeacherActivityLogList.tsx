@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useHistory, useLocation } from 'react-router'
-
+import { useLocation } from 'react-router'
+import { useHistory } from '@/hooks/useHistory'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'
@@ -13,7 +13,7 @@ import { FeedbackReferenceTable, ResponseIBDto } from '@/legacy/generated/model'
 import FeedbackViewer from '../FeedbackViewer'
 import { IBPagination } from '../ProjectList'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 const itemsPerPage = 10
 
@@ -21,16 +21,12 @@ interface TeahcerActivityLogListProps {
   data: ResponseIBDto
 }
 
-interface LocationState {
-  page: number
-}
-
 export default function TeahcerActivityLogList({ data: IBData }: TeahcerActivityLogListProps) {
   const { push } = useHistory()
-  const location = useLocation<LocationState>()
+  const location = useLocation()
   const page = location.state?.page
   const [currentPage, setCurrentPage] = useState(page || 1)
-  const { data, isLoading, refetch } = useActivityLogGetAll(IBData.id, { page: currentPage, limit: 10 })
+  const { data, isLoading } = useActivityLogGetAll(IBData.id, { page: currentPage, limit: 10 })
   const logIds = data?.items.map((log) => log.id).join(',')
   const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false)
   const [feedbackReference, setFeedbackReference] = useState<{

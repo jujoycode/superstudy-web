@@ -1,11 +1,10 @@
-import { useState, useEffect, useMemo } from 'react'
-import { useLocation } from 'react-router'
-
-import { useTeacherKlassGroup } from '@/legacy/container/teacher-klass-groups'
+import { useEffect, useMemo, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useFieldtripsApprove, useFieldtripsGetFieldtripsByTeacher, useUserMe } from '@/legacy/generated/endpoint'
-import { Role } from '@/legacy/generated/model'
+import { FilterAbsentStatus, Role } from '@/legacy/generated/model'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { MonthAgo, getEndDate, getStartDate, getThisYear, makeDateToString } from '@/legacy/util/time'
+import { useTeacherKlassGroup } from './teacher-klass-groups'
 
 const groups = [
   { id: 1, name: '모두', value: 'ALL' },
@@ -14,10 +13,18 @@ const groups = [
   { id: 4, name: '반려됨', value: 'RETURNED' },
 ]
 
+// SelectMenus의 onChange parameter가 any로 받고 있어서 임시로 생성한 type임
+export type SelectMenuFilterType = {
+  id: number
+  name: string
+  value: FilterAbsentStatus | 'ALL'
+}
+
 type UseTeacherFieldTripProps = {
   clearSignature: () => void
   sigPadData: string
   stampMode: boolean
+  stampImgUrl?: string
   stamp?: string
 }
 
@@ -35,6 +42,11 @@ export function useTeacherFieldTrip({ clearSignature, sigPadData, stampMode, sta
   const [selectedGroup, setSelectedGroup] = useState<any>()
   // TODO filter 타입 지정 필요
   const [filter, setFilter] = useState<any>(groups[1])
+  // const [filter, setFilter] = useState<SelectMenuFilterType>({
+  //   id: 1,
+  //   name: '모두',
+  //   value: 'ALL',
+  // });
   const [page, setPage] = useState(Number(params.get('page') ?? '1'))
   const [_studentName, set_studentName] = useState('')
   const limit = Number(params.get('limit') ?? '1000') || 1000

@@ -1,5 +1,5 @@
-import { useHistory, useLocation } from 'react-router'
-
+import { useLocation } from 'react-router'
+import { useHistory } from '@/hooks/useHistory'
 import { Badge } from '@/legacy/components/common'
 import { Time } from '@/legacy/components/common/Time'
 import { Routes } from '@/legacy/constants/routes'

@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-
 import { useStudentActivityFindByUserId, useSummariesCreate } from '@/legacy/generated/endpoint'
-import type { StudentGroup, Summary } from '@/legacy/generated/model'
+import { StudentGroup, Summary } from '@/legacy/generated/model'
 import { meState } from '@/stores'
 
 type Props = {
@@ -70,6 +69,7 @@ export function useTeacherRecordDetail({ userId, groupId, studentGroups }: Props
     recordSummary,
     setRecordSummary,
     createRecordSummary,
+    //createOrUpdateRecordSummary,
     summaries,
   }
 }

@@ -127,7 +127,7 @@ export function IbEeRPPF({
 
   const isSaveButtonDisabled = () => {
     // 모든 텍스트가 readonly 인 경우 버튼 비활성화
-    const allReadonly = watchedContents?.every((content, index) => isTextareaReadonly(index))
+    const allReadonly = watchedContents?.every((_, index) => isTextareaReadonly(index))
 
     // 텍스트가 readonly가 아니고 비어있는 경우 버튼 비활성화
     const isEmpty = watchedContents?.some((content, index) => {

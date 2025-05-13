@@ -1,16 +1,13 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-
-// ! 개선 필요
-import type { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-
 import { useHistory } from '@/hooks/useHistory'
+import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { Constants } from '@/legacy/constants'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useNoticesDelete, useNoticesFindOne } from '@/legacy/generated/endpoint'
+// ! 지훈쌤 개선안 적용
+import { Routes } from 'src/routes'
 import { isPdfFile } from '@/legacy/util/file'
-
-import { Routes } from '@/legacy/routes'
 
 export function useTeacherNoticeDetail(noticeId?: number) {
   const { push } = useHistory()

@@ -1,5 +1,4 @@
 import { useQueryClient } from 'react-query'
-
 import {
   getFeedbackGetFeedbackQueryKey,
   useFeedbackBatchFindUnreadFeedbacksExist,

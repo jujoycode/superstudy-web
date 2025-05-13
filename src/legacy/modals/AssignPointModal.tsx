@@ -20,7 +20,6 @@ import { cn } from '@/legacy/lib/tailwind-merge'
 import { getNickName } from '@/legacy/util/status'
 import { numberWithSign } from '@/legacy/util/string'
 import { toastState } from '@/stores'
-
 import { useModals } from './ModalStack'
 
 export interface AssignPointModalProps {

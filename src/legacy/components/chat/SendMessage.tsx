@@ -19,7 +19,7 @@ import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl } from '@/legacy/util/file'
 import { isSameMinute } from '@/legacy/util/time'
 
-import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 
 interface SendMessageProps {
   PreMessageData?: Chat

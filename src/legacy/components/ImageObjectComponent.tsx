@@ -8,7 +8,7 @@ import { isPdfFile } from '@/legacy/util/file'
 
 import { PdfCard } from './common/PdfCard'
 
-import undoArrow from '@/legacy/assets/images/undo-arrow.png'
+import undoArrow from '@/assets/images/undo-arrow.png'
 
 interface ImageObjectComponentProps {
   id: number

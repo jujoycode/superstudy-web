@@ -3,7 +3,7 @@ import { Constants } from '@/legacy/constants'
 import { ResponseIBPortfolioDto } from '@/legacy/generated/model'
 import { makeStudNum5 } from '@/legacy/util/status'
 
-import SvgUser from '@/legacy/assets/images/no_profile.png'
+import SvgUser from '@/assets/images/no_profile.png'
 
 interface TeacherCASProfileProps {
   data: ResponseIBPortfolioDto

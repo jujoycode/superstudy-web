@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-
-import type { ResponseSubjectGroupDto } from '@/legacy/generated/model/responseSubjectGroupDto'
-import type { nameWithId } from '@/legacy/types'
+import { ResponseSubjectGroupDto } from '@/legacy/generated/model/responseSubjectGroupDto'
+import { nameWithId } from '@/legacy/types'
 import { getThisYear } from '@/legacy/util/time'
 
 export function useTeacherActivity() {

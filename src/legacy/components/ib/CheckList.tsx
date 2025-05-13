@@ -13,7 +13,7 @@ interface CheckListProps {
 }
 
 export function CheckList({ studentId, type, location }: CheckListProps) {
-  const { CheckList, isLoading } = useCheckListGetByStudent(studentId, location)
+  const { CheckList } = useCheckListGetByStudent(studentId, location)
   const [selectedIds, setSelectedIds] = useState<number[]>([])
   useEffect(() => {
     if (type === 'update' && CheckList) {
@@ -39,7 +39,7 @@ interface TeacherCheckListProps {
 }
 
 CheckList.Teacher = ({ charCount, student }: TeacherCheckListProps) => {
-  const { CheckList, isLoading } = useCheckListGetByStudent(student.id, 'ESSAY')
+  const { CheckList } = useCheckListGetByStudent(student.id, 'ESSAY')
   const [selectedIds, setSelectedIds] = useState<number[]>([])
 
   useEffect(() => {

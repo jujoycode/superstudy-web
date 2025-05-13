@@ -9,7 +9,7 @@ import StudentActivityLearingOutcome from './StudentActivityLearingOutcome'
 import StudentActivityRatio from './StudentActivityRatio'
 import StudentActivityTimeline from './StudentActivityTimeline'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 interface StudentActivityStatusProps {
   data: ResponseIBDto
   mentor?: string

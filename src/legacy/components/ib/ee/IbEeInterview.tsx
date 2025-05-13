@@ -53,7 +53,7 @@ export function IbEeInterview({
     handleSubmit,
     register,
     reset,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestCreateQnaDto>()
 
   const { createIBInterview, isLoading } = useIBInterviewCreate({

@@ -1,7 +1,5 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -11,19 +9,17 @@ import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
 import { useEssayGetByIBId } from '@/legacy/container/ib-essay-find'
 import { useGetFeedbackBatchExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
 import { ResponseIBDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 
 import FeedbackViewer from '../../FeedbackViewer'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface ExhibitionListProps {
   data: ResponseIBDto
   refetch: () => void
 }
 
-export default function EssayList({ data, refetch }: ExhibitionListProps) {
-  const me = useRecoilValue(meState)
+export default function EssayList({ data }: ExhibitionListProps) {
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined)
   const [alertMessage, setAlertMessage] = useState<string | null>(null)

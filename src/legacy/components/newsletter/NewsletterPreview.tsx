@@ -17,10 +17,10 @@ interface NewsletterPreviewProps {
 
 export function NewsletterPreview({ title, images, klasses, endAt }: NewsletterPreviewProps) {
   const now = DateUtil.formatDate(new Date(), DateFormat['YYYY-MM-DD HH:mm'])
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
-  const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
-  const [focusPdfFile, setFocusPdfFile] = useState('')
+  const [, setActiveIndex] = useState(0)
+  const [, setImagesModalOpen] = useState(false)
+  const [, setPdfModalOpen] = useState(false)
+  const [, setFocusPdfFile] = useState('')
 
   const Pdfs = images.filter((image) => isPdfFile(image)) || []
   images = images.filter((image) => !isPdfFile(image)) || []
@@ -86,7 +86,7 @@ export function NewsletterPreview({ title, images, klasses, endAt }: NewsletterP
             </div>
             <div>
               {Pdfs?.length
-                ? Pdfs?.map((pdfFile: string, i: number) => {
+                ? Pdfs?.map((pdfFile: string) => {
                     return (
                       <>
                         <div key={pdfFile}>

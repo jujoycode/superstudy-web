@@ -215,7 +215,7 @@ const MockScoreTable: React.FC<{ scores: any[] }> = ({ scores }) => {
             </tr>
           </thead>
           <tbody className="text-13 text-primary-gray-900 text-center">
-            {Object.entries(groupedScores).map(([period, periodScores]) => (
+            {Object.entries(groupedScores).map(([period]) => (
               <tr key={period}>
                 <td className="border-t-primary-gray-200 border-t border-r border-r-gray-100 p-2">{period}</td>
                 {subjectGroups.map((subject, index) => {

@@ -18,7 +18,7 @@ import { meState } from '@/stores'
 
 import PortfolioCard from './cas/PortfolioCard'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface FilterOption {
   grade: number
@@ -88,7 +88,9 @@ export default function TeacherIBPortfolioList() {
       Object.entries(params).filter(([_, value]) => value !== undefined),
     ) as Record<string, string>
     setQueryParamsWithStorage(filteredParams)
-    history.replace({ search: QueryString.stringify(filteredParams, { addQueryPrefix: true }) })
+    history.replace({
+      search: QueryString.stringify(filteredParams, { addQueryPrefix: true }),
+    })
   }
 
   const grades = [

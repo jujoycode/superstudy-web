@@ -18,19 +18,18 @@ import FeedbackViewer from '../../FeedbackViewer'
 
 import TkppfIbSubmitInformPopup from './TkppfIbSubmitInformPopup'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface ExhibitionListProps {
   data: ResponseIBDto
   refetch: () => void
 }
 
-export default function TKPPFList({ data, refetch }: ExhibitionListProps) {
+export default function TKPPFList({ data }: ExhibitionListProps) {
   const me = useRecoilValue(meState)
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined)
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
-  const [modalOpen, setModalOpen] = useState<boolean>(false)
   const [ibModalType, setIbModalType] = useState<'CREATE' | 'VIEW' | null>(null) // IB Modal 타입 관리
 
   const { data: tkppf, isLoading } = useTKPPFGetByIBId(data.id)

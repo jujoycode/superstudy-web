@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-
 import { useStudentNewsletterUpsert } from '@/legacy/generated/endpoint'
-import type { RequestUpsertStudentNewsletterDto } from '@/legacy/generated/model'
+import { RequestUpsertStudentNewsletterDto } from '@/legacy/generated/model'
 import { childState, toastState } from '@/stores'
 
 export function useStudentNewsletterAdd(id?: number) {

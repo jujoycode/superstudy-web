@@ -13,7 +13,7 @@ import FeedbackViewer from '../FeedbackViewer'
 
 import { IbExhibition } from './IbExhibition'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface ExhibitionListProps {
   data?: ResponseExhibitionDto

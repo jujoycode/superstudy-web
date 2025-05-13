@@ -17,7 +17,7 @@ import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
 import { PdfCard } from './PdfCard'
 import { PdfViewer } from './PdfViewer'
 
-import FileItemIcon from '@/legacy/assets/svg/file-item-icon.svg'
+import FileItemIcon from '@/assets/svg/file-item-icon.svg'
 
 interface FeedsDetailProps {
   category1?: string

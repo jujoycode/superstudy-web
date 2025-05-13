@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import readXlsxFile, { type Row } from 'read-excel-file'
+import readXlsxFile, { Row } from 'read-excel-file'
 
 import {
   useAttendanceAttendanceCheck,
@@ -7,7 +7,7 @@ import {
   useAttendanceDownloadAbsents,
   useAttendanceFindAttendanceAbsent,
 } from '@/legacy/generated/endpoint'
-import type { RequestCreateAttendanceAbsentDto } from '@/legacy/generated/model'
+import { RequestCreateAttendanceAbsentDto } from '@/legacy/generated/model'
 
 export const DayOfWeekEnum = {
   monday: 0,
@@ -101,7 +101,7 @@ export function useTeacherAttendanceBook1({
       sendNoti,
       notiType,
     }
-    // @ts-ignore 기존 소스 오류
+    // 기존 버그
     absentMutate({ data: absentData })
   }
 

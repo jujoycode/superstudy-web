@@ -1,8 +1,7 @@
 import { filter, map } from 'lodash'
 import { useEffect, useState } from 'react'
-
 import { useEEEvaluationGetEEEvaluation } from '@/legacy/generated/endpoint'
-import type {
+import {
   RequestEEEvaluationCriteriaByLevelsDto,
   RequestEEEvaluationItemWithIdDto,
   RequestEEEvaluationLevelByItemsWithIdDto,
@@ -223,7 +222,7 @@ export function useUpdateEvaluation(evaluationId: number) {
     })
   }
 
-  const handleDeleteLevel = (index: number, levelId?: number) => {
+  const handleDeleteLevel = (_: number, levelId?: number) => {
     if (levelId === undefined) {
       const _createCriterias = structuredClone(createCriterias)
       const index = selectedCriteriaIndex - (data?.criterias?.length || 0)

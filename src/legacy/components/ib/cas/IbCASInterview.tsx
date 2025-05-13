@@ -57,10 +57,10 @@ export function IbCASInterview({
     handleSubmit,
     register,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestCreateQnaDto>()
 
-  const { CheckList, isLoading: isCheckListLoading } = useCheckListGetByStudent(studentId, 'CAS')
+  const { CheckList } = useCheckListGetByStudent(studentId, 'CAS')
   const [step, setStep] = useState<number>(0)
   const [selectedValue, setSelectedValue] = useState<number>()
   const [selectedData, setSelectedData] = useState<ResponseStudentInterviewDto>()

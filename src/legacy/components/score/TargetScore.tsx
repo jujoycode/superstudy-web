@@ -320,7 +320,7 @@ const TargetScoreBarChart = ({ data }: { data: any }) => {
       })
 
       const tableBody = document.createElement('tbody')
-      extractedData.forEach((body: any, i: number) => {
+      extractedData.forEach((body: any) => {
         const span = document.createElement('span')
         span.style.borderWidth = '1px'
         span.style.borderRadius = '4px'
@@ -443,7 +443,7 @@ const TargetScoreBarChart = ({ data }: { data: any }) => {
             },
             color: '#121417',
             padding: 2,
-            callback: function (value: string | number, index: number, values: any) {
+            callback: function (_: string | number, index: number) {
               const label = chartData?.labels?.[index]
               const maxLength = 6
               if (label && typeof label === 'string' && label.length > maxLength) {
@@ -650,7 +650,7 @@ const TargetScoreRadarChart = ({ data }: { data: any }) => {
       })
 
       const tableBody = document.createElement('tbody')
-      extractedData.forEach((body: any, i: number) => {
+      extractedData.forEach((body: any) => {
         const span = document.createElement('span')
         span.style.borderWidth = '1px'
         span.style.borderRadius = '4px'

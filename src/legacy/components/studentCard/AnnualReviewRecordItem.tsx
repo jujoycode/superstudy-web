@@ -16,13 +16,13 @@ interface AnnualReviewRecordItemProps {
 export const AnnualReviewRecordItem: FC<AnnualReviewRecordItemProps> = ({ record, refetch }) => {
   const { t, currentLang } = useLanguage()
   const [updateView, setUpdateView] = useState(false)
-  const [title, setTitle] = useState(record.title || '')
+  const [title] = useState(record.title || '')
   const [content, setContent] = useState(record.content)
   const [modalOpen, setModalOpen] = useState(false)
 
   const reportContent = updateView ? content : record.content
   const byteLength = new TextEncoder().encode(reportContent).length
-  const trimmedContent = reportContent.replaceAll(' ', '')
+  const trimmedContent = reportContent.replace(/ /g, '')
   const trimmedByteLength = new TextEncoder().encode(trimmedContent).length
 
   const { mutate: updateStudentRecord } = useStudentRecordontrollerUpdate({

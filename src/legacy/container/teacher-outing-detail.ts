@@ -1,6 +1,4 @@
 import { useState } from 'react'
-
-// ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
 import {
   useOutingsDelete,
@@ -9,7 +7,7 @@ import {
   useOutingsRequestDelete,
   useOutingsResend,
 } from '@/legacy/generated/endpoint'
-import type { errorType } from '@/legacy/types'
+import { errorType } from '@/legacy/types'
 
 export function useTeacherOutingDetail(id: number) {
   const { push } = useHistory()
@@ -93,7 +91,7 @@ export function useTeacherOutingDetail(id: number) {
     query: {
       enabled: false,
       onSuccess: () => {
-        alert('확인증 승인요청 알림톡이 전송되었습니다.')
+        //alert('확인증 승인요청 알림톡이 전송되었습니다.');
         push('/teacher/outing')
       },
       onError: (e) => {

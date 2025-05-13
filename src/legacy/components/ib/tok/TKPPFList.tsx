@@ -13,7 +13,7 @@ import FeedbackViewer from '../FeedbackViewer'
 
 import { IbTKPPF } from './IbTKPPF'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface TKPPFListProps {
   data?: ResponseTKPPFDto | undefined

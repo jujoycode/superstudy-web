@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
+import { useRecoilValue } from 'recoil'
 import { useFieldtripResultResend, useFieldtripsFindOne } from '@/legacy/generated/endpoint'
-import type { errorType } from '@/legacy/types'
 import { childState } from '@/stores'
+import { errorType } from '@/legacy/types'
 
 type Props = {
   id: number

@@ -1,7 +1,5 @@
-import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-
-import { useHistory } from '@/hooks/useHistory'
+import { format } from 'date-fns'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -22,7 +20,7 @@ import { PopupModal } from '../../PopupModal'
 import { CoordinatorEE_FAQ_AddFaq } from './ee/CoordinatorEE_FAQ_AddFaq'
 import { CoordinatorEE_FAQ_AddRef } from './ee/CoordinatorEE_FAQ_AddRef'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 export type ModalType = 'Category' | 'Add' | 'Update' | 'CHECKLIST' | null
 export type CategoryType = 'Ref' | 'FAQ' | ''
@@ -32,7 +30,6 @@ interface FAQListProps {
 }
 
 export default function FAQList({ type = 'IB_ALL' }: FAQListProps) {
-  const { push } = useHistory()
   const { data: References, getIBReference } = useCoordinatorGetReference()
   const { data: FAQs, getIBFAQ } = useCoordinatorGetFAQ()
   const { permission } = useCoordinatorCheck()

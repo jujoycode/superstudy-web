@@ -1,5 +1,4 @@
 import { concat } from 'lodash'
-
 import { useInterviewFindAllInterview } from '@/legacy/generated/endpoint'
 
 export const useIBInterview = () => {

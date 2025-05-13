@@ -21,8 +21,8 @@ import { getRoleTitle } from '@/legacy/util/permission'
 import { getNickName } from '@/legacy/util/status'
 import { isSameMinute } from '@/legacy/util/time'
 
-import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
-import SvgUser from '@/legacy/assets/svg/user.svg'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
+import SvgUser from '@/assets/svg/user.svg'
 
 interface ReceiveMessageProps {
   PreMessageData?: Chat

@@ -201,7 +201,7 @@ function CasProjectCard({ data, user }: ProjectCardProps) {
     </div>
   )
 }
-function EeProjectCard({ data, user, permission }: ProjectCardProps) {
+function EeProjectCard({ data, user }: ProjectCardProps) {
   const { t } = useLanguage()
   const { push } = useHistory()
   const approvedProposal = data.proposals?.find((proposal) => proposal.status === 'ACCEPT')
@@ -570,7 +570,7 @@ function EeProjectCard({ data, user, permission }: ProjectCardProps) {
     </div>
   )
 }
-function TokExProjectCard({ data, user, permission }: ProjectCardProps) {
+function TokExProjectCard({ data, user }: ProjectCardProps) {
   const { t } = useLanguage()
   const { push } = useHistory()
 
@@ -705,7 +705,7 @@ function TokExProjectCard({ data, user, permission }: ProjectCardProps) {
     </div>
   )
 }
-function TokEsProjectCard({ data, user, permission }: ProjectCardProps) {
+function TokEsProjectCard({ data, user }: ProjectCardProps) {
   const { t } = useLanguage()
   const { push } = useHistory()
   const message = user.role === 'USER' ? data.studentShortNotice : data.teacherShortNotice

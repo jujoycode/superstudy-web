@@ -19,14 +19,14 @@ import CASRefNInt from './CASRefNInt'
 import { IbCASNormal } from './IbCASNormal'
 import { IbCASProject } from './IbCASProject'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 type ModalType = 'SELECT' | 'IBCAS' | 'IBPROJECT' | null
 type CategoryType = 'IBCAS' | 'IBPROJECT' | null
 
 export default function CASPortfolio() {
   const me = useRecoilValue(meState)
-  const location = useLocation<{ alertMessage?: string }>()
+  const location = useLocation()
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>(null)
   const [activeModal, setActiveModal] = useState<ModalType>(null)

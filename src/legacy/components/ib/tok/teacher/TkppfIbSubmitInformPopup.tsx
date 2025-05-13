@@ -29,7 +29,7 @@ export default function TkppfIbSubmitInformPopup({
   tkppfData,
 }: TkppfListPopupProps) {
   const [tkppfState, setTkppfState] = useState<ResponseTKPPFDto | null>(tkppfData || null)
-  const { data: fetchedTkppf, isLoading: isTkppfLoading } = useTKPPFGetByIBId(Number(ibId))
+  const { data: fetchedTkppf } = useTKPPFGetByIBId(Number(ibId))
   const [academicIntegrityConsent, setAcademicIntegrityConsent] = useState<boolean>(
     tkppfState?.academicIntegrityConsent || false,
   )

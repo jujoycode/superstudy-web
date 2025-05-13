@@ -1,9 +1,5 @@
 import { useStudentActivityUpdate } from '@/legacy/generated/endpoint'
-import {
-  UploadFileTypeEnum,
-  type RequestUpdateStudentActivityDto,
-  type StudentActivity,
-} from '@/legacy/generated/model'
+import { RequestUpdateStudentActivityDto, StudentActivity, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 

@@ -24,7 +24,7 @@ import FeedbackViewer from '../FeedbackViewer'
 import { IbCASInterview } from './IbCASInterview'
 import { IbCASReflection } from './IbCASReflection'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 const categoryOrder = ['CAS_PORTFOLIO_1', 'CAS_PORTFOLIO_2', 'CAS_PORTFOLIO_3']
 

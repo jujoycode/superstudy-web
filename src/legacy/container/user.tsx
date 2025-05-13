@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-
-import { createContainer } from '@/legacy/container/createContainer'
 import {
   useSchoolPropertyGetProperties,
   useUserLogin,
@@ -12,18 +10,19 @@ import { Role } from '@/legacy/generated/model'
 import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
 import { useLogoutOnIdle } from '@/legacy/hooks/useLogoutOnIdle'
 import { RN } from '@/legacy/lib/rn'
-import type { errorType } from '@/legacy/types'
-import { useLogout } from '@/legacy/util/hooks'
-import { isEmail } from '@/legacy/util/validator'
 import {
   childState,
   isStayLoggedInState,
   meState,
   refreshTokenState,
+  schoolPropertiesState,
   tokenState,
   twoFactorState,
-  schoolPropertiesState,
 } from '@/stores'
+import { errorType } from '@/legacy/types'
+import { useLogout } from '@/legacy/util/hooks'
+import { isEmail } from '@/legacy/util/validator'
+import { createContainer } from './createContainer'
 
 export function userHook() {
   const logout = useLogout()
@@ -33,8 +32,8 @@ export function userHook() {
 
   const setChild = useSetRecoilState(childState)
   const [token, setToken] = useRecoilState(tokenState)
+  const [, setRefreshToken] = useRecoilState(refreshTokenState)
   const setTwoFactorState = useSetRecoilState(twoFactorState)
-  const [_, setRefreshToken] = useRecoilState(refreshTokenState)
   const [errorMessage, setErrorMessage] = useState<string>()
   const [errorCode, setErrorCode] = useState('')
   const [schoolProperties, setSchoolProperties] = useRecoilState(schoolPropertiesState)
@@ -127,7 +126,7 @@ export function userHook() {
 
   const { refetch: refetchSchoolProperties } = useSchoolPropertyGetProperties({
     query: {
-      enabled: !!meData?.schoolId,
+      enabled: !!token && !!meData?.schoolId,
       onSuccess: (data) => {
         setSchoolProperties(data)
       },

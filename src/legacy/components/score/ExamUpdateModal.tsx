@@ -29,7 +29,7 @@ export function ExamUpdateModal({
   step,
   ablePropragation = false,
 }: PropsWithChildren<ExamUpdateModalProps>) {
-  const [uploading, setUploading] = useState(false)
+  const [uploading] = useState(false)
 
   const { documentObjectMap, toggleDocumentDelete, addFiles } = useImageAndDocument({})
   const documentFiles = [...documentObjectMap.values()]
@@ -37,7 +37,6 @@ export function ExamUpdateModal({
     .map((value) => value.document) as File[]
 
   const validateAndAddFiles = (files: FileList) => {
-    const normalizedName = (name: string) => name.normalize('NFC')
     const invalidFiles = _.filter(files, (file) => {
       const fileName = file.name.split('.')[0]
       return !/^\d+-\d+$/.test(fileName) || !isExcelFile(file.name)

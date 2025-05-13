@@ -16,7 +16,7 @@ import { PopupModal } from '../../PopupModal'
 import { CoordinatorEE_Form_AddCheckList } from './ee/CoordinatorEE_Form_AddCheckList'
 import { CoordinatorEE_Form_AddInterview } from './ee/CoordinatorEE_Form_AddInterview'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 export type ModalType = 'Category' | 'Add' | null
 export type CategoryType = 'CheckList' | 'Interview' | ''
 
@@ -47,8 +47,6 @@ export default function FormList({ type = 'EE_RPPF' }: FormListProps) {
   } = useChecklistGetitems({
     location: 'ESSAY',
   })
-
-  const isLoading = interviewLoading || checkListLoading
 
   const Header = () => (
     <>

@@ -1,11 +1,10 @@
 import { addYears, format } from 'date-fns'
 import { useState } from 'react'
-
 import { useFieldtripsUpdateByTeacher, useSchedulesFindRejectSchedule } from '@/legacy/generated/endpoint'
-import { FieldtripType, UploadFileTypeEnum, type Fieldtrip } from '@/legacy/generated/model'
+import { Fieldtrip, FieldtripType, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import type { errorType } from '@/legacy/types'
+import { errorType } from '@/legacy/types'
 import { usePrevious } from '@/legacy/util/hooks'
 
 export function useTeacherFieldtripUpdate({
@@ -156,6 +155,7 @@ export function useTeacherFieldtripUpdate({
     isLoading,
     setUsedDays,
     cannotSchedules,
+
     startAtDate,
     setStartAtDate,
     endAtDate,

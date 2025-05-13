@@ -1,11 +1,6 @@
 import { concat } from 'lodash'
 import { useState } from 'react'
-
-import type {
-  IBInterviewCommonQuestionDto,
-  RequestUpdateInterviewDto,
-  ResponseInterviewDto,
-} from '@/legacy/generated/model'
+import { IBInterviewCommonQuestionDto, RequestUpdateInterviewDto, ResponseInterviewDto } from '@/legacy/generated/model'
 
 export function useUpdateInterview(interviewItems: ResponseInterviewDto[]) {
   const [selectedInterviewIndex, setSelectedInterviewIndex] = useState(0)

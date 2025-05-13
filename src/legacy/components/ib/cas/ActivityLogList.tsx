@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useHistory, useLocation } from 'react-router'
-
+import { useLocation } from 'react-router'
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
@@ -16,7 +16,7 @@ import { IBPagination } from '../ProjectList'
 
 import { IbActivityLog } from './IbActivityLog'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 const itemsPerPage = 10
 
@@ -26,15 +26,11 @@ interface ActivityLogListProps {
   writerId?: number
 }
 
-interface LocationState {
-  page: number
-}
-
 export default function ActivityLogList({ id, status, writerId }: ActivityLogListProps) {
   const { push } = useHistory()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [alertOpen, setAlertOpen] = useState<boolean>(false)
-  const location = useLocation<LocationState>()
+  const location = useLocation()
   const page = location.state?.page
   const [currentPage, setCurrentPage] = useState(page || 1)
   const { data, isLoading, refetch } = useActivityLogGetAll(id, { page: currentPage, limit: 10, writerId: writerId })

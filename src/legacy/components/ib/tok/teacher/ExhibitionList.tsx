@@ -12,7 +12,7 @@ import { ResponseIBDto } from '@/legacy/generated/model'
 
 import FeedbackViewer from '../../FeedbackViewer'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface ExhibitionListProps {
   data: ResponseIBDto

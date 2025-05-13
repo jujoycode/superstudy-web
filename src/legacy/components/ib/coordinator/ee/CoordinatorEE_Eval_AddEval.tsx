@@ -25,7 +25,6 @@ export function CoordinatorEE_Eval_AddEval({
   modalOpen,
   setModalClose,
   onSuccess,
-  ablePropragation = false,
 }: PropsWithChildren<CoordinatorEE_Eval_AddEvalProps>) {
   // 평가 아코디언 기준 뱃지를 만들기 위한 알파벳 배열 생성
   const alphabetArray = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i))

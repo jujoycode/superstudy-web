@@ -1,8 +1,5 @@
 import { useState } from 'react'
-
-// ! 개선 필요
 import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
@@ -23,16 +20,15 @@ interface ParentInfoCardProps {
 }
 
 export function ParentInfoCard({ me, isNotParent }: ParentInfoCardProps) {
-  const { cntParent, isPrimaryGuardian, setIsPrimaryGuardian, setNokName, setNokPhone, nokName, nokPhone } =
-    useStudentMyPage()
+  const { isPrimaryGuardian, setIsPrimaryGuardian, setNokName, setNokPhone, nokName, nokPhone } = useStudentMyPage()
 
   const { push } = useHistory()
   const { handleSendParentSignUp } = useStudentSendParentSignUp()
 
-  const [nokName1, setNokName1] = useState(me?.parents?.[0]?.name || '')
-  const [nokPhone1, setNokPhone1] = useState(me?.parents?.[0]?.phone || '')
-  const [nokName2, setNokName2] = useState(me?.parents?.[1]?.name || '')
-  const [nokPhone2, setNokPhone2] = useState(me?.parents?.[1]?.phone || '')
+  const [nokName1] = useState(me?.parents?.[0]?.name || '')
+  const [nokPhone1] = useState(me?.parents?.[0]?.phone || '')
+  const [nokName2] = useState(me?.parents?.[1]?.name || '')
+  const [nokPhone2] = useState(me?.parents?.[1]?.phone || '')
   const [addBtnParent, setAddBtnParent] = useState(false)
   const { handleParentMyInfoUpdate } = useStudentParentMyInfoUpdate()
 
@@ -44,7 +40,7 @@ export function ParentInfoCard({ me, isNotParent }: ParentInfoCardProps) {
     }
   }
 
-  const { mutate: updateMeMutate, isLoading: isUpdateMeLoading } = useUserUpdateMe({
+  const { mutate: updateMeMutate } = useUserUpdateMe({
     mutation: {
       onSuccess: () => {
         queryClient.invalidateQueries(QueryKey.me)

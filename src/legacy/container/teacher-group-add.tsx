@@ -1,6 +1,4 @@
 import { useState } from 'react'
-
-// ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
 import {
   useGroupsCreate,
@@ -9,16 +7,16 @@ import {
   useTeacherGroupsFindTeachersWithKlassByGroupId,
   useUserGetAllTeachers,
 } from '@/legacy/generated/endpoint'
-import type {
-  User,
-  StudentGroup,
-  TeacherGroup,
+import {
+  RequestCreateGroupDto,
   ResponseGroupDto,
   ResponseTeachersDto,
-  RequestCreateGroupDto,
+  StudentGroup,
+  TeacherGroup,
+  User,
 } from '@/legacy/generated/model'
-import { Routes } from '@/routers'
-
+// ! 지훈쌤 개선안 적용
+import { Routes } from 'src/routes'
 import { GroupContainer } from './group'
 
 export function useTeacherGroupAdd({ groupId, onSubmit }: { groupId?: number; onSubmit?: () => void }) {
@@ -29,6 +27,7 @@ export function useTeacherGroupAdd({ groupId, onSubmit }: { groupId?: number; on
   const [studentGroups, setStudentGroups] = useState<StudentGroup[]>([])
   const [teacherGroups, setTeacherGroups] = useState<TeacherGroup[]>([])
   const [groupStudentsData, setGroupStudentsData] = useState<User[]>([])
+
   const { data: teachers } = useUserGetAllTeachers<ResponseTeachersDto[]>()
 
   useTeacherGroupsFindTeachersWithKlassByGroupId<TeacherGroup[]>(groupId || 0, {

@@ -18,7 +18,7 @@ export function NotificationSettingPage() {
   const me = useRecoilValue(meState)
 
   const [disturbTime, setDisturbTime] = useState(false)
-  const { data: notificationSetting, refetch } = useNotificationSettingsGetMine()
+  const { data: notificationSetting } = useNotificationSettingsGetMine()
 
   const [allowDays, setAllowDays] = useState<string | undefined>()
 
@@ -103,7 +103,7 @@ export function NotificationSettingPage() {
           </div>
           <ToggleSwitch
             checked={disturbTime}
-            onChange={(e) => {
+            onChange={() => {
               if (disturbTime) {
                 notificationSettingsUpdate(notificationSetting.id, {
                   timeFrom: '00:00:00',

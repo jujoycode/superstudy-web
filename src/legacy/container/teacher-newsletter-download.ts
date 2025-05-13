@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import readXlsxFile, { type Row } from 'read-excel-file'
-
+import readXlsxFile, { Row } from 'read-excel-file'
 import {
   useNewsLettersDownloadSubmitters,
   useStudentNewsletterFindAllByNewsletterId,
@@ -34,8 +33,8 @@ export function useTeacherNewsletterDownload({
   const { data: studentNewsletters } = useStudentNewsletterFindAllByNewsletterId(newsletterId, {
     query: {
       enabled: !!newsletterId,
-      onSuccess: (_) => {
-        // ?
+      onSuccess: () => {
+        //
       },
     },
   })

@@ -14,7 +14,7 @@ interface TimeTableCardProps {
 export function TimeTableCard({ studentId }: TimeTableCardProps) {
   const [selectedLectureInfo, setSelectedLectureInfo] = useState<ResponseTimetableV3Dto | undefined>()
   const { t } = useLanguage()
-  const { timetableV3Student, error, loading } = useStudentTimetableDetail(studentId)
+  const { timetableV3Student } = useStudentTimetableDetail(studentId)
 
   const me = useRecoilValue(meState)
   const hasSaturdayClass = me?.school.hasSaturdayClass || false

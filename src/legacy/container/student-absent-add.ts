@@ -1,24 +1,18 @@
 import { t } from 'i18next'
-
-// ? date-fns 개선 필요
 import moment from 'moment'
 import { useEffect, useState } from 'react'
-
-// ! 개선 필요
-
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
-import { UserContainer } from '@/legacy/container/user'
+import { useRecoilValue } from 'recoil'
 import { useAbsentsCreate, useAbsentsFindAllByStudent, useAbsentsUpdate } from '@/legacy/generated/endpoint'
-import { type Absent, AbsentStatus, Role, UploadFileTypeEnum } from '@/legacy/generated/model'
+import { Absent, AbsentStatus, Role, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { AbsentTimeType, type AbsentDescription, type errorType } from '@/legacy/types'
-import type { ImageObject } from '@/legacy/types/image-object'
+import { childState } from '@/stores'
+import { ImageObject } from '@/legacy/types/image-object'
+import { AbsentDescription, AbsentTimeType, errorType } from '@/legacy/types'
 import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString, makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
-import { childState } from '@/stores'
+import { UserContainer } from './user'
 
 const reasonType = [
   '상고',
@@ -132,7 +126,7 @@ export function useStudentAbsentAdd({ absentData, returnToDetail }: Props) {
   const [endAt, setEndAt] = useState(_endAt ? makeDateToString(_endAt) : '')
   const [description, setDescription] = useState(_description || '')
   const [parentComment, setParentComment] = useState(_parentComment || '')
-  const [teacherComment, setTeacherComment] = useState(_teacherComment || '')
+  const [teacherComment] = useState(_teacherComment || '')
 
   const [startHour, setStartHour] = useState(_startAt ? new Date(_startAt).getHours() : 9)
   const [startMinute, setStartMinute] = useState(_startAt ? new Date(_startAt).getMinutes() : 0)
@@ -287,7 +281,7 @@ export function useStudentAbsentAdd({ absentData, returnToDetail }: Props) {
         setLoading(false)
         setErrorMessage(errorMsg?.message || e.message)
       },
-      onSuccess: ({ id }) => {
+      onSuccess: () => {
         alert('정상적으로 수정 되었습니다.')
         setLoading(false)
         setSignModal(false)

@@ -1,6 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
-
-import { Constants } from '@/legacy/constants'
+import { useEffect, useRef } from 'react'
 import { ResponseNewsletterDetailDto } from '@/legacy/generated/model'
 import { AbsentPaperType } from '@/legacy/types'
 
@@ -22,20 +20,15 @@ export function NewsletterPdf({
   orderBy,
   newsletter,
   studentNewsletter,
-  submitPerson,
   extractReactData,
-  extractArrayData,
   isDownload,
   nextExtractPdfData,
 }: NewsletterPdfProps) {
   const newsletterPaperRef = useRef(null)
-  const pdfPaperRefs = useRef<any[]>([])
 
   const _downloadPdf = async () => {
     if (newsletterPaperRef.current) {
       await extractReactData(orderBy, newsletterPaperRef.current, AbsentPaperType.ABSENT, newsletter)
-      //await extractArrayData(orderBy, pdfPaperRefs.current, AbsentPaperType.PDF, newsletter);
-
       nextExtractPdfData()
     }
   }

@@ -49,7 +49,7 @@ export function IbExhibitionPlan({
     control,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBDto>()
 
   const requiredFields = watch([
@@ -66,7 +66,7 @@ export function IbExhibitionPlan({
   ])
   const areAllFieldsFilled = requiredFields.every((field) => field && field.trim() !== '') && selectedNames.length > 0
 
-  const { data, isLoading: isFetching } = useThemeQuestionFindAll('TOK_EXHIBITION')
+  const { data } = useThemeQuestionFindAll('TOK_EXHIBITION')
   const { categoryData: knowledgeArea } = useCodeByCategoryName('tokExhibitionPlanKnowledgeArea')
   const { categoryData: commentary } = useCodeByCategoryName('tokCommentary')
 
@@ -140,7 +140,6 @@ export function IbExhibitionPlan({
   const target1Value = watch('tokExhibitionPlan.target1')
   const target2Value = watch('tokExhibitionPlan.target2')
   const target3Value = watch('tokExhibitionPlan.target3')
-  const themeQuestionValue = watch('tokExhibitionPlan.themeQuestion')
 
   return (
     <div

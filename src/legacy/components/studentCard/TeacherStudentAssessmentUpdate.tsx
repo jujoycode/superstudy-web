@@ -140,7 +140,7 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
           <Label.Text className="text-16">해당 학생을 나타내는 특성단어를 선택해주세요.</Label.Text>
           <div className="mt-2">
             {keywordDatas.map((el) => {
-              const selected = Object.values(keywords).some(({ keyword, reason }) => el === keyword)
+              const selected = Object.values(keywords).some(({ keyword }) => el === keyword)
               return (
                 <div
                   className={twMerge(

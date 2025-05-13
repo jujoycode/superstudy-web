@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
-
-import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useOutingsUpdateByTeacher } from '@/legacy/generated/endpoint'
 import { Category, OutingStatus } from '@/legacy/generated/model'
-import { AbsentTimeType, type errorType } from '@/legacy/types'
+import { AbsentTimeType, errorType } from '@/legacy/types'
 import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
+import { useCodeByCategoryName } from './category'
 
 type Props = {
   outingData: any
@@ -109,7 +108,7 @@ export function useTeacherOutingUpdate({ outingData, setChangeMode }: Props) {
         reason,
         updateReason,
         studentId: userId,
-        useParentApprove,
+        useParentApprove: useParentApprove || false,
       },
     })
   }

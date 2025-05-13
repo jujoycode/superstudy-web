@@ -5,8 +5,8 @@ import AlertV2 from '@/legacy/components/common/AlertV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import { useImageAndDocument, fileType } from '@/legacy/hooks/useImageAndDocument'
 
-import ADDFILE from '@/legacy/assets/images/addfile.png'
-import WRITE from '@/legacy/assets/images/write.png'
+import ADDFILE from '@/assets/images/addfile.png'
+import WRITE from '@/assets/images/write.png'
 
 interface InspectorButtonContainerProps {
   type: 'horizontal' | 'vertical'
@@ -93,7 +93,9 @@ export default function InspectorButtonContainer({ type, onTypeSelect, onFileUpl
               {buttonObject[type].description}
             </Typography>
             <input
-              ref={(el) => (fileInputRef.current = el)}
+              ref={(el) => {
+                fileInputRef.current = el
+              }}
               type="file"
               className="hidden"
               onChange={handleFileUpload}

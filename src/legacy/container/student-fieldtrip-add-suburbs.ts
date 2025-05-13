@@ -1,17 +1,16 @@
 import { addYears, format } from 'date-fns'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-
 import { useFieldtripsCreate, useFieldtripsUpdate, useSchedulesFindRejectSchedule } from '@/legacy/generated/endpoint'
 import { Fieldtrip, FieldtripType, Role, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import type { errorType } from '@/legacy/types'
-import type { ImageObject } from '@/legacy/types/image-object'
-import { usePrevious } from '@/legacy/util/hooks'
 import { childState } from '@/stores'
-
+import { ImageObject } from '@/legacy/types/image-object'
+import { errorType } from '@/legacy/types'
+import { usePrevious } from '@/legacy/util/hooks'
 import { UserContainer } from './user'
+import { useSchoolWording } from './school-wording'
 
 type Props<T> = {
   startAt: Date | null
@@ -56,7 +55,7 @@ export function useStudentFieldtripAddSuburbs<T extends { [key: string]: string 
   )
   const [agree, setAgree] = useState(false)
   const [studentSafeAgree, setStudentSafeAgree] = useState(false)
-  const [studentSafeText, setStudentSafeText] = useState(me?.school?.studentSafeText)
+  const { fieldtripSafety } = useSchoolWording()
   const [destination, setDestination] = useState(
     matchParamsType?.toUpperCase() === FieldtripType.HOME ? '자택' : fieldtripData?.destination || '',
   )
@@ -319,7 +318,7 @@ export function useStudentFieldtripAddSuburbs<T extends { [key: string]: string 
       accommodation,
       agree,
       studentSafeAgree,
-      studentSafeText,
+      fieldtripSafety,
       destination,
       overseas,
       guideName,

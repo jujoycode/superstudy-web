@@ -6,7 +6,7 @@ import { ResponseIBPortfolioListDto } from '@/legacy/generated/model'
 
 import CASPercent from './CASPercent'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface PortfolioCardProps {
   data: ResponseIBPortfolioListDto

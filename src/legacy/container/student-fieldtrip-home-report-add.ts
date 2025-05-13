@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-
 import { useFieldtripResultUpdateResult, useFieldtripsFindOne } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
-import type { errorType } from '@/legacy/types'
 import { childState } from '@/stores'
-
+import { errorType } from '@/legacy/types'
 import { UserContainer } from './user'
 
 type Props = {
@@ -17,7 +15,7 @@ type HomePlan = Array<{
   [key: string]: string
 }>
 
-export function useStudentFieldtripHomeReportAdd({ id, sigPadData }: Props) {
+export function useStudentFieldtripHomeReportAdd({ id }: Props) {
   const { me } = UserContainer.useContext()
   const child = useRecoilValue(childState)
 

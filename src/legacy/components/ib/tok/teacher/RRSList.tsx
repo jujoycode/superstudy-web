@@ -13,7 +13,7 @@ import { LocationState } from '@/legacy/types/ib'
 import FeedbackViewer from '../../FeedbackViewer'
 import { IBPagination } from '../../ProjectList'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface RRSListProps {
   title?: string
@@ -22,10 +22,10 @@ interface RRSListProps {
   refetch: () => void
 }
 
-export default function RRSList({ title, data: ibData, studentData, refetch }: RRSListProps) {
+export default function RRSList({ title, data: ibData, studentData }: RRSListProps) {
   const id = ibData.id
   const [currentPage, setCurrentPage] = useState(1)
-  const { data, isLoading } = useRRSGetByIBIdFindAll(id, { page: currentPage })
+  const { data } = useRRSGetByIBIdFindAll(id, { page: currentPage })
   const { push } = useHistory()
 
   const rrsIds = data?.total ? data?.items.map((rrs) => rrs.id).join(',') : null

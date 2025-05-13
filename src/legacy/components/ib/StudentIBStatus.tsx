@@ -1,9 +1,9 @@
 import clsx from 'clsx'
 import QueryString from 'qs'
 import { useEffect, useRef, useState } from 'react'
-import { useHistory, useLocation } from 'react-router'
+import { useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
-
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
@@ -23,10 +23,10 @@ import ProjectList from './ProjectList'
 import { IbExhibitionPlan } from './tok/IbExhibitionPlan'
 import { IbOutline } from './tok/IbOutline'
 
-import CAS from '@/legacy/assets/images/CAS.png'
-import EE from '@/legacy/assets/images/EE.png'
-import NODATA from '@/legacy/assets/images/no-data.png'
-import TOK from '@/legacy/assets/images/TOK.png'
+import CAS from '@/assets/images/CAS.png'
+import EE from '@/assets/images/EE.png'
+import NODATA from '@/assets/images/no-data.png'
+import TOK from '@/assets/images/TOK.png'
 import { CategoryType, IBProject, ModalType } from '@/legacy/pages/ib/student/IBStudentMainPage'
 
 export const STATUS_GROUPS = {
@@ -51,7 +51,7 @@ export default function StudentIBStatus({ data }: StudentIBStatusProps) {
   const me = useRecoilValue(meState)
   const history = useHistory()
   const { setQueryParamsWithStorage, removeStoredQueryParams } = useQueryParams()
-  const location = useLocation<{ alertMessage?: string }>()
+  const location = useLocation()
   const defaultOptions: SelectedOptions = {
     projectType: 'NORMAL',
     pages: {
@@ -82,7 +82,6 @@ export default function StudentIBStatus({ data }: StudentIBStatusProps) {
     page4: null,
   })
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(parseQueryParams)
-  const [pages, setPages] = useState(() => parseQueryParams().pages)
   const [savedProjectData, setSavedProjectData] = useState<any>(null)
   const [activeModal, setActiveModal] = useState<ModalType>(null)
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>('')
