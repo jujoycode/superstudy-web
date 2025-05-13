@@ -1,7 +1,7 @@
-import { Link, Route, Switch, useHistory, useLocation } from 'react-router'
+import { Link, Route, Routes, useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
-import Logo from '@/legacy/assets/images/logo_color.png'
-import SvgUser from '@/legacy/assets/images/no_profile.png'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
@@ -10,9 +10,10 @@ import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { Constants } from '@/legacy/constants'
 import { useIBProfileGetById } from '@/legacy/container/ib-cas'
 import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/student/PlagiarismInspectPage'
-import { meState, schoolPropertiesState } from '@/stores'
 import { useLogout } from '@/legacy/util/hooks'
 import { makeStudNum5 } from '@/legacy/util/status'
+import { meState, schoolPropertiesState } from '@/stores'
+
 import CASInterviewDetailPage from './CAS/CASInterviewDetailPage'
 import { CASMainPage } from './CAS/CASMainPage'
 import { CASReflectionDiaryDetailPage } from './CAS/CASReflectionDiaryDetailPage'
@@ -33,6 +34,10 @@ import TOKRRSDetailPage from './TOK_ESSAY/TOKRRSDetailPage'
 import { ExhibitionDetailPage } from './TOK_EXHIBITION/ExhibitionDetailPage'
 import { ExhibitionMainPage } from './TOK_EXHIBITION/ExhibitionMainPage'
 import { ExhibitionPlanDetailPage } from './TOK_EXHIBITION/ExhibitionPlanDetailPage'
+
+import Logo from '@/legacy/assets/images/logo_color.png'
+import SvgUser from '@/legacy/assets/images/no_profile.png'
+
 export const IBStudentPage = () => {
   const { pathname } = useLocation()
   const { push } = useHistory()
@@ -181,29 +186,29 @@ export const IBStudentPage = () => {
         </div>
       </div>
       <div className="scroll-box h-screen w-full grid-cols-6 overflow-x-hidden overflow-y-scroll md:grid md:overflow-y-hidden">
-        <Switch>
-          <Route path="/ib/student/ee/:id/proposal/:proposalId" component={ProposalDetailPage} />
-          <Route path="/ib/student/ee/:id/essay/:essayId" component={EeEssayDetailPage} />
-          <Route path="/ib/student/ee/:id/rppf/:rppfId" component={RPPFDetailPage} />
-          <Route path="/ib/student/ee/:id/interview/:qnaId" component={InterviewDetailPage} />
-          <Route path="/ib/student/ee/:id/rrs/:rrsId" component={RRSDetailPage} />
-          <Route path="/ib/student/ee/:id" component={EEMainPage} />
-          <Route path="/ib/student/cas/:id" component={CASMainPage} />
-          <Route path="/ib/student/tok/exhibition/:id/detail/:exhibitionId" component={ExhibitionDetailPage} />
-          <Route path="/ib/student/tok/exhibition/plan/:id" component={ExhibitionPlanDetailPage} />
-          <Route path="/ib/student/tok/exhibition/:id" component={ExhibitionMainPage} />
-          <Route path="/ib/student/tok/essay/outline/:id" component={OutlineDetailPage} />
-          <Route path="/ib/student/tok/essay/detail/:id" component={TOKEssayDetailPage} />
-          <Route path="/ib/student/tok/essay/:id/rrs/:rrsId" component={TOKRRSDetailPage} />
-          <Route path="/ib/student/tok/essay/:id/tkppf/:tkppfId" component={TKPPFDetailPage} />
-          <Route path="/ib/student/tok/essay/:id" component={EssayMainPage} />
-          <Route path="/ib/student/reference/:id" component={IBStudentReferenceDetailPage} />
-          <Route path="/ib/student/reference" component={IBStudentReferencePage} />
-          <Route path="/ib/student/portfolio/reflection-diary/:id" component={CASReflectionDiaryDetailPage} />
-          <Route path="/ib/student/portfolio/interview/:id/:qnaId" component={CASInterviewDetailPage} />
-          <Route path="/ib/student/plagiarism-inspection" component={PlagiarismInspectPage} />
-          <Route path="/ib/student" component={IBStudentMainPage} />
-        </Switch>
+        <Routes>
+          <Route path="/ib/student/ee/:id/proposal/:proposalId" Component={ProposalDetailPage} />
+          <Route path="/ib/student/ee/:id/essay/:essayId" Component={EeEssayDetailPage} />
+          <Route path="/ib/student/ee/:id/rppf/:rppfId" Component={RPPFDetailPage} />
+          <Route path="/ib/student/ee/:id/interview/:qnaId" Component={InterviewDetailPage} />
+          <Route path="/ib/student/ee/:id/rrs/:rrsId" Component={RRSDetailPage} />
+          <Route path="/ib/student/ee/:id" Component={EEMainPage} />
+          <Route path="/ib/student/cas/:id" Component={CASMainPage} />
+          <Route path="/ib/student/tok/exhibition/:id/detail/:exhibitionId" Component={ExhibitionDetailPage} />
+          <Route path="/ib/student/tok/exhibition/plan/:id" Component={ExhibitionPlanDetailPage} />
+          <Route path="/ib/student/tok/exhibition/:id" Component={ExhibitionMainPage} />
+          <Route path="/ib/student/tok/essay/outline/:id" Component={OutlineDetailPage} />
+          <Route path="/ib/student/tok/essay/detail/:id" Component={TOKEssayDetailPage} />
+          <Route path="/ib/student/tok/essay/:id/rrs/:rrsId" Component={TOKRRSDetailPage} />
+          <Route path="/ib/student/tok/essay/:id/tkppf/:tkppfId" Component={TKPPFDetailPage} />
+          <Route path="/ib/student/tok/essay/:id" Component={EssayMainPage} />
+          <Route path="/ib/student/reference/:id" Component={IBStudentReferenceDetailPage} />
+          <Route path="/ib/student/reference" Component={IBStudentReferencePage} />
+          <Route path="/ib/student/portfolio/reflection-diary/:id" Component={CASReflectionDiaryDetailPage} />
+          <Route path="/ib/student/portfolio/interview/:id/:qnaId" Component={CASInterviewDetailPage} />
+          <Route path="/ib/student/plagiarism-inspection" Component={PlagiarismInspectPage} />
+          <Route path="/ib/student" Component={IBStudentMainPage} />
+        </Routes>
       </div>
     </div>
   )

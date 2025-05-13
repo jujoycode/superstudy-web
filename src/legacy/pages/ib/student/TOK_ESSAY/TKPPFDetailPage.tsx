@@ -1,9 +1,10 @@
-import clsx from 'clsx'
 import { format } from 'date-fns'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, useLocation, useParams } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -15,7 +16,7 @@ import { Feedback } from '@/legacy/components/ib/Feedback'
 import IBLayout from '@/legacy/components/ib/IBLayout'
 import { IbTKPPF } from '@/legacy/components/ib/tok/IbTKPPF'
 import { useIBDeadline } from '@/legacy/container/ib-deadline'
-import { useIBTKPPFCreate, useIBTKPPFRequestComplete, useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
+import { useIBTKPPFCreate, useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
 import { RequestCreateTKPPFDto, ResponseIBDto } from '@/legacy/generated/model'
 import { meState } from '@/stores'
 
@@ -26,9 +27,9 @@ interface LocationState {
 
 export default function TKPPFDetailPage() {
   const history = useHistory()
-  const location = useLocation<LocationState>()
-  const title = location.state?.title
-  const data = location.state?.data
+  const location = useLocation()
+  const title = location.state?.title as LocationState['title']
+  const data = location.state?.data as LocationState['data']
 
   const me = useRecoilValue(meState)
   const [modalOpen, setModalOpen] = useState<boolean>(false)
@@ -36,16 +37,6 @@ export default function TKPPFDetailPage() {
 
   const { data: tkppf, isLoading, refetch } = useTKPPFGetByIBId(Number(id))
   const { deadline } = useIBDeadline({ type: 'IB_TOK', model: 'TKPPF' })
-
-  const { requestIBTKPPFComplete, isLoading: isCompleteLoading } = useIBTKPPFRequestComplete({
-    onSuccess: () => {
-      setAlertMessage(`완료를\n요청하였습니다`)
-      refetch()
-    },
-    onError: (error) => {
-      console.error('TKPPF 완료 요청 중 오류 발생:', error)
-    },
-  })
 
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
   const [editMode, setEditMode] = useState<boolean>(false)
@@ -66,13 +57,7 @@ export default function TKPPFDetailPage() {
     },
   })
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    watch,
-    formState: { errors },
-  } = useForm<RequestCreateTKPPFDto>()
+  const { register, handleSubmit, reset } = useForm<RequestCreateTKPPFDto>()
 
   // 수정 버튼 클릭
   const onEdit = () => {
@@ -98,7 +83,7 @@ export default function TKPPFDetailPage() {
   }
   return (
     <div className="col-span-6">
-      {(isCompleteLoading || isLoading || isCreateLoading) && <IBBlank />}
+      {(isLoading || isCreateLoading) && <IBBlank />}
       <IBLayout
         topContent={
           <div>

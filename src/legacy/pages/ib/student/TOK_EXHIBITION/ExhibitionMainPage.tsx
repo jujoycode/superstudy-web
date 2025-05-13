@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLocation, useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -34,11 +35,11 @@ export const ExhibitionMainPage = () => {
   const { t } = useLanguage()
   const { id: idParams } = useParams<{ id: string }>()
   const me = useRecoilValue(meState)
-  const location = useLocation<LocationState>()
-  const initialType = location.state?.type || 'EXHIBITION_PLAN'
+  const location = useLocation()
+  const initialType = location.state?.type as LocationState['type']
   const id = Number(idParams)
   const [toggle, setToggle] = useState<boolean>(false)
-  const [type, setType] = useState<TOKProject>(initialType)
+  const [type, setType] = useState<TOKProject>(initialType || 'EXHIBITION_PLAN')
   const [open, setOpen] = useState<boolean>(false)
 
   const { data, isLoading, refetch } = useIBGetById(id)

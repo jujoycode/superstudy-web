@@ -3,8 +3,10 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -24,9 +26,9 @@ import { useexhibitionGetByIBId, useExhibitionSubmit, useExhibitionUpdate } from
 import { RequestExhibitionDto, ResponseExhibitionDto, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { meState } from '@/stores'
-import { createTokExhibitionPdf } from '@/legacy/util/ib/tok-exhibition-pdf'
 import { handleSingleBlobDownload } from '@/legacy/util/download-blob'
+import { createTokExhibitionPdf } from '@/legacy/util/ib/tok-exhibition-pdf'
+import { meState } from '@/stores'
 
 const urlDecorator = (decoratedHref: string, decoratedText: string, key: number) => (
   <a href={decoratedHref} key={key} target="_blank" rel="noopener noreferrer" className="underline">
@@ -41,7 +43,7 @@ export const ExhibitionDetailPage = () => {
   const exhibitionId = Number(exhibitionIdParam)
   const [editMode, setEditMode] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const { data: IBData, klassNum, refetch: refetchIB, isLoading: isIBLoading } = useIBGetById(id)
+  const { data: IBData, klassNum, isLoading: isIBLoading } = useIBGetById(id)
   const me = useRecoilValue(meState)
   const { data, isLoading, refetch } = useexhibitionGetByIBId(id)
 
@@ -55,11 +57,11 @@ export const ExhibitionDetailPage = () => {
   const { imageObjectMap, toggleImageDelete, addTargetFiles, setImageObjectMap } = useImageAndDocument({
     images: [data?.targetImage1, data?.targetImage2, data?.targetImage3].map((url) => url || ''),
   })
-  const { isUploadLoading, handleUploadFile } = useFileUpload()
+  const { handleUploadFile } = useFileUpload()
   const [alertMessage, setAlertMessage] = useState<{ text: string; action?: () => void } | null>(null)
   const [downloadMode, setDownloadMode] = useState<boolean>(false)
 
-  const { data: Questions, isLoading: isFetching } = useThemeQuestionFindAll('TOK_EXHIBITION')
+  const { data: Questions } = useThemeQuestionFindAll('TOK_EXHIBITION')
 
   const handleWordCountChange = (key: string, count: number) => {
     setWordCounts((prev) => {

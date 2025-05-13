@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -26,9 +28,9 @@ import { useIBRRSUpdate } from '@/legacy/container/ib-rrs-update'
 import { RequestRRSDto, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { meState } from '@/stores'
 import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { meState } from '@/stores'
 
 const urlDecorator = (decoratedHref: string, decoratedText: string, key: number) => (
   <a href={decoratedHref} key={key} target="_blank" rel="noopener noreferrer" className="underline">
@@ -47,7 +49,7 @@ export default function TOKRRSDetailPage() {
   const [isSubmitLoading, setIsSubmitLoading] = useState(false)
   const me = useRecoilValue(meState)
   const { data, isLoading } = useRRSGetById(id, rrsId)
-  const { data: ibData, refetch, isLoading: isIBLoading } = useIBGetById(Number(id))
+  const { data: ibData, isLoading: isIBLoading } = useIBGetById(Number(id))
   const {
     addFiles,
     imageObjectMap,

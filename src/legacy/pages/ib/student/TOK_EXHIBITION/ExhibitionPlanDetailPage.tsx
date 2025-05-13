@@ -1,9 +1,10 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
-import NODATA from '@/legacy/assets/images/no-data.png'
+
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -22,6 +23,8 @@ import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
 import { useExhibitionPlanSubmit, useExhibitionPlanUpdate } from '@/legacy/container/ib-tok-exhibition'
 import { RequestIBTokExhibitionPlanDto } from '@/legacy/generated/model'
 import { meState } from '@/stores'
+
+import NODATA from '@/legacy/assets/images/no-data.png'
 
 interface Commetary {
   targetKey: string

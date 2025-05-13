@@ -1,8 +1,10 @@
 import clsx from 'clsx'
 import moment from 'moment'
 import { useState } from 'react'
-import { Link, Route, Switch, useLocation, useParams } from 'react-router'
+import { Link, Route, Routes, useLocation, useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+import { twMerge } from 'tailwind-merge'
+
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -25,9 +27,8 @@ import { useIBHopeMentor, useIBRequestComplete, useIBWaitMentor } from '@/legacy
 import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBProposalUpdateWaitPlan } from '@/legacy/container/ib-proposal-sent'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
 import { DateUtil } from '@/legacy/util/date'
-import { twMerge } from 'tailwind-merge'
+import { meState } from '@/stores'
 
 export type CASProject = 'ACTIVITY_PLAN' | 'ACTIVITY_LOG'
 
@@ -232,11 +233,10 @@ export const CASMainPage = () => {
                   {data === undefined ? (
                     <div>계획서를 불러올 수 없습니다.</div>
                   ) : (
-                    <Switch>
+                    <Routes>
                       <Route
-                        exact
                         path="/ib/student/cas/:id/plan"
-                        render={() =>
+                        Component={() =>
                           data.ibType === 'CAS_NORMAL' ? (
                             <ActivityPlan data={data} refetch={refetch} setEdit={setEdit} />
                           ) : data.ibType === 'CAS_PROJECT' ? (
@@ -248,13 +248,13 @@ export const CASMainPage = () => {
                       />
                       <Route
                         path="/ib/student/cas/:id/activitylog/:activitylogId"
-                        render={() => <AcitivityLogDetail status={data.status} />}
+                        Component={() => <AcitivityLogDetail status={data.status} />}
                       />
                       <Route
                         path="/ib/student/cas/:id/activitylog"
-                        render={() => <ActivityLogList id={data.id} status={data.status} writerId={me.id} />}
+                        Component={() => <ActivityLogList id={data.id} status={data.status} writerId={me.id} />}
                       />
-                    </Switch>
+                    </Routes>
                   )}
                 </div>
               </div>

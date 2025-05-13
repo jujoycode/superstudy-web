@@ -1,8 +1,10 @@
 import { format } from 'date-fns'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, useLocation, useParams } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -23,8 +25,8 @@ interface LocationState {
 
 export default function InterviewDetailPage() {
   const history = useHistory()
-  const location = useLocation<LocationState>()
-  const title = location.state?.title
+  const location = useLocation()
+  const title = location.state?.title as LocationState['title']
 
   const me = useRecoilValue(meState)
   const { id: idParam, qnaId: qnaIdParam } = useParams<{ id: string; qnaId: string }>()
