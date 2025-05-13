@@ -52,7 +52,7 @@ export default function BlockchainSetting({
         ) : (
           <button
             className="flex w-max rounded-lg border border-[#333333] px-4 py-2 text-sm font-semibold text-[#333333]"
-            onClick={(e) => {
+            onClick={() => {
               if (confirm('슈퍼스쿨 블록체인을 사용하시겠습니까?')) {
                 setValue('useBlockChain', true)
                 updateUseBlockChain()
