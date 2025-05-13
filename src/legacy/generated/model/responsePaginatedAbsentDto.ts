@@ -5,7 +5,7 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Absent } from '@/legacy/pages/teacher/absent'
+import type { Absent } from './absent'
 
 export interface ResponsePaginatedAbsentDto {
   /** 출결 신고서들 */

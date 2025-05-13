@@ -2,11 +2,14 @@ import { differenceInDays, format } from 'date-fns'
 import _, { sortBy } from 'lodash'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { useHistory, useLocation, useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { twMerge } from 'tailwind-merge'
+
+import FileItemIcon from '@/assets/svg/file-item-icon.svg'
+import { useHistory } from '@/hooks/useHistory'
 import { Activityv3SubmitterItem } from '@/legacy/components/activityv3/ActivityV3SubmitterItem'
 import { SessionDownloadModal } from '@/legacy/components/activityv3/SessionDownloadModal'
 import { SessionTable } from '@/legacy/components/activityv3/SessionTable'
@@ -29,7 +32,6 @@ import { Role, StudentGroup, SubjectType } from '@/legacy/generated/model'
 import { checkSubmitted } from '@/legacy/util/activityv3'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { meState, toastState } from '@/stores'
-import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
 
 interface ActivityV3DetailPageProps {}
 
@@ -61,7 +63,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
   const selectedFilter = searchParams.get('selectedFilter') || 'all'
 
   const me = useRecoilValue(meState)
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [, setToastMsg] = useRecoilState(toastState)
 
   const [selectedGroupIds, setSelectedGroupIds] = useState<number[]>([])
   const [showDialog, setShowDialog] = useState(false)
@@ -129,11 +131,11 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
   useEffect(() => {
     if (isLoading) return
     setGroupDatas(
-      studentGroups?.reduce((acc: any, cur: StudentGroup) => {
+      studentGroups?.reduce((acc: Record<number, StudentGroup[]>, cur: StudentGroup) => {
         return { ...acc, [cur.groupId]: [...(acc[cur.groupId] || []), cur] }
-      }, []) || {},
+      }, {}) || {},
     )
-  }, [studentGroups])
+  }, [studentGroups, isLoading])
 
   useEffect(() => {
     if (activityv3?.groupActivityV3s?.length) {
@@ -180,7 +182,9 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
             <p onClick={() => replace('/teacher/activityv3')} className="cursor-pointer">
               활동 기록
             </p>
-            <Icon.FillArrow className="-rotate-90" />
+            <div className="-rotate-90">
+              <Icon.FillArrow />
+            </div>
             <p className="cursor-pointer">
               {activityv3?.title?.length >= 15 ? activityv3.title?.slice(0, 15) + '...' : activityv3.title || '활동명'}
             </p>
@@ -544,7 +548,9 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                         value={searchedStudentname}
                         className="h-10 w-80 rounded-lg border border-neutral-200 text-neutral-400"
                       />
-                      <Icon.Search className="absolute right-2" />
+                      <div className="absolute right-2">
+                        <Icon.Search />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -640,7 +646,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                             )}
                             {selectedFilter === 'IS_SUBMITTED' && (
                               <div className="grid grid-cols-2 gap-2 pb-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
-                                {sortStudentGroups(submittedStudentGroups).map((sg: any) => (
+                                {sortStudentGroups(submittedStudentGroups).map((sg: StudentGroup) => (
                                   <Activityv3SubmitterItem
                                     key={sg.id}
                                     studentGroup={sg}
@@ -652,7 +658,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                             )}
                             {selectedFilter === 'NOT_SUBMITTED' && (
                               <div className="grid grid-cols-2 gap-2 pb-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
-                                {sortStudentGroups(unSubmittedStudentGroups).map((sg: any) => (
+                                {sortStudentGroups(unSubmittedStudentGroups).map((sg: StudentGroup) => (
                                   <Activityv3SubmitterItem
                                     key={sg.id}
                                     studentGroup={sg}
@@ -695,7 +701,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
           noImgDetails
           scalable={false}
           images={viewerImages}
-          onChange={(activeImage, index) => setActiveIndex(index)}
+          onChange={(_, index) => setActiveIndex(index)}
           onClose={() => setImagesModalOpen(false)}
           activeIndex={activeIndex}
         />

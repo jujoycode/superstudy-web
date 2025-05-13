@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
+
 import AnnouncementBadge from '@/legacy/components/announcement/AnnouncementBadge'
 import { BackButton, Blank, Chip, HorizontalScrollView, TopNavbar } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
@@ -81,9 +83,9 @@ export default function AnnouncementPage() {
           isDetail ? 'block' : 'hidden'
         }`}
       >
-        <Switch>
-          <Route path="/teacher/announcement/:id" render={() => <AnnouncementDetailPage />} />
-        </Switch>
+        <Routes>
+          <Route path="/teacher/announcement/:id" element={<AnnouncementDetailPage />} />
+        </Routes>
       </div>
     </>
   )

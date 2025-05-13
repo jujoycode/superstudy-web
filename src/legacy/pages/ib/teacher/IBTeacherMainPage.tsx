@@ -17,14 +17,13 @@ import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 import { useGetPlagiarismInspectList } from '@/legacy/container/plagiarism-inspector'
 import type { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
 import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/teacher/PlagiarismInspectPage'
-import { meState, schoolPropertiesState } from '@/stores'
+import { schoolPropertiesState } from '@/stores'
 
 export default function IBTeacherMainPage() {
   const { push } = useHistory()
   const { pathname } = useLocation()
   const { permission } = useCoordinatorCheck()
   const schoolProperties = useRecoilValue(schoolPropertiesState)
-  const me = useRecoilValue(meState)
 
   // 표절 검사 활성화 여부
   const enabledPlagiarismInspect = !!schoolProperties?.find((property) => property.key === 'COPYKILLER_LICENSE_KEY')
@@ -35,12 +34,8 @@ export default function IBTeacherMainPage() {
   const [selectedType, setSelectedType] = useState<'upload' | 'input' | null>(null)
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
 
-  const {
-    data: plagiarismInspectList = { items: [] as ResponseCopykillerResponseDto[] },
-    isLoading,
-    isError,
-    error,
-  } = useGetPlagiarismInspectList()
+  const { data: plagiarismInspectList = { items: [] as ResponseCopykillerResponseDto[] }, isLoading } =
+    useGetPlagiarismInspectList()
 
   // 표절 검사 시작 핸들러
   const handleShowInspector = (type: 'upload' | 'input') => {

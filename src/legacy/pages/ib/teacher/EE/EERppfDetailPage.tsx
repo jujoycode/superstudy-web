@@ -108,7 +108,7 @@ export const EERppfDetailPage = () => {
     })
   }
 
-  const { register, handleSubmit, reset } = useForm<RequestCreateRPPFDto>({
+  const { register, handleSubmit } = useForm<RequestCreateRPPFDto>({
     defaultValues: {
       contents:
         rppf?.contents.map((data) => ({
