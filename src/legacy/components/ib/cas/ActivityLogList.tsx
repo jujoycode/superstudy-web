@@ -15,7 +15,7 @@ import FeedbackViewer from '../FeedbackViewer'
 import { IBPagination } from '../ProjectList'
 
 import { IbActivityLog } from './IbActivityLog'
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 const itemsPerPage = 10
 

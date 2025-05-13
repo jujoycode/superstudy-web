@@ -24,7 +24,7 @@ import { RequestIBTokOutlineDto, ResponseIBDtoStatus, ResponseIBTokOutlineDto } 
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { meState } from '@/stores'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 export const OutlineDetailPage = () => {
   const history = useHistory()

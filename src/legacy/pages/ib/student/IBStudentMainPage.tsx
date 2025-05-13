@@ -24,9 +24,9 @@ import { useGetIBProject } from '@/legacy/container/ib-project-get-filter'
 import { ResponseIBDto } from '@/legacy/generated/model'
 import { meState } from '@/stores'
 
-import CAS from '@/legacy/assets/images/CAS.png'
-import EE from '@/legacy/assets/images/EE.png'
-import TOK from '@/legacy/assets/images/TOK.png'
+import CAS from '@/assets/images/CAS.png'
+import EE from '@/assets/images/EE.png'
+import TOK from '@/assets/images/TOK.png'
 
 export type IBProject = '' | 'CAS' | 'EE' | 'TOK'
 export type ModalType = 'projectSelection' | 'IbEeProposal' | 'IbTok' | 'IbCAS' | null

@@ -15,7 +15,7 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getFileNameFromUrlToAnn } from '@/legacy/util/file'
 import { isHTML } from '@/legacy/util/validator'
 import { languageState } from '@/stores'
-import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 
 export default function AnnouncementDetailPage() {
   const { id } = useParams<{ id: string }>()

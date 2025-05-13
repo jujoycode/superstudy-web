@@ -24,7 +24,7 @@ import { useExhibitionPlanSubmit, useExhibitionPlanUpdate } from '@/legacy/conta
 import { RequestIBTokExhibitionPlanDto } from '@/legacy/generated/model'
 import { meState } from '@/stores'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface Commetary {
   targetKey: string

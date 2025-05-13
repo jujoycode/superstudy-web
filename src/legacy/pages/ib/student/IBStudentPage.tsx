@@ -33,8 +33,8 @@ import { ExhibitionDetailPage } from './TOK_EXHIBITION/ExhibitionDetailPage'
 import { ExhibitionMainPage } from './TOK_EXHIBITION/ExhibitionMainPage'
 import { ExhibitionPlanDetailPage } from './TOK_EXHIBITION/ExhibitionPlanDetailPage'
 
-import Logo from '@/legacy/assets/images/logo_color.png'
-import SvgUser from '@/legacy/assets/images/no_profile.png'
+import Logo from '@/assets/images/logo_color.png'
+import SvgUser from '@/assets/images/no_profile.png'
 
 export const IBStudentPage = () => {
   const { pathname } = useLocation()

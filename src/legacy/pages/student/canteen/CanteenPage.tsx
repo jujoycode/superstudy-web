@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { useRecoilValue } from 'recoil'
-
+import ChatIcon from '@/assets/svg/chat.svg'
+import ClockIcon from '@/assets/svg/clock.svg'
+import Refresh from '@/assets/svg/refresh.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import AnnouncementPopup from '@/legacy/components/announcement/Announcement'
@@ -20,10 +22,6 @@ import { Schedule } from '@/legacy/types'
 import { checkNewVersion } from '@/legacy/util/status'
 import { makeDateToString, makeMonthDayToString } from '@/legacy/util/time'
 import { childState, newMsgCntState } from '@/stores'
-
-import ChatIcon from '@/legacy/assets/svg/chat.svg'
-import ClockIcon from '@/legacy/assets/svg/clock.svg'
-import Refresh from '@/legacy/assets/svg/refresh.svg'
 
 export function CanteenPage() {
   const { push } = useHistory()

@@ -41,8 +41,8 @@ import { TeacherDetailsPage } from './teacher/TeacherDetailsPage'
 import { TeacherEditPage } from './teacher/TeacherEditPage'
 import { TeacherPage } from './teacher/TeacherPage'
 import { TimetablePage } from './timetable/TimetablePage'
-import ExitAdmin from '@/legacy/assets/svg/exit-admin.svg'
-import LogoAdmin from '@/legacy/assets/svg/logo-admin.svg'
+import ExitAdmin from '@/assets/svg/exit-admin.svg'
+import LogoAdmin from '@/assets/svg/logo-admin.svg'
 
 export const AdminContext = createContext({ year: +getThisYear() })
 

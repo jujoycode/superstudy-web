@@ -1,10 +1,10 @@
 import fs from 'fs'
 import path from 'path'
 import { execSync } from 'child_process'
-import { defineConfig, loadEnv } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import tailwindcssPostcss from '@tailwindcss/postcss'
 import svgr from 'vite-plugin-svgr'
+import tailwindcssPostcss from '@tailwindcss/postcss'
+import react from '@vitejs/plugin-react-swc'
+import { defineConfig, loadEnv } from 'vite'
 
 // 메타 태그 생성 함수
 const generateMetaTag = () => {
@@ -84,12 +84,15 @@ export default defineConfig(({ mode }) => {
       // SVG를 React 컴포넌트로 변환하는 플러그인
       svgr({
         svgrOptions: {
-          exportType: 'default',
+          exportType: 'named',
           ref: true,
           svgo: false,
           titleProp: true,
         },
         include: '**/*.svg',
+        esbuildOptions: {
+          loader: 'tsx',
+        },
       }),
       // React 플러그인
       react({
@@ -135,6 +138,14 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
+    optimizeDeps: {
+      include: ['swiper', 'swiper/css'],
+      esbuildOptions: {
+        loader: {
+          '.svg': 'tsx',
+        },
+      },
+    },
     // 경로 별칭 설정
     resolve: {
       alias: {
@@ -148,6 +159,7 @@ export default defineConfig(({ mode }) => {
         '@/hooks': '/src/hooks',
         '@/stores': '/src/store',
         '@/routers': '/src/routers',
+        '@/assets': '/src/assets',
       },
     },
   }

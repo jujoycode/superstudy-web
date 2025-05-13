@@ -20,7 +20,7 @@ import { ResponseIBDto } from '@/legacy/generated/model'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
 import { meState } from '@/stores'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 interface LocationState {
   project: ResponseIBDto

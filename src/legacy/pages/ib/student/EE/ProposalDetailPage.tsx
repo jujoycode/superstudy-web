@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
-
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -22,8 +22,6 @@ import { useIBProposalDelete } from '@/legacy/container/ib-proposal-delete'
 import { useIBProposalUpdate } from '@/legacy/container/ib-proposal-update'
 import { RequestIBProposalUpdateDto } from '@/legacy/generated/model'
 import { meState } from '@/stores'
-
-import NODATA from '@/legacy/assets/images/no-data.png'
 
 export const ProposalDetailPage = () => {
   const history = useHistory()

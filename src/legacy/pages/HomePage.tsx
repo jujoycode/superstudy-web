@@ -1,13 +1,13 @@
 import preval from 'preval.macro'
 import { Navigate } from 'react-router'
+import superstudyLight from '@/assets/images/superstudy-light.png'
+import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { BottomFixed, Screen, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { globalEnv } from '@/legacy/util/global-env'
 import { useAuth } from '@/legacy/util/hooks'
-import superstudyLight from '@/asset/images/superstudy-light.png'
-import { ReactComponent as Logo } from '@/asset/svg/logo.svg'
 
 export function HomePage() {
   const { authenticated } = useAuth()

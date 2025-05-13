@@ -7,8 +7,8 @@ import { useParams } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
-
 import { SuperModal } from '@/legacy/components'
 import { SessionCommentItem } from '@/legacy/components/activityv3/SessionCommentItem'
 import { Avatar, BackButton, Textarea, TopNavbar } from '@/legacy/components/common'
@@ -33,7 +33,6 @@ import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { getNickName } from '@/legacy/util/status'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
 import { meState, toastState } from '@/stores'
-import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
 
 interface ActivityV3SessionReportPageProps {}
 

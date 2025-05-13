@@ -22,8 +22,6 @@ import { ActivityV3, ResponseStudentCardStudentDto, SubjectType } from '@/legacy
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { toastState } from '@/stores'
 
-import 'swiper/swiper.min.css'
-
 interface ActivityV3GPTModalProps {
   activityV3s?: ActivityV3[]
   checkedCardIds: number[]

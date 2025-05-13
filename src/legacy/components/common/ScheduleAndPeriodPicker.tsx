@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import 'tailwindcss/tailwind.css'
+import 'tailwindcss/index.css'
 
 import { ButtonV2 } from './ButtonV2'
 import { Input } from './Input'

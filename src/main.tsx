@@ -8,9 +8,10 @@ import { UserContainer } from '@/legacy/container/user'
 import { queryClient } from '@/legacy/lib/query'
 
 import { App } from './App'
+
+import 'swiper/css'
+import './legacy/styles/CalendarPage.css'
 import './legacy/util/i18n'
-// import './legacy/calendar.css'
-// import './legacy/index.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

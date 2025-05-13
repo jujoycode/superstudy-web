@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 
-import 'tailwindcss/tailwind.css'
+import 'tailwindcss/index.css'
 
 import { ButtonV2 } from './ButtonV2'
 import { LayeredTabs, Tab } from './LayeredTabs'

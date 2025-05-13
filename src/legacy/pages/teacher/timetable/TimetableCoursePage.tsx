@@ -19,7 +19,7 @@ import {
 import { Course, CourseTrainee, User } from '@/legacy/generated/model'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
-import userSvg from '@/asset/svg/user.svg'
+import userSvg from '@/assets/svg/user.svg'
 
 interface TimetableCoursePageProps {
   course: Course

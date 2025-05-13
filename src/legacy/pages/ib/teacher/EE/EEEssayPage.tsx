@@ -29,7 +29,7 @@ import { usePolling } from '@/legacy/hooks/usePolling'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
 import { meState, schoolPropertiesState } from '@/stores'
 
-import NODATA from '@/legacy/assets/images/no-data.png'
+import NODATA from '@/assets/images/no-data.png'
 
 type tabType = 'feedback' | 'evaluation' | 'checklist'
 

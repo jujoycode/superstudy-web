@@ -18,8 +18,6 @@ import {
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { toastState } from '@/stores'
 
-import 'swiper/swiper.min.css'
-
 interface GeneralGPTModalProps {
   studentId: number
   studentSelfAssessment?: StudentSelfAssessment | undefined

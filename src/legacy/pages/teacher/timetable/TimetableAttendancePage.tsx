@@ -30,7 +30,7 @@ import { getNickName } from '@/legacy/util/status'
 import { getThisSemester, getThisYear } from '@/legacy/util/time'
 import { meState } from '@/stores'
 import { TimetableNeisForm } from './TimetableNeisForm'
-import SvgUser from '@/asset/svg/user.svg'
+import SvgUser from '@/assets/svg/user.svg'
 
 const groups = [
   { id: 1, name: '1' },
