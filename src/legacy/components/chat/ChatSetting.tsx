@@ -55,7 +55,7 @@ export function ChatSetting({
 }: ChatSettingProps) {
   const me = useRecoilValue(meState)
 
-  const [isStudentView, setIsStudentView] = useState(me?.role === Role.USER || me?.role === Role.PARENT)
+  const [isStudentView] = useState(me?.role === Role.USER || me?.role === Role.PARENT)
 
   const { handleUploadFile } = useFileUpload()
 

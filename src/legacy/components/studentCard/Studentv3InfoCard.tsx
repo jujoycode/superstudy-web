@@ -18,7 +18,7 @@ import { Select } from '../common'
 import { Icon } from '../common/icons'
 import { TextInput } from '../common/TextInput'
 import { Time } from '../common/Time'
-import { ReactComponent as SvgUser } from '@/asset/svg/user.svg'
+import SvgUser from '@/asset/svg/user.svg'
 
 interface StudentInfoCardProps {
   id: number

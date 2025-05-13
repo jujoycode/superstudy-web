@@ -28,7 +28,6 @@ import { toastState, warningState } from '@/stores'
 
 export function StudentPage() {
   const { t } = useLanguage()
-
   const { t: ta } = useTranslation('admin', { keyPrefix: 'student_page' })
   const { year } = useContext(AdminContext)
   const { page, size } = useSearch({ page: 1, size: 25 })

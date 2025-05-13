@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 
-import icon from '@/assets/icons/more-vertical.svg'
+import { ReactComponent as icon } from '@/assets/icons/more-vertical.svg'
 import { Icon } from '@/legacy/components/common/icons'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useTeacherStudentUpdateParent } from '@/legacy/container/teacher-student-update-parent'
@@ -136,7 +136,7 @@ export default function Parentv3InfoCard({
                 </span>
               </div>
               <DropdownMenu
-                icon={icon}
+                icon={icon as unknown as string}
                 parent={parent}
                 studentId={studentId || 0}
                 key={parent.id}

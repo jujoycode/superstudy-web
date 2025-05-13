@@ -23,7 +23,6 @@ import { getNickName } from '@/legacy/util/status'
 
 export function ParentPage() {
   const { t } = useLanguage()
-
   const { t: ta } = useTranslation('admin', { keyPrefix: 'parent_page' })
   const { year } = useContext(AdminContext)
   const { page, size } = useSearch({ page: 1, size: 25 })

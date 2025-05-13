@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 
-import DownArrow from '@/assets/icons/chevron-down.svg'
-import Plus from '@/assets/svg/plus.svg'
+import { ReactComponent as DownArrow } from '@/assets/icons/chevron-down.svg'
+import { ReactComponent as Plus } from '@/assets/svg/plus.svg'
 import { Blank, Select } from '@/legacy/components/common'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useCodeByCategoryName } from '@/legacy/container/category'

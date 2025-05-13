@@ -1,7 +1,7 @@
 import { cloneDeep } from 'lodash'
 import React, { FC } from 'react'
 
-import DeleteQuestionIcon from '@/assets/icons/survey-delete.svg'
+import { ReactComponent as DeleteQuestionIcon } from '@/assets/icons/survey-delete.svg'
 import { Radio } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { TextInput } from '@/legacy/components/common/TextInput'
@@ -140,8 +140,8 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
               <p className="text-sm">필수</p>
             </div>
             <DeleteQuestionIcon
-              className="h-8 w-8 cursor-pointer hover:bg-gray-50"
               title="질문 삭제"
+              className="h-8 w-8 cursor-pointer hover:bg-gray-50"
               onClick={() => deleteContent(question.id)}
             />
           </div>
