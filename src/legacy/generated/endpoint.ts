@@ -15,9 +15,6 @@ import type {
   QueryKey,
 } from 'react-query'
 
-import { mutator } from '@/legacy/lib/axios'
-import type { ErrorType } from '@/legacy/lib/axios'
-
 import type {
   ResponsePaginationTeacherInfoDto,
   AdminCommonSearchTeachersParams,
@@ -611,9 +608,10 @@ import type {
   RequestIBBasicContentUpdateDto,
   RequestIBBasicContentDto,
 } from './model'
+import { ErrorType, mutator } from '../lib/axios'
 
 // eslint-disable-next-line
-type SecondParameter<T extends (...args: any) => any> = T extends (config: any, args: infer P) => any ? P : never;
+type SecondParameter<T extends (...args: any) => any> = T extends (config: any, args: infer P) => any ? P : never
 
 /**
  * @summary 선생님 목록 검색
