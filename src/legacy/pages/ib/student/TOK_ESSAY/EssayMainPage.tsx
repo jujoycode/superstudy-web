@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLocation, useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -33,15 +34,15 @@ export type LocationState = {
 export const EssayMainPage = () => {
   const { t } = useLanguage()
   const { id: idParams } = useParams<{ id: string }>()
-  const location = useLocation<LocationState>()
-  const initialType = location.state?.type || 'OUTLINE'
+  const location = useLocation()
+  const initialType = location.state?.type as LocationState['type']
   const id = Number(idParams)
   const me = useRecoilValue(meState)
-  const [type, setType] = useState<TOKEssayProject>(initialType)
+  const [type, setType] = useState<TOKEssayProject>(initialType || 'OUTLINE')
   const [toggle, setToggle] = useState<boolean>(false)
   const { data, isLoading, refetch } = useIBGetById(id)
   const [isApproveModalOpen, setIsApproveModalOpen] = useState(false)
-  const { data: Essay, isLoading: EssayLoading } = useEssayGetByIBId(id, {
+  const { data: Essay } = useEssayGetByIBId(id, {
     enabled: data?.status !== 'PENDING' && data?.status !== 'WAIT_MENTOR' && data?.status !== 'REJECT_PLAN',
   })
   const {

@@ -3,6 +3,7 @@
 // https://www.notion.so/superschoolofficial/P-T-012-126e90ac0a99800e94d4da062bdc5417
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
+
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
@@ -15,7 +16,7 @@ import { ResponseReferenceInfoDtoCategory } from '@/legacy/generated/model'
 export const IBStudentReferencePage = () => {
   const { type: initType } = useParams<{ type: string }>()
   const [type, setType] = useState<ResponseReferenceInfoDtoCategory>(
-    ['IB_ALL', 'IB_CAS', 'IB_EE', 'IB_TOK'].includes(initType)
+    ['IB_ALL', 'IB_CAS', 'IB_EE', 'IB_TOK'].includes(initType || '')
       ? (initType as ResponseReferenceInfoDtoCategory)
       : 'IB_ALL',
   )

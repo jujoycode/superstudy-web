@@ -1,8 +1,10 @@
 import { format } from 'date-fns'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -12,12 +14,7 @@ import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import { Feedback } from '@/legacy/components/ib/Feedback'
 import IBLayout from '@/legacy/components/ib/IBLayout'
-import {
-  useIBInterviewDelete,
-  useIBInterviewUpdate,
-  useInterviewGetByStudentId,
-  useInterviewQNA,
-} from '@/legacy/container/ib-student-interview'
+import { useIBInterviewDelete, useIBInterviewUpdate, useInterviewQNA } from '@/legacy/container/ib-student-interview'
 import { RequestCreateQnaDto } from '@/legacy/generated/model'
 import { meState } from '@/stores'
 
@@ -25,15 +22,11 @@ export default function CASInterviewDetailPage() {
   const history = useHistory()
 
   const me = useRecoilValue(meState)
-  const { id: idParam, qnaId: qnaIdParam } = useParams<{ id: string; qnaId: string }>()
-  const id = Number(idParam)
+  const { qnaId: qnaIdParam } = useParams<{ id: string; qnaId: string }>()
+
   const qnaId = Number(qnaIdParam)
   const { data: interview, isLoading, refetch } = useInterviewQNA(qnaId)
-  const { data: interviewList } = useInterviewGetByStudentId(
-    me?.id ?? 0,
-    'CAS_PORTFOLIO_1,CAS_PORTFOLIO_2,CAS_PORTFOLIO_3',
-  )
-  const currentInterview = interviewList?.filter((item) => item.id === id)
+
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false)
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
 
@@ -50,11 +43,8 @@ export default function CASInterviewDetailPage() {
   const { deleteIBInterview } = useIBInterviewDelete({
     onSuccess: () => {
       setConfirmOpen(!confirmOpen)
-      history.push({
-        pathname: '/ib/student/portfolio',
-        state: {
-          alertMessage: `인터뷰가\n삭제되었습니다`,
-        },
+      history.push('/ib/student/portfolio', {
+        alertMessage: `인터뷰가\n삭제되었습니다`,
       })
     },
     onError: (error) => {

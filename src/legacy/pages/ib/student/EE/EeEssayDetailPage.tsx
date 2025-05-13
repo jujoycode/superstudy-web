@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { useHistory, useLocation } from 'react-router'
+import { useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
-import NODATA from '@/legacy/assets/images/no-data.png'
+
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -17,8 +18,10 @@ import IBLayout from '@/legacy/components/ib/IBLayout'
 import { useEssayGetByIBId } from '@/legacy/container/ib-essay-find'
 import { useIBEssaySent } from '@/legacy/container/ib-essay-send'
 import { ResponseIBDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
+import { meState } from '@/stores'
+
+import NODATA from '@/legacy/assets/images/no-data.png'
 
 interface LocationState {
   project: ResponseIBDto
@@ -27,9 +30,9 @@ interface LocationState {
 
 export const EeEssayDetailPage = () => {
   const history = useHistory()
-  const location = useLocation<LocationState>()
-  const project = location.state?.project
-  const _type = location.state?.type
+  const location = useLocation()
+  const project = location.state?.project as LocationState['project']
+  const _type = location.state?.type as LocationState['type']
   const me = useRecoilValue(meState)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const { data: essay, refetch, isLoading } = useEssayGetByIBId(project.id)

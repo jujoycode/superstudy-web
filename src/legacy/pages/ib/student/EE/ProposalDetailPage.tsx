@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
-import NODATA from '@/legacy/assets/images/no-data.png'
+
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -21,6 +22,8 @@ import { useIBProposalDelete } from '@/legacy/container/ib-proposal-delete'
 import { useIBProposalUpdate } from '@/legacy/container/ib-proposal-update'
 import { RequestIBProposalUpdateDto } from '@/legacy/generated/model'
 import { meState } from '@/stores'
+
+import NODATA from '@/legacy/assets/images/no-data.png'
 
 export const ProposalDetailPage = () => {
   const history = useHistory()
@@ -54,14 +57,7 @@ export const ProposalDetailPage = () => {
     },
   })
 
-  const {
-    control,
-    handleSubmit,
-    reset,
-    setValue,
-    watch,
-    formState: { errors },
-  } = useForm<RequestIBProposalUpdateDto>({
+  const { control, handleSubmit, reset, setValue, watch } = useForm<RequestIBProposalUpdateDto>({
     defaultValues: proposalData,
   })
 
@@ -113,7 +109,7 @@ export const ProposalDetailPage = () => {
     setValue('category', '')
   }, [selectedSubject])
 
-  if (me == null) {
+  if (!me) {
     return <IBBlank />
   }
 

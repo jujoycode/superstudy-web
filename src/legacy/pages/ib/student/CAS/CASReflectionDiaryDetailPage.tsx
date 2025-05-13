@@ -1,12 +1,14 @@
 import { format } from 'date-fns'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -29,9 +31,9 @@ import {
 import { RequestIBBasicContentUpdateDto, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { meState } from '@/stores'
 import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { meState } from '@/stores'
 
 const urlDecorator = (decoratedHref: string, decoratedText: string, key: number) => (
   <a href={decoratedHref} key={key} target="_blank" rel="noopener noreferrer" className="underline">
@@ -63,7 +65,7 @@ export const CASReflectionDiaryDetailPage = () => {
     documents: data?.files,
   })
   const { handleUploadFile } = useFileUpload()
-  const { updateReflectionDiary, isLoading: isUpdateLoading } = useReflectionDiaryUpdate({
+  const { updateReflectionDiary } = useReflectionDiaryUpdate({
     onSuccess: () => {
       setAlertMessage(`성찰일지가\n저장되었습니다`)
     },
@@ -75,11 +77,8 @@ export const CASReflectionDiaryDetailPage = () => {
   const { deleteReflectionDiary } = useReflectionDiaryDelete({
     onSuccess: () => {
       setConfirmOpen(!confirmOpen)
-      history.push({
-        pathname: '/ib/student/portfolio',
-        state: {
-          alertMessage: `성찰일지가\n삭제되었습니다`,
-        },
+      history.push('/ib/student/portfolio', {
+        alertMessage: `성찰일지가\n삭제되었습니다`,
       })
     },
     onError: (error) => {
@@ -99,30 +98,23 @@ export const CASReflectionDiaryDetailPage = () => {
   }
 
   const [editMode, setEditMode] = useState<boolean>(false)
-  const {
-    control,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm<RequestIBBasicContentUpdateDto>({
+  const { control, handleSubmit, watch, reset } = useForm<RequestIBBasicContentUpdateDto>({
     defaultValues: data,
   })
 
   const title = watch('title')
 
-  const resetData = () => {
+  const resetData = useCallback(() => {
     reset(data)
-    console.log('data', data)
     setImageObjectMap(new Map(data?.images?.map((image, i) => [i, { image, isDelete: false }]) || []))
     setDocumentObjectMap(new Map(data?.files?.map((file, i) => [i, { document: file, isDelete: false }]) || []))
-  }
+  }, [reset, data, setImageObjectMap, setDocumentObjectMap])
 
   useEffect(() => {
     if (data) {
       resetData()
     }
-  }, [data, reset])
+  }, [data, resetData])
 
   const onSubmit = async (data: RequestIBBasicContentUpdateDto) => {
     setIsSubmitLoading(true)

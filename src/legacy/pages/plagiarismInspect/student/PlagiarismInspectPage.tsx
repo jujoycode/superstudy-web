@@ -1,23 +1,21 @@
 import clsx from 'clsx'
+import { useState } from 'react'
+
+import { Blank } from '@/legacy/components/common'
 import { Typography } from '@/legacy/components/common/Typography'
 import IBLayout from '@/legacy/components/ib/IBLayout'
-import PlagiarismInspect from '@/legacy/components/ib/plagiarismInspect/PlagiarismInspect'
 import FileUploadInspector from '@/legacy/components/ib/plagiarismInspect/FileUploadInspector'
-import { useState } from 'react'
 import InputInspector from '@/legacy/components/ib/plagiarismInspect/InputInspector'
+import PlagiarismInspect from '@/legacy/components/ib/plagiarismInspect/PlagiarismInspect'
 import { useGetPlagiarismInspectList } from '@/legacy/container/plagiarism-inspector'
-import { Blank } from '@/legacy/components/common'
 import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
+
 function PlagiarismInspectPage() {
   const [showInspector, setShowInspector] = useState(false)
   const [selectedType, setSelectedType] = useState<'upload' | 'input' | null>(null)
 
-  const {
-    data: plagiarismInspectList = { items: [] as ResponseCopykillerResponseDto[] },
-    isLoading,
-    isError,
-    error,
-  } = useGetPlagiarismInspectList()
+  const { data: plagiarismInspectList = { items: [] as ResponseCopykillerResponseDto[] }, isLoading } =
+    useGetPlagiarismInspectList()
 
   // 파일 데이터 상태 관리
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])

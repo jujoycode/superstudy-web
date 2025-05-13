@@ -1,10 +1,10 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { Link, Route, Switch, useHistory, useLocation } from 'react-router'
+import { Link, Route, Routes, useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
-import CAS from '@/legacy/assets/images/CAS.png'
-import EE from '@/legacy/assets/images/EE.png'
-import TOK from '@/legacy/assets/images/TOK.png'
+import { twMerge } from 'tailwind-merge'
+
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
@@ -21,8 +21,12 @@ import { IbOutline } from '@/legacy/components/ib/tok/IbOutline'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { PopupModal } from '@/legacy/components/PopupModal'
 import { useGetIBProject } from '@/legacy/container/ib-project-get-filter'
+import { ResponseIBDto } from '@/legacy/generated/model'
 import { meState } from '@/stores'
-import { twMerge } from 'tailwind-merge'
+
+import CAS from '@/legacy/assets/images/CAS.png'
+import EE from '@/legacy/assets/images/EE.png'
+import TOK from '@/legacy/assets/images/TOK.png'
 
 export type IBProject = '' | 'CAS' | 'EE' | 'TOK'
 export type ModalType = 'projectSelection' | 'IbEeProposal' | 'IbTok' | 'IbCAS' | null
@@ -33,7 +37,7 @@ export const IBStudentMainPage = () => {
   const { push } = useHistory()
   const { pathname } = useLocation()
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>('')
-  const [savedProjectData, setSavedProjectData] = useState<any>(null)
+  const [savedProjectData, setSavedProjectData] = useState<ResponseIBDto>()
   const [activeModal, setActiveModal] = useState<ModalType>(null)
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
   const [selectedValue, setSelectedValue] = useState<IBProject>('')
@@ -41,7 +45,7 @@ export const IBStudentMainPage = () => {
 
   const handleSuccess = (
     action: 'save' | 'requestApproval' | 'TOK_EXHIBITION' | 'TOK_ESSAY' | 'CAS_NORMAL' | 'CAS_PROJECT',
-    data?: any,
+    data?: ResponseIBDto,
   ) => {
     setSavedProjectData(data)
 
@@ -96,13 +100,13 @@ export const IBStudentMainPage = () => {
 
   const { data, getIBProject, isLoading } = useGetIBProject()
 
-  if (me == null) {
-    return <IBBlank />
-  }
-
   useEffect(() => {
     getIBProject({ studentId: me?.id || 0 })
   }, [])
+
+  if (me == null) {
+    return <IBBlank />
+  }
 
   const isEETypeExists = data?.items?.some((item) => item.ibType === 'EE')
   const isESSAYTypeExists = data?.items?.some((item) => item.ibType === 'TOK_ESSAY')
@@ -186,10 +190,10 @@ export const IBStudentMainPage = () => {
             }
             bottomContent={
               <div className="flex h-full items-center">
-                <Switch>
-                  <Route exact path="/ib/student" render={() => <StudentIBStatus data={data} />} />
-                  <Route path="/ib/student/portfolio" render={() => <CASPortfolio />} />
-                </Switch>
+                <Routes>
+                  <Route path="/ib/student" Component={() => <StudentIBStatus data={data} />} />
+                  <Route path="/ib/student/portfolio" Component={() => <CASPortfolio />} />
+                </Routes>
               </div>
             }
             bottomBgColor={pathname.startsWith('/ib/student/portfolio') ? 'bg-primary-gray-50' : 'white'}

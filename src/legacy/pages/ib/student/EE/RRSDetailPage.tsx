@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { useHistory, useLocation, useParams } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -27,9 +29,9 @@ import { useIBRRSUpdate } from '@/legacy/container/ib-rrs-update'
 import { RequestRRSDto, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { meState } from '@/stores'
 import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { meState } from '@/stores'
 
 interface LocationState {
   title: string
@@ -43,8 +45,8 @@ const urlDecorator = (decoratedHref: string, decoratedText: string, key: number)
 
 export default function RRSDetailPage() {
   const history = useHistory()
-  const location = useLocation<LocationState>()
-  const projectTitle = location.state?.title
+  const location = useLocation()
+  const projectTitle = location.state?.title as LocationState['title']
 
   const { id: idParam, rrsId: rrsIdParam } = useParams<{ id: string; rrsId: string }>()
   const id = Number(idParam)

@@ -2,8 +2,10 @@ import clsx from 'clsx'
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, useLocation, useParams } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -27,9 +29,9 @@ interface LocationState {
 
 export default function RPPFDetailPage() {
   const history = useHistory()
-  const location = useLocation<LocationState>()
-  const title = location.state?.title
-  const data = location.state?.data
+  const location = useLocation()
+  const title = location.state?.title as LocationState['title']
+  const data = location.state?.data as LocationState['data']
 
   const me = useRecoilValue(meState)
   const [modalOpen, setModalOpen] = useState<boolean>(false)
