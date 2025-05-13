@@ -1,10 +1,7 @@
 import { createBrowserRouter, type RouteObject } from 'react-router-dom'
-import { AuthGuard } from './guard/AuthGuard'
 
 // Home
-import { HomePage } from '@/legacy/pages/HomePage'
-
-// admin
+import { StudentRedirect } from '@/legacy/components/StudentRedirect'
 import { ApprovalLinePage } from '@/legacy/pages/admin/approval-line/ApprovalLinePage'
 import { ExpiredUserPage } from '@/legacy/pages/admin/expired-user/ExpiredUserPage'
 import { GroupEditPage } from '@/legacy/pages/admin/group/GroupEditPage'
@@ -13,6 +10,9 @@ import { IbCoordinatorPage } from '@/legacy/pages/admin/ib/IbCoordinatorPage'
 import { IbPage } from '@/legacy/pages/admin/ib/IbPage'
 import { IbStudentPage } from '@/legacy/pages/admin/ib/ibStudentPage'
 import { KlassEditPage } from '@/legacy/pages/admin/klass/KlassEditPage'
+import { HomePage } from '@/legacy/pages/HomePage'
+
+// admin
 import { KlassPage } from '@/legacy/pages/admin/klass/KlassPage'
 import { ParentDetailsPage } from '@/legacy/pages/admin/parent/ParentDetailsPage'
 import { ParentEditPage } from '@/legacy/pages/admin/parent/ParentEditPage'
@@ -36,12 +36,18 @@ import { TeacherPage } from '@/legacy/pages/admin/teacher/TeacherPage'
 import { TimetablePage } from '@/legacy/pages/admin/timetable/TimetablePage'
 
 // plagiarismInspect
-import DetailResultPopup from '@/legacy/pages/plagiarismInspect/DetailResultPopup'
+import CASInterviewDetailPage from '@/legacy/pages/ib/student/CAS/CASInterviewDetailPage'
+import { CASMainPage } from '@/legacy/pages/ib/student/CAS/CASMainPage'
+import { CASReflectionDiaryDetailPage } from '@/legacy/pages/ib/student/CAS/CASReflectionDiaryDetailPage'
+import { EeEssayDetailPage } from '@/legacy/pages/ib/student/EE/EeEssayDetailPage'
+import { EEMainPage } from '@/legacy/pages/ib/student/EE/EEMainPage'
+import RRSDetailPage from '@/legacy/pages/ib/student/EE/RRSDetailPage'
 import { CoordinatorPreviewPage } from '@/legacy/pages/ib/teacher/coordinator/CoordinatorPreviewPage'
+import DetailResultPopup from '@/legacy/pages/plagiarismInspect/DetailResultPopup'
+import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/student/PlagiarismInspectPage'
 import { NoticeDetailPage, MyInfoPage, ActivityDetailPage } from '@/legacy/pages/student'
-
-import AnnouncementPage from '@/legacy/pages/student/announcement/AnnouncementPage'
 import { AbsentAddPage } from '@/legacy/pages/student/absent/AbsentAddPage'
+import AnnouncementPage from '@/legacy/pages/student/announcement/AnnouncementPage'
 import { AbsentApprovalPage } from '@/legacy/pages/student/absent/AbsentApprovalPage'
 import { AbsentDetailPage } from '@/legacy/pages/student/absent/AbsentDetailPage'
 import { AbsentPage } from '@/legacy/pages/student/absent/AbsentPage'
@@ -54,9 +60,9 @@ import { CanteenPage } from '@/legacy/pages/student/canteen/CanteenPage'
 import { ChatListPage } from '@/legacy/pages/student/chat/ChatListPage'
 
 // student
-import { SelectSchool } from '@/legacy/pages/student/login/SelectSchool'
-import { CourseEntrancePage } from '@/legacy/pages/student/courseEntrance/CourseEntrancePage'
 import { ConsentForPromotionalAndMarketingPurposes } from '@/legacy/pages/student/ConsentForPromotionalAndMarketingPurposes'
+import { CourseEntrancePage } from '@/legacy/pages/student/courseEntrance/CourseEntrancePage'
+import { SelectSchool } from '@/legacy/pages/student/login/SelectSchool'
 import { ConsentToProvidePersonalInformationToThirdParties } from '@/legacy/pages/student/ConsentToProvidePersonalInformationToThirdParties'
 import { ConsentToUseOfPersonalInformation } from '@/legacy/pages/student/ConsentToUseOfPersonalInformation'
 import { FieldtripAddPage } from '@/legacy/pages/student/fieldtrip/FieldtripAddPage'
@@ -96,13 +102,8 @@ import { PrivacyPolicy } from '@/legacy/pages/student/PrivacyPolicy'
 import { SelfTestPage } from '@/legacy/pages/student/self-test/SelfTestPage'
 import { TermsOfUse } from '@/legacy/pages/student/TermsOfUse'
 import { TimetableDetailPage } from '@/legacy/pages/student/timetable/TimetableDetailPage'
-import { StudentRedirect } from '@/legacy/components/StudentRedirect'
 
 // ib
-import CASInterviewDetailPage from '@/legacy/pages/ib/student/CAS/CASInterviewDetailPage'
-import { CASMainPage } from '@/legacy/pages/ib/student/CAS/CASMainPage'
-import { CASReflectionDiaryDetailPage } from '@/legacy/pages/ib/student/CAS/CASReflectionDiaryDetailPage'
-import RRSDetailPage from '@/legacy/pages/ib/student/EE/RRSDetailPage'
 import { OutlineDetailPage } from '@/legacy/pages/ib/student/TOK_ESSAY/OutlineDetailPage'
 import TKPPFDetailPage from '@/legacy/pages/ib/student/TOK_ESSAY/TKPPFDetailPage'
 import { ExhibitionDetailPage } from '@/legacy/pages/ib/student/TOK_EXHIBITION/ExhibitionDetailPage'
@@ -117,33 +118,30 @@ import EERrsDetailPage from '@/legacy/pages/ib/teacher/EE/EERrsDetailPage'
 import IBTeacherMainPage from '@/legacy/pages/ib/teacher/IBTeacherMainPage'
 import { IBTeacherReferenceDetailPage } from '@/legacy/pages/ib/teacher/IBTeacherReferenceDetailPage'
 import { EssayDetailPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/EssayDetailPage'
-
 import AbsentComparisonPage from '@/legacy/pages/teacher/absent/AbsentComparisonPage'
 import { TeacherApplyPage } from '@/legacy/pages/teacher/absent/TeacherApplyPage'
 
 // teacher
-// import { ActivityV3AddPage } from '@/legacy/pages/teacher/activityv3/ActivityV3AddPage'
-// import { ActivityV3ReportPage } from '@/legacy/pages/teacher/activityv3/ActivityV3ReportPage'
-// import { ActivityV3SessionAddPage } from '@/legacy/pages/teacher/activityv3/ActivityV3SessionAddPage'
-// import { ActivityV3SessionReportPage } from '@/legacy/pages/teacher/activityv3/ActivityV3SessionReportPage'
-// import { ActivityV3SessionUpdatePage } from '@/legacy/pages/teacher/activityv3/ActivityV3SessionUpdatePage'
-// import { ActivityV3UpdatePage } from '@/legacy/pages/teacher/activityv3/ActivityV3UpdatePage'
-// import { AttendancePage } from '@/legacy/pages/teacher/attendance/AttendancePage'
-// import { BoardsPage } from '@/legacy/pages/teacher/board/BoardPage'
-// import { CalendarPage } from '@/legacy/pages/teacher/calendar/CalendarPage'
-// import { FieldtripResultPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripResultPage'
-// import { HistoryPage } from '@/legacy/pages/teacher/history/HistoryPage'
-// import { LoginPage } from '@/legacy/pages/teacher/login/LoginPage'
-// import { TeacherInfoPage } from '@/legacy/pages/teacher/mypage/TeacherInfoPage'
-// import { TeacherMyPage } from '@/legacy/pages/teacher/mypage/TeacherMyPage'
-// import { NewsletterPage } from '@/legacy/pages/teacher/newsletter/NewsletterPage'
-// import { PointDashboard } from '@/legacy/pages/teacher/pointlogs/PointDashboard'
-// import { RecordPage } from '@/legacy/pages/teacher/record/RecordPage'
-// import { StudentCardPage } from '@/legacy/pages/teacher/studentcard/StudentCardPage'
-// import { TeacherFirstLoginPage } from '@/legacy/pages/teacher/login/TeacherFirstLoginPage'
+import { ActivityV3AddPage } from '@/legacy/pages/teacher/activityv3/ActivityV3AddPage'
+import { ActivityV3ReportPage } from '@/legacy/pages/teacher/activityv3/ActivityV3ReportPage'
+import { ActivityV3SessionAddPage } from '@/legacy/pages/teacher/activityv3/ActivityV3SessionAddPage'
+import { ActivityV3SessionReportPage } from '@/legacy/pages/teacher/activityv3/ActivityV3SessionReportPage'
+import { ActivityV3SessionUpdatePage } from '@/legacy/pages/teacher/activityv3/ActivityV3SessionUpdatePage'
+import { ActivityV3UpdatePage } from '@/legacy/pages/teacher/activityv3/ActivityV3UpdatePage'
+import { AttendancePage } from '@/legacy/pages/teacher/attendance/AttendancePage'
+import { BoardsPage } from '@/legacy/pages/teacher/board/BoardPage'
+import { CalendarPage } from '@/legacy/pages/teacher/calendar/CalendarPage'
+import { FieldtripResultPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripResultPage'
+import { HistoryPage } from '@/legacy/pages/teacher/history/HistoryPage'
+import { TeacherFirstLoginPage } from '@/legacy/pages/teacher/login/TeacherFirstLoginPage'
+import { TeacherInfoPage } from '@/legacy/pages/teacher/mypage/TeacherInfoPage'
+import { TeacherMyPage } from '@/legacy/pages/teacher/mypage/TeacherMyPage'
+import { NewsletterPage } from '@/legacy/pages/teacher/newsletter/NewsletterPage'
+import { PointDashboard } from '@/legacy/pages/teacher/pointlogs/PointDashboard'
+import { RecordPage } from '@/legacy/pages/teacher/record/RecordPage'
 
-import { EeEssayDetailPage } from '@/legacy/pages/ib/student/EE/EeEssayDetailPage'
-import { EEMainPage } from '@/legacy/pages/ib/student/EE/EEMainPage'
+import { StudentCardPage } from '@/legacy/pages/teacher/studentcard/StudentCardPage'
+import { LoginPage } from '@/legacy/pages/teacher/login/LoginPage'
 import InterviewDetailPage from '@/legacy/pages/ib/student/EE/InterviewDetailPage'
 import { ProposalDetailPage } from '@/legacy/pages/ib/student/EE/ProposalDetailPage'
 import RPPFDetailPage from '@/legacy/pages/ib/student/EE/RPPFDetailPage'
@@ -153,7 +151,8 @@ import { EssayMainPage } from '@/legacy/pages/ib/student/TOK_ESSAY/EssayMainPage
 import { TOKEssayDetailPage } from '@/legacy/pages/ib/student/TOK_ESSAY/TOKEssayDetailPage'
 import TOKRRSDetailPage from '@/legacy/pages/ib/student/TOK_ESSAY/TOKRRSDetailPage'
 import { ExhibitionMainPage } from '@/legacy/pages/ib/student/TOK_EXHIBITION/ExhibitionMainPage'
-import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/student/PlagiarismInspectPage'
+
+import { AuthGuard } from './guard/AuthGuard'
 
 /**
  * Router
@@ -425,21 +424,21 @@ export const routers: RouteObject[] = [
     children: [
       { path: '/canteen', element: <CanteenPage /> },
       { path: '/timetable', element: <TimetablePage /> },
-      // { path: '/attendance', element: <AttendancePage /> },
+      { path: '/attendance', element: <AttendancePage /> },
       { path: '/absent/comparison', element: <AbsentComparisonPage /> },
-      // { path: '/history', element: <HistoryPage /> },
-      // { path: '/update', element: <TeacherInfoPage /> },
-      // { path: '/first-login', element: <TeacherFirstLoginPage /> },
+      { path: '/history', element: <HistoryPage /> },
+      { path: '/update', element: <TeacherInfoPage /> },
+      { path: '/first-login', element: <TeacherFirstLoginPage /> },
       {
         path: '/fieldtrip',
         children: [
           { path: '/notice', element: <FieldtripNoticePage /> },
-          // { path: '/result', element: <FieldtripResultPage /> },
+          { path: '/result', element: <FieldtripResultPage /> },
         ],
       },
-      // { path: '/board', element: <BoardsPage /> },
+      { path: '/board', element: <BoardsPage /> },
       { path: '/chat', element: <ChatListPage /> },
-      // { path: '/calendar', element: <CalendarPage /> },
+      { path: '/calendar', element: <CalendarPage /> },
       { path: '/project', element: <IBTeacherMainPage /> },
       {
         path: '/ib',
@@ -519,35 +518,35 @@ export const routers: RouteObject[] = [
               {
                 path: '/session',
                 children: [
-                  // { path: '/add', element: <ActivityV3SessionAddPage /> },
+                  { path: '/add', element: <ActivityV3SessionAddPage /> },
                   {
                     path: '/:sessionId',
                     children: [
-                      // { path: '/update', element: <ActivityV3SessionUpdatePage /> },
-                      // { path: '/:studentId', element: <ActivityV3SessionReportPage /> },
+                      { path: '/update', element: <ActivityV3SessionUpdatePage /> },
+                      { path: '/:studentId', element: <ActivityV3SessionReportPage /> },
                     ],
                   },
                 ],
               },
-              // { path: '/update', element: <ActivityV3UpdatePage /> },
-              // { path: '/:studentId', element: <ActivityV3ReportPage /> },
+              { path: '/update', element: <ActivityV3UpdatePage /> },
+              { path: '/:studentId', element: <ActivityV3ReportPage /> },
             ],
           },
-          // { path: '/add', element: <ActivityV3AddPage /> },
+          { path: '/add', element: <ActivityV3AddPage /> },
         ],
       },
       { path: '/activity/:id', element: <ActivityDetailPage /> },
-      // { path: '/record', element: <RecordPage /> },
+      { path: '/record', element: <RecordPage /> },
       { path: '/outing', element: <OutingPage /> },
-      // { path: '/studentcard', element: <StudentCardPage /> },
+      { path: '/studentcard', element: <StudentCardPage /> },
       { path: '/groups', element: <GroupPage /> },
-      // { path: '/pointlogs', element: <PointDashboard /> },
+      { path: '/pointlogs', element: <PointDashboard /> },
       { path: '/notice', element: <NoticePage /> },
-      // { path: '/newsletter', element: <NewsletterPage /> },
+      { path: '/newsletter', element: <NewsletterPage /> },
       { path: '/apply', element: <TeacherApplyPage /> },
-      // { path: '/mypage', element: <TeacherMyPage /> },
+      { path: '/mypage', element: <TeacherMyPage /> },
       { path: '/notification-settings', element: <NotificationSettingsPage /> },
-      // { path: '/login', element: <LoginPage /> },
+      { path: '/login', element: <LoginPage /> },
       { path: '/announcement', element: <AnnouncementPage /> },
     ],
   },

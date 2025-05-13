@@ -1,4 +1,5 @@
 import { useParams } from 'react-router'
+
 import { Blank } from '@/legacy/components/common'
 import { Time } from '@/legacy/components/common/Time'
 import { useTeacherNewsletterCheckDetail } from '@/legacy/container/teacher-newsletter-check-detail'
@@ -6,7 +7,7 @@ import { useTeacherNewsletterCheckDetail } from '@/legacy/container/teacher-news
 export function NewsletterCheckDetailPage() {
   const { id, snid } = useParams<{ id: string; snid: string }>()
 
-  const { newsletter, isLoading } = useTeacherNewsletterCheckDetail(+id, +snid)
+  const { newsletter, isLoading } = useTeacherNewsletterCheckDetail(Number(id), Number(snid))
 
   return (
     <>

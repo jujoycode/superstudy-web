@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { useParams } from 'react-router'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Routes, useParams } from 'react-router'
+import { Route } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { SuperModal, Tab } from '@/legacy/components'
 import { Blank } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -11,12 +13,13 @@ import { NewsletterSubmitterItem } from '@/legacy/components/newsletter/Newslett
 import { useTeacherNewsletterSubmit } from '@/legacy/container/teacher-newsletter-submit'
 import { ResponseGroupDto, StudentGroup, StudentNewsletter } from '@/legacy/generated/model'
 import { newsletterOpenedGroupState } from '@/stores'
+
 import { NewsletterSubmitDetailPage } from './NewsletterSubmitDetailPage'
-import { ReactComponent as RightArrow } from '@/asset/svg/mypage-right-arrow.svg'
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 
 export function NewsletterSubmitPage() {
   const { push } = useHistory()
-  const { id } = useParams<{ id: string }>()
+  const { id = '' } = useParams<{ id: string }>()
   const queryClient = useQueryClient()
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -35,7 +38,7 @@ export function NewsletterSubmitPage() {
     selectKlassGroup,
     handleRePush,
     submiterLoding,
-  } = useTeacherNewsletterSubmit(+id)
+  } = useTeacherNewsletterSubmit(Number(id))
 
   const selectedFilter = Number(localStorage.getItem('selectedFilter'))
 
@@ -162,9 +165,9 @@ export function NewsletterSubmitPage() {
         </div>
       </div>
       <div className="col-span-3">
-        <Switch>
-          <Route path={`/teacher/newsletter/submit/:id/:snid`} component={() => <NewsletterSubmitDetailPage />} />
-        </Switch>
+        <Routes>
+          <Route path={`/teacher/newsletter/submit/:id/:snid`} Component={() => <NewsletterSubmitDetailPage />} />
+        </Routes>
       </div>
       <SuperModal modalOpen={modalOpen} setModalClose={() => setModalOpen(false)} className="w-max">
         <div className="px-12 py-6">
@@ -174,7 +177,7 @@ export function NewsletterSubmitPage() {
           <Button.lg
             children="재알림하기"
             onClick={async () => {
-              await handleRePush(+id)
+              await handleRePush(Number(id))
               await setModalOpen(false)
             }}
             className="filled-primary w-full"

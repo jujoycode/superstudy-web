@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { twMerge } from 'tailwind-merge'
+
 import { SuperModal } from '@/legacy/components'
 import { ChatSetting } from '@/legacy/components/chat/ChatSetting'
 import { DateMessage } from '@/legacy/components/chat/DateMessage'
@@ -21,9 +22,10 @@ import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { useSocket } from '@/legacy/lib/socket'
 import { isNowOrFuture } from '@/legacy/util/time'
 import { meState } from '@/stores'
-import { ReactComponent as ChatSendDisabled } from '@/asset/svg/chat-send-disabled.svg'
-import { ReactComponent as ChatSendEnabled } from '@/asset/svg/chat-send-enabled.svg'
-import SvgUser from '@/asset/svg/user.svg'
+
+import ChatSendDisabled from '@/assets/svg/chat-send-disabled.svg'
+import ChatSendEnabled from '@/assets/svg/chat-send-enabled.svg'
+import SvgUser from '@/assets/svg/user.svg'
 
 interface ChatDetailPageProps {
   id: string
@@ -52,9 +54,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
   const {
     imageObjectMap,
     documentObjectMap,
-    handleImageAdd,
     toggleImageDelete,
-    handleDocumentAdd,
     addFiles,
     toggleDocumentDelete,
     resetDocuments,
@@ -388,7 +388,9 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
                 }}
               />
               {(newMessage || imageObjectMap.size || documentObjectMap.size) && chatOpenTime ? (
-                <ChatSendEnabled onClick={() => OnSendMessage()} />
+                <div onClick={() => OnSendMessage()}>
+                  <ChatSendEnabled />
+                </div>
               ) : (
                 <ChatSendDisabled />
               )}

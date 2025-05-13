@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
+
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -18,10 +19,10 @@ import { useSignature } from '@/legacy/hooks/useSignature'
 import { useStamp } from '@/legacy/hooks/useStamp'
 import { compareFieldTrips } from '@/legacy/util/document'
 import { getCurrentSchoolYear, isValidDate, makeDateToString, makeStartEndToString } from '@/legacy/util/time'
+
 import { FieldtripDetailPage } from './FieldtripDetailPage'
 
 export function FieldtripMainPage() {
-  const { replace } = useHistory()
   const { replaceWithQueryParams } = useQueryParams()
 
   const { pathname } = useLocation()
@@ -115,10 +116,6 @@ export function FieldtripMainPage() {
       }
       setStampMode(false)
     }
-  }
-
-  const frontSort = (sortType: string) => {
-    setFrontSortType(sortType)
   }
 
   function makeStudentNumber(studentGradeKlass: string, studentNumber: string): number {
@@ -389,10 +386,10 @@ export function FieldtripMainPage() {
       </div>
       {me?.school && (
         <div className="col-span-3 bg-gray-50 md:p-6">
-          <Switch>
+          <Routes>
             <Route
               path="/teacher/fieldtrip/:id"
-              component={() => (
+              Component={() => (
                 <FieldtripDetailPage
                   setOpen={(b: boolean) => setOpen(b)}
                   setFieldtripId={(n: number) => setFieldtripId(n)}
@@ -411,7 +408,7 @@ export function FieldtripMainPage() {
                 // />
               )}
             />
-          </Switch>
+          </Routes>
         </div>
       )}
       <SuperModal

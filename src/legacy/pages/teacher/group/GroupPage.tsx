@@ -1,16 +1,18 @@
 import { useState } from 'react'
-import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Link, Route, Routes, useLocation } from 'react-router-dom'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Divider } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
 import { TeacharAllGroup, useTeacherAllGroup } from '@/legacy/container/teacher-group-all'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+
 import { GroupAddPage } from './GroupAddPage'
 import { GroupDetailPage } from './GroupDetailPage'
 
 export function GroupPage() {
   const { push } = useHistory()
   const { t, currentLang } = useLanguage()
-  //const { id } = useParams<{ id: string }>();
   const { pathname } = useLocation()
   const id = pathname.replace('/teacher/groups', '').replace('/', '')
 
@@ -112,13 +114,13 @@ export function GroupPage() {
         </div>
       </div>
       <div className="scroll-box col-span-3 bg-gray-50">
-        <Switch>
-          <Route path="/teacher/groups/add" component={() => <GroupAddPage />} />
+        <Routes>
+          <Route path="/teacher/groups/add" Component={() => <GroupAddPage />} />
           <Route
             path="/teacher/groups/:id"
-            component={() => <GroupDetailPage selectedGroup={allGroups.find((g) => g.id === +id)} />}
+            Component={() => <GroupDetailPage selectedGroup={allGroups.find((g) => g.id === +id)} />}
           />
-        </Switch>
+        </Routes>
       </div>
     </div>
   )

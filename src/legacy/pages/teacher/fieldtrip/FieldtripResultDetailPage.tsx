@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { useHistory } from 'react-router'
 import { useParams } from 'react-router-dom'
-import { approveButtonType } from 'src/types'
+
 import { SuperModal } from '@/legacy/components'
 import { Blank, Section, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -12,11 +11,13 @@ import { FieldtripSuburbsTextSeparatePaper } from '@/legacy/components/fieldtrip
 import { useTeacherFieldtripResultDetail } from '@/legacy/container/teacher-fieldtrip-result-detail'
 import { ResponseUserDto } from '@/legacy/generated/model'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
+import { approveButtonType } from '@/legacy/types'
 import { splitStringByUnicode } from '@/legacy/util/fieldtrip'
 import { extractReactData, getDoc } from '@/legacy/util/pdf'
 import { buttonEnableState } from '@/legacy/util/permission'
 import { getNickName } from '@/legacy/util/status'
 import { makeDateToString, makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
+
 import { FieldtripResultUpdatePage } from './FieldtripResultUpdatePage'
 
 interface FieldtripResultDetailPageProps {
@@ -27,41 +28,6 @@ interface FieldtripResultDetailPageProps {
   me: ResponseUserDto | undefined
 }
 
-const calculateStatus = (role: string, order: 'before' | 'after' | 'show') => {
-  const roles = ['TEACHER', 'PRE_HEAD', 'HEAD', 'PRE_PRINCIPAL', 'PRINCIPAL', 'VICE_PRINCIPAL', 'HEAD_PRINCIPAL']
-  const _fieldtripStatus = [
-    'BEFORE_TEACHER_APPROVAL',
-    'TEACHER',
-    'BEFORE_PRE_HEAD_APPROVAL',
-    'PRE_HEAD',
-    'BEFORE_HEAD_APPROVAL',
-    'HEAD',
-    'BEFORE_PRE_PRINCIPAL_APPROVAL',
-    'PRE_PRINCIPAL',
-    'BEFORE_PRINCIPAL_APPROVAL',
-    'PRINCIPAL',
-    'BEFORE_VICE_PRINCIPAL_APPROVAL',
-    'VICE_PRINCIPAL',
-    'BEFORE_HEAD_PRINCIPAL_APPROVAL',
-    'HEAD_PRINCIPAL',
-    'PROCESSED',
-  ]
-
-  if (role === 'SECURITY') return ['PROCESSED']
-
-  const index = _fieldtripStatus.findIndex((el) => el === role)
-
-  if (index === -1) return []
-
-  if (order === 'before') {
-    return _fieldtripStatus.slice(index - 1, index).filter((el) => !roles.includes(el))
-  } else if (order === 'after') {
-    return _fieldtripStatus.slice(index).filter((el) => !roles.includes(el))
-  } else if (order === 'show') {
-    return _fieldtripStatus.slice(index - 1).filter((el) => !roles.includes(el))
-  }
-}
-
 export function FieldtripResultDetailPage({
   school,
   setOpen,
@@ -69,9 +35,8 @@ export function FieldtripResultDetailPage({
   setFieldtripId,
   me,
 }: FieldtripResultDetailPageProps) {
-  const { push } = useHistory()
   const { pushWithQueryParams } = useQueryParams()
-  const { id } = useParams<{ id: string }>()
+  const { id = '' } = useParams<{ id: string }>()
   const ref = useRef(null)
   const refTextPageRemain = useRef<any[]>([])
   const planRef = useRef(null)
@@ -150,9 +115,9 @@ export function FieldtripResultDetailPage({
     setFieldtripId && setFieldtripId(Number(id))
   }, [id])
 
-  let homeplans: any = []
+  let homeplans: Record<string, string>[] = []
   let content
-  const resultFilesWithTwo: any = []
+  const resultFilesWithTwo: string[][] = []
 
   try {
     if (fieldtrip?.type === 'HOME') {
@@ -190,8 +155,6 @@ export function FieldtripResultDetailPage({
     console.log(err)
   }
 
-  const buttonDisabled = !(fieldtrip?.nextResultApproverId === me?.id)
-
   // 결재권자 인지. 결재라인에 있으면 true, 없으면 false
   const approver =
     fieldtrip?.resultApprover1Id === me?.id ||
@@ -220,7 +183,6 @@ export function FieldtripResultDetailPage({
     return !buttonEnableState(
       bottonType,
       approver,
-      isApproved,
       nowApprove,
       fieldtrip?.fieldtripResultStatus || '',
       fieldtrip?.studentGradeKlass === me?.klassGroupName,
@@ -331,10 +293,10 @@ export function FieldtripResultDetailPage({
 
           {fieldtrip?.type === 'HOME' && (
             <>
-              {homeplans?.map((content: any, i: number) => (
+              {homeplans?.map((content, i: number) => (
                 <div
                   key={i}
-                  ref={(el) => (separatePaperRefs.current[i] = el)}
+                  ref={separatePaperRefs.current[i]}
                   className={` ${download ? 'h-[1100px] w-[778px] p-15' : 'w-full p-5 md:p-12'} bg-white`}
                 >
                   <FieldtripSeparatePaper
@@ -352,10 +314,10 @@ export function FieldtripResultDetailPage({
 
           {fieldtrip?.type === 'SUBURBS' && resultTextPages.length > 1 && (
             <>
-              {resultTextPages.slice(1).map((el: any, i: number) => (
+              {resultTextPages.slice(1).map((el: string, i: number) => (
                 <div
                   key={i}
-                  ref={(el) => (refTextPageRemain.current[i] = el)}
+                  ref={refTextPageRemain.current[i]}
                   className={` ${download ? 'h-[1100px] w-[778px] p-15' : 'w-full p-5 md:p-12'} bg-white`}
                 >
                   <FieldtripSuburbsTextSeparatePaper
@@ -369,10 +331,10 @@ export function FieldtripResultDetailPage({
           )}
           {fieldtrip?.type === 'SUBURBS' && (
             <>
-              {resultFilesWithTwo.map((el: any, i: number) => (
+              {resultFilesWithTwo.map((el: string[], i: number) => (
                 <div
                   key={i}
-                  ref={(el) => (separatePaperRefs.current[i] = el)}
+                  ref={separatePaperRefs.current[i]}
                   className={` ${download ? 'h-[1100px] w-[778px] p-15' : 'w-full p-5 md:p-12'} bg-white`}
                 >
                   <FieldtripSuburbsSeparatePaper

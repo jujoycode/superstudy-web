@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { useRecoilState, useRecoilValue } from 'recoil'
+
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -12,7 +13,9 @@ import { Code, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isUpdateNoticeState, meState } from '@/stores'
+
 import { NoticeAddPage } from './NoticeAddPage'
+
 interface NoticeAddProps {
   categoryData?: Code[]
 }
@@ -22,14 +25,12 @@ export function NoticeDetailPage({ categoryData }: NoticeAddProps) {
 
   const me = useRecoilValue(meState)
   const [isUpdateNotice, setIsUpdateNotice] = useRecoilState(isUpdateNoticeState)
-  const { notice, isNoticeLoading, images, Pdfs, files, viewerImages, errorMessage, handleNoticeDelete } =
-    useTeacherNoticeDetail(+id)
+  const { notice, isNoticeLoading, viewerImages, errorMessage, handleNoticeDelete } = useTeacherNoticeDetail(Number(id))
   const { t } = useLanguage()
 
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
-  const [focusPdfFile, setFocusPdfFile] = useState('')
   const [activeIndex, setActiveIndex] = useState(0)
 
   if (isUpdateNotice) {
@@ -123,13 +124,13 @@ export function NoticeDetailPage({ categoryData }: NoticeAddProps) {
               noImgDetails={false}
               scalable={false}
               images={viewerImages}
-              onChange={(activeImage, index) => setActiveIndex(index)}
+              onChange={(_, index) => setActiveIndex(index)}
               onClose={() => setImagesModalOpen(false)}
               activeIndex={activeIndex}
             />
           </div>
           <div className="absolute">
-            <PdfViewer isOpen={hasPdfModalOpen} fileUrl={focusPdfFile} onClose={() => setPdfModalOpen(false)} />
+            <PdfViewer isOpen={hasPdfModalOpen} fileUrl={''} onClose={() => setPdfModalOpen(false)} />
           </div>
         </>
       )}

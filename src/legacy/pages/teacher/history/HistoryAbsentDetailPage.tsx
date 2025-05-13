@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 import { Document, Page } from 'react-pdf'
 import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
-import { AbsentEvidenceType, approveButtonType } from 'src/types'
+
 import { SuperModal } from '@/legacy/components'
 import { AbsentPaper } from '@/legacy/components/absent/AbsentPaper'
 import { ParentConfirmPaper } from '@/legacy/components/absent/ParentConfirmPaper'
@@ -13,6 +13,7 @@ import { Button } from '@/legacy/components/common/Button'
 import { Constants } from '@/legacy/constants'
 import { useTeacherAbsentDeatil } from '@/legacy/container/teacher-absent-detail'
 import { AbsentStatus } from '@/legacy/generated/model'
+import { AbsentEvidenceType, approveButtonType } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { extractImageData, extractReactData, extractReactDataArray, getDoc, getPdfImageSize } from '@/legacy/util/pdf'
 import { buttonEnableState } from '@/legacy/util/permission'
@@ -20,23 +21,19 @@ import { makeStartEndToString } from '@/legacy/util/time'
 import { meState } from '@/stores'
 
 interface HistoryAbsentDetailPageProps {
-  setOpen: (b: boolean) => void
   setAbsentId: (n: number) => void
-  setAgreeAll: (b: boolean) => void
   userId?: number
 }
 
-export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, userId }: HistoryAbsentDetailPageProps) {
+export function HistoryAbsentDetailPage({ setAbsentId, userId }: HistoryAbsentDetailPageProps) {
   const { id } = useParams<{ id: string }>()
   const ref = useRef(null)
   const parentRef = useRef(null)
   const pdfPaperRefs = useRef<any[]>([])
   const parent2Ref = useRef(null)
   const pdf2PaperRefs = useRef<any[]>([])
-  const teacherRef = useRef(null)
   const me = useRecoilValue(meState)
 
-  const [changeMode, setChangeMode] = useState(false)
   const [clicked, setClicked] = useState(false)
 
   const [download, setDownload] = useState(false)
@@ -72,8 +69,6 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
     absent?.approver4Signature && absent?.approver4Id,
     absent?.approver5Signature && absent?.approver5Id,
   ]
-  // 내가 승인한 건 : ture , 승인 안한 건 : false
-  const isApproved = approvedLine.includes(userId)
 
   // 승인할 차례 : true, 승인전/승인후 : false
   const nowApprove = absent?.nextApproverId === userId
@@ -85,7 +80,6 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
     return !buttonEnableState(
       bottonType,
       approver,
-      isApproved,
       nowApprove,
       absent?.absentStatus || '',
       absent?.studentGradeKlass === me?.klassGroupName,
@@ -163,7 +157,7 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
                     {Array.from(new Array(numPages), (_, index) => (
                       <div
                         key={index}
-                        ref={(el) => pdfPaperRefs.current !== null && (pdfPaperRefs.current[index] = el)}
+                        ref={pdfPaperRefs.current[index]}
                         className="h-[1100px] w-[778px] overflow-hidden bg-white"
                       >
                         <Page
@@ -220,7 +214,7 @@ export function HistoryAbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, use
                     {Array.from(new Array(numPages), (_, index) => (
                       <div
                         key={index}
-                        ref={(el) => pdf2PaperRefs.current !== null && (pdf2PaperRefs.current[index] = el)}
+                        ref={pdf2PaperRefs.current[index]}
                         className="h-[1100px] w-[778px] overflow-hidden bg-white"
                       >
                         <Page

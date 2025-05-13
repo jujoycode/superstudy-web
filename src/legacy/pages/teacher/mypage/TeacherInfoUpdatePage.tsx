@@ -1,4 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react'
+
 import { BackButton, Blank, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
@@ -10,7 +11,8 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { checkFileSizeLimit100MB } from '@/legacy/util/file'
 import { getHoursfromHHmmString, getMinutesfromHHmmString } from '@/legacy/util/time'
 import { Validator } from '@/legacy/util/validator'
-import SvgUser from '@/asset/svg/user.svg'
+
+import SvgUser from '@/assets/svg/user.svg'
 
 interface TeacherInfoUpdatePageProps {
   me: ResponseUserDto
@@ -23,7 +25,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
   const [password2, setPassword2] = useState('')
   const [phone, setPhone] = useState(me?.phone || '')
   const [profile, setProfile] = useState(me?.profile || '')
-  const { handleUploadFile, isUploadLoading } = useFileUpload()
+  const { handleUploadFile } = useFileUpload()
 
   const [department, setDepartment] = useState(me?.teacherProperty?.department || '')
   const [position, setPosition] = useState(me?.teacherProperty?.position || '')

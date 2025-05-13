@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
-import { approveButtonType } from 'src/types'
+
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import CertificationBadge from '@/legacy/components/blockchain/CertificationBadge'
 import { BackButton, Blank, Section, Textarea, TopNavbar } from '@/legacy/components/common'
@@ -10,9 +10,11 @@ import { OutingDetail } from '@/legacy/components/outing/OutingDetail'
 import { useBlockChainDocument } from '@/legacy/container/block-chain-document-status'
 import { useTeacherOutingDetail } from '@/legacy/container/teacher-outing-detail'
 import { OutingStatus, Role } from '@/legacy/generated/model'
+import { approveButtonType } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { PermissionUtil, buttonEnableState } from '@/legacy/util/permission'
 import { meState } from '@/stores'
+
 import { OutingUpdatePage } from './OutingUpdatePage'
 
 interface OutingDetailPageProps {
@@ -117,7 +119,6 @@ export function OutingDetailPage({
     return !buttonEnableState(
       bottonType,
       approver,
-      isApproved,
       nowApprove,
       outing?.outingStatus || '',
       outing?.studentGradeKlass === me?.klassGroupName,

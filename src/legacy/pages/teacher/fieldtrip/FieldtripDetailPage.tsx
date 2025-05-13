@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useSetRecoilState } from 'recoil'
-import { approveButtonType } from 'src/types'
+
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Blank, Section, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -13,11 +13,13 @@ import { useTeacherFieldtripDetail } from '@/legacy/container/teacher-fieldtrip-
 import { fieldtripsReCalculateFieldtripDaysWithUserId } from '@/legacy/generated/endpoint'
 import { FieldtripStatus, ResponseUserDto } from '@/legacy/generated/model'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
+import { approveButtonType } from '@/legacy/types'
 import { extractReactData, getDoc } from '@/legacy/util/pdf'
 import { buttonEnableState } from '@/legacy/util/permission'
 import { getNickName } from '@/legacy/util/status'
 import { makeDateToString, makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
 import { toastState } from '@/stores'
+
 import { FieldtripUpdatePage } from './FieldtripUpdatePage'
 
 interface FieldtripDetailPageProps {
@@ -28,9 +30,8 @@ interface FieldtripDetailPageProps {
 }
 
 export function FieldtripDetailPage({ setOpen, setFieldtripId, setAgreeAll, me }: FieldtripDetailPageProps) {
-  const { push } = useHistory()
   const { pushWithQueryParams } = useQueryParams()
-  const { id } = useParams<{ id: string }>()
+  const { id = '' } = useParams<{ id: string }>()
   const ref = useRef(null)
   const separatePaperRefs = useRef<any[]>([])
   const planRef = useRef(null)
@@ -99,14 +100,13 @@ export function FieldtripDetailPage({ setOpen, setFieldtripId, setAgreeAll, me }
     return !buttonEnableState(
       bottonType,
       approver,
-      isApproved,
       nowApprove,
       fieldtrip?.fieldtripStatus || '',
       fieldtrip?.studentGradeKlass === me?.klassGroupName,
     )
   }
 
-  let homeplans: any = []
+  let homeplans: Record<string, string>[] = []
 
   try {
     if (fieldtrip?.type === 'HOME') {
@@ -124,7 +124,7 @@ export function FieldtripDetailPage({ setOpen, setFieldtripId, setAgreeAll, me }
     console.log(err)
   }
 
-  const applyFilesWithTwo: any = []
+  const applyFilesWithTwo: string[][] = []
 
   try {
     if (fieldtrip?.applyFiles instanceof Array) {
@@ -253,7 +253,7 @@ export function FieldtripDetailPage({ setOpen, setFieldtripId, setAgreeAll, me }
             {homeplans?.map((content: any, i: number) => (
               <div
                 key={i}
-                ref={(el) => (separatePaperRefs.current[i] = el)}
+                ref={separatePaperRefs.current[i]}
                 className={` ${download ? 'h-[1100px] w-[778px] p-5' : 'w-full p-5 md:p-0'} bg-white`}
                 //className="h-[1058px] w-[760px] bg-white p-5"
               >
@@ -272,10 +272,10 @@ export function FieldtripDetailPage({ setOpen, setFieldtripId, setAgreeAll, me }
 
         {fieldtrip?.type === 'SUBURBS' && (
           <>
-            {applyFilesWithTwo.map((el: any, i: number) => (
+            {applyFilesWithTwo.map((el: string[], i: number) => (
               <div
                 key={i}
-                ref={(el) => (separatePaperRefs.current[i] = el)}
+                ref={separatePaperRefs.current[i]}
                 className={` ${download ? 'h-[1100px] w-[778px] p-15' : 'w-full p-5 md:p-12'} bg-white`}
               >
                 <FieldtripSuburbsSeparatePaper

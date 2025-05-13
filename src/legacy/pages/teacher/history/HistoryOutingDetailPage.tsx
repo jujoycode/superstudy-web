@@ -1,27 +1,22 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
-import { approveButtonType } from 'src/types'
+
 import { Blank, Section } from '@/legacy/components/common'
 import { useTeacherOutingDetail } from '@/legacy/container/teacher-outing-detail'
-import { OutingTypeEnum, ResponsePaginatedOutingDto, Role } from '@/legacy/generated/model'
+import { OutingTypeEnum, ResponsePaginatedOutingDto } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { buttonEnableState } from '@/legacy/util/permission'
 import { getNickName } from '@/legacy/util/status'
-import { meState } from '@/stores'
 
 interface HistoryOutingDetailPageProps {
   outings?: ResponsePaginatedOutingDto
-  userRole?: Role
   setOpen: (b: boolean) => void
   setOutingId: (n: number) => void
   setAgreeAll: (b: boolean) => void
 }
 
-export function HistoryOutingDetailPage({ userRole, outings, setOutingId }: HistoryOutingDetailPageProps) {
+export function HistoryOutingDetailPage({ outings, setOutingId }: HistoryOutingDetailPageProps) {
   const { id } = useParams<{ id: string }>()
-  const me = useRecoilValue(meState)
   const outing = outings?.items?.filter((el) => el.id === Number(id))[0]
 
   const { isLoading } = useTeacherOutingDetail(Number(id))
@@ -30,15 +25,9 @@ export function HistoryOutingDetailPage({ userRole, outings, setOutingId }: Hist
     setOutingId(Number(id))
   }, [id, setOutingId])
 
-  if (!outing) {
-    return <div className="h-screen-14 rounded-lg border bg-white p-5"></div>
-  }
-
-  const isConfirmed = outing?.outingStatus === 'PROCESSED'
-
-  const updatedAt = DateUtil.formatDate(outing.updatedAt, DateFormat['YYYY-MM-DD HH:mm'])
-  const startAt = DateUtil.formatDate(outing.startAt, DateFormat['YYYY-MM-DD HH:mm'])
-  const endAt = DateUtil.formatDate(outing.endAt, DateFormat['YYYY-MM-DD HH:mm'])
+  const updatedAt = DateUtil.formatDate(outing?.updatedAt || '', DateFormat['YYYY-MM-DD HH:mm'])
+  const startAt = DateUtil.formatDate(outing?.startAt || '', DateFormat['YYYY-MM-DD HH:mm'])
+  const endAt = DateUtil.formatDate(outing?.endAt || '', DateFormat['YYYY-MM-DD HH:mm'])
 
   const { data: approver1Signature } = useSignedUrl(outing?.approver1Signature)
   const { data: approver2Signature } = useSignedUrl(outing?.approver2Signature)
@@ -46,41 +35,8 @@ export function HistoryOutingDetailPage({ userRole, outings, setOutingId }: Hist
   const { data: approver4Signature } = useSignedUrl(outing?.approver4Signature)
   const { data: approver5Signature } = useSignedUrl(outing?.approver5Signature)
 
-  // 결재권자 인지. 결재라인에 있으면 true, 없으면 false
-  const approver =
-    outing?.approver1Id === me?.id ||
-    outing?.approver2Id === me?.id ||
-    outing?.approver3Id === me?.id ||
-    outing?.approver4Id === me?.id ||
-    outing?.approver5Id === me?.id
-
-  const approvedLine = [
-    outing?.approver1Signature && outing?.approver1Id,
-    outing?.approver2Signature && outing?.approver2Id,
-    outing?.approver3Signature && outing?.approver3Id,
-    outing?.approver4Signature && outing?.approver4Id,
-    outing?.approver5Signature && outing?.approver5Id,
-  ]
-  // 내가 승인한 건 : ture , 승인 안한 건 : false
-  const isApproved = approvedLine.includes(me?.id || 0)
-
-  // 승인할 차례 : true, 승인전/승인후 : false
-  // 지금은 순서가 없으므로, 결재유무만 판단
-  //const nowApprove = outing?.nextApproverId === me?.id;
-  const nowApprove = !isApproved
-
-  // 승인 전 = !isApproved && !nowApprove
-  // 승인 후 = isApproved && !nowApprove
-
-  const checkButtonDisable = (bottonType: approveButtonType) => {
-    return !buttonEnableState(
-      bottonType,
-      approver,
-      isApproved,
-      nowApprove,
-      outing?.outingStatus || '',
-      outing?.studentGradeKlass === me?.klassGroupName,
-    )
+  if (!outing) {
+    return <div className="h-screen-14 rounded-lg border bg-white p-5"></div>
   }
 
   return (

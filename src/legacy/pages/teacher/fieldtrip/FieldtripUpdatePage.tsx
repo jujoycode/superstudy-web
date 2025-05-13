@@ -3,6 +3,7 @@ import { eachDayOfInterval } from 'date-fns'
 import { chain, concat, every, flatten, get } from 'lodash'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
 import { SelectValues, SuperModal } from '@/legacy/components'
 import { Badge, Blank, Label, Section, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -37,8 +38,6 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
   const [updateReason, setUpdateReason] = useState('')
   const [fieldtripType, setFieldtripType] = useState(fieldtripTypes[0])
   const [count, setCount] = useState(0)
-  const [holidays, setHolidays] = useState<Date[]>([])
-  const [notSelectableDates, setNotSelectableDates] = useState<Date[]>([])
   const [excludeDates, setExcludeDates] = useState<Date[]>([])
 
   const [startHalf, setStartHalf] = useState(fieldtrip?.startPeriodS > 0)
@@ -52,8 +51,6 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
   const [wholeUsedDayCnt, setWholeUsedDayCnt] = useState(1.0) // 반일 외 사용일수
   const [eHalfUsedDayCnt, setEHalfUsedDayCnt] = useState(0.0) // 종료반일 사용시 0.5 fix
   const [sHalfDate, setSHalfDate] = useState('')
-  const [wholeStartDate, setWholeStartDate] = useState('')
-  const [wholeEndDate, setWholeEndDate] = useState('')
   const [eHalfDate, setEHalfDate] = useState('')
 
   const [dayHomePlan, setDayHomePlan] = useState(false)
@@ -177,8 +174,6 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
       setWholeUsedDayCnt(_wholeUsedDayCnt)
       setEHalfUsedDayCnt(_eHalfUsedDayCnt)
       setSHalfDate(_sHalfDate)
-      setWholeStartDate(_wholeStartDate)
-      setWholeEndDate(_wholeEndDate)
       setWholeDayPeriod(_wholeStartDate + '~' + _wholeEndDate)
       setEHalfDate(_eHalfDate)
     }
@@ -233,8 +228,6 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
         })
       })
       .value()
-    setNotSelectableDates(flatten(excludeSchedules).filter(_uniqDate))
-    setHolidays(flatten(holidaySchedules).filter(_uniqDate))
     setExcludeDates(concat(flatten(excludeSchedules), flatten(holidaySchedules)).filter(_uniqDate))
   }, [cannotSchedules])
 
@@ -297,19 +290,6 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
             <label className="mb-1 text-sm text-gray-800">*기간</label>
             <div className="space-y-3 pb-6">
               <div>
-                {/* <div className="flex items-center">
-                  <input
-                    id="startAt"
-                    type="date"
-                    value={startAt.substring(0, 10)}
-                    className="h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
-                    onChange={(e) => {
-                      setStartAt(e.target.value);
-                    }}
-                  />
-                  <span className="ml-3 flex-shrink-0">부터</span>
-                </div> */}
-
                 <div className="flex flex-row items-center">
                   <FieldtripDatePicker
                     selectedDate={startAtDate}
@@ -360,18 +340,6 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                   </div>
                 )}
 
-                {/* <div className="flex items-center">
-                  <input
-                    id="endAt"
-                    type="date"
-                    value={endAt.substring(0, 10)}
-                    className="h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
-                    onChange={(e) => {
-                      setEndAt(e.target.value);
-                    }}
-                  />
-                  <span className="ml-3 flex-shrink-0">까지</span>
-                </div> */}
                 <div className="flex flex-row items-center">
                   <FieldtripDatePicker
                     disabled={!startAtDate}

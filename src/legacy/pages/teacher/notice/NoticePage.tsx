@@ -1,8 +1,9 @@
 import { range } from 'lodash'
 import { useEffect, useState } from 'react'
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { TabType } from 'src/types'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Chip, HorizontalScrollView, Select, TopNavbar } from '@/legacy/components/common'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -14,8 +15,10 @@ import { useCodeByCategoryName } from '@/legacy/container/category'
 import { TeacherNoticeContainer } from '@/legacy/container/teacher-notice'
 import { Category, Code, Notice } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { TabType } from '@/legacy/types'
 import { getThisYear } from '@/legacy/util/time'
 import { isUpdateNoticeState, meState } from '@/stores'
+
 import { NoticeAddPage } from './NoticeAddPage'
 import { NoticeDetailPage } from './NoticeDetailPage'
 import { NoticeMobilePage } from './NoticeMobilePage'
@@ -196,10 +199,10 @@ function NoticePageView() {
           isDetail ? 'block' : 'hidden'
         }`}
       >
-        <Switch>
-          <Route path="/teacher/notice/add" component={() => <NoticeAddPage categoryData={categoryData} />} />
-          <Route path="/teacher/notice/:id" component={() => <NoticeDetailPage categoryData={categoryData} />} />
-        </Switch>
+        <Routes>
+          <Route path="/teacher/notice/add" Component={() => <NoticeAddPage categoryData={categoryData} />} />
+          <Route path="/teacher/notice/:id" Component={() => <NoticeDetailPage categoryData={categoryData} />} />
+        </Routes>
       </div>
     </>
   )

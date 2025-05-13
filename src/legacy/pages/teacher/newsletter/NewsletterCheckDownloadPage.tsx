@@ -1,4 +1,5 @@
 import { useParams } from 'react-router'
+
 import { Td } from '@/legacy/components'
 import { Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -8,10 +9,10 @@ import { useTeacherNewsletterDetail } from '@/legacy/container/teacher-newslette
 export function NewsletterCheckDownloadPage() {
   const { id } = useParams<{ id: string }>()
 
-  const { newsletter: newData } = useTeacherNewsletterDetail({ id: +id })
+  const { newsletter: newData } = useTeacherNewsletterDetail({ id: Number(id) })
 
   const { download, rows } = useTeacherNewsletterCheckDownload({
-    newsletterId: +id,
+    newsletterId: Number(id),
     surveyTitle: newData?.title,
   })
 
@@ -28,7 +29,7 @@ export function NewsletterCheckDownloadPage() {
               <tr key={i}>
                 {row.map((cell, j) => (
                   <Td key={j} innerClassName="min-w-max">
-                    {cell}
+                    {cell.toString()}
                   </Td>
                 ))}
               </tr>

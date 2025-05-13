@@ -2,11 +2,11 @@ import clsx from 'clsx'
 import { uniqBy } from 'lodash'
 import { useEffect, useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { Routes } from 'src/routes'
-import { MenuType, UserDatas } from 'src/types'
 import * as XLSX from 'xlsx'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ChatRoomList } from '@/legacy/components/chat/ChatRoomList'
 import { BackButton, Blank, Divider, Label, Section, Select, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -16,24 +16,23 @@ import { Icon } from '@/legacy/components/common/icons'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
+import { Routes } from '@/legacy/constants/routes'
 import { useTeacherChatRoomList } from '@/legacy/container/teacher-chat-room-list'
 import { MergedGroupType, useTeacherChatUserList } from '@/legacy/container/teacher-chat-user-list'
-import { GroupType, ResponseGroupDto, Role } from '@/legacy/generated/model'
+import { GroupType, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { MenuType, UserDatas } from '@/legacy/types'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { Validator } from '@/legacy/util/validator'
 import { meState, toastState } from '@/stores'
+
 import { ChatDetailPage } from './ChatDetailPage'
 import { ChatSMSPage } from './ChatSMSPage'
-import { ReactComponent as Close } from '@/asset/svg/close.svg'
+import Close from '@/assets/svg/close.svg'
 
 const headers = ['id', '이름', '전화번호', '문구1', '문구2', '문구3']
 
-interface ChatListPageProps {
-  groupData?: ResponseGroupDto
-}
-
-export function ChatListPage({ groupData }: ChatListPageProps) {
+export function ChatListPage() {
   const { push } = useHistory()
 
   const meRecoil = useRecoilValue(meState)
@@ -48,10 +47,7 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
   const setToastMsg = useSetRecoilState(toastState)
 
   const [selectedMenu, setSelectedMenu] = useState<MenuType>(MenuType.List)
-  const [, setStudentName] = useState('')
   const [_studentName, set_studentName] = useState('')
-
-  const [content, setContent] = useState(groupData ? groupData.name : '')
 
   const [nameInput, setNameInput] = useState('')
   const [phoneInput, setPhoneInput] = useState('')
@@ -66,7 +62,6 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
     selectedUserType,
     setSelectedUserType,
     selectedUserDatas,
-    //setKeyword,
     reSearch,
   } = useTeacherChatUserList(selectedMenu)
 
@@ -104,22 +99,6 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
         </div>
       ),
     },
-    // {
-    //   comment: (
-    //     <div>
-    //       문자메시지에 발신인의 이름이 포함됩니다.
-    //       <br /> 하단 메시지 내용에서 발신인 이름을 확인하세요.
-    //     </div>
-    //   ),
-    // },
-    // {
-    //   comment: (
-    //     <div>
-    //       수신인 개인별 내용으로 변환됩니다.
-    //       <br /> 하단 메시지 내용에서 확인하세요.
-    //     </div>
-    //   ),
-    // },
   ]
   const { coach, refs } = useCoachMark('sms', coachList)
 
@@ -183,7 +162,6 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
     const readData: any[] = [...selectedUsers]
 
     data.map((row: any) => {
-      const filteredArr = Array.from<string>(row).filter((value) => value !== '')
       const obj: { [key: string]: any } = {}
 
       for (let i = 0; i < headers.length; i++) {
@@ -192,7 +170,7 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
         obj[key] = value
       }
 
-      let phoneNum = String(obj['전화번호']).replaceAll('-', '')
+      let phoneNum = String(obj['전화번호']).replace(/-/, '')
 
       phoneNum = phoneNum.startsWith('10') ? `0${phoneNum}` : phoneNum
 
@@ -277,7 +255,6 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                 setSelectedGroup(null)
                 setChatRoomId('')
                 setStudentGroups([])
-                setContent('')
                 set_studentName('')
                 push(`${Routes.teacher.chat}`)
               }}
@@ -294,7 +271,6 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                 setSelectedGroup(null)
                 setChatRoomId('')
                 setStudentGroups([])
-                setContent('')
                 set_studentName('')
                 push(`${Routes.teacher.chat}`)
               }}
@@ -420,7 +396,6 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                                 value={_studentName}
                                 onChange={(e) => {
                                   set_studentName(e.target.value)
-                                  if (e.target.value === '') setStudentName('')
                                 }}
                                 onSearch={() => {
                                   //setKeyword(_studentName);

@@ -1,8 +1,9 @@
 import { range } from 'lodash'
 import { useMemo, useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { Route, Switch, useLocation } from 'react-router'
-import { useHistory } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, FrontPagination } from '@/legacy/components'
 import { AbsentCard } from '@/legacy/components/absent/AbsentCard'
 import { AbsentsExcelDownloadView } from '@/legacy/components/absent/AbsentsExcelDownloadView'
@@ -23,10 +24,11 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { PermissionUtil } from '@/legacy/util/permission'
 import { getSearchYearByMonth, getThisYear, makeStartEndToString } from '@/legacy/util/time'
+
 import { HistoryAbsentDetailPage } from './HistoryAbsentDetailPage'
 import { HistoryFieldtripDetailPage } from './HistoryFieldtripDetailPage'
 import { HistoryOutingDetailPage } from './HistoryOutingDetailPage'
-import { ReactComponent as Refresh } from '@/asset/svg/refresh.svg'
+import Refresh from '@/assets/svg/refresh.svg'
 
 export interface MergedGroupType {
   id: number
@@ -53,19 +55,7 @@ export function HistoryPage() {
     fieldtrips,
     isLoading,
     error,
-    isViewAuth,
-    state: {
-      startDate,
-      endDate,
-      selectedYear,
-      selectedMonth,
-      selectedGroup,
-      page,
-      isCsvData,
-      limit,
-      selectedDocType,
-      frontSortType,
-    },
+    state: { startDate, endDate, selectedYear, selectedMonth, selectedGroup, page, isCsvData, limit, selectedDocType },
     setState: {
       setStartDate,
       setEndDate,
@@ -436,6 +426,7 @@ export function HistoryPage() {
 
             {/* 확인증 */}
             {selectedDocType === 0 &&
+              // eslint-disable-next-line react/jsx-no-undef
               outings?.items?.map((outing: ResponseCreateOutingDto) => (
                 <OutingCard key={outing.id} outing={outing} type={'history'} />
               ))}
@@ -483,25 +474,19 @@ export function HistoryPage() {
         </div>
       </div>
       <div className="scroll-box col-span-3 overflow-y-auto md:bg-gray-50">
-        <Switch>
+        <Routes>
           <Route
             path="/teacher/history/:id"
-            component={() =>
+            Component={() =>
               selectedDocType === 0 ? (
                 <HistoryOutingDetailPage
                   outings={outings}
                   setOutingId={(n: number) => setOutingId(n)}
                   setOpen={(b: boolean) => setOpen(b)}
                   setAgreeAll={(b: boolean) => setAgreeAll(b)}
-                  userRole={userRole}
                 />
               ) : selectedDocType === 1 ? (
-                <HistoryAbsentDetailPage
-                  userId={me?.id}
-                  setOpen={(b: boolean) => setOpen(b)}
-                  setAbsentId={(n: number) => setAbsentId(n)}
-                  setAgreeAll={(b: boolean) => setAgreeAll(b)}
-                />
+                <HistoryAbsentDetailPage userId={me?.id} setAbsentId={(n: number) => setAbsentId(n)} />
               ) : (
                 <HistoryFieldtripDetailPage
                   setOpen={(b: boolean) => setOpen(b)}
@@ -512,7 +497,7 @@ export function HistoryPage() {
               )
             }
           />
-        </Switch>
+        </Routes>
       </div>
     </>
   )

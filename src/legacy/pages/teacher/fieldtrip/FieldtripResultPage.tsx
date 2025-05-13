@@ -1,6 +1,8 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -15,6 +17,7 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignature } from '@/legacy/hooks/useSignature'
 import { useStamp } from '@/legacy/hooks/useStamp'
 import { getCurrentSchoolYear, isValidDate, makeDateToString } from '@/legacy/util/time'
+
 import { FieldtripResultDetailPage } from './FieldtripResultDetailPage'
 
 export function FieldtripResultPage() {
@@ -289,10 +292,10 @@ export function FieldtripResultPage() {
         )}
       </div>
       <div className="col-span-3 bg-gray-50 md:p-6">
-        <Switch>
+        <Routes>
           <Route
             path="/teacher/fieldtrip/result/:id"
-            component={() => (
+            Component={() => (
               <FieldtripResultDetailPage
                 school={me?.school}
                 setOpen={(b: boolean) => setOpen(b)}
@@ -302,7 +305,7 @@ export function FieldtripResultPage() {
               />
             )}
           />
-        </Switch>
+        </Routes>
       </div>
       <SuperModal
         modalOpen={open}

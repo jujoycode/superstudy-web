@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { SuperModal } from '@/legacy/components'
 import { Blank, Label, Section, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -19,10 +20,8 @@ interface FieldtripResultUpdatePageProps {
 export function FieldtripResultUpdatePage({ fieldtrip, setReadState, isConfirmed }: FieldtripResultUpdatePageProps) {
   const [modalOpen, setModalOpen] = useState(false)
   const [destination, setDestination] = useState(fieldtrip?.destination)
-  const [overseas, setOverseas] = useState(fieldtrip?.overseas)
   const [resultText, setResultText] = useState(fieldtrip?.resultText || '')
   const [resultTitle, setResultTitle] = useState(fieldtrip?.resultTitle || '')
-  const [resultFiles, setResultFiles] = useState(fieldtrip?.resultFiles || '')
   const [updateReason, setUpdateReason] = useState('')
 
   const {
@@ -38,17 +37,16 @@ export function FieldtripResultUpdatePage({ fieldtrip, setReadState, isConfirmed
     fieldtripId: fieldtrip?.id,
     reportedAt: fieldtrip?.resultReportedAt,
     destination,
-    overseas,
+    overseas: fieldtrip?.overseas,
     resultText,
     resultTitle,
-    resultFiles,
+    resultFiles: fieldtrip?.resultFiles,
     updateReason,
     setReadState,
   })
 
   const buttonDisabled =
     fieldtrip?.type !== FieldtripType.HOME ? !destination || !resultText || !resultTitle : !destination
-  const [count, setCount] = useState(0)
 
   function handleSubmitButton() {
     uploadFiles({ imageObjectMap })
@@ -146,7 +144,6 @@ export function FieldtripResultUpdatePage({ fieldtrip, setReadState, isConfirmed
                   onChange={(e) => {
                     const input = e.target.value //removeControlCharacters(e.target.value);
                     setResultText(input)
-                    setCount(input.length)
                   }}
                   className="h-auto border"
                 />

@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { BackButton, TopNavbar } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
 import { NotificationSettingPage } from '@/legacy/components/notificationSettings/NotificationSettingPage'

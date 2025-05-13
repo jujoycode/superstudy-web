@@ -1,7 +1,8 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { Route, Switch } from 'react-router'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { Link, Route, Routes, useLocation } from 'react-router'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -17,6 +18,7 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { compareOutings } from '@/legacy/util/document'
 import { PermissionUtil } from '@/legacy/util/permission'
 import { getCurrentSchoolYear, isValidDate, makeDateToString } from '@/legacy/util/time'
+
 import { OutingAddPage } from './OutingAddPage'
 import { OutingDetailPage } from './OutingDetailPage'
 
@@ -320,11 +322,11 @@ export function OutingPage() {
         </div>
       </div>
       <div className="col-span-3 bg-gray-50 md:h-screen md:overflow-y-auto">
-        <Switch>
-          <Route path="/teacher/outing/add" component={() => <OutingAddPage />} />
+        <Routes>
+          <Route path="/teacher/outing/add" Component={() => <OutingAddPage />} />
           <Route
             path="/teacher/outing/:id"
-            component={() => (
+            Component={() => (
               <OutingDetailPage
                 isLoading={isLoading}
                 setOutingId={(n: number) => setOutingId(n)}
@@ -335,27 +337,8 @@ export function OutingPage() {
               />
             )}
           />
-        </Switch>
+        </Routes>
       </div>
-      {/* <div className="scroll-box col-span-3 overflow-y-auto md:bg-gray-50  ">
-      <div className="col-span-3 bg-gray-50 md:overflow-y-auto md:p-6 ">
-        <Switch>
-          <Route path="/teacher/outing/add" component={() => <OutingAddPage />} />
-
-          <Route
-            path="/teacher/outing/:id"
-            component={() => (
-              <OutingDetailPage
-                outings={outings}
-                setOutingId={(n: number) => setOutingId(n)}
-                setOpen={(b: boolean) => setOpen(b)}
-                setAgreeAll={(b: boolean) => setAgreeAll(b)}
-                userRole={userRole}
-              />
-            )}
-          />
-        </Switch>
-      </div> */}
       <SuperModal
         modalOpen={open}
         setModalClose={() => {

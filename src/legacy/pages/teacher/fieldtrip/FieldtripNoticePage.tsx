@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
+
 import { ErrorBlank, FrontPagination } from '@/legacy/components'
 import { BackButton, TopNavbar } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
@@ -11,10 +12,10 @@ import { UserContainer } from '@/legacy/container/user'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { getCurrentSchoolYear, isValidDate, makeDateToString } from '@/legacy/util/time'
+
 import { FieldtripNoticeDetailPage } from './FieldtripNoticeDetailPage'
 
 export function FieldtripNoticePage() {
-  const { replace } = useHistory()
   const { pathname } = useLocation()
   const isDetail = !pathname.endsWith('/teacher/fieldtrip/notice')
   const { t } = useLanguage()
@@ -174,12 +175,12 @@ export function FieldtripNoticePage() {
         )}
       </div>
       <div className="col-span-3 bg-gray-50 md:p-6">
-        <Switch>
+        <Routes>
           <Route
             path="/teacher/fieldtrip/notice/:id"
-            component={() => <FieldtripNoticeDetailPage school={me?.school} />}
+            Component={() => <FieldtripNoticeDetailPage school={me?.school} />}
           />
-        </Switch>
+        </Routes>
       </div>
     </>
   )

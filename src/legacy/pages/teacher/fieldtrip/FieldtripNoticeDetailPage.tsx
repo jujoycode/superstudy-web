@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
+
 import { SuperModal } from '@/legacy/components'
 import { Blank } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -15,15 +16,13 @@ interface FieldtripNoticeDetailPageProps {
 }
 
 export function FieldtripNoticeDetailPage({ school }: FieldtripNoticeDetailPageProps) {
-  const { id } = useParams<{ id: string }>()
-  const { push } = useHistory()
+  const { id = '' } = useParams<{ id: string }>()
   const { pushWithQueryParams } = useQueryParams()
   const ref = useRef(null)
   const [clicked, setClicked] = useState(false)
+  const [download, setDownload] = useState(false)
 
   const { isLoading, fieldtrip } = useTeacherFieldtripNoticeDetail(id)
-
-  const [download, setDownload] = useState(false)
 
   if (!fieldtrip) {
     return null

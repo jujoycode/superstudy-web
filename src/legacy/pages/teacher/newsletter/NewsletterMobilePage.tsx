@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
+import { ChangeEventHandler, useState } from 'react'
+
 import { List, Select } from '@/legacy/components/common'
 import { FeedsItem } from '@/legacy/components/common/FeedsItem'
 import { Icon } from '@/legacy/components/common/icons'
@@ -13,13 +13,11 @@ import { meState } from '@/stores'
 const filters = ['제목', '작성자']
 
 export function NewsletterMobilePage() {
-  const meRecoil = useRecoilValue(meState)
-
-  const { newsletters, unReadnewslettersList } = useTeacherNewsletter()
+  const { newsletters } = useTeacherNewsletter()
   const [filter, setFilter] = useState(filters[0])
   const [searchWriter, setSearchWriter] = useState('')
   const [searchTitle, setSearchTitle] = useState('')
-  const handleFilterChange = (e: any) => {
+  const handleFilterChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
     setSearchWriter('')
     setSearchTitle('')
     setFilter(e.target.value)

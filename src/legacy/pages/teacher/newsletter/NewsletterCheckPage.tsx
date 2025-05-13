@@ -1,21 +1,24 @@
 import { useQueryClient } from 'react-query'
-import { useParams } from 'react-router'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Routes, useParams } from 'react-router'
+import { Route } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { NewsletterCheckerItem } from '@/legacy/components/newsletter/NewsletterCheckerItem'
 import { useTeacherNewsletterCheck } from '@/legacy/container/teacher-newsletter-check'
 import { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup } from '@/legacy/generated/model'
 import { newsletterOpenedGroupState } from '@/stores'
+
 import { NewsletterCheckDetailPage } from './NewsletterCheckDetailPage'
 
 export function NewsletterCheckPage() {
   const { push } = useHistory()
-  const { id } = useParams<{ id: string }>()
+  const { id = '' } = useParams<{ id: string }>()
   const queryClient = useQueryClient()
 
   const [newsletterOpenedGroup, setNewsletterOpenedGroup] = useRecoilState(newsletterOpenedGroupState)
   const { result, newsletter, studentsCount, unCheckCount, unCheckPerson, totalPerson, selectKlassGroup } =
-    useTeacherNewsletterCheck(+id)
+    useTeacherNewsletterCheck(Number(id))
 
   const handleSelectKlassGroup = (klassGroup: ResponseGroupDto) => {
     newsletterOpenedGroup.includes(klassGroup.name as string)
@@ -99,9 +102,9 @@ export function NewsletterCheckPage() {
         </div>
       </div>
       <div className="col-span-3">
-        <Switch>
-          <Route path={`/teacher/newsletter/check/:id/:snid`} component={() => <NewsletterCheckDetailPage />} />
-        </Switch>
+        <Routes>
+          <Route path={`/teacher/newsletter/check/:id/:snid`} Component={() => <NewsletterCheckDetailPage />} />
+        </Routes>
       </div>
     </div>
   )

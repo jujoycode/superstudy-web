@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Blank, Section, Select, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -9,6 +10,7 @@ import { RecordCard } from '@/legacy/components/record/RecordCard'
 import { SummaryItem } from '@/legacy/components/record/SummaryItem'
 import { useTeacherRecordDetail } from '@/legacy/container/teacher-record-detail'
 import { Group, StudentGroup } from '@/legacy/generated/model'
+
 import { forbiddenWords } from '../ForbiddenWords'
 
 const getRecordSummaryLength = (text: string) => {
@@ -38,7 +40,6 @@ export function RecordDetailPage({ studentGroups, selectedGroup }: RecordDetailP
     recordSummary,
     setRecordSummary,
     createRecordSummary,
-    //createOrUpdateRecordSummary,
     summaries,
   } = useTeacherRecordDetail({
     userId: Number(id),

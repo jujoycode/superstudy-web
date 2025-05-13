@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useParams } from 'react-router'
 import { Row } from 'read-excel-file'
-import { useRecoilValue } from 'recoil'
+
 import { Td } from '@/legacy/components'
 import { Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -10,18 +10,16 @@ import { useTeacherNewsletterDetail } from '@/legacy/container/teacher-newslette
 import { useTeacherNewsletterDownload } from '@/legacy/container/teacher-newsletter-download'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { makeDateToString } from '@/legacy/util/time'
-import { meState } from '@/stores'
 
 export function NewsletterDownloadPage() {
-  const me = useRecoilValue(meState)
   const { id } = useParams<{ id: string }>()
   const [isCsvData, setCsvData] = useState(false)
-  const [nowDate, setNowDate] = useState(makeDateToString(new Date()))
+  const nowDate = makeDateToString(new Date())
 
-  const { newsletter: newData } = useTeacherNewsletterDetail({ id: +id })
+  const { newsletter: newData } = useTeacherNewsletterDetail({ id: Number(id) })
 
   const { download, rows, studentNewsletters } = useTeacherNewsletterDownload({
-    newsletterId: +id,
+    newsletterId: Number(id),
     surveyTitle: newData?.title,
   })
 
@@ -122,7 +120,7 @@ export function NewsletterDownloadPage() {
               <tr key={i}>
                 {row?.map((cell, j) => (
                   <Td key={j} innerClassName="min-w-max">
-                    {cell}
+                    {cell.toString()}
                   </Td>
                 ))}
               </tr>

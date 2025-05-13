@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Divider, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -9,6 +10,7 @@ import { useTeacherGroupDetail } from '@/legacy/container/teacher-group-detail'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName, makeStudNum5 } from '@/legacy/util/status'
 import { meState } from '@/stores'
+
 import { GroupAddPage } from './GroupAddPage'
 
 interface GroupDetailPageProps {
@@ -19,7 +21,7 @@ export function GroupDetailPage({ selectedGroup }: GroupDetailPageProps) {
   const { id } = useParams<{ id: string }>()
   const { t, currentLang } = useLanguage()
   const me = useRecoilValue(meState)
-  const { group, studentGroups, teacherGroups, errorMessage, handleGroupDelete } = useTeacherGroupDetail(+id)
+  const { group, studentGroups, teacherGroups, errorMessage, handleGroupDelete } = useTeacherGroupDetail(Number(id))
   const [updateState, setUpdateState] = useState(false)
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
 

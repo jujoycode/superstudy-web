@@ -1,6 +1,8 @@
-import { useState } from 'react'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { ChangeEventHandler, useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Blank, Chip, HorizontalScrollView, Select } from '@/legacy/components/common'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Icon } from '@/legacy/components/common/icons'
@@ -10,6 +12,7 @@ import { useTeacherNewsletter } from '@/legacy/container/teacher-newsletter'
 import { Newsletter, NewsletterCategoryEnum } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { meState, newsletterOpenedGroupState } from '@/stores'
+
 import { NewsletterAddPage } from './NewsletterAddPage'
 import { NewsletterCheckDownloadPage } from './NewsletterCheckDownloadPage'
 import { NewsletterCheckPage } from './NewsletterCheckPage'
@@ -28,7 +31,7 @@ export function NewsletterPage() {
   const [filter, setFilter] = useState(filters[0])
   const [searchWriter, setSearchWriter] = useState('')
   const [searchTitle, setSearchTitle] = useState('')
-  const handleFilterChange = (e: any) => {
+  const handleFilterChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
     setSearchWriter('')
     setSearchTitle('')
     setFilter(e.target.value)
@@ -38,7 +41,6 @@ export function NewsletterPage() {
     <>
       {/* Desktop V */}
       {isLoading && <Blank reversed />}
-      {/*{error && <ErrorBlank />}*/}
       <div className="col-span-2 hidden h-screen md:block">
         <div className="flex justify-between px-6 py-6">
           <h1 className="text-2xl font-semibold">{t('parent_letters')}</h1>
@@ -126,15 +128,15 @@ export function NewsletterPage() {
 
       {/* Desktop V */}
       <div className="bg-gray-50 md:col-span-4 md:overflow-y-auto md:p-6">
-        <Switch>
-          <Route path="/teacher/newsletter/add" component={NewsletterAddPage} />
-          <Route path="/teacher/newsletter/:id/edit" component={NewsletterAddPage} />
-          <Route path="/teacher/newsletter/submit/:id" component={NewsletterSubmitPage} />
-          <Route path="/teacher/newsletter/check/:id" component={NewsletterCheckPage} />
-          <Route path="/teacher/newsletter/download/:id" component={NewsletterDownloadPage} />
-          <Route path="/teacher/newsletter/unread-student-download/:id" component={NewsletterCheckDownloadPage} />
-          <Route path="/teacher/newsletter/:id" component={() => <NewsletterDetailPage />} />
-        </Switch>
+        <Routes>
+          <Route path="/teacher/newsletter/add" Component={NewsletterAddPage} />
+          <Route path="/teacher/newsletter/:id/edit" Component={NewsletterAddPage} />
+          <Route path="/teacher/newsletter/submit/:id" Component={NewsletterSubmitPage} />
+          <Route path="/teacher/newsletter/check/:id" Component={NewsletterCheckPage} />
+          <Route path="/teacher/newsletter/download/:id" Component={NewsletterDownloadPage} />
+          <Route path="/teacher/newsletter/unread-student-download/:id" Component={NewsletterCheckDownloadPage} />
+          <Route path="/teacher/newsletter/:id" Component={() => <NewsletterDetailPage />} />
+        </Routes>
       </div>
     </>
   )

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
+
 import { ErrorBlank, SelectMenus } from '@/legacy/components'
 import { Blank, Label } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -13,7 +14,8 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName } from '@/legacy/util/status'
 import { getThisYear } from '@/legacy/util/time'
 import { meState, toastState } from '@/stores'
-import { ReactComponent as Close } from '@/asset/svg/close.svg'
+
+import Close from '@/assets/svg/close.svg'
 
 interface GroupAddPageProps {
   groupData?: ResponseGroupDto

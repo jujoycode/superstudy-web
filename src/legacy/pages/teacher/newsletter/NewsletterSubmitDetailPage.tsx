@@ -1,4 +1,5 @@
 import { useParams } from 'react-router'
+
 import { Blank } from '@/legacy/components/common'
 import { Time } from '@/legacy/components/common/Time'
 import { SuperSurveyComponent } from '@/legacy/components/survey/SuperSurveyComponent'
@@ -7,7 +8,7 @@ import { useTeacherNewsletterSubmitDetail } from '@/legacy/container/teacher-new
 export function NewsletterSubmitDetailPage() {
   const { id, snid } = useParams<{ id: string; snid: string }>()
 
-  const { newsletter, studentNewsletter, isLoading } = useTeacherNewsletterSubmitDetail(+id, +snid)
+  const { newsletter, studentNewsletter, isLoading } = useTeacherNewsletterSubmitDetail(Number(id), Number(snid))
 
   return (
     <>

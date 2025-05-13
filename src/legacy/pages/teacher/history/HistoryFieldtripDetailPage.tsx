@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { useHistory, useParams } from 'react-router'
-import { approveButtonType } from 'src/types'
+import { useParams } from 'react-router'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Blank, Section, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -8,6 +9,7 @@ import { FieldtripPaper } from '@/legacy/components/fieldtrip/FieldtripPaper'
 import { FieldtripSeparatePaper } from '@/legacy/components/fieldtrip/FieldtripSeparatePaper'
 import { useTeacherFieldtripDetail } from '@/legacy/container/teacher-fieldtrip-detail'
 import { ResponseUserDto } from '@/legacy/generated/model'
+import { approveButtonType } from '@/legacy/types'
 import { extractReactData, getDoc } from '@/legacy/util/pdf'
 import { buttonEnableState } from '@/legacy/util/permission'
 import { getNickName } from '@/legacy/util/status'
@@ -27,7 +29,7 @@ export function HistoryFieldtripDetailPage({
   me,
 }: HistoryFieldtripDetailPageProps) {
   const { push } = useHistory()
-  const { id } = useParams<{ id: string }>()
+  const { id = '' } = useParams<{ id: string }>()
   const ref = useRef(null)
   const separatePaperRefs = useRef<any[]>([])
   const planRef = useRef(null)
@@ -35,7 +37,6 @@ export function HistoryFieldtripDetailPage({
   const [notApprovedReason, setNotApprovedReason] = useState('')
   const [deleteReason, setDeleteReason] = useState('')
   const [clicked, setClicked] = useState(false)
-  const [readState, setReadState] = useState(true)
 
   const [confirmHalfSubmit, setConfirmHalfSubmit] = useState(false)
 
@@ -67,16 +68,6 @@ export function HistoryFieldtripDetailPage({
     fieldtrip?.approver4Id === me?.id ||
     fieldtrip?.approver5Id === me?.id
 
-  const approvedLine = [
-    fieldtrip?.approver1Signature && fieldtrip?.approver1Id,
-    fieldtrip?.approver2Signature && fieldtrip?.approver2Id,
-    fieldtrip?.approver3Signature && fieldtrip?.approver3Id,
-    fieldtrip?.approver4Signature && fieldtrip?.approver4Id,
-    fieldtrip?.approver5Signature && fieldtrip?.approver5Id,
-  ]
-  // 내가 승인한 건 : ture , 승인 안한 건 : false
-  const isApproved = approvedLine.includes(me?.id)
-
   // 승인할 차례 : true, 승인전/승인후 : false
   const nowApprove = fieldtrip?.nextApproverId === me?.id
 
@@ -87,14 +78,13 @@ export function HistoryFieldtripDetailPage({
     return !buttonEnableState(
       bottonType,
       approver,
-      isApproved,
       nowApprove,
       fieldtrip?.fieldtripStatus || '',
       fieldtrip?.studentGradeKlass === me?.klassGroupName,
     )
   }
 
-  let homeplans: any = []
+  let homeplans: Record<string, string>[] = []
 
   try {
     if (fieldtrip?.type === 'HOME') {
@@ -171,12 +161,8 @@ export function HistoryFieldtripDetailPage({
         </div>
         {fieldtrip?.type === 'HOME' && (
           <>
-            {homeplans?.map((content: any, i: number) => (
-              <div
-                key={i}
-                ref={(el) => (separatePaperRefs.current[i] = el)}
-                className="h-[1058px] w-[760px] bg-white p-5"
-              >
+            {homeplans?.map((content, i: number) => (
+              <div key={i} ref={separatePaperRefs.current[i]} className="h-[1058px] w-[760px] bg-white p-5">
                 <FieldtripSeparatePaper
                   studentName={fieldtrip?.student?.name + getNickName(fieldtrip?.student?.nickName)}
                   studentGradeKlass={fieldtrip?.studentGradeKlass + ' ' + fieldtrip?.studentNumber + '번'}

@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
+
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SelectMenus } from '@/legacy/components'
 import { Button } from '@/legacy/components/common/Button'
 import { useTeacherRecord } from '@/legacy/container/teacher-record'
 import { makeStudNum5 } from '@/legacy/util/status'
+
 import { RecordDetailPage } from './RecordDetailPage'
 
 export function RecordPage() {

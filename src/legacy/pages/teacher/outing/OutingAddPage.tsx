@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { AbsentTimeType, periodArray } from 'src/types'
+
 import { ErrorBlank, SelectMenus, SelectValues } from '@/legacy/components'
 import { BackButton, Badge, Blank, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -12,19 +11,18 @@ import { useCommonGetHolidays } from '@/legacy/container/common-get-holidays'
 import { useTeacherOutingAdd } from '@/legacy/container/teacher-outing-add'
 import { UserContainer } from '@/legacy/container/user'
 import { GroupType, Outing, OutingTypeEnum, OutingUse, StudentGroup } from '@/legacy/generated/model'
-import { ReactComponent as Close } from '@/asset/svg/close.svg'
+import { AbsentTimeType, periodArray } from '@/legacy/types'
+
+import Close from '@/assets/svg/close.svg'
 
 const reportType = [OutingTypeEnum.조퇴, OutingTypeEnum.외출, OutingTypeEnum.확인]
 
 interface OutingAddPageProps {
   outingData?: Outing
-  goDetail?: () => void
 }
 
-export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
-  const { push } = useHistory()
+export function OutingAddPage({ outingData }: OutingAddPageProps) {
   const { me, errorMessage: meErrorMessage } = UserContainer.useContext()
-  const hasSaturdayClass = me?.school.hasSaturdayClass || false
 
   const { holidays } = useCommonGetHolidays()
 
@@ -59,7 +57,6 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
     outingValueSel,
     setOutingValueSel,
     outingValue,
-    approverName,
     allKlassGroups,
     selectedGroup,
     studentGroups,
@@ -69,7 +66,7 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
     userIds,
     useParentApprove,
     setUseParentApprove,
-  } = useTeacherOutingAdd(outingData, goDetail)
+  } = useTeacherOutingAdd(outingData)
 
   const startDateTime = new Date()
   startDateTime.setHours(startHour)

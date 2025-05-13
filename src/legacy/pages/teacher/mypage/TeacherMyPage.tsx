@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
+
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, IconButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
@@ -9,9 +10,10 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useLogout } from '@/legacy/util/hooks'
 import { checkNewVersion } from '@/legacy/util/status'
 import { meState } from '@/stores'
-import BgLogo from '@/asset/images/Intersect.png'
-import { ReactComponent as RightArrow } from '@/asset/svg/mypage-right-arrow.svg'
-import SvgUser from '@/asset/svg/user.svg'
+
+import BgLogo from '@/assets/images/Intersect.png'
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
+import SvgUser from '@/assets/svg/user.svg'
 
 enum selectedType {
   none = 1,
@@ -28,7 +30,6 @@ export function TeacherMyPage() {
 
   checkNewVersion()
 
-  const { push } = useHistory()
   const meRecoil = useRecoilValue(meState)
 
   const [selectedItem, setSelectedItem] = useState(selectedType.myinfo)
@@ -111,12 +112,6 @@ export function TeacherMyPage() {
               <RightArrow />
             </div>
           </Link>
-          {/* <Link to="/student/attend">
-          <div className="flex justify-between items-center py-3 border-b-2 border-gray-6 cursor-pointer">
-            <div className="text-gray-1 font-sfpro font-bold">출결 신고서</div>
-            <RightArrow />
-          </div>
-        </Link> */}
           <a href="https://superstudy.channel.io/lounge" target="blank">
             <div
               className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
@@ -177,72 +172,6 @@ export function TeacherMyPage() {
                   <RightArrow />
                 </div>
               </a>
-              {/* <a
-              href={`https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fb072a08c-df63-4eb5-84fa-2e084026f390%2Fstarting.pdf?table=block&id=9873b81d-5059-4043-9471-ad187bfd8f46&spaceId=8612a4a1-fd50-4ddd-9f79-e0df30e67f9e&name=starting.pdf&userId=625b3019-b1d4-48ee-a73f-fc5f93cb5b0a&cache=v2`}
-              target="_blank"
-              rel="noreferrer"
-              download
-            >
-              <div className="flex cursor-pointer items-center justify-between py-1">
-                <div className="text-gray-1 font-sfpro pl-4 font-bold">시작하기</div>
-                <RightArrow />
-              </div>
-            </a>
-            <a
-              href={`https://superstudy-image.s3.ap-northeast-2.amazonaws.com/tutorials/%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC%20%EC%B6%9C%EA%B2%B0%281%29_2022.11.01.pdf`}
-              target="_blank"
-              rel="noreferrer"
-              download
-            >
-              <div className="flex cursor-pointer items-center justify-between py-1">
-                <div className="text-gray-1 font-sfpro pl-4 font-bold">출결관리</div>
-                <RightArrow />
-              </div>
-            </a>
-            <a
-              href={`https://superstudy-image.s3.ap-northeast-2.amazonaws.com/tutorials/%EC%B6%9C%EA%B2%B0%282%29_%EC%98%A8%EB%9D%BC%EC%9D%B8%EC%B6%9C%EC%84%9D%EB%B6%80_2022.11.01.pdf`}
-              target="_blank"
-              rel="noreferrer"
-              download
-            >
-              <div className="flex cursor-pointer items-center justify-between py-1">
-                <div className="text-gray-1 font-sfpro pl-4 font-bold">출석부</div>
-                <RightArrow />
-              </div>
-            </a>
-            <a
-              href={`https://superstudy-image.s3.ap-northeast-2.amazonaws.com/tutorials/%EC%B2%B4%ED%97%98%ED%95%99%EC%8A%B5_2022.11.01.pdf`}
-              target="_blank"
-              rel="noreferrer"
-              download
-            >
-              <div className="flex cursor-pointer items-center  justify-between py-1">
-                <div className="text-gray-1 font-sfpro pl-4 font-bold">체험학습</div>
-                <RightArrow />
-              </div>
-            </a>
-            <a
-              href={`https://superstudy-image.s3.ap-northeast-2.amazonaws.com/tutorials/%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC%20%ED%99%9C%EB%8F%99%281%29_2022.11.01.pdf`}
-              target="_blank"
-              rel="noreferrer"
-              download
-            >
-              <div className="flex cursor-pointer items-center  justify-between py-1">
-                <div className="text-gray-1 font-sfpro pl-4 font-bold">활동기록부</div>
-                <RightArrow />
-              </div>
-            </a>
-            <a
-              href={`https://superstudy-image.s3.ap-northeast-2.amazonaws.com/tutorials/%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC%20%ED%95%99%EB%B6%80%EB%AA%A8%EC%9A%A9_2022.10.31.pdf`}
-              target="_blank"
-              rel="noreferrer"
-              download
-            >
-              <div className="flex cursor-pointer items-center  justify-between py-1">
-                <div className="text-gray-1 font-sfpro pl-4 font-bold">보호자용</div>
-                <RightArrow />
-              </div>
-            </a> */}
             </div>
           )}
           <div

@@ -1,11 +1,10 @@
 import { clsx } from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { UserDatas } from 'src/types'
+
 import { FrontPagination } from '@/legacy/components'
 import { Blank, Label, Section, Select, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
-import { Icon } from '@/legacy/components/common/icons'
 import { Tabs } from '@/legacy/components/common/Tabs'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { ToggleSwitch } from '@/legacy/components/common/ToggleSwitch'
@@ -13,9 +12,11 @@ import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
 import { SmsCard } from '@/legacy/components/sms/SmsCard'
 import { useTeacherSms } from '@/legacy/container/teacher-sms'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { UserDatas } from '@/legacy/types'
 import { isValidDate, makeDateToString } from '@/legacy/util/time'
 import { meState } from '@/stores'
-import { ReactComponent as Refresh } from '@/asset/svg/refresh.svg'
+
+import Refresh from '@/assets/svg/refresh.svg'
 
 type SmsInfoType = {
   receiverId: number
@@ -31,10 +32,9 @@ type SmsInfoType = {
 interface SmsPageProps {
   isMobileView: boolean
   selectedUsers: UserDatas[]
-  setSelectedUsers: (data: UserDatas[]) => void
 }
 
-export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: SmsPageProps) {
+export function ChatSMSPage({ isMobileView, selectedUsers }: SmsPageProps) {
   const me = useRecoilValue(meState)
   const { t } = useLanguage()
 
@@ -96,7 +96,7 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
     let isSMSType = true
 
     const smsInfoTemp = selectedUsers
-      .map((item, index) => ({
+      .map((item) => ({
         id: item.id,
         receiverNum: item.title,
         name: item.name,
@@ -139,8 +139,6 @@ export function ChatSMSPage({ isMobileView, selectedUsers, setSelectedUsers }: S
       })
 
     setTypeSMS(isSMSType)
-
-    console.log('smsInfoTemp', smsInfoTemp)
 
     setSmsInfos(smsInfoTemp)
   }, [selectedUsers, messageFormat, userText1, userText2, userText3, addSender])
