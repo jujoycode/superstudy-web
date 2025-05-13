@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { ChangeEventHandler, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
+
 import { SelectMenus } from '@/legacy/components'
 import { Blank, List, Select } from '@/legacy/components/common'
 import { FeedsItem } from '@/legacy/components/common/FeedsItem'
@@ -11,25 +11,22 @@ import { useTeacherBoard } from '@/legacy/container/teacher-board'
 import { useTeacherKlassGroup } from '@/legacy/container/teacher-klass-groups'
 import { Board, Group } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { meState } from '@/stores'
 
 const filters = ['제목', '작성자']
 
 export function BoardMobilePage() {
-  const meRecoil = useRecoilValue(meState)
-
   const { groups, selectedGroup, setSelectedGroup } = useTeacherKlassGroup()
-  const { boards, selectedCategory, isLoading, unReadBoardList, setSelectedCategory } = useTeacherBoard(
-    selectedGroup?.id,
-  )
+  const { boards, isLoading } = useTeacherBoard(selectedGroup?.id)
   const [filter, setFilter] = useState(filters[0])
   const [searchWriter, setSearchWriter] = useState('')
   const [searchTitle, setSearchTitle] = useState('')
-  const handleFilterChange = (e: any) => {
+
+  const handleFilterChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
     setSearchWriter('')
     setSearchTitle('')
     setFilter(e.target.value)
   }
+
   return (
     <>
       {isLoading && <Blank reversed />}
@@ -38,15 +35,6 @@ export function BoardMobilePage() {
           <div className="cursor-pointer">
             <SelectMenus items={groups} value={selectedGroup} onChange={(value: Group) => setSelectedGroup(value)} />
           </div>
-          {/* <div className="cursor-pointer">
-            <SelectMenus
-              items={Object.keys(BoardCategoryEnum)}
-              value={selectedCategory as string}
-              allText="전체"
-              onChange={(group) => setSelectedCategory(group as BoardCategoryEnum)}
-              allTextVisible
-            />
-          </div> */}
           <Link
             children="추가"
             to="/teacher/board/add"

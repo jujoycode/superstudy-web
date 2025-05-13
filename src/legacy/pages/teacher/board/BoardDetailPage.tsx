@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useParams } from 'react-router'
-import { useHistory } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { useRecoilValue } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -25,13 +26,11 @@ export function BoardDetailPage({ page, limit }: BoardDetailPageProps) {
   const me = useRecoilValue(meState)
   const { t } = useLanguage()
 
-  const { board, isBoardLoading, images, Pdfs, documents, viewerImages, errorMessage, handleBoardDelete } =
-    useTeacherBoardDetail(+id)
+  const { board, isBoardLoading, viewerImages, errorMessage, handleBoardDelete } = useTeacherBoardDetail(Number(id))
 
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
-  const [focusPdfFile, setFocusPdfFile] = useState('')
   const [activeIndex, setActiveIndex] = useState(0)
 
   const getFeedsDetail = () => {
@@ -141,13 +140,13 @@ export function BoardDetailPage({ page, limit }: BoardDetailPageProps) {
               noImgDetails
               scalable={false}
               images={viewerImages}
-              onChange={(activeImage, index) => setActiveIndex(index)}
+              onChange={(_, index) => setActiveIndex(index)}
               onClose={() => setImagesModalOpen(false)}
               activeIndex={activeIndex}
             />
           </div>
           <div className="absolute">
-            <PdfViewer isOpen={hasPdfModalOpen} fileUrl={focusPdfFile} onClose={() => setPdfModalOpen(false)} />
+            <PdfViewer isOpen={hasPdfModalOpen} fileUrl={''} onClose={() => setPdfModalOpen(false)} />
           </div>
         </>
       )}

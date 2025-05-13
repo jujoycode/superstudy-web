@@ -1,9 +1,10 @@
+//@ts-ignore
 import Calendar from '@toast-ui/react-calendar'
 import { t } from 'i18next'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
 import { useRecoilValue } from 'recoil'
-import { MenuType } from 'src/types'
+
 import { ErrorBlank } from '@/legacy/components'
 import { CustomTuiModal } from '@/legacy/components/calendar/CustomTuiModal'
 import { LnbCalendarsItem } from '@/legacy/components/calendar/LnbCalendarsItem'
@@ -14,18 +15,9 @@ import { Icon } from '@/legacy/components/common/icons'
 import { useTeacherCalendarDetail } from '@/legacy/container/teacher-calendar-detail'
 import { useTeacherChatUserList } from '@/legacy/container/teacher-chat-user-list'
 import { CalendarIdEnum, Role } from '@/legacy/generated/model'
+import { MenuType } from '@/legacy/types'
 import { DayAfter, DayAgo, makeDateToString } from '@/legacy/util/time'
 import { languageState, meState } from '@/stores'
-import 'tui-calendar/dist/tui-calendar.css'
-import 'tui-date-picker/dist/tui-date-picker.css'
-import 'tui-time-picker/dist/tui-time-picker.css'
-import './CalendarPage.css'
-
-// export const attendees = [
-//   { id: '1', name: t('general') },
-//   { id: '2', name: t('no_experiential_learning') },
-//   { id: '3', name: t('holiday') },
-// ];
 
 export function CalendarPage() {
   const {
@@ -74,7 +66,6 @@ export function CalendarPage() {
   ]
 
   const getDayName = useMemo(() => {
-    console.log(language)
     return (model: any) => {
       let dayName = ''
       switch (model.label) {
@@ -349,7 +340,6 @@ export function CalendarPage() {
                   </button>
                 </div>
               </div>
-              {/* @ts-ignore */}
               <Calendar
                 key={calendarKey}
                 height="100%"
@@ -363,14 +353,14 @@ export function CalendarPage() {
                 scheduleView
                 taskView
                 template={{
-                  monthDayname: (model) => getDayName(model),
-                  milestone(schedule) {
+                  monthDayname: (model: any) => getDayName(model),
+                  milestone(schedule: any) {
                     return `<span style="color:#fff;background-color: ${schedule.bgColor};">${schedule.title}</span>`
                   },
                   milestoneTitle() {
                     return '<div class="w-full h-full flex items-center justify-end">Milestone</div>'
                   },
-                  allday(schedule) {
+                  allday(schedule: any) {
                     return `<span style="color:#fff;">${schedule.title}<i class="fa fa-refresh"></i></span>`
                   },
                   alldayTitle() {
