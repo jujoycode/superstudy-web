@@ -1,8 +1,10 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { SuperModal } from '@/legacy/components'
 import { ActivitySessionTeacherView } from '@/legacy/components/activityv3/ActivitySessionTeacherView'
 import { Blank, CloseButton, Label, Radio, RadioGroup, Textarea } from '@/legacy/components/common'
@@ -32,7 +34,7 @@ interface ActivityV3SessionAddPageProps {
 }
 
 export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> = ({ activitySessionData }) => {
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [, setToastMsg] = useRecoilState(toastState)
   const { push, goBack } = useHistory()
   const { id } = useParams<{ id: string }>()
 
@@ -65,15 +67,10 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
   const [endHour, setEndHour] = useState(activitySessionData?.submitEndHour || -1)
   const [endMinute, setEndMinute] = useState(activitySessionData?.submitEndMinute || -1)
 
-  const {
-    imageObjectMap,
-    documentObjectMap,
-    handleImageAdd,
-    toggleImageDelete,
-    handleDocumentAdd,
-    addFiles,
-    toggleDocumentDelete,
-  } = useImageAndDocument({ images: activitySessionData?.images, documents: activitySessionData?.files })
+  const { imageObjectMap, documentObjectMap, toggleImageDelete, addFiles, toggleDocumentDelete } = useImageAndDocument({
+    images: activitySessionData?.images,
+    documents: activitySessionData?.files,
+  })
 
   const { isUploadLoading, handleUploadFile } = useFileUpload()
 
@@ -94,7 +91,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
   const { mutateAsync: updateActivitySession, isLoading: updateMutateLoading } = useActivitySessionUpdate()
 
   const activitySessiontype = watch('type')
-  const [content, setContent] = useState<any>([])
+  const [content, setContent] = useState<Record<string, unknown>[]>([])
 
   useEffect(() => {
     if (activitySessionData) {
@@ -136,7 +133,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
       if (activitySessionData?.submitEndMinute !== -1 && endMinute === undefined)
         setEndMinute(activitySessionData.submitEndMinute)
     }
-  }, [activitySessionData, setValue])
+  }, [activitySessionData, setValue, endHour, endMinute, startHour, startMinute])
 
   const isLoading = createMutateLoading || updateMutateLoading || isUploadLoading
 
@@ -620,15 +617,15 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                           setToastMsg('차시가 수정되었습니다.')
                           push(`/teacher/activityv3/${activityv3Id}/session/${data.id}`)
                         })
-                        .catch((error: any) => setToastMsg(error.message))
+                        .catch((error: Error) => setToastMsg(error.message))
                     } else {
                       createActivitySession({ data: _data })
-                        .then((data) => {
+                        .then(() => {
                           setToastMsg('차시가 추가되었습니다.')
                           push(`/teacher/activityv3/${activityv3Id}`) // 차시 추가 후 활동상세페이지로
                           // push(`/teacher/activityv3/${activityv3Id}/session/${data.id}`);
                         })
-                        .catch((error: any) => setToastMsg(error.message))
+                        .catch((error: Error) => setToastMsg(error.message))
                     }
                   })}
                 >

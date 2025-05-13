@@ -3,10 +3,13 @@ import _ from 'lodash'
 import { useMemo, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { useHistory, useLocation, useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilState, useRecoilValue } from 'recoil'
+
+import FileItemIcon from '@/assets/svg/file-item-icon.svg'
+import { useHistory } from '@/hooks/useHistory'
 import { SuperModal } from '@/legacy/components'
 import { Activityv3SubmitterItem } from '@/legacy/components/activityv3/ActivityV3SubmitterItem'
 import { SessionDownloadModal } from '@/legacy/components/activityv3/SessionDownloadModal'
@@ -30,7 +33,6 @@ import { ActivityType, Role, StudentGroup } from '@/legacy/generated/model'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
 import { meState, toastState } from '@/stores'
-import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
 
 interface ActivityV3SessionDetailPageProps {}
 
@@ -56,7 +58,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
   const selectedFilter = searchParams.get('selectedFilter') || 'all'
 
   const me = useRecoilValue(meState)
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [, setToastMsg] = useRecoilState(toastState)
   const [searchedStudentname, setSearchedStudentName] = useState('')
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [isDownloadModalOpen, setDownloadModalOpen] = useState(false)
@@ -83,11 +85,8 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
   const [selectedGroupIds, setSelectedGroupIds] = useState<number[]>(
     activityv3?.groupActivityV3s?.map((gav) => gav.groupId) || [],
   )
-  const {
-    data: studentActivitySession,
-    refetch: refetchSAS,
-    isLoading: sessionLoading,
-  } = useStudentActivitySessionFindOneByTeacher(
+
+  useStudentActivitySessionFindOneByTeacher(
     {
       studentId: Number(selectedUserId),
       sessionId: activitySession?.id || 0,
@@ -189,11 +188,15 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
             <p onClick={() => replace('/teacher/activityv3')} className="cursor-pointer">
               활동 기록
             </p>
-            <Icon.FillArrow className="-rotate-90" />
+            <div className="-rotate-90">
+              <Icon.FillArrow />
+            </div>
             <p onClick={() => replace(`/teacher/activityv3/${activityv3.id}`)} className="cursor-pointer">
               {activityv3?.title?.length >= 15 ? activityv3.title?.slice(0, 15) + '...' : activityv3.title || '활동명'}
             </p>
-            <Icon.FillArrow className="-rotate-90" />
+            <div className="-rotate-90">
+              <Icon.FillArrow />
+            </div>
             <p className="cursor-pointer">
               {activitySession.title.length >= 15
                 ? activitySession.title.slice(0, 15) + '...'
@@ -597,14 +600,14 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
 
                               return true
                             }),
-                          )?.map((sg: any) => (
+                          )?.map((sg: StudentGroup) => (
                             <Activityv3SubmitterItem
                               key={sg.id}
-                              id={Number(activityId)}
-                              sessionId={Number(id)}
                               studentGroup={sg}
+                              id={Number(activityId)}
+                              sessionId={id}
                               submitted={sg?.user?.studentActivitySessions?.[0]?.isSubmitted}
-                              submittedAt={sg?.user?.studentActivitySessions?.[0]?.submittedAt}
+                              submittedAt={sg?.user?.studentActivitySessions?.[0]?.submittedAt || ''}
                               endDate={activitySession.endDate}
                             />
                           ))
@@ -624,14 +627,14 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                             </div>
                             {selectedFilter === 'all' && (
                               <div className="grid grid-cols-2 gap-2 pb-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
-                                {sortStudentGroups(studentGroups).map((sg: any) => (
+                                {sortStudentGroups(studentGroups).map((sg: StudentGroup) => (
                                   <Activityv3SubmitterItem
                                     key={sg.id}
                                     studentGroup={sg}
                                     id={Number(activityId)}
                                     sessionId={id}
                                     submitted={sg?.user?.studentActivitySessions?.[0]?.isSubmitted}
-                                    submittedAt={sg?.user?.studentActivitySessions?.[0]?.submittedAt}
+                                    submittedAt={sg?.user?.studentActivitySessions?.[0]?.submittedAt || ''}
                                     endDate={activitySession.endDate}
                                   />
                                 ))}
@@ -639,14 +642,14 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                             )}
                             {selectedFilter === 'IS_SUBMITTED' && (
                               <div className="grid grid-cols-2 gap-2 pb-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
-                                {sortStudentGroups(submittedStudentGroups).map((sg: any) => (
+                                {sortStudentGroups(submittedStudentGroups).map((sg: StudentGroup) => (
                                   <Activityv3SubmitterItem
                                     key={sg.id}
                                     studentGroup={sg}
                                     id={Number(activityId)}
                                     sessionId={id}
                                     submitted={sg?.user?.studentActivitySessions?.[0]?.isSubmitted}
-                                    submittedAt={sg?.user?.studentActivitySessions?.[0]?.submittedAt}
+                                    submittedAt={sg?.user?.studentActivitySessions?.[0]?.submittedAt || ''}
                                     endDate={activitySession.endDate}
                                   />
                                 ))}
@@ -654,14 +657,14 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                             )}
                             {selectedFilter === 'NOT_SUBMITTED' && (
                               <div className="grid grid-cols-2 gap-2 pb-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
-                                {sortStudentGroups(unSubmittedStudentGroups).map((sg: any) => (
+                                {sortStudentGroups(unSubmittedStudentGroups).map((sg: StudentGroup) => (
                                   <Activityv3SubmitterItem
                                     key={sg.id}
                                     studentGroup={sg}
                                     id={Number(id)}
                                     sessionId={id}
                                     submitted={sg?.user?.studentActivitySessions?.[0]?.isSubmitted}
-                                    submittedAt={sg?.user?.studentActivitySessions?.[0]?.submittedAt}
+                                    submittedAt={sg?.user?.studentActivitySessions?.[0]?.submittedAt || ''}
                                     endDate={activitySession.endDate}
                                   />
                                 ))}
@@ -695,7 +698,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
       >
         <SuperSurveyComponent
           surveyContent={activitySession?.surveyContent || '[]'}
-          setContent={(c: any) => {}}
+          setContent={() => {}}
           content={{}}
           readOnly
         />
@@ -712,7 +715,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
           noImgDetails
           scalable={false}
           images={viewerImages}
-          onChange={(activeImage, index) => setActiveIndex(index)}
+          onChange={(_, index) => setActiveIndex(index)}
           onClose={() => setImagesModalOpen(false)}
           activeIndex={activeIndex}
         />

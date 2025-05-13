@@ -2,9 +2,10 @@ import { format } from 'date-fns'
 import _ from 'lodash'
 import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
-import { nameWithId } from 'src/types'
+
+import FileItemIcon from '@/assets/svg/file-item-icon.svg'
+import { useHistory } from '@/hooks/useHistory'
 import { SuperModal } from '@/legacy/components'
 import {
   ActivityCriteriaSelectModal,
@@ -44,9 +45,9 @@ import {
 } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
+import type { nameWithId } from '@/legacy/types'
 import { getFileNameFromUrl } from '@/legacy/util/file'
 import { toastState } from '@/stores'
-import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
 
 interface ActivityV3AddPageProps {
   activityv3Data?: ActivityV3
@@ -76,7 +77,7 @@ const subjectExclusionValues = [
 
 export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3Data }) => {
   const [currentStep, setCurrentStep] = useState(1)
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [, setToastMsg] = useRecoilState(toastState)
   const [selectedGroupIds, setSelectedGroupIds] = useState<number[]>([])
   const [previewOpen, setPreviewOpen] = useState(false)
   const [selectGroupModalOpen, setSelectGroupModalOpen] = useState(false)
@@ -143,17 +144,12 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
     reset,
   } = useForm<RequestCreateActivityV3Dto>()
 
-  const {
-    imageObjectMap,
-    documentObjectMap,
-    handleImageAdd,
-    toggleImageDelete,
-    handleDocumentAdd,
-    toggleDocumentDelete,
-    addFiles,
-  } = useImageAndDocument({ images: activityv3Data?.images, documents: activityv3Data?.files })
+  const { imageObjectMap, documentObjectMap, toggleImageDelete, toggleDocumentDelete, addFiles } = useImageAndDocument({
+    images: activityv3Data?.images,
+    documents: activityv3Data?.files,
+  })
 
-  const { isUploadLoading, handleUploadFile } = useFileUpload()
+  const { handleUploadFile } = useFileUpload()
 
   const { data: klassGroups } = useGroupsFindAllKlassBySchool()
 
@@ -171,15 +167,12 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
       case SubjectType.ACTIVITY:
         return SUBJECTS_TYPE_ACTIVITY
       case SubjectType.LECTURE:
-        return (
-          _.chain(teacherGroups)
-            .map((el) => ({ id: el.id, name: el.subject }))
-            //@ts-ignore
-            .concat(_.map(lectureGroups, (lg: any) => ({ id: lg.id, name: lg.subject })))
-            .filter((el) => !subjectExclusionValues.includes(el.name))
-            .uniqBy('name')
-            .value()
-        )
+        return _.chain(teacherGroups)
+          .map((el) => ({ id: el.id, name: el.subject }))
+          .concat(_.map(lectureGroups, (lg: any) => ({ id: lg.id, name: lg.subject })))
+          .filter((el) => !subjectExclusionValues.includes(el.name))
+          .uniqBy('name')
+          .value()
       case SubjectType.ETC:
         return _.chain(teacherGroups)
           .map((el) => ({ id: el.id, name: el.subject }))
@@ -207,52 +200,55 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
       setSelectedGroupIds(activityv3Data.groupActivityV3s?.map((el) => el.group?.id) || [])
       setSelectedCriteriaIds(activityv3Data.achievementCriteriaIds || [])
     }
-  }, [activityv3Data])
+  }, [activityv3Data, reset])
 
   const groupData: Record<string, Group[]> = useMemo(() => {
     switch (activityv3type) {
       case SubjectType.ACTIVITY: {
-        const result: any = {}
+        const result: Record<string, Group[]> = {}
         teacherGroups
           ?.filter((el) => el.group.type === GroupType.KLUB)
-          ?.forEach((el: any) => {
+          ?.forEach((el: ResponseSubjectGroupDto) => {
             result[el.subject] = result[el.subject] || []
             result[el.subject].push(el.group)
           })
         return result
       }
       case SubjectType.LECTURE: {
-        const result: any = {}
+        const result: Record<string, Group[]> = {}
         teacherGroups?.forEach((el) => {
-          result[el.subject] = result[el.subject] || []
-          result[el.subject].push(el.group)
+          const typedEl = el as unknown as Group & { subject: string }
+          result[typedEl.subject] = result[typedEl.subject] || []
+          result[typedEl.subject].push(typedEl)
         })
-        lectureGroups?.forEach((el: any) => {
-          result[el.subject] = result[el.subject] || []
-          result[el.subject].push(el)
+        lectureGroups?.forEach((el) => {
+          const typedEl = el as unknown as Group & { subject: string }
+          result[typedEl.subject] = result[typedEl.subject] || []
+          result[typedEl.subject].push(typedEl)
         })
         return result
       }
       case SubjectType.ETC: {
-        const result: any = {}
+        const result: Record<string, Group[]> = {}
         teacherGroups?.forEach((el) => {
-          result[el.subject] = result[el.subject] || []
-          result[el.subject].push(el.group)
+          const typedEl = el as unknown as Group & { subject: string }
+          result[typedEl.subject] = result[typedEl.subject] || []
+          result[typedEl.subject].push(typedEl)
         })
-        lectureGroups?.forEach((el: any) => {
-          result[el.subject] = result[el.subject] || []
-          result[el.subject].push(el)
+        lectureGroups?.forEach((el) => {
+          const typedEl = el as unknown as Group & { subject: string }
+          result[typedEl.subject] = result[typedEl.subject] || []
+          result[typedEl.subject].push(typedEl)
         })
         return result
       }
     }
     return {}
-  }, [teacherGroups, lectureGroups])
+  }, [teacherGroups, lectureGroups, activityv3type])
 
   const teacherSubjects =
-    groupData[watch('subject')]?.map(
-      (el: any) => ({ subject: watch('subject'), group: el }) as ResponseSubjectGroupDto,
-    ) || []
+    groupData[watch('subject')]?.map((el) => ({ subject: watch('subject'), group: el }) as ResponseSubjectGroupDto) ||
+    []
 
   const { mutateAsync: createActivityV3 } = useActivityV3Create({
     mutation: {
@@ -304,17 +300,23 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
           .uniqBy('group.name')
           .value()
       : _.chain(teacherGroupSubjectInfos)
-          //@ts-ignore
-          .concat(lectureGroups.map((el) => ({ group: el, subject: el.subject }) as ResponseSubjectGroupDto))
+          .concat(
+            lectureGroups.map((el: unknown) => {
+              const typedEl = el as Group & { subject: string }
+              return { group: typedEl, subject: typedEl.subject } as ResponseSubjectGroupDto
+            }),
+          )
           .uniqBy('group.name')
           .value()
     : []
 
-  const klassGrades = _.uniqBy(groups, 'group.grade').map((el) => el.group.grade)
+  // watch 값을 변수로 추출
+  const subjectValue = watch('subject')
+  const titleValue = watch('title')
 
   const isFormValid = useMemo(() => {
-    return activityv3type && watch('subject') && watch('title') && selectedGroupIds.length > 0
-  }, [activityv3type, watch('subject'), watch('title'), selectedGroupIds])
+    return activityv3type && subjectValue && titleValue && selectedGroupIds.length > 0
+  }, [activityv3type, subjectValue, titleValue, selectedGroupIds])
 
   const steps = [
     {
@@ -558,13 +560,13 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                                   </div>
                                 </div>
                                 <div className="flex min-w-max items-center justify-center bg-white px-2">
-                                  <div className="flex h-full w-full cursor-pointer items-center justify-center text-white">
-                                    <Icon.Close
-                                      className="cursor-pointer rounded-full bg-zinc-100 p-1 text-zinc-400"
-                                      onClick={() =>
-                                        setSelectedCriteriaIds(selectedCriteriaIds.filter((id) => id !== criteriaId))
-                                      }
-                                    />
+                                  <div
+                                    className="cursor-pointer rounded-full bg-zinc-100 p-1 text-zinc-400"
+                                    onClick={() =>
+                                      setSelectedCriteriaIds(selectedCriteriaIds.filter((id) => id !== criteriaId))
+                                    }
+                                  >
+                                    <Icon.Close />
                                   </div>
                                 </div>
                               </div>
@@ -591,10 +593,12 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                                 key={groupId}
                               >
                                 {groups?.find((el) => el.group?.id === groupId)?.group?.name}
-                                <Icon.Close
+                                <div
                                   className="cursor-pointer rounded-full bg-zinc-100 p-1 text-zinc-400"
                                   onClick={() => setSelectedGroupIds(selectedGroupIds.filter((id) => id !== groupId))}
-                                />
+                                >
+                                  <Icon.Close />
+                                </div>
                               </div>
                             ))}
                             <div
@@ -909,7 +913,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                     <div className="flex flex-col gap-1 pb-2">
                       {[...documentObjectMap].map(([key, value]) => (
                         <div key={key} className="flex h-8 items-center space-x-2 rounded bg-stone-50 px-3 py-1">
-                          <FileItemIcon />
+                          <img src={FileItemIcon} alt="file-icon" />
                           {typeof value.document === 'string' ? (
                             <a
                               className="ml-2 text-xs text-neutral-500"

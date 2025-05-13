@@ -3,10 +3,12 @@ import _ from 'lodash'
 import { useEffect, useMemo, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import { useHistory } from '@/hooks/useHistory'
+
 import { SuperModal } from '@/legacy/components'
 import { SessionCommentItem } from '@/legacy/components/activityv3/SessionCommentItem'
 import { Avatar, BackButton, Textarea, TopNavbar } from '@/legacy/components/common'
@@ -31,7 +33,7 @@ import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { getNickName } from '@/legacy/util/status'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
 import { meState, toastState } from '@/stores'
-import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
+import FileItemIcon from '@/asset/svg/file-item-icon.svg'
 
 interface ActivityV3SessionReportPageProps {}
 
@@ -41,7 +43,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
   const [activeIndex, setActiveIndex] = useState(0)
   const [isSurveyModalOpen, setSurveyModalOpen] = useState(false)
   const [userSelectView, setUserSelectView] = useState(false)
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [, setToastMsg] = useRecoilState(toastState)
   const { replace } = useHistory()
   const [selectedUserId, setSelectedUserId] = useState<number>(Number(studentId))
   const [sessionComment, setSessionComment] = useState('')
@@ -541,8 +543,8 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                         {studentActivitySession?.content && (
                           <div className="text-12 mt-auto flex items-center justify-end space-x-2 px-2 font-bold">
                             <span className="font-semibold text-gray-400">글자 수 (공백 제외)</span>&nbsp;
-                            {studentActivitySession?.content?.replaceAll(' ', '').length}자&nbsp;
-                            {new TextEncoder().encode(studentActivitySession?.content?.replaceAll(' ', '')).length} Byte
+                            {studentActivitySession?.content?.replace(/ /g, '').length}자&nbsp;
+                            {new TextEncoder().encode(studentActivitySession?.content?.replace(/ /g, '')).length} Byte
                             <span className="font-semibold text-gray-400">글자 수 (공백 포함)</span>&nbsp;
                             {studentActivitySession?.content?.length}자&nbsp;
                             {new TextEncoder().encode(studentActivitySession?.content).length}Byte
@@ -654,7 +656,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
       >
         <SuperSurveyComponent
           surveyContent={activitySession?.surveyContent || '[]'}
-          setContent={(c: any) => {}}
+          setContent={() => {}}
           content={{}}
           readOnly
         />
@@ -666,7 +668,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
           noImgDetails
           scalable={false}
           images={viewerImages}
-          onChange={(activeImage, index) => setActiveIndex(index)}
+          onChange={(_, index) => setActiveIndex(index)}
           onClose={() => setImagesModalOpen(false)}
           activeIndex={activeIndex}
         />

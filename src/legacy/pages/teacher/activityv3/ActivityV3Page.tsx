@@ -1,6 +1,8 @@
 import _, { range } from 'lodash'
 import { useEffect, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
+import { useHistory } from '@/hooks/useHistory'
 import { SessionDownloadModal } from '@/legacy/components/activityv3/SessionDownloadModal'
 import { BackButton, Select, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -8,9 +10,14 @@ import { Icon } from '@/legacy/components/common/icons'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { ACTIVITYV3_TYPE_KOR, ACTIVITY_SESSION_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import { useActivitySessionFindByTeacher, useActivityV3FindByTeacher } from '@/legacy/generated/endpoint'
-import { ActivitySession, ActivitySessionWithCountDto } from '@/legacy/generated/model'
+import { ActivitySession } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getThisYear, makeDateToString, makeTimeToString } from '@/legacy/util/time'
+
+interface ActivitySessionWithOrder extends ActivitySession {
+  activitySessionOrder_view_order?: string | number
+  submittedCount: number
+}
 
 export function ActivityV3Page() {
   const { push } = useHistory()
@@ -18,7 +25,7 @@ export function ActivityV3Page() {
 
   const [searchTitle, setSearchTitle] = useState('')
   const [openedActivityIds, setOpenedActivityIds] = useState<number[]>([])
-  const [sessionDatas, setSessionDatas] = useState<Record<number, ActivitySessionWithCountDto[]>>({})
+  const [sessionDatas, setSessionDatas] = useState<Record<number, ActivitySession[]>>({})
   const isMyActivityV3 = localStorage.getItem('isMyActivityV3') || ''
   const [isDownloadModalOpen, setDownloadModalOpen] = useState(false)
   const [selectedSessionId, setSelectedSessionId] = useState<number>()
@@ -35,7 +42,6 @@ export function ActivityV3Page() {
 
   const {
     data: activityv3s,
-    refetch,
     isLoading,
     isError,
   } = useActivityV3FindByTeacher({
@@ -56,17 +62,20 @@ export function ActivityV3Page() {
     if (sessionLoading) return
     activitySessions &&
       setSessionDatas(
-        activitySessions?.reduce((acc: any, cur: ActivitySession) => {
-          return { ...acc, [cur.activityv3Id]: [...(acc[cur.activityv3Id] || []), cur] }
-        }, []) || {},
+        activitySessions?.reduce(
+          (acc: Record<number, ActivitySession[]>, cur: ActivitySession) => {
+            return { ...acc, [cur.activityv3Id]: [...(acc[cur.activityv3Id] || []), cur] }
+          },
+          {} as Record<number, ActivitySession[]>,
+        ) || {},
       )
-  }, [activitySessions])
+  }, [activitySessions, sessionLoading])
 
   useEffect(() => {
     if (!_isMyActivityV3 && isMyActivityV3) {
       _setMyActivityV3(isMyActivityV3)
     }
-  }, [isMyActivityV3])
+  }, [isMyActivityV3, _isMyActivityV3])
 
   const thisYear = +getThisYear()
 
@@ -163,7 +172,9 @@ export function ActivityV3Page() {
                 }}
                 onSearch={() => setTitle(searchTitle)}
               />
-              <Icon.Search className="h-6 w-6 cursor-pointer" onClick={() => setTitle(searchTitle)} />
+              <div className="h-6 w-6 cursor-pointer" onClick={() => setTitle(searchTitle)}>
+                <Icon.Search />
+              </div>
             </div>
           </div>
 
@@ -284,8 +295,9 @@ export function ActivityV3Page() {
                                       </div>
                                     </td>
                                     <td className="w-30 border-b border-[#EEEEEE] px-2 py-2 text-[#333333]">
-                                      {session?.activitySessionOrder_view_order
-                                        ? session.activitySessionOrder_view_order + '차시'
+                                      {(session as ActivitySessionWithOrder)?.['activitySessionOrder_view_order']
+                                        ? (session as ActivitySessionWithOrder)['activitySessionOrder_view_order'] +
+                                          '차시'
                                         : ''}
                                     </td>
                                     <td
@@ -300,7 +312,10 @@ export function ActivityV3Page() {
                                         : '-'}
                                     </td>
                                     <td className="w-28 border-b border-[#EEEEEE] px-2 py-2 text-[#333333]">
-                                      <span className="text-brand-1">{session.submittedCount}&nbsp;</span>/&nbsp;
+                                      <span className="text-brand-1">
+                                        {(session as ActivitySessionWithOrder).submittedCount}&nbsp;
+                                      </span>
+                                      /&nbsp;
                                       {el.allCount}
                                     </td>
                                     <td
