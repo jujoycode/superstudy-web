@@ -17,12 +17,12 @@ import { getFileNameFromUrl } from '@/legacy/util/file'
 import { ActivityAddPage } from './ActivityAdd'
 
 interface ActivityDetailPageProps {
-  isUpdateState: boolean
-  setUpdateState: (b: boolean) => void
-  refetch: () => void
+  isUpdateState?: boolean
+  setUpdateState?: (b: boolean) => void
+  refetch?: () => void
 }
 
-export function ActivityDetailPage({ isUpdateState, setUpdateState, refetch }: ActivityDetailPageProps) {
+export function ActivityDetailPage({ isUpdateState = false, setUpdateState, refetch }: ActivityDetailPageProps) {
   const { id } = useParams<{ id: string }>()
   const { activity, images, Pdfs, documents, viewerImages, errorMessage, handleActivityDelete } =
     useTeacherActivityDetail(Number(id), refetch)
@@ -40,8 +40,8 @@ export function ActivityDetailPage({ isUpdateState, setUpdateState, refetch }: A
       <ActivityAddPage
         activityId={Number(id)}
         refetch={() => {
-          refetch()
-          setUpdateState(false)
+          if (refetch) refetch()
+          if (setUpdateState) setUpdateState(false)
         }}
       />
     )
@@ -60,7 +60,14 @@ export function ActivityDetailPage({ isUpdateState, setUpdateState, refetch }: A
       <div className="flex justify-between">
         <Badge children={activity?.subject} className="bg-light_orange text-brand-1" />
         <div className="font-base flex cursor-pointer space-x-4 text-gray-500">
-          <div className="text-gray-700" onClick={() => setUpdateState(true)}>
+          <div
+            className="text-gray-700"
+            onClick={() => {
+              if (setUpdateState) {
+                setUpdateState(true)
+              }
+            }}
+          >
             수정
           </div>
           <div className="cursor-pointer text-red-400" onClick={() => setDeleteModalOpen(true)}>
