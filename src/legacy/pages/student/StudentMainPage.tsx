@@ -45,7 +45,7 @@ import { PointLogsPage } from './point/PointLogsPage'
 import { ScorePage } from './score/ScorePage'
 import { SelfTestPage } from './self-test/SelfTestPage'
 import { TimetableDetailPage } from './timetable/TimetableDetailPage'
-import Logo from '@/legacy/assets/svg/logo.svg'
+import { ReactComponent as Logo } from '@/legacy/assets/svg/logo.svg'
 import { ApplyPage } from '@/legacy/pages/teacher/absent/ApplyPage'
 
 export function StudentMainPage() {

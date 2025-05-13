@@ -285,7 +285,7 @@ export function FieldtripMainPage() {
                     return 0
                   })
                   .filter(
-                    (fieldtrip) => me?.role,
+                    (_) => me?.role,
                     // && fieldtrip?.fieldtripResultStatus === 'PROCESSED'
                   )}
                 setCsvData={(b: boolean) => setCsvData(b)}
