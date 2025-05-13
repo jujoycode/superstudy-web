@@ -2,9 +2,12 @@ import { format } from 'date-fns'
 import _ from 'lodash'
 import { useMemo, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+
+import FileItemIcon from '@/assets/svg/file-item-icon.svg'
+import { useHistory } from '@/hooks/useHistory'
 import { StudentActivityDetail } from '@/legacy/components/activityv3/StudentActivityDetail'
 import { BackButton, TopNavbar } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
@@ -13,11 +16,8 @@ import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import { useActivityV3FindByGroupIds, useActivityV3FindOne } from '@/legacy/generated/endpoint'
 import { StudentGroup } from '@/legacy/generated/model'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
 
-interface ActivityV3ReportPageProps {}
-
-export const ActivityV3ReportPage: React.FC<ActivityV3ReportPageProps> = () => {
+export const ActivityV3ReportPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const { replace } = useHistory()
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
@@ -77,11 +77,15 @@ export const ActivityV3ReportPage: React.FC<ActivityV3ReportPageProps> = () => {
             <p onClick={() => replace('/teacher/activityv3')} className="cursor-pointer">
               활동 기록
             </p>
-            <Icon.FillArrow className="-rotate-90" />
+            <div className="-rotate-90">
+              <Icon.FillArrow />
+            </div>
             <p onClick={() => replace(`/teacher/activityv3/${activityv3.id}`)} className="cursor-pointer">
               {activityv3?.title?.length >= 15 ? activityv3.title?.slice(0, 15) + '...' : activityv3.title || '활동명'}
             </p>
-            <Icon.FillArrow className="-rotate-90" />
+            <div className="-rotate-90">
+              <Icon.FillArrow />
+            </div>
             <p>활동 보고서</p>
           </div>
           <div className="3xl:px-30 3xl:py-20 h-full overflow-y-auto bg-white p-2 md:px-10 md:py-5">
@@ -193,7 +197,7 @@ export const ActivityV3ReportPage: React.FC<ActivityV3ReportPageProps> = () => {
           noImgDetails
           scalable={false}
           images={viewerImages}
-          onChange={(activeImage, index) => setActiveIndex(index)}
+          onChange={(_, index) => setActiveIndex(index)}
           onClose={() => setImagesModalOpen(false)}
           activeIndex={activeIndex}
         />
