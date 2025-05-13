@@ -8,9 +8,9 @@
 
 export interface SaveLectureAttendanceDto {
   /** 아이디 */
-  id?: number;
-  isAttended: boolean;
-  note: string;
-  courseLectureId: number;
-  userId: number;
+  id?: number
+  isAttended: boolean
+  note: string
+  courseLectureId: number
+  userId: number
 }

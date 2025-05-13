@@ -5,26 +5,26 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseReferenceInfoDtoCategory } from './responseReferenceInfoDtoCategory';
-import type { ResponseWriterDto } from './responseWriterDto';
+import type { ResponseReferenceInfoDtoCategory } from './responseReferenceInfoDtoCategory'
+import type { ResponseWriterDto } from './responseWriterDto'
 
 export interface ResponseReferenceInfoDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  content: string;
+  content: string
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 이미지 파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 참고자료 분류 */
-  category: ResponseReferenceInfoDtoCategory;
+  category: ResponseReferenceInfoDtoCategory
   /** 작성자 */
-  writer: ResponseWriterDto;
+  writer: ResponseWriterDto
 }

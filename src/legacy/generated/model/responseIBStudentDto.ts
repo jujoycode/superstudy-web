@@ -5,19 +5,19 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseStudentGroupByIB } from './responseStudentGroupByIB';
+import type { ResponseStudentGroupByIB } from './responseStudentGroupByIB'
 
 export interface ResponseIBStudentDto {
   /** 유저 Id */
-  id: number;
+  id: number
   /** 이메일 */
-  email: string;
+  email: string
   /** role */
-  role: string;
+  role: string
   /** 이름 */
-  name: string;
+  name: string
   /** 프로필이미지경로 */
-  profile?: string;
+  profile?: string
   /** 반정보 */
-  studentGroup: ResponseStudentGroupByIB;
+  studentGroup: ResponseStudentGroupByIB
 }

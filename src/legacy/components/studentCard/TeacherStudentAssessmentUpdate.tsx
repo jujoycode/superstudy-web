@@ -1,13 +1,15 @@
 import _, { map, max } from 'lodash'
 import { FC, useEffect, useState } from 'react'
-import { useTeacherStudentAssessmentCreate } from '@/legacy/generated/endpoint'
-import { TeacherStudentAssessment } from '@/legacy/generated/model'
-import { SELF_TEST_TYPES } from '@/legacy/pages/student/self-test/self-test.type'
 import { twMerge } from 'tailwind-merge'
+
 import { Label, Select, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
 import { TextInput } from '@/legacy/components/common/TextInput'
+import { useTeacherStudentAssessmentCreate } from '@/legacy/generated/endpoint'
+import { TeacherStudentAssessment } from '@/legacy/generated/model'
+
+import { SELF_TEST_TYPES } from '@/legacy/pages/student/self-test/self-test.type'
 
 interface TeacherStudentAssessmentUpdateProps {
   studentId: number
@@ -138,7 +140,7 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
           <Label.Text className="text-16">해당 학생을 나타내는 특성단어를 선택해주세요.</Label.Text>
           <div className="mt-2">
             {keywordDatas.map((el) => {
-              const selected = Object.values(keywords).some(({ keyword, reason }) => el === keyword)
+              const selected = Object.values(keywords).some(({ keyword }) => el === keyword)
               return (
                 <div
                   className={twMerge(

@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentExamScoreCheckScoreFileParams = { grade: number; insertionYear: number };
+export type StudentExamScoreCheckScoreFileParams = { grade: number; insertionYear: number }

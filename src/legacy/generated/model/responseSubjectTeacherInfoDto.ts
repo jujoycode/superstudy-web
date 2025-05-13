@@ -5,17 +5,17 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Role } from './role';
+import type { Role } from './role'
 
 export interface ResponseSubjectTeacherInfoDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 역할 */
-  role: Role;
+  role: Role
   /** 이름 */
-  name: string;
+  name: string
   /** 닉네임 */
-  nickName: string;
+  nickName: string
   /** 과목 */
-  subject: string | null;
+  subject: string | null
 }

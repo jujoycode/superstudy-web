@@ -7,6 +7,6 @@
  */
 
 export interface PointUpdateBody {
-  title?: string;
-  value?: number;
+  title?: string
+  value?: number
 }

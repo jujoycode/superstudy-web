@@ -11,17 +11,17 @@
  */
 export type RequestIBCasUpdateDtoLearningOutcome = {
   /** 자신의 장점&성장 분야 개발 */
-  strengthsDevelopment?: boolean;
+  strengthsDevelopment?: boolean
   /** 도전과제 수행&새로운 역량 개발 */
-  newSkills?: boolean;
+  newSkills?: boolean
   /** CAS활동 추진&계획 */
-  initiativePlanning?: boolean;
+  initiativePlanning?: boolean
   /** 노력과 인내심 */
-  perseverance?: boolean;
+  perseverance?: boolean
   /** 개인의 역량 입증&협력의 이점 인식 */
-  teamworkBenefits?: boolean;
+  teamworkBenefits?: boolean
   /** 세계적 이슈 참여 */
-  globalIssues?: boolean;
+  globalIssues?: boolean
   /** 선택과 행동의 윤리적 측면 */
-  ethicalChoices?: boolean;
-};
+  ethicalChoices?: boolean
+}

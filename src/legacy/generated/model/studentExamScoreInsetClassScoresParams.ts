@@ -7,8 +7,8 @@
  */
 
 export type StudentExamScoreInsetClassScoresParams = {
-  grade: number;
-  classNum: number;
-  semester: number;
-  insertionYear: number;
-};
+  grade: number
+  classNum: number
+  semester: number
+  insertionYear: number
+}

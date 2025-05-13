@@ -5,9 +5,9 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseTeacherDetailInfoDto } from './responseTeacherDetailInfoDto';
+import type { ResponseTeacherDetailInfoDto } from './responseTeacherDetailInfoDto'
 
 /**
  * 담임 선생님 정보
  */
-export type ResponseKlassInfoDtoHomeroomTeacherInfo = ResponseTeacherDetailInfoDto | null;
+export type ResponseKlassInfoDtoHomeroomTeacherInfo = ResponseTeacherDetailInfoDto | null

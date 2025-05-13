@@ -1,21 +1,24 @@
 import clsx from 'clsx'
 import _ from 'lodash'
+import QueryString from 'qs'
 import { useEffect, useMemo, useState } from 'react'
+import { useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
-import NODATA from '@/legacy/assets/images/no-data.png'
-import { useGetIBPortfolio } from '@/legacy/container/ib-portfolio-get-filter'
-import { useGroupsFindAllKlassBySchool } from '@/legacy/generated/endpoint'
-import { meState } from '@/stores'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Input } from '@/legacy/components/common/Input'
 import SelectBar from '@/legacy/components/common/SelectBar'
 import { Typography } from '@/legacy/components/common/Typography'
-import PortfolioCard from './cas/PortfolioCard'
-import QueryString from 'qs'
-import { useHistory } from '@/hooks/useHistory'
-import { useLocation } from 'react-router'
+import { useGetIBPortfolio } from '@/legacy/container/ib-portfolio-get-filter'
+import { useGroupsFindAllKlassBySchool } from '@/legacy/generated/endpoint'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
+import { meState } from '@/stores'
+
+import PortfolioCard from './cas/PortfolioCard'
+
+import NODATA from '@/assets/images/no-data.png'
 
 interface FilterOption {
   grade: number
@@ -85,7 +88,9 @@ export default function TeacherIBPortfolioList() {
       Object.entries(params).filter(([_, value]) => value !== undefined),
     ) as Record<string, string>
     setQueryParamsWithStorage(filteredParams)
-    history.replace({ search: QueryString.stringify(filteredParams, { addQueryPrefix: true }) })
+    history.replace({
+      search: QueryString.stringify(filteredParams, { addQueryPrefix: true }),
+    })
   }
 
   const grades = [

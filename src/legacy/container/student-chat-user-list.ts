@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { childState } from '@/stores'
 import { useUserGetAllTeachers } from '@/legacy/generated/endpoint'
-import { Role, type ResponseGroupDto, type ResponseTeachersDto } from '@/legacy/generated/model'
-import type { UserDatas } from '@/legacy/types'
+import { ResponseGroupDto, ResponseTeachersDto, Role } from '@/legacy/generated/model'
+import { childState } from '@/stores'
+import { UserDatas } from '@/legacy/types'
 
 export function useStudentChatUserList() {
   const child = useRecoilValue(childState)

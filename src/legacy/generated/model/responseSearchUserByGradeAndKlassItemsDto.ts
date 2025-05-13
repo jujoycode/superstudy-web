@@ -5,9 +5,9 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseSearchUserByGradeAndKlassDto } from './responseSearchUserByGradeAndKlassDto';
+import type { ResponseSearchUserByGradeAndKlassDto } from './responseSearchUserByGradeAndKlassDto'
 
 export interface ResponseSearchUserByGradeAndKlassItemsDto {
   /** items */
-  items: ResponseSearchUserByGradeAndKlassDto[];
+  items: ResponseSearchUserByGradeAndKlassDto[]
 }

@@ -1,10 +1,10 @@
-import { Link, useLocation } from 'react-router'
+import { Link, useLocation } from 'react-router-dom'
 import { Badge } from '@/legacy/components/common'
+import { Time } from '@/legacy/components/common/Time'
+import { Routes } from '@/legacy/constants/routes'
 import { Newsletter, NewsletterType } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { Routes } from '@/legacy/constants/routes'
 import { getNickName } from '@/legacy/util/status'
-import { Time } from '@/legacy/components/common/Time'
 
 interface NewsletterCardProps {
   newsletter: Newsletter

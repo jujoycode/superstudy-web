@@ -1,7 +1,9 @@
 import fontkit from '@pdf-lib/fontkit'
 import { PDFDocument, PageSizes, rgb } from 'pdf-lib'
-import { pxToPoint, drawSection } from '../pdf-lib'
+
 import { type ResponseIBTokOutlineDto } from '@/legacy/generated/model'
+
+import { pxToPoint, drawSection } from '../pdf-lib'
 
 export const createTokOutlinePdf = async (
   { klassNum, name }: { klassNum: string; name: string },

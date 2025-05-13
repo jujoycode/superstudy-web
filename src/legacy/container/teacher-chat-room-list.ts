@@ -1,12 +1,9 @@
 import { useState } from 'react'
-
-// ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
 import { Routes } from '@/legacy/constants/routes'
-
 import { useChatroomCreateChatRoom, useChatroomGetChatroomInfo } from '@/legacy/generated/endpoint'
-import type { ResponseChatroomInfoDto } from '@/legacy/generated/model'
-import type { UserDatas, errorType } from '@/legacy/types'
+import { ResponseChatroomInfoDto } from '@/legacy/generated/model'
+import { UserDatas, errorType } from '@/legacy/types'
 
 export function useTeacherChatRoomList() {
   const { push } = useHistory()

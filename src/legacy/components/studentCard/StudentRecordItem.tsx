@@ -1,11 +1,13 @@
 import { FC, useState } from 'react'
-import { useStudentRecordontrollerDelete, useStudentRecordontrollerUpdate } from '@/legacy/generated/endpoint'
-import { StudentRecord } from '@/legacy/generated/model'
-import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { SuperModal } from '../SuperModal'
+
 import { Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
+import { useStudentRecordontrollerDelete, useStudentRecordontrollerUpdate } from '@/legacy/generated/endpoint'
+import { StudentRecord } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+
+import { SuperModal } from '../SuperModal'
 
 interface StudentRecordItemProps {
   record: StudentRecord
@@ -21,7 +23,7 @@ export const StudentRecordItem: FC<StudentRecordItemProps> = ({ record, refetch 
 
   const reportContent = updateView ? content : record.content
   const byteLength = new TextEncoder().encode(reportContent).length
-  const trimmedContent = reportContent.replaceAll(' ', '')
+  const trimmedContent = reportContent.replace(/ /g, '')
   const trimmedByteLength = new TextEncoder().encode(trimmedContent).length
 
   const { mutate: updateStudentRecord } = useStudentRecordontrollerUpdate({

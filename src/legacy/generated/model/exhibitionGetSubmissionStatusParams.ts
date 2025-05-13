@@ -5,12 +5,12 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ExhibitionGetSubmissionStatusStatus } from './exhibitionGetSubmissionStatusStatus';
+import type { ExhibitionGetSubmissionStatusStatus } from './exhibitionGetSubmissionStatusStatus'
 
 export type ExhibitionGetSubmissionStatusParams = {
-  grade?: number;
-  klass?: number;
-  page?: number;
-  limit?: number;
-  status: ExhibitionGetSubmissionStatusStatus;
-};
+  grade?: number
+  klass?: number
+  page?: number
+  limit?: number
+  status: ExhibitionGetSubmissionStatusStatus
+}

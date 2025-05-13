@@ -1,8 +1,9 @@
 import { useState, type ChangeEvent } from 'react'
-import { Validator } from '@/legacy/util/validator'
-import { checkFileSizeLimit100MB, checkFileSizeLimit100MBex } from '@/legacy/util/file'
-import type { ImageObject } from '@/legacy/types/image-object'
+
 import type { DocumentObject } from '@/legacy/types/document-object'
+import type { ImageObject } from '@/legacy/types/image-object'
+import { checkFileSizeLimit100MB, checkFileSizeLimit100MBex } from '@/legacy/util/file'
+import { Validator } from '@/legacy/util/validator'
 
 export enum fileType {
   ANY,

@@ -1,10 +1,11 @@
-import { useHistory, useLocation } from 'react-router'
+import { useLocation } from 'react-router'
+import { useHistory } from '@/hooks/useHistory'
 import { Badge } from '@/legacy/components/common'
+import { Time } from '@/legacy/components/common/Time'
+import { Routes } from '@/legacy/constants/routes'
 import { Notice } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { Routes } from '@/legacy/constants/routes'
 import { getNickName } from '@/legacy/util/status'
-import { Time } from '@/legacy/components/common/Time'
 
 interface NoticeCardProps {
   notice: Notice

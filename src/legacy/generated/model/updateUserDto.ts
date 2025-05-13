@@ -5,48 +5,48 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestCreateStudentGroupDto } from './requestCreateStudentGroupDto';
+import type { RequestCreateStudentGroupDto } from './requestCreateStudentGroupDto'
 
 export interface UpdateUserDto {
   /** 이름 */
-  name: string | null;
+  name: string | null
   /** 별칭 */
-  nickName: string | null;
+  nickName: string | null
   /** 전화번호 */
-  phone: string | null;
+  phone: string | null
   /** 패스워드 */
-  password: string | null;
+  password: string | null
   /** 생년월일 */
-  birthDate: string | null;
+  birthDate: string | null
   /** 학부모이름 */
-  nokName: string | null;
+  nokName: string | null
   /** 학부모전화번호 */
-  nokPhone: string | null;
+  nokPhone: string | null
   /** 희망진로 */
-  hopePath: string | null;
+  hopePath: string | null
   /** 희망학과 */
-  hopeMajor: string | null;
+  hopeMajor: string | null
   /** 도장이미지경로 */
-  stamp: string | null;
+  stamp: string | null
   /** 프로필이미지URL */
-  profile: string | null;
+  profile: string | null
   /** 커스텀프로필이미지URL */
-  customProfile: string | null;
+  customProfile: string | null
   /** 유저배경이미지 */
-  customBackground: string | null;
+  customBackground: string | null
   /**
    * 유저메시지, 사용안됨
    * @deprecated
    */
-  customMessage: string | null;
+  customMessage: string | null
   /** 학생그룹 */
-  studentGroups: RequestCreateStudentGroupDto[] | null;
+  studentGroups: RequestCreateStudentGroupDto[] | null
   /** 선생님 부서 */
-  department: string | null;
+  department: string | null
   /** 선생님 직책 */
-  position: string | null;
+  position: string | null
   /** 선생님 채팅시작시간 */
-  chatStartTime: string | null;
+  chatStartTime: string | null
   /** 선생님 채팅종료시간 */
-  chatEndTime: string | null;
+  chatEndTime: string | null
 }

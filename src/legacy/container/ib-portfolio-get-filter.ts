@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useIBCasPortfolioGetItems } from '@/legacy/generated/endpoint'
-import type { IBCasPortfolioGetItemsParams } from '@/legacy/generated/model'
+import { IBCasPortfolioGetItemsParams } from '@/legacy/generated/model'
 
 export function useGetIBPortfolio() {
   const [param, setParam] = useState<IBCasPortfolioGetItemsParams>()

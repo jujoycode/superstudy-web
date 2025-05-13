@@ -5,37 +5,37 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { SubjectType } from './subjectType';
+import type { SubjectType } from './subjectType'
 
 export interface RequestCreateActivityV3Dto {
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  description: string | null;
+  description: string | null
   /** 과제과목 */
-  subject: string;
+  subject: string
   /** 공통문구 */
-  commonText: string;
+  commonText: string
   /** 활동보고서  존재 여부 */
-  hasStudentText: boolean;
+  hasStudentText: boolean
   /** 활동 보고서 마감일 */
-  studentTextEndDate: string | null;
+  studentTextEndDate: string | null
   /** 학생 활동 보고서 설명 */
-  explainText: string;
+  explainText: string
   /** 학생 활동 보고서 가이드 */
-  exampleText: string;
+  exampleText: string
   /** 시작일 */
-  startDate: string | null;
+  startDate: string | null
   /** 종료일 */
-  endDate: string | null;
+  endDate: string | null
   /** 이미지파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 과제 타입 */
-  type: SubjectType;
+  type: SubjectType
   /** 성취기준 아이디 */
-  achievementCriteriaIds: number[];
+  achievementCriteriaIds: number[]
   /** 그룹아이디들 */
-  groupIds: number[];
+  groupIds: number[]
 }

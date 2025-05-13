@@ -1,28 +1,28 @@
 import { useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import {
-  childState,
-  isStayLoggedInState,
-  meState,
-  refreshTokenState,
-  tokenState,
-  twoFactorState,
-  schoolPropertiesState,
-} from '@/stores'
-import { RN } from '@/legacy/lib/rn'
-import { useLogoutOnIdle } from '@/legacy/hooks/useLogoutOnIdle'
-import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
-import { useLogout } from '@/legacy/util/hooks'
-import { isEmail } from '@/legacy/util/validator'
-import {
   useSchoolPropertyGetProperties,
   useUserLogin,
   useUserMe,
   useUserMeWithChildren,
 } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
-import { createContainer } from '@/legacy/container/createContainer'
-import type { errorType } from '@/legacy/types'
+import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
+import { useLogoutOnIdle } from '@/legacy/hooks/useLogoutOnIdle'
+import { RN } from '@/legacy/lib/rn'
+import {
+  childState,
+  isStayLoggedInState,
+  meState,
+  refreshTokenState,
+  schoolPropertiesState,
+  tokenState,
+  twoFactorState,
+} from '@/stores'
+import { errorType } from '@/legacy/types'
+import { useLogout } from '@/legacy/util/hooks'
+import { isEmail } from '@/legacy/util/validator'
+import { createContainer } from './createContainer'
 
 export function userHook() {
   const logout = useLogout()
@@ -32,8 +32,8 @@ export function userHook() {
 
   const setChild = useSetRecoilState(childState)
   const [token, setToken] = useRecoilState(tokenState)
+  const [, setRefreshToken] = useRecoilState(refreshTokenState)
   const setTwoFactorState = useSetRecoilState(twoFactorState)
-  const [_, setRefreshToken] = useRecoilState(refreshTokenState)
   const [errorMessage, setErrorMessage] = useState<string>()
   const [errorCode, setErrorCode] = useState('')
   const [schoolProperties, setSchoolProperties] = useRecoilState(schoolPropertiesState)
@@ -126,7 +126,7 @@ export function userHook() {
 
   const { refetch: refetchSchoolProperties } = useSchoolPropertyGetProperties({
     query: {
-      enabled: !!meData?.schoolId,
+      enabled: !!token && !!meData?.schoolId,
       onSuccess: (data) => {
         setSchoolProperties(data)
       },

@@ -1,18 +1,18 @@
-import { getDay, isToday } from 'date-fns';
-import { ko } from 'date-fns/esm/locale';
-import { useEffect } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import { getDay, isToday } from 'date-fns'
+import { ko } from 'date-fns/esm/locale'
+import { useEffect } from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 interface FieldtripDatePickerProps {
-  disabled?: boolean;
-  selectedDate: Date | null;
-  excludeDates: Date[];
-  hasSaturdayClass?: boolean;
-  minDate?: Date | null;
-  maxDate?: Date | null;
-  placeholderText: string;
-  onChange: (date: Date | null) => void;
+  disabled?: boolean
+  selectedDate: Date | null
+  excludeDates: Date[]
+  hasSaturdayClass?: boolean
+  minDate?: Date | null
+  maxDate?: Date | null
+  placeholderText: string
+  onChange: (date: Date | null) => void
 }
 
 export function FieldtripDatePicker({
@@ -32,29 +32,29 @@ export function FieldtripDatePicker({
         date1.getFullYear() === date2.getFullYear() &&
         date1.getMonth() === date2.getMonth() &&
         date1.getDate() === date2.getDate()
-      );
+      )
     } else {
-      return false;
+      return false
     }
-  };
+  }
 
   useEffect(() => {
     if (selectedDate) {
-      const newDate = selectedDate;
+      const newDate = selectedDate
 
       while (excludeDates.some((excludeDate) => isSameDay(newDate, excludeDate))) {
-        newDate.setDate(newDate.getDate() + 1);
+        newDate.setDate(newDate.getDate() + 1)
       }
       if (!isSameDay(newDate, selectedDate)) {
-        onChange(newDate);
+        onChange(newDate)
       }
     }
-  }, []);
+  }, [])
 
   const CustomInput = (props: any) => {
     return (
       <input
-        className="flex w-full flex-1 rounded-md border border-gray-200 px-4 py-3 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+        className="focus:border-brand-1 flex w-full flex-1 rounded-md border border-gray-200 px-4 py-3 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
         disabled={props.disabled}
         placeholder={props.placeholder}
         onClick={props.onClick}
@@ -62,13 +62,13 @@ export function FieldtripDatePicker({
         type="text"
         readOnly
       />
-    );
-  };
+    )
+  }
 
   const isWeekday = (date: Date) => {
-    const day = getDay(date);
-    return day !== 0 && (hasSaturdayClass || day !== 6);
-  };
+    const day = getDay(date)
+    return day !== 0 && (hasSaturdayClass || day !== 6)
+  }
 
   return (
     <DatePicker
@@ -86,12 +86,12 @@ export function FieldtripDatePicker({
       onChange={onChange}
       customInput={<CustomInput />}
       dayClassName={(date) => {
-        const day = getDay(date);
+        const day = getDay(date)
         if (isToday(date)) {
-          return '';
+          return ''
         }
         if (day === 0) {
-          return 'text-red-500 text-opacity-50';
+          return 'text-red-500 text-opacity-50'
         }
         if (day === 6) {
           if (hasSaturdayClass) {
@@ -103,16 +103,16 @@ export function FieldtripDatePicker({
                   item.getDate() === date.getDate(),
               )
             ) {
-              return 'text-blue-500 text-opacity-50';
+              return 'text-blue-500 text-opacity-50'
             } else {
-              return 'text-blue-500';
+              return 'text-blue-500'
             }
           } else {
-            return 'text-blue-500 text-opacity-50';
+            return 'text-blue-500 text-opacity-50'
           }
         }
-        return '';
+        return ''
       }}
     />
-  );
+  )
 }

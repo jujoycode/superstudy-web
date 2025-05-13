@@ -1,6 +1,8 @@
 import clsx from 'clsx'
 import { ChangeEvent, TextareaHTMLAttributes, forwardRef, useEffect, useState } from 'react'
+
 import { cn } from '@/legacy/lib/tailwind-merge'
+
 import { Typography } from './Typography'
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {

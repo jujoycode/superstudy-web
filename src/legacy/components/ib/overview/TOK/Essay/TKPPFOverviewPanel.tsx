@@ -1,12 +1,13 @@
 import clsx from 'clsx'
 import { useMemo } from 'react'
+
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import {
   ResponseIBTKPPFSubmissionStatusDto,
   ResponseIBTKPPFSubmissionStatusDtoDetailStatus,
 } from '@/legacy/generated/model'
-import SVGIcon from '@/legacy/components/icon/SVGIcon'
 
 interface OverviewPanelProps {
   data: ResponseIBTKPPFSubmissionStatusDto[]

@@ -9,9 +9,8 @@
 /**
  * 알림 종류
  */
-export type NotificationLogType = (typeof NotificationLogType)[keyof typeof NotificationLogType];
+export type NotificationLogType = (typeof NotificationLogType)[keyof typeof NotificationLogType]
 
- 
 export const NotificationLogType = {
   BASIC: 'BASIC',
   ABSENT: 'ABSENT',
@@ -26,4 +25,4 @@ export const NotificationLogType = {
   IB: 'IB',
   CHAT: 'CHAT',
   null: null,
-} as const;
+} as const

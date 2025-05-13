@@ -8,5 +8,5 @@
 
 export interface RequestAddUsersChatroomDto {
   /** 추가할 UserId List */
-  userIdList: number[];
+  userIdList: number[]
 }

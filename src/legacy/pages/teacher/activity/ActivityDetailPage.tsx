@@ -3,6 +3,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
+
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Badge, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -12,6 +13,7 @@ import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { useTeacherActivityDetail } from '@/legacy/container/teacher-activity-detail'
 import { getFileNameFromUrl } from '@/legacy/util/file'
+
 import { ActivityAddPage } from './ActivityAdd'
 
 interface ActivityDetailPageProps {
@@ -23,7 +25,7 @@ interface ActivityDetailPageProps {
 export function ActivityDetailPage({ isUpdateState, setUpdateState, refetch }: ActivityDetailPageProps) {
   const { id } = useParams<{ id: string }>()
   const { activity, images, Pdfs, documents, viewerImages, errorMessage, handleActivityDelete } =
-    useTeacherActivityDetail(+id, refetch)
+    useTeacherActivityDetail(Number(id), refetch)
 
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
@@ -36,7 +38,7 @@ export function ActivityDetailPage({ isUpdateState, setUpdateState, refetch }: A
   if (isUpdateState) {
     return (
       <ActivityAddPage
-        activityId={+id}
+        activityId={Number(id)}
         refetch={() => {
           refetch()
           setUpdateState(false)

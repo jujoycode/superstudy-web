@@ -2,13 +2,15 @@ import clsx from 'clsx'
 import { PropsWithChildren, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
-import { useIBInterviewCreate, useInterviewGetByStudentId } from '@/legacy/container/ib-student-interview'
-import { RequestCreateQnaDto, ResponseStudentInterviewDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useIBInterviewCreate, useInterviewGetByStudentId } from '@/legacy/container/ib-student-interview'
+import { RequestCreateQnaDto, ResponseStudentInterviewDto } from '@/legacy/generated/model'
+import { meState } from '@/stores'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import SolidSVGIcon from '../../icon/SolidSVGIcon'
 
@@ -51,7 +53,7 @@ export function IbEeInterview({
     handleSubmit,
     register,
     reset,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestCreateQnaDto>()
 
   const { createIBInterview, isLoading } = useIBInterviewCreate({

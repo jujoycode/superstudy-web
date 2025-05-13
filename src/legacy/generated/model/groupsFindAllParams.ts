@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { GroupType } from './groupType';
+import type { GroupType } from './groupType'
 
-export type GroupsFindAllParams = { type: GroupType };
+export type GroupsFindAllParams = { type: GroupType }

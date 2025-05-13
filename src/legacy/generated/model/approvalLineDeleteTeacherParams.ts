@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ApprovalLineDeleteTeacherParams = { type1: string; type2: string };
+export type ApprovalLineDeleteTeacherParams = { type1: string; type2: string }

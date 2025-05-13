@@ -1,46 +1,25 @@
 import { ComponentType } from 'react'
-import { Redirect, Route } from 'react-router'
-import { UserContainer } from '@/legacy/container/user'
+import { Navigate, useLocation } from 'react-router-dom'
+
 import { useAuth } from '@/legacy/util/hooks'
 
 interface AuthRouteProps {
-  path: string
+  path?: string
   component: ComponentType
   guestOnly?: boolean
 }
 
-export function AuthRoute({ path, component: Component, guestOnly }: AuthRouteProps) {
-  const { authenticated, twoFactorAuthenticated } = useAuth()
-  const { isMeLoading } = UserContainer.useContext()
+export function AuthRoute({ component: Component, guestOnly }: AuthRouteProps) {
+  const { authenticated } = useAuth()
+  const location = useLocation()
 
-  return (
-    <Route
-      path={path}
-      render={({ location }) => {
-        if (guestOnly && authenticated) {
-          return <Redirect to={{ pathname: '/', state: { from: location } }} />
-        }
-        if (!guestOnly && !authenticated) {
-          return <Redirect to={{ pathname: '/login', state: { from: location } }} />
-        }
+  if (guestOnly && authenticated) {
+    return <Navigate to="/" state={{ from: location }} replace />
+  }
 
-        // FIXME: 2차인증 사용하지않아도 페이지 나오는 현상 수정 후 주석해제가 필요합니다.
-        // if (
-        //   !guestOnly &&
-        //   authenticated &&
-        //   !twoFactorAuthenticated &&
-        //   !isMeLoading &&
-        //   location.pathname !== '/two-factor'
-        // ) {
-        //   return <Redirect to={{ pathname: '/two-factor', state: { from: location } }} />;
-        // }
+  if (!guestOnly && !authenticated) {
+    return <Navigate to="/login" state={{ from: location }} replace />
+  }
 
-        // if (authenticated && twoFactorAuthenticated && location.pathname == '/two-factor') {
-        //   return <Redirect to={{ pathname: '/', state: { from: location } }} />;
-        // }
-        // @ts-ignore
-        return <Component />
-      }}
-    />
-  )
+  return <Component />
 }

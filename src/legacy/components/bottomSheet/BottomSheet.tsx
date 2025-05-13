@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+
 import { Typography } from '@/legacy/components/common/Typography'
+
 import SVGIcon from '../icon/SVGIcon'
 
 interface ButtonProps {

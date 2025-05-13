@@ -1,5 +1,6 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
+
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
@@ -28,7 +29,7 @@ export default function TkppfIbSubmitInformPopup({
   tkppfData,
 }: TkppfListPopupProps) {
   const [tkppfState, setTkppfState] = useState<ResponseTKPPFDto | null>(tkppfData || null)
-  const { data: fetchedTkppf, isLoading: isTkppfLoading } = useTKPPFGetByIBId(Number(ibId))
+  const { data: fetchedTkppf } = useTKPPFGetByIBId(Number(ibId))
   const [academicIntegrityConsent, setAcademicIntegrityConsent] = useState<boolean>(
     tkppfState?.academicIntegrityConsent || false,
   )

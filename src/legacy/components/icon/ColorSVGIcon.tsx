@@ -1,11 +1,11 @@
-import clsx from 'clsx';
+import clsx from 'clsx'
 
 export interface ColorSVGIconProps {
-  color?: 'gray700' | 'gray400' | 'orange800' | 'orange' | 'white' | 'dimmed';
-  size?: number;
-  rotate?: 0 | 90 | 180 | 270;
-  className?: string;
-  onClick?: (e: any) => void;
+  color?: 'gray700' | 'gray400' | 'orange800' | 'orange' | 'white' | 'dimmed'
+  size?: number
+  rotate?: 0 | 90 | 180 | 270
+  className?: string
+  onClick?: (e: any) => void
 }
 
 // 공통 SVG 설정 함수
@@ -31,8 +31,8 @@ const ColorSVGIconBase = ({
     >
       {children}
     </svg>
-  );
-};
+  )
+}
 
 const ReferenceIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) => {
   switch (color) {
@@ -48,7 +48,7 @@ const ReferenceIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...prop
             fill="#61656B"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <ColorSVGIconBase {...props}>
@@ -61,7 +61,7 @@ const ReferenceIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...prop
             fill="#898D94"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <ColorSVGIconBase {...props}>
@@ -74,7 +74,7 @@ const ReferenceIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...prop
             fill="#FF803D"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'white':
       return (
         <ColorSVGIconBase {...props}>
@@ -87,11 +87,11 @@ const ReferenceIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...prop
             fill="#FFFFFF"
           />
         </ColorSVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 const ProjectIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) => {
   switch (color) {
     case 'gray700':
@@ -111,7 +111,7 @@ const ProjectIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props 
             fill="#61656B"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <ColorSVGIconBase {...props}>
@@ -129,7 +129,7 @@ const ProjectIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props 
             fill="#898D94"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <ColorSVGIconBase {...props}>
@@ -147,7 +147,7 @@ const ProjectIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props 
             fill="#FF803D"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'white':
       return (
         <ColorSVGIconBase {...props}>
@@ -168,11 +168,11 @@ const ProjectIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props 
             fill="white"
           />
         </ColorSVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 const NewIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) => {
   switch (color) {
     case 'gray700':
@@ -186,7 +186,7 @@ const NewIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) =
             fill="#4C5057"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <ColorSVGIconBase {...props}>
@@ -197,7 +197,7 @@ const NewIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) =
             fill="#C7CBD1"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <ColorSVGIconBase {...props}>
@@ -209,7 +209,7 @@ const NewIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) =
             fill="white"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'white':
       return (
         <ColorSVGIconBase {...props}>
@@ -220,11 +220,11 @@ const NewIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) =
             fill="white"
           />
         </ColorSVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 
 const CloseIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) => {
   switch (color) {
@@ -238,21 +238,21 @@ const CloseIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props })
             fill="#4C5057"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <ColorSVGIconBase {...props}>
           <circle cx="8" cy="8" r="6" fill="#C7CBD1" />
           <path d="M6 10L8 8M8 8L10 6M8 8L6 6M8 8L10 10" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
         </ColorSVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <ColorSVGIconBase {...props}>
           <circle cx="8" cy="8" r="6" fill="#FF600C" />
           <path d="M6 10L8 8M8 8L10 6M8 8L6 6M8 8L10 10" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
         </ColorSVGIconBase>
-      );
+      )
     case 'white':
       return (
         <ColorSVGIconBase {...props}>
@@ -263,7 +263,7 @@ const CloseIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props })
             fill="white"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'dimmed':
       return (
         <ColorSVGIconBase {...props}>
@@ -275,11 +275,11 @@ const CloseIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props })
             strokeLinejoin="round"
           />
         </ColorSVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 
 const PinIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) => {
   switch (color) {
@@ -299,7 +299,7 @@ const PinIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) =
             fill="#4C5057"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <ColorSVGIconBase {...props}>
@@ -316,7 +316,7 @@ const PinIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) =
             fill="#C7CBD1"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <ColorSVGIconBase {...props}>
@@ -333,7 +333,7 @@ const PinIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) =
             fill="#FF600C"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'white':
       return (
         <ColorSVGIconBase {...props}>
@@ -350,11 +350,11 @@ const PinIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) =
             fill="white"
           />
         </ColorSVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 const ProfileIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) => {
   switch (color) {
     case 'gray700':
@@ -370,7 +370,7 @@ const ProfileIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props 
             fill="#4C5057"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <ColorSVGIconBase {...props}>
@@ -384,7 +384,7 @@ const ProfileIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props 
             fill="#898D94"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <ColorSVGIconBase {...props}>
@@ -398,7 +398,7 @@ const ProfileIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props 
             fill="#FF600C"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'white':
       return (
         <ColorSVGIconBase {...props}>
@@ -412,29 +412,29 @@ const ProfileIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props 
             fill="#E8EAED"
           />
         </ColorSVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 
 const ArrowIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', rotate = 0, ...props }) => {
-  let fillColor;
+  let fillColor
   switch (color) {
     case 'gray700':
-      fillColor = '#4C5057';
-      break;
+      fillColor = '#4C5057'
+      break
     case 'gray400':
-      fillColor = '#C7CBD1';
-      break;
+      fillColor = '#C7CBD1'
+      break
     case 'orange800':
-      fillColor = '#FF600C';
-      break;
+      fillColor = '#FF600C'
+      break
     case 'white':
-      fillColor = 'white';
-      break;
+      fillColor = 'white'
+      break
     default:
-      fillColor = '#4C5057';
+      fillColor = '#4C5057'
   }
 
   return (
@@ -444,8 +444,8 @@ const ArrowIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', rotate = 0,
         fill={fillColor}
       />
     </ColorSVGIconBase>
-  );
-};
+  )
+}
 
 const TooltipIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', rotate = 0, ...props }) => {
   switch (color) {
@@ -462,7 +462,7 @@ const TooltipIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', rotate = 
             fill="#4C5057"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <ColorSVGIconBase {...props}>
@@ -476,7 +476,7 @@ const TooltipIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', rotate = 
             fill="#C7CBD1"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <ColorSVGIconBase {...props}>
@@ -490,7 +490,7 @@ const TooltipIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', rotate = 
             fill="#FF600C"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'white':
       return (
         <ColorSVGIconBase {...props}>
@@ -504,11 +504,11 @@ const TooltipIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', rotate = 
             fill="#E8EAED"
           />
         </ColorSVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 
 const TooltipBoldIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', rotate = 0, ...props }) => {
   switch (color) {
@@ -522,7 +522,7 @@ const TooltipBoldIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', rotat
             fill="#4C5057"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <ColorSVGIconBase {...props}>
@@ -533,7 +533,7 @@ const TooltipBoldIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', rotat
             fill="#C7CBD1"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <ColorSVGIconBase {...props}>
@@ -544,7 +544,7 @@ const TooltipBoldIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', rotat
             fill="#FF600C"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'white':
       return (
         <ColorSVGIconBase {...props}>
@@ -555,11 +555,11 @@ const TooltipBoldIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', rotat
             fill="white"
           />
         </ColorSVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 
 const CopyCheckIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...props }) => {
   switch (color) {
@@ -578,7 +578,7 @@ const CopyCheckIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...prop
             fill="#898D94"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <ColorSVGIconBase rotate={0} {...props}>
@@ -594,7 +594,7 @@ const CopyCheckIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...prop
             fill="#C7CBD1"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'orange':
       return (
         <ColorSVGIconBase rotate={0} {...props}>
@@ -610,7 +610,7 @@ const CopyCheckIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...prop
             fill="#FFBC99"
           />
         </ColorSVGIconBase>
-      );
+      )
     case 'white':
       return (
         <ColorSVGIconBase rotate={0} {...props}>
@@ -629,11 +629,11 @@ const CopyCheckIcon: React.FC<ColorSVGIconProps> = ({ color = 'gray700', ...prop
             fill="white"
           />
         </ColorSVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 
 const ColorSVGIcon = {
   New: NewIcon,
@@ -646,6 +646,6 @@ const ColorSVGIcon = {
   Project: ProjectIcon,
   Reference: ReferenceIcon,
   CopyCheck: CopyCheckIcon,
-};
+}
 
-export default ColorSVGIcon;
+export default ColorSVGIcon

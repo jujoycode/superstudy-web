@@ -10,7 +10,7 @@ import {
   useIBUpdateIBStatusWaitMentor,
   useIBUpdateIBStstusComplete,
 } from '@/legacy/generated/endpoint'
-import type { RequestIBCommentDto, RequestIBDto, RequestIBUpdateDto } from '@/legacy/generated/model'
+import { RequestIBCommentDto, RequestIBDto, RequestIBUpdateDto } from '@/legacy/generated/model'
 
 interface UseIBCreateOptions {
   onSuccess?: (data: any) => void

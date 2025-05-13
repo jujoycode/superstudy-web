@@ -5,31 +5,31 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { LectureType } from './lectureType';
+import type { LectureType } from './lectureType'
 
 export interface RequestCreateLectureDto {
   /** 수업종류 */
-  type: LectureType;
+  type: LectureType
   /** 학년도 */
-  year: string | null;
+  year: string | null
   /** 학기 */
-  semester: number | null;
+  semester: number | null
   /** 그룹아이디 */
-  groupId: number;
+  groupId: number
   /** 월~금요일(1~5) */
-  day: number;
+  day: number
   /** 수업교시 */
-  time: number;
+  time: number
   /** 교실이름 */
-  room: string;
+  room: string
   /** 유효한 주 번호, 기본은 0, 예) 23이면 23주차에만 유효 */
-  validityWeek: number;
+  validityWeek: number
   /** 유효한 마지막 주 번호, 예) 23이면 23주차까지만 유효 */
-  validityEndWeek: number;
+  validityEndWeek: number
   /** 강의 아이디 */
-  id: number;
+  id: number
   /** 과목명 */
-  subject: string;
+  subject: string
   /** 선생님 유저아이디 */
-  teacherId: number;
+  teacherId: number
 }

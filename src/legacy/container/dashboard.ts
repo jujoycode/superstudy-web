@@ -1,10 +1,10 @@
 import { t } from 'i18next'
 import { useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { meState, newMsgCntState } from '@/stores'
 import { useDashboardGetDashBoardData } from '@/legacy/generated/endpoint'
-import { Role, type ResponseDashboardDto, type ResponseParentApproveDto } from '@/legacy/generated/model'
-import type { dashboardNewItem } from '@/legacy/types'
+import { ResponseDashboardDto, ResponseParentApproveDto, Role } from '@/legacy/generated/model'
+import { meState, newMsgCntState } from '@/stores'
+import { dashboardNewItem } from '@/legacy/types'
 
 export function useDashboard() {
   const me = useRecoilValue(meState)

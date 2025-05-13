@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+
 import { MergedGroupType } from '@/legacy/container/teacher-chat-user-list'
 import { GroupType } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'

@@ -6,10 +6,9 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ScheduleCategoryEnum = (typeof ScheduleCategoryEnum)[keyof typeof ScheduleCategoryEnum];
+export type ScheduleCategoryEnum = (typeof ScheduleCategoryEnum)[keyof typeof ScheduleCategoryEnum]
 
- 
 export const ScheduleCategoryEnum = {
   allday: 'allday',
   time: 'time',
-} as const;
+} as const

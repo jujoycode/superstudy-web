@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Chat } from './chat';
+import type { Chat } from './chat'
 
 export interface ResponsePaginatedChatMessageDto {
   /** 채팅 목록 */
-  items: Chat[];
+  items: Chat[]
   /** 전체갯수 */
-  total: number;
+  total: number
 }

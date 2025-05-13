@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useChatCreateMessage, useChatroomGetMessageList } from '@/legacy/generated/endpoint'
-import type { Chat, RequestCreateChatMessageDto, ResponsePaginatedChatMessageDto } from '@/legacy/generated/model'
-import type { errorType } from '@/legacy/types'
+import { Chat, RequestCreateChatMessageDto, ResponsePaginatedChatMessageDto } from '@/legacy/generated/model'
+import { errorType } from '@/legacy/types'
 
 export function useStudentChatMessageList(chatroomId: number) {
   const [pageInfo] = useState({ page: 1, limit: 500 })
@@ -30,7 +30,7 @@ export function useStudentChatMessageList(chatroomId: number) {
         setNewMessage('')
         refetch()
           .then(() => {})
-          .catch((_) => {
+          .catch(() => {
             // refetch 중에 발생한 에러를 처리하는 작업
             //alert(error?.message);
           })

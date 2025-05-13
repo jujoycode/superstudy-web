@@ -5,15 +5,15 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Announcement } from './announcement';
+import type { Announcement } from './announcement'
 
 export interface ResponsePaginatedAnnouncementDto {
   /** 서비스 공지사항들 */
-  items: Announcement[];
+  items: Announcement[]
   /** 전체갯수 */
-  total: number;
+  total: number
   /** 페이지 */
-  page: number;
+  page: number
   /** 갯수 */
-  limit: number;
+  limit: number
 }

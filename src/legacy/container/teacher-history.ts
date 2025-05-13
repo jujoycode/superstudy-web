@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useLocation } from 'react-router'
+import { useLocation } from 'react-router-dom'
 import {
   useAbsentsGetAbsentsHistory,
   useAbsentsNiceSubmitted,
@@ -8,8 +8,8 @@ import {
   useOutingsFindHistory,
   useUserMe,
 } from '@/legacy/generated/endpoint'
-import { Role, type Absent } from '@/legacy/generated/model'
-import type { UserDatas } from '@/legacy/types'
+import { Absent, Role } from '@/legacy/generated/model'
+import { UserDatas } from '@/legacy/types'
 
 export function useTeacherHistory() {
   const { search } = useLocation()
@@ -31,6 +31,10 @@ export function useTeacherHistory() {
   const [isCsvData, setCsvData] = useState(false)
 
   const [open, setOpen] = useState(false)
+  const [, setOutingId] = useState(0)
+  const [, setAgreeAll] = useState(false)
+  const [, setAbsentId] = useState(0)
+  const [, setFieldtripId] = useState(0)
 
   const [frontSortType] = useState('')
 
@@ -177,6 +181,10 @@ export function useTeacherHistory() {
       setPage,
       setCsvData,
       setOpen,
+      setOutingId,
+      setAgreeAll,
+      setAbsentId,
+      setFieldtripId,
     },
     submitAbsent,
     submitNiceAbsent,

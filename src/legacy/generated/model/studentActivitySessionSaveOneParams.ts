@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentActivitySessionSaveOneParams = { sessionId: number };
+export type StudentActivitySessionSaveOneParams = { sessionId: number }

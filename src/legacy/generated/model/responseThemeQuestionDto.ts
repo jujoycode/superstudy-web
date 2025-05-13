@@ -8,13 +8,13 @@
 
 export interface ResponseThemeQuestionDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 주제 질문 제목 */
-  title: string;
+  title: string
   /** 주제 질문 내용 */
-  questions: string[];
+  questions: string[]
 }

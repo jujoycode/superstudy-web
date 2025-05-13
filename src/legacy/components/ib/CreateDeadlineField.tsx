@@ -1,12 +1,15 @@
 import { FC, useState } from 'react'
-import { RequestIBDeadlineDto } from '@/legacy/generated/model'
-import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { twMerge } from 'tailwind-merge'
+
 import { Button } from '@/legacy/components/common/Button'
 import ScheduleAndTimePicker from '@/legacy/components/common/ScheduleAndTimePicker'
 import { Typography } from '@/legacy/components/common/Typography'
+import { RequestIBDeadlineDto } from '@/legacy/generated/model'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+
 import ColorSVGIcon from '../icon/ColorSVGIcon'
 import SVGIcon from '../icon/SVGIcon'
+
 import { DEADLINE_TYPE_KOR } from './coordinator/Coordinator_Schedule'
 
 interface CreateDeadlineFieldProps {

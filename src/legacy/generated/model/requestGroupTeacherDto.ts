@@ -5,15 +5,15 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestGroupTeacherDtoSubjectType } from './requestGroupTeacherDtoSubjectType';
+import type { RequestGroupTeacherDtoSubjectType } from './requestGroupTeacherDtoSubjectType'
 
 export interface RequestGroupTeacherDto {
   /** 과목 */
-  subject: string;
+  subject: string
   /** 과목 분류 */
-  subjectType: RequestGroupTeacherDtoSubjectType;
+  subjectType: RequestGroupTeacherDtoSubjectType
   /** 유저 ID */
-  userId: number;
+  userId: number
   /** 수업 장소 */
-  room: string | null;
+  room: string | null
 }

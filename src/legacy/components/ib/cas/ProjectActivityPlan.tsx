@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
-import NODATA from '@/legacy/assets/images/no-data.png'
+
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -33,10 +33,13 @@ import {
   ResponseIBStudentDto,
 } from '@/legacy/generated/model'
 import { useHandleGoBack } from '@/legacy/hooks/useHandleGoBack'
-import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { meState } from '@/stores'
+
 import { Feedback } from '../Feedback'
 import { InputField } from '../InputField'
+
+import NODATA from '@/assets/images/no-data.png'
 
 interface ProjectActivityPlanProps {
   data: ResponseIBDto
@@ -147,7 +150,7 @@ function ProjectActivityPlan({
     handleSubmit,
     reset,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBDto>({
     defaultValues: data,
   })
@@ -185,11 +188,8 @@ function ProjectActivityPlan({
   const { deleteIBProject } = useIBDelete({
     onSuccess: () => {
       setConfirmOpen(!confirmOpen)
-      history.push({
-        pathname: '/ib/student',
-        state: {
-          alertMessage: `계획서가\n삭제되었습니다`,
-        },
+      history.push('/ib/student', {
+        alertMessage: `계획서가\n삭제되었습니다`,
       })
     },
     onError: () => {

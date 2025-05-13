@@ -1,58 +1,60 @@
-import clsx from 'clsx';
-import { forwardRef, ReactElement, useEffect, useRef, useState } from 'react';
-import SVGIcon from '../icon/SVGIcon';
-import { Input } from './Input';
+import clsx from 'clsx'
+import { forwardRef, ReactElement, useEffect, useRef, useState } from 'react'
+
+import SVGIcon from '../icon/SVGIcon'
+
+import { Input } from './Input'
 
 export interface SearchSelectOptionProps {
-  id: number;
-  value: any;
-  text?: string | ReactElement;
+  id: number
+  value: any
+  text?: string | ReactElement
 }
 
 interface SearchSelectProps {
-  options: SearchSelectOptionProps[];
-  value: any;
-  onChange: (value: any) => void;
-  placeholder?: string;
-  readonly?: boolean;
-  disabled?: boolean;
-  className?: string;
+  options: SearchSelectOptionProps[]
+  value: any
+  onChange: (value: any) => void
+  placeholder?: string
+  readonly?: boolean
+  disabled?: boolean
+  className?: string
 }
 
 const SearchSelect = forwardRef<HTMLDivElement, SearchSelectProps>(
   ({ options, value, onChange, placeholder = '선택', readonly = false, disabled = false, className }, ref) => {
-    const [isShowOptions, setShowOptions] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('');
-    const dropdownRef = useRef<HTMLDivElement>(null);
+    const [isShowOptions, setShowOptions] = useState(false)
+    const [searchTerm, setSearchTerm] = useState('')
+    const dropdownRef = useRef<HTMLDivElement>(null)
 
     const handleOptionClick = (selectedValue: string) => {
-      onChange(selectedValue);
-      setShowOptions(false);
-    };
+      onChange(selectedValue)
+      setShowOptions(false)
+    }
 
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setShowOptions(false);
+        setShowOptions(false)
       }
-    };
+    }
 
     const handleCancel = () => {
-      onChange(null);
-      setSearchTerm('');
-    };
+      onChange(null)
+      setSearchTerm('')
+    }
 
     useEffect(() => {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside)
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }, []);
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }, [])
 
-    const text = options.find((o) => o.value === value)?.text as string;
+    const text = options.find((o) => o.value === value)?.text as string
 
-    const filteredOptions = options.filter(
-      (option) => option.text?.toString().toLowerCase().includes(searchTerm.toLowerCase()),
-    );
+    const filteredOptions = options.filter((option) =>
+      option.text?.toString().toLowerCase().includes(searchTerm.toLowerCase()),
+    )
 
     return (
       <div
@@ -60,7 +62,7 @@ const SearchSelect = forwardRef<HTMLDivElement, SearchSelectProps>(
         className={clsx(
           'relative select-none',
           {
-            'cursor-not-allowed bg-primary-gray-100': readonly || disabled,
+            'bg-primary-gray-100 cursor-not-allowed': readonly || disabled,
           },
           className,
         )}
@@ -87,24 +89,24 @@ const SearchSelect = forwardRef<HTMLDivElement, SearchSelectProps>(
         {isShowOptions && (
           <ul
             className={clsx(
-              'absolute left-0 top-full z-60 mt-2 max-h-[236px] w-full overflow-hidden overflow-y-auto rounded-lg border border-primary-gray-200 bg-white p-1.5 shadow-md',
+              'border-primary-gray-200 absolute top-full left-0 z-60 mt-2 max-h-[236px] w-full overflow-hidden overflow-y-auto rounded-lg border bg-white p-1.5 shadow-md',
             )}
           >
             {filteredOptions.length === 0 ? (
-              <li className="px-2.5 py-1.5 text-primary-gray-900">일치하는 선생님이 존재하지 않습니다.</li>
+              <li className="text-primary-gray-900 px-2.5 py-1.5">일치하는 선생님이 존재하지 않습니다.</li>
             ) : (
               filteredOptions.map((option) => (
                 <li
                   key={option.id}
                   onMouseDown={(e) => {
-                    e.preventDefault();
-                    handleOptionClick(option.value);
+                    e.preventDefault()
+                    handleOptionClick(option.value)
                   }}
                   className={clsx(
                     {
-                      'flex items-center justify-between text-primary-orange-800': option.value === value,
+                      'text-primary-orange-800 flex items-center justify-between': option.value === value,
                     },
-                    `cursor-pointer rounded-md bg-white px-2.5 py-1.5 text-primary-gray-900 hover:bg-primary-gray-100`,
+                    `text-primary-gray-900 hover:bg-primary-gray-100 cursor-pointer rounded-md bg-white px-2.5 py-1.5`,
                   )}
                   aria-selected={option.value === value}
                 >
@@ -122,10 +124,10 @@ const SearchSelect = forwardRef<HTMLDivElement, SearchSelectProps>(
           </ul>
         )}
       </div>
-    );
+    )
   },
-);
+)
 
-SearchSelect.displayName = 'SearchSelect';
+SearchSelect.displayName = 'SearchSelect'
 
-export default SearchSelect;
+export default SearchSelect

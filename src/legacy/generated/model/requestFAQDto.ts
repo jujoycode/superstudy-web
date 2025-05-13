@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { FAQContentDto } from './fAQContentDto';
+import type { FAQContentDto } from './fAQContentDto'
 
 export interface RequestFAQDto {
   /** FAQ 제목 */
-  title: string;
+  title: string
   /** FAQ 질의응답 내용 */
-  content: FAQContentDto[];
+  content: FAQContentDto[]
 }

@@ -8,5 +8,5 @@
 
 export type SessionCommentCreateBody = {
   /** 피드백 내용 */
-  content?: string;
-};
+  content?: string
+}

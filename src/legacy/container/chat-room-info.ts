@@ -7,15 +7,14 @@ import {
   useChatroomSearchUsers,
   useChatroomUpdateChatroomInfo,
 } from '@/legacy/generated/endpoint'
-import type {
+import {
   ChatroomReadInfo,
   RequestUpdateChatroomInfoDto,
   ResponseChatAttendeeDto,
   ResponseChatroomInfoDetailDto,
 } from '@/legacy/generated/model'
 import { meState } from '@/stores'
-import type { errorType } from '@/legacy/types'
-
+import { errorType } from '@/legacy/types'
 import { getNickName } from '@/legacy/util/status'
 
 export function useChatRoomInfo(chatroomId: number) {

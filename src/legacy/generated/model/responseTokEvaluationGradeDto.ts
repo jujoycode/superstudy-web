@@ -8,17 +8,17 @@
 
 export interface ResponseTokEvaluationGradeDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 등급명 */
-  name: string;
+  name: string
   /** 최소 점수 */
-  minScore: number;
+  minScore: number
   /** 최대 점수 */
-  maxScore: number;
+  maxScore: number
   /** 등급 설명 */
-  description: string;
+  description: string
 }

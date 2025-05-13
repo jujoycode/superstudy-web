@@ -1,50 +1,51 @@
-import clsx from 'clsx';
-import { forwardRef, InputHTMLAttributes, useEffect, useState } from 'react';
-import { Icon } from './icons';
+import clsx from 'clsx'
+import { forwardRef, InputHTMLAttributes, useEffect, useState } from 'react'
+
+import { Icon } from './icons'
 
 interface PasswordInputToggleProps extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  htmlId?: string;
+  label?: string
+  htmlId?: string
 }
 
 export const PasswordInputToggle = forwardRef<HTMLInputElement, PasswordInputToggleProps>(function PasswordInputToggle(
   { className, value, onChange, label, placeholder, htmlId, ...props },
   ref,
 ) {
-  const [inputValue, setInputValue] = useState(value || '');
-  const [isFocused, setIsFocused] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [inputValue, setInputValue] = useState(value || '')
+  const [isFocused, setIsFocused] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleClear = () => {
-    setInputValue('');
+    setInputValue('')
     if (onChange) {
-      onChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
+      onChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>)
     }
-  };
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    setInputValue(e.target.value)
     if (onChange) {
-      onChange(e);
+      onChange(e)
     }
-  };
+  }
 
   const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
-  };
+    setShowPassword((prev) => !prev)
+  }
 
-  const handleFocus = () => setIsFocused(true);
+  const handleFocus = () => setIsFocused(true)
   const handleBlur = () => {
     if (!inputValue) {
-      setIsFocused(false);
+      setIsFocused(false)
     }
-  };
+  }
 
   useEffect(() => {
     if (inputValue) {
-      setIsFocused(true);
+      setIsFocused(true)
     }
-  }, [inputValue]);
+  }, [inputValue])
 
   return (
     <div className="relative w-full">
@@ -62,7 +63,7 @@ export const PasswordInputToggle = forwardRef<HTMLInputElement, PasswordInputTog
         ref={ref}
         type={showPassword ? 'text' : 'password'}
         className={clsx(
-          'block w-full rounded-lg border border-gray-200 px-3 pb-1 pt-7 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:px-4 md:pb-2 md:pt-7',
+          'focus:border-brand-1 block w-full rounded-lg border border-gray-200 px-3 pt-7 pb-1 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:px-4 md:pt-7 md:pb-2',
           className,
         )}
         value={inputValue}
@@ -76,14 +77,14 @@ export const PasswordInputToggle = forwardRef<HTMLInputElement, PasswordInputTog
         <>
           <button
             type="button"
-            className="absolute right-10 top-1/2 -translate-y-1/2 transform text-gray-500 hover:text-gray-700"
+            className="absolute top-1/2 right-10 -translate-y-1/2 transform text-gray-500 hover:text-gray-700"
             onClick={togglePasswordVisibility}
           >
             {showPassword ? <Icon.Show /> : <Icon.Hide />}
           </button>
           <button
             type="button"
-            className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500 hover:text-gray-700"
+            className="absolute top-1/2 right-3 -translate-y-1/2 transform text-gray-500 hover:text-gray-700"
             onClick={handleClear}
           >
             <Icon.CloseFillGray className="cursor-pointer rounded-full" />
@@ -91,5 +92,5 @@ export const PasswordInputToggle = forwardRef<HTMLInputElement, PasswordInputTog
         </>
       )}
     </div>
-  );
-});
+  )
+})

@@ -8,7 +8,7 @@
 
 export interface RequestDeleteUserDto {
   /** 패스워드 */
-  password: string;
+  password: string
   /** 탈퇴사유 */
-  reason: string;
+  reason: string
 }

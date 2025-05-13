@@ -8,7 +8,7 @@ import {
 } from '@/legacy/generated/endpoint'
 import { useSignature } from '@/legacy/hooks/useSignature'
 import { childState } from '@/stores'
-import type { errorType } from '@/legacy/types'
+import { errorType } from '@/legacy/types'
 
 export function useStudentAbsentApprove(uuid: string) {
   const { sigPadData, clearSignature, canvasRef } = useSignature()

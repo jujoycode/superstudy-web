@@ -11,13 +11,13 @@
  */
 export type RequestIBCasDtoAtl = {
   /** 의사소통 */
-  communication?: boolean;
+  communication?: boolean
   /** 사회적 */
-  social?: boolean;
+  social?: boolean
   /** 자기관리 */
-  selfManagement?: boolean;
+  selfManagement?: boolean
   /** 연구 */
-  research?: boolean;
+  research?: boolean
   /** 사고 */
-  thinking?: boolean;
-};
+  thinking?: boolean
+}

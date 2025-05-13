@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type NiceComparisonsFindOneParams = { year: string; month: number; groupId: number };
+export type NiceComparisonsFindOneParams = { year: string; month: number; groupId: number }

@@ -8,41 +8,41 @@
 
 export interface ResponseUserAttendanceDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 이름 */
-  name: string;
+  name: string
   /** 프로필이미지URL */
-  profile: string;
+  profile: string
   /** 만료여부, 미사용 사용자는 true (전학 등) */
-  expired: boolean;
+  expired: boolean
   /** 학생 별명 */
-  nick_name: string | null;
+  nick_name: string | null
   /** 학생 커스텀 프로필 */
-  custom_profile: string | null;
+  custom_profile: string | null
   /** 학년 반 정보 */
-  klassname: string | null;
+  klassname: string | null
   /** 학번 */
-  student_number: string | null;
+  student_number: string | null
   /** 탈퇴, 전학 등 사유 */
-  expired_reason: string | null;
+  expired_reason: string | null
   /** 출결여부 */
-  absent: boolean;
+  absent: boolean
   /** 코멘트 */
-  comment: string | null;
+  comment: string | null
   /** 내용 */
-  content: string | null;
+  content: string | null
   /** 출결유형 */
-  type1: string | null;
+  type1: string | null
   /** 사유 */
-  type2: string | null;
+  type2: string | null
   /** 역할 */
-  role: string;
+  role: string
   /** 업무 */
-  job: string;
+  job: string
   /** 정렬순서 */
-  display_order: number;
+  display_order: number
   /** 희망 진로 */
-  hopepath: string | null;
+  hopepath: string | null
   /** 희망 교과 */
-  hopemajor: string | null;
+  hopemajor: string | null
 }

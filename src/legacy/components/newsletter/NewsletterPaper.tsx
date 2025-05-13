@@ -1,10 +1,10 @@
 import { forwardRef } from 'react'
 import { useRecoilValue } from 'recoil'
+
+import { Time } from '@/legacy/components/common/Time'
 import { Role } from '@/legacy/generated/model'
-import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignedUrl } from '@/legacy/lib/query'
 import { childState, meState } from '@/stores'
-import { Time } from '@/legacy/components/common/Time'
 import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
 
 interface NewsletterPaperProps {
@@ -19,9 +19,7 @@ export const NewsletterPaper = forwardRef(({ newsletter, studentNewsletter }: Ne
 
   const meRecoil = useRecoilValue(meState)
   const myChild = useRecoilValue(childState)
-  const { t } = useLanguage()
   const schoolName = meRecoil?.role === Role.PARENT ? myChild?.school.name : meRecoil?.school.name
-  const schoolMark = meRecoil?.role === Role.PARENT ? myChild?.school.mark : meRecoil?.school.mark
 
   return (
     <div ref={ref} className="w-full bg-white md:h-[1100px]">
@@ -42,7 +40,7 @@ export const NewsletterPaper = forwardRef(({ newsletter, studentNewsletter }: Ne
               <div>
                 <SuperSurveyComponent
                   surveyContent={newsletter?.surveyContent || ''}
-                  setContent={(c: any) => {}}
+                  setContent={() => {}}
                   content={JSON.parse(studentNewsletter?.content || '{}')}
                   id={studentNewsletter?.id}
                 />

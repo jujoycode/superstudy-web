@@ -5,69 +5,69 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { SubjectType } from './subjectType';
-import type { ActivitySession } from './activitySession';
-import type { GroupActivityV3 } from './groupActivityV3';
-import type { StudentActivityV3 } from './studentActivityV3';
-import type { User } from './user';
+import type { ActivitySession } from './activitySession'
+import type { GroupActivityV3 } from './groupActivityV3'
+import type { StudentActivityV3 } from './studentActivityV3'
+import type { SubjectType } from './subjectType'
+import type { User } from './user'
 
 export interface ActivityV3WithCountDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  description: string | null;
+  description: string | null
   /** 과제과목 */
-  subject: string;
+  subject: string
   /** 공통문구 */
-  commonText: string;
+  commonText: string
   /** 활동보고서  존재 여부 */
-  hasStudentText: boolean;
+  hasStudentText: boolean
   /** 활동 보고서 마감일 */
-  studentTextEndDate: string | null;
+  studentTextEndDate: string | null
   /** 학생 활동 보고서 */
-  studentText: string | null;
+  studentText: string | null
   /** 학생 활동 보고서 설명 */
-  explainText: string;
+  explainText: string
   /** 학생 활동 보고서 가이드 */
-  exampleText: string;
+  exampleText: string
   /** 종료여부 */
-  isEnded: boolean;
+  isEnded: boolean
   /** 삭제여부 */
-  isDeleted: boolean;
+  isDeleted: boolean
   /** 시작일 */
-  startDate: string | null;
+  startDate: string | null
   /** 종료일 */
-  endDate: string | null;
+  endDate: string | null
   /** 이미지파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 과제 타입 */
-  type: SubjectType;
+  type: SubjectType
   /** 성취기준 아이디 */
-  achievementCriteriaIds: number[];
+  achievementCriteriaIds: number[]
   /** 차시 */
-  activitySessions: ActivitySession[] | null;
+  activitySessions: ActivitySession[] | null
   /** 그룹 */
-  groupActivityV3s: GroupActivityV3[] | null;
+  groupActivityV3s: GroupActivityV3[] | null
   /** 차시 */
-  studentActivityV3s: StudentActivityV3[] | null;
+  studentActivityV3s: StudentActivityV3[] | null
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 작성자 유저 ID */
-  writerId: number;
+  writerId: number
   /** 작성자 유저(only name) */
-  writer: User;
+  writer: User
   /** 전체 인원 수 */
-  allCount: number;
+  allCount: number
   /** 활동보고서 제출 인원 수 */
-  submittedCount: number;
+  submittedCount: number
   /** 차시 여부 */
-  isSessionExist: boolean;
+  isSessionExist: boolean
 }

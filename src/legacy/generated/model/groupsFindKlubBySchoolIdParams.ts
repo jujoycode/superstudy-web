@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type GroupsFindKlubBySchoolIdParams = { year?: number };
+export type GroupsFindKlubBySchoolIdParams = { year?: number }

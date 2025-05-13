@@ -1,13 +1,16 @@
 import { t } from 'i18next'
 import { useState } from 'react'
 import { UseFormSetValue } from 'react-hook-form'
+
 import { useBlockChain } from '@/legacy/container/block-chain'
 import { useBlockChainContract } from '@/legacy/container/block-chain-contract'
 import { useBlockChainRequest } from '@/legacy/container/block-chain-request'
 import { useBlockChainWallet } from '@/legacy/container/block-chain-wallet'
 import { RequestUpdateSchoolInfoDto } from '@/legacy/generated/model'
-import { PrivacyManager } from '@/legacy/pages/admin/school/SchoolPage'
+
 import CertificationBadge from './CertificationBadge'
+
+import { PrivacyManager } from '@/legacy/pages/admin/school/SchoolPage'
 
 interface BlockchainSettingProps {
   useBlockChainState: boolean | undefined

@@ -8,29 +8,29 @@
 
 export interface Counseling {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 상담내용 */
-  content: string;
+  content: string
   /** 음성녹음파일들 */
-  voiceFiles: string[];
+  voiceFiles: string[]
   /** STT 요청UID */
-  voiceRequestId: string;
+  voiceRequestId: string
   /** 상담일 */
-  counselingAt: string;
+  counselingAt: string
   /** 상담분류이름, code.category = counseling */
-  category: string;
+  category: string
   /** 상담자이름 */
-  counselorName: string;
+  counselorName: string
   /** 상담학생아이디 */
-  userId: number;
+  userId: number
   /** 작성자선생님아이디 */
-  writerId: number;
+  writerId: number
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 공개범위 0:비공개, 1:담임, 2:담임+결재권자, 99:전체공개 */
-  accessLevel: number;
+  accessLevel: number
 }

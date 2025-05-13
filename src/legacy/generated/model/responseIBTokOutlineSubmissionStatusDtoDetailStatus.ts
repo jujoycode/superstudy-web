@@ -10,12 +10,11 @@
  * 상세 상태
  */
 export type ResponseIBTokOutlineSubmissionStatusDtoDetailStatus =
-  (typeof ResponseIBTokOutlineSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBTokOutlineSubmissionStatusDtoDetailStatus];
+  (typeof ResponseIBTokOutlineSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBTokOutlineSubmissionStatusDtoDetailStatus]
 
- 
 export const ResponseIBTokOutlineSubmissionStatusDtoDetailStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMIT: 'SUBMIT',
   REJECT_PLAN: 'REJECT_PLAN',
   APPROVED: 'APPROVED',
-} as const;
+} as const

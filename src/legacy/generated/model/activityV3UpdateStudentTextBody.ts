@@ -8,5 +8,5 @@
 
 export type ActivityV3UpdateStudentTextBody = {
   /** 활동 보고서 내용 */
-  studentText?: string;
-};
+  studentText?: string
+}

@@ -10,7 +10,7 @@
  * CAS 요소 3가지의 진행시간 총합
  */
 export type ResponsePortfolioProjectInfoDtoStrands = {
-  creativity?: number;
-  activity?: number;
-  service?: number;
-};
+  creativity?: number
+  activity?: number
+  service?: number
+}

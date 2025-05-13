@@ -1,33 +1,34 @@
-import clsx from 'clsx';
-import React, { ReactNode } from 'react';
-import { twMerge } from 'tailwind-merge';
-import { Typography } from './Typography';
+import clsx from 'clsx'
+import React, { ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
+
+import { Typography } from './Typography'
 
 interface TabProps<T> {
-  value: T;
-  children: ReactNode;
-  className?: string;
-  childrenWrapperClassName?: string;
+  value: T
+  children: ReactNode
+  className?: string
+  childrenWrapperClassName?: string
 }
 
 export function Tab<T>({ children, className }: TabProps<T>) {
-  return <div className={className}>{children}</div>;
+  return <div className={className}>{children}</div>
 }
 
 interface LayeredTabsProps<T> {
-  children: React.ReactElement<TabProps<T>>[];
-  value: T;
-  onChange: (value: T) => void;
-  fullWidth?: boolean;
-  className?: string;
-  inActiveClassName?: string;
-  size?: 'large' | 'small';
+  children: React.ReactElement<TabProps<T>>[]
+  value: T
+  onChange: (value: T) => void
+  fullWidth?: boolean
+  className?: string
+  inActiveClassName?: string
+  size?: 'large' | 'small'
 }
 
 function OneDepth<T>({ children, value, onChange, className, inActiveClassName, size = 'large' }: LayeredTabsProps<T>) {
   const handleTabClick = (val: T) => {
-    onChange(val);
-  };
+    onChange(val)
+  }
   return (
     <div className="flex h-12 w-max flex-row items-end gap-4">
       {children.map((tab) => (
@@ -43,19 +44,19 @@ function OneDepth<T>({ children, value, onChange, className, inActiveClassName, 
             value === tab.props.value && inActiveClassName,
           )}
         >
-          <div className="shrink grow basis-0 text-center text-[16px] font-semibold leading-[24px]">
+          <div className="shrink grow basis-0 text-center text-[16px] leading-[24px] font-semibold">
             {tab.props.children}
           </div>
         </div>
       ))}
     </div>
-  );
+  )
 }
 
 function TwoDepth<T>({ children, value, onChange, fullWidth = false, size = 'large' }: LayeredTabsProps<T>) {
   const handleTabClick = (val: T) => {
-    onChange(val);
-  };
+    onChange(val)
+  }
 
   return (
     <div
@@ -66,7 +67,7 @@ function TwoDepth<T>({ children, value, onChange, fullWidth = false, size = 'lar
       )}
     >
       {children.map((tab, index) => {
-        const isActive = value === tab.props.value;
+        const isActive = value === tab.props.value
         return (
           <div
             key={String(tab.props.value)}
@@ -77,38 +78,38 @@ function TwoDepth<T>({ children, value, onChange, fullWidth = false, size = 'lar
               isActive ? 'bg-white text-[#121316]' : 'bg-[#f4f6f8] text-[#898d94]',
               isActive && index === 0
                 ? size === 'large'
-                  ? 'rounded-l-lg border-r border-r-primary-gray-200'
-                  : 'rounded-l-md border-r border-r-primary-gray-200'
+                  ? 'border-r-primary-gray-200 rounded-l-lg border-r'
+                  : 'border-r-primary-gray-200 rounded-l-md border-r'
                 : isActive && index === children.length - 1
-                ? size === 'large'
-                  ? 'rounded-r-lg border-l border-l-primary-gray-200'
-                  : 'rounded-r-md border-l border-l-primary-gray-200'
-                : isActive
-                ? 'border-l border-r border-primary-gray-200'
-                : '',
+                  ? size === 'large'
+                    ? 'border-l-primary-gray-200 rounded-r-lg border-l'
+                    : 'border-l-primary-gray-200 rounded-r-md border-l'
+                  : isActive
+                    ? 'border-primary-gray-200 border-r border-l'
+                    : '',
               fullWidth && 'flex-grow basis-0 text-center',
               tab.props.childrenWrapperClassName,
             )}
           >
-            <div className="shrink grow basis-0 text-center text-[14px] font-medium leading-snug">
+            <div className="shrink grow basis-0 text-center text-[14px] leading-snug font-medium">
               {tab.props.children}
             </div>
           </div>
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
 function ThirdDepth<T>({ children, value, onChange }: LayeredTabsProps<T>) {
   const handleTabClick = (val: T) => {
-    onChange(val);
-  };
+    onChange(val)
+  }
 
   return (
     <div className="flex w-max flex-row items-center gap-2">
       {children.map((tab) => {
-        const isActive = value === tab.props.value;
+        const isActive = value === tab.props.value
         return (
           <div
             key={String(tab.props.value)}
@@ -122,21 +123,21 @@ function ThirdDepth<T>({ children, value, onChange }: LayeredTabsProps<T>) {
           >
             <div className="text-center text-[15px] font-medium">{tab.props.children}</div>
           </div>
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
 function Title<T>({ children, className, value, onChange }: LayeredTabsProps<T>) {
   const handleTabClick = (val: T) => {
-    onChange(val);
-  };
+    onChange(val)
+  }
 
   return (
     <div className={twMerge('flex w-max flex-row items-center gap-4', className)}>
       {children.map((tab) => {
-        const isActive = value === tab.props.value;
+        const isActive = value === tab.props.value
         return (
           <div key={String(tab.props.value)} onClick={() => handleTabClick(tab.props.value)}>
             <Typography
@@ -146,10 +147,10 @@ function Title<T>({ children, className, value, onChange }: LayeredTabsProps<T>)
               {tab.props.children}
             </Typography>
           </div>
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
 export const LayeredTabs = {
@@ -158,4 +159,4 @@ export const LayeredTabs = {
   ThirdDepth,
   Title,
   Tab,
-};
+}

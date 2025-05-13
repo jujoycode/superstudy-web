@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type GroupsFindAllKlassParams = { year?: number };
+export type GroupsFindAllKlassParams = { year?: number }

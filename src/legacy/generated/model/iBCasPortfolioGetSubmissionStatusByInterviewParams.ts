@@ -5,13 +5,13 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { IBCasPortfolioGetSubmissionStatusByInterviewStatus } from './iBCasPortfolioGetSubmissionStatusByInterviewStatus';
+import type { IBCasPortfolioGetSubmissionStatusByInterviewStatus } from './iBCasPortfolioGetSubmissionStatusByInterviewStatus'
 
 export type IBCasPortfolioGetSubmissionStatusByInterviewParams = {
-  grade?: number;
-  klass?: number;
-  page?: number;
-  limit?: number;
-  status: IBCasPortfolioGetSubmissionStatusByInterviewStatus;
-  mentorId?: number;
-};
+  grade?: number
+  klass?: number
+  page?: number
+  limit?: number
+  status: IBCasPortfolioGetSubmissionStatusByInterviewStatus
+  mentorId?: number
+}

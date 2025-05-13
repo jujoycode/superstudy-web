@@ -7,8 +7,8 @@
  */
 
 export type StudentExamScoreDeleteStudentExamScoreParams = {
-  grade: number;
-  classNum: number;
-  semester: number;
-  insertionYear: number;
-};
+  grade: number
+  classNum: number
+  semester: number
+  insertionYear: number
+}

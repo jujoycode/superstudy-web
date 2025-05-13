@@ -5,24 +5,24 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { AchievementChapter } from './achievementChapter';
+import type { AchievementChapter } from './achievementChapter'
 
 export interface AchievementCriteria {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 과목명 */
-  subject: string;
+  subject: string
   /** 하위 과목 */
-  subSubject: string;
+  subSubject: string
   /** 성취기준 분류 */
-  criteriaId: string;
+  criteriaId: string
   /** 성취 기준 */
-  criteria: string;
+  criteria: string
   /** 성취 기준 설명 */
-  criteriaExplanation: string;
-  achievementChapter: AchievementChapter;
+  criteriaExplanation: string
+  achievementChapter: AchievementChapter
 }

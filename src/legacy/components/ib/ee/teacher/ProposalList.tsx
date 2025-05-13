@@ -1,13 +1,15 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
+
 import { useHistory } from '@/hooks/useHistory'
 import { BadgeV2, BadgeV2Color } from '@/legacy/components/common/BadgeV2'
 import { useGetFeedbackExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
 import { ResponseIBDto } from '@/legacy/generated/model'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { Typography } from '../@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import FeedbackViewer from '../../FeedbackViewer'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 
 interface ProposalListProps {
   data: ResponseIBDto
@@ -20,7 +22,7 @@ const statusBadge: Record<string, { color: BadgeV2Color; label: string }> = {
   ACCEPT: { color: 'blue', label: '채택' },
 }
 
-export default function ProposalList({ data, refetch }: ProposalListProps) {
+export default function ProposalList({ data }: ProposalListProps) {
   const { push } = useHistory()
   const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false)
   const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined)

@@ -7,9 +7,9 @@
  */
 
 export type TimetableManagementGetTimeTableParams = {
-  groupId?: number;
-  userId?: number;
-  year: number;
-  semester: number;
-  week: number;
-};
+  groupId?: number
+  userId?: number
+  year: number
+  semester: number
+  week: number
+}

@@ -1,11 +1,12 @@
-import { Link, useLocation } from 'react-router'
+import { Link, useLocation } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
+
 import { OutingStatus, OutingTypeEnum, ResponseCreateOutingDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString } from '@/legacy/util/time'
+import { meState } from '@/stores'
 
 interface OutingCardProps {
   outing: ResponseCreateOutingDto

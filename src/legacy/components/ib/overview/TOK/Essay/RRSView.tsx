@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
+
+import { useHistory } from '@/hooks/useHistory'
+import { Blank } from '@/legacy/components/common/Blank'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import { useIBRRSNotSubmittedNotification, useIBRRSSubmissionStatus } from '@/legacy/container/ib-overview'
 import { useRRSGetSubmissionStatusCount } from '@/legacy/generated/endpoint'
 import { RRSGetSubmissionStatusCountParams, RRSGetSubmissionStatusStatus } from '@/legacy/generated/model'
+
 import RRSOverviewPanel from './RRSOverviewPanel'
-import { useHistory } from '@/hooks/useHistory'
-import { Blank } from '@/legacy/components/common/Blank'
 
 export default function RRSView({ grade, klass }: RRSGetSubmissionStatusCountParams) {
   const { push } = useHistory()

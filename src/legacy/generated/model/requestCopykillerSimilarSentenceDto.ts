@@ -8,17 +8,17 @@
 
 export interface RequestCopykillerSimilarSentenceDto {
   /** 체크 ID */
-  ck_srl: string;
+  ck_srl: string
   /** 문서식별코드 */
-  uri: string;
+  uri: string
   /** 번호 */
-  no: number | null;
+  no: number | null
   /** 속성 ID */
-  property_id: number | null;
+  property_id: number | null
   /** 언어 */
-  l: string | null;
+  l: string | null
   /** 체크섬 */
-  checksum: string;
+  checksum: string
   /** API 호출 액션 */
-  act: string;
+  act: string
 }

@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Group } from './group';
+import type { Group } from './group'
 
 export interface ResponseSubjectGroupDto {
   /** 그룹 */
-  group: Group;
+  group: Group
   /** 과목명 */
-  subject: string;
+  subject: string
 }

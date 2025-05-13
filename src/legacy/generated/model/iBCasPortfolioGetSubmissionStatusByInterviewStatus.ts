@@ -7,10 +7,9 @@
  */
 
 export type IBCasPortfolioGetSubmissionStatusByInterviewStatus =
-  (typeof IBCasPortfolioGetSubmissionStatusByInterviewStatus)[keyof typeof IBCasPortfolioGetSubmissionStatusByInterviewStatus];
+  (typeof IBCasPortfolioGetSubmissionStatusByInterviewStatus)[keyof typeof IBCasPortfolioGetSubmissionStatusByInterviewStatus]
 
- 
 export const IBCasPortfolioGetSubmissionStatusByInterviewStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',
-} as const;
+} as const

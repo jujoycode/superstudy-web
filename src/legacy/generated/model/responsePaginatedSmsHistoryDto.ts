@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseSmsHistoryDto } from './responseSmsHistoryDto';
+import type { ResponseSmsHistoryDto } from './responseSmsHistoryDto'
 
 export interface ResponsePaginatedSmsHistoryDto {
   /** SMS 전송 목록 */
-  items: ResponseSmsHistoryDto[];
+  items: ResponseSmsHistoryDto[]
   /** 전체갯수 */
-  total: number;
+  total: number
 }

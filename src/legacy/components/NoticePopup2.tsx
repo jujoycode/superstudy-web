@@ -1,5 +1,7 @@
 import { PropsWithChildren, useEffect, useState } from 'react'
+
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+
 import { Label } from './common'
 import { Button } from './common/Button'
 import { Checkbox } from './common/Checkbox'
@@ -14,7 +16,6 @@ interface NoticePopupProps {
 export function NoticePopup2({
   noticeOpen,
   setNoticeClose,
-  width = 'w-80',
   ablePropragation = false,
 }: PropsWithChildren<NoticePopupProps>) {
   const [showNever, setShowNever] = useState(false)

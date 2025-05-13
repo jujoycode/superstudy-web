@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type LifeRecordGetLifeActivityByStudentParams = { groupId: number };
+export type LifeRecordGetLifeActivityByStudentParams = { groupId: number }

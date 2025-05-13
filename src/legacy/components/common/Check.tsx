@@ -1,23 +1,24 @@
-import clsx from 'clsx';
-import React, { forwardRef, InputHTMLAttributes, ReactElement, ReactNode } from 'react';
-import { Typography } from './Typography';
+import clsx from 'clsx'
+import React, { forwardRef, InputHTMLAttributes, ReactElement, ReactNode } from 'react'
+
+import { Typography } from './Typography'
 
 interface CheckProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
-  checked?: boolean;
-  disabled?: boolean;
-  onChange?: (checked: boolean) => void;
-  size?: 24 | 20 | 16;
+  checked?: boolean
+  disabled?: boolean
+  onChange?: (checked: boolean) => void
+  size?: 24 | 20 | 16
 }
 
 interface CheckBoxProps extends CheckProps {
-  label: string;
+  label: string
 }
 
 interface CheckGroupProps<T = any> {
-  children: ReactNode;
-  selectedValues?: T[];
-  onChange?: (selectedValues: T[]) => void;
-  className?: string;
+  children: ReactNode
+  selectedValues?: T[]
+  onChange?: (selectedValues: T[]) => void
+  className?: string
 }
 
 const Basic = forwardRef<HTMLInputElement, CheckProps>(function Basic(
@@ -25,17 +26,17 @@ const Basic = forwardRef<HTMLInputElement, CheckProps>(function Basic(
   ref,
 ) {
   const handleLabelClick = (e: React.MouseEvent<HTMLLabelElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!disabled) {
-      onChange?.(!checked);
+      onChange?.(!checked)
     }
-  };
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!disabled) {
-      onChange?.(e.target.checked);
+      onChange?.(e.target.checked)
     }
-  };
+  }
   const renderIcon = () => {
     if (checked) {
       return disabled ? (
@@ -66,7 +67,7 @@ const Basic = forwardRef<HTMLInputElement, CheckProps>(function Basic(
             strokeLinejoin="round"
           />
         </svg>
-      );
+      )
     } else {
       return disabled ? (
         <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none">
@@ -102,9 +103,9 @@ const Basic = forwardRef<HTMLInputElement, CheckProps>(function Basic(
             strokeLinejoin="round"
           />
         </svg>
-      );
+      )
     }
-  };
+  }
 
   return (
     <label
@@ -133,19 +134,19 @@ const Basic = forwardRef<HTMLInputElement, CheckProps>(function Basic(
       />
       {renderIcon()}
     </label>
-  );
-});
+  )
+})
 
 const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
   { checked = false, disabled = false, onChange, size, label, value, ...props },
   ref,
 ) {
   const handleLabelClick = (e: React.MouseEvent<HTMLLabelElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!disabled) {
-      onChange?.(!checked);
+      onChange?.(!checked)
     }
-  };
+  }
   const renderIcon = () => {
     if (checked) {
       return disabled ? (
@@ -190,7 +191,7 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
             strokeLinejoin="round"
           />
         </svg>
-      );
+      )
     } else {
       return disabled ? (
         <svg
@@ -236,9 +237,9 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
             strokeLinejoin="round"
           />
         </svg>
-      );
+      )
     }
-  };
+  }
 
   return (
     <label
@@ -260,7 +261,7 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
       <Typography
         variant="body3"
         className={clsx(
-          'break-words font-medium',
+          'font-medium break-words',
           checked && 'text-primary-gray-900',
           !checked && disabled && 'text-primary-gray-400',
         )}
@@ -268,18 +269,18 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
         {label}
       </Typography>
     </label>
-  );
-});
+  )
+})
 const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
   { checked = false, disabled = false, onChange, size, label, value, ...props },
   ref,
 ) {
   const handleLabelClick = (e: React.MouseEvent<HTMLLabelElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!disabled) {
-      onChange?.(!checked);
+      onChange?.(!checked)
     }
-  };
+  }
   const renderIcon = () => {
     if (checked) {
       return disabled ? (
@@ -324,7 +325,7 @@ const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
             strokeLinejoin="round"
           />
         </svg>
-      );
+      )
     } else {
       return disabled ? (
         <svg
@@ -370,9 +371,9 @@ const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
             strokeLinejoin="round"
           />
         </svg>
-      );
+      )
     }
-  };
+  }
 
   return (
     <label
@@ -396,7 +397,7 @@ const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
       <Typography
         variant="body3"
         className={clsx(
-          'break-words font-medium',
+          'font-medium break-words',
           checked && 'text-primary-gray-900',
           !checked && disabled && 'text-primary-gray-400',
         )}
@@ -404,19 +405,19 @@ const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
         {label}
       </Typography>
     </label>
-  );
-});
+  )
+})
 
 const Chip = forwardRef<HTMLInputElement, CheckBoxProps>(function Check(
   { checked = false, disabled = false, onChange, label, ...props },
   ref,
 ) {
   const handleLabelClick = (e: React.MouseEvent<HTMLLabelElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!disabled) {
-      onChange?.(!checked);
+      onChange?.(!checked)
     }
-  };
+  }
 
   return (
     <label
@@ -429,24 +430,24 @@ const Chip = forwardRef<HTMLInputElement, CheckBoxProps>(function Check(
             ? 'border-[#ffd7c1] bg-[#ffe7db] text-[#FFBC99]'
             : 'border-[#ffbc99] bg-[#ffe7db] text-[#FF600C]'
           : disabled
-          ? 'border-[#e8eaec] bg-[#f4f6f8] text-[#c6cad1]'
-          : 'border-[#e8eaec] bg-white text-[#4c5057]'
+            ? 'border-[#e8eaec] bg-[#f4f6f8] text-[#c6cad1]'
+            : 'border-[#e8eaec] bg-white text-[#4c5057]'
       }`}
     >
       <input ref={ref} type="checkbox" checked={checked} disabled={disabled} className="hidden" {...props} />
-      <div className="shrink grow basis-0 text-center font-['Pretendard'] text-[15px] font-medium leading-snug">
+      <div className="shrink grow basis-0 text-center font-['Pretendard'] text-[15px] leading-snug font-medium">
         {label}
       </div>
     </label>
-  );
-});
+  )
+})
 
 const Group = <T,>({ children, selectedValues = [], onChange, className }: CheckGroupProps<T>) => {
   const handleCheckChange = (value: T, isChecked: boolean) => {
-    const updatedSelected = isChecked ? [...selectedValues, value] : selectedValues.filter((item) => item !== value);
+    const updatedSelected = isChecked ? [...selectedValues, value] : selectedValues.filter((item) => item !== value)
 
-    onChange?.(updatedSelected);
-  };
+    onChange?.(updatedSelected)
+  }
 
   return (
     <div className={className}>
@@ -459,8 +460,8 @@ const Group = <T,>({ children, selectedValues = [], onChange, className }: Check
           : child,
       )}
     </div>
-  );
-};
+  )
+}
 
 export const Check = {
   Basic,
@@ -468,4 +469,4 @@ export const Check = {
   BoxNB,
   Chip,
   Group,
-};
+}

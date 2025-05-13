@@ -9,7 +9,7 @@ import {
   useSchedulesFindRejectSchedule,
 } from '@/legacy/generated/endpoint'
 import { childState } from '@/stores'
-import type { errorType } from '@/legacy/types'
+import { errorType } from '@/legacy/types'
 
 export function useStudentFieldtripDetail(id: number) {
   const { push } = useHistory()
@@ -29,7 +29,7 @@ export function useStudentFieldtripDetail(id: number) {
     },
   })
 
-  const { data: cannotSchedules, isLoading: isGetRejectScheduleLoading } = useSchedulesFindRejectSchedule(
+  const { data: cannotSchedules } = useSchedulesFindRejectSchedule(
     {
       startDate: fieldtrip?.startAt
         ? format(new Date(fieldtrip?.startAt).setDate(1), 'yyyy-MM-dd')

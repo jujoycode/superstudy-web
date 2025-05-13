@@ -8,23 +8,23 @@
 
 export interface Code {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 카테고리이름, 구분값 */
-  category: string;
+  category: string
   /** item key */
-  key: number;
+  key: number
   /** item name */
-  name: string;
+  name: string
   /** 추가정보1 */
-  etc1: string | null;
+  etc1: string | null
   /** 추가정보2 */
-  etc2: string | null;
+  etc2: string | null
   /** 설명 */
-  description: string | null;
+  description: string | null
   /** 학교 ID */
-  schoolId: number;
+  schoolId: number
 }

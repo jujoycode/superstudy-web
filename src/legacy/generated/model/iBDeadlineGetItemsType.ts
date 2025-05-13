@@ -6,12 +6,11 @@
  * OpenAPI spec version: 0.1
  */
 
-export type IBDeadlineGetItemsType = (typeof IBDeadlineGetItemsType)[keyof typeof IBDeadlineGetItemsType];
+export type IBDeadlineGetItemsType = (typeof IBDeadlineGetItemsType)[keyof typeof IBDeadlineGetItemsType]
 
- 
 export const IBDeadlineGetItemsType = {
   IB_EE: 'IB_EE',
   IB_CAS: 'IB_CAS',
   IB_TOK: 'IB_TOK',
   IB_ALL: 'IB_ALL',
-} as const;
+} as const

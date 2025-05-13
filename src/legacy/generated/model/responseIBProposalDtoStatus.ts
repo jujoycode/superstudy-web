@@ -15,13 +15,11 @@ IB 프로젝트 진행 상태 값:
 - **ACCEPT**: 채택
 
  */
-export type ResponseIBProposalDtoStatus =
-  (typeof ResponseIBProposalDtoStatus)[keyof typeof ResponseIBProposalDtoStatus];
+export type ResponseIBProposalDtoStatus = (typeof ResponseIBProposalDtoStatus)[keyof typeof ResponseIBProposalDtoStatus]
 
- 
 export const ResponseIBProposalDtoStatus = {
   PENDING: 'PENDING',
   SUBMIT: 'SUBMIT',
   REJECT: 'REJECT',
   ACCEPT: 'ACCEPT',
-} as const;
+} as const

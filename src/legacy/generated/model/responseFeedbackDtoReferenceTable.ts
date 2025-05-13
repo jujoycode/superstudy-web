@@ -10,9 +10,8 @@
  * IB 프로젝트 타입
  */
 export type ResponseFeedbackDtoReferenceTable =
-  (typeof ResponseFeedbackDtoReferenceTable)[keyof typeof ResponseFeedbackDtoReferenceTable];
+  (typeof ResponseFeedbackDtoReferenceTable)[keyof typeof ResponseFeedbackDtoReferenceTable]
 
- 
 export const ResponseFeedbackDtoReferenceTable = {
   IB: 'IB',
   ESSAY: 'ESSAY',
@@ -23,4 +22,4 @@ export const ResponseFeedbackDtoReferenceTable = {
   EXHIBITION: 'EXHIBITION',
   ACTIVITY_LOG: 'ACTIVITY_LOG',
   REFLECTION_DIARY: 'REFLECTION_DIARY',
-} as const;
+} as const

@@ -5,30 +5,30 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestEEEvaluationCriteriaByLevelsDto } from './requestEEEvaluationCriteriaByLevelsDto';
-import type { RequestUpdateEEEvaluationCriteriaWithIdDto } from './requestUpdateEEEvaluationCriteriaWithIdDto';
-import type { RequestEEEvaluationLevelByItemsWithIdDto } from './requestEEEvaluationLevelByItemsWithIdDto';
-import type { RequestUpdateEEEvaluationLevelWithIdDto } from './requestUpdateEEEvaluationLevelWithIdDto';
-import type { RequestEEEvaluationItemWithIdDto } from './requestEEEvaluationItemWithIdDto';
-import type { RequestUpdateEEEvaluationItemWithIdDto } from './requestUpdateEEEvaluationItemWithIdDto';
+import type { RequestEEEvaluationCriteriaByLevelsDto } from './requestEEEvaluationCriteriaByLevelsDto'
+import type { RequestEEEvaluationItemWithIdDto } from './requestEEEvaluationItemWithIdDto'
+import type { RequestEEEvaluationLevelByItemsWithIdDto } from './requestEEEvaluationLevelByItemsWithIdDto'
+import type { RequestUpdateEEEvaluationCriteriaWithIdDto } from './requestUpdateEEEvaluationCriteriaWithIdDto'
+import type { RequestUpdateEEEvaluationItemWithIdDto } from './requestUpdateEEEvaluationItemWithIdDto'
+import type { RequestUpdateEEEvaluationLevelWithIdDto } from './requestUpdateEEEvaluationLevelWithIdDto'
 
 export interface RequestUpdateEEEvaluationDto {
   /** 추가할 평가 기준 */
-  createCriterias?: RequestEEEvaluationCriteriaByLevelsDto[];
+  createCriterias?: RequestEEEvaluationCriteriaByLevelsDto[]
   /** 수정할 평가 기준 */
-  updateCriterias?: RequestUpdateEEEvaluationCriteriaWithIdDto[];
+  updateCriterias?: RequestUpdateEEEvaluationCriteriaWithIdDto[]
   /** 삭제할 평가 기준 ID들 */
-  deleteCriteriaIds?: number[];
+  deleteCriteriaIds?: number[]
   /** 기존 평가 기준에 추가할 새로운 평가 등급 */
-  createLevels?: RequestEEEvaluationLevelByItemsWithIdDto[];
+  createLevels?: RequestEEEvaluationLevelByItemsWithIdDto[]
   /** 수정할 평가 등급 */
-  updateLevels?: RequestUpdateEEEvaluationLevelWithIdDto[];
+  updateLevels?: RequestUpdateEEEvaluationLevelWithIdDto[]
   /** 삭제할 평가등급 ID들 */
-  deleteLevelIds?: number[];
+  deleteLevelIds?: number[]
   /** 기존 평가 등급에 추가할 새로운 평가 항목 */
-  createItems?: RequestEEEvaluationItemWithIdDto[];
+  createItems?: RequestEEEvaluationItemWithIdDto[]
   /** 수정할 평가 항목 */
-  updateItems?: RequestUpdateEEEvaluationItemWithIdDto[];
+  updateItems?: RequestUpdateEEEvaluationItemWithIdDto[]
   /** 삭제할 평가항목 ID들 */
-  deleteItemIds?: number[];
+  deleteItemIds?: number[]
 }

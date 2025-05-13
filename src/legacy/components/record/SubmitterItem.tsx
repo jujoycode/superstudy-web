@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router'
+
 import { ResponseActivitySubmitUserDto } from '@/legacy/generated/model'
 
 interface SubmitterItemProps {

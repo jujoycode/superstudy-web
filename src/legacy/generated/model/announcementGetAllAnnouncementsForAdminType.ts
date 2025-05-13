@@ -7,11 +7,10 @@
  */
 
 export type AnnouncementGetAllAnnouncementsForAdminType =
-  (typeof AnnouncementGetAllAnnouncementsForAdminType)[keyof typeof AnnouncementGetAllAnnouncementsForAdminType];
+  (typeof AnnouncementGetAllAnnouncementsForAdminType)[keyof typeof AnnouncementGetAllAnnouncementsForAdminType]
 
- 
 export const AnnouncementGetAllAnnouncementsForAdminType = {
   UPDATE: 'UPDATE',
   SERVICE: 'SERVICE',
   WORK: 'WORK',
-} as const;
+} as const

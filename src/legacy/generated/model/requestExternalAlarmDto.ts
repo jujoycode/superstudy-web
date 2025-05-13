@@ -8,13 +8,13 @@
 
 export interface RequestExternalAlarmDto {
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 수신자 아이디(이메일) */
-  targetIds: string[];
+  targetIds: string[]
   /** 푸시알림 제목 */
-  title: string;
+  title: string
   /** 푸시알림 본문내용 */
-  body: string;
+  body: string
   /** 푸시선택 시 이동 URL */
-  url: string;
+  url: string
 }

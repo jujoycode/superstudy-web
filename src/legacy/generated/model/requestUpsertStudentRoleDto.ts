@@ -8,13 +8,13 @@
 
 export interface RequestUpsertStudentRoleDto {
   /** 유저 ID */
-  userId: number;
+  userId: number
   /** 역할 */
-  role: string;
+  role: string
   /** 업무 */
-  job: string;
+  job: string
   /** 정렬순서 */
-  displayOrder: number;
+  displayOrder: number
   /** 학년도 */
-  year: number;
+  year: number
 }

@@ -3,18 +3,18 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
-import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
 import { Constants } from '@/legacy/constants'
+import FileItemIcon from '@/assets/svg/file-item-icon.svg'
 import { useSessionCommentCreate } from '@/legacy/generated/endpoint'
 import { ActivitySession, StudentActivitySession } from '@/legacy/generated/model'
 import { meState } from '@/stores'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { BottomFixed, Divider, Section } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
-import { PdfCard } from '@/legacy/components/common/PdfCard'
-import { SearchInput } from '@/legacy/components/common/SearchInput'
-import { Time } from '@/legacy/components/common/Time'
-import { Icon } from '@/legacy/components/common/icons'
+import { BottomFixed, Divider, Section } from '../common'
+import { Button } from '../common/Button'
+import { PdfCard } from '../common/PdfCard'
+import { SearchInput } from '../common/SearchInput'
+import { Time } from '../common/Time'
+import { Icon } from '../common/icons'
 import { SuperSurveyViewComponent } from '../survey/SuperSurveyViewComponent'
 import { SessionCommentItem } from './SessionCommentItem'
 
@@ -75,6 +75,12 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
   const calculateIsSubmitHour = () => {
     const { submitStartHour, submitStartMinute, submitEndHour, submitEndMinute } = activity
     if (submitStartHour === -1 || submitStartMinute === -1 || submitEndHour === -1 || submitEndMinute === -1) {
+      return true
+    }
+    if (submitStartHour === 0 && submitStartMinute === 0 && submitEndHour === 0 && submitEndMinute === 0) {
+      return true
+    }
+    if (submitStartHour === null || submitStartMinute === null || submitEndHour === null || submitEndMinute === null) {
       return true
     }
     const start = new Date(now)
@@ -181,8 +187,9 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
             )}
             {activity.submitStartHour !== undefined && (
               <div className="text-brandblue-1 mt-3">
-                활동 시간대 : {activity.submitStartHour}시 {activity.submitStartMinute}분부터 {activity.submitEndHour}시{' '}
-                {activity.submitEndMinute}분까지
+                활동 시간대 : {activity.submitStartHour}시{' '}
+                {activity.submitStartMinute < 0 ? 0 : activity.submitStartMinute}분부터 {activity.submitEndHour}시{' '}
+                {activity.submitEndMinute < 0 ? 0 : activity.submitEndMinute}분까지
               </div>
             )}
           </div>

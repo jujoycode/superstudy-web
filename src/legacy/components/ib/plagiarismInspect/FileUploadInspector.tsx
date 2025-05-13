@@ -1,16 +1,18 @@
 import { useState } from 'react'
+
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
 import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { useGetPlagiarismInspectResult, usePlagiarismUpload } from '@/legacy/container/plagiarism-inspector'
+import type { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
 import { UploadFileTypeEnum } from '@/legacy/generated/model/uploadFileTypeEnum'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { usePolling } from '@/legacy/hooks/usePolling'
+
 import LoadingPopup from './LoadingPopup'
-import { useGetPlagiarismInspectResult, usePlagiarismUpload } from '@/legacy/container/plagiarism-inspector'
-import type { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
 
 interface FileUploadInspectorProps {
   fileData: File
@@ -45,7 +47,7 @@ export default function FileUploadInspector({ fileData, handleBack }: FileUpload
   })
 
   // 폴링 훅 사용
-  const { isPolling, stopPolling } = usePolling<ResponseCopykillerResponseDto>({
+  const { stopPolling } = usePolling<ResponseCopykillerResponseDto>({
     enabled: shouldPollResult,
     maxPollingCount: 20,
     fetchFn: refetch,

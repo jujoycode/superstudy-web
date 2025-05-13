@@ -8,17 +8,17 @@
 
 export interface RequestCreateCounselingDto {
   /** 상담내용 */
-  content: string;
+  content: string
   /** 음성녹음파일들 */
-  voiceFiles: string[];
+  voiceFiles: string[]
   /** 상담일 */
-  counselingAt: string;
+  counselingAt: string
   /** 상담분류이름, code.category = counseling */
-  category: string;
+  category: string
   /** 상담자이름 */
-  counselorName: string;
+  counselorName: string
   /** 상담학생아이디 */
-  userId: number;
+  userId: number
   /** 공개범위 0:비공개, 1:담임, 2:담임+결재권자, 99:전체공개 */
-  accessLevel: number;
+  accessLevel: number
 }

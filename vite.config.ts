@@ -129,6 +129,7 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@/': '/src',
         '@/legacy': '/src/legacy',
+        '@/assets': '/src/assets',
         '@/atoms': '/src/components/atoms',
         '@/molecules': '/src/components/molecules',
         '@/organisms': '/src/components/organisms',

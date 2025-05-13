@@ -5,44 +5,44 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { OutingUse } from './outingUse';
-import type { ScoreUse } from './scoreUse';
+import type { OutingUse } from './outingUse'
+import type { ScoreUse } from './scoreUse'
 
 export interface RequestUpdateSchoolInfoDto {
   /** 학교로고 */
-  mark?: string;
+  mark?: string
   /** 도장이미지 */
-  stamp?: string;
+  stamp?: string
   /** 체험학습기본잔여일 */
-  fieldtripDays?: number;
+  fieldtripDays?: number
   /** 개인정보처리방침경로 */
-  privacyPolicyLink?: string;
+  privacyPolicyLink?: string
   /** 개인정보처리방침담당자, ex) 홍길동|덕소고등학교|hong@highschool.com */
-  privacyPolicyManager?: string;
+  privacyPolicyManager?: string
   /** 체험학습 신청서 제출 기한 */
-  fieldtripDueDays?: number;
+  fieldtripDueDays?: number
   /** 체험학습 결과보고서 제출 기한 */
-  fieldtripResultDueDays?: number;
+  fieldtripResultDueDays?: number
   /** 체험학습 종류 suburb: 교외, home: 가정학습 */
-  fieldtripType?: string[];
+  fieldtripType?: string[]
   /** 학생안전문구 */
-  studentSafeText?: string;
+  studentSafeText?: string
   /** 바코드 종류 */
-  barcodeType?: string;
+  barcodeType?: string
   /** 보안강화 */
-  enhancedSecurity?: boolean;
+  enhancedSecurity?: boolean
   /** 마지막 교시 */
-  lastPeriod?: number;
+  lastPeriod?: number
   /** 블록체인 사용유무 */
-  useBlockChain?: boolean;
+  useBlockChain?: boolean
   /** 토요일 수업유무 */
-  hasSaturdayClass?: boolean;
+  hasSaturdayClass?: boolean
   /** 문자메시지 머리말 */
-  smsHeader?: string;
+  smsHeader?: string
   /** 확인증 사용 */
-  isOutingActive?: OutingUse;
+  isOutingActive?: OutingUse
   /** 체험학습 사용 */
-  isFieldtripActive?: boolean;
+  isFieldtripActive?: boolean
   /** 성적관리 사용 */
-  isScoreActive?: ScoreUse;
+  isScoreActive?: ScoreUse
 }

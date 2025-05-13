@@ -1,13 +1,12 @@
 import { useState } from 'react'
-import { useHistory } from '@/hooks/useHistory'
+import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
 import { ThemeQuestionGetThemeQuestionItemsByTypeType } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import AlertV2 from '@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Typography } from '@/legacy/components/common/Typography'
 import FrontPaginatedList from '../../FrontPaginatedList '
 import { PopupModal } from '../../PopupModal'
 import { CoordinatorEE_Form_AddCheckList } from './ee/CoordinatorEE_Form_AddCheckList'
@@ -19,14 +18,12 @@ interface QuestionListProps {
 }
 
 export default function QuestionList({ type = 'TOK_ESSAY' }: QuestionListProps) {
-  const { push } = useHistory()
-
   const [activeModal, setActiveModal] = useState<ModalType>(null)
   const [selectedCategory, setSelectedCategory] = useState<ThemeQuestionGetThemeQuestionItemsByTypeType>()
-  const [activeModalType, setActiveModalType] = useState<'Create' | 'Update'>()
+  const [, setActiveModalType] = useState<'Create' | 'Update'>()
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
 
-  const { data: Questions, isLoading: isFetching, refetch } = useThemeQuestionFindAll(type)
+  const { data: Questions, refetch } = useThemeQuestionFindAll(type)
 
   const Header = () => (
     <>
@@ -56,7 +53,7 @@ export default function QuestionList({ type = 'TOK_ESSAY' }: QuestionListProps) 
           color="gray400"
           onClick={(e) => {
             e.stopPropagation()
-            handleEditClick(item)
+            handleEditClick()
           }}
         >
           수정
@@ -73,7 +70,7 @@ export default function QuestionList({ type = 'TOK_ESSAY' }: QuestionListProps) 
     setActiveModal('Category')
   }
 
-  const handleEditClick = (item: any) => {
+  const handleEditClick = () => {
     setActiveModal('Add')
     setActiveModalType('Update')
     setSelectedCategory('TOK_EXHIBITION')

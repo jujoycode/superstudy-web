@@ -9,4 +9,4 @@
 /**
  * 에러메세지
  */
-export type ResponseErrorDtoMessage = string | string[];
+export type ResponseErrorDtoMessage = string | string[]

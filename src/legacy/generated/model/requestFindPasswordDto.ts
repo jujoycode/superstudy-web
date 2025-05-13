@@ -8,9 +8,9 @@
 
 export interface RequestFindPasswordDto {
   /** 이메일 */
-  email: string;
+  email: string
   /** 이름 */
-  name: string;
+  name: string
   /** 전화번호 */
-  phone: string;
+  phone: string
 }

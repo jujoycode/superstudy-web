@@ -8,9 +8,9 @@
 
 export interface RequestCreateKlassDto {
   /** 학년 */
-  grade: number;
+  grade: number
   /** 반 */
-  klass: number;
+  klass: number
   /** 학급 년도 */
-  year: number | null;
+  year: number | null
 }

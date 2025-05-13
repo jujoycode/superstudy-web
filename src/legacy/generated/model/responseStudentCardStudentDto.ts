@@ -8,17 +8,17 @@
 
 export interface ResponseStudentCardStudentDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 이름 */
-  name: string;
+  name: string
   /** 프로필이미지URL */
-  profile: string;
+  profile: string
   /** 희망진로 */
-  hopePath: string;
+  hopePath: string
   /** 희망학과 */
-  hopeMajor: string;
+  hopeMajor: string
   /** KlassGroupName(학년반), 학생이면 소속된 학년반, 선생님이면 담임으로 맡고 있는 학년반, 부모님이면 null */
-  klassGroupName: string | null;
+  klassGroupName: string | null
   /** 학생이 소속된 학년반의 출석번호 */
-  studentNumber: number;
+  studentNumber: number
 }

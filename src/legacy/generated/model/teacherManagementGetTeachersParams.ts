@@ -5,15 +5,15 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Role } from './role';
+import type { Role } from './role'
 
 export type TeacherManagementGetTeachersParams = {
-  page?: number;
-  size?: number;
-  year?: number;
-  role?: Role;
-  first_visit?: boolean;
-  keyword?: string;
-  sortField?: string;
-  sortDirection?: string;
-};
+  page?: number
+  size?: number
+  year?: number
+  role?: Role
+  first_visit?: boolean
+  keyword?: string
+  sortField?: string
+  sortDirection?: string
+}

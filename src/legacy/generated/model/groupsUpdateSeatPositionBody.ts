@@ -8,5 +8,5 @@
 
 export type GroupsUpdateSeatPositionBody = {
   /** 자리배치 */
-  seatPosition?: string;
-};
+  seatPosition?: string
+}

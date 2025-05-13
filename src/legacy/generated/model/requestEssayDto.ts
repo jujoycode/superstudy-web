@@ -8,11 +8,11 @@
 
 export interface RequestEssayDto {
   /** 에세이 타이틀 */
-  title?: string;
+  title?: string
   /** 파일 S3 경로 */
-  filePath?: string;
+  filePath?: string
   /** 글자수 */
-  charCount?: number;
+  charCount?: number
   /** 학문적 진실성 동의 */
-  academicIntegrityConsent?: boolean;
+  academicIntegrityConsent?: boolean
 }

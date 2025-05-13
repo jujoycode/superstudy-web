@@ -15,11 +15,10 @@
 
  */
 export type ResponseIBOnlyCasDtoEditStatus =
-  (typeof ResponseIBOnlyCasDtoEditStatus)[keyof typeof ResponseIBOnlyCasDtoEditStatus];
+  (typeof ResponseIBOnlyCasDtoEditStatus)[keyof typeof ResponseIBOnlyCasDtoEditStatus]
 
- 
 export const ResponseIBOnlyCasDtoEditStatus = {
   LOCK: 'LOCK',
   REQUEST_UNLOCK: 'REQUEST_UNLOCK',
   UNLOCK: 'UNLOCK',
-} as const;
+} as const

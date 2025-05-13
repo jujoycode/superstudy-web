@@ -5,24 +5,24 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBTokExhibitionPlanSubmissionStatusDtoIbType } from './responseIBTokExhibitionPlanSubmissionStatusDtoIbType';
-import type { ResponseIBStudentDto } from './responseIBStudentDto';
-import type { ResponseIBTokExhibitionPlanDto } from './responseIBTokExhibitionPlanDto';
-import type { ResponseIBTokExhibitionPlanSubmissionStatusDtoDetailStatus } from './responseIBTokExhibitionPlanSubmissionStatusDtoDetailStatus';
+import type { ResponseIBStudentDto } from './responseIBStudentDto'
+import type { ResponseIBTokExhibitionPlanDto } from './responseIBTokExhibitionPlanDto'
+import type { ResponseIBTokExhibitionPlanSubmissionStatusDtoDetailStatus } from './responseIBTokExhibitionPlanSubmissionStatusDtoDetailStatus'
+import type { ResponseIBTokExhibitionPlanSubmissionStatusDtoIbType } from './responseIBTokExhibitionPlanSubmissionStatusDtoIbType'
 
 export interface ResponseIBTokExhibitionPlanSubmissionStatusDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** IB 프로젝트 타입 */
-  ibType: ResponseIBTokExhibitionPlanSubmissionStatusDtoIbType;
+  ibType: ResponseIBTokExhibitionPlanSubmissionStatusDtoIbType
   /** 프로젝트 리더 */
-  leader: ResponseIBStudentDto;
+  leader: ResponseIBStudentDto
   /** 전시회 기획안 */
-  tokExhibitionPlan: ResponseIBTokExhibitionPlanDto;
+  tokExhibitionPlan: ResponseIBTokExhibitionPlanDto
   /** 상세 상태 */
-  detailStatus: ResponseIBTokExhibitionPlanSubmissionStatusDtoDetailStatus;
+  detailStatus: ResponseIBTokExhibitionPlanSubmissionStatusDtoDetailStatus
 }

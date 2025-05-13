@@ -1,15 +1,16 @@
-import React from 'react';
-import { ButtonV2 } from './ButtonV2';
-import { Typography } from './Typography';
+import React from 'react'
+
+import { ButtonV2 } from './ButtonV2'
+import { Typography } from './Typography'
 
 interface AlertV2Props {
-  message: string;
-  description?: string;
-  confirmText: string;
-  onConfirm: () => void;
-  cancelText?: string;
-  onCancel?: () => void;
-  ratio?: '1' | '5/5' | '3/7';
+  message: string
+  description?: string
+  confirmText: string
+  onConfirm: () => void
+  cancelText?: string
+  onCancel?: () => void
+  ratio?: '1' | '5/5' | '3/7'
 }
 
 /**
@@ -34,10 +35,10 @@ const AlertV2: React.FC<AlertV2Props> = ({
   onCancel,
   ratio = '1',
 }) => {
-  const cancelButtonClass = ratio === '3/7' ? 'flex-grow-[3] basis-3/10' : 'flex-grow basis-1/2';
-  const confirmButtonClass = ratio === '3/7' ? 'flex-grow-[7] basis-7/10' : 'flex-grow basis-1/2';
+  const cancelButtonClass = ratio === '3/7' ? 'flex-grow-[3] basis-3/10' : 'flex-grow basis-1/2'
+  const confirmButtonClass = ratio === '3/7' ? 'flex-grow-[7] basis-7/10' : 'flex-grow basis-1/2'
   return (
-    <div className="fixed inset-0 z-100 flex h-screen w-full items-center justify-center bg-black bg-opacity-50">
+    <div className="bg-opacity-50 fixed inset-0 z-100 flex h-screen w-full items-center justify-center bg-black">
       <div className="flex w-[416px] flex-col items-center justify-center rounded-xl bg-white">
         <div className="flex flex-col items-center gap-2 p-8">
           <Typography
@@ -66,7 +67,7 @@ const AlertV2: React.FC<AlertV2Props> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AlertV2;
+export default AlertV2

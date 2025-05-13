@@ -1,22 +1,20 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useLocation } from 'react-router'
+import { useLocation } from 'react-router-dom'
+import { useFieldtripsGetFieldtripsByTeacher, useUserMe } from '@/legacy/generated/endpoint'
+import { FieldtripStatus, Role } from '@/legacy/generated/model'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { MonthAgo, getEndDate, getStartDate, makeDateToString } from '@/legacy/util/time'
-import { FieldtripStatus, Role } from '@/legacy/generated/model'
-import { useFieldtripsGetFieldtripsByTeacher, useUserMe } from '@/legacy/generated/endpoint'
 
 export function useTeacherFieldtripNotice() {
   const { search } = useLocation()
   const { addQueryParams } = useQueryParams()
   const params = useMemo(() => new URLSearchParams(search), [search])
-
-  const [_studentName, set_studentName] = useState('')
-  const [page, setPage] = useState(Number(params.get('page') ?? '1'))
-  const [endDate, setEndDate] = useState(makeDateToString(new Date()))
   const [startDate, setStartDate] = useState(makeDateToString(MonthAgo(new Date())))
-
-  const studentName = params.get('username') || ''
+  const [endDate, setEndDate] = useState(makeDateToString(new Date()))
+  const [page, setPage] = useState(Number(params.get('page') ?? '1'))
   const limit = Number(params.get('limit') ?? '1000') || 1000
+  const studentName = params.get('username') || ''
+  const [_studentName, set_studentName] = useState('')
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search)

@@ -13,12 +13,14 @@ import {
 } from 'chart.js'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Chart } from 'react-chartjs-2'
-import { SubjectMapping, SubjectOrder } from '@/legacy/constants/score.enum'
-import { useStudentAnalysisTargetScore } from '@/legacy/container/student-score'
-import { getThisSemester } from '@/legacy/util/time'
+
 import HintMessage from '@/legacy/components/common/HintMessage'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'
+import { SubjectMapping, SubjectOrder } from '@/legacy/constants/score.enum'
+import { useStudentAnalysisTargetScore } from '@/legacy/container/student-score'
+import { getThisSemester } from '@/legacy/util/time'
+
 import SolidSVGIcon from '../icon/SolidSVGIcon'
 
 interface TargetScoreProps {
@@ -318,7 +320,7 @@ const TargetScoreBarChart = ({ data }: { data: any }) => {
       })
 
       const tableBody = document.createElement('tbody')
-      extractedData.forEach((body: any, i: number) => {
+      extractedData.forEach((body: any) => {
         const span = document.createElement('span')
         span.style.borderWidth = '1px'
         span.style.borderRadius = '4px'
@@ -441,7 +443,7 @@ const TargetScoreBarChart = ({ data }: { data: any }) => {
             },
             color: '#121417',
             padding: 2,
-            callback: function (value: string | number, index: number, values: any) {
+            callback: function (_: string | number, index: number) {
               const label = chartData?.labels?.[index]
               const maxLength = 6
               if (label && typeof label === 'string' && label.length > maxLength) {
@@ -648,7 +650,7 @@ const TargetScoreRadarChart = ({ data }: { data: any }) => {
       })
 
       const tableBody = document.createElement('tbody')
-      extractedData.forEach((body: any, i: number) => {
+      extractedData.forEach((body: any) => {
         const span = document.createElement('span')
         span.style.borderWidth = '1px'
         span.style.borderRadius = '4px'

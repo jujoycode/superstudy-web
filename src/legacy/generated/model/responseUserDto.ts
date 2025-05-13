@@ -5,133 +5,133 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Role } from './role';
-import type { School } from './school';
-import type { User } from './user';
-import type { StudentRole } from './studentRole';
-import type { StudentActivity } from './studentActivity';
-import type { StudentActivitySession } from './studentActivitySession';
-import type { StudentActivityV3 } from './studentActivityV3';
-import type { StudentGroup } from './studentGroup';
-import type { PointLog } from './pointLog';
-import type { TeacherProperty } from './teacherProperty';
-import type { TeacherPermission } from './teacherPermission';
+import type { PointLog } from './pointLog'
+import type { Role } from './role'
+import type { School } from './school'
+import type { StudentActivity } from './studentActivity'
+import type { StudentActivitySession } from './studentActivitySession'
+import type { StudentActivityV3 } from './studentActivityV3'
+import type { StudentGroup } from './studentGroup'
+import type { StudentRole } from './studentRole'
+import type { TeacherPermission } from './teacherPermission'
+import type { TeacherProperty } from './teacherProperty'
+import type { User } from './user'
 
 export interface ResponseUserDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 이메일 */
-  email: string | null;
+  email: string | null
   /** 역할 */
-  role: Role;
+  role: Role
   /** 이름 */
-  name: string;
+  name: string
   /** 도장이미지경로 */
-  stamp: string;
+  stamp: string
   /** 학년 */
-  headNumber: number;
+  headNumber: number
   /** 전화번호 */
-  phone: string;
+  phone: string
   /** 학부모이름 */
-  nokName: string;
+  nokName: string
   /** 학부모전화번호 */
-  nokPhone: string;
+  nokPhone: string
   /** 최초방문여부 */
-  firstVisit: boolean;
+  firstVisit: boolean
   /** 회원바코드 */
-  barcode: string;
+  barcode: string
   /** 프로필이미지URL */
-  profile: string;
+  profile: string
   /** 커스텀프로필이미지URL */
-  customProfile: string;
+  customProfile: string
   /** 사용자배경이미지 */
-  customBackground: string;
+  customBackground: string
   /**
    * 사용자메시지, 사용안됨
    * @deprecated
    */
-  customMessage: string;
+  customMessage: string
   /** 희망진로 */
-  hopePath: string;
+  hopePath: string
   /** 희망학과 */
-  hopeMajor: string;
+  hopeMajor: string
   /** 만료일 */
-  expiredAt: string;
+  expiredAt: string
   /** 만료여부, 미사용 사용자는 true (전학 등) */
-  expired: boolean;
+  expired: boolean
   /** 만료사유, 탈퇴, 전학 등 사유 입력 */
-  expiredReason: string | null;
+  expiredReason: string | null
   /** 생년월일 */
-  birthDate: string | null;
+  birthDate: string | null
   /** 비밀번호초기화토큰 */
-  resetToken: string | null;
+  resetToken: string | null
   /** 회원유니크아이디 */
-  uuid: string;
+  uuid: string
   /** 공지사항수정가능여부 */
-  canEditNotice: boolean;
+  canEditNotice: boolean
   /** 가정통신문수정가능여부 */
-  canEditNewsletter: boolean;
+  canEditNewsletter: boolean
   /** 시간표/출석체크수정가능여부수정가능여부 */
-  canEditTimetable: boolean;
+  canEditTimetable: boolean
   /** 급식일정수정가능여부수정가능여부 */
-  canEditCanteen: boolean;
+  canEditCanteen: boolean
   /** 체험학습잔여일, 기본값: 50 */
-  remainDaysOfFieldtrip: number;
+  remainDaysOfFieldtrip: number
   /** 최종로그인시간 */
-  lastLogin: string | null;
+  lastLogin: string | null
   /** 로그인 실패 카운트 */
-  loginFailCount: number;
+  loginFailCount: number
   /** 로그인 실패시간 */
-  loginFailAt: string | null;
+  loginFailAt: string | null
   /** 닉네임 */
-  nickName: string;
+  nickName: string
   /** 삭제일자 */
-  deletedAt: string;
+  deletedAt: string
   /** 탈퇴사유 */
-  deletedReason: string | null;
+  deletedReason: string | null
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 학교정보 */
-  school: School;
+  school: School
   /**
    * Deprecated
    * @deprecated
    */
-  parents: User[] | null;
+  parents: User[] | null
   /**
    * Deprecated
    * @deprecated
    */
-  children: User[] | null;
+  children: User[] | null
   /**
    * Deprecated
    * @deprecated
    */
-  studentRoles: StudentRole[] | null;
-  studentActivities: StudentActivity[] | null;
-  studentActivitySessions: StudentActivitySession[] | null;
-  studentActivityV3s: StudentActivityV3[] | null;
-  studentGroups: StudentGroup[] | null;
-  givenPointLogs: PointLog[] | null;
-  receivedPointLogs: PointLog[] | null;
+  studentRoles: StudentRole[] | null
+  studentActivities: StudentActivity[] | null
+  studentActivitySessions: StudentActivitySession[] | null
+  studentActivityV3s: StudentActivityV3[] | null
+  studentGroups: StudentGroup[] | null
+  givenPointLogs: PointLog[] | null
+  receivedPointLogs: PointLog[] | null
   /** KlassGroupId(학년반), 학생이면 소속된 학년반, 선생님이면 담임으로 맡고 있는 학년반, 부모님이면 null */
-  klassGroupId: number | null;
+  klassGroupId: number | null
   /** KlassGroupName(학년반), 학생이면 소속된 학년반, 선생님이면 담임으로 맡고 있는 학년반, 부모님이면 null */
-  klassGroupName: string | null;
+  klassGroupName: string | null
   /** 학생이 소속된 학년반의 출석번호 */
-  studentNumber: number;
+  studentNumber: number
   /** 학급일 때 학년 */
-  groupGrade: number | null;
+  groupGrade: number | null
   /** 학급일 때 반 */
-  groupKlass: number | null;
+  groupKlass: number | null
   /** 학생의 현재 학년도의 역할 */
-  studentRole: string;
+  studentRole: string
   /** 선생님의 추가정보 */
-  teacherProperty: TeacherProperty;
+  teacherProperty: TeacherProperty
   /** 선생님의 권한정보 */
-  teacherPermission: TeacherPermission;
+  teacherPermission: TeacherPermission
 }

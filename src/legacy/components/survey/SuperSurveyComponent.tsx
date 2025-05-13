@@ -1,13 +1,14 @@
 import { cloneDeep } from 'lodash'
 import { useState, useEffect, type ChangeEvent } from 'react'
+
+import { Label, Radio, RadioGroup, Section, Textarea } from '@/legacy/components/common'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { ImageUpload } from '@/legacy/components/common/ImageUpload'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { DocumentObjectComponent } from '@/legacy/components/DocumentObjectComponent'
+import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
 import { UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
-import { Checkbox } from '@/legacy/components/common/Checkbox'
-import { TextInput } from '@/legacy/components/common/TextInput'
-import { ImageUpload } from '@/legacy/components/common/ImageUpload'
-import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
-import { DocumentObjectComponent } from '@/legacy/components/DocumentObjectComponent'
-import { Label, Radio, RadioGroup, Section, Textarea } from '@/legacy/components/common'
 import type { Question } from '@/legacy/types'
 
 interface SuperSurveyComponentProps {

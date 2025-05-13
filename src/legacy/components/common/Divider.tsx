@@ -1,4 +1,5 @@
 import { HTMLAttributes } from 'react'
+
 import { cn } from '@/legacy/lib/tailwind-merge'
 
 interface DividerProps extends HTMLAttributes<HTMLHRElement> {}

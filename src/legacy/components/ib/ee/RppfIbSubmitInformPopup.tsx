@@ -1,9 +1,6 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useIBRPPFUpdateInfo } from '@/legacy/container/ib-rppf'
-import { useRPPFGetById } from '@/legacy/container/ib-rppf-findId'
-import { RequestRPPFInfoUpdateDto, ResponseIBDto, ResponseRPPFDto } from '@/legacy/generated/model'
-import { PopupModal } from '../../PopupModal'
+
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
@@ -11,6 +8,11 @@ import { Input } from '@/legacy/components/common/Input'
 import Stepper from '@/legacy/components/common/Stepper'
 import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useIBRPPFUpdateInfo } from '@/legacy/container/ib-rppf'
+import { useRPPFGetById } from '@/legacy/container/ib-rppf-findId'
+import { RequestRPPFInfoUpdateDto, ResponseIBDto, ResponseRPPFDto } from '@/legacy/generated/model'
+
+import { PopupModal } from '../../PopupModal'
 
 interface RppfListPopupProps {
   modalOpen: boolean
@@ -32,7 +34,7 @@ export default function RppfIbSubmitInformPopup({
   rppfData,
 }: RppfListPopupProps) {
   const [rppfState, setRppfState] = useState<ResponseRPPFDto | null>(rppfData || null)
-  const { data: fetchedRppf, isLoading: isRppfLoading } = useRPPFGetById(Number(ibId), Number(rppfId), rppfData)
+  const { data: fetchedRppf } = useRPPFGetById(Number(ibId), Number(rppfId), rppfData)
   const [guidanceTime, setGuidanceTime] = useState<number>(rppfState?.guidanceHours || 3)
   const [academicIntegrityConsent, setAcademicIntegrityConsent] = useState<boolean>(
     rppfState?.academicIntegrityConsent || false,

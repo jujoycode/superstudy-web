@@ -7,10 +7,9 @@
  */
 
 export type ThemeQuestionSaveThemeQuestionsType =
-  (typeof ThemeQuestionSaveThemeQuestionsType)[keyof typeof ThemeQuestionSaveThemeQuestionsType];
+  (typeof ThemeQuestionSaveThemeQuestionsType)[keyof typeof ThemeQuestionSaveThemeQuestionsType]
 
- 
 export const ThemeQuestionSaveThemeQuestionsType = {
   TOK_ESSAY: 'TOK_ESSAY',
   TOK_EXHIBITION: 'TOK_EXHIBITION',
-} as const;
+} as const

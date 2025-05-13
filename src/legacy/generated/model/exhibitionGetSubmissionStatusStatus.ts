@@ -7,12 +7,11 @@
  */
 
 export type ExhibitionGetSubmissionStatusStatus =
-  (typeof ExhibitionGetSubmissionStatusStatus)[keyof typeof ExhibitionGetSubmissionStatusStatus];
+  (typeof ExhibitionGetSubmissionStatusStatus)[keyof typeof ExhibitionGetSubmissionStatusStatus]
 
- 
 export const ExhibitionGetSubmissionStatusStatus = {
   PENDING: 'PENDING',
   IN_PROGRESS: 'IN_PROGRESS',
   EVALUATING: 'EVALUATING',
   COMPLETE: 'COMPLETE',
-} as const;
+} as const

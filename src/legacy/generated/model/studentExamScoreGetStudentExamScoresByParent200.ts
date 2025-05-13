@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentExamScoreGetStudentExamScoresByParent200 = { [key: string]: any };
+export type StudentExamScoreGetStudentExamScoresByParent200 = { [key: string]: any }

@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { CopykillerTargetTable } from './copykillerTargetTable';
+import type { CopykillerTargetTable } from './copykillerTargetTable'
 
-export type PlagiarismGetCopykillerStatusParams = { targetTable?: CopykillerTargetTable; targetId?: number };
+export type PlagiarismGetCopykillerStatusParams = { targetTable?: CopykillerTargetTable; targetId?: number }

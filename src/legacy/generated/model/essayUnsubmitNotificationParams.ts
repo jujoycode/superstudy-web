@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { EssayUnsubmitNotificationType } from './essayUnsubmitNotificationType';
+import type { EssayUnsubmitNotificationType } from './essayUnsubmitNotificationType'
 
-export type EssayUnsubmitNotificationParams = { grade?: number; klass?: number; type: EssayUnsubmitNotificationType };
+export type EssayUnsubmitNotificationParams = { grade?: number; klass?: number; type: EssayUnsubmitNotificationType }

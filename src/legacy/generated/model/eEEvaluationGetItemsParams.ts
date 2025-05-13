@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { EEEvaluationLocation } from './eEEvaluationLocation';
+import type { EEEvaluationLocation } from './eEEvaluationLocation'
 
-export type EEEvaluationGetItemsParams = { page?: number; limit?: number; location: EEEvaluationLocation };
+export type EEEvaluationGetItemsParams = { page?: number; limit?: number; location: EEEvaluationLocation }

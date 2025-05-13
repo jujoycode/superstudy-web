@@ -7,9 +7,9 @@
  */
 
 export type StudentExamScoreInsetTestScoresParams = {
-  excelDataType: string;
-  excelDataSubType: string;
-  grade: number;
-  month: number;
-  insertionYear: number;
-};
+  excelDataType: string
+  excelDataSubType: string
+  grade: number
+  month: number
+  insertionYear: number
+}

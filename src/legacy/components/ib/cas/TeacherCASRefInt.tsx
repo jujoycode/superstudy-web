@@ -1,58 +1,43 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useHistory, useLocation } from 'react-router'
-import NODATA from '@/legacy/assets/images/no-data.png'
+import { useLocation } from 'react-router'
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
 import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
-import { useInterviewGetByStudentId } from '@/legacy/container/ib-student-interview'
 import {
   FeedbackReferenceTable,
   ResponseIBPortfolioDto,
   ResponseInterviewListWithQnaDto,
   ResponseUserDto,
 } from '@/legacy/generated/model'
+
 import FeedbackViewer from '../FeedbackViewer'
 
+import NODATA from '@/assets/images/no-data.png'
+
 const itemsPerPage = 10
-const categoryOrder = ['CAS_PORTFOLIO_1', 'CAS_PORTFOLIO_2', 'CAS_PORTFOLIO_3']
 
 interface TeacherCASRefNIntProps {
   data?: ResponseIBPortfolioDto
   user: ResponseUserDto
 }
 
-interface LocationState {
-  page: number
-}
-
 function TeacherCASRefNInt({ data, user }: TeacherCASRefNIntProps) {
   const [alertMessage, setAlertMessage] = useState<{ text: string; action?: () => void } | null>(null)
-  const location = useLocation<LocationState>()
+  const location = useLocation()
   const page = location.state?.page
   const { push } = useHistory()
-  const [currentPage, setCurrentPage] = useState(page || 1)
+  const [currentPage] = useState(page || 1)
   const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false)
   const [feedbackReference, setFeedbackReference] = useState<{
     referenceId: number
     referenceTable: FeedbackReferenceTable
   }>()
   const [localUnreadCounts, setLocalUnreadCounts] = useState<Record<string, number>>({})
-
-  const { data: interview = [] } = useInterviewGetByStudentId(
-    user?.id,
-    'CAS_PORTFOLIO_1,CAS_PORTFOLIO_2,CAS_PORTFOLIO_3',
-  )
-
-  const sortedInterview = [...interview].sort((a: any, b: any) => {
-    const indexA = categoryOrder.indexOf(a.category)
-    const indexB = categoryOrder.indexOf(b.category)
-
-    return indexA - indexB
-  })
 
   const refIdsString =
     data?.reflectionDiary && data?.reflectionDiary.length > 0

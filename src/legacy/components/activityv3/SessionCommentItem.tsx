@@ -1,13 +1,15 @@
 import { format } from 'date-fns'
 import { FC, useState } from 'react'
 import { useRecoilState } from 'recoil'
+import { twMerge } from 'tailwind-merge'
+
+import { Section } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
 import { useSessionCommentDelete, useSessionCommentUpdate } from '@/legacy/generated/endpoint'
 import { ResponseUserDto, SessionComment } from '@/legacy/generated/model'
 import { toastState } from '@/stores'
-import { twMerge } from 'tailwind-merge'
+
 import { SuperModal } from '../SuperModal'
-import { Section } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 
 interface SessionCommentItemProps {
   me?: ResponseUserDto

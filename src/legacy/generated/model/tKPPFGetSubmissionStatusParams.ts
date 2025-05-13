@@ -5,12 +5,12 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { TKPPFGetSubmissionStatusStatus } from './tKPPFGetSubmissionStatusStatus';
+import type { TKPPFGetSubmissionStatusStatus } from './tKPPFGetSubmissionStatusStatus'
 
 export type TKPPFGetSubmissionStatusParams = {
-  grade?: number;
-  klass?: number;
-  page?: number;
-  limit?: number;
-  status: TKPPFGetSubmissionStatusStatus;
-};
+  grade?: number
+  klass?: number
+  page?: number
+  limit?: number
+  status: TKPPFGetSubmissionStatusStatus
+}

@@ -8,9 +8,9 @@
 
 export interface RequestCreateSummaryDto {
   /** 내용 */
-  content: string;
+  content: string
   /** 제목 */
-  subject: string;
+  subject: string
   /** 학생그룹아이디 */
-  studentGroupId: number;
+  studentGroupId: number
 }

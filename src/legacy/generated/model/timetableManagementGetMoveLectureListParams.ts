@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type TimetableManagementGetMoveLectureListParams = { day: number; time: number; year: number; semester: number };
+export type TimetableManagementGetMoveLectureListParams = { day: number; time: number; year: number; semester: number }

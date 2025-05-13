@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react'
-import { useLocation } from 'react-router'
-import { DateUtil } from '@/legacy/util/date'
-import { useStamp } from '@/legacy/hooks/useStamp'
+import { useLocation } from 'react-router-dom'
+import { useOutingsApprove, useOutingsFindAllByTeacher } from '@/legacy/generated/endpoint'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignature } from '@/legacy/hooks/useSignature'
-import { useOutingsApprove, useOutingsFindAllByTeacher } from '@/legacy/generated/endpoint'
+import { useStamp } from '@/legacy/hooks/useStamp'
+import { DateUtil } from '@/legacy/util/date'
 
 export function useTeacherOutgoing() {
   const { search } = useLocation()
@@ -73,9 +73,8 @@ export function useTeacherOutgoing() {
 
   const approveOutings = () => {
     outings?.items
-      // @ts-ignore 기존 에러임
-      // ? 다같이 해결해야함
-      ?.filter((o) => !o.teacherSignature)
+      // ? 행석쌤
+      // ?.filter((o) => !o.teacherSignature)
       .map((o) => {
         approveOutingMutate({
           id: o.id,

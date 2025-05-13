@@ -1,5 +1,5 @@
 import { useRPPFUpdateRPPFInfo, useRPPFUpdateRPPFStatusWaitComplete } from '@/legacy/generated/endpoint'
-import type { RequestRPPFInfoUpdateDto } from '@/legacy/generated/model'
+import { RequestRPPFInfoUpdateDto } from '@/legacy/generated/model'
 
 interface UseIBRPPFCompleteOptions {
   onSuccess?: (data: any) => void

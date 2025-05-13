@@ -8,19 +8,19 @@
 
 export interface ResponseExhibitionSubmissionStatusCountDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 전체 학생 수 */
-  total: number;
+  total: number
   /** 미작성 학생수 */
-  pending: number;
+  pending: number
   /** 진행중 학생수 */
-  inProgress: number;
+  inProgress: number
   /** 평가 학생수 */
-  evaluating: number;
+  evaluating: number
   /** 완료 학생수 */
-  completed: number;
+  completed: number
 }

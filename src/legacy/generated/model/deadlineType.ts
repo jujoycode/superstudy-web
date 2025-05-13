@@ -6,9 +6,8 @@
  * OpenAPI spec version: 0.1
  */
 
-export type DeadlineType = (typeof DeadlineType)[keyof typeof DeadlineType];
+export type DeadlineType = (typeof DeadlineType)[keyof typeof DeadlineType]
 
- 
 export const DeadlineType = {
   EE_ESSAY: 'EE_ESSAY',
   EE_RRS: 'EE_RRS',
@@ -31,4 +30,4 @@ export const DeadlineType = {
   CAS_REFLECTION_DIARY: 'CAS_REFLECTION_DIARY',
   CAS_ACTIVITY_LOG: 'CAS_ACTIVITY_LOG',
   CAS_PLAN: 'CAS_PLAN',
-} as const;
+} as const

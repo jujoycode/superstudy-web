@@ -1,14 +1,16 @@
 import { chain, map, uniqBy } from 'lodash'
 import { FC, useEffect, useState } from 'react'
-import { useAchievementCriteriaGetAll } from '@/legacy/generated/endpoint'
-import { AchievementChapter, AchievementCriteria } from '@/legacy/generated/model'
-import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { twMerge } from 'tailwind-merge'
+
 import { Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Icon } from '@/legacy/components/common/icons'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { useAchievementCriteriaGetAll } from '@/legacy/generated/endpoint'
+import { AchievementChapter, AchievementCriteria } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+
 import { SuperModal } from '../SuperModal'
 
 interface ActivityCriteriaSelectModalProps {

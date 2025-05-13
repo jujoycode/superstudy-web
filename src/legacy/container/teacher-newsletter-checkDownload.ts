@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import readXlsxFile, { type Row } from 'read-excel-file'
+import readXlsxFile, { Row } from 'read-excel-file'
 import { useNewsLettersDownloadUnreadStudentList } from '@/legacy/generated/endpoint'
 import { downloadExcel } from '@/legacy/util/download-excel'
 

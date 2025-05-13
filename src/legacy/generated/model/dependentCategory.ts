@@ -6,12 +6,11 @@
  * OpenAPI spec version: 0.1
  */
 
-export type DependentCategory = (typeof DependentCategory)[keyof typeof DependentCategory];
+export type DependentCategory = (typeof DependentCategory)[keyof typeof DependentCategory]
 
- 
 export const DependentCategory = {
   IB_EE: 'IB_EE',
   IB_CAS: 'IB_CAS',
   IB_TOK: 'IB_TOK',
   IB_ALL: 'IB_ALL',
-} as const;
+} as const

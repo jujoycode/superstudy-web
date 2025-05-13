@@ -8,13 +8,13 @@
 
 export interface ResponseEEEvaluationItemByCheckDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 평가항목 */
-  name: string;
+  name: string
   /** 학생의 체크유무 */
-  check?: string;
+  check?: string
 }

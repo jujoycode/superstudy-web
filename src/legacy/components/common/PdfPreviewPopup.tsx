@@ -1,8 +1,10 @@
-import { PopupModal } from '@/legacy/components/PopupModal'
-import { Document, Page, pdfjs } from 'react-pdf'
-import { useRef, useState } from 'react'
-import { ButtonV2 } from './ButtonV2'
 import { saveAs } from 'file-saver'
+import { useRef, useState } from 'react'
+import { Document, Page, pdfjs } from 'react-pdf'
+
+import { PopupModal } from '@/legacy/components/PopupModal'
+
+import { ButtonV2 } from './ButtonV2'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 

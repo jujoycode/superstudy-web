@@ -8,30 +8,30 @@
 
 export interface Chatroom {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 채팅방 생성자 아이디 */
-  createdUserId: number;
+  createdUserId: number
   /**
    * 채팅방 참석자 아이디
    * @deprecated
    */
-  attendeeId: number;
+  attendeeId: number
   /** 채팅방 참석자 아이디 */
-  attendeeIdList: number[];
+  attendeeIdList: number[]
   /** 채팅방 나가기 여부 */
-  expired: boolean;
+  expired: boolean
   /** 채팅방 상태 */
-  status: string;
+  status: string
   /** 방 이름 */
-  name: string | null;
+  name: string | null
   /** 대화가능시작시각 */
-  chatStartTime: string;
+  chatStartTime: string
   /** 대화가능종료시각 */
-  chatEndTime: string;
+  chatEndTime: string
   /** 대화방 이미지 */
-  roomImage: string;
+  roomImage: string
 }

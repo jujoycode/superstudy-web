@@ -8,11 +8,11 @@
 
 export interface RequestCreateTimetableDto {
   /** 내용, json */
-  content: string;
+  content: string
   /** 학년도 */
-  year: number;
+  year: number
   /** 학기 */
-  semester: number;
+  semester: number
   /** 그룹아이디 */
-  groupId: number;
+  groupId: number
 }

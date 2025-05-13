@@ -1,17 +1,19 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import { useSetRecoilState } from 'recoil'
-import SvgUser from '@/legacy/assets/svg/user.svg'
+
 import { MessageBox } from '@/legacy/components/chat/MessageBox'
 import { Section } from '@/legacy/components/common'
+import { Icon } from '@/legacy/components/common/icons'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Constants } from '@/legacy/constants'
 import { useTeacherChatRoomList } from '@/legacy/container/teacher-chat-room-list'
 import { useDashboardGetDashBoardData } from '@/legacy/generated/endpoint'
 import { ResponseChatroomInfoDto, ResponseDashboardDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { newMsgCntState } from '@/stores'
-import { SearchInput } from '@/legacy/components/common/SearchInput'
-import { Icon } from '@/legacy/components/common/icons'
+
+import SvgUser from '@/assets/svg/user.svg'
 
 interface ChatRoomListProps {}
 

@@ -9,7 +9,7 @@ import {
   useIBUpdateIBTokExhibitionStatusInProgress,
   useIBUpdateTokExhibitionPlan,
 } from '@/legacy/generated/endpoint'
-import type { RequestExhibitionDto, RequestIBCommentDto, RequestIBTokExhibitionPlanDto } from '@/legacy/generated/model'
+import { RequestExhibitionDto, RequestIBCommentDto, RequestIBTokExhibitionPlanDto } from '@/legacy/generated/model'
 
 interface UseUpdateOptions {
   onSuccess?: (data: any) => void

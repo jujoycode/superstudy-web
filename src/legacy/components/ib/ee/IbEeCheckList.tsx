@@ -1,13 +1,15 @@
 import { PropsWithChildren, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { IBBlank } from '@/legacy/components/common/IBBlank'
-import { useCheckListGetByStudent } from '@/legacy/container/ib-checklist-find'
-import { RequestRRSDto } from '@/legacy/generated/model'
+
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Input } from '@/legacy/components/common/Input'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useCheckListGetByStudent } from '@/legacy/container/ib-checklist-find'
+import { RequestRRSDto } from '@/legacy/generated/model'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 
 interface IbEeCheckListProps {
@@ -22,8 +24,6 @@ interface IbEeCheckListProps {
 export function IbEeCheckList({
   modalOpen,
   setModalClose,
-  type,
-  onSuccess,
   studentId,
   ablePropragation = false,
 }: PropsWithChildren<IbEeCheckListProps>) {
@@ -35,16 +35,16 @@ export function IbEeCheckList({
   }
   const [checked, setChecked] = useState<boolean>(false)
   const {
-    control,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestRRSDto>({})
   const title = watch('title')
 
-  const onSubmit = (data: RequestRRSDto) => {
+  const onSubmit = () => {
     // 체크리스트 상태 변경 로직
   }
+
   return (
     <div
       className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${

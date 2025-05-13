@@ -5,13 +5,13 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseStudentInfoDto } from './responseStudentInfoDto';
+import type { ResponseStudentInfoDto } from './responseStudentInfoDto'
 
 export interface ResponsePaginationStudentInfoDto {
   /** 전체갯수 */
-  total: number;
+  total: number
   /** 학생 정보 */
-  items: ResponseStudentInfoDto[];
+  items: ResponseStudentInfoDto[]
   /** 페이지 내 최대 개수 */
-  size: number;
+  size: number
 }

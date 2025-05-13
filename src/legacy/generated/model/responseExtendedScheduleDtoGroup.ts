@@ -5,9 +5,9 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseBaseGroupDto } from './responseBaseGroupDto';
+import type { ResponseBaseGroupDto } from './responseBaseGroupDto'
 
 /**
  * 그룹
  */
-export type ResponseExtendedScheduleDtoGroup = ResponseBaseGroupDto | null;
+export type ResponseExtendedScheduleDtoGroup = ResponseBaseGroupDto | null

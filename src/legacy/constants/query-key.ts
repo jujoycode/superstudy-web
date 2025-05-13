@@ -8,4 +8,4 @@ export const QueryKey = {
     newsletterList: ['teacher', 'newsletterList'],
     newsletter: ['teacher', 'newsletter'],
   },
-} as const;
+} as const

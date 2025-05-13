@@ -1,8 +1,8 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
-import NODATA from '@/legacy/assets/images/no-data.png'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -11,22 +11,25 @@ import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
 import { useGetFeedbackBatchExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
 import { useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
 import { ResponseIBDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
-import FeedbackViewer from '../../FeedbackViewer'
-import TkppfIbSubmitInformPopup from './TkppfIbSubmitInformPopup'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
+import { meState } from '@/stores'
+
+import FeedbackViewer from '../../FeedbackViewer'
+
+import TkppfIbSubmitInformPopup from './TkppfIbSubmitInformPopup'
+
+import NODATA from '@/assets/images/no-data.png'
 
 interface ExhibitionListProps {
   data: ResponseIBDto
   refetch: () => void
 }
 
-export default function TKPPFList({ data, refetch }: ExhibitionListProps) {
+export default function TKPPFList({ data }: ExhibitionListProps) {
   const me = useRecoilValue(meState)
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined)
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
-  const [modalOpen, setModalOpen] = useState<boolean>(false)
   const [ibModalType, setIbModalType] = useState<'CREATE' | 'VIEW' | null>(null) // IB Modal 타입 관리
 
   const { data: tkppf, isLoading } = useTKPPFGetByIBId(data.id)

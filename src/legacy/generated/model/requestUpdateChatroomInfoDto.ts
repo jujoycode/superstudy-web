@@ -8,11 +8,11 @@
 
 export interface RequestUpdateChatroomInfoDto {
   /** 방 이름 */
-  name: string | null;
+  name: string | null
   /** 대화가능시작시각 */
-  chatStartTime: string;
+  chatStartTime: string
   /** 대화가능종료시각 */
-  chatEndTime: string;
+  chatEndTime: string
   /** 대화방 이미지 */
-  roomImage: string;
+  roomImage: string
 }

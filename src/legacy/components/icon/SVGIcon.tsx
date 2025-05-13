@@ -1,13 +1,13 @@
 // SVGIcon.tsx
-import clsx from 'clsx';
+import clsx from 'clsx'
 
 export interface SVGIconProps {
-  color?: 'gray700' | 'gray400' | 'orange800' | 'white';
-  size?: number;
-  weight?: 'normal' | 'bold';
-  rotate?: number;
-  className?: string;
-  onClick?: () => void;
+  color?: 'gray700' | 'gray400' | 'orange800' | 'white'
+  size?: number
+  weight?: 'normal' | 'bold'
+  rotate?: number
+  className?: string
+  onClick?: () => void
 }
 
 const SVGIconBase = ({
@@ -21,17 +21,17 @@ const SVGIconBase = ({
   const getStrokeColor = () => {
     switch (color) {
       case 'gray700':
-        return '#4C5057';
+        return '#4C5057'
       case 'gray400':
-        return '#C7CBD1';
+        return '#C7CBD1'
       case 'orange800':
-        return '#FF600C';
+        return '#FF600C'
       case 'white':
-        return '#FFFFFF';
+        return '#FFFFFF'
       default:
-        return '#4C5057';
+        return '#4C5057'
     }
-  };
+  }
   return (
     <svg
       width={size}
@@ -48,8 +48,8 @@ const SVGIconBase = ({
     >
       {children}
     </svg>
-  );
-};
+  )
+}
 
 const LinkIcon: React.FC<SVGIconProps> = ({ weight, ...props }) => {
   return (
@@ -60,8 +60,8 @@ const LinkIcon: React.FC<SVGIconProps> = ({ weight, ...props }) => {
         strokeLinecap="round"
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const ArrowIcon: React.FC<SVGIconProps> = ({ weight, ...props }) => {
   return (
@@ -73,11 +73,11 @@ const ArrowIcon: React.FC<SVGIconProps> = ({ weight, ...props }) => {
         strokeLinejoin="round"
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const LeaderIcon: React.FC<SVGIconProps> = ({ weight, ...props }) => {
-  const isBold = weight === 'bold';
+  const isBold = weight === 'bold'
   return (
     <SVGIconBase {...props}>
       <path
@@ -88,8 +88,8 @@ const LeaderIcon: React.FC<SVGIconProps> = ({ weight, ...props }) => {
         }
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const TopRightFillArrowIcon: React.FC<SVGIconProps> = ({ weight, ...props }) => {
   return (
@@ -101,8 +101,8 @@ const TopRightFillArrowIcon: React.FC<SVGIconProps> = ({ weight, ...props }) => 
         strokeLinejoin="round"
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const TopFillArrowIcon: React.FC<SVGIconProps> = ({ weight, ...props }) => {
   return (
@@ -114,8 +114,8 @@ const TopFillArrowIcon: React.FC<SVGIconProps> = ({ weight, ...props }) => {
         strokeLinejoin="round"
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const RefreshIcon: React.FC<SVGIconProps> = ({ weight, ...props }) => {
   return (
@@ -127,8 +127,8 @@ const RefreshIcon: React.FC<SVGIconProps> = ({ weight, ...props }) => {
         strokeLinejoin="round"
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const PlusIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props }) => {
   return (
@@ -141,15 +141,15 @@ const PlusIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props 
         strokeLinejoin="round"
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 const MinusIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props }) => {
   return (
     <SVGIconBase color={color} {...props}>
       <path d="M2 8H8H14" strokeWidth={weight === 'bold' ? 1.5 : 1} strokeLinecap="round" strokeLinejoin="round" />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const ProfileIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props }) => {
   return (
@@ -160,8 +160,8 @@ const ProfileIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...pro
         strokeLinecap="round"
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const BellIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props }) => {
   return (
@@ -177,8 +177,8 @@ const BellIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props 
       />
       <path d="M8 1V2.12903" strokeWidth={weight === 'bold' ? 1.5 : 1} strokeLinecap="round" />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const CloseIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props }) => {
   return (
@@ -190,8 +190,8 @@ const CloseIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props
         strokeLinejoin="round"
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const CheckIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props }) => {
   return (
@@ -203,8 +203,8 @@ const CheckIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props
         strokeLinejoin="round"
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const CalendarIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'normal', ...props }) => {
   switch (color) {
@@ -244,7 +244,7 @@ const CalendarIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'nor
             fill="#4C5057"
           />
         </svg>
-      );
+      )
     case 'gray400':
       return (
         <svg width={props.size} height={props.size} viewBox="0 0 16 16" fill="none" className={props.className}>
@@ -281,7 +281,7 @@ const CalendarIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'nor
             fill="#C7CBD1"
           />
         </svg>
-      );
+      )
     case 'orange800':
       return (
         <svg width={props.size} height={props.size} viewBox="0 0 16 16" fill="none" className={props.className}>
@@ -318,7 +318,7 @@ const CalendarIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'nor
             fill="#FF600C"
           />
         </svg>
-      );
+      )
     case 'white':
       return (
         <svg width={props.size} height={props.size} viewBox="0 0 16 16" fill="none" className={props.className}>
@@ -355,11 +355,11 @@ const CalendarIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'nor
             fill="white"
           />
         </svg>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 
 const NoteIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props }) => {
   return (
@@ -380,8 +380,8 @@ const NoteIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props 
       <path d="M5 8.25H8" strokeWidth={weight === 'bold' ? 1.5 : 1} strokeLinecap="round" />
       <path d="M5 10.5H11" strokeWidth={weight === 'bold' ? 1.5 : 1} strokeLinecap="round" />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const HomeIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props }) => {
   return (
@@ -399,11 +399,11 @@ const HomeIcon: React.FC<SVGIconProps> = ({ weight, color = 'gray700', ...props 
         strokeLinejoin="round"
       />
     </SVGIconBase>
-  );
-};
+  )
+}
 
 const BellAlertIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...props }) => {
-  const isBold = weight === 'bold';
+  const isBold = weight === 'bold'
   switch (color) {
     case 'gray700':
       return (
@@ -436,7 +436,7 @@ const BellAlertIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...p
             </>
           )}
         </SVGIconBase>
-      );
+      )
 
     case 'gray400':
       return (
@@ -469,7 +469,7 @@ const BellAlertIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...p
             </>
           )}
         </SVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <SVGIconBase {...props}>
@@ -501,7 +501,7 @@ const BellAlertIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...p
             </>
           )}
         </SVGIconBase>
-      );
+      )
     case 'white':
       return (
         <SVGIconBase {...props}>
@@ -533,11 +533,11 @@ const BellAlertIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...p
             </>
           )}
         </SVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 
 const SearchIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'normal', ...props }) => {
   switch (color) {
@@ -562,7 +562,7 @@ const SearchIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'norma
             </>
           )}
         </SVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <SVGIconBase {...props}>
@@ -584,7 +584,7 @@ const SearchIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'norma
             </>
           )}
         </SVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <SVGIconBase {...props}>
@@ -606,7 +606,7 @@ const SearchIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'norma
             </>
           )}
         </SVGIconBase>
-      );
+      )
     case 'white':
       return (
         <SVGIconBase {...props}>
@@ -628,11 +628,11 @@ const SearchIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'norma
             </>
           )}
         </SVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 const TalkIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'normal', ...props }) => {
   switch (color) {
     case 'gray700':
@@ -674,7 +674,7 @@ const TalkIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'normal'
             </>
           )}
         </SVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <SVGIconBase {...props}>
@@ -729,7 +729,7 @@ const TalkIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'normal'
             </>
           )}
         </SVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <SVGIconBase {...props}>
@@ -769,7 +769,7 @@ const TalkIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'normal'
             </>
           )}
         </SVGIconBase>
-      );
+      )
     case 'white':
       return (
         <SVGIconBase {...props}>
@@ -809,11 +809,11 @@ const TalkIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight = 'normal'
             </>
           )}
         </SVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 
 const MoreIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...props }) => {
   switch (color) {
@@ -834,7 +834,7 @@ const MoreIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...props 
             </svg>
           )}
         </SVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <SVGIconBase color={color} {...props}>
@@ -852,7 +852,7 @@ const MoreIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...props 
             </svg>
           )}
         </SVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <SVGIconBase color={color} {...props}>
@@ -870,7 +870,7 @@ const MoreIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...props 
             </svg>
           )}
         </SVGIconBase>
-      );
+      )
     case 'white':
       return (
         <SVGIconBase color={color} {...props}>
@@ -888,9 +888,9 @@ const MoreIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...props 
             </svg>
           )}
         </SVGIconBase>
-      );
+      )
   }
-};
+}
 
 const LinkIconV2: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...props }) => {
   switch (color) {
@@ -906,7 +906,7 @@ const LinkIconV2: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...prop
             />
           </svg>
         </SVGIconBase>
-      );
+      )
     case 'gray400':
       return (
         <SVGIconBase color={color} {...props}>
@@ -919,7 +919,7 @@ const LinkIconV2: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...prop
             />
           </svg>
         </SVGIconBase>
-      );
+      )
     case 'orange800':
       return (
         <SVGIconBase color={color} {...props}>
@@ -932,7 +932,7 @@ const LinkIconV2: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...prop
             />
           </svg>
         </SVGIconBase>
-      );
+      )
     case 'white':
       return (
         <SVGIconBase color={color} {...props}>
@@ -945,27 +945,27 @@ const LinkIconV2: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...prop
             />
           </svg>
         </SVGIconBase>
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 
 const TooltipIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...props }) => {
   const getColor = () => {
     switch (color) {
       case 'gray700':
-        return '#4C5057';
+        return '#4C5057'
       case 'gray400':
-        return '#C7CBD1';
+        return '#C7CBD1'
       case 'orange800':
-        return '#FF600C';
+        return '#FF600C'
       case 'white':
-        return '#FFFFFF';
+        return '#FFFFFF'
       default:
-        return '#4C5057';
+        return '#4C5057'
     }
-  };
+  }
   return (
     <SVGIconBase color={color} {...props}>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -980,8 +980,8 @@ const TooltipIcon: React.FC<SVGIconProps> = ({ color = 'gray700', weight, ...pro
         />
       </svg>
     </SVGIconBase>
-  );
-};
+  )
+}
 const SVGIcon = {
   Link: LinkIcon,
   Arrow: ArrowIcon,
@@ -1004,6 +1004,6 @@ const SVGIcon = {
   More: MoreIcon,
   LinkV2: LinkIconV2,
   Tooltip: TooltipIcon,
-};
+}
 
-export default SVGIcon;
+export default SVGIcon

@@ -8,5 +8,5 @@
 
 export type FieldtripResultApproveResultBody = {
   /** 서명이미지 */
-  signature?: string;
-};
+  signature?: string
+}

@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
-
-// ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
-
 import {
   useAbsentsDelete,
   useAbsentsDeny,
@@ -13,8 +10,8 @@ import {
   useAbsentsTeacherCommentApproval,
 } from '@/legacy/generated/endpoint'
 import { AbsentStatus } from '@/legacy/generated/model'
+import { errorType } from '@/legacy/types'
 import { DateUtil } from '@/legacy/util/date'
-import type { errorType } from '@/legacy/types'
 
 type Props = { id: number; setAbsentId: (n: number) => void }
 

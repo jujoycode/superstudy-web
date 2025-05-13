@@ -1,12 +1,14 @@
 import { useHistory } from '@/hooks/useHistory'
+import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import { ResponseCoordinatorSelfCheckDtoType, ResponseIBDto, ResponseUserDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../icon/ColorSVGIcon'
 import SolidSVGIcon from '../icon/SolidSVGIcon'
 import SVGIcon from '../icon/SVGIcon'
+
 import { STATUS_GROUPS } from './TeacherIBStatus'
 
 interface ProjectCardProps {
@@ -199,7 +201,7 @@ function CasProjectCard({ data, user }: ProjectCardProps) {
     </div>
   )
 }
-function EeProjectCard({ data, user, permission }: ProjectCardProps) {
+function EeProjectCard({ data, user }: ProjectCardProps) {
   const { t } = useLanguage()
   const { push } = useHistory()
   const approvedProposal = data.proposals?.find((proposal) => proposal.status === 'ACCEPT')
@@ -568,7 +570,7 @@ function EeProjectCard({ data, user, permission }: ProjectCardProps) {
     </div>
   )
 }
-function TokExProjectCard({ data, user, permission }: ProjectCardProps) {
+function TokExProjectCard({ data, user }: ProjectCardProps) {
   const { t } = useLanguage()
   const { push } = useHistory()
 
@@ -703,7 +705,7 @@ function TokExProjectCard({ data, user, permission }: ProjectCardProps) {
     </div>
   )
 }
-function TokEsProjectCard({ data, user, permission }: ProjectCardProps) {
+function TokEsProjectCard({ data, user }: ProjectCardProps) {
   const { t } = useLanguage()
   const { push } = useHistory()
   const message = user.role === 'USER' ? data.studentShortNotice : data.teacherShortNotice

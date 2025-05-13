@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type InterviewFindAllInterviewParams = { page?: number; limit?: number; category?: string };
+export type InterviewFindAllInterviewParams = { page?: number; limit?: number; category?: string }

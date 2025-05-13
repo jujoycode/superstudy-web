@@ -1,13 +1,15 @@
 import { useState } from 'react'
+
 import { Select, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { TextInput } from '@/legacy/components/common/TextInput'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useTeacherCounseling } from '@/legacy/container/teacher-counseling'
 import { UserContainer } from '@/legacy/container/user'
 import { Category, Code, Counseling } from '@/legacy/generated/model'
 import { isValidDate } from '@/legacy/util/time'
+
 import { SuperModal } from '..'
-import { Button } from '@/legacy/components/common/Button'
-import { TextInput } from '@/legacy/components/common/TextInput'
 
 interface CounselingCardProps {
   studentId: number
@@ -17,7 +19,6 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
   const { me } = UserContainer.useContext()
 
   const {
-    isEditMode,
     setIsEditMode,
     isAddMode,
     setIsAddMode,
@@ -25,12 +26,9 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
     setContent,
     counselingAt,
     setCounselingAt,
-    category,
     setCategory,
     counselorName,
     setCoulselorName,
-    userId,
-    setUserId,
     counselingData,
     createCounseling,
     deleteCounseling,

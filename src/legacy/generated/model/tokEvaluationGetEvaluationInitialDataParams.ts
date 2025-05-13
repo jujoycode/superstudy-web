@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { TokEvaluationGetEvaluationInitialDataType } from './tokEvaluationGetEvaluationInitialDataType';
+import type { TokEvaluationGetEvaluationInitialDataType } from './tokEvaluationGetEvaluationInitialDataType'
 
-export type TokEvaluationGetEvaluationInitialDataParams = { type: TokEvaluationGetEvaluationInitialDataType };
+export type TokEvaluationGetEvaluationInitialDataParams = { type: TokEvaluationGetEvaluationInitialDataType }

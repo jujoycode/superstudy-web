@@ -5,7 +5,7 @@ import {
   useIBSchoolManagementGetItem,
   useIBSchoolManagementUpdateItem,
 } from '@/legacy/generated/endpoint'
-import type { DependentCategory, RequestCoordinatorDto, RequestIBSchoolManagementDto } from '@/legacy/generated/model'
+import { DependentCategory, RequestCoordinatorDto, RequestIBSchoolManagementDto } from '@/legacy/generated/model'
 
 interface UseUpdateOptions {
   onSuccess?: (data: any) => void

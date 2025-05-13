@@ -5,91 +5,91 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { OutingTypeEnum } from './outingTypeEnum';
-import type { OutingStatus } from './outingStatus';
-import type { User } from './user';
+import type { OutingStatus } from './outingStatus'
+import type { OutingTypeEnum } from './outingTypeEnum'
+import type { User } from './user'
 
 export interface Outing {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 학년반 */
-  studentGradeKlass: string;
+  studentGradeKlass: string
   /** 출석번호 */
-  studentNumber: number;
+  studentNumber: number
   /** 신청일 */
-  reportedAt: string;
+  reportedAt: string
   /** 조퇴/외출/확인 종류 */
-  type: OutingTypeEnum;
+  type: OutingTypeEnum
   /** 조퇴/외출/확인 상태 */
-  outingStatus: OutingStatus;
+  outingStatus: OutingStatus
   /** 반려사유 */
-  notApprovedReason: string;
+  notApprovedReason: string
   /** 삭제요청사유 */
-  deleteReason: string;
+  deleteReason: string
   /** 수정사유 */
-  updateReason: string;
+  updateReason: string
   /** 시작일 */
-  startAt: string;
+  startAt: string
   /** 종료일 */
-  endAt: string;
+  endAt: string
   /** 시작교시 */
-  startPeriod: number;
+  startPeriod: number
   /** 종료교시 */
-  endPeriod: number;
+  endPeriod: number
   /** 사유 */
-  reason: string;
+  reason: string
   /** 학생유저아이디 */
-  studentId: number;
+  studentId: number
   /** 학생유저 */
-  student: User;
+  student: User
   /** 부모님서명이미지 */
-  parentSignature: string | null;
+  parentSignature: string | null
   /** 부모님유저아이디 */
-  parentId?: number;
+  parentId?: number
   /** 부모님유저 */
-  parent?: User;
+  parent?: User
   /** 선생님유저아이디 */
-  teacherId: number;
+  teacherId: number
   /** 선생님유저 */
-  teacher: User;
+  teacher: User
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 승인자1 서명 */
-  approver1Signature: string | null;
+  approver1Signature: string | null
   /** 승인자1 유저아이디 */
-  approver1Id: number;
+  approver1Id: number
   /** 승인자1 직급 */
-  approver1Title: string | null;
+  approver1Title: string | null
   /** 승인자2 서명 */
-  approver2Signature: string | null;
+  approver2Signature: string | null
   /** 승인자2 유저아이디 */
-  approver2Id: number;
+  approver2Id: number
   /** 승인자2 직급 */
-  approver2Title: string | null;
+  approver2Title: string | null
   /** 승인자3 서명 */
-  approver3Signature: string | null;
+  approver3Signature: string | null
   /** 승인자3 유저아이디 */
-  approver3Id: number;
+  approver3Id: number
   /** 승인자3 직급 */
-  approver3Title: string | null;
+  approver3Title: string | null
   /** 승인자4 서명 */
-  approver4Signature: string | null;
+  approver4Signature: string | null
   /** 승인자4 유저아이디 */
-  approver4Id: number;
+  approver4Id: number
   /** 승인자4 직급 */
-  approver4Title: string | null;
+  approver4Title: string | null
   /** 승인자5 서명 */
-  approver5Signature: string | null;
+  approver5Signature: string | null
   /** 승인자5 유저아이디 */
-  approver5Id: number;
+  approver5Id: number
   /** 승인자5 직급 */
-  approver5Title: string | null;
+  approver5Title: string | null
   /** 용무 종류 */
-  type2: string;
+  type2: string
   /** 확인증 작성자 선생님 */
-  writerName: string;
+  writerName: string
 }

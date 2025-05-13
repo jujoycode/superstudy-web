@@ -6,10 +6,9 @@
  * OpenAPI spec version: 0.1
  */
 
-export type IBUnsubmitNotificationType = (typeof IBUnsubmitNotificationType)[keyof typeof IBUnsubmitNotificationType];
+export type IBUnsubmitNotificationType = (typeof IBUnsubmitNotificationType)[keyof typeof IBUnsubmitNotificationType]
 
- 
 export const IBUnsubmitNotificationType = {
   IB_PROPOSAL: 'IB_PROPOSAL',
   IB_PROJECT: 'IB_PROJECT',
-} as const;
+} as const

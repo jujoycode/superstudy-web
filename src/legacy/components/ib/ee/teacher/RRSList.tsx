@@ -1,16 +1,19 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
+
 import { useHistory } from '@/hooks/useHistory'
-import NODATA from '@/legacy/assets/images/no-data.png'
 import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
 import { useRRSGetByIBIdFindAll } from '@/legacy/container/ib-rrs-findAll'
 import { FeedbackReferenceTable, ResponseIBDto } from '@/legacy/generated/model'
 import { LocationState } from '@/legacy/types/ib'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { Typography } from '../@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import FeedbackViewer from '../../FeedbackViewer'
 import { IBPagination } from '../../ProjectList'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
+
+import NODATA from '@/assets/images/no-data.png'
 
 interface RRSListProps {
   id: number
@@ -20,7 +23,7 @@ interface RRSListProps {
 
 export default function RRSList({ id, data: ibData, studentData }: RRSListProps) {
   const [currentPage, setCurrentPage] = useState(1)
-  const { data, refetch } = useRRSGetByIBIdFindAll(id, { page: currentPage })
+  const { data } = useRRSGetByIBIdFindAll(id, { page: currentPage })
   const { push } = useHistory()
 
   const rrsIds = data?.total ? data.items.map((rrs) => rrs.id).join(',') : null

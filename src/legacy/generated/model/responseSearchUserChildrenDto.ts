@@ -8,13 +8,13 @@
 
 export interface ResponseSearchUserChildrenDto {
   /** 학생 ID */
-  id: number;
+  id: number
   /** 학생 이름 */
-  name: string | null;
+  name: string | null
   /** 학생 별명 */
-  nickName: string | null;
+  nickName: string | null
   /** 학년 반 정보 */
-  klass: string | null;
+  klass: string | null
   /** 학번 */
-  studentNumber: string | null;
+  studentNumber: string | null
 }

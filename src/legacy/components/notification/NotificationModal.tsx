@@ -1,11 +1,12 @@
 import _ from 'lodash'
 import { useState } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
-import { useNotificationLogFindAll, useNotificationLogRead } from '@/legacy/generated/endpoint'
-import { meState } from '@/stores'
-import { makeDateToString } from '@/legacy/util/time'
+
 import { Blank, Section } from '@/legacy/components/common'
+import { useNotificationLogFindAll, useNotificationLogRead } from '@/legacy/generated/endpoint'
+import { makeDateToString } from '@/legacy/util/time'
+import { meState } from '@/stores'
 
 export const NotificationModal = () => {
   const me = useRecoilValue(meState)

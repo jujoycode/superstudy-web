@@ -8,9 +8,9 @@
 
 export interface RequestTokEvaluationDto {
   /** 최종 평가 여부 */
-  isFinal: boolean;
+  isFinal: boolean
   /** 평가 점수 */
-  score: number;
+  score: number
   /** 평가 코멘트 */
-  comment: string;
+  comment: string
 }

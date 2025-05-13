@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ExternalGetUserByTokenParams = { sso: string };
+export type ExternalGetUserByTokenParams = { sso: string }

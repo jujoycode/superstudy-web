@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import _ from 'lodash'
 import { FC, useEffect, useState } from 'react'
+
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { Check } from '@/legacy/components/common/Check'
@@ -19,6 +20,7 @@ import {
   ResponseIBProfileDto,
   ResponseIBStudentDto,
 } from '@/legacy/generated/model'
+
 import ConfirmSelectBar from '../ConfirmSelectBar'
 
 const CAS_TYPE_KOR = {

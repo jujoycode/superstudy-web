@@ -8,5 +8,5 @@
 
 export type AbsentsApproveBody = {
   /** 서명이미지 */
-  signature?: string;
-};
+  signature?: string
+}

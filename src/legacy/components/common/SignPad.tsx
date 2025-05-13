@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
+
 import { Role } from '@/legacy/generated/model'
 import { useSignature } from '@/legacy/hooks/useSignature'
+
 import { BottomFixed } from './BottomFixed'
 import { Button } from './Button'
-import { Section } from './Section'
 import { CloseButton } from './icon-buttons'
+import { Section } from './Section'
 
 export enum ToSign {
   STUDENT = 'STUDENT',

@@ -1,10 +1,6 @@
 import _ from 'lodash'
 import { FC, useEffect, useState } from 'react'
-import {
-  useEEEvaluationEvaluationCheckByStudent,
-  useEEEvaluationGetEEEvaluationByStudent,
-} from '@/legacy/generated/endpoint'
-import { ResponseEEEvaluationRelationByStudentDto } from '@/legacy/generated/model'
+
 import { Blank } from '@/legacy/components/common'
 import AccordionV2 from '@/legacy/components/common/AccordionV2'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -13,6 +9,11 @@ import { Check } from '@/legacy/components/common/Check'
 import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import { TooltipV2 } from '@/legacy/components/common/TooltipV2'
 import { Typography } from '@/legacy/components/common/Typography'
+import {
+  useEEEvaluationEvaluationCheckByStudent,
+  useEEEvaluationGetEEEvaluationByStudent,
+} from '@/legacy/generated/endpoint'
+import { ResponseEEEvaluationRelationByStudentDto } from '@/legacy/generated/model'
 
 interface EvaluationListProps {
   evaluationData?: ResponseEEEvaluationRelationByStudentDto

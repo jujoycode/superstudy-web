@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { InputHTMLAttributes } from 'react'
-import { ReactComponent as FileUploadImg } from '@/legacy/assets/svg/upload-image.svg'
+
+import { ReactComponent as FileUploadImg } from '@/assets/svg/upload-image.svg'
 
 export interface MobileImageUploadProps extends InputHTMLAttributes<HTMLInputElement> {}
 

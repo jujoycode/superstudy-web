@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
+
 import { cn } from '@/legacy/lib/tailwind-merge'
 
 const defaultButtonElement = 'button'

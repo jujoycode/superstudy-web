@@ -8,7 +8,7 @@
 
 export interface RequestCreateThemeQuestionsDto {
   /** 주제 질문 제목 */
-  title: string;
+  title: string
   /** 주제 질문 목록 */
-  questions: string[];
+  questions: string[]
 }

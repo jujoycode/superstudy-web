@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type TimetablesV2GetAllTeacherParams = { year: number; semester: number };
+export type TimetablesV2GetAllTeacherParams = { year: number; semester: number }

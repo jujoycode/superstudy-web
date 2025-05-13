@@ -1,30 +1,23 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-
-// ! 개선 필요
-import { useHistory, useLocation } from 'react-router'
+import { useLocation } from 'react-router'
+import { useHistory } from '@/hooks/useHistory'
 import { Routes } from '@/legacy/constants/routes'
-
+import { QueryKey } from '@/legacy/constants/query-key'
+import { useNewsLettersCreate, useNewsLettersPublish, useNewsLettersUpdate } from '@/legacy/generated/endpoint'
+import { NewsletterCategoryEnum, NewsletterType, ResponseGroupDto, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
+import { DocumentObject } from '@/legacy/types/document-object'
+import { ImageObject } from '@/legacy/types/image-object'
+import { UserDatas } from '@/legacy/types'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isPdfFile } from '@/legacy/util/file'
 import { getErrorMsg } from '@/legacy/util/status'
-import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { QueryKey } from '@/legacy/constants/query-key'
-import { GroupContainer } from '@/legacy/container/group'
-import { useTeacherNewsletterDetail } from '@/legacy/container/teacher-newsletter-detail'
-import { useTeacherAllGroup, type TeacharAllGroup } from '@/legacy/container/teacher-group-all'
-import {
-  NewsletterCategoryEnum,
-  NewsletterType,
-  UploadFileTypeEnum,
-  type ResponseGroupDto,
-} from '@/legacy/generated/model'
-import { useNewsLettersCreate, useNewsLettersPublish, useNewsLettersUpdate } from '@/legacy/generated/endpoint'
-import type { UserDatas } from '@/legacy/types'
-import type { ImageObject } from '@/legacy/types/image-object'
-import type { DocumentObject } from '@/legacy/types/document-object'
-import type { MergedGroupType } from '@/legacy/container/teacher-chat-user-list'
+import { GroupContainer } from './group'
+import { MergedGroupType } from './teacher-chat-user-list'
+import { TeacharAllGroup, useTeacherAllGroup } from './teacher-group-all'
+import { useTeacherNewsletterDetail } from './teacher-newsletter-detail'
 
 interface NewsletterCore {
   id: number
@@ -74,7 +67,7 @@ export function useTeacherNewsletterAdd(id: string) {
   )
   const [preview] = useState(false)
   const [endDateOff, setEndDateOff] = useState(editData?.endAt === null || editData?.endAt === undefined ? false : true)
-  const [_, setIsPublishModalOpen] = useState(false)
+  const [, setIsPublishModalOpen] = useState(false)
   const [isPublish, setIsPublish] = useState(false)
   const [publishedId, setPublishedId] = useState(0)
   const [toStudent, setToStudent] = useState(editData?.toStudent || false)
@@ -199,7 +192,7 @@ export function useTeacherNewsletterAdd(id: string) {
     },
   })
 
-  const buttonDisabled =
+  let buttonDisabled =
     !newsletter?.title?.length ||
     !newsletter?.content?.length ||
     !newsletter?.type?.length ||

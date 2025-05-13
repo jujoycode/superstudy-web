@@ -8,19 +8,19 @@
 
 export interface ChatHistory {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** user_id */
-  userId: number;
+  userId: number
   /** conversation_id */
-  conversationId: string;
+  conversationId: string
   /** activity_id */
-  activityId: number | null;
+  activityId: number | null
   /** prompt */
-  prompt: string;
+  prompt: string
   /** response */
-  response: string;
+  response: string
 }

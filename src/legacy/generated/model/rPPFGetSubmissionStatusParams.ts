@@ -5,12 +5,12 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RPPFGetSubmissionStatusStatus } from './rPPFGetSubmissionStatusStatus';
+import type { RPPFGetSubmissionStatusStatus } from './rPPFGetSubmissionStatusStatus'
 
 export type RPPFGetSubmissionStatusParams = {
-  grade?: number;
-  klass?: number;
-  page?: number;
-  limit?: number;
-  status: RPPFGetSubmissionStatusStatus;
-};
+  grade?: number
+  klass?: number
+  page?: number
+  limit?: number
+  status: RPPFGetSubmissionStatusStatus
+}

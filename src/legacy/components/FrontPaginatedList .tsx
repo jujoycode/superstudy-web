@@ -1,18 +1,19 @@
-import clsx from 'clsx';
-import React, { useState } from 'react';
-import { twMerge } from 'tailwind-merge';
-import SVGIcon from './icon/SVGIcon';
+import clsx from 'clsx'
+import React, { useState } from 'react'
+import { twMerge } from 'tailwind-merge'
+
+import SVGIcon from './icon/SVGIcon'
 
 interface ListProps<T> {
-  headerComponent: React.ReactNode;
-  itemComponent: (item: T, index: number) => React.ReactNode;
-  page: number;
-  setPage?: (page: number) => void;
-  pageSize: number;
-  totalItems: number;
-  items: T[];
-  onSelect: (item: T) => void;
-  itemClassName?: string;
+  headerComponent: React.ReactNode
+  itemComponent: (item: T, index: number) => React.ReactNode
+  page: number
+  setPage?: (page: number) => void
+  pageSize: number
+  totalItems: number
+  items: T[]
+  onSelect: (item: T) => void
+  itemClassName?: string
 }
 
 const FrontPaginatedList = <T,>({
@@ -26,33 +27,33 @@ const FrontPaginatedList = <T,>({
   onSelect,
   itemClassName,
 }: ListProps<T>) => {
-  const [currentPage, setCurrentPage] = useState(page);
+  const [currentPage, setCurrentPage] = useState(page)
 
-  const totalPages = Math.ceil(totalItems / pageSize);
+  const totalPages = Math.ceil(totalItems / pageSize)
 
-  const [startPage, setStartPage] = useState(1);
+  const [startPage, setStartPage] = useState(1)
 
   const handlePageChange = (newPage: number) => {
     if (newPage > 0 && newPage <= totalPages) {
-      setCurrentPage(newPage);
-      setPage?.(newPage);
+      setCurrentPage(newPage)
+      setPage?.(newPage)
     }
-  };
+  }
 
   const handleClick = (item: T) => {
-    onSelect(item);
-  };
+    onSelect(item)
+  }
 
-  const startIndex = (currentPage - 1) * pageSize;
+  const startIndex = (currentPage - 1) * pageSize
 
-  const paginatedItems = items.slice(startIndex, startIndex + pageSize);
+  const paginatedItems = items.slice(startIndex, startIndex + pageSize)
 
   return (
     <div className="flex min-h-[576px] w-full flex-col justify-between pb-6">
       {/* 헤더 */}
 
       <div className="flex h-full flex-col">
-        <div className="bottom-1 flex flex-row gap-4 border-y border-gray-100 px-6 py-[9px] text-15 text-gray-500">
+        <div className="text-15 bottom-1 flex flex-row gap-4 border-y border-gray-100 px-6 py-[9px] text-gray-500">
           {headerComponent}
         </div>
 
@@ -60,36 +61,36 @@ const FrontPaginatedList = <T,>({
 
         <div className="flex flex-col">
           {paginatedItems.map((item, index) => {
-            const reverseIndex = totalItems - (startIndex + index);
+            const reverseIndex = totalItems - (startIndex + index)
             return (
               <div
                 key={reverseIndex}
                 className={twMerge(
-                  'flex h-[54px] flex-row items-center gap-4 border-b border-gray-100 px-6 py-[11px] text-15 text-gray-900',
+                  'text-15 flex h-[54px] flex-row items-center gap-4 border-b border-gray-100 px-6 py-[11px] text-gray-900',
                   itemClassName,
                 )}
                 onClick={() => handleClick(item)}
               >
                 {itemComponent(item, reverseIndex)}
               </div>
-            );
+            )
           })}
         </div>
       </div>
       {/* 페이지네이션 */}
       {totalPages > 1 && (
-        <div className="mt-auto flex items-center justify-center space-x-2 pb-4 pt-6">
+        <div className="mt-auto flex items-center justify-center space-x-2 pt-6 pb-4">
           {/* 이전 버튼 */}
           <button
             onClick={() => {
               if (startPage > 1) {
-                setStartPage(startPage - 10);
+                setStartPage(startPage - 10)
               }
             }}
             className={`flex h-8 w-8 items-center justify-center ${
               currentPage === 1
                 ? 'text-primary-gray-400'
-                : 'hover:rounded-md hover:bg-primary-gray-50 hover:text-primary-gray-700'
+                : 'hover:bg-primary-gray-50 hover:text-primary-gray-700 hover:rounded-md'
             }`}
             disabled={startPage === 1}
           >
@@ -98,7 +99,7 @@ const FrontPaginatedList = <T,>({
 
           {/* 페이지 번호 */}
           {Array.from({ length: Math.min(10, totalPages - startPage + 1) }, (_, idx) => {
-            const page = startPage + idx;
+            const page = startPage + idx
 
             return (
               <button
@@ -107,26 +108,26 @@ const FrontPaginatedList = <T,>({
                 className={clsx(
                   'h-8 w-8 rounded-md',
                   currentPage === page
-                    ? 'rounded-md bg-primary-gray-700 text-white'
+                    ? 'bg-primary-gray-700 rounded-md text-white'
                     : 'text-primary-gray-700 hover:bg-primary-gray-50 hover:text-primary-gray-700',
                 )}
               >
                 {page}
               </button>
-            );
+            )
           })}
 
           {/* 다음 버튼 */}
           <button
             onClick={() => {
               if (startPage + 10 <= totalPages) {
-                setStartPage(startPage + 10);
+                setStartPage(startPage + 10)
               }
             }}
             className={`flex h-8 w-8 items-center justify-center ${
               currentPage === totalPages
                 ? 'text-primary-gray-400'
-                : 'hover:rounded-md hover:bg-primary-gray-50 hover:text-primary-gray-700'
+                : 'hover:bg-primary-gray-50 hover:text-primary-gray-700 hover:rounded-md'
             }`}
             disabled={startPage + 10 > totalPages}
           >
@@ -135,7 +136,7 @@ const FrontPaginatedList = <T,>({
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default FrontPaginatedList;
+export default FrontPaginatedList

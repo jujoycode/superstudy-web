@@ -1,26 +1,27 @@
 import { useEffect, useState } from 'react'
+
+import { useHistory } from '@/hooks/useHistory'
+import { Blank } from '@/legacy/components/common'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { Typography } from '@/legacy/components/common/Typography'
 
 // ! 개선 필요
-import { useHistory } from '@/hooks/useHistory'
 
 import {
   useIBProposalNotSubmittedNotification,
   useIBProposalStatus,
   useIBProposalSubmissionStatus,
 } from '@/legacy/container/ib-overview'
-
 import {
   IBGetSubmissionStatusStatus,
   IBUnsubmitNotificationType,
   ResponseIBProposalSubmissionStatusDtoDetailStatus,
   type IBGetSubmissionStatusCountParams,
 } from '@/legacy/generated/model'
-import ProposalOverviewPanel from './ProposalOverviewPanel'
-import { createEeProposalPdf } from '@/legacy/util/ib/ee-proposal-pdf'
 import { handleBatchBlobDownload } from '@/legacy/hooks/useBatchDownload'
-import { Blank } from '@/legacy/components/common'
+import { createEeProposalPdf } from '@/legacy/util/ib/ee-proposal-pdf'
+
+import ProposalOverviewPanel from './ProposalOverviewPanel'
 
 export default function ProposalView({ grade, klass }: IBGetSubmissionStatusCountParams) {
   const { push } = useHistory()

@@ -8,7 +8,7 @@
 
 export type StudentRecordontrollerUpdateBody = {
   /** 활동기록 초안 제목 */
-  title?: string;
+  title?: string
   /** 활동기록 초안 내용 */
-  content?: string;
-};
+  content?: string
+}

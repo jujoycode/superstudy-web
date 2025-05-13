@@ -5,33 +5,33 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { User } from './user';
+import type { User } from './user'
 
 export interface Notice {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  content: string;
+  content: string
   /** 카테고리, codes테이블의 name값이 입력됨. */
-  category: string;
+  category: string
   /** 유저 ID */
-  userId: number;
+  userId: number
   /** 이미지파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 작성자 정보 */
-  user: User;
+  user: User
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 수신대상(학생) */
-  toStudent: boolean;
+  toStudent: boolean
   /** 수신대상(보호자) */
-  toParent: boolean;
+  toParent: boolean
 }

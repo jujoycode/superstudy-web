@@ -1,18 +1,19 @@
 import { useState, type ChangeEvent } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Constants } from '@/legacy/constants'
-import { DateUtil } from '@/legacy/util/date'
-import { Validator } from '@/legacy/util/validator'
-import { makeDateToString } from '@/legacy/util/time'
-import { checkFileSizeLimit100MB } from '@/legacy/util/file'
-import { useUserUpdateMe } from '@/legacy/generated/endpoint'
-import { useFileUpload } from '@/legacy/hooks/useFileUpload'
-import { Button } from '@/legacy/components/common/Button'
+
 import { Blank, CloseButton, IconButton, Section } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Constants } from '@/legacy/constants'
+import { useUserUpdateMe } from '@/legacy/generated/endpoint'
 import { UploadFileTypeEnum, type ResponseUserDto, type UpdateUserDto } from '@/legacy/generated/model'
+import { useFileUpload } from '@/legacy/hooks/useFileUpload'
+import { DateUtil } from '@/legacy/util/date'
+import { checkFileSizeLimit100MB } from '@/legacy/util/file'
+import { makeDateToString } from '@/legacy/util/time'
+import { Validator } from '@/legacy/util/validator'
 
 // ? 추후 고도화
-import Edit from '@/legacy/assets/svg/edit.svg'
+import Edit from '@/assets/svg/edit.svg'
 
 interface StudentIDCardProps {
   meRecoil: ResponseUserDto

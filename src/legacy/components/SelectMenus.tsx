@@ -1,4 +1,5 @@
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+
 import { Label, Select } from './common'
 
 interface Item {

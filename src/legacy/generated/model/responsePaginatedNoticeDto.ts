@@ -5,13 +5,13 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Notice } from './notice';
+import type { Notice } from './notice'
 
 export interface ResponsePaginatedNoticeDto {
   /** 공지사항들 */
-  items: Notice[];
+  items: Notice[]
   /** 전체갯수 */
-  total: number;
+  total: number
   /** 읽지 않은 공지사항id 리스트 */
-  unreadIdList: number[] | null;
+  unreadIdList: number[] | null
 }

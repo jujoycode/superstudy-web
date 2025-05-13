@@ -1,5 +1,5 @@
 import { useRPPFFindAllRPPF } from '@/legacy/generated/endpoint'
-import type { RPPFFindAllRPPFParams } from '@/legacy/generated/model'
+import { RPPFFindAllRPPFParams } from '@/legacy/generated/model'
 
 export const useRPPFGetByIBIdFindAll = (
   ibId: number,

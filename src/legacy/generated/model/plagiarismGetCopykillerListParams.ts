@@ -7,8 +7,8 @@
  */
 
 export type PlagiarismGetCopykillerListParams = {
-  page?: number;
-  limit?: number;
-  direct?: boolean | null;
-  sort?: string | null;
-};
+  page?: number
+  limit?: number
+  direct?: boolean | null
+  sort?: string | null
+}

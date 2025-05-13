@@ -8,19 +8,19 @@
 
 export interface TeacherProperty {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 선생님 ID */
-  teacherId: number;
+  teacherId: number
   /** 직책 */
-  position: string | null;
+  position: string | null
   /** 부서 */
-  department: string | null;
+  department: string | null
   /** 대화가능시작시각 */
-  chatStartTime: string;
+  chatStartTime: string
   /** 대화가능종료시각 */
-  chatEndTime: string;
+  chatEndTime: string
 }

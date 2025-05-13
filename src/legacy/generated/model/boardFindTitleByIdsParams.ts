@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type BoardFindTitleByIdsParams = { boardIds?: number[] };
+export type BoardFindTitleByIdsParams = { boardIds?: number[] }

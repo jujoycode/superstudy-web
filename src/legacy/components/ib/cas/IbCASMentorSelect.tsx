@@ -1,10 +1,12 @@
 import clsx from 'clsx'
 import _ from 'lodash'
 import { PropsWithChildren, useState } from 'react'
+
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import SearchSelect from '@/legacy/components/common/SearchSelect'
-import { useUserGetAllTeachers } from '@/legacy/generated/endpoint'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useUserGetAllTeachers } from '@/legacy/generated/endpoint'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 
 interface IbCASMentorSelectProps {

@@ -7,10 +7,9 @@
  */
 
 export type IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus =
-  (typeof IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus)[keyof typeof IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus];
+  (typeof IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus)[keyof typeof IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus]
 
- 
 export const IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',
-} as const;
+} as const

@@ -8,11 +8,11 @@
 
 export interface RequestReferenceInfoDto {
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  content: string;
+  content: string
   /** 첨부파일들 s3 경로 */
-  files?: string[];
+  files?: string[]
   /** 이미지 파일들 s3 경로 */
-  images?: string[];
+  images?: string[]
 }

@@ -8,31 +8,31 @@
 
 export interface TeacherPermission {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 선생님 ID */
-  teacherId: number;
+  teacherId: number
   /** 관리자모드 - 선생님정보 */
-  adminTeacher: boolean;
+  adminTeacher: boolean
   /** 관리자모드 - 학생정보 */
-  adminStudent: boolean;
+  adminStudent: boolean
   /** 관리자모드 - 보호자정보 */
-  adminParent: boolean;
+  adminParent: boolean
   /** 관리자모드 - 학급정보 */
-  adminClass: boolean;
+  adminClass: boolean
   /** 관리자모드 - 그룹정보 */
-  adminGroup: boolean;
+  adminGroup: boolean
   /** 관리자모드 - 결재라인정보 */
-  adminApprovalLine: boolean;
+  adminApprovalLine: boolean
   /** 관리자모드 - 시간표정보 */
-  adminTimetable: boolean;
+  adminTimetable: boolean
   /** 관리자모드 - 문자정보 */
-  adminSms: boolean;
+  adminSms: boolean
   /** 관리자모드 - 성적관리 */
-  adminScore: boolean;
+  adminScore: boolean
   /** 관리자모드 - IB관리 */
-  adminIb: boolean;
+  adminIb: boolean
 }

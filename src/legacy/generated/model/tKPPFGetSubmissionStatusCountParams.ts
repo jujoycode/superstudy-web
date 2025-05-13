@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type TKPPFGetSubmissionStatusCountParams = { grade?: number; klass?: number };
+export type TKPPFGetSubmissionStatusCountParams = { grade?: number; klass?: number }

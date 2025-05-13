@@ -8,17 +8,17 @@
 
 export interface GetGPTReportDto {
   /** 학생 ID */
-  studentId: number;
+  studentId: number
   /** 활동 ID들 */
-  activityIds: number[];
+  activityIds: number[]
   /** 리포트 타입 */
-  reportType: string;
+  reportType: string
   /** 성취 수준 */
-  achievement: string;
+  achievement: string
   /** 키워드들 */
-  keywords: string[];
+  keywords: string[]
   /** 추가 질문 */
-  followUpQuestion: string;
+  followUpQuestion: string
   /** 질문 ID */
-  conversationId: string;
+  conversationId: string
 }

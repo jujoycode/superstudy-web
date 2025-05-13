@@ -5,31 +5,31 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestIBCasDtoStrands } from './requestIBCasDtoStrands';
-import type { RequestIBCasDtoLearningOutcome } from './requestIBCasDtoLearningOutcome';
-import type { RequestIBCasDtoSixWhDescription } from './requestIBCasDtoSixWhDescription';
-import type { RequestIBCasDtoStep } from './requestIBCasDtoStep';
-import type { RequestIBCasDtoRiskAssessmentItem } from './requestIBCasDtoRiskAssessmentItem';
-import type { RequestIBCasDtoLearnerProfile } from './requestIBCasDtoLearnerProfile';
-import type { RequestIBCasDtoAtl } from './requestIBCasDtoAtl';
+import type { RequestIBCasDtoAtl } from './requestIBCasDtoAtl'
+import type { RequestIBCasDtoLearnerProfile } from './requestIBCasDtoLearnerProfile'
+import type { RequestIBCasDtoLearningOutcome } from './requestIBCasDtoLearningOutcome'
+import type { RequestIBCasDtoRiskAssessmentItem } from './requestIBCasDtoRiskAssessmentItem'
+import type { RequestIBCasDtoSixWhDescription } from './requestIBCasDtoSixWhDescription'
+import type { RequestIBCasDtoStep } from './requestIBCasDtoStep'
+import type { RequestIBCasDtoStrands } from './requestIBCasDtoStrands'
 
 export interface RequestIBCasDto {
   /** (개인적인, 프로젝트) 목표 */
-  goal?: string;
+  goal?: string
   /** CAS 요소 3가지의 진행시간 */
-  strands: RequestIBCasDtoStrands;
+  strands: RequestIBCasDtoStrands
   /** 학습성과 */
-  learningOutcome: RequestIBCasDtoLearningOutcome;
+  learningOutcome: RequestIBCasDtoLearningOutcome
   /** CAS 일반 활동 설명 6하원칙 */
-  sixWhDescription?: RequestIBCasDtoSixWhDescription;
+  sixWhDescription?: RequestIBCasDtoSixWhDescription
   /** 프로젝트 단계 */
-  step?: RequestIBCasDtoStep;
+  step?: RequestIBCasDtoStep
   /** 강사|외부업체 연락처 */
-  externalContacts?: string;
+  externalContacts?: string
   /** 위험평가 */
-  riskAssessment?: RequestIBCasDtoRiskAssessmentItem[] | null;
+  riskAssessment?: RequestIBCasDtoRiskAssessmentItem[] | null
   /** 10가지 학습자상 */
-  learnerProfile?: RequestIBCasDtoLearnerProfile;
+  learnerProfile?: RequestIBCasDtoLearnerProfile
   /** ATL */
-  atl?: RequestIBCasDtoAtl;
+  atl?: RequestIBCasDtoAtl
 }

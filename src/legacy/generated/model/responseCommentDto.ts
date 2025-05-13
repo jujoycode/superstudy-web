@@ -8,11 +8,11 @@
 
 export interface ResponseCommentDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 학생에 대한 평가 코멘트 */
-  comment: string;
+  comment: string
 }

@@ -14,7 +14,7 @@ export default defineConfig({
       prettier: true,
       override: {
         mutator: {
-          path: './src/lib/axios.ts',
+          path: './@/legacy/lib/axios.ts',
           name: 'mutator',
         },
         useDates: false,

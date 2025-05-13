@@ -8,5 +8,5 @@
 
 export type StudentActivityCommentUpdateBody = {
   /** 내용 */
-  content?: string;
-};
+  content?: string
+}

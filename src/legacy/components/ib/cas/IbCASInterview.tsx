@@ -1,15 +1,17 @@
 import clsx from 'clsx'
 import { PropsWithChildren, useEffect, useState } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
+
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import { useCheckListGetByStudent } from '@/legacy/container/ib-checklist-find'
 import { useIBInterviewCreate } from '@/legacy/container/ib-student-interview'
 import { RequestCreateQnaDto, ResponseStudentInterviewDto } from '@/legacy/generated/model'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 
 interface IbCASInterviewProps {
@@ -55,10 +57,10 @@ export function IbCASInterview({
     handleSubmit,
     register,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestCreateQnaDto>()
 
-  const { CheckList, isLoading: isCheckListLoading } = useCheckListGetByStudent(studentId, 'CAS')
+  const { CheckList } = useCheckListGetByStudent(studentId, 'CAS')
   const [step, setStep] = useState<number>(0)
   const [selectedValue, setSelectedValue] = useState<number>()
   const [selectedData, setSelectedData] = useState<ResponseStudentInterviewDto>()

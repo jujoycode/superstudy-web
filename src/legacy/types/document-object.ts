@@ -1,4 +1,4 @@
 export interface DocumentObject {
-  document: string | File;
-  isDelete: boolean;
+  document: string | File
+  isDelete: boolean
 }

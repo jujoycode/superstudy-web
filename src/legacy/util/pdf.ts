@@ -1,8 +1,8 @@
-import { jsPDF } from 'jspdf'
-import html2canvas from 'html2canvas'
-import { toJpeg } from 'html-to-image'
 import loadImage from 'blueimp-load-image'
 import imageCompression from 'browser-image-compression'
+import { toJpeg } from 'html-to-image'
+import html2canvas from 'html2canvas'
+import { jsPDF } from 'jspdf'
 
 export const getImageMeta = (url: string) => {
   return new Promise<{ width: number; height: number }>((resolve, reject) => {

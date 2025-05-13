@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type LectureAttendanceGetOneByForeignKeysParams = { courseLectureId: number; userId: number };
+export type LectureAttendanceGetOneByForeignKeysParams = { courseLectureId: number; userId: number }

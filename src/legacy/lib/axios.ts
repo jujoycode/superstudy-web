@@ -1,4 +1,5 @@
 import axios, { AxiosError, type AxiosRequestConfig } from 'axios'
+
 import { queryClient } from './query'
 
 declare module 'axios' {

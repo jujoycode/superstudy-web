@@ -1,5 +1,5 @@
-import clsx from 'clsx';
-import { InputHTMLAttributes, forwardRef, useEffect, useState } from 'react';
+import clsx from 'clsx'
+import { InputHTMLAttributes, forwardRef, useEffect, useState } from 'react'
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {}
 
@@ -15,15 +15,15 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
       className={clsx('checkbox', className)}
       {...props}
     />
-  );
-});
+  )
+})
 
 export function useCheckbox<T>(items: T[] = []) {
-  const [checks, setChecks] = useState<boolean[]>([]);
+  const [checks, setChecks] = useState<boolean[]>([])
 
-  useEffect(() => setChecks(Array(items.length).fill(false)), [items[0]]);
+  useEffect(() => setChecks(Array(items.length).fill(false)), [items[0]])
 
-  const allChecked = checks.length > 0 && checks.every((check) => check);
+  const allChecked = checks.length > 0 && checks.every((check) => check)
 
   return {
     items: items.filter((_, i) => checks[i]),
@@ -33,5 +33,5 @@ export function useCheckbox<T>(items: T[] = []) {
     click: (index: number) => setChecks((prev) => prev.map((check, i) => (i === index ? !check : check))),
     clickAll: () => setChecks(Array(items.length).fill(!allChecked)),
     clear: () => setChecks(Array(items.length).fill(false)),
-  };
+  }
 }

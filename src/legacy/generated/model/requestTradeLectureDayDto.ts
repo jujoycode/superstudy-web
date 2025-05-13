@@ -8,19 +8,19 @@
 
 export interface RequestTradeLectureDayDto {
   /** 그룹아이디 */
-  groupId: number;
+  groupId: number
   /** 년도 */
-  year: number;
+  year: number
   /** 학기 */
-  semester: number;
+  semester: number
   /** 주차 */
-  validityWeek: number;
+  validityWeek: number
   /** 종료주차 */
-  validityEndWeek: number;
+  validityEndWeek: number
   /** 시간표 요일1 */
-  day1: number;
+  day1: number
   /** 시간표 요일2 */
-  day2: number;
+  day2: number
   /** 교환모드 */
-  exchangeMode: string;
+  exchangeMode: string
 }

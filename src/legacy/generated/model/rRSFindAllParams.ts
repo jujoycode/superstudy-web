@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type RRSFindAllParams = { page?: number; limit?: number };
+export type RRSFindAllParams = { page?: number; limit?: number }

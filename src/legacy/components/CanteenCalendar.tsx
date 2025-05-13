@@ -1,5 +1,7 @@
 import Calendar, { CalendarProps } from 'react-calendar'
+
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+
 import { Icon } from './common/icons'
 
 export interface CanteenCalendarProps extends CalendarProps {}

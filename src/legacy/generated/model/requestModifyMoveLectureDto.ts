@@ -8,9 +8,9 @@
 
 export interface RequestModifyMoveLectureDto {
   /** 변경 전 LectureId */
-  currentLectureId: number;
+  currentLectureId: number
   /** 변경할 LectureId */
-  newLectureId: number;
+  newLectureId: number
   /** 변경 대상 유저아이디 */
-  userId: number;
+  userId: number
 }

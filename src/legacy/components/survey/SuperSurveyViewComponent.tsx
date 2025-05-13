@@ -1,15 +1,16 @@
 import { cloneDeep } from 'lodash'
 import { useEffect, useState } from 'react'
+
 import { Label, Radio, RadioGroup, Section, Textarea } from '@/legacy/components/common'
-import { Constants } from '@/legacy/constants'
-import { downloadFile } from '@/legacy/util/download-image'
-import { getFileNameFromUrl } from '@/legacy/util/file'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Icon } from '@/legacy/components/common/icons'
+import { TextInput } from '@/legacy/components/common/TextInput'
 import { DocumentObjectComponentDel } from '@/legacy/components/DocumentObjectComponentDel'
 import { ImageObjectComponentDel } from '@/legacy/components/ImageObjectComponentDel'
-import { Checkbox } from '@/legacy/components/common/Checkbox'
-import { TextInput } from '@/legacy/components/common/TextInput'
-import { Icon } from '@/legacy/components/common/icons'
+import { Constants } from '@/legacy/constants'
 import type { Question } from '@/legacy/types'
+import { downloadFile } from '@/legacy/util/download-image'
+import { getFileNameFromUrl } from '@/legacy/util/file'
 
 interface SuperSurveyViewComponentProps {
   surveyContent?: string

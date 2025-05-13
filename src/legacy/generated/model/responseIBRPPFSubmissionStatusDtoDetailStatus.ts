@@ -10,9 +10,8 @@
  * 상세 상태
  */
 export type ResponseIBRPPFSubmissionStatusDtoDetailStatus =
-  (typeof ResponseIBRPPFSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBRPPFSubmissionStatusDtoDetailStatus];
+  (typeof ResponseIBRPPFSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBRPPFSubmissionStatusDtoDetailStatus]
 
- 
 export const ResponseIBRPPFSubmissionStatusDtoDetailStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   FIRST_DRAFT: 'FIRST_DRAFT',
@@ -21,4 +20,4 @@ export const ResponseIBRPPFSubmissionStatusDtoDetailStatus = {
   IB_TEACHER_FEEDBACK_COMPLETED: 'IB_TEACHER_FEEDBACK_COMPLETED',
   IB_TEACHER_FEEDBACK_NOT_YET: 'IB_TEACHER_FEEDBACK_NOT_YET',
   COMPLETED: 'COMPLETED',
-} as const;
+} as const

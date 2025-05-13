@@ -6,9 +6,8 @@
  * OpenAPI spec version: 0.1
  */
 
-export type TeacherPointLogGetJoin = (typeof TeacherPointLogGetJoin)[keyof typeof TeacherPointLogGetJoin];
+export type TeacherPointLogGetJoin = (typeof TeacherPointLogGetJoin)[keyof typeof TeacherPointLogGetJoin]
 
- 
 export const TeacherPointLogGetJoin = {
   teacher: 'teacher',
-} as const;
+} as const

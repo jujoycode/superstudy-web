@@ -1,12 +1,15 @@
 import { useEffect, useMemo } from 'react'
-import NODATA from '@/legacy/assets/images/no-data.png'
+
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'
 import { useGetIBProject } from '@/legacy/container/ib-project-get-filter'
 import { ResponseIBCasDtoLearningOutcome, ResponseIBDto } from '@/legacy/generated/model'
+
 import StudentActivityLearingOutcome from './StudentActivityLearingOutcome'
 import StudentActivityRatio from './StudentActivityRatio'
 import StudentActivityTimeline from './StudentActivityTimeline'
+
+import NODATA from '@/assets/images/no-data.png'
 interface StudentActivityStatusProps {
   data: ResponseIBDto
   mentor?: string

@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type GroupsFindSubjectByUserParams = { year?: string };
+export type GroupsFindSubjectByUserParams = { year?: string }

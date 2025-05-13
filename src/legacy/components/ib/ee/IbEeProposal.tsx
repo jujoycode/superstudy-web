@@ -2,16 +2,18 @@ import clsx from 'clsx'
 import { PropsWithChildren, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
+
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import { EE_SUBJECT_CATEGORY_언어와문학, EE_SUBJECT_CATEGORY_영어B, EE_SUBJECTS_CREATE } from '@/legacy/constants/ib'
 import { useIBCreate } from '@/legacy/container/ib-project'
 import { useIBProposalCreate } from '@/legacy/container/ib-proposal-create'
 import { useIBProposalUpdate } from '@/legacy/container/ib-proposal-update'
 import { RequestIBDto, RequestIBProposalDto, ResponseIBProposalDto } from '@/legacy/generated/model'
 import { meState } from '@/stores'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 
@@ -44,7 +46,7 @@ export function IbEeProposal({
     handleSubmit,
     watch,
     setValue,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBProposalDto>({
     defaultValues:
       type === 'update' && proposalData

@@ -8,7 +8,7 @@
 
 export interface RequestSendParentSignUpDto {
   /** 보호자 이름 */
-  name: string;
+  name: string
   /** 보호자 전화번호 */
-  phone: string;
+  phone: string
 }

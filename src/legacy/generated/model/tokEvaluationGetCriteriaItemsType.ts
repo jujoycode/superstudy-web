@@ -7,10 +7,9 @@
  */
 
 export type TokEvaluationGetCriteriaItemsType =
-  (typeof TokEvaluationGetCriteriaItemsType)[keyof typeof TokEvaluationGetCriteriaItemsType];
+  (typeof TokEvaluationGetCriteriaItemsType)[keyof typeof TokEvaluationGetCriteriaItemsType]
 
- 
 export const TokEvaluationGetCriteriaItemsType = {
   EXHIBITION: 'EXHIBITION',
   ESSAY: 'ESSAY',
-} as const;
+} as const

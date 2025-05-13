@@ -6,9 +6,8 @@
  * OpenAPI spec version: 0.1
  */
 
-export type UploadFileTypeEnum = (typeof UploadFileTypeEnum)[keyof typeof UploadFileTypeEnum];
+export type UploadFileTypeEnum = (typeof UploadFileTypeEnum)[keyof typeof UploadFileTypeEnum]
 
- 
 export const UploadFileTypeEnum = {
   'board/files': 'board/files',
   'board/images': 'board/images',
@@ -47,4 +46,4 @@ export const UploadFileTypeEnum = {
   'ib/copykiller/files': 'ib/copykiller/files',
   'counseling/voices': 'counseling/voices',
   'school/timetable': 'school/timetable',
-} as const;
+} as const

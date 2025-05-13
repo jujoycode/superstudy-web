@@ -8,23 +8,23 @@
 
 export interface RequestStudentPropertyDto {
   /** 학생 ID */
-  studentId: number;
+  studentId: number
   /** 올해목표, json */
-  resolution: string;
+  resolution: string
   /** 진학목표, json */
-  hopeUnivMajor: string;
+  hopeUnivMajor: string
   /** 입시전형, json */
-  admission: string;
+  admission: string
   /** 소속 정보, json */
-  joinGroup: string;
+  joinGroup: string
   /** 출신학교, json */
-  schoolOrigin: string;
+  schoolOrigin: string
   /** 학습정보, json */
-  extraCurricular: string;
+  extraCurricular: string
   /** 자기학습, json */
-  selfStudy: string;
+  selfStudy: string
   /** 좌우명, json */
-  motto: string | null;
+  motto: string | null
   /** 희망 진로, json */
-  hopeCareerPath: string | null;
+  hopeCareerPath: string | null
 }

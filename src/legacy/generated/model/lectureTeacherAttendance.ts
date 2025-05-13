@@ -8,21 +8,21 @@
 
 export interface LectureTeacherAttendance {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 강의 ID */
-  lectureId: number;
+  lectureId: number
   /** 선생님 ID */
-  teacherId: number;
+  teacherId: number
   /** 선생님 이름 */
-  teacherName: string;
+  teacherName: string
   /** 출결체크일 */
-  checkDay: string | null;
+  checkDay: string | null
   /** 학년도 */
-  year: string | null;
+  year: string | null
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
 }

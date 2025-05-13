@@ -7,8 +7,8 @@
  */
 
 export interface PointLogCreateBody {
-  studentId: number;
-  title?: string;
-  value?: number;
-  pointId?: number;
+  studentId: number
+  title?: string
+  value?: number
+  pointId?: number
 }

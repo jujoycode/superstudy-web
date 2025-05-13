@@ -5,15 +5,15 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseBatchUnreadFeedBackCountDtoReferenceTable } from './responseBatchUnreadFeedBackCountDtoReferenceTable';
+import type { ResponseBatchUnreadFeedBackCountDtoReferenceTable } from './responseBatchUnreadFeedBackCountDtoReferenceTable'
 
 export interface ResponseBatchUnreadFeedBackCountDto {
   /** IB 프로젝트 타입 */
-  referenceTable: ResponseBatchUnreadFeedBackCountDtoReferenceTable;
+  referenceTable: ResponseBatchUnreadFeedBackCountDtoReferenceTable
   /** ID */
-  referenceId: number;
+  referenceId: number
   /** 총 피드백 수 */
-  totalCount: number;
+  totalCount: number
   /** 읽지않은 피드백 수 */
-  unreadCount: number;
+  unreadCount: number
 }

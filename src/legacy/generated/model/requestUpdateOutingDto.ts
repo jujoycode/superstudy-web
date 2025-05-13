@@ -5,29 +5,29 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { OutingTypeEnum } from './outingTypeEnum';
+import type { OutingTypeEnum } from './outingTypeEnum'
 
 export interface RequestUpdateOutingDto {
   /** 신청일 */
-  reportedAt: string;
+  reportedAt: string
   /** 조퇴/외출/확인 종류 */
-  type: OutingTypeEnum;
+  type: OutingTypeEnum
   /** 시작일 */
-  startAt: string;
+  startAt: string
   /** 종료일 */
-  endAt: string;
+  endAt: string
   /** 시작교시 */
-  startPeriod: number;
+  startPeriod: number
   /** 종료교시 */
-  endPeriod: number;
+  endPeriod: number
   /** 사유 */
-  reason: string;
+  reason: string
   /** 학생유저아이디 */
-  studentId: number;
+  studentId: number
   /** 용무 종류 */
-  type2: string;
+  type2: string
   /** 수정사유 */
-  updateReason: string;
+  updateReason: string
   /** 보호자서명 여부 */
-  useParentApprove: boolean;
+  useParentApprove: boolean
 }

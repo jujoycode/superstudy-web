@@ -1,7 +1,13 @@
+import clsx from 'clsx'
 import { useState, useEffect, type ChangeEvent } from 'react'
 import { useRecoilValue } from 'recoil'
-import clsx from 'clsx'
-import { meState } from '@/stores'
+
+import { CloseButton, Label, Section } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Icon } from '@/legacy/components/common/icons'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Tabs } from '@/legacy/components/common/Tabs'
+import { TextInput } from '@/legacy/components/common/TextInput'
 import { Constants } from '@/legacy/constants'
 import {
   Role,
@@ -10,17 +16,13 @@ import {
   type ResponseChatAttendeeDto,
   type ResponseChatroomInfoDetailDto,
 } from '@/legacy/generated/model'
-import { getNickName } from '@/legacy/util/status'
-import { Tabs } from '@/legacy/components/common/Tabs'
-import { getRoleTitle } from '@/legacy/util/permission'
-import { Icon } from '@/legacy/components/common/icons'
-import { Button } from '@/legacy/components/common/Button'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
-import { TextInput } from '@/legacy/components/common/TextInput'
-import { SearchInput } from '@/legacy/components/common/SearchInput'
-import { CloseButton, Label, Section } from '@/legacy/components/common'
+import { getRoleTitle } from '@/legacy/util/permission'
+import { getNickName } from '@/legacy/util/status'
 import { getHoursfromHHmmString, getMinutesfromHHmmString, makeHHmmString } from '@/legacy/util/time'
-import SvgUser from '@/legacy/assets/svg/user.svg'
+import { meState } from '@/stores'
+
+import SvgUser from '@/assets/svg/user.svg'
 
 enum contentType {
   setting = 1,

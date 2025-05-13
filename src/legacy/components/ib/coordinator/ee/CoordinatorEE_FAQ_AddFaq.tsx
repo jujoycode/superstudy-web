@@ -1,5 +1,6 @@
 import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+
 import { useIBFAQCreate, useIBFAQUpdate } from '@/legacy/container/ib-coordinator'
 import {
   FAQContentDto,
@@ -8,13 +9,14 @@ import {
   RequestFAQDto,
   ResponseFAQDto,
 } from '@/legacy/generated/model'
-import AlertV2 from '../@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { Typography } from '../@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import SVGIcon from '../../../icon/SVGIcon'
 import { FaqInputField } from '../../FaqInputField'
 import { InputField } from '../../InputField'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 
 interface CoordinatorEE_FAQ_AddFaqProps {
   modalOpen: boolean
@@ -95,7 +97,7 @@ export function CoordinatorEE_FAQ_AddFaq({
     control,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestCreateFAQDto>({
     defaultValues:
       type === 'update' && FAQData

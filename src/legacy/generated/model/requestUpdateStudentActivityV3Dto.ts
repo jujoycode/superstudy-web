@@ -8,9 +8,9 @@
 
 export interface RequestUpdateStudentActivityV3Dto {
   /** 제목 */
-  title: string | null;
+  title: string | null
   /** 관찰 기록 */
-  record: string | null;
+  record: string | null
   /** 활동요약 */
-  summary: string;
+  summary: string
 }

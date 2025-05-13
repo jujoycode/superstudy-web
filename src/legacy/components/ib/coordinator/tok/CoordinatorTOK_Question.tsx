@@ -1,7 +1,5 @@
 import { concat } from 'lodash'
 import { useState } from 'react'
-import { useHistory } from '@/hooks/useHistory'
-import NODATA from '@/legacy/assets/images/no-data.png'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -13,31 +11,28 @@ import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 import { useThemeQuestionGetThemeQuestionItemsByType } from '@/legacy/generated/endpoint'
 import { ThemeQuestionGetThemeQuestionItemsByTypeType } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
+
 import { ModalType } from '../FAQList'
+
 import { CoordinatorTOK_Question_AddQuestion } from './CoordinatorTOK_Question_AddQuestion'
+
+import NODATA from '@/assets/images/no-data.png'
 
 export const THEME_QUESTION_TYPE_KOR: Record<string, string> = {
   TOK_ESSAY: '에세이',
   TOK_EXHIBITION: '전시회',
 }
 export const CoordinatorTOK_Question = () => {
-  const { push } = useHistory()
   const { permission } = useCoordinatorCheck()
   const [activeModal, setActiveModal] = useState<ModalType>(null)
   const [type, setType] = useState<ThemeQuestionGetThemeQuestionItemsByTypeType>('TOK_ESSAY')
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
 
-  const {
-    data: essayData,
-    isLoading: essayLoading,
-    refetch: essayRefetch,
-  } = useThemeQuestionGetThemeQuestionItemsByType({ type: 'TOK_ESSAY' })
+  const { data: essayData, refetch: essayRefetch } = useThemeQuestionGetThemeQuestionItemsByType({ type: 'TOK_ESSAY' })
 
-  const {
-    data: exhibitionData,
-    isLoading: exhibitionLoading,
-    refetch: exhibitionRefetch,
-  } = useThemeQuestionGetThemeQuestionItemsByType({ type: 'TOK_EXHIBITION' })
+  const { data: exhibitionData, refetch: exhibitionRefetch } = useThemeQuestionGetThemeQuestionItemsByType({
+    type: 'TOK_EXHIBITION',
+  })
 
   const questions = concat(
     [],

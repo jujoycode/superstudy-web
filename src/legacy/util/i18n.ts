@@ -6,7 +6,6 @@ import translationEn from '@/legacy/locales/en/common.json'
 import modalEn from '@/legacy/locales/en/modal.json'
 import studentEn from '@/legacy/locales/en/student.json'
 import teacherEn from '@/legacy/locales/en/teacher.json'
-
 import adminKo from '@/legacy/locales/ko/admin.json'
 import translationKo from '@/legacy/locales/ko/common.json'
 import modalKo from '@/legacy/locales/ko/modal.json'

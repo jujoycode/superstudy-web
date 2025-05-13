@@ -5,23 +5,23 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { FieldtripType } from './fieldtripType';
+import type { FieldtripType } from './fieldtripType'
 
 export interface RequestUpdateFieldtripResultDto {
   /** 체헙학습 신청서 종류 */
-  type: FieldtripType;
+  type: FieldtripType
   /** 목적지 */
-  destination: string;
+  destination: string
   /** 해외 여부 */
-  overseas: boolean;
+  overseas: boolean
   /** 결과보고서내용 */
-  resultText: string;
+  resultText: string
   /** 결과보고서제목 */
-  resultTitle: string;
+  resultTitle: string
   /** 결과보고서첨부파일들 */
-  resultFiles: string[];
+  resultFiles: string[]
   /** 결과보고서학생서명이미지 */
-  studentResultSignature: string;
+  studentResultSignature: string
   /** 결과보고서보호자서명이미지 */
-  parentResultSignature: string;
+  parentResultSignature: string
 }

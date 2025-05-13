@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type OutingTypeEnum = (typeof OutingTypeEnum)[keyof typeof OutingTypeEnum];
+export type OutingTypeEnum = (typeof OutingTypeEnum)[keyof typeof OutingTypeEnum]
 
- 
 export const OutingTypeEnum = {
   조퇴: '조퇴',
   외출: '외출',
   확인: '확인',
-} as const;
+} as const

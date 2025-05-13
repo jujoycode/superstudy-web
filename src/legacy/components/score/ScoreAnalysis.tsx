@@ -15,17 +15,20 @@ import clsx from 'clsx'
 import _ from 'lodash'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Chart } from 'react-chartjs-2'
-import { SubjectEnum, SubjectGroups } from '@/legacy/constants/score.enum'
-import { useStudentAnalysisScore } from '@/legacy/container/student-score'
-import { useStudentMockScore, useStudentSemetsersScore } from '@/legacy/container/student-semesters-score'
-import { calculateAverageGrades } from '@/legacy/util/exam-score'
+
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
 import { Typography } from '@/legacy/components/common/Typography'
+import { SubjectEnum, SubjectGroups } from '@/legacy/constants/score.enum'
+import { useStudentAnalysisScore } from '@/legacy/container/student-score'
+import { useStudentMockScore, useStudentSemetsersScore } from '@/legacy/container/student-semesters-score'
+import { calculateAverageGrades } from '@/legacy/util/exam-score'
+
 import SolidSVGIcon from '../icon/SolidSVGIcon'
 import { PopupModal } from '../PopupModal'
+
 import MockRankTable from './MockRankTable'
 import MockScoreTable from './MockScoreTable'
 
@@ -623,7 +626,7 @@ const ScoreAnalysisModal = ({ data, averages }: any) => {
       })
 
       const tableBody = document.createElement('tbody')
-      extractedData.forEach((body: any, i: number) => {
+      extractedData.forEach((body: any) => {
         const span = document.createElement('span')
         span.style.borderWidth = '1px'
         span.style.borderRadius = '4px'
@@ -749,7 +752,7 @@ const ScoreAnalysisModal = ({ data, averages }: any) => {
             },
             color: '#121417',
             padding: 2,
-            callback: function (value: string | number, index: number, values: any) {
+            callback: function (_: string | number, index: number) {
               const label = chartData?.labels?.[index]
               const maxLength = 6
               if (label && typeof label === 'string' && label.length > maxLength) {
@@ -813,7 +816,7 @@ const ScoreAnalysisModal = ({ data, averages }: any) => {
       // Chart 데이터 설정
       setChartData({
         labels: SCORE_LABELS,
-        datasets: ['100(1/2/3)', '20:30:50', '20:40:40'].map((label, dIndex) => ({
+        datasets: ['100(1/2/3)', '20:30:50', '20:40:40'].map((label) => ({
           label,
           data: data.analysed_exam_scores.map((subjectData: any) => {
             const score = subjectData.scores.find((s: any) => s.구분 === label)
@@ -1020,7 +1023,7 @@ export const MockExamScoreModal = ({ data, examDates }: any) => {
       })
 
       const tableBody = document.createElement('tbody')
-      extractedData.forEach((body: any, i: number) => {
+      extractedData.forEach((body: any) => {
         const span = document.createElement('span')
         span.style.borderWidth = '1px'
         span.style.borderRadius = '4px'

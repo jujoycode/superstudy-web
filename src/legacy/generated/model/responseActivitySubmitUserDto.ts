@@ -8,15 +8,15 @@
 
 export interface ResponseActivitySubmitUserDto {
   /** 학생학년반번호(학년+반+출석번호) */
-  studentGradeKlassNumber: string;
+  studentGradeKlassNumber: string
   /** 학생아이디 */
-  userId: number;
+  userId: number
   /** 학생이름 */
-  studentName: number;
+  studentName: number
   /** 학생활동아이디 */
-  studentActivityId: string;
+  studentActivityId: string
   /** 학생활동제출여부 */
-  studentActivitySubmitted: boolean;
+  studentActivitySubmitted: boolean
   /** 게시글읽음여부 */
-  isRead: boolean | null;
+  isRead: boolean | null
 }

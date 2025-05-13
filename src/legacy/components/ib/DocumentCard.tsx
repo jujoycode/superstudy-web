@@ -1,6 +1,7 @@
+import { Typography } from '@/legacy/components/common/Typography'
 import { DocumentObject } from '@/legacy/types/document-object'
 import { getFileNameFromUrl } from '@/legacy/util/file'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../icon/ColorSVGIcon'
 
 interface DocumentCardProps {

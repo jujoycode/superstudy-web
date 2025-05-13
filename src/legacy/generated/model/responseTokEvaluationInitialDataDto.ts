@@ -5,12 +5,12 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseTokEvaluationSummaryDto } from './responseTokEvaluationSummaryDto';
-import type { ResponseTokEvaluationCriteriaDto } from './responseTokEvaluationCriteriaDto';
+import type { ResponseTokEvaluationCriteriaDto } from './responseTokEvaluationCriteriaDto'
+import type { ResponseTokEvaluationSummaryDto } from './responseTokEvaluationSummaryDto'
 
 export interface ResponseTokEvaluationInitialDataDto {
   /** 평가 요약 목록 */
-  evaluations: ResponseTokEvaluationSummaryDto[];
+  evaluations: ResponseTokEvaluationSummaryDto[]
   /** 평가 기준 */
-  criteria: ResponseTokEvaluationCriteriaDto;
+  criteria: ResponseTokEvaluationCriteriaDto
 }

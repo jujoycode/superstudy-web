@@ -1,11 +1,15 @@
 import { PropsWithChildren, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
+
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import MemberSearch from '@/legacy/components/common/MemberSearch'
 import ScheduleAndPeriodPicker from '@/legacy/components/common/ScheduleAndPeriodPicker'
 import Stepper from '@/legacy/components/common/Stepper'
+import { Typography } from '@/legacy/components/common/Typography'
 import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { CAS_ATL, CAS_LEARNERPROFILE, CAS_LEARNINGOUTCOME } from '@/legacy/constants/ib'
@@ -20,11 +24,9 @@ import {
   RequestIBDto,
   ResponseIBStudentDto,
 } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Check } from '@/legacy/components/common/Check'
-import { Typography } from '@/legacy/components/common/Typography'
+import { meState } from '@/stores'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 
@@ -70,17 +72,13 @@ export function IbCASProject({
     cycle: undefined,
   })
 
-  const { data: riskAssessment, isLoading: riskAssessmentLoading } = useInterviewGetByStudentId(
-    me?.id || 0,
-    'CAS_RISK_ASSESSMENT',
-  )
+  const { data: riskAssessment } = useInterviewGetByStudentId(me?.id || 0, 'CAS_RISK_ASSESSMENT')
 
   const {
     control,
     handleSubmit,
     watch,
-    register,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBDto>()
 
   const requiredFields = watch([

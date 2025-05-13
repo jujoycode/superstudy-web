@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ScoreUse = (typeof ScoreUse)[keyof typeof ScoreUse];
+export type ScoreUse = (typeof ScoreUse)[keyof typeof ScoreUse]
 
- 
 export const ScoreUse = {
   NONE: 'NONE',
   USE_PRIVATE: 'USE_PRIVATE',
   USE_PUBLIC: 'USE_PUBLIC',
-} as const;
+} as const

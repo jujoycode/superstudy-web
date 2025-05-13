@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useBoardFindAll } from '@/legacy/generated/endpoint'
-import type { Board, BoardCategoryEnum } from '@/legacy/generated/model'
+import { Board, BoardCategoryEnum } from '@/legacy/generated/model'
 
 export function useTeacherBoard(groupId?: number) {
-  const [pageInfo, _] = useState({ page: 1, limit: 500 })
+  const [pageInfo] = useState({ page: 1, limit: 500 })
   const [selectedCategory, setSelectedCategory] = useState<BoardCategoryEnum>()
 
   const { data: boardList, isLoading } = useBoardFindAll(

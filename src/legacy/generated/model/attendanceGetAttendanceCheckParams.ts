@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type AttendanceGetAttendanceCheckParams = { lectureId: number; checkDay: string };
+export type AttendanceGetAttendanceCheckParams = { lectureId: number; checkDay: string }

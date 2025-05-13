@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React, { useCallback, useEffect, useRef, useState, type HTMLAttributes } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
+
 import { makeDateToString } from '@/legacy/util/time'
 
 const tooltipBaseClasses =

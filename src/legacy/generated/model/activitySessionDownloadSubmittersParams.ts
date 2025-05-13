@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ActivitySessionDownloadSubmittersParams = { groupIds: number[] };
+export type ActivitySessionDownloadSubmittersParams = { groupIds: number[] }

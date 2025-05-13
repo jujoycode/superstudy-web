@@ -1,12 +1,14 @@
 import { useState } from 'react'
+
+import { Button } from '@/legacy/components/common/Button'
+import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { UserContainer } from '@/legacy/container/user'
 import { ResponseCounselingDetailDto } from '@/legacy/generated/model'
 import { AccessLevels } from '@/legacy/types'
-import { SuperModal } from '../SuperModal'
-import { Button } from '@/legacy/components/common/Button'
-import { Time } from '@/legacy/components/common/Time'
+
 import WAVPlayer from '../rec/wavPlayer'
+import { SuperModal } from '../SuperModal'
 
 interface StudentCounselingProps {
   data: ResponseCounselingDetailDto

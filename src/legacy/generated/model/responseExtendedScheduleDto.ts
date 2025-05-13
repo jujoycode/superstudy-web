@@ -5,38 +5,38 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { CalendarIdEnum } from './calendarIdEnum';
-import type { AttendeeEnum } from './attendeeEnum';
-import type { ScheduleCategoryEnum } from './scheduleCategoryEnum';
-import type { ResponseExtendedScheduleDtoGroup } from './responseExtendedScheduleDtoGroup';
+import type { AttendeeEnum } from './attendeeEnum'
+import type { CalendarIdEnum } from './calendarIdEnum'
+import type { ResponseExtendedScheduleDtoGroup } from './responseExtendedScheduleDtoGroup'
+import type { ScheduleCategoryEnum } from './scheduleCategoryEnum'
 
 export interface ResponseExtendedScheduleDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 일정 종류, 0: 학사일정, 1: 선생님일정, 2: 그룹일정 */
-  calendarId: CalendarIdEnum;
+  calendarId: CalendarIdEnum
   /** 일정종류 (일반/공휴일/체험학습지정불가) */
-  attendee: AttendeeEnum;
+  attendee: AttendeeEnum
   /** 제목 */
-  title: string;
+  title: string
   /** 카테고리 */
-  category: ScheduleCategoryEnum;
+  category: ScheduleCategoryEnum
   /** 종일일정여부 */
-  isAllDay: boolean;
+  isAllDay: boolean
   /** 시작일 */
-  start: string;
+  start: string
   /** 종료일 */
-  end: string;
+  end: string
   /** 유저 ID */
-  userId: number;
+  userId: number
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 대상 학년 (0: 전체, 1~6: 해당학년) */
-  grade: number;
+  grade: number
   /** 그룹 */
-  group: ResponseExtendedScheduleDtoGroup;
+  group: ResponseExtendedScheduleDtoGroup
 }

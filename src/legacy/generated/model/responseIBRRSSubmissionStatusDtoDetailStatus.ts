@@ -10,11 +10,10 @@
  * 제출 상태
  */
 export type ResponseIBRRSSubmissionStatusDtoDetailStatus =
-  (typeof ResponseIBRRSSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBRRSSubmissionStatusDtoDetailStatus];
+  (typeof ResponseIBRRSSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBRRSSubmissionStatusDtoDetailStatus]
 
- 
 export const ResponseIBRRSSubmissionStatusDtoDetailStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   LESS_THAN_THREE: 'LESS_THAN_THREE',
   GREATER_THAN_THREE: 'GREATER_THAN_THREE',
-} as const;
+} as const

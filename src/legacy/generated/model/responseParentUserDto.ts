@@ -8,13 +8,13 @@
 
 export interface ResponseParentUserDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 이메일 */
-  email: string | null;
+  email: string | null
   /** 이름 */
-  name: string;
+  name: string
   /** 전화번호 */
-  phone: string;
+  phone: string
   /** 주보호자여부 */
-  isPrimaryGuardian: boolean | null;
+  isPrimaryGuardian: boolean | null
 }

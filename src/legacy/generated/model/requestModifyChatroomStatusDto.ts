@@ -8,5 +8,5 @@
 
 export interface RequestModifyChatroomStatusDto {
   /** 채팅방 상태 */
-  status: string;
+  status: string
 }

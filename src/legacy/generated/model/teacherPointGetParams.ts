@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type TeacherPointGetParams = { page?: number; size?: number };
+export type TeacherPointGetParams = { page?: number; size?: number }

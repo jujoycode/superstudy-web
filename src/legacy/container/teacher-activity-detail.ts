@@ -1,14 +1,10 @@
 import { useState } from 'react'
-
-// ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
-import { Routes } from '@/legacy/constants/routes'
-
+import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { Constants } from '@/legacy/constants'
 import { useActivityDelete, useActivityFindOne } from '@/legacy/generated/endpoint'
 import { isPdfFile } from '@/legacy/util/file'
 import { DayAfter } from '@/legacy/util/time'
-import type { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 
 export function useTeacherActivityDetail(activityId?: number, refetchList?: () => void) {
   const { push } = useHistory()

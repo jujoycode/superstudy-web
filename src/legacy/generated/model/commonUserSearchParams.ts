@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type CommonUserSearchParams = { keyword?: string; klass?: string; klub?: string };
+export type CommonUserSearchParams = { keyword?: string; klass?: string; klub?: string }

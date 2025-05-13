@@ -6,9 +6,8 @@
  * OpenAPI spec version: 0.1
  */
 
-export type FeedbackReferenceTable = (typeof FeedbackReferenceTable)[keyof typeof FeedbackReferenceTable];
+export type FeedbackReferenceTable = (typeof FeedbackReferenceTable)[keyof typeof FeedbackReferenceTable]
 
- 
 export const FeedbackReferenceTable = {
   IB: 'IB',
   ESSAY: 'ESSAY',
@@ -19,4 +18,4 @@ export const FeedbackReferenceTable = {
   EXHIBITION: 'EXHIBITION',
   ACTIVITY_LOG: 'ACTIVITY_LOG',
   REFLECTION_DIARY: 'REFLECTION_DIARY',
-} as const;
+} as const

@@ -1,22 +1,18 @@
 import { useState } from 'react'
-
-// ! 개선 필요
-import { useHistory } from '@/hooks/useHistory'
-
 import { useRecoilValue } from 'recoil'
+import { useHistory } from '@/hooks/useHistory'
+import { Button } from '@/legacy/components/common/Button'
+import { TextInput } from '@/legacy/components/common/TextInput'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useStudentMyPage } from '@/legacy/container/student-my-page'
 import { useStudentParentMyInfoUpdate } from '@/legacy/container/student-parent-my-info-update'
 import { useStudentSendParentSignUp } from '@/legacy/container/student-send-parent-sign-up'
 import { useUserSendParentSignUpV2, useUserUpdateMe } from '@/legacy/generated/endpoint'
-import { queryClient } from '@/legacy/lib/query'
-import { meState } from '@/stores'
 import type { ResponseUserDto, UpdateUserDto } from '@/legacy/generated/model'
+import { queryClient } from '@/legacy/lib/query'
 import type { errorType } from '@/legacy/types'
-
 import { Validator } from '@/legacy/util/validator'
-import { Button } from '@/legacy/components/common/Button'
-import { TextInput } from '@/legacy/components/common/TextInput'
+import { meState } from '@/stores'
 
 interface ParentInfoCardProps {
   isNotParent: boolean
@@ -24,16 +20,15 @@ interface ParentInfoCardProps {
 }
 
 export function ParentInfoCard({ me, isNotParent }: ParentInfoCardProps) {
-  const { cntParent, isPrimaryGuardian, setIsPrimaryGuardian, setNokName, setNokPhone, nokName, nokPhone } =
-    useStudentMyPage()
+  const { isPrimaryGuardian, setIsPrimaryGuardian, setNokName, setNokPhone, nokName, nokPhone } = useStudentMyPage()
 
   const { push } = useHistory()
   const { handleSendParentSignUp } = useStudentSendParentSignUp()
 
-  const [nokName1, setNokName1] = useState(me?.parents?.[0]?.name || '')
-  const [nokPhone1, setNokPhone1] = useState(me?.parents?.[0]?.phone || '')
-  const [nokName2, setNokName2] = useState(me?.parents?.[1]?.name || '')
-  const [nokPhone2, setNokPhone2] = useState(me?.parents?.[1]?.phone || '')
+  const [nokName1] = useState(me?.parents?.[0]?.name || '')
+  const [nokPhone1] = useState(me?.parents?.[0]?.phone || '')
+  const [nokName2] = useState(me?.parents?.[1]?.name || '')
+  const [nokPhone2] = useState(me?.parents?.[1]?.phone || '')
   const [addBtnParent, setAddBtnParent] = useState(false)
   const { handleParentMyInfoUpdate } = useStudentParentMyInfoUpdate()
 
@@ -45,7 +40,7 @@ export function ParentInfoCard({ me, isNotParent }: ParentInfoCardProps) {
     }
   }
 
-  const { mutate: updateMeMutate, isLoading: isUpdateMeLoading } = useUserUpdateMe({
+  const { mutate: updateMeMutate } = useUserUpdateMe({
     mutation: {
       onSuccess: () => {
         queryClient.invalidateQueries(QueryKey.me)

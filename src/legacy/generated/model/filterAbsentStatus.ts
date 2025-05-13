@@ -6,13 +6,12 @@
  * OpenAPI spec version: 0.1
  */
 
-export type FilterAbsentStatus = (typeof FilterAbsentStatus)[keyof typeof FilterAbsentStatus];
+export type FilterAbsentStatus = (typeof FilterAbsentStatus)[keyof typeof FilterAbsentStatus]
 
- 
 export const FilterAbsentStatus = {
   BEFORE_APPROVAL: 'BEFORE_APPROVAL',
   PROCESSED: 'PROCESSED',
   RETURNED: 'RETURNED',
   UNSUBMITTED: 'UNSUBMITTED',
   SUBMITTED: 'SUBMITTED',
-} as const;
+} as const

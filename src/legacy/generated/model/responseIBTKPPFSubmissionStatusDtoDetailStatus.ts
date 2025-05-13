@@ -10,9 +10,8 @@
  * 상세 상태
  */
 export type ResponseIBTKPPFSubmissionStatusDtoDetailStatus =
-  (typeof ResponseIBTKPPFSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBTKPPFSubmissionStatusDtoDetailStatus];
+  (typeof ResponseIBTKPPFSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBTKPPFSubmissionStatusDtoDetailStatus]
 
- 
 export const ResponseIBTKPPFSubmissionStatusDtoDetailStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   FIRST_DRAFT: 'FIRST_DRAFT',
@@ -21,4 +20,4 @@ export const ResponseIBTKPPFSubmissionStatusDtoDetailStatus = {
   IB_TEACHER_FEEDBACK_COMPLETED: 'IB_TEACHER_FEEDBACK_COMPLETED',
   IB_TEACHER_FEEDBACK_NOT_YET: 'IB_TEACHER_FEEDBACK_NOT_YET',
   COMPLETED: 'COMPLETED',
-} as const;
+} as const

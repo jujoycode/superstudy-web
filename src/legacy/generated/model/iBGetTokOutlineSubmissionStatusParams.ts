@@ -5,12 +5,12 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { IBGetTokOutlineSubmissionStatusStatus } from './iBGetTokOutlineSubmissionStatusStatus';
+import type { IBGetTokOutlineSubmissionStatusStatus } from './iBGetTokOutlineSubmissionStatusStatus'
 
 export type IBGetTokOutlineSubmissionStatusParams = {
-  grade?: number;
-  klass?: number;
-  page?: number;
-  limit?: number;
-  status: IBGetTokOutlineSubmissionStatusStatus;
-};
+  grade?: number
+  klass?: number
+  page?: number
+  limit?: number
+  status: IBGetTokOutlineSubmissionStatusStatus
+}

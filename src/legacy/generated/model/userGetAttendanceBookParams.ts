@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type UserGetAttendanceBookParams = { groupId: number; year: number; semester: number };
+export type UserGetAttendanceBookParams = { groupId: number; year: number; semester: number }

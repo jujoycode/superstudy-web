@@ -1,8 +1,8 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
-import NODATA from '@/legacy/assets/images/no-data.png'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -14,15 +14,16 @@ import FeedbackViewer from '@/legacy/components/ib/FeedbackViewer'
 import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
 import { PopupModal } from '@/legacy/components/PopupModal'
 import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
-import { useIBApproveComplete } from '@/legacy/container/ib-project'
 import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useRPPFGetByIBIdFindAll } from '@/legacy/container/ib-rppf-findAll'
 import { useInterviewQNAGetByStudentId } from '@/legacy/container/ib-student-interview'
 import { useRPPFUpdateRPPFStatusReject } from '@/legacy/generated/endpoint'
 import { FeedbackReferenceTable, ResponseIBDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { meState } from '@/stores'
 import { LocationState } from '@/legacy/types/ib'
+import { meState } from '@/stores'
+
+import NODATA from '@/assets/images/no-data.png'
 
 interface RppfListProps {
   id: number
@@ -31,7 +32,7 @@ interface RppfListProps {
   refetch: () => void
 }
 
-export const RPPFList = ({ id, data: proposalData, studentData, refetch }: RppfListProps) => {
+export const RPPFList = ({ id, data: proposalData, studentData }: RppfListProps) => {
   const { push } = useHistory()
   const me = useRecoilValue(meState)
 
@@ -80,21 +81,12 @@ export const RPPFList = ({ id, data: proposalData, studentData, refetch }: RppfL
     { enabled: !!rppfData[0]?.id },
   )
 
-  const { mutate: rejectPlan, isLoading: rejectPlanLoading } = useRPPFUpdateRPPFStatusReject({
+  const { mutate: rejectPlan } = useRPPFUpdateRPPFStatusReject({
     mutation: {
       onSuccess: () => {
         setAlertMessage(`RPPF 보완을\n요청하였습니다`)
         setRejectModalOpen(!rejectModalOpen)
       },
-    },
-  })
-
-  const { approveIBProjectComplete } = useIBApproveComplete({
-    onSuccess: () => {
-      setAlertMessage(`완료를\n승인하였습니다`)
-    },
-    onError: (error) => {
-      console.error('완료 승인 중 오류 발생:', error)
     },
   })
 

@@ -1,4 +1,5 @@
 import { HTMLAttributes } from 'react'
+
 import { cn } from '@/legacy/lib/tailwind-merge'
 
 interface BottomFixedProps extends HTMLAttributes<HTMLDivElement> {}

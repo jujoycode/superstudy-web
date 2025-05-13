@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type IBTokExhibitionPlanUnsubmitNotificationParams = { grade?: number; klass?: number };
+export type IBTokExhibitionPlanUnsubmitNotificationParams = { grade?: number; klass?: number }

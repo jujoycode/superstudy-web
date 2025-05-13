@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Fieldtrip } from './fieldtrip';
+import type { Fieldtrip } from './fieldtrip'
 
 export interface ResponsePaginatedFieldtripDto {
   /** 체험학습 신청서들 */
-  items: Fieldtrip[];
+  items: Fieldtrip[]
   /** 전체갯수 */
-  total: number;
+  total: number
 }

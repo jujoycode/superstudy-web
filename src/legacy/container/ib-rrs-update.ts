@@ -1,5 +1,5 @@
 import { useRRSUpdate } from '@/legacy/generated/endpoint'
-import type { RequestRRSDto } from '@/legacy/generated/model'
+import { RequestRRSDto } from '@/legacy/generated/model'
 
 interface UseIBRRSUpdateOptions {
   onSuccess?: (data: any) => void

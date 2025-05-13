@@ -5,35 +5,35 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestIBDtoIbType } from './requestIBDtoIbType';
-import type { RequestIBCasDto } from './requestIBCasDto';
-import type { RequestIBProposalDto } from './requestIBProposalDto';
-import type { RequestIBTokOutlineDto } from './requestIBTokOutlineDto';
-import type { RequestIBTokExhibitionPlanDto } from './requestIBTokExhibitionPlanDto';
+import type { RequestIBCasDto } from './requestIBCasDto'
+import type { RequestIBDtoIbType } from './requestIBDtoIbType'
+import type { RequestIBProposalDto } from './requestIBProposalDto'
+import type { RequestIBTokExhibitionPlanDto } from './requestIBTokExhibitionPlanDto'
+import type { RequestIBTokOutlineDto } from './requestIBTokOutlineDto'
 
 export interface RequestIBDto {
   /** IB 프로젝트 타입 */
-  ibType: RequestIBDtoIbType;
+  ibType: RequestIBDtoIbType
   /** 프로젝트 타이틀 */
-  title: string;
+  title: string
   /** 프로젝트 본문|설명 */
-  description?: string;
+  description?: string
   /** 프로젝트 리더 학생ID */
-  leaderId: number;
+  leaderId: number
   /** 프로젝트 멤버 학생ID */
-  memberIds?: number[];
+  memberIds?: number[]
   /** 프로젝트 시작 일자 */
-  startAt?: string;
+  startAt?: string
   /** 프로젝트 종료 일자 */
-  endAt?: string;
+  endAt?: string
   /** 활동 주기 */
-  activityFrequency?: string;
+  activityFrequency?: string
   /** CAS (일반,프로젝트) */
-  cas?: RequestIBCasDto;
+  cas?: RequestIBCasDto
   /** 제안서 리스트 */
-  proposals?: RequestIBProposalDto[];
+  proposals?: RequestIBProposalDto[]
   /** TOK 아웃라인 */
-  tokOutline?: RequestIBTokOutlineDto;
+  tokOutline?: RequestIBTokOutlineDto
   /** TOK 전시회 기획안 */
-  tokExhibitionPlan?: RequestIBTokExhibitionPlanDto;
+  tokExhibitionPlan?: RequestIBTokExhibitionPlanDto
 }

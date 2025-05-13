@@ -7,10 +7,10 @@
  */
 
 export type IBCasPortfolioGetItemsParams = {
-  grade?: number;
-  klass?: number;
-  page?: number;
-  limit?: number;
-  mentorId?: number;
-  isOnlyProgress?: string;
-};
+  grade?: number
+  klass?: number
+  page?: number
+  limit?: number
+  mentorId?: number
+  isOnlyProgress?: string
+}

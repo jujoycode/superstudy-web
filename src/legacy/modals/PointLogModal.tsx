@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next'
-import { SuperModal } from '@/legacy/components/SuperModal'
+
 import { Label } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Time } from '@/legacy/components/common/Time'
+import { SuperModal } from '@/legacy/components/SuperModal'
 import {
   teacherPointLogDelete,
   useTeacherPointLogGetOne,
@@ -10,6 +11,7 @@ import {
   useUserMe,
 } from '@/legacy/generated/endpoint'
 import { numberWithSign } from '@/legacy/util/string'
+
 import { useModals } from './ModalStack'
 
 export interface PointLogModalProps {

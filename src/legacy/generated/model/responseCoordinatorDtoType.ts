@@ -15,12 +15,11 @@
 - **IB_TOK**: TOK
 
  */
-export type ResponseCoordinatorDtoType = (typeof ResponseCoordinatorDtoType)[keyof typeof ResponseCoordinatorDtoType];
+export type ResponseCoordinatorDtoType = (typeof ResponseCoordinatorDtoType)[keyof typeof ResponseCoordinatorDtoType]
 
- 
 export const ResponseCoordinatorDtoType = {
   IB_EE: 'IB_EE',
   IB_CAS: 'IB_CAS',
   IB_TOK: 'IB_TOK',
   IB_ALL: 'IB_ALL',
-} as const;
+} as const

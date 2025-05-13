@@ -1,5 +1,5 @@
 import { useCanteenCreateOrUpdate } from '@/legacy/generated/endpoint'
-import type { RequestUpsertCanteenDto } from '@/legacy/generated/model'
+import { RequestUpsertCanteenDto } from '@/legacy/generated/model'
 
 export function useTeacherCanteenSubmit(refetch: () => void) {
   const { mutateAsync: upsertCanteen } = useCanteenCreateOrUpdate({

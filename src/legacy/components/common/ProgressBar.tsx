@@ -1,19 +1,19 @@
-import { Box, LinearProgress, LinearProgressProps } from '@mui/material';
-import clsx from 'clsx';
-import { PropsWithChildren } from 'react';
-import { use100vh } from 'react-div-100vh';
+import { Box, LinearProgress, LinearProgressProps } from '@mui/material'
+import clsx from 'clsx'
+import { PropsWithChildren } from 'react'
+import { use100vh } from 'react-div-100vh'
 
 interface ProgressBarProps {
-  text: string;
-  progress: number;
+  text: string
+  progress: number
 }
 
 interface LinearProgressWithLabelProps extends LinearProgressProps {
-  value: number;
+  value: number
 }
 
 function LinearProgressWithLabel(props: LinearProgressWithLabelProps) {
-  const { value, ...rest } = props;
+  const { value, ...rest } = props
   return (
     <Box width="100%">
       <LinearProgress
@@ -31,18 +31,18 @@ function LinearProgressWithLabel(props: LinearProgressWithLabelProps) {
         }}
       />
     </Box>
-  );
+  )
 }
 
 export function ProgressBar({ text, progress }: PropsWithChildren<ProgressBarProps>) {
-  const vh = use100vh();
-  const height = vh ? `${vh}px` : '100vh';
+  const vh = use100vh()
+  const height = vh ? `${vh}px` : '100vh'
   return (
     <div
       style={{ height }}
       onClick={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
+        e.preventDefault()
+        e.stopPropagation()
       }}
       className={clsx('fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center bg-black/60 px-6')}
     >
@@ -57,5 +57,5 @@ export function ProgressBar({ text, progress }: PropsWithChildren<ProgressBarPro
         </p>
       </div>
     </div>
-  );
+  )
 }

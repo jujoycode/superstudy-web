@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentExamScoreGetStudentMockExamScoresByParentParams = { grade: number; year: number; month: number };
+export type StudentExamScoreGetStudentMockExamScoresByParentParams = { grade: number; year: number; month: number }

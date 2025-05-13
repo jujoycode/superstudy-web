@@ -7,5 +7,5 @@
  */
 
 export type StudentExamScoreInsertMockTestScoresBody = {
-  file?: Blob;
-};
+  file?: Blob
+}

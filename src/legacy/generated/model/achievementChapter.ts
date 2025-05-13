@@ -5,29 +5,29 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { AchievementCriteria } from './achievementCriteria';
+import type { AchievementCriteria } from './achievementCriteria'
 
 export interface AchievementChapter {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 과목명 */
-  subject: string;
+  subject: string
   /** 성격 */
-  description: string;
+  description: string
   /** 목표 */
-  goal: string;
+  goal: string
   /** 교과 분류 */
-  mainSubject: string;
+  mainSubject: string
   /** 개정연도 */
-  docYear: string;
+  docYear: string
   /** 학교 유형 */
-  schoolType: string;
+  schoolType: string
   /** 하위 성취 기준들 */
-  achievementCriterias: AchievementCriteria[];
+  achievementCriterias: AchievementCriteria[]
   /** 하위 성취 기준 IDs */
-  achievementCriteriaIds: number[];
+  achievementCriteriaIds: number[]
 }

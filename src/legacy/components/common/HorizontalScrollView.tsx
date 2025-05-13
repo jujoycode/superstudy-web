@@ -1,9 +1,9 @@
-import clsx from 'clsx';
-import { PropsWithChildren } from 'react';
+import clsx from 'clsx'
+import { PropsWithChildren } from 'react'
 
 interface HorizontalScrollViewProps {
-  classNameOuter?: string;
-  classNameInner?: string;
+  classNameOuter?: string
+  classNameInner?: string
 }
 
 export function HorizontalScrollView({
@@ -17,5 +17,5 @@ export function HorizontalScrollView({
         <ul className={clsx('horizontal-scroll-view-inner', classNameInner)}>{children}</ul>
       </div>
     </div>
-  );
+  )
 }

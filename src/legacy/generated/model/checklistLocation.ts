@@ -6,13 +6,12 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ChecklistLocation = (typeof ChecklistLocation)[keyof typeof ChecklistLocation];
+export type ChecklistLocation = (typeof ChecklistLocation)[keyof typeof ChecklistLocation]
 
- 
 export const ChecklistLocation = {
   ESSAY: 'ESSAY',
   TOK_ESSAY: 'TOK_ESSAY',
   TOK_EXHIBITION: 'TOK_EXHIBITION',
   CAS: 'CAS',
   PORTFOLIO_INTERVIEW: 'PORTFOLIO_INTERVIEW',
-} as const;
+} as const

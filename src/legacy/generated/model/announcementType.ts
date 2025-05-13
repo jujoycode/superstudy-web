@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type AnnouncementType = (typeof AnnouncementType)[keyof typeof AnnouncementType];
+export type AnnouncementType = (typeof AnnouncementType)[keyof typeof AnnouncementType]
 
- 
 export const AnnouncementType = {
   UPDATE: 'UPDATE',
   SERVICE: 'SERVICE',
   WORK: 'WORK',
-} as const;
+} as const

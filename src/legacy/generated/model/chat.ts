@@ -8,33 +8,33 @@
 
 export interface Chat {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 채팅 내용 */
-  content: string;
+  content: string
   /** 채팅방 아이디 */
-  chatroomId: number;
+  chatroomId: number
   /** 메세지 송신자 아이디 */
-  senderId: number;
+  senderId: number
   /**
    * 메세지 수신자 아이디
    * @deprecated
    */
-  receiverId: number;
+  receiverId: number
   /**
    * 메세지 읽음 확인
    * @deprecated
    */
-  isRead: boolean;
+  isRead: boolean
   /** 이미지파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 메시지 타입 */
-  type: string;
+  type: string
   /** 메시지 상태 */
-  status: string;
+  status: string
 }

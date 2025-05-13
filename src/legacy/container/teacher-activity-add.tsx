@@ -1,15 +1,12 @@
 import { useState } from 'react'
-
-// ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
 import { Routes } from '@/legacy/constants/routes'
-
 import { useActivityCreate, useActivityUpdate } from '@/legacy/generated/endpoint'
-import { ActivityType, UploadFileTypeEnum, type Group, type RequestCreateActivityDto } from '@/legacy/generated/model'
+import { ActivityType, Group, RequestCreateActivityDto, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import type { DocumentObject } from '@/legacy/types/document-object'
-import type { ImageObject } from '@/legacy/types/image-object'
+import { DocumentObject } from '@/legacy/types/document-object'
+import { ImageObject } from '@/legacy/types/image-object'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { GroupContainer } from './group'
 import { useTeacherActivityDetail } from './teacher-activity-detail'
@@ -116,7 +113,7 @@ export function useTeacherActivityAdd(activityId?: number) {
 
   const selectedGroupIds = selectedGroups?.map((el) => el.id) || []
   const isLoading = isUploadLoading || isCreateActivityMutate || isUpdateActivityMutate
-  const isContainQuestion = true
+  let isContainQuestion = true
   // if (type === ActivityType.SURVEY && content) {
   //   const survey = new Survey.Model(JSON.parse(content));
   //   if (survey.getAllQuestions().length > 0) {

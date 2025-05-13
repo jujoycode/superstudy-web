@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { UploadFileTypeEnum } from './uploadFileTypeEnum';
+import type { UploadFileTypeEnum } from './uploadFileTypeEnum'
 
-export type ImagesUploadImageParams = { uploadFileType: UploadFileTypeEnum };
+export type ImagesUploadImageParams = { uploadFileType: UploadFileTypeEnum }

@@ -7,12 +7,12 @@
  */
 
 export type ParentManagementGetParentsParams = {
-  page?: number;
-  size?: number;
-  year?: number;
-  klass?: string;
-  first_visit?: boolean;
-  keyword?: string;
-  sortField?: string;
-  sortDirection?: string;
-};
+  page?: number
+  size?: number
+  year?: number
+  klass?: string
+  first_visit?: boolean
+  keyword?: string
+  sortField?: string
+  sortDirection?: string
+}

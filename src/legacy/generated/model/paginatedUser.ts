@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { User } from './user';
+import type { User } from './user'
 
 export interface PaginatedUser {
-  items: User[];
-  page: number;
-  size: number;
-  total: number;
+  items: User[]
+  page: number
+  size: number
+  total: number
 }

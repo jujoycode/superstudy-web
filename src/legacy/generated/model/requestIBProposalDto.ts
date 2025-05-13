@@ -8,21 +8,21 @@
 
 export interface RequestIBProposalDto {
   /** 제안서 순위 */
-  rank?: number;
+  rank?: number
   /** 모델 논문 */
-  modelPaper?: string;
+  modelPaper?: string
   /** 모델 논문 요약 */
-  modelPaperSummary?: string;
+  modelPaperSummary?: string
   /** 연구 주제 */
-  researchTopic: string;
+  researchTopic: string
   /** 연구 질문 */
-  researchQuestion?: string;
+  researchQuestion?: string
   /** 연구 필요성 */
-  researchNeed?: string;
+  researchNeed?: string
   /** 연구 방법 */
-  researchMethod?: string;
+  researchMethod?: string
   /** 과목 */
-  subject: string;
+  subject: string
   /** 과목 카테고리 */
-  category?: string;
+  category?: string
 }

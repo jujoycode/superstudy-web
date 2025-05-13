@@ -5,12 +5,12 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { EEEvaluationLocation } from './eEEvaluationLocation';
-import type { RequestEEEvaluationCriteriaByLevelsDto } from './requestEEEvaluationCriteriaByLevelsDto';
+import type { EEEvaluationLocation } from './eEEvaluationLocation'
+import type { RequestEEEvaluationCriteriaByLevelsDto } from './requestEEEvaluationCriteriaByLevelsDto'
 
 export interface RequestEEEvaluationDto {
   /** 평가 속하는 위치 */
-  location: EEEvaluationLocation;
+  location: EEEvaluationLocation
   /** 평가 기준 */
-  criterias?: RequestEEEvaluationCriteriaByLevelsDto[];
+  criterias?: RequestEEEvaluationCriteriaByLevelsDto[]
 }

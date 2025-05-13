@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactElement } from 'react'
+
 import { cn } from '@/legacy/lib/tailwind-merge'
 
 interface TopNavbarProps extends HTMLAttributes<HTMLElement> {

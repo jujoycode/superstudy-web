@@ -5,14 +5,14 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { OutingStatus } from './outingStatus';
-import type { OutingTypeEnum } from './outingTypeEnum';
+import type { OutingStatus } from './outingStatus'
+import type { OutingTypeEnum } from './outingTypeEnum'
 
 export type OutingsDownloadOutingsParams = {
-  outingStatus?: OutingStatus;
-  type?: OutingTypeEnum;
-  startDate: string;
-  endDate: string;
-  username?: string | null;
-  selectedGroupId?: number | null;
-};
+  outingStatus?: OutingStatus
+  type?: OutingTypeEnum
+  startDate: string
+  endDate: string
+  username?: string | null
+  selectedGroupId?: number | null
+}

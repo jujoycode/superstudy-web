@@ -1,4 +1,5 @@
 import preval from 'preval.macro'
+
 import type { errorType } from '@/legacy/types'
 
 export const padLeftstr = (number: string | number, length: number = 2, character = '0'): string => {

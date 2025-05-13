@@ -5,31 +5,31 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { User } from './user';
+import type { User } from './user'
 
 export interface StudentRecord {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 종류 */
-  type: string;
+  type: string
   /** 자봉동진 */
-  creativeType: string | null;
+  creativeType: string | null
   /** 과목 */
-  subject: string | null;
+  subject: string | null
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  content: string;
+  content: string
   /** 작성자 선생님 ID */
-  writerId: number;
+  writerId: number
   /** 작성자 선생님 */
-  writer: User;
+  writer: User
   /** 학생 ID */
-  userId: number;
+  userId: number
   /** 학생 */
-  user: User;
+  user: User
 }

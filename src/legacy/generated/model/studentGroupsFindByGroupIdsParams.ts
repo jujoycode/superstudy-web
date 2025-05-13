@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentGroupsFindByGroupIdsParams = { ids: number[] };
+export type StudentGroupsFindByGroupIdsParams = { ids: number[] }

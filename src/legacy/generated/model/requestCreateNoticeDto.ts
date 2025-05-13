@@ -8,17 +8,17 @@
 
 export interface RequestCreateNoticeDto {
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  content: string;
+  content: string
   /** 카테고리, codes테이블의 name값이 입력됨. */
-  category: string;
+  category: string
   /** 이미지파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 수신대상(학생) */
-  toStudent: boolean;
+  toStudent: boolean
   /** 수신대상(보호자) */
-  toParent: boolean;
+  toParent: boolean
 }

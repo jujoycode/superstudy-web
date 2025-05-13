@@ -8,13 +8,13 @@
 
 export interface RequestModifyLectureInfoDto {
   /** 교실이름 */
-  room?: string;
+  room?: string
   /** 유효한 주 번호, 기본은 0, 예) 23이면 23주차에만 유효 */
-  validityWeek?: number;
+  validityWeek?: number
   /** 과목명 */
-  subject?: string;
+  subject?: string
   /** 선생님 유저 아이디 */
-  teacherId?: number;
+  teacherId?: number
   /** 변경할 그룹 아이디(선생님 시간표 Only) */
-  groupId?: number;
+  groupId?: number
 }

@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type UserFindIdParams = { name: string; phone: string };
+export type UserFindIdParams = { name: string; phone: string }

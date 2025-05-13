@@ -1,15 +1,13 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-
-// ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
-import { Routes } from '@/routers'
-
-import { isPdfFile } from '@/legacy/util/file'
+import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { Constants } from '@/legacy/constants'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useBoardDelete, useBoardFindOne } from '@/legacy/generated/endpoint'
-import type { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { isPdfFile } from '@/legacy/util/file'
+// ! 지훈쌤 개선안 적용
+import { Routes } from 'src/routes'
 
 export function useTeacherBoardDetail(boardId?: number) {
   const { push } = useHistory()

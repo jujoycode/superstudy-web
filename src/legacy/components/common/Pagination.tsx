@@ -1,8 +1,10 @@
 import { range } from 'lodash'
 import { HTMLAttributes } from 'react'
 import { Link, LinkProps } from 'react-router'
+
 import { useSearch } from '@/legacy/lib/router'
 import { cn } from '@/legacy/lib/tailwind-merge'
+
 import { Icon } from './icons'
 
 interface Paginated<T> {

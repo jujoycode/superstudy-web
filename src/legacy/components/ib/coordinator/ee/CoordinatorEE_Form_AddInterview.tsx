@@ -1,15 +1,17 @@
 import clsx from 'clsx'
 import { PropsWithChildren, useRef, useState } from 'react'
+
 import { Blank } from '@/legacy/components/common'
 import { useUpdateInterview } from '@/legacy/container/ib/update-interview'
 import { useInterviewCreateByTeacher, useInterviewUpdateByTeacher } from '@/legacy/generated/endpoint'
 import { ResponseInterviewDto } from '@/legacy/generated/model'
-import AlertV2 from '../@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { Typography } from '../@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import SVGIcon from '../../../icon/SVGIcon'
 import { FormInputField } from '../../FormInputField'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 
 interface CoordinatorEE_Form_AddInterviewProps {
   modalOpen: boolean

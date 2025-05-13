@@ -1,5 +1,5 @@
-import clsx from 'clsx';
-import { InputHTMLAttributes, forwardRef } from 'react';
+import clsx from 'clsx'
+import { InputHTMLAttributes, forwardRef } from 'react'
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {}
 
@@ -25,5 +25,5 @@ export const ToggleSwitch = forwardRef<HTMLInputElement, CheckboxProps>(function
         </div>
       </label>
     </div>
-  );
-});
+  )
+})

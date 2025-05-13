@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+
 import { Typography } from '@/legacy/components/common/Typography'
 
 type LearingOutcome = { name: string; count: number }

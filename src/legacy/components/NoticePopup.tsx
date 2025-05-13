@@ -1,5 +1,7 @@
 import { PropsWithChildren, useState } from 'react'
+
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+
 import { Label } from './common'
 import { Button } from './common/Button'
 import { Checkbox } from './common/Checkbox'
@@ -14,11 +16,10 @@ interface NoticePopupProps {
 export function NoticePopup({
   noticeOpen,
   setNoticeClose,
-  width = 'w-80',
   ablePropragation = false,
 }: PropsWithChildren<NoticePopupProps>) {
   const [showNever, setShowNever] = useState(false)
-  const { t, currentLang } = useLanguage()
+  const { t } = useLanguage()
 
   const noticeShow = localStorage.getItem('noticeShow')
 
@@ -27,10 +28,10 @@ export function NoticePopup({
   }
 
   // const title = t('new_to_superschool');
-  const contents = ` 회원가입 및 로그인은 해당 학교의 안내를 받은 후에만 가능합니다. 학교의 안내를 기다려주세요.
+  // const contents = ` 회원가입 및 로그인은 해당 학교의 안내를 받은 후에만 가능합니다. 학교의 안내를 기다려주세요.
 
-  - 학생은 학교에서 안내한 '이메일'을 통해 전달된 비밀번호 확인 후 회원가입이 가능합니다. 
-  - 보호자님은 학생 가입 후 ‘카카오톡’으로 받은 회원가입요청 알림톡을 통해 회원가입이 가능합니다. `
+  // - 학생은 학교에서 안내한 '이메일'을 통해 전달된 비밀번호 확인 후 회원가입이 가능합니다.
+  // - 보호자님은 학생 가입 후 ‘카카오톡’으로 받은 회원가입요청 알림톡을 통해 회원가입이 가능합니다. `
 
   // const image =
   //   currentLang === 'ko'

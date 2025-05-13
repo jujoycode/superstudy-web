@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
+
+import { Typography } from '@/legacy/components/common/Typography'
 import { useGetIBProject } from '@/legacy/container/ib-project-get-filter'
 import {
   IBGetIBBycoordinatorParams,
   ResponseCoordinatorSelfCheckDtoType,
   ResponseUserDto,
 } from '@/legacy/generated/model'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import SVGIcon from '../icon/SVGIcon'
+
 import ProjectCard from './ProjectCard'
 
 interface ProjectListProps {

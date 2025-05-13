@@ -5,22 +5,22 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseFeedbackDtoReferenceTable } from './responseFeedbackDtoReferenceTable';
-import type { ResponseIBUserDto } from './responseIBUserDto';
+import type { ResponseFeedbackDtoReferenceTable } from './responseFeedbackDtoReferenceTable'
+import type { ResponseIBUserDto } from './responseIBUserDto'
 
 export interface ResponseFeedbackDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** IB 프로젝트 타입 */
-  referenceTable: ResponseFeedbackDtoReferenceTable;
+  referenceTable: ResponseFeedbackDtoReferenceTable
   /** ID */
-  referenceId: number;
+  referenceId: number
   /** 피드백 내용 */
-  content: string;
+  content: string
   /** 프로젝트 리더 학생 */
-  sender: ResponseIBUserDto;
+  sender: ResponseIBUserDto
 }

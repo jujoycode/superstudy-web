@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
-import 'tailwindcss/tailwind.css';
-import SVGIcon from '../icon/SVGIcon';
-import { ButtonV2 } from './ButtonV2';
-import { Input } from './Input';
-import TimePicker from './TimePicker';
-import { Typography } from './Typography';
+import React, { useState } from 'react'
+
+import 'tailwindcss/tailwind.css'
+import SVGIcon from '../icon/SVGIcon'
+
+import { ButtonV2 } from './ButtonV2'
+import { Input } from './Input'
+import TimePicker from './TimePicker'
+import { Typography } from './Typography'
 
 interface ScheduleAndPeriodPickerProps {
   initialDate?: {
-    startDate: Date | undefined;
-    endDate: Date | undefined;
-    cycle: string | undefined;
-  };
-  onSave?: (date: { startDate: Date | undefined; endDate: Date | undefined; cycle: string | undefined }) => void;
-  onCancel?: () => void;
+    startDate: Date | undefined
+    endDate: Date | undefined
+    cycle: string | undefined
+  }
+  onSave?: (date: { startDate: Date | undefined; endDate: Date | undefined; cycle: string | undefined }) => void
+  onCancel?: () => void
 }
 
 const ScheduleAndPeriodPicker: React.FC<ScheduleAndPeriodPickerProps> = ({
@@ -21,89 +23,89 @@ const ScheduleAndPeriodPicker: React.FC<ScheduleAndPeriodPickerProps> = ({
   onSave,
   onCancel,
 }) => {
-  const [currentDate, setCurrentDate] = useState(initialDate.startDate || new Date());
-  const [localDate, setLocalDate] = useState(initialDate);
+  const [currentDate, setCurrentDate] = useState(initialDate.startDate || new Date())
+  const [localDate, setLocalDate] = useState(initialDate)
 
-  const today = new Date();
+  const today = new Date()
 
   const handleDateSelect = (selectedDate: Date) => {
     setLocalDate((prev) => {
       if (!prev.startDate || (prev.startDate && prev.endDate)) {
-        return { ...prev, startDate: selectedDate, endDate: undefined };
+        return { ...prev, startDate: selectedDate, endDate: undefined }
       }
       if (selectedDate < prev.startDate) {
-        return { ...prev, startDate: selectedDate, endDate: prev.startDate };
+        return { ...prev, startDate: selectedDate, endDate: prev.startDate }
       }
-      return { ...prev, endDate: selectedDate };
-    });
-  };
+      return { ...prev, endDate: selectedDate }
+    })
+  }
 
   // 이전 달로 이동
   const handlePrevMonth = () => {
-    const prevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
-    setCurrentDate(prevMonth);
-  };
+    const prevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
+    setCurrentDate(prevMonth)
+  }
 
   // 다음 달로 이동
   const handleNextMonth = () => {
-    const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
-    setCurrentDate(nextMonth);
-  };
+    const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
+    setCurrentDate(nextMonth)
+  }
 
   const handleCycleChange = (newCount: string | undefined) => {
-    setLocalDate((prev) => ({ ...prev, cycle: newCount }));
-  };
+    setLocalDate((prev) => ({ ...prev, cycle: newCount }))
+  }
 
   const handleSave = () => {
     if (onSave) {
-      onSave(localDate); // 최종 저장 시 상위로 전달
+      onSave(localDate) // 최종 저장 시 상위로 전달
     }
-  };
+  }
 
   // 달력 날짜 배열 생성 (이전 달 마지막 날짜와 다음 달 첫날 포함)
   const generateCalendarDates = () => {
-    const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-    const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-    const startDayOfWeek = startOfMonth.getDay();
-    const endDayOfWeek = endOfMonth.getDay();
+    const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
+    const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0)
+    const startDayOfWeek = startOfMonth.getDay()
+    const endDayOfWeek = endOfMonth.getDay()
 
-    const prevMonthEnd = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
-    const nextMonthStart = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+    const prevMonthEnd = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0)
+    const nextMonthStart = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
 
-    const dates: { date: Date; isCurrentMonth: boolean }[] = [];
+    const dates: { date: Date; isCurrentMonth: boolean }[] = []
 
     // 이전 달 날짜 채우기
     for (let i = startDayOfWeek - 1; i >= 0; i--) {
       dates.push({
         date: new Date(prevMonthEnd.getFullYear(), prevMonthEnd.getMonth(), prevMonthEnd.getDate() - i),
         isCurrentMonth: false,
-      });
+      })
     }
 
     // 현재 달 날짜 채우기
     for (let i = 1; i <= endOfMonth.getDate(); i++) {
-      dates.push({ date: new Date(currentDate.getFullYear(), currentDate.getMonth(), i), isCurrentMonth: true });
+      dates.push({ date: new Date(currentDate.getFullYear(), currentDate.getMonth(), i), isCurrentMonth: true })
     }
 
     // 다음 달 날짜 채우기
     for (let i = 1; i < 7 - endDayOfWeek; i++) {
-      dates.push({ date: new Date(nextMonthStart.getFullYear(), nextMonthStart.getMonth(), i), isCurrentMonth: false });
+      dates.push({ date: new Date(nextMonthStart.getFullYear(), nextMonthStart.getMonth(), i), isCurrentMonth: false })
     }
 
-    return dates;
-  };
+    return dates
+  }
 
-  const dates = generateCalendarDates();
+  const dates = generateCalendarDates()
 
   const isSameDay = (d1: Date, d2: Date) =>
-    d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
+    d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate()
 
-  const isBetween = (date: Date, start: Date, end: Date) => date > start && date < end;
+  const isBetween = (date: Date, start: Date, end: Date) => date > start && date < end
 
-  const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+  const weekdays = ['일', '월', '화', '수', '목', '금', '토']
 
   return (
-    <div className="flex w-[280px] flex-col items-center gap-4 rounded-lg border border-primary-gray-200 bg-white py-4 text-13 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]">
+    <div className="border-primary-gray-200 text-13 flex w-[280px] flex-col items-center gap-4 rounded-lg border bg-white py-4 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]">
       {/* 달력 */}
       <div className="flex w-[248px] flex-col items-center gap-2">
         <div className="flex w-full items-center justify-around gap-1">
@@ -175,25 +177,22 @@ const ScheduleAndPeriodPicker: React.FC<ScheduleAndPeriodPickerProps> = ({
               {localDate.startDate &&
                 localDate.endDate &&
                 isBetween(calendarDate, localDate.startDate, localDate.endDate) && (
-                  <div className="absolute inset-0 h-full w-full bg-primary-orange-100"></div>
+                  <div className="bg-primary-orange-100 absolute inset-0 h-full w-full"></div>
                 )}
               {localDate.startDate && isSameDay(calendarDate, localDate.startDate) && (
-                <div className="absolute inset-y-0 left-1/2 h-full w-1/2 bg-primary-orange-100"></div>
+                <div className="bg-primary-orange-100 absolute inset-y-0 left-1/2 h-full w-1/2"></div>
               )}
               {localDate.endDate && isSameDay(calendarDate, localDate.endDate) && (
-                <div className="absolute inset-y-0 right-1/2 h-full w-1/2 bg-primary-orange-100"></div>
+                <div className="bg-primary-orange-100 absolute inset-y-0 right-1/2 h-full w-1/2"></div>
               )}
               <Typography
                 variant="body3"
-                className={`z-10 flex h-8 w-8 cursor-pointer items-center justify-center font-medium 
-                ${isCurrentMonth ? 'text-primary-gray-900' : 'text-primary-gray-400'}
-                ${isSameDay(calendarDate, today) ? 'rounded-full border border-primary-orange-400' : ''}
-                ${
+                className={`z-10 flex h-8 w-8 cursor-pointer items-center justify-center font-medium ${isCurrentMonth ? 'text-primary-gray-900' : 'text-primary-gray-400'} ${isSameDay(calendarDate, today) ? 'border-primary-orange-400 rounded-full border' : ''} ${
                   localDate.startDate && isSameDay(calendarDate, localDate.startDate)
-                    ? 'rounded-full bg-primary-orange-800 text-white'
+                    ? 'bg-primary-orange-800 rounded-full text-white'
                     : localDate.endDate && isSameDay(calendarDate, localDate.endDate)
-                    ? 'rounded-full bg-primary-orange-800 text-white'
-                    : ''
+                      ? 'bg-primary-orange-800 rounded-full text-white'
+                      : ''
                 }`}
                 onClick={() => handleDateSelect(calendarDate)}
               >
@@ -205,7 +204,7 @@ const ScheduleAndPeriodPicker: React.FC<ScheduleAndPeriodPickerProps> = ({
       </div>
       <div className="w-full border-t border-gray-200"></div>
       <div className="flex w-[248px] flex-row items-center justify-between gap-4">
-        <Typography variant="body3" className="font-medium text-primary-gray-700">
+        <Typography variant="body3" className="text-primary-gray-700 font-medium">
           활동 주기
         </Typography>
         <Input.Basic
@@ -225,7 +224,7 @@ const ScheduleAndPeriodPicker: React.FC<ScheduleAndPeriodPickerProps> = ({
         </ButtonV2>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default ScheduleAndPeriodPicker;
+export default ScheduleAndPeriodPicker

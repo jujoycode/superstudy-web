@@ -5,32 +5,32 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { CalendarIdEnum } from './calendarIdEnum';
-import type { AttendeeEnum } from './attendeeEnum';
-import type { ScheduleCategoryEnum } from './scheduleCategoryEnum';
+import type { AttendeeEnum } from './attendeeEnum'
+import type { CalendarIdEnum } from './calendarIdEnum'
+import type { ScheduleCategoryEnum } from './scheduleCategoryEnum'
 
 export interface RequestCreateExtendedScheduleDto {
   /** 학사선생님일정여부, 0: 학사일정, 1: 선생님일정 */
-  calendarId: CalendarIdEnum;
+  calendarId: CalendarIdEnum
   /** 일정종류 */
-  attendee: AttendeeEnum;
+  attendee: AttendeeEnum
   /** 제목 */
-  title: string;
+  title: string
   /** 카테고리 */
-  category: ScheduleCategoryEnum;
+  category: ScheduleCategoryEnum
   /**
    * 사용안되는 필드
    * @deprecated
    */
-  location: string;
+  location: string
   /** 종일일정여부 */
-  isAllDay: boolean;
+  isAllDay: boolean
   /** 시작일 */
-  start: string;
+  start: string
   /** 종료일 */
-  end: string;
+  end: string
   /** 대상 학년 (0: 전체, 1~6: 해당학년) */
-  grade?: number;
+  grade?: number
   /** 그룹 ID (그룹일정인 경우 필수) */
-  groupId?: number;
+  groupId?: number
 }

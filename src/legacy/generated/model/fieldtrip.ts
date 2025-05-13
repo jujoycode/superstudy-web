@@ -5,199 +5,199 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { FieldtripType } from './fieldtripType';
-import type { FieldtripStatus } from './fieldtripStatus';
-import type { User } from './user';
+import type { FieldtripStatus } from './fieldtripStatus'
+import type { FieldtripType } from './fieldtripType'
+import type { User } from './user'
 
 export interface Fieldtrip {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 체헙학습 신청서 종류 */
-  type: FieldtripType;
+  type: FieldtripType
   /** 시작일 */
-  startAt: string;
+  startAt: string
   /** 시작일의 시작교시 */
-  startPeriodS: number;
+  startPeriodS: number
   /** 종료일 */
-  endAt: string;
+  endAt: string
   /** 종료일의 종료교시 */
-  endPeriodE: number;
+  endPeriodE: number
   /** 1일 기준 기간 */
-  wholeDayPeriod: string;
+  wholeDayPeriod: string
   /** 학년도 */
-  year: string;
+  year: string
   /** 목적 */
-  purpose: string;
+  purpose: string
   /** 목적지 */
-  destination: string;
+  destination: string
   /** 해외 여부 */
-  overseas: boolean;
+  overseas: boolean
   /** 숙박장소 */
-  accommodation: string;
+  accommodation: string
   /** 인솔자명 */
-  guideName: string;
+  guideName: string
   /** 인솔자연락처 */
-  guidePhone: string;
+  guidePhone: string
   /** 내용 */
-  content: string;
+  content: string
   /** 체험학습형태 */
-  form: string;
+  form: string
   /** 남은일수 */
-  currentRemainDays: number;
+  currentRemainDays: number
   /** 사용일수 */
-  usedDays: number;
+  usedDays: number
   /** 인솔자관계 */
-  relationship: string;
+  relationship: string
   /** 승인알림일 */
-  noticedAt: string;
+  noticedAt: string
   /** 신청서 첨부파일들 */
-  applyFiles: string[];
+  applyFiles: string[]
   /** 결과보고서내용 */
-  resultText: string;
+  resultText: string
   /** 결과보고서제목 */
-  resultTitle: string;
+  resultTitle: string
   /** @deprecated */
-  resultFile: string;
+  resultFile: string
   /** 결과보고서첨부파일들 */
-  resultFiles: string[];
+  resultFiles: string[]
   /** 학년반 */
-  studentGradeKlass: string;
+  studentGradeKlass: string
   /** 출석번호 */
-  studentNumber: number;
+  studentNumber: number
   /** 체험학습 신청서 상태 */
-  fieldtripStatus: FieldtripStatus;
+  fieldtripStatus: FieldtripStatus
   /** 체험학습 결과보고서 상태 */
-  fieldtripResultStatus: FieldtripStatus;
+  fieldtripResultStatus: FieldtripStatus
   /** 학생서명이미지 */
-  studentSignature: string | null;
+  studentSignature: string | null
   /** 부모님서명이미지 */
-  parentSignature: string | null;
+  parentSignature: string | null
   /** 선생님서명이미지 */
-  teacherSignature: string | null;
+  teacherSignature: string | null
   /** 학년계 서명이미지 */
-  preHeadSignature: string | null;
+  preHeadSignature: string | null
   /** 학년부장서명이미지 */
-  headSignature: string | null;
+  headSignature: string | null
   /** 교무계 서명이미지 */
-  prePrincipalSignature: string | null;
+  prePrincipalSignature: string | null
   /** 교무부장서명이미지 */
-  principalSignature: string | null;
+  principalSignature: string | null
   /** 교감 서명이미지 */
-  vicePrincipalSignature: string | null;
+  vicePrincipalSignature: string | null
   /** 교장 서명이미지 */
-  headPrincipalSignature: string | null;
+  headPrincipalSignature: string | null
   /** 결과보고서학생서명이미지 */
-  studentResultSignature: string;
+  studentResultSignature: string
   /** 결과보고서보호자서명이미지 */
-  parentResultSignature: string;
+  parentResultSignature: string
   /** 결과보고서선생님서명이미지 */
-  teacherResultSignature: string;
+  teacherResultSignature: string
   /** 결과보고서 학년계 서명이미지 */
-  preHeadResultSignature: string;
+  preHeadResultSignature: string
   /** 결과보고서학년부장서명이미지 */
-  headResultSignature: string;
+  headResultSignature: string
   /** 결과보고서 교무계 서명이미지 */
-  prePrincipalResultSignature: string;
+  prePrincipalResultSignature: string
   /** 결과보고서교무부장서명이미지 */
-  principalResultSignature: string;
+  principalResultSignature: string
   /** 결과보고서 교감 서명이미지 */
-  vicePrincipalResultSignature: string;
+  vicePrincipalResultSignature: string
   /** 결과보고서 교장 서명이미지 */
-  headPrincipalResultSignature: string;
+  headPrincipalResultSignature: string
   /** 신청일 */
-  reportedAt: string;
+  reportedAt: string
   /** 결과보고서제출일 */
-  resultReportedAt: string;
+  resultReportedAt: string
   /** 반려사유 */
-  notApprovedReason: string;
+  notApprovedReason: string
   /** 삭제요청사유 */
-  deleteReason: string;
+  deleteReason: string
   /** 수정사유 */
-  updateReason: string;
+  updateReason: string
   /** 학생유저아이디 */
-  studentId: number;
+  studentId: number
   /** 학생유저 */
-  student: User;
+  student: User
   /** 선생님유저아이디 */
-  teacherId: number;
+  teacherId: number
   /** 선생님유저 */
-  teacher: User;
+  teacher: User
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 승인자1 서명 */
-  approver1Signature: string | null;
+  approver1Signature: string | null
   /** 승인자1 유저아이디 */
-  approver1Id: number;
+  approver1Id: number
   /** 승인자1 직급 */
-  approver1Title: string | null;
+  approver1Title: string | null
   /** 승인자2 서명 */
-  approver2Signature: string | null;
+  approver2Signature: string | null
   /** 승인자2 유저아이디 */
-  approver2Id: number;
+  approver2Id: number
   /** 승인자2 직급 */
-  approver2Title: string | null;
+  approver2Title: string | null
   /** 승인자3 서명 */
-  approver3Signature: string | null;
+  approver3Signature: string | null
   /** 승인자3 유저아이디 */
-  approver3Id: number;
+  approver3Id: number
   /** 승인자3 직급 */
-  approver3Title: string | null;
+  approver3Title: string | null
   /** 승인자4 서명 */
-  approver4Signature: string | null;
+  approver4Signature: string | null
   /** 승인자4 유저아이디 */
-  approver4Id: number;
+  approver4Id: number
   /** 승인자4 직급 */
-  approver4Title: string | null;
+  approver4Title: string | null
   /** 승인자5 서명 */
-  approver5Signature: string | null;
+  approver5Signature: string | null
   /** 승인자5 유저아이디 */
-  approver5Id: number;
+  approver5Id: number
   /** 승인자5 직급 */
-  approver5Title: string | null;
+  approver5Title: string | null
   /** 다음 승인자 */
-  nextApprover: string | null;
+  nextApprover: string | null
   /** 다음 승인자Id */
-  nextApproverId: number;
+  nextApproverId: number
   /** 다음 승인자 직급 */
-  nextApproverTitle: string | null;
+  nextApproverTitle: string | null
   /** 승인자1 서명(결과보고서) */
-  resultApprover1Signature: string | null;
+  resultApprover1Signature: string | null
   /** 승인자1 유저아이디(결과보고서) */
-  resultApprover1Id: number;
+  resultApprover1Id: number
   /** 승인자1 직급(결과보고서) */
-  resultApprover1Title: string | null;
+  resultApprover1Title: string | null
   /** 승인자2 서명(결과보고서) */
-  resultApprover2Signature: string | null;
+  resultApprover2Signature: string | null
   /** 승인자2 유저아이디(결과보고서) */
-  resultApprover2Id: number;
+  resultApprover2Id: number
   /** 승인자2 직급(결과보고서) */
-  resultApprover2Title: string | null;
+  resultApprover2Title: string | null
   /** 승인자3 서명(결과보고서) */
-  resultApprover3Signature: string | null;
+  resultApprover3Signature: string | null
   /** 승인자3 유저아이디(결과보고서) */
-  resultApprover3Id: number;
+  resultApprover3Id: number
   /** 승인자3 직급(결과보고서) */
-  resultApprover3Title: string | null;
+  resultApprover3Title: string | null
   /** 승인자4 서명(결과보고서) */
-  resultApprover4Signature: string | null;
+  resultApprover4Signature: string | null
   /** 승인자4 유저아이디(결과보고서) */
-  resultApprover4Id: number;
+  resultApprover4Id: number
   /** 승인자4 직급(결과보고서) */
-  resultApprover4Title: string | null;
+  resultApprover4Title: string | null
   /** 승인자5 서명(결과보고서) */
-  resultApprover5Signature: string | null;
+  resultApprover5Signature: string | null
   /** 승인자5 유저아이디(결과보고서) */
-  resultApprover5Id: number;
+  resultApprover5Id: number
   /** 승인자5 직급(결과보고서) */
-  resultApprover5Title: string | null;
+  resultApprover5Title: string | null
   /** 다음 승인자(결과보고서) */
-  nextResultApprover: string | null;
+  nextResultApprover: string | null
   /** 다음 승인자Id(결과보고서) */
-  nextResultApproverId: number;
+  nextResultApproverId: number
   /** 다음 승인자 직급(결과보고서) */
-  nextResultApproverTitle: string | null;
+  nextResultApproverTitle: string | null
 }

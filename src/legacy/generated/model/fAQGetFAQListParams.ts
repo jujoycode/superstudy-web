@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { FAQGetFAQListCategory } from './fAQGetFAQListCategory';
+import type { FAQGetFAQListCategory } from './fAQGetFAQListCategory'
 
-export type FAQGetFAQListParams = { page?: number; limit?: number; category: FAQGetFAQListCategory };
+export type FAQGetFAQListParams = { page?: number; limit?: number; category: FAQGetFAQListCategory }

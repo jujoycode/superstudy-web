@@ -1,9 +1,9 @@
+import { Button } from '@/legacy/components/common/Button'
 import { useFieldtripsDownloadFieldtrips } from '@/legacy/generated/endpoint'
 import { FieldtripStatus } from '@/legacy/generated/model/fieldtripStatus'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { downloadExcel } from '@/legacy/util/download-excel'
 import { makeDateToString } from '@/legacy/util/time'
-import { Button } from '@/legacy/components/common/Button'
 
 interface FieldtripExcelDownloadViewProps {
   startDate: string

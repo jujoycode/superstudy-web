@@ -1,8 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+
 import { useUserSearch } from '@/legacy/container/ib-find-user'
 import { ResponseIBStudentDto } from '@/legacy/generated/model'
+
 import SVGIcon from '../icon/SVGIcon'
+
 import { ButtonV2 } from './ButtonV2'
 import { Check } from './Check'
 import { Input } from './Input'

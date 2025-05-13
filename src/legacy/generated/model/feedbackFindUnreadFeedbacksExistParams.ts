@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { FeedbackReferenceTable } from './feedbackReferenceTable';
+import type { FeedbackReferenceTable } from './feedbackReferenceTable'
 
-export type FeedbackFindUnreadFeedbacksExistParams = { referenceTable: FeedbackReferenceTable; referenceId: number };
+export type FeedbackFindUnreadFeedbacksExistParams = { referenceTable: FeedbackReferenceTable; referenceId: number }

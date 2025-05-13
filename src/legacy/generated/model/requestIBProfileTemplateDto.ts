@@ -8,7 +8,7 @@
 
 export interface RequestIBProfileTemplateDto {
   /** 제목 */
-  title: string;
+  title: string
   /** 공통 질문내용 */
-  commonQuestion: string[];
+  commonQuestion: string[]
 }

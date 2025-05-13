@@ -5,45 +5,45 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { StudentNewsletterStatus } from './studentNewsletterStatus';
-import type { User } from './user';
-import type { Newsletter } from './newsletter';
+import type { Newsletter } from './newsletter'
+import type { StudentNewsletterStatus } from './studentNewsletterStatus'
+import type { User } from './user'
 
 export interface StudentNewsletter {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 학년반 */
-  studentGradeKlass: string;
+  studentGradeKlass: string
   /** 출석번호 */
-  studentNumber: string;
+  studentNumber: string
   /** 내용 */
-  content: string | null;
+  content: string | null
   /** 이미지파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 제출여부 */
-  isSubmitted: boolean;
+  isSubmitted: boolean
   /** 가정통신문설문상태 */
-  studentNewsletterStatus: StudentNewsletterStatus;
+  studentNewsletterStatus: StudentNewsletterStatus
   /** uuid */
-  uuid: string;
+  uuid: string
   /** 학생아이디 */
-  studentId: number;
+  studentId: number
   /** 학생유저정보(only 이름) */
-  student: User;
+  student: User
   /** 가정통신문아이디 */
-  newsletterId: number;
+  newsletterId: number
   /** 가정통신문 */
-  newsletter: Newsletter;
+  newsletter: Newsletter
   /** 학생 서명 */
-  studentSignature: string;
+  studentSignature: string
   /** 학부모 서명 */
-  parentSignature: string;
+  parentSignature: string
   /** 작성자아이디 */
-  writerId: number;
+  writerId: number
 }

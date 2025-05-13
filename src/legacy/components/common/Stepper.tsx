@@ -1,18 +1,20 @@
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import SVGIcon from '../icon/SVGIcon';
-import { Typography } from './Typography';
+import clsx from 'clsx'
+import { useEffect, useState } from 'react'
+
+import SVGIcon from '../icon/SVGIcon'
+
+import { Typography } from './Typography'
 
 interface StepperProps {
-  setNumber: (value: number) => void;
-  number: number;
-  readonly?: boolean;
-  disabled?: boolean;
+  setNumber: (value: number) => void
+  number: number
+  readonly?: boolean
+  disabled?: boolean
   range?: {
-    min: number;
-    max: number;
-  };
-  errorMessage?: string;
+    min: number
+    max: number
+  }
+  errorMessage?: string
 }
 
 const Stepper: React.FC<StepperProps> = ({
@@ -23,51 +25,51 @@ const Stepper: React.FC<StepperProps> = ({
   range,
   errorMessage = '범위에 맞게 입력해주세요',
 }) => {
-  const [isFocused, setIsFocused] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const [isFocused, setIsFocused] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const handleFocus = () => setIsFocused(true)
+  const handleBlur = () => setIsFocused(false)
 
-  const min = range?.min ?? 0;
-  const max = range?.max ?? Infinity;
+  const min = range?.min ?? 0
+  const max = range?.max ?? Infinity
 
   const handleMinusClick = () => {
     if (number > min) {
-      setNumber(number - 1);
+      setNumber(number - 1)
     }
-  };
+  }
 
   const handlePlusClick = () => {
     if (number < max) {
-      setNumber(number + 1);
+      setNumber(number + 1)
     }
-  };
+  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const value = event.target.value
     if (value === '') {
-      setNumber(0);
+      setNumber(0)
     } else {
-      const parsedValue = parseInt(value, 10);
+      const parsedValue = parseInt(value, 10)
       if (!isNaN(parsedValue)) {
-        setNumber(parsedValue);
+        setNumber(parsedValue)
       }
     }
-  };
+  }
 
   useEffect(() => {
     if (number < min || number > max) {
-      setIsError(true);
+      setIsError(true)
     } else {
-      setIsError(false);
+      setIsError(false)
     }
-  }, [number, min, max]);
+  }, [number, min, max])
 
   return (
     <div className="flex flex-col items-end justify-center gap-1">
       <div
         className={clsx(
-          'flex w-max flex-row items-center gap-1 overflow-hidden rounded-md border border-primary-gray-200',
+          'border-primary-gray-200 flex w-max flex-row items-center gap-1 overflow-hidden rounded-md border',
           {
             'bg-white': !disabled,
             'border-primary-gray-700': isFocused,
@@ -81,7 +83,7 @@ const Stepper: React.FC<StepperProps> = ({
         onBlur={!readonly && !disabled ? handleBlur : undefined}
       >
         <div
-          className={clsx('flex h-8 w-8 items-center justify-center border-r border-r-primary-gray-200', {
+          className={clsx('border-r-primary-gray-200 flex h-8 w-8 items-center justify-center border-r', {
             'bg-primary-gray-100': number <= min,
             'cursor-not-allowed': number <= min,
           })}
@@ -105,11 +107,11 @@ const Stepper: React.FC<StepperProps> = ({
             onChange={handleInputChange}
             readOnly={readonly}
             disabled={disabled}
-            className="h-full w-full border-none bg-transparent p-0 text-center text-sm font-medium text-primary-gray-700 caret-primary-blue-800 focus:outline-none focus:ring-0 disabled:text-primary-gray-400"
+            className="text-primary-gray-700 caret-primary-blue-800 disabled:text-primary-gray-400 h-full w-full border-none bg-transparent p-0 text-center text-sm font-medium focus:ring-0 focus:outline-none"
           />
         </div>
         <div
-          className={clsx('flex h-8 w-8 items-center justify-center border-l border-l-primary-gray-200', {
+          className={clsx('border-l-primary-gray-200 flex h-8 w-8 items-center justify-center border-l', {
             'bg-primary-gray-100': number >= max,
             'cursor-not-allowed': number >= max,
           })}
@@ -135,7 +137,7 @@ const Stepper: React.FC<StepperProps> = ({
         </Typography>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Stepper;
+export default Stepper

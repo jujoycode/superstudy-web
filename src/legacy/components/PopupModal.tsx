@@ -1,21 +1,22 @@
-import { PropsWithChildren, ReactNode } from 'react';
-import { Typography } from './common/Typography';
-import ColorSVGIcon from './icon/ColorSVGIcon';
-import clsx from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import clsx from 'clsx'
+import { PropsWithChildren, ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
+
+import { Typography } from './common/Typography'
+import ColorSVGIcon from './icon/ColorSVGIcon'
 
 export interface PopupModalProps {
-  modalOpen: boolean;
-  setModalClose: () => void;
-  title: string;
-  footerButtons?: ReactNode;
-  size?: 'medium' | 'large';
-  bottomBorder?: boolean;
-  ablePropragation?: boolean;
-  containerClassName?: string;
-  headerClassName?: string;
-  contentsClassName?: string;
-  footerClassName?: string;
+  modalOpen: boolean
+  setModalClose: () => void
+  title: string
+  footerButtons?: ReactNode
+  size?: 'medium' | 'large'
+  bottomBorder?: boolean
+  ablePropragation?: boolean
+  containerClassName?: string
+  headerClassName?: string
+  contentsClassName?: string
+  footerClassName?: string
 }
 
 export function PopupModal({
@@ -32,16 +33,16 @@ export function PopupModal({
   contentsClassName,
   footerClassName,
 }: PropsWithChildren<PopupModalProps>) {
-  const sizeClass = size === 'medium' ? 'w-[632px]' : 'w-[848px]';
+  const sizeClass = size === 'medium' ? 'w-[632px]' : 'w-[848px]'
   return (
     <div
-      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-dimmed ${
+      className={`bg-dimmed fixed inset-0 z-60 flex h-screen w-full items-center justify-center ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
         }
       }}
     >
@@ -49,13 +50,13 @@ export function PopupModal({
       <div
         className={twMerge(`${sizeClass} relative overflow-hidden rounded-xl bg-white px-8`, containerClassName)}
         onClick={(e) => {
-          if (!ablePropragation) e.stopPropagation();
+          if (!ablePropragation) e.stopPropagation()
         }}
       >
         {/* 상단 고정 헤더 */}
         <div
           className={twMerge(
-            'sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pb-6 pt-8 backdrop-blur-[20px]',
+            'sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6 backdrop-blur-[20px]',
             headerClassName,
           )}
         >
@@ -70,7 +71,7 @@ export function PopupModal({
           className={twMerge(
             clsx(
               `scroll-box ${footerButtons ? 'max-h-[608px]' : 'max-h-[712px]'} overflow-auto ${
-                size === 'large' && 'pb-8 pt-4'
+                size === 'large' && 'pt-4 pb-8'
               }`,
               footerButtons || 'pb-8',
             ),
@@ -85,8 +86,8 @@ export function PopupModal({
           <div
             className={twMerge(
               `sticky bottom-0 flex h-[104px] justify-end gap-4 ${
-                bottomBorder && 'border-t border-t-primary-gray-100'
-              }bg-white/70 pb-8 pt-6 backdrop-blur-[20px]`,
+                bottomBorder && 'border-t-primary-gray-100 border-t'
+              }bg-white/70 pt-6 pb-8 backdrop-blur-[20px]`,
               footerClassName,
             )}
           >
@@ -95,5 +96,5 @@ export function PopupModal({
         )}
       </div>
     </div>
-  );
+  )
 }

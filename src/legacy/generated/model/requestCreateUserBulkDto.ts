@@ -8,13 +8,13 @@
 
 export interface RequestCreateUserBulkDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 이메일 */
-  email: string | null;
+  email: string | null
   /** 신규추가 */
-  isNew: boolean | null;
+  isNew: boolean | null
   /** 생성결과 */
-  result: boolean | null;
+  result: boolean | null
   /** 실패사유 */
-  failReason: string | null;
+  failReason: string | null
 }

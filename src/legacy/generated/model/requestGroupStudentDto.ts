@@ -8,7 +8,7 @@
 
 export interface RequestGroupStudentDto {
   /** 유저 ID */
-  userId: number;
+  userId: number
   /** 출석번호 */
-  studentNumber: number | null;
+  studentNumber: number | null
 }

@@ -7,11 +7,10 @@
  */
 
 export type ActivityV3FindByTeacherSubjectType =
-  (typeof ActivityV3FindByTeacherSubjectType)[keyof typeof ActivityV3FindByTeacherSubjectType];
+  (typeof ActivityV3FindByTeacherSubjectType)[keyof typeof ActivityV3FindByTeacherSubjectType]
 
- 
 export const ActivityV3FindByTeacherSubjectType = {
   LECTURE: 'LECTURE',
   ACTIVITY: 'ACTIVITY',
   ETC: 'ETC',
-} as const;
+} as const

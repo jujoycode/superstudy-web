@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { StudentGroup } from './studentGroup';
+import type { StudentGroup } from './studentGroup'
 
 export interface PaginatedStudentGroup {
-  items: StudentGroup[];
-  page: number;
-  size: number;
-  total: number;
+  items: StudentGroup[]
+  page: number
+  size: number
+  total: number
 }

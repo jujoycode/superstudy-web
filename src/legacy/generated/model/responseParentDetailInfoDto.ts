@@ -5,21 +5,21 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ParentManagementChildrenInfoDto } from './parentManagementChildrenInfoDto';
+import type { ParentManagementChildrenInfoDto } from './parentManagementChildrenInfoDto'
 
 export interface ResponseParentDetailInfoDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 이메일 */
-  email: string | null;
+  email: string | null
   /** 이름 */
-  name: string;
+  name: string
   /** 전화번호 */
-  phone: string;
+  phone: string
   /** 만료여부, 미사용 사용자는 true (전학 등) */
-  expired: boolean;
+  expired: boolean
   /** 로그인 실패 카운트 */
-  loginFailCount: number;
+  loginFailCount: number
   /** 학생 정보 */
-  children: ParentManagementChildrenInfoDto[];
+  children: ParentManagementChildrenInfoDto[]
 }

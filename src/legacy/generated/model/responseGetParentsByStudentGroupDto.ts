@@ -7,5 +7,5 @@
  */
 
 export interface ResponseGetParentsByStudentGroupDto {
-  [key: string]: any;
+  [key: string]: any
 }

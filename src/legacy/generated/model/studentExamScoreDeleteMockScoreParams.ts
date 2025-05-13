@@ -7,8 +7,8 @@
  */
 
 export type StudentExamScoreDeleteMockScoreParams = {
-  grade: number;
-  classNum: number;
-  month: number;
-  insertionYear: number;
-};
+  grade: number
+  classNum: number
+  month: number
+  insertionYear: number
+}

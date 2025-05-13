@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type TimetableManagementResetLectureParams = { year: number; semester: number };
+export type TimetableManagementResetLectureParams = { year: number; semester: number }

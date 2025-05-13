@@ -8,11 +8,11 @@
 
 export interface TKPPFContentResponseDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 내용 */
-  text: string;
+  text: string
 }

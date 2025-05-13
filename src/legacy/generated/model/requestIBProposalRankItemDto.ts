@@ -5,9 +5,9 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { IBProposalRankDto } from './iBProposalRankDto';
+import type { IBProposalRankDto } from './iBProposalRankDto'
 
 export interface RequestIBProposalRankItemDto {
   /** 제안서 순위 리스트 */
-  items?: IBProposalRankDto[];
+  items?: IBProposalRankDto[]
 }

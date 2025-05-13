@@ -8,17 +8,17 @@
 
 export interface RequestCreateNiceComparisonDto {
   /** 학년도 */
-  year: string;
+  year: string
   /** 월 */
-  month: number;
+  month: number
   /** 그룹 ID */
-  groupId: number;
+  groupId: number
   /** 나이스 파일과 학교 데이터의 차이 */
-  differenceNS: number;
+  differenceNS: number
   /** 나이스 파일에 없는 데이터 수 */
-  niceEmptyNumber: number;
+  niceEmptyNumber: number
   /** 슈퍼스쿨에 없는 데이터 수 */
-  schoolEmptyNumber: number;
+  schoolEmptyNumber: number
   /** 나이스 파일 데이터 (JSON 스트링) */
-  content: string;
+  content: string
 }

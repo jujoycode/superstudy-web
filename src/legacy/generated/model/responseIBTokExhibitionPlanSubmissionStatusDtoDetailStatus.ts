@@ -10,12 +10,11 @@
  * 상세 상태
  */
 export type ResponseIBTokExhibitionPlanSubmissionStatusDtoDetailStatus =
-  (typeof ResponseIBTokExhibitionPlanSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBTokExhibitionPlanSubmissionStatusDtoDetailStatus];
+  (typeof ResponseIBTokExhibitionPlanSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBTokExhibitionPlanSubmissionStatusDtoDetailStatus]
 
- 
 export const ResponseIBTokExhibitionPlanSubmissionStatusDtoDetailStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMIT: 'SUBMIT',
   REJECT_PLAN: 'REJECT_PLAN',
   APPROVED: 'APPROVED',
-} as const;
+} as const

@@ -8,7 +8,7 @@
 
 export interface RequestLoginDto {
   /** 이메일 */
-  email: string | null;
+  email: string | null
   /** 패스워드 */
-  password: string | null;
+  password: string | null
 }

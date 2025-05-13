@@ -8,27 +8,27 @@
 
 export interface RequestTradeLectureDto {
   /** 그룹아이디 */
-  groupId: number;
+  groupId: number
   /** 년도 */
-  year: number;
+  year: number
   /** 학기 */
-  semester: number;
+  semester: number
   /** 주차 */
-  validityWeek: number;
+  validityWeek: number
   /** 종료주차 */
-  validityEndWeek: number;
+  validityEndWeek: number
   /** 시간표 강의1 */
-  lectureId1: number;
+  lectureId1: number
   /** 시간표 요일1 */
-  day1: number;
+  day1: number
   /** 시간표 교시1 */
-  time1: number;
+  time1: number
   /** 시간표 강의2 */
-  lectureId2: number;
+  lectureId2: number
   /** 시간표 요일2 */
-  day2: number;
+  day2: number
   /** 시간표 교시2 */
-  time2: number;
+  time2: number
   /** 교환모드 */
-  exchangeMode: string;
+  exchangeMode: string
 }

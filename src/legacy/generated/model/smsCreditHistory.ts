@@ -8,21 +8,21 @@
 
 export interface SmsCreditHistory {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 정산일 */
-  calculateAt: string;
+  calculateAt: string
   /** 학교 아이디 */
-  schoolId: number;
+  schoolId: number
   /** 크래딧 충전량 */
-  chargeCredit: number;
+  chargeCredit: number
   /** 크래딧 잔여량 */
-  remainCredit: number;
+  remainCredit: number
   /** 크래딧 사용량 */
-  usageCredit: number;
+  usageCredit: number
   /** 크래딧 누적 사용량 */
-  accumulateUsageCredit: number;
+  accumulateUsageCredit: number
 }

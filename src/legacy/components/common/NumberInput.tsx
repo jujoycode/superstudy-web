@@ -1,5 +1,5 @@
-import clsx from 'clsx';
-import { InputHTMLAttributes, forwardRef } from 'react';
+import clsx from 'clsx'
+import { InputHTMLAttributes, forwardRef } from 'react'
 
 interface NumberInputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
@@ -8,12 +8,12 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(functi
   ref,
 ) {
   const preventWheel = (e: any) => {
-    e.target.blur();
-    e.stopPropagation();
+    e.target.blur()
+    e.stopPropagation()
     setTimeout(() => {
-      e.target.focus();
-    }, 0);
-  };
+      e.target.focus()
+    }, 0)
+  }
 
-  return <input ref={ref} type="number" className={clsx('text-input', className)} {...props} onWheel={preventWheel} />;
-});
+  return <input ref={ref} type="number" className={clsx('text-input', className)} {...props} onWheel={preventWheel} />
+})

@@ -8,7 +8,7 @@
 
 export interface RequestCreateActivityCommentDto {
   /** 내용 */
-  content: string | null;
+  content: string | null
   /** 학생활동 ID */
-  studentActivityId: number;
+  studentActivityId: number
 }

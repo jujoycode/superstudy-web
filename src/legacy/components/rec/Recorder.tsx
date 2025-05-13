@@ -1,7 +1,8 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState, type Ref } from 'react'
+
+import { Button } from '@/legacy/components/common/Button'
 import { UploadFileTypeEnum } from '@/legacy/generated/model/uploadFileTypeEnum'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
-import { Button } from '@/legacy/components/common/Button'
 
 interface RecorderProps {
   onUpload: (uploadedFileNames: string[]) => void

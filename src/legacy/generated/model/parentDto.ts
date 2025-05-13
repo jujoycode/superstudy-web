@@ -5,15 +5,15 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseUserDto } from './responseUserDto';
+import type { ResponseUserDto } from './responseUserDto'
 
 export interface ParentDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 이름 */
-  name: string;
+  name: string
   /** 역할 */
-  role: string | null;
+  role: string | null
   /** 자녀 */
-  children: ResponseUserDto[] | null;
+  children: ResponseUserDto[] | null
 }

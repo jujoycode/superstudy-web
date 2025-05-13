@@ -8,11 +8,11 @@
 
 export interface IBInterviewQnaContentDto {
   /** 질문 */
-  question: string;
+  question: string
   /** 힌트메시지 */
-  hint?: string;
+  hint?: string
   /** 답변 */
-  answer?: string;
+  answer?: string
   /** 추가 여부 */
-  added?: boolean;
+  added?: boolean
 }

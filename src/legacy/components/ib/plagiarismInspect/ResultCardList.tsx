@@ -1,6 +1,7 @@
 import { Typography } from '@/legacy/components/common/Typography'
-import ResultCard from './ResultCard'
 import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
+
+import ResultCard from './ResultCard'
 
 export default function ResultCardList({ data }: { data: ResponseCopykillerResponseDto[] }) {
   return (

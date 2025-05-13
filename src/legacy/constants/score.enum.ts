@@ -59,7 +59,7 @@ export const SubjectGroups = {
     '지구과학I',
     '지구과학II',
   ],
-};
+}
 
 export const SubjectMapping: { [key: string]: SubjectOrder } = {
   국어: SubjectOrder.국어,
@@ -84,16 +84,16 @@ export const SubjectMapping: { [key: string]: SubjectOrder } = {
   한국사: SubjectOrder.한국사,
   ...SubjectGroups[SubjectEnum.사회].reduce(
     (acc, subject) => {
-      acc[subject] = SubjectOrder.사회;
-      return acc;
+      acc[subject] = SubjectOrder.사회
+      return acc
     },
     {} as { [key: string]: SubjectOrder },
   ),
   // 과학 과목 추가
   ...SubjectGroups[SubjectEnum.과학].reduce(
     (acc, subject) => {
-      acc[subject] = SubjectOrder.과학;
-      return acc;
+      acc[subject] = SubjectOrder.과학
+      return acc
     },
     {} as { [key: string]: SubjectOrder },
   ),
@@ -106,4 +106,4 @@ export const SubjectMapping: { [key: string]: SubjectOrder } = {
   러시아어Ⅰ: SubjectOrder.기타,
   한문: SubjectOrder.기타,
   베트남어Ⅰ: SubjectOrder.기타,
-};
+}

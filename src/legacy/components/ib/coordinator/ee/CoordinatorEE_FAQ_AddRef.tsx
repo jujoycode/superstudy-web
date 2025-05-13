@@ -1,6 +1,7 @@
 import { id } from 'date-fns/locale'
 import { PropsWithChildren, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+
 import { useIBReferenceCreate, useIBReferenceUpdate } from '@/legacy/container/ib-coordinator'
 import {
   ReferenceInfoGetReferenceInfoListCategory,
@@ -11,13 +12,14 @@ import {
 } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import AlertV2 from '../@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
-import { Typography } from '../@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import { DocumentCard } from '../../DocumentCard'
 import { ImageCard } from '../../ImageCard'
 import { InputField } from '../../InputField'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 
 interface CoordinatorEE_FAQ_AddRefProps {
   modalOpen: boolean
@@ -47,7 +49,7 @@ export function CoordinatorEE_FAQ_AddRef({
     handleSubmit,
     watch,
     reset,
-    formState: { errors, isValid },
+    formState: {},
   } = useForm<RequestCreateReferenceInfoDto>({
     mode: 'onChange',
     defaultValues:
@@ -63,7 +65,7 @@ export function CoordinatorEE_FAQ_AddRef({
   const content = watch('content')
   const isDisabled = !title || !content
 
-  const { createIBReference, isLoading, isError, error } = useIBReferenceCreate({
+  const { createIBReference } = useIBReferenceCreate({
     onSuccess: () => {
       setModalClose()
       onSuccess()

@@ -1,13 +1,8 @@
 import { useState } from 'react'
 import { makeDateToString } from '@/legacy/util/time'
-import {
-  useSchedulesCreate,
-  useSchedulesDelete,
-  useSchedulesFindAll,
-  useSchedulesUpdate,
-} from '@/legacy/generated/endpoint'
-import { CalendarIdEnum, type RequestCreateExtendedScheduleDto } from '@/legacy/generated/model'
-import type { errorType } from '@/legacy/types'
+import { useSchedulesCreate, useSchedulesDelete, useSchedulesFindAll, useSchedulesUpdate } from '../generated/endpoint'
+import { CalendarIdEnum, RequestCreateExtendedScheduleDto } from '../generated/model'
+import { errorType } from '../types'
 
 export function useTeacherCalendarDetail() {
   const [dateRange, setDateRange] = useState<{ startDate: Date; endDate: Date }>()

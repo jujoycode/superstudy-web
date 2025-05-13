@@ -8,15 +8,15 @@
 
 export interface ResponseBaseGroupDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 이름 */
-  name: string;
+  name: string
   /** 종류 */
-  type: string;
+  type: string
   /** 학년도 */
-  year: number;
+  year: number
   /** 학년 */
-  grade: number;
+  grade: number
   /** 반 */
-  klass: number;
+  klass: number
 }

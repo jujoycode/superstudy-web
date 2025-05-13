@@ -6,10 +6,9 @@
  * OpenAPI spec version: 0.1
  */
 
-export type AbsentSort = (typeof AbsentSort)[keyof typeof AbsentSort];
+export type AbsentSort = (typeof AbsentSort)[keyof typeof AbsentSort]
 
- 
 export const AbsentSort = {
   DESC: 'DESC',
   ASC: 'ASC',
-} as const;
+} as const

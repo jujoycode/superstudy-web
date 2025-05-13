@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentNewsletterStatus = (typeof StudentNewsletterStatus)[keyof typeof StudentNewsletterStatus];
+export type StudentNewsletterStatus = (typeof StudentNewsletterStatus)[keyof typeof StudentNewsletterStatus]
 
- 
 export const StudentNewsletterStatus = {
   BEFORE_STUDENT_ANSWER: 'BEFORE_STUDENT_ANSWER',
   BEFORE_PARENT_ANSWER: 'BEFORE_PARENT_ANSWER',
   PROCESSED: 'PROCESSED',
-} as const;
+} as const

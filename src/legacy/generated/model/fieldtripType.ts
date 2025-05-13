@@ -6,10 +6,9 @@
  * OpenAPI spec version: 0.1
  */
 
-export type FieldtripType = (typeof FieldtripType)[keyof typeof FieldtripType];
+export type FieldtripType = (typeof FieldtripType)[keyof typeof FieldtripType]
 
- 
 export const FieldtripType = {
   SUBURBS: 'SUBURBS',
   HOME: 'HOME',
-} as const;
+} as const

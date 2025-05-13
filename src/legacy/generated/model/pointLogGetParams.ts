@@ -7,9 +7,9 @@
  */
 
 export type PointLogGetParams = {
-  studentIds?: number[];
-  join?: string[];
-  page?: number;
-  size?: number;
-  studentId?: number;
-};
+  studentIds?: number[]
+  join?: string[]
+  page?: number
+  size?: number
+  studentId?: number
+}

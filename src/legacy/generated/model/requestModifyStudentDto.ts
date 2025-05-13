@@ -8,27 +8,27 @@
 
 export interface RequestModifyStudentDto {
   /** 이메일 */
-  email?: string | null;
+  email?: string | null
   /** 이름 */
-  name?: string;
+  name?: string
   /** 전화번호 */
-  phone?: string;
+  phone?: string
   /** 학부모이름 */
-  nokName?: string;
+  nokName?: string
   /** 학부모전화번호 */
-  nokPhone?: string;
+  nokPhone?: string
   /** 회원바코드 */
-  barcode?: string;
+  barcode?: string
   /** 프로필이미지URL */
-  profile?: string;
+  profile?: string
   /** 만료여부, 미사용 사용자는 true (전학 등) */
-  expired?: boolean;
+  expired?: boolean
   /** 만료사유, 탈퇴, 전학 등 사유 입력 */
-  expiredReason?: string | null;
+  expiredReason?: string | null
   /** 로그인 실패 카운트 */
-  loginFailCount?: number;
+  loginFailCount?: number
   /** 별명 */
-  nickName?: string | null;
+  nickName?: string | null
   /** 학급 년도 */
-  year?: number | null;
+  year?: number | null
 }

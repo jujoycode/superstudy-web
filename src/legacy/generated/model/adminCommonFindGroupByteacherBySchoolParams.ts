@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type AdminCommonFindGroupByteacherBySchoolParams = { year?: number; teacherId?: number };
+export type AdminCommonFindGroupByteacherBySchoolParams = { year?: number; teacherId?: number }

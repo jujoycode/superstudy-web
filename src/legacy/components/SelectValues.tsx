@@ -1,21 +1,21 @@
-import { twMerge } from 'tailwind-merge';
+import { twMerge } from 'tailwind-merge'
 
 interface SelectValueItem {
-  value: string;
-  text: string;
+  value: string
+  text: string
 }
 
 interface SelectValuesProps {
-  label?: string;
-  selectValues: SelectValueItem[] | string[];
-  placeholder?: string;
-  value?: any;
-  onChange?: (group: any) => void;
-  border?: string;
-  borderColor?: string;
-  paddingY?: string;
-  marginY?: string;
-  className?: string;
+  label?: string
+  selectValues: SelectValueItem[] | string[]
+  placeholder?: string
+  value?: any
+  onChange?: (group: any) => void
+  border?: string
+  borderColor?: string
+  paddingY?: string
+  marginY?: string
+  className?: string
 }
 
 export function SelectValues({ label, selectValues, placeholder, value, onChange, className = '' }: SelectValuesProps) {
@@ -28,7 +28,7 @@ export function SelectValues({ label, selectValues, placeholder, value, onChange
         value={value}
         onChange={(e) => onChange && onChange(e.target.value)}
         className={twMerge(
-          'mt-1 block w-full rounded-md border border-gray-300 px-1 py-3 text-base focus:border-black focus:outline-none focus:ring-indigo-500 sm:text-sm',
+          'mt-1 block w-full rounded-md border border-gray-300 px-1 py-3 text-base focus:border-black focus:ring-indigo-500 focus:outline-none sm:text-sm',
           className,
         )}
       >
@@ -40,12 +40,12 @@ export function SelectValues({ label, selectValues, placeholder, value, onChange
 
         {selectValues?.map((value: any) => {
           if (typeof value === 'string') {
-            return <option value={value || ''}>{value}</option>;
+            return <option value={value || ''}>{value}</option>
           } else if (typeof value === 'object') {
-            return <option value={value.value}>{value.text}</option>;
+            return <option value={value.value}>{value.text}</option>
           }
         })}
       </select>
     </div>
-  );
+  )
 }

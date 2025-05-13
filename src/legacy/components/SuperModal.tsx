@@ -1,5 +1,7 @@
 import { HTMLAttributes } from 'react'
+
 import { cn } from '@/legacy/lib/tailwind-merge'
+
 import { CloseButton } from './common'
 
 interface SuperModalProps extends HTMLAttributes<HTMLDivElement> {

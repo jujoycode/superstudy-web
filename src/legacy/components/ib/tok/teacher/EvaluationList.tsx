@@ -1,11 +1,10 @@
 import { omit } from 'lodash'
 import { FC, useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-
-import NODATA from '@/legacy/assets/images/no-data.png'
 import { Typography } from '@/legacy/components/common/Typography'
 import { useTokEvaluationCreate } from '@/legacy/container/ib-evaluation'
 import { useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
@@ -15,7 +14,10 @@ import {
   ResponseTokEvaluationSummaryDto,
 } from '@/legacy/generated/model'
 import { meState } from '@/stores'
+
 import Evaluation from './Evaluation'
+
+import NODATA from '@/assets/images/no-data.png'
 
 interface EvaluationListProps {
   evaluationData?: ResponseTokEvaluationInitialDataDto

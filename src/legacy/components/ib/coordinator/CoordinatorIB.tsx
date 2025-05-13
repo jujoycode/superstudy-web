@@ -1,4 +1,4 @@
-import FAQList from './FAQList';
+import FAQList from './FAQList'
 
 export default function CoordinatorIB() {
   return (
@@ -7,5 +7,5 @@ export default function CoordinatorIB() {
         <FAQList />
       </section>
     </main>
-  );
+  )
 }

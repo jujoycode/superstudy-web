@@ -13,10 +13,9 @@
 - **SUBMIT**: 제출
 
  */
-export type ResponseEssayDtoStatus = (typeof ResponseEssayDtoStatus)[keyof typeof ResponseEssayDtoStatus];
+export type ResponseEssayDtoStatus = (typeof ResponseEssayDtoStatus)[keyof typeof ResponseEssayDtoStatus]
 
- 
 export const ResponseEssayDtoStatus = {
   PENDING: 'PENDING',
   SUBMIT: 'SUBMIT',
-} as const;
+} as const

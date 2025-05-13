@@ -7,10 +7,10 @@
  */
 
 export type IBProfileGetItemsParams = {
-  page?: number;
-  limit?: number;
-  grade?: number;
-  klass?: number;
-  mentorId?: number;
-  studentName?: string;
-};
+  page?: number
+  limit?: number
+  grade?: number
+  klass?: number
+  mentorId?: number
+  studentName?: string
+}

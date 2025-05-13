@@ -8,5 +8,5 @@
 
 export type FieldtripsApproveByParentAppBody = {
   /** 서명이미지 */
-  signature?: string;
-};
+  signature?: string
+}

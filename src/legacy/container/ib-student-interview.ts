@@ -6,7 +6,7 @@ import {
   useInterviewFindQnaByStudentId,
   useInterviewUpdateQna,
 } from '@/legacy/generated/endpoint'
-import type { RequestCreateQnaDto, RequestUpdateQnaDto } from '@/legacy/generated/model'
+import { RequestCreateQnaDto, RequestUpdateQnaDto } from '@/legacy/generated/model'
 
 export const useInterviewGetByStudentId = (id: number, category: string) => {
   const { data, isLoading, refetch } = useInterviewFindInterviewByStudentId(id, { category })
