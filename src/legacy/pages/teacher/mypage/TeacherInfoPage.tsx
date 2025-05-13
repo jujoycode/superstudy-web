@@ -80,7 +80,7 @@ export function TeacherInfoPage() {
     if (!confirm(`탈퇴한 계정은 복구할 수 없습니다.\n탈퇴하시겠습니까?`)) return
 
     await userDeleteUser({ password: password, reason: deleteReason })
-      .then((result) => {
+      .then(() => {
         alert('회원탈퇴가 완료되었습니다.')
         logout()
       })
@@ -409,7 +409,7 @@ export function TeacherInfoPage() {
                                 disabled={!enableChatTime}
                                 className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               >
-                                {new Array(24).fill(null).map((item, num: number) => (
+                                {new Array(24).fill(null).map((_, num: number) => (
                                   <option key={num} value={num}>
                                     {num}
                                   </option>

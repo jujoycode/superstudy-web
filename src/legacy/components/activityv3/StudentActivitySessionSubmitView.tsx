@@ -30,7 +30,7 @@ export const StudentActivitySessionSubmitView: React.FC<StudentActivitySessionSu
   refetch,
 }) => {
   const now = new Date()
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [, setToastMsg] = useRecoilState(toastState)
   const { mutate: saveStudentActivitySession } = useStudentActivitySessionSaveOne({
     mutation: {
       onSuccess: () => {

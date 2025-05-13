@@ -38,10 +38,10 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
   const [text, setText] = useState('')
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
-  const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
-  const [focusPdfFile, setFocusPdfFile] = useState('')
+  const [, setPdfModalOpen] = useState(false)
+  const [, setFocusPdfFile] = useState('')
 
-  const { mutate: createSessionComment, isLoading: createSessionCommentLoading } = useSessionCommentCreate({
+  const { mutate: createSessionComment } = useSessionCommentCreate({
     mutation: {
       onSuccess: () => {
         refetch()
@@ -128,7 +128,7 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
             </div>
           </div>
         ))}
-        {Pdfs?.map((pdfFile: string, i: number) => {
+        {Pdfs?.map((pdfFile: string) => {
           return (
             <>
               <div key={pdfFile}>
@@ -170,7 +170,7 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
             noImgDetails
             scalable={false}
             images={viewerImages}
-            onChange={(activeImage, index) => setActiveIndex(index)}
+            onChange={(_, index) => setActiveIndex(index)}
             onClose={() => setImagesModalOpen(false)}
             activeIndex={activeIndex}
           />

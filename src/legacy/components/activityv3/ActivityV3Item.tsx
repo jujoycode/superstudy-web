@@ -21,7 +21,7 @@ export const Activityv3Item: FC<Activityv3ItemProps> = ({
   openedActivityIds,
   activitySessions,
 }) => {
-  const { pathname, search } = useLocation()
+  const { pathname } = useLocation()
   const sessionOpen = openedActivityIds ? openedActivityIds.includes(activityv3.id) : true
   const setSessionToggle = () => {
     if (sessionOpen) {

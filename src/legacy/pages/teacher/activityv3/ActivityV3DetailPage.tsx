@@ -580,7 +580,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                     {_.chain(activityv3?.groupActivityV3s || [])
                       .sortBy(['group.grade', 'group.klass'])
 
-                      .map((ga, i) => {
+                      .map((ga) => {
                         const studentGroups = groupDatas[ga.group.id]
                           ?.filter((sg) => !selectedGroupIds.length || selectedGroupIds.includes(sg.groupId))
                           ?.filter((sg) => !searchedStudentname || sg.user.name.includes(searchedStudentname))

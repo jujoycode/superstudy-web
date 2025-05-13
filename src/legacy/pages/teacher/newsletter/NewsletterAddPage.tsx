@@ -2,7 +2,6 @@ import _ from 'lodash'
 import { useState } from 'react'
 import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
-import { MenuType, UserDatas } from 'src/types'
 import { Blank, Label, Select, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
@@ -21,6 +20,7 @@ import { MergedGroupType, useTeacherChatUserList } from '@/legacy/container/teac
 import { useTeacherNewsletterAdd } from '@/legacy/container/teacher-newsletter-add'
 import { GroupType, Newsletter, NewsletterCategoryEnum, NewsletterType, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { MenuType, UserDatas } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getExtOfFilename } from '@/legacy/util/file'
 import { meState } from '@/stores'
@@ -39,14 +39,11 @@ export function NewsletterAddPage() {
 
   const {
     newsletter,
-    category,
     surveyContent,
     imageObjectMap,
     documentObjectMap,
     buttonDisabled,
-    errorMessage,
     endAt,
-    preview,
     endDateOff,
     toStudent,
     toParent,
@@ -81,7 +78,6 @@ export function NewsletterAddPage() {
   const {
     allGroups,
     selectedGroup,
-    setStudentGroups,
     setSelectedGroup,
     selectedUserType,
     setSelectedUserType,
@@ -553,7 +549,7 @@ export function NewsletterAddPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {selectedUsers.map((row: UserDatas | any, rowIndex: any) => (
+                      {selectedUsers.map((row: UserDatas | any) => (
                         <tr>
                           <td className="border border-gray-300 text-center">{getTitle(row)}</td>
                           <td className="border border-gray-300 text-center">{row.name}</td>

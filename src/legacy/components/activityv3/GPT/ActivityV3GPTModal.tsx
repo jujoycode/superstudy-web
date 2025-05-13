@@ -42,7 +42,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
   refetch,
 }) => {
   const { t, currentLang } = useLanguage()
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [, setToastMsg] = useRecoilState(toastState)
   const [currentStep, setCurrentStep] = useState(1)
   const [modalStep, setModalStep] = useState(1)
   const [question, setQuestion] = useState('')
