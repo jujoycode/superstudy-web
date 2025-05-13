@@ -7,7 +7,42 @@ interface ManagerScheduleCardProps {
   userRole: string
 }
 
-export function ManagerScheduleCard({ manager }: ManagerScheduleCardProps) {
+export function ManagerScheduleCard({ manager, userRole }: ManagerScheduleCardProps) {
+  let role = '담임'
+
+  if (userRole === 'HEAD') {
+    role = '학년부장'
+  }
+  if (userRole === 'PRINCIPAL') {
+    role = '교무부장'
+  }
+
+  // @ts-ignore
+  let text = <div className="text-sm text-red-500">{role} 승인 전</div>
+
+  switch (manager.managerStatus) {
+    case 'BEFORE_PARENT_CONFIRM':
+      text = <div className="text-sm text-red-500">학부모 승인 전</div>
+      break
+    case 'BEFORE_TEACHER_APPROVAL':
+      text = <div className="text-sm text-red-500">담임 승인 전</div>
+      break
+    case 'BEFORE_HEAD_APPROVAL':
+      text = <div className="text-sm text-red-500">학년부장 승인 전</div>
+      break
+    case 'BEFORE_PRINCIPAL_APPROVAL':
+      text = <div className="text-sm text-red-500">교무부장 승인 전</div>
+      break
+    case 'PROCESSED':
+      text = <div className="text-sm text-gray-600">승인 완료</div>
+      break
+    case 'RETURNED':
+      text = <div className="text-brand-1 text-sm">반려됨</div>
+      break
+    case 'DELETE_APPEAL':
+      text = <div className="text-sm text-red-800">삭제 요청</div>
+      break
+  }
   return (
     <>
       <Link to={`/teacher/manager/${manager.id}`}>
