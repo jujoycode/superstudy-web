@@ -62,14 +62,6 @@ export function HistoryAbsentDetailPage({ setAbsentId, userId }: HistoryAbsentDe
     absent?.approver4Id === userId ||
     absent?.approver5Id === userId
 
-  const approvedLine = [
-    absent?.approver1Signature && absent?.approver1Id,
-    absent?.approver2Signature && absent?.approver2Id,
-    absent?.approver3Signature && absent?.approver3Id,
-    absent?.approver4Signature && absent?.approver4Id,
-    absent?.approver5Signature && absent?.approver5Id,
-  ]
-
   // 승인할 차례 : true, 승인전/승인후 : false
   const nowApprove = absent?.nextApproverId === userId
 
