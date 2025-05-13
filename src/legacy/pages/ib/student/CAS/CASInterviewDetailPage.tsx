@@ -54,12 +54,7 @@ export default function CASInterviewDetailPage() {
 
   const [editMode, setEditMode] = useState<boolean>(false)
 
-  const {
-    handleSubmit,
-    register,
-    reset,
-    formState: { errors },
-  } = useForm<RequestCreateQnaDto>({
+  const { handleSubmit, register, reset } = useForm<RequestCreateQnaDto>({
     defaultValues: {
       content: interview?.qna.content.map((item) => ({
         question: item.question,

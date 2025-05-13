@@ -90,7 +90,7 @@ export const CASMainPage = () => {
     },
   })
 
-  const { CheckList, isLoading: isCheckListLoading } = useCheckListGetByStudent(me?.id || 0, 'CAS')
+  const { CheckList } = useCheckListGetByStudent(me?.id || 0, 'CAS')
 
   const sevenDaysBeforeEndAt = data?.endAt
     ? DateUtil.getStartDate(moment(data.endAt).subtract(7, 'days').toDate())
