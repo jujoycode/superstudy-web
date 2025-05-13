@@ -19,7 +19,7 @@ import {
 import { Course, CourseTrainee, User } from '@/legacy/generated/model'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
-import { ReactComponent as userSvg } from '@/asset/svg/user.svg'
+import userSvg from '@/asset/svg/user.svg'
 
 interface TimetableCoursePageProps {
   course: Course
@@ -42,7 +42,7 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
   useEffect(() => {
     if (courseLectureId || courseLectures.length === 0) return
     setCourseLectureId(courseLectures[0].id)
-  }, [courseLectures])
+  }, [courseLectureId, courseLectures])
 
   const courseLecture = useMemo(
     () => courseLectures.find((cl) => cl.id === courseLectureId),
@@ -292,8 +292,6 @@ function TimetableCoursePageAttendanceManagementModal({
 
   useEffect(() => {
     if (isLoading) return
-    console.log(lectureAttendance)
-
     setIsAttended(lectureAttendance?.isAttended !== false)
     setNote(lectureAttendance?.note ?? '')
   }, [lectureAttendance, isLoading])
