@@ -17,7 +17,7 @@ interface MemberSearchProps {
 }
 
 const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, onCancel, id }) => {
-  const { data, isLoading } = useUserSearch()
+  const { data } = useUserSearch()
   const [localData, setLocalData] = useState<ResponseIBStudentDto[]>(initialStudents || [])
   const [searchText, setSearchText] = useState('')
   const [grade, setGrade] = useState<number>(0)
@@ -31,7 +31,6 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
     if (!data) return {}
 
     const grouped = data.reduce((acc: any, student: ResponseIBStudentDto) => {
-      const key = `${student.studentGroup.group.grade}학년 ${student.studentGroup.group.klass}반`
       if (!acc[student.studentGroup.group.grade]) {
         acc[student.studentGroup.group.grade] = {}
       }

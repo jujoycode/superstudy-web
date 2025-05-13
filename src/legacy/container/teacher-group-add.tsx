@@ -16,7 +16,6 @@ import {
   TeacherGroup,
   User,
 } from '@/legacy/generated/model'
-// ! 지훈쌤 개선안 적용
 import { GroupContainer } from './group'
 
 export function useTeacherGroupAdd({ groupId, onSubmit }: { groupId?: number; onSubmit?: () => void }) {

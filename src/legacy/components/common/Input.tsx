@@ -48,7 +48,6 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
   }, [value])
 
   const [isFocused, setIsFocused] = useState(false)
-  const [isComposing, setIsComposing] = useState(false)
   const sizeClass =
     size === 32
       ? 'px-2.5 py-1.5 rounded-md h-8'

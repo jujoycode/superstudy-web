@@ -13,10 +13,9 @@ interface PdfViewerProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export function PdfViewer({ fileUrl, isOpen, onClose, ...props }: PdfViewerProps) {
-  const windowSize = useWindowSize()
   const divRef = useRef<HTMLDivElement>(null)
   const [numPages, setNumPages] = useState(0)
-  const [pageNumber, setPageNumber] = useState(1)
+  const [, setPageNumber] = useState(1)
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages)

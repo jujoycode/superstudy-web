@@ -25,7 +25,7 @@ interface LayeredTabsProps<T> {
   size?: 'large' | 'small'
 }
 
-function OneDepth<T>({ children, value, onChange, className, inActiveClassName, size = 'large' }: LayeredTabsProps<T>) {
+function OneDepth<T>({ children, value, onChange, className, inActiveClassName }: LayeredTabsProps<T>) {
   const handleTabClick = (val: T) => {
     onChange(val)
   }

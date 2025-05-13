@@ -187,7 +187,7 @@ export function ReceiveMessage({
               )}
               {!!MessageData?.files?.length && (
                 <div className="flex flex-col gap-1">
-                  {MessageData.files.map((fileUrl: string, index) => (
+                  {MessageData.files.map((fileUrl: string) => (
                     <div key={fileUrl} className="flex h-8 w-max items-center space-x-2 rounded bg-stone-50 px-3 py-1">
                       <FileItemIcon />
                       <a
