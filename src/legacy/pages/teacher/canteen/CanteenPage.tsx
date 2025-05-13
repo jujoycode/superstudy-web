@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-// @ts-ignore
-import ExifOrientationImg from 'react-exif-orientation-img'
 import { Link } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { useRecoilValue } from 'recoil'
+
 import { ErrorBlank } from '@/legacy/components'
 import AnnouncementPopup from '@/legacy/components/announcement/Announcement'
 import { CanteenCalendar } from '@/legacy/components/CanteenCalendar'
@@ -19,11 +18,12 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { checkNewVersion } from '@/legacy/util/status'
 import { makeDateToString, makeMonthDayToString, makeMonthDayToStringEN } from '@/legacy/util/time'
 import { meState, newMsgCntState } from '@/stores'
+
 import { CanteenDetailPage } from './CanteenDetailPage'
 import { CanteenSubmitPage } from './CanteenSubmitPage'
-import { ReactComponent as ChatIcon } from '@/asset/svg/chat.svg'
-import { ReactComponent as ClockIcon } from '@/asset/svg/clock.svg'
-import { ReactComponent as Refresh } from '@/asset/svg/refresh.svg'
+import ChatIcon from '@/assets/svg/chat.svg'
+import ClockIcon from '@/assets/svg/clock.svg'
+import Refresh from '@/assets/svg/refresh.svg'
 
 export function CanteenPage() {
   const me = useRecoilValue(meState)
@@ -148,7 +148,7 @@ export function CanteenPage() {
         {selectedCanteen?.image && (
           <div onClick={() => setImageModalOpen(true)} ref={conteenRef}>
             <div className="aspect-5/3 rounded bg-gray-50">
-              <ExifOrientationImg
+              <img
                 src={Constants.imageUrl + selectedCanteen.image}
                 alt=""
                 className="h-full w-full rounded-lg object-cover"

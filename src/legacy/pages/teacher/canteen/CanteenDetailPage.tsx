@@ -1,9 +1,8 @@
 import { format } from 'date-fns'
 import { useState } from 'react'
-// @ts-ignore
-import ExifOrientationImg from 'react-exif-orientation-img'
 import Viewer from 'react-viewer'
 import { useRecoilValue } from 'recoil'
+
 import { Divider, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Constants } from '@/legacy/constants'
@@ -39,7 +38,7 @@ export function CanteenDetailPage({ selectedDate, canteen, setSubmitState }: Can
           <div className="w-full" onClick={() => setImageModalOpen(true)}>
             <div className="aspect-5/3 rounded bg-gray-50">
               {canteen?.image ? (
-                <ExifOrientationImg
+                <img
                   src={`${Constants.imageUrl}${canteen.image}`}
                   alt=""
                   className="h-full w-full rounded object-cover"

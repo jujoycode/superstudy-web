@@ -1,5 +1,6 @@
 import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+
 import { ErrorBlank } from '@/legacy/components'
 import { AllSelectCheckbox } from '@/legacy/components/AllSelectCheckbox'
 import { BackButton, Blank, Label, Section, Select, Textarea, TopNavbar } from '@/legacy/components/common'
@@ -60,7 +61,7 @@ export function BoardAddPage({ homeKlass, groups }: BoardAddProps) {
     handleSubmit,
     setToStudent,
     setToParent,
-  } = useTeacherBoardAdd({ homeKlass, groups, boardId: +id })
+  } = useTeacherBoardAdd({ homeKlass, groups, boardId: Number(id) })
 
   const imageObjectMapPaths = (): string[] => {
     // imageObjectMap의 값들을 배열로 변환 후 filter와 map 함수를 사용하여 조건을 충족하는 imageObject의 image만 추출하여 string[]로 반환

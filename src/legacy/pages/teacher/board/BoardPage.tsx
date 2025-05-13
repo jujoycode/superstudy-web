@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { Link, Route, Switch } from 'react-router-dom'
+import { ChangeEventHandler, useState } from 'react'
+import { Link, Route, Routes } from 'react-router-dom'
+
 import { SelectMenus } from '@/legacy/components'
 import { BoardCard } from '@/legacy/components/board/BoardCard'
 import { Blank, Select } from '@/legacy/components/common'
@@ -9,6 +10,7 @@ import { useTeacherBoard } from '@/legacy/container/teacher-board'
 import { useTeacherKlassGroup } from '@/legacy/container/teacher-klass-groups'
 import { Board, BoardCategoryEnum, Group } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+
 import { BoardAddPage } from './BoardAddPage'
 import { BoardDetailPage } from './BoardDetailPage'
 
@@ -22,7 +24,7 @@ export function BoardsPage() {
   const [filter, setFilter] = useState(filters[0])
   const [searchWriter, setSearchWriter] = useState('')
   const [searchTitle, setSearchTitle] = useState('')
-  const handleFilterChange = (e: any) => {
+  const handleFilterChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
     setSearchWriter('')
     setSearchTitle('')
     setFilter(e.target.value)
@@ -101,17 +103,17 @@ export function BoardsPage() {
       </div>
 
       <div className="scroll-box col-span-4 h-screen bg-gray-50 p-0 md:overflow-y-scroll md:p-6">
-        <Switch>
+        <Routes>
           <Route
             path="/teacher/board/add"
-            render={() => <BoardAddPage key={'add'} homeKlass={homeKlass} groups={groups} />}
+            Component={() => <BoardAddPage key={'add'} homeKlass={homeKlass} groups={groups} />}
           />
           <Route
             path="/teacher/board/:id/edit"
-            render={() => <BoardAddPage key={'edit'} homeKlass={homeKlass} groups={groups} />}
+            Component={() => <BoardAddPage key={'edit'} homeKlass={homeKlass} groups={groups} />}
           />
-          <Route path="/teacher/board/:id" render={() => <BoardDetailPage page={1} limit={1} />} />
-        </Switch>
+          <Route path="/teacher/board/:id" Component={() => <BoardDetailPage page={1} limit={1} />} />
+        </Routes>
       </div>
     </>
   )
