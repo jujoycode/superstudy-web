@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useParams } from 'react-router'
 
-import FileItemIcon from '@/assets/svg/file-item-icon.svg'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, Td } from '@/legacy/components'
 import { Blank, BottomFixed, CloseButton, Label, Section, TopNavbar } from '@/legacy/components/common'

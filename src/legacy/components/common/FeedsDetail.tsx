@@ -6,7 +6,7 @@ import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
 
-import FileItemIcon from '@/assets/svg/file-item-icon.svg'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { Constants } from '@/legacy/constants'
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'

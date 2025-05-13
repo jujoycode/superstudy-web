@@ -1,4 +1,5 @@
-import preval from 'preval.macro'
+// import preval from 'preval.macro'
+// import { format } from 'date-fns'
 
 import type { errorType } from '@/legacy/types'
 
@@ -24,7 +25,8 @@ export const makeStudNum5 = (klass: string | { grade: number; classNum: number; 
 }
 
 export const checkNewVersion = () => {
-  const buildDateNew = preval`module.exports = new Date().toLocaleString().split("├")[0]`
+  // 빌드 시간을 사용합니다
+  const buildDateNew = __BUILD_TIME__
   const buildDateOld = localStorage.getItem('buildDate')
   if (buildDateNew !== buildDateOld) {
     localStorage.setItem('buildDate', buildDateNew)

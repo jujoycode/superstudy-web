@@ -3,6 +3,7 @@ import moment from 'moment'
 import { useEffect, useMemo, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useRecoilValue } from 'recoil'
+import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { SelectMenus, SuperModal } from '@/legacy/components'
 import { Divider, Label, Section, Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -30,7 +31,6 @@ import { getNickName } from '@/legacy/util/status'
 import { getThisSemester, getThisYear } from '@/legacy/util/time'
 import { meState } from '@/stores'
 import { TimetableNeisForm } from './TimetableNeisForm'
-import SvgUser from '@/assets/svg/user.svg'
 
 const groups = [
   { id: 1, name: '1' },

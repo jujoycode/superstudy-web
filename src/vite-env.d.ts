@@ -9,3 +9,7 @@ declare module '*.svg' {
   const src: string
   export default src
 }
+
+// 전역 변수 선언
+declare const __BUILD_TIME__: string
+declare const __BUILD_VERSION__: string

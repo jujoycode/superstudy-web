@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
 
-import Logo from '@/assets/svg/logo.svg'
+import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { BackButton, Blank, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

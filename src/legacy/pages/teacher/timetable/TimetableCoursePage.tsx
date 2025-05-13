@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { ReactComponent as userSvg } from '@/assets/svg/user.svg'
 import { SuperModal } from '@/legacy/components'
 import { Divider, Label, Section, Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -19,7 +20,6 @@ import {
 import { Course, CourseTrainee, User } from '@/legacy/generated/model'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
-import userSvg from '@/assets/svg/user.svg'
 
 interface TimetableCoursePageProps {
   course: Course
@@ -318,7 +318,7 @@ function TimetableCoursePageAttendanceManagementModal({
               onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => {
                 const target = event.currentTarget
                 target.onerror = null // prevents looping
-                target.src = userSvg
+                target.src = userSvg as unknown as string
               }}
             />
           </div>

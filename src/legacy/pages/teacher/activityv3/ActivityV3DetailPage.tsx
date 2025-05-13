@@ -8,7 +8,7 @@ import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { twMerge } from 'tailwind-merge'
 
-import FileItemIcon from '@/assets/svg/file-item-icon.svg'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { Activityv3SubmitterItem } from '@/legacy/components/activityv3/ActivityV3SubmitterItem'
 import { SessionDownloadModal } from '@/legacy/components/activityv3/SessionDownloadModal'

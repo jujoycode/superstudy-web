@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import Edit from '@/assets/svg/edit.svg'
+import { ReactComponent as Edit } from '@/assets/svg/edit.svg'
 import { Blank, CloseButton, IconButton, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Constants } from '@/legacy/constants'

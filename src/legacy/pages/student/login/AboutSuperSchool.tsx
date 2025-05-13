@@ -1,4 +1,4 @@
-import Logo from '@/assets/svg/logo.svg'
+import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { BackButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { YoutubeLink } from '@/legacy/components/YoutubeLink'

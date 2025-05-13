@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { Route, Routes, useLocation } from 'react-router'
 
-import Refresh from '@/assets/svg/refresh.svg'
+import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, FrontPagination } from '@/legacy/components'
 import { AbsentCard } from '@/legacy/components/absent/AbsentCard'

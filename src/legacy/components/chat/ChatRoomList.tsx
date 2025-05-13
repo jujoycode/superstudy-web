@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import { useSetRecoilState } from 'recoil'
 
-import SvgUser from '@/assets/svg/user.svg'
+import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { MessageBox } from '@/legacy/components/chat/MessageBox'
 import { Section } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
@@ -90,7 +90,7 @@ export function ChatRoomList({}: ChatRoomListProps) {
                         alt=""
                         onError={({ currentTarget }) => {
                           currentTarget.onerror = null // prevents looping
-                          currentTarget.src = SvgUser
+                          currentTarget.src = SvgUser as unknown as string
                           //currentTarget.className = 'w-full ';
                         }}
                       />

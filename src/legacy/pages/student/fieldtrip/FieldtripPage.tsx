@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 
-import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
+import { ReactComponent as RightArrow } from '@/assets/svg/mypage-right-arrow.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { BackButton, Badge, Blank, Section, TopNavbar } from '@/legacy/components/common'

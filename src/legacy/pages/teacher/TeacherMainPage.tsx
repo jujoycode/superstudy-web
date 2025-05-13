@@ -1,9 +1,10 @@
 import clsx from 'clsx'
-import preval from 'preval.macro'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, LinkProps, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import RightArrow from '@/assets/svg/RightFillArrow.svg'
+import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
+import { ReactComponent as RightArrow } from '@/assets/svg/RightFillArrow.svg'
+import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { AuthRoute, Blank } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
@@ -82,8 +83,6 @@ import { PointDashboard } from './pointlogs/PointDashboard'
 import { RecordPage } from './record/RecordPage'
 import { StudentCardPage } from './studentcard/StudentCardPage'
 import { TimetablePage } from './timetable/TimetablePage'
-import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
-import svgUser from '@/assets/svg/user.svg'
 
 export function TeacherMainPage() {
   const { replace } = useHistory()
@@ -297,7 +296,7 @@ export function TeacherMainPage() {
                 onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => {
                   const target = event.currentTarget
                   target.onerror = null // prevents looping
-                  target.src = svgUser
+                  target.src = SvgUser as unknown as string
                   target.className = 'w-full rounded-xl'
                 }}
               />
@@ -594,7 +593,7 @@ export function TeacherMainPage() {
               <div className="text-12 py-2 text-gray-400">
                 <div className="text-white">
                   v{globalEnv.version} build at <br />
-                  {preval`module.exports = new Date().toLocaleString().split("├")[0]`}
+                  {__BUILD_TIME__.split('T')[0] + ' ' + __BUILD_TIME__.split('T')[1].substring(0, 8)}
                 </div>
                 Copyright 2023. SUPERSCHOOL <br />
                 all right reserved.

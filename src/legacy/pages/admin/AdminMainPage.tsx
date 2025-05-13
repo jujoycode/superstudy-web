@@ -4,6 +4,8 @@ import { createContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
+import { ReactComponent as ExitAdmin } from '@/assets/svg/exit-admin.svg'
+import { ReactComponent as LogoAdmin } from '@/assets/svg/logo-admin.svg'
 import { Select } from '@/legacy/components/common'
 import { Toast } from '@/legacy/components/Toast'
 import { Routes as RouterConstant } from '@/legacy/constants/routes'
@@ -41,8 +43,6 @@ import { TeacherDetailsPage } from './teacher/TeacherDetailsPage'
 import { TeacherEditPage } from './teacher/TeacherEditPage'
 import { TeacherPage } from './teacher/TeacherPage'
 import { TimetablePage } from './timetable/TimetablePage'
-import ExitAdmin from '@/assets/svg/exit-admin.svg'
-import LogoAdmin from '@/assets/svg/logo-admin.svg'
 
 export const AdminContext = createContext({ year: +getThisYear() })
 
@@ -173,7 +173,7 @@ export function AdminMainPage() {
 
         return isPermitted
       }),
-    [me, adminRoutes],
+    [adminRoutes, checkPermission, me?.school.schoolType, me?.schoolId],
   )
 
   return (

@@ -1,4 +1,5 @@
-import preval from 'preval.macro'
+// import preval from 'preval.macro'
+// import { format } from 'date-fns'
 import { Navigate } from 'react-router'
 import superstudyLight from '@/assets/images/superstudy-light.png'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
@@ -56,7 +57,8 @@ export function HomePage() {
 
               <div className="w-full text-center text-gray-600">
                 <div className="text-white">
-                  v{globalEnv.version} build at {preval`module.exports = new Date().toLocaleString().split("├")[0]`}
+                  v{globalEnv.version} build at{' '}
+                  {__BUILD_TIME__.split('T')[0] + ' ' + __BUILD_TIME__.split('T')[1].substring(0, 8)}
                 </div>
                 슈퍼스쿨 <br />
                 Copyright 2022. SUPERSCHOOL all right reserved.

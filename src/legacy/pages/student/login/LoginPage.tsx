@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { useRecoilState } from 'recoil'
 
-import Refresh from '@/assets/svg/refresh.svg'
+import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
 import { BackButton, Blank, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'

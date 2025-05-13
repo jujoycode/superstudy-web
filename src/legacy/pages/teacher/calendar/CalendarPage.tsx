@@ -1,13 +1,13 @@
 //@ts-ignore
-import Calendar from '@toast-ui/react-calendar'
+// import Calendar from '@toast-ui/react-calendar'
 import { t } from 'i18next'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
 import { useRecoilValue } from 'recoil'
-
 import { ErrorBlank } from '@/legacy/components'
 import { CustomTuiModal } from '@/legacy/components/calendar/CustomTuiModal'
 import { LnbCalendarsItem } from '@/legacy/components/calendar/LnbCalendarsItem'
+import ReactCalendarWrapper from '@/legacy/components/calendar/ReactCalendarWrapper'
 import { Blank, Label } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Guide, useCoachMark } from '@/legacy/components/common/CoachMark'
@@ -340,7 +340,7 @@ export function CalendarPage() {
                   </button>
                 </div>
               </div>
-              <Calendar
+              <ReactCalendarWrapper
                 key={calendarKey}
                 height="100%"
                 calendars={calendars}

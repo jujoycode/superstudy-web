@@ -1,11 +1,10 @@
-import preval from 'preval.macro'
 import { useState } from 'react'
 import Barcode from 'react-barcode'
 import { Link } from 'react-router'
 import { useRecoilValue } from 'recoil'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
+import { ReactComponent as RightArrow } from '@/assets/svg/mypage-right-arrow.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { StudentIDCard } from '@/legacy/components'
 import { Blank, IconButton, Section, TopNavbar } from '@/legacy/components/common'
@@ -293,7 +292,8 @@ export function MyPage() {
 
           <div className="my-5 w-full text-center text-sm text-gray-500">
             <div className="text-white">
-              v{globalEnv.version} build at {preval`module.exports = new Date().toLocaleString().split("├")[0]`}
+              v{globalEnv.version} build at{' '}
+              {__BUILD_TIME__.split('T')[0] + ' ' + __BUILD_TIME__.split('T')[1].substring(0, 8)}
             </div>
             {/* {meRecoil?.school.name} <br /> */}
             Copyright 2022. SUPERSCHOOL all right reserved.

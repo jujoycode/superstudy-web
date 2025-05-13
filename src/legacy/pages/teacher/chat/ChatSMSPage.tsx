@@ -2,7 +2,7 @@ import { clsx } from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 
-import Refresh from '@/assets/svg/refresh.svg'
+import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
 import { FrontPagination } from '@/legacy/components'
 import { Blank, Label, Section, Select, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

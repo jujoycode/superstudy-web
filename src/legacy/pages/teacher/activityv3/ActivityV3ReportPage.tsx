@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 
-import FileItemIcon from '@/assets/svg/file-item-icon.svg'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { StudentActivityDetail } from '@/legacy/components/activityv3/StudentActivityDetail'
 import { BackButton, TopNavbar } from '@/legacy/components/common'

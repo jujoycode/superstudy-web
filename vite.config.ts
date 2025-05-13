@@ -113,6 +113,8 @@ export default defineConfig(({ mode }) => {
     // 환경 변수 정의
     define: {
       'process.env': exposedEnvs,
+      __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+      __BUILD_VERSION__: JSON.stringify(process.env.npm_package_version || '1.0.0'),
     },
     // 서버 설정
     server: {

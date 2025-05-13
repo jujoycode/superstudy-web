@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { t } from 'i18next'
 import { useEffect, useState, useRef } from 'react'
-import Close from '@/assets/svg/close.svg'
+import { ReactComponent as Close } from '@/assets/svg/close.svg'
 import { SelectMenus, SelectValues } from '@/legacy/components'
 import { BackButton, Badge, Blank, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

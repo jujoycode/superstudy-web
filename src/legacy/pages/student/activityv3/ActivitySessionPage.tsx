@@ -6,7 +6,7 @@ import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
-import FileItemIcon from '@/assets/svg/file-item-icon.svg'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { BackButton, List, ListItem, Textarea, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

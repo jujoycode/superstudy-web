@@ -5,7 +5,7 @@ import { useLocation } from 'react-router'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 import sugang from '@/assets/images/sugang.png'
-import Logo from '@/assets/svg/logo.svg'
+import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { Blank, Section } from '@/legacy/components/common'
 import { externalCreateToken, externalUpdateQueue, useCourseSeasonGet } from '@/legacy/generated/endpoint'

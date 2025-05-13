@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { useState, useEffect, type ChangeEvent } from 'react'
 import { useRecoilValue } from 'recoil'
 
-import SvgUser from '@/assets/svg/user.svg'
+import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { CloseButton, Label, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'

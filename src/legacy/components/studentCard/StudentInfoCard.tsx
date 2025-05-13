@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
 import { useQueryClient } from 'react-query'
-import SvgUser from '@/assets/svg/user.svg'
+import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { Select } from '@/legacy/components/common'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { Constants } from '@/legacy/constants'

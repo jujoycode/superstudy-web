@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 
 import BgLogo from '@/assets/images/Intersect.png'
-import SvgUser from '@/assets/svg/user.svg'
+import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, IconButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

@@ -1,7 +1,7 @@
 import { t } from 'i18next'
 import { useState } from 'react'
 
-import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
+import { ReactComponent as RightArrow } from '@/assets/svg/mypage-right-arrow.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { SuperModal } from '@/legacy/components'
 import { Section, TopNavbar } from '@/legacy/components/common'

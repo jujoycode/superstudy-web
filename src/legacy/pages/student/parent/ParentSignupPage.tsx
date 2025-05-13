@@ -12,7 +12,7 @@ import { useParentSignUp } from '@/legacy/container/parent-sign-up'
 import { useLogout } from '@/legacy/util/hooks'
 import { Validator } from '@/legacy/util/validator'
 
-import Logo from '@/assets/svg/logo.svg'
+import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 
 export function ParentSignupPage() {
   const vh = use100vh()

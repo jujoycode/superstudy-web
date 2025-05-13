@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { useRecoilState } from 'recoil'
 
-import Logo from '@/assets/svg/logo_superschool.svg'
+import { ReactComponent as Logo } from '@/assets/svg/logo_superschool.svg'
 import { Label } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'

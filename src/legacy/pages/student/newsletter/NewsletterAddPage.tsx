@@ -4,7 +4,7 @@ import Linkify from 'react-linkify'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
-
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import {
   BackButton,
   Blank,
@@ -34,8 +34,6 @@ import { useSignature } from '@/legacy/hooks/useSignature'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { makeDateToString } from '@/legacy/util/time'
 import { meState } from '@/stores'
-
-import FileItemIcon from '@/assets/svg/file-item-icon.svg'
 
 interface NewsletterAddPageProps {
   newsletterData: ResponseNewsletterDetailDto

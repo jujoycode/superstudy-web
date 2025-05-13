@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 
 import ChatSendDisabled from '@/assets/svg/chat-send-disabled.svg'
 import ChatSendEnabled from '@/assets/svg/chat-send-enabled.svg'
-import SvgUser from '@/assets/svg/user.svg'
+import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { SuperModal } from '@/legacy/components'
 import { ChatSetting } from '@/legacy/components/chat/ChatSetting'
 import { DateMessage } from '@/legacy/components/chat/DateMessage'

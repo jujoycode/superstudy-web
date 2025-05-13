@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import SvgUser from '@/assets/svg/user.svg'
+import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { SuperModal } from '@/legacy/components'
 import { Button } from '@/legacy/components/common/Button'
@@ -42,7 +42,7 @@ export function StudentModal({ id }: StudentModalProps) {
           className="aspect-square w-20 rounded-[8px] object-fill"
           onError={({ currentTarget }) => {
             currentTarget.onerror = null
-            currentTarget.src = SvgUser
+            currentTarget.src = SvgUser as unknown as string
           }}
         />
         <p className="text-18 mt-4 font-medium">

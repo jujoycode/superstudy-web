@@ -5,7 +5,7 @@ import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
 
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
-import SvgImage from '@/assets/svg/upload-image.svg'
+import { ReactComponent as SvgImage } from '@/assets/svg/upload-image.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ListItem } from '@/legacy/components/common'
 import { Constants } from '@/legacy/constants'
@@ -207,7 +207,7 @@ export function FeedsItem({
                             src={`${Constants.imageUrl}${image}`}
                             className="rounded-lg"
                             onError={({ currentTarget }) => {
-                              currentTarget.src = SvgImage
+                              currentTarget.src = SvgImage as unknown as string
                             }}
                           />
                         </div>

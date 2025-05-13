@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-
-import KlassIcon from '@/assets/svg/attendance-class.svg'
-import UserIcon from '@/assets/svg/attendance-user.svg'
+import { ReactComponent as KlassIcon } from '@/assets/svg/attendance-class.svg'
+import { ReactComponent as UserIcon } from '@/assets/svg/attendance-user.svg'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { useStudentTimetableDetail } from '@/legacy/container/student-timetable-detail'

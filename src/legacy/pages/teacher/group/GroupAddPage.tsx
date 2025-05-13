@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
-import Close from '@/assets/svg/close.svg'
+import { ReactComponent as Close } from '@/assets/svg/close.svg'
 import { ErrorBlank, SelectMenus } from '@/legacy/components'
 import { Blank, Label } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'

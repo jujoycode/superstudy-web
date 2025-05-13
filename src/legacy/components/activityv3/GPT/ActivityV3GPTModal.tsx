@@ -3,7 +3,7 @@ import { FC, useEffect, useRef, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useRecoilState } from 'recoil'
 
-import SvgUser from '@/assets/svg/user.svg'
+import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { Avatar, Label, Radio, RadioGroup, Select, Textarea } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Coachmark2 } from '@/legacy/components/common/CoachMark2'
@@ -266,7 +266,9 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
             <div className="flex flex-row items-center gap-4">
               <LazyLoadImage
                 className="h-24 w-24 rounded-xl border border-gray-300"
-                src={studentInfo?.profile ? `${Constants.imageUrl}${studentInfo.profile}` : SvgUser}
+                src={
+                  studentInfo?.profile ? `${Constants.imageUrl}${studentInfo.profile}` : (SvgUser as unknown as string)
+                }
                 alt=""
                 loading="lazy"
               />
