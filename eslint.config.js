@@ -86,6 +86,17 @@ export default tseslint.config(
         'error',
         {
           groups: ['builtin', 'external', 'internal', 'index'],
+          pathGroups: [
+            {
+              pattern: 'react*',
+              group: 'builtin',
+            },
+            {
+              pattern: '@/*',
+              group: 'internal',
+              position: 'after',
+            },
+          ],
           alphabetize: { order: 'asc', caseInsensitive: true },
         },
       ],

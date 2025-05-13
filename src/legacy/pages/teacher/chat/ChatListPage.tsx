@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import * as XLSX from 'xlsx'
 
+import Close from '@/assets/svg/close.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ChatRoomList } from '@/legacy/components/chat/ChatRoomList'
 import { BackButton, Blank, Divider, Label, Section, Select, TopNavbar } from '@/legacy/components/common'
@@ -28,7 +29,6 @@ import { meState, toastState } from '@/stores'
 
 import { ChatDetailPage } from './ChatDetailPage'
 import { ChatSMSPage } from './ChatSMSPage'
-import Close from '@/assets/svg/close.svg'
 
 const headers = ['id', '이름', '전화번호', '문구1', '문구2', '문구3']
 
