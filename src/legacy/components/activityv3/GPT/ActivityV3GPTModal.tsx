@@ -254,7 +254,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
   ]
 
   const byteLength = new TextEncoder().encode(content).length
-  const trimmedContent = content.replaceAll(' ', '')
+  const trimmedContent = content.replace(/ /g, '')
   const trimmedByteLength = new TextEncoder().encode(trimmedContent).length
 
   return (

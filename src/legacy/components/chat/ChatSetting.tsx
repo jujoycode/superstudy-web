@@ -88,7 +88,7 @@ export function ChatSetting({
 
       setEditable(info?.roomData?.createdUserId === me?.id)
     }
-  }, [info])
+  }, [info, me?.id])
 
   useEffect(() => {
     setEnableChatTime(startH !== endH || startM !== endM)
@@ -96,7 +96,7 @@ export function ChatSetting({
 
   useEffect(() => {
     modalOpen && showAttendees ? setSelContent(contentType.member) : setSelContent(contentType.setting)
-  }, [modalOpen])
+  }, [modalOpen, showAttendees])
 
   const OnSaveInfo = () => {
     let cst = '00:00'
@@ -272,7 +272,7 @@ export function ChatSetting({
                     onChange={(e) => setEndH(Number(e.target.value))}
                     className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
-                    {new Array(24).fill(null).map((item, num: number) => (
+                    {new Array(24).fill(null).map((_, num: number) => (
                       <option key={num} value={num}>
                         {num}
                       </option>

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-
+import { ReactComponent as ChatSendDisabled } from '@/assets/svg/chat-send-disabled.svg'
+import { ReactComponent as ChatSendEnabled } from '@/assets/svg/chat-send-enabled.svg'
 import { ChatSetting } from '@/legacy/components/chat/ChatSetting'
 import { DateMessage } from '@/legacy/components/chat/DateMessage'
 import { ReceiveMessage } from '@/legacy/components/chat/ReceiveMessage'
@@ -18,9 +19,6 @@ import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { useSocket } from '@/legacy/lib/socket'
 import { isNowOrFuture } from '@/legacy/util/time'
 import { meState } from '@/stores'
-
-import ChatSendDisabled from '@/assets/svg/chat-send-disabled.svg'
-import ChatSendEnabled from '@/assets/svg/chat-send-enabled.svg'
 
 interface ChatDetailPageProps {
   id: string
@@ -96,7 +94,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
         )
       }
     }
-  }, [chatRoomInfo])
+  }, [chatRoomInfo, setNewMessage])
 
   useEffect(() => {
     if (me && chatReadInfo && chatMessages) {
@@ -113,15 +111,14 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
           }
         })
     }
-  }, [me, chatReadInfo, chatMessages])
+  }, [me, chatReadInfo, chatMessages, myReadTime])
 
   useEffect(() => {
     if (id && socket) {
       socket?.emit('in', { id: Number(me?.id) })
     }
 
-    socket?.on('chat', (chatdata: Chat) => {
-      console.log('chat', chatdata)
+    socket?.on('chat', (_: Chat) => {
       refetchChatMessages()
         .then(() => {
           //
@@ -134,7 +131,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
     // return () => {
     //   socket?.off('onlineList');
     // };
-  }, [id, me?.id, socket])
+  }, [id, me?.id, refetchChatMessages, socket])
 
   useEffect(() => {
     return () => {
@@ -179,8 +176,6 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
       if (textareaRef.current) {
         textareaRef.current.setAttribute('scrollHeight', '64')
       }
-    } catch (error) {
-      console.log(error)
     } finally {
       setIsSubmitLoading(false)
     }
