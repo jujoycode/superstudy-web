@@ -5,33 +5,33 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestIBCasUpdateDtoStrands } from './requestIBCasUpdateDtoStrands';
-import type { RequestIBCasUpdateDtoLearningOutcome } from './requestIBCasUpdateDtoLearningOutcome';
-import type { RequestIBCasUpdateDtoSixWhDescription } from './requestIBCasUpdateDtoSixWhDescription';
-import type { RequestIBCasUpdateDtoStep } from './requestIBCasUpdateDtoStep';
-import type { RequestIBCasUpdateDtoRiskAssessmentItem } from './requestIBCasUpdateDtoRiskAssessmentItem';
-import type { RequestIBCasUpdateDtoLearnerProfile } from './requestIBCasUpdateDtoLearnerProfile';
-import type { RequestIBCasUpdateDtoAtl } from './requestIBCasUpdateDtoAtl';
+import type { RequestIBCasUpdateDtoAtl } from './requestIBCasUpdateDtoAtl'
+import type { RequestIBCasUpdateDtoLearnerProfile } from './requestIBCasUpdateDtoLearnerProfile'
+import type { RequestIBCasUpdateDtoLearningOutcome } from './requestIBCasUpdateDtoLearningOutcome'
+import type { RequestIBCasUpdateDtoRiskAssessmentItem } from './requestIBCasUpdateDtoRiskAssessmentItem'
+import type { RequestIBCasUpdateDtoSixWhDescription } from './requestIBCasUpdateDtoSixWhDescription'
+import type { RequestIBCasUpdateDtoStep } from './requestIBCasUpdateDtoStep'
+import type { RequestIBCasUpdateDtoStrands } from './requestIBCasUpdateDtoStrands'
 
 export interface RequestIBCasUpdateDto {
   /** (개인적인, 프로젝트) 목표 */
-  goal?: string;
+  goal?: string
   /** CAS 요소 3가지의 진행시간 */
-  strands: RequestIBCasUpdateDtoStrands;
+  strands: RequestIBCasUpdateDtoStrands
   /** 학습성과 */
-  learningOutcome: RequestIBCasUpdateDtoLearningOutcome;
+  learningOutcome: RequestIBCasUpdateDtoLearningOutcome
   /** CAS 일반 활동 설명 6하원칙 */
-  sixWhDescription?: RequestIBCasUpdateDtoSixWhDescription;
+  sixWhDescription?: RequestIBCasUpdateDtoSixWhDescription
   /** 프로젝트 단계 */
-  step?: RequestIBCasUpdateDtoStep;
+  step?: RequestIBCasUpdateDtoStep
   /** 강사|외부업체 연락처 */
-  externalContacts?: string;
+  externalContacts?: string
   /** 위험평가 */
-  riskAssessment?: RequestIBCasUpdateDtoRiskAssessmentItem[] | null;
+  riskAssessment?: RequestIBCasUpdateDtoRiskAssessmentItem[] | null
   /** 10가지 학습자상 */
-  learnerProfile?: RequestIBCasUpdateDtoLearnerProfile;
+  learnerProfile?: RequestIBCasUpdateDtoLearnerProfile
   /** ATL */
-  atl?: RequestIBCasUpdateDtoAtl;
+  atl?: RequestIBCasUpdateDtoAtl
   /** CAS ID */
-  id: number;
+  id: number
 }

@@ -1,10 +1,11 @@
 import { useState } from 'react'
+
+import { useTeacherKlassGroup } from '@/legacy/container/teacher-klass-groups'
 import {
   useGroupsFindOne,
   useNewsLettersFindOne,
   useStudentNewsletterFindUnreadUsersByNewsletterId,
 } from '@/legacy/generated/endpoint'
-import { useTeacherKlassGroup } from '@/legacy/container/teacher-klass-groups'
 import type { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup } from '@/legacy/generated/model'
 
 type NewData = ResponseGroupDto & {

@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { IBDeadlineGetItemsType } from './iBDeadlineGetItemsType';
+import type { IBDeadlineGetItemsType } from './iBDeadlineGetItemsType'
 
-export type IBDeadlineGetItemsParams = { type: IBDeadlineGetItemsType };
+export type IBDeadlineGetItemsParams = { type: IBDeadlineGetItemsType }

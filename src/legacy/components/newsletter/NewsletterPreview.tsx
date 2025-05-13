@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+
+import { PdfCard } from '@/legacy/components/common/PdfCard'
+import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isPdfFile } from '@/legacy/util/file'
-import { PdfCard } from '@/legacy/components/common/PdfCard'
-import { Time } from '@/legacy/components/common/Time'
 
 interface NewsletterPreviewProps {
   title: string

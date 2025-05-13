@@ -1,14 +1,16 @@
 import _, { map, max } from 'lodash'
 import { FC, useEffect, useState } from 'react'
-import { useStudentSelfAssessmentCreate } from '@/legacy/generated/endpoint'
-import { StudentSelfAssessment } from '@/legacy/generated/model'
-import { SELF_TEST_TYPES } from '@/legacy/pages/student/self-test/self-test.type'
-import { getDayOfYear } from '@/legacy/util/time'
 import { twMerge } from 'tailwind-merge'
+
 import { Label, Select, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
 import { TextInput } from '@/legacy/components/common/TextInput'
+import { useStudentSelfAssessmentCreate } from '@/legacy/generated/endpoint'
+import { StudentSelfAssessment } from '@/legacy/generated/model'
+import { getDayOfYear } from '@/legacy/util/time'
+
+import { SELF_TEST_TYPES } from '@/legacy/pages/student/self-test/self-test.type'
 
 interface StudentSelfAssessmentUpdateProps {
   studentSelfAssessment?: StudentSelfAssessment

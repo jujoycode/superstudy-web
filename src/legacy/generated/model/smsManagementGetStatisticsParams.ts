@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type SmsManagementGetStatisticsParams = { startDate: string; endDate: string };
+export type SmsManagementGetStatisticsParams = { startDate: string; endDate: string }

@@ -8,7 +8,7 @@
 
 export interface ResponseCreateSmsMessageDto {
   /** 수신자 ID */
-  receiverId: number;
+  receiverId: number
   /** 전송 결과 */
-  result: boolean;
+  result: boolean
 }

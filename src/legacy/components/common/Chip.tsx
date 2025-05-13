@@ -1,10 +1,10 @@
-import clsx from 'clsx';
-import { ButtonHTMLAttributes } from 'react';
+import clsx from 'clsx'
+import { ButtonHTMLAttributes } from 'react'
 
 interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  selected?: boolean;
+  selected?: boolean
 }
 
 export function Chip({ selected, className, ...props }: ChipProps) {
-  return <button className={clsx('chip', selected && 'chip-selected', className)} {...props} />;
+  return <button className={clsx('chip', selected && 'chip-selected', className)} {...props} />
 }

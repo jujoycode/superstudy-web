@@ -14,11 +14,10 @@
 - **UNLOCK**: 수정가능상태
 
  */
-export type ResponseIBDtoEditStatus = (typeof ResponseIBDtoEditStatus)[keyof typeof ResponseIBDtoEditStatus];
+export type ResponseIBDtoEditStatus = (typeof ResponseIBDtoEditStatus)[keyof typeof ResponseIBDtoEditStatus]
 
- 
 export const ResponseIBDtoEditStatus = {
   LOCK: 'LOCK',
   REQUEST_UNLOCK: 'REQUEST_UNLOCK',
   UNLOCK: 'UNLOCK',
-} as const;
+} as const

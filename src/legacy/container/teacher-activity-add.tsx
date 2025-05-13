@@ -2,8 +2,6 @@ import { useState } from 'react'
 
 // ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
-import { Routes } from '@/legacy/routes'
-
 import { useActivityCreate, useActivityUpdate } from '@/legacy/generated/endpoint'
 import { ActivityType, UploadFileTypeEnum, type Group, type RequestCreateActivityDto } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
@@ -11,8 +9,11 @@ import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import type { DocumentObject } from '@/legacy/types/document-object'
 import type { ImageObject } from '@/legacy/types/image-object'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
+
 import { GroupContainer } from './group'
 import { useTeacherActivityDetail } from './teacher-activity-detail'
+
+import { Routes } from '@/legacy/routes'
 
 export function useTeacherActivityAdd(activityId?: number) {
   const { push } = useHistory()

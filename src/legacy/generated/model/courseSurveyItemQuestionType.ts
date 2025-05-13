@@ -7,12 +7,11 @@
  */
 
 export type CourseSurveyItemQuestionType =
-  (typeof CourseSurveyItemQuestionType)[keyof typeof CourseSurveyItemQuestionType];
+  (typeof CourseSurveyItemQuestionType)[keyof typeof CourseSurveyItemQuestionType]
 
- 
 export const CourseSurveyItemQuestionType = {
   주관식_단답형: '주관식 단답형',
   주관식_서술형: '주관식 서술형',
   단일_선택형: '단일 선택형',
   중복_선택형: '중복 선택형',
-} as const;
+} as const

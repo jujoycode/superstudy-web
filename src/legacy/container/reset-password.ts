@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 // ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
-
 import { useUserResetPassword } from '@/legacy/generated/endpoint'
 import type { errorType } from '@/legacy/types'
 

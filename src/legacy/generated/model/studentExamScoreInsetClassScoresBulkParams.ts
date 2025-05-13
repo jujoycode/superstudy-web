@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentExamScoreInsetClassScoresBulkParams = { grade: number; classNum: number; insertionYear: number };
+export type StudentExamScoreInsetClassScoresBulkParams = { grade: number; classNum: number; insertionYear: number }

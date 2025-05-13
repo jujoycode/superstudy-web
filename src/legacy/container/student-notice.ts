@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useBoardFindAll, useNewsLettersFindAll, useNoticesFindAll } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
-import { childState, meState } from '@/stores'
 import { TabType } from '@/legacy/types'
+import { childState, meState } from '@/stores'
 
 export function useStudentNotice(tabType: TabType) {
   const child = useRecoilValue(childState)

@@ -8,41 +8,41 @@
 
 export interface ResponseSmsHistoryDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 발신자 아이디 */
-  senderId: number;
+  senderId: number
   /** 수신자 전화번호 */
-  receiverPhone: string;
+  receiverPhone: string
   /** 수신자이름 */
-  receiverName: string | null;
+  receiverName: string | null
   /** 수신자 아이디 */
-  receiverId: number;
+  receiverId: number
   /** 수신자 아이디의 부모정보 사용 */
-  useNokInfo: boolean;
+  useNokInfo: boolean
   /** 비밀문자 */
-  isSecret: boolean;
+  isSecret: boolean
   /** 메시지 내용 */
-  content: string;
+  content: string
   /** 메시지 타입 */
-  contentType: string;
+  contentType: string
   /** 전송상태 */
-  success: boolean;
+  success: boolean
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 재시도 횟수 */
-  retryCount: number;
+  retryCount: number
   /** 스케쥴 인스턴스 id */
-  scheduleInstanceId: number;
+  scheduleInstanceId: number
   /** 파트너사 메시지 식별id */
-  externalMessageId: string;
+  externalMessageId: string
   /** 수신자Role */
-  receiverRole: string | null;
+  receiverRole: string | null
   /** 발신자이름 */
-  senderName: string | null;
+  senderName: string | null
   /** 발신자Role */
-  senderRole: string | null;
+  senderRole: string | null
 }

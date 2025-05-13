@@ -1,16 +1,18 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-import icon from '@/legacy/assets/icons/more-vertical.svg'
+
+import { Icon } from '@/legacy/components/common/icons'
+import { TextInput } from '@/legacy/components/common/TextInput'
 import { useTeacherStudentUpdateParent } from '@/legacy/container/teacher-student-update-parent'
 import { useCounselingSendParentSignUpV2 } from '@/legacy/generated/endpoint'
-import { useLanguage } from '@/legacy/hooks/useLanguage'
 import type { ResponseParentUserDto } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
 import type { errorType } from '@/legacy/types'
-
 import { Validator } from '@/legacy/util/validator'
-import { TextInput } from '@/legacy/components/common/TextInput'
-import { Icon } from '@/legacy/components/common/icons'
+
 import { DropdownMenu } from './DropdownMenu'
+
+import icon from '@/legacy/assets/icons/more-vertical.svg'
 
 interface ParentInfoCard {
   parentInfo?: ResponseParentUserDto[] | null

@@ -1,13 +1,15 @@
 import { concat } from 'lodash'
 import { PropsWithChildren, useRef, useState } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import { Blank } from '@/legacy/components/common'
-import { useChecklistCreateChecklist, useChecklistDeleteChecklist } from '@/legacy/generated/endpoint'
-import { ResponseChecklistDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useChecklistCreateChecklist, useChecklistDeleteChecklist } from '@/legacy/generated/endpoint'
+import { ResponseChecklistDto } from '@/legacy/generated/model'
+import { meState } from '@/stores'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import SVGIcon from '../../icon/SVGIcon'
 import { FormInputField } from '../FormInputField'

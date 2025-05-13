@@ -7,5 +7,5 @@
  */
 
 export type StudentExamScoreInsetClassScoresBody = {
-  file?: Blob;
-};
+  file?: Blob
+}

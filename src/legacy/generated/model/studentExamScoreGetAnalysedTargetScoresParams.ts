@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentExamScoreGetAnalysedTargetScoresParams = { grade: number; semester: number };
+export type StudentExamScoreGetAnalysedTargetScoresParams = { grade: number; semester: number }

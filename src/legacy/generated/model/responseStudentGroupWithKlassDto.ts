@@ -8,23 +8,23 @@
 
 export interface ResponseStudentGroupWithKlassDto {
   /** 유저아이디 */
-  userId: number;
+  userId: number
   /** 이름 */
-  userName: string;
+  userName: string
   /** 별명 */
-  userNickName?: string;
+  userNickName?: string
   /** 희망진로 */
-  userHopePath: string;
+  userHopePath: string
   /** 희망학과 */
-  userHopeMajor: string;
+  userHopeMajor: string
   /** 만료여부, 미사용 사용자는 true (전학 등) */
-  userExpired: boolean;
+  userExpired: boolean
   /** 만료사유, 탈퇴, 전학 등 사유 입력 */
-  userExpiredReason: string | null;
+  userExpiredReason: string | null
   /** 학생그룹 id */
-  id: number | null;
+  id: number | null
   /** 출석번호 */
-  studentNumber: number;
+  studentNumber: number
   /** 학급 */
-  klass: string | null;
+  klass: string | null
 }

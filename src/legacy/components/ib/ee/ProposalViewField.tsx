@@ -1,6 +1,7 @@
 // ProposalInputField.tsx
 import clsx from 'clsx'
 import { PropsWithChildren, ReactElement } from 'react'
+
 import { Typography } from '@/legacy/components/common/Typography'
 
 interface ProposalViewFieldProps {

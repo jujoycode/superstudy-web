@@ -1,22 +1,24 @@
 import { concat, find, map } from 'lodash'
 import { PropsWithChildren, useRef, useState } from 'react'
-import { PopupModal } from '@/legacy/components/PopupModal'
-import { SuperModal } from '@/legacy/components/SuperModal'
+
 import { Blank } from '@/legacy/components/common'
 import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { PopupModal } from '@/legacy/components/PopupModal'
+import { SuperModal } from '@/legacy/components/SuperModal'
 import { useTokEvaluationUpdateCriteria } from '@/legacy/generated/endpoint'
 import {
   ResponseTokEvaluationCriteriaDto,
   TokEvaluationGradeDto,
   UpdateTokEvaluationGradeDto,
 } from '@/legacy/generated/model'
+
 import { useTokEvaluationGetCriteriaById } from '../../../../generated/endpoint'
+import ColorSVGIcon from '../../../icon/ColorSVGIcon'
+import { EvalInputField } from '../../EvalInputField'
 import AlertV2 from '../@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '../@/legacy/components/common/ButtonV2'
 import { Typography } from '../@/legacy/components/common/Typography'
-import ColorSVGIcon from '../../../icon/ColorSVGIcon'
-import { EvalInputField } from '../../EvalInputField'
 
 interface CoordinatorTOK_Eval_UpdateEvalProps {
   modalOpen: boolean

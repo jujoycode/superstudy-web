@@ -5,27 +5,27 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { School } from './school';
-import type { User } from './user';
-import type { Point } from './point';
+import type { Point } from './point'
+import type { School } from './school'
+import type { User } from './user'
 
 export interface PointLog {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
-  title: string;
-  value: number;
-  year: string;
-  deletedAt?: string;
-  schoolId: number;
-  teacherId: number;
-  studentId: number;
-  pointId?: number;
-  school: School;
-  teacher: User;
-  student: User;
-  point: Point;
+  updatedAt: string
+  title: string
+  value: number
+  year: string
+  deletedAt?: string
+  schoolId: number
+  teacherId: number
+  studentId: number
+  pointId?: number
+  school: School
+  teacher: User
+  student: User
+  point: Point
 }

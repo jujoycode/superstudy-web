@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { PointLog } from './pointLog';
+import type { PointLog } from './pointLog'
 
 export interface PaginatedPointLog {
-  items: PointLog[];
-  page: number;
-  size: number;
-  total: number;
+  items: PointLog[]
+  page: number
+  size: number
+  total: number
 }

@@ -5,23 +5,23 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { FAQContentDto } from './fAQContentDto';
-import type { ResponseFAQDtoCategory } from './responseFAQDtoCategory';
-import type { ResponseWriterDto } from './responseWriterDto';
+import type { FAQContentDto } from './fAQContentDto'
+import type { ResponseFAQDtoCategory } from './responseFAQDtoCategory'
+import type { ResponseWriterDto } from './responseWriterDto'
 
 export interface ResponseFAQDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** FAQ 제목 */
-  title: string;
+  title: string
   /** FAQ 질의응답 내용 */
-  content: FAQContentDto[];
+  content: FAQContentDto[]
   /** FAQ 분류 */
-  category: ResponseFAQDtoCategory;
+  category: ResponseFAQDtoCategory
   /** 작성자 */
-  writer: ResponseWriterDto;
+  writer: ResponseWriterDto
 }

@@ -5,21 +5,21 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestCreateGroupDtoSubjectType } from './requestCreateGroupDtoSubjectType';
+import type { RequestCreateGroupDtoSubjectType } from './requestCreateGroupDtoSubjectType'
 
 export interface RequestCreateGroupDto {
   /** 이름 */
-  name: string | null;
+  name: string | null
   /** 학년도 */
-  year: string | null;
+  year: string | null
   /** 그룹 제목 */
-  subject: string;
+  subject: string
   /** 과목 분류 */
-  subjectType: RequestCreateGroupDtoSubjectType;
+  subjectType: RequestCreateGroupDtoSubjectType
   /** 교실 */
-  room: string | null;
+  room: string | null
   /** 학생아이디들 */
-  studentIds: number[] | null;
+  studentIds: number[] | null
   /** 선생님아이디들 */
-  teacherIds: number[] | null;
+  teacherIds: number[] | null
 }

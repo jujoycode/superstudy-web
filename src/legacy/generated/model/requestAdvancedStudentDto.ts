@@ -8,19 +8,19 @@
 
 export interface RequestAdvancedStudentDto {
   /** 진급 학년 */
-  newGrade: number;
+  newGrade: number
   /** 진급 반 */
-  newKlass: number;
+  newKlass: number
   /** 진급 번호 */
-  newStudentNumber: number;
+  newStudentNumber: number
   /** 이름 */
-  name: string;
+  name: string
   /** 이전 학년 */
-  oldGrade: number;
+  oldGrade: number
   /** 이전 학년 */
-  oldKlass: number;
+  oldKlass: number
   /** 이전 학년 */
-  oldStudentNumber: number;
+  oldStudentNumber: number
   /** 진급년도 */
-  adventYear: number;
+  adventYear: number
 }

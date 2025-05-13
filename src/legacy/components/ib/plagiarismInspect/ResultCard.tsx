@@ -1,18 +1,20 @@
-import { Typography } from '@/legacy/components/common/Typography'
-import { cn } from '@/legacy/lib/tailwind-merge'
-import Badge from './Badge'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { ResponseCopykillerResponseDto, ResponseCopykillerWithContentDto } from '@/legacy/generated/model'
 import { format } from 'date-fns'
-import { useGetPlagiarismInspectDetail, useGetPlagiarismInspectResult } from '@/legacy/container/plagiarism-inspector'
 import { useState } from 'react'
-import LoadingPopup from './LoadingPopup'
-import { Constants } from '@/legacy/constants'
-import { PopupModal } from '@/legacy/components/PopupModal'
+
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
-import { getFileNameFromUrl } from '@/legacy/util/file'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import { PopupModal } from '@/legacy/components/PopupModal'
+import { Constants } from '@/legacy/constants'
+import { useGetPlagiarismInspectDetail, useGetPlagiarismInspectResult } from '@/legacy/container/plagiarism-inspector'
+import { ResponseCopykillerResponseDto, ResponseCopykillerWithContentDto } from '@/legacy/generated/model'
+import { cn } from '@/legacy/lib/tailwind-merge'
 import { downloadFile } from '@/legacy/util/download-image'
+import { getFileNameFromUrl } from '@/legacy/util/file'
+
+import Badge from './Badge'
+import LoadingPopup from './LoadingPopup'
 
 export default function ResultCard({ data }: { data: ResponseCopykillerResponseDto }) {
   const [isCausePopupOpen, setIsCausePopupOpen] = useState(false)

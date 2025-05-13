@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router'
+
 import { Badge } from '@/legacy/components/common'
 import { Fieldtrip, FieldtripStatus } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'

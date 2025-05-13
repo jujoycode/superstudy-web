@@ -8,9 +8,9 @@
 
 export interface RequestIBSchoolManagementDto {
   /** IB 학교 이름 */
-  name: string;
+  name: string
   /** IB 학교 코드 */
-  code: string;
+  code: string
   /** Session */
-  session: string;
+  session: string
 }

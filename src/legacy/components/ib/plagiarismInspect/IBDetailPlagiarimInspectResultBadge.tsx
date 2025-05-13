@@ -1,11 +1,13 @@
-import SVGIcon from '@/legacy/components/icon/SVGIcon'
-import { useRecoilValue } from 'recoil'
-import { Typography } from '@/legacy/components/common/Typography'
-import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
 import clsx from 'clsx'
-import { schoolPropertiesState } from '@/stores'
-import { useGetPlagiarismInspectDetail } from '@/legacy/container/plagiarism-inspector'
 import { useState } from 'react'
+import { useRecoilValue } from 'recoil'
+
+import { Typography } from '@/legacy/components/common/Typography'
+import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { useGetPlagiarismInspectDetail } from '@/legacy/container/plagiarism-inspector'
+import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
+import { schoolPropertiesState } from '@/stores'
+
 import LoadingPopup from './LoadingPopup'
 
 interface IBDetailPlagiarimInspectResultBadgeProps {

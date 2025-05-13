@@ -8,9 +8,9 @@
 
 export interface ResponseIBPortfolioSubmissionStatusCountDto {
   /** 전체 학생 수 */
-  total: number;
+  total: number
   /** 미제출 학생 수 */
-  notSubmitted: number;
+  notSubmitted: number
   /** 제출 학생 수 */
-  submitted: number;
+  submitted: number
 }

@@ -12,9 +12,11 @@ import {
 } from 'chart.js'
 import { useEffect, useRef, useState } from 'react'
 import { Doughnut } from 'react-chartjs-2'
+
 import { Typography } from '@/legacy/components/common/Typography'
 import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
 import { ResponseIBPortfolioDto } from '@/legacy/generated/model'
+
 import LearningOutcomeChart from './LearingOutcomeChart'
 
 interface CASChartProps {

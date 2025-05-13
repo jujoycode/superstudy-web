@@ -2,15 +2,17 @@ import { add } from 'date-fns'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useRecoilValue } from 'recoil'
+
+import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Fieldtrip, ResponseUserDto } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
-import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName } from '@/legacy/util/status'
 import { getCustomString } from '@/legacy/util/string'
 import { fieldtripPeriodDayCnt, makeDateToString2 } from '@/legacy/util/time'
+import { meState } from '@/stores'
+
 import { Td2 } from '../Td2'
-import { Checkbox } from '@/legacy/components/common/Checkbox'
 
 interface FieldtripPaperProps {
   school: ResponseUserDto['school'] | undefined
@@ -38,7 +40,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
   const meRecoil = useRecoilValue(meState)
 
   const schoolName = school?.name
-  const [agree, setAgree] = useState(true)
+  const [agree] = useState(true)
 
   const { t } = useTranslation()
 

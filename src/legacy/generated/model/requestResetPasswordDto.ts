@@ -8,7 +8,7 @@
 
 export interface RequestResetPasswordDto {
   /** 비밀번호재설정토큰 */
-  token: string;
+  token: string
   /** 패스워드 */
-  newPassword: string;
+  newPassword: string
 }

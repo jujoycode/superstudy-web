@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useSetRecoilState } from 'recoil'
+
 import { SuperModal } from '@/legacy/components'
 import { Label, Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -16,9 +17,10 @@ import {
 import { PointLogCreateBody } from '@/legacy/generated/model'
 import { form } from '@/legacy/lib/form'
 import { cn } from '@/legacy/lib/tailwind-merge'
-import { toastState } from '@/stores'
 import { getNickName } from '@/legacy/util/status'
 import { numberWithSign } from '@/legacy/util/string'
+import { toastState } from '@/stores'
+
 import { useModals } from './ModalStack'
 
 export interface AssignPointModalProps {
@@ -27,7 +29,7 @@ export interface AssignPointModalProps {
 }
 
 export function AssignPointModal({ studentId, groupId: defaultGroupId }: AssignPointModalProps) {
-  const { t } = useTranslation('')
+  const { t } = useTranslation()
   const { t: tm } = useTranslation('modal', { keyPrefix: 'assign_point_modal' })
   const { popModal } = useModals()
   const setToastMsg = useSetRecoilState(toastState)

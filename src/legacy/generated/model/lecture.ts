@@ -5,38 +5,38 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { LectureType } from './lectureType';
-import type { Group } from './group';
+import type { Group } from './group'
+import type { LectureType } from './lectureType'
 
 export interface Lecture {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 수업종류 */
-  type: LectureType;
+  type: LectureType
   /** 학년도 */
-  year: string | null;
+  year: string | null
   /** 학기 */
-  semester: number | null;
+  semester: number | null
   /** 그룹아이디 */
-  groupId: number;
+  groupId: number
   /** 그룹 */
-  group: Group;
+  group: Group
   /** 월~금요일(1~5) */
-  day: number;
+  day: number
   /** 수업교시 */
-  time: number;
+  time: number
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 교실이름 */
-  room: string;
+  room: string
   /** 강의 설명 */
-  info: string;
+  info: string
   /** 유효한 주 번호, 기본은 0, 예) 23이면 23주차에만 유효 */
-  validityWeek: number;
+  validityWeek: number
   /** 유효한 마지막 주 번호, 예) 23이면 23주차까지만 유효 */
-  validityEndWeek: number;
+  validityEndWeek: number
 }

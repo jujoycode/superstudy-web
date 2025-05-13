@@ -5,15 +5,15 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Group } from './group';
-import type { TeacherGroup } from './teacherGroup';
-import type { ResponseStudentGroupWithKlassDto } from './responseStudentGroupWithKlassDto';
+import type { Group } from './group'
+import type { ResponseStudentGroupWithKlassDto } from './responseStudentGroupWithKlassDto'
+import type { TeacherGroup } from './teacherGroup'
 
 export interface ResponseGroupDetailInfoDto {
   /** 그룹 정보 */
-  groupInfo: Group;
+  groupInfo: Group
   /** 선생님 리스트 */
-  teacherList: TeacherGroup[];
+  teacherList: TeacherGroup[]
   /** 학생 리스트 */
-  studentList: ResponseStudentGroupWithKlassDto[];
+  studentList: ResponseStudentGroupWithKlassDto[]
 }

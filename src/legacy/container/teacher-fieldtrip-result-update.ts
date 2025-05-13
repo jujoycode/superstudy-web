@@ -1,10 +1,11 @@
 import { useState } from 'react'
+
 import { useFieldtripResultUpdateResultByTeacher } from '@/legacy/generated/endpoint'
 import { UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import type { ImageObject } from '@/legacy/types/image-object'
 import type { errorType } from '@/legacy/types'
+import type { ImageObject } from '@/legacy/types/image-object'
 
 type UseTeacherFieldtripResultUpdateProps = {
   fieldtripId?: number

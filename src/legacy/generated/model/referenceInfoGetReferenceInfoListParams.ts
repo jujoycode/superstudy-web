@@ -5,10 +5,10 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ReferenceInfoGetReferenceInfoListCategory } from './referenceInfoGetReferenceInfoListCategory';
+import type { ReferenceInfoGetReferenceInfoListCategory } from './referenceInfoGetReferenceInfoListCategory'
 
 export type ReferenceInfoGetReferenceInfoListParams = {
-  page?: number;
-  limit?: number;
-  category: ReferenceInfoGetReferenceInfoListCategory;
-};
+  page?: number
+  limit?: number
+  category: ReferenceInfoGetReferenceInfoListCategory
+}

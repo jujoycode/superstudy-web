@@ -8,5 +8,5 @@
 
 export interface ResponseNotificationCheckDto {
   /** 이메일 리스트 */
-  emailList: string[];
+  emailList: string[]
 }

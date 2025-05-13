@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentActivitySessionFindByTeacherParams = { sessionIds: number[]; studentId: number };
+export type StudentActivitySessionFindByTeacherParams = { sessionIds: number[]; studentId: number }

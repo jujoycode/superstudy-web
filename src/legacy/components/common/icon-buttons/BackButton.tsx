@@ -1,26 +1,28 @@
-import { ButtonHTMLAttributes } from 'react';
-import { useHistory } from '@/hooks/useHistory';
-import { IconButton } from '../IconButton';
-import { Icon } from '../icons';
+import { ButtonHTMLAttributes } from 'react'
+
+import { useHistory } from '@/hooks/useHistory'
+
+import { IconButton } from '../IconButton'
+import { Icon } from '../icons'
 
 interface BackButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  onClick?: () => void;
+  onClick?: () => void
 }
 
 export function BackButton({ onClick, ...props }: BackButtonProps) {
-  const history = useHistory();
+  const history = useHistory()
 
   const handleClick = () => {
     if (typeof onClick === 'function') {
-      onClick();
+      onClick()
     } else {
       if (history.length > 1) {
-        history.goBack();
+        history.goBack()
       } else {
-        history.push('/');
+        history.push('/')
       }
     }
-  };
+  }
 
-  return <IconButton data-cy="back" children={<Icon.Back />} onClick={handleClick} {...props} />;
+  return <IconButton data-cy="back" children={<Icon.Back />} onClick={handleClick} {...props} />
 }

@@ -1,5 +1,6 @@
 import { HTMLAttributes, useRef, useState } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
+
 import { useWindowSize } from '@/legacy/util/hooks'
 
 import 'react-pdf/dist/esm/Page/TextLayer.css'

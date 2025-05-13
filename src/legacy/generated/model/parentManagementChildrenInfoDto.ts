@@ -8,13 +8,13 @@
 
 export interface ParentManagementChildrenInfoDto {
   /** 학생 id */
-  childrenId: number;
+  childrenId: number
   /** 학생 이름 */
-  childrenName: string;
+  childrenName: string
   /** 학생 별명 */
-  childrenNickName: string;
+  childrenNickName: string
   /** 출석번호 */
-  childrenStudentNumber: number;
+  childrenStudentNumber: number
   /** KlassGroupName(학년반) */
-  childrenKlassGroupName: string | null;
+  childrenKlassGroupName: string | null
 }

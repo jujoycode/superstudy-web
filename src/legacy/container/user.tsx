@@ -1,5 +1,20 @@
 import { useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+
+import { createContainer } from '@/legacy/container/createContainer'
+import {
+  useSchoolPropertyGetProperties,
+  useUserLogin,
+  useUserMe,
+  useUserMeWithChildren,
+} from '@/legacy/generated/endpoint'
+import { Role } from '@/legacy/generated/model'
+import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
+import { useLogoutOnIdle } from '@/legacy/hooks/useLogoutOnIdle'
+import { RN } from '@/legacy/lib/rn'
+import type { errorType } from '@/legacy/types'
+import { useLogout } from '@/legacy/util/hooks'
+import { isEmail } from '@/legacy/util/validator'
 import {
   childState,
   isStayLoggedInState,
@@ -9,20 +24,6 @@ import {
   twoFactorState,
   schoolPropertiesState,
 } from '@/stores'
-import { RN } from '@/legacy/lib/rn'
-import { useLogoutOnIdle } from '@/legacy/hooks/useLogoutOnIdle'
-import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
-import { useLogout } from '@/legacy/util/hooks'
-import { isEmail } from '@/legacy/util/validator'
-import {
-  useSchoolPropertyGetProperties,
-  useUserLogin,
-  useUserMe,
-  useUserMeWithChildren,
-} from '@/legacy/generated/endpoint'
-import { Role } from '@/legacy/generated/model'
-import { createContainer } from '@/legacy/container/createContainer'
-import type { errorType } from '@/legacy/types'
 
 export function userHook() {
   const logout = useLogout()

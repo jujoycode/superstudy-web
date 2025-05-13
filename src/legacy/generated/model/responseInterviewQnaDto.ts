@@ -5,17 +5,17 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { IBInterviewQnaContentDto } from './iBInterviewQnaContentDto';
+import type { IBInterviewQnaContentDto } from './iBInterviewQnaContentDto'
 
 export interface ResponseInterviewQnaDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 질의응답 내용 */
-  content: IBInterviewQnaContentDto[];
+  content: IBInterviewQnaContentDto[]
   /** 삭제일시 */
-  deletedAt: string;
+  deletedAt: string
 }

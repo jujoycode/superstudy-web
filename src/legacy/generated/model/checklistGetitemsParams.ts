@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ChecklistLocation } from './checklistLocation';
+import type { ChecklistLocation } from './checklistLocation'
 
-export type ChecklistGetitemsParams = { location: ChecklistLocation };
+export type ChecklistGetitemsParams = { location: ChecklistLocation }

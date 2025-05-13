@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
+
 import { useStudentNewsletterApprove, useStudentNewsletterFindOneByUUID } from '@/legacy/generated/endpoint'
 import { RequestApproveStudentNewsletterDto } from '@/legacy/generated/model'
 

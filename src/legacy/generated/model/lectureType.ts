@@ -6,12 +6,11 @@
  * OpenAPI spec version: 0.1
  */
 
-export type LectureType = (typeof LectureType)[keyof typeof LectureType];
+export type LectureType = (typeof LectureType)[keyof typeof LectureType]
 
- 
 export const LectureType = {
   FIX: 'FIX',
   SELECT: 'SELECT',
   MOVE: 'MOVE',
   UNKNOWN: 'UNKNOWN',
-} as const;
+} as const

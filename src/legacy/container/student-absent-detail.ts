@@ -3,10 +3,9 @@ import { useRecoilValue } from 'recoil'
 
 // ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
-
-import { childState } from '@/stores'
 import { useAbsentsDelete, useAbsentsFindOne, useAbsentsResend } from '@/legacy/generated/endpoint'
 import type { errorType } from '@/legacy/types'
+import { childState } from '@/stores'
 
 export function useStudentAbsentDetail(id: number) {
   const { push } = useHistory()

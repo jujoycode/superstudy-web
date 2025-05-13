@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
 // ! 개선 필요
-import { useHistory } from '@/hooks/useHistory'
-
 import { useRecoilValue, useSetRecoilState } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import {
   useOtpSendPost,
   useOtpSendPostAuth,
@@ -11,8 +11,8 @@ import {
   useOtpUserSearchPostAuth,
 } from '@/legacy/generated/endpoint'
 import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
-import { toastState, tokenState, twoFactorState } from '@/stores'
 import type { errorType } from '@/legacy/types'
+import { toastState, tokenState, twoFactorState } from '@/stores'
 
 export function useOtp() {
   const [otpSendResult, setOtpSendResult] = useState(false)

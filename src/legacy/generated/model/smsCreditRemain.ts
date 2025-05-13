@@ -8,13 +8,13 @@
 
 export interface SmsCreditRemain {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 학교 아이디 */
-  schoolId: number;
+  schoolId: number
   /** 크래딧 잔여량(1일 1회 갱신) */
-  remainCredit: number;
+  remainCredit: number
 }

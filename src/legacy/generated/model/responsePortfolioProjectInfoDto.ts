@@ -5,14 +5,14 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponsePortfolioProjectInfoDtoStrands } from './responsePortfolioProjectInfoDtoStrands';
-import type { ResponsePortfolioProjectInfoDtoLearningOutcome } from './responsePortfolioProjectInfoDtoLearningOutcome';
+import type { ResponsePortfolioProjectInfoDtoLearningOutcome } from './responsePortfolioProjectInfoDtoLearningOutcome'
+import type { ResponsePortfolioProjectInfoDtoStrands } from './responsePortfolioProjectInfoDtoStrands'
 
 export interface ResponsePortfolioProjectInfoDto {
   /** 프로젝트 수 */
-  count: number;
+  count: number
   /** CAS 요소 3가지의 진행시간 총합 */
-  strands: ResponsePortfolioProjectInfoDtoStrands;
+  strands: ResponsePortfolioProjectInfoDtoStrands
   /** 학습성과 */
-  learningOutcome: ResponsePortfolioProjectInfoDtoLearningOutcome;
+  learningOutcome: ResponsePortfolioProjectInfoDtoLearningOutcome
 }

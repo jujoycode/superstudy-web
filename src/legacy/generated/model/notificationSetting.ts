@@ -5,33 +5,33 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { User } from './user';
+import type { User } from './user'
 
 export interface NotificationSetting {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 알림 허용 */
-  allowNotifications: boolean;
+  allowNotifications: boolean
   /** 결재서류 (출결/확인증/체험학습) */
-  notifyApprovals: boolean;
+  notifyApprovals: boolean
   /** 출결상태 (출석/결석) */
-  notifyAttendances: boolean;
+  notifyAttendances: boolean
   /** 채팅 */
-  notifyChats: boolean;
+  notifyChats: boolean
   /** 신규게시물 (학급/공지/가정통신문) */
-  notifyPosts: boolean;
+  notifyPosts: boolean
   /** 0123456 - 일월화수목금토 */
-  daysOfWeek: boolean[];
+  daysOfWeek: boolean[]
   /** 시작 시간 */
-  timeFrom: string;
+  timeFrom: string
   /** 끝 시간 */
-  timeTo: string;
+  timeTo: string
   /** 유저 ID */
-  userId: number;
+  userId: number
   /** 유저 */
-  user: User;
+  user: User
 }

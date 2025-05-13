@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type UserGetParentsByGroupIdParams = { groupId: number };
+export type UserGetParentsByGroupIdParams = { groupId: number }

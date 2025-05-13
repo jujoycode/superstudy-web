@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import {
   useFieldtripsFindOne,
   useFieldtripsFindOneByUUID,
   useFieldtripResultApproveResultByParent,
   useFieldtripResultApproveResultByParentApp,
 } from '@/legacy/generated/endpoint'
-import { childState } from '@/stores'
 import type { errorType } from '@/legacy/types'
+import { childState } from '@/stores'
 
 type Props = {
   uuid: string

@@ -5,49 +5,49 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { FieldtripType } from './fieldtripType';
+import type { FieldtripType } from './fieldtripType'
 
 export interface RequestCreateFieldtripDto {
   /** 체헙학습 신청서 종류 */
-  type: FieldtripType;
+  type: FieldtripType
   /** 시작일 */
-  startAt: string;
+  startAt: string
   /** 시작일의 시작교시 */
-  startPeriodS: number;
+  startPeriodS: number
   /** 종료일 */
-  endAt: string;
+  endAt: string
   /** 종료일의 종료교시 */
-  endPeriodE: number;
+  endPeriodE: number
   /** 1일 기준 기간 */
-  wholeDayPeriod: string;
+  wholeDayPeriod: string
   /** 목적 */
-  purpose: string;
+  purpose: string
   /** 목적지 */
-  destination: string;
+  destination: string
   /** 해외 여부 */
-  overseas: boolean;
+  overseas: boolean
   /** 숙박장소 */
-  accommodation: string;
+  accommodation: string
   /** 인솔자명 */
-  guideName: string;
+  guideName: string
   /** 인솔자연락처 */
-  guidePhone: string;
+  guidePhone: string
   /** 내용 */
-  content: string;
+  content: string
   /** 체험학습형태 */
-  form: string;
+  form: string
   /** 사용일수 */
-  usedDays: number;
+  usedDays: number
   /** 인솔자관계 */
-  relationship: string;
+  relationship: string
   /** 신청서 첨부파일들 */
-  applyFiles: string[];
+  applyFiles: string[]
   /** 학생서명이미지 */
-  studentSignature: string | null;
+  studentSignature: string | null
   /** 부모님서명이미지 */
-  parentSignature: string | null;
+  parentSignature: string | null
   /** 학부모이름 */
-  parentsName: string;
+  parentsName: string
   /** 학부모전화번호 */
-  parentsPhone: string;
+  parentsPhone: string
 }

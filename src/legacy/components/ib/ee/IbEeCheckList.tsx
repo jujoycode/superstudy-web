@@ -1,13 +1,15 @@
 import { PropsWithChildren, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { IBBlank } from '@/legacy/components/common/IBBlank'
-import { useCheckListGetByStudent } from '@/legacy/container/ib-checklist-find'
-import { RequestRRSDto } from '@/legacy/generated/model'
+
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Input } from '@/legacy/components/common/Input'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useCheckListGetByStudent } from '@/legacy/container/ib-checklist-find'
+import { RequestRRSDto } from '@/legacy/generated/model'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 
 interface IbEeCheckListProps {

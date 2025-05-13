@@ -8,13 +8,13 @@
 
 export interface Record {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 관찰 기록 */
-  content: string | null;
+  content: string | null
   /** 학생활동아이디 */
-  studentActivityV3Id: number;
+  studentActivityV3Id: number
 }

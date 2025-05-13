@@ -1,9 +1,11 @@
 import { format } from 'date-fns'
 import { FC } from 'react'
 import { Link, useLocation } from 'react-router'
+import { twMerge } from 'tailwind-merge'
+
 import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import { ActivitySession, ActivityV3 } from '@/legacy/generated/model'
-import { twMerge } from 'tailwind-merge'
+
 import { Activityv3SessionItem } from './activityv3SessionItem'
 
 interface Activityv3ItemProps {

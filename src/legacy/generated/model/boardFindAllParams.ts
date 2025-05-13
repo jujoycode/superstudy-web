@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { BoardCategoryEnum } from './boardCategoryEnum';
+import type { BoardCategoryEnum } from './boardCategoryEnum'
 
-export type BoardFindAllParams = { page?: number; limit?: number; groupId: number; category?: BoardCategoryEnum };
+export type BoardFindAllParams = { page?: number; limit?: number; groupId: number; category?: BoardCategoryEnum }

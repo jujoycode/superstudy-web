@@ -1,12 +1,14 @@
 import { useHistory } from '@/hooks/useHistory'
+import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import { ResponseCoordinatorSelfCheckDtoType, ResponseIBDto, ResponseUserDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../icon/ColorSVGIcon'
 import SolidSVGIcon from '../icon/SolidSVGIcon'
 import SVGIcon from '../icon/SVGIcon'
+
 import { STATUS_GROUPS } from './TeacherIBStatus'
 
 interface ProjectCardProps {

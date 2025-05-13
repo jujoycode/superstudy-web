@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
+
 import { QueryKey } from '@/legacy/constants/query-key'
-import { useNoticesFindAll } from '@/legacy/generated/endpoint'
 import { createContainer } from '@/legacy/container/createContainer'
+import { useNoticesFindAll } from '@/legacy/generated/endpoint'
 
 export function useTeacherNoticeHook() {
   const [pageIngo, _] = useState({ page: 1, limit: 500 })

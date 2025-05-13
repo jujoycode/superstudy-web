@@ -1,10 +1,11 @@
 import { useLocation } from 'react-router'
+
 import { useHistory } from '@/hooks/useHistory'
+import { Badge } from '@/legacy/components/common'
+import { Time } from '@/legacy/components/common/Time'
 import { Board } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName } from '@/legacy/util/status'
-import { Badge } from '@/legacy/components/common'
-import { Time } from '@/legacy/components/common/Time'
 
 interface BoardCardProps {
   board: Board

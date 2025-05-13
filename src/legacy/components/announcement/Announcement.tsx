@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+
 import { useActiveAnnouncements } from '@/legacy/container/active-announcement'
 import { ResponseAnnouncementDto } from '@/legacy/generated/model'
 import { jsonParseSafe } from '@/legacy/util/validator'
+
 import AnnouncementCard from './AnnouncementCard'
 
 interface AnnouncementProps {

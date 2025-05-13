@@ -5,10 +5,10 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { TokEvaluationGetCriteriaItemsType } from './tokEvaluationGetCriteriaItemsType';
+import type { TokEvaluationGetCriteriaItemsType } from './tokEvaluationGetCriteriaItemsType'
 
 export type TokEvaluationGetCriteriaItemsParams = {
-  page?: number;
-  limit?: number;
-  type?: TokEvaluationGetCriteriaItemsType;
-};
+  page?: number
+  limit?: number
+  type?: TokEvaluationGetCriteriaItemsType
+}

@@ -8,5 +8,5 @@
 
 export interface DeleteCheckListContent {
   /** 삭제할 체크리스트 id 들 */
-  ids: number[];
+  ids: number[]
 }

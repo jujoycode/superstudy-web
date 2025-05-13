@@ -7,12 +7,11 @@
  */
 
 export type EssayGetSubmissionStatusStatus =
-  (typeof EssayGetSubmissionStatusStatus)[keyof typeof EssayGetSubmissionStatusStatus];
+  (typeof EssayGetSubmissionStatusStatus)[keyof typeof EssayGetSubmissionStatusStatus]
 
- 
 export const EssayGetSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',
   EVALUATING: 'EVALUATING',
   COMPLETE: 'COMPLETE',
-} as const;
+} as const

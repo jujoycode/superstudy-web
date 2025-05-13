@@ -5,12 +5,12 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseStudentInfoDto } from './responseStudentInfoDto';
-import type { StudentGroup } from './studentGroup';
+import type { ResponseStudentInfoDto } from './responseStudentInfoDto'
+import type { StudentGroup } from './studentGroup'
 
 export interface ResponseStudentDetailInfoDto {
   /** 학생 정보 */
-  studentData: ResponseStudentInfoDto;
+  studentData: ResponseStudentInfoDto
   /** 그룹 정보 */
-  studentGroups: StudentGroup[] | null;
+  studentGroups: StudentGroup[] | null
 }

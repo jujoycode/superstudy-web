@@ -2,15 +2,17 @@ import clsx from 'clsx'
 import { format } from 'date-fns'
 import { PropsWithChildren, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import { useIBDeadline } from '@/legacy/container/ib-deadline'
 import { useIBRPPFCreate } from '@/legacy/container/ib-rppf-create'
 import { useRPPFGetById } from '@/legacy/container/ib-rppf-findId'
 import { RequestCreateRPPFDto, ResponseRPPFDto } from '@/legacy/generated/model'
-import AlertV2 from '@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 
 interface IbEeRPPFProps {

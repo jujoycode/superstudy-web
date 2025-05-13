@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
-import NODATA from '@/legacy/assets/images/no-data.png'
-import { PopupModal } from '@/legacy/components/PopupModal'
+
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { Typography } from '@/legacy/components/common/Typography'
+import { PopupModal } from '@/legacy/components/PopupModal'
 import { useIBPortfolioGetById } from '@/legacy/container/ib-cas'
 import { meState } from '@/stores'
+
 import CASChart from './CASChart'
 import CASPortfolioDataList from './CASPortfolioDataList'
 import CASPortfolioTimeline from './CASPortfolioTimeline'
@@ -17,6 +18,8 @@ import CASProfile from './CASProfile'
 import CASRefNInt from './CASRefNInt'
 import { IbCASNormal } from './IbCASNormal'
 import { IbCASProject } from './IbCASProject'
+
+import NODATA from '@/legacy/assets/images/no-data.png'
 
 type ModalType = 'SELECT' | 'IBCAS' | 'IBPROJECT' | null
 type CategoryType = 'IBCAS' | 'IBPROJECT' | null

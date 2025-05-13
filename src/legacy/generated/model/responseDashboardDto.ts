@@ -5,47 +5,47 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseParentApproveDto } from './responseParentApproveDto';
+import type { ResponseParentApproveDto } from './responseParentApproveDto'
 
 export interface ResponseDashboardDto {
   /** 안읽은 활동기록부(공지) 개수 */
-  unreadActivityNoticeCount: number | null;
+  unreadActivityNoticeCount: number | null
   /** 안읽은 공지사항 개수 */
-  unreadNoticeCount: number | null;
+  unreadNoticeCount: number | null
   /** 미결재(확인증) 개수 */
-  unapprovedOutingsCount: number | null;
+  unapprovedOutingsCount: number | null
   /** 미결재(결석신고서) 개수 */
-  unapprovedAbsentCount: number | null;
+  unapprovedAbsentCount: number | null
   /** 미결재(체험학습) 개수 */
-  unapprovedFieldTripCount: number | null;
+  unapprovedFieldTripCount: number | null
   /** 미결재(체험학습결과) 개수 */
-  unapprovedFieldTripResultCount: number | null;
+  unapprovedFieldTripResultCount: number | null
   /** 안읽은 채팅메시지 개수 */
-  unreadChatMessageCount: number | null;
+  unreadChatMessageCount: number | null
   /** 미제출(활동기록부) 개수 */
-  notSubmittedActivityCount: number | null;
+  notSubmittedActivityCount: number | null
   /** 안읽은 학급게시판 개수 */
-  unreadBoardCount: number | null;
+  unreadBoardCount: number | null
   /** 안읽은 가정통신문 개수 */
-  unreadNewsletterNoticeCount: number | null;
+  unreadNewsletterNoticeCount: number | null
   /** 미제출(가정통신문) 개수 */
-  notSubmittedNewsletterCount: number | null;
+  notSubmittedNewsletterCount: number | null
   /** 잔여 체험학습 일수 */
-  remainFieldTripCount: number | null;
+  remainFieldTripCount: number | null
   /** 출결 반려/삭제 요청 개수 */
-  requestConfirmAbsentsCount: number | null;
+  requestConfirmAbsentsCount: number | null
   /** 확인증 반려/삭제 요청 개수 */
-  requestConfirmOutingsCount: number | null;
+  requestConfirmOutingsCount: number | null
   /** 체험학습 반려/삭제 요청 개수 */
-  requestConfirmFieldTripsCount: number | null;
+  requestConfirmFieldTripsCount: number | null
   /** 체험학습 결과보고서 반려 요청 개수 */
-  requestConfirmFieldTripResultsCount: number | null;
+  requestConfirmFieldTripResultsCount: number | null
   /** 학부모 미결재(출결) 정보 */
-  absentData: ResponseParentApproveDto[] | null;
+  absentData: ResponseParentApproveDto[] | null
   /** 학부모 미결재(체험학습) 정보 */
-  fieldTripData: ResponseParentApproveDto[] | null;
+  fieldTripData: ResponseParentApproveDto[] | null
   /** 학부모 미결재(체험학습결과보고서) 결재 정보 */
-  fieldTripResultData: ResponseParentApproveDto[] | null;
+  fieldTripResultData: ResponseParentApproveDto[] | null
   /** 학부모 미결재(가정통신문) 결재 정보 */
-  newsletterData: ResponseParentApproveDto[] | null;
+  newsletterData: ResponseParentApproveDto[] | null
 }

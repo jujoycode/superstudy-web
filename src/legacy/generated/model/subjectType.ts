@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type SubjectType = (typeof SubjectType)[keyof typeof SubjectType];
+export type SubjectType = (typeof SubjectType)[keyof typeof SubjectType]
 
- 
 export const SubjectType = {
   LECTURE: 'LECTURE',
   ACTIVITY: 'ACTIVITY',
   ETC: 'ETC',
-} as const;
+} as const

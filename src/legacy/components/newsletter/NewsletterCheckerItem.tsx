@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router'
+
 import { ResponseChatAttendeeDto, StudentGroup } from '@/legacy/generated/model'
 import { cn } from '@/legacy/lib/tailwind-merge'
 import { useModals } from '@/legacy/modals/ModalStack'

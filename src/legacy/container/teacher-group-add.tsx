@@ -1,9 +1,7 @@
 import { useState } from 'react'
 
 // ! 개선 필요
-import { Routes } from '@/routers'
 import { useHistory } from '@/hooks/useHistory'
-
 import {
   useGroupsCreate,
   useGroupsUpdate,
@@ -19,6 +17,8 @@ import type {
   ResponseTeachersDto,
   RequestCreateGroupDto,
 } from '@/legacy/generated/model'
+import { Routes } from '@/routers'
+
 import { GroupContainer } from './group'
 
 export function useTeacherGroupAdd({ groupId, onSubmit }: { groupId?: number; onSubmit?: () => void }) {

@@ -5,27 +5,27 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { IBInterviewCommonQuestionDto } from './iBInterviewCommonQuestionDto';
+import type { IBInterviewCommonQuestionDto } from './iBInterviewCommonQuestionDto'
 
 export interface ResponseStudentInterviewDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 타이틀 */
-  title: string;
+  title: string
   /** 설명 */
-  description: string;
+  description: string
   /** 유일 여부 */
-  isUnique: boolean;
+  isUnique: boolean
   /** 유형 */
-  category: string;
+  category: string
   /** 공통 질문내용 */
-  commonQuestion: IBInterviewCommonQuestionDto[];
+  commonQuestion: IBInterviewCommonQuestionDto[]
   /** 삭제일시 */
-  deletedAt: string;
+  deletedAt: string
   /** QnA 생성 여부 */
-  is_created: boolean;
+  is_created: boolean
 }

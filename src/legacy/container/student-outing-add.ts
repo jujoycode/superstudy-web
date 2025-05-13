@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
 
 // ! 개선 필요
-import { useHistory } from '@/hooks/useHistory'
 
 import { useRecoilValue } from 'recoil'
-import { childState } from '@/stores'
-import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
-import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
-import { UserContainer } from '@/legacy/container/user'
+
+import { useHistory } from '@/hooks/useHistory'
 import { useCodeByCategoryName } from '@/legacy/container/category'
+import { UserContainer } from '@/legacy/container/user'
 import { useOutingsCreate, useOutingsUpdate } from '@/legacy/generated/endpoint'
 import { Category, OutingStatus, OutingTypeEnum, Role, type Outing } from '@/legacy/generated/model'
 import { AbsentTimeType, type errorType } from '@/legacy/types'
+import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
+import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
+import { childState } from '@/stores'
 
 const getMeridiemHours = (date?: string) => {
   if (!date) return 0

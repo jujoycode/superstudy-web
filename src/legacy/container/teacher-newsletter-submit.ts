@@ -1,20 +1,21 @@
 import { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
-import { toastState } from '@/stores'
+
+import { useTeacherKlassGroup } from '@/legacy/container/teacher-klass-groups'
 import {
   useGroupsFindOne,
   useNewsLettersFindOne,
   useNewsLettersRepublish,
   useStudentNewsletterFindAllByNewsletterId,
 } from '@/legacy/generated/endpoint'
-import { useTeacherKlassGroup } from '@/legacy/container/teacher-klass-groups'
-import { makeDateToString } from '@/legacy/util/time'
 import type {
   ResponseChatAttendeeDto,
   ResponseGroupDto,
   StudentGroup,
   StudentNewsletter,
 } from '@/legacy/generated/model'
+import { makeDateToString } from '@/legacy/util/time'
+import { toastState } from '@/stores'
 
 type NewData = ResponseGroupDto & {
   isSelected: boolean

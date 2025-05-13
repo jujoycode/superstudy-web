@@ -8,5 +8,5 @@
 
 export type AbsentsTeacherCommentApprovalBody = {
   /** 담임교사 코멘트 */
-  teacherComment?: string;
-};
+  teacherComment?: string
+}

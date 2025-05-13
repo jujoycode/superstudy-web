@@ -1,4 +1,5 @@
 import { PropsWithChildren, useRef, useState } from 'react'
+
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -9,6 +10,7 @@ import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { PopupModal } from '@/legacy/components/PopupModal'
 import { useTokEvaluationCreateCriteria } from '@/legacy/generated/endpoint'
 import { RequestCreateTokEvaluationDtoType, TokEvaluationGradeDto } from '@/legacy/generated/model'
+
 import { EvalInputField } from '../../EvalInputField'
 
 const TOK_TYPE_KOR = {

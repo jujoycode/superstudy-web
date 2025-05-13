@@ -9,12 +9,11 @@
 /**
  * FAQ 분류
  */
-export type ResponseFAQDtoCategory = (typeof ResponseFAQDtoCategory)[keyof typeof ResponseFAQDtoCategory];
+export type ResponseFAQDtoCategory = (typeof ResponseFAQDtoCategory)[keyof typeof ResponseFAQDtoCategory]
 
- 
 export const ResponseFAQDtoCategory = {
   IB_EE: 'IB_EE',
   IB_CAS: 'IB_CAS',
   IB_TOK: 'IB_TOK',
   IB_ALL: 'IB_ALL',
-} as const;
+} as const

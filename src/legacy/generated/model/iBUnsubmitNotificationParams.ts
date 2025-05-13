@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { IBUnsubmitNotificationType } from './iBUnsubmitNotificationType';
+import type { IBUnsubmitNotificationType } from './iBUnsubmitNotificationType'
 
-export type IBUnsubmitNotificationParams = { type: IBUnsubmitNotificationType };
+export type IBUnsubmitNotificationParams = { type: IBUnsubmitNotificationType }

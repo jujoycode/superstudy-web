@@ -5,39 +5,39 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { User } from './user';
-import type { ActivitySession } from './activitySession';
-import type { SessionComment } from './sessionComment';
+import type { ActivitySession } from './activitySession'
+import type { SessionComment } from './sessionComment'
+import type { User } from './user'
 
 export interface StudentActivitySession {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 내용 */
-  content: string | null;
+  content: string | null
   /** 이미지파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 제출여부 */
-  isSubmitted: boolean;
+  isSubmitted: boolean
   /** 제출일자 */
-  submittedAt: string | null;
+  submittedAt: string | null
   /** 기록 */
-  summary: string;
+  summary: string
   /** 피드백 */
-  feedback: string;
+  feedback: string
   /** 유저 ID */
-  userId: number;
+  userId: number
   /** 학생유저 */
-  user: User;
+  user: User
   /** 차시아이디 */
-  activitySessionId: number;
+  activitySessionId: number
   /** 차시 */
-  activitySession: ActivitySession;
+  activitySession: ActivitySession
   /** 1:1 피드백 */
-  sessionComments: SessionComment[] | null;
+  sessionComments: SessionComment[] | null
 }

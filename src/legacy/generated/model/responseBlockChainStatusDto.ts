@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseBlockChainStatusDtoStatus } from './responseBlockChainStatusDtoStatus';
+import type { ResponseBlockChainStatusDtoStatus } from './responseBlockChainStatusDtoStatus'
 
 export interface ResponseBlockChainStatusDto {
   /** 블록체인 데이터 상태 */
-  status: ResponseBlockChainStatusDtoStatus;
+  status: ResponseBlockChainStatusDtoStatus
   /** 참조 테이블 ID */
-  referenceId: number;
+  referenceId: number
 }

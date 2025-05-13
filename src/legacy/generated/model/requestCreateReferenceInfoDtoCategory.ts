@@ -10,12 +10,11 @@
  * 참고자료 분류
  */
 export type RequestCreateReferenceInfoDtoCategory =
-  (typeof RequestCreateReferenceInfoDtoCategory)[keyof typeof RequestCreateReferenceInfoDtoCategory];
+  (typeof RequestCreateReferenceInfoDtoCategory)[keyof typeof RequestCreateReferenceInfoDtoCategory]
 
- 
 export const RequestCreateReferenceInfoDtoCategory = {
   IB_EE: 'IB_EE',
   IB_CAS: 'IB_CAS',
   IB_TOK: 'IB_TOK',
   IB_ALL: 'IB_ALL',
-} as const;
+} as const

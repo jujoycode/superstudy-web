@@ -11,13 +11,13 @@
  */
 export type RequestIBCasDtoStep = {
   /** 조사 */
-  research?: string;
+  research?: string
   /** 준비 */
-  preparation?: string;
+  preparation?: string
   /** 활동 */
-  activity?: string;
+  activity?: string
   /** 성찰 */
-  reflection?: string;
+  reflection?: string
   /** 입증 */
-  evidence?: string;
-};
+  evidence?: string
+}

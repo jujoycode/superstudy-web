@@ -1,8 +1,9 @@
 import clsx from 'clsx'
+
+import { Button } from '@/legacy/components/common/Button'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useModals } from '@/legacy/modals/ModalStack'
 import { StudentModal } from '@/legacy/modals/StudentModal'
-import { Button } from '@/legacy/components/common/Button'
 
 interface TimetableAtdCardProps {
   attendance: boolean

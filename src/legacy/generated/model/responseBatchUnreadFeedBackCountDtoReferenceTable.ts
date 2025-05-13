@@ -10,9 +10,8 @@
  * IB 프로젝트 타입
  */
 export type ResponseBatchUnreadFeedBackCountDtoReferenceTable =
-  (typeof ResponseBatchUnreadFeedBackCountDtoReferenceTable)[keyof typeof ResponseBatchUnreadFeedBackCountDtoReferenceTable];
+  (typeof ResponseBatchUnreadFeedBackCountDtoReferenceTable)[keyof typeof ResponseBatchUnreadFeedBackCountDtoReferenceTable]
 
- 
 export const ResponseBatchUnreadFeedBackCountDtoReferenceTable = {
   IB: 'IB',
   ESSAY: 'ESSAY',
@@ -23,4 +22,4 @@ export const ResponseBatchUnreadFeedBackCountDtoReferenceTable = {
   EXHIBITION: 'EXHIBITION',
   ACTIVITY_LOG: 'ACTIVITY_LOG',
   REFLECTION_DIARY: 'REFLECTION_DIARY',
-} as const;
+} as const

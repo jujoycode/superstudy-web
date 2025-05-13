@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+
 import ArrowLeftIcon from '@/legacy/assets/svg/icon-arrow-left.svg'
 import ArrowRightIcon from '@/legacy/assets/svg/icon-arrow-right.svg'
 

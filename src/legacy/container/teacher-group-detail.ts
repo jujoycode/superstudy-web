@@ -2,15 +2,14 @@ import { useEffect, useState } from 'react'
 
 // ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
-import { Routes } from '@/routers'
-
+import { GroupContainer } from '@/legacy/container/group'
 import {
   useGroupsDelete,
   useStudentGroupsFindWithKlassByGroupId,
   useTeacherGroupsFindTeachersWithKlassByGroupId,
 } from '@/legacy/generated/endpoint'
-import { GroupContainer } from '@/legacy/container/group'
 import type { ResponseGroupDto, ResponseStudentGroupWithKlassDto, TeacherGroup } from '@/legacy/generated/model'
+import { Routes } from '@/routers'
 
 export function useTeacherGroupDetail(groupId?: number) {
   const { push } = useHistory()

@@ -7,9 +7,9 @@
  */
 
 export type IBCasPortfolioReflectionDiaryUnsubmitNotificationParams = {
-  grade?: number;
-  klass?: number;
-  page?: number;
-  limit?: number;
-  mentorId?: number;
-};
+  grade?: number
+  klass?: number
+  page?: number
+  limit?: number
+  mentorId?: number
+}

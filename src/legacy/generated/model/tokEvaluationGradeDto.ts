@@ -8,11 +8,11 @@
 
 export interface TokEvaluationGradeDto {
   /** 등급명 */
-  name: string;
+  name: string
   /** 최소 점수 */
-  minScore: number;
+  minScore: number
   /** 최대 점수 */
-  maxScore: number;
+  maxScore: number
   /** 등급 설명 */
-  description: string;
+  description: string
 }

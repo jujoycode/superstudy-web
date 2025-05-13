@@ -1,8 +1,9 @@
 import _ from 'lodash'
 import { useCallback, useMemo } from 'react'
+
+import { Typography } from '@/legacy/components/common/Typography'
 import { SubjectEnum, SubjectGroups } from '@/legacy/constants/score.enum'
 import { roundToFirstDecimal } from '@/legacy/util/string'
-import { Typography } from '@/legacy/components/common/Typography'
 
 const MockScoreTable: React.FC<{ scores: any[] }> = ({ scores }) => {
   const rawScores = useMemo(() => (scores ? scores.flatMap((score: any) => score.scores) : []), [scores])

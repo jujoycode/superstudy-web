@@ -1,12 +1,13 @@
 import { useState } from 'react'
+
+import { GroupContainer } from '@/legacy/container/group'
 import {
   useLifeRecordDownloadRecordActivity,
   useLifeRecordDownloadRecordSummary,
   useStudentGroupsFindByGroupId,
 } from '@/legacy/generated/endpoint'
-import { downloadExcel } from '@/legacy/util/download-excel'
-import { GroupContainer } from '@/legacy/container/group'
 import type { Group } from '@/legacy/generated/model'
+import { downloadExcel } from '@/legacy/util/download-excel'
 
 export function useTeacherRecord() {
   const { teacherSubjects, errorGroups } = GroupContainer.useContext()

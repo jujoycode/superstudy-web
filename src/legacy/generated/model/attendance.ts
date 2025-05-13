@@ -8,29 +8,29 @@
 
 export interface Attendance {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 출석일 */
-  attendanceDay: string | null;
+  attendanceDay: string | null
   /** 출결 */
-  absent: boolean | null;
+  absent: boolean | null
   /** 코멘트 */
-  comment: string | null;
+  comment: string | null
   /** 출결유형 */
-  type1: string | null;
+  type1: string | null
   /** 사유 */
-  type2: string | null;
+  type2: string | null
   /** 내용 */
-  content: string | null;
+  content: string | null
   /** 학년도 */
-  year: number;
+  year: number
   /** 학기 */
-  semester: number;
+  semester: number
   /** 유저 ID */
-  userId: number;
+  userId: number
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
 }

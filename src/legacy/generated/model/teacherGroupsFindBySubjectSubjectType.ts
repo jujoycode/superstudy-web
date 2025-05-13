@@ -7,11 +7,10 @@
  */
 
 export type TeacherGroupsFindBySubjectSubjectType =
-  (typeof TeacherGroupsFindBySubjectSubjectType)[keyof typeof TeacherGroupsFindBySubjectSubjectType];
+  (typeof TeacherGroupsFindBySubjectSubjectType)[keyof typeof TeacherGroupsFindBySubjectSubjectType]
 
- 
 export const TeacherGroupsFindBySubjectSubjectType = {
   LECTURE: 'LECTURE',
   ACTIVITY: 'ACTIVITY',
   ETC: 'ETC',
-} as const;
+} as const

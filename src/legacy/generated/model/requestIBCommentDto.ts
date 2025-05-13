@@ -8,5 +8,5 @@
 
 export interface RequestIBCommentDto {
   /** 요청에 대한 내용 */
-  content?: string;
+  content?: string
 }

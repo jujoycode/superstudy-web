@@ -2,6 +2,12 @@ import { Chart as ChartJS, registerables } from 'chart.js'
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
 import { Chart } from 'react-chartjs-2'
 import { useRecoilState, useRecoilValue } from 'recoil'
+
+import { Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Icon } from '@/legacy/components/common/icons'
+import { TextInput } from '@/legacy/components/common/TextInput'
 import {
   useActivityCardGenerateGPTAnalysis,
   useActivityCardGetActivityGPTAnalysis,
@@ -10,11 +16,6 @@ import {
 import { ActivityV3, Record } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { meState, toastState } from '@/stores'
-import { Textarea } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
-import { Checkbox } from '@/legacy/components/common/Checkbox'
-import { TextInput } from '@/legacy/components/common/TextInput'
-import { Icon } from '@/legacy/components/common/icons'
 
 ChartJS.register(...registerables)
 

@@ -8,11 +8,11 @@
 
 export interface ResponseParentApproveDto {
   /** 결재문서 id */
-  id: number | null;
+  id: number | null
   /** 결재대상 id */
-  studentId: number | null;
+  studentId: number | null
   /** 결재대상 이름 */
-  studentName: string | null;
+  studentName: string | null
   /** 결재문서 URL */
-  url: string | null;
+  url: string | null
 }

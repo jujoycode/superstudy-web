@@ -5,39 +5,39 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { School } from './school';
-import type { CourseTerm } from './courseTerm';
-import type { Course } from './course';
-import type { TraineeSupport } from './traineeSupport';
-import type { SeasonSupport } from './seasonSupport';
-import type { CourseSurvey } from './courseSurvey';
+import type { Course } from './course'
+import type { CourseSurvey } from './courseSurvey'
+import type { CourseTerm } from './courseTerm'
+import type { School } from './school'
+import type { SeasonSupport } from './seasonSupport'
+import type { TraineeSupport } from './traineeSupport'
 
 export interface CourseSeason {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
-  name: string;
-  status: string;
-  startAt: string;
-  useCart: boolean;
-  cartStartedAt: string;
-  cartEndedAt: string;
-  applyStartedAt: string;
-  applyEndedAt: string;
-  useExtraApply: boolean;
-  extraApplyStartedAt: string;
-  extraApplyEndedAt: string;
-  lectureStartedAt: string;
-  lectureEndedAt: string;
-  schoolId: number;
-  courseTermId: number;
-  school: School;
-  courseTerm: CourseTerm;
-  courses: Course[];
-  traineeSupports: TraineeSupport[];
-  seasonSupports: SeasonSupport[];
-  courseSurveys: CourseSurvey[];
+  updatedAt: string
+  name: string
+  status: string
+  startAt: string
+  useCart: boolean
+  cartStartedAt: string
+  cartEndedAt: string
+  applyStartedAt: string
+  applyEndedAt: string
+  useExtraApply: boolean
+  extraApplyStartedAt: string
+  extraApplyEndedAt: string
+  lectureStartedAt: string
+  lectureEndedAt: string
+  schoolId: number
+  courseTermId: number
+  school: School
+  courseTerm: CourseTerm
+  courses: Course[]
+  traineeSupports: TraineeSupport[]
+  seasonSupports: SeasonSupport[]
+  courseSurveys: CourseSurvey[]
 }

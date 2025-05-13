@@ -5,23 +5,23 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Role } from './role';
+import type { Role } from './role'
 
 export interface ResponseExpiredUserDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 이메일 */
-  email: string | null;
+  email: string | null
   /** 역할 */
-  role: Role;
+  role: Role
   /** 이름 */
-  name: string;
+  name: string
   /** 전화번호 */
-  phone: string;
+  phone: string
   /** 만료일 */
-  expiredAt: string;
+  expiredAt: string
   /** 만료여부, 미사용 사용자는 true (전학 등) */
-  expired: boolean;
+  expired: boolean
   /** 만료사유, 탈퇴, 전학 등 사유 입력 */
-  expiredReason: string | null;
+  expiredReason: string | null
 }

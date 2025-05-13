@@ -8,5 +8,5 @@
 
 export type StudentActivityUpdateFeedbackBody = {
   /** 피드백 */
-  feedback?: string;
-};
+  feedback?: string
+}

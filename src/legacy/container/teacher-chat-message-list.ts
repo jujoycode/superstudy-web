@@ -2,8 +2,6 @@ import { useState } from 'react'
 
 // ! 이 부분 수정 필요
 import { useHistory } from '@/hooks/useHistory'
-import { Routes } from '@/routers'
-
 import {
   useChatCreateMessage,
   useChatDeleteMessage,
@@ -12,6 +10,7 @@ import {
 } from '@/legacy/generated/endpoint'
 import type { Chat, RequestCreateChatMessageDto, ResponsePaginatedChatMessageDto } from '@/legacy/generated/model'
 import type { errorType } from '@/legacy/types'
+import { Routes } from '@/routers'
 
 export function useTeacherChatMessageList(chatroomId: number) {
   const { push } = useHistory()
@@ -37,7 +36,7 @@ export function useTeacherChatMessageList(chatroomId: number) {
       onSuccess: () => {
         setNewMessage('')
         refetchChatMessages()
-          .then(() => { })
+          .then(() => {})
           .catch((_) => {
             // refetch 중에 발생한 에러를 처리하는 작업
             //alert(error?.message);
@@ -55,7 +54,7 @@ export function useTeacherChatMessageList(chatroomId: number) {
     mutation: {
       onSuccess: () => {
         refetchChatMessages()
-          .then(() => { })
+          .then(() => {})
           .catch((_) => {
             // refetch 중에 발생한 에러를 처리하는 작업
             //alert(error?.message);

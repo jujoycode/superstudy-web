@@ -8,19 +8,19 @@
 
 export interface RequestUpdateMyInfoAtFirstLoginDto {
   /** 패스워드 */
-  password: string | null;
+  password: string | null
   /** 이름 */
-  name: string;
+  name: string
   /** 전화번호 */
-  phone: string;
+  phone: string
   /** 학부모이름 */
-  nokName: string;
+  nokName: string
   /** 학부모전화번호 */
-  nokPhone: string;
+  nokPhone: string
   /** 희망진로 */
-  hopePath: string;
+  hopePath: string
   /** 희망학과 */
-  hopeMajor: string;
+  hopeMajor: string
   /** 생년월일 */
-  birthDate: string | null;
+  birthDate: string | null
 }

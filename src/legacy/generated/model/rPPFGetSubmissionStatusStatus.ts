@@ -7,12 +7,11 @@
  */
 
 export type RPPFGetSubmissionStatusStatus =
-  (typeof RPPFGetSubmissionStatusStatus)[keyof typeof RPPFGetSubmissionStatusStatus];
+  (typeof RPPFGetSubmissionStatusStatus)[keyof typeof RPPFGetSubmissionStatusStatus]
 
- 
 export const RPPFGetSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   IN_PROGRESS: 'IN_PROGRESS',
   IB_TEACHER_FEEDBACK: 'IB_TEACHER_FEEDBACK',
   COMPLETED: 'COMPLETED',
-} as const;
+} as const

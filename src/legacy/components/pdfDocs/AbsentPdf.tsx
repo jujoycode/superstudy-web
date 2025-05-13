@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { Document, Page } from 'react-pdf'
+
 import { Constants } from '@/legacy/constants'
 import { Absent } from '@/legacy/generated/model'
 import { AbsentEvidenceType, AbsentPaperType } from '@/legacy/types'
+
 import { AbsentPaper } from '../absent/AbsentPaper'
 import { ParentConfirmPaper } from '../absent/ParentConfirmPaper'
 import { TeacherConfirmPaper } from '../absent/TeacherConfirmPaper'

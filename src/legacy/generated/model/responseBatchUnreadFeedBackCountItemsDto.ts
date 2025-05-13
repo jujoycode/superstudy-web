@@ -5,8 +5,8 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseBatchUnreadFeedBackCountDto } from './responseBatchUnreadFeedBackCountDto';
+import type { ResponseBatchUnreadFeedBackCountDto } from './responseBatchUnreadFeedBackCountDto'
 
 export interface ResponseBatchUnreadFeedBackCountItemsDto {
-  items: ResponseBatchUnreadFeedBackCountDto[];
+  items: ResponseBatchUnreadFeedBackCountDto[]
 }

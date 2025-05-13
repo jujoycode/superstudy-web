@@ -6,9 +6,8 @@
  * OpenAPI spec version: 0.1
  */
 
-export type NewsletterCategoryEnum = (typeof NewsletterCategoryEnum)[keyof typeof NewsletterCategoryEnum];
+export type NewsletterCategoryEnum = (typeof NewsletterCategoryEnum)[keyof typeof NewsletterCategoryEnum]
 
- 
 export const NewsletterCategoryEnum = {
   기타: '기타',
   교무: '교무',
@@ -19,4 +18,4 @@ export const NewsletterCategoryEnum = {
   행정: '행정',
   교육과정: '교육과정',
   진로진학: '진로진학',
-} as const;
+} as const

@@ -10,9 +10,8 @@
  * IB 프로젝트 타입
  */
 export type ResponseIBEssaySubmissionStatusDtoIbType =
-  (typeof ResponseIBEssaySubmissionStatusDtoIbType)[keyof typeof ResponseIBEssaySubmissionStatusDtoIbType];
+  (typeof ResponseIBEssaySubmissionStatusDtoIbType)[keyof typeof ResponseIBEssaySubmissionStatusDtoIbType]
 
- 
 export const ResponseIBEssaySubmissionStatusDtoIbType = {
   NORMAL: 'NORMAL',
   CAS_NORMAL: 'CAS_NORMAL',
@@ -20,4 +19,4 @@ export const ResponseIBEssaySubmissionStatusDtoIbType = {
   EE: 'EE',
   TOK_ESSAY: 'TOK_ESSAY',
   TOK_EXHIBITION: 'TOK_EXHIBITION',
-} as const;
+} as const

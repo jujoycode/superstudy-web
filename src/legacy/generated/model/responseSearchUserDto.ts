@@ -5,47 +5,47 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Role } from './role';
-import type { ResponseSearchUserChildrenDto } from './responseSearchUserChildrenDto';
-import type { ResponseParentUserDto } from './responseParentUserDto';
+import type { ResponseParentUserDto } from './responseParentUserDto'
+import type { ResponseSearchUserChildrenDto } from './responseSearchUserChildrenDto'
+import type { Role } from './role'
 
 export interface ResponseSearchUserDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 이메일 */
-  email: string | null;
+  email: string | null
   /** 역할 */
-  role: Role;
+  role: Role
   /** 이름 */
-  name: string;
+  name: string
   /** 학년 */
-  headNumber: number;
+  headNumber: number
   /** 전화번호 */
-  phone: string;
+  phone: string
   /** 학부모이름 */
-  nokName: string;
+  nokName: string
   /** 학부모전화번호 */
-  nokPhone: string;
+  nokPhone: string
   /** 최초방문여부 */
-  firstVisit: boolean;
+  firstVisit: boolean
   /** 프로필이미지URL */
-  profile: string;
+  profile: string
   /** 커스텀프로필이미지URL */
-  customProfile: string;
+  customProfile: string
   /** 닉네임 */
-  nickName: string;
+  nickName: string
   /** 학년 반 정보 */
-  klass: string | null;
+  klass: string | null
   /** 학번 */
-  studentNumber: string | null;
+  studentNumber: string | null
   /** 학번 */
-  sn: string | null;
+  sn: string | null
   /** 직책 */
-  position: string | null;
+  position: string | null
   /** 부서 */
-  department: string | null;
+  department: string | null
   /** 자식 정보 */
-  children: ResponseSearchUserChildrenDto[] | null;
+  children: ResponseSearchUserChildrenDto[] | null
   /** 부모 정보 */
-  parents: ResponseParentUserDto[] | null;
+  parents: ResponseParentUserDto[] | null
 }

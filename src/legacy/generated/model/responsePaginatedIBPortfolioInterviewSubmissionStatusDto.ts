@@ -5,21 +5,21 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBPortfolioInterviewSubmissionStatusDto } from './responseIBPortfolioInterviewSubmissionStatusDto';
+import type { ResponseIBPortfolioInterviewSubmissionStatusDto } from './responseIBPortfolioInterviewSubmissionStatusDto'
 
 export interface ResponsePaginatedIBPortfolioInterviewSubmissionStatusDto {
   /** CAS 성찰일지 현황관리 */
-  items: ResponseIBPortfolioInterviewSubmissionStatusDto[];
+  items: ResponseIBPortfolioInterviewSubmissionStatusDto[]
   /** 아이템 개수 */
-  total: number;
+  total: number
   /** 총 페이지 개수 */
-  totalPages: number;
+  totalPages: number
   /** 현재 페이지 */
-  currentPage: number;
+  currentPage: number
   /** 페이지 사이즈 */
-  size: number;
+  size: number
   /** 다음 페이지 */
-  next?: boolean;
+  next?: boolean
   /** 이전 페이지 */
-  prev?: boolean;
+  prev?: boolean
 }

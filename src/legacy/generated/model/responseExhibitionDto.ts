@@ -8,39 +8,39 @@
 
 export interface ResponseExhibitionDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 주제 질문 */
-  themeQuestion: string;
+  themeQuestion: string
   /** 대상 1 내용 */
-  targetContent1: string;
+  targetContent1: string
   /** 대상 1 이미지 파일 s3 경로 */
-  targetImage1: string;
+  targetImage1: string
   /** 단어 수 */
-  wordCount1: number;
+  wordCount1: number
   /** 대상 2 내용 */
-  targetContent2: string;
+  targetContent2: string
   /** 대상 2 이미지 파일 s3 경로 */
-  targetImage2: string;
+  targetImage2: string
   /** 단어 수 */
-  wordCount2: number;
+  wordCount2: number
   /** 대상 3 내용 */
-  targetContent3: string;
+  targetContent3: string
   /** 대상 3 이미지 파일 s3 경로 */
-  targetImage3: string;
+  targetImage3: string
   /** 단어 수 */
-  wordCount3: number;
+  wordCount3: number
   /** 참조 */
-  reference: string;
+  reference: string
   /** 서론 */
-  introduction: string;
+  introduction: string
   /** 서론 단어 수 */
-  introductionWordCount: number;
+  introductionWordCount: number
   /** 결론 */
-  conclusion: string;
+  conclusion: string
   /** 결론 단어 수 */
-  conclusionWordCount: number;
+  conclusionWordCount: number
 }

@@ -1,13 +1,16 @@
 import { SetStateAction, useState } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import { Blank, Textarea } from '@/legacy/components/common'
-import { useTeacherRecordSummaryItem } from '@/legacy/container/teacher-record-summary-item'
-import { Summary } from '@/legacy/generated/model'
-import { forbiddenWords } from '@/legacy/pages/teacher/ForbiddenWords'
-import { meState } from '@/stores'
-import { SuperModal } from '../SuperModal'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
+import { useTeacherRecordSummaryItem } from '@/legacy/container/teacher-record-summary-item'
+import { Summary } from '@/legacy/generated/model'
+import { meState } from '@/stores'
+
+import { SuperModal } from '../SuperModal'
+
+import { forbiddenWords } from '@/legacy/pages/teacher/ForbiddenWords'
 
 interface SummaryItemProps {
   summary: Summary
@@ -51,7 +54,6 @@ export function SummaryItem({ summary }: SummaryItemProps) {
       <div>
         <div className="flex items-center justify-between pb-2">
           {updateState ? (
-            // eslint-disable-next-line react/jsx-no-undef
             <TextInput
               className="w-2/3"
               value={recordSubject}

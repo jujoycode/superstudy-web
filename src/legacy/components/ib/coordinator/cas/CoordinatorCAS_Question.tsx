@@ -1,6 +1,6 @@
 import { concat, sortBy } from 'lodash'
 import { useState } from 'react'
-import NODATA from '@/legacy/assets/images/no-data.png'
+
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -13,9 +13,13 @@ import { useIBInterview } from '@/legacy/container/ib-interview'
 import { useChecklistGetitems, useIBProfileGetTemplateItemByStudent } from '@/legacy/generated/endpoint'
 import { RequestCreateInterviewDtoCategory } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
+
 import { CoordinatorEE_Form_AddCheckList } from '../ee/CoordinatorEE_Form_AddCheckList'
 import { ModalType } from '../FAQList'
+
 import { CoordinatorCAS_Question_AddQuestion } from './CoordinatorCAS_Question_AddQuestion'
+
+import NODATA from '@/legacy/assets/images/no-data.png'
 
 export const CAS_QUESTION_TYPES: Record<string, string> = {
   CAS_PROFILE: 'CAS 프로필',

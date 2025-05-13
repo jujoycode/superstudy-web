@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ActivitySessionFindByTeacherParams = { ids?: number[] };
+export type ActivitySessionFindByTeacherParams = { ids?: number[] }

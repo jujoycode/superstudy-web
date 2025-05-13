@@ -8,5 +8,5 @@
 
 export type FieldtripResultDenyResultBody = {
   /** 반려사유 */
-  reason?: string;
-};
+  reason?: string
+}

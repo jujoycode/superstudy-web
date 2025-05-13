@@ -5,15 +5,19 @@ import Linkify from 'react-linkify'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
-import  FileItemIcon from '@/legacy/assets/svg/file-item-icon.svg'
+
 import { Constants } from '@/legacy/constants'
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { childState, meState } from '@/stores'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { childState, meState } from '@/stores'
+
 import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
+
 import { PdfCard } from './PdfCard'
 import { PdfViewer } from './PdfViewer'
+
+import FileItemIcon from '@/legacy/assets/svg/file-item-icon.svg'
 
 interface FeedsDetailProps {
   category1?: string
@@ -61,7 +65,6 @@ export function FeedsDetail({
   createAt,
   isPreview = false,
 }: FeedsDetailProps) {
-
   const meRecoil = useRecoilValue(meState)
   const myChild = useRecoilValue(childState)
   const { t } = useLanguage()

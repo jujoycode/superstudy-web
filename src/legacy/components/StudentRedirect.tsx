@@ -1,6 +1,7 @@
-import { meState, childState } from '@/stores'
 import { Navigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
+
+import { meState, childState } from '@/stores'
 
 export const StudentRedirect = () => {
   const me = useRecoilValue(meState)

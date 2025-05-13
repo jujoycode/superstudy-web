@@ -14,11 +14,10 @@
 - **UNLOCK**: 수정가능상태
 
  */
-export type ResponseTKPPFDtoEditStatus = (typeof ResponseTKPPFDtoEditStatus)[keyof typeof ResponseTKPPFDtoEditStatus];
+export type ResponseTKPPFDtoEditStatus = (typeof ResponseTKPPFDtoEditStatus)[keyof typeof ResponseTKPPFDtoEditStatus]
 
- 
 export const ResponseTKPPFDtoEditStatus = {
   LOCK: 'LOCK',
   REQUEST_UNLOCK: 'REQUEST_UNLOCK',
   UNLOCK: 'UNLOCK',
-} as const;
+} as const

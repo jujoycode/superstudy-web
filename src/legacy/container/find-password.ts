@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { useUserFindPassword } from '@/legacy/generated/endpoint'
 import type { RequestFindPasswordDto } from '@/legacy/generated/model'
 import type { errorType } from '@/legacy/types'

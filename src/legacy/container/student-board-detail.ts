@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
+import type { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
-import { childState, meState } from '@/stores'
+
 import { Constants } from '@/legacy/constants'
 import { QueryKey } from '@/legacy/constants/query-key'
-import { isPdfFile } from '@/legacy/util/file'
 import { useBoardFindOne } from '@/legacy/generated/endpoint'
-import type { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { isPdfFile } from '@/legacy/util/file'
+import { childState, meState } from '@/stores'
 
 export function useStudentBoardDetail(boardId?: number) {
   const [errorMessage, setErrorMessage] = useState('')

@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import { useStudentTimetableDetail } from '@/legacy/container/teacher-student-timetable-detail'
 import { LectureType, ResponseTimetableV3Dto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
 import { dayOfKorWeek } from '@/legacy/util/date'
+import { meState } from '@/stores'
 
 interface TimeTableCardProps {
   studentId?: number

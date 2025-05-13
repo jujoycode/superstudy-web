@@ -1,9 +1,9 @@
 interface LnbCalendarsItemProps {
-  value: any;
-  checked: boolean;
-  color: string;
-  text: string;
-  onClick?: () => void;
+  value: any
+  checked: boolean
+  color: string
+  text: string
+  onClick?: () => void
 }
 
 export function LnbCalendarsItem({ value, checked, color, text, onClick }: LnbCalendarsItemProps) {
@@ -15,5 +15,5 @@ export function LnbCalendarsItem({ value, checked, color, text, onClick }: LnbCa
         <span style={{ lineHeight: '1.5rem' }}>{text}</span>
       </label>
     </div>
-  );
+  )
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { useUserSendParentSignUp } from '@/legacy/generated/endpoint'
 import type { errorType } from '@/legacy/types'
 

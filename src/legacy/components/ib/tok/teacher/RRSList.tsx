@@ -1,17 +1,19 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
+
 import { useHistory } from '@/hooks/useHistory'
-import NODATA from '@/legacy/assets/images/no-data.png'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
 import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
 import { useRRSGetByIBIdFindAll } from '@/legacy/container/ib-rrs-findAll'
 import { FeedbackReferenceTable, ResponseIBDto } from '@/legacy/generated/model'
-
-import { Typography } from '@/legacy/components/common/Typography'
 import { LocationState } from '@/legacy/types/ib'
+
 import FeedbackViewer from '../../FeedbackViewer'
 import { IBPagination } from '../../ProjectList'
+
+import NODATA from '@/legacy/assets/images/no-data.png'
 
 interface RRSListProps {
   title?: string

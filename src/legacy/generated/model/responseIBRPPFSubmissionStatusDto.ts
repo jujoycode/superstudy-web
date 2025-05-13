@@ -5,24 +5,24 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBRPPFSubmissionStatusDtoIbType } from './responseIBRPPFSubmissionStatusDtoIbType';
-import type { ResponseIBStudentDto } from './responseIBStudentDto';
-import type { ResponseRPPFDto } from './responseRPPFDto';
-import type { ResponseIBRPPFSubmissionStatusDtoDetailStatus } from './responseIBRPPFSubmissionStatusDtoDetailStatus';
+import type { ResponseIBRPPFSubmissionStatusDtoDetailStatus } from './responseIBRPPFSubmissionStatusDtoDetailStatus'
+import type { ResponseIBRPPFSubmissionStatusDtoIbType } from './responseIBRPPFSubmissionStatusDtoIbType'
+import type { ResponseIBStudentDto } from './responseIBStudentDto'
+import type { ResponseRPPFDto } from './responseRPPFDto'
 
 export interface ResponseIBRPPFSubmissionStatusDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** IB 프로젝트 타입 */
-  ibType: ResponseIBRPPFSubmissionStatusDtoIbType;
+  ibType: ResponseIBRPPFSubmissionStatusDtoIbType
   /** 프로젝트 리더 */
-  leader: ResponseIBStudentDto;
+  leader: ResponseIBStudentDto
   /** RPPF 내역 */
-  rppf: ResponseRPPFDto;
+  rppf: ResponseRPPFDto
   /** 상세 상태 */
-  detailStatus: ResponseIBRPPFSubmissionStatusDtoDetailStatus;
+  detailStatus: ResponseIBRPPFSubmissionStatusDtoDetailStatus
 }

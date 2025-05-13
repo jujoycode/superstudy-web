@@ -15,12 +15,11 @@
 - **COMPLETE**: 완료상태
 
  */
-export type ResponseTKPPFDtoStatus = (typeof ResponseTKPPFDtoStatus)[keyof typeof ResponseTKPPFDtoStatus];
+export type ResponseTKPPFDtoStatus = (typeof ResponseTKPPFDtoStatus)[keyof typeof ResponseTKPPFDtoStatus]
 
- 
 export const ResponseTKPPFDtoStatus = {
   IN_PROGRESS: 'IN_PROGRESS',
   WAIT_COMPLETE: 'WAIT_COMPLETE',
   REJECT: 'REJECT',
   COMPLETE: 'COMPLETE',
-} as const;
+} as const

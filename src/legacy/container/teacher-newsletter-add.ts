@@ -3,28 +3,29 @@ import { useQueryClient } from 'react-query'
 
 // ! 개선 필요
 import { useHistory, useLocation } from 'react-router'
-import { Routes } from '@/legacy/routes'
 
-import { useFileUpload } from '@/legacy/hooks/useFileUpload'
-import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { isPdfFile } from '@/legacy/util/file'
-import { getErrorMsg } from '@/legacy/util/status'
-import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { GroupContainer } from '@/legacy/container/group'
-import { useTeacherNewsletterDetail } from '@/legacy/container/teacher-newsletter-detail'
+import type { MergedGroupType } from '@/legacy/container/teacher-chat-user-list'
 import { useTeacherAllGroup, type TeacharAllGroup } from '@/legacy/container/teacher-group-all'
+import { useTeacherNewsletterDetail } from '@/legacy/container/teacher-newsletter-detail'
+import { useNewsLettersCreate, useNewsLettersPublish, useNewsLettersUpdate } from '@/legacy/generated/endpoint'
 import {
   NewsletterCategoryEnum,
   NewsletterType,
   UploadFileTypeEnum,
   type ResponseGroupDto,
 } from '@/legacy/generated/model'
-import { useNewsLettersCreate, useNewsLettersPublish, useNewsLettersUpdate } from '@/legacy/generated/endpoint'
+import { useFileUpload } from '@/legacy/hooks/useFileUpload'
+import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import type { UserDatas } from '@/legacy/types'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { isPdfFile } from '@/legacy/util/file'
+import { getErrorMsg } from '@/legacy/util/status'
 import type { ImageObject } from '@/legacy/types/image-object'
 import type { DocumentObject } from '@/legacy/types/document-object'
-import type { MergedGroupType } from '@/legacy/container/teacher-chat-user-list'
+
+import { Routes } from '@/legacy/routes'
 
 interface NewsletterCore {
   id: number

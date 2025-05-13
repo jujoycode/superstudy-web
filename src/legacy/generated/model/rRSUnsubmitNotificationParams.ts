@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RRSUnsubmitNotificationIbType } from './rRSUnsubmitNotificationIbType';
+import type { RRSUnsubmitNotificationIbType } from './rRSUnsubmitNotificationIbType'
 
-export type RRSUnsubmitNotificationParams = { grade?: number; klass?: number; ibType?: RRSUnsubmitNotificationIbType };
+export type RRSUnsubmitNotificationParams = { grade?: number; klass?: number; ibType?: RRSUnsubmitNotificationIbType }

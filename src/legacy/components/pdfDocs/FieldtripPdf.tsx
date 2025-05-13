@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import { Fieldtrip } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 import { FieldtripPaperType } from '@/legacy/types'
 import { splitStringByUnicode } from '@/legacy/util/fieldtrip'
 import { getNickName } from '@/legacy/util/status'
+import { meState } from '@/stores'
+
 import { FieldtripPaper } from '../fieldtrip/FieldtripPaper'
 import { FieldtripSeparatePaper } from '../fieldtrip/FieldtripSeparatePaper'
 import { FieldtripSuburbsSeparatePaper } from '../fieldtrip/FieldtripSuburbsSeparatePaper'

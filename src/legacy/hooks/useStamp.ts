@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useQueryClient } from 'react-query'
+
 import { Constants } from '@/legacy/constants'
 import { QueryKey } from '@/legacy/constants/query-key'
-import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { UserContainer } from '@/legacy/container/user'
 import { useUserUpdateMe } from '@/legacy/generated/endpoint'
 import { UploadFileTypeEnum, type UpdateUserDto } from '@/legacy/generated/model'
+import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 
 export function useStamp() {
   const { me } = UserContainer.useContext()

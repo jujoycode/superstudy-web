@@ -1,8 +1,10 @@
 import { cloneDeep } from 'lodash'
-import { Question } from '@/legacy/types'
 import { twMerge } from 'tailwind-merge'
+
 import { Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
+import { Question } from '@/legacy/types'
+
 import { SuperSurveyQuestion } from './SuperSurveyQuestion'
 
 interface SuperSurveyAddComponentProps {

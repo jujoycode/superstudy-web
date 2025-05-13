@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type SchoolManagementLoadHolidayDataParams = { year: number; month: number };
+export type SchoolManagementLoadHolidayDataParams = { year: number; month: number }

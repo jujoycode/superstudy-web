@@ -1,26 +1,27 @@
-import clsx from 'clsx';
-import { PropsWithChildren } from 'react';
-import { use100vh } from 'react-div-100vh';
-import { Icon } from './icons';
+import clsx from 'clsx'
+import { PropsWithChildren } from 'react'
+import { use100vh } from 'react-div-100vh'
+
+import { Icon } from './icons'
 
 interface BlankProps {
-  text?: string;
-  reversed?: boolean;
+  text?: string
+  reversed?: boolean
 }
 
 export function Blank({ text, reversed, children }: PropsWithChildren<BlankProps>) {
-  const vh = use100vh();
-  const height = vh ? `${vh}px` : '100vh';
+  const vh = use100vh()
+  const height = vh ? `${vh}px` : '100vh'
 
   return (
     <div
       style={{ height }}
       onClick={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
+        e.preventDefault()
+        e.stopPropagation()
       }}
       className={clsx(
-        'fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center bg-[#000000] bg-opacity-40',
+        'bg-opacity-40 fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center bg-[#000000]',
       )}
     >
       {text || children || reversed ? (
@@ -38,5 +39,5 @@ export function Blank({ text, reversed, children }: PropsWithChildren<BlankProps
         </>
       )}
     </div>
-  );
+  )
 }

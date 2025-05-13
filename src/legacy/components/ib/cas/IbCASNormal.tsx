@@ -1,9 +1,13 @@
 import { PropsWithChildren, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
+
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import ScheduleAndPeriodPicker from '@/legacy/components/common/ScheduleAndPeriodPicker'
 import Stepper from '@/legacy/components/common/Stepper'
+import { Typography } from '@/legacy/components/common/Typography'
 import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { CAS_ATL, CAS_LEARNERPROFILE, CAS_LEARNINGOUTCOME } from '@/legacy/constants/ib'
@@ -17,11 +21,9 @@ import {
   RequestIBCasDtoStrands,
   RequestIBDto,
 } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Check } from '@/legacy/components/common/Check'
-import { Typography } from '@/legacy/components/common/Typography'
+import { meState } from '@/stores'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 

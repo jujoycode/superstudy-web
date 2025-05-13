@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ReponseGroupByIB } from './reponseGroupByIB';
+import type { ReponseGroupByIB } from './reponseGroupByIB'
 
 export interface ResponseStudentGroupByIB {
   /** 번호 */
-  studentNumber: number;
+  studentNumber: number
   /** 그룹정보 */
-  group: ReponseGroupByIB;
+  group: ReponseGroupByIB
 }

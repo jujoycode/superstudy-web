@@ -9,11 +9,10 @@
 /**
  * 수산 타입
  */
-export type NotificationLogTargetType = (typeof NotificationLogTargetType)[keyof typeof NotificationLogTargetType];
+export type NotificationLogTargetType = (typeof NotificationLogTargetType)[keyof typeof NotificationLogTargetType]
 
- 
 export const NotificationLogTargetType = {
   segment: 'segment',
   device: 'device',
   userId: 'userId',
-} as const;
+} as const

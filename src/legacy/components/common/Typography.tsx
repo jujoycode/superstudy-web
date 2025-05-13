@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import { HTMLAttributes, forwardRef } from 'react';
-import { twMerge } from 'tailwind-merge';
+import clsx from 'clsx'
+import { HTMLAttributes, forwardRef } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 export interface TypographyProps extends HTMLAttributes<HTMLElement> {
   variant:
@@ -13,7 +13,7 @@ export interface TypographyProps extends HTMLAttributes<HTMLElement> {
     | 'body3'
     | 'caption'
     | 'caption2'
-    | 'caption3';
+    | 'caption3'
 }
 
 const styles = {
@@ -27,7 +27,7 @@ const styles = {
   caption: 'text-[#121316] text-[13px] leading-[18px] font-normal',
   caption2: 'text-[#121316] text-[12px] leading-[16px] font-normal',
   caption3: 'text-[#121316] text-[11px] leading-[14px] font-medium',
-};
+}
 
 export const Typography = forwardRef<HTMLElement, TypographyProps>(function Typography({
   className,
@@ -38,16 +38,16 @@ export const Typography = forwardRef<HTMLElement, TypographyProps>(function Typo
     variant === 'heading'
       ? 'h1'
       : variant === 'title1'
-      ? 'h2'
-      : variant === 'title2'
-      ? 'h3'
-      : variant === 'title3'
-      ? 'h3'
-      : variant === 'caption' || variant === 'caption2' || variant === 'caption3'
-      ? 'span'
-      : 'p';
+        ? 'h2'
+        : variant === 'title2'
+          ? 'h3'
+          : variant === 'title3'
+            ? 'h3'
+            : variant === 'caption' || variant === 'caption2' || variant === 'caption3'
+              ? 'span'
+              : 'p'
 
-  const combinedClassName = twMerge(clsx(styles[variant], 'whitespace-pre-wrap', className));
+  const combinedClassName = twMerge(clsx(styles[variant], 'whitespace-pre-wrap', className))
 
-  return <Component className={combinedClassName} {...props} />;
-});
+  return <Component className={combinedClassName} {...props} />
+})

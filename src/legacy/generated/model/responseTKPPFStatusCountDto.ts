@@ -8,13 +8,13 @@
 
 export interface ResponseTKPPFStatusCountDto {
   /** 전체 학생 수 */
-  total: number;
+  total: number
   /** 미제출 학생 수 */
-  notSubmitted: number;
+  notSubmitted: number
   /** 진행중 학생 수 */
-  inProgress: number;
+  inProgress: number
   /** 활동종료 승인 요청 후 IB 지도교사 의견작성 학생 수 */
-  ibTeacherFeedback: number;
+  ibTeacherFeedback: number
   /** 활동완료 학생 수 */
-  completed: number;
+  completed: number
 }

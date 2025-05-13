@@ -5,41 +5,41 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBTokOutlineDtoStatus } from './responseIBTokOutlineDtoStatus';
+import type { ResponseIBTokOutlineDtoStatus } from './responseIBTokOutlineDtoStatus'
 
 export interface ResponseIBTokOutlineDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 주제 질문 */
-  themeQuestion: string;
+  themeQuestion: string
   /** 핵심용어 */
-  keyword: string;
+  keyword: string
   /** 주제내용 */
-  content: string;
+  content: string
   /** 지식영역 분류명 1 */
-  knowledgeArea1: string;
+  knowledgeArea1: string
   /** 지식영역 분류명 2 */
-  knowledgeArea2: string;
+  knowledgeArea2: string
   /** 지식 주장 1 */
-  argument1: string;
+  argument1: string
   /** 지식 주장 1 예시 */
-  argument1Example: string;
+  argument1Example: string
   /** 지식 반론 1 */
-  counterArgument1: string;
+  counterArgument1: string
   /** 지식 반론 1 예시 */
-  counterArgument1Example: string;
+  counterArgument1Example: string
   /** 지식 주장 2 */
-  argument2: string;
+  argument2: string
   /** 지식 주장 2 예시 */
-  argument2Example: string;
+  argument2Example: string
   /** 지식 반론 2 */
-  counterArgument2: string;
+  counterArgument2: string
   /** 지식 반론 2 예시 */
-  counterArgument2Example: string;
+  counterArgument2Example: string
   /** IB 아웃라인 상태 */
-  status: ResponseIBTokOutlineDtoStatus;
+  status: ResponseIBTokOutlineDtoStatus
 }

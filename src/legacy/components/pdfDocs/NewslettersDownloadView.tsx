@@ -4,13 +4,15 @@ import { toJpeg } from 'html-to-image'
 import { jsPDF } from 'jspdf'
 import { filter, find, groupBy, map } from 'lodash'
 import { useRef, useState } from 'react'
+
+import { Select } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
 import { Constants } from '@/legacy/constants'
 import { UserContainer } from '@/legacy/container/user'
 import { ResponseNewsletterDetailDto } from '@/legacy/generated/model'
 import { AbsentPaperType } from '@/legacy/types'
 import { getArrayBufferByFile, getBlobByCanvas, getImageMeta } from '@/legacy/util/pdf'
-import { Select } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
+
 import { NewsletterPdf } from './NewsletterPdf'
 
 interface NewslettersDownloadViewProps {

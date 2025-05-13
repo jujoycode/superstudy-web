@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { getThisYear } from '@/legacy/util/time'
-import type { nameWithId } from '@/legacy/types'
+
 import type { ResponseSubjectGroupDto } from '@/legacy/generated/model/responseSubjectGroupDto'
+import type { nameWithId } from '@/legacy/types'
+import { getThisYear } from '@/legacy/util/time'
 
 export function useTeacherActivity() {
   const [errorMessage] = useState('')

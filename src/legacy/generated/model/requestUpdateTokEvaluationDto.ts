@@ -5,14 +5,14 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { TokEvaluationGradeDto } from './tokEvaluationGradeDto';
-import type { UpdateTokEvaluationGradeDto } from './updateTokEvaluationGradeDto';
+import type { TokEvaluationGradeDto } from './tokEvaluationGradeDto'
+import type { UpdateTokEvaluationGradeDto } from './updateTokEvaluationGradeDto'
 
 export interface RequestUpdateTokEvaluationDto {
   /** 생성할 평가 등급 목록 */
-  createGrades?: TokEvaluationGradeDto[];
+  createGrades?: TokEvaluationGradeDto[]
   /** 수정할 평가 등급 목록 */
-  updateGrades?: UpdateTokEvaluationGradeDto[];
+  updateGrades?: UpdateTokEvaluationGradeDto[]
   /** 삭제할 평가 등급 ID 목록 */
-  deleteGradeIds?: number[];
+  deleteGradeIds?: number[]
 }

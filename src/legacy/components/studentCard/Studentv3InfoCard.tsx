@@ -1,7 +1,11 @@
 import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import SvgUser from '@/legacy/assets/svg/user.svg'
+
+import { Select } from '@/legacy/components/common'
+import { Icon } from '@/legacy/components/common/icons'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'
@@ -11,14 +15,12 @@ import { Category, Code, ResponseParentUserDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useModals } from '@/legacy/modals/ModalStack'
 import { StudentModal } from '@/legacy/modals/StudentModal'
-import { meState } from '@/stores'
 import { getNickName } from '@/legacy/util/status'
 import { getThisYear } from '@/legacy/util/time'
 import { Validator } from '@/legacy/util/validator'
-import { Select } from '@/legacy/components/common'
-import { TextInput } from '@/legacy/components/common/TextInput'
-import { Time } from '@/legacy/components/common/Time'
-import { Icon } from '@/legacy/components/common/icons'
+import { meState } from '@/stores'
+
+import SvgUser from '@/legacy/assets/svg/user.svg'
 
 interface StudentInfoCardProps {
   id: number

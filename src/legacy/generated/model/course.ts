@@ -5,50 +5,50 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { CourseStatus } from './courseStatus';
-import type { School } from './school';
-import type { CourseSeason } from './courseSeason';
-import type { User } from './user';
-import type { LectureRoom } from './lectureRoom';
-import type { LectureTime } from './lectureTime';
-import type { CourseAttachment } from './courseAttachment';
-import type { CourseTrainee } from './courseTrainee';
-import type { CourseLecture } from './courseLecture';
-import type { CourseSurveyAnswer } from './courseSurveyAnswer';
-import type { CourseSurveyCourse } from './courseSurveyCourse';
+import type { CourseAttachment } from './courseAttachment'
+import type { CourseLecture } from './courseLecture'
+import type { CourseSeason } from './courseSeason'
+import type { CourseStatus } from './courseStatus'
+import type { CourseSurveyAnswer } from './courseSurveyAnswer'
+import type { CourseSurveyCourse } from './courseSurveyCourse'
+import type { CourseTrainee } from './courseTrainee'
+import type { LectureRoom } from './lectureRoom'
+import type { LectureTime } from './lectureTime'
+import type { School } from './school'
+import type { User } from './user'
 
 export interface Course {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
-  status: CourseStatus;
-  name: string;
-  description: string;
-  targetGrades: number[];
-  lectureCount: number;
-  quota: number;
-  noLimitQuota: boolean;
-  applyCount: number;
-  cartCount: number;
-  useExtraApply: boolean;
-  updating: boolean;
-  schoolId: number;
-  courseSeasonId: number;
-  proposerId: number;
-  teacherId: number;
-  lectureRoomId: number;
-  school: School;
-  courseSeason: CourseSeason;
-  proposer: User;
-  teacher: User;
-  lectureRoom: LectureRoom;
-  lectureTimes: LectureTime[];
-  courseAttachments: CourseAttachment[];
-  courseTrainees: CourseTrainee[];
-  courseLectures: CourseLecture[];
-  surveyAnswers: CourseSurveyAnswer[];
-  surveyCourses: CourseSurveyCourse[];
+  updatedAt: string
+  status: CourseStatus
+  name: string
+  description: string
+  targetGrades: number[]
+  lectureCount: number
+  quota: number
+  noLimitQuota: boolean
+  applyCount: number
+  cartCount: number
+  useExtraApply: boolean
+  updating: boolean
+  schoolId: number
+  courseSeasonId: number
+  proposerId: number
+  teacherId: number
+  lectureRoomId: number
+  school: School
+  courseSeason: CourseSeason
+  proposer: User
+  teacher: User
+  lectureRoom: LectureRoom
+  lectureTimes: LectureTime[]
+  courseAttachments: CourseAttachment[]
+  courseTrainees: CourseTrainee[]
+  courseLectures: CourseLecture[]
+  surveyAnswers: CourseSurveyAnswer[]
+  surveyCourses: CourseSurveyCourse[]
 }

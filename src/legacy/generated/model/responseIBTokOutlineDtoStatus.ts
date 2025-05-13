@@ -10,11 +10,10 @@
  * IB 아웃라인 상태
  */
 export type ResponseIBTokOutlineDtoStatus =
-  (typeof ResponseIBTokOutlineDtoStatus)[keyof typeof ResponseIBTokOutlineDtoStatus];
+  (typeof ResponseIBTokOutlineDtoStatus)[keyof typeof ResponseIBTokOutlineDtoStatus]
 
- 
 export const ResponseIBTokOutlineDtoStatus = {
   PENDING: 'PENDING',
   SUBMIT: 'SUBMIT',
   ACCEPT: 'ACCEPT',
-} as const;
+} as const

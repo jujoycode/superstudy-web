@@ -8,7 +8,7 @@
 
 export interface RequestUpsertAttendanceCheckDto {
   /** 강의 ID */
-  lectureId: number;
+  lectureId: number
   /** 출결체크일 */
-  checkDay: string | null;
+  checkDay: string | null
 }

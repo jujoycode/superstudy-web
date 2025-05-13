@@ -1,11 +1,13 @@
 import { FC, useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { SuperModal } from '@/legacy/components/SuperModal'
+import { twMerge } from 'tailwind-merge'
+
 import { Avatar, Textarea } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
-import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Icon } from '@/legacy/components/common/icons'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { SuperModal } from '@/legacy/components/SuperModal'
 import { useStudentRecordontrollerCreate, useStudentSelfAssessmentGetAnnualReview } from '@/legacy/generated/endpoint'
 import {
   Counseling,
@@ -15,8 +17,8 @@ import {
 } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { toastState } from '@/stores'
+
 import 'swiper/swiper.min.css'
-import { twMerge } from 'tailwind-merge'
 
 interface GeneralGPTModalProps {
   studentId: number

@@ -5,42 +5,42 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { CommentaryResponseDto } from './commentaryResponseDto';
-import type { ResponseIBTokExhibitionPlanDtoStatus } from './responseIBTokExhibitionPlanDtoStatus';
+import type { CommentaryResponseDto } from './commentaryResponseDto'
+import type { ResponseIBTokExhibitionPlanDtoStatus } from './responseIBTokExhibitionPlanDtoStatus'
 
 export interface ResponseIBTokExhibitionPlanDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 주제 질문 */
-  themeQuestion: string;
+  themeQuestion: string
   /** 설명 */
-  description: string;
+  description: string
   /** 지식영역 */
-  knowledgeArea: string[];
+  knowledgeArea: string[]
   /** 대상 1 */
-  target1: string;
+  target1: string
   /** 개념렌즈 1 */
-  conceptualLens1: string;
+  conceptualLens1: string
   /** 지식프레임 1 */
-  knowledgeFrame1: string;
+  knowledgeFrame1: string
   /** 대상 2 */
-  target2: string;
+  target2: string
   /** 개념렌즈 2 */
-  conceptualLens2: string;
+  conceptualLens2: string
   /** 지식프레임 2 */
-  knowledgeFrame2: string;
+  knowledgeFrame2: string
   /** 대상 3 */
-  target3: string;
+  target3: string
   /** 개념렌즈 3 */
-  conceptualLens3: string;
+  conceptualLens3: string
   /** 지식프레임 3 */
-  knowledgeFrame3: string;
+  knowledgeFrame3: string
   /** 대상별 Commentary 데이터 */
-  commentary: CommentaryResponseDto[];
+  commentary: CommentaryResponseDto[]
   /** IB 전시회 기획안 상태 */
-  status: ResponseIBTokExhibitionPlanDtoStatus;
+  status: ResponseIBTokExhibitionPlanDtoStatus
 }

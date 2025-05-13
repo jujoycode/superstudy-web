@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
+import type { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
-import { childState } from '@/stores'
-import { isPdfFile } from '@/legacy/util/file'
+
 import { Constants } from '@/legacy/constants'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useNoticesFindOne } from '@/legacy/generated/endpoint'
-import type { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { isPdfFile } from '@/legacy/util/file'
+import { childState } from '@/stores'
 
 export function useStudentNoticeDetail(noticeId?: number) {
   const [errorMessage, setErrorMessage] = useState('')

@@ -5,20 +5,20 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { CourseLecture } from './courseLecture';
-import type { User } from './user';
+import type { CourseLecture } from './courseLecture'
+import type { User } from './user'
 
 export interface LectureAttendance {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
-  isAttended: boolean;
-  note: string;
-  courseLectureId: number;
-  userId: number;
-  courseLecture: CourseLecture;
-  user: User;
+  updatedAt: string
+  isAttended: boolean
+  note: string
+  courseLectureId: number
+  userId: number
+  courseLecture: CourseLecture
+  user: User
 }

@@ -1,12 +1,14 @@
 import _, { range } from 'lodash'
 import { useEffect, useState } from 'react'
-import { useStudentMockExamScoreDelete, useStudentScoreFileCheckMock } from '@/legacy/container/insert-exam-score'
-import { useAdminCommonFindAllKlassBySchool, useSchoolManagementGetSchoolInfo } from '@/legacy/generated/endpoint'
-import { getThisYear } from '@/legacy/util/time'
+
 import { Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import AlertDialog from '@/legacy/components/common/AlertDialog'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
+import { useStudentMockExamScoreDelete, useStudentScoreFileCheckMock } from '@/legacy/container/insert-exam-score'
+import { useAdminCommonFindAllKlassBySchool, useSchoolManagementGetSchoolInfo } from '@/legacy/generated/endpoint'
+import { getThisYear } from '@/legacy/util/time'
+
 import { ExamScoresBatcbUploadComponent } from './ExamScoresBatchUploadComponent'
 import { MockExamUploadModal } from './MockExamUploadModal'
 

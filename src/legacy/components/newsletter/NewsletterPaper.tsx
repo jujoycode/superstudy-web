@@ -1,10 +1,12 @@
 import { forwardRef } from 'react'
 import { useRecoilValue } from 'recoil'
+
+import { Time } from '@/legacy/components/common/Time'
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignedUrl } from '@/legacy/lib/query'
 import { childState, meState } from '@/stores'
-import { Time } from '@/legacy/components/common/Time'
+
 import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
 
 interface NewsletterPaperProps {

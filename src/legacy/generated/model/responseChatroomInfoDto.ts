@@ -8,29 +8,29 @@
 
 export interface ResponseChatroomInfoDto {
   /** 방 상태 */
-  chatroomStatus: string;
+  chatroomStatus: string
   /** 방 이름 */
-  chatroomName: string | null;
+  chatroomName: string | null
   /** 채팅방 ID */
-  chatroomId: number;
+  chatroomId: number
   /** 생성자 */
-  createdUserId: number;
+  createdUserId: number
   /** 참여자 리스트 */
-  attendeeIdList: number[];
+  attendeeIdList: number[]
   /** 채팅가능시각(시작) */
-  chatStartTime: string;
+  chatStartTime: string
   /** 채팅가능시각(끝) */
-  chatEndTime: string;
+  chatEndTime: string
   /** 방 썸네일 URL */
-  roomImage: string | null;
+  roomImage: string | null
   /** 마지막 채팅 시각 */
-  lastMessage: string | null;
+  lastMessage: string | null
   /** 마지막 채팅 메시지 시각 */
-  lastMessageCreatedAt: string | null;
+  lastMessageCreatedAt: string | null
   /** 마지막 읽은 시각 */
-  lastReadAt: string | null;
+  lastReadAt: string | null
   /** 안읽은 메시지 갯수 */
-  unreadCount: number | null;
+  unreadCount: number | null
   /** 채팅방 참여자 이름 리스트 */
-  attendeeNames: string | null;
+  attendeeNames: string | null
 }

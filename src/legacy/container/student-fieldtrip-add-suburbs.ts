@@ -1,15 +1,16 @@
 import { addYears, format } from 'date-fns'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import { useFieldtripsCreate, useFieldtripsUpdate, useSchedulesFindRejectSchedule } from '@/legacy/generated/endpoint'
 import { Fieldtrip, FieldtripType, Role, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { childState } from '@/stores'
-import type { ImageObject } from '@/legacy/types/image-object'
 import type { errorType } from '@/legacy/types'
-
+import type { ImageObject } from '@/legacy/types/image-object'
 import { usePrevious } from '@/legacy/util/hooks'
+import { childState } from '@/stores'
+
 import { UserContainer } from './user'
 
 type Props<T> = {

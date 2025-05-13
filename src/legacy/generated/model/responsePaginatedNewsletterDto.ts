@@ -5,15 +5,15 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Newsletter } from './newsletter';
+import type { Newsletter } from './newsletter'
 
 export interface ResponsePaginatedNewsletterDto {
   /** 가정통신문들 */
-  items: Newsletter[];
+  items: Newsletter[]
   /** 전체갯수 */
-  total: number;
+  total: number
   /** 읽지 않은 가정통신문id 리스트 */
-  unreadIdList: number[] | null;
+  unreadIdList: number[] | null
   /** 제출하지 않은 가정통신문Id 리스트 */
-  unsubmittedIdList: number[] | null;
+  unsubmittedIdList: number[] | null
 }

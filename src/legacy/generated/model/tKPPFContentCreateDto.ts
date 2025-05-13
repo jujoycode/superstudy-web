@@ -8,5 +8,5 @@
 
 export interface TKPPFContentCreateDto {
   /** 내용 */
-  text?: string;
+  text?: string
 }

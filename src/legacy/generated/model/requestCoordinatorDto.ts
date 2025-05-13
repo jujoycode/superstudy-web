@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { DependentCategory } from './dependentCategory';
+import type { DependentCategory } from './dependentCategory'
 
 export interface RequestCoordinatorDto {
   /** 코디타입 */
-  type: DependentCategory;
+  type: DependentCategory
   /** 선생님 ID */
-  teacherId: number;
+  teacherId: number
 }

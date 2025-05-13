@@ -5,10 +5,10 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RRSGetSubmissionStatusCountIbType } from './rRSGetSubmissionStatusCountIbType';
+import type { RRSGetSubmissionStatusCountIbType } from './rRSGetSubmissionStatusCountIbType'
 
 export type RRSGetSubmissionStatusCountParams = {
-  grade?: number;
-  klass?: number;
-  ibType?: RRSGetSubmissionStatusCountIbType;
-};
+  grade?: number
+  klass?: number
+  ibType?: RRSGetSubmissionStatusCountIbType
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useBoardFindAll } from '@/legacy/generated/endpoint'
 import type { Board, BoardCategoryEnum } from '@/legacy/generated/model'

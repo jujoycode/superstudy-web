@@ -1,19 +1,19 @@
 // ProposalInputField.tsx
-import { InputHTMLAttributes } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { InputHTMLAttributes } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 interface EvalInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  afterLabel?: string;
-  disabled?: boolean;
-  className?: string;
+  label?: string
+  afterLabel?: string
+  disabled?: boolean
+  className?: string
 }
 
 export const EvalInputField = ({ label, afterLabel, className, disabled = false, ...props }: EvalInputFieldProps) => {
   return (
     <div
       className={twMerge(
-        'flex h-12 w-full items-center space-x-2 rounded-md border border-gray-200 bg-white px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0',
+        'focus:border-brand-1 flex h-12 w-full items-center space-x-2 rounded-md border border-gray-200 bg-white px-4 placeholder-gray-400 focus:ring-0',
         disabled && 'bg-gray-100 text-gray-400',
         className,
       )}
@@ -26,15 +26,15 @@ export const EvalInputField = ({ label, afterLabel, className, disabled = false,
       />
       {afterLabel && <div className="whitespace-pre">{afterLabel}</div>}
     </div>
-  );
-};
+  )
+}
 
 interface ScoreEvalInputFieldProps {
-  label?: string;
-  className?: string;
-  disabled?: boolean;
-  minScoreProps: InputHTMLAttributes<HTMLInputElement>;
-  maxScoreProps: InputHTMLAttributes<HTMLInputElement>;
+  label?: string
+  className?: string
+  disabled?: boolean
+  minScoreProps: InputHTMLAttributes<HTMLInputElement>
+  maxScoreProps: InputHTMLAttributes<HTMLInputElement>
 }
 
 EvalInputField.Score = ({
@@ -47,7 +47,7 @@ EvalInputField.Score = ({
   return (
     <div
       className={twMerge(
-        'flex h-12 w-full items-center justify-between space-x-2 rounded-md border border-gray-200 bg-white px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0',
+        'focus:border-brand-1 flex h-12 w-full items-center justify-between space-x-2 rounded-md border border-gray-200 bg-white px-4 placeholder-gray-400 focus:ring-0',
         className,
       )}
     >
@@ -76,5 +76,5 @@ EvalInputField.Score = ({
         <div className="whitespace-pre">점</div>
       </div>
     </div>
-  );
-};
+  )
+}

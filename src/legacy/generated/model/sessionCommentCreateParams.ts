@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type SessionCommentCreateParams = { sessionId: number };
+export type SessionCommentCreateParams = { sessionId: number }

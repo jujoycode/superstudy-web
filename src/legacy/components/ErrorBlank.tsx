@@ -1,8 +1,10 @@
-import { useHistory } from '@/hooks/useHistory'
-import { Button } from './common/Button'
 import { useRecoilValue } from 'recoil'
-import { meState } from '@/stores'
+
+import { useHistory } from '@/hooks/useHistory'
 import { PermissionUtil } from '@/legacy/util/permission'
+import { meState } from '@/stores'
+
+import { Button } from './common/Button'
 
 interface ErrorBlankProps {
   text?: string

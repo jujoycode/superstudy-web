@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentManagementGetStudentInfoParams = { year?: number };
+export type StudentManagementGetStudentInfoParams = { year?: number }

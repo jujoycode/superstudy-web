@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ChatroomSearchUsersParams = { name: string };
+export type ChatroomSearchUsersParams = { name: string }

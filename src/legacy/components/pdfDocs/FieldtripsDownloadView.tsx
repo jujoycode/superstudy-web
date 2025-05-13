@@ -2,11 +2,13 @@ import { toJpeg } from 'html-to-image'
 import { jsPDF } from 'jspdf'
 import { filter, find, groupBy, map } from 'lodash'
 import { useRef, useState } from 'react'
+
+import { Select } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
 import { Fieldtrip } from '@/legacy/generated/model'
 import { FieldtripPaperType } from '@/legacy/types'
 import { getImageMeta, getPdfImageSize } from '@/legacy/util/pdf'
-import { Select } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
+
 import { FieldtripPdf } from './FieldtripPdf'
 
 interface FieldtripsDownloadViewProps {

@@ -5,6 +5,9 @@ import { t } from 'i18next'
 import { jsPDF } from 'jspdf'
 import { filter, find, groupBy, map } from 'lodash'
 import { useRef, useState } from 'react'
+
+import { Select } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
 import { Constants } from '@/legacy/constants'
 import { UserContainer } from '@/legacy/container/user'
 import { Absent } from '@/legacy/generated/model'
@@ -16,8 +19,7 @@ import {
   getImageMeta,
   getPdfImageSize,
 } from '@/legacy/util/pdf'
-import { Select } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
+
 import { AbsentPdf } from './AbsentPdf'
 
 interface AbsentsDownloadViewProps {

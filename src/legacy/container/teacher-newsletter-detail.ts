@@ -2,25 +2,26 @@ import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 
 // ! 로직 개선
-import { Routes } from '@/legacy/routes'
-import { useHistory } from '@/hooks/useHistory'
+import type { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 
+import { useHistory } from '@/hooks/useHistory'
+import { Constants } from '@/legacy/constants'
+import { QueryKey } from '@/legacy/constants/query-key'
 import {
   useNewsLettersDelete,
   useNewsLettersFindOne,
   useNewsLettersPublish,
   useNewsLettersUpdate,
 } from '@/legacy/generated/endpoint'
-import { Constants } from '@/legacy/constants'
-import { QueryKey } from '@/legacy/constants/query-key'
-import { isPdfFile } from '@/legacy/util/file'
-import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { NewsletterCategoryEnum, NewsletterType, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { NewsletterCategoryEnum, NewsletterType, UploadFileTypeEnum } from '@/legacy/generated/model'
 import type { DocumentObject } from '@/legacy/types/document-object'
 import type { ImageObject } from '@/legacy/types/image-object'
-import type { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { isPdfFile } from '@/legacy/util/file'
+
+import { Routes } from '@/legacy/routes'
 
 interface NewsletterCore {
   id: number

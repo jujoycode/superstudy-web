@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'
+
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { Time } from '@/legacy/components/common/Time'
+import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'
 
 interface StudyInfoCard {
   studentId?: number

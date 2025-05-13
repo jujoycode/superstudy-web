@@ -5,17 +5,17 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBProposalDtoStatus } from './responseIBProposalDtoStatus';
+import type { ResponseIBProposalDtoStatus } from './responseIBProposalDtoStatus'
 
 export interface ResponseIBProposalDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 제안서 순위 */
-  rank: number;
+  rank: number
   /** 
 IB 프로젝트 진행 상태 값:
 - **PENDING**: 제안서 제출 전
@@ -23,21 +23,21 @@ IB 프로젝트 진행 상태 값:
 - **REJECT**: 제안서 반려
 - **ACCEPT**: 채택
  */
-  status: ResponseIBProposalDtoStatus;
+  status: ResponseIBProposalDtoStatus
   /** 모델 논문 */
-  modelPaper: string;
+  modelPaper: string
   /** 모델 논문 요약 */
-  modelPaperSummary: string;
+  modelPaperSummary: string
   /** 연구 주제 */
-  researchTopic: string;
+  researchTopic: string
   /** 연구 질문 */
-  researchQuestion: string;
+  researchQuestion: string
   /** 연구 필요성 */
-  researchNeed: string;
+  researchNeed: string
   /** 연구 방법 */
-  researchMethod: string;
+  researchMethod: string
   /** 과목 */
-  subject: string;
+  subject: string
   /** 과목 카테고리 */
-  category: string;
+  category: string
 }

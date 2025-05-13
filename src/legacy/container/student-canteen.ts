@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { childState } from '@/stores'
-import { getCalendarRange, makeDateToString } from '@/legacy/util/time'
-import { CalendarIdEnum, type ResponseExtendedScheduleDto } from '@/legacy/generated/model'
+
 import { useCanteenFindByYearMonth, useSchedulesFindAll } from '@/legacy/generated/endpoint'
+import { CalendarIdEnum, type ResponseExtendedScheduleDto } from '@/legacy/generated/model'
+import { getCalendarRange, makeDateToString } from '@/legacy/util/time'
+import { childState } from '@/stores'
 
 export function useStudentCanteen() {
   const child = useRecoilValue(childState)

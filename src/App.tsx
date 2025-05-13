@@ -1,8 +1,10 @@
 import CacheBuster from 'react-cache-buster'
-import { version } from '../package.json' with { type: 'json' }
 import { RouterProvider } from 'react-router'
+
 import { Blank } from '@/legacy/components/common'
 import { router } from '@/routers'
+
+import { version } from '../package.json' with { type: 'json' }
 
 export function App() {
   return (

@@ -1,19 +1,23 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
+
 import { useHistory } from '@/hooks/useHistory'
-import NODATA from '@/legacy/assets/images/no-data.png'
-import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
-import { useInterviewGetByStudentId, useInterviewQNAGetByStudentId } from '@/legacy/container/ib-student-interview'
-import { FeedbackReferenceTable, ResponseIBDto, ResponseRPPFDto } from '@/legacy/generated/model'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
+import { useInterviewGetByStudentId, useInterviewQNAGetByStudentId } from '@/legacy/container/ib-student-interview'
+import { FeedbackReferenceTable, ResponseIBDto, ResponseRPPFDto } from '@/legacy/generated/model'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import FeedbackViewer from '../FeedbackViewer'
+
 import { IbEeInterview } from './IbEeInterview'
 import { IbEeRPPF } from './IbEeRPPF'
+
+import NODATA from '@/legacy/assets/images/no-data.png'
 
 interface RPPFListProps {
   data: ResponseIBDto

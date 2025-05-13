@@ -1,10 +1,12 @@
-import { Typography } from '@/legacy/components/common/Typography'
-import ADDFILE from '@/legacy/assets/images/addfile.png'
-import WRITE from '@/legacy/assets/images/write.png'
 import clsx from 'clsx'
 import { ChangeEvent, useState, useRef } from 'react'
+
 import AlertV2 from '@/legacy/components/common/AlertV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import { useImageAndDocument, fileType } from '@/legacy/hooks/useImageAndDocument'
+
+import ADDFILE from '@/legacy/assets/images/addfile.png'
+import WRITE from '@/legacy/assets/images/write.png'
 
 interface InspectorButtonContainerProps {
   type: 'horizontal' | 'vertical'

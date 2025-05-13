@@ -8,5 +8,5 @@
 
 export type AbsentsRequestDeleteBody = {
   /** 삭제요청사유 */
-  deleteReason?: string;
-};
+  deleteReason?: string
+}

@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentActivityV3FindStudentCardParams = { studentId: number };
+export type StudentActivityV3FindStudentCardParams = { studentId: number }

@@ -7,8 +7,8 @@
  */
 
 export type StudentExamScoreInsertMockScoresParams = {
-  excelDataType: string;
-  grade: number;
-  month: number;
-  insertionYear: number;
-};
+  excelDataType: string
+  grade: number
+  month: number
+  insertionYear: number
+}

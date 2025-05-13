@@ -1,7 +1,9 @@
 import { useState } from 'react'
+
 import { Typography } from '@/legacy/components/common/Typography'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { ResponseIBPortfolioDto, ResponseUserDto } from '@/legacy/generated/model'
+
 import CASCard from './CASCard'
 
 interface CASPortfolioDataListProps {

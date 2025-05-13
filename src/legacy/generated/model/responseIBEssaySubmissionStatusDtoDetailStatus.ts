@@ -10,10 +10,9 @@
  * 평가 여부
  */
 export type ResponseIBEssaySubmissionStatusDtoDetailStatus =
-  (typeof ResponseIBEssaySubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBEssaySubmissionStatusDtoDetailStatus];
+  (typeof ResponseIBEssaySubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBEssaySubmissionStatusDtoDetailStatus]
 
- 
 export const ResponseIBEssaySubmissionStatusDtoDetailStatus = {
   EVALUATED: 'EVALUATED',
   NOT_EVALUATED: 'NOT_EVALUATED',
-} as const;
+} as const

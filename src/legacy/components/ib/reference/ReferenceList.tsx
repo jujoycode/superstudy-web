@@ -1,7 +1,9 @@
 import { format } from 'date-fns'
+
 import { useHistory } from '@/hooks/useHistory'
 import { Typography } from '@/legacy/components/common/Typography'
 import { ResponseReferenceInfoDto, ResponseReferenceInfoDtoCategory } from '@/legacy/generated/model'
+
 import NODATA from '@/legacy/assets/images/no-data.png'
 
 interface EEReferenceListProps {

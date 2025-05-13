@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { useAnnouncementGetAnnouncementById } from '@/legacy/generated/endpoint'
 
 export function useAnnouncementDetail(announcementId: number) {

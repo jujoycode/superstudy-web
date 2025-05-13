@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+
 import { Constants } from '@/legacy/constants'
 import type { ImageObject } from '@/legacy/types/image-object'
+
 import ColorSVGIcon from '../icon/ColorSVGIcon'
 
 interface ImageCardProps {

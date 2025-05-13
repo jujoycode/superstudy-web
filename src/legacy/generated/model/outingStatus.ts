@@ -6,9 +6,8 @@
  * OpenAPI spec version: 0.1
  */
 
-export type OutingStatus = (typeof OutingStatus)[keyof typeof OutingStatus];
+export type OutingStatus = (typeof OutingStatus)[keyof typeof OutingStatus]
 
- 
 export const OutingStatus = {
   RETURNED: 'RETURNED',
   BEFORE_TEACHER_APPROVAL: 'BEFORE_TEACHER_APPROVAL',
@@ -16,4 +15,4 @@ export const OutingStatus = {
   PROCESSED: 'PROCESSED',
   DELETE_APPEAL: 'DELETE_APPEAL',
   BEFORE_PARENT_APPROVAL: 'BEFORE_PARENT_APPROVAL',
-} as const;
+} as const

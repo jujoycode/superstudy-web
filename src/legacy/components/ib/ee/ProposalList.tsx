@@ -1,21 +1,25 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+
 import { useHistory } from '@/hooks/useHistory'
-import NODATA from '@/legacy/assets/images/no-data.png'
-import { IBBlank } from '@/legacy/components/common/IBBlank'
-import { useGetFeedbackExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
-import { useIBProposalRankChange } from '@/legacy/container/ib-proposal-update'
-import { ResponseIBDto } from '@/legacy/generated/model'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2, BadgeV2Color } from '@/legacy/components/common/BadgeV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useGetFeedbackExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
+import { useIBProposalRankChange } from '@/legacy/container/ib-proposal-update'
+import { ResponseIBDto } from '@/legacy/generated/model'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import SolidSVGIcon from '../../icon/SolidSVGIcon'
 import { PopupModal } from '../../PopupModal'
 import FeedbackViewer from '../FeedbackViewer'
+
 import { IbEeProposal } from './IbEeProposal'
+
+import NODATA from '@/legacy/assets/images/no-data.png'
 
 interface ProposalListProps {
   data: ResponseIBDto

@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
+
+import { PdfCard } from '@/legacy/components/common/PdfCard'
+import { PdfViewer } from '@/legacy/components/common/PdfViewer'
+import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { AnnouncementType, ResponseAnnouncementDto } from '@/legacy/generated/model'
 import { getFileNameFromUrl, getFileNameFromUrlToAnn } from '@/legacy/util/file'
 import { isHTML } from '@/legacy/util/validator'
-import { PdfCard } from '@/legacy/components/common/PdfCard'
-import { PdfViewer } from '@/legacy/components/common/PdfViewer'
-import { Time } from '@/legacy/components/common/Time'
+
+import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
 
 interface AnnouncementProps {
   announcement: ResponseAnnouncementDto

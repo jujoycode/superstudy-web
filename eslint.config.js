@@ -18,7 +18,7 @@ export default tseslint.config(
       '*.config.js',
       '*.config.ts',
       '**/stories/*',
-      'vitest.workspace.ts'
+      'vitest.workspace.ts',
     ],
   },
   {
@@ -85,7 +85,7 @@ export default tseslint.config(
       'import/order': [
         'error',
         {
-          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          groups: ['builtin', 'external', 'internal', 'index'],
           'newlines-between': 'always',
           alphabetize: { order: 'asc', caseInsensitive: true },
         },

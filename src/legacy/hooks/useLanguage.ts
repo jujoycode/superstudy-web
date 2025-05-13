@@ -1,8 +1,9 @@
-import { useRecoilState } from 'recoil'
-import { useTranslation } from 'react-i18next'
-import { languageState } from '@/stores'
 import type { TOptions } from 'i18next'
+import { useTranslation } from 'react-i18next'
+import { useRecoilState } from 'recoil'
+
 import type { Languages } from '@/legacy/util/i18n'
+import { languageState } from '@/stores'
 
 export const useLanguage = () => {
   const { t: originalT, i18n } = useTranslation<'translation'>()

@@ -1,13 +1,14 @@
 import clsx from 'clsx'
 import _ from 'lodash'
 import { PropsWithChildren, useCallback, useEffect, useState } from 'react'
+
+import AlertDialog from '@/legacy/components/common/AlertDialog'
+import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
 import { Icon } from '@/legacy/components/common/icons'
 import { useInsertScoreBatch, useStudentInsertTestScores } from '@/legacy/container/insert-exam-score'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { validateAndExtract, validateAndExtractMock } from '@/legacy/util/exam-score'
 import { isExcelFile } from '@/legacy/util/file'
-import AlertDialog from '@/legacy/components/common/AlertDialog'
-import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
 
 interface ExamUploadModalProps {
   modalOpen: boolean

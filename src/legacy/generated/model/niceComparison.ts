@@ -5,31 +5,31 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Group } from './group';
+import type { Group } from './group'
 
 export interface NiceComparison {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 학년도 */
-  year: string;
+  year: string
   /** 월 */
-  month: number;
+  month: number
   /** 그룹 ID */
-  groupId: number;
+  groupId: number
   /** 학교 ID */
-  schoolId: number;
+  schoolId: number
   /** 그룹 */
-  group: Group;
+  group: Group
   /** 나이스 파일과 학교 데이터의 차이 */
-  differenceNS: number;
+  differenceNS: number
   /** 나이스 파일에 없는 데이터 수 */
-  niceEmptyNumber: number;
+  niceEmptyNumber: number
   /** 슈퍼스쿨에 없는 데이터 수 */
-  schoolEmptyNumber: number;
+  schoolEmptyNumber: number
   /** 나이스 파일 데이터 (JSON 스트링) */
-  content: string;
+  content: string
 }

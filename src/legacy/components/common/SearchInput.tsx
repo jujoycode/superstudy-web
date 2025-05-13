@@ -1,4 +1,5 @@
 import { InputHTMLAttributes } from 'react'
+
 import { cn } from '@/legacy/lib/tailwind-merge'
 
 export interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {

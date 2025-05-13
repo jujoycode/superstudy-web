@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type AdminCommonSearchTeachersParams = { year?: number; klass?: string; keyword?: string };
+export type AdminCommonSearchTeachersParams = { year?: number; klass?: string; keyword?: string }

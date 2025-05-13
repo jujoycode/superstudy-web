@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { CalendarIdEnum } from './calendarIdEnum';
+import type { CalendarIdEnum } from './calendarIdEnum'
 
 export type SchedulesFindAllParams = {
-  startDate: string;
-  endDate: string;
-  grade?: number;
-  calendarId?: CalendarIdEnum;
-};
+  startDate: string
+  endDate: string
+  grade?: number
+  calendarId?: CalendarIdEnum
+}

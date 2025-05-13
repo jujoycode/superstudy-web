@@ -21,9 +21,8 @@ IB 프로젝트 진행 상태 값:
 - **COMPLETE**: 완료
 
  */
-export type ResponseIBOnlyCasDtoStatus = (typeof ResponseIBOnlyCasDtoStatus)[keyof typeof ResponseIBOnlyCasDtoStatus];
+export type ResponseIBOnlyCasDtoStatus = (typeof ResponseIBOnlyCasDtoStatus)[keyof typeof ResponseIBOnlyCasDtoStatus]
 
- 
 export const ResponseIBOnlyCasDtoStatus = {
   PENDING: 'PENDING',
   WAIT_MENTOR: 'WAIT_MENTOR',
@@ -35,4 +34,4 @@ export const ResponseIBOnlyCasDtoStatus = {
   WAIT_COMPLETE: 'WAIT_COMPLETE',
   REJECT_COMPLETE: 'REJECT_COMPLETE',
   COMPLETE: 'COMPLETE',
-} as const;
+} as const

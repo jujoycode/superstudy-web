@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+
+import { Section } from '@/legacy/components/common'
+import { PdfCard } from '@/legacy/components/common/PdfCard'
 import { Constants } from '@/legacy/constants'
 import { ActivitySession, StudentActivitySession } from '@/legacy/generated/model'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { Section } from '@/legacy/components/common'
-import { PdfCard } from '@/legacy/components/common/PdfCard'
+
 import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
 
 interface TeacherActivitySessionDetailView {

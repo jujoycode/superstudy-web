@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
+
 import { useHistory } from '@/hooks/useHistory'
+import { Blank } from '@/legacy/components/common/Blank'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import {
@@ -11,8 +13,8 @@ import {
   IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus,
   IBGetSubmissionStatusCountParams,
 } from '@/legacy/generated/model'
+
 import ActivityLogOverviewPanel from './ActivitLogOverviewPanel'
-import { Blank } from '@/legacy/components/common/Blank'
 
 export default function ActivityLogView({ grade, klass }: IBGetSubmissionStatusCountParams) {
   const { push } = useHistory()

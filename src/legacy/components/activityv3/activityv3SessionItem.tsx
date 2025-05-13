@@ -1,8 +1,9 @@
 import { format } from 'date-fns'
 import { FC } from 'react'
 import { Link, useLocation } from 'react-router'
-import { ActivitySession } from '@/legacy/generated/model'
 import { twMerge } from 'tailwind-merge'
+
+import { ActivitySession } from '@/legacy/generated/model'
 
 interface Activityv3SessionItemProps {
   session: ActivitySession

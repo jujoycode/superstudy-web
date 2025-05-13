@@ -1,7 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react'
+
 import { useUserSearch } from '@/legacy/container/ib-find-user'
 import { ResponseIBStudentDto } from '@/legacy/generated/model'
+
 import SVGIcon from '../icon/SVGIcon'
+
 import { ButtonV2 } from './ButtonV2'
 import { Check } from './Check'
 import { Input } from './Input'

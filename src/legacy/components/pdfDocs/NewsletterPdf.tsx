@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
+
 import { Constants } from '@/legacy/constants'
 import { ResponseNewsletterDetailDto } from '@/legacy/generated/model'
-import { NewsletterPaper } from '../newsletter/NewsletterPaper'
 import { AbsentPaperType } from '@/legacy/types'
+
+import { NewsletterPaper } from '../newsletter/NewsletterPaper'
 
 interface NewsletterPdfProps {
   orderBy: number

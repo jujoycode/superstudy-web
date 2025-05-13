@@ -8,7 +8,7 @@
 
 export interface RequestNotificationCheckDto {
   /** 이메일 리스트 */
-  emailList: string[];
+  emailList: string[]
   /** 알림 종류 */
-  notificationType: string;
+  notificationType: string
 }

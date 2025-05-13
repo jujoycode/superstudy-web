@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
@@ -28,10 +29,12 @@ import {
   ResponseIBDto,
 } from '@/legacy/generated/model'
 import { useHandleGoBack } from '@/legacy/hooks/useHandleGoBack'
-import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { meState } from '@/stores'
+
 import { Feedback } from '../Feedback'
 import { InputField } from '../InputField'
+
 import StudentActivityStatus from './StudentActivityStatus'
 
 interface TeacherActivityPlanProps {

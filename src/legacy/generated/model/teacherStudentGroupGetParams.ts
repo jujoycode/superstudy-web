@@ -7,9 +7,9 @@
  */
 
 export type TeacherStudentGroupGetParams = {
-  userId?: number;
-  groupId?: number;
-  join?: string[];
-  page?: number;
-  size?: number;
-};
+  userId?: number
+  groupId?: number
+  join?: string[]
+  page?: number
+  size?: number
+}

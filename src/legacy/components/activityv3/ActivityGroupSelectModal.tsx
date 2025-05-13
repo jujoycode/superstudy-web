@@ -1,10 +1,12 @@
 import _ from 'lodash'
 import { FC, useState } from 'react'
-import { GroupType, ResponseSubjectGroupDto, SubjectType } from '@/legacy/generated/model'
 import { twMerge } from 'tailwind-merge'
+
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Icon } from '@/legacy/components/common/icons'
+import { GroupType, ResponseSubjectGroupDto, SubjectType } from '@/legacy/generated/model'
+
 import { SuperModal } from '../SuperModal'
 
 interface ActivityGroupSelectModalProps {

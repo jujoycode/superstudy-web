@@ -5,21 +5,21 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseStudentGroupWithGroupDto } from './responseStudentGroupWithGroupDto';
+import type { ResponseStudentGroupWithGroupDto } from './responseStudentGroupWithGroupDto'
 
 export interface ResponseUserWithKlassDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 이름 */
-  name: string;
+  name: string
   /** 닉네임 */
-  nickName: string;
+  nickName: string
   /** 학년 */
-  grade: number;
+  grade: number
   /** 반 */
-  klass: number;
+  klass: number
   /** 번호 */
-  studentNumber: number;
+  studentNumber: number
   /** 학생그룹 */
-  studentGroups: ResponseStudentGroupWithGroupDto[] | null;
+  studentGroups: ResponseStudentGroupWithGroupDto[] | null
 }

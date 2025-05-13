@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useParams } from 'react-router'
 import { useRecoilState } from 'recoil'
+
+import { Avatar, Blank, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Icon } from '@/legacy/components/common/icons'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import {
   useRecordCreate,
   useStudentActivityV3FindByTeacher,
   useStudentActivityV3SaveByTeacher,
 } from '@/legacy/generated/endpoint'
-import { toastState } from '@/stores'
 import { getNickName, padLeftstr } from '@/legacy/util/status'
-import { Avatar, Blank, Textarea } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
-import { TextInput } from '@/legacy/components/common/TextInput'
-import { Time } from '@/legacy/components/common/Time'
-import { Icon } from '@/legacy/components/common/icons'
+import { toastState } from '@/stores'
+
 import { RecordItem } from './RecordItem'
 
 interface StudentActivityDetailProps {

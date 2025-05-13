@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useNewsLettersFindAll } from '@/legacy/generated/endpoint'
 import type { Newsletter, NewsletterCategoryEnum } from '@/legacy/generated/model'

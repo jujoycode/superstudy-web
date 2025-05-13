@@ -5,15 +5,15 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseUserDto } from './responseUserDto';
-import type { ResponseParentUserDto } from './responseParentUserDto';
-import type { Group } from './group';
+import type { Group } from './group'
+import type { ResponseParentUserDto } from './responseParentUserDto'
+import type { ResponseUserDto } from './responseUserDto'
 
 export interface ResponseCounselingDetailStudentDto {
   /** 학생정보 */
-  student: ResponseUserDto;
+  student: ResponseUserDto
   /** 보호자목록 */
-  parents: ResponseParentUserDto[] | null;
+  parents: ResponseParentUserDto[] | null
   /** 소속그룹 */
-  groupNames: Group[];
+  groupNames: Group[]
 }

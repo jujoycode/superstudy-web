@@ -8,5 +8,5 @@
 
 export type AbsentsNiceSubmittedBody = {
   /** 증빙서류확인여부 */
-  submitted?: boolean;
-};
+  submitted?: boolean
+}

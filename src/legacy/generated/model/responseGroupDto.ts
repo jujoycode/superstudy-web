@@ -5,58 +5,58 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { GroupType } from './groupType';
-import type { GroupActivity } from './groupActivity';
-import type { StudentGroup } from './studentGroup';
-import type { TeacherGroup } from './teacherGroup';
-import type { Lecture } from './lecture';
+import type { GroupActivity } from './groupActivity'
+import type { GroupType } from './groupType'
+import type { Lecture } from './lecture'
+import type { StudentGroup } from './studentGroup'
+import type { TeacherGroup } from './teacherGroup'
 
 export interface ResponseGroupDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 이름 */
-  name: string | null;
+  name: string | null
   /** 그룹종류 */
-  type: GroupType;
+  type: GroupType
   /** 학년도 */
-  year: string | null;
+  year: string | null
   /** 학년 */
-  grade: number;
+  grade: number
   /** 반 */
-  klass: number;
+  klass: number
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /**
    * 그룹활동, Deprecated, api 분리 필요해보여요
    * @deprecated
    */
-  groupActivities: GroupActivity[];
+  groupActivities: GroupActivity[]
   /** 학생그룹 */
-  studentGroups: StudentGroup[];
+  studentGroups: StudentGroup[]
   /** 선생님그룹 */
-  teacherGroups: TeacherGroup[];
+  teacherGroups: TeacherGroup[]
   /** 시간표 */
-  lectures: Lecture[];
+  lectures: Lecture[]
   /** 자리배치 */
-  seatPosition: string;
+  seatPosition: string
   /** 소속학생인원 */
-  studentCount: number;
+  studentCount: number
   /** 소속보호자인원 */
-  parentCount: number;
+  parentCount: number
   /** 활동갯수 */
-  activityCount: number;
+  activityCount: number
   /** 로그인된 선생님에게 등록된 그룹제목 */
-  teacherGroupSubject: string | null;
+  teacherGroupSubject: string | null
   /** 담임선생님유저아이디 */
-  homeRoomTeacherId: number | null;
+  homeRoomTeacherId: number | null
   /** 담임선생님유저명 */
-  homeRoomTeacherName: string | null;
+  homeRoomTeacherName: string | null
   /** 담임선생님별명 */
-  homeRoomTeacherNickName: string | null;
+  homeRoomTeacherNickName: string | null
   /** 로그인된 선생님수업하는 교실 */
-  teacherGroupRoom: string | null;
+  teacherGroupRoom: string | null
 }

@@ -10,12 +10,11 @@
  * 대상 테이블명
  */
 export type ResponseCopykillerResponseDtoTargetTable =
-  (typeof ResponseCopykillerResponseDtoTargetTable)[keyof typeof ResponseCopykillerResponseDtoTargetTable];
+  (typeof ResponseCopykillerResponseDtoTargetTable)[keyof typeof ResponseCopykillerResponseDtoTargetTable]
 
- 
 export const ResponseCopykillerResponseDtoTargetTable = {
   EE_ESSAY: 'EE_ESSAY',
   TOK_ESSAY: 'TOK_ESSAY',
   EXHIBITION: 'EXHIBITION',
   null: null,
-} as const;
+} as const

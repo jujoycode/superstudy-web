@@ -8,37 +8,37 @@
 
 export interface ApprovalLine {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 학급아이디 */
-  groupId: number;
+  groupId: number
   /** 타입1(출결,체험,조퇴,외출,확인) */
-  type1: string;
+  type1: string
   /** 타입2(인정,결석,질병,...) */
-  type2: string;
+  type2: string
   /** 1번쨰 승인자 */
-  approver1Id: number;
+  approver1Id: number
   /** 2번쨰 승인자 */
-  approver2Id: number;
+  approver2Id: number
   /** 3번쨰 승인자 */
-  approver3Id: number;
+  approver3Id: number
   /** 4번쨰 승인자 */
-  approver4Id: number;
+  approver4Id: number
   /** 5번쨰 승인자 */
-  approver5Id: number;
+  approver5Id: number
   /** 1번째 승인자 직책 */
-  approver1Title: string;
+  approver1Title: string
   /** 2번째 승인자 직책 */
-  approver2Title: string | null;
+  approver2Title: string | null
   /** 3번째 승인자 직책 */
-  approver3Title: string | null;
+  approver3Title: string | null
   /** 4번째 승인자 직책 */
-  approver4Title: string | null;
+  approver4Title: string | null
   /** 5번째 승인자 직책 */
-  approver5Title: string | null;
+  approver5Title: string | null
 }

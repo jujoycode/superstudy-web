@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type TeacherManagementGetTeacherInfoParams = { year?: number };
+export type TeacherManagementGetTeacherInfoParams = { year?: number }

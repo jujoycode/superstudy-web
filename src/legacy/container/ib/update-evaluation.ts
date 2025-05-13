@@ -1,5 +1,6 @@
 import { filter, map } from 'lodash'
 import { useEffect, useState } from 'react'
+
 import { useEEEvaluationGetEEEvaluation } from '@/legacy/generated/endpoint'
 import type {
   RequestEEEvaluationCriteriaByLevelsDto,

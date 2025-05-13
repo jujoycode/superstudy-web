@@ -1,4 +1,5 @@
 import { useFieldtripsFindOneByUUID } from '@/legacy/generated/endpoint'
+
 import { UserContainer } from './user'
 
 export function useParentFieldtripNotice(uuid: string) {

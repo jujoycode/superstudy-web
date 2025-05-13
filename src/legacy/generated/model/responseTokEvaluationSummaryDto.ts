@@ -5,21 +5,21 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBUserDto } from './responseIBUserDto';
+import type { ResponseIBUserDto } from './responseIBUserDto'
 
 export interface ResponseTokEvaluationSummaryDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 평가자 교사 ID */
-  evaluator: ResponseIBUserDto;
+  evaluator: ResponseIBUserDto
   /** 최종 평가 여부 */
-  isFinal: boolean;
+  isFinal: boolean
   /** 평가 점수 */
-  score: number;
+  score: number
   /** 평가 코멘트 */
-  comment: string;
+  comment: string
 }

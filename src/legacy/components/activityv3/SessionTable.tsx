@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+import { twMerge } from 'tailwind-merge'
+
+import { Button } from '@/legacy/components/common/Button'
 import { useActivitySessionOrderUpdate } from '@/legacy/generated/endpoint'
 import {
   ActivitySession,
@@ -7,8 +10,7 @@ import {
   ActivityV3,
   RequestUpdateActivitySessionOrderDto,
 } from '@/legacy/generated/model'
-import { twMerge } from 'tailwind-merge'
-import { Button } from '@/legacy/components/common/Button'
+
 import { SessionTableItem } from './SessionTableItem'
 
 interface SesstionTableProps {

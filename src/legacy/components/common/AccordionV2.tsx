@@ -1,24 +1,26 @@
-import { PropsWithChildren, useState } from 'react';
-import SVGIcon from '../icon/SVGIcon';
-import { Typography } from './Typography';
-import type { TypographyProps } from './Typography';
-import { twMerge } from 'tailwind-merge';
+import { PropsWithChildren, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
+
+import SVGIcon from '../icon/SVGIcon'
+
+import { Typography } from './Typography'
+import type { TypographyProps } from './Typography'
 
 // 아코디언 Props 인터페이스
 interface AccordionProps {
-  tagText?: string;
-  title: string;
-  useCount?: boolean;
-  count?: number;
-  rightText?: string;
-  rightTextClassName?: string;
-  className?: string;
-  parentClassName?: string;
-  initialOpenState?: boolean;
-  arrowColor?: 'gray700' | 'gray400' | 'orange800' | 'white';
-  setAccordionIsOpen?: (isOpen: boolean) => void;
-  typographyVariant?: TypographyProps['variant'];
-  typographyClassName?: string;
+  tagText?: string
+  title: string
+  useCount?: boolean
+  count?: number
+  rightText?: string
+  rightTextClassName?: string
+  className?: string
+  parentClassName?: string
+  initialOpenState?: boolean
+  arrowColor?: 'gray700' | 'gray400' | 'orange800' | 'white'
+  setAccordionIsOpen?: (isOpen: boolean) => void
+  typographyVariant?: TypographyProps['variant']
+  typographyClassName?: string
 }
 
 const AccordionV2 = ({
@@ -37,12 +39,12 @@ const AccordionV2 = ({
   typographyVariant = 'body3',
   typographyClassName,
 }: PropsWithChildren<AccordionProps>) => {
-  const [isOpen, setIsOpen] = useState<boolean>(initialOpenState);
+  const [isOpen, setIsOpen] = useState<boolean>(initialOpenState)
 
   const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-    setAccordionIsOpen?.(!isOpen);
-  };
+    setIsOpen(!isOpen)
+    setAccordionIsOpen?.(!isOpen)
+  }
 
   return (
     <div className={className}>
@@ -55,7 +57,7 @@ const AccordionV2 = ({
           {tagText && (
             <Typography
               variant="caption2"
-              className="flex items-center justify-center rounded border border-primary-gray-400 px-[6px] py-[2px]"
+              className="border-primary-gray-400 flex items-center justify-center rounded border px-[6px] py-[2px]"
             >
               {tagText}
             </Typography>
@@ -86,7 +88,7 @@ const AccordionV2 = ({
       {/* 하단의 내용 */}
       {isOpen && <div>{children}</div>}
     </div>
-  );
-};
+  )
+}
 
-export default AccordionV2;
+export default AccordionV2

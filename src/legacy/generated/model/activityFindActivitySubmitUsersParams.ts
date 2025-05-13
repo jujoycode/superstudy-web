@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ActivityFindActivitySubmitUsersParams = { groupId?: number };
+export type ActivityFindActivitySubmitUsersParams = { groupId?: number }

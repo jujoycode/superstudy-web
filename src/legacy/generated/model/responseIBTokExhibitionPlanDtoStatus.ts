@@ -10,11 +10,10 @@
  * IB 전시회 기획안 상태
  */
 export type ResponseIBTokExhibitionPlanDtoStatus =
-  (typeof ResponseIBTokExhibitionPlanDtoStatus)[keyof typeof ResponseIBTokExhibitionPlanDtoStatus];
+  (typeof ResponseIBTokExhibitionPlanDtoStatus)[keyof typeof ResponseIBTokExhibitionPlanDtoStatus]
 
- 
 export const ResponseIBTokExhibitionPlanDtoStatus = {
   PENDING: 'PENDING',
   SUBMIT: 'SUBMIT',
   ACCEPT: 'ACCEPT',
-} as const;
+} as const

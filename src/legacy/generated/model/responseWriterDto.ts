@@ -8,9 +8,9 @@
 
 export interface ResponseWriterDto {
   /** 유저 Id */
-  id: number;
+  id: number
   /** role */
-  role: string;
+  role: string
   /** 이름 */
-  name: string;
+  name: string
 }

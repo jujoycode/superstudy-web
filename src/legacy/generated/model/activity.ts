@@ -5,49 +5,49 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ActivityType } from './activityType';
-import type { GroupActivity } from './groupActivity';
-import type { User } from './user';
+import type { ActivityType } from './activityType'
+import type { GroupActivity } from './groupActivity'
+import type { User } from './user'
 
 export interface Activity {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  content: string | null;
+  content: string | null
   /** 과제과목 */
-  subject: string;
+  subject: string
   /** 공통문구 */
-  commonText: string;
+  commonText: string
   /** 생활기록부 상태 여부 */
-  isRecord: boolean;
+  isRecord: boolean
   /** 종료일 */
-  endDate: string;
+  endDate: string
   /** 이미지파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 과제 타입 */
-  type: ActivityType;
+  type: ActivityType
   /** 활동요약 */
-  explainText: string;
+  explainText: string
   /** 이미지업로드여부 */
-  isImage: boolean;
+  isImage: boolean
   /** 첨부파일업로드여부 */
-  isFile: boolean;
+  isFile: boolean
   /** 내용입력여부 */
-  isContent: boolean;
+  isContent: boolean
   /** 활동그룹 */
-  groupActivities: GroupActivity[];
+  groupActivities: GroupActivity[]
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 작성자 유저 ID */
-  writerId: number;
+  writerId: number
   /** 작성자 유저(only name) */
-  writer: User;
+  writer: User
 }

@@ -13,12 +13,14 @@ import {
 } from 'chart.js'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Chart } from 'react-chartjs-2'
-import { SubjectMapping, SubjectOrder } from '@/legacy/constants/score.enum'
-import { useStudentAnalysisTargetScore } from '@/legacy/container/student-score'
-import { getThisSemester } from '@/legacy/util/time'
+
 import HintMessage from '@/legacy/components/common/HintMessage'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'
+import { SubjectMapping, SubjectOrder } from '@/legacy/constants/score.enum'
+import { useStudentAnalysisTargetScore } from '@/legacy/container/student-score'
+import { getThisSemester } from '@/legacy/util/time'
+
 import SolidSVGIcon from '../icon/SolidSVGIcon'
 
 interface TargetScoreProps {

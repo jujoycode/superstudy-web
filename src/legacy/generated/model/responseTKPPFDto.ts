@@ -5,29 +5,29 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { TKPPFContentResponseDto } from './tKPPFContentResponseDto';
-import type { ResponseTKPPFDtoStatus } from './responseTKPPFDtoStatus';
-import type { ResponseTKPPFDtoEditStatus } from './responseTKPPFDtoEditStatus';
+import type { ResponseTKPPFDtoEditStatus } from './responseTKPPFDtoEditStatus'
+import type { ResponseTKPPFDtoStatus } from './responseTKPPFDtoStatus'
+import type { TKPPFContentResponseDto } from './tKPPFContentResponseDto'
 
 export interface ResponseTKPPFDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** tkppf 1차 내용 */
-  sequence1: TKPPFContentResponseDto;
+  sequence1: TKPPFContentResponseDto
   /** tkppf 2차 내용 */
-  sequence2: TKPPFContentResponseDto;
+  sequence2: TKPPFContentResponseDto
   /** tkppf 3차 내용 */
-  sequence3: TKPPFContentResponseDto;
+  sequence3: TKPPFContentResponseDto
   /** 지도교사 서명 */
-  teacherSignature: string | null;
+  teacherSignature: string | null
   /** 지도교사 의견 */
-  teacherFeedback: string | null;
+  teacherFeedback: string | null
   /** 학문적 진실성 동의 */
-  academicIntegrityConsent: boolean | null;
+  academicIntegrityConsent: boolean | null
   /** 
 수정가능 상태 값:
 - **IN_PROGRESS**: 진행중
@@ -35,12 +35,12 @@ export interface ResponseTKPPFDto {
 - **REJECT**: 반려보완상태
 - **COMPLETE**: 완료상태
  */
-  status: ResponseTKPPFDtoStatus;
+  status: ResponseTKPPFDtoStatus
   /** 
 수정가능 상태 값:
 - **LOCK**: 수정불가능
 - **REQUEST_UNLOCK**: 수정 요청상태
 - **UNLOCK**: 수정가능상태
  */
-  editStatus: ResponseTKPPFDtoEditStatus;
+  editStatus: ResponseTKPPFDtoEditStatus
 }

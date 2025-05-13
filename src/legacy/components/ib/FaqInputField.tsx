@@ -1,9 +1,11 @@
 // ProposalInputField.tsx
 import { PropsWithChildren, useState } from 'react'
+
 import { Input } from '@/legacy/components/common/Input'
 import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import { FAQContentDto } from '@/legacy/generated/model'
+
 import ColorSVGIcon from '../icon/ColorSVGIcon'
 
 interface FaqInputFieldProps {

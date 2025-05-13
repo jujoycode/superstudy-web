@@ -1,9 +1,10 @@
 import { useState } from 'react'
+
 import { useHistory } from '@/hooks/useHistory'
+import { Label } from '@/legacy/components/common'
 import { Constants } from '@/legacy/constants'
 import { ResponseAnnouncementDto } from '@/legacy/generated/model'
 import { isHTML, jsonParseSafe } from '@/legacy/util/validator'
-import { Label } from '@/legacy/components/common'
 
 interface AnnouncementCardProps {
   ann: ResponseAnnouncementDto

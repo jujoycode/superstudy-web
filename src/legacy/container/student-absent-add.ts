@@ -5,19 +5,20 @@ import moment from 'moment'
 import { useEffect, useState } from 'react'
 
 // ! 개선 필요
-import { useHistory } from '@/hooks/useHistory'
 
 import { useRecoilValue } from 'recoil'
-import { childState } from '@/stores'
+
+import { useHistory } from '@/hooks/useHistory'
+import { UserContainer } from '@/legacy/container/user'
+import { useAbsentsCreate, useAbsentsFindAllByStudent, useAbsentsUpdate } from '@/legacy/generated/endpoint'
+import { type Absent, AbsentStatus, Role, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
+import { AbsentTimeType, type AbsentDescription, type errorType } from '@/legacy/types'
+import type { ImageObject } from '@/legacy/types/image-object'
 import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString, makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
-import { useAbsentsCreate, useAbsentsFindAllByStudent, useAbsentsUpdate } from '@/legacy/generated/endpoint'
-import { UserContainer } from '@/legacy/container/user'
-import type { ImageObject } from '@/legacy/types/image-object'
-import { type Absent, AbsentStatus, Role, UploadFileTypeEnum } from '@/legacy/generated/model'
-import { AbsentTimeType, type AbsentDescription, type errorType } from '@/legacy/types'
+import { childState } from '@/stores'
 
 const reasonType = [
   '상고',
@@ -216,7 +217,7 @@ export function useStudentAbsentAdd({ absentData, returnToDetail }: Props) {
           setLoading(false)
           setSignModal(false)
           //setErrorMessage(errorMsg?.message || '슈퍼스쿨에 문의하여 결재자 지정상태를 확인하세요.');
-        } catch (error) { }
+        } catch (error) {}
       },
     },
     request: {
@@ -365,8 +366,9 @@ export function useStudentAbsentAdd({ absentData, returnToDetail }: Props) {
             .filter((f) => f.reason === '생리')
             .map((mense) => {
               const statusText = mense.absentStatus === AbsentStatus.PROCESSED ? '결재완료' : '결재중'
-              return `${makeStartEndToString(mense.startAt, mense.endAt, mense.reportType)} ${mense.description}${mense.reportType
-                } ${mense.reason} ${statusText}`
+              return `${makeStartEndToString(mense.startAt, mense.endAt, mense.reportType)} ${mense.description}${
+                mense.reportType
+              } ${mense.reason} ${statusText}`
             })
 
           setMensesTexts(mensesText)

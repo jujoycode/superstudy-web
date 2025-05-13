@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ActivityV3FindByGroupIdsParams = { ids: number[] };
+export type ActivityV3FindByGroupIdsParams = { ids: number[] }

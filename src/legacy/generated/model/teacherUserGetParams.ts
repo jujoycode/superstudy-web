@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type TeacherUserGetParams = { ids?: number[] };
+export type TeacherUserGetParams = { ids?: number[] }

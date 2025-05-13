@@ -1,4 +1,5 @@
 import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from 'chart.js'
+
 import { Typography } from '@/legacy/components/common/Typography'
 import { CAS_LEARNINGOUTCOME } from '@/legacy/constants/ib'
 import { ResponseIBCasDtoLearningOutcome, ResponseIBOnlyCasDto } from '@/legacy/generated/model'

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { DateFormat, DateUtil } from '@/legacy/util/date'
+
 import { UserContainer } from '@/legacy/container/user'
 import {
   useUserGetAllTeachers,
@@ -7,6 +7,7 @@ import {
   useTimetablev3GetTimetableByTeacherId,
 } from '@/legacy/generated/endpoint'
 import type { ResponseTeachersDto } from '@/legacy/generated/model'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 export function useTeacherTimetableDetail(type = '', selDay?: Date) {
   const { me, isMeLoading } = UserContainer.useContext()

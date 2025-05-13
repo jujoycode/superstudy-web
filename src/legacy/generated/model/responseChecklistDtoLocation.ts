@@ -10,13 +10,12 @@
  * 체크리스트 위치|타입
  */
 export type ResponseChecklistDtoLocation =
-  (typeof ResponseChecklistDtoLocation)[keyof typeof ResponseChecklistDtoLocation];
+  (typeof ResponseChecklistDtoLocation)[keyof typeof ResponseChecklistDtoLocation]
 
- 
 export const ResponseChecklistDtoLocation = {
   ESSAY: 'ESSAY',
   TOK_ESSAY: 'TOK_ESSAY',
   TOK_EXHIBITION: 'TOK_EXHIBITION',
   CAS: 'CAS',
   PORTFOLIO_INTERVIEW: 'PORTFOLIO_INTERVIEW',
-} as const;
+} as const

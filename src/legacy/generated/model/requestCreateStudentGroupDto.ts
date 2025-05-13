@@ -8,9 +8,9 @@
 
 export interface RequestCreateStudentGroupDto {
   /** 출석번호 */
-  studentNumber: number;
+  studentNumber: number
   /** 그룹아이디 */
-  groupId: number;
+  groupId: number
   /** 아이디 */
-  id: number | null;
+  id: number | null
 }

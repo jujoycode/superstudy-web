@@ -1,5 +1,8 @@
 import _ from 'lodash'
 import { useState } from 'react'
+
+import { GroupContainer } from '@/legacy/container/group'
+import { useTeacherAllGroup, type TeacharAllGroup } from '@/legacy/container/teacher-group-all'
 import { useCommonUserSearch } from '@/legacy/generated/endpoint'
 import {
   Role,
@@ -11,8 +14,6 @@ import {
 } from '@/legacy/generated/model'
 import { MenuType } from '@/legacy/types'
 import { getNickName } from '@/legacy/util/status'
-import { GroupContainer } from '@/legacy/container/group'
-import { useTeacherAllGroup, type TeacharAllGroup } from '@/legacy/container/teacher-group-all'
 
 export interface MergedGroupType {
   id: number

@@ -1,9 +1,10 @@
 import clsx from 'clsx'
 import { useMemo } from 'react'
+
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
-import { ResponseIBRRSSubmissionStatusDto } from '@/legacy/generated/model'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
+import { ResponseIBRRSSubmissionStatusDto } from '@/legacy/generated/model'
 
 interface OverviewPanelProps {
   goDetailPage?: (studentIbId: number) => void

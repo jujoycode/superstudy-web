@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type PlagiarismDownloadCopyRatioResultParams = { uri: string; property_id: number | null };
+export type PlagiarismDownloadCopyRatioResultParams = { uri: string; property_id: number | null }

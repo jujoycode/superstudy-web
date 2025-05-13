@@ -5,51 +5,51 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { NewsletterCategoryEnum } from './newsletterCategoryEnum';
-import type { NewsletterType } from './newsletterType';
-import type { User } from './user';
+import type { NewsletterCategoryEnum } from './newsletterCategoryEnum'
+import type { NewsletterType } from './newsletterType'
+import type { User } from './user'
 
 export interface Newsletter {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  content: string;
+  content: string
   /** 설문내용 */
-  surveyContent: string;
+  surveyContent: string
   /** 카테고리 */
-  category: NewsletterCategoryEnum;
+  category: NewsletterCategoryEnum
   /** 이미지파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 학년들, 숫자 배열 */
-  klasses: string[];
+  klasses: string[]
   /** 발행여부 */
-  isPublished: boolean;
+  isPublished: boolean
   /** 가정통신문종류 */
-  type: NewsletterType;
+  type: NewsletterType
   /** 작성자 유저 ID */
-  writerId: number;
+  writerId: number
   /** 작성자 유저(only name) */
-  writer: User;
+  writer: User
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 마감기한 */
-  endAt: string | null;
+  endAt: string | null
   /** 임시저장 */
-  isTemp: boolean;
+  isTemp: boolean
   /** 수신대상(학생) */
-  toStudent: boolean;
+  toStudent: boolean
   /** 수신대상(보호자) */
-  toParent: boolean;
+  toParent: boolean
   /** 수신대상(개인) */
-  toPerson: boolean;
+  toPerson: boolean
   /** 수신대상자(ID) */
-  recvuserIds: number[];
+  recvuserIds: number[]
 }

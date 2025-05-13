@@ -5,33 +5,33 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBCasDtoStrands } from './responseIBCasDtoStrands';
-import type { ResponseIBCasDtoLearningOutcome } from './responseIBCasDtoLearningOutcome';
-import type { ResponseIBCasDtoSixWhDescription } from './responseIBCasDtoSixWhDescription';
-import type { ResponseIBCasDtoStep } from './responseIBCasDtoStep';
-import type { ResponseIBCasDtoRiskAssessmentItem } from './responseIBCasDtoRiskAssessmentItem';
-import type { ResponseIBCasDtoLearnerProfile } from './responseIBCasDtoLearnerProfile';
-import type { ResponseIBCasDtoAtl } from './responseIBCasDtoAtl';
+import type { ResponseIBCasDtoAtl } from './responseIBCasDtoAtl'
+import type { ResponseIBCasDtoLearnerProfile } from './responseIBCasDtoLearnerProfile'
+import type { ResponseIBCasDtoLearningOutcome } from './responseIBCasDtoLearningOutcome'
+import type { ResponseIBCasDtoRiskAssessmentItem } from './responseIBCasDtoRiskAssessmentItem'
+import type { ResponseIBCasDtoSixWhDescription } from './responseIBCasDtoSixWhDescription'
+import type { ResponseIBCasDtoStep } from './responseIBCasDtoStep'
+import type { ResponseIBCasDtoStrands } from './responseIBCasDtoStrands'
 
 export interface ResponseIBCasDto {
   /** (개인적인, 프로젝트) 목표 */
-  goal?: string;
+  goal?: string
   /** CAS 요소 3가지의 진행시간 */
-  strands: ResponseIBCasDtoStrands;
+  strands: ResponseIBCasDtoStrands
   /** 학습성과 */
-  learningOutcome: ResponseIBCasDtoLearningOutcome;
+  learningOutcome: ResponseIBCasDtoLearningOutcome
   /** CAS 일반 활동 설명 6하원칙 */
-  sixWhDescription: ResponseIBCasDtoSixWhDescription;
+  sixWhDescription: ResponseIBCasDtoSixWhDescription
   /** 프로젝트 단계 */
-  step?: ResponseIBCasDtoStep;
+  step?: ResponseIBCasDtoStep
   /** 강사|외부업체 연락처 */
-  externalContacts: string;
+  externalContacts: string
   /** 위험평가 */
-  riskAssessment?: ResponseIBCasDtoRiskAssessmentItem[] | null;
+  riskAssessment?: ResponseIBCasDtoRiskAssessmentItem[] | null
   /** 10가지 학습자상 */
-  learnerProfile?: ResponseIBCasDtoLearnerProfile;
+  learnerProfile?: ResponseIBCasDtoLearnerProfile
   /** ATL */
-  atl?: ResponseIBCasDtoAtl;
+  atl?: ResponseIBCasDtoAtl
   /** ID */
-  id: number;
+  id: number
 }

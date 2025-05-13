@@ -7,11 +7,10 @@
  */
 
 export type IBGetCasSubmissionStatusStatus =
-  (typeof IBGetCasSubmissionStatusStatus)[keyof typeof IBGetCasSubmissionStatusStatus];
+  (typeof IBGetCasSubmissionStatusStatus)[keyof typeof IBGetCasSubmissionStatusStatus]
 
- 
 export const IBGetCasSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',
   APPROVED: 'APPROVED',
-} as const;
+} as const

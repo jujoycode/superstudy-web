@@ -7,9 +7,9 @@
  */
 
 export type StudentExamScoreInsertMockTestScoresParams = {
-  grade: number;
-  classNum: number;
-  semester: number;
-  step: number;
-  insertionYear: number;
-};
+  grade: number
+  classNum: number
+  semester: number
+  step: number
+  insertionYear: number
+}

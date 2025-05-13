@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ActivityV3FindOneParams = { groupId?: number };
+export type ActivityV3FindOneParams = { groupId?: number }

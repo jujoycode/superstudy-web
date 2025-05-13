@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type CanteenFindByYearMonthParams = { year: number; month: number };
+export type CanteenFindByYearMonthParams = { year: number; month: number }

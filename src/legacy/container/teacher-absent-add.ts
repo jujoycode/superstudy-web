@@ -1,11 +1,13 @@
 import { useState } from 'react'
 
 // ! 개선 필요
-import { useHistory } from '@/hooks/useHistory'
 
 import { useRecoilValue } from 'recoil'
-import { childState } from '@/stores'
-import { useFileUpload } from '@/legacy/hooks/useFileUpload'
+
+import { useHistory } from '@/hooks/useHistory'
+import { GroupContainer } from '@/legacy/container/group'
+import { UserContainer } from '@/legacy/container/user'
+import { useAbsentsCreate, useAbsentsUpdate, useStudentGroupsFindByGroupId } from '@/legacy/generated/endpoint'
 import {
   UploadFileTypeEnum,
   Role,
@@ -14,14 +16,13 @@ import {
   type StudentGroup,
   type User,
 } from '@/legacy/generated/model'
-import { UserContainer } from '@/legacy/container/user'
-import { GroupContainer } from '@/legacy/container/group'
-import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
-import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
+import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { useAbsentsCreate, useAbsentsUpdate, useStudentGroupsFindByGroupId } from '@/legacy/generated/endpoint'
 import { AbsentTimeType, type AbsentDescription, type errorType } from '@/legacy/types'
 import type { ImageObject } from '@/legacy/types/image-object'
+import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
+import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
+import { childState } from '@/stores'
 
 const reasonType = [
   '상고',
@@ -188,7 +189,7 @@ export function useTeacherAbsentAdd({ absentData, returnToDetail }: Props) {
           alert(errorMsg?.message || '결재자 지정상태를 확인하세요.')
           setLoading(false)
           setSignModal(false)
-        } catch { }
+        } catch {}
       },
     },
     request: {

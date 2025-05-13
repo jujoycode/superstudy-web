@@ -1,4 +1,5 @@
 import { Group } from '@/legacy/generated/model'
+
 import { Checkbox } from './common/Checkbox'
 
 interface AllSelectCheckboxProps {

@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseChecklistDto } from './responseChecklistDto';
+import type { ResponseChecklistDto } from './responseChecklistDto'
 
 export interface ResponsePaginatedChecklistDto {
   /** 피드백 */
-  items: ResponseChecklistDto[];
+  items: ResponseChecklistDto[]
   /** 체크리스트 수 */
-  total: number;
+  total: number
 }

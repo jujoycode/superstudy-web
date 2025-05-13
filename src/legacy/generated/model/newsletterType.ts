@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type NewsletterType = (typeof NewsletterType)[keyof typeof NewsletterType];
+export type NewsletterType = (typeof NewsletterType)[keyof typeof NewsletterType]
 
- 
 export const NewsletterType = {
   NOTICE: 'NOTICE',
   STUDENT_PARENTS_SURVEY: 'STUDENT_PARENTS_SURVEY',
   SECRET_SURVEY: 'SECRET_SURVEY',
-} as const;
+} as const

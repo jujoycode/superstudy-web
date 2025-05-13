@@ -1,13 +1,15 @@
+import { useState } from 'react'
+
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Typography } from '@/legacy/components/common/Typography'
-import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import { Input } from '@/legacy/components/common/Input'
-import { useState } from 'react'
+import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import { usePlagiarismUpload, useGetPlagiarismInspectResult } from '@/legacy/container/plagiarism-inspector'
-import LoadingPopup from './LoadingPopup'
 import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
 import { usePolling } from '@/legacy/hooks/usePolling'
+
+import LoadingPopup from './LoadingPopup'
 
 interface InputInspectorProps {
   handleBack: () => void

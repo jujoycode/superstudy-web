@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type CourseLectureGetParams = { courseId: number };
+export type CourseLectureGetParams = { courseId: number }

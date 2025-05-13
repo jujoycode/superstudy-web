@@ -8,5 +8,5 @@
 
 export type FieldtripResultApproveResultByParentAppBody = {
   /** 서명이미지 */
-  signature?: string;
-};
+  signature?: string
+}

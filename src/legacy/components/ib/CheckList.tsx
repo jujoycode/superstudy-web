@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { useCheckListGetByStudent } from '@/legacy/container/ib-checklist-find'
-import { ChecklistLocation, ResponseIBStudentDto } from '@/legacy/generated/model'
+
 import { Check } from '@/legacy/components/common/Check'
 import { Input } from '@/legacy/components/common/Input'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useCheckListGetByStudent } from '@/legacy/container/ib-checklist-find'
+import { ChecklistLocation, ResponseIBStudentDto } from '@/legacy/generated/model'
 
 interface CheckListProps {
   studentId: number

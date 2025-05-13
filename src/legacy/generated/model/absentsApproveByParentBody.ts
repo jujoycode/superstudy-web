@@ -8,7 +8,7 @@
 
 export type AbsentsApproveByParentBody = {
   /** 서명이미지 */
-  signature?: string;
+  signature?: string
   /** 코멘트 */
-  comment?: string;
-};
+  comment?: string
+}

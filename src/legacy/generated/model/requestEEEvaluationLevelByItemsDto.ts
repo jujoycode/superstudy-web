@@ -5,17 +5,17 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestEEEvaluationItemDto } from './requestEEEvaluationItemDto';
+import type { RequestEEEvaluationItemDto } from './requestEEEvaluationItemDto'
 
 export interface RequestEEEvaluationLevelByItemsDto {
   /** 등급 명 */
-  name: string;
+  name: string
   /** 세부 평가 지표 */
-  description: string;
+  description: string
   /** 최소점수 */
-  minScore: number;
+  minScore: number
   /** 최대점수 */
-  maxScore: number;
+  maxScore: number
   /** 평가 항목 */
-  items?: RequestEEEvaluationItemDto[];
+  items?: RequestEEEvaluationItemDto[]
 }

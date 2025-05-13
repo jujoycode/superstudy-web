@@ -1,11 +1,13 @@
 import clsx from 'clsx'
 import { PropsWithChildren, useEffect, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
+
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
 import { useIBProfileCreate, useIBProfileTemplateGet, useIBProfileUpdate } from '@/legacy/container/ib-cas'
 import { RequestIBProfileDto, ResponseIBProfileDto } from '@/legacy/generated/model'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 

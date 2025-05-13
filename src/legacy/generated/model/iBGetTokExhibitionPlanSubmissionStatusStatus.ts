@@ -7,11 +7,10 @@
  */
 
 export type IBGetTokExhibitionPlanSubmissionStatusStatus =
-  (typeof IBGetTokExhibitionPlanSubmissionStatusStatus)[keyof typeof IBGetTokExhibitionPlanSubmissionStatusStatus];
+  (typeof IBGetTokExhibitionPlanSubmissionStatusStatus)[keyof typeof IBGetTokExhibitionPlanSubmissionStatusStatus]
 
- 
 export const IBGetTokExhibitionPlanSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',
   APPROVED: 'APPROVED',
-} as const;
+} as const

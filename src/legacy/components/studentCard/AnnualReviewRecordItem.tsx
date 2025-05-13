@@ -1,10 +1,12 @@
 import { FC, useState } from 'react'
+
+import { Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
 import { useStudentRecordontrollerDelete, useStudentRecordontrollerUpdate } from '@/legacy/generated/endpoint'
 import { StudentRecord } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+
 import { SuperModal } from '../SuperModal'
-import { Textarea } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 
 interface AnnualReviewRecordItemProps {
   record: StudentRecord

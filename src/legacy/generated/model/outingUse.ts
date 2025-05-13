@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type OutingUse = (typeof OutingUse)[keyof typeof OutingUse];
+export type OutingUse = (typeof OutingUse)[keyof typeof OutingUse]
 
- 
 export const OutingUse = {
   NONE: 'NONE',
   USE_STUDENT_ONLY: 'USE_STUDENT_ONLY',
   USE_PARENT_APPROVE: 'USE_PARENT_APPROVE',
-} as const;
+} as const

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import { useFieldtripResultUpdateResult, useFieldtripsFindOne } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
-import { childState } from '@/stores'
 import type { errorType } from '@/legacy/types'
+import { childState } from '@/stores'
 
 import { UserContainer } from './user'
 

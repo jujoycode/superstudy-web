@@ -5,13 +5,13 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseErrorDtoMessage } from './responseErrorDtoMessage';
+import type { ResponseErrorDtoMessage } from './responseErrorDtoMessage'
 
 export interface ResponseErrorDto {
   /** 에러상태코드 */
-  statusCode: number;
+  statusCode: number
   /** 에러메세지 */
-  message: ResponseErrorDtoMessage;
+  message: ResponseErrorDtoMessage
   /** 에러내용 */
-  error: string;
+  error: string
 }

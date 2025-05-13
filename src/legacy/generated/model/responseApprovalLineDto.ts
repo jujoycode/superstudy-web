@@ -5,71 +5,71 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseApprovalLineDtoType } from './responseApprovalLineDtoType';
+import type { ResponseApprovalLineDtoType } from './responseApprovalLineDtoType'
 
 export interface ResponseApprovalLineDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 학급아이디 */
-  groupId: number;
+  groupId: number
   /** 타입1(출결,체험,조퇴,외출,확인) */
-  type1: string;
+  type1: string
   /** 타입2(인정,결석,질병,...) */
-  type2: string;
+  type2: string
   /** 1번쨰 승인자 */
-  approver1Id: number;
+  approver1Id: number
   /** 2번쨰 승인자 */
-  approver2Id: number;
+  approver2Id: number
   /** 3번쨰 승인자 */
-  approver3Id: number;
+  approver3Id: number
   /** 4번쨰 승인자 */
-  approver4Id: number;
+  approver4Id: number
   /** 5번쨰 승인자 */
-  approver5Id: number;
+  approver5Id: number
   /** 1번째 승인자 직책 */
-  approver1Title: string;
+  approver1Title: string
   /** 2번째 승인자 직책 */
-  approver2Title: string | null;
+  approver2Title: string | null
   /** 3번째 승인자 직책 */
-  approver3Title: string | null;
+  approver3Title: string | null
   /** 4번째 승인자 직책 */
-  approver4Title: string | null;
+  approver4Title: string | null
   /** 5번째 승인자 직책 */
-  approver5Title: string | null;
+  approver5Title: string | null
   /** 승인자1 성명 */
-  approver1Name: string;
+  approver1Name: string
   /** 승인자1 Role */
-  approver1Role: string;
+  approver1Role: string
   /** 승인자2 성명 */
-  approver2Name: string;
+  approver2Name: string
   /** 승인자2 Role */
-  approver2Role: string | null;
+  approver2Role: string | null
   /** 승인자3 성명 */
-  approver3Name: string | null;
+  approver3Name: string | null
   /** 승인자3 Role */
-  approver3Role: string | null;
+  approver3Role: string | null
   /** 승인자4 성명 */
-  approver4Name: string | null;
+  approver4Name: string | null
   /** 승인자4 Role */
-  approver4Role: string | null;
+  approver4Role: string | null
   /** 승인자5 성명 */
-  approver5Name: string | null;
+  approver5Name: string | null
   /** 승인자5 Role */
-  approver5Role: string | null;
+  approver5Role: string | null
   /** 그룹종류 */
-  type: ResponseApprovalLineDtoType;
+  type: ResponseApprovalLineDtoType
   /** 학년도 */
-  year: string | null;
+  year: string | null
   /** 학년 */
-  grade: number;
+  grade: number
   /** 반 */
-  klass: number;
+  klass: number
   /** 자리배치 */
-  seatPosition: string;
+  seatPosition: string
 }

@@ -5,13 +5,13 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBStudentDto } from './responseIBStudentDto';
+import type { ResponseIBStudentDto } from './responseIBStudentDto'
 
 export interface ResponseIBPortfolioReflectionDiarySubmissionStatusDto {
   /** 포트폴리오 ID */
-  id: number;
+  id: number
   /** 성찰일지 갯수 */
-  reflectionDiaryCount: number;
+  reflectionDiaryCount: number
   /** 포트폴리오 학생 */
-  user: ResponseIBStudentDto;
+  user: ResponseIBStudentDto
 }

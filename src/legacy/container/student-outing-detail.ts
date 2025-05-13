@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 
 // ! 개선 필요
 import { useHistory } from 'react-router'
-
 import { useRecoilValue } from 'recoil'
+
 import { useOutingsApproveByParentApp, useOutingsDelete, useOutingsFindOne } from '@/legacy/generated/endpoint'
-import { childState, meState } from '@/stores'
 import type { errorType } from '@/legacy/types'
+import { childState, meState } from '@/stores'
 
 export function useStudentOutingDetail(id: number) {
   const { push } = useHistory()

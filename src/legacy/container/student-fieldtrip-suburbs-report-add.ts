@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { childState } from '@/stores'
+
+import { UserContainer } from '@/legacy/container/user'
 import { useFieldtripResultUpdateResult, useFieldtripsFindOne } from '@/legacy/generated/endpoint'
 import { Role, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { UserContainer } from '@/legacy/container/user'
-import type { ImageObject } from '@/legacy/types/image-object'
 import type { errorType } from '@/legacy/types'
+import type { ImageObject } from '@/legacy/types/image-object'
+import { childState } from '@/stores'
 
 type Props = {
   id: number

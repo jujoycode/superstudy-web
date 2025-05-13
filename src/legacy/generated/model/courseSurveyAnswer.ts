@@ -5,23 +5,23 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { CourseSurveyItem } from './courseSurveyItem';
-import type { User } from './user';
-import type { Course } from './course';
+import type { Course } from './course'
+import type { CourseSurveyItem } from './courseSurveyItem'
+import type { User } from './user'
 
 export interface CourseSurveyAnswer {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
-  answer: string;
-  answerNumbers: number[];
-  courseSurveyItemId: number;
-  userId: number;
-  courseId: number;
-  courseSurveyItem: CourseSurveyItem;
-  user: User;
-  course: Course;
+  updatedAt: string
+  answer: string
+  answerNumbers: number[]
+  courseSurveyItemId: number
+  userId: number
+  courseId: number
+  courseSurveyItem: CourseSurveyItem
+  user: User
+  course: Course
 }

@@ -5,14 +5,14 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { EssayGetSubmissionStatusIbType } from './essayGetSubmissionStatusIbType';
-import type { EssayGetSubmissionStatusStatus } from './essayGetSubmissionStatusStatus';
+import type { EssayGetSubmissionStatusIbType } from './essayGetSubmissionStatusIbType'
+import type { EssayGetSubmissionStatusStatus } from './essayGetSubmissionStatusStatus'
 
 export type EssayGetSubmissionStatusParams = {
-  grade?: number;
-  klass?: number;
-  ibType?: EssayGetSubmissionStatusIbType;
-  page?: number;
-  limit?: number;
-  status: EssayGetSubmissionStatusStatus;
-};
+  grade?: number
+  klass?: number
+  ibType?: EssayGetSubmissionStatusIbType
+  page?: number
+  limit?: number
+  status: EssayGetSubmissionStatusStatus
+}

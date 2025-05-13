@@ -8,23 +8,23 @@
 
 export interface TimetableUploadInfo {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 파일 경로 */
-  filePath: string;
+  filePath: string
   /** 파일 타입 */
-  fileType: string;
+  fileType: string
   /** 시간표 타입 */
-  timeTableType: string;
+  timeTableType: string
   /** 처리상태 */
-  status: string;
+  status: string
   /** 에러 메시지 */
-  errorMessage: string;
+  errorMessage: string
   /** 유효한 주 번호, 기본은 0, 예) 23이면 23주차에만 유효 */
-  validityWeek?: number | null;
+  validityWeek?: number | null
   /** 유효한 마지막 주 번호, 예) 23이면 23주차까지만 유효 */
-  validityEndWeek?: number | null;
+  validityEndWeek?: number | null
 }

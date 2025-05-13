@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilState } from 'recoil'
+
+import { Label, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { FileUpload } from '@/legacy/components/common/FileUpload'
+import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { useStudentActivitySessionSaveOne } from '@/legacy/generated/endpoint'
 import { ActivitySession, StudentActivitySession, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { toastState } from '@/stores'
 import { checkFileSizeLimit100MB, isPdfFile } from '@/legacy/util/file'
+import { toastState } from '@/stores'
+
 import { DocumentObjectComponentDel } from '../DocumentObjectComponentDel'
 import { ImageObjectComponent } from '../ImageObjectComponent'
-import { Label, Textarea } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
-import { FileUpload } from '@/legacy/components/common/FileUpload'
-import { Time } from '@/legacy/components/common/Time'
 import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
 
 interface StudentActivitySessionSubmitViewProps {

@@ -8,5 +8,5 @@
 
 export interface RequestChangeHomeroomTeacherDto {
   /** 선생님 id */
-  teacherId: number;
+  teacherId: number
 }

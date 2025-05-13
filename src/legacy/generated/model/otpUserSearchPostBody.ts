@@ -8,7 +8,7 @@
 
 export type OtpUserSearchPostBody = {
   /** 전화번호 */
-  phone?: string;
+  phone?: string
   /** OTP코드 */
-  otpCode?: string;
-};
+  otpCode?: string
+}

@@ -1,9 +1,12 @@
 import { format } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { FC, useState } from 'react'
-import NODATA from '@/legacy/assets/images/no-data.png'
+
 import { Blank, Section } from '@/legacy/components/common'
+import AlertV2 from '@/legacy/components/common/AlertV2'
 import { Button } from '@/legacy/components/common/Button'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import { SuperModal } from '@/legacy/components/SuperModal'
 import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 import { useIBDeadline } from '@/legacy/container/ib-deadline'
@@ -14,12 +17,13 @@ import {
   ResponseIBDeadlineDto,
   ResponseIBDeadlineitemsDto,
 } from '@/legacy/generated/model'
-import AlertV2 from '@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import FrontPaginatedList from '../../FrontPaginatedList '
+
 import { Coordinator_Schedule_AddSchedule } from './Coordinator_Schedule_AddSchedule'
 import { Coordinator_Schedule_UpdateSchedule } from './Coordinator_Schedule_UpdateSchedule'
+
+import NODATA from '@/legacy/assets/images/no-data.png'
 
 // NOTE: 백엔드에서 마감기한 타입이 추가되면 그에 따라 항목 추가해야 함
 export const DEADLINE_TYPE_KOR: Record<DeadlineType, string> = {

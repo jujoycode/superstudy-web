@@ -5,13 +5,13 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { FieldtripStatus } from './fieldtripStatus';
+import type { FieldtripStatus } from './fieldtripStatus'
 
 export type FieldtripsDownloadFieldtripsParams = {
-  fieldtripStatus?: FieldtripStatus;
-  startDate: string;
-  endDate: string;
-  queryType?: string | null;
-  username?: string | null;
-  selectedGroupId?: number | null;
-};
+  fieldtripStatus?: FieldtripStatus
+  startDate: string
+  endDate: string
+  queryType?: string | null
+  username?: string | null
+  selectedGroupId?: number | null
+}

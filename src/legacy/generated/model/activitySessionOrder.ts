@@ -5,23 +5,23 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ActivitySession } from './activitySession';
+import type { ActivitySession } from './activitySession'
 
 export interface ActivitySessionOrder {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 차시 순서 */
-  order: number;
+  order: number
   /** 보여지는 순서 */
-  viewOrder: number;
+  viewOrder: number
   /** 작성자 유저 ID */
-  activitySessionId: number;
+  activitySessionId: number
   /** 상위 차시 */
-  activitySession: ActivitySession;
+  activitySession: ActivitySession
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
 }

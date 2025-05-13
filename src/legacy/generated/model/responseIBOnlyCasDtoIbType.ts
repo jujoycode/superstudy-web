@@ -9,9 +9,8 @@
 /**
  * IB 프로젝트 타입
  */
-export type ResponseIBOnlyCasDtoIbType = (typeof ResponseIBOnlyCasDtoIbType)[keyof typeof ResponseIBOnlyCasDtoIbType];
+export type ResponseIBOnlyCasDtoIbType = (typeof ResponseIBOnlyCasDtoIbType)[keyof typeof ResponseIBOnlyCasDtoIbType]
 
- 
 export const ResponseIBOnlyCasDtoIbType = {
   NORMAL: 'NORMAL',
   CAS_NORMAL: 'CAS_NORMAL',
@@ -19,4 +18,4 @@ export const ResponseIBOnlyCasDtoIbType = {
   EE: 'EE',
   TOK_ESSAY: 'TOK_ESSAY',
   TOK_EXHIBITION: 'TOK_EXHIBITION',
-} as const;
+} as const

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { queryClient } from '@/legacy/lib/query'
+
 import {
   useStudentExamScoreCheckMockScoreFile,
   useStudentExamScoreCheckScoreFile,
@@ -18,6 +18,7 @@ import type {
   StudentExamScoreInsertTestScoresBody,
   StudentExamScoreInsertTestScoresParams,
 } from '@/legacy/generated/model'
+import { queryClient } from '@/legacy/lib/query'
 import type { examsScoreFiles } from '@/legacy/util/exam-score'
 
 interface Score {

@@ -1,8 +1,8 @@
-import clsx from 'clsx';
-import { SelectHTMLAttributes, forwardRef } from 'react';
+import clsx from 'clsx'
+import { SelectHTMLAttributes, forwardRef } from 'react'
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  placeholder?: string;
+  placeholder?: string
 }
 
 const SelectMd = forwardRef<HTMLSelectElement, SelectProps>(function SelectMd(
@@ -18,8 +18,8 @@ const SelectMd = forwardRef<HTMLSelectElement, SelectProps>(function SelectMd(
       )}
       {children}
     </select>
-  );
-});
+  )
+})
 
 const SelectXs = forwardRef<HTMLSelectElement, SelectProps>(function SelectXs(
   { placeholder, children, className, ...props },
@@ -34,8 +34,8 @@ const SelectXs = forwardRef<HTMLSelectElement, SelectProps>(function SelectXs(
       )}
       {children}
     </select>
-  );
-});
+  )
+})
 
 const SelectSm = forwardRef<HTMLSelectElement, SelectProps>(function SelectSm(
   { placeholder, children, className, ...props },
@@ -50,8 +50,8 @@ const SelectSm = forwardRef<HTMLSelectElement, SelectProps>(function SelectSm(
       )}
       {children}
     </select>
-  );
-});
+  )
+})
 
 const SelectLg = forwardRef<HTMLSelectElement, SelectProps>(function SelectLg(
   { placeholder, children, className, ...props },
@@ -66,8 +66,8 @@ const SelectLg = forwardRef<HTMLSelectElement, SelectProps>(function SelectLg(
       )}
       {children}
     </select>
-  );
-});
+  )
+})
 
 const SelectXl = forwardRef<HTMLSelectElement, SelectProps>(function SelectXl(
   { placeholder, children, className, ...props },
@@ -82,7 +82,7 @@ const SelectXl = forwardRef<HTMLSelectElement, SelectProps>(function SelectXl(
       )}
       {children}
     </select>
-  );
-});
+  )
+})
 
-export const Select = Object.assign(SelectMd, { xs: SelectXs, sm: SelectSm, lg: SelectLg, xl: SelectXl });
+export const Select = Object.assign(SelectMd, { xs: SelectXs, sm: SelectSm, lg: SelectLg, xl: SelectXl })

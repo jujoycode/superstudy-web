@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+
 import type { Manager } from '@/legacy/types'
 
 interface ManagerScheduleCardProps {

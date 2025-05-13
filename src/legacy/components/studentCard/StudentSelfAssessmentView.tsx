@@ -1,7 +1,8 @@
 import { FC } from 'react'
-import { StudentSelfAssessment } from '@/legacy/generated/model'
+
 import { Label } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
+import { StudentSelfAssessment } from '@/legacy/generated/model'
 
 interface StudentSelfAssessmentViewProps {
   studentSelfAssessment?: StudentSelfAssessment

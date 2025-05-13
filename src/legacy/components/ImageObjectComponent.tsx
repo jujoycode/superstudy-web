@@ -1,11 +1,14 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import undoArrow from '@/legacy/assets/images/undo-arrow.png'
+
 import { Constants } from '@/legacy/constants'
 import type { ImageObject } from '@/legacy/types/image-object'
 import { isPdfFile } from '@/legacy/util/file'
+
 import { PdfCard } from './common/PdfCard'
+
+import undoArrow from '@/legacy/assets/images/undo-arrow.png'
 
 interface ImageObjectComponentProps {
   id: number

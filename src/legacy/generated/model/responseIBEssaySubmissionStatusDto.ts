@@ -5,24 +5,24 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBEssaySubmissionStatusDtoIbType } from './responseIBEssaySubmissionStatusDtoIbType';
-import type { ResponseIBStudentDto } from './responseIBStudentDto';
-import type { ResponseEssayDto } from './responseEssayDto';
-import type { ResponseIBEssaySubmissionStatusDtoDetailStatus } from './responseIBEssaySubmissionStatusDtoDetailStatus';
+import type { ResponseEssayDto } from './responseEssayDto'
+import type { ResponseIBEssaySubmissionStatusDtoDetailStatus } from './responseIBEssaySubmissionStatusDtoDetailStatus'
+import type { ResponseIBEssaySubmissionStatusDtoIbType } from './responseIBEssaySubmissionStatusDtoIbType'
+import type { ResponseIBStudentDto } from './responseIBStudentDto'
 
 export interface ResponseIBEssaySubmissionStatusDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** IB 프로젝트 타입 */
-  ibType: ResponseIBEssaySubmissionStatusDtoIbType;
+  ibType: ResponseIBEssaySubmissionStatusDtoIbType
   /** 프로젝트 리더 */
-  leader: ResponseIBStudentDto;
+  leader: ResponseIBStudentDto
   /** 에세이 */
-  essay: ResponseEssayDto;
+  essay: ResponseEssayDto
   /** 평가 여부 */
-  detailStatus: ResponseIBEssaySubmissionStatusDtoDetailStatus;
+  detailStatus: ResponseIBEssaySubmissionStatusDtoDetailStatus
 }

@@ -8,7 +8,7 @@
 
 export interface RequestSchoolPropertyDto {
   /** 속성 키 */
-  key: string;
+  key: string
   /** 속성 값 */
-  value: string;
+  value: string
 }

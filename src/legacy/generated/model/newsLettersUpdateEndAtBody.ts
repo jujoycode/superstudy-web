@@ -8,5 +8,5 @@
 
 export type NewsLettersUpdateEndAtBody = {
   /** 마감기한 */
-  endAt?: string;
-};
+  endAt?: string
+}

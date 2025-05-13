@@ -5,9 +5,9 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { TeacherGroup } from './teacherGroup';
+import type { TeacherGroup } from './teacherGroup'
 
 /**
  * 학급(담임)
  */
-export type ResponseTeacherDetailInfoDtoTeacherKlass = TeacherGroup | null;
+export type ResponseTeacherDetailInfoDtoTeacherKlass = TeacherGroup | null

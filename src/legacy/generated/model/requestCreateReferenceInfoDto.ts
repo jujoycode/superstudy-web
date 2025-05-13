@@ -5,17 +5,17 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestCreateReferenceInfoDtoCategory } from './requestCreateReferenceInfoDtoCategory';
+import type { RequestCreateReferenceInfoDtoCategory } from './requestCreateReferenceInfoDtoCategory'
 
 export interface RequestCreateReferenceInfoDto {
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  content: string;
+  content: string
   /** 첨부파일들 s3 경로 */
-  files?: string[];
+  files?: string[]
   /** 이미지 파일들 s3 경로 */
-  images?: string[];
+  images?: string[]
   /** 참고자료 분류 */
-  category: RequestCreateReferenceInfoDtoCategory;
+  category: RequestCreateReferenceInfoDtoCategory
 }

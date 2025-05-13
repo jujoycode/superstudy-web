@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+
 import { useHistory } from '@/hooks/useHistory'
-import { useIBGetByStudent } from '@/legacy/container/ib-project-get-student'
-import { ResponseIBDto } from '@/legacy/generated/model'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useIBGetByStudent } from '@/legacy/container/ib-project-get-student'
+import { ResponseIBDto } from '@/legacy/generated/model'
+
 import SVGIcon from '../icon/SVGIcon'
 
 interface IBProjectListProps {

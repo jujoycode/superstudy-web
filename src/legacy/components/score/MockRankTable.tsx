@@ -1,10 +1,13 @@
 import _ from 'lodash'
 import React, { useCallback, useMemo, useState } from 'react'
-import { SubjectEnum, SubjectGroups } from '@/legacy/constants/score.enum'
+
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
+import { SubjectEnum, SubjectGroups } from '@/legacy/constants/score.enum'
+
 import SolidSVGIcon from '../icon/SolidSVGIcon'
 import { PopupModal } from '../PopupModal'
+
 import { MockExamScoreModal } from './ScoreAnalysis'
 
 const MockRankTable: React.FC<{ scores: any[]; isLoading: boolean }> = ({ scores, isLoading }) => {

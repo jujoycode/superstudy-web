@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router'
 import { useRecoilValue } from 'recoil'
+
 import { useOutingsFindAllByStudent } from '@/legacy/generated/endpoint'
 import { childState } from '@/stores'
 

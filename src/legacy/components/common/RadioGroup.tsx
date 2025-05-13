@@ -1,8 +1,9 @@
-import { ChangeEvent, Children, cloneElement, HTMLAttributes, isValidElement } from 'react';
-import { Radio } from './Radio';
+import { ChangeEvent, Children, cloneElement, HTMLAttributes, isValidElement } from 'react'
+
+import { Radio } from './Radio'
 
 interface RadioGroupProps extends HTMLAttributes<HTMLDivElement> {
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 export function RadioGroup({ children, onChange, ...props }: RadioGroupProps) {
@@ -11,10 +12,10 @@ export function RadioGroup({ children, onChange, ...props }: RadioGroupProps) {
       {Children.map(children, (child) => {
         if (isValidElement(child) && child.type === Radio) {
           // @ts-ignore
-          return cloneElement(child, { name, onChange });
+          return cloneElement(child, { name, onChange })
         }
-        return child;
+        return child
       })}
     </div>
-  );
+  )
 }

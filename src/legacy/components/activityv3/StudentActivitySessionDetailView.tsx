@@ -3,20 +3,24 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
-import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
-import { Constants } from '@/legacy/constants'
-import { useSessionCommentCreate } from '@/legacy/generated/endpoint'
-import { ActivitySession, StudentActivitySession } from '@/legacy/generated/model'
-import { meState } from '@/stores'
-import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+
 import { BottomFixed, Divider, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
+import { Icon } from '@/legacy/components/common/icons'
 import { PdfCard } from '@/legacy/components/common/PdfCard'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Time } from '@/legacy/components/common/Time'
-import { Icon } from '@/legacy/components/common/icons'
+import { Constants } from '@/legacy/constants'
+import { useSessionCommentCreate } from '@/legacy/generated/endpoint'
+import { ActivitySession, StudentActivitySession } from '@/legacy/generated/model'
+import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { meState } from '@/stores'
+
 import { SuperSurveyViewComponent } from '../survey/SuperSurveyViewComponent'
+
 import { SessionCommentItem } from './SessionCommentItem'
+
+import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
 
 interface StudentActivitySessionDetailViewProps {
   activitySession: ActivitySession

@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useLocation } from 'react-router'
+
+import { useFieldtripsGetFieldtripsByTeacher, useUserMe } from '@/legacy/generated/endpoint'
+import { FieldtripStatus, Role } from '@/legacy/generated/model'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { MonthAgo, getEndDate, getStartDate, makeDateToString } from '@/legacy/util/time'
-import { FieldtripStatus, Role } from '@/legacy/generated/model'
-import { useFieldtripsGetFieldtripsByTeacher, useUserMe } from '@/legacy/generated/endpoint'
 
 export function useTeacherFieldtripNotice() {
   const { search } = useLocation()

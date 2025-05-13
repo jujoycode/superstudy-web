@@ -8,9 +8,9 @@
 
 export interface RequestUpdateActivitySessionOrderDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 차시 순서 */
-  order: number;
+  order: number
   /** 보여지는 순서 */
-  viewOrder: number;
+  viewOrder: number
 }

@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
-import { SuperModal } from '@/legacy/components/SuperModal'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
+import { SuperModal } from '@/legacy/components/SuperModal'
+
 import CheckFile from '@/legacy/assets/images/check-file.png'
 
 interface LoadingPopupProps {

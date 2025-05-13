@@ -1,8 +1,8 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
-import NODATA from '@/legacy/assets/images/no-data.png'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -21,8 +21,10 @@ import { useInterviewQNAGetByStudentId } from '@/legacy/container/ib-student-int
 import { useRPPFUpdateRPPFStatusReject } from '@/legacy/generated/endpoint'
 import { FeedbackReferenceTable, ResponseIBDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { meState } from '@/stores'
 import { LocationState } from '@/legacy/types/ib'
+import { meState } from '@/stores'
+
+import NODATA from '@/legacy/assets/images/no-data.png'
 
 interface RppfListProps {
   id: number

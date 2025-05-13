@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type UserGetUserAttendanceParams = { groupId: string; year: string; day: string };
+export type UserGetUserAttendanceParams = { groupId: string; year: string; day: string }

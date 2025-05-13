@@ -1,22 +1,21 @@
 import { useState } from 'react'
 
 // ! 개선 필요
-import { useHistory } from '@/hooks/useHistory'
-
 import { useRecoilValue } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
+import { Button } from '@/legacy/components/common/Button'
+import { TextInput } from '@/legacy/components/common/TextInput'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useStudentMyPage } from '@/legacy/container/student-my-page'
 import { useStudentParentMyInfoUpdate } from '@/legacy/container/student-parent-my-info-update'
 import { useStudentSendParentSignUp } from '@/legacy/container/student-send-parent-sign-up'
 import { useUserSendParentSignUpV2, useUserUpdateMe } from '@/legacy/generated/endpoint'
-import { queryClient } from '@/legacy/lib/query'
-import { meState } from '@/stores'
 import type { ResponseUserDto, UpdateUserDto } from '@/legacy/generated/model'
+import { queryClient } from '@/legacy/lib/query'
 import type { errorType } from '@/legacy/types'
-
 import { Validator } from '@/legacy/util/validator'
-import { Button } from '@/legacy/components/common/Button'
-import { TextInput } from '@/legacy/components/common/TextInput'
+import { meState } from '@/stores'
 
 interface ParentInfoCardProps {
   isNotParent: boolean

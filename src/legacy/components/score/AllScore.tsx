@@ -1,7 +1,9 @@
 import clsx from 'clsx'
 import { useState } from 'react'
+
 import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
 import SelectBar from '@/legacy/components/common/SelectBar'
+
 import ExamChart from '../studentCard/ExamChart'
 import { ExamScoreBoard } from '../studentCard/ExamScoreBoard'
 import { INDIExamScoreBoard } from '../studentCard/INDIExamScoreBoard'

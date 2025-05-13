@@ -8,13 +8,13 @@
 
 export interface ResponseEssayStatusCountDto {
   /** 전체 학생 수 */
-  total: number;
+  total: number
   /** 미제출 학생 수 */
-  notSubmitted: number;
+  notSubmitted: number
   /** 진행중 학생 수 */
-  inProgress: number;
+  inProgress: number
   /** 평가 중 학생 수 */
-  evaluating: number;
+  evaluating: number
   /** 활동 완료 학생 수 */
-  complete: number;
+  complete: number
 }

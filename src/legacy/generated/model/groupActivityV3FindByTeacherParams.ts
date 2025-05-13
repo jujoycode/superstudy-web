@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type GroupActivityV3FindByTeacherParams = { activityv3Ids: number[] };
+export type GroupActivityV3FindByTeacherParams = { activityv3Ids: number[] }

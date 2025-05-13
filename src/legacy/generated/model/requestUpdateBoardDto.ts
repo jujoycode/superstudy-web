@@ -5,23 +5,23 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { BoardCategoryEnum } from './boardCategoryEnum';
+import type { BoardCategoryEnum } from './boardCategoryEnum'
 
 export interface RequestUpdateBoardDto {
   /** 제목 */
-  title?: string;
+  title?: string
   /** 내용 */
-  content?: string;
+  content?: string
   /** 카테고리 */
-  category?: BoardCategoryEnum;
+  category?: BoardCategoryEnum
   /** 이미지파일들 s3 경로 */
-  images?: string[];
+  images?: string[]
   /** 첨부파일들 s3 경로 */
-  files?: string[];
+  files?: string[]
   /** 수신대상(학생) */
-  toStudent?: boolean;
+  toStudent?: boolean
   /** 수신대상(보호자) */
-  toParent?: boolean;
+  toParent?: boolean
   /** 학급게시글 대상 Klass 그룹아이디들 */
-  targetGroupIds?: number[];
+  targetGroupIds?: number[]
 }

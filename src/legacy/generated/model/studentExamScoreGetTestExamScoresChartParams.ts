@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentExamScoreGetTestExamScoresChartParams = { studentId: number; insertionYear: number };
+export type StudentExamScoreGetTestExamScoresChartParams = { studentId: number; insertionYear: number }

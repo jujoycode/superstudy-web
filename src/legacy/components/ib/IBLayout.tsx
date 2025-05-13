@@ -1,21 +1,21 @@
-import clsx from 'clsx';
-import React, { HTMLAttributes, ReactNode, useEffect, useRef, useState } from 'react';
+import clsx from 'clsx'
+import React, { HTMLAttributes, ReactNode, useEffect, useRef, useState } from 'react'
 
 // C-IB-021: IB 기본 레이아웃
 // https://www.notion.so/superschoolofficial/C-IB-021-IB-8702e1b24cbe431685cd9ee702de3bd7
 
 export interface ScrollRef {
-  scrollToTop: () => void;
+  scrollToTop: () => void
 }
 
 interface LayoutProps extends HTMLAttributes<HTMLElement> {
-  topContent: ReactNode;
-  bottomContent: ReactNode;
-  topBgColor?: string;
-  bottomBgColor?: string;
-  hasContour?: boolean;
-  floatingButton?: ReactNode;
-  scrollRef?: React.MutableRefObject<ScrollRef | null>;
+  topContent: ReactNode
+  bottomContent: ReactNode
+  topBgColor?: string
+  bottomBgColor?: string
+  hasContour?: boolean
+  floatingButton?: ReactNode
+  scrollRef?: React.MutableRefObject<ScrollRef | null>
 }
 
 const IBLayout: React.FC<LayoutProps> = ({
@@ -29,56 +29,56 @@ const IBLayout: React.FC<LayoutProps> = ({
   scrollRef,
   ...props
 }: LayoutProps) => {
-  const topRef = useRef<HTMLDivElement>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
-  const [topHeight, setTopHeight] = useState(0);
+  const topRef = useRef<HTMLDivElement>(null)
+  const bottomRef = useRef<HTMLDivElement>(null)
+  const [topHeight, setTopHeight] = useState(0)
 
   const scrollToTop = () => {
     if (bottomRef.current) {
-      bottomRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+      bottomRef.current.scrollTo({ top: 0, behavior: 'smooth' })
     }
-  };
+  }
 
   useEffect(() => {
     if (scrollRef) {
-      scrollRef.current = { scrollToTop };
+      scrollRef.current = { scrollToTop }
     }
-  }, [scrollRef]);
+  }, [scrollRef])
 
   useEffect(() => {
     if (topRef.current) {
-      setTopHeight(topRef.current.offsetHeight);
+      setTopHeight(topRef.current.offsetHeight)
     }
     const handleResize = () => {
       if (topRef.current) {
-        setTopHeight(topRef.current.offsetHeight);
+        setTopHeight(topRef.current.offsetHeight)
       }
-    };
-    window.addEventListener('resize', handleResize);
+    }
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   useEffect(() => {
-    const topElement = topRef.current;
-    const bottomElement = bottomRef.current;
+    const topElement = topRef.current
+    const bottomElement = bottomRef.current
 
     if (topElement && bottomElement) {
       const handleScroll = () => {
         if (topElement) {
-          topElement.scrollLeft = bottomElement.scrollLeft;
+          topElement.scrollLeft = bottomElement.scrollLeft
         }
-      };
+      }
 
-      bottomElement.addEventListener('scroll', handleScroll);
+      bottomElement.addEventListener('scroll', handleScroll)
 
       return () => {
-        bottomElement.removeEventListener('scroll', handleScroll);
-      };
+        bottomElement.removeEventListener('scroll', handleScroll)
+      }
     }
-  }, []);
+  }, [])
 
   return (
     <div className={clsx('flex min-h-screen w-full justify-center', className)} {...props}>
@@ -101,13 +101,13 @@ const IBLayout: React.FC<LayoutProps> = ({
         </div>
         {/* 하단 플로팅 영역 */}
         {floatingButton && (
-          <div className="sticky bottom-0 left-0 z-50 flex w-full justify-center border-t border-primary-gray-100 bg-white/70 px-52 py-5 backdrop-blur-[20px]">
+          <div className="border-primary-gray-100 sticky bottom-0 left-0 z-50 flex w-full justify-center border-t bg-white/70 px-52 py-5 backdrop-blur-[20px]">
             <div className="flex w-full max-w-[1280px] justify-center">{floatingButton}</div>
           </div>
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default IBLayout;
+export default IBLayout

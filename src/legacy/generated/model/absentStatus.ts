@@ -6,9 +6,8 @@
  * OpenAPI spec version: 0.1
  */
 
-export type AbsentStatus = (typeof AbsentStatus)[keyof typeof AbsentStatus];
+export type AbsentStatus = (typeof AbsentStatus)[keyof typeof AbsentStatus]
 
- 
 export const AbsentStatus = {
   RETURNED: 'RETURNED',
   BEFORE_PARENT_CONFIRM: 'BEFORE_PARENT_CONFIRM',
@@ -22,4 +21,4 @@ export const AbsentStatus = {
   PROCESSING: 'PROCESSING',
   PROCESSED: 'PROCESSED',
   DELETE_APPEAL: 'DELETE_APPEAL',
-} as const;
+} as const

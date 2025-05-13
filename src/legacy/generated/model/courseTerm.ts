@@ -5,21 +5,21 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { School } from './school';
-import type { CourseSeason } from './courseSeason';
+import type { CourseSeason } from './courseSeason'
+import type { School } from './school'
 
 export interface CourseTerm {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
-  courseYear: number;
-  name: string;
-  termOrder: number;
-  editable: boolean;
-  schoolId: number;
-  school: School;
-  courseSeasons: CourseSeason[];
+  updatedAt: string
+  courseYear: number
+  name: string
+  termOrder: number
+  editable: boolean
+  schoolId: number
+  school: School
+  courseSeasons: CourseSeason[]
 }
