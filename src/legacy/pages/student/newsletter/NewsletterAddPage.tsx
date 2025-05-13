@@ -54,10 +54,10 @@ export function NewsletterAddPage({ studentNewsletterData, newsletterData, setUp
   const [content, setContent] = useState<any>(() => {
     return studentNewsletterData?.content ? JSON.parse(studentNewsletterData.content) : {}
   })
-  const [nokName, setNokName] = useState(
+  const [nokName] = useState(
     me?.role === Role.PARENT ? me?.name : me?.nokName || '', // 학부모 이름
   )
-  const [nokPhone, setNokPhone] = useState(me?.role === Role.PARENT ? me?.phone : me?.nokPhone || '')
+  const [nokPhone] = useState(me?.role === Role.PARENT ? me?.phone : me?.nokPhone || '')
 
   const [openSignModal, setOpenSignModal] = useState(false)
 
@@ -82,14 +82,6 @@ export function NewsletterAddPage({ studentNewsletterData, newsletterData, setUp
   const buttonDisabled = newsletterData?.surveyContent ? Object.values(content).some((v) => v === '') : false
 
   const handleSubmit = () => {
-    const data: RequestUpsertStudentNewsletterDto = {
-      nokName: nokName,
-      nokPhone: nokPhone,
-      newsletterId: newsletterData.id,
-      content: JSON.stringify(content),
-      studentSignature: sigPadData,
-    }
-
     const regExp = /^010(?:\d{4})\d{4}$/
     if (nokPhone && !regExp.test(nokPhone.replace(/-/g, ''))) {
       alert('보호자 연락처를 확인해 주세요.')
@@ -174,7 +166,7 @@ export function NewsletterAddPage({ studentNewsletterData, newsletterData, setUp
             </div>
           </div>
         ))}
-        {Pdfs?.map((pdfFile: string, i: number) => {
+        {Pdfs?.map((pdfFile: string) => {
           return (
             <>
               <div key={pdfFile}>
@@ -293,7 +285,7 @@ export function NewsletterAddPage({ studentNewsletterData, newsletterData, setUp
           noImgDetails
           scalable={false}
           images={viewerImages}
-          onChange={(activeImage, index) => setActiveIndex(index)}
+          onChange={(_, index) => setActiveIndex(index)}
           onClose={() => setImagesModalOpen(false)}
           activeIndex={activeIndex}
         />

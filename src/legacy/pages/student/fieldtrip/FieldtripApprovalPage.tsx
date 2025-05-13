@@ -225,7 +225,7 @@ export function FieldtripApprovalPage() {
                     </div>
                   </div>
                 ))}
-                {Pdfs?.map((pdfFile: string, i: number) => {
+                {Pdfs?.map((pdfFile: string) => {
                   return (
                     <>
                       <div key={pdfFile}>
@@ -264,7 +264,7 @@ export function FieldtripApprovalPage() {
                           <Td innerClassName="min-w-max">교과</Td>
                           <Td innerClassName="min-w-max">학습할 내용</Td>
                         </tr>
-                        {new Array(7).fill('').map((dlldl: any, index: number) => (
+                        {new Array(7).fill('').map((_: any, index: number) => (
                           <>
                             {el['subject' + (index + 1)] && (
                               <tr>

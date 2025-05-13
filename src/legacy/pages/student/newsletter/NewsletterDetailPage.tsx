@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
-import { useHistory } from '@/hooks/useHistory'
 import {
   BackButton,
   Blank,
@@ -24,7 +23,6 @@ import { useStudentNewsletterDetail } from '@/legacy/container/student-newslette
 import { NewsletterType, RequestUpsertStudentNewsletterDto, Role } from '@/legacy/generated/model'
 import { useSignature } from '@/legacy/hooks/useSignature'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { isPdfFile } from '@/legacy/util/file'
 import { meState, toastState } from '@/stores'
 
 import { NewsletterAddPage } from './NewsletterAddPage'

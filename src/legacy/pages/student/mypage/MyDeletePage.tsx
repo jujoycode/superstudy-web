@@ -37,7 +37,7 @@ export function MyDeletePage({ setIsDeleteMe }: MyDeletePageProps) {
     if (!confirm(`탈퇴한 계정은 복구할 수 없습니다.\n탈퇴하시겠습니까?`)) return
 
     await userDeleteUser({ password: password, reason: deleteReason })
-      .then((result) => {
+      .then(() => {
         alert('회원탈퇴가 완료되었습니다.')
         logout()
       })
