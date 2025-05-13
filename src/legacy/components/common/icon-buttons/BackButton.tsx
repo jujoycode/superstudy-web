@@ -16,7 +16,7 @@ export function BackButton({ onClick, ...props }: BackButtonProps) {
     if (typeof onClick === 'function') {
       onClick()
     } else {
-      if (history.length > 1) {
+      if (history.location.pathname !== '/') {
         history.goBack()
       } else {
         history.push('/')

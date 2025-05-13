@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import parse from 'html-react-parser'
-import { useEffect, useRef, useState } from 'react'
+import { RefObject, useEffect, useRef, useState } from 'react'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
 
@@ -68,7 +68,7 @@ export function FeedsItem({
 
   const [isVisibled, setIsVisibled] = useState(false)
 
-  const isVisible = useIntersectionObserver(itemRef, { threshold: 0.1 })
+  const isVisible = useIntersectionObserver(itemRef as RefObject<HTMLElement>, { threshold: 0.1 })
 
   useEffect(() => {
     if (isVisible) {
