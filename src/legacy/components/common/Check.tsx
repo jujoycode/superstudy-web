@@ -37,6 +37,7 @@ const Basic = forwardRef<HTMLInputElement, CheckProps>(function Basic(
       onChange?.(e.target.checked)
     }
   }
+
   const renderIcon = () => {
     if (checked) {
       return disabled ? (
@@ -271,6 +272,7 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
     </label>
   )
 })
+
 const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
   { checked = false, disabled = false, onChange, size, label, value, ...props },
   ref,
@@ -453,10 +455,14 @@ const Group = <T,>({ children, selectedValues = [], onChange, className }: Check
     <div className={className}>
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
-          ? React.cloneElement(child as ReactElement, {
-              checked: selectedValues.includes(child.props.value),
-              onChange: (isChecked: boolean) => handleCheckChange(child.props.value, isChecked),
-            })
+          ? React.cloneElement(
+              child as ReactElement<{ value: T; onChange?: (isChecked: boolean) => void; checked?: boolean }>,
+              {
+                checked: selectedValues.includes((child as ReactElement<{ value: T }>).props.value),
+                onChange: (isChecked: boolean) =>
+                  handleCheckChange((child as ReactElement<{ value: T }>).props.value, isChecked),
+              },
+            )
           : child,
       )}
     </div>

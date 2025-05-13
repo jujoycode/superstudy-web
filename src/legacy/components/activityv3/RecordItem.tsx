@@ -16,7 +16,7 @@ interface RecordItemProps {
 }
 
 export const RecordItem: FC<RecordItemProps> = ({ record, refetch }) => {
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [, setToastMsg] = useRecoilState(toastState)
   const [updateView, setUpdateView] = useState(false)
   const [content, setContent] = useState<string>(record.content || '')
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)

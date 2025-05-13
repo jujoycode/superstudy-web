@@ -135,7 +135,7 @@ export function SendMessage({
             )}
             {!!MessageData?.files?.length && (
               <div className="flex flex-col items-end gap-1 pt-1">
-                {MessageData.files.map((fileUrl: string, index) => (
+                {MessageData.files.map((fileUrl: string) => (
                   <div
                     key={fileUrl}
                     className="flex h-8 w-full items-center space-x-2 overflow-hidden rounded bg-stone-50 px-3 py-1"
@@ -262,7 +262,7 @@ export function SendMessage({
           noImgDetails
           scalable={false}
           images={viewerImages}
-          onChange={(activeImage, index) => setActiveIndex(index)}
+          onChange={(_, index) => setActiveIndex(index)}
           onClose={() => setImagesModalOpen(false)}
           activeIndex={activeIndex}
         />

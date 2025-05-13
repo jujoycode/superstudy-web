@@ -20,7 +20,7 @@ interface SessionDownloadModalProps {
 }
 
 export const SessionDownloadModal: FC<SessionDownloadModalProps> = ({ sessionId: id, modalOpen, setModalClose }) => {
-  const { data: activitySession, refetch } = useActivitySessionFindOne(Number(id), {
+  const { data: activitySession } = useActivitySessionFindOne(Number(id), {
     query: { enabled: !!id },
   })
   const { data: activityv3, isLoading: isGetActivityLoading } = useActivityV3FindOne(
@@ -34,12 +34,9 @@ export const SessionDownloadModal: FC<SessionDownloadModalProps> = ({ sessionId:
 
   const groupIds = activityv3?.groupActivityV3s?.map((el) => el.groupId) || []
 
-  const {
-    data: excelData,
-    isLoading: isActivityDownloadLoading,
-    isFetching,
-    error,
-  } = useActivitySessionDownloadSubmitters(Number(id), { groupIds })
+  const { data: excelData, isLoading: isActivityDownloadLoading } = useActivitySessionDownloadSubmitters(Number(id), {
+    groupIds,
+  })
 
   useEffect(() => {
     if (excelData) {
@@ -70,7 +67,7 @@ export const SessionDownloadModal: FC<SessionDownloadModalProps> = ({ sessionId:
                 <tr key={rowIndex}>
                   {row.map((cell, cellIndex) => (
                     <Td key={cellIndex} innerClassName="min-w-max">
-                      {cell}
+                      {String(cell)}
                     </Td>
                   ))}
                 </tr>

@@ -18,7 +18,7 @@ interface SessionCommentItemProps {
 }
 
 export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionComment, refetch }) => {
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [, setToastMsg] = useRecoilState(toastState)
   const [updateView, setUpdateView] = useState(false)
   const [content, setContent] = useState<string>(sessionComment.content || '')
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
