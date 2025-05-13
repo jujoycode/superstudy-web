@@ -254,7 +254,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
   ]
 
   const byteLength = new TextEncoder().encode(content).length
-  const trimmedContent = content.replaceAll(' ', '')
+  const trimmedContent = content.replace(/ /g, '')
   const trimmedByteLength = new TextEncoder().encode(trimmedContent).length
 
   return (
@@ -391,7 +391,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                     )}
                   </div>
 
-                  <RadioGroup className="flex items-center justify-start gap-10" onChange={(e) => {}}>
+                  <RadioGroup className="flex items-center justify-start gap-10" onChange={() => {}}>
                     <div className="flex items-center space-x-1">
                       <Radio
                         id="교과활동"
@@ -598,7 +598,6 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                     const reportContent = data.content
                     const byteLength = new TextEncoder().encode(reportContent).length
                     const trimmedContent = reportContent.replaceAll(' ', '')
-                    const trimmedByteLength = new TextEncoder().encode(trimmedContent).length
 
                     return (
                       <>

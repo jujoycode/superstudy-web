@@ -24,7 +24,6 @@ interface ActivitySessionDetailViewProps {
 
 export const ActivitySessionDetailView: React.FC<ActivitySessionDetailViewProps> = ({
   activitySession: activity,
-  studentActivitySession: studentActivity,
   dummyImages,
   dummyFiles,
 }) => {
