@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react'
+import { FC, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { twMerge } from 'tailwind-merge'
 
@@ -58,7 +58,7 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
   studentInfo,
 }) => {
   const { t, currentLang } = useLanguage()
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [, setToastMsg] = useRecoilState(toastState)
   const [content, setContent] = useState('')
   const [question, setQuestion] = useState('')
   const [sentence, setSentence] = useState('')
@@ -68,7 +68,6 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
   const [selectedContentIndex, setSelectedContentIndex] = useState<number | undefined>()
   const [modalStep, setModalStep] = useState(1)
   const [confirmOpen, setConfirmOpen] = useState(false)
-  const titleInputRef = useRef<HTMLInputElement>(null)
 
   const { mutate: getAnnualReview, isLoading } = useStudentSelfAssessmentGetAnnualReview({
     mutation: {
@@ -138,7 +137,7 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
   }
 
   const byteLength = new TextEncoder().encode(content).length
-  const trimmedContent = content.replaceAll(' ', '')
+  const trimmedContent = content.replace(/ /g, '')
   const trimmedByteLength = new TextEncoder().encode(trimmedContent).length
 
   return (

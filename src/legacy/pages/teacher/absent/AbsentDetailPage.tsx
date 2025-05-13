@@ -15,13 +15,13 @@ import { Constants } from '@/legacy/constants'
 import { useBlockChainDocument } from '@/legacy/container/block-chain-document-status'
 import { useTeacherAbsentDeatil } from '@/legacy/container/teacher-absent-detail'
 import { AbsentStatus, ResponseUserDto } from '@/legacy/generated/model'
+import { AbsentUpdatePage } from '@/legacy/pages/teacher/absent/AbsentUpdatePage'
+
 import { AbsentEvidenceType, approveButtonType } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { extractImageData, extractReactData, extractReactDataArray, getDoc, getPdfImageSize } from '@/legacy/util/pdf'
 import { buttonEnableState } from '@/legacy/util/permission'
 import { makeStartEndToString } from '@/legacy/util/time'
-
-import { AbsentUpdatePage } from '@/legacy/pages/teacher/absentUpdatePage'
 
 interface AbsentDetailPageProps {
   setOpen: (b: boolean) => void

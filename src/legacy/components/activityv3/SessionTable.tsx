@@ -99,12 +99,8 @@ export const SessionTable = ({ activityv3, setSelectedSessionId, setDownloadModa
         </thead>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
-            {(provided, snapshot) => (
-              <tbody
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-                // style={getListStyle(snapshot.isDraggingOver)}
-              >
+            {(provided) => (
+              <tbody {...provided.droppableProps} ref={provided.innerRef}>
                 {sessionItems?.map((session, index: number) => (
                   <Draggable
                     isDragDisabled={isLoading}
@@ -112,7 +108,7 @@ export const SessionTable = ({ activityv3, setSelectedSessionId, setDownloadModa
                     draggableId={String(session.id)}
                     index={index}
                   >
-                    {(provided, snapshot) => (
+                    {(provided) => (
                       <tr
                         className={twMerge(`h-14 w-full`, isLoading && 'bg-gray-50')}
                         ref={provided.innerRef}

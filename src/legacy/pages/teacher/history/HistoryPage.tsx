@@ -45,7 +45,6 @@ export function HistoryPage() {
   const isDetail = !pathname.endsWith('/teacher/absent')
   const thisYear = +getThisYear()
   const { me } = UserContainer.useContext()
-  const userRole = me?.role
 
   const [_studentName, set_studentName] = useState('')
 
