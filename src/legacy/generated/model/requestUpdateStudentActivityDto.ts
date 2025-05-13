@@ -8,17 +8,17 @@
 
 export interface RequestUpdateStudentActivityDto {
   /** 내용 */
-  content: string | null;
+  content: string | null
   /** 이미지파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 제출여부 */
-  isSubmitted: boolean;
+  isSubmitted: boolean
   /** 기록 */
-  summary: string;
+  summary: string
   /** 활동아이디 */
-  activityId: number;
+  activityId: number
   /** 유저 ID */
-  userId?: number;
+  userId?: number
 }

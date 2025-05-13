@@ -1,16 +1,16 @@
-import { useLocation } from 'react-router';
+import { useLocation } from 'react-router'
 
 interface StudentItemProps {
-  studentid: number;
-  studentname: string;
-  groupId: number | string;
-  klass: string;
-  klassnum: string;
-  onClick: () => void;
+  studentid: number
+  studentname: string
+  groupId: number | string
+  klass: string
+  klassnum: string
+  onClick: () => void
 }
 
 export function StudentItem({ studentid, studentname, klass, klassnum, onClick, groupId }: StudentItemProps) {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
   return (
     <div
       className={
@@ -30,5 +30,5 @@ export function StudentItem({ studentid, studentname, klass, klassnum, onClick, 
         </tr>
       </table>
     </div>
-  );
+  )
 }

@@ -5,21 +5,21 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestCreateTeacherStudentAssessmentDtoKeywords } from './requestCreateTeacherStudentAssessmentDtoKeywords';
+import type { RequestCreateTeacherStudentAssessmentDtoKeywords } from './requestCreateTeacherStudentAssessmentDtoKeywords'
 
 export interface RequestCreateTeacherStudentAssessmentDto {
   /** 범주 1 */
-  category1: string;
+  category1: string
   /** 범주 2 */
-  category2: string;
+  category2: string
   /** 범주 3 */
-  category3: string;
+  category3: string
   /** 선택 키워드 */
-  keywords: RequestCreateTeacherStudentAssessmentDtoKeywords;
+  keywords: RequestCreateTeacherStudentAssessmentDtoKeywords
   /** 자기 평가 */
-  assessment: string;
+  assessment: string
   /** 연도 */
-  year: string;
+  year: string
   /** 학생 ID */
-  studentId: number;
+  studentId: number
 }

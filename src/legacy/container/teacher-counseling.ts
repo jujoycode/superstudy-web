@@ -5,8 +5,8 @@ import {
   useCounselingFindByStudentId,
   useCounselingUpdate,
 } from '@/legacy/generated/endpoint'
+import { ResponseCounselingDetailDto } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import type { ResponseCounselingDetailDto } from '@/legacy/generated/model'
 
 export function useTeacherCounseling(studentId?: number) {
   const [isEditMode, setIsEditMode] = useState(false)

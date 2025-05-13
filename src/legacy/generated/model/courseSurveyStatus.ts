@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type CourseSurveyStatus = (typeof CourseSurveyStatus)[keyof typeof CourseSurveyStatus];
+export type CourseSurveyStatus = (typeof CourseSurveyStatus)[keyof typeof CourseSurveyStatus]
 
- 
 export const CourseSurveyStatus = {
   대기중: '대기중',
   진행중: '진행중',
   종료: '종료',
-} as const;
+} as const

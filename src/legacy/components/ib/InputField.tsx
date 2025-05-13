@@ -1,11 +1,12 @@
 import clsx from 'clsx'
 import { forwardRef, PropsWithChildren } from 'react'
 import { Controller } from 'react-hook-form'
+
+import { ImageNFileUpload } from '@/legacy/components/common/ImageNFileUpload'
 import { Input } from '@/legacy/components/common/Input'
 import SelectBar from '@/legacy/components/common/SelectBar'
 import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import { Typography } from '@/legacy/components/common/Typography'
-import { ImageNFileUpload } from '@/legacy/components/common/ImageNFileUpload'
 
 interface InputFieldProps {
   label?: string

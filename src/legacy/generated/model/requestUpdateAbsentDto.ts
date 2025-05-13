@@ -8,41 +8,41 @@
 
 export interface RequestUpdateAbsentDto {
   /** 신고유형 */
-  reportType?: string;
+  reportType?: string
   /** 시작일 */
-  startAt?: string;
+  startAt?: string
   /** 종료일 */
-  endAt?: string;
+  endAt?: string
   /** 시작교시 */
-  startPeriod?: number;
+  startPeriod?: number
   /** 종료교시 */
-  endPeriod?: number;
+  endPeriod?: number
   /** 사유 */
-  reason?: string;
+  reason?: string
   /** 학생코멘트(상세사유) */
-  studentComment?: string;
+  studentComment?: string
   /** 담임교사코멘트 */
-  teacherComment?: string;
+  teacherComment?: string
   /** 신고상세내용 */
-  description?: string;
+  description?: string
   /** 증빙서류종류 */
-  evidenceType?: string;
+  evidenceType?: string
   /** 증빙서류파일들 */
-  evidenceFiles?: string[];
+  evidenceFiles?: string[]
   /** 2번째 증빙서류종류 */
-  evidenceType2?: string;
+  evidenceType2?: string
   /** 2번째 증빙서류파일들 */
-  evidenceFiles2?: string[];
+  evidenceFiles2?: string[]
   /** 부모님코멘트 */
-  parentComment?: string;
+  parentComment?: string
   /** 학생유저아이디 */
-  studentId?: number;
+  studentId?: number
   /** 학부모이름 */
-  parentsName?: string;
+  parentsName?: string
   /** 학부모전화번호 */
-  parentsPhone?: string;
+  parentsPhone?: string
   /** 수정사유 */
-  updateReason: string;
+  updateReason: string
   /** 신고일 */
-  reportedAt: string;
+  reportedAt: string
 }

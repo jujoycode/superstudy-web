@@ -1,16 +1,20 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
+
 import { useHistory } from '@/hooks/useHistory'
-import NODATA from '@/legacy/assets/images/no-data.png'
-import { IBBlank } from '@/legacy/components/common/IBBlank'
-import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
-import { ResponseEssayDto, ResponseIBDto } from '@/legacy/generated/model'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
+import { ResponseEssayDto, ResponseIBDto } from '@/legacy/generated/model'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import FeedbackViewer from '../FeedbackViewer'
+
 import { IbEeEssay } from './IbEeEssay'
+
+import NODATA from '@/assets/images/no-data.png'
 
 interface EssayListProps {
   data: ResponseIBDto

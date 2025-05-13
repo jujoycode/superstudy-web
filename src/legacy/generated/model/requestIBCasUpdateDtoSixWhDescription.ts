@@ -11,15 +11,15 @@
  */
 export type RequestIBCasUpdateDtoSixWhDescription = {
   /** 누가 */
-  who?: string;
+  who?: string
   /** 언제 */
-  when?: string;
+  when?: string
   /** 어디서 */
-  where?: string;
+  where?: string
   /** 무엇을 */
-  what?: string;
+  what?: string
   /** 어떻게 */
-  how?: string;
+  how?: string
   /** 왜 */
-  why?: string;
-};
+  why?: string
+}

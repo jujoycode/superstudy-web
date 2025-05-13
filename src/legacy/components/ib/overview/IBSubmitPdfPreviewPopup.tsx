@@ -1,5 +1,6 @@
-import PdfPreviewPopup from '@/legacy/components/common/PdfPreviewPopup'
 import { useEffect, useState } from 'react'
+
+import PdfPreviewPopup from '@/legacy/components/common/PdfPreviewPopup'
 import { modifyRppfPdf } from '@/legacy/util/ib_rppf_pdf'
 import { modifyTkppfPdf } from '@/legacy/util/ib_tkppf_pdf'
 

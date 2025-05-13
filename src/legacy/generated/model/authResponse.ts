@@ -8,7 +8,7 @@
 
 export interface AuthResponse {
   /** access Token */
-  token: string | null;
+  token: string | null
   /** refresh Token */
-  refresh_token: string | null;
+  refresh_token: string | null
 }

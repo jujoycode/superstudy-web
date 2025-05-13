@@ -9,7 +9,7 @@ import {
   useTKPPFUpdateRPPFStatusWaitComplete,
   useTKPPFUpdateTKPPFInfo,
 } from '@/legacy/generated/endpoint'
-import type {
+import {
   RequestCreateTKPPFDto,
   RequestIBCommentDto,
   RequestIBTokOutlineDto,

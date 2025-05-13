@@ -8,21 +8,21 @@
 
 export interface StudentRole {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 유저 ID */
-  userId: number;
+  userId: number
   /** 역할 */
-  role: string;
+  role: string
   /** 업무 */
-  job: string;
+  job: string
   /** 정렬순서 */
-  displayOrder: number;
+  displayOrder: number
   /** 학년도 */
-  year: number;
+  year: number
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
 }

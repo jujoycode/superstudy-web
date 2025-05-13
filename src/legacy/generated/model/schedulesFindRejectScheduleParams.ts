@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type SchedulesFindRejectScheduleParams = { startDate: string; endDate: string; grade?: number };
+export type SchedulesFindRejectScheduleParams = { startDate: string; endDate: string; grade?: number }

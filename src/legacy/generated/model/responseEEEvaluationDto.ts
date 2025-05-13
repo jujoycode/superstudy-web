@@ -5,17 +5,17 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { EEEvaluationLocation } from './eEEvaluationLocation';
+import type { EEEvaluationLocation } from './eEEvaluationLocation'
 
 export interface ResponseEEEvaluationDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 평가 버전명 */
-  title: string;
+  title: string
   /** 평가 속하는 위치 */
-  location: EEEvaluationLocation;
+  location: EEEvaluationLocation
 }

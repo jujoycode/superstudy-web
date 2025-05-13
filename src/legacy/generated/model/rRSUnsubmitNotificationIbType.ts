@@ -7,9 +7,8 @@
  */
 
 export type RRSUnsubmitNotificationIbType =
-  (typeof RRSUnsubmitNotificationIbType)[keyof typeof RRSUnsubmitNotificationIbType];
+  (typeof RRSUnsubmitNotificationIbType)[keyof typeof RRSUnsubmitNotificationIbType]
 
- 
 export const RRSUnsubmitNotificationIbType = {
   NORMAL: 'NORMAL',
   CAS_NORMAL: 'CAS_NORMAL',
@@ -17,4 +16,4 @@ export const RRSUnsubmitNotificationIbType = {
   EE: 'EE',
   TOK_ESSAY: 'TOK_ESSAY',
   TOK_EXHIBITION: 'TOK_EXHIBITION',
-} as const;
+} as const

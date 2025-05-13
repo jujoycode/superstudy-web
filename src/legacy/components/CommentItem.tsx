@@ -1,8 +1,9 @@
 import { useState } from 'react'
+
 import { Avatar, ListItem } from '@/legacy/components/common'
-import { Time } from '@/legacy/components/common/Time'
 import { Button } from '@/legacy/components/common/Button'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Time } from '@/legacy/components/common/Time'
 import { SuperModal } from '@/legacy/components/SuperModal'
 import type { Comment } from '@/legacy/generated/model'
 

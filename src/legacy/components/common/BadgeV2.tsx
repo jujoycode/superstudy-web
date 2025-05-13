@@ -1,11 +1,11 @@
-import clsx from 'clsx';
-import { HTMLAttributes } from 'react';
+import clsx from 'clsx'
+import { HTMLAttributes } from 'react'
 
-export type BadgeV2Color = 'orange' | 'green' | 'blue' | 'red' | 'gray' | 'brown' | 'navy' | 'dark_green';
+export type BadgeV2Color = 'orange' | 'green' | 'blue' | 'red' | 'gray' | 'brown' | 'navy' | 'dark_green'
 interface BadgeV2Props extends HTMLAttributes<HTMLSpanElement> {
-  size?: 24 | 20 | 16;
-  type: 'solid_strong' | 'solid_regular' | 'line';
-  color: BadgeV2Color;
+  size?: 24 | 20 | 16
+  type: 'solid_strong' | 'solid_regular' | 'line'
+  color: BadgeV2Color
 }
 
 const BadgeStyles = {
@@ -39,14 +39,14 @@ const BadgeStyles = {
     dark_green: 'border border-[#A0B7B0] bg-white text-[#3D6D5F]',
     brown: 'border border-[#CCC2BE] bg-white text-[#6D4A3D]',
   },
-};
+}
 const sizeStyles = {
   16: 'text-11 font-medium px-1 py-px rounded flex items-center h-4 w-max',
   20: 'text-xs font-medium px-1.5 py-0.5 rounded flex items-center h-5 w-max',
   24: 'text-13 font-medium px-2 py-[3px] rounded flex items-center h-6 w-max',
-};
+}
 
 export function BadgeV2({ className, size = 24, type = 'solid_regular', color = 'gray', ...props }: BadgeV2Props) {
-  const spanClassNames = clsx(BadgeStyles[type]?.[color], sizeStyles[size], className);
-  return <span className={spanClassNames} {...props} />;
+  const spanClassNames = clsx(BadgeStyles[type]?.[color], sizeStyles[size], className)
+  return <span className={spanClassNames} {...props} />
 }

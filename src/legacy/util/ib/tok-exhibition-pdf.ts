@@ -1,7 +1,9 @@
 import fontkit from '@pdf-lib/fontkit'
 import { PDFDocument, PageSizes } from 'pdf-lib'
-import { pxToPoint, drawSection, drawSectionWithImage } from '../pdf-lib'
+
 import type { ResponseExhibitionDto } from '@/legacy/generated/model'
+
+import { pxToPoint, drawSection, drawSectionWithImage } from '../pdf-lib'
 
 export const createTokExhibitionPdf = async (
   { klassNum, name }: { klassNum: string; name: string },

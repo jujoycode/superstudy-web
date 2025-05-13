@@ -8,5 +8,5 @@
 
 export interface RequestUpdateStudentTextDto {
   /** 학생 활동 보고서 */
-  studentText: string;
+  studentText: string
 }

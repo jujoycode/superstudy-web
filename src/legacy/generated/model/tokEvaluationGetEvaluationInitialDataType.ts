@@ -7,10 +7,9 @@
  */
 
 export type TokEvaluationGetEvaluationInitialDataType =
-  (typeof TokEvaluationGetEvaluationInitialDataType)[keyof typeof TokEvaluationGetEvaluationInitialDataType];
+  (typeof TokEvaluationGetEvaluationInitialDataType)[keyof typeof TokEvaluationGetEvaluationInitialDataType]
 
- 
 export const TokEvaluationGetEvaluationInitialDataType = {
   EXHIBITION: 'EXHIBITION',
   ESSAY: 'ESSAY',
-} as const;
+} as const

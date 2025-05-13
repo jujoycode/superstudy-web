@@ -8,5 +8,5 @@
 
 export interface RequestCreateChatroomDto {
   /** 참석자 UserId List */
-  attendeeUserIdList: number[];
+  attendeeUserIdList: number[]
 }

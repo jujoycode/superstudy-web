@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentRecordontrollerFindByStudentIdParams = { studentId: number };
+export type StudentRecordontrollerFindByStudentIdParams = { studentId: number }

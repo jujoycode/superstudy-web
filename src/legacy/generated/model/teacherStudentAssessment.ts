@@ -5,29 +5,29 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { TeacherStudentAssessmentKeywords } from './teacherStudentAssessmentKeywords';
+import type { TeacherStudentAssessmentKeywords } from './teacherStudentAssessmentKeywords'
 
 export interface TeacherStudentAssessment {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 범주 1 */
-  category1: string;
+  category1: string
   /** 범주 2 */
-  category2: string;
+  category2: string
   /** 범주 3 */
-  category3: string;
+  category3: string
   /** 선택 키워드 */
-  keywords: TeacherStudentAssessmentKeywords;
+  keywords: TeacherStudentAssessmentKeywords
   /** 자기 평가 */
-  assessment: string;
+  assessment: string
   /** 연도 */
-  year: string;
+  year: string
   /** 교사 ID */
-  teacherId: number;
+  teacherId: number
   /** 학생 ID */
-  studentId: number;
+  studentId: number
 }

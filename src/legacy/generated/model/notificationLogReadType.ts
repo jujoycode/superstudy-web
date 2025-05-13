@@ -9,9 +9,8 @@
 /**
  * 읽음여부 처리 방법
  */
-export type NotificationLogReadType = (typeof NotificationLogReadType)[keyof typeof NotificationLogReadType];
+export type NotificationLogReadType = (typeof NotificationLogReadType)[keyof typeof NotificationLogReadType]
 
- 
 export const NotificationLogReadType = {
   READ: 'READ',
   APPROVE: 'APPROVE',
@@ -19,4 +18,4 @@ export const NotificationLogReadType = {
   DENY: 'DENY',
   DELETE: 'DELETE',
   null: null,
-} as const;
+} as const

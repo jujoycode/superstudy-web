@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 interface BottomSheetListSelectionProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
+  isOpen: boolean
+  onClose: () => void
+  children: React.ReactNode
 }
 
 /**
@@ -16,132 +16,132 @@ interface BottomSheetListSelectionProps {
  */
 
 const BottomSheetListSelection: React.FC<BottomSheetListSelectionProps> = ({ isOpen, onClose, children }) => {
-  const sheetRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startY, setStartY] = useState(0);
-  const [translateY, setTranslateY] = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const [scrollTop, setScrollTop] = useState(0);
-  const [windowHeight, setWindowHeight] = useState(0);
-  const [isClosing, setIsClosing] = useState(false);
+  const sheetRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const [isDragging, setIsDragging] = useState(false)
+  const [startY, setStartY] = useState(0)
+  const [translateY, setTranslateY] = useState(0)
+  const [isScrolling, setIsScrolling] = useState(false)
+  const [scrollTop, setScrollTop] = useState(0)
+  const [windowHeight, setWindowHeight] = useState(0)
+  const [isClosing, setIsClosing] = useState(false)
 
   const handleClose = useCallback(() => {
-    setIsClosing(true);
-    setTranslateY(windowHeight);
+    setIsClosing(true)
+    setTranslateY(windowHeight)
     setTimeout(() => {
-      setIsClosing(false);
-      onClose();
-    }, 300);
-  }, [onClose, windowHeight]);
+      setIsClosing(false)
+      onClose()
+    }, 300)
+  }, [onClose, windowHeight])
 
   // 윈도우 높이 설정
   useEffect(() => {
     const updateWindowHeight = () => {
-      setWindowHeight(window.innerHeight);
-    };
+      setWindowHeight(window.innerHeight)
+    }
 
-    updateWindowHeight();
-    window.addEventListener('resize', updateWindowHeight);
+    updateWindowHeight()
+    window.addEventListener('resize', updateWindowHeight)
 
     return () => {
-      window.removeEventListener('resize', updateWindowHeight);
-    };
-  }, []);
+      window.removeEventListener('resize', updateWindowHeight)
+    }
+  }, [])
 
   useEffect(() => {
     if (isOpen) {
-      setIsClosing(false);
-      setTranslateY(0);
-      setScrollTop(0);
-      document.body.style.overflow = 'hidden';
-      document.body.style.touchAction = 'none'; // 터치 스크롤 방지 (iOS용)
+      setIsClosing(false)
+      setTranslateY(0)
+      setScrollTop(0)
+      document.body.style.overflow = 'hidden'
+      document.body.style.touchAction = 'none' // 터치 스크롤 방지 (iOS용)
     } else {
-      document.body.style.overflow = '';
-      document.body.style.touchAction = '';
+      document.body.style.overflow = ''
+      document.body.style.touchAction = ''
     }
 
     return () => {
-      document.body.style.overflow = '';
-      document.body.style.touchAction = '';
-    };
-  }, [isOpen]);
+      document.body.style.overflow = ''
+      document.body.style.touchAction = ''
+    }
+  }, [isOpen])
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    setStartY(e.touches[0].clientY);
-    if (contentRef.current) setScrollTop(contentRef.current.scrollTop);
-  }, []);
+    setStartY(e.touches[0].clientY)
+    if (contentRef.current) setScrollTop(contentRef.current.scrollTop)
+  }, [])
 
   const handleTouchMove = useCallback(
     (e: React.TouchEvent) => {
-      const currentY = e.touches[0].clientY;
-      const diff = currentY - startY;
+      const currentY = e.touches[0].clientY
+      const diff = currentY - startY
 
       // 스크롤 중이 아닐 때만 드래그 시작
       if (!isScrolling && !isDragging) {
         // 위로 스크롤 중이거나, 아래로 드래그 중일 때만 드래그 시작
         if (diff < 0 || (diff > 0 && scrollTop === 0)) {
-          setIsDragging(true);
+          setIsDragging(true)
         }
       }
 
       if (isDragging) {
         // 이전 translateY 값에 현재 이동량을 더함
-        const newTranslateY = translateY + diff;
+        const newTranslateY = translateY + diff
 
         // startY를 현재 위치로 업데이트
-        setStartY(currentY);
+        setStartY(currentY)
 
         if (newTranslateY < 0) {
-          setTranslateY(0);
+          setTranslateY(0)
         } else {
-          setTranslateY(newTranslateY);
+          setTranslateY(newTranslateY)
         }
       }
     },
     [isDragging, isScrolling, translateY, startY, scrollTop],
-  );
+  )
 
   const handleTouchEnd = useCallback(() => {
-    if (!isDragging) return;
+    if (!isDragging) return
 
-    setIsDragging(false);
-    setIsScrolling(false);
+    setIsDragging(false)
+    setIsScrolling(false)
 
-    const sheetRect = sheetRef.current?.getBoundingClientRect();
+    const sheetRect = sheetRef.current?.getBoundingClientRect()
     if (sheetRect) {
-      const bottomOffset = windowHeight - sheetRect.bottom;
+      const bottomOffset = windowHeight - sheetRect.bottom
       if (bottomOffset < 20) {
-        handleClose();
+        handleClose()
       } else {
-        setTranslateY(0);
+        setTranslateY(0)
       }
     }
-  }, [isDragging, handleClose, windowHeight]);
+  }, [isDragging, handleClose, windowHeight])
 
   const handleScroll = useCallback(() => {
     if (contentRef.current) {
-      const { scrollTop } = contentRef.current;
-      setScrollTop(scrollTop);
-      setIsScrolling(scrollTop > 0);
+      const { scrollTop } = contentRef.current
+      setScrollTop(scrollTop)
+      setIsScrolling(scrollTop > 0)
     }
-  }, []);
+  }, [])
 
-  const maxHeight = windowHeight - 340;
-  if (!isOpen && !isClosing) return null;
+  const maxHeight = windowHeight - 340
+  if (!isOpen && !isClosing) return null
 
   return (
     <>
       {/* 오버레이 */}
       <div
-        className={`fixed inset-0 z-[60] bg-dim-8 duration-300 ${isClosing ? 'opacity-0' : 'opacity-100'}`}
+        className={`bg-dim-8 fixed inset-0 z-[60] duration-300 ${isClosing ? 'opacity-0' : 'opacity-100'}`}
         onClick={handleClose}
       />
 
       {/* 바텀 시트 */}
       <div
         ref={sheetRef}
-        className="fixed bottom-0 left-0 right-0 z-[70] rounded-t-xl bg-white px-5 pb-10 shadow-[0px_-4px_16px_0px_rgba(0,0,0,0.12)] transition-transform duration-300 ease-out"
+        className="fixed right-0 bottom-0 left-0 z-[70] rounded-t-xl bg-white px-5 pb-10 shadow-[0px_-4px_16px_0px_rgba(0,0,0,0.12)] transition-transform duration-300 ease-out"
         style={{
           transform: `translateY(${translateY}px)`,
           transition: isDragging ? 'none' : 'transform 300ms cubic-bezier(0.33, 1, 0.68, 1)',
@@ -152,12 +152,12 @@ const BottomSheetListSelection: React.FC<BottomSheetListSelectionProps> = ({ isO
       >
         {/* 핸들 */}
         <div
-          className="flex justify-center pb-2 pt-5"
+          className="flex justify-center pt-5 pb-2"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <div className="h-1 w-12 rounded-3xl bg-primary-gray-300" />
+          <div className="bg-primary-gray-300 h-1 w-12 rounded-3xl" />
         </div>
 
         {/* 스크롤 가능한 컨텐츠 */}
@@ -166,7 +166,7 @@ const BottomSheetListSelection: React.FC<BottomSheetListSelectionProps> = ({ isO
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default BottomSheetListSelection;
+export default BottomSheetListSelection

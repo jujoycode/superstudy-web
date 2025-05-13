@@ -1,8 +1,6 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useHistory } from '@/hooks/useHistory'
-import { useRecoilValue } from 'recoil'
-import NODATA from '@/legacy/assets/images/no-data.png'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -11,20 +9,20 @@ import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
 import { useGetFeedbackBatchExist, useGetUnreadFeedbackCount } from '@/legacy/container/ib-feedback'
 import { useexhibitionGetByIBId } from '@/legacy/container/ib-tok-exhibition'
 import { ResponseIBDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+
 import FeedbackViewer from '../../FeedbackViewer'
+
+import NODATA from '@/assets/images/no-data.png'
 
 interface ExhibitionListProps {
   data: ResponseIBDto
   refetch: () => void
 }
 
-export default function ExhibitionList({ data, refetch }: ExhibitionListProps) {
-  const me = useRecoilValue(meState)
+export default function ExhibitionList({ data }: ExhibitionListProps) {
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined)
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
-  const [modalOpen, setModalOpen] = useState<boolean>(false)
 
   const { data: Exhibition, isLoading } = useexhibitionGetByIBId(data.id)
 

@@ -7,9 +7,9 @@
  */
 
 export type AchievementCriteriaGetAllParams = {
-  docYear: string;
-  code?: string | null;
-  mainSubject?: string | null;
-  page?: number;
-  limit?: number;
-};
+  docYear: string
+  code?: string | null
+  mainSubject?: string | null
+  page?: number
+  limit?: number
+}

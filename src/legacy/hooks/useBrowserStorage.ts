@@ -1,4 +1,5 @@
 import { useRecoilValue } from 'recoil'
+
 import { isStayLoggedInState } from '@/stores'
 
 const useBrowserStorage = () => {

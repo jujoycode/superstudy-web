@@ -7,9 +7,8 @@
  */
 
 export type RRSGetSubmissionStatusCountIbType =
-  (typeof RRSGetSubmissionStatusCountIbType)[keyof typeof RRSGetSubmissionStatusCountIbType];
+  (typeof RRSGetSubmissionStatusCountIbType)[keyof typeof RRSGetSubmissionStatusCountIbType]
 
- 
 export const RRSGetSubmissionStatusCountIbType = {
   NORMAL: 'NORMAL',
   CAS_NORMAL: 'CAS_NORMAL',
@@ -17,4 +16,4 @@ export const RRSGetSubmissionStatusCountIbType = {
   EE: 'EE',
   TOK_ESSAY: 'TOK_ESSAY',
   TOK_EXHIBITION: 'TOK_EXHIBITION',
-} as const;
+} as const

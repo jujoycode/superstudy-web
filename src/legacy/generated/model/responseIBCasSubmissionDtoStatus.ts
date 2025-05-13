@@ -10,9 +10,8 @@
  * IB 프로젝트 진행 상태 값
  */
 export type ResponseIBCasSubmissionDtoStatus =
-  (typeof ResponseIBCasSubmissionDtoStatus)[keyof typeof ResponseIBCasSubmissionDtoStatus];
+  (typeof ResponseIBCasSubmissionDtoStatus)[keyof typeof ResponseIBCasSubmissionDtoStatus]
 
- 
 export const ResponseIBCasSubmissionDtoStatus = {
   PENDING: 'PENDING',
   WAIT_MENTOR: 'WAIT_MENTOR',
@@ -24,4 +23,4 @@ export const ResponseIBCasSubmissionDtoStatus = {
   WAIT_COMPLETE: 'WAIT_COMPLETE',
   REJECT_COMPLETE: 'REJECT_COMPLETE',
   COMPLETE: 'COMPLETE',
-} as const;
+} as const

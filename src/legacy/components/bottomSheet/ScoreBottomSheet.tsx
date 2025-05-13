@@ -1,9 +1,13 @@
 import { useState } from 'react'
-import NODATA from '@/legacy/assets/images/no-data.png'
-import { SchoolScore } from '@/legacy/container/student-score'
+
 import { Typography } from '@/legacy/components/common/Typography'
+import { SchoolScore } from '@/legacy/container/student-score'
+
 import SVGIcon from '../icon/SVGIcon'
+
 import BottomSheetListSelection from './BottomSheetListSelection'
+
+import NODATA from '@/assets/images/no-data.png'
 
 interface BottomSheetProps {
   data?: SchoolScore[]

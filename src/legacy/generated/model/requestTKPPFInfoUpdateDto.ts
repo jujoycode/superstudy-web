@@ -8,9 +8,9 @@
 
 export interface RequestTKPPFInfoUpdateDto {
   /** 지도교사 서명 */
-  teacherSignature: string;
+  teacherSignature: string
   /** 지도교사 의견 */
-  teacherFeedback: string;
+  teacherFeedback: string
   /** 학문적 진실성 동의 */
-  academicIntegrityConsent: boolean;
+  academicIntegrityConsent: boolean
 }

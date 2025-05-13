@@ -8,7 +8,7 @@
 
 export interface RequestRemoveChildDto {
   /** 보호자 ID */
-  parentId: number;
+  parentId: number
   /** 학생 ID */
-  childId: number;
+  childId: number
 }

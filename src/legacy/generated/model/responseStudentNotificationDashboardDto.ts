@@ -5,31 +5,31 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ActivityV3 } from './activityV3';
-import type { Board } from './board';
-import type { Newsletter } from './newsletter';
-import type { Notice } from './notice';
-import type { Absent } from './absent';
-import type { Outing } from './outing';
-import type { Fieldtrip } from './fieldtrip';
+import type { Absent } from './absent'
+import type { ActivityV3 } from './activityV3'
+import type { Board } from './board'
+import type { Fieldtrip } from './fieldtrip'
+import type { Newsletter } from './newsletter'
+import type { Notice } from './notice'
+import type { Outing } from './outing'
 
 export interface ResponseStudentNotificationDashboardDto {
   /** 안읽은 활동기록부(공지) 데이터 */
-  unreadActivityNotice: ActivityV3[] | null;
+  unreadActivityNotice: ActivityV3[] | null
   /** 안읽은 학급게시판 데이터 */
-  unreadBoard: Board[] | null;
+  unreadBoard: Board[] | null
   /** 안읽은 가정통신문 데이터 */
-  unreadNewsletterNotice: Newsletter[] | null;
+  unreadNewsletterNotice: Newsletter[] | null
   /** 안읽은 채팅메시지 개수 */
-  unreadChatMessageCount: number | null;
+  unreadChatMessageCount: number | null
   /** 안읽은 공지사항 데이터 */
-  unreadNotice: Notice[] | null;
+  unreadNotice: Notice[] | null
   /** 학부모 미결재(결석신고서) 결재 정보 */
-  requestConfirmAbsents: Absent[] | null;
+  requestConfirmAbsents: Absent[] | null
   /** 학부모 미결재(확인증) 결재 정보 */
-  requestConfirmOutings: Outing[] | null;
+  requestConfirmOutings: Outing[] | null
   /** 학부모 미결재(체험학습신청서) 결재 정보 */
-  requestConfirmFieldTrips: Fieldtrip[] | null;
+  requestConfirmFieldTrips: Fieldtrip[] | null
   /** 학부모 미결재(체험학습결과보고서) 결재 정보 */
-  requestConfirmFieldTripResults: Fieldtrip[] | null;
+  requestConfirmFieldTripResults: Fieldtrip[] | null
 }

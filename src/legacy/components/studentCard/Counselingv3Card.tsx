@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
-import { ReactComponent as DownArrow } from '@/legacy/assets/icons/chevron-down.svg'
-import { ReactComponent as Plus } from '@/legacy/assets/svg/plus.svg'
+
+import { Blank, Select } from '@/legacy/components/common'
+import { TextInput } from '@/legacy/components/common/TextInput'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useTeacherCounseling } from '@/legacy/container/teacher-counseling'
 import { UserContainer } from '@/legacy/container/user'
@@ -8,17 +9,17 @@ import { Category, Code, ResponseCounselingDetailDto } from '@/legacy/generated/
 import { AccessLevels } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isValidDate } from '@/legacy/util/time'
-import { Blank, Select } from '@/legacy/components/common'
-import { TextInput } from '@/legacy/components/common/TextInput'
 import Recorder from '../rec/Recorder'
 import CounselingDetailCard from './CounselingDetailCard'
+import DownArrow from '@/assets/icons/chevron-down.svg'
+import Plus from '@/assets/svg/plus.svg'
 
 interface CounselingCardProps {
   studentId: number
   groupId: number
 }
 
-export default function Counselingv3Card({ studentId, groupId }: CounselingCardProps) {
+export default function Counselingv3Card({ studentId }: CounselingCardProps) {
   const { me } = UserContainer.useContext()
   const [page, setPage] = useState(1)
   const [uploading, setUploading] = useState(false)
@@ -35,12 +36,8 @@ export default function Counselingv3Card({ studentId, groupId }: CounselingCardP
     setContent,
     counselingAt,
     setCounselingAt,
-    category,
     setCategory,
-    counselorName,
     setCoulselorName,
-    userId,
-    setUserId,
     accessLevel,
     setAccessLevel,
     counselingData,

@@ -3,7 +3,7 @@ import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
 import { useFieldtripResultResend, useFieldtripsFindOne } from '@/legacy/generated/endpoint'
 import { childState } from '@/stores'
-import type { errorType } from '@/legacy/types'
+import { errorType } from '@/legacy/types'
 
 type Props = {
   id: number

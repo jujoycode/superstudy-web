@@ -5,24 +5,24 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { School } from './school';
-import type { Course } from './course';
-import type { LectureTime } from './lectureTime';
+import type { Course } from './course'
+import type { LectureTime } from './lectureTime'
+import type { School } from './school'
 
 export interface LectureRoom {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
-  courseYear: number;
-  grade: number;
-  classroom: number;
-  name: string;
-  editable: boolean;
-  schoolId: number;
-  school: School;
-  courses: Course[];
-  lectureTimes: LectureTime[];
+  updatedAt: string
+  courseYear: number
+  grade: number
+  classroom: number
+  name: string
+  editable: boolean
+  schoolId: number
+  school: School
+  courses: Course[]
+  lectureTimes: LectureTime[]
 }

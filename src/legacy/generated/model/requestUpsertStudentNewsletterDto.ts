@@ -8,13 +8,13 @@
 
 export interface RequestUpsertStudentNewsletterDto {
   /** 내용 */
-  content: string | null;
+  content: string | null
   /** 가정통신문아이디 */
-  newsletterId: number;
+  newsletterId: number
   /** 학생 서명 */
-  studentSignature: string;
+  studentSignature: string
   /** 학부모이름 */
-  nokName: string | null;
+  nokName: string | null
   /** 학부모전화번호 */
-  nokPhone: string | null;
+  nokPhone: string | null
 }

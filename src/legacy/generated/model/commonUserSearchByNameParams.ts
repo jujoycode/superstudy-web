@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type CommonUserSearchByNameParams = { name: string };
+export type CommonUserSearchByNameParams = { name: string }

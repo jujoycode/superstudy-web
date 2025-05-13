@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type CalendarIdEnum = (typeof CalendarIdEnum)[keyof typeof CalendarIdEnum];
+export type CalendarIdEnum = (typeof CalendarIdEnum)[keyof typeof CalendarIdEnum]
 
- 
 export const CalendarIdEnum = {
   NUMBER_0: '0',
   NUMBER_1: '1',
   NUMBER_2: '2',
-} as const;
+} as const

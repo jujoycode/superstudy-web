@@ -8,11 +8,11 @@
 
 export interface RequestUpdateEEEvaluationCriteriaWithIdDto {
   /** 평가영역 */
-  area?: string;
+  area?: string
   /** 평가 주요요소 */
-  factor?: string;
+  factor?: string
   /** 영역점수 */
-  score?: number;
+  score?: number
   /** id */
-  id?: number;
+  id?: number
 }

@@ -5,29 +5,29 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { TeacherGroupSubjectType } from './teacherGroupSubjectType';
-import type { User } from './user';
-import type { Group } from './group';
+import type { Group } from './group'
+import type { TeacherGroupSubjectType } from './teacherGroupSubjectType'
+import type { User } from './user'
 
 export interface TeacherGroup {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 과목 */
-  subject: string;
+  subject: string
   /** 과목 분류 */
-  subjectType: TeacherGroupSubjectType;
+  subjectType: TeacherGroupSubjectType
   /** 유저 ID */
-  userId: number;
+  userId: number
   /** 유저 정보 */
-  user: User;
+  user: User
   /** 그룹아이디 */
-  groupId: number;
+  groupId: number
   /** 그룹 */
-  group: Group;
+  group: Group
   /** 수업 장소 */
-  room: string | null;
+  room: string | null
 }

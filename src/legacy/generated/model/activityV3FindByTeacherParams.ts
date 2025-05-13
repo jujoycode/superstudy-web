@@ -5,13 +5,13 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ActivityV3FindByTeacherSubjectType } from './activityV3FindByTeacherSubjectType';
+import type { ActivityV3FindByTeacherSubjectType } from './activityV3FindByTeacherSubjectType'
 
 export type ActivityV3FindByTeacherParams = {
-  title?: string;
-  subjectType?: ActivityV3FindByTeacherSubjectType;
-  subject?: string;
-  isMyActivityV3?: string;
-  type?: string;
-  year?: number;
-};
+  title?: string
+  subjectType?: ActivityV3FindByTeacherSubjectType
+  subject?: string
+  isMyActivityV3?: string
+  type?: string
+  year?: number
+}

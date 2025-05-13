@@ -10,7 +10,7 @@
  * CAS 요소 3가지의 진행시간
  */
 export type RequestIBCasUpdateDtoStrands = {
-  creativity?: number;
-  activity?: number;
-  service?: number;
-};
+  creativity?: number
+  activity?: number
+  service?: number
+}

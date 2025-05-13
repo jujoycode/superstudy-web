@@ -6,9 +6,8 @@
  * OpenAPI spec version: 0.1
  */
 
-export type Category = (typeof Category)[keyof typeof Category];
+export type Category = (typeof Category)[keyof typeof Category]
 
- 
 export const Category = {
   studentstatus: 'studentstatus',
   teacherstatus: 'teacherstatus',
@@ -23,4 +22,4 @@ export const Category = {
   tokExhibitionPlanKnowledgeArea: 'tokExhibitionPlanKnowledgeArea',
   tokCommentary: 'tokCommentary',
   partnerSchool: 'partnerSchool',
-} as const;
+} as const

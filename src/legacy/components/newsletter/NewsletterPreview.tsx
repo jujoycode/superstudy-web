@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+
+import { PdfCard } from '@/legacy/components/common/PdfCard'
+import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isPdfFile } from '@/legacy/util/file'
-import { PdfCard } from '@/legacy/components/common/PdfCard'
-import { Time } from '@/legacy/components/common/Time'
 
 interface NewsletterPreviewProps {
   title: string
@@ -16,10 +17,10 @@ interface NewsletterPreviewProps {
 
 export function NewsletterPreview({ title, images, klasses, endAt }: NewsletterPreviewProps) {
   const now = DateUtil.formatDate(new Date(), DateFormat['YYYY-MM-DD HH:mm'])
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
-  const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
-  const [focusPdfFile, setFocusPdfFile] = useState('')
+  const [, setActiveIndex] = useState(0)
+  const [, setImagesModalOpen] = useState(false)
+  const [, setPdfModalOpen] = useState(false)
+  const [, setFocusPdfFile] = useState('')
 
   const Pdfs = images.filter((image) => isPdfFile(image)) || []
   images = images.filter((image) => !isPdfFile(image)) || []
@@ -85,7 +86,7 @@ export function NewsletterPreview({ title, images, klasses, endAt }: NewsletterP
             </div>
             <div>
               {Pdfs?.length
-                ? Pdfs?.map((pdfFile: string, i: number) => {
+                ? Pdfs?.map((pdfFile: string) => {
                     return (
                       <>
                         <div key={pdfFile}>

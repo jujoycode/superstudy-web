@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { BlockChainReferenceTable } from './blockChainReferenceTable';
+import type { BlockChainReferenceTable } from './blockChainReferenceTable'
 
-export type BlockChainGetDocumentStatusParams = { referenceTable: BlockChainReferenceTable; referenceId: number };
+export type BlockChainGetDocumentStatusParams = { referenceTable: BlockChainReferenceTable; referenceId: number }

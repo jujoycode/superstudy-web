@@ -8,19 +8,19 @@
 
 export interface Summary {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 내용 */
-  content: string;
+  content: string
   /** 선생님이름 */
-  teacherName: string;
+  teacherName: string
   /** 제목 */
-  subject: string;
+  subject: string
   /** 학생그룹아이디 */
-  studentGroupId: number;
+  studentGroupId: number
   /** 유저 ID */
-  userId: number;
+  userId: number
 }

@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ActivitySessionFindByActivityV3IdParams = { activityv3Id: number };
+export type ActivitySessionFindByActivityV3IdParams = { activityv3Id: number }

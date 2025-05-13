@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type TeacherGroupsGetTeacherGroupsParams = { isSchool: boolean; isStudent: boolean; isPage: boolean };
+export type TeacherGroupsGetTeacherGroupsParams = { isSchool: boolean; isStudent: boolean; isPage: boolean }

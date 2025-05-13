@@ -5,21 +5,21 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBRRSSubmissionStatusDtoIbType } from './responseIBRRSSubmissionStatusDtoIbType';
-import type { ResponseIBStudentDto } from './responseIBStudentDto';
-import type { ResponseIBRRSSubmissionStatusDtoDetailStatus } from './responseIBRRSSubmissionStatusDtoDetailStatus';
+import type { ResponseIBRRSSubmissionStatusDtoDetailStatus } from './responseIBRRSSubmissionStatusDtoDetailStatus'
+import type { ResponseIBRRSSubmissionStatusDtoIbType } from './responseIBRRSSubmissionStatusDtoIbType'
+import type { ResponseIBStudentDto } from './responseIBStudentDto'
 
 export interface ResponseIBRRSSubmissionStatusDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** IB 프로젝트 타입 */
-  ibType: ResponseIBRRSSubmissionStatusDtoIbType;
+  ibType: ResponseIBRRSSubmissionStatusDtoIbType
   /** 프로젝트 리더 */
-  leader: ResponseIBStudentDto;
+  leader: ResponseIBStudentDto
   /** 제출 상태 */
-  detailStatus: ResponseIBRRSSubmissionStatusDtoDetailStatus;
+  detailStatus: ResponseIBRRSSubmissionStatusDtoDetailStatus
 }

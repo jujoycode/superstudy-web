@@ -5,39 +5,39 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { AnnouncementType } from './announcementType';
+import type { AnnouncementType } from './announcementType'
 
 export interface ResponseAnnouncementDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 슈퍼스쿨 공지 종류 */
-  type: AnnouncementType;
+  type: AnnouncementType
   /** 공지 제목 */
-  title: string;
+  title: string
   /** 이미지 파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부 파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 공지 내용 */
-  content: string;
+  content: string
   /** 고정 여부 */
-  isPinned: boolean;
+  isPinned: boolean
   /** 팝업 여부 */
-  isPopup: boolean;
+  isPopup: boolean
   /** 시작 시간 */
-  startTime: string;
+  startTime: string
   /** 종료 시간 */
-  endTime: string;
+  endTime: string
   /** 수신대상(관리자) */
-  toAdmin: boolean;
+  toAdmin: boolean
   /** 수신대상(선생님) */
-  toTeacher: boolean;
+  toTeacher: boolean
   /** 수신대상(학생) */
-  toStudent: boolean;
+  toStudent: boolean
   /** 수신대상(보호자) */
-  toParent: boolean;
+  toParent: boolean
 }

@@ -8,13 +8,13 @@
 
 export interface ReponseGroupByIB {
   /** 그룹 이름 */
-  name: string;
+  name: string
   /** 그룹타입 */
-  type: string;
+  type: string
   /** 년도 */
-  year: string;
+  year: string
   /** 학년 */
-  grade: number;
+  grade: number
   /** 반 */
-  klass: number;
+  klass: number
 }

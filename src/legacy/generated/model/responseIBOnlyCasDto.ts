@@ -5,27 +5,27 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBOnlyCasDtoIbType } from './responseIBOnlyCasDtoIbType';
-import type { ResponseIBOnlyCasDtoStatus } from './responseIBOnlyCasDtoStatus';
-import type { ResponseIBStudentDto } from './responseIBStudentDto';
-import type { ResponseIBUserDto } from './responseIBUserDto';
-import type { ResponseIBOnlyCasDtoEditStatus } from './responseIBOnlyCasDtoEditStatus';
-import type { ResponseIBCasDto } from './responseIBCasDto';
-import type { ResponseIBActivityLogDto } from './responseIBActivityLogDto';
+import type { ResponseIBActivityLogDto } from './responseIBActivityLogDto'
+import type { ResponseIBCasDto } from './responseIBCasDto'
+import type { ResponseIBOnlyCasDtoEditStatus } from './responseIBOnlyCasDtoEditStatus'
+import type { ResponseIBOnlyCasDtoIbType } from './responseIBOnlyCasDtoIbType'
+import type { ResponseIBOnlyCasDtoStatus } from './responseIBOnlyCasDtoStatus'
+import type { ResponseIBStudentDto } from './responseIBStudentDto'
+import type { ResponseIBUserDto } from './responseIBUserDto'
 
 export interface ResponseIBOnlyCasDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** IB 프로젝트 타입 */
-  ibType: ResponseIBOnlyCasDtoIbType;
+  ibType: ResponseIBOnlyCasDtoIbType
   /** 프로젝트 타이틀|제목 */
-  title: string;
+  title: string
   /** 프로젝트 본문|설명 */
-  description: string;
+  description: string
   /** 
 IB 프로젝트 진행 상태 값:
 - **PENDING**: 기획서 제출 전
@@ -39,32 +39,32 @@ IB 프로젝트 진행 상태 값:
 - **REJECT_COMPLETE**: 완료 승인 반려
 - **COMPLETE**: 완료
  */
-  status: ResponseIBOnlyCasDtoStatus;
+  status: ResponseIBOnlyCasDtoStatus
   /** 프로젝트 리더 학생 */
-  leader: ResponseIBStudentDto;
+  leader: ResponseIBStudentDto
   /** 프로젝트 멤버 학생들 */
-  members?: ResponseIBStudentDto[];
+  members?: ResponseIBStudentDto[]
   /** 프로젝트 당당 선생님 */
-  mentor: ResponseIBUserDto;
+  mentor: ResponseIBUserDto
   /** 프로젝트 시작 일자 */
-  startAt?: string;
+  startAt?: string
   /** 프로젝트 종료 일자 */
-  endAt?: string;
+  endAt?: string
   /** 활동주기 */
-  activityFrequency?: string;
+  activityFrequency?: string
   /** 
 수정가능 상태 값:
 - **LOCK**: 수정불가능
 - **REQUEST_UNLOCK**: 수정 요청상태
 - **UNLOCK**: 수정가능상태
  */
-  editStatus: ResponseIBOnlyCasDtoEditStatus;
+  editStatus: ResponseIBOnlyCasDtoEditStatus
   /** 학생 1줄 알림 */
-  studentShortNotice?: string;
+  studentShortNotice?: string
   /** 선생님 1줄 알림 */
-  teacherShortNotice?: string;
+  teacherShortNotice?: string
   /** CAS Normal */
-  cas?: ResponseIBCasDto;
+  cas?: ResponseIBCasDto
   /** 활동일지 */
-  activityLog?: ResponseIBActivityLogDto[];
+  activityLog?: ResponseIBActivityLogDto[]
 }

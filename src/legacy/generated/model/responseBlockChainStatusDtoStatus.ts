@@ -10,12 +10,11 @@
  * 블록체인 데이터 상태
  */
 export type ResponseBlockChainStatusDtoStatus =
-  (typeof ResponseBlockChainStatusDtoStatus)[keyof typeof ResponseBlockChainStatusDtoStatus];
+  (typeof ResponseBlockChainStatusDtoStatus)[keyof typeof ResponseBlockChainStatusDtoStatus]
 
- 
 export const ResponseBlockChainStatusDtoStatus = {
   NO_DATA: 'NO_DATA',
   PENDING: 'PENDING',
   COMPLETE: 'COMPLETE',
   FAILED: 'FAILED',
-} as const;
+} as const

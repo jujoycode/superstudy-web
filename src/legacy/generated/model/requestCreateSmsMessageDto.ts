@@ -8,15 +8,15 @@
 
 export interface RequestCreateSmsMessageDto {
   /** 수신자 전화번호 */
-  receiverPhone: string;
+  receiverPhone: string
   /** 수신자 이름 */
-  receiverName: string;
+  receiverName: string
   /** 수신자 아이디 */
-  receiverId: number;
+  receiverId: number
   /** 수신자 아이디의 부모정보 사용 */
-  useNokInfo: boolean;
+  useNokInfo: boolean
   /** 비밀문자 */
-  isSecret: boolean;
+  isSecret: boolean
   /** 메시지 내용 */
-  content: string;
+  content: string
 }

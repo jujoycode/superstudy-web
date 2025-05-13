@@ -5,21 +5,21 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseReferenceInfoDto } from './responseReferenceInfoDto';
+import type { ResponseReferenceInfoDto } from './responseReferenceInfoDto'
 
 export interface ResponsePaginationReferenceInfoDto {
   /** 참고자료 목록 */
-  items: ResponseReferenceInfoDto[];
+  items: ResponseReferenceInfoDto[]
   /** 아이템 개수 */
-  total: number;
+  total: number
   /** 총 페이지 개수 */
-  totalPages: number;
+  totalPages: number
   /** 현재 페이지 */
-  currentPage: number;
+  currentPage: number
   /** 페이지 사이즈 */
-  size: number;
+  size: number
   /** 다음 페이지 */
-  next?: boolean;
+  next?: boolean
   /** 이전 페이지 */
-  prev?: boolean;
+  prev?: boolean
 }

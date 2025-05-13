@@ -10,13 +10,12 @@
  * 유형
  */
 export type ResponseInterviewListWithQnaDtoCategory =
-  (typeof ResponseInterviewListWithQnaDtoCategory)[keyof typeof ResponseInterviewListWithQnaDtoCategory];
+  (typeof ResponseInterviewListWithQnaDtoCategory)[keyof typeof ResponseInterviewListWithQnaDtoCategory]
 
- 
 export const ResponseInterviewListWithQnaDtoCategory = {
   EE_RPPF: 'EE_RPPF',
   CAS_PORTFOLIO_1: 'CAS_PORTFOLIO_1',
   CAS_PORTFOLIO_2: 'CAS_PORTFOLIO_2',
   CAS_PORTFOLIO_3: 'CAS_PORTFOLIO_3',
   CAS_RISK_ASSESSMENT: 'CAS_RISK_ASSESSMENT',
-} as const;
+} as const

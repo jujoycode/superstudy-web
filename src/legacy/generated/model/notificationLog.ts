@@ -5,44 +5,44 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { NotificationLogTargetType } from './notificationLogTargetType';
-import type { NotificationLogReadType } from './notificationLogReadType';
-import type { NotificationLogType } from './notificationLogType';
-import type { NotificationLogDetailType } from './notificationLogDetailType';
+import type { NotificationLogDetailType } from './notificationLogDetailType'
+import type { NotificationLogReadType } from './notificationLogReadType'
+import type { NotificationLogTargetType } from './notificationLogTargetType'
+import type { NotificationLogType } from './notificationLogType'
 
 export interface NotificationLog {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 학교 ID */
-  schoolId: number;
+  schoolId: number
   /** 수산 타입 */
-  targetType: NotificationLogTargetType;
+  targetType: NotificationLogTargetType
   /** 수신 아이디 */
-  targetIds: string[];
+  targetIds: string[]
   /** 알림을 읽은 수신자 아이디 */
-  readTargetIds: string[];
+  readTargetIds: string[]
   /** 리다이렉트 URL */
-  url: string;
+  url: string
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  body: string;
+  body: string
   /** 읽음여부 처리 방법 */
-  readType: NotificationLogReadType;
+  readType: NotificationLogReadType
   /** 알림 종류 */
-  type: NotificationLogType;
+  type: NotificationLogType
   /** 알림 상세 종류 */
-  detailType: NotificationLogDetailType;
+  detailType: NotificationLogDetailType
   /** 서류 ID */
-  documentId: number | null;
+  documentId: number | null
   /** 발송 성공 여부 */
-  success: boolean | null;
+  success: boolean | null
   /** 내용 */
-  errorMessage: string | null;
+  errorMessage: string | null
   /** 삭제여부 */
-  isDeleted: boolean;
+  isDeleted: boolean
 }

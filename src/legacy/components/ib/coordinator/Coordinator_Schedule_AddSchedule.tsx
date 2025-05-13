@@ -1,6 +1,6 @@
-import { map } from 'lodash'
 import { PropsWithChildren, useRef, useState } from 'react'
-import NODATA from '@/legacy/assets/images/no-data.png'
+import { map } from 'lodash'
+import NODATA from '@/assets/images/no-data.png'
 import SelectBar, { SelectBarOptionProps } from '@/legacy/components/common/SelectBar'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { useIBDeadlineCreateDeadline } from '@/legacy/generated/endpoint'
@@ -10,9 +10,9 @@ import {
   RequestIBDeadlineDto,
   ResponseIBDeadlineDto,
 } from '@/legacy/generated/model'
-import AlertV2 from '@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Typography } from '@/legacy/components/common/Typography'
+import AlertV2 from '../../common/AlertV2'
+import { ButtonV2 } from '../../common/ButtonV2'
+import { Typography } from '../../common/Typography'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { CreateDeadlineField } from '../CreateDeadlineField'
 
@@ -24,10 +24,6 @@ interface Coordinator_Schedule_AddScheduleProps {
   scheduleData?: ResponseIBDeadlineDto
   onSuccess?: () => void
   items?: ResponseIBDeadlineDto[]
-}
-
-interface SelectBarProps extends SelectBarOptionProps {
-  items?: SelectBarOptionProps[]
 }
 
 type Item = {

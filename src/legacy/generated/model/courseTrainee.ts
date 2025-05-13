@@ -5,18 +5,18 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Course } from './course';
-import type { User } from './user';
+import type { Course } from './course'
+import type { User } from './user'
 
 export interface CourseTrainee {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
-  courseId: number;
-  userId: number;
-  course: Course;
-  user: User;
+  updatedAt: string
+  courseId: number
+  userId: number
+  course: Course
+  user: User
 }

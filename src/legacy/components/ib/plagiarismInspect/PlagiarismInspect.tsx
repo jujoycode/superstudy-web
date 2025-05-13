@@ -1,4 +1,5 @@
 import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
+
 import InspectorButtonContainer from './InspectorButtonContainer'
 import ResultCardList from './ResultCardList'
 

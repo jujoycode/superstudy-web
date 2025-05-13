@@ -1,15 +1,17 @@
 import { FC, useEffect, useState } from 'react'
 import readXlsxFile, { Row } from 'read-excel-file'
+
+import { Section } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
 import {
   useActivitySessionDownloadSubmitters,
   useActivitySessionFindOne,
   useActivityV3FindOne,
 } from '@/legacy/generated/endpoint'
 import { downloadExcel } from '@/legacy/util/download-excel'
+
 import { SuperModal } from '../SuperModal'
 import { Td } from '../Td'
-import { Section } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 
 interface SessionDownloadModalProps {
   sessionId: number | undefined

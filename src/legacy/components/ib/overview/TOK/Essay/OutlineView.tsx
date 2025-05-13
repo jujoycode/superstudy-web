@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react'
+
+import { useHistory } from '@/hooks/useHistory'
+import { Blank } from '@/legacy/components/common/Blank'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import {
@@ -12,11 +15,10 @@ import {
   ResponseIBTokOutlineSubmissionStatusDto,
   ResponseIBTokOutlineSubmissionStatusDtoDetailStatus,
 } from '@/legacy/generated/model'
-import { useHistory } from '@/hooks/useHistory'
-import OutlineOverviewPanel from './OutlineOverviewPanel'
 import { handleBatchBlobDownload } from '@/legacy/hooks/useBatchDownload'
 import { createTokOutlinePdf } from '@/legacy/util/ib/tok-outline-pdf'
-import { Blank } from '@/legacy/components/common/Blank'
+
+import OutlineOverviewPanel from './OutlineOverviewPanel'
 
 export default function OutlineView({ grade, klass }: IBGetTokOutlineSubmissionStatusCountParams) {
   const { push } = useHistory()

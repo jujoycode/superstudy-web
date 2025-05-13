@@ -5,27 +5,27 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { User } from './user';
+import type { User } from './user'
 
 export interface Canteen {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 점심 */
-  lunch: string;
+  lunch: string
   /** 전달사항 */
-  dinner: string;
+  dinner: string
   /** 이미지 */
-  image: string;
+  image: string
   /** 날짜 */
-  date: string;
+  date: string
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 작성자 유저 ID */
-  writerId: number;
+  writerId: number
   /** 작성자 유저(only name) */
-  writer: User;
+  writer: User
 }

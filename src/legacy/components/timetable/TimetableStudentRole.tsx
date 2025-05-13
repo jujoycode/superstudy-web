@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { makeStudNum5 } from '@/legacy/util/status'
-import { TextInput } from '@/legacy/components/common/TextInput'
+
 import { Icon } from '@/legacy/components/common/icons'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { makeStudNum5 } from '@/legacy/util/status'
 
 interface TimetableStudentRoleProps {
   editmode: boolean

@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { NewsletterCategoryEnum } from './newsletterCategoryEnum';
+import type { NewsletterCategoryEnum } from './newsletterCategoryEnum'
 
 export type NewsLettersFindAllParams = {
-  page?: number;
-  limit?: number;
-  userKlass?: number[];
-  category?: NewsletterCategoryEnum;
-};
+  page?: number
+  limit?: number
+  userKlass?: number[]
+  category?: NewsletterCategoryEnum
+}

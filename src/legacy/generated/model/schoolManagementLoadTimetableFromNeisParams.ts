@@ -7,8 +7,8 @@
  */
 
 export type SchoolManagementLoadTimetableFromNeisParams = {
-  year: number;
-  semester: number;
-  grade?: number;
-  klass?: number;
-};
+  year: number
+  semester: number
+  grade?: number
+  klass?: number
+}

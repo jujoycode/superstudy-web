@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useUserFindId } from '@/legacy/generated/endpoint'
-import type { UserFindIdParams } from '@/legacy/generated/model'
+import { UserFindIdParams } from '@/legacy/generated/model'
 
 export function useFindId() {
   const [errorMessage, setErrorMessage] = useState('')

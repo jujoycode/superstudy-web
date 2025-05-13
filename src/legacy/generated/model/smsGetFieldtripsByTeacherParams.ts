@@ -7,14 +7,14 @@
  */
 
 export type SmsGetFieldtripsByTeacherParams = {
-  page?: number;
-  limit?: number;
-  receiverName?: string | null;
-  senderName?: string | null;
-  receiverId?: number | null;
-  senderId?: number | null;
-  startDate: string;
-  endDate: string;
-  withSuccess: boolean;
-  withFail: boolean;
-};
+  page?: number
+  limit?: number
+  receiverName?: string | null
+  senderName?: string | null
+  receiverId?: number | null
+  senderId?: number | null
+  startDate: string
+  endDate: string
+  withSuccess: boolean
+  withFail: boolean
+}

@@ -8,5 +8,5 @@
 
 export type RecordCreateBody = {
   /** 관찰기록 내용 */
-  content?: string;
-};
+  content?: string
+}

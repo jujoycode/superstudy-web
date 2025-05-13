@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useLocation } from 'react-router'
+import { useLocation } from 'react-router-dom'
 import {
   useAbsentsApprove,
   useAbsentsGetAbsentsByTeacher,
@@ -7,7 +7,7 @@ import {
   useAbsentsSubmitted,
   useUserMe,
 } from '@/legacy/generated/endpoint'
-import { Role, type Absent } from '@/legacy/generated/model'
+import { Absent, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignature } from '@/legacy/hooks/useSignature'
 import { useStamp } from '@/legacy/hooks/useStamp'

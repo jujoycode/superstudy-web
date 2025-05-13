@@ -6,13 +6,12 @@
  * OpenAPI spec version: 0.1
  */
 
-export type BoardCategoryEnum = (typeof BoardCategoryEnum)[keyof typeof BoardCategoryEnum];
+export type BoardCategoryEnum = (typeof BoardCategoryEnum)[keyof typeof BoardCategoryEnum]
 
- 
 export const BoardCategoryEnum = {
   조종례: '조종례',
   알림: '알림',
   오늘의_한마디: '오늘의 한마디',
   자료: '자료',
   기타: '기타',
-} as const;
+} as const

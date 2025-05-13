@@ -8,15 +8,15 @@
 
 export interface RPPFContentResponseDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 차수 번호 */
-  sequence: number;
+  sequence: number
   /** 내용 텍스트 */
-  text: string;
+  text: string
   /** 단어 수 */
-  wordCount: number;
+  wordCount: number
 }

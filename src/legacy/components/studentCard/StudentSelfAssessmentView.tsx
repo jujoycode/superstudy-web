@@ -1,7 +1,8 @@
 import { FC } from 'react'
-import { StudentSelfAssessment } from '@/legacy/generated/model'
+
 import { Label } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
+import { StudentSelfAssessment } from '@/legacy/generated/model'
 
 interface StudentSelfAssessmentViewProps {
   studentSelfAssessment?: StudentSelfAssessment
@@ -17,7 +18,7 @@ export const StudentSelfAssessmentView: FC<StudentSelfAssessmentViewProps> = ({
       <Label.Text children="선택단어/근거" />
       <div className="mt-1 flex flex-col space-y-2">
         {studentSelfAssessment?.keywords &&
-          Object.entries(studentSelfAssessment.keywords).map(([id, { keyword, reason }]) => (
+          Object.entries(studentSelfAssessment.keywords).map(([_, { keyword, reason }]) => (
             <div>
               {keyword} : {reason}
             </div>

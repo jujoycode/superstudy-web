@@ -8,13 +8,13 @@
 
 export interface RequestModifyParentDto {
   /** 아이디 */
-  id?: number;
+  id?: number
   /** 이메일 */
-  email?: string | null;
+  email?: string | null
   /** 이름 */
-  name?: string;
+  name?: string
   /** 만료여부, 미사용 사용자는 true (전학 등) */
-  expired?: boolean;
+  expired?: boolean
   /** 로그인 실패 카운트 */
-  loginFailCount?: number;
+  loginFailCount?: number
 }

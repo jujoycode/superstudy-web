@@ -8,19 +8,19 @@
 
 export interface RequestGetAnnualReviewBodyDto {
   /** 학생 자기평가 keyword List */
-  selfAssessmentKeywords: string[];
+  selfAssessmentKeywords: string[]
   /** 학생 자기평가 report */
-  selfAssessmentReport: string;
+  selfAssessmentReport: string
   /** 선생님 자기평가 keyword List */
-  teacherAssessmentKeywords: string[];
+  teacherAssessmentKeywords: string[]
   /** 선생님 자기평가 report */
-  teacherAssessmentReport: string;
+  teacherAssessmentReport: string
   /** 상담기록 List */
-  selectedCounseling: string[];
+  selectedCounseling: string[]
   /** 대화 ID */
-  conversationId?: string | null;
+  conversationId?: string | null
   /** 추가 질문 */
-  followUpQuestion?: string | null;
+  followUpQuestion?: string | null
   /** 재작성할 문장 */
-  rewriteSentense?: string | null;
+  rewriteSentense?: string | null
 }

@@ -1,15 +1,16 @@
-import { ReactElement } from 'react';
-import { Icon } from './icons';
+import { ReactElement } from 'react'
+
+import { Icon } from './icons'
 
 interface AvatarProps {
-  size?: 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 22 | 24;
-  type?: 'circular' | 'rounded';
-  src?: string;
-  placeholder?: string;
-  notification?: 'top' | 'bottom';
-  notificationColor?: 'gray-300' | 'red-400' | 'green-400' | string;
-  notificationImg?: ReactElement;
-  onClick?: () => void;
+  size?: 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 22 | 24
+  type?: 'circular' | 'rounded'
+  src?: string
+  placeholder?: string
+  notification?: 'top' | 'bottom'
+  notificationColor?: 'gray-300' | 'red-400' | 'green-400' | string
+  notificationImg?: ReactElement
+  onClick?: () => void
 }
 
 export function Avatar({
@@ -22,54 +23,52 @@ export function Avatar({
   notificationImg,
   onClick,
 }: AvatarProps) {
-  const widthheight = `w-${size} h-${size}`;
-  const rounded = type === 'circular' ? 'rounded-full' : 'rounded-md';
-  const backgroundColor = placeholder ? 'bg-gray-500' : 'bg-gray-100';
+  const widthheight = `w-${size} h-${size}`
+  const rounded = type === 'circular' ? 'rounded-full' : 'rounded-md'
+  const backgroundColor = placeholder ? 'bg-gray-500' : 'bg-gray-100'
 
-  let placeholderSize = 'text-xs';
+  let placeholderSize = 'text-xs'
   switch (size) {
     case 8:
-      placeholderSize = 'text-sm';
-      break;
+      placeholderSize = 'text-sm'
+      break
     case 10:
-      placeholderSize = 'text-base';
-      break;
+      placeholderSize = 'text-base'
+      break
     case 12:
-      placeholderSize = 'text-lg';
-      break;
+      placeholderSize = 'text-lg'
+      break
     case 14:
     case 16:
     case 18:
-      placeholderSize = 'text-xl';
-      break;
+      placeholderSize = 'text-xl'
+      break
     case 20:
     case 22:
     case 24:
-      placeholderSize = 'text-2xl';
-      break;
+      placeholderSize = 'text-2xl'
+      break
   }
 
-  let innerElement = <></>;
+  let innerElement = <></>
 
   if (!src) {
     if (placeholder) {
-      innerElement = <span className={`${placeholderSize} font-medium leading-none text-white`}>{placeholder}</span>;
+      innerElement = <span className={`${placeholderSize} leading-none font-medium text-white`}>{placeholder}</span>
     } else {
-      innerElement = <Icon.Avatar className="h-full w-full text-gray-300" />;
+      innerElement = <Icon.Avatar className="h-full w-full text-gray-300" />
     }
   }
 
-  const notificationSize = size / 4;
+  const notificationSize = size / 4
 
   const notificationElement = (
     <span
-      className={`absolute ${notification}-0 right-0 block
-                  w-${notificationSize} h-${notificationSize} rounded-full ring-2 ring-white
-                  bg-${notificationColor}`}
+      className={`absolute ${notification}-0 right-0 block w-${notificationSize} h-${notificationSize} rounded-full ring-2 ring-white bg-${notificationColor}`}
     >
       <div className="flex h-full w-full items-center justify-center">{notificationImg}</div>
     </span>
-  );
+  )
 
   return (
     <span
@@ -80,5 +79,5 @@ export function Avatar({
       <div className={`h-full w-full ${rounded} flex items-center justify-center overflow-hidden`}>{innerElement}</div>
       {notification && notificationElement}
     </span>
-  );
+  )
 }

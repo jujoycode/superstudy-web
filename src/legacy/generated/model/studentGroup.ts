@@ -5,26 +5,26 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { User } from './user';
-import type { Group } from './group';
+import type { Group } from './group'
+import type { User } from './user'
 
 export interface StudentGroup {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 출석번호 */
-  studentNumber: number;
+  studentNumber: number
   /** 생활기록 */
-  recordSummary: string;
+  recordSummary: string
   /** 유저 ID */
-  userId: number;
+  userId: number
   /** 학생유저 */
-  user: User;
+  user: User
   /** 그룹아이디 */
-  groupId: number;
+  groupId: number
   /** 그룹 */
-  group: Group;
+  group: Group
 }

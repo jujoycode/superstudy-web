@@ -8,11 +8,11 @@
 
 export interface RequestUpsertCanteenDto {
   /** 점심 */
-  lunch: string;
+  lunch: string
   /** 전달사항 */
-  dinner: string;
+  dinner: string
   /** 이미지 */
-  image: string;
+  image: string
   /** 날짜 */
-  date: string;
+  date: string
 }

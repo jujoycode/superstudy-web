@@ -8,7 +8,7 @@
 
 export interface RequestUpdateSummaryDto {
   /** 내용 */
-  content: string;
+  content: string
   /** 제목 */
-  subject: string;
+  subject: string
 }

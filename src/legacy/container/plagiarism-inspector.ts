@@ -5,7 +5,7 @@ import {
   usePlagiarismGetCopykillerStatusById,
   usePlagiarismGetCopyRatioDetailById,
 } from '@/legacy/generated/endpoint'
-import type { RequestCopykillerUploadDto, CopykillerTargetTable } from '@/legacy/generated/model'
+import { RequestCopykillerUploadDto, CopykillerTargetTable } from '@/legacy/generated/model'
 
 interface UsePlagiarismUploadOptions {
   onSuccess?: (data: any) => void

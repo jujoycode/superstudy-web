@@ -1,5 +1,5 @@
-import { ResponseBlockChainStatusDtoStatus } from '@/legacy/generated/model'
 import { Icon } from '@/legacy/components/common/icons'
+import { ResponseBlockChainStatusDtoStatus } from '@/legacy/generated/model'
 
 interface CertificationBadgeProps {
   status: ResponseBlockChainStatusDtoStatus

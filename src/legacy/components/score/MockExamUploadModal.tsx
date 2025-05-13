@@ -1,14 +1,16 @@
 import clsx from 'clsx'
 import _ from 'lodash'
 import { PropsWithChildren, useCallback, useEffect, useState } from 'react'
-import { Icon } from '@/legacy/components/common/icons'
-import { useStudentInsertMockScores } from '@/legacy/container/insert-exam-score'
-import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { isExcelFile } from '@/legacy/util/file'
+
 import { Select } from '@/legacy/components/common'
 import AlertDialog from '@/legacy/components/common/AlertDialog'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
+import { Icon } from '@/legacy/components/common/icons'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useStudentInsertMockScores } from '@/legacy/container/insert-exam-score'
+import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
+import { isExcelFile } from '@/legacy/util/file'
+
 import SVGIcon from '../icon/SVGIcon'
 
 interface ExamUploadModalProps {

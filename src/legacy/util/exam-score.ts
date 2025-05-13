@@ -1,4 +1,5 @@
 import { filter, groupBy, includes, map, mean } from 'lodash'
+
 import { SubjectEnum, SubjectGroups } from '@/legacy/constants/score.enum'
 
 export interface examsScoreFiles {

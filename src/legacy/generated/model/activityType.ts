@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ActivityType = (typeof ActivityType)[keyof typeof ActivityType];
+export type ActivityType = (typeof ActivityType)[keyof typeof ActivityType]
 
- 
 export const ActivityType = {
   POST: 'POST',
   NOTICE: 'NOTICE',
   SURVEY: 'SURVEY',
-} as const;
+} as const

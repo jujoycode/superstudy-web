@@ -9,13 +9,11 @@
 /**
  * FAQ 분류
  */
-export type RequestCreateFAQDtoCategory =
-  (typeof RequestCreateFAQDtoCategory)[keyof typeof RequestCreateFAQDtoCategory];
+export type RequestCreateFAQDtoCategory = (typeof RequestCreateFAQDtoCategory)[keyof typeof RequestCreateFAQDtoCategory]
 
- 
 export const RequestCreateFAQDtoCategory = {
   IB_EE: 'IB_EE',
   IB_CAS: 'IB_CAS',
   IB_TOK: 'IB_TOK',
   IB_ALL: 'IB_ALL',
-} as const;
+} as const

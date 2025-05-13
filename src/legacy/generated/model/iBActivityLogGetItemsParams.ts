@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type IBActivityLogGetItemsParams = { page?: number; limit?: number; writerId?: number };
+export type IBActivityLogGetItemsParams = { page?: number; limit?: number; writerId?: number }

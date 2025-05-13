@@ -7,10 +7,9 @@
  */
 
 export type ThemeQuestionGetThemeQuestionItemsByTypeType =
-  (typeof ThemeQuestionGetThemeQuestionItemsByTypeType)[keyof typeof ThemeQuestionGetThemeQuestionItemsByTypeType];
+  (typeof ThemeQuestionGetThemeQuestionItemsByTypeType)[keyof typeof ThemeQuestionGetThemeQuestionItemsByTypeType]
 
- 
 export const ThemeQuestionGetThemeQuestionItemsByTypeType = {
   TOK_ESSAY: 'TOK_ESSAY',
   TOK_EXHIBITION: 'TOK_EXHIBITION',
-} as const;
+} as const

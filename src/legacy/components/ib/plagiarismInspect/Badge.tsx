@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+
 import { Typography } from '@/legacy/components/common/Typography'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { ResponseCopykillerResponseDtoCompleteStatus } from '@/legacy/generated/model'

@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentRecordontrollerDownloadRecordSummaryParams = { showMyRecord: boolean };
+export type StudentRecordontrollerDownloadRecordSummaryParams = { showMyRecord: boolean }

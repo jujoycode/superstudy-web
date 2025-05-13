@@ -5,20 +5,20 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Course } from './course';
+import type { Course } from './course'
 
 export interface CourseAttachment {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
-  filename: string;
-  originalName: string;
-  mimeType: string;
-  size: number;
-  url: string;
-  courseId: number;
-  course: Course;
+  updatedAt: string
+  filename: string
+  originalName: string
+  mimeType: string
+  size: number
+  url: string
+  courseId: number
+  course: Course
 }

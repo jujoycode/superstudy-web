@@ -1,45 +1,46 @@
-import clsx from 'clsx';
-import React, { forwardRef, InputHTMLAttributes, ReactNode, useEffect, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
-import type { TypographyProps } from './Typography';
-import { Typography } from './Typography';
+import clsx from 'clsx'
+import React, { forwardRef, InputHTMLAttributes, ReactNode, useEffect, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
+
+import type { TypographyProps } from './Typography'
+import { Typography } from './Typography'
 
 interface RadioProps<T = any> extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
-  size?: 16 | 20 | 24;
-  value: T;
-  onChange?: (value: T) => void;
+  size?: 16 | 20 | 24
+  value: T
+  onChange?: (value: T) => void
 }
 
 interface RadioBasicProps<T = any> extends RadioProps<T> {
-  label?: string;
-  labelClassName?: string;
-  labelTypographyVariant?: TypographyProps['variant'];
+  label?: string
+  labelClassName?: string
+  labelTypographyVariant?: TypographyProps['variant']
 }
 
 interface RadioBoxProps<T = any> extends RadioProps<T> {
-  type?: 'large' | 'medium';
-  image?: string;
-  title?: string;
-  content?: string;
-  showImage?: boolean;
+  type?: 'large' | 'medium'
+  image?: string
+  title?: string
+  content?: string
+  showImage?: boolean
 }
 
 interface RadioLabelProps<T = any> extends RadioProps<T> {
-  title: string;
-  currentNum: number;
-  TotalNum: number;
-  type?: 'number' | 'count';
+  title: string
+  currentNum: number
+  TotalNum: number
+  type?: 'number' | 'count'
 }
 
 interface RadioChipProps<T = any> extends RadioProps<T> {
-  label: string;
+  label: string
 }
 
 interface RadioGroupProps<T = any> {
-  children: ReactNode;
-  selectedValue?: T;
-  onChange?: (value: T) => void;
-  className?: string;
+  children: ReactNode
+  selectedValue?: T
+  onChange?: (value: T) => void
+  className?: string
 }
 
 const RadioIndicator = ({ size = 24, checked, disabled }: { size: number; checked?: boolean; disabled?: boolean }) => {
@@ -65,8 +66,8 @@ const RadioIndicator = ({ size = 24, checked, disabled }: { size: number; checke
         />
       )}
     </span>
-  );
-};
+  )
+}
 
 const Basic = forwardRef<HTMLInputElement, RadioBasicProps>(function Basic(
   { size = 24, value, onChange, label, labelTypographyVariant = 'body3', labelClassName, className, ...props },
@@ -74,15 +75,15 @@ const Basic = forwardRef<HTMLInputElement, RadioBasicProps>(function Basic(
 ) {
   const handleLabelClick = () => {
     if (!props.disabled && onChange) {
-      onChange(value);
+      onChange(value)
     }
-  };
+  }
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!props.disabled) {
-      ``;
-      onChange?.(e.target.checked);
+      ;``
+      onChange?.(e.target.checked)
     }
-  };
+  }
   return (
     <label
       onClick={handleLabelClick}
@@ -99,8 +100,8 @@ const Basic = forwardRef<HTMLInputElement, RadioBasicProps>(function Basic(
         </Typography>
       )}
     </label>
-  );
-});
+  )
+})
 
 const Box = forwardRef<HTMLInputElement, RadioBoxProps>(function Box(
   { type = 'large', size = 24, image, showImage = true, title, value, content, onChange, ...props },
@@ -108,23 +109,23 @@ const Box = forwardRef<HTMLInputElement, RadioBoxProps>(function Box(
 ) {
   const handleLabelClick = () => {
     if (!props.disabled && onChange) {
-      onChange(value);
+      onChange(value)
     }
-  };
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!props.disabled) {
-      ``;
-      onChange?.(e.target.checked);
+      ;``
+      onChange?.(e.target.checked)
     }
-  };
+  }
 
   if (type === 'medium') {
     return (
       <label
         onClick={handleLabelClick}
         className={clsx(
-          `flex w-full flex-row items-start gap-2 overflow-hidden rounded-lg border border-primary-gray-200 px-4 py-[14px]`,
+          `border-primary-gray-200 flex w-full flex-row items-start gap-2 overflow-hidden rounded-lg border px-4 py-[14px]`,
           props.checked && 'border-primary-orange-400',
           props.disabled || 'cursor-pointer',
         )}
@@ -132,7 +133,7 @@ const Box = forwardRef<HTMLInputElement, RadioBoxProps>(function Box(
         <RadioIndicator size={20} checked={props.checked} disabled={props.disabled} />
         <div className="flex flex-1 flex-col">
           {content && (
-            <Typography variant="body2" className="text-[15px] font-medium text-primary-gray-900">
+            <Typography variant="body2" className="text-primary-gray-900 text-[15px] font-medium">
               {content}
             </Typography>
           )}
@@ -140,14 +141,14 @@ const Box = forwardRef<HTMLInputElement, RadioBoxProps>(function Box(
 
         <input ref={ref} type="radio" className="sr-only" value={value} onChange={handleInputChange} {...props} />
       </label>
-    );
+    )
   }
 
   // 기본 type: large
   return (
     <label
       onClick={handleLabelClick}
-      className={`flex w-full cursor-pointer flex-row items-center gap-4 rounded-xl border border-primary-gray-200 p-6 shadow-[0_4px_8px_0_#F4F6F8] ${
+      className={`border-primary-gray-200 flex w-full cursor-pointer flex-row items-center gap-4 rounded-xl border p-6 shadow-[0_4px_8px_0_#F4F6F8] ${
         props.checked && 'border-primary-orange-400 shadow-[0_4px_8px_0_#ffe8db]'
       } ${props.disabled && 'bg-primary-gray-100'} overflow-hidden`}
     >
@@ -164,8 +165,8 @@ const Box = forwardRef<HTMLInputElement, RadioBoxProps>(function Box(
       <input ref={ref} type="radio" className="sr-only" value={value} onChange={handleInputChange} {...props} />
       <RadioIndicator size={size} checked={props.checked} disabled={props.disabled} />
     </label>
-  );
-});
+  )
+})
 
 const Label = forwardRef<HTMLInputElement, RadioLabelProps>(function Box(
   { size = 24, title, value, onChange, currentNum, TotalNum, type = 'count', ...props },
@@ -173,13 +174,13 @@ const Label = forwardRef<HTMLInputElement, RadioLabelProps>(function Box(
 ) {
   const handleLabelClick = () => {
     if (!props.disabled && onChange) {
-      onChange(value);
+      onChange(value)
     }
-  };
+  }
   return (
     <label
       onClick={handleLabelClick}
-      className={`flex w-full cursor-pointer flex-row items-center justify-between rounded-xl border border-primary-gray-200 bg-white p-6 shadow-[0_4px_8px_0_#F4F6F8] ${
+      className={`border-primary-gray-200 flex w-full cursor-pointer flex-row items-center justify-between rounded-xl border bg-white p-6 shadow-[0_4px_8px_0_#F4F6F8] ${
         props.checked && 'border-primary-orange-800 shadow-[0_4px_8px_0_#ffe8db]'
       } ${props.disabled && 'bg-primary-gray-50'} overflow-hidden`}
     >
@@ -188,11 +189,11 @@ const Label = forwardRef<HTMLInputElement, RadioLabelProps>(function Box(
           {title}
         </Typography>
         <div className="flex flex-row items-end justify-start gap-2">
-          <Typography variant="title1" className="font-semibold text-primary-gray-900">
+          <Typography variant="title1" className="text-primary-gray-900 font-semibold">
             {currentNum}
             {type === 'count' ? '명' : '개'}
           </Typography>
-          <Typography variant="caption2" className="flex h-6 flex-col justify-center text-primary-gray-500">
+          <Typography variant="caption2" className="text-primary-gray-500 flex h-6 flex-col justify-center">
             /&nbsp;{TotalNum}
             {type === 'count' ? '명' : '개'}
           </Typography>
@@ -200,19 +201,19 @@ const Label = forwardRef<HTMLInputElement, RadioLabelProps>(function Box(
       </div>
       <input ref={ref} type="radio" className="sr-only" value={value} {...props} />
     </label>
-  );
-});
+  )
+})
 
 const Chip = forwardRef<HTMLInputElement, RadioChipProps>(function Chip(
   { checked = false, disabled = false, onChange, label, ...props },
   ref,
 ) {
   const handleLabelClick = (e: React.MouseEvent<HTMLLabelElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!disabled && onChange) {
-      onChange(!checked as unknown as React.ChangeEvent<HTMLInputElement>);
+      onChange(!checked as unknown as React.ChangeEvent<HTMLInputElement>)
     }
-  };
+  }
 
   return (
     <label
@@ -225,31 +226,31 @@ const Chip = forwardRef<HTMLInputElement, RadioChipProps>(function Chip(
             ? 'bg-primary-gray-400 text-white'
             : 'bg-primary-gray-700 text-white'
           : disabled
-          ? 'bg-primary-gray-50 text-primary-gray-400'
-          : 'bg-primary-gray-50 text-primary-gray-700'
+            ? 'bg-primary-gray-50 text-primary-gray-400'
+            : 'bg-primary-gray-50 text-primary-gray-700'
       }`}
     >
       <input ref={ref} type="checkbox" checked={checked} disabled={disabled} className="hidden" {...props} />
-      <div className="w-max shrink grow basis-0 text-center font-['Pretendard'] text-[15px] font-medium leading-snug">
+      <div className="w-max shrink grow basis-0 text-center font-['Pretendard'] text-[15px] leading-snug font-medium">
         {label}
       </div>
     </label>
-  );
-});
+  )
+})
 
 const Group = <T,>({ children, selectedValue, onChange, className }: RadioGroupProps<T>) => {
-  const [selected, setSelected] = useState<T | undefined>(selectedValue);
+  const [selected, setSelected] = useState<T | undefined>(selectedValue)
 
   useEffect(() => {
     if (selectedValue !== undefined) {
-      setSelected(selectedValue);
+      setSelected(selectedValue)
     }
-  }, [selectedValue]);
+  }, [selectedValue])
 
   const handleRadioChange = (value: T) => {
-    setSelected(value);
-    onChange?.(value);
-  };
+    setSelected(value)
+    onChange?.(value)
+  }
 
   return (
     <div className={className}>
@@ -263,8 +264,8 @@ const Group = <T,>({ children, selectedValue, onChange, className }: RadioGroupP
           : child,
       )}
     </div>
-  );
-};
+  )
+}
 
 export const RadioV2 = {
   Basic,
@@ -272,4 +273,4 @@ export const RadioV2 = {
   Chip,
   Label,
   Group,
-};
+}

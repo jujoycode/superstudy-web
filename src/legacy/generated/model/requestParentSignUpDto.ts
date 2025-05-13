@@ -8,15 +8,15 @@
 
 export interface RequestParentSignUpDto {
   /** 이메일 */
-  email: string | null;
+  email: string | null
   /** 패스워드 */
-  password: string | null;
+  password: string | null
   /** 이름 */
-  name: string;
+  name: string
   /** 전화번호 */
-  phone: string;
+  phone: string
   /** 희망진로 */
-  hopePath: string;
+  hopePath: string
   /** 희망학과 */
-  hopeMajor: string;
+  hopeMajor: string
 }

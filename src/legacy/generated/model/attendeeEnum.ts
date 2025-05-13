@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type AttendeeEnum = (typeof AttendeeEnum)[keyof typeof AttendeeEnum];
+export type AttendeeEnum = (typeof AttendeeEnum)[keyof typeof AttendeeEnum]
 
- 
 export const AttendeeEnum = {
   일반: '일반',
   공휴일: '공휴일',
   체험학습지정불가: '체험학습지정불가',
-} as const;
+} as const

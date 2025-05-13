@@ -8,13 +8,13 @@
 
 export interface RequestCreateStudentRecordDto {
   /** 종류 */
-  type: string;
+  type: string
   /** 자봉동진 */
-  creativeType: string | null;
+  creativeType: string | null
   /** 과목 */
-  subject: string | null;
+  subject: string | null
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  content: string;
+  content: string
 }

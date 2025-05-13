@@ -8,31 +8,31 @@
 
 export interface ResponseParentInfoDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 이메일 */
-  email: string | null;
+  email: string | null
   /** 이름 */
-  name: string;
+  name: string
   /** 전화번호 */
-  phone: string;
+  phone: string
   /** 최초방문여부 */
-  firstVisit: boolean;
+  firstVisit: boolean
   /** 만료여부, 미사용 사용자는 true (전학 등) */
-  expired: boolean;
+  expired: boolean
   /** 주보호자여부 */
-  isPrimaryGuardian: boolean | null;
+  isPrimaryGuardian: boolean | null
   /** 학생 id */
-  childrenId: number;
+  childrenId: number
   /** 학생 이름 */
-  childrenName: string;
+  childrenName: string
   /** 학생 별명 */
-  childrenNickName: string;
+  childrenNickName: string
   /** 보호자 이름 */
-  childrenNokName: string;
+  childrenNokName: string
   /** 보호자 전화번호 */
-  childrenNokPhone: string;
+  childrenNokPhone: string
   /** 출석번호 */
-  childrenStudentNumber: number;
+  childrenStudentNumber: number
   /** KlassGroupName(학년반) */
-  childrenKlassGroupName: string | null;
+  childrenKlassGroupName: string | null
 }

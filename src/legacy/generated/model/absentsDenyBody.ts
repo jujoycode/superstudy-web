@@ -8,5 +8,5 @@
 
 export type AbsentsDenyBody = {
   /** 반려사유 */
-  notApprovedReason?: string;
-};
+  notApprovedReason?: string
+}

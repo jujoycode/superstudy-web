@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Point } from './point';
+import type { Point } from './point'
 
 export interface PaginatedPoint {
-  items: Point[];
-  page: number;
-  size: number;
-  total: number;
+  items: Point[]
+  page: number
+  size: number
+  total: number
 }

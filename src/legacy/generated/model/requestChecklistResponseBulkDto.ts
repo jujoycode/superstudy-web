@@ -5,13 +5,13 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ChecklistLocation } from './checklistLocation';
+import type { ChecklistLocation } from './checklistLocation'
 
 export interface RequestChecklistResponseBulkDto {
   /** 체크리스트가 속하는 위치 */
-  location: ChecklistLocation;
+  location: ChecklistLocation
   /** 체크하려는 체크리스트 id 들 */
-  checkedIds: number[];
+  checkedIds: number[]
   /** 체크하지 않을 체크리스트 id 들 */
-  uncheckedIds: number[];
+  uncheckedIds: number[]
 }

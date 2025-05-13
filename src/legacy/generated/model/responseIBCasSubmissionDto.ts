@@ -5,23 +5,23 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBCasSubmissionDtoIbType } from './responseIBCasSubmissionDtoIbType';
-import type { ResponseIBCasSubmissionDtoStatus } from './responseIBCasSubmissionDtoStatus';
-import type { BaseResponseDto } from './baseResponseDto';
+import type { BaseResponseDto } from './baseResponseDto'
+import type { ResponseIBCasSubmissionDtoIbType } from './responseIBCasSubmissionDtoIbType'
+import type { ResponseIBCasSubmissionDtoStatus } from './responseIBCasSubmissionDtoStatus'
 
 export interface ResponseIBCasSubmissionDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** IB 프로젝트 타입 */
-  ibType: ResponseIBCasSubmissionDtoIbType;
+  ibType: ResponseIBCasSubmissionDtoIbType
   /** 프로젝트 타이틀|제목 */
-  title: string;
+  title: string
   /** IB 프로젝트 진행 상태 값 */
-  status: ResponseIBCasSubmissionDtoStatus;
+  status: ResponseIBCasSubmissionDtoStatus
   /** CAS */
-  cas: BaseResponseDto;
+  cas: BaseResponseDto
 }

@@ -8,25 +8,25 @@
 
 export interface ResponseSearchUserByGradeAndKlassDto {
   /** 유저 Id */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 이메일 */
-  email: string;
+  email: string
   /** role */
-  role: string;
+  role: string
   /** 이름 */
-  name: string;
+  name: string
   /** 학번 */
-  studentNumber: number;
+  studentNumber: number
   /** 그룹이름 */
-  groupName: number;
+  groupName: number
   /** 년도 */
-  year: number;
+  year: number
   /** 학년 */
-  grade: number;
+  grade: number
   /** 반 */
-  klass: number;
+  klass: number
 }

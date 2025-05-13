@@ -5,13 +5,13 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { TKPPFContentCreateDto } from './tKPPFContentCreateDto';
+import type { TKPPFContentCreateDto } from './tKPPFContentCreateDto'
 
 export interface RequestCreateTKPPFDto {
   /** TKPPF 1차 내용 */
-  sequence1?: TKPPFContentCreateDto;
+  sequence1?: TKPPFContentCreateDto
   /** TKPPF 2차 내용 */
-  sequence2?: TKPPFContentCreateDto;
+  sequence2?: TKPPFContentCreateDto
   /** TKPPF 3차 내용 */
-  sequence3?: TKPPFContentCreateDto;
+  sequence3?: TKPPFContentCreateDto
 }

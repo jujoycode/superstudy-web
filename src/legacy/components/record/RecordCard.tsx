@@ -1,10 +1,11 @@
 import { Blank, Label, Section, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { useTeacherRecordCard } from '@/legacy/container/teacher-record-card'
 import { StudentActivity } from '@/legacy/generated/model'
 import { makeDateToString } from '@/legacy/util/time'
+
 import { ErrorBlank } from '../ErrorBlank'
-import { Button } from '@/legacy/components/common/Button'
-import { Checkbox } from '@/legacy/components/common/Checkbox'
 
 interface RecordCardProps {
   record: StudentActivity

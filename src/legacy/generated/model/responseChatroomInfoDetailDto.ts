@@ -5,12 +5,12 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Chatroom } from './chatroom';
-import type { ResponseChatAttendeeDto } from './responseChatAttendeeDto';
+import type { Chatroom } from './chatroom'
+import type { ResponseChatAttendeeDto } from './responseChatAttendeeDto'
 
 export interface ResponseChatroomInfoDetailDto {
   /** 채팅방 정보 */
-  roomData: Chatroom;
+  roomData: Chatroom
   /** 채팅방 참석자 목록 */
-  attendeeList: ResponseChatAttendeeDto[];
+  attendeeList: ResponseChatAttendeeDto[]
 }

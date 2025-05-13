@@ -8,17 +8,17 @@
 
 export interface RequestUpdateFieldtripResultByTeacherDto {
   /** 목적지 */
-  destination: string;
+  destination: string
   /** 해외 여부 */
-  overseas: boolean;
+  overseas: boolean
   /** 결과보고서내용 */
-  resultText: string;
+  resultText: string
   /** 결과보고서제목 */
-  resultTitle: string;
+  resultTitle: string
   /** 결과보고서첨부파일들 */
-  resultFiles: string[];
+  resultFiles: string[]
   /** 수정사유 */
-  updateReason: string;
+  updateReason: string
   /** 결과보고서 신고일 */
-  resultReportedAt: string;
+  resultReportedAt: string
 }

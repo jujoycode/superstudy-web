@@ -1,4 +1,5 @@
-import { PropsWithChildren, useRef, useState } from 'react'
+import { PropsWithChildren, useState } from 'react'
+
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -9,6 +10,7 @@ import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { PopupModal } from '@/legacy/components/PopupModal'
 import { useTokEvaluationCreateCriteria } from '@/legacy/generated/endpoint'
 import { RequestCreateTokEvaluationDtoType, TokEvaluationGradeDto } from '@/legacy/generated/model'
+
 import { EvalInputField } from '../../EvalInputField'
 
 const TOK_TYPE_KOR = {
@@ -29,11 +31,8 @@ export function CoordinatorTOK_Eval_AddEval({
   modalOpen,
   setModalClose,
   onSuccess,
-  ablePropragation = false,
 }: PropsWithChildren<CoordinatorTOK_Eval_AddEvalProps>) {
   // 평가 아코디언 기준 뱃지를 만들기 위한 알파벳 배열 생성
-  const alphabetArray = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i))
-
   const [isOpen, setIsOpen] = useState(false)
   const [grades, setGrades] = useState<TokEvaluationGradeDto[]>([
     { name: '', maxScore: 0, minScore: 0, description: '' },
@@ -42,8 +41,6 @@ export function CoordinatorTOK_Eval_AddEval({
   const reset = () => {
     setGrades([{ name: '', maxScore: 0, minScore: 0, description: '' }])
   }
-
-  const scrollRef = useRef<HTMLDivElement>(null)
 
   const { mutate: createCriteria, isLoading: createLoading } = useTokEvaluationCreateCriteria({
     mutation: {

@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { TeacherGroupsFindBySubjectSubjectType } from './teacherGroupsFindBySubjectSubjectType';
+import type { TeacherGroupsFindBySubjectSubjectType } from './teacherGroupsFindBySubjectSubjectType'
 
-export type TeacherGroupsFindBySubjectParams = { subjectType?: TeacherGroupsFindBySubjectSubjectType };
+export type TeacherGroupsFindBySubjectParams = { subjectType?: TeacherGroupsFindBySubjectSubjectType }

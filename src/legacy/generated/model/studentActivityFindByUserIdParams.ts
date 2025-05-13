@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentActivityFindByUserIdParams = { userId: number };
+export type StudentActivityFindByUserIdParams = { userId: number }

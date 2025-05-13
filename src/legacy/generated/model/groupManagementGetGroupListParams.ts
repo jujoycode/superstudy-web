@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type GroupManagementGetGroupListParams = { year?: number };
+export type GroupManagementGetGroupListParams = { year?: number }

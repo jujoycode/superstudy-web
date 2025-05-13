@@ -10,10 +10,9 @@
  * 상세 상태
  */
 export type ResponseIBExhibitionSubmissionStatusDtoDetailStatus =
-  (typeof ResponseIBExhibitionSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBExhibitionSubmissionStatusDtoDetailStatus];
+  (typeof ResponseIBExhibitionSubmissionStatusDtoDetailStatus)[keyof typeof ResponseIBExhibitionSubmissionStatusDtoDetailStatus]
 
- 
 export const ResponseIBExhibitionSubmissionStatusDtoDetailStatus = {
   EVALUATED: 'EVALUATED',
   NOT_EVALUATED: 'NOT_EVALUATED',
-} as const;
+} as const

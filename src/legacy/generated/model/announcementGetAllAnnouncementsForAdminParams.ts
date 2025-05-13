@@ -5,10 +5,10 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { AnnouncementGetAllAnnouncementsForAdminType } from './announcementGetAllAnnouncementsForAdminType';
+import type { AnnouncementGetAllAnnouncementsForAdminType } from './announcementGetAllAnnouncementsForAdminType'
 
 export type AnnouncementGetAllAnnouncementsForAdminParams = {
-  page: number;
-  limit: number;
-  type?: AnnouncementGetAllAnnouncementsForAdminType;
-};
+  page: number
+  limit: number
+  type?: AnnouncementGetAllAnnouncementsForAdminType
+}

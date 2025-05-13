@@ -4,8 +4,8 @@ import {
   useNewsLettersFindOne,
   useStudentNewsletterFindUnreadUsersByNewsletterId,
 } from '@/legacy/generated/endpoint'
-import { useTeacherKlassGroup } from '@/legacy/container/teacher-klass-groups'
-import type { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup } from '@/legacy/generated/model'
+import { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup } from '@/legacy/generated/model'
+import { useTeacherKlassGroup } from './teacher-klass-groups'
 
 type NewData = ResponseGroupDto & {
   isSelected: boolean

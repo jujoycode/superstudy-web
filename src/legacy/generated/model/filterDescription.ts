@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type FilterDescription = (typeof FilterDescription)[keyof typeof FilterDescription];
+export type FilterDescription = (typeof FilterDescription)[keyof typeof FilterDescription]
 
- 
 export const FilterDescription = {
   인정: '인정',
   미인정: '미인정',
   기타: '기타',
-} as const;
+} as const

@@ -1,8 +1,9 @@
+import { addDays, differenceInBusinessDays, differenceInDays, format, getDay } from 'date-fns'
 import { some } from 'lodash'
 import { TZDate } from 'tui-calendar'
-import { addDays, differenceInBusinessDays, differenceInDays, format, getDay } from 'date-fns'
-import { DateFormat, DateUtil } from '@/legacy/util/date'
+
 import type { Schedule } from '@/legacy/types'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 export const makeDateToString = (date: Date | string, connector = '-') => {
   if (!(date instanceof Date)) {

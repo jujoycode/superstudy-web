@@ -5,24 +5,24 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBExhibitionSubmissionStatusDtoIbType } from './responseIBExhibitionSubmissionStatusDtoIbType';
-import type { ResponseIBStudentDto } from './responseIBStudentDto';
-import type { ResponseExhibitionDto } from './responseExhibitionDto';
-import type { ResponseIBExhibitionSubmissionStatusDtoDetailStatus } from './responseIBExhibitionSubmissionStatusDtoDetailStatus';
+import type { ResponseExhibitionDto } from './responseExhibitionDto'
+import type { ResponseIBExhibitionSubmissionStatusDtoDetailStatus } from './responseIBExhibitionSubmissionStatusDtoDetailStatus'
+import type { ResponseIBExhibitionSubmissionStatusDtoIbType } from './responseIBExhibitionSubmissionStatusDtoIbType'
+import type { ResponseIBStudentDto } from './responseIBStudentDto'
 
 export interface ResponseIBExhibitionSubmissionStatusDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** IB 프로젝트 타입 */
-  ibType: ResponseIBExhibitionSubmissionStatusDtoIbType;
+  ibType: ResponseIBExhibitionSubmissionStatusDtoIbType
   /** 프로젝트 리더 */
-  leader: ResponseIBStudentDto;
+  leader: ResponseIBStudentDto
   /** 전시회 */
-  exhibition: ResponseExhibitionDto;
+  exhibition: ResponseExhibitionDto
   /** 상세 상태 */
-  detailStatus: ResponseIBExhibitionSubmissionStatusDtoDetailStatus;
+  detailStatus: ResponseIBExhibitionSubmissionStatusDtoDetailStatus
 }

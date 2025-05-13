@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router'
+
 import { Badge, Blank } from '@/legacy/components/common'
+import { Time } from '@/legacy/components/common/Time'
 import { useActivityFindBySubject } from '@/legacy/generated/endpoint'
 import { Activity, ActivityType } from '@/legacy/generated/model'
-import { Time } from '@/legacy/components/common/Time'
 
 interface ActivitiesViewProps {
   groupId: number

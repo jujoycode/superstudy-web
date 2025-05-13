@@ -8,5 +8,5 @@
 
 export interface RequestEEEvaluationItemDto {
   /** 평가항목 */
-  name: string;
+  name: string
 }

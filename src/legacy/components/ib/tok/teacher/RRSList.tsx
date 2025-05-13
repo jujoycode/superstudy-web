@@ -1,17 +1,19 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
+
 import { useHistory } from '@/hooks/useHistory'
-import NODATA from '@/legacy/assets/images/no-data.png'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
 import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
 import { useRRSGetByIBIdFindAll } from '@/legacy/container/ib-rrs-findAll'
 import { FeedbackReferenceTable, ResponseIBDto } from '@/legacy/generated/model'
-
-import { Typography } from '@/legacy/components/common/Typography'
 import { LocationState } from '@/legacy/types/ib'
+
 import FeedbackViewer from '../../FeedbackViewer'
 import { IBPagination } from '../../ProjectList'
+
+import NODATA from '@/assets/images/no-data.png'
 
 interface RRSListProps {
   title?: string
@@ -20,10 +22,10 @@ interface RRSListProps {
   refetch: () => void
 }
 
-export default function RRSList({ title, data: ibData, studentData, refetch }: RRSListProps) {
+export default function RRSList({ title, data: ibData, studentData }: RRSListProps) {
   const id = ibData.id
   const [currentPage, setCurrentPage] = useState(1)
-  const { data, isLoading } = useRRSGetByIBIdFindAll(id, { page: currentPage })
+  const { data } = useRRSGetByIBIdFindAll(id, { page: currentPage })
   const { push } = useHistory()
 
   const rrsIds = data?.total ? data?.items.map((rrs) => rrs.id).join(',') : null

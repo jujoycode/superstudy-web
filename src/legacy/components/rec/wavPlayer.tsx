@@ -1,25 +1,25 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react'
 
 interface WAVPlayerProps {
-  initialUrl?: string;
+  initialUrl?: string
 }
 
 const WAVPlayer: React.FC<WAVPlayerProps> = ({ initialUrl = '' }) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null)
 
   useEffect(() => {
     if (initialUrl) {
       if (audioRef.current) {
-        audioRef.current.src = initialUrl;
+        audioRef.current.src = initialUrl
       }
     }
-  }, [initialUrl]);
+  }, [initialUrl])
 
   return (
     <div>
       <audio ref={audioRef} controls className="h-7"></audio>
     </div>
-  );
-};
+  )
+}
 
-export default WAVPlayer;
+export default WAVPlayer

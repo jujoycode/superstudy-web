@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type TeacherUserGetOneParams = { join?: string[] };
+export type TeacherUserGetOneParams = { join?: string[] }

@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type NoticesFindAllParams = { page?: number; limit?: number; category?: string; year?: number };
+export type NoticesFindAllParams = { page?: number; limit?: number; category?: string; year?: number }

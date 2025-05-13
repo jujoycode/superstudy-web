@@ -17,13 +17,12 @@
 
  */
 export type ResponseCoordinatorSelfCheckDtoType =
-  (typeof ResponseCoordinatorSelfCheckDtoType)[keyof typeof ResponseCoordinatorSelfCheckDtoType];
+  (typeof ResponseCoordinatorSelfCheckDtoType)[keyof typeof ResponseCoordinatorSelfCheckDtoType]
 
- 
 export const ResponseCoordinatorSelfCheckDtoType = {
   IB_EE: 'IB_EE',
   IB_CAS: 'IB_CAS',
   IB_TOK: 'IB_TOK',
   IB_ALL: 'IB_ALL',
   UNAUTHORIZED: 'UNAUTHORIZED',
-} as const;
+} as const

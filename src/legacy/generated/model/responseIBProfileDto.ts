@@ -5,29 +5,29 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBStudentDto } from './responseIBStudentDto';
-import type { ResponseIBUserDto } from './responseIBUserDto';
-import type { ResponseIBCasProfileInfoDto } from './responseIBCasProfileInfoDto';
+import type { ResponseIBCasProfileInfoDto } from './responseIBCasProfileInfoDto'
+import type { ResponseIBStudentDto } from './responseIBStudentDto'
+import type { ResponseIBUserDto } from './responseIBUserDto'
 
 export interface ResponseIBProfileDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** IB 응시코드 */
-  ibCode?: string;
+  ibCode?: string
   /** CAS 사용여부 */
-  useCas?: boolean;
+  useCas?: boolean
   /** EE 사용여부 */
-  useEe?: boolean;
+  useEe?: boolean
   /** TOK 사용여부 */
-  useTok?: boolean;
+  useTok?: boolean
   /** 학생 */
-  user: ResponseIBStudentDto;
+  user: ResponseIBStudentDto
   /** CAS 지도교사 */
-  mentor: ResponseIBUserDto;
+  mentor: ResponseIBUserDto
   /** 인터뷰 QnA 내용 */
-  casInfo?: ResponseIBCasProfileInfoDto[];
+  casInfo?: ResponseIBCasProfileInfoDto[]
 }

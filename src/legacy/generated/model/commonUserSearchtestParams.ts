@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type CommonUserSearchtestParams = { grade?: string; klass?: string };
+export type CommonUserSearchtestParams = { grade?: string; klass?: string }

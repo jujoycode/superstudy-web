@@ -5,9 +5,9 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestGroupStudentDto } from './requestGroupStudentDto';
+import type { RequestGroupStudentDto } from './requestGroupStudentDto'
 
 export interface RequestGroupStudentsDto {
   /** 학생 목록 */
-  groupStudents: RequestGroupStudentDto[];
+  groupStudents: RequestGroupStudentDto[]
 }

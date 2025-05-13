@@ -1,12 +1,12 @@
-import clsx from 'clsx';
-import { format, formatDistanceToNowStrict } from 'date-fns';
-import { ko } from 'date-fns/locale';
-import { TimeHTMLAttributes } from 'react';
+import clsx from 'clsx'
+import { format, formatDistanceToNowStrict } from 'date-fns'
+import { ko } from 'date-fns/locale'
+import { TimeHTMLAttributes } from 'react'
 
 export interface TimeProps extends TimeHTMLAttributes<HTMLTimeElement> {
-  date?: string | null;
-  format?: string;
-  formatDistanceToNow?: boolean;
+  date?: string | null
+  format?: string
+  formatDistanceToNow?: boolean
 }
 
 export function Time({
@@ -23,5 +23,5 @@ export function Time({
           ? formatDistanceToNowStrict(new Date(date), { locale: ko, addSuffix: true })
           : format(new Date(date), formatString, { locale: ko }))}
     </time>
-  );
+  )
 }

@@ -10,8 +10,10 @@ import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
 import { useActivityLogGetAll } from '@/legacy/container/ib-cas'
 import { useGetFeedbackBatchExist } from '@/legacy/container/ib-feedback'
 import { FeedbackReferenceTable, ResponseIBDtoStatus } from '@/legacy/generated/model'
+
 import FeedbackViewer from '../FeedbackViewer'
 import { IBPagination } from '../ProjectList'
+
 import { IbActivityLog } from './IbActivityLog'
 import { useHistory } from '@/hooks/useHistory'
 
@@ -23,15 +25,11 @@ interface ActivityLogListProps {
   writerId?: number
 }
 
-interface LocationState {
-  page: number
-}
-
 export default function ActivityLogList({ id, status, writerId }: ActivityLogListProps) {
   const { push } = useHistory()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [alertOpen, setAlertOpen] = useState<boolean>(false)
-  const location = useLocation<LocationState>()
+  const location = useLocation()
   const page = location.state?.page
   const [currentPage, setCurrentPage] = useState(page || 1)
   const { data, isLoading, refetch } = useActivityLogGetAll(id, { page: currentPage, limit: 10, writerId: writerId })

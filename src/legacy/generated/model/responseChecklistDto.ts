@@ -5,19 +5,19 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseChecklistDtoLocation } from './responseChecklistDtoLocation';
+import type { ResponseChecklistDtoLocation } from './responseChecklistDtoLocation'
 
 export interface ResponseChecklistDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 체크리스트 내용 */
-  content: string;
+  content: string
   /** 체크리스트 위치|타입 */
-  location: ResponseChecklistDtoLocation;
+  location: ResponseChecklistDtoLocation
   /** 체크유무 (학생조회에서만 나가는 key 입니다.) */
-  check?: boolean;
+  check?: boolean
 }

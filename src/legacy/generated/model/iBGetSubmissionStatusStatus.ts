@@ -6,12 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type IBGetSubmissionStatusStatus =
-  (typeof IBGetSubmissionStatusStatus)[keyof typeof IBGetSubmissionStatusStatus];
+export type IBGetSubmissionStatusStatus = (typeof IBGetSubmissionStatusStatus)[keyof typeof IBGetSubmissionStatusStatus]
 
- 
 export const IBGetSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',
   APPROVED: 'APPROVED',
-} as const;
+} as const

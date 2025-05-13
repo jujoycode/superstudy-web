@@ -10,10 +10,10 @@ import { toastState } from '@/stores'
 import { checkFileSizeLimit100MB, isPdfFile } from '@/legacy/util/file'
 import { DocumentObjectComponentDel } from '../DocumentObjectComponentDel'
 import { ImageObjectComponent } from '../ImageObjectComponent'
-import { Label, Textarea } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
-import { FileUpload } from '@/legacy/components/common/FileUpload'
-import { Time } from '@/legacy/components/common/Time'
+import { Label, Textarea } from '../common'
+import { Button } from '../common/Button'
+import { FileUpload } from '../common/FileUpload'
+import { Time } from '../common/Time'
 import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
 
 interface StudentActivitySessionSubmitViewProps {
@@ -57,7 +57,7 @@ export const StudentActivitySessionSubmitView: React.FC<StudentActivitySessionSu
     toggleDocumentDelete,
   } = useImageAndDocument({ images: studentActivity?.images, documents: studentActivity?.files })
 
-  const { isUploadLoading, handleUploadFile } = useFileUpload()
+  const { handleUploadFile } = useFileUpload()
 
   const viewerImages: ImageDecorator[] = []
   if (activity?.images) {
@@ -74,6 +74,12 @@ export const StudentActivitySessionSubmitView: React.FC<StudentActivitySessionSu
   const calculateIsSubmitHour = () => {
     const { submitStartHour, submitStartMinute, submitEndHour, submitEndMinute } = activity
     if (submitStartHour === -1 || submitStartMinute === -1 || submitEndHour === -1 || submitEndMinute === -1) {
+      return true
+    }
+    if (submitStartHour === 0 && submitStartMinute === 0 && submitEndHour === 0 && submitEndMinute === 0) {
+      return true
+    }
+    if (submitStartHour === null || submitStartMinute === null || submitEndHour === null || submitEndMinute === null) {
       return true
     }
     const start = new Date(now)
@@ -210,7 +216,7 @@ export const StudentActivitySessionSubmitView: React.FC<StudentActivitySessionSu
                   className="h-auto border"
                 />
                 <div className="flex items-center justify-end">
-                  공백제외&nbsp;<span className="text-brand-1">{content.replaceAll(' ', '').length}</span>&nbsp;자&nbsp;
+                  공백제외&nbsp;<span className="text-brand-1">{content.replace(/ /g, '').length}</span>&nbsp;자&nbsp;
                   공백포함&nbsp;
                   <span className="text-brand-1">{content.length}</span>&nbsp;자
                 </div>
@@ -226,8 +232,9 @@ export const StudentActivitySessionSubmitView: React.FC<StudentActivitySessionSu
                 )}
                 {activity.submitStartHour !== -1 && (
                   <div className="text-brandblue-1 mt-3">
-                    활동 시간대 : {activity.submitStartHour}시 {activity.submitStartMinute}분부터{' '}
-                    {activity.submitEndHour}시 {activity.submitEndMinute}분까지
+                    활동 시간대 : {activity.submitStartHour}시{' '}
+                    {activity.submitStartMinute < 0 ? 0 : activity.submitStartMinute}분부터 {activity.submitEndHour}시{' '}
+                    {activity.submitEndMinute < 0 ? 0 : activity.submitEndMinute}분까지
                   </div>
                 )}
               </div>

@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { DependentCategory } from './dependentCategory';
+import type { DependentCategory } from './dependentCategory'
 
-export type IBCoordinatorGetItemsParams = { page?: number; limit?: number; type?: DependentCategory };
+export type IBCoordinatorGetItemsParams = { page?: number; limit?: number; type?: DependentCategory }

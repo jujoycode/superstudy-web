@@ -10,11 +10,10 @@
  * 검사상태
  */
 export type ResponseCopykillerWithContentDtoCompleteStatus =
-  (typeof ResponseCopykillerWithContentDtoCompleteStatus)[keyof typeof ResponseCopykillerWithContentDtoCompleteStatus];
+  (typeof ResponseCopykillerWithContentDtoCompleteStatus)[keyof typeof ResponseCopykillerWithContentDtoCompleteStatus]
 
- 
 export const ResponseCopykillerWithContentDtoCompleteStatus = {
   N: 'N',
   Y: 'Y',
   F: 'F',
-} as const;
+} as const

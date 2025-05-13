@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { ChangeEvent, InputHTMLAttributes, useState } from 'react'
+
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 
 export interface FileUploadProps extends InputHTMLAttributes<HTMLInputElement> {}

@@ -5,68 +5,68 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ActivityType } from './activityType';
-import type { StudentActivitySession } from './studentActivitySession';
-import type { ActivityV3 } from './activityV3';
-import type { ActivitySessionOrder } from './activitySessionOrder';
+import type { ActivitySessionOrder } from './activitySessionOrder'
+import type { ActivityType } from './activityType'
+import type { ActivityV3 } from './activityV3'
+import type { StudentActivitySession } from './studentActivitySession'
 
 export interface ActivitySessionWithCountDto {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  content: string | null;
+  content: string | null
   /** 설문 내용 */
-  surveyContent: string | null;
+  surveyContent: string | null
   /** 시작일 */
-  startDate: string;
+  startDate: string
   /** 제출가능 시간대 시작 시 */
-  submitStartHour: number;
+  submitStartHour: number
   /** 제출가능 시간대 시작 분 */
-  submitStartMinute: number;
+  submitStartMinute: number
   /** 제출가능 시간대 종료 시 */
-  submitEndHour: number;
+  submitEndHour: number
   /** 제출가능 시간대 종료 분 */
-  submitEndMinute: number;
+  submitEndMinute: number
   /** 종료일 */
-  endDate: string;
+  endDate: string
   /** 이미지파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 과제 타입 */
-  type: ActivityType;
+  type: ActivityType
   /** 이미지업로드여부 */
-  isImage: boolean;
+  isImage: boolean
   /** 첨부파일업로드여부 */
-  isFile: boolean;
+  isFile: boolean
   /** 첨부파일필수여부 */
-  isFileRequired: boolean;
+  isFileRequired: boolean
   /** 내용입력여부 */
-  isContent: boolean;
+  isContent: boolean
   /** 내용필수여부 */
-  isContentRequired: boolean;
+  isContentRequired: boolean
   /** 삭제여부 */
-  isDeleted: boolean;
+  isDeleted: boolean
   /** 연결된 학생 활동 세션들 */
-  studentActivitySessions: StudentActivitySession[];
+  studentActivitySessions: StudentActivitySession[]
   /** 작성자 유저 ID */
-  activityv3Id: number;
+  activityv3Id: number
   /** 상위 활동 */
-  activityv3: ActivityV3;
+  activityv3: ActivityV3
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 상위 차시 */
-  activitySessionOrder: ActivitySessionOrder;
+  activitySessionOrder: ActivitySessionOrder
   /** 제출한 인원 수 */
-  submittedCount: number;
+  submittedCount: number
   /** 차시 순서 */
-  activitySessionOrder_order: number;
+  activitySessionOrder_order: number
   /** 보여지는 순서 */
-  activitySessionOrder_view_order: number;
+  activitySessionOrder_view_order: number
 }

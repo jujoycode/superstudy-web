@@ -1,10 +1,11 @@
 import { differenceInSeconds, parseISO } from 'date-fns'
+import { twMerge } from 'tailwind-merge'
+
 import { useHistory } from '@/hooks/useHistory'
 import { StudentGroup } from '@/legacy/generated/model'
 import { useModals } from '@/legacy/modals/ModalStack'
 import { StudentModal } from '@/legacy/modals/StudentModal'
 import { getNickName, padLeftstr } from '@/legacy/util/status'
-import { twMerge } from 'tailwind-merge'
 
 interface Activityv3SubmitterItemProps {
   id: number

@@ -1,7 +1,9 @@
 import fontkit from '@pdf-lib/fontkit'
 import { PDFDocument, PageSizes } from 'pdf-lib'
-import { pxToPoint, drawSection } from '../pdf-lib'
+
 import { type ResponseIBProposalDto } from '@/legacy/generated/model'
+
+import { pxToPoint, drawSection } from '../pdf-lib'
 
 export const createEeProposalPdf = async (
   { klassNum, name }: { klassNum: string; name: string },

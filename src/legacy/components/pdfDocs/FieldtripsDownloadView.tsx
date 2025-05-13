@@ -2,11 +2,11 @@ import { toJpeg } from 'html-to-image'
 import { jsPDF } from 'jspdf'
 import { filter, find, groupBy, map } from 'lodash'
 import { useRef, useState } from 'react'
-import { Fieldtrip } from '@/legacy/generated/model'
-import { FieldtripPaperType } from '@/legacy/types'
-import { getImageMeta, getPdfImageSize } from '@/legacy/util/pdf'
 import { Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
+import { Fieldtrip } from '@/legacy/generated/model'
+import { FieldtripPaperType } from '@/legacy/types'
+import { getImageMeta } from '@/legacy/util/pdf'
 import { FieldtripPdf } from './FieldtripPdf'
 
 interface FieldtripsDownloadViewProps {
@@ -33,7 +33,7 @@ export function FieldtripsDownloadView({
   isCsvData,
 }: FieldtripsDownloadViewProps) {
   const [open, setOpen] = useState(false)
-  const docRef = useRef<jsPDF>()
+  const docRef = useRef<jsPDF>(null)
   const [withEvidence, setWithEvidence] = useState(false)
   const [isExtractData, setIsExtractData] = useState(false)
   const [extractDataCount, setExtractDataCount] = useState(-1)
@@ -48,23 +48,6 @@ export function FieldtripsDownloadView({
     setExtractDataCount(-1)
     setIsProcessPdf(false)
     setIsProcessPdfCount(0)
-  }
-
-  const _addImageToPdf = async (imageData: ReactPdfData) => {
-    if (!docRef.current || !imageData.width || !imageData.height) {
-      return null
-    }
-    const { width: imageWidth, height: imageHeight, data } = imageData
-    const [width, height] = getPdfImageSize(imageWidth, imageHeight)
-    console.log('_addImageToPdf', 'width', width, 'height', height)
-    try {
-      docRef.current.addImage(data, 'JPEG', 0, 0, width, height, undefined, 'FAST')
-      docRef.current.addPage()
-    } catch (e) {
-      console.log('_addImageToPdf error  : ', e)
-      console.log('_addImageToPdf data  : ', data)
-      console.log('_addImageToPdf imageData  : ', imageData)
-    }
   }
 
   const addReactToPdf = async (reactData: ReactPdfData) => {

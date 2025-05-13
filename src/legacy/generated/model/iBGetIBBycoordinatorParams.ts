@@ -7,14 +7,14 @@
  */
 
 export type IBGetIBBycoordinatorParams = {
-  page?: number;
-  limit?: number;
-  ibTypes?: string;
-  statuses?: string;
-  grade?: number;
-  klass?: number;
-  studentId?: number;
-  studentName?: string;
-  mentorId?: number;
-  proposalSubject?: string;
-};
+  page?: number
+  limit?: number
+  ibTypes?: string
+  statuses?: string
+  grade?: number
+  klass?: number
+  studentId?: number
+  studentName?: string
+  mentorId?: number
+  proposalSubject?: string
+}

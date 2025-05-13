@@ -10,10 +10,9 @@
  * 평가 유형
  */
 export type RequestCreateTokEvaluationDtoType =
-  (typeof RequestCreateTokEvaluationDtoType)[keyof typeof RequestCreateTokEvaluationDtoType];
+  (typeof RequestCreateTokEvaluationDtoType)[keyof typeof RequestCreateTokEvaluationDtoType]
 
- 
 export const RequestCreateTokEvaluationDtoType = {
   EXHIBITION: 'EXHIBITION',
   ESSAY: 'ESSAY',
-} as const;
+} as const

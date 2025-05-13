@@ -11,23 +11,23 @@
  */
 export type RequestIBCasDtoLearnerProfile = {
   /** 탐구하는 사람 */
-  inquirer?: boolean;
+  inquirer?: boolean
   /** 지식이 풍부한 사람 */
-  knowledgeable?: boolean;
+  knowledgeable?: boolean
   /** 사고하는 사람 */
-  thinker?: boolean;
+  thinker?: boolean
   /** 소통하는 사람 */
-  communicator?: boolean;
+  communicator?: boolean
   /** 원칙을 지키는 사람 */
-  principled?: boolean;
+  principled?: boolean
   /** 열린 마음을 지닌 사람 */
-  openMinded?: boolean;
+  openMinded?: boolean
   /** 배려하는 사람 */
-  caring?: boolean;
+  caring?: boolean
   /** 도전하는 사람 */
-  riskTaker?: boolean;
+  riskTaker?: boolean
   /** 균형잡힌 사람 */
-  balanced?: boolean;
+  balanced?: boolean
   /** 성찰하는 사람 */
-  reflective?: boolean;
-};
+  reflective?: boolean
+}

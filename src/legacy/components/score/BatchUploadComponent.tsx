@@ -2,9 +2,8 @@ import { Box, LinearProgress, LinearProgressProps, Typography } from '@mui/mater
 import clsx from 'clsx'
 import _ from 'lodash'
 import { useState } from 'react'
+
 import { useHistory } from '@/hooks/useHistory'
-import superstudyLogo from '@/legacy/assets/images/logo.png'
-import neisLogo from '@/legacy/assets/images/neis.png'
 import AlertDialog from '@/legacy/components/common/AlertDialog'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
 import { Icon } from '@/legacy/components/common/icons'
@@ -12,6 +11,9 @@ import { useInsertScoreBatch } from '@/legacy/container/insert-exam-score'
 import { validateAndExtract } from '@/legacy/util/exam-score'
 import { isExcelFile } from '@/legacy/util/file'
 import { getThisYear } from '@/legacy/util/time'
+
+import superstudyLogo from '@/assets/images/logo.png'
+import neisLogo from '@/assets/images/neis.png'
 
 interface LinearProgressWithLabelProps extends LinearProgressProps {
   value: number
@@ -57,7 +59,7 @@ export const BatcbUploadComponent: React.FC<BatcbUploadComponentProps> = ({
   const [dialogOpen, setDialogOpen] = useState(false)
   const [alertOpen, setAlertOpen] = useState(false)
   const { push } = useHistory()
-  const { insertScoreBatch, isLoading, errorMessage } = useInsertScoreBatch()
+  const { insertScoreBatch } = useInsertScoreBatch()
 
   const documentFiles = [...documentObjectMap.values()]
     .filter((value) => !value.isDelete && value.document instanceof File)

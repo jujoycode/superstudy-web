@@ -7,12 +7,11 @@
  */
 
 export type TKPPFGetSubmissionStatusStatus =
-  (typeof TKPPFGetSubmissionStatusStatus)[keyof typeof TKPPFGetSubmissionStatusStatus];
+  (typeof TKPPFGetSubmissionStatusStatus)[keyof typeof TKPPFGetSubmissionStatusStatus]
 
- 
 export const TKPPFGetSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   IN_PROGRESS: 'IN_PROGRESS',
   IB_TEACHER_FEEDBACK: 'IB_TEACHER_FEEDBACK',
   COMPLETED: 'COMPLETED',
-} as const;
+} as const

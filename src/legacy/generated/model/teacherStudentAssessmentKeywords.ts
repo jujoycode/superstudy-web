@@ -9,4 +9,4 @@
 /**
  * 선택 키워드
  */
-export type TeacherStudentAssessmentKeywords = { [key: string]: any };
+export type TeacherStudentAssessmentKeywords = { [key: string]: any }

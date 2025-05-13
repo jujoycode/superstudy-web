@@ -5,18 +5,18 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseIBProfileDto } from './responseIBProfileDto';
-import type { ResponseIBOnlyCasDto } from './responseIBOnlyCasDto';
-import type { ResponseIBBasicContentDto } from './responseIBBasicContentDto';
-import type { ResponseInterviewListWithQnaDto } from './responseInterviewListWithQnaDto';
+import type { ResponseIBBasicContentDto } from './responseIBBasicContentDto'
+import type { ResponseIBOnlyCasDto } from './responseIBOnlyCasDto'
+import type { ResponseIBProfileDto } from './responseIBProfileDto'
+import type { ResponseInterviewListWithQnaDto } from './responseInterviewListWithQnaDto'
 
 export interface ResponseIBPortfolioDto {
   /** IB 프로필 */
-  profile: ResponseIBProfileDto;
+  profile: ResponseIBProfileDto
   /** IB CAS 프로젝트 */
-  projects: ResponseIBOnlyCasDto[];
+  projects: ResponseIBOnlyCasDto[]
   /** 성찰일지 */
-  reflectionDiary: ResponseIBBasicContentDto[];
+  reflectionDiary: ResponseIBBasicContentDto[]
   /** 인터뷰 */
-  interview: ResponseInterviewListWithQnaDto[];
+  interview: ResponseInterviewListWithQnaDto[]
 }

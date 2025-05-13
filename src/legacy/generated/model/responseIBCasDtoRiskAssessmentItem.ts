@@ -7,6 +7,6 @@
  */
 
 export type ResponseIBCasDtoRiskAssessmentItem = {
-  question?: string;
-  answer?: string;
-};
+  question?: string
+  answer?: string
+}

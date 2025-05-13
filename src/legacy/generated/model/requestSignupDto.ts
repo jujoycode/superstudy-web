@@ -5,22 +5,22 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestSignupDtoStudent } from './requestSignupDtoStudent';
-import type { RequestSignupDtoParent } from './requestSignupDtoParent';
+import type { RequestSignupDtoParent } from './requestSignupDtoParent'
+import type { RequestSignupDtoStudent } from './requestSignupDtoStudent'
 
 export interface RequestSignupDto {
   /** 학교 ID */
-  schoolId: number;
+  schoolId: number
   /** partnerSchool code ID */
-  codeId: number;
+  codeId: number
   /** 학년 */
-  grade: number;
+  grade: number
   /** 반 */
-  klass: number;
+  klass: number
   /** 번호 */
-  studentNumber: number;
+  studentNumber: number
   /** 가입할 학생 */
-  student: RequestSignupDtoStudent;
+  student: RequestSignupDtoStudent
   /** 가입할 학부모 */
-  parent: RequestSignupDtoParent;
+  parent: RequestSignupDtoParent
 }

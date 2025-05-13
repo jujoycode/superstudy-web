@@ -2,15 +2,6 @@ import { chain } from 'lodash'
 import { useMemo, useState } from 'react'
 import { useCommonUserSearchByName, useStudentGroupsFindWithKlassByGroupId } from '@/legacy/generated/endpoint'
 
-interface UserData {
-  id: number
-  name: string
-  nickName: string
-  grade: number
-  klass: string
-  studentNumber: number
-}
-
 export function useTeacherSearchUser(groupId: number) {
   const [searchName, setSearchName] = useState<string>()
 
@@ -31,16 +22,16 @@ export function useTeacherSearchUser(groupId: number) {
 
   const isLoading = isLoadingStudentGroups || isLoadingUser
 
-  const userDatas: UserData[] = useMemo(() => {
+  const userDatas = useMemo(() => {
     if (groupId) {
       if (searchName) {
         return chain(studentGroups)
           .map((sg) => ({
             id: sg.userId,
             name: sg.userName,
-            nickName: sg.userNickName || '',
+            nickName: sg.userNickName,
             grade: 0,
-            klass: sg.klass || '',
+            klass: sg.klass,
             studentNumber: sg.studentNumber,
           }))
           .filter((sg) => sg.name.includes(searchName) || (sg.nickName || '').includes(searchName))
@@ -59,9 +50,9 @@ export function useTeacherSearchUser(groupId: number) {
           .map((sg) => ({
             id: sg.userId,
             name: sg.userName,
-            nickName: sg.userNickName || '',
+            nickName: sg.userNickName,
             grade: 0,
-            klass: sg.klass || '',
+            klass: sg.klass,
             studentNumber: sg.studentNumber,
           }))
           .uniqBy('id')
@@ -80,13 +71,16 @@ export function useTeacherSearchUser(groupId: number) {
         .map((u) => ({
           id: u.id,
           name: u.name,
-          nickName: u.nickName || '',
-          grade: u.studentGroups?.[0].group?.grade || 0,
-          klass: u.studentGroups?.[0].group?.klass.toString() || '',
-          studentNumber: u.studentGroups?.[0].studentNumber || 0,
+          nickName: u.nickName,
+          //@ts-ignore
+          grade: u.studentGroups[0].group.grade,
+          //@ts-ignore
+          klass: u.studentGroups[0].group.klass,
+          //@ts-ignore
+          studentNumber: u.studentGroups[0].studentNumber,
         }))
         .uniqBy('id')
-        .orderBy(['klass', 'studentNumber'])
+        .orderBy(['klass', 'stuentNumber'])
         .value()
     }
   }, [searchName, groupId, studentGroups, user])

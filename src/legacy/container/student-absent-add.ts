@@ -1,23 +1,18 @@
 import { t } from 'i18next'
-
-// ? date-fns 개선 필요
 import moment from 'moment'
 import { useEffect, useState } from 'react'
-
-// ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
-
 import { useRecoilValue } from 'recoil'
-import { childState } from '@/stores'
+import { useAbsentsCreate, useAbsentsFindAllByStudent, useAbsentsUpdate } from '@/legacy/generated/endpoint'
+import { Absent, AbsentStatus, Role, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
+import { childState } from '@/stores'
+import { ImageObject } from '@/legacy/types/image-object'
+import { AbsentDescription, AbsentTimeType, errorType } from '@/legacy/types'
 import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString, makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
-import { useAbsentsCreate, useAbsentsFindAllByStudent, useAbsentsUpdate } from '@/legacy/generated/endpoint'
-import { UserContainer } from '@/legacy/container/user'
-import type { ImageObject } from '@/legacy/types/image-object'
-import { type Absent, AbsentStatus, Role, UploadFileTypeEnum } from '@/legacy/generated/model'
-import { AbsentTimeType, type AbsentDescription, type errorType } from '@/legacy/types'
+import { UserContainer } from './user'
 
 const reasonType = [
   '상고',
@@ -131,7 +126,7 @@ export function useStudentAbsentAdd({ absentData, returnToDetail }: Props) {
   const [endAt, setEndAt] = useState(_endAt ? makeDateToString(_endAt) : '')
   const [description, setDescription] = useState(_description || '')
   const [parentComment, setParentComment] = useState(_parentComment || '')
-  const [teacherComment, setTeacherComment] = useState(_teacherComment || '')
+  const [teacherComment] = useState(_teacherComment || '')
 
   const [startHour, setStartHour] = useState(_startAt ? new Date(_startAt).getHours() : 9)
   const [startMinute, setStartMinute] = useState(_startAt ? new Date(_startAt).getMinutes() : 0)
@@ -216,7 +211,7 @@ export function useStudentAbsentAdd({ absentData, returnToDetail }: Props) {
           setLoading(false)
           setSignModal(false)
           //setErrorMessage(errorMsg?.message || '슈퍼스쿨에 문의하여 결재자 지정상태를 확인하세요.');
-        } catch (error) { }
+        } catch (error) {}
       },
     },
     request: {
@@ -286,7 +281,7 @@ export function useStudentAbsentAdd({ absentData, returnToDetail }: Props) {
         setLoading(false)
         setErrorMessage(errorMsg?.message || e.message)
       },
-      onSuccess: ({ id }) => {
+      onSuccess: () => {
         alert('정상적으로 수정 되었습니다.')
         setLoading(false)
         setSignModal(false)
@@ -365,8 +360,9 @@ export function useStudentAbsentAdd({ absentData, returnToDetail }: Props) {
             .filter((f) => f.reason === '생리')
             .map((mense) => {
               const statusText = mense.absentStatus === AbsentStatus.PROCESSED ? '결재완료' : '결재중'
-              return `${makeStartEndToString(mense.startAt, mense.endAt, mense.reportType)} ${mense.description}${mense.reportType
-                } ${mense.reason} ${statusText}`
+              return `${makeStartEndToString(mense.startAt, mense.endAt, mense.reportType)} ${mense.description}${
+                mense.reportType
+              } ${mense.reason} ${statusText}`
             })
 
           setMensesTexts(mensesText)

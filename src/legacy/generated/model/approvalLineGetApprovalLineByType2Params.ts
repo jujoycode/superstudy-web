@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ApprovalLineGetApprovalLineByType2Params = { type1: string; type2: string; year: string };
+export type ApprovalLineGetApprovalLineByType2Params = { type1: string; type2: string; year: string }

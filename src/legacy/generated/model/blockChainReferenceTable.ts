@@ -6,12 +6,11 @@
  * OpenAPI spec version: 0.1
  */
 
-export type BlockChainReferenceTable = (typeof BlockChainReferenceTable)[keyof typeof BlockChainReferenceTable];
+export type BlockChainReferenceTable = (typeof BlockChainReferenceTable)[keyof typeof BlockChainReferenceTable]
 
- 
 export const BlockChainReferenceTable = {
   BLOCK_CHAIN_EOAKEY: 'BLOCK_CHAIN_EOAKEY',
   BLOCK_CHAIN_CONTRACT: 'BLOCK_CHAIN_CONTRACT',
   OUTING: 'OUTING',
   ABSENT: 'ABSENT',
-} as const;
+} as const

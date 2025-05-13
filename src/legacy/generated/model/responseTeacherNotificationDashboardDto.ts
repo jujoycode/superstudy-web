@@ -5,20 +5,20 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Outing } from './outing';
-import type { Fieldtrip } from './fieldtrip';
+import type { Fieldtrip } from './fieldtrip'
+import type { Outing } from './outing'
 
 export interface ResponseTeacherNotificationDashboardDto {
   /** 안읽은 공지 개수 */
-  unreadNoticeCount: number | null;
+  unreadNoticeCount: number | null
   /** 미결제 확인증 데이터 */
-  unapprovedOutings: Outing[] | null;
+  unapprovedOutings: Outing[] | null
   /** 미결제 결석신고서 데이터 */
-  unapprovedAbsents: Outing[] | null;
+  unapprovedAbsents: Outing[] | null
   /** 미결제 체험학습 신청서 데이터 */
-  unapprovedFieldTrips: Fieldtrip[] | null;
+  unapprovedFieldTrips: Fieldtrip[] | null
   /** 미결제 체험학습 결과보고서 데이터 */
-  unapprovedFieldTripResults: Fieldtrip[] | null;
+  unapprovedFieldTripResults: Fieldtrip[] | null
   /** 안읽은 채팅 개수 */
-  unreadChatMessageCount: number | null;
+  unreadChatMessageCount: number | null
 }

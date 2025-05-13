@@ -26,14 +26,14 @@ export function useParentGetChildrenInfo() {
 
   const { mutate: delChildMutate } = useUserDeleteChild({
     mutation: {
-      onSuccess: (result) => {
+      onSuccess: () => {
         if (childrenInfos?.children) {
           localStorage.setItem('child-user-id', JSON.stringify(childrenInfos?.children[0].id))
         }
         refetch()
         setToastMsg('유효하지 않은 자녀를 삭제했습니다 ')
       },
-      onError: (error) => {
+      onError: () => {
         setToastMsg('자녀를 삭제하지 못했습니다 ')
       },
     },

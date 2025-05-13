@@ -8,5 +8,5 @@
 
 export type TimetablesV2UpdateSeatPositionBody = {
   /** 자리배치 */
-  seatPosition?: string;
-};
+  seatPosition?: string
+}

@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 interface AlertDialogProps {
-  message: string;
-  description: string;
-  confirmText: string;
-  onConfirm: () => void;
-  theme?: 'primary' | 'secondary';
+  message: string
+  description: string
+  confirmText: string
+  onConfirm: () => void
+  theme?: 'primary' | 'secondary'
 }
 
 /**
@@ -27,14 +27,14 @@ const AlertDialog: React.FC<AlertDialogProps> = ({
   theme = 'primary',
 }) => {
   return (
-    <div className="fixed inset-0 z-100 flex h-screen w-full items-center justify-center bg-black bg-opacity-50">
+    <div className="bg-opacity-50 fixed inset-0 z-100 flex h-screen w-full items-center justify-center bg-black">
       <div className="mx-4 flex h-[278px] w-full flex-col items-center justify-center gap-2 bg-white p-6 md:mx-0 md:w-[480px]">
         <h2
           className="mb-2 text-center text-lg font-semibold md:text-2xl"
           dangerouslySetInnerHTML={{ __html: message.replace(/\n/g, '<br />') }}
         ></h2>
         <p
-          className="mb-4 text-center text-12 text-gray-600 md:text-base"
+          className="text-12 mb-4 text-center text-gray-600 md:text-base"
           dangerouslySetInnerHTML={{ __html: description.replace(/\n/g, '<br />') }}
         ></p>
         <div className="flex items-center justify-center space-x-2">
@@ -49,7 +49,7 @@ const AlertDialog: React.FC<AlertDialogProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AlertDialog;
+export default AlertDialog

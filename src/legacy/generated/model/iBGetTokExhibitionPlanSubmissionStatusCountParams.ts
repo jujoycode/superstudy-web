@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type IBGetTokExhibitionPlanSubmissionStatusCountParams = { grade?: number; klass?: number };
+export type IBGetTokExhibitionPlanSubmissionStatusCountParams = { grade?: number; klass?: number }

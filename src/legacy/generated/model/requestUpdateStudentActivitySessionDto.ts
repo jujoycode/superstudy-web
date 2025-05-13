@@ -8,9 +8,9 @@
 
 export interface RequestUpdateStudentActivitySessionDto {
   /** 내용 */
-  content: string | null;
+  content: string | null
   /** 이미지파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
 }

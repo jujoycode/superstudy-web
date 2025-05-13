@@ -8,15 +8,15 @@
 
 export interface SmsCreditCharge {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 학교 아이디 */
-  schoolId: number;
+  schoolId: number
   /** 충전 이력 */
-  chargeCredit: number;
+  chargeCredit: number
   /** 충전 사유 */
-  chargeReason: string;
+  chargeReason: string
 }

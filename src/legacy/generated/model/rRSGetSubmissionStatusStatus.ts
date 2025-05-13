@@ -7,10 +7,9 @@
  */
 
 export type RRSGetSubmissionStatusStatus =
-  (typeof RRSGetSubmissionStatusStatus)[keyof typeof RRSGetSubmissionStatusStatus];
+  (typeof RRSGetSubmissionStatusStatus)[keyof typeof RRSGetSubmissionStatusStatus]
 
- 
 export const RRSGetSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',
-} as const;
+} as const

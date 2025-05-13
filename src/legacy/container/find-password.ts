@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useUserFindPassword } from '@/legacy/generated/endpoint'
-import type { RequestFindPasswordDto } from '@/legacy/generated/model'
-import type { errorType } from '@/legacy/types'
+import { RequestFindPasswordDto } from '@/legacy/generated/model'
+import { errorType } from '@/legacy/types'
 
 export function useFindPassword() {
   const [isSuccess, setSuccess] = useState(false)

@@ -1,5 +1,13 @@
 import _, { range } from 'lodash'
 import { useEffect, useState } from 'react'
+
+import { Blank, Select } from '@/legacy/components/common'
+import { Admin } from '@/legacy/components/common/Admin'
+import AlertDialog from '@/legacy/components/common/AlertDialog'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
+import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
 import {
   useStudentExamScoreDelete,
   useStudentScoreFileCheck,
@@ -14,13 +22,7 @@ import {
   StudentExamScorePatchStudentExamScoresParams,
 } from '@/legacy/generated/model'
 import { getThisYear } from '@/legacy/util/time'
-import { Blank, Select } from '@/legacy/components/common'
-import { Admin } from '@/legacy/components/common/Admin'
-import AlertDialog from '@/legacy/components/common/AlertDialog'
-import AlertV2 from '@/legacy/components/common/AlertV2'
-import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
-import { IBBlank } from '@/legacy/components/common/IBBlank'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import { ExamUploadModal } from './ExamUploadModal'
 
 export const AcademicRecordsComponent = () => {

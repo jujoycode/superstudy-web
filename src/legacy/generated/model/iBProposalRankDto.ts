@@ -8,7 +8,7 @@
 
 export interface IBProposalRankDto {
   /** 제안서 ID */
-  id?: number;
+  id?: number
   /** 제안서 순위 */
-  rank?: number;
+  rank?: number
 }

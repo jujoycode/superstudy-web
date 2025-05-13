@@ -8,7 +8,7 @@
 
 export interface RequestModifyGroupOnlyDto {
   /** 이름 */
-  name?: string | null;
+  name?: string | null
   /** 학년도 */
-  year?: string | null;
+  year?: string | null
 }

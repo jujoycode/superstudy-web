@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useCounselingFindCounselingDetailStudentByStudentId } from '@/legacy/generated/endpoint'
-import type { ResponseCounselingDetailStudentDto } from '@/legacy/generated/model'
+import { ResponseCounselingDetailStudentDto } from '@/legacy/generated/model'
 
 export function useTeacherStudentCard(studentId?: number) {
   const [isForbidden, setIsForbidden] = useState(false)

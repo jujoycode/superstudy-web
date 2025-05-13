@@ -5,9 +5,9 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Group } from './group';
+import type { Group } from './group'
 
 export interface ResponseGroupByIdsDto {
   /** 그룹 */
-  groupsByIds: Group[] | null;
+  groupsByIds: Group[] | null
 }

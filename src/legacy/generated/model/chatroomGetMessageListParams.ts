@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ChatroomGetMessageListParams = { page: number; limit: number };
+export type ChatroomGetMessageListParams = { page: number; limit: number }

@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ActivityV3FindByStudentParams = { groupIds?: number[] };
+export type ActivityV3FindByStudentParams = { groupIds?: number[] }

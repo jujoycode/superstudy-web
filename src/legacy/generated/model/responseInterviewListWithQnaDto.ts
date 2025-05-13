@@ -5,22 +5,22 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseInterviewListWithQnaDtoCategory } from './responseInterviewListWithQnaDtoCategory';
-import type { BaseResponseDto } from './baseResponseDto';
+import type { BaseResponseDto } from './baseResponseDto'
+import type { ResponseInterviewListWithQnaDtoCategory } from './responseInterviewListWithQnaDtoCategory'
 
 export interface ResponseInterviewListWithQnaDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 인터뷰 타이틀 */
-  title: string;
+  title: string
   /** 인터뷰 설명 */
-  description: string;
+  description: string
   /** 유형 */
-  category: ResponseInterviewListWithQnaDtoCategory;
+  category: ResponseInterviewListWithQnaDtoCategory
   /** 인터뷰 QnA */
-  qna: BaseResponseDto;
+  qna: BaseResponseDto
 }

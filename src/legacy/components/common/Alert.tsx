@@ -1,19 +1,19 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react'
 
 interface AlertProps {
-  severity?: 'error' | 'warning' | 'info' | 'success';
-  text?: string;
-  onClose: () => void;
+  severity?: 'error' | 'warning' | 'info' | 'success'
+  text?: string
+  onClose: () => void
 }
 
 export function Alert({ children, severity = 'success', text, onClose }: PropsWithChildren<AlertProps>) {
-  let color = 'green';
+  let color = 'green'
   if (severity === 'error') {
-    color = 'red';
+    color = 'red'
   } else if (severity === 'warning') {
-    color = 'yellow';
+    color = 'yellow'
   } else if (severity === 'info') {
-    color = 'blue';
+    color = 'blue'
   }
 
   return (
@@ -42,9 +42,7 @@ export function Alert({ children, severity = 'success', text, onClose }: PropsWi
         <div className="-mx-1.5 -my-1.5">
           <button
             type="button"
-            className={`inline-flex bg-${color}-50 rounded-md p-1.5 text-${color}-800
-                        hover:bg-${color}-100 focus:outline-none focus:ring-2 focus:ring-offset-2
-                        focus:ring-offset-${color}-50 focus:ring-${color}-600`}
+            className={`inline-flex bg-${color}-50 rounded-md p-1.5 text-${color}-800 hover:bg-${color}-100 focus:ring-2 focus:ring-offset-2 focus:outline-none focus:ring-offset-${color}-50 focus:ring-${color}-600`}
             onClick={() => onClose()}
           >
             <span className="sr-only">Dismiss</span>
@@ -65,5 +63,5 @@ export function Alert({ children, severity = 'success', text, onClose }: PropsWi
         </div>
       </div>
     </div>
-  );
+  )
 }

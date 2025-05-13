@@ -8,7 +8,7 @@
 
 export interface RequestEEEvaluationItemWithIdDto {
   /** 평가항목 */
-  name: string;
+  name: string
   /** 평가 등급 id */
-  levelId?: number;
+  levelId?: number
 }

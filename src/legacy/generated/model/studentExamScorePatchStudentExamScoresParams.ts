@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentExamScorePatchStudentExamScoresParams = { year: number; grade: number; semester: number };
+export type StudentExamScorePatchStudentExamScoresParams = { year: number; grade: number; semester: number }

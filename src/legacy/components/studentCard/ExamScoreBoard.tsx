@@ -1,9 +1,10 @@
 import _ from 'lodash'
 import React, { useEffect, useState } from 'react'
-import { useStudentSemetsersScore } from '@/legacy/container/student-semesters-score'
+
 import { List } from '@/legacy/components/common'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useStudentSemetsersScore } from '@/legacy/container/student-semesters-score'
 
 interface ExamScoreBoardProps {
   studentId: string

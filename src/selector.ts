@@ -1,14 +1,16 @@
-import { selector } from 'recoil';
-import { meState } from './store';
-import { useSchoolPropertyGetProperties } from '@/legacy/generated/endpoint';
+import { selector } from 'recoil'
+
+import { useSchoolPropertyGetProperties } from '@/legacy/generated/endpoint'
+
+import { meState } from './store'
 
 export const schoolPropertiesSelector = selector({
   key: 'schoolPropertiesSelector',
   get: async ({ get }) => {
-    const me = get(meState);
+    const me = get(meState)
 
     if (!me || !me.schoolId) {
-      return {};
+      return {}
     }
 
     // API 호출로 학교 속성 정보 가져오기
@@ -16,7 +18,7 @@ export const schoolPropertiesSelector = selector({
       query: {
         enabled: !!me.schoolId,
       },
-    });
-    return data;
+    })
+    return data
   },
-});
+})

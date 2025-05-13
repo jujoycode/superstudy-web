@@ -7,8 +7,8 @@
  */
 
 export type StudentExamScoreGetStudentExamScoresByParentParams = {
-  grade: number;
-  semester: number;
-  year: number;
-  step: string;
-};
+  grade: number
+  semester: number
+  year: number
+  step: string
+}

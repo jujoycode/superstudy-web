@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type Timetablev3GetTimetableByTeacherIdParams = { type: string; date: string };
+export type Timetablev3GetTimetableByTeacherIdParams = { type: string; date: string }

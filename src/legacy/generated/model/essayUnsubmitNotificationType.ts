@@ -7,10 +7,9 @@
  */
 
 export type EssayUnsubmitNotificationType =
-  (typeof EssayUnsubmitNotificationType)[keyof typeof EssayUnsubmitNotificationType];
+  (typeof EssayUnsubmitNotificationType)[keyof typeof EssayUnsubmitNotificationType]
 
- 
 export const EssayUnsubmitNotificationType = {
   EE_ESSAY: 'EE_ESSAY',
   TOK_ESSAY: 'TOK_ESSAY',
-} as const;
+} as const

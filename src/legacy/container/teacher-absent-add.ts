@@ -1,27 +1,17 @@
 import { useState } from 'react'
-
-// ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
-
 import { useRecoilValue } from 'recoil'
-import { childState } from '@/stores'
+import { useAbsentsCreate, useAbsentsUpdate, useStudentGroupsFindByGroupId } from '@/legacy/generated/endpoint'
+import { Absent, ResponseGroupDto, Role, StudentGroup, UploadFileTypeEnum, User } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
-import {
-  UploadFileTypeEnum,
-  Role,
-  type Absent,
-  type ResponseGroupDto,
-  type StudentGroup,
-  type User,
-} from '@/legacy/generated/model'
-import { UserContainer } from '@/legacy/container/user'
-import { GroupContainer } from '@/legacy/container/group'
+import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
+import { childState } from '@/stores'
+import { ImageObject } from '@/legacy/types/image-object'
+import { AbsentDescription, AbsentTimeType, errorType } from '@/legacy/types'
 import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
-import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { useAbsentsCreate, useAbsentsUpdate, useStudentGroupsFindByGroupId } from '@/legacy/generated/endpoint'
-import { AbsentTimeType, type AbsentDescription, type errorType } from '@/legacy/types'
-import type { ImageObject } from '@/legacy/types/image-object'
+import { GroupContainer } from './group'
+import { UserContainer } from './user'
 
 const reasonType = [
   '상고',
@@ -64,9 +54,9 @@ export function useTeacherAbsentAdd({ absentData, returnToDetail }: Props) {
   const { me } = UserContainer.useContext()
   const child = useRecoilValue(childState)
   const { allKlassGroupsUnique: allKlassGroups } = GroupContainer.useContext()
-  const [groupStudentsData] = useState<User[]>([])
   const [selectedGroup, setSelectedGroup] = useState<ResponseGroupDto | null>(allKlassGroups[0] || null)
   const [studentGroups, setStudentGroups] = useState<StudentGroup[]>([])
+  const [groupStudentsData] = useState<User[]>([])
 
   const {
     reason: _reasonText = '',
@@ -188,7 +178,7 @@ export function useTeacherAbsentAdd({ absentData, returnToDetail }: Props) {
           alert(errorMsg?.message || '결재자 지정상태를 확인하세요.')
           setLoading(false)
           setSignModal(false)
-        } catch { }
+        } catch {}
       },
     },
     request: {

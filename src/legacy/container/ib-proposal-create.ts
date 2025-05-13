@@ -1,5 +1,5 @@
 import { useIBCreateNextProposal } from '@/legacy/generated/endpoint'
-import type { RequestIBProposalDto } from '@/legacy/generated/model'
+import { RequestIBProposalDto } from '@/legacy/generated/model'
 
 interface UseIBProposalCreateOptions {
   onSuccess?: (data: any) => void

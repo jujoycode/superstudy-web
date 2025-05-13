@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
-
-// ! 개선 필요
 import { useHistory } from '@/hooks/useHistory'
-
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import {
   useOtpSendPost,
@@ -12,7 +9,7 @@ import {
 } from '@/legacy/generated/endpoint'
 import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
 import { toastState, tokenState, twoFactorState } from '@/stores'
-import type { errorType } from '@/legacy/types'
+import { errorType } from '@/legacy/types'
 
 export function useOtp() {
   const [otpSendResult, setOtpSendResult] = useState(false)
@@ -46,7 +43,7 @@ export function useOtp() {
 
   const { mutateAsync: sendMutate } = useOtpSendPost({
     mutation: {
-      onSuccess: (_) => {
+      onSuccess: () => {
         setOtpSendResult(true)
         setSeconds(180)
         setToastMsg('입력하신 전화번호로 인증번호를 발송했습니다.')
@@ -61,7 +58,7 @@ export function useOtp() {
 
   const { mutateAsync: sendAuthMutate } = useOtpSendPostAuth({
     mutation: {
-      onSuccess: (_) => {
+      onSuccess: () => {
         setOtpSendResult(true)
         setSeconds(180)
         setToastMsg('입력하신 전화번호로 2차 인증번호가 발송되었습니다.')

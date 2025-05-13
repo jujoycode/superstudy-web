@@ -5,9 +5,9 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { SubjectType } from './subjectType';
+import type { SubjectType } from './subjectType'
 
 /**
  * 과목 분류
  */
-export type RequestGroupTeacherDtoSubjectType = SubjectType | null;
+export type RequestGroupTeacherDtoSubjectType = SubjectType | null

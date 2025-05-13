@@ -8,5 +8,5 @@
 
 export interface RequestIBSetMentorBatchDto {
   /** IB ids */
-  ibIds: number[];
+  ibIds: number[]
 }

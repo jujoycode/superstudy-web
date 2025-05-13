@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type RPPFFindAllRPPFParams = { page?: number; limit?: number };
+export type RPPFFindAllRPPFParams = { page?: number; limit?: number }

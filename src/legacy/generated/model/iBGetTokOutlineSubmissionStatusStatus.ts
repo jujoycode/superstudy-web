@@ -7,11 +7,10 @@
  */
 
 export type IBGetTokOutlineSubmissionStatusStatus =
-  (typeof IBGetTokOutlineSubmissionStatusStatus)[keyof typeof IBGetTokOutlineSubmissionStatusStatus];
+  (typeof IBGetTokOutlineSubmissionStatusStatus)[keyof typeof IBGetTokOutlineSubmissionStatusStatus]
 
- 
 export const IBGetTokOutlineSubmissionStatusStatus = {
   NOT_SUBMITTED: 'NOT_SUBMITTED',
   SUBMITTED: 'SUBMITTED',
   APPROVED: 'APPROVED',
-} as const;
+} as const

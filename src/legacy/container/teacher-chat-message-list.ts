@@ -1,21 +1,19 @@
 import { useState } from 'react'
-
-// ! 이 부분 수정 필요
 import { useHistory } from '@/hooks/useHistory'
-import { Routes } from '@/routers'
-
 import {
   useChatCreateMessage,
   useChatDeleteMessage,
   useChatroomExpiredChatRoom,
   useChatroomGetMessageList,
 } from '@/legacy/generated/endpoint'
-import type { Chat, RequestCreateChatMessageDto, ResponsePaginatedChatMessageDto } from '@/legacy/generated/model'
-import type { errorType } from '@/legacy/types'
+import { Chat, RequestCreateChatMessageDto, ResponsePaginatedChatMessageDto } from '@/legacy/generated/model'
+// ! 지훈쌤 개선안 적용
+import { Routes } from 'src/routes'
+import { errorType } from '@/legacy/types'
 
 export function useTeacherChatMessageList(chatroomId: number) {
   const { push } = useHistory()
-  const [pageInfo, _] = useState({ page: 1, limit: 500 })
+  const [pageInfo] = useState({ page: 1, limit: 500 })
   const [chatMessages, setChatMessages] = useState<ResponsePaginatedChatMessageDto>()
   const [newMessage, setNewMessage] = useState('')
 
@@ -37,8 +35,8 @@ export function useTeacherChatMessageList(chatroomId: number) {
       onSuccess: () => {
         setNewMessage('')
         refetchChatMessages()
-          .then(() => { })
-          .catch((_) => {
+          .then(() => {})
+          .catch((error) => {
             // refetch 중에 발생한 에러를 처리하는 작업
             //alert(error?.message);
           })
@@ -55,11 +53,8 @@ export function useTeacherChatMessageList(chatroomId: number) {
     mutation: {
       onSuccess: () => {
         refetchChatMessages()
-          .then(() => { })
-          .catch((_) => {
-            // refetch 중에 발생한 에러를 처리하는 작업
-            //alert(error?.message);
-          })
+          .then(() => {})
+          .catch(() => {})
       },
       onError: (error) => {
         const errorMsg: errorType | undefined = error?.response?.data as errorType

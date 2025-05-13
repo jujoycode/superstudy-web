@@ -8,11 +8,11 @@
 
 export interface ResponseIBStatusCountDto {
   /** 전체 학생 수 */
-  total: number;
+  total: number
   /** 미제출 학생 수 */
-  notSubmitted: number;
+  notSubmitted: number
   /** 승인 전 학생 수 */
-  submitted: number;
+  submitted: number
   /** 승인 완료 학생 수 */
-  approved: number;
+  approved: number
 }

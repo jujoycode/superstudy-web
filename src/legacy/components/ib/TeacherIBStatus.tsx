@@ -2,20 +2,22 @@ import clsx from 'clsx'
 import _ from 'lodash'
 import QueryString from 'qs'
 import { useEffect, useRef, useState } from 'react'
-import { useHistory, useLocation } from 'react-router'
+import { useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
-import { useCodeByCategoryName } from '@/legacy/container/category'
-import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
-import { useGroupsFindAllKlassBySchool, useStudentGroupsFindByGroupId } from '@/legacy/generated/endpoint'
-import { useQueryParams } from '@/legacy/hooks/useQueryParams'
-import { meState } from '@/stores'
-import { padLeftstr } from '@/legacy/util/status'
+import { useHistory } from '@/hooks/useHistory'
 import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Input } from '@/legacy/components/common/Input'
 import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
 import SelectBar, { SelectBarOptionProps } from '@/legacy/components/common/SelectBar'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useCodeByCategoryName } from '@/legacy/container/category'
+import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
+import { useGroupsFindAllKlassBySchool, useStudentGroupsFindByGroupId } from '@/legacy/generated/endpoint'
+import { useQueryParams } from '@/legacy/hooks/useQueryParams'
+import { padLeftstr } from '@/legacy/util/status'
+import { meState } from '@/stores'
+
 import ProjectList from './ProjectList'
 
 export const STATUS_GROUPS = {
@@ -351,7 +353,9 @@ export default function TeacherIBStatus() {
             </div>
           )}
           <div
-            ref={(el) => (projectListRefs.current.page1 = el)}
+            ref={(el) => {
+              projectListRefs.current.page1 = el
+            }}
             className="border-b-primary-gray-200 border-b pt-5 pb-10"
           >
             <ProjectList
@@ -376,7 +380,12 @@ export default function TeacherIBStatus() {
               }
             />
           </div>
-          <div ref={(el) => (projectListRefs.current.page2 = el)} className="border-b-primary-gray-200 border-b py-10">
+          <div
+            ref={(el) => {
+              projectListRefs.current.page2 = el
+            }}
+            className="border-b-primary-gray-200 border-b py-10"
+          >
             <ProjectList
               title="계획중"
               params={{
@@ -399,7 +408,12 @@ export default function TeacherIBStatus() {
               }
             />
           </div>
-          <div ref={(el) => (projectListRefs.current.page3 = el)} className="border-b-primary-gray-200 border-b py-10">
+          <div
+            ref={(el) => {
+              projectListRefs.current.page3 = el
+            }}
+            className="border-b-primary-gray-200 border-b py-10"
+          >
             <ProjectList
               title="진행중"
               params={{
@@ -422,7 +436,12 @@ export default function TeacherIBStatus() {
               permission={permission}
             />
           </div>
-          <div ref={(el) => (projectListRefs.current.page4 = el)} className="border-b-primary-gray-200 border-b py-10">
+          <div
+            ref={(el) => {
+              projectListRefs.current.page4 = el
+            }}
+            className="border-b-primary-gray-200 border-b py-10"
+          >
             <ProjectList
               title="완료"
               params={{

@@ -8,11 +8,11 @@
 
 export interface RPPFContentCreateDto {
   /** ID (수정 시만 필요) */
-  id?: number;
+  id?: number
   /** 차수 */
-  sequence: number;
+  sequence: number
   /** 내용 */
-  text?: string;
+  text?: string
   /** 단어 수 (내용 입력 시 필수값) */
-  wordCount?: number;
+  wordCount?: number
 }

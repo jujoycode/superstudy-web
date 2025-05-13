@@ -5,7 +5,7 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseCoordinatorSelfCheckDtoType } from './responseCoordinatorSelfCheckDtoType';
+import type { ResponseCoordinatorSelfCheckDtoType } from './responseCoordinatorSelfCheckDtoType'
 
 export interface ResponseCoordinatorSelfCheckDto {
   /** 
@@ -16,5 +16,5 @@ export interface ResponseCoordinatorSelfCheckDto {
 - **IB_TOK**: TOK
 - **UNAUTHORIZED**: 권한없음
  */
-  type: ResponseCoordinatorSelfCheckDtoType;
+  type: ResponseCoordinatorSelfCheckDtoType
 }

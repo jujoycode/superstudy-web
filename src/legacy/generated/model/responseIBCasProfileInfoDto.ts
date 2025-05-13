@@ -8,7 +8,7 @@
 
 export interface ResponseIBCasProfileInfoDto {
   /** 질문 */
-  question: string;
+  question: string
   /** 답변 */
-  answer?: string;
+  answer?: string
 }

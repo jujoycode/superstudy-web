@@ -5,41 +5,41 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ActivityType } from './activityType';
+import type { ActivityType } from './activityType'
 
 export interface RequestUpdateActivitySessionDto {
   /** 제목 */
-  title: string;
+  title: string
   /** 내용 */
-  content: string | null;
+  content: string | null
   /** 설문 내용 */
-  surveyContent: string | null;
+  surveyContent: string | null
   /** 시작일 */
-  startDate: string;
+  startDate: string
   /** 제출가능 시간대 시작 시 */
-  submitStartHour: number;
+  submitStartHour: number
   /** 제출가능 시간대 시작 분 */
-  submitStartMinute: number;
+  submitStartMinute: number
   /** 제출가능 시간대 종료 시 */
-  submitEndHour: number;
+  submitEndHour: number
   /** 제출가능 시간대 종료 분 */
-  submitEndMinute: number;
+  submitEndMinute: number
   /** 종료일 */
-  endDate: string;
+  endDate: string
   /** 이미지파일들 s3 경로 */
-  images: string[];
+  images: string[]
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 과제 타입 */
-  type: ActivityType;
+  type: ActivityType
   /** 이미지업로드여부 */
-  isImage: boolean;
+  isImage: boolean
   /** 첨부파일업로드여부 */
-  isFile: boolean;
+  isFile: boolean
   /** 첨부파일필수여부 */
-  isFileRequired: boolean;
+  isFileRequired: boolean
   /** 내용입력여부 */
-  isContent: boolean;
+  isContent: boolean
   /** 내용필수여부 */
-  isContentRequired: boolean;
+  isContentRequired: boolean
 }

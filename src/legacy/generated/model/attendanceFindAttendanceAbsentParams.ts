@@ -7,9 +7,9 @@
  */
 
 export type AttendanceFindAttendanceAbsentParams = {
-  groupId: number;
-  year: number;
-  semester: number;
-  startDate: string;
-  endDate: string;
-};
+  groupId: number
+  year: number
+  semester: number
+  startDate: string
+  endDate: string
+}

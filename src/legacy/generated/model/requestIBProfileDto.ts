@@ -5,17 +5,17 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestIBCasProfileInfoDto } from './requestIBCasProfileInfoDto';
+import type { RequestIBCasProfileInfoDto } from './requestIBCasProfileInfoDto'
 
 export interface RequestIBProfileDto {
   /** IB 응시코드 */
-  ibCode?: string;
+  ibCode?: string
   /** CAS 사용여부 */
-  useCas?: boolean;
+  useCas?: boolean
   /** EE 사용여부 */
-  useEe?: boolean;
+  useEe?: boolean
   /** TOK 사용여부 */
-  useTok?: boolean;
+  useTok?: boolean
   /** 인터뷰 QnA 내용 */
-  casInfo?: RequestIBCasProfileInfoDto[];
+  casInfo?: RequestIBCasProfileInfoDto[]
 }

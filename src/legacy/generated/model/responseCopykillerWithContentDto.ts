@@ -5,38 +5,38 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseCopykillerWithContentDtoTargetTable } from './responseCopykillerWithContentDtoTargetTable';
-import type { ResponseCopykillerWithContentDtoCompleteStatus } from './responseCopykillerWithContentDtoCompleteStatus';
+import type { ResponseCopykillerWithContentDtoCompleteStatus } from './responseCopykillerWithContentDtoCompleteStatus'
+import type { ResponseCopykillerWithContentDtoTargetTable } from './responseCopykillerWithContentDtoTargetTable'
 
 export interface ResponseCopykillerWithContentDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 문서식별코드 */
-  uri: string;
+  uri: string
   /** 문서제목 */
-  title: string;
+  title: string
   /** 첨부파일들 s3 경로 */
-  files: string[];
+  files: string[]
   /** 표절률 0~100(%) */
-  copyRatio: string;
+  copyRatio: string
   /** 에러 메시지 */
-  errorMessage: string;
+  errorMessage: string
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /** 유저아이디 */
-  userId: number;
+  userId: number
   /** 대상 테이블명 */
-  targetTable?: ResponseCopykillerWithContentDtoTargetTable;
+  targetTable?: ResponseCopykillerWithContentDtoTargetTable
   /** 대상 테이블 아이디 */
-  targetId?: number | null;
+  targetId?: number | null
   /** 검사상태 */
-  completeStatus: ResponseCopykillerWithContentDtoCompleteStatus;
+  completeStatus: ResponseCopykillerWithContentDtoCompleteStatus
   /** 검사완료일 */
-  completeDate?: string | null;
+  completeDate?: string | null
   /** 직접 입력 본문 내용 */
-  content: string;
+  content: string
 }

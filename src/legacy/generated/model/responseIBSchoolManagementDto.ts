@@ -8,17 +8,17 @@
 
 export interface ResponseIBSchoolManagementDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** IB 학교 이름 */
-  name: string;
+  name: string
   /** IB 학교 코드 */
-  code: string;
+  code: string
   /** Session */
-  session: string;
+  session: string
   /** 학교 ID */
-  schoolId: number;
+  schoolId: number
 }

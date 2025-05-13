@@ -7,5 +7,5 @@
  */
 
 export interface UpdateResult {
-  [key: string]: any;
+  [key: string]: any
 }

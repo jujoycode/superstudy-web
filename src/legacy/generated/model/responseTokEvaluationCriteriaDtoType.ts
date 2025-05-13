@@ -10,10 +10,9 @@
  * 평가 유형
  */
 export type ResponseTokEvaluationCriteriaDtoType =
-  (typeof ResponseTokEvaluationCriteriaDtoType)[keyof typeof ResponseTokEvaluationCriteriaDtoType];
+  (typeof ResponseTokEvaluationCriteriaDtoType)[keyof typeof ResponseTokEvaluationCriteriaDtoType]
 
- 
 export const ResponseTokEvaluationCriteriaDtoType = {
   EXHIBITION: 'EXHIBITION',
   ESSAY: 'ESSAY',
-} as const;
+} as const

@@ -3,8 +3,9 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
-import SvgUser from '@/legacy/assets/svg/user.svg'
+import { twMerge } from 'tailwind-merge'
+
+import { Icon } from '@/legacy/components/common/icons'
 import { Constants } from '@/legacy/constants'
 import {
   useActivityV3FindTitleByIds,
@@ -19,8 +20,9 @@ import { getFileNameFromUrl } from '@/legacy/util/file'
 import { getRoleTitle } from '@/legacy/util/permission'
 import { getNickName } from '@/legacy/util/status'
 import { isSameMinute } from '@/legacy/util/time'
-import { twMerge } from 'tailwind-merge'
-import { Icon } from '@/legacy/components/common/icons'
+
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
+import SvgUser from '@/assets/svg/user.svg'
 
 interface ReceiveMessageProps {
   PreMessageData?: Chat

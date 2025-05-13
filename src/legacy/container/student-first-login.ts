@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useUserUpdateMyInfoAtFirstLogin } from '@/legacy/generated/endpoint'
-import type { RequestUpdateMyInfoAtFirstLoginDto } from '@/legacy/generated/model'
-import type { errorType } from '@/legacy/types'
+import { RequestUpdateMyInfoAtFirstLoginDto } from '@/legacy/generated/model'
+import { errorType } from '@/legacy/types'
 
 export function useStudentFirstLogin() {
   const [isChannelTalk, setChannelTalk] = useState(false)

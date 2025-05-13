@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type ActivityV3FindTitleByIdsParams = { activityIds?: number[] };
+export type ActivityV3FindTitleByIdsParams = { activityIds?: number[] }

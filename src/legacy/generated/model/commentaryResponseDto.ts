@@ -8,7 +8,7 @@
 
 export interface CommentaryResponseDto {
   /** 대상 이름 */
-  targetKey: string;
+  targetKey: string
   /** 체크한 속성 배열 */
-  checkedAttributes: string[];
+  checkedAttributes: string[]
 }

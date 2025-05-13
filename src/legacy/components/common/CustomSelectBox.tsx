@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 // 인터페이스 정의
 interface CustomSelectBoxProps {
-  options: string[];
-  initial?: string | null;
-  onSelectedValue: (value: string) => void;
+  options: string[]
+  initial?: string | null
+  onSelectedValue: (value: string) => void
 }
 
 const CustomSelectBox: React.FC<CustomSelectBoxProps> = ({ options, initial = null, onSelectedValue }) => {
-  const [selectedValue, setSelectedValue] = useState<string | null>(initial);
-  const [customInput, setCustomInput] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState<string | null>(initial)
+  const [customInput, setCustomInput] = useState('')
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleSelect = (value: string) => {
-    setSelectedValue(value);
-    onSelectedValue(value);
-    setIsOpen(false);
-  };
+    setSelectedValue(value)
+    onSelectedValue(value)
+    setIsOpen(false)
+  }
 
   const handleCustomInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCustomInput(event.target.value);
-  };
+    setCustomInput(event.target.value)
+  }
 
   const handleConfirm = () => {
-    setSelectedValue(customInput);
-    onSelectedValue(customInput);
-    setIsOpen(false);
-  };
+    setSelectedValue(customInput)
+    onSelectedValue(customInput)
+    setIsOpen(false)
+  }
 
   return (
-    <div className="relative inline-block h-13 w-full text-13">
+    <div className="text-13 relative inline-block h-13 w-full">
       <div>
         {/* 버튼에 아이콘 추가 */}
         <button
@@ -69,7 +69,7 @@ const CustomSelectBox: React.FC<CustomSelectBoxProps> = ({ options, initial = nu
       </div>
 
       {isOpen && (
-        <div className="absolute z-10  w-full border border-gray-300 bg-white shadow-lg">
+        <div className="absolute z-10 w-full border border-gray-300 bg-white shadow-lg">
           <ul className="py-1 text-gray-700">
             {options.map((option, index) => (
               <li
@@ -86,7 +86,7 @@ const CustomSelectBox: React.FC<CustomSelectBoxProps> = ({ options, initial = nu
                 value={customInput}
                 onChange={handleCustomInput}
                 placeholder="직접입력"
-                className="w-full border border-gray-300 px-2 text-13"
+                className="text-13 w-full border border-gray-300 px-2"
               />
               <button onClick={handleConfirm} className="w-[42px] bg-[#333333] text-white">
                 확인
@@ -96,7 +96,7 @@ const CustomSelectBox: React.FC<CustomSelectBoxProps> = ({ options, initial = nu
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default CustomSelectBox;
+export default CustomSelectBox

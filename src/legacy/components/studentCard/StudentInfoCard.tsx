@@ -1,15 +1,15 @@
 import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
 import { useQueryClient } from 'react-query'
-import SvgUser from '@/legacy/assets/svg/user.svg'
 import { Select } from '@/legacy/components/common'
+import { TextInput } from '@/legacy/components/common/TextInput'
 import { Constants } from '@/legacy/constants'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useTeacherStudentUpdate } from '@/legacy/container/teacher-student-update'
 import { useTeacherStudentCard } from '@/legacy/container/teacher-studentcard'
 import { Category, Code, ResponseParentUserDto } from '@/legacy/generated/model'
 import { Validator } from '@/legacy/util/validator'
-import { TextInput } from '@/legacy/components/common/TextInput'
+import SvgUser from '@/assets/svg/user.svg'
 
 interface StudentInfoCardProps {
   id: number
@@ -30,10 +30,6 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
     setPhone,
     barcode,
     setBarcode,
-    hopePath,
-    setHopePath,
-    hopeMajor,
-    setHopeMajor,
     nokName,
     setNokName,
     nokPhone,

@@ -1,25 +1,25 @@
-import clsx from 'clsx';
-import React, { ReactNode } from 'react';
+import clsx from 'clsx'
+import React, { ReactNode } from 'react'
 
 interface TabProps<T> {
-  value: T;
-  children: ReactNode;
+  value: T
+  children: ReactNode
 }
 
 export function Tab<T>({ children }: TabProps<T>) {
-  return <div>{children}</div>;
+  return <div>{children}</div>
 }
 
 interface LineTabsProps<T> {
-  children: React.ReactElement<TabProps<T>>[];
-  value: T;
-  onChange: (value: T) => void;
+  children: React.ReactElement<TabProps<T>>[]
+  value: T
+  onChange: (value: T) => void
 }
 
 export function LineTabs<T>({ children, value, onChange }: LineTabsProps<T>) {
   const handleTabClick = (val: T) => {
-    onChange(val);
-  };
+    onChange(val)
+  }
 
   return (
     <div className="flex w-max items-center gap-4 border-b border-[#e8eaec]">
@@ -40,5 +40,5 @@ export function LineTabs<T>({ children, value, onChange }: LineTabsProps<T>) {
         </div>
       ))}
     </div>
-  );
+  )
 }

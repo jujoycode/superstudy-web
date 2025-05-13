@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
+
+import { Button } from '@/legacy/components/common/Button'
+import { TextInput } from '@/legacy/components/common/TextInput'
 import { useTeacherStudentUpdateParent } from '@/legacy/container/teacher-student-update-parent'
 import { useCounselingSendParentSignUpV2 } from '@/legacy/generated/endpoint'
 import { ResponseParentUserDto } from '@/legacy/generated/model'
 import type { errorType } from '@/legacy/types'
-
 import { Validator } from '@/legacy/util/validator'
-import { Button } from '@/legacy/components/common/Button'
-import { TextInput } from '@/legacy/components/common/TextInput'
 
 interface ParentInfoCard {
   studentId?: number

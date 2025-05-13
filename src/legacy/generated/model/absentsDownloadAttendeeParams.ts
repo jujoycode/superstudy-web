@@ -5,21 +5,21 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { FilterAbsentStatus } from './filterAbsentStatus';
-import type { FilterReportType } from './filterReportType';
-import type { FilterDescription } from './filterDescription';
-import type { AbsentSort } from './absentSort';
+import type { AbsentSort } from './absentSort'
+import type { FilterAbsentStatus } from './filterAbsentStatus'
+import type { FilterDescription } from './filterDescription'
+import type { FilterReportType } from './filterReportType'
 
 export type AbsentsDownloadAttendeeParams = {
-  absentStatus?: FilterAbsentStatus;
-  startDate: string;
-  endDate: string;
-  username?: string | null;
-  year?: string | null;
-  selectedGroupId?: number | null;
-  reportType?: FilterReportType;
-  description?: FilterDescription;
-  NICE?: AbsentSort;
-  SUBMIT?: AbsentSort;
-  APPROVAL?: AbsentSort;
-};
+  absentStatus?: FilterAbsentStatus
+  startDate: string
+  endDate: string
+  username?: string | null
+  year?: string | null
+  selectedGroupId?: number | null
+  reportType?: FilterReportType
+  description?: FilterDescription
+  NICE?: AbsentSort
+  SUBMIT?: AbsentSort
+  APPROVAL?: AbsentSort
+}

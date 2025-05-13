@@ -1,11 +1,13 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+
 import { Constants } from '@/legacy/constants'
 import type { ImageObject } from '@/legacy/types/image-object'
 import { isPdfFile } from '@/legacy/util/file'
-import { PdfCard } from './common/PdfCard'
+
 import { Icon } from './common/icons'
+import { PdfCard } from './common/PdfCard'
 
 interface ImageObjectComponentProps {
   id: number

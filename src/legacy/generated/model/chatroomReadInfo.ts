@@ -8,15 +8,15 @@
 
 export interface ChatroomReadInfo {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 채팅방 아이디 */
-  chatroomId: number;
+  chatroomId: number
   /** 채팅방 참석자 아이디 */
-  attendeeId: number;
+  attendeeId: number
   /** 채팅방 접속 횟수 */
-  joinCount: number;
+  joinCount: number
 }

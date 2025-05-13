@@ -6,9 +6,8 @@
  * OpenAPI spec version: 0.1
  */
 
-export type EEEvaluationLocation = (typeof EEEvaluationLocation)[keyof typeof EEEvaluationLocation];
+export type EEEvaluationLocation = (typeof EEEvaluationLocation)[keyof typeof EEEvaluationLocation]
 
- 
 export const EEEvaluationLocation = {
   ESSAY: 'ESSAY',
-} as const;
+} as const

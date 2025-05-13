@@ -5,23 +5,23 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestIBCasUpdateDto } from './requestIBCasUpdateDto';
+import type { RequestIBCasUpdateDto } from './requestIBCasUpdateDto'
 
 export interface RequestIBUpdateDto {
   /** 프로젝트 타이틀 */
-  title?: string;
+  title?: string
   /** 프로젝트 본문|설명 */
-  description?: string;
+  description?: string
   /** 프로젝트 리더 학생ID */
-  leaderId?: number;
+  leaderId?: number
   /** 프로젝트 멤버 학생ID */
-  memberIds?: number[];
+  memberIds?: number[]
   /** 프로젝트 시작 일자 */
-  startAt?: string;
+  startAt?: string
   /** 프로젝트 종료 일자 */
-  endAt?: string;
+  endAt?: string
   /** 활동 주기 */
-  activityFrequency?: string;
+  activityFrequency?: string
   /** CAS Normal */
-  cas?: RequestIBCasUpdateDto;
+  cas?: RequestIBCasUpdateDto
 }

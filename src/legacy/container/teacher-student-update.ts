@@ -1,13 +1,13 @@
-import { useState, useEffect, type ChangeEvent } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
+import { useCounselingSendParentSignUpV2, useCounselingUpdateStudent } from '@/legacy/generated/endpoint'
+import { UploadFileTypeEnum } from '@/legacy/generated/model'
+import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { toastState } from '@/stores'
-import { Validator } from '@/legacy/util/validator'
+import { errorType } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { checkFileSizeLimit100MB } from '@/legacy/util/file'
-import { useFileUpload } from '@/legacy/hooks/useFileUpload'
-import { UploadFileTypeEnum } from '@/legacy/generated/model'
-import { useCounselingSendParentSignUpV2, useCounselingUpdateStudent } from '@/legacy/generated/endpoint'
-import type { errorType } from '@/legacy/types'
+import { Validator } from '@/legacy/util/validator'
 
 export function useTeacherStudentUpdate() {
   const setToastMsg = useSetRecoilState(toastState)
@@ -25,6 +25,7 @@ export function useTeacherStudentUpdate() {
   const [nokPhone, setNokPhone] = useState(studentInfo?.nokPhone)
   const [expired, setExpired] = useState(studentInfo?.expired)
   const [expiredReason, setExpiredReason] = useState(studentInfo?.expiredReason)
+  const [, setNotAttend] = useState(studentInfo?.notAttend)
   const [profile, setProfile] = useState(studentInfo?.profile)
   const [birthDate, setBirthDate] = useState(
     studentInfo?.birthDate ? DateUtil.formatDate(studentInfo?.birthDate, DateFormat['YYYY-MM-DD']) : '',
@@ -149,6 +150,7 @@ export function useTeacherStudentUpdate() {
     setExpired,
     expiredReason,
     setExpiredReason,
+    setNotAttend,
     profile,
     setProfile,
     birthDate,

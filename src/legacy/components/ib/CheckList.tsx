@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { useCheckListGetByStudent } from '@/legacy/container/ib-checklist-find'
-import { ChecklistLocation, ResponseIBStudentDto } from '@/legacy/generated/model'
+
 import { Check } from '@/legacy/components/common/Check'
 import { Input } from '@/legacy/components/common/Input'
 import { Typography } from '@/legacy/components/common/Typography'
+import { useCheckListGetByStudent } from '@/legacy/container/ib-checklist-find'
+import { ChecklistLocation, ResponseIBStudentDto } from '@/legacy/generated/model'
 
 interface CheckListProps {
   studentId: number
@@ -12,7 +13,7 @@ interface CheckListProps {
 }
 
 export function CheckList({ studentId, type, location }: CheckListProps) {
-  const { CheckList, isLoading } = useCheckListGetByStudent(studentId, location)
+  const { CheckList } = useCheckListGetByStudent(studentId, location)
   const [selectedIds, setSelectedIds] = useState<number[]>([])
   useEffect(() => {
     if (type === 'update' && CheckList) {
@@ -38,7 +39,7 @@ interface TeacherCheckListProps {
 }
 
 CheckList.Teacher = ({ charCount, student }: TeacherCheckListProps) => {
-  const { CheckList, isLoading } = useCheckListGetByStudent(student.id, 'ESSAY')
+  const { CheckList } = useCheckListGetByStudent(student.id, 'ESSAY')
   const [selectedIds, setSelectedIds] = useState<number[]>([])
 
   useEffect(() => {

@@ -5,13 +5,13 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus } from './iBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus';
+import type { IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus } from './iBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus'
 
 export type IBCasPortfolioGetSubmissionStatusByReflectionDiaryParams = {
-  grade?: number;
-  klass?: number;
-  page?: number;
-  limit?: number;
-  status: IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus;
-  mentorId?: number;
-};
+  grade?: number
+  klass?: number
+  page?: number
+  limit?: number
+  status: IBCasPortfolioGetSubmissionStatusByReflectionDiaryStatus
+  mentorId?: number
+}

@@ -1,20 +1,15 @@
 import { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
-import { toastState } from '@/stores'
 import {
   useGroupsFindOne,
   useNewsLettersFindOne,
   useNewsLettersRepublish,
   useStudentNewsletterFindAllByNewsletterId,
 } from '@/legacy/generated/endpoint'
-import { useTeacherKlassGroup } from '@/legacy/container/teacher-klass-groups'
+import { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup, StudentNewsletter } from '@/legacy/generated/model'
+import { toastState } from '@/stores'
 import { makeDateToString } from '@/legacy/util/time'
-import type {
-  ResponseChatAttendeeDto,
-  ResponseGroupDto,
-  StudentGroup,
-  StudentNewsletter,
-} from '@/legacy/generated/model'
+import { useTeacherKlassGroup } from './teacher-klass-groups'
 
 type NewData = ResponseGroupDto & {
   isSelected: boolean
@@ -74,6 +69,7 @@ export function useTeacherNewsletterSubmit(newsletterId: number) {
     },
   )
 
+  // const studentsCount = result?.reduce((acc, cur) => +acc + +cur.studentCount, 0) || 0;
   const { studentsCount } = result?.reduce(
     (acc, cur) => {
       return {
@@ -83,7 +79,6 @@ export function useTeacherNewsletterSubmit(newsletterId: number) {
     },
     { studentsCount: 0, parentCount: 0 },
   ) || { studentsCount: 0, parentCount: 0 }
-
   const totalPerson: {
     student?: { id: number; name: string; klass: string }
     id?: number
@@ -93,7 +88,6 @@ export function useTeacherNewsletterSubmit(newsletterId: number) {
     sn?: string | null
     role?: string
   }[] = []
-
   const studentPerson: {
     student?: { id: number; name: string; klass: string }
     id?: number
@@ -103,7 +97,6 @@ export function useTeacherNewsletterSubmit(newsletterId: number) {
     sn?: string | null
     role?: string
   }[] = []
-
   const submitPerson: StudentNewsletter[] = []
   const chkID = new Set<number>()
 
@@ -220,7 +213,7 @@ export function useTeacherNewsletterSubmit(newsletterId: number) {
 
   const { mutate: rePushNewsletterMutate } = useNewsLettersRepublish({
     mutation: {
-      onSuccess: (_) => {
+      onSuccess: () => {
         setToastMsg('미제출 학생(보호자)에게 다시 알림을 보냈습니다.')
       },
       onError: () => {

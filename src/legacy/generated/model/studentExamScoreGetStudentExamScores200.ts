@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type StudentExamScoreGetStudentExamScores200 = { [key: string]: any };
+export type StudentExamScoreGetStudentExamScores200 = { [key: string]: any }

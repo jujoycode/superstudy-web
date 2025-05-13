@@ -5,12 +5,12 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { RequestCreateTokEvaluationDtoType } from './requestCreateTokEvaluationDtoType';
-import type { TokEvaluationGradeDto } from './tokEvaluationGradeDto';
+import type { RequestCreateTokEvaluationDtoType } from './requestCreateTokEvaluationDtoType'
+import type { TokEvaluationGradeDto } from './tokEvaluationGradeDto'
 
 export interface RequestCreateTokEvaluationDto {
   /** 평가 유형 */
-  type: RequestCreateTokEvaluationDtoType;
+  type: RequestCreateTokEvaluationDtoType
   /** 평가 등급 목록 */
-  grades: TokEvaluationGradeDto[];
+  grades: TokEvaluationGradeDto[]
 }

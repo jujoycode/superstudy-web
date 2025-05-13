@@ -8,13 +8,13 @@
 
 export interface RequestUpdateEEEvaluationLevelWithIdDto {
   /** 등급 명 */
-  name?: string;
+  name?: string
   /** 세부 평가 지표 */
-  description?: string;
+  description?: string
   /** 최소점수 */
-  minScore?: number;
+  minScore?: number
   /** 최대점수 */
-  maxScore?: number;
+  maxScore?: number
   /** 평가 등급 id */
-  id?: number;
+  id?: number
 }

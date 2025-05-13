@@ -1,10 +1,13 @@
 import { cloneDeep } from 'lodash'
 import React, { FC } from 'react'
-import { ReactComponent as DeleteQuestionIcon } from '@/legacy/assets/icons/survey-delete.svg'
-import { SelectValues } from '../SelectValues'
+
 import { Radio } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { TextInput } from '@/legacy/components/common/TextInput'
+
+import { SelectValues } from '../SelectValues'
+
+import DeleteQuestionIcon from '@/assets/icons/survey-delete.svg'
 
 interface SuperSurveyQuestionProps {
   question: any
@@ -59,7 +62,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
     _content[i].title = e.target.value
     setContent(_content)
   }
-  const onChangeRequired = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeRequired = () => {
     const _content = cloneDeep(content)
     _content[i].required = !required
     setContent(_content)

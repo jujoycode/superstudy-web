@@ -6,10 +6,9 @@
  * OpenAPI spec version: 0.1
  */
 
-export type GroupType = (typeof GroupType)[keyof typeof GroupType];
+export type GroupType = (typeof GroupType)[keyof typeof GroupType]
 
- 
 export const GroupType = {
   KLASS: 'KLASS',
   KLUB: 'KLUB',
-} as const;
+} as const

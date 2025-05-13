@@ -5,17 +5,17 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { CopykillerTargetTable } from './copykillerTargetTable';
+import type { CopykillerTargetTable } from './copykillerTargetTable'
 
 export interface RequestCopykillerUploadDto {
   /** 표절검사 대상 테이블 */
-  targetTable?: CopykillerTargetTable;
+  targetTable?: CopykillerTargetTable
   /** 표절검사 대상 테이블 ID */
-  targetId?: number;
+  targetId?: number
   /** 제목 */
-  title: string;
+  title: string
   /** 본문(본문이나 첨부파일 중 하나는 필수) */
-  content?: string | null;
+  content?: string | null
   /** 첨부파일들 s3 경로(본문이나 첨부파일 중 하나는 필수) */
-  files?: string[] | null;
+  files?: string[] | null
 }

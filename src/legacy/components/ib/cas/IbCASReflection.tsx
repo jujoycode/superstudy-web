@@ -1,12 +1,14 @@
 import { PropsWithChildren, useState } from 'react'
 import { useForm } from 'react-hook-form'
+
+import { Blank } from '@/legacy/components/common'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import { useReflectionDiaryCreate } from '@/legacy/container/ib-cas'
 import { RequestIBBasicContentDto, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { Blank } from '@/legacy/components/common'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { DocumentCard } from '../DocumentCard'
 import { ImageCard } from '../ImageCard'
@@ -36,7 +38,7 @@ export function IbCASReflection({
     control,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBBasicContentDto>()
   const title = watch('title')
   const { createReflectionDiary, isLoading } = useReflectionDiaryCreate({
@@ -58,19 +60,12 @@ export function IbCASReflection({
         .filter((value) => !value.isDelete && value.image instanceof File)
         .map((value) => value.image) as File[]
       const imageFileNames = await handleUploadFile(UploadFileTypeEnum['ib/activity/images'], imageFiles)
-      // url image 처리
-      const imageUrlNames = [...imageObjectMap.values()]
-        .filter((value) => !value.isDelete && typeof value.image === 'string')
-        .map((value) => value.image) as string[]
-      const allImageNames = [...imageUrlNames, ...imageFileNames]
       // file document 처리
       const documentFiles = [...documentObjectMap.values()]
         .filter((value) => !value.isDelete && value.document instanceof File)
         .map((value) => value.document) as File[]
       const documentFileNames = await handleUploadFile(UploadFileTypeEnum['ib/activity/files'], documentFiles)
-      const documentUrlNames = [...documentObjectMap.values()]
-        .filter((value) => !value.isDelete && typeof value.document === 'string')
-        .map((value) => value.document) as string[]
+
       const _data = {
         ...data,
         files: documentFileNames,

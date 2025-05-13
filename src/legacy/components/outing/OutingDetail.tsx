@@ -5,7 +5,7 @@ import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName, getPeriodStrEx } from '@/legacy/util/status'
 import { makeDateToString, makeDateToStringByFormat } from '@/legacy/util/time'
-import { Button } from '@/legacy/components/common/Button'
+import { Button } from '../common/Button'
 
 interface OutingCardProps {
   outing: ResponseCreateOutingDto | undefined
@@ -229,6 +229,7 @@ export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
       )}
 
       {me?.role !== Role.USER &&
+        me?.role !== Role.PARENT &&
         me?.school.isOutingActive === OutingUse.USE_PARENT_APPROVE &&
         outing?.outingStatus !== OutingStatus.BEFORE_PARENT_APPROVAL &&
         outing?.outingStatus !== OutingStatus.PROCESSED &&

@@ -1,14 +1,16 @@
 import { PropsWithChildren } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
+
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Typography } from '@/legacy/components/common/Typography'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useIBCreate } from '@/legacy/container/ib-project'
 import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
 import { RequestIBDto, RequestIBTokOutlineDto } from '@/legacy/generated/model'
 import { meState } from '@/stores'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 
@@ -33,7 +35,7 @@ export function IbOutline({
     control,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBTokOutlineDto>()
 
   const requiredFields = watch([
@@ -54,7 +56,7 @@ export function IbOutline({
 
   const areAllFieldsFilled = requiredFields.every((field) => field && field.trim() !== '')
 
-  const { data, isLoading: isFetching } = useThemeQuestionFindAll('TOK_ESSAY')
+  const { data } = useThemeQuestionFindAll('TOK_ESSAY')
   const { categoryData: knowledgeArea } = useCodeByCategoryName('tokOutlineKnowledgeArea')
 
   const knowledgeAreaOptions =
@@ -101,8 +103,6 @@ export function IbOutline({
     }
     createIBProject(requestData)
   }
-
-  const themeQuestionValue = watch('themeQuestion')
 
   return (
     <div

@@ -8,11 +8,11 @@
 
 export interface GroupBoard {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 그룹아이디 */
-  groupId: number;
+  groupId: number
 }

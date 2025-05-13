@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.1
  */
 
-export type CopykillerTargetTable = (typeof CopykillerTargetTable)[keyof typeof CopykillerTargetTable];
+export type CopykillerTargetTable = (typeof CopykillerTargetTable)[keyof typeof CopykillerTargetTable]
 
- 
 export const CopykillerTargetTable = {
   EE_ESSAY: 'EE_ESSAY',
   TOK_ESSAY: 'TOK_ESSAY',
   EXHIBITION: 'EXHIBITION',
-} as const;
+} as const

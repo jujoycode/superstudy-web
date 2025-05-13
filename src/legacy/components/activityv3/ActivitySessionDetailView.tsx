@@ -3,15 +3,18 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { ReactComponent as FileItemIcon } from '@/legacy/assets/svg/file-item-icon.svg'
+
+import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { ActivitySession, StudentActivitySession } from '@/legacy/generated/model'
 import { DocumentObject } from '@/legacy/types/document-object'
 import type { ImageObject } from '@/legacy/types/image-object'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+
 import { DocumentObjectComponent } from '../DocumentObjectComponent'
 import { ImageObjectComponent } from '../ImageObjectComponent'
-import { Time } from '@/legacy/components/common/Time'
+
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 
 interface ActivitySessionDetailViewProps {
   activitySession: ActivitySession

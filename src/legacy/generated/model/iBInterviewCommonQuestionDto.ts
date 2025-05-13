@@ -8,7 +8,7 @@
 
 export interface IBInterviewCommonQuestionDto {
   /** 질문 */
-  question: string;
+  question: string
   /** 힌트메시지 */
-  hint?: string;
+  hint?: string
 }

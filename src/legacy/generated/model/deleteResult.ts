@@ -7,5 +7,5 @@
  */
 
 export interface DeleteResult {
-  affected: number;
+  affected: number
 }

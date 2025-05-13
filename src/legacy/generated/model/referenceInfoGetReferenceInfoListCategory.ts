@@ -7,12 +7,11 @@
  */
 
 export type ReferenceInfoGetReferenceInfoListCategory =
-  (typeof ReferenceInfoGetReferenceInfoListCategory)[keyof typeof ReferenceInfoGetReferenceInfoListCategory];
+  (typeof ReferenceInfoGetReferenceInfoListCategory)[keyof typeof ReferenceInfoGetReferenceInfoListCategory]
 
- 
 export const ReferenceInfoGetReferenceInfoListCategory = {
   IB_EE: 'IB_EE',
   IB_CAS: 'IB_CAS',
   IB_TOK: 'IB_TOK',
   IB_ALL: 'IB_ALL',
-} as const;
+} as const

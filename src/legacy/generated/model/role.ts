@@ -6,9 +6,8 @@
  * OpenAPI spec version: 0.1
  */
 
-export type Role = (typeof Role)[keyof typeof Role];
+export type Role = (typeof Role)[keyof typeof Role]
 
- 
 export const Role = {
   ADMIN: 'ADMIN',
   TEACHER: 'TEACHER',
@@ -23,4 +22,4 @@ export const Role = {
   PARENT: 'PARENT',
   STAFF: 'STAFF',
   GUEST_LECTURER: 'GUEST_LECTURER',
-} as const;
+} as const

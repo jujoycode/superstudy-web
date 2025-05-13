@@ -1,7 +1,8 @@
 import { FC, useEffect } from 'react'
-import { TeacherStudentAssessment } from '@/legacy/generated/model'
+
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { TeacherStudentAssessment } from '@/legacy/generated/model'
 
 interface TeacherStudentAssessmentViewProps {
   teacherStudentAssessment?: TeacherStudentAssessment

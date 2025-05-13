@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type SchoolPropertyGetPropertyParams = { key: string };
+export type SchoolPropertyGetPropertyParams = { key: string }

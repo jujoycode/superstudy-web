@@ -8,7 +8,7 @@
 
 export type OtpSendPostBody = {
   /** 전화번호 */
-  phone?: string;
+  phone?: string
   /** 전송방법 : sms or not(카카오톡) */
-  sendMethod?: string;
-};
+  sendMethod?: string
+}

@@ -8,7 +8,7 @@
 
 export interface RequestIBDeadlineUpdateDto {
   /** 마감시간 */
-  deadlineTime: string;
+  deadlineTime: string
   /** 일일 알람 주기 */
-  remindDays?: number[];
+  remindDays?: number[]
 }

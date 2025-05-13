@@ -5,16 +5,16 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseCoordinatorDtoType } from './responseCoordinatorDtoType';
-import type { ResponseIBUserDto } from './responseIBUserDto';
+import type { ResponseCoordinatorDtoType } from './responseCoordinatorDtoType'
+import type { ResponseIBUserDto } from './responseIBUserDto'
 
 export interface ResponseCoordinatorDto {
   /** ID */
-  id: number;
+  id: number
   /** 생성일시 */
-  createdAt: string;
+  createdAt: string
   /** 수정일시 */
-  updatedAt: string;
+  updatedAt: string
   /** 
 에세이 상태 값:
 - **IB_ALL**: IB 관리자
@@ -22,7 +22,7 @@ export interface ResponseCoordinatorDto {
 - **IB_CAS**: CAS
 - **IB_TOK**: TOK
  */
-  type: ResponseCoordinatorDtoType;
+  type: ResponseCoordinatorDtoType
   /** 코디 선생님 */
-  teacher: ResponseIBUserDto;
+  teacher: ResponseIBUserDto
 }

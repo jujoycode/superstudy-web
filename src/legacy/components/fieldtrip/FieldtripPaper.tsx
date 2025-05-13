@@ -2,6 +2,7 @@ import { add } from 'date-fns'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useRecoilValue } from 'recoil'
+import { useSchoolWording } from '@/legacy/container/school-wording'
 import { Fieldtrip, ResponseUserDto } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
 import { meState } from '@/stores'
@@ -10,7 +11,7 @@ import { getNickName } from '@/legacy/util/status'
 import { getCustomString } from '@/legacy/util/string'
 import { fieldtripPeriodDayCnt, makeDateToString2 } from '@/legacy/util/time'
 import { Td2 } from '../Td2'
-import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Checkbox } from '../common/Checkbox'
 
 interface FieldtripPaperProps {
   school: ResponseUserDto['school'] | undefined
@@ -47,6 +48,8 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
     fieldtrip?.startPeriodS,
     fieldtrip?.endPeriodE,
   )
+
+  const { fieldtripSafety, fieldtripResultGuide } = useSchoolWording()
 
   let homeContentType = 'Time'
 
@@ -496,10 +499,10 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                 학생<p></p>안전
               </th>
               <td
-                className="overflow-hidden border border-black bg-gray-200 text-left whitespace-pre-line"
+                className="overflow-hidden border border-black bg-gray-200 text-left text-xs whitespace-pre-wrap"
                 colSpan={17}
               >
-                {school?.studentSafeText}
+                {fieldtripSafety}
               </td>
               <td className="border border-black bg-gray-200 text-center" colSpan={3}>
                 <Checkbox checked={agree} disabled className={'bg-gray-100'} style={{ color: 'gray' }} />
@@ -560,11 +563,6 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
             ※ 보호자가 신청서를 제출하였다 하여 체험학습이 허가된 것이 아니며 담임교사로부터 반드시 최종 허가 여부
             통보서(또는 문자)를 받은 후 실시해야 함
           </p>
-          {/* <p>
-            ※ 교외체험학습 실시 중에는 보호자와 담당교사 간 연락체계를 유지하고 사안(사고) 발생 시 보호자는 담당교사에게
-            연락을 하도록 합니다.
-          </p> */}
-          {/* <p>※ {school?.studentSafeText} 미이행의 경우 시‧군‧구 아동복지과 또는 수사기관에 통보될 수 있음을 알려드립니다. </p> */}
         </div>
       </div>
     )
@@ -798,8 +796,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
             연락을 하도록 합니다.
           </p>
           <p className="font-extrabold">
-            ※ {school?.studentSafeText} 미이행의 경우 시‧군‧구 아동복지과 또는 수사기관에 통보될 수 있음을
-            알려드립니다.{' '}
+            ※ {fieldtripSafety} 미이행의 경우 시‧군‧구 아동복지과 또는 수사기관에 통보될 수 있음을 알려드립니다.{' '}
           </p>
         </div>
       </div>
@@ -818,11 +815,21 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
           </h5>
           <table className="min-w-max border-2 border-black">
             <tr>
-              {fieldtrip?.resultApprover1Title && <Td2 className="h-4">{fieldtrip?.resultApprover1Title}</Td2>}
-              {fieldtrip?.resultApprover2Title && <Td2 className="h-4">{fieldtrip?.resultApprover2Title}</Td2>}
-              {fieldtrip?.resultApprover3Title && <Td2 className="h-4">{fieldtrip?.resultApprover3Title}</Td2>}
-              {fieldtrip?.resultApprover4Title && <Td2 className="h-4">{fieldtrip?.resultApprover4Title}</Td2>}
-              {fieldtrip?.resultApprover5Title && <Td2 className="h-4">{fieldtrip?.resultApprover5Title}</Td2>}
+              {fieldtrip?.resultApprover1Title && (
+                <Td2 className="h-4 whitespace-pre">{fieldtrip?.resultApprover1Title}</Td2>
+              )}
+              {fieldtrip?.resultApprover2Title && (
+                <Td2 className="h-4 whitespace-pre">{fieldtrip?.resultApprover2Title}</Td2>
+              )}
+              {fieldtrip?.resultApprover3Title && (
+                <Td2 className="h-4 whitespace-pre">{fieldtrip?.resultApprover3Title}</Td2>
+              )}
+              {fieldtrip?.resultApprover4Title && (
+                <Td2 className="h-4 whitespace-pre">{fieldtrip?.resultApprover4Title}</Td2>
+              )}
+              {fieldtrip?.resultApprover5Title && (
+                <Td2 className="h-4 whitespace-pre">{fieldtrip?.resultApprover5Title}</Td2>
+              )}
             </tr>
             <tr>
               {fieldtrip?.resultApprover1Title && (
@@ -1159,8 +1166,11 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
 
                 <tbody>
                   <tr>
-                    <td className="border border-dashed border-black" colSpan={23}>
-                      * 각 일정별로 느낀 점, 배운 점 등을 글, 그림 등으로 학생이 직접 기록합니다.
+                    <td
+                      className="border border-dashed border-black px-4 text-left text-xs whitespace-pre-wrap"
+                      colSpan={23}
+                    >
+                      {fieldtripResultGuide}
                     </td>
                   </tr>
                   <tr className="h-128 max-h-128">

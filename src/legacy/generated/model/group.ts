@@ -5,42 +5,42 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { GroupType } from './groupType';
-import type { GroupActivity } from './groupActivity';
-import type { StudentGroup } from './studentGroup';
-import type { TeacherGroup } from './teacherGroup';
-import type { Lecture } from './lecture';
+import type { GroupActivity } from './groupActivity'
+import type { GroupType } from './groupType'
+import type { Lecture } from './lecture'
+import type { StudentGroup } from './studentGroup'
+import type { TeacherGroup } from './teacherGroup'
 
 export interface Group {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 이름 */
-  name: string | null;
+  name: string | null
   /** 그룹종류 */
-  type: GroupType;
+  type: GroupType
   /** 학년도 */
-  year: string | null;
+  year: string | null
   /** 학년 */
-  grade: number;
+  grade: number
   /** 반 */
-  klass: number;
+  klass: number
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
   /**
    * 그룹활동, Deprecated, api 분리 필요해보여요
    * @deprecated
    */
-  groupActivities: GroupActivity[];
+  groupActivities: GroupActivity[]
   /** 학생그룹 */
-  studentGroups: StudentGroup[];
+  studentGroups: StudentGroup[]
   /** 선생님그룹 */
-  teacherGroups: TeacherGroup[];
+  teacherGroups: TeacherGroup[]
   /** 시간표 */
-  lectures: Lecture[];
+  lectures: Lecture[]
   /** 자리배치 */
-  seatPosition: string;
+  seatPosition: string
 }

@@ -14,11 +14,10 @@
 - **UNLOCK**: 수정가능상태
 
  */
-export type ResponseEssayDtoEditStatus = (typeof ResponseEssayDtoEditStatus)[keyof typeof ResponseEssayDtoEditStatus];
+export type ResponseEssayDtoEditStatus = (typeof ResponseEssayDtoEditStatus)[keyof typeof ResponseEssayDtoEditStatus]
 
- 
 export const ResponseEssayDtoEditStatus = {
   LOCK: 'LOCK',
   REQUEST_UNLOCK: 'REQUEST_UNLOCK',
   UNLOCK: 'UNLOCK',
-} as const;
+} as const

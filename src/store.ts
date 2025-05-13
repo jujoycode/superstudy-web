@@ -1,4 +1,5 @@
 import { atom, type AtomEffect } from 'recoil'
+
 import type { ResponseSchoolPropertyDto, ResponseUserDto } from '@/legacy/generated/model'
 import type { Languages } from '@/legacy/util/i18n'
 

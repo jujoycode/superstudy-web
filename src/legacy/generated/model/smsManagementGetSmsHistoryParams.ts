@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type SmsManagementGetSmsHistoryParams = { startDate: string; endDate: string; keyword?: string };
+export type SmsManagementGetSmsHistoryParams = { startDate: string; endDate: string; keyword?: string }

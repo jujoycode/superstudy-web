@@ -13,7 +13,7 @@ import {
   useIBReflectionDiaryGetItem,
   useIBReflectionDiaryUpdateItem,
 } from '@/legacy/generated/endpoint'
-import type {
+import {
   IBActivityLogGetItemsParams,
   RequestIBActivityLogDto,
   RequestIBActivityLogUpdateDto,

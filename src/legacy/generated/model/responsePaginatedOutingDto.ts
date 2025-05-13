@@ -5,11 +5,11 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseCreateOutingDto } from './responseCreateOutingDto';
+import type { ResponseCreateOutingDto } from './responseCreateOutingDto'
 
 export interface ResponsePaginatedOutingDto {
   /** 조퇴/외출/확인 */
-  items: ResponseCreateOutingDto[];
+  items: ResponseCreateOutingDto[]
   /** 전체갯수 */
-  total: number;
+  total: number
 }

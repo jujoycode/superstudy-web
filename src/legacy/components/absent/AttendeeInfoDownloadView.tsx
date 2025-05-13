@@ -1,8 +1,8 @@
+import { Button } from '@/legacy/components/common/Button'
 import { useAbsentsDownloadAttendee } from '@/legacy/generated/endpoint'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { downloadExcel } from '@/legacy/util/download-excel'
 import { makeDateToString } from '@/legacy/util/time'
-import { Button } from '@/legacy/components/common/Button'
 
 interface AttendeeInfoDownloadViewProps {
   startDate: string

@@ -6,9 +6,8 @@
  * OpenAPI spec version: 0.1
  */
 
-export type CourseStatus = (typeof CourseStatus)[keyof typeof CourseStatus];
+export type CourseStatus = (typeof CourseStatus)[keyof typeof CourseStatus]
 
- 
 export const CourseStatus = {
   EDITING: 'EDITING',
   PROPOSED: 'PROPOSED',
@@ -24,4 +23,4 @@ export const CourseStatus = {
   IN_LECTURE: 'IN_LECTURE',
   LECTURE_ENDED: 'LECTURE_ENDED',
   CLOSED: 'CLOSED',
-} as const;
+} as const

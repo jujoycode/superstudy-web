@@ -5,6 +5,6 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ThemeQuestionGetThemeQuestionItemsByTypeType } from './themeQuestionGetThemeQuestionItemsByTypeType';
+import type { ThemeQuestionGetThemeQuestionItemsByTypeType } from './themeQuestionGetThemeQuestionItemsByTypeType'
 
-export type ThemeQuestionGetThemeQuestionItemsByTypeParams = { type?: ThemeQuestionGetThemeQuestionItemsByTypeType };
+export type ThemeQuestionGetThemeQuestionItemsByTypeParams = { type?: ThemeQuestionGetThemeQuestionItemsByTypeType }

@@ -1,16 +1,18 @@
 import { PropsWithChildren, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
+
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { Input } from '@/legacy/components/common/Input'
+import { Typography } from '@/legacy/components/common/Typography'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useIBCreate } from '@/legacy/container/ib-project'
 import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
 import { RequestIBDto, RequestIBTokExhibitionPlanDto } from '@/legacy/generated/model'
 import { meState } from '@/stores'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Check } from '@/legacy/components/common/Check'
-import { Input } from '@/legacy/components/common/Input'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 
@@ -47,7 +49,7 @@ export function IbExhibitionPlan({
     control,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBDto>()
 
   const requiredFields = watch([
@@ -64,7 +66,7 @@ export function IbExhibitionPlan({
   ])
   const areAllFieldsFilled = requiredFields.every((field) => field && field.trim() !== '') && selectedNames.length > 0
 
-  const { data, isLoading: isFetching } = useThemeQuestionFindAll('TOK_EXHIBITION')
+  const { data } = useThemeQuestionFindAll('TOK_EXHIBITION')
   const { categoryData: knowledgeArea } = useCodeByCategoryName('tokExhibitionPlanKnowledgeArea')
   const { categoryData: commentary } = useCodeByCategoryName('tokCommentary')
 
@@ -138,7 +140,6 @@ export function IbExhibitionPlan({
   const target1Value = watch('tokExhibitionPlan.target1')
   const target2Value = watch('tokExhibitionPlan.target2')
   const target3Value = watch('tokExhibitionPlan.target3')
-  const themeQuestionValue = watch('tokExhibitionPlan.themeQuestion')
 
   return (
     <div

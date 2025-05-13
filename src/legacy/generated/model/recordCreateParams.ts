@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1
  */
 
-export type RecordCreateParams = { activityv3Id: number; userId: number };
+export type RecordCreateParams = { activityv3Id: number; userId: number }

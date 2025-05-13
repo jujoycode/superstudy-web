@@ -5,15 +5,15 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { ResponseKlassInfoDtoHomeroomTeacherInfo } from './responseKlassInfoDtoHomeroomTeacherInfo';
-import type { ResponseSubjectTeacherInfoDto } from './responseSubjectTeacherInfoDto';
-import type { StudentGroup } from './studentGroup';
+import type { ResponseKlassInfoDtoHomeroomTeacherInfo } from './responseKlassInfoDtoHomeroomTeacherInfo'
+import type { ResponseSubjectTeacherInfoDto } from './responseSubjectTeacherInfoDto'
+import type { StudentGroup } from './studentGroup'
 
 export interface ResponseKlassInfoDto {
   /** 담임 선생님 정보 */
-  homeroomTeacherInfo: ResponseKlassInfoDtoHomeroomTeacherInfo;
+  homeroomTeacherInfo: ResponseKlassInfoDtoHomeroomTeacherInfo
   /** 담당 선생님 정보 */
-  subjectTeacherInfo: ResponseSubjectTeacherInfoDto[] | null;
+  subjectTeacherInfo: ResponseSubjectTeacherInfoDto[] | null
   /** 학생 정보 */
-  studentInfo: StudentGroup[] | null;
+  studentInfo: StudentGroup[] | null
 }

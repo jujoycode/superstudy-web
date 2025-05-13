@@ -1,7 +1,9 @@
 import React from 'react'
+
 import { ActivitySession, StudentActivitySession } from '@/legacy/generated/model'
 import { DocumentObject } from '@/legacy/types/document-object'
 import type { ImageObject } from '@/legacy/types/image-object'
+
 import { ActivitySessionDetailView } from './ActivitySessionDetailView'
 import { StudentActivitySessionDetailView } from './StudentActivitySessionDetailView'
 import { StudentActivitySessionSubmitView } from './StudentActivitySessionSubmitView'

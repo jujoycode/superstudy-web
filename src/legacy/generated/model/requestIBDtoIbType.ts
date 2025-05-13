@@ -9,9 +9,8 @@
 /**
  * IB 프로젝트 타입
  */
-export type RequestIBDtoIbType = (typeof RequestIBDtoIbType)[keyof typeof RequestIBDtoIbType];
+export type RequestIBDtoIbType = (typeof RequestIBDtoIbType)[keyof typeof RequestIBDtoIbType]
 
- 
 export const RequestIBDtoIbType = {
   NORMAL: 'NORMAL',
   CAS_NORMAL: 'CAS_NORMAL',
@@ -19,4 +18,4 @@ export const RequestIBDtoIbType = {
   EE: 'EE',
   TOK_ESSAY: 'TOK_ESSAY',
   TOK_EXHIBITION: 'TOK_EXHIBITION',
-} as const;
+} as const

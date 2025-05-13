@@ -6,9 +6,8 @@
  * OpenAPI spec version: 0.1
  */
 
-export type FieldtripStatus = (typeof FieldtripStatus)[keyof typeof FieldtripStatus];
+export type FieldtripStatus = (typeof FieldtripStatus)[keyof typeof FieldtripStatus]
 
- 
 export const FieldtripStatus = {
   WAITING: 'WAITING',
   RETURNED: 'RETURNED',
@@ -23,4 +22,4 @@ export const FieldtripStatus = {
   PROCESSING: 'PROCESSING',
   PROCESSED: 'PROCESSED',
   DELETE_APPEAL: 'DELETE_APPEAL',
-} as const;
+} as const

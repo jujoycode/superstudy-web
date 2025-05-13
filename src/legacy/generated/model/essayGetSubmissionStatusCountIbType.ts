@@ -7,9 +7,8 @@
  */
 
 export type EssayGetSubmissionStatusCountIbType =
-  (typeof EssayGetSubmissionStatusCountIbType)[keyof typeof EssayGetSubmissionStatusCountIbType];
+  (typeof EssayGetSubmissionStatusCountIbType)[keyof typeof EssayGetSubmissionStatusCountIbType]
 
- 
 export const EssayGetSubmissionStatusCountIbType = {
   NORMAL: 'NORMAL',
   CAS_NORMAL: 'CAS_NORMAL',
@@ -17,4 +16,4 @@ export const EssayGetSubmissionStatusCountIbType = {
   EE: 'EE',
   TOK_ESSAY: 'TOK_ESSAY',
   TOK_EXHIBITION: 'TOK_EXHIBITION',
-} as const;
+} as const

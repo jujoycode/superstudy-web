@@ -7,6 +7,6 @@
  */
 
 export interface PointCreateBody {
-  title: string;
-  value: number;
+  title: string
+  value: number
 }

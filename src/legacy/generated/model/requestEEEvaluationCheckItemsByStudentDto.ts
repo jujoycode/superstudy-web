@@ -5,13 +5,13 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { EEEvaluationLocation } from './eEEvaluationLocation';
+import type { EEEvaluationLocation } from './eEEvaluationLocation'
 
 export interface RequestEEEvaluationCheckItemsByStudentDto {
   /** 평가 속하는 위치 */
-  location: EEEvaluationLocation;
+  location: EEEvaluationLocation
   /** 평가 코멘트 */
-  comment: string;
+  comment: string
   /** 학생평가조회에서 조회된 체크하려는 items의 id들 */
-  checkedIds: number[];
+  checkedIds: number[]
 }

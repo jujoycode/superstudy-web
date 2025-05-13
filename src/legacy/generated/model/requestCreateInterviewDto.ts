@@ -5,16 +5,16 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { IBInterviewCommonQuestionDto } from './iBInterviewCommonQuestionDto';
-import type { RequestCreateInterviewDtoCategory } from './requestCreateInterviewDtoCategory';
+import type { IBInterviewCommonQuestionDto } from './iBInterviewCommonQuestionDto'
+import type { RequestCreateInterviewDtoCategory } from './requestCreateInterviewDtoCategory'
 
 export interface RequestCreateInterviewDto {
   /** 인터뷰 타이틀 */
-  title: string;
+  title: string
   /** 인터뷰 설명 */
-  description: string;
+  description: string
   /** 공통 질문내용 */
-  commonQuestion: IBInterviewCommonQuestionDto[];
+  commonQuestion: IBInterviewCommonQuestionDto[]
   /** 인터뷰 분류 */
-  category: RequestCreateInterviewDtoCategory;
+  category: RequestCreateInterviewDtoCategory
 }

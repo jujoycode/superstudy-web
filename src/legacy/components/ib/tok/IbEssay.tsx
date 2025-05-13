@@ -1,18 +1,20 @@
 import { ChangeEvent, PropsWithChildren, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
+import { ImageNFileUpload } from '@/legacy/components/common/ImageNFileUpload'
+import { Input } from '@/legacy/components/common/Input'
+import { Typography } from '@/legacy/components/common/Typography'
 import { useIBEssayCreate } from '@/legacy/container/ib-essay-create'
 import { useIBEssayUpdate } from '@/legacy/container/ib-essay-update'
 import { RequestEssayDto, ResponseEssayDto, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { getFileNameFromUrl } from '@/legacy/util/file'
-import AlertV2 from '@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Check } from '@/legacy/components/common/Check'
-import { ImageNFileUpload } from '@/legacy/components/common/ImageNFileUpload'
-import { Input } from '@/legacy/components/common/Input'
-import { Typography } from '@/legacy/components/common/Typography'
+
 import { PopupModal } from '../../PopupModal'
 
 interface IbEssayProps {
@@ -101,7 +103,7 @@ export function IbEssay({
   const {
     handleSubmit,
     register,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm<RequestEssayDto>({
     defaultValues: (type === 'update' || type === 'update_check') && essayData ? essayData : {},
     mode: 'onChange',

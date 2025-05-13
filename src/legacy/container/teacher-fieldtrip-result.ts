@@ -1,20 +1,28 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useLocation } from 'react-router'
-import { useQueryParams } from '@/legacy/hooks/useQueryParams'
-import { GroupContainer } from '@/legacy/container/group'
-import { MonthAgo, getEndDate, getStartDate, makeDateToString } from '@/legacy/util/time'
-import { Role, type ResponsePaginatedFieldtripDto } from '@/legacy/generated/model'
+import { useLocation } from 'react-router-dom'
 import {
   useFieldtripResultApproveResult,
   useFieldtripsGetResultsByTeacher,
   useUserMe,
 } from '@/legacy/generated/endpoint'
-import type { errorType } from '@/legacy/types'
+import { FilterAbsentStatus, ResponsePaginatedFieldtripDto, Role } from '@/legacy/generated/model'
+import { useQueryParams } from '@/legacy/hooks/useQueryParams'
+import { errorType } from '@/legacy/types'
+import { MonthAgo, getEndDate, getStartDate, makeDateToString } from '@/legacy/util/time'
+import { GroupContainer } from './group'
+
+// SelectMenus의 onChange parameter가 any로 받고 있어서 임시로 생성한 type임
+export type SelectMenuFilterType = {
+  id: number
+  name: string
+  value: FilterAbsentStatus | 'ALL'
+}
 
 type UseTeacherFieldTripProps = {
   clearSignature: () => void
   sigPadData: string
   stampMode: boolean
+  stampImgUrl?: string
   stamp?: string
 }
 
@@ -37,6 +45,11 @@ export function useTeacherFieldtripResult({ clearSignature, sigPadData, stampMod
   const [fieldtripId, setFieldtripId] = useState(0)
   const [errorMessage, setErrorMessage] = useState('')
   const [filter, setFilter] = useState<any>(groups[1])
+  // const [filter, setFilter] = useState<SelectMenuFilterType>({
+  //   id: 1,
+  //   name: '모두',
+  //   value: 'ALL',
+  // });
   const [page, setPage] = useState(Number(params.get('page') ?? '1'))
   const [_studentName, set_studentName] = useState('')
   const limit = Number(params.get('limit') ?? '1000') || 1000

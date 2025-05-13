@@ -8,21 +8,21 @@
 
 export interface TimetableV2 {
   /** 아이디 */
-  id: number;
+  id: number
   /** 생성일 */
-  createdAt: string;
+  createdAt: string
   /** 수정일 */
-  updatedAt: string;
+  updatedAt: string
   /** 내용 */
-  content: string;
+  content: string
   /** 자리배치 */
-  seatPosition: string;
+  seatPosition: string
   /** 학년도 */
-  year: number;
+  year: number
   /** 학기 */
-  semester: number;
+  semester: number
   /** 그룹아이디 */
-  groupId: number;
+  groupId: number
   /** 학교아이디 */
-  schoolId: number;
+  schoolId: number
 }

@@ -8,5 +8,5 @@
 
 export interface RequestApproveStudentNewsletterDto {
   /** 학부모 서명 */
-  parentSignature: string;
+  parentSignature: string
 }

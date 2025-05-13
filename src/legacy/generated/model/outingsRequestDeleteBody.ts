@@ -8,5 +8,5 @@
 
 export type OutingsRequestDeleteBody = {
   /** 삭제요청사유 */
-  deleteReason?: string;
-};
+  deleteReason?: string
+}

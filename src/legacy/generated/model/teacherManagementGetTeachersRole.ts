@@ -7,9 +7,8 @@
  */
 
 export type TeacherManagementGetTeachersRole =
-  (typeof TeacherManagementGetTeachersRole)[keyof typeof TeacherManagementGetTeachersRole];
+  (typeof TeacherManagementGetTeachersRole)[keyof typeof TeacherManagementGetTeachersRole]
 
- 
 export const TeacherManagementGetTeachersRole = {
   ADMIN: 'ADMIN',
   TEACHER: 'TEACHER',
@@ -24,4 +23,4 @@ export const TeacherManagementGetTeachersRole = {
   PARENT: 'PARENT',
   STAFF: 'STAFF',
   GUEST_LECTURER: 'GUEST_LECTURER',
-} as const;
+} as const

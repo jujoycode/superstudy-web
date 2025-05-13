@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useUserSendParentSignUp } from '@/legacy/generated/endpoint'
-import type { errorType } from '@/legacy/types'
+import { errorType } from '@/legacy/types'
 
 export function useStudentSendParentSignUp() {
   const [enableSendParentSignUp, setEnableSendParentSignUp] = useState(false)

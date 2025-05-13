@@ -1,4 +1,5 @@
 import { HTMLAttributes, LabelHTMLAttributes } from 'react'
+
 import { cn } from '@/legacy/lib/tailwind-merge'
 
 export interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {}
