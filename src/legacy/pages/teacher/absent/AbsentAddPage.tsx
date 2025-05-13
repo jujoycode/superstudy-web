@@ -1,15 +1,15 @@
 import clsx from 'clsx'
 import { t } from 'i18next'
 import { useEffect, useState } from 'react'
-import { ReactComponent as Close } from '@/legacy/assets/svg/close.svg'
+
 import { SelectMenus, SelectValues } from '@/legacy/components'
-import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
 import { BackButton, Badge, Blank, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { MobileImageUpload } from '@/legacy/components/common/MobileImageUpload'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { FieldtripDatePicker } from '@/legacy/components/fieldtrip/FieldtripDatePicker'
+import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
 import { useCommonGetHolidays } from '@/legacy/container/common-get-holidays'
 import { useTeacherAbsentAdd } from '@/legacy/container/teacher-absent-add'
 import { UserContainer } from '@/legacy/container/user'
@@ -17,6 +17,8 @@ import { Absent, GroupType, StudentGroup } from '@/legacy/generated/model'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { AbsentTimeType } from '@/legacy/types'
 import { makeDateToString } from '@/legacy/util/time'
+
+import Close from '@/assets/svg/close.svg'
 
 const reportType = ['결석', '지각', '조퇴', '결과']
 const descriptionType = ['인정', '기타', '미인정']
@@ -27,9 +29,6 @@ interface AbsentAddPageProps {
 }
 
 export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps) {
-  const { me } = UserContainer.useContext()
-  const hasSaturdayClass = me?.school.hasSaturdayClass || false
-
   const [agree, setAgree] = useState(false)
 
   const { holidays } = useCommonGetHolidays()
@@ -51,11 +50,9 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
       isEvidenceFile2,
       evidenceType2,
       evidenceType2Text,
-      parentsPhone,
       startAt,
       endAt,
       description,
-      parentComment,
       startHour,
       endHour,
       errorMessage,
@@ -81,10 +78,8 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
       setStartAt,
       setEndAt,
       setDescription,
-      setParentComment,
       setStartMinute,
       setEndMinute,
-      setLoading,
       setStartHour,
       setEndHour,
       setTimeType,

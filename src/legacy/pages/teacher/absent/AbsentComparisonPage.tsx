@@ -1,8 +1,11 @@
 import clsx from 'clsx'
 import _, { range } from 'lodash'
 import React, { useEffect, useState } from 'react'
-import { useHistory, useLocation } from 'react-router'
+import { useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
+import * as XLSX from 'xlsx'
+
+import { useHistory } from '@/hooks/useHistory'
 import { Label, Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
@@ -21,9 +24,8 @@ import {
 } from '@/legacy/generated/endpoint'
 import { GroupType } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { tokenState } from '@/stores'
 import { getSearchYearByMonth, getThisYear } from '@/legacy/util/time'
-import * as XLSX from 'xlsx'
+import { tokenState } from '@/stores'
 
 const headers = [
   '번호',
@@ -341,10 +343,7 @@ const AbsentComparisonPage: React.FC = () => {
     setNiceFileContent([])
     setNiceFile(null)
     searchParams.set('selectedGroupId', groupId.toString())
-    replace({
-      pathname: '/teacher/absent/comparison',
-      search: searchParams.toString(),
-    })
+    replace(`/teacher/absent/comparison?${searchParams.toString()}`)
   }
 
   const getTitle = (studNum: number, header: string) => {
@@ -419,10 +418,7 @@ const AbsentComparisonPage: React.FC = () => {
                 setNiceFile(null)
                 refetch()
                 searchParams.set('year', e.target.value)
-                replace({
-                  pathname: '/teacher/absent/comparison',
-                  search: searchParams.toString(),
-                })
+                replace(`/teacher/absent/comparison?${searchParams.toString()}`)
               }}
             >
               {range(thisYear + 1, thisYear - 3, -1).map((year) => (
@@ -443,10 +439,7 @@ const AbsentComparisonPage: React.FC = () => {
                 setNiceFile(null)
                 refetch()
                 searchParams.set('month', e.target.value)
-                replace({
-                  pathname: '/teacher/absent/comparison',
-                  search: searchParams.toString(),
-                })
+                replace(`/teacher/absent/comparison?${searchParams.toString()}`)
               }}
             >
               {[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0, 1].map((month) => (

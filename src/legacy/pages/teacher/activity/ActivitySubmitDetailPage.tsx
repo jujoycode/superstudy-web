@@ -4,7 +4,7 @@ import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
-import { ReactComponent as Arrow } from '@/legacy/assets/svg/arrow-up-circle.svg'
+
 import { ErrorBlank } from '@/legacy/components'
 import { CommentItem } from '@/legacy/components/CommentItem'
 import { Badge, Blank, List, Section } from '@/legacy/components/common'
@@ -14,8 +14,10 @@ import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { useTeacherActivitySubmitDetail } from '@/legacy/container/teacher-activity-submit-detail'
-import { meState } from '@/stores'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { meState } from '@/stores'
+
+import Arrow from '@/assets/svg/arrow-up-circle.svg'
 
 interface ActivitySubmitDetailPageProps {
   activityId: number
@@ -36,7 +38,7 @@ export function ActivitySubmitDetailPage({ activityId }: ActivitySubmitDetailPag
     handleCommentCreate,
     handleCommentDelete,
     handleCommentUpdate,
-  } = useTeacherActivitySubmitDetail(activityId, +said)
+  } = useTeacherActivitySubmitDetail(activityId, Number(said))
 
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
@@ -227,7 +229,7 @@ export function ActivitySubmitDetailPage({ activityId }: ActivitySubmitDetailPag
           noImgDetails
           scalable={false}
           images={viewerImages}
-          onChange={(activeImage, index) => setActiveIndex(index)}
+          onChange={(_, index) => setActiveIndex(index)}
           onClose={() => setImagesModalOpen(false)}
           activeIndex={activeIndex}
         />

@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { t } from 'i18next'
 import { useState } from 'react'
+
 import { SelectValues, SuperModal } from '@/legacy/components'
 import { Badge, Blank, Label, Section, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -67,8 +68,6 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
     setEvidenceType2Text,
     isLoading,
     updateAbsent,
-    dateOff,
-    setDateOff,
     imageObjectMap,
     timeType,
     setTimeType,

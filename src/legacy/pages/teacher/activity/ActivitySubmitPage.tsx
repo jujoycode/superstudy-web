@@ -1,10 +1,13 @@
 import { useQueryClient } from 'react-query'
-import { Route, Switch, useHistory, useLocation, useParams } from 'react-router'
+import { Route, Routes, useLocation, useParams } from 'react-router'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, Tab } from '@/legacy/components'
 import { Blank } from '@/legacy/components/common'
 import { SubmitterItem } from '@/legacy/components/record/SubmitterItem'
 import { useTeacherActivitySubmit } from '@/legacy/container/teacher-activity-submit'
 import { nameWithId } from '@/legacy/types'
+
 import { ActivitySubmitDetailPage } from './ActivitySubmitDetailPage'
 
 interface ActivitySubmitPageProps {
@@ -19,7 +22,7 @@ export function ActivitySubmitPage({ group }: ActivitySubmitPageProps) {
   const isDetail = !pathname.endsWith('/teacher/activity/submit/' + id)
 
   const { isError, isLoading, filteredUser, filterIndex, setFilterIndex } = useTeacherActivitySubmit(
-    +id,
+    Number(id),
     group && group?.id === 0 ? undefined : group?.id,
   )
 
@@ -54,19 +57,19 @@ export function ActivitySubmitPage({ group }: ActivitySubmitPageProps) {
             <SubmitterItem
               key={user.userId}
               user={user}
-              id={id}
+              id={id ?? ''}
               onClick={() => push(`/teacher/activity/submit/${id}/${user.studentActivityId}`)}
             />
           ))}
         </div>
       </div>
       <div className="col-span-3">
-        <Switch>
+        <Routes>
           <Route
             path={`/teacher/activity/submit/${id}/:said`}
-            component={() => <ActivitySubmitDetailPage activityId={+id} />}
+            element={<ActivitySubmitDetailPage activityId={Number(id)} />}
           />
-        </Switch>
+        </Routes>
       </div>
     </div>
   )

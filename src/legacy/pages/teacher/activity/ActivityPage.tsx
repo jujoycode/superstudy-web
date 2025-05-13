@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
-import { Route, Switch, useHistory, useLocation } from 'react-router'
+import { Route, Routes, useLocation } from 'react-router'
+
+import { useHistory } from '@/hooks/useHistory'
 import { SelectMenus } from '@/legacy/components'
 import { ActivitiesView } from '@/legacy/components/activity/ActivitiesView'
 import { BackButton, Label, Select, TopNavbar } from '@/legacy/components/common'
-import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Icon } from '@/legacy/components/common/icons'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { useTeacherActivity } from '@/legacy/container/teacher-activity'
 import { nameWithId } from '@/legacy/types'
+
 import { ActivityAddPage } from './ActivityAdd'
 import { ActivityDetailPage } from './ActivityDetailPage'
 import { ActivityDownloadPage } from './ActivityDownloadPage'
@@ -25,17 +28,8 @@ export function ActivityPage() {
   const [searchWriter, setSearchWriter] = useState('')
   const [searchTitle, setSearchTitle] = useState('')
 
-  const {
-    subject,
-    setSubject,
-    year,
-    setYear,
-    selectedGroup,
-    setSelectedGroup,
-    subjectArray,
-    groupArray,
-    errorMessage,
-  } = useTeacherActivity()
+  const { subject, setSubject, year, setYear, selectedGroup, setSelectedGroup, subjectArray, groupArray } =
+    useTeacherActivity()
 
   const handleFilterChange = (e: any) => {
     setSearchWriter('')
@@ -155,27 +149,24 @@ export function ActivityPage() {
       </div>
 
       <div className="scroll-box bg-gray-50 md:col-span-4">
-        <Switch>
+        <Routes>
           <Route
             path="/teacher/activity/add"
-            component={() => (
+            element={
               <ActivityAddPage
                 refetch={() => {
                   setLoadActivitiesView(!loadActivitiesView)
                 }}
               />
-            )}
+            }
           />
-          <Route path="/teacher/activity/submit/:id" component={() => <ActivitySubmitPage group={selectedGroup} />} />
+          <Route path="/teacher/activity/submit/:id" element={<ActivitySubmitPage group={selectedGroup} />} />
 
-          <Route
-            path="/teacher/activity/download/:id"
-            component={() => <ActivityDownloadPage group={selectedGroup} />}
-          />
+          <Route path="/teacher/activity/download/:id" element={<ActivityDownloadPage group={selectedGroup} />} />
 
           <Route
             path="/teacher/activity/:id"
-            component={() => (
+            element={
               <ActivityDetailPage
                 isUpdateState={isUpdateState}
                 setUpdateState={(b: boolean) => setUpdateState(b)}
@@ -183,13 +174,13 @@ export function ActivityPage() {
                   setLoadActivitiesView(!loadActivitiesView)
                 }}
               />
-            )}
+            }
           />
           <Route
             path="/teacher/activity"
-            component={() => <div className="flex h-full w-full items-center justify-center"></div>}
+            element={<div className="flex h-full w-full items-center justify-center"></div>}
           />
-        </Switch>
+        </Routes>
       </div>
     </div>
   )

@@ -3,6 +3,7 @@ import moment from 'moment'
 import { useRef, useState } from 'react'
 import { Document, Page } from 'react-pdf'
 import { useParams } from 'react-router'
+
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { AbsentPaper } from '@/legacy/components/absent/AbsentPaper'
 import { ParentConfirmPaper } from '@/legacy/components/absent/ParentConfirmPaper'
@@ -19,6 +20,7 @@ import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { extractImageData, extractReactData, extractReactDataArray, getDoc, getPdfImageSize } from '@/legacy/util/pdf'
 import { buttonEnableState } from '@/legacy/util/permission'
 import { makeStartEndToString } from '@/legacy/util/time'
+
 import { AbsentUpdatePage } from './AbsentUpdatePage'
 
 interface AbsentDetailPageProps {
@@ -113,7 +115,6 @@ export function AbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, userId, me
     return !buttonEnableState(
       bottonType,
       approver,
-      isApproved,
       nowApprove,
       absent?.absentStatus || '',
       absent?.studentGradeKlass === me?.klassGroupName,
@@ -244,7 +245,11 @@ export function AbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, userId, me
                   {Array.from(new Array(numPages), (_, index) => (
                     <div
                       key={index}
-                      ref={(el) => pdfPaperRefs.current !== null && (pdfPaperRefs.current[index] = el)}
+                      ref={(el: HTMLDivElement | null): void => {
+                        if (pdfPaperRefs.current !== null && el !== null) {
+                          pdfPaperRefs.current[index] = el
+                        }
+                      }}
                       className="h-[1100px] w-[778px] overflow-hidden bg-white"
                     >
                       <Page
@@ -279,7 +284,11 @@ export function AbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, userId, me
                   {Array.from(new Array(numPages), (_, index) => (
                     <div
                       key={index}
-                      ref={(el) => pdf2PaperRefs.current !== null && (pdf2PaperRefs.current[index] = el)}
+                      ref={(el: HTMLDivElement | null): void => {
+                        if (pdf2PaperRefs.current !== null && el !== null) {
+                          pdf2PaperRefs.current[index] = el
+                        }
+                      }}
                       className="h-[1100px] w-[778px] overflow-hidden bg-white"
                     >
                       <Page

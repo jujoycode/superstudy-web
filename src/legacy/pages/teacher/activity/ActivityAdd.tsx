@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { ReactComponent as Close } from '@/legacy/assets/svg/close.svg'
+
 import { ErrorBlank } from '@/legacy/components'
 import { AllSelectCheckbox } from '@/legacy/components/AllSelectCheckbox'
 import { Blank, Label, Section, Select, Textarea } from '@/legacy/components/common'
@@ -14,6 +14,8 @@ import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
 import { SuperSurveyAddComponent } from '@/legacy/components/survey/SuperSurveyAddComponent'
 import { useTeacherActivityAdd } from '@/legacy/container/teacher-activity-add'
 import { ActivityType, Group, RequestCreateActivityDto } from '@/legacy/generated/model'
+
+import Close from '@/assets/svg/close.svg'
 
 interface ActivityAddProps {
   refetch: () => void

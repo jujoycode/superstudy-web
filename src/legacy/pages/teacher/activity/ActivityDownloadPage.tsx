@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import readXlsxFile, { Row } from 'read-excel-file'
+
 import { ErrorBlank, Td } from '@/legacy/components'
 import { Blank, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -23,7 +24,7 @@ export function ActivityDownloadPage({ group }: ActivityDownloadPageProps) {
     error,
   } = useActivityDownloadSubmitters(Number(id), { groupId: group?.id ? group?.id : undefined })
 
-  const { data: activity, isLoading: isGetActivityLoading } = useActivityFindOne(+id)
+  const { data: activity, isLoading: isGetActivityLoading } = useActivityFindOne(Number(id))
 
   useEffect(() => {
     if (excelData) {
@@ -62,7 +63,7 @@ export function ActivityDownloadPage({ group }: ActivityDownloadPageProps) {
                 <tr key={rowIndex}>
                   {row.map((cell, cellIndex) => (
                     <Td key={cellIndex} innerClassName="min-w-max">
-                      {cell}
+                      {String(cell)}
                     </Td>
                   ))}
                 </tr>

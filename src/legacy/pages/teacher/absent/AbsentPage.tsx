@@ -2,17 +2,19 @@ import clsx from 'clsx'
 import { t } from 'i18next'
 import { concat } from 'lodash'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { Route, Switch, useLocation } from 'react-router'
-import { Link, useHistory } from 'react-router'
-import { ReactComponent as Refresh } from '@/legacy/assets/svg/refresh.svg'
+import { Route, Routes, useLocation } from 'react-router'
+import { Link } from 'react-router'
+import { twMerge } from 'tailwind-merge'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
 import { AbsentCard } from '@/legacy/components/absent/AbsentCard'
 import { AbsentsExcelDownloadView } from '@/legacy/components/absent/AbsentsExcelDownloadView'
 import { AttendeeInfoDownloadView } from '@/legacy/components/absent/AttendeeInfoDownloadView'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
-import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Icon } from '@/legacy/components/common/icons'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { AbsentsDownloadView } from '@/legacy/components/pdfDocs/AbsentsDownloadView'
 import { GroupContainer } from '@/legacy/container/group'
 import { useTeacherAbsent } from '@/legacy/container/teacher-absent'
@@ -20,9 +22,11 @@ import { UserContainer } from '@/legacy/container/user'
 import { AbsentStatus, FilterAbsentStatus, Role } from '@/legacy/generated/model'
 import { compareAbsents } from '@/legacy/util/document'
 import { getCurrentSchoolYear, isValidDate, makeStartEndToString } from '@/legacy/util/time'
-import { twMerge } from 'tailwind-merge'
+
 import { AbsentAddPage } from './AbsentAddPage'
 import { AbsentDetailPage } from './AbsentDetailPage'
+
+import Refresh from '@/assets/svg/refresh.svg'
 
 export function AbsentPage() {
   const { replace } = useHistory()
@@ -98,13 +102,8 @@ export function AbsentPage() {
 
   const handleStampSetting = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target?.files) return
-    console.log('handleStampSetting - e.target.files: ', e.target.files[0])
     updateStamp(e.target.files[0])
     setStampMode(true)
-  }
-
-  const frontSort = (sortType: string) => {
-    setFrontSortType(sortType)
   }
 
   function makeStudentNumber(studentGradeKlass: string, studentNumber: string): number {
@@ -484,21 +483,21 @@ export function AbsentPage() {
       </div>
 
       <div className="col-span-3 bg-gray-50 md:overflow-y-auto">
-        <Switch>
-          <Route path="/teacher/absent/add" component={() => <AbsentAddPage />} />
+        <Routes>
+          <Route path="/teacher/absent/add" element={<AbsentAddPage />} />
           <Route
             path={`/teacher/absent/:id`}
-            component={() => (
+            element={
               <AbsentDetailPage
                 userId={me?.id}
-                setOpen={(b: boolean) => setOpen(b)}
-                setAbsentId={(n: number) => setAbsentId(n)}
-                setAgreeAll={(b: boolean) => setAgreeAll(b)}
+                setOpen={setOpen}
+                setAbsentId={setAbsentId}
+                setAgreeAll={setAgreeAll}
                 me={me}
               />
-            )}
+            }
           />
-        </Switch>
+        </Routes>
       </div>
       <SuperModal
         modalOpen={open}
