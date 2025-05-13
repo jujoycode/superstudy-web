@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { ManagerScheduleCard } from '@/legacy/components/timetable/ManagerScheduleCard'
 import { makeDateToString, weekAgo } from '@/legacy/util/time'
@@ -32,10 +32,10 @@ export function ManagerScheduleMainPage() {
         </div>
       </div>
       <div className="scroll-box col-span-3 bg-gray-50 p-6">
-        <Switch>
+        <Routes>
           {/* <Route path="/teacher/fieldtrip/add" component={AddNoticePage} /> */}
-          <Route path="/teacher/manager/:id" component={ManagerScheduleDetailPage} />
-        </Switch>
+          <Route path="/teacher/manager/:id" Component={ManagerScheduleDetailPage} />
+        </Routes>
       </div>
     </>
   )

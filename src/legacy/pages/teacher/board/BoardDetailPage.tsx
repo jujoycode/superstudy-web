@@ -11,8 +11,8 @@ import { PdfViewer } from '@/legacy/components/common/PdfViewer'
 import { useTeacherBoardDetail } from '@/legacy/container/teacher-board-detail'
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { meState } from '@/stores'
 
 interface BoardDetailPageProps {
   page: number

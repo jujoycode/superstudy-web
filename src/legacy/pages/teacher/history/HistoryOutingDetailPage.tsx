@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+import { approveButtonType } from 'src/types'
 import { Blank, Section } from '@/legacy/components/common'
 import { useTeacherOutingDetail } from '@/legacy/container/teacher-outing-detail'
 import { OutingTypeEnum, ResponsePaginatedOutingDto, Role } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
-import { meState } from '@/stores'
-import { approveButtonType } from 'src/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { buttonEnableState } from '@/legacy/util/permission'
 import { getNickName } from '@/legacy/util/status'
+import { meState } from '@/stores'
 
 interface HistoryOutingDetailPageProps {
   outings?: ResponsePaginatedOutingDto

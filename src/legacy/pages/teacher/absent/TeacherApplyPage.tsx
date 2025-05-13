@@ -1,13 +1,12 @@
 import { t } from 'i18next'
 import { useState } from 'react'
 
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { BackButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
 import { UserContainer } from '@/legacy/container/user'
 import { OutingUse } from '@/legacy/generated/model'
-
-import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 
 export function TeacherApplyPage() {
   const { push } = useHistory()

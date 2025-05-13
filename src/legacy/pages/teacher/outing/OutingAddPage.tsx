@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { ReactComponent as Close } from '@/asset/svg/close.svg'
+import { AbsentTimeType, periodArray } from 'src/types'
 import { ErrorBlank, SelectMenus, SelectValues } from '@/legacy/components'
 import { BackButton, Badge, Blank, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -12,7 +12,7 @@ import { useCommonGetHolidays } from '@/legacy/container/common-get-holidays'
 import { useTeacherOutingAdd } from '@/legacy/container/teacher-outing-add'
 import { UserContainer } from '@/legacy/container/user'
 import { GroupType, Outing, OutingTypeEnum, OutingUse, StudentGroup } from '@/legacy/generated/model'
-import { AbsentTimeType, periodArray } from 'src/types'
+import { ReactComponent as Close } from '@/asset/svg/close.svg'
 
 const reportType = [OutingTypeEnum.조퇴, OutingTypeEnum.외출, OutingTypeEnum.확인]
 

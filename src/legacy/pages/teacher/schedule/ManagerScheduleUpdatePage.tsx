@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState, useRef } from 'react'
 import { Blank, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
@@ -6,7 +6,7 @@ import { makeDateToString, weekAgo } from '@/legacy/util/time'
 
 export function ManagerScheduleMainPage() {
   const [startDate, setStartDate] = useState(makeDateToString(weekAgo(new Date())))
-  const [changeMode, setChangeMode] = useState(false)
+  const [, setChangeMode] = useState(false)
   const [isLoading] = useState(false)
   const ref = useRef(null)
 

@@ -14,9 +14,9 @@ import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
 import { useTeacherBoardAdd } from '@/legacy/container/teacher-board-add'
 import { BoardCategoryEnum, Group, RequestCreateBoardDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getExtOfFilename } from '@/legacy/util/file'
+import { meState } from '@/stores'
 
 interface BoardAddProps {
   homeKlass?: Group

@@ -3,14 +3,12 @@ import preval from 'preval.macro'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, LinkProps, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { useHistory } from '@/hooks/useHistory'
 import RightArrow from '@/assets/svg/RightFillArrow.svg'
-import Logo from '@/asset/svg/logo.svg'
-import SvgUser from '@/asset/svg/user.svg'
-import { Toast } from '@/legacy/components/Toast'
+import { useHistory } from '@/hooks/useHistory'
 import { AuthRoute, Blank } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
 import { NotificationModal } from '@/legacy/components/notification/NotificationModal'
+import { Toast } from '@/legacy/components/Toast'
 import { Constants } from '@/legacy/constants'
 import {
   externalCreateToken,
@@ -20,15 +18,11 @@ import {
 import { OutingUse, ResponseDashboardDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { cn } from '@/legacy/lib/tailwind-merge'
-import { meState, newMsgCntState } from '@/stores'
-import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { globalEnv } from '@/legacy/util/global-env'
-import { useAuth, useLogout } from '@/legacy/util/hooks'
-import { getNickName } from '@/legacy/util/status'
 import CASInterviewDetailPage from '@/legacy/pages/ib/teacher/CAS/CASInterviewDetailPage'
 import { CASMainPage } from '@/legacy/pages/ib/teacher/CAS/CASMainPage'
 import CASPortfolioPage from '@/legacy/pages/ib/teacher/CAS/CASPortfolioPage'
 import { CASReflectionDiaryDetailPage } from '@/legacy/pages/ib/teacher/CAS/CASReflectionDiaryDetailPage'
+import { CoordinatorPage } from '@/legacy/pages/ib/teacher/coordinator/CoordinatorPage'
 import { EEEssayPage } from '@/legacy/pages/ib/teacher/EE/EEEssayPage'
 import { EEMainPage } from '@/legacy/pages/ib/teacher/EE/EEMainPage'
 import { EEProposalDetailPage } from '@/legacy/pages/ib/teacher/EE/EEProposalDetailPage'
@@ -46,13 +40,17 @@ import { TKPPFDetailPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/TKPPFDetail
 import { ExhibitionDetailPage } from '@/legacy/pages/ib/teacher/TOK_EXHIBITION/ExhibitionDetailPage'
 import { ExhibitionMainPage } from '@/legacy/pages/ib/teacher/TOK_EXHIBITION/ExhibitionMainPage'
 import { ExhibitionPlanDetailPage } from '@/legacy/pages/ib/teacher/TOK_EXHIBITION/ExhibitionPlanDetailPage'
-import { CoordinatorPage } from '@/legacy/pages/ib/teacher/coordinator/CoordinatorPage'
 import AbsentComparisonPage from '@/legacy/pages/teacher/absent/AbsentComparisonPage'
 import { AbsentPage } from '@/legacy/pages/teacher/absent/AbsentPage'
 import { TeacherApplyPage } from '@/legacy/pages/teacher/absent/TeacherApplyPage'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { globalEnv } from '@/legacy/util/global-env'
+import { useLogout } from '@/legacy/util/hooks'
+import { getNickName } from '@/legacy/util/status'
+import { meState, newMsgCntState } from 'src/store'
 import { ActivityDetailPage } from './activity/ActivityDetailPage'
-import { ActivityV3AddPage } from './activityv3/ActivityV3AddPage'
 import { ActivityPage } from './activity/ActivityPage'
+import { ActivityV3AddPage } from './activityv3/ActivityV3AddPage'
 import { ActivityV3DetailPage } from './activityv3/ActivityV3DetailPage'
 import { ActivityV3Page } from './activityv3/ActivityV3Page'
 import { ActivityV3ReportPage } from './activityv3/ActivityV3ReportPage'
@@ -84,6 +82,8 @@ import { PointDashboard } from './pointlogs/PointDashboard'
 import { RecordPage } from './record/RecordPage'
 import { StudentCardPage } from './studentcard/StudentCardPage'
 import { TimetablePage } from './timetable/TimetablePage'
+import Logo from '@/asset/svg/logo.svg'
+import SvgUser from '@/asset/svg/user.svg'
 
 export function TeacherMainPage() {
   const { replace } = useHistory()
@@ -150,7 +150,6 @@ export function TeacherMainPage() {
   const [openGuide, setOpenGuide] = useState(false)
   const [blankOpen, setBlankOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
-  const { authenticated } = useAuth()
   const { data: notificationLog } = useNotificationLogFindRecent()
 
   if (me?.role === 'USER' || me?.role === 'PARENT') {
@@ -199,7 +198,7 @@ export function TeacherMainPage() {
         extra: ['/teacher/update', '/teacher/announcement'],
       },
     ],
-    [me?.role, authenticated, pathname],
+    [],
   )
 
   const adminPermission = useMemo(

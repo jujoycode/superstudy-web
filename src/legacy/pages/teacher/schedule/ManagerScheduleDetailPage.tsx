@@ -6,7 +6,7 @@ import { Checkbox } from '@/legacy/components/common/Checkbox'
 export function ManagerScheduleDetailPage() {
   const ref = useRef(null)
 
-  const [changeMode, setChangeMode] = useState(false)
+  const [, setChangeMode] = useState(false)
   const [isLoading] = useState(false)
 
   return (

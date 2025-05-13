@@ -19,9 +19,9 @@ import {
   useStudentRecordontrollerFindByStudentId,
 } from '@/legacy/generated/endpoint'
 import { SubjectType } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 import { downloadExcel } from '@/legacy/util/download-excel'
 import { getThisYear } from '@/legacy/util/time'
+import { meState } from '@/stores'
 
 export const ActivityV3Page = () => {
   const { pathname } = useLocation()

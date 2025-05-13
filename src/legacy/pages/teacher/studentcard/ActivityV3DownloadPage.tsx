@@ -6,8 +6,8 @@ import {
   useStudentActivityV3DownloadRecordSummary,
   useStudentRecordontrollerDownloadRecordSummary,
 } from '@/legacy/generated/endpoint'
-import { meState } from '@/stores'
 import { downloadExcel } from '@/legacy/util/download-excel'
+import { meState } from '@/stores'
 
 export const ActivityV3DownloadPage = () => {
   const { pathname } = useLocation()

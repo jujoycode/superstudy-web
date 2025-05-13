@@ -5,6 +5,7 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
+import Refresh from '@/assets/svg/refresh.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
 import { AbsentCard } from '@/legacy/components/absent/AbsentCard'
@@ -24,8 +25,6 @@ import { getCurrentSchoolYear, isValidDate, makeStartEndToString } from '@/legac
 
 import { AbsentAddPage } from '@/legacy/pages/teacher/absentAddPage'
 import { AbsentDetailPage } from '@/legacy/pages/teacher/absentDetailPage'
-
-import Refresh from '@/assets/svg/refresh.svg'
 
 export function AbsentPage() {
   const { replace } = useHistory()

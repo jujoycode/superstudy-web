@@ -5,7 +5,6 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useHistory, useParams } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
 import { StudentActivityDetail } from '@/legacy/components/activityv3/StudentActivityDetail'
 import { BackButton, TopNavbar } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
@@ -14,6 +13,7 @@ import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import { useActivityV3FindByGroupIds, useActivityV3FindOne } from '@/legacy/generated/endpoint'
 import { StudentGroup } from '@/legacy/generated/model'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
 
 interface ActivityV3ReportPageProps {}
 

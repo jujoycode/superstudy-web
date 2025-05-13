@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { useSetRecoilState } from 'recoil'
+import { approveButtonType } from 'src/types'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Blank, Section, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -12,12 +13,11 @@ import { useTeacherFieldtripDetail } from '@/legacy/container/teacher-fieldtrip-
 import { fieldtripsReCalculateFieldtripDaysWithUserId } from '@/legacy/generated/endpoint'
 import { FieldtripStatus, ResponseUserDto } from '@/legacy/generated/model'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
-import { toastState } from '@/stores'
-import { approveButtonType } from 'src/types'
 import { extractReactData, getDoc } from '@/legacy/util/pdf'
 import { buttonEnableState } from '@/legacy/util/permission'
 import { getNickName } from '@/legacy/util/status'
 import { makeDateToString, makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
+import { toastState } from '@/stores'
 import { FieldtripUpdatePage } from './FieldtripUpdatePage'
 
 interface FieldtripDetailPageProps {

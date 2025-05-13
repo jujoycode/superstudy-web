@@ -1,6 +1,7 @@
 import { Checkbox } from '@mui/material'
 import clsx from 'clsx'
 import { useState } from 'react'
+import { AbsentTimeType, periodArray } from 'src/types'
 import { SelectValues, SuperModal } from '@/legacy/components'
 import { Badge, Blank, Label, Section, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -8,7 +9,6 @@ import { TextInput } from '@/legacy/components/common/TextInput'
 import { useTeacherOutingUpdate } from '@/legacy/container/teacher-outing-update'
 import { UserContainer } from '@/legacy/container/user'
 import { OutingTypeEnum, OutingUse, ResponseCreateOutingDto } from '@/legacy/generated/model'
-import { AbsentTimeType, periodArray } from 'src/types'
 
 interface OutingUpdatePageProps {
   outingData: ResponseCreateOutingDto

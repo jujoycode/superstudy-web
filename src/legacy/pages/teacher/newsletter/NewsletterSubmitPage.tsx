@@ -3,7 +3,6 @@ import { useQueryClient } from 'react-query'
 import { useParams } from 'react-router'
 import { Route, Switch, useHistory } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
-import { ReactComponent as RightArrow } from '@/asset/svg/mypage-right-arrow.svg'
 import { SuperModal, Tab } from '@/legacy/components'
 import { Blank } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -13,6 +12,7 @@ import { useTeacherNewsletterSubmit } from '@/legacy/container/teacher-newslette
 import { ResponseGroupDto, StudentGroup, StudentNewsletter } from '@/legacy/generated/model'
 import { newsletterOpenedGroupState } from '@/stores'
 import { NewsletterSubmitDetailPage } from './NewsletterSubmitDetailPage'
+import { ReactComponent as RightArrow } from '@/asset/svg/mypage-right-arrow.svg'
 
 export function NewsletterSubmitPage() {
   const { push } = useHistory()

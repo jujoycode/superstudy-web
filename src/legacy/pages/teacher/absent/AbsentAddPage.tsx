@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { t } from 'i18next'
 import { useEffect, useState } from 'react'
+import Close from '@/assets/svg/close.svg'
 import { SelectMenus, SelectValues } from '@/legacy/components'
 import { BackButton, Badge, Blank, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -15,8 +16,6 @@ import { Absent, GroupType, StudentGroup } from '@/legacy/generated/model'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { AbsentTimeType } from '@/legacy/types'
 import { makeDateToString } from '@/legacy/util/time'
-
-import Close from '@/assets/svg/close.svg'
 
 const reportType = ['결석', '지각', '조퇴', '결과']
 const descriptionType = ['인정', '기타', '미인정']

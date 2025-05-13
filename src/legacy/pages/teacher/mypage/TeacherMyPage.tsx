@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
-import BgLogo from '@/asset/images/Intersect.png'
-import { ReactComponent as RightArrow } from '@/asset/svg/mypage-right-arrow.svg'
-import SvgUser from '@/asset/svg/user.svg'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, IconButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
 import { Constants } from '@/legacy/constants'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
 import { useLogout } from '@/legacy/util/hooks'
 import { checkNewVersion } from '@/legacy/util/status'
+import { meState } from '@/stores'
+import BgLogo from '@/asset/images/Intersect.png'
+import { ReactComponent as RightArrow } from '@/asset/svg/mypage-right-arrow.svg'
+import SvgUser from '@/asset/svg/user.svg'
 
 enum selectedType {
   none = 1,

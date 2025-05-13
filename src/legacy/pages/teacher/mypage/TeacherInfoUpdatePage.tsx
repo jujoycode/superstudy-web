@@ -1,5 +1,4 @@
 import { ChangeEvent, useEffect, useState } from 'react'
-import SvgUser from '@/asset/svg/user.svg'
 import { BackButton, Blank, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
@@ -11,6 +10,7 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { checkFileSizeLimit100MB } from '@/legacy/util/file'
 import { getHoursfromHHmmString, getMinutesfromHHmmString } from '@/legacy/util/time'
 import { Validator } from '@/legacy/util/validator'
+import SvgUser from '@/asset/svg/user.svg'
 
 interface TeacherInfoUpdatePageProps {
   me: ResponseUserDto

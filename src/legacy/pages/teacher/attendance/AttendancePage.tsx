@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Row } from 'read-excel-file'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import { AbsentSave, PeriodSubjectTeacher } from 'src/types'
 import { SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Chip, Divider, Section, Select, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -14,8 +15,6 @@ import { Attendance, ResponseTimetableV3Dto, Role } from '@/legacy/generated/mod
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useModals } from '@/legacy/modals/ModalStack'
 import { StudentModal } from '@/legacy/modals/StudentModal'
-import { languageState, meState, toastState } from '@/stores'
-import { AbsentSave, PeriodSubjectTeacher } from 'src/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName } from '@/legacy/util/status'
 import {
@@ -26,6 +25,7 @@ import {
   toLocaleDateFormatString,
   weekCount,
 } from '@/legacy/util/time'
+import { languageState, meState, toastState } from '@/stores'
 
 type TimeTableInfo = {
   studentId: string

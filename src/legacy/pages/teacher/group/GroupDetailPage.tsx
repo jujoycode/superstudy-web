@@ -7,8 +7,8 @@ import { Button } from '@/legacy/components/common/Button'
 import { TeacharAllGroup } from '@/legacy/container/teacher-group-all'
 import { useTeacherGroupDetail } from '@/legacy/container/teacher-group-detail'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
 import { getNickName, makeStudNum5 } from '@/legacy/util/status'
+import { meState } from '@/stores'
 import { GroupAddPage } from './GroupAddPage'
 
 interface GroupDetailPageProps {

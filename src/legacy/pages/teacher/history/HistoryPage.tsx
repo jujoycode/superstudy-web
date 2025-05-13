@@ -3,13 +3,12 @@ import { useMemo, useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { Route, Switch, useLocation } from 'react-router'
 import { useHistory } from 'react-router-dom'
-import { ReactComponent as Refresh } from '@/asset/svg/refresh.svg'
 import { ErrorBlank, FrontPagination } from '@/legacy/components'
 import { AbsentCard } from '@/legacy/components/absent/AbsentCard'
 import { AbsentsExcelDownloadView } from '@/legacy/components/absent/AbsentsExcelDownloadView'
 import { BackButton, Blank, Select, TopNavbar } from '@/legacy/components/common'
-import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Icon } from '@/legacy/components/common/icons'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { FieldtripCard } from '@/legacy/components/fieldtrip/FieldtripCard'
 import { FieldtripExcelDownloadView } from '@/legacy/components/fieldtrip/FieldtripExcelDownloadView'
 import { OutingCard } from '@/legacy/components/outing/OutingCard'
@@ -27,6 +26,7 @@ import { getSearchYearByMonth, getThisYear, makeStartEndToString } from '@/legac
 import { HistoryAbsentDetailPage } from './HistoryAbsentDetailPage'
 import { HistoryFieldtripDetailPage } from './HistoryFieldtripDetailPage'
 import { HistoryOutingDetailPage } from './HistoryOutingDetailPage'
+import { ReactComponent as Refresh } from '@/asset/svg/refresh.svg'
 
 export interface MergedGroupType {
   id: number
@@ -436,7 +436,6 @@ export function HistoryPage() {
 
             {/* 확인증 */}
             {selectedDocType === 0 &&
-              // eslint-disable-next-line react/jsx-no-undef
               outings?.items?.map((outing: ResponseCreateOutingDto) => (
                 <OutingCard key={outing.id} outing={outing} type={'history'} />
               ))}

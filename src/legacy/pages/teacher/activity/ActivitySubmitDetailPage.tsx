@@ -5,6 +5,7 @@ import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useRecoilValue } from 'recoil'
 
+import Arrow from '@/assets/svg/arrow-up-circle.svg'
 import { ErrorBlank } from '@/legacy/components'
 import { CommentItem } from '@/legacy/components/CommentItem'
 import { Badge, Blank, List, Section } from '@/legacy/components/common'
@@ -16,8 +17,6 @@ import { Constants } from '@/legacy/constants'
 import { useTeacherActivitySubmitDetail } from '@/legacy/container/teacher-activity-submit-detail'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { meState } from '@/stores'
-
-import Arrow from '@/assets/svg/arrow-up-circle.svg'
 
 interface ActivitySubmitDetailPageProps {
   activityId: number

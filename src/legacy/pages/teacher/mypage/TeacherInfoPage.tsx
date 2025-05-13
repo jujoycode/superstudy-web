@@ -1,7 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import BgLogo from '@/asset/images/Intersect.png'
-import SvgUser from '@/asset/svg/user.svg'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, IconButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -13,12 +11,14 @@ import { userDeleteUser } from '@/legacy/generated/endpoint'
 import { UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
 import { checkFileSizeLimit100MB } from '@/legacy/util/file'
 import { useLogout } from '@/legacy/util/hooks'
 import { getNickName } from '@/legacy/util/status'
 import { getHoursfromHHmmString, getMinutesfromHHmmString } from '@/legacy/util/time'
 import { Validator } from '@/legacy/util/validator'
+import { meState } from '@/stores'
+import BgLogo from '@/asset/images/Intersect.png'
+import SvgUser from '@/asset/svg/user.svg'
 
 export function TeacherInfoPage() {
   const meRecoil = useRecoilValue(meState)

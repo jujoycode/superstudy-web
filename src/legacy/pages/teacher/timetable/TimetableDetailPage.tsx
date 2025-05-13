@@ -8,8 +8,8 @@ import { GroupContainer } from '@/legacy/container/group'
 import { useTeacherTimetableDetail } from '@/legacy/container/teacher-timetable-v3-detail'
 import { LectureType, ResponseTimetableV3Dto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
 import { convertClassFormat } from '@/legacy/util/validator'
+import { meState } from '@/stores'
 
 interface TimetableDetailPageProps {
   onSelectLecture: (info: ResponseTimetableV3Dto | undefined) => void

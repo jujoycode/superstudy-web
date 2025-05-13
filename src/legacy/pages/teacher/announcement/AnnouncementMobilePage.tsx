@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import AnnouncementBadge from '@/legacy/components/announcement/AnnouncementBadge'
 import { Blank, Chip, HorizontalScrollView, List } from '@/legacy/components/common'
+import { Icon } from '@/legacy/components/common/icons'
 import { NoItem } from '@/legacy/components/common/NoItem'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
-import { Icon } from '@/legacy/components/common/icons'
 import { useAnnouncementByCategory } from '@/legacy/container/announcement-category'
 import { Announcement } from '@/legacy/generated/model/announcement'
 

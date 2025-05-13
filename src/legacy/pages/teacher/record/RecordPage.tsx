@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SelectMenus } from '@/legacy/components'
 import { Button } from '@/legacy/components/common/Button'
 import { useTeacherRecord } from '@/legacy/container/teacher-record'
@@ -7,7 +8,7 @@ import { makeStudNum5 } from '@/legacy/util/status'
 import { RecordDetailPage } from './RecordDetailPage'
 
 export function RecordPage() {
-  const { push, goBack } = useHistory()
+  const { push } = useHistory()
   const [selectedSGId, setSelectedSGId] = useState(0)
 
   const {
@@ -78,12 +79,12 @@ export function RecordPage() {
         </div>
       </div>
       <div className="scroll-box col-span-4 h-screen overflow-y-scroll">
-        <Switch>
+        <Routes>
           <Route
             path="/teacher/record/:id"
-            component={() => <RecordDetailPage selectedGroup={selectedGroup} studentGroups={studentGroups} />}
+            Component={() => <RecordDetailPage selectedGroup={selectedGroup} studentGroups={studentGroups} />}
           />
-        </Switch>
+        </Routes>
       </div>
     </div>
   )

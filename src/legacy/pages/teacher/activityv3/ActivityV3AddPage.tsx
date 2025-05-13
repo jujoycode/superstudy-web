@@ -4,10 +4,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
-import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
+import { nameWithId } from 'src/types'
 import { SuperModal } from '@/legacy/components'
-import { DocumentObjectComponentDel } from '@/legacy/components/DocumentObjectComponentDel'
-import { ImageObjectComponentDel } from '@/legacy/components/ImageObjectComponentDel'
 import {
   ActivityCriteriaSelectModal,
   getCriteriaTitle,
@@ -18,8 +16,10 @@ import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Coachmark2 } from '@/legacy/components/common/CoachMark2'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
-import { TextInput } from '@/legacy/components/common/TextInput'
 import { Icon } from '@/legacy/components/common/icons'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { DocumentObjectComponentDel } from '@/legacy/components/DocumentObjectComponentDel'
+import { ImageObjectComponentDel } from '@/legacy/components/ImageObjectComponentDel'
 import { Constants } from '@/legacy/constants'
 import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import {
@@ -44,9 +44,9 @@ import {
 } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { toastState } from '@/stores'
-import { nameWithId } from 'src/types'
 import { getFileNameFromUrl } from '@/legacy/util/file'
+import { toastState } from '@/stores'
+import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
 
 interface ActivityV3AddPageProps {
   activityv3Data?: ActivityV3

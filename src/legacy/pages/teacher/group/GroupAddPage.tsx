@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { ReactComponent as Close } from '@/asset/svg/close.svg'
 import { ErrorBlank, SelectMenus } from '@/legacy/components'
 import { Blank, Label } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -11,9 +10,10 @@ import { GroupContainer } from '@/legacy/container/group'
 import { useTeacherGroupAdd } from '@/legacy/container/teacher-group-add'
 import { Category, GroupType, ResponseGroupDto, StudentGroup, SubjectType, User } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState, toastState } from '@/stores'
 import { getNickName } from '@/legacy/util/status'
 import { getThisYear } from '@/legacy/util/time'
+import { meState, toastState } from '@/stores'
+import { ReactComponent as Close } from '@/asset/svg/close.svg'
 
 interface GroupAddPageProps {
   groupData?: ResponseGroupDto

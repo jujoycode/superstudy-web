@@ -126,4 +126,4 @@ export const forbiddenWords = [
   '대구',
   '부산',
   '광주',
-];
+]

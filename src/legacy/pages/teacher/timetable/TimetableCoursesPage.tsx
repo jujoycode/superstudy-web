@@ -3,9 +3,9 @@ import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 import { useCourseGet } from '@/legacy/generated/endpoint'
 import { Course, CourseStatus } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 import { courseTimeToString } from '@/legacy/util/course'
 import { dayOfKorWeek } from '@/legacy/util/date'
+import { meState } from '@/stores'
 
 interface TimetableCoursesPageProps {
   selectedCourse?: Course

@@ -2,14 +2,14 @@ import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { List, Select } from '@/legacy/components/common'
 import { FeedsItem } from '@/legacy/components/common/FeedsItem'
+import { Icon } from '@/legacy/components/common/icons'
 import { NoItem } from '@/legacy/components/common/NoItem'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
-import { Icon } from '@/legacy/components/common/icons'
 import { useTeacherNewsletter } from '@/legacy/container/teacher-newsletter'
 import { TeacherNoticeContainer } from '@/legacy/container/teacher-notice'
 import { Notice } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { meState } from '@/stores'
 
 const filters = ['제목', '작성자']
 
