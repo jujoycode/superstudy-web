@@ -1,4 +1,4 @@
-import { SchoolExamParams } from 'src/pages/student/score/SchoolExamPage'
+import { SchoolExamParams } from '@/legacy/pages/student/score/SchoolExamPage'
 import {
   useStudentExamScoreCheckStudentDataFile,
   useStudentExamScoreGetAnalysedScores,

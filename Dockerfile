@@ -1,4 +1,4 @@
-FROM node:22-alpine as builder
+FROM node:22.15.0-alpine3.20 as builder
 
 ARG NODE_ENV="production"
 ENV NODE_ENV=$NODE_ENV

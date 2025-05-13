@@ -102,6 +102,7 @@ export function useTeacherAttendanceBook1({
       notiType,
     }
     // 기존 버그
+    // @ts-ignore
     absentMutate({ data: absentData })
   }
 
@@ -110,7 +111,7 @@ export function useTeacherAttendanceBook1({
       new Promise((r) => r(attendanceBookData))
         .then((blob) => readXlsxFile(blob as Blob))
         .then((rows) => setRows(rows))
-        .catch((e) => console.log(e))
+        .catch(() => {})
     }
   }, [attendanceBookData])
 

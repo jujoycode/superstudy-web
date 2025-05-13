@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { useCanteenFindByYearMonth, useSchedulesFindAll } from '@/legacy/generated/endpoint'
+// @ts-ignore
 import { CalendarIdEnum, Schedule } from '@/legacy/generated/model'
 import { getCalendarRange, makeDateToString } from '@/legacy/util/time'
 import { childState } from '@/stores'
