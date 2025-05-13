@@ -1,95 +1,95 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import BgLogo from 'src/assets/images/Intersect.png';
-import SvgUser from 'src/assets/svg/user.svg';
-import { ErrorBlank } from 'src/components';
-import { BackButton, Blank, IconButton, Section, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { Constants } from 'src/constants';
-import { GroupContainer } from 'src/container/group';
-import { useTeacherInfoUpdate } from 'src/container/teacher-info-update';
-import { userDeleteUser } from 'src/generated/endpoint';
-import { UploadFileTypeEnum } from 'src/generated/model';
-import { useFileUpload } from 'src/hooks/useFileUpload';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState } from 'src/store';
-import { checkFileSizeLimit100MB } from 'src/util/file';
-import { useLogout } from 'src/util/hooks';
-import { getNickName } from 'src/util/status';
-import { getHoursfromHHmmString, getMinutesfromHHmmString } from 'src/util/time';
-import { Validator } from 'src/util/validator';
+import { ChangeEvent, useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import BgLogo from '@/asset/images/Intersect.png'
+import SvgUser from '@/asset/svg/user.svg'
+import { ErrorBlank } from '@/legacy/components'
+import { BackButton, Blank, IconButton, Section, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Constants } from '@/legacy/constants'
+import { GroupContainer } from 'src/container/group'
+import { useTeacherInfoUpdate } from 'src/container/teacher-info-update'
+import { userDeleteUser } from '@/legacy/generated/endpoint'
+import { UploadFileTypeEnum } from '@/legacy/generated/model'
+import { useFileUpload } from '@/legacy/hooks/useFileUpload'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { meState } from 'src/store'
+import { checkFileSizeLimit100MB } from '@/legacy/util/file'
+import { useLogout } from '@/legacy/util/hooks'
+import { getNickName } from '@/legacy/util/status'
+import { getHoursfromHHmmString, getMinutesfromHHmmString } from '@/legacy/util/time'
+import { Validator } from '@/legacy/util/validator'
 
 export function TeacherInfoPage() {
-  const meRecoil = useRecoilValue(meState);
-  const { t } = useLanguage();
-  const { allTeacherGroups, errorGroups } = GroupContainer.useContext();
-  const [isUpdateMe, setIsUpdateMe] = useState(false);
-  const [name, setName] = useState(meRecoil?.name);
-  const [nickName, setNickName] = useState(meRecoil?.nickName);
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
-  const [phone, setPhone] = useState(meRecoil?.phone || '');
-  const [profile, setProfile] = useState(meRecoil?.profile || '');
-  const [department, setDepartment] = useState(meRecoil?.teacherProperty?.department || '');
-  const [position, setPosition] = useState(meRecoil?.teacherProperty?.position || '');
-  const { handleUploadFile, isUploadLoading } = useFileUpload();
-  const { isUpdateMeLoading, updateMe } = useTeacherInfoUpdate();
-  const [isDeleteMe, setIsDeleteMe] = useState(false);
-  const [deleteReason, setDeleteReason] = useState('');
+  const meRecoil = useRecoilValue(meState)
+  const { t } = useLanguage()
+  const { allTeacherGroups, errorGroups } = GroupContainer.useContext()
+  const [isUpdateMe, setIsUpdateMe] = useState(false)
+  const [name, setName] = useState(meRecoil?.name)
+  const [nickName, setNickName] = useState(meRecoil?.nickName)
+  const [password, setPassword] = useState('')
+  const [password2, setPassword2] = useState('')
+  const [phone, setPhone] = useState(meRecoil?.phone || '')
+  const [profile, setProfile] = useState(meRecoil?.profile || '')
+  const [department, setDepartment] = useState(meRecoil?.teacherProperty?.department || '')
+  const [position, setPosition] = useState(meRecoil?.teacherProperty?.position || '')
+  const { handleUploadFile, isUploadLoading } = useFileUpload()
+  const { isUpdateMeLoading, updateMe } = useTeacherInfoUpdate()
+  const [isDeleteMe, setIsDeleteMe] = useState(false)
+  const [deleteReason, setDeleteReason] = useState('')
 
-  const [enableChatTime, setEnableChatTime] = useState(true);
-  const [startH, setStartH] = useState(0);
-  const [startM, setStartM] = useState(0);
-  const [endH, setEndH] = useState(0);
-  const [endM, setEndM] = useState(0);
+  const [enableChatTime, setEnableChatTime] = useState(true)
+  const [startH, setStartH] = useState(0)
+  const [startM, setStartM] = useState(0)
+  const [endH, setEndH] = useState(0)
+  const [endM, setEndM] = useState(0)
 
   const spacedName = (name: string) => {
-    return name.split('').join('  ');
-  };
+    return name.split('').join('  ')
+  }
 
-  const logout = useLogout();
+  const logout = useLogout()
 
   useEffect(() => {
     if (meRecoil?.teacherProperty) {
-      setStartH(getHoursfromHHmmString(meRecoil?.teacherProperty?.chatStartTime, 9));
-      setStartM(getMinutesfromHHmmString(meRecoil?.teacherProperty?.chatStartTime, 0));
-      setEndH(getHoursfromHHmmString(meRecoil?.teacherProperty?.chatEndTime, 18));
-      setEndM(getMinutesfromHHmmString(meRecoil?.teacherProperty?.chatEndTime, 0));
-      setEnableChatTime(meRecoil?.teacherProperty?.chatStartTime !== meRecoil?.teacherProperty?.chatEndTime);
+      setStartH(getHoursfromHHmmString(meRecoil?.teacherProperty?.chatStartTime, 9))
+      setStartM(getMinutesfromHHmmString(meRecoil?.teacherProperty?.chatStartTime, 0))
+      setEndH(getHoursfromHHmmString(meRecoil?.teacherProperty?.chatEndTime, 18))
+      setEndM(getMinutesfromHHmmString(meRecoil?.teacherProperty?.chatEndTime, 0))
+      setEnableChatTime(meRecoil?.teacherProperty?.chatStartTime !== meRecoil?.teacherProperty?.chatEndTime)
     }
-  }, []);
+  }, [])
 
   async function deleteExpiredUser() {
     if (password.length === 0) {
-      alert('비밀번호를 입력해주세요.');
-      return;
+      alert('비밀번호를 입력해주세요.')
+      return
     } else {
       if (password !== password2) {
-        alert('비밀번호와 비밀번호 확인이 다릅니다.');
-        return;
+        alert('비밀번호와 비밀번호 확인이 다릅니다.')
+        return
       }
     }
 
     if (deleteReason === '') {
-      alert('탈퇴이유는 필수로 적어주세요.');
-      return;
+      alert('탈퇴이유는 필수로 적어주세요.')
+      return
     }
 
-    if (!confirm(`탈퇴한 계정은 복구할 수 없습니다.\n탈퇴하시겠습니까?`)) return;
+    if (!confirm(`탈퇴한 계정은 복구할 수 없습니다.\n탈퇴하시겠습니까?`)) return
 
     await userDeleteUser({ password: password, reason: deleteReason })
       .then((result) => {
-        alert('회원탈퇴가 완료되었습니다.');
-        logout();
+        alert('회원탈퇴가 완료되었습니다.')
+        logout()
       })
       .catch((result) => {
         if (result?.response?.data?.code == '1001100') {
-          alert(result?.response?.data?.msg?.ko ?? '비밀번호가 일치하지 않습니다.');
+          alert(result?.response?.data?.msg?.ko ?? '비밀번호가 일치하지 않습니다.')
         } else {
-          alert('회원탈퇴에 실패했습니다.');
+          alert('회원탈퇴에 실패했습니다.')
         }
-      });
+      })
   }
 
   const handleUpdate = () => {
@@ -105,40 +105,40 @@ export function TeacherInfoPage() {
       chatEndTime: enableChatTime ? endH + ':' + endM.toString().padStart(2, '0') : '00:00',
     })
       .then(() => {
-        setIsUpdateMe(false);
+        setIsUpdateMe(false)
       })
       .catch((e) => {
-        console.log('update error', e);
-      });
-  };
+        console.log('update error', e)
+      })
+  }
 
   const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
-      return;
+      return
     }
 
-    const selectedImageFiles = (e.target as HTMLInputElement).files;
+    const selectedImageFiles = (e.target as HTMLInputElement).files
     if (!selectedImageFiles || !selectedImageFiles.length) {
-      return;
+      return
     }
 
     if (!Validator.fileNameRule(selectedImageFiles[0].name)) {
-      alert('특수문자(%, &, ?, ~, +)가 포함된 파일명은 사용할 수 없습니다.');
-      return;
+      alert('특수문자(%, &, ?, ~, +)가 포함된 파일명은 사용할 수 없습니다.')
+      return
     }
 
     if (!checkFileSizeLimit100MB([selectedImageFiles[0]])) {
-      alert('한번에 최대 100MB까지만 업로드 가능합니다.');
-      return;
+      alert('한번에 최대 100MB까지만 업로드 가능합니다.')
+      return
     }
 
-    const imageFileNames = await handleUploadFile(UploadFileTypeEnum['userpictures'], [selectedImageFiles[0]]);
+    const imageFileNames = await handleUploadFile(UploadFileTypeEnum['userpictures'], [selectedImageFiles[0]])
 
-    setProfile(imageFileNames[0]);
-  };
+    setProfile(imageFileNames[0])
+  }
 
   if (!meRecoil || errorGroups) {
-    return <ErrorBlank />;
+    return <ErrorBlank />
   }
 
   return (
@@ -146,7 +146,7 @@ export function TeacherInfoPage() {
       <div className="block md:hidden">
         <TopNavbar title={`${t('my_information')}`} left={<BackButton />} />
       </div>
-      <Section className="flex h-screen-6 flex-col bg-gray-50 py-0 pb-4 md:h-screen">
+      <Section className="h-screen-6 flex flex-col bg-gray-50 py-0 pb-4 md:h-screen">
         {isUpdateMeLoading && <Blank />}
         <div className="mx-0 overflow-y-scroll bg-white md:mx-40 md:h-screen">
           {/* 교원증 영역 */}
@@ -158,7 +158,7 @@ export function TeacherInfoPage() {
                 </div>
               </div>
               <div className="flex w-full flex-col items-center bg-white">
-                <div className="relative z-10 mb-4 mt-6 w-40 rounded-lg md:mt-8">
+                <div className="relative z-10 mt-6 mb-4 w-40 rounded-lg md:mt-8">
                   {isUpdateMe ? (
                     <label htmlFor="imageupload" className="h-48 w-40 cursor-pointer">
                       <img
@@ -167,7 +167,7 @@ export function TeacherInfoPage() {
                         alt=""
                         loading="lazy"
                       />
-                      <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brand-1">
+                      <div className="bg-brand-1 absolute top-1/2 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full">
                         <p className="text-2xl text-white">+</p>
                       </div>
                       <input
@@ -185,14 +185,14 @@ export function TeacherInfoPage() {
                       loading="lazy"
                       className="h-48 w-40 rounded-lg object-cover"
                       onError={({ currentTarget }) => {
-                        currentTarget.onerror = null;
-                        currentTarget.src = SvgUser;
-                        currentTarget.className = 'w-full';
+                        currentTarget.onerror = null
+                        currentTarget.src = SvgUser
+                        currentTarget.className = 'w-full'
                       }}
                     />
                   )}
                 </div>
-                <img className="absolute bottom-10 right-0 h-auto w-auto" src={BgLogo} alt="" />
+                <img className="absolute right-0 bottom-10 h-auto w-auto" src={BgLogo} alt="" />
                 <p className="z-10 text-2xl font-bold">
                   {spacedName(meRecoil?.name)} {getNickName(meRecoil?.nickName)}
                 </p>
@@ -213,7 +213,7 @@ export function TeacherInfoPage() {
           {!isDeleteMe && (
             <div className="mt-16 px-4 py-4 md:px-10 md:py-5">
               <div className="flex items-center justify-between">
-                <div className="whitespace-pre text-24 font-bold">{t('my_information')}</div>
+                <div className="text-24 font-bold whitespace-pre">{t('my_information')}</div>
                 {isUpdateMe ? (
                   <div className="flex items-center gap-2">
                     <Button className="h-8 w-16 border border-gray-600" onClick={() => setIsUpdateMe(!isUpdateMe)}>
@@ -224,23 +224,23 @@ export function TeacherInfoPage() {
                       // disabled={buttonDisabled}
                       onClick={() => {
                         if (!Validator.phoneNumberRule(phone)) {
-                          alert('전화번호를 확인해 주세요.');
-                          return;
+                          alert('전화번호를 확인해 주세요.')
+                          return
                         }
                         if (password.length === 0) {
-                          alert('비밀번호를 공백으로 기입할 시 기존 비밀번호가 유지됩니다.');
-                          handleUpdate();
+                          alert('비밀번호를 공백으로 기입할 시 기존 비밀번호가 유지됩니다.')
+                          handleUpdate()
                         } else {
                           if (password !== password2) {
-                            alert('비밀번호와 비밀번호 확인이 다릅니다.');
-                            return;
+                            alert('비밀번호와 비밀번호 확인이 다릅니다.')
+                            return
                           }
                           if (!Validator.passwordRule(password)) {
-                            alert('안전한 비밀번호를 입력하세요.');
-                            return;
+                            alert('안전한 비밀번호를 입력하세요.')
+                            return
                           }
-                          handleUpdate();
-                          setIsUpdateMe(!isUpdateMe);
+                          handleUpdate()
+                          setIsUpdateMe(!isUpdateMe)
                         }
                       }}
                     >
@@ -377,7 +377,7 @@ export function TeacherInfoPage() {
                                 value={startH}
                                 onChange={(e) => setStartH(Number(e.target.value))}
                                 disabled={!enableChatTime}
-                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:outline-none focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               >
                                 {new Array(24).fill(null).map((item, num: number) => (
                                   <option key={num} value={num}>
@@ -390,7 +390,7 @@ export function TeacherInfoPage() {
                                 value={startM}
                                 onChange={(e) => setStartM(Number(e.target.value))}
                                 disabled={!enableChatTime}
-                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:outline-none focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               >
                                 <option value={0}>00</option>
                                 <option value={10}>10</option>
@@ -406,7 +406,7 @@ export function TeacherInfoPage() {
                                 value={endH}
                                 onChange={(e) => setEndH(Number(e.target.value))}
                                 disabled={!enableChatTime}
-                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:outline-none focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               >
                                 {new Array(24).fill(null).map((item, num: number) => (
                                   <option key={num} value={num}>
@@ -416,7 +416,7 @@ export function TeacherInfoPage() {
                               </select>
                               <span>:</span>
                               <select
-                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:outline-none focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                                 onChange={(e) => setEndM(Number(e.target.value))}
                                 disabled={!enableChatTime}
                                 value={endM}
@@ -446,7 +446,7 @@ export function TeacherInfoPage() {
                               {meRecoil?.teacherProperty?.chatStartTime} ~ {meRecoil?.teacherProperty?.chatEndTime}
                             </div>
                           ) : (
-                            <div className="font-['Pretendard'] text-base font-normal leading-normal text-neutral-400">
+                            <div className="font-['Pretendard'] text-base leading-normal font-normal text-neutral-400">
                               {t('no_available_time_for_conversation')}
                             </div>
                           )}
@@ -590,5 +590,5 @@ export function TeacherInfoPage() {
         </div>
       </Section>
     </div>
-  );
+  )
 }

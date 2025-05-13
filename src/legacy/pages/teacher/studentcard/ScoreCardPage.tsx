@@ -1,24 +1,24 @@
-import clsx from 'clsx';
-import { Link, Route, Switch, useLocation, useParams } from 'react-router-dom';
-import { AllScore } from 'src/components/score/AllScore';
-import { ScoreAnalysis } from 'src/components/score/ScoreAnalysis';
-import { TargetScore } from 'src/components/score/TargetScore';
-import { useTeacherStudentCard } from 'src/container/teacher-studentcard';
-import { twMerge } from 'tailwind-merge';
+import clsx from 'clsx'
+import { Link, Route, Switch, useLocation, useParams } from 'react-router-dom'
+import { AllScore } from '@/legacy/components/score/AllScore'
+import { ScoreAnalysis } from '@/legacy/components/score/ScoreAnalysis'
+import { TargetScore } from '@/legacy/components/score/TargetScore'
+import { useTeacherStudentCard } from 'src/container/teacher-studentcard'
+import { twMerge } from 'tailwind-merge'
 
-export type ScoreType = 'EXAM' | 'MOCKEXAM';
+export type ScoreType = 'EXAM' | 'MOCKEXAM'
 
 export const ScoreCardPage = () => {
-  const { id, groupId } = useParams<{ id: string; groupId: string }>();
-  const { studentInfo } = useTeacherStudentCard(Number(id));
-  const { pathname } = useLocation();
+  const { id, groupId } = useParams<{ id: string; groupId: string }>()
+  const { studentInfo } = useTeacherStudentCard(Number(id))
+  const { pathname } = useLocation()
 
-  const grade = studentInfo?.student.klassGroupName?.match(/\d+/)?.[0];
+  const grade = studentInfo?.student.klassGroupName?.match(/\d+/)?.[0]
 
   return (
-    <div className="scroll-box mt-6 h-screen-12 overflow-y-auto px-4 pb-4 md:h-screen-5">
-      <div className="flex flex-col gap-10 rounded-xl border border-primary-gray-200 bg-white py-4">
-        <div className="flex h-12 w-full flex-row items-end gap-4 border-b border-b-primary-gray-200 px-8">
+    <div className="scroll-box h-screen-12 md:h-screen-5 mt-6 overflow-y-auto px-4 pb-4">
+      <div className="border-primary-gray-200 flex flex-col gap-10 rounded-xl border bg-white py-4">
+        <div className="border-b-primary-gray-200 flex h-12 w-full flex-row items-end gap-4 border-b px-8">
           <Link
             to={`/teacher/studentcard/${groupId}/${id}/score`}
             className={twMerge(
@@ -30,7 +30,7 @@ export const ScoreCardPage = () => {
               ),
             )}
           >
-            <div className="shrink grow basis-0 text-center text-[16px] font-semibold leading-[24px]">내신성적</div>
+            <div className="shrink grow basis-0 text-center text-[16px] leading-[24px] font-semibold">내신성적</div>
           </Link>
           <Link
             to={`/teacher/studentcard/${groupId}/${id}/score/analysis`}
@@ -43,7 +43,7 @@ export const ScoreCardPage = () => {
               ),
             )}
           >
-            <div className="shrink grow basis-0 text-center text-[16px] font-semibold leading-[24px]">성적분석</div>
+            <div className="shrink grow basis-0 text-center text-[16px] leading-[24px] font-semibold">성적분석</div>
           </Link>
           <Link
             to={`/teacher/studentcard/${groupId}/${id}/score/target-score`}
@@ -56,7 +56,7 @@ export const ScoreCardPage = () => {
               ),
             )}
           >
-            <div className="shrink grow basis-0 text-center text-[16px] font-semibold leading-[24px]">목표성적</div>
+            <div className="shrink grow basis-0 text-center text-[16px] leading-[24px] font-semibold">목표성적</div>
           </Link>
         </div>
         <div className="px-8 pb-4">
@@ -79,5 +79,5 @@ export const ScoreCardPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

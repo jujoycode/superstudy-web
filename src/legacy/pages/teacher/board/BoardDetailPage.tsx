@@ -1,38 +1,38 @@
-import { useState } from 'react';
-import { useParams } from 'react-router';
-import { useHistory } from 'react-router-dom';
-import Viewer from 'react-viewer';
-import { useRecoilValue } from 'recoil';
-import { ErrorBlank, SuperModal } from 'src/components';
-import { BackButton, Blank, Section, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { FeedsDetail } from 'src/components/common/FeedsDetail';
-import { PdfViewer } from 'src/components/common/PdfViewer';
-import { useTeacherBoardDetail } from 'src/container/teacher-board-detail';
-import { Role } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
+import { useState } from 'react'
+import { useParams } from 'react-router'
+import { useHistory } from 'react-router-dom'
+import Viewer from 'react-viewer'
+import { useRecoilValue } from 'recoil'
+import { ErrorBlank, SuperModal } from '@/legacy/components'
+import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { FeedsDetail } from '@/legacy/components/common/FeedsDetail'
+import { PdfViewer } from '@/legacy/components/common/PdfViewer'
+import { useTeacherBoardDetail } from 'src/container/teacher-board-detail'
+import { Role } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { meState } from 'src/store'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 interface BoardDetailPageProps {
-  page: number;
-  limit: number;
+  page: number
+  limit: number
 }
 
 export function BoardDetailPage({ page, limit }: BoardDetailPageProps) {
-  const { push } = useHistory();
-  const { id } = useParams<{ id: string }>();
-  const me = useRecoilValue(meState);
-  const { t } = useLanguage();
+  const { push } = useHistory()
+  const { id } = useParams<{ id: string }>()
+  const me = useRecoilValue(meState)
+  const { t } = useLanguage()
 
   const { board, isBoardLoading, images, Pdfs, documents, viewerImages, errorMessage, handleBoardDelete } =
-    useTeacherBoardDetail(+id);
+    useTeacherBoardDetail(+id)
 
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [hasImagesModalOpen, setImagesModalOpen] = useState(false);
-  const [hasPdfModalOpen, setPdfModalOpen] = useState(false);
-  const [focusPdfFile, setFocusPdfFile] = useState('');
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
+  const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
+  const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
+  const [focusPdfFile, setFocusPdfFile] = useState('')
+  const [activeIndex, setActiveIndex] = useState(0)
 
   const getFeedsDetail = () => {
     return (
@@ -52,8 +52,8 @@ export function BoardDetailPage({ page, limit }: BoardDetailPageProps) {
         writer={board?.writer?.name}
         createAt={DateUtil.formatDate(board?.createdAt || '', DateFormat['YYYY.MM.DD HH:mm'])}
       />
-    );
-  };
+    )
+  }
 
   return (
     <>
@@ -82,9 +82,9 @@ export function BoardDetailPage({ page, limit }: BoardDetailPageProps) {
                   <div className="flex min-w-max items-center space-x-2">
                     {board?.groupBoards?.map((groupBoard) => {
                       const newGroupBoard = groupBoard as unknown as {
-                        id: number;
-                        group: { id: number; name: string };
-                      };
+                        id: number
+                        group: { id: number; name: string }
+                      }
                       return (
                         <span
                           key={newGroupBoard.group.id}
@@ -92,7 +92,7 @@ export function BoardDetailPage({ page, limit }: BoardDetailPageProps) {
                         >
                           {newGroupBoard.group.name}
                         </span>
-                      );
+                      )
                     })}
                   </div>
                 </div>
@@ -152,5 +152,5 @@ export function BoardDetailPage({ page, limit }: BoardDetailPageProps) {
         </>
       )}
     </>
-  );
+  )
 }

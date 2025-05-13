@@ -1,71 +1,71 @@
-import { useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Linkify from 'react-linkify';
-import { useParams } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { ReactComponent as FileItemIcon } from 'src/assets/svg/file-item-icon.svg';
-import { ErrorBlank } from 'src/components';
-import AnnouncementDetailCard from 'src/components/announcement/AnnouncementDetailCard';
-import { BackButton, Blank, Section, TopNavbar } from 'src/components/common';
-import { PdfCard } from 'src/components/common/PdfCard';
-import { PdfViewer } from 'src/components/common/PdfViewer';
-import { Time } from 'src/components/common/Time';
-import { Constants } from 'src/constants';
-import { useAnnouncementDetail } from 'src/container/announcement-detail';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { languageState } from 'src/store';
-import { getFileNameFromUrl, getFileNameFromUrlToAnn } from 'src/util/file';
-import { isHTML } from 'src/util/validator';
+import { useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import Linkify from 'react-linkify'
+import { useParams } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { ReactComponent as FileItemIcon } from '@/asset/svg/file-item-icon.svg'
+import { ErrorBlank } from '@/legacy/components'
+import AnnouncementDetailCard from '@/legacy/components/announcement/AnnouncementDetailCard'
+import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
+import { PdfCard } from '@/legacy/components/common/PdfCard'
+import { PdfViewer } from '@/legacy/components/common/PdfViewer'
+import { Time } from '@/legacy/components/common/Time'
+import { Constants } from '@/legacy/constants'
+import { useAnnouncementDetail } from 'src/container/announcement-detail'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { languageState } from 'src/store'
+import { getFileNameFromUrl, getFileNameFromUrlToAnn } from '@/legacy/util/file'
+import { isHTML } from '@/legacy/util/validator'
 
 export default function AnnouncementDetailPage() {
-  const { id } = useParams<{ id: string }>();
-  const { errorMessage, isLoading, announcement } = useAnnouncementDetail(+id);
-  const [hasPdfModalOpen, setPdfModalOpen] = useState(false);
-  const [focusPdfFile, setFocusPdfFile] = useState('');
-  const { t } = useLanguage();
-  const language = useRecoilValue(languageState);
+  const { id } = useParams<{ id: string }>()
+  const { errorMessage, isLoading, announcement } = useAnnouncementDetail(+id)
+  const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
+  const [focusPdfFile, setFocusPdfFile] = useState('')
+  const { t } = useLanguage()
+  const language = useRecoilValue(languageState)
 
   const getUrl = (fileName: string) => {
-    let url = '';
+    let url = ''
 
     if (fileName.includes('blob')) {
-      const index = fileName.indexOf('?');
+      const index = fileName.indexOf('?')
 
       if (index !== -1) {
-        url = fileName.substring(0, index); // 0부터 ? 이전까지 문자열 추출
+        url = fileName.substring(0, index) // 0부터 ? 이전까지 문자열 추출
       } else {
-        url = fileName;
+        url = fileName
       }
     } else {
-      url = Constants.imageUrl + fileName;
+      url = Constants.imageUrl + fileName
     }
 
-    return url;
-  };
+    return url
+  }
 
   const handleDownload = (pdfFile: string) => {
     fetch(getUrl(pdfFile)) // PDF 파일에 대한 URL 가져오기
       .then((response) => response.blob()) // 파일 데이터를 Blob 형식으로 변환
       .then((blob) => {
         // Blob 데이터로부터 URL 생성
-        const url = window.URL.createObjectURL(new Blob([blob]));
+        const url = window.URL.createObjectURL(new Blob([blob]))
         // 가상 링크 생성
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', getFileNameFromUrl(pdfFile)); // 파일명 설정
-        document.body.appendChild(link);
-        link.click();
-        link.parentNode?.removeChild(link);
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', getFileNameFromUrl(pdfFile)) // 파일명 설정
+        document.body.appendChild(link)
+        link.click()
+        link.parentNode?.removeChild(link)
       })
-      .catch((error) => console.error('Error downloading PDF:', error));
-  };
+      .catch((error) => console.error('Error downloading PDF:', error))
+  }
 
   const recipients = [
     { label: t('administrator'), isActive: announcement?.toAdmin, color: 'bg-users-admin' },
     { label: t('teacher'), isActive: announcement?.toTeacher, color: 'bg-users-teacher' },
     { label: t('student'), isActive: announcement?.toStudent, color: 'bg-users-student' },
     { label: t('parent'), isActive: announcement?.toParent, color: 'bg-users-parent' },
-  ];
+  ]
 
   return (
     <>
@@ -117,7 +117,7 @@ export default function AnnouncementDetailPage() {
                   {isHTML(announcement.content) ? (
                     <div className="text-xl" dangerouslySetInnerHTML={{ __html: announcement.content }}></div>
                   ) : (
-                    <pre className="whitespace-pre-wrap break-words text-base">
+                    <pre className="text-base break-words whitespace-pre-wrap">
                       <Linkify>{announcement.content}</Linkify>
                     </pre>
                   )}
@@ -143,20 +143,20 @@ export default function AnnouncementDetailPage() {
                   <>
                     <div key={pdfFile}>
                       <div className="mb-10 w-full">
-                        <div className="relative ">
+                        <div className="relative">
                           <PdfCard
                             fileUrl={getUrl(pdfFile)}
                             visibleButton
                             onClick={() => {
-                              setFocusPdfFile(getUrl(pdfFile));
-                              setPdfModalOpen(true);
+                              setFocusPdfFile(getUrl(pdfFile))
+                              setPdfModalOpen(true)
                             }}
                           />
                         </div>
                       </div>
                     </div>
                   </>
-                );
+                )
               })}
 
               {announcement?.files?.map((pdfFile: string, index) => (
@@ -181,5 +181,5 @@ export default function AnnouncementDetailPage() {
         </Section>
       </div>
     </>
-  );
+  )
 }

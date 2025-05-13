@@ -1,23 +1,23 @@
-import clsx from 'clsx';
-import { useMemo } from 'react';
-import { useRecoilValue } from 'recoil';
-import { useCourseGet } from 'src/generated/endpoint';
-import { Course, CourseStatus } from 'src/generated/model';
-import { meState } from 'src/store';
-import { courseTimeToString } from 'src/util/course';
-import { dayOfKorWeek } from 'src/util/date';
+import clsx from 'clsx'
+import { useMemo } from 'react'
+import { useRecoilValue } from 'recoil'
+import { useCourseGet } from '@/legacy/generated/endpoint'
+import { Course, CourseStatus } from '@/legacy/generated/model'
+import { meState } from 'src/store'
+import { courseTimeToString } from '@/legacy/util/course'
+import { dayOfKorWeek } from '@/legacy/util/date'
 
 interface TimetableCoursesPageProps {
-  selectedCourse?: Course;
-  onSelectCourse: (course: Course) => void;
+  selectedCourse?: Course
+  onSelectCourse: (course: Course) => void
 }
 
 export function TimetableCoursesPage({ selectedCourse, onSelectCourse }: TimetableCoursesPageProps) {
-  const me = useRecoilValue(meState);
+  const me = useRecoilValue(meState)
 
-  const { data: courses = [] } = useCourseGet({ teacherId: me?.id ?? 0 }, { query: { enabled: !!me } });
+  const { data: courses = [] } = useCourseGet({ teacherId: me?.id ?? 0 }, { query: { enabled: !!me } })
 
-  const activeCourses = useMemo(() => courses.filter((c) => c.status === CourseStatus.IN_LECTURE), [courses]);
+  const activeCourses = useMemo(() => courses.filter((c) => c.status === CourseStatus.IN_LECTURE), [courses])
   const inactiveCourses = useMemo(
     () =>
       courses.filter((c) =>
@@ -33,7 +33,7 @@ export function TimetableCoursesPage({ selectedCourse, onSelectCourse }: Timetab
         ).includes(c.status),
       ),
     [courses],
-  );
+  )
 
   return (
     <div className="mb-10 flex flex-col gap-5 px-2">
@@ -106,5 +106,5 @@ export function TimetableCoursesPage({ selectedCourse, onSelectCourse }: Timetab
         </table>
       </div>
     </div>
-  );
+  )
 }

@@ -1,40 +1,40 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { SelectMenus } from 'src/components';
-import { Blank, List, Select } from 'src/components/common';
-import { FeedsItem } from 'src/components/common/FeedsItem';
-import { NoItem } from 'src/components/common/NoItem';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { Icon } from 'src/components/common/icons';
-import { useTeacherBoard } from 'src/container/teacher-board';
-import { useTeacherKlassGroup } from 'src/container/teacher-klass-groups';
-import { Board, Group } from 'src/generated/model';
-import { meState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { SelectMenus } from '@/legacy/components'
+import { Blank, List, Select } from '@/legacy/components/common'
+import { FeedsItem } from '@/legacy/components/common/FeedsItem'
+import { NoItem } from '@/legacy/components/common/NoItem'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Icon } from '@/legacy/components/common/icons'
+import { useTeacherBoard } from 'src/container/teacher-board'
+import { useTeacherKlassGroup } from 'src/container/teacher-klass-groups'
+import { Board, Group } from '@/legacy/generated/model'
+import { meState } from 'src/store'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
 
-const filters = ['제목', '작성자'];
+const filters = ['제목', '작성자']
 
 export function BoardMobilePage() {
-  const meRecoil = useRecoilValue(meState);
+  const meRecoil = useRecoilValue(meState)
 
-  const { groups, selectedGroup, setSelectedGroup } = useTeacherKlassGroup();
+  const { groups, selectedGroup, setSelectedGroup } = useTeacherKlassGroup()
   const { boards, selectedCategory, isLoading, unReadBoardList, setSelectedCategory } = useTeacherBoard(
     selectedGroup?.id,
-  );
-  const [filter, setFilter] = useState(filters[0]);
-  const [searchWriter, setSearchWriter] = useState('');
-  const [searchTitle, setSearchTitle] = useState('');
+  )
+  const [filter, setFilter] = useState(filters[0])
+  const [searchWriter, setSearchWriter] = useState('')
+  const [searchTitle, setSearchTitle] = useState('')
   const handleFilterChange = (e: any) => {
-    setSearchWriter('');
-    setSearchTitle('');
-    setFilter(e.target.value);
-  };
+    setSearchWriter('')
+    setSearchTitle('')
+    setFilter(e.target.value)
+  }
   return (
     <>
       {isLoading && <Blank reversed />}
-      <div className="w-full flex-col ">
-        <div className="flex items-center justify-between space-x-2 px-6 pb-3 pt-3">
+      <div className="w-full flex-col">
+        <div className="flex items-center justify-between space-x-2 px-6 pt-3 pb-3">
           <div className="cursor-pointer">
             <SelectMenus items={groups} value={selectedGroup} onChange={(value: Group) => setSelectedGroup(value)} />
           </div>
@@ -50,7 +50,7 @@ export function BoardMobilePage() {
           <Link
             children="추가"
             to="/teacher/board/add"
-            className="rounded-md bg-light_orange px-4 py-2 text-sm text-brand-1 hover:bg-brand-1 hover:text-light_orange focus:outline-none"
+            className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-none"
           />
         </div>
         <div className="flex w-full items-center space-x-2 px-6 pb-6">
@@ -113,5 +113,5 @@ export function BoardMobilePage() {
         </div>
       </div>
     </>
-  );
+  )
 }

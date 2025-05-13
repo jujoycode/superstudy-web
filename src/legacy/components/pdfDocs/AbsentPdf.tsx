@@ -5,9 +5,9 @@ import { Constants } from '@/legacy/constants'
 import { Absent } from '@/legacy/generated/model'
 import { AbsentEvidenceType, AbsentPaperType } from '@/legacy/types'
 
-import { AbsentPaper } from '../absent/AbsentPaper'
-import { ParentConfirmPaper } from '../absent/ParentConfirmPaper'
-import { TeacherConfirmPaper } from '../absent/TeacherConfirmPaper'
+import { AbsentPaper } from '.@/legacy/pages/teacher/absent/AbsentPaper'
+import { ParentConfirmPaper } from '.@/legacy/pages/teacher/absent/ParentConfirmPaper'
+import { TeacherConfirmPaper } from '.@/legacy/pages/teacher/absent/TeacherConfirmPaper'
 
 interface AbsentPdfProps {
   orderBy: number

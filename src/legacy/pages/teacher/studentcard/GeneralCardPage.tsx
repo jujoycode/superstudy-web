@@ -1,46 +1,46 @@
-import { FC, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { GeneralGPTModal } from 'src/components/activityv3/GPT/GeneralGPTModal';
-import { Blank } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { Icon } from 'src/components/common/icons';
-import { AnnualReviewRecordItem } from 'src/components/studentCard/AnnualReviewRecordItem';
-import { TeacherStudentAssessmentUpdate } from 'src/components/studentCard/TeacherStudentAssessmentUpdate';
-import { TeacherStudentAssessmentView } from 'src/components/studentCard/TeacherStudentAssessmentView';
-import { useTeacherCounseling } from 'src/container/teacher-counseling';
+import { FC, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { GeneralGPTModal } from '@/legacy/components/activityv3/GPT/GeneralGPTModal'
+import { Blank } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Icon } from '@/legacy/components/common/icons'
+import { AnnualReviewRecordItem } from '@/legacy/components/studentCard/AnnualReviewRecordItem'
+import { TeacherStudentAssessmentUpdate } from '@/legacy/components/studentCard/TeacherStudentAssessmentUpdate'
+import { TeacherStudentAssessmentView } from '@/legacy/components/studentCard/TeacherStudentAssessmentView'
+import { useTeacherCounseling } from 'src/container/teacher-counseling'
 import {
   useStudentCardFindStudent,
   useStudentRecordontrollerFindAnnualReviewByStudentId,
   useStudentSelfAssessmentFindStudentAssessment,
   useTeacherStudentAssessmentFindStudentAssessment,
-} from 'src/generated/endpoint';
+} from '@/legacy/generated/endpoint'
 
 export const GeneralCardPage: FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>()
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
-  const [selectedStudentIds, setSelectedStudentIds] = useState<number[]>([]);
-  const [isStudentAssessmentSelected, setStudentAssessmentSelected] = useState<boolean>(true);
-  const [isTeacherAssessmentSelected, setTeacherAssessmentSelected] = useState<boolean>(true);
-  const [selectedCounselingIds, setSelectedCounselingIds] = useState<number[]>([]);
-  const [selectedTeacherIds, setSelectedTeacherIds] = useState<number[]>([]);
-  const [view, setView] = useState('view');
+  const [selectedStudentIds, setSelectedStudentIds] = useState<number[]>([])
+  const [isStudentAssessmentSelected, setStudentAssessmentSelected] = useState<boolean>(true)
+  const [isTeacherAssessmentSelected, setTeacherAssessmentSelected] = useState<boolean>(true)
+  const [selectedCounselingIds, setSelectedCounselingIds] = useState<number[]>([])
+  const [selectedTeacherIds, setSelectedTeacherIds] = useState<number[]>([])
+  const [view, setView] = useState('view')
 
-  const { counselingData, isLoading: counselingLoading } = useTeacherCounseling(Number(id));
+  const { counselingData, isLoading: counselingLoading } = useTeacherCounseling(Number(id))
   const { data: studentInfo } = useStudentCardFindStudent(Number(id), {
     query: {
       enabled: !!id,
     },
-  });
+  })
 
   const { data: studentSelfAssessment, isLoading: studentLoading } = useStudentSelfAssessmentFindStudentAssessment(
     Number(id),
-  );
+  )
 
   const { data: teacherStudentAssessment, isLoading: teacherLoading } =
-    useTeacherStudentAssessmentFindStudentAssessment(Number(id));
+    useTeacherStudentAssessmentFindStudentAssessment(Number(id))
 
   const { data: studentRecords, refetch } = useStudentRecordontrollerFindAnnualReviewByStudentId(
     { studentId: Number(id) },
@@ -49,40 +49,40 @@ export const GeneralCardPage: FC = () => {
         onError: (err) => console.error(err),
       },
     },
-  );
-  const [coachmarkVisible, setCoachmarkVisible] = useState<boolean>(true);
+  )
+  const [coachmarkVisible, setCoachmarkVisible] = useState<boolean>(true)
 
   useEffect(() => {
-    const hasSeenCoachmark = localStorage.getItem('ACTIsFirst');
+    const hasSeenCoachmark = localStorage.getItem('ACTIsFirst')
     if (hasSeenCoachmark) {
-      setCoachmarkVisible(false);
+      setCoachmarkVisible(false)
     }
-  }, []);
+  }, [])
 
   const handleCoachmarkClose = () => {
-    setCoachmarkVisible(false);
-    localStorage.setItem('ACTIsFirst', 'not');
-  };
+    setCoachmarkVisible(false)
+    localStorage.setItem('ACTIsFirst', 'not')
+  }
 
   const handleCoachmarkOpen = () => {
-    setCoachmarkVisible(true);
-    localStorage.removeItem('ACTIsFirst');
-  };
+    setCoachmarkVisible(true)
+    localStorage.removeItem('ACTIsFirst')
+  }
 
-  const isLoading = counselingLoading || studentLoading || teacherLoading;
+  const isLoading = counselingLoading || studentLoading || teacherLoading
   useEffect(() => {
     if (!selectedTeacherIds.length && teacherStudentAssessment) {
-      setSelectedTeacherIds(Object.keys(teacherStudentAssessment.keywords).map((el) => Number(el)));
+      setSelectedTeacherIds(Object.keys(teacherStudentAssessment.keywords).map((el) => Number(el)))
     }
-  }, [teacherStudentAssessment]);
+  }, [teacherStudentAssessment])
 
   return (
     <>
       {isLoading && <Blank />}
-      <div className="scroll-box mt-4 h-screen-12 overflow-y-auto pb-4 md:h-screen-4">
+      <div className="scroll-box h-screen-12 md:h-screen-4 mt-4 overflow-y-auto pb-4">
         {/* Desktop V */}
         <div className="hidden md:block">
-          <div className="h-screen-4 space-y-4 overflow-hidden md:flex md:space-x-4 md:space-y-0 md:overflow-y-hidden md:p-4">
+          <div className="h-screen-4 space-y-4 overflow-hidden md:flex md:space-y-0 md:space-x-4 md:overflow-y-hidden md:p-4">
             <div className="w-full rounded-xl border border-gray-300 bg-white">
               <div className="flex h-full flex-col space-y-4 overflow-y-auto p-4">
                 <div className="mt-1 text-sm text-gray-500">아래 항목 중 선택한 내용이 종합의견 작성에 반영됩니다.</div>
@@ -119,7 +119,7 @@ export const GeneralCardPage: FC = () => {
                         />
                         <p className="text-sm text-gray-500">학생 자기 평가 내용</p>
                       </div>
-                      <div className="mt-1 w-full whitespace-pre-line rounded-lg border border-gray-300 p-2">
+                      <div className="mt-1 w-full rounded-lg border border-gray-300 p-2 whitespace-pre-line">
                         {studentSelfAssessment.assessment}
                       </div>
                     </>
@@ -196,7 +196,7 @@ export const GeneralCardPage: FC = () => {
       </div>
       {open && (
         <>
-          <div className="fixed inset-0 z-10 bg-littleblack"></div>
+          <div className="bg-littleblack fixed inset-0 z-10"></div>
           <div className="scroll-box fixed inset-x-0 inset-y-12 z-20 flex flex-col overflow-y-scroll rounded-3xl border border-gray-300 md:inset-x-10 md:inset-y-10 md:flex-row">
             <GeneralGPTModal
               studentId={Number(id)}
@@ -215,7 +215,7 @@ export const GeneralCardPage: FC = () => {
               isTeacherAssessmentSelected={isTeacherAssessmentSelected}
               setTeacherAssessmentSelected={setTeacherAssessmentSelected}
               onClose={() => {
-                setOpen(false);
+                setOpen(false)
               }}
             />
           </div>
@@ -223,14 +223,14 @@ export const GeneralCardPage: FC = () => {
       )}
       {coachmarkVisible && (
         <>
-          <div className="fixed inset-0 z-10 bg-littleblack"></div>
+          <div className="bg-littleblack fixed inset-0 z-10"></div>
           <div className="scroll-box fixed inset-0 z-20 flex items-center justify-center">
-            <div className="relative my-12 h-screen-6 w-full min-w-[35%] max-w-[400px] overflow-hidden rounded-3xl">
+            <div className="h-screen-6 relative my-12 w-full max-w-[400px] min-w-[35%] overflow-hidden rounded-3xl">
               <Icon.Close
-                className="absolute right-6 top-4 cursor-pointer text-zinc-400"
+                className="absolute top-4 right-6 cursor-pointer text-zinc-400"
                 onClick={() => handleCoachmarkClose()}
               />
-              <section className="h-full overflow-y-scroll whitespace-pre-line bg-white px-4 pb-6 pt-12 text-14">
+              <section className="text-14 h-full overflow-y-scroll bg-white px-4 pt-12 pb-6 whitespace-pre-line">
                 <img
                   src={
                     'https://kr.object.gov-ncloudstorage.com/superschool/production/tutorials/annualreporttutorial.jpg'
@@ -243,5 +243,5 @@ export const GeneralCardPage: FC = () => {
         </>
       )}
     </>
-  );
-};
+  )
+}

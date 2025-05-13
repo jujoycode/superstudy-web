@@ -1,60 +1,60 @@
-import { format } from 'date-fns';
-import _, { range } from 'lodash';
-import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { ActivityV3GPTModal } from 'src/components/activityv3/GPT/ActivityV3GPTModal';
-import { Select } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { Icon } from 'src/components/common/icons';
-import { ActivityV3Card } from 'src/components/studentCard/ActivityV3Card';
-import { StudentRecordItem } from 'src/components/studentCard/StudentRecordItem';
-import { ACTIVITYV3_TYPE_KOR } from 'src/constants/activityv3.enum';
+import { format } from 'date-fns'
+import _, { range } from 'lodash'
+import { useEffect, useState } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { ActivityV3GPTModal } from '@/legacy/components/activityv3/GPT/ActivityV3GPTModal'
+import { Select } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Icon } from '@/legacy/components/common/icons'
+import { ActivityV3Card } from '@/legacy/components/studentCard/ActivityV3Card'
+import { StudentRecordItem } from '@/legacy/components/studentCard/StudentRecordItem'
+import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
 import {
   useActivityV3FindStudentCard,
   useStudentActivityV3DownloadRecordSummary,
   useStudentCardFindStudent,
   useStudentRecordontrollerDownloadRecordSummary,
   useStudentRecordontrollerFindByStudentId,
-} from 'src/generated/endpoint';
-import { SubjectType } from 'src/generated/model';
-import { meState } from 'src/store';
-import { downloadExcel } from 'src/util/download-excel';
-import { getThisYear } from 'src/util/time';
+} from '@/legacy/generated/endpoint'
+import { SubjectType } from '@/legacy/generated/model'
+import { meState } from 'src/store'
+import { downloadExcel } from '@/legacy/util/download-excel'
+import { getThisYear } from '@/legacy/util/time'
 
 export const ActivityV3Page = () => {
-  const { pathname } = useLocation();
-  const { id } = useParams<{ id: string }>();
-  const me = useRecoilValue(meState);
+  const { pathname } = useLocation()
+  const { id } = useParams<{ id: string }>()
+  const me = useRecoilValue(meState)
 
-  const groupIdMatch = pathname.match(/\/teacher\/studentcard\/(\d+)/);
-  const groupId = groupIdMatch ? groupIdMatch[1] : me?.klassGroupId || 0;
+  const groupIdMatch = pathname.match(/\/teacher\/studentcard\/(\d+)/)
+  const groupId = groupIdMatch ? groupIdMatch[1] : me?.klassGroupId || 0
 
-  const thisYear = +getThisYear();
-  const _checkedCardIds = localStorage.getItem('checked_card_ids');
+  const thisYear = +getThisYear()
+  const _checkedCardIds = localStorage.getItem('checked_card_ids')
 
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [subject, setSubject] = useState('');
-  const [activityType, setActivityType] = useState<SubjectType>();
-  const [openedCardIds, setOpenedCardIds] = useState<number[]>([]);
-  const [open, setOpen] = useState(localStorage.getItem('is_record_modal_open') === 'true' ? true : false);
-  const [coachmarkVisible, setCoachmarkVisible] = useState<boolean>(true);
-  const [showDisabledActivity, setShowDisabledActivity] = useState<boolean>(false);
-  const [showMyRecord, setShowMyRecord] = useState<boolean>(true);
+  const [year, setYear] = useState(new Date().getFullYear())
+  const [subject, setSubject] = useState('')
+  const [activityType, setActivityType] = useState<SubjectType>()
+  const [openedCardIds, setOpenedCardIds] = useState<number[]>([])
+  const [open, setOpen] = useState(localStorage.getItem('is_record_modal_open') === 'true' ? true : false)
+  const [coachmarkVisible, setCoachmarkVisible] = useState<boolean>(true)
+  const [showDisabledActivity, setShowDisabledActivity] = useState<boolean>(false)
+  const [showMyRecord, setShowMyRecord] = useState<boolean>(true)
   const [checkedCardIds, _setCheckedCardIds] = useState<number[]>(
     _checkedCardIds ? _checkedCardIds.split(',').map((el) => Number(el)) : [],
-  );
+  )
   const setCheckedCardIds = (ids: number[]) => {
-    _setCheckedCardIds(ids);
-    localStorage.setItem('checked_card_ids', ids.join(','));
-  };
+    _setCheckedCardIds(ids)
+    localStorage.setItem('checked_card_ids', ids.join(','))
+  }
 
   const { data: studentInfo } = useStudentCardFindStudent(Number(id), {
     query: {
       enabled: !!id,
     },
-  });
+  })
 
   const { data: _activityV3s } = useActivityV3FindStudentCard(
     {
@@ -66,7 +66,7 @@ export const ActivityV3Page = () => {
         enabled: !!id,
       },
     },
-  );
+  )
 
   const { data: studentRecords, refetch } = useStudentRecordontrollerFindByStudentId(
     { studentId: Number(id) },
@@ -75,39 +75,39 @@ export const ActivityV3Page = () => {
         onError: (err) => console.error(err),
       },
     },
-  );
+  )
   useEffect(() => {
-    const hasSeenCoachmark = localStorage.getItem('ACTIsFirst');
+    const hasSeenCoachmark = localStorage.getItem('ACTIsFirst')
     if (hasSeenCoachmark) {
-      setCoachmarkVisible(false);
+      setCoachmarkVisible(false)
     }
-  }, []);
+  }, [])
 
   const handleCoachmarkClose = () => {
-    setCoachmarkVisible(false);
-    localStorage.setItem('ACTIsFirst', 'not');
-  };
+    setCoachmarkVisible(false)
+    localStorage.setItem('ACTIsFirst', 'not')
+  }
 
   const handleCoachmarOpen = () => {
-    setCoachmarkVisible(true);
-    localStorage.removeItem('ACTIsFirst');
-  };
+    setCoachmarkVisible(true)
+    localStorage.removeItem('ACTIsFirst')
+  }
 
   const activityV3s = _activityV3s?.filter((av3) => {
     if (subject) {
-      return av3.subject === subject;
+      return av3.subject === subject
     }
-    return true;
-  });
+    return true
+  })
 
   const { refetch: downloadSummary } = useStudentActivityV3DownloadRecordSummary(Number(groupId), {
     query: {
       enabled: false,
       onSuccess: (data) => {
-        downloadExcel(data, `활동요약_총정리_${format(new Date(), 'yyyy_MM_dd_HH_mm')}`);
+        downloadExcel(data, `활동요약_총정리_${format(new Date(), 'yyyy_MM_dd_HH_mm')}`)
       },
     },
-  });
+  })
 
   const { refetch: downloadRecord } = useStudentRecordontrollerDownloadRecordSummary(
     Number(groupId),
@@ -118,11 +118,11 @@ export const ActivityV3Page = () => {
       query: {
         enabled: false,
         onSuccess: (data) => {
-          downloadExcel(data, `활동기록_초안_총정리_${format(new Date(), 'yyyy_MM_dd_HH_mm')}`);
+          downloadExcel(data, `활동기록_초안_총정리_${format(new Date(), 'yyyy_MM_dd_HH_mm')}`)
         },
       },
     },
-  );
+  )
 
   const lectureAV3 =
     activityType && activityType !== SubjectType.LECTURE
@@ -130,34 +130,34 @@ export const ActivityV3Page = () => {
       : _.chain(activityV3s || [])
           .filter(['type', SubjectType.LECTURE])
           .sortBy(['subject'])
-          .value();
+          .value()
   const activityAV3 =
     activityType && activityType !== SubjectType.ACTIVITY
       ? []
       : _.chain(activityV3s || [])
           .filter(['type', SubjectType.ACTIVITY])
           .sortBy(['subject'])
-          .value();
+          .value()
   const etcAV3 =
     activityType && activityType !== SubjectType.ETC
       ? []
       : _.chain(activityV3s || [])
           .filter(['type', SubjectType.ETC])
           .sortBy(['subject'])
-          .value();
+          .value()
 
   useEffect(() => {
     if (openedCardIds.length !== 0) {
-      localStorage.setItem('openedCardIds', JSON.stringify(openedCardIds));
+      localStorage.setItem('openedCardIds', JSON.stringify(openedCardIds))
     }
-  }, [openedCardIds]);
+  }, [openedCardIds])
 
   useEffect(() => {
     if (openedCardIds.length === 0) {
-      const openedCardIds = localStorage.getItem('openedCardIds') || '[]';
-      setOpenedCardIds(JSON.parse(openedCardIds));
+      const openedCardIds = localStorage.getItem('openedCardIds') || '[]'
+      setOpenedCardIds(JSON.parse(openedCardIds))
     }
-  }, []);
+  }, [])
 
   return (
     <>
@@ -174,7 +174,7 @@ export const ActivityV3Page = () => {
             className="filled-primary hidden md:block"
           />
         </div>
-        <div className="h-screen-7 space-y-4 overflow-y-scroll md:flex md:space-x-4 md:space-y-0 md:overflow-y-hidden md:p-4">
+        <div className="h-screen-7 space-y-4 overflow-y-scroll md:flex md:space-y-0 md:space-x-4 md:overflow-y-hidden md:p-4">
           <div className="flex w-full flex-col space-y-1 overflow-y-hidden rounded-xl border border-gray-300 bg-white p-4">
             <div className="flex w-full items-center space-x-2">
               <Select value={year} onChange={(e) => setYear(Number(e.target.value))}>
@@ -188,8 +188,8 @@ export const ActivityV3Page = () => {
               <Select
                 value={activityType}
                 onChange={(e) => {
-                  setActivityType(e.target.value as SubjectType);
-                  setSubject('');
+                  setActivityType(e.target.value as SubjectType)
+                  setSubject('')
                 }}
               >
                 <option defaultChecked value={''}>
@@ -292,8 +292,8 @@ export const ActivityV3Page = () => {
                   className="filled-primary"
                   disabled={!checkedCardIds.length}
                   onClick={() => {
-                    localStorage.setItem('is_record_modal_open', 'true');
-                    setOpen(true);
+                    localStorage.setItem('is_record_modal_open', 'true')
+                    setOpen(true)
                   }}
                 >
                   작성하기
@@ -316,15 +316,15 @@ export const ActivityV3Page = () => {
 
       {open && studentInfo && (
         <>
-          <div className="fixed inset-0 z-10 bg-littleblack"></div>
+          <div className="bg-littleblack fixed inset-0 z-10"></div>
           <div className="scroll-box fixed inset-x-0 inset-y-12 z-20 flex flex-col overflow-y-scroll rounded-3xl border border-gray-300 md:inset-x-6 md:inset-y-10 md:flex-row">
             <ActivityV3GPTModal
               activityV3s={_activityV3s}
               checkedCardIds={checkedCardIds}
               setCheckedCardIds={(cardIds: number[]) => setCheckedCardIds(cardIds)}
               onClose={() => {
-                localStorage.removeItem('is_record_modal_open');
-                setOpen(false);
+                localStorage.removeItem('is_record_modal_open')
+                setOpen(false)
               }}
               studentInfo={studentInfo}
               refetch={() => refetch()}
@@ -334,23 +334,23 @@ export const ActivityV3Page = () => {
       )}
       {coachmarkVisible && (
         <>
-          <div className="fixed inset-0 z-10 bg-littleblack"></div>
+          <div className="bg-littleblack fixed inset-0 z-10"></div>
           <div className="scroll-box fixed inset-x-0 inset-y-12 z-20 flex flex-col overflow-y-scroll rounded-3xl border border-gray-300 md:inset-x-10 md:inset-y-10 md:flex-row">
             <div className="relative flex h-full w-full flex-row bg-white">
               <Icon.Close
-                className="absolute right-6 top-4 cursor-pointer text-zinc-400"
+                className="absolute top-4 right-6 cursor-pointer text-zinc-400"
                 onClick={() => handleCoachmarkClose()}
               />
-              <section className="flex h-full min-w-[65%] max-w-[500px] flex-col space-y-2 overflow-y-scroll rounded-l-lg bg-neutral-50 p-10">
+              <section className="flex h-full max-w-[500px] min-w-[65%] flex-col space-y-2 overflow-y-scroll rounded-l-lg bg-neutral-50 p-10">
                 <img
                   src={'https://kr.object.gov-ncloudstorage.com/superschool/production/tutorials/activity_intro_1.png'}
                   className="h-auto w-full object-cover"
                 />
               </section>
-              <section className="flex h-full min-w-[35%] max-w-[400px] flex-col gap-10 overflow-y-scroll rounded-r-lg px-4 pb-6 pt-12 text-14">
+              <section className="text-14 flex h-full max-w-[400px] min-w-[35%] flex-col gap-10 overflow-y-scroll rounded-r-lg px-4 pt-12 pb-6">
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-md bg-brand-1 font-extrabold text-white">
+                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       1
                     </div>
                     <p className="font-bold">진로/진학 정보</p>
@@ -364,7 +364,7 @@ export const ActivityV3Page = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-md bg-brand-1 font-extrabold text-white">
+                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       2
                     </div>
                     <p className="font-bold">과목 정보</p>
@@ -378,7 +378,7 @@ export const ActivityV3Page = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-md bg-brand-1 font-extrabold text-white">
+                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       3
                     </div>
                     <p className="font-bold">성취 기준</p>
@@ -392,7 +392,7 @@ export const ActivityV3Page = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-md bg-brand-1 font-extrabold text-white">
+                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       4
                     </div>
                     <p className="font-bold">활동기록 정보</p>
@@ -455,7 +455,7 @@ export const ActivityV3Page = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-md bg-brand-1 font-extrabold text-white">
+                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       5
                     </div>
                     <p className="font-bold">작성 유형</p>
@@ -469,7 +469,7 @@ export const ActivityV3Page = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-md bg-brand-1 font-extrabold text-white">
+                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       6
                     </div>
                     <p className="font-bold">활동</p>
@@ -483,7 +483,7 @@ export const ActivityV3Page = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-md bg-brand-1 font-extrabold text-white">
+                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       7
                     </div>
                     <p className="font-bold">성취 수준</p>
@@ -507,5 +507,5 @@ export const ActivityV3Page = () => {
         </>
       )}
     </>
-  );
-};
+  )
+}

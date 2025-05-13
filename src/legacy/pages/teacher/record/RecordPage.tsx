@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
-import { ErrorBlank, SelectMenus } from 'src/components';
-import { Button } from 'src/components/common/Button';
-import { useTeacherRecord } from 'src/container/teacher-record';
-import { makeStudNum5 } from 'src/util/status';
-import { RecordDetailPage } from './RecordDetailPage';
+import { useState } from 'react'
+import { Route, Switch, useHistory } from 'react-router-dom'
+import { ErrorBlank, SelectMenus } from '@/legacy/components'
+import { Button } from '@/legacy/components/common/Button'
+import { useTeacherRecord } from 'src/container/teacher-record'
+import { makeStudNum5 } from '@/legacy/util/status'
+import { RecordDetailPage } from './RecordDetailPage'
 
 export function RecordPage() {
-  const { push, goBack } = useHistory();
-  const [selectedSGId, setSelectedSGId] = useState(0);
+  const { push, goBack } = useHistory()
+  const [selectedSGId, setSelectedSGId] = useState(0)
 
   const {
     studentGroups,
@@ -18,13 +18,13 @@ export function RecordPage() {
     errorGroups,
     downloadRecordSummary,
     downloadRecordActivity,
-  } = useTeacherRecord();
+  } = useTeacherRecord()
 
   if (!selectedGroup) {
-    return <ErrorBlank text="생활기록부는 수업을 맡은 선생님만 접근가능합니다." />;
+    return <ErrorBlank text="생활기록부는 수업을 맡은 선생님만 접근가능합니다." />
   }
 
-  if (errorGroups) return <ErrorBlank />;
+  if (errorGroups) return <ErrorBlank />
 
   return (
     <div className="col-span-6 grid grid-cols-6">
@@ -34,7 +34,7 @@ export function RecordPage() {
             <h1 className="text-2xl font-semibold">생활기록부</h1>
           </div>
           <div className="w-max">
-            <div className="mb-5 ml-3 mr-3 flex items-center justify-between space-x-2">
+            <div className="mr-3 mb-5 ml-3 flex items-center justify-between space-x-2">
               <SelectMenus
                 items={uniqueGroups.map((tg) => ({ id: tg.id, name: tg.name }))}
                 value={selectedGroup?.id?.toString()}
@@ -62,9 +62,9 @@ export function RecordPage() {
                   sg.id === selectedSGId && 'border-brand-1 bg-light_orange'
                 }`}
                 onClick={() => {
-                  localStorage.setItem('recordSummary', ' ');
-                  setSelectedSGId(sg.id);
-                  push(`/teacher/record/${sg?.user?.id}`);
+                  localStorage.setItem('recordSummary', ' ')
+                  setSelectedSGId(sg.id)
+                  push(`/teacher/record/${sg?.user?.id}`)
                 }}
               >
                 {sg?.user?.studentGroups &&
@@ -86,5 +86,5 @@ export function RecordPage() {
         </Switch>
       </div>
     </div>
-  );
+  )
 }

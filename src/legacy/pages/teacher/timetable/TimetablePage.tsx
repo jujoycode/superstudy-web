@@ -1,27 +1,27 @@
-import clsx from 'clsx';
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { BackButton, Blank, Divider, TopNavbar } from 'src/components/common';
-import { useSchoolsFindOne } from 'src/generated/endpoint';
-import { Course, ResponseTimetableV3Dto } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState } from 'src/store';
-import { TimetableAttendancePage } from './TimetableAttendancePage';
-import { TimetableCoursePage } from './TimetableCoursePage';
-import { TimetableCoursesPage } from './TimetableCoursesPage';
-import { TimetableDetailPage } from './TimetableDetailPage';
+import clsx from 'clsx'
+import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { BackButton, Blank, Divider, TopNavbar } from '@/legacy/components/common'
+import { useSchoolsFindOne } from '@/legacy/generated/endpoint'
+import { Course, ResponseTimetableV3Dto } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { meState } from 'src/store'
+import { TimetableAttendancePage } from './TimetableAttendancePage'
+import { TimetableCoursePage } from './TimetableCoursePage'
+import { TimetableCoursesPage } from './TimetableCoursesPage'
+import { TimetableDetailPage } from './TimetableDetailPage'
 
 export function TimetablePage() {
-  const { goBack } = useHistory();
-  const { t } = useLanguage();
-  const me = useRecoilValue(meState);
-  const [blankOpen, setBlankOpen] = useState(false);
-  const [lectureInfo, setLectureInfo] = useState<ResponseTimetableV3Dto>();
-  const [isKlass, setIsKlass] = useState(false);
-  const [course, setCourse] = useState<Course>();
+  const { goBack } = useHistory()
+  const { t } = useLanguage()
+  const me = useRecoilValue(meState)
+  const [blankOpen, setBlankOpen] = useState(false)
+  const [lectureInfo, setLectureInfo] = useState<ResponseTimetableV3Dto>()
+  const [isKlass, setIsKlass] = useState(false)
+  const [course, setCourse] = useState<Course>()
 
-  const { data: school } = useSchoolsFindOne(me?.schoolId ?? 0, { query: { enabled: !!me } });
+  const { data: school } = useSchoolsFindOne(me?.schoolId ?? 0, { query: { enabled: !!me } })
 
   return (
     <>
@@ -34,10 +34,10 @@ export function TimetablePage() {
             <BackButton
               onClick={() => {
                 if (lectureInfo || course) {
-                  setLectureInfo(undefined);
-                  setCourse(undefined);
+                  setLectureInfo(undefined)
+                  setCourse(undefined)
                 } else {
-                  goBack();
+                  goBack()
                 }
               }}
             />
@@ -46,10 +46,10 @@ export function TimetablePage() {
             <button
               children="새로고침"
               onClick={() => {
-                setBlankOpen(true);
-                window?.location?.reload();
+                setBlankOpen(true)
+                window?.location?.reload()
               }}
-              className="text-sm text-brand-1"
+              className="text-brand-1 text-sm"
             />
           }
         />
@@ -57,8 +57,8 @@ export function TimetablePage() {
         <div className={clsx('flex flex-col gap-8', (lectureInfo || course) && 'hidden')}>
           <TimetableDetailPage
             onSelectLecture={(info) => {
-              setLectureInfo(info);
-              setCourse(undefined);
+              setLectureInfo(info)
+              setCourse(undefined)
             }}
             onIsKlass={(st) => setIsKlass(st)}
           />
@@ -66,8 +66,8 @@ export function TimetablePage() {
             <TimetableCoursesPage
               selectedCourse={course}
               onSelectCourse={(course) => {
-                setLectureInfo(undefined);
-                setCourse(course);
+                setLectureInfo(undefined)
+                setCourse(course)
               }}
             />
           )}
@@ -82,11 +82,11 @@ export function TimetablePage() {
           </h1>
         </div>
         <Divider className="h-0.5" />
-        <div className="scroll-box hidden h-screen-6 w-full gap-8 overflow-y-auto md:flex md:flex-col">
+        <div className="scroll-box h-screen-6 hidden w-full gap-8 overflow-y-auto md:flex md:flex-col">
           <TimetableDetailPage
             onSelectLecture={(info) => {
-              setLectureInfo(info);
-              setCourse(undefined);
+              setLectureInfo(info)
+              setCourse(undefined)
             }}
             onIsKlass={(st) => setIsKlass(st)}
           />
@@ -94,8 +94,8 @@ export function TimetablePage() {
             <TimetableCoursesPage
               selectedCourse={course}
               onSelectCourse={(course) => {
-                setLectureInfo(undefined);
-                setCourse(course);
+                setLectureInfo(undefined)
+                setCourse(course)
               }}
             />
           )}
@@ -108,5 +108,5 @@ export function TimetablePage() {
         {course && <TimetableCoursePage course={course} />}
       </div>
     </>
-  );
+  )
 }

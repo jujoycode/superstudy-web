@@ -14,7 +14,7 @@ import { handleBatchBlobDownload } from '@/legacy/hooks/useBatchDownload'
 import { BlobDownloadItem } from '@/legacy/hooks/useBatchDownload'
 import { modifyTkppfPdf } from '@/legacy/util/ib_tkppf_pdf'
 
-import IBSubmitPdfPreviewPopup from '../../IBSubmitPdfPreviewPopup'
+import IBSubmitPdfPreviewPopup from '../@/legacy/pages/ibSubmitPdfPreviewPopup'
 
 import TKPPFOverviewPanel from './TKPPFOverviewPanel'
 

@@ -1,30 +1,30 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { ErrorBlank, SuperModal } from 'src/components';
-import { Blank, Section, Select, Textarea } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { TextInput } from 'src/components/common/TextInput';
-import { RecordCard } from 'src/components/record/RecordCard';
-import { SummaryItem } from 'src/components/record/SummaryItem';
-import { useTeacherRecordDetail } from 'src/container/teacher-record-detail';
-import { Group, StudentGroup } from 'src/generated/model';
-import { forbiddenWords } from '../ForbiddenWords';
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { ErrorBlank, SuperModal } from '@/legacy/components'
+import { Blank, Section, Select, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { RecordCard } from '@/legacy/components/record/RecordCard'
+import { SummaryItem } from '@/legacy/components/record/SummaryItem'
+import { useTeacherRecordDetail } from 'src/container/teacher-record-detail'
+import { Group, StudentGroup } from '@/legacy/generated/model'
+import { forbiddenWords } from '../ForbiddenWords'
 
 const getRecordSummaryLength = (text: string) => {
-  const hangulLength = text.match(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g)?.length || 0;
-  const enterLength = text.match(/(\r)|(\n)/g)?.length || 0;
-  const etcLength = text.length - hangulLength - enterLength;
-  return hangulLength * 3 + enterLength * 2 + etcLength;
-};
+  const hangulLength = text.match(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g)?.length || 0
+  const enterLength = text.match(/(\r)|(\n)/g)?.length || 0
+  const etcLength = text.length - hangulLength - enterLength
+  return hangulLength * 3 + enterLength * 2 + etcLength
+}
 
 interface RecordDetailPageProps {
-  studentGroups?: StudentGroup[];
-  selectedGroup?: Group;
+  studentGroups?: StudentGroup[]
+  selectedGroup?: Group
 }
 
 export function RecordDetailPage({ studentGroups, selectedGroup }: RecordDetailPageProps) {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>()
 
   const {
     studentActivities,
@@ -44,19 +44,19 @@ export function RecordDetailPage({ studentGroups, selectedGroup }: RecordDetailP
     userId: Number(id),
     groupId: Number(selectedGroup?.id ?? 0),
     studentGroups,
-  });
+  })
 
-  const [subjectFilter, setSubjectFilter] = useState('');
-  const [selectedSAIds, setSelectedSAIds] = useState<number[]>([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [forbiddenText, setForbiddenText] = useState('');
+  const [subjectFilter, setSubjectFilter] = useState('')
+  const [selectedSAIds, setSelectedSAIds] = useState<number[]>([])
+  const [modalOpen, setModalOpen] = useState(false)
+  const [forbiddenText, setForbiddenText] = useState('')
 
   useEffect(() => {
     if (!recordSummary) {
-      const record = localStorage.getItem('recordSummary') || '';
-      setRecordSummary(record);
+      const record = localStorage.getItem('recordSummary') || ''
+      setRecordSummary(record)
     }
-  }, [localStorage, recordSummary]);
+  }, [localStorage, recordSummary])
 
   return (
     <>
@@ -74,9 +74,9 @@ export function RecordDetailPage({ studentGroups, selectedGroup }: RecordDetailP
                 checked={selectedSAIds.length === studentActivities?.length}
                 onChange={() => {
                   if (selectedSAIds.length === studentActivities?.length) {
-                    setSelectedSAIds([]);
+                    setSelectedSAIds([])
                   } else {
-                    setSelectedSAIds(studentActivities?.map((el) => el.id) || []);
+                    setSelectedSAIds(studentActivities?.map((el) => el.id) || [])
                   }
                 }}
               />
@@ -88,8 +88,8 @@ export function RecordDetailPage({ studentGroups, selectedGroup }: RecordDetailP
             <Select.lg
               value={subjectFilter}
               onChange={(e) => {
-                setSubjectFilter(e.target.value);
-                setSelectedSubject(e.target.value);
+                setSubjectFilter(e.target.value)
+                setSelectedSubject(e.target.value)
               }}
             >
               <option selected hidden>
@@ -132,8 +132,8 @@ export function RecordDetailPage({ studentGroups, selectedGroup }: RecordDetailP
               <Textarea
                 value={recordSummary}
                 onChange={(e) => {
-                  setRecordSummary(e.target.value);
-                  localStorage.setItem('recordSummary', e.target.value);
+                  setRecordSummary(e.target.value)
+                  localStorage.setItem('recordSummary', e.target.value)
                 }}
                 className="h-80"
               />
@@ -144,25 +144,25 @@ export function RecordDetailPage({ studentGroups, selectedGroup }: RecordDetailP
               <Button.xl
                 children="불러오기"
                 onClick={() => {
-                  let recordText = '';
+                  let recordText = ''
                   studentActivities
                     ?.filter((sa) => sa.id && selectedSAIds.includes(sa.id) && (!!sa.summary || !!sa.feedback))
                     ?.filter((sa) => (subjectFilter ? sa?.activity?.subject === subjectFilter : true))
                     ?.reverse()
                     ?.map((sa) => {
                       if (sa.activity?.commonText) {
-                        recordText += sa.activity.commonText + '\n';
+                        recordText += sa.activity.commonText + '\n'
                       }
                       if (sa.summary) {
-                        recordText += sa.summary + '\n';
+                        recordText += sa.summary + '\n'
                       }
                       if (sa.feedback) {
-                        recordText += sa.feedback + '\n';
+                        recordText += sa.feedback + '\n'
                       }
-                      recordText += '\n';
-                    });
-                  setRecordSummary(recordText);
-                  localStorage.setItem('recordSummary', recordText);
+                      recordText += '\n'
+                    })
+                  setRecordSummary(recordText)
+                  localStorage.setItem('recordSummary', recordText)
                 }}
                 className="filled-primary"
               />
@@ -170,19 +170,19 @@ export function RecordDetailPage({ studentGroups, selectedGroup }: RecordDetailP
                 children="저장하기"
                 onClick={() => {
                   if (!selectedSubject) {
-                    alert('과목을 선택해주세요.');
-                    return;
+                    alert('과목을 선택해주세요.')
+                    return
                   }
 
-                  const match = recordSummary.match(new RegExp(forbiddenWords.join('|'), 'g'));
+                  const match = recordSummary.match(new RegExp(forbiddenWords.join('|'), 'g'))
 
                   if (match?.length) {
-                    setModalOpen(true);
-                    setForbiddenText(match.join(', '));
+                    setModalOpen(true)
+                    setForbiddenText(match.join(', '))
                   } else {
-                    createRecordSummary();
+                    createRecordSummary()
                     //createOrUpdateRecordSummary();
-                    setForbiddenText('');
+                    setForbiddenText('')
                   }
                 }}
                 className="filled-primary"
@@ -209,15 +209,15 @@ export function RecordDetailPage({ studentGroups, selectedGroup }: RecordDetailP
           <Button.xl
             children="저장하기"
             onClick={() => {
-              createRecordSummary();
+              createRecordSummary()
               //createOrUpdateRecordSummary();
-              setForbiddenText('');
-              setModalOpen(false);
+              setForbiddenText('')
+              setModalOpen(false)
             }}
             className="filled-primary w-full"
           />
         </div>
       </SuperModal>
     </>
-  );
+  )
 }

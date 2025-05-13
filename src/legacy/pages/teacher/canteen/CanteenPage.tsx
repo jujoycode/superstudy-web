@@ -1,36 +1,36 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react'
 // @ts-ignore
-import ExifOrientationImg from 'react-exif-orientation-img';
-import { Link } from 'react-router-dom';
-import Viewer from 'react-viewer';
-import { useRecoilValue } from 'recoil';
-import { ReactComponent as ChatIcon } from 'src/assets/svg/chat.svg';
-import { ReactComponent as ClockIcon } from 'src/assets/svg/clock.svg';
-import { ReactComponent as Refresh } from 'src/assets/svg/refresh.svg';
-import { ErrorBlank } from 'src/components';
-import { CanteenCalendar } from 'src/components/CanteenCalendar';
-import { Dashboard } from 'src/components/Dashboard';
-import AnnouncementPopup from 'src/components/announcement/Announcement';
-import { Blank, TopNavbar } from 'src/components/common';
-import { Icon } from 'src/components/common/icons';
-import { NotificationModal } from 'src/components/notification/NotificationModal';
-import { Constants } from 'src/constants';
-import { useTeacherCanteen } from 'src/container/teacher-canteen';
-import { useNotificationLogFindRecent } from 'src/generated/endpoint';
-import { CalendarIdEnum } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState, newMsgCntState } from 'src/store';
-import { checkNewVersion } from 'src/util/status';
-import { makeDateToString, makeMonthDayToString, makeMonthDayToStringEN } from 'src/util/time';
-import { CanteenDetailPage } from './CanteenDetailPage';
-import { CanteenSubmitPage } from './CanteenSubmitPage';
+import ExifOrientationImg from 'react-exif-orientation-img'
+import { Link } from 'react-router-dom'
+import Viewer from 'react-viewer'
+import { useRecoilValue } from 'recoil'
+import { ReactComponent as ChatIcon } from '@/asset/svg/chat.svg'
+import { ReactComponent as ClockIcon } from '@/asset/svg/clock.svg'
+import { ReactComponent as Refresh } from '@/asset/svg/refresh.svg'
+import { ErrorBlank } from '@/legacy/components'
+import { CanteenCalendar } from '@/legacy/components/CanteenCalendar'
+import { Dashboard } from '@/legacy/components/Dashboard'
+import AnnouncementPopup from '@/legacy/components/announcement/Announcement'
+import { Blank, TopNavbar } from '@/legacy/components/common'
+import { Icon } from '@/legacy/components/common/icons'
+import { NotificationModal } from '@/legacy/components/notification/NotificationModal'
+import { Constants } from '@/legacy/constants'
+import { useTeacherCanteen } from 'src/container/teacher-canteen'
+import { useNotificationLogFindRecent } from '@/legacy/generated/endpoint'
+import { CalendarIdEnum } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { meState, newMsgCntState } from 'src/store'
+import { checkNewVersion } from '@/legacy/util/status'
+import { makeDateToString, makeMonthDayToString, makeMonthDayToStringEN } from '@/legacy/util/time'
+import { CanteenDetailPage } from './CanteenDetailPage'
+import { CanteenSubmitPage } from './CanteenSubmitPage'
 
 export function CanteenPage() {
-  const me = useRecoilValue(meState);
-  const newMsgCnt = useRecoilValue(newMsgCntState);
-  const { t } = useLanguage();
+  const me = useRecoilValue(meState)
+  const newMsgCnt = useRecoilValue(newMsgCntState)
+  const { t } = useLanguage()
 
-  checkNewVersion();
+  checkNewVersion()
 
   const {
     schedulesOrderByDay,
@@ -40,26 +40,26 @@ export function CanteenPage() {
     selectedCanteen,
     selectedSchedules,
     isLoading,
-  } = useTeacherCanteen();
-  const { data: notificationLog } = useNotificationLogFindRecent();
+  } = useTeacherCanteen()
+  const { data: notificationLog } = useNotificationLogFindRecent()
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [readState, setReadState] = useState(true);
-  const [blankOpen, setBlankOpen] = useState(false);
-  const [isImageModalOpen, setImageModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false)
+  const [readState, setReadState] = useState(true)
+  const [blankOpen, setBlankOpen] = useState(false)
+  const [isImageModalOpen, setImageModalOpen] = useState(false)
 
-  const conteenRef = useRef<HTMLImageElement | null>(null);
+  const conteenRef = useRef<HTMLImageElement | null>(null)
   useEffect(() => {
     if (selectedCanteen) {
-      conteenRef.current?.scrollIntoView();
+      conteenRef.current?.scrollIntoView()
     }
-  }, [selectedCanteen]);
+  }, [selectedCanteen])
 
   if (!me?.id || isLoading) {
-    return <Blank />;
+    return <Blank />
   }
 
-  const hasConfirmedAll = !notificationLog;
+  const hasConfirmedAll = !notificationLog
 
   return (
     <>
@@ -77,23 +77,23 @@ export function CanteenPage() {
               ) : (
                 <Icon.Bell className="h-6 w-6 cursor-pointer" onClick={() => setModalOpen(!modalOpen)} />
               )}
-              {!hasConfirmedAll && <div className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500" />}
+              {!hasConfirmedAll && <div className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500" />}
             </div>
           }
           right={
             <div
               onClick={() => {
-                setBlankOpen(true);
-                window?.location?.reload();
+                setBlankOpen(true)
+                window?.location?.reload()
               }}
-              className="text-sm text-brand-1"
+              className="text-brand-1 text-sm"
             >
               <Refresh />
             </div>
           }
         />
         {modalOpen && (
-          <div className="scroll-box fixed inset-x-0 bottom-0 top-14 z-50 h-screen-7 overflow-x-auto">
+          <div className="scroll-box h-screen-7 fixed inset-x-0 top-14 bottom-0 z-50 overflow-x-auto">
             <NotificationModal />
           </div>
         )}
@@ -104,28 +104,28 @@ export function CanteenPage() {
             onChange={(value: any) => setSelectedDate(new Date(value))}
             onActiveStartDateChange={({ activeStartDate }) => activeStartDate && setSelectedDate(activeStartDate)}
             tileContent={({ date }) => {
-              const dateStr = makeDateToString(date);
-              const schedules = schedulesOrderByDay[dateStr];
+              const dateStr = makeDateToString(date)
+              const schedules = schedulesOrderByDay[dateStr]
               return (
                 <div className="absolute inset-x-0 flex justify-center space-x-0.5">
                   {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_0) && (
-                    <div className="h-1 w-1 rounded-full bg-schedule-school" />
+                    <div className="bg-schedule-school h-1 w-1 rounded-full" />
                   )}
                   {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_1) && (
-                    <div className="h-1 w-1 rounded-full bg-schedule-teacher" />
+                    <div className="bg-schedule-teacher h-1 w-1 rounded-full" />
                   )}
                   {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_2) && (
-                    <div className="h-1 w-1 rounded-full bg-schedule-group" />
+                    <div className="bg-schedule-group h-1 w-1 rounded-full" />
                   )}
                 </div>
-              );
+              )
             }}
           />
         </div>
         <div className="h-0.5 w-full bg-gray-50" />
         <div className="px-6 py-4">
           {/* <div className="pb-3 text-sm text-grey-5">{makeMonthDayToString(selectedDate)}</div> */}
-          <div className="pb-3 text-sm text-grey-5">
+          <div className="text-grey-5 pb-3 text-sm">
             {t('language') === 'ko' ? makeMonthDayToString(selectedDate) : makeMonthDayToStringEN(selectedDate)}
           </div>
           <div className="flex flex-col space-y-3">
@@ -186,19 +186,19 @@ export function CanteenPage() {
           <div className="h-20"></div>
         )}
 
-        <div className="fixed bottom-16 right-4">
-          <div className="relative mb-2 h-16 w-16 rounded-full bg-brand-1 bg-opacity-50">
+        <div className="fixed right-4 bottom-16">
+          <div className="bg-brand-1 bg-opacity-50 relative mb-2 h-16 w-16 rounded-full">
             <Link className="flex h-full w-full flex-col items-center justify-center" to={'/teacher/chat'}>
               <ChatIcon />
               <div className="text-sm text-white">메시지</div>
             </Link>
             {newMsgCnt > 0 && (
-              <small className="absolute right-0 top-0 h-6 w-6 rounded-full bg-red-500 text-center text-xs leading-6 text-white">
+              <small className="absolute top-0 right-0 h-6 w-6 rounded-full bg-red-500 text-center text-xs leading-6 text-white">
                 N
               </small>
             )}
           </div>
-          <div className="h-16 w-16 rounded-full bg-grey-8">
+          <div className="bg-grey-8 h-16 w-16 rounded-full">
             <Link className="flex h-full w-full flex-col items-center justify-center" to={'/teacher/timetable'}>
               <ClockIcon />
               <div className="text-sm text-white">시간표</div>
@@ -217,28 +217,28 @@ export function CanteenPage() {
               onChange={(value: any) => setSelectedDate(new Date(value))}
               onActiveStartDateChange={({ activeStartDate }) => activeStartDate && setSelectedDate(activeStartDate)}
               tileContent={({ date }) => {
-                const dateStr = makeDateToString(date);
-                const schedules = schedulesOrderByDay[dateStr];
+                const dateStr = makeDateToString(date)
+                const schedules = schedulesOrderByDay[dateStr]
                 return (
                   <div className="absolute inset-x-0 flex justify-center space-x-0.5">
                     {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_0) && (
-                      <div className="h-1 w-1 rounded-full bg-schedule-school" />
+                      <div className="bg-schedule-school h-1 w-1 rounded-full" />
                     )}
                     {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_1) && (
-                      <div className="h-1 w-1 rounded-full bg-schedule-teacher" />
+                      <div className="bg-schedule-teacher h-1 w-1 rounded-full" />
                     )}
                     {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_2) && (
-                      <div className="h-1 w-1 rounded-full bg-schedule-group" />
+                      <div className="bg-schedule-group h-1 w-1 rounded-full" />
                     )}
                   </div>
-                );
+                )
               }}
             />
           </div>
 
           <div className="h-0.5 w-full bg-gray-50" />
           <div className="px-6 py-4">
-            <div className="pb-3 text-sm text-grey-5">
+            <div className="text-grey-5 pb-3 text-sm">
               {t('language') === 'ko' ? makeMonthDayToString(selectedDate) : makeMonthDayToStringEN(selectedDate)}
             </div>
             <div className="flex flex-col space-y-3">
@@ -272,12 +272,12 @@ export function CanteenPage() {
               selectedDate={selectedDate}
               canteenData={selectedCanteen}
               refetch={() => {
-                setReadState(true);
+                setReadState(true)
               }}
             />
           )}
         </div>
       </div>
     </>
-  );
+  )
 }

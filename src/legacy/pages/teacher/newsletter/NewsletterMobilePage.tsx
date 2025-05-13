@@ -6,14 +6,13 @@ import { NoItem } from '@/legacy/components/common/NoItem'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Icon } from '@/legacy/components/common/icons'
 import { useTeacherNewsletter } from 'src/container/teacher-newsletter'
-import { TeacherNoticeContainer } from 'src/container/teacher-notice'
-import { Notice } from '@/legacy/generated/model'
+import { Newsletter, NewsletterType } from '@/legacy/generated/model'
 import { meState } from 'src/store'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 const filters = ['제목', '작성자']
 
-export function NoticeMobilePage() {
+export function NewsletterMobilePage() {
   const meRecoil = useRecoilValue(meState)
 
   const { newsletters, unReadnewslettersList } = useTeacherNewsletter()
@@ -25,9 +24,6 @@ export function NoticeMobilePage() {
     setSearchTitle('')
     setFilter(e.target.value)
   }
-
-  const { filteredNoticeList, category, isNoticeListLoading, isNoticeListError, unReadNoticeList, setCategory } =
-    TeacherNoticeContainer.useContext()
 
   return (
     <>
@@ -61,32 +57,38 @@ export function NoticeMobilePage() {
             <Icon.Search />
           </div>
         </div>
-
         <div className="scroll-box h-0.5 bg-gray-100"></div>
         <div className="scroll-box h-screen-14 w-full flex-col space-y-2 overflow-y-auto">
           <div className="whitespace-pre-line">
             <List>
-              {filteredNoticeList?.length === 0 && <NoItem />}
-              {filteredNoticeList
+              {newsletters?.length === 0 && <NoItem />}
+              {newsletters
                 ?.filter(
-                  (notice: Notice) =>
-                    (searchWriter === '' || notice?.user?.name.includes(searchWriter)) &&
-                    (searchTitle === '' || notice?.title.includes(searchTitle)),
+                  (newsletter: Newsletter) =>
+                    (searchWriter === '' ||
+                      (newsletter &&
+                        newsletter.writer &&
+                        newsletter.writer.name &&
+                        newsletter.writer.name.includes(searchWriter))) &&
+                    (searchTitle === '' || (newsletter && newsletter.title && newsletter.title.includes(searchTitle))),
                 )
-                .map((notice: Notice) => (
+                .map((newsletter: Newsletter) => (
                   <FeedsItem
                     to={'teacher'}
-                    pageType={'notice'}
-                    key={notice.id}
-                    id={notice.id}
-                    category1={notice.category}
-                    category1Color="peach_orange"
-                    title={notice.title}
-                    contentText={notice.content}
-                    contentImages={notice.images}
-                    contentFiles={notice.files}
-                    writer={notice?.user?.name}
-                    createAt={DateUtil.formatDate(notice.createdAt || '', DateFormat['YYYY.MM.DD HH:mm'])}
+                    pageType={'newsletter'}
+                    key={newsletter.id}
+                    id={newsletter.id}
+                    category1={newsletter.category || '가정통신문'}
+                    category1Color="light_golden"
+                    category2={newsletter.type === NewsletterType.NOTICE ? '공지' : '설문'}
+                    category2Color="lavender_blue"
+                    submitDate={DateUtil.formatDate(newsletter.endAt || '', DateFormat['YYYY.MM.DD HH:mm'])}
+                    title={newsletter.title}
+                    contentText={newsletter.content}
+                    contentImages={newsletter.images}
+                    contentFiles={newsletter.files}
+                    writer={newsletter.writer?.name}
+                    createAt={DateUtil.formatDate(newsletter.createdAt || '', DateFormat['YYYY.MM.DD HH:mm'])}
                   />
                 ))}
             </List>

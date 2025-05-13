@@ -1,32 +1,32 @@
-import { useParams } from 'react-router';
-import { useRecoilValue } from 'recoil';
-import { ErrorBlank } from 'src/components';
-import { AllSelectCheckbox } from 'src/components/AllSelectCheckbox';
-import { BackButton, Blank, Label, Section, Select, Textarea, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { FeedsDetail } from 'src/components/common/FeedsDetail';
-import { FileUpload } from 'src/components/common/FileUpload';
-import { ImageUpload } from 'src/components/common/ImageUpload';
-import { TextInput } from 'src/components/common/TextInput';
-import { DocumentObjectComponent } from 'src/components/DocumentObjectComponent';
-import { ImageObjectComponent } from 'src/components/ImageObjectComponent';
-import { useTeacherBoardAdd } from 'src/container/teacher-board-add';
-import { BoardCategoryEnum, Group, RequestCreateBoardDto } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { getExtOfFilename } from 'src/util/file';
+import { useParams } from 'react-router'
+import { useRecoilValue } from 'recoil'
+import { ErrorBlank } from '@/legacy/components'
+import { AllSelectCheckbox } from '@/legacy/components/AllSelectCheckbox'
+import { BackButton, Blank, Label, Section, Select, Textarea, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { FeedsDetail } from '@/legacy/components/common/FeedsDetail'
+import { FileUpload } from '@/legacy/components/common/FileUpload'
+import { ImageUpload } from '@/legacy/components/common/ImageUpload'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { DocumentObjectComponent } from '@/legacy/components/DocumentObjectComponent'
+import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
+import { useTeacherBoardAdd } from 'src/container/teacher-board-add'
+import { BoardCategoryEnum, Group, RequestCreateBoardDto } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { meState } from 'src/store'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { getExtOfFilename } from '@/legacy/util/file'
 
 interface BoardAddProps {
-  homeKlass?: Group;
-  groups?: Group[];
+  homeKlass?: Group
+  groups?: Group[]
 }
 
 export function BoardAddPage({ homeKlass, groups }: BoardAddProps) {
-  const { id } = useParams<{ id: string }>();
-  const meRecoil = useRecoilValue(meState);
-  const { t } = useLanguage();
+  const { id } = useParams<{ id: string }>()
+  const meRecoil = useRecoilValue(meState)
+  const { t } = useLanguage()
 
   const {
     title,
@@ -60,7 +60,7 @@ export function BoardAddPage({ homeKlass, groups }: BoardAddProps) {
     handleSubmit,
     setToStudent,
     setToParent,
-  } = useTeacherBoardAdd({ homeKlass, groups, boardId: +id });
+  } = useTeacherBoardAdd({ homeKlass, groups, boardId: +id })
 
   const imageObjectMapPaths = (): string[] => {
     // imageObjectMap의 값들을 배열로 변환 후 filter와 map 함수를 사용하여 조건을 충족하는 imageObject의 image만 추출하여 string[]로 반환
@@ -68,14 +68,14 @@ export function BoardAddPage({ homeKlass, groups }: BoardAddProps) {
       .filter((imageObject) => !imageObject.isDelete)
       .map((imageObject) => {
         if (typeof imageObject.image === 'string') {
-          return imageObject.image;
+          return imageObject.image
         } else {
-          return URL.createObjectURL(imageObject.image) + '?ext=' + getExtOfFilename(imageObject.image.name);
+          return URL.createObjectURL(imageObject.image) + '?ext=' + getExtOfFilename(imageObject.image.name)
         }
-      });
+      })
 
-    return pathsArray;
-  };
+    return pathsArray
+  }
 
   const documentObjectMapPaths = (): string[] => {
     // imageObjectMap의 값들을 배열로 변환 후 filter와 map 함수를 사용하여 조건을 충족하는 imageObject의 image만 추출하여 string[]로 반환
@@ -83,14 +83,14 @@ export function BoardAddPage({ homeKlass, groups }: BoardAddProps) {
       .filter((documentObject) => !documentObject.isDelete)
       .map((documentObject) => {
         if (typeof documentObject?.document === 'string') {
-          return documentObject?.document;
+          return documentObject?.document
         } else {
-          return documentObject.document.name;
+          return documentObject.document.name
         }
-      });
+      })
 
-    return pathsArray;
-  };
+    return pathsArray
+  }
 
   return (
     <div className="h-screen-8 md:h-screen-3">
@@ -101,7 +101,7 @@ export function BoardAddPage({ homeKlass, groups }: BoardAddProps) {
         <TopNavbar title={`${t('class_bulletin_board')} ${t('add')}`} left={<BackButton />} />
       </div>
       <div className="flex space-x-3">
-        <div className="scroll-box h-screen-8 overflow-y-auto md:h-screen-3">
+        <div className="scroll-box h-screen-8 md:h-screen-3 overflow-y-auto">
           <Section>
             <Label.col>
               <Label.Text>
@@ -113,13 +113,13 @@ export function BoardAddPage({ homeKlass, groups }: BoardAddProps) {
                   {t('select_target_group')}
                 </Label.Text>
                 <>
-                  <div className="flex items-center space-x-4 pb-3 pt-3 text-sm">
+                  <div className="flex items-center space-x-4 pt-3 pb-3 text-sm">
                     <Checkbox
                       checked={toStudent}
                       onChange={() => {
-                        setToStudent(!toStudent);
+                        setToStudent(!toStudent)
                         if (toStudent && !toParent) {
-                          setToParent(true);
+                          setToParent(true)
                         }
                       }}
                     />
@@ -127,9 +127,9 @@ export function BoardAddPage({ homeKlass, groups }: BoardAddProps) {
                     <Checkbox
                       checked={toParent}
                       onChange={() => {
-                        setToParent(!toParent);
+                        setToParent(!toParent)
                         if (!toStudent && toParent) {
-                          setToStudent(true);
+                          setToStudent(true)
                         }
                       }}
                     />
@@ -393,17 +393,17 @@ export function BoardAddPage({ homeKlass, groups }: BoardAddProps) {
                   targetGroupIds: selectedGroupIds,
                   toStudent: false,
                   toParent: false,
-                };
-                handleSubmit({ boardPayload: board, imageObjectMap, documentObjectMap });
+                }
+                handleSubmit({ boardPayload: board, imageObjectMap, documentObjectMap })
               }}
               className="filled-primary mx-auto w-[70%]"
             />
           </div>
         </div>
-        <div className="scroll-box hidden h-screen-3 overflow-scroll py-4 md:block md:w-1/2">
+        <div className="scroll-box h-screen-3 hidden overflow-scroll py-4 md:block md:w-1/2">
           {/* <div className=" md:scroll-box hidden md:block md:h-screen-3 md:w-1/2 md:overflow-scroll md:py-4"> */}
           <div className="mb-3 text-lg font-bold">{t('preview')}</div>
-          <div className=" w-full rounded-lg border p-3">
+          <div className="w-full rounded-lg border p-3">
             <FeedsDetail
               category1={selectedCategory || '학급게시판'}
               category1Color="mint_green"
@@ -433,8 +433,8 @@ export function BoardAddPage({ homeKlass, groups }: BoardAddProps) {
                   toStudent: false,
                   toParent: false,
                   targetGroupIds: selectedGroupIds,
-                };
-                handleSubmit({ boardPayload: board, imageObjectMap, documentObjectMap });
+                }
+                handleSubmit({ boardPayload: board, imageObjectMap, documentObjectMap })
               }}
               className="filled-primary mx-auto w-full"
             />
@@ -442,5 +442,5 @@ export function BoardAddPage({ homeKlass, groups }: BoardAddProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

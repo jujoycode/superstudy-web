@@ -1,30 +1,30 @@
-import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { Admin } from 'src/components/common/Admin';
-import { Button } from 'src/components/common/Button';
-import { Time } from 'src/components/common/Time';
-import { useTeacherPointLogGet } from 'src/generated/endpoint';
-import { AssignPointModal } from 'src/modals/AssignPointModal';
-import { useModals } from 'src/modals/ModalStack';
-import { PointLogModal } from 'src/modals/PointLogModal';
-import { numberWithSign } from 'src/util/string';
+import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router-dom'
+import { Admin } from '@/legacy/components/common/Admin'
+import { Button } from '@/legacy/components/common/Button'
+import { Time } from '@/legacy/components/common/Time'
+import { useTeacherPointLogGet } from '@/legacy/generated/endpoint'
+import { AssignPointModal } from 'src/modals/AssignPointModal'
+import { useModals } from 'src/modals/ModalStack'
+import { PointLogModal } from 'src/modals/PointLogModal'
+import { numberWithSign } from '@/legacy/util/string'
 
 export function PointLogsPage() {
-  const { pushModal } = useModals();
-  const { t: tt } = useTranslation('teacher', { keyPrefix: 'pointlogs_page' });
-  const { id } = useParams<{ id: string }>();
-  const studentId = Number(id);
+  const { pushModal } = useModals()
+  const { t: tt } = useTranslation('teacher', { keyPrefix: 'pointlogs_page' })
+  const { id } = useParams<{ id: string }>()
+  const studentId = Number(id)
 
-  const { data: pointLogs } = useTeacherPointLogGet({ size: 10000, studentId, join: ['teacher'] });
+  const { data: pointLogs } = useTeacherPointLogGet({ size: 10000, studentId, join: ['teacher'] })
 
   const [merits, demerits] = useMemo(
     () => (pointLogs?.items ?? []).reduce(([m, dm], { value: v }) => (v > 0 ? [m + v, dm] : [m, dm + v]), [0, 0]),
     [pointLogs],
-  );
+  )
 
   return (
-    <div className="scroll-box mt-4 flex h-screen-12 flex-col gap-4 overflow-y-auto pb-4 md:h-screen-4">
+    <div className="scroll-box h-screen-12 md:h-screen-4 mt-4 flex flex-col gap-4 overflow-y-auto pb-4">
       <div className="flex items-end justify-between">
         <Button
           children={tt('assign_points')}
@@ -66,11 +66,11 @@ export function PointLogsPage() {
           ))}
           {pointLogs?.total === 0 && (
             <Admin.TableRow>
-              <Admin.TableCell colSpan={4} children={tt('no_items_found')} className="py-8 text-center text-15" />
+              <Admin.TableCell colSpan={4} children={tt('no_items_found')} className="text-15 py-8 text-center" />
             </Admin.TableRow>
           )}
         </Admin.TableBody>
       </Admin.Table>
     </div>
-  );
+  )
 }

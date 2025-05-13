@@ -1,39 +1,39 @@
-import { useState } from 'react';
-import { useParams } from 'react-router';
-import Viewer from 'react-viewer';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { ErrorBlank, SuperModal } from 'src/components';
-import { BackButton, Blank, Section, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { FeedsDetail } from 'src/components/common/FeedsDetail';
-import { PdfViewer } from 'src/components/common/PdfViewer';
-import { useTeacherNoticeDetail } from 'src/container/teacher-notice-detail';
-import { Code, Role } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { isUpdateNoticeState, meState } from 'src/store';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { NoticeAddPage } from './NoticeAddPage';
+import { useState } from 'react'
+import { useParams } from 'react-router'
+import Viewer from 'react-viewer'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { ErrorBlank, SuperModal } from '@/legacy/components'
+import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { FeedsDetail } from '@/legacy/components/common/FeedsDetail'
+import { PdfViewer } from '@/legacy/components/common/PdfViewer'
+import { useTeacherNoticeDetail } from 'src/container/teacher-notice-detail'
+import { Code, Role } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { isUpdateNoticeState, meState } from 'src/store'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { NoticeAddPage } from './NoticeAddPage'
 interface NoticeAddProps {
-  categoryData?: Code[];
+  categoryData?: Code[]
 }
 
 export function NoticeDetailPage({ categoryData }: NoticeAddProps) {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>()
 
-  const me = useRecoilValue(meState);
-  const [isUpdateNotice, setIsUpdateNotice] = useRecoilState(isUpdateNoticeState);
+  const me = useRecoilValue(meState)
+  const [isUpdateNotice, setIsUpdateNotice] = useRecoilState(isUpdateNoticeState)
   const { notice, isNoticeLoading, images, Pdfs, files, viewerImages, errorMessage, handleNoticeDelete } =
-    useTeacherNoticeDetail(+id);
-  const { t } = useLanguage();
+    useTeacherNoticeDetail(+id)
+  const { t } = useLanguage()
 
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [hasImagesModalOpen, setImagesModalOpen] = useState(false);
-  const [hasPdfModalOpen, setPdfModalOpen] = useState(false);
-  const [focusPdfFile, setFocusPdfFile] = useState('');
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
+  const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
+  const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
+  const [focusPdfFile, setFocusPdfFile] = useState('')
+  const [activeIndex, setActiveIndex] = useState(0)
 
   if (isUpdateNotice) {
-    return <NoticeAddPage noticeData={notice} categoryData={categoryData} />;
+    return <NoticeAddPage noticeData={notice} categoryData={categoryData} />
   }
 
   const getFeedsDetail = () => {
@@ -54,8 +54,8 @@ export function NoticeDetailPage({ categoryData }: NoticeAddProps) {
         writer={notice?.user?.name}
         createAt={DateUtil.formatDate(notice?.createdAt || '', DateFormat['YYYY.MM.DD HH:mm'])}
       />
-    );
-  };
+    )
+  }
 
   return (
     <>
@@ -134,5 +134,5 @@ export function NoticeDetailPage({ categoryData }: NoticeAddProps) {
         </>
       )}
     </>
-  );
+  )
 }

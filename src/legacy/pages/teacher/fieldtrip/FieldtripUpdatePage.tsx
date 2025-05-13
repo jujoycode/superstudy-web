@@ -1,64 +1,64 @@
-import clsx from 'clsx';
-import { eachDayOfInterval } from 'date-fns';
-import { chain, concat, every, flatten, get } from 'lodash';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { SelectValues, SuperModal } from 'src/components';
-import { ImageObjectComponent } from 'src/components/ImageObjectComponent';
-import { Badge, Blank, Label, Section, Textarea } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { ImageUpload } from 'src/components/common/ImageUpload';
-import { TextInput } from 'src/components/common/TextInput';
-import { ToggleSwitch } from 'src/components/common/ToggleSwitch';
-import { Icon } from 'src/components/common/icons';
-import { FieldtripDatePicker } from 'src/components/fieldtrip/FieldtripDatePicker';
-import { useTeacherFieldtripUpdate } from 'src/container/teacher-fieldtrip-update';
-import { Fieldtrip, ResponseUserDto } from 'src/generated/model';
-import { getCustomString } from 'src/util/string';
-import { differenceWithSchedulesWithHalfDay, makeDateToString2 } from 'src/util/time';
+import clsx from 'clsx'
+import { eachDayOfInterval } from 'date-fns'
+import { chain, concat, every, flatten, get } from 'lodash'
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { SelectValues, SuperModal } from '@/legacy/components'
+import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
+import { Badge, Blank, Label, Section, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { ImageUpload } from '@/legacy/components/common/ImageUpload'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { ToggleSwitch } from '@/legacy/components/common/ToggleSwitch'
+import { Icon } from '@/legacy/components/common/icons'
+import { FieldtripDatePicker } from '@/legacy/components/fieldtrip/FieldtripDatePicker'
+import { useTeacherFieldtripUpdate } from 'src/container/teacher-fieldtrip-update'
+import { Fieldtrip, ResponseUserDto } from '@/legacy/generated/model'
+import { getCustomString } from '@/legacy/util/string'
+import { differenceWithSchedulesWithHalfDay, makeDateToString2 } from '@/legacy/util/time'
 
 interface FieldtripUpdatePageProps {
-  fieldtrip: Fieldtrip;
-  me: ResponseUserDto;
-  setReadState: () => void;
-  isConfirmed: boolean;
+  fieldtrip: Fieldtrip
+  me: ResponseUserDto
+  setReadState: () => void
+  isConfirmed: boolean
 }
 
-const relationshipType = ['부', '모', '기타'];
-const fieldtripTypes = ['가족동반여행', '친·인척 방문', '답사∙견학 활동', '체험활동'];
+const relationshipType = ['부', '모', '기타']
+const fieldtripTypes = ['가족동반여행', '친·인척 방문', '답사∙견학 활동', '체험활동']
 
 export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }: FieldtripUpdatePageProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
-  const hasSaturdayClass = me?.school.hasSaturdayClass || false;
+  const hasSaturdayClass = me?.school.hasSaturdayClass || false
 
-  const type = fieldtrip?.type;
-  const [modalOpen, setModalOpen] = useState(false);
-  const [updateReason, setUpdateReason] = useState('');
-  const [fieldtripType, setFieldtripType] = useState(fieldtripTypes[0]);
-  const [count, setCount] = useState(0);
-  const [holidays, setHolidays] = useState<Date[]>([]);
-  const [notSelectableDates, setNotSelectableDates] = useState<Date[]>([]);
-  const [excludeDates, setExcludeDates] = useState<Date[]>([]);
+  const type = fieldtrip?.type
+  const [modalOpen, setModalOpen] = useState(false)
+  const [updateReason, setUpdateReason] = useState('')
+  const [fieldtripType, setFieldtripType] = useState(fieldtripTypes[0])
+  const [count, setCount] = useState(0)
+  const [holidays, setHolidays] = useState<Date[]>([])
+  const [notSelectableDates, setNotSelectableDates] = useState<Date[]>([])
+  const [excludeDates, setExcludeDates] = useState<Date[]>([])
 
-  const [startHalf, setStartHalf] = useState(fieldtrip?.startPeriodS > 0);
-  const [startPeriodS, setStartPeriodS] = useState<number>(fieldtrip?.startPeriodS || 0);
-  const [endHalf, setEndHalf] = useState(fieldtrip?.endPeriodE > 0);
-  const [endPeriodE, setEndPeriodE] = useState<number>(fieldtrip?.endPeriodE || 0);
+  const [startHalf, setStartHalf] = useState(fieldtrip?.startPeriodS > 0)
+  const [startPeriodS, setStartPeriodS] = useState<number>(fieldtrip?.startPeriodS || 0)
+  const [endHalf, setEndHalf] = useState(fieldtrip?.endPeriodE > 0)
+  const [endPeriodE, setEndPeriodE] = useState<number>(fieldtrip?.endPeriodE || 0)
 
-  const [wholeDayPeriod, setWholeDayPeriod] = useState(fieldtrip?.wholeDayPeriod || '');
+  const [wholeDayPeriod, setWholeDayPeriod] = useState(fieldtrip?.wholeDayPeriod || '')
 
-  const [sHalfUsedDayCnt, setSHalfUsedDayCnt] = useState(0.0); // 시작반일 사용시 0.5 fix
-  const [wholeUsedDayCnt, setWholeUsedDayCnt] = useState(1.0); // 반일 외 사용일수
-  const [eHalfUsedDayCnt, setEHalfUsedDayCnt] = useState(0.0); // 종료반일 사용시 0.5 fix
-  const [sHalfDate, setSHalfDate] = useState('');
-  const [wholeStartDate, setWholeStartDate] = useState('');
-  const [wholeEndDate, setWholeEndDate] = useState('');
-  const [eHalfDate, setEHalfDate] = useState('');
+  const [sHalfUsedDayCnt, setSHalfUsedDayCnt] = useState(0.0) // 시작반일 사용시 0.5 fix
+  const [wholeUsedDayCnt, setWholeUsedDayCnt] = useState(1.0) // 반일 외 사용일수
+  const [eHalfUsedDayCnt, setEHalfUsedDayCnt] = useState(0.0) // 종료반일 사용시 0.5 fix
+  const [sHalfDate, setSHalfDate] = useState('')
+  const [wholeStartDate, setWholeStartDate] = useState('')
+  const [wholeEndDate, setWholeEndDate] = useState('')
+  const [eHalfDate, setEHalfDate] = useState('')
 
-  const [dayHomePlan, setDayHomePlan] = useState(false);
+  const [dayHomePlan, setDayHomePlan] = useState(false)
 
-  const [infoHalfDayModalopen, setInfoHalfDayModalopen] = useState(false);
+  const [infoHalfDayModalopen, setInfoHalfDayModalopen] = useState(false)
 
   const {
     content,
@@ -108,15 +108,15 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
     startPeriodS,
     endHalf,
     endPeriodE,
-  });
+  })
 
   useEffect(() => {
     if (homePlan[0] && homePlan[0].day) {
-      setDayHomePlan(true);
+      setDayHomePlan(true)
     } else {
-      setDayHomePlan(false);
+      setDayHomePlan(false)
     }
-  }, [fieldtrip]);
+  }, [fieldtrip])
 
   enum RejectScheduleType {
     HOLIDAY = '공휴일',
@@ -124,31 +124,31 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
   }
 
   const _checkFillHomePlanContent = () => {
-    let checkKeys = ['content1', 'subject1'];
+    let checkKeys = ['content1', 'subject1']
     if (dayHomePlan) {
-      checkKeys = ['day', 'content'];
+      checkKeys = ['day', 'content']
     }
 
     return every(homePlan, (plan) => {
       return every(checkKeys, (key) => {
-        const value = get(plan, key, null);
-        return !!value;
-      });
-    });
-  };
+        const value = get(plan, key, null)
+        return !!value
+      })
+    })
+  }
 
   const _uniqDate = (date: Date, i: number, self: Date[]) => {
-    return self.findIndex((d) => d.getTime() === date.getTime()) === i;
-  };
+    return self.findIndex((d) => d.getTime() === date.getTime()) === i
+  }
 
   const clearHomePlane = () => {
     const _homePlan = (n: number) => {
       return new Array(n).fill(0).map(() => {
-        return {};
-      });
-    };
-    setHomePlan(_homePlan(usedDays));
-  };
+        return {}
+      })
+    }
+    setHomePlan(_homePlan(usedDays))
+  }
 
   useEffect(() => {
     if (startAtDate && endAtDate) {
@@ -170,49 +170,49 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
         endHalf,
         cannotSchedules,
         hasSaturdayClass,
-      );
+      )
 
-      setUsedDays(_totalUsedDayCnt);
-      setSHalfUsedDayCnt(_sHalfUsedDayCnt);
-      setWholeUsedDayCnt(_wholeUsedDayCnt);
-      setEHalfUsedDayCnt(_eHalfUsedDayCnt);
-      setSHalfDate(_sHalfDate);
-      setWholeStartDate(_wholeStartDate);
-      setWholeEndDate(_wholeEndDate);
-      setWholeDayPeriod(_wholeStartDate + '~' + _wholeEndDate);
-      setEHalfDate(_eHalfDate);
+      setUsedDays(_totalUsedDayCnt)
+      setSHalfUsedDayCnt(_sHalfUsedDayCnt)
+      setWholeUsedDayCnt(_wholeUsedDayCnt)
+      setEHalfUsedDayCnt(_eHalfUsedDayCnt)
+      setSHalfDate(_sHalfDate)
+      setWholeStartDate(_wholeStartDate)
+      setWholeEndDate(_wholeEndDate)
+      setWholeDayPeriod(_wholeStartDate + '~' + _wholeEndDate)
+      setEHalfDate(_eHalfDate)
     }
-  }, [startAtDate, endAtDate, startHalf, endHalf]);
+  }, [startAtDate, endAtDate, startHalf, endHalf])
 
   useEffect(() => {
     if (type === 'HOME') {
       const _homePlan = (n: number) => {
         return new Array(n).fill(0).map(() => {
-          return {};
-        });
-      };
+          return {}
+        })
+      }
 
       if (!prevUsedDays) {
         if (!homePlan.length) {
-          setHomePlan(_homePlan(usedDays));
+          setHomePlan(_homePlan(usedDays))
         }
-        return;
+        return
       }
 
       if (prevUsedDays < usedDays) {
-        const diffDays = usedDays - prevUsedDays;
-        setHomePlan(concat(homePlan, _homePlan(diffDays)));
-        return;
+        const diffDays = usedDays - prevUsedDays
+        setHomePlan(concat(homePlan, _homePlan(diffDays)))
+        return
       }
 
       if (prevUsedDays > usedDays) {
-        const diffDays = usedDays - prevUsedDays;
-        const _homePlan = homePlan.slice(0, diffDays);
-        setHomePlan(_homePlan);
-        return;
+        const diffDays = usedDays - prevUsedDays
+        const _homePlan = homePlan.slice(0, diffDays)
+        setHomePlan(_homePlan)
+        return
       }
     }
-  }, [usedDays, prevUsedDays]);
+  }, [usedDays, prevUsedDays])
 
   useEffect(() => {
     const holidaySchedules = chain(cannotSchedules)
@@ -221,30 +221,30 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
         return eachDayOfInterval({
           start: new Date(schedule.start),
           end: new Date(schedule.end),
-        });
+        })
       })
-      .value();
+      .value()
     const excludeSchedules = chain(cannotSchedules)
       .filter((schedule) => schedule.attendee === RejectScheduleType.NOT_SELECTABLE)
       .map((schedule) => {
         return eachDayOfInterval({
           start: new Date(schedule.start),
           end: new Date(schedule.end),
-        });
+        })
       })
-      .value();
-    setNotSelectableDates(flatten(excludeSchedules).filter(_uniqDate));
-    setHolidays(flatten(holidaySchedules).filter(_uniqDate));
-    setExcludeDates(concat(flatten(excludeSchedules), flatten(holidaySchedules)).filter(_uniqDate));
-  }, [cannotSchedules]);
+      .value()
+    setNotSelectableDates(flatten(excludeSchedules).filter(_uniqDate))
+    setHolidays(flatten(holidaySchedules).filter(_uniqDate))
+    setExcludeDates(concat(flatten(excludeSchedules), flatten(holidaySchedules)).filter(_uniqDate))
+  }, [cannotSchedules])
 
   const buttonDisabled =
     type === 'HOME'
       ? !destination || !_checkFillHomePlanContent()
-      : !content || !destination || !guideName || !guidePhone || !relationship || !relationshipText;
+      : !content || !destination || !guideName || !guidePhone || !relationship || !relationshipText
 
   return (
-    <div className="scroll-box h-screen-10 overflow-y-scroll rounded-lg border bg-white py-5 md:h-screen-3">
+    <div className="scroll-box h-screen-10 md:h-screen-3 overflow-y-scroll rounded-lg border bg-white py-5">
       {isLoading && <Blank reversed />}
       <Section>
         <h1 className="text-xl font-semibold">
@@ -252,14 +252,14 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
         </h1>
 
         <div className="space-y-3 pb-6">
-          <div className="mb-2 whitespace-pre-line text-lg">
+          <div className="mb-2 text-lg whitespace-pre-line">
             남은 일수&nbsp;
             <span className="text-brand-1 underline">
               {fieldtrip ? fieldtrip.currentRemainDays : me?.remainDaysOfFieldtrip}일 중 {usedDays}일을 신청
             </span>
             합니다.
           </div>
-          <div className="mb-2 whitespace-pre-line text-xs text-gray-600">
+          <div className="mb-2 text-xs whitespace-pre-line text-gray-600">
             ※<span className="font-bold">토,일, 개교기념일 등 학교 휴업일</span>은 체험학습 신청 일수에 넣지 않음.
           </div>
           <div className="flex">
@@ -286,9 +286,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                 id="startAt"
                 type="date"
                 value={reportedAt}
-                className="h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                className="focus:border-brand-1 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 onChange={(e) => {
-                  setReportedAt(e.target.value);
+                  setReportedAt(e.target.value)
                 }}
               />
             </div>
@@ -318,12 +318,12 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                     placeholderText="시작 날짜"
                     onChange={(selectedDate) => {
                       if (!selectedDate) {
-                        return;
+                        return
                       }
                       if (!endAtDate || selectedDate > endAtDate) {
-                        setEndAtDate(selectedDate);
+                        setEndAtDate(selectedDate)
                       }
-                      setStartAtDate(selectedDate);
+                      setStartAtDate(selectedDate)
                     }}
                   />
                   <span>부터</span>
@@ -337,7 +337,7 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                     <ToggleSwitch
                       checked={startHalf}
                       onChange={() => {
-                        setStartHalf(!startHalf);
+                        setStartHalf(!startHalf)
                       }}
                     />
                     {/* {!startHalf && <span className="my-2">종일 결석합니다.</span>} */}
@@ -348,7 +348,7 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           selectValues={['1', '2', '3', '4', '5', '6', '7', '8']}
                           value={startPeriodS.toString()}
                           onChange={(stime: string) => {
-                            setStartPeriodS(Number(stime));
+                            setStartPeriodS(Number(stime))
                           }}
                           className={
                             startPeriodS !== 0 ? 'border border-gray-300 py-1' : 'border-2 border-red-700 py-1'
@@ -383,12 +383,12 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                     placeholderText={!startAtDate ? '시작 날짜를 먼저 선택해주세요' : '종료 날짜'}
                     onChange={(selectedDate) => {
                       if (!selectedDate) {
-                        return;
+                        return
                       }
                       if (startAtDate && selectedDate < startAtDate) {
-                        setStartAtDate(selectedDate);
+                        setStartAtDate(selectedDate)
                       }
-                      setEndAtDate(selectedDate);
+                      setEndAtDate(selectedDate)
                     }}
                   />
                   <span>까지</span>
@@ -401,7 +401,7 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                     <ToggleSwitch
                       checked={endHalf}
                       onChange={() => {
-                        setEndHalf(!endHalf);
+                        setEndHalf(!endHalf)
                       }}
                     />
                     {/* {!endHalf && <span className="my-4">종일 결석합니다.</span>} */}
@@ -413,7 +413,7 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           selectValues={['1', '2', '3', '4', '5', '6', '7', '8', '9']}
                           value={endPeriodE}
                           onChange={(etime: string) => {
-                            setEndPeriodE(Number(etime));
+                            setEndPeriodE(Number(etime))
                           }}
                           className={endPeriodE !== 0 ? 'border border-gray-300 py-1' : 'border-2 border-red-700 py-1'}
                         />
@@ -430,12 +430,12 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                   </div>
                 )}
                 {wholeUsedDayCnt > 0 && (
-                  <div className="whitespace-pre-line text-sm">
+                  <div className="text-sm whitespace-pre-line">
                     1일 기준 : {wholeDayPeriod} ({wholeUsedDayCnt}일)
                   </div>
                 )}
                 {eHalfUsedDayCnt > 0 && (
-                  <div className="whitespace-pre-line text-sm">
+                  <div className="text-sm whitespace-pre-line">
                     반일기준 : {eHalfDate} ({eHalfUsedDayCnt}일)
                   </div>
                 )}
@@ -458,10 +458,14 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                 <ToggleSwitch
                   checked={overseas}
                   onChange={() => {
-                    setOverseas(!overseas);
+                    setOverseas(!overseas)
                   }}
                 />
-                <span>{overseas ? `(${t(getCustomString(me?.school?.id, 'oversea'), '해외')})` : `(${t(getCustomString(me?.school?.id, 'domestic'), '도내')})`}</span>
+                <span>
+                  {overseas
+                    ? `(${t(getCustomString(me?.school?.id, 'oversea'), '해외')})`
+                    : `(${t(getCustomString(me?.school?.id, 'domestic'), '도내')})`}
+                </span>
               </div>
             </Label.col>
           )}
@@ -505,11 +509,11 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                   placeholder="기타"
                   value={relationship !== '부' && relationship !== '모' ? '기타' : relationship}
                   onChange={(g) => {
-                    setRelationship(g);
+                    setRelationship(g)
                     if (g === '부' || g === '모') {
-                      setRelationshipText(g);
+                      setRelationshipText(g)
                     } else {
-                      setRelationshipText('');
+                      setRelationshipText('')
                     }
                   }}
                   className={relationship ? 'border-gray-300' : 'border-red-700'}
@@ -529,8 +533,8 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                   placeholder="보호자 연락처를 입력해주세요."
                   value={guidePhone}
                   onChange={(e) => {
-                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
-                    setGuidePhone(e.target.value);
+                    e.target.value = e.target.value.replace(/[^0-9]/g, '')
+                    setGuidePhone(e.target.value)
                   }}
                   className={guidePhone ? 'border-gray-300' : 'border-red-700'}
                 />
@@ -547,12 +551,12 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                 rows={11}
                 value={content}
                 onChange={(e) => {
-                  const maxLength = 500;
+                  const maxLength = 500
                   if (e.target.value.length > maxLength) {
-                    e.target.value = e.target.value.slice(0, maxLength);
+                    e.target.value = e.target.value.slice(0, maxLength)
                   }
-                  setContent(e.target.value);
-                  setCount(e.target.value.length);
+                  setContent(e.target.value)
+                  setCount(e.target.value.length)
                 }}
                 className="h-auto border"
               />
@@ -574,16 +578,16 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                 <Badge
                   children="교시기준 작성"
                   onClick={() => {
-                    clearHomePlane();
-                    setDayHomePlan(false);
+                    clearHomePlane()
+                    setDayHomePlan(false)
                   }}
                   className={clsx('py-1.5 text-lg', dayHomePlan ? 'bg-white text-black' : 'bg-brand-1 text-white')}
                 />
                 <Badge
                   children="일차기준 작성"
                   onClick={() => {
-                    clearHomePlane();
-                    setDayHomePlan(true);
+                    clearHomePlane()
+                    setDayHomePlan(true)
                   }}
                   className={clsx('py-1.5 text-lg', dayHomePlan ? 'bg-brand-1 text-white' : 'bg-white text-black')}
                 />
@@ -600,14 +604,14 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                         rows={5}
                         value={plan['content'] || ''}
                         onChange={(e) => {
-                          const maxLength = 130;
+                          const maxLength = 130
                           if (e.target.value.length > maxLength) {
-                            e.target.value = e.target.value.slice(0, maxLength);
+                            e.target.value = e.target.value.slice(0, maxLength)
                           }
-                          const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                          newHomePlan[i]['day'] = i + 1;
-                          newHomePlan[i]['content'] = e.target.value;
-                          setHomePlan(newHomePlan);
+                          const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                          newHomePlan[i]['day'] = i + 1
+                          newHomePlan[i]['content'] = e.target.value
+                          setHomePlan(newHomePlan)
                         }}
                         className={clsx(
                           'h-auto border',
@@ -624,9 +628,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['subject1'] || ''}
                           className={plan['subject1'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['subject1'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['subject1'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -637,9 +641,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['content1'] || ''}
                           className={plan['content1'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['content1'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['content1'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -650,9 +654,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['subject2'] || ''}
                           className={plan['subject2'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['subject2'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['subject2'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -663,9 +667,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['content2'] || ''}
                           className={plan['content2'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['content2'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['content2'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -676,9 +680,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['subject3'] || ''}
                           className={plan['subject3'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['subject3'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['subject3'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -689,9 +693,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['content3'] || ''}
                           className={plan['content3'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['content3'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['content3'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -702,9 +706,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['subject4'] || ''}
                           className={plan['subject4'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['subject4'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['subject4'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -715,9 +719,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['content4'] || ''}
                           className={plan['content4'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['content4'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['content4'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -728,9 +732,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['subject5'] || ''}
                           className={plan['subject5'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['subject5'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['subject5'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -741,9 +745,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['content5'] || ''}
                           className={plan['content5'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['content5'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['content5'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -754,9 +758,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['subject6'] || ''}
                           className={plan['subject6'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['subject6'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['subject6'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -767,9 +771,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['content6'] || ''}
                           className={plan['content6'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['content6'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['content6'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -780,9 +784,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['subject7'] || ''}
                           className={plan['subject7'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['subject7'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['subject7'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -793,9 +797,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           value={plan['content7'] || ''}
                           className={plan['content7'] ? 'border-gray-300' : 'border-red-700'}
                           onChange={(e) => {
-                            const newHomePlan = JSON.parse(JSON.stringify(homePlan));
-                            newHomePlan[i]['content7'] = e.target.value;
-                            setHomePlan(newHomePlan);
+                            const newHomePlan = JSON.parse(JSON.stringify(homePlan))
+                            newHomePlan[i]['content7'] = e.target.value
+                            setHomePlan(newHomePlan)
                           }}
                         />
                       </Label.col>
@@ -812,9 +816,9 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
             ))}
             <ImageUpload
               onChange={(e) => {
-                if (!e.target.files?.[0]) return;
-                if (!e.target.files?.[0]?.type?.includes('image')) return alert('이미지 파일만 업로드 가능합니다.');
-                handleImageAdd(e);
+                if (!e.target.files?.[0]) return
+                if (!e.target.files?.[0]?.type?.includes('image')) return alert('이미지 파일만 업로드 가능합니다.')
+                handleImageAdd(e)
               }}
             />
           </div>
@@ -825,19 +829,19 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
             disabled={buttonDisabled}
             onClick={() => {
               if (startHalf && !startPeriodS) {
-                alert('시작일의 반일신청 교시가 지정되지 않았습니다. ');
-                return;
+                alert('시작일의 반일신청 교시가 지정되지 않았습니다. ')
+                return
               }
 
               if (endHalf && !endPeriodE) {
-                alert('종료일의 반일신청 교시가 지정되지 않았습니다. ');
-                return;
+                alert('종료일의 반일신청 교시가 지정되지 않았습니다. ')
+                return
               }
 
               if (isConfirmed) {
-                setModalOpen(true);
+                setModalOpen(true)
               } else {
-                updateFieldtripByTeacher();
+                updateFieldtripByTeacher()
               }
             }}
             className="filled-primary w-full"
@@ -857,8 +861,8 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
         </Section>
       </SuperModal>
       <SuperModal modalOpen={infoHalfDayModalopen} setModalClose={() => setInfoHalfDayModalopen(false)}>
-        <div className="font-smibold mt-5 text-center text-lg text-brand-1">체험학습 반일 신청 안내</div>
-        <div className="mb-6 ml-6 mr-6 mt-6 whitespace-pre-line text-xs">
+        <div className="font-smibold text-brand-1 mt-5 text-center text-lg">체험학습 반일 신청 안내</div>
+        <div className="mt-6 mr-6 mb-6 ml-6 text-xs whitespace-pre-line">
           {`* 교외체험학습 신청시, 수업중 일부만 출석하고 일부는 결석하는 경우에 반일 신청을 합니다. 
             ex1) 아침에 등교했다가 조퇴하고 할머니댁에 가는 경우
             ex2) 여행을 다녀와서 등교 시각보다 조금 늦게 학교에 가는 경우
@@ -876,10 +880,10 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
           <button
             children="닫기"
             onClick={() => setInfoHalfDayModalopen(false)}
-            className="w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold text-littleblack"
+            className="text-littleblack w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold"
           />
         </div>
       </SuperModal>
     </div>
-  );
+  )
 }

@@ -1,25 +1,25 @@
-import { Checkbox } from '@mui/material';
-import clsx from 'clsx';
-import { useState } from 'react';
-import { SelectValues, SuperModal } from 'src/components';
-import { Badge, Blank, Label, Section, Textarea } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { TextInput } from 'src/components/common/TextInput';
-import { useTeacherOutingUpdate } from 'src/container/teacher-outing-update';
-import { UserContainer } from 'src/container/user';
-import { OutingTypeEnum, OutingUse, ResponseCreateOutingDto } from 'src/generated/model';
-import { AbsentTimeType, periodArray } from 'src/types';
+import { Checkbox } from '@mui/material'
+import clsx from 'clsx'
+import { useState } from 'react'
+import { SelectValues, SuperModal } from '@/legacy/components'
+import { Badge, Blank, Label, Section, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { useTeacherOutingUpdate } from 'src/container/teacher-outing-update'
+import { UserContainer } from 'src/container/user'
+import { OutingTypeEnum, OutingUse, ResponseCreateOutingDto } from '@/legacy/generated/model'
+import { AbsentTimeType, periodArray } from 'src/types'
 
 interface OutingUpdatePageProps {
-  outingData: ResponseCreateOutingDto;
-  setChangeMode: (b: boolean) => void;
-  isConfirmed: boolean;
+  outingData: ResponseCreateOutingDto
+  setChangeMode: (b: boolean) => void
+  isConfirmed: boolean
 }
 
 export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePageProps) {
-  const { me } = UserContainer.useContext();
+  const { me } = UserContainer.useContext()
 
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false)
   const {
     updateReason,
     setUpdateReason,
@@ -56,23 +56,23 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
     outingValue,
     useParentApprove,
     setUseParentApprove,
-  } = useTeacherOutingUpdate({ outingData, setChangeMode });
+  } = useTeacherOutingUpdate({ outingData, setChangeMode })
 
   const makeDate = (day: string, hour: number, min: number) => {
-    const date = new Date(day);
-    date.setHours(hour, min, 0);
-    return date;
-  };
+    const date = new Date(day)
+    date.setHours(hour, min, 0)
+    return date
+  }
 
   const checkInput = () => {
     if (makeDate(startAt, startHour, startMinute) > makeDate(endAt, endHour, endMinute)) {
-      setErrorMessage('시작 시각이 종료 시작보다 클 수 없습니다.');
-      return false;
+      setErrorMessage('시작 시각이 종료 시작보다 클 수 없습니다.')
+      return false
     } else {
-      setErrorMessage('');
-      return true;
+      setErrorMessage('')
+      return true
     }
-  };
+  }
 
   return (
     <>
@@ -106,7 +106,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
               type="date"
               value={reportedAt}
               onChange={(e) => setReportedAt(e.target.value)}
-              className="h-12 w-full rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+              className="focus:border-brand-1 h-12 w-full rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
             />
           </div>
         </div>
@@ -134,7 +134,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                 type="date"
                 value={startAt}
                 onChange={(e) => setStartAt(e.target.value)}
-                className="h-12 w-full rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                className="focus:border-brand-1 h-12 w-full rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
               />
             </div>
             {timeType === AbsentTimeType.TIME && (
@@ -142,7 +142,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                 <select
                   value={startHour}
                   onChange={(e) => setStartHour(Number(e.target.value))}
-                  className="h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 >
                   {new Array(24).fill(null).map((item, num: number) => (
                     <option key={num} value={num}>
@@ -154,7 +154,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                 <select
                   value={startMinute}
                   onChange={(e) => setStartMinute(Number(e.target.value))}
-                  className="h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 >
                   <option value={0}>0</option>
                   <option value={5}>5</option>
@@ -180,9 +180,9 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                   value={startPeriod}
                   onChange={(stime: string) => {
                     if (periodArray.indexOf(stime) > periodArray.indexOf(endPeriod)) {
-                      setEndPeriod(stime);
+                      setEndPeriod(stime)
                     }
-                    setStartPeriod(stime);
+                    setStartPeriod(stime)
                   }}
                   className={startPeriod !== '0' ? 'w-16 border border-gray-300' : 'w-16 border-2 border-red-700'}
                 />
@@ -196,7 +196,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                   lang="ko-KR"
                   value={endAt}
                   onChange={(e) => setEndAt(e.target.value)}
-                  className="h-12 w-full rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-brand-1 h-12 w-full rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 />
               </div>
             )}
@@ -205,7 +205,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                 <select
                   value={endHour}
                   onChange={(e) => setEndHour(Number(e.target.value))}
-                  className="h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 >
                   {new Array(24).fill(null).map((item, num: number) => (
                     <option key={num} value={num}>
@@ -217,7 +217,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                 <select
                   value={endMinute}
                   onChange={(e) => setEndMinute(Number(e.target.value))}
-                  className="h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 >
                   <option value={0}>0</option>
                   <option value={5}>5</option>
@@ -243,9 +243,9 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                   value={endPeriod}
                   onChange={(etime: string) => {
                     if (periodArray.indexOf(startPeriod) > periodArray.indexOf(etime)) {
-                      setStartPeriod(etime);
+                      setStartPeriod(etime)
                     }
-                    setEndPeriod(etime);
+                    setEndPeriod(etime)
                   }}
                   className={endPeriod !== '0' ? 'w-16 border border-gray-300' : 'w-16 border-2 border-red-700'}
                 />
@@ -260,7 +260,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                 <Checkbox checked={useParentApprove} onChange={() => setUseParentApprove(!useParentApprove)} />
                 <p className="text-base font-semibold">보호자 승인 요청</p>
               </Label.row>
-              <div className="mb-2 whitespace-pre-line text-sm text-red-600">
+              <div className="mb-2 text-sm whitespace-pre-line text-red-600">
                 * 보호자 승인 필요 여부는 학교 교칙을 확인하세요.
               </div>
             </Label.col>
@@ -274,7 +274,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
             disabled={!(reason && report)}
             onClick={() => {
               if (checkInput()) {
-                setModalOpen(true);
+                setModalOpen(true)
               }
             }}
             className="filled-primary w-full"
@@ -292,13 +292,13 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
             children="수정하기"
             disabled={!updateReason}
             onClick={() => {
-              setModalOpen(false);
-              updateOuting(outingData.studentId);
+              setModalOpen(false)
+              updateOuting(outingData.studentId)
             }}
             className="filled-red"
           />
         </Section>
       </SuperModal>
     </>
-  );
+  )
 }

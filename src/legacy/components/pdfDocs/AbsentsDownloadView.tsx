@@ -18,7 +18,7 @@ import {
   getPdfImageSize,
 } from '@/legacy/util/pdf'
 
-import { AbsentPdf } from './AbsentPdf'
+import { AbsentPdf } from '@/legacy/pages/teacher/absentPdf'
 
 interface AbsentsDownloadViewProps {
   absents?: Absent[]

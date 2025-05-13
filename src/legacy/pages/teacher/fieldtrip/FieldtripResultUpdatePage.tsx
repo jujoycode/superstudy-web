@@ -1,29 +1,29 @@
-import { useState } from 'react';
-import { SuperModal } from 'src/components';
-import { ImageObjectComponent } from 'src/components/ImageObjectComponent';
-import { Blank, Label, Section, Textarea } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { ImageUpload } from 'src/components/common/ImageUpload';
-import { TextInput } from 'src/components/common/TextInput';
-import { useTeacherFieldtripResultUpdate } from 'src/container/teacher-fieldtrip-result-update';
-import { Fieldtrip, FieldtripType, School } from 'src/generated/model';
-import { makeDateToString } from 'src/util/time';
+import { useState } from 'react'
+import { SuperModal } from '@/legacy/components'
+import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
+import { Blank, Label, Section, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { ImageUpload } from '@/legacy/components/common/ImageUpload'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { useTeacherFieldtripResultUpdate } from 'src/container/teacher-fieldtrip-result-update'
+import { Fieldtrip, FieldtripType, School } from '@/legacy/generated/model'
+import { makeDateToString } from '@/legacy/util/time'
 
 interface FieldtripResultUpdatePageProps {
-  school?: School;
-  fieldtrip: Fieldtrip;
-  setReadState: () => void;
-  isConfirmed: boolean;
+  school?: School
+  fieldtrip: Fieldtrip
+  setReadState: () => void
+  isConfirmed: boolean
 }
 
 export function FieldtripResultUpdatePage({ fieldtrip, setReadState, isConfirmed }: FieldtripResultUpdatePageProps) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [destination, setDestination] = useState(fieldtrip?.destination);
-  const [overseas, setOverseas] = useState(fieldtrip?.overseas);
-  const [resultText, setResultText] = useState(fieldtrip?.resultText || '');
-  const [resultTitle, setResultTitle] = useState(fieldtrip?.resultTitle || '');
-  const [resultFiles, setResultFiles] = useState(fieldtrip?.resultFiles || '');
-  const [updateReason, setUpdateReason] = useState('');
+  const [modalOpen, setModalOpen] = useState(false)
+  const [destination, setDestination] = useState(fieldtrip?.destination)
+  const [overseas, setOverseas] = useState(fieldtrip?.overseas)
+  const [resultText, setResultText] = useState(fieldtrip?.resultText || '')
+  const [resultTitle, setResultTitle] = useState(fieldtrip?.resultTitle || '')
+  const [resultFiles, setResultFiles] = useState(fieldtrip?.resultFiles || '')
+  const [updateReason, setUpdateReason] = useState('')
 
   const {
     errorMessage,
@@ -44,14 +44,14 @@ export function FieldtripResultUpdatePage({ fieldtrip, setReadState, isConfirmed
     resultFiles,
     updateReason,
     setReadState,
-  });
+  })
 
   const buttonDisabled =
-    fieldtrip?.type !== FieldtripType.HOME ? !destination || !resultText || !resultTitle : !destination;
-  const [count, setCount] = useState(0);
+    fieldtrip?.type !== FieldtripType.HOME ? !destination || !resultText || !resultTitle : !destination
+  const [count, setCount] = useState(0)
 
   function handleSubmitButton() {
-    uploadFiles({ imageObjectMap });
+    uploadFiles({ imageObjectMap })
   }
 
   return (
@@ -62,7 +62,7 @@ export function FieldtripResultUpdatePage({ fieldtrip, setReadState, isConfirmed
           <h1 className="text-xl font-semibold">
             {fieldtrip?.type !== FieldtripType.HOME ? '교외 체험학습 결과 보고서' : '가정학습 결과 보고서'}
           </h1>
-          <div className="mb-2 whitespace-pre-line text-xs text-red-600">
+          <div className="mb-2 text-xs whitespace-pre-line text-red-600">
             제출기한 : {makeDateToString(new Date(fieldtrip?.endAt || ''), ' ')}
             까지
           </div>
@@ -82,14 +82,14 @@ export function FieldtripResultUpdatePage({ fieldtrip, setReadState, isConfirmed
                 <span className="">까지</span>
               </div>
             </div>
-            <div className="mb-2 whitespace-pre-line text-lg">
+            <div className="mb-2 text-lg whitespace-pre-line">
               남은 일수
               <span className="text-brand-1 underline">
                 {fieldtrip?.currentRemainDays}일 중 {fieldtrip?.usedDays}일 신청
               </span>
               합니다.
             </div>
-            <div className="mb-2 whitespace-pre-line text-xs text-gray-600">
+            <div className="mb-2 text-xs whitespace-pre-line text-gray-600">
               ※<span className="font-bold">토,일, 개교기념일 등 학교 휴업일</span>은 체험학습 신청 일수에 넣지 않음.
             </div>
             <div>
@@ -99,9 +99,9 @@ export function FieldtripResultUpdatePage({ fieldtrip, setReadState, isConfirmed
                   id="startAt"
                   type="date"
                   value={resultReportedAt}
-                  className="h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-brand-1 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   onChange={(e) => {
-                    setResultReportedAt(e.target.value);
+                    setResultReportedAt(e.target.value)
                   }}
                 />
               </div>
@@ -144,9 +144,9 @@ export function FieldtripResultUpdatePage({ fieldtrip, setReadState, isConfirmed
                   rows={10}
                   value={resultText}
                   onChange={(e) => {
-                    const input = e.target.value; //removeControlCharacters(e.target.value);
-                    setResultText(input);
-                    setCount(input.length);
+                    const input = e.target.value //removeControlCharacters(e.target.value);
+                    setResultText(input)
+                    setCount(input.length)
                   }}
                   className="h-auto border"
                 />
@@ -178,9 +178,9 @@ export function FieldtripResultUpdatePage({ fieldtrip, setReadState, isConfirmed
             disabled={buttonDisabled}
             onClick={() => {
               if (isConfirmed) {
-                setModalOpen(true);
+                setModalOpen(true)
               } else {
-                handleSubmitButton();
+                handleSubmitButton()
               }
             }}
             className="filled-primary w-full"
@@ -200,5 +200,5 @@ export function FieldtripResultUpdatePage({ fieldtrip, setReadState, isConfirmed
         </Section>
       </SuperModal>
     </div>
-  );
+  )
 }

@@ -1,54 +1,54 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-import SvgUser from 'src/assets/svg/user.svg';
-import { BackButton, Blank, Label, PhoneNumberField, Section, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { TextInput } from 'src/components/common/TextInput';
-import { ToggleSwitch } from 'src/components/common/ToggleSwitch';
-import { Constants } from 'src/constants';
-import { useTeacherInfoUpdate } from 'src/container/teacher-info-update';
-import { ResponseUserDto, UploadFileTypeEnum } from 'src/generated/model';
-import { useFileUpload } from 'src/hooks/useFileUpload';
-import { checkFileSizeLimit100MB } from 'src/util/file';
-import { getHoursfromHHmmString, getMinutesfromHHmmString } from 'src/util/time';
-import { Validator } from 'src/util/validator';
+import { ChangeEvent, useEffect, useState } from 'react'
+import SvgUser from '@/asset/svg/user.svg'
+import { BackButton, Blank, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { ToggleSwitch } from '@/legacy/components/common/ToggleSwitch'
+import { Constants } from '@/legacy/constants'
+import { useTeacherInfoUpdate } from 'src/container/teacher-info-update'
+import { ResponseUserDto, UploadFileTypeEnum } from '@/legacy/generated/model'
+import { useFileUpload } from '@/legacy/hooks/useFileUpload'
+import { checkFileSizeLimit100MB } from '@/legacy/util/file'
+import { getHoursfromHHmmString, getMinutesfromHHmmString } from '@/legacy/util/time'
+import { Validator } from '@/legacy/util/validator'
 
 interface TeacherInfoUpdatePageProps {
-  me: ResponseUserDto;
-  setIsUpdateMe: (isUpdateMe: boolean) => void;
+  me: ResponseUserDto
+  setIsUpdateMe: (isUpdateMe: boolean) => void
 }
 
 export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePageProps) {
-  const [name, setName] = useState(me?.name);
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
-  const [phone, setPhone] = useState(me?.phone || '');
-  const [profile, setProfile] = useState(me?.profile || '');
-  const { handleUploadFile, isUploadLoading } = useFileUpload();
+  const [name, setName] = useState(me?.name)
+  const [password, setPassword] = useState('')
+  const [password2, setPassword2] = useState('')
+  const [phone, setPhone] = useState(me?.phone || '')
+  const [profile, setProfile] = useState(me?.profile || '')
+  const { handleUploadFile, isUploadLoading } = useFileUpload()
 
-  const [department, setDepartment] = useState(me?.teacherProperty?.department || '');
-  const [position, setPosition] = useState(me?.teacherProperty?.position || '');
+  const [department, setDepartment] = useState(me?.teacherProperty?.department || '')
+  const [position, setPosition] = useState(me?.teacherProperty?.position || '')
 
-  const { isUpdateMeLoading, updateMe } = useTeacherInfoUpdate();
+  const { isUpdateMeLoading, updateMe } = useTeacherInfoUpdate()
 
-  const [enableChatTime, setEnableChatTime] = useState(true);
-  const [startH, setStartH] = useState(0);
-  const [startM, setStartM] = useState(0);
-  const [endH, setEndH] = useState(0);
-  const [endM, setEndM] = useState(0);
+  const [enableChatTime, setEnableChatTime] = useState(true)
+  const [startH, setStartH] = useState(0)
+  const [startM, setStartM] = useState(0)
+  const [endH, setEndH] = useState(0)
+  const [endM, setEndM] = useState(0)
 
   useEffect(() => {
     if (me?.teacherProperty) {
-      setStartH(getHoursfromHHmmString(me?.teacherProperty?.chatStartTime, 9));
-      setStartM(getMinutesfromHHmmString(me?.teacherProperty?.chatStartTime, 0));
+      setStartH(getHoursfromHHmmString(me?.teacherProperty?.chatStartTime, 9))
+      setStartM(getMinutesfromHHmmString(me?.teacherProperty?.chatStartTime, 0))
 
-      setEndH(getHoursfromHHmmString(me?.teacherProperty?.chatEndTime, 18));
-      setEndM(getMinutesfromHHmmString(me?.teacherProperty?.chatEndTime, 0));
+      setEndH(getHoursfromHHmmString(me?.teacherProperty?.chatEndTime, 18))
+      setEndM(getMinutesfromHHmmString(me?.teacherProperty?.chatEndTime, 0))
 
-      setEnableChatTime(me?.teacherProperty?.chatStartTime !== me?.teacherProperty?.chatEndTime);
+      setEnableChatTime(me?.teacherProperty?.chatStartTime !== me?.teacherProperty?.chatEndTime)
     }
-  }, [me]);
+  }, [me])
 
-  const buttonDisabled = !name || !phone || password !== password2;
+  const buttonDisabled = !name || !phone || password !== password2
 
   const handleUpdate = () => {
     updateMe({
@@ -62,37 +62,37 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
       chatEndTime: enableChatTime ? endH + ':' + endM.toString().padStart(2, '0') : '00:00',
     })
       .then(() => {
-        setIsUpdateMe(false);
+        setIsUpdateMe(false)
       })
       .catch((e) => {
-        console.log('update error', e);
-      });
-  };
+        console.log('update error', e)
+      })
+  }
 
   const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
-      return;
+      return
     }
 
-    const selectedImageFiles = (e.target as HTMLInputElement).files;
+    const selectedImageFiles = (e.target as HTMLInputElement).files
     if (!selectedImageFiles || !selectedImageFiles.length) {
-      return;
+      return
     }
 
     if (!Validator.fileNameRule(selectedImageFiles[0].name)) {
-      alert('특수문자(%, &, ?, ~, +)가 포함된 파일명은 사용할 수 없습니다.');
-      return;
+      alert('특수문자(%, &, ?, ~, +)가 포함된 파일명은 사용할 수 없습니다.')
+      return
     }
 
     if (!checkFileSizeLimit100MB([selectedImageFiles[0]])) {
-      alert('한번에 최대 100MB까지만 업로드 가능합니다.');
-      return;
+      alert('한번에 최대 100MB까지만 업로드 가능합니다.')
+      return
     }
 
-    const imageFileNames = await handleUploadFile(UploadFileTypeEnum['userpictures'], [selectedImageFiles[0]]);
+    const imageFileNames = await handleUploadFile(UploadFileTypeEnum['userpictures'], [selectedImageFiles[0]])
 
-    setProfile(imageFileNames[0]);
-  };
+    setProfile(imageFileNames[0])
+  }
 
   return (
     <>
@@ -114,9 +114,9 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
                     alt=""
                     loading="lazy"
                     onError={({ currentTarget }) => {
-                      currentTarget.onerror = null; // prevents looping
-                      currentTarget.src = SvgUser;
-                      currentTarget.className = 'w-full';
+                      currentTarget.onerror = null // prevents looping
+                      currentTarget.src = SvgUser
+                      currentTarget.className = 'w-full'
                     }}
                   />
                   <div className="text-brand-1">사진을 선택해주세요.</div>
@@ -164,7 +164,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
             {password2 && password !== password2 && (
               <div className="text-red-600">비밀번호 확인이 일치하지 않습니다.</div>
             )}
-            <div className="text-sm text-grey-3">
+            <div className="text-grey-3 text-sm">
               &nbsp; 안전한 개인정보의 보호를 위해 문자,숫자,특수문자가 포함된 8자 이상의 비밀번호를 입력하세요.
               <br />
               &nbsp; 사용 가능한 특수문자는 ! @ # $ % & * ? 입니다.
@@ -210,7 +210,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
                   <select
                     value={startH}
                     onChange={(e) => setStartH(Number(e.target.value))}
-                    className="h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     {new Array(24).fill(null).map((item, num: number) => (
                       <option key={num} value={num}>
@@ -222,7 +222,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
                   <select
                     value={startM}
                     onChange={(e) => setStartM(Number(e.target.value))}
-                    className="h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     <option value={0}>0</option>
                     <option value={10}>10</option>
@@ -236,7 +236,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
                   <select
                     value={endH}
                     onChange={(e) => setEndH(Number(e.target.value))}
-                    className="h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     {new Array(24).fill(null).map((item, num: number) => (
                       <option key={num} value={num}>
@@ -246,7 +246,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
                   </select>
                   <span>:</span>
                   <select
-                    className="h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                     onChange={(e) => setEndM(Number(e.target.value))}
                     value={endM}
                   >
@@ -274,22 +274,22 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
               disabled={buttonDisabled}
               onClick={() => {
                 if (!Validator.phoneNumberRule(phone)) {
-                  alert('전화번호를 확인해 주세요.');
-                  return;
+                  alert('전화번호를 확인해 주세요.')
+                  return
                 }
                 if (password.length === 0) {
-                  alert('비밀번호를 공백으로 기입할 시 기존 비밀번호가 유지됩니다.');
-                  handleUpdate();
+                  alert('비밀번호를 공백으로 기입할 시 기존 비밀번호가 유지됩니다.')
+                  handleUpdate()
                 } else {
                   if (password !== password2) {
-                    alert('비밀번호와 비밀번호 확인이 다릅니다.');
-                    return;
+                    alert('비밀번호와 비밀번호 확인이 다릅니다.')
+                    return
                   }
                   if (!Validator.passwordRule(password)) {
-                    alert('안전한 비밀번호를 입력하세요.');
-                    return;
+                    alert('안전한 비밀번호를 입력하세요.')
+                    return
                   }
-                  handleUpdate();
+                  handleUpdate()
                 }
               }}
               className="filled-primary w-full"
@@ -299,5 +299,5 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
         <div className="h-20"></div>
       </div>
     </>
-  );
+  )
 }

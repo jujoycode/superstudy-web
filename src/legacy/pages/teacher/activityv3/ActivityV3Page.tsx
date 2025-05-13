@@ -1,37 +1,37 @@
-import _, { range } from 'lodash';
-import { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { SessionDownloadModal } from 'src/components/activityv3/SessionDownloadModal';
-import { BackButton, Select, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { Icon } from 'src/components/common/icons';
-import { ACTIVITYV3_TYPE_KOR, ACTIVITY_SESSION_TYPE_KOR } from 'src/constants/activityv3.enum';
-import { useActivitySessionFindByTeacher, useActivityV3FindByTeacher } from 'src/generated/endpoint';
-import { ActivitySession, ActivitySessionWithCountDto } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { getThisYear, makeDateToString, makeTimeToString } from 'src/util/time';
+import _, { range } from 'lodash'
+import { useEffect, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { SessionDownloadModal } from '@/legacy/components/activityv3/SessionDownloadModal'
+import { BackButton, Select, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Icon } from '@/legacy/components/common/icons'
+import { ACTIVITYV3_TYPE_KOR, ACTIVITY_SESSION_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
+import { useActivitySessionFindByTeacher, useActivityV3FindByTeacher } from '@/legacy/generated/endpoint'
+import { ActivitySession, ActivitySessionWithCountDto } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { getThisYear, makeDateToString, makeTimeToString } from '@/legacy/util/time'
 
 export function ActivityV3Page() {
-  const { push } = useHistory();
-  const { t } = useLanguage();
+  const { push } = useHistory()
+  const { t } = useLanguage()
 
-  const [searchTitle, setSearchTitle] = useState('');
-  const [openedActivityIds, setOpenedActivityIds] = useState<number[]>([]);
-  const [sessionDatas, setSessionDatas] = useState<Record<number, ActivitySessionWithCountDto[]>>({});
-  const isMyActivityV3 = localStorage.getItem('isMyActivityV3') || '';
-  const [isDownloadModalOpen, setDownloadModalOpen] = useState(false);
-  const [selectedSessionId, setSelectedSessionId] = useState<number>();
-  const [title, setTitle] = useState('');
-  const [type, setType] = useState('');
-  const [subject, setSubject] = useState('');
-  const [year, setYear] = useState<number>(0);
-  const [_isMyActivityV3, _setMyActivityV3] = useState(isMyActivityV3 || '');
+  const [searchTitle, setSearchTitle] = useState('')
+  const [openedActivityIds, setOpenedActivityIds] = useState<number[]>([])
+  const [sessionDatas, setSessionDatas] = useState<Record<number, ActivitySessionWithCountDto[]>>({})
+  const isMyActivityV3 = localStorage.getItem('isMyActivityV3') || ''
+  const [isDownloadModalOpen, setDownloadModalOpen] = useState(false)
+  const [selectedSessionId, setSelectedSessionId] = useState<number>()
+  const [title, setTitle] = useState('')
+  const [type, setType] = useState('')
+  const [subject, setSubject] = useState('')
+  const [year, setYear] = useState<number>(0)
+  const [_isMyActivityV3, _setMyActivityV3] = useState(isMyActivityV3 || '')
 
   const setMyActivityV3 = (isMyActivityV3: string) => {
-    localStorage.setItem('isMyActivityV3', isMyActivityV3);
-    _setMyActivityV3(isMyActivityV3);
-  };
+    localStorage.setItem('isMyActivityV3', isMyActivityV3)
+    _setMyActivityV3(isMyActivityV3)
+  }
 
   const {
     data: activityv3s,
@@ -45,30 +45,30 @@ export function ActivityV3Page() {
     isMyActivityV3,
     type,
     ...(year ? { year } : {}),
-  });
+  })
 
   const { data: activitySessions, isLoading: sessionLoading } = useActivitySessionFindByTeacher(
     { ids: openedActivityIds },
     { query: { enabled: !!openedActivityIds && openedActivityIds.length > 0 } },
-  );
+  )
 
   useEffect(() => {
-    if (sessionLoading) return;
+    if (sessionLoading) return
     activitySessions &&
       setSessionDatas(
         activitySessions?.reduce((acc: any, cur: ActivitySession) => {
-          return { ...acc, [cur.activityv3Id]: [...(acc[cur.activityv3Id] || []), cur] };
+          return { ...acc, [cur.activityv3Id]: [...(acc[cur.activityv3Id] || []), cur] }
         }, []) || {},
-      );
-  }, [activitySessions]);
+      )
+  }, [activitySessions])
 
   useEffect(() => {
     if (!_isMyActivityV3 && isMyActivityV3) {
-      _setMyActivityV3(isMyActivityV3);
+      _setMyActivityV3(isMyActivityV3)
     }
-  }, [isMyActivityV3]);
+  }, [isMyActivityV3])
 
-  const thisYear = +getThisYear();
+  const thisYear = +getThisYear()
 
   return (
     <div className="col-span-6">
@@ -85,9 +85,9 @@ export function ActivityV3Page() {
       </div>
       {/* 활동기록부 리스트 */}
       {/* 배경 */}
-      <div className="flex h-screen-6 flex-col bg-gray-50 md:h-screen">
+      <div className="h-screen-6 flex flex-col bg-gray-50 md:h-screen">
         {/* 활동기록 박스 */}
-        <div className="overflow-hidden bg-white p-2 md:h-screen md:px-10 md:py-5 lg:mx-10 lg:my-6 3xl:mx-[208px] 3xl:my-[64px] 3xl:px-30 3xl:py-20">
+        <div className="3xl:mx-[208px] 3xl:my-[64px] 3xl:px-30 3xl:py-20 overflow-hidden bg-white p-2 md:h-screen md:px-10 md:py-5 lg:mx-10 lg:my-6">
           {/* 활동기록 Header */}
           <div className="flex w-full flex-row items-center justify-between gap-2 pb-2">
             <div className="flex flex-col">
@@ -130,8 +130,8 @@ export function ActivityV3Page() {
                 placeholder="타입 선택"
                 value={type}
                 onChange={(e) => {
-                  setType(e.target.value);
-                  setSubject('');
+                  setType(e.target.value)
+                  setSubject('')
                 }}
               >
                 <option value={''}>{'전체'}</option>
@@ -156,9 +156,9 @@ export function ActivityV3Page() {
                 placeholder="제목을 입력해주세요."
                 value={searchTitle}
                 onChange={(e) => {
-                  setSearchTitle(e.target.value);
+                  setSearchTitle(e.target.value)
                   if (e.target.value === '') {
-                    setTitle('');
+                    setTitle('')
                   }
                 }}
                 onSearch={() => setTitle(searchTitle)}
@@ -168,22 +168,22 @@ export function ActivityV3Page() {
           </div>
 
           {/* 테이블 영역 */}
-          <div className="min-w-2/3 scroll-box relative h-screen-18 overflow-y-auto pb-20 md:h-screen-10 lg:h-screen-10 2xl:h-screen-12 3xl:h-screen-18">
-            <table className="w-full border-separate border-spacing-0 text-center text-10 md:text-sm">
+          <div className="scroll-box h-screen-18 md:h-screen-10 lg:h-screen-10 2xl:h-screen-12 3xl:h-screen-18 relative min-w-2/3 overflow-y-auto pb-20">
+            <table className="text-10 w-full border-separate border-spacing-0 text-center md:text-sm">
               <thead>
                 <tr className="sticky top-0 z-10 bg-white">
-                  <th className="w-20 border-b border-t border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">타입</th>
-                  <th className="w-30 border-b border-t border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">
+                  <th className="w-20 border-t border-b border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">타입</th>
+                  <th className="w-30 border-t border-b border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">
                     과목/차시
                   </th>
-                  <th className="w-96 border-b border-t border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">활동명</th>
-                  <th className="w-48 border-b border-t border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">
+                  <th className="w-96 border-t border-b border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">활동명</th>
+                  <th className="w-48 border-t border-b border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">
                     활동 기간
                   </th>
-                  <th className="w-28 border-b border-t border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">
+                  <th className="w-28 border-t border-b border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">
                     제출/총인원
                   </th>
-                  <th className="table-cell w-36 border-b border-t border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]"></th>
+                  <th className="table-cell w-36 border-t border-b border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]"></th>
                 </tr>
               </thead>
               <tbody>
@@ -310,8 +310,8 @@ export function ActivityV3Page() {
                                       <Button
                                         className="hidden rounded-lg border border-[#333333] bg-white md:inline-block"
                                         onClick={() => {
-                                          setSelectedSessionId(session.id);
-                                          setDownloadModalOpen(true);
+                                          setSelectedSessionId(session.id)
+                                          setDownloadModalOpen(true)
                                         }}
                                       >
                                         제출현황 다운로드
@@ -336,5 +336,5 @@ export function ActivityV3Page() {
         setModalClose={() => setDownloadModalOpen(false)}
       />
     </div>
-  );
+  )
 }

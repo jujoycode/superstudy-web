@@ -1,35 +1,35 @@
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { Blank, Label, PhoneNumberField, Section } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { TextInput } from 'src/components/common/TextInput';
-import { GroupContainer } from 'src/container/group';
-import { useTeacherFirstLogin } from 'src/container/teacher-first-login';
-import { ResponseGroupDto } from 'src/generated/model';
-import { meState } from 'src/store';
-import { Validator } from 'src/util/validator';
+import clsx from 'clsx'
+import { useEffect, useState } from 'react'
+import { Link, useHistory, useLocation } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { Blank, Label, PhoneNumberField, Section } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { GroupContainer } from 'src/container/group'
+import { useTeacherFirstLogin } from 'src/container/teacher-first-login'
+import { ResponseGroupDto } from '@/legacy/generated/model'
+import { meState } from 'src/store'
+import { Validator } from '@/legacy/util/validator'
 
 export function TeacherFirstLoginPage() {
-  const { push } = useHistory();
-  const { pathname } = useLocation();
-  const meRecoil = useRecoilValue(meState);
+  const { push } = useHistory()
+  const { pathname } = useLocation()
+  const meRecoil = useRecoilValue(meState)
 
-  const { teacherKlassGroups } = GroupContainer.useContext();
-  const { isLoading, handleTeacherFirstLogin } = useTeacherFirstLogin();
+  const { teacherKlassGroups } = GroupContainer.useContext()
+  const { isLoading, handleTeacherFirstLogin } = useTeacherFirstLogin()
 
-  const [name, setName] = useState('');
-  const [password1, setPassword1] = useState('');
-  const [password2, setPassword2] = useState('');
-  const [phone, setPhone] = useState('');
+  const [name, setName] = useState('')
+  const [password1, setPassword1] = useState('')
+  const [password2, setPassword2] = useState('')
+  const [phone, setPhone] = useState('')
 
-  const [privacy, setPrivacy] = useState(false);
-  const [policy, setPolicy] = useState(false);
-  const [showTeacherGroups, setShowTeacherGroups] = useState(true);
+  const [privacy, setPrivacy] = useState(false)
+  const [policy, setPolicy] = useState(false)
+  const [showTeacherGroups, setShowTeacherGroups] = useState(true)
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('')
 
   const buttonDisabled =
     !password1 ||
@@ -39,20 +39,20 @@ export function TeacherFirstLoginPage() {
     !policy ||
     !phone ||
     !Validator.phoneNumberRule(phone) ||
-    password1 !== password2;
+    password1 !== password2
 
   useEffect(() => {
-    setName(meRecoil?.name ?? '');
-    setPhone(meRecoil?.phone ?? '');
+    setName(meRecoil?.name ?? '')
+    setPhone(meRecoil?.phone ?? '')
     if (meRecoil && !meRecoil?.firstVisit) {
-      push('/teacher/canteen');
+      push('/teacher/canteen')
     }
-  }, [pathname, meRecoil]);
+  }, [pathname, meRecoil])
 
-  if (isLoading) return null;
+  if (isLoading) return null
 
   return (
-    <div className="col-span-6 h-screen-5 max-w-lg overflow-auto px-6 py-6">
+    <div className="h-screen-5 col-span-6 max-w-lg overflow-auto px-6 py-6">
       {isLoading && <Blank reversed />}
       <Section>
         <h1 className="text-2xl font-semibold">첫 로그인</h1>
@@ -69,10 +69,10 @@ export function TeacherFirstLoginPage() {
             value={name}
             onChange={(e) => setName(Validator.removeSpace(String(e.target.value)))}
             onKeyDown={(e) => {
-              const specialCharacters = /[~`!@#$%^&*()_+|<>?:/;'".,]/;
-              const whitespaceCharacters = /[ ]/;
+              const specialCharacters = /[~`!@#$%^&*()_+|<>?:/;'".,]/
+              const whitespaceCharacters = /[ ]/
               if (specialCharacters.test(e.key) || whitespaceCharacters.test(e.key)) {
-                e.preventDefault();
+                e.preventDefault()
               }
             }}
             className={name ? 'border-gray-300' : 'border-red-700'}
@@ -123,7 +123,7 @@ export function TeacherFirstLoginPage() {
           className="flex cursor-pointer items-center space-x-2"
           onClick={() => setShowTeacherGroups(!showTeacherGroups)}
         >
-          <div className="-mb-5 -mt-6 text-4xl">{showTeacherGroups ? <>&#x025BE;</> : <>&#x025B4;</>}</div>
+          <div className="-mt-6 -mb-5 text-4xl">{showTeacherGroups ? <>&#x025BE;</> : <>&#x025B4;</>}</div>
           <div className="text-lg font-bold text-gray-800">과목/담당 학년</div>
         </div>
         {showTeacherGroups &&
@@ -138,9 +138,9 @@ export function TeacherFirstLoginPage() {
             <Checkbox
               checked={privacy && policy}
               onChange={() => {
-                const allChecked = privacy && policy;
-                setPrivacy(!allChecked);
-                setPolicy(!allChecked);
+                const allChecked = privacy && policy
+                setPrivacy(!allChecked)
+                setPolicy(!allChecked)
               }}
             />
             <p className="font-bold">전체 동의</p>
@@ -166,22 +166,22 @@ export function TeacherFirstLoginPage() {
           onClick={() => {
             // TODO 에러 처리 수정 필요
             if (!Validator.phoneNumberRule(phone)) {
-              setErrorMessage('전화번호를 확인해 주세요.');
-              return;
+              setErrorMessage('전화번호를 확인해 주세요.')
+              return
             }
             if (password1 !== password2) {
-              setErrorMessage('비밀번호와 비밀번호 확인이 다릅니다.');
-              return;
+              setErrorMessage('비밀번호와 비밀번호 확인이 다릅니다.')
+              return
             }
             if (!Validator.passwordRule(password1)) {
-              setErrorMessage('안전한 비밀번호를 입력하세요.');
-              return;
+              setErrorMessage('안전한 비밀번호를 입력하세요.')
+              return
             }
-            handleTeacherFirstLogin({ password: password1, phone: phone, name: name });
+            handleTeacherFirstLogin({ password: password1, phone: phone, name: name })
           }}
           className="filled-primary"
         />
       </Section>
     </div>
-  );
+  )
 }

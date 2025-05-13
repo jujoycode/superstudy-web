@@ -1,21 +1,21 @@
-import { useState } from 'react';
-import AnnouncementBadge from 'src/components/announcement/AnnouncementBadge';
-import { Blank, Chip, HorizontalScrollView, List } from 'src/components/common';
-import { NoItem } from 'src/components/common/NoItem';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { Icon } from 'src/components/common/icons';
-import { useAnnouncementByCategory } from 'src/container/announcement-category';
-import { Announcement } from 'src/generated/model/announcement';
+import { useState } from 'react'
+import AnnouncementBadge from '@/legacy/components/announcement/AnnouncementBadge'
+import { Blank, Chip, HorizontalScrollView, List } from '@/legacy/components/common'
+import { NoItem } from '@/legacy/components/common/NoItem'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Icon } from '@/legacy/components/common/icons'
+import { useAnnouncementByCategory } from 'src/container/announcement-category'
+import { Announcement } from '@/legacy/generated/model/announcement'
 
 export default function AnnouncementMobilePage() {
-  const [searchTitle, setSearchTitle] = useState('');
-  const { announcements, category, setCategory, isLoading } = useAnnouncementByCategory();
+  const [searchTitle, setSearchTitle] = useState('')
+  const { announcements, category, setCategory, isLoading } = useAnnouncementByCategory()
 
-  if (isLoading) return <Blank reversed />;
+  if (isLoading) return <Blank reversed />
   return (
     <>
-      <div className="w-full flex-col ">
-        <div className="flex h-20 flex-col items-center justify-center bg-brand-1 text-white">
+      <div className="w-full flex-col">
+        <div className="bg-brand-1 flex h-20 flex-col items-center justify-center text-white">
           <p>
             <b>슈퍼스쿨</b>의 업데이트 정보 등 다양한 소식을 알려드립니다.
           </p>
@@ -46,7 +46,7 @@ export default function AnnouncementMobilePage() {
             className="min-w-max py-1.5"
           />
         </HorizontalScrollView>
-        <div className="flex items-center space-x-2 px-6 pb-4 pt-4">
+        <div className="flex items-center space-x-2 px-6 pt-4 pb-4">
           <div className="flex w-full items-center space-x-2">
             <SearchInput
               placeholder="제목을 입력해주세요."
@@ -66,12 +66,12 @@ export default function AnnouncementMobilePage() {
               {announcements
                 ?.filter((announcement: Announcement) => searchTitle === '' || announcement.title.includes(searchTitle))
                 .map((announcement: Announcement) => {
-                  return <AnnouncementBadge news={announcement} type="teacher" key={announcement.id} />;
+                  return <AnnouncementBadge news={announcement} type="teacher" key={announcement.id} />
                 })}
             </List>
           </div>
         </div>
       </div>
     </>
-  );
+  )
 }

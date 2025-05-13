@@ -1,17 +1,17 @@
-import { FC } from 'react';
-import { useParams } from 'react-router-dom';
-import Groupv3InfoCard from 'src/components/studentCard/Groupv3InfoCard';
-import Parentv3InfoCard from 'src/components/studentCard/Parentv3InfoCard';
-import Studentv3InfoCard from 'src/components/studentCard/Studentv3InfoCard';
-import { TimeTableCard } from 'src/components/studentCard/TimeTableCard';
-import { useTeacherStudentCard } from 'src/container/teacher-studentcard';
+import { FC } from 'react'
+import { useParams } from 'react-router-dom'
+import Groupv3InfoCard from '@/legacy/components/studentCard/Groupv3InfoCard'
+import Parentv3InfoCard from '@/legacy/components/studentCard/Parentv3InfoCard'
+import Studentv3InfoCard from '@/legacy/components/studentCard/Studentv3InfoCard'
+import { TimeTableCard } from '@/legacy/components/studentCard/TimeTableCard'
+import { useTeacherStudentCard } from 'src/container/teacher-studentcard'
 
 export const AllCardPage: FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const { studentInfo } = useTeacherStudentCard(Number(id));
+  const { id } = useParams<{ id: string }>()
+  const { studentInfo } = useTeacherStudentCard(Number(id))
 
   return (
-    <div className="scroll-box mt-4 h-screen-12 overflow-y-auto pb-4 md:h-screen-4">
+    <div className="scroll-box h-screen-12 md:h-screen-4 mt-4 overflow-y-auto pb-4">
       {/* Mobile V */}
       <div className="block md:hidden md:p-0">
         <Studentv3InfoCard id={Number(id)} />
@@ -44,5 +44,5 @@ export const AllCardPage: FC = () => {
         <TimeTableCard studentId={Number(id)} />
       </div>
     </div>
-  );
-};
+  )
+}

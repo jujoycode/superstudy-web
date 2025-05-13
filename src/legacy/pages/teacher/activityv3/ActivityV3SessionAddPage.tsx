@@ -1,55 +1,55 @@
-import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useHistory, useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { SuperModal } from 'src/components';
-import { DocumentObjectComponentDel } from 'src/components/DocumentObjectComponentDel';
-import { ImageObjectComponentDel } from 'src/components/ImageObjectComponentDel';
-import { ActivitySessionTeacherView } from 'src/components/activityv3/ActivitySessionTeacherView';
-import { Blank, CloseButton, Label, Radio, RadioGroup, Textarea } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import ConfirmDialog from 'src/components/common/ConfirmDialog';
-import { TextInput } from 'src/components/common/TextInput';
-import { ToggleSwitch } from 'src/components/common/ToggleSwitch';
-import { Icon } from 'src/components/common/icons';
-import { SuperSurveyAddComponent } from 'src/components/survey/SuperSurveyAddComponent';
-import { ACTIVITY_SESSION_TYPE_KOR } from 'src/constants/activityv3.enum';
-import { useActivitySessionCreate, useActivitySessionUpdate } from 'src/generated/endpoint';
+import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useHistory, useParams } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { SuperModal } from '@/legacy/components'
+import { DocumentObjectComponentDel } from '@/legacy/components/DocumentObjectComponentDel'
+import { ImageObjectComponentDel } from '@/legacy/components/ImageObjectComponentDel'
+import { ActivitySessionTeacherView } from '@/legacy/components/activityv3/ActivitySessionTeacherView'
+import { Blank, CloseButton, Label, Radio, RadioGroup, Textarea } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { ToggleSwitch } from '@/legacy/components/common/ToggleSwitch'
+import { Icon } from '@/legacy/components/common/icons'
+import { SuperSurveyAddComponent } from '@/legacy/components/survey/SuperSurveyAddComponent'
+import { ACTIVITY_SESSION_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
+import { useActivitySessionCreate, useActivitySessionUpdate } from '@/legacy/generated/endpoint'
 import {
   ActivitySession,
   ActivityType,
   RequestCreateActivitySessionDto,
   UploadFileTypeEnum,
-} from 'src/generated/model';
-import { useFileUpload } from 'src/hooks/useFileUpload';
-import { useImageAndDocument } from 'src/hooks/useImageAndDocument';
-import { toastState } from 'src/store';
+} from '@/legacy/generated/model'
+import { useFileUpload } from '@/legacy/hooks/useFileUpload'
+import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
+import { toastState } from 'src/store'
 
 interface ActivityV3SessionAddPageProps {
-  activitySessionData?: ActivitySession;
+  activitySessionData?: ActivitySession
 }
 
 export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> = ({ activitySessionData }) => {
-  const [toastMsg, setToastMsg] = useRecoilState(toastState);
-  const { push, goBack } = useHistory();
-  const { id } = useParams<{ id: string }>();
+  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const { push, goBack } = useHistory()
+  const { id } = useParams<{ id: string }>()
 
-  const [showDialog, setShowDialog] = useState(false);
+  const [showDialog, setShowDialog] = useState(false)
 
   const handleConfirm = () => {
-    setShowDialog(false);
-    goBack();
-  };
+    setShowDialog(false)
+    goBack()
+  }
 
   const handleCancel = () => {
-    setShowDialog(false);
-  };
+    setShowDialog(false)
+  }
 
-  const activityv3Id = Number(id);
-  const [disableStartDate, setDisableStartDate] = useState(activitySessionData?.startDate !== '' ? true : false);
-  const [disableEndDate, setDisableEndDate] = useState(activitySessionData?.endDate !== '' ? true : false);
+  const activityv3Id = Number(id)
+  const [disableStartDate, setDisableStartDate] = useState(activitySessionData?.startDate !== '' ? true : false)
+  const [disableEndDate, setDisableEndDate] = useState(activitySessionData?.endDate !== '' ? true : false)
   const [disableSubmitDate, setDisableSubmitDate] = useState(
     !activitySessionData ||
       activitySessionData?.submitStartHour === -1 ||
@@ -57,13 +57,13 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
         activitySessionData.submitStartMinute === 0 &&
         activitySessionData.submitEndHour === 0 &&
         activitySessionData.submitEndMinute === 0),
-  );
-  const [previewOpen, setPreviewOpen] = useState(false);
+  )
+  const [previewOpen, setPreviewOpen] = useState(false)
 
-  const [startHour, setStartHour] = useState(activitySessionData?.submitStartHour || -1);
-  const [startMinute, setStartMinute] = useState(activitySessionData?.submitStartMinute || -1);
-  const [endHour, setEndHour] = useState(activitySessionData?.submitEndHour || -1);
-  const [endMinute, setEndMinute] = useState(activitySessionData?.submitEndMinute || -1);
+  const [startHour, setStartHour] = useState(activitySessionData?.submitStartHour || -1)
+  const [startMinute, setStartMinute] = useState(activitySessionData?.submitStartMinute || -1)
+  const [endHour, setEndHour] = useState(activitySessionData?.submitEndHour || -1)
+  const [endMinute, setEndMinute] = useState(activitySessionData?.submitEndMinute || -1)
 
   const {
     imageObjectMap,
@@ -73,9 +73,9 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
     handleDocumentAdd,
     addFiles,
     toggleDocumentDelete,
-  } = useImageAndDocument({ images: activitySessionData?.images, documents: activitySessionData?.files });
+  } = useImageAndDocument({ images: activitySessionData?.images, documents: activitySessionData?.files })
 
-  const { isUploadLoading, handleUploadFile } = useFileUpload();
+  const { isUploadLoading, handleUploadFile } = useFileUpload()
 
   const {
     handleSubmit,
@@ -87,106 +87,106 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
     defaultValues: {
       type: ActivityType.POST,
     },
-  });
+  })
 
-  const { mutateAsync: createActivitySession, isLoading: createMutateLoading } = useActivitySessionCreate();
+  const { mutateAsync: createActivitySession, isLoading: createMutateLoading } = useActivitySessionCreate()
 
-  const { mutateAsync: updateActivitySession, isLoading: updateMutateLoading } = useActivitySessionUpdate();
+  const { mutateAsync: updateActivitySession, isLoading: updateMutateLoading } = useActivitySessionUpdate()
 
-  const activitySessiontype = watch('type');
-  const [content, setContent] = useState<any>([]);
+  const activitySessiontype = watch('type')
+  const [content, setContent] = useState<any>([])
 
   useEffect(() => {
     if (activitySessionData) {
-      setValue('title', activitySessionData.title);
-      setValue('content', activitySessionData.content);
-      setValue('surveyContent', activitySessionData.surveyContent);
-      if (activitySessionData.surveyContent) setContent(JSON.parse(activitySessionData.surveyContent));
-      setValue('isImage', activitySessionData.isImage);
-      setValue('isFile', activitySessionData.isFile);
-      setValue('isFileRequired', activitySessionData.isFileRequired);
-      setValue('isContent', activitySessionData.isContent);
-      setValue('isContentRequired', activitySessionData.isContentRequired);
-      setValue('activityv3Id', activitySessionData.activityv3Id);
-      setValue('type', activitySessionData.type);
+      setValue('title', activitySessionData.title)
+      setValue('content', activitySessionData.content)
+      setValue('surveyContent', activitySessionData.surveyContent)
+      if (activitySessionData.surveyContent) setContent(JSON.parse(activitySessionData.surveyContent))
+      setValue('isImage', activitySessionData.isImage)
+      setValue('isFile', activitySessionData.isFile)
+      setValue('isFileRequired', activitySessionData.isFileRequired)
+      setValue('isContent', activitySessionData.isContent)
+      setValue('isContentRequired', activitySessionData.isContentRequired)
+      setValue('activityv3Id', activitySessionData.activityv3Id)
+      setValue('type', activitySessionData.type)
       setValue(
         'startDate',
         activitySessionData.startDate ? format(new Date(activitySessionData.startDate), "yyyy-MM-dd'T'HH:mm") : '',
-      );
+      )
       setValue(
         'endDate',
         activitySessionData.endDate ? format(new Date(activitySessionData.endDate), "yyyy-MM-dd'T'HH:mm") : '',
-      );
-      setDisableStartDate(!activitySessionData?.startDate || activitySessionData?.startDate === '');
-      setDisableEndDate(!activitySessionData?.endDate || activitySessionData?.endDate === '');
+      )
+      setDisableStartDate(!activitySessionData?.startDate || activitySessionData?.startDate === '')
+      setDisableEndDate(!activitySessionData?.endDate || activitySessionData?.endDate === '')
       setDisableSubmitDate(
         activitySessionData?.submitStartHour === -1 ||
           (activitySessionData.submitStartHour === 0 &&
             activitySessionData.submitStartMinute === 0 &&
             activitySessionData.submitEndHour === 0 &&
             activitySessionData.submitEndMinute === 0),
-      );
+      )
 
       if (activitySessionData?.submitStartHour !== -1 && startHour === undefined)
-        setStartHour(activitySessionData.submitStartHour);
+        setStartHour(activitySessionData.submitStartHour)
       if (activitySessionData?.submitStartMinute !== -1 && startMinute === undefined)
-        setStartMinute(activitySessionData.submitStartMinute);
+        setStartMinute(activitySessionData.submitStartMinute)
       if (activitySessionData?.submitEndHour !== -1 && endHour === undefined)
-        setEndHour(activitySessionData.submitEndHour);
+        setEndHour(activitySessionData.submitEndHour)
       if (activitySessionData?.submitEndMinute !== -1 && endMinute === undefined)
-        setEndMinute(activitySessionData.submitEndMinute);
+        setEndMinute(activitySessionData.submitEndMinute)
     }
-  }, [activitySessionData, setValue]);
+  }, [activitySessionData, setValue])
 
-  const isLoading = createMutateLoading || updateMutateLoading || isUploadLoading;
+  const isLoading = createMutateLoading || updateMutateLoading || isUploadLoading
 
   const isFormValid = (() => {
-    const type = watch('type');
-    const title = watch('title');
-    const isFile = watch('isFile');
-    const isContent = watch('isContent');
-    const startDate = watch('startDate');
-    const endDate = watch('endDate');
-    const submitEndHour = watch('submitEndHour');
-    const submitEndMinute = watch('submitEndMinute');
+    const type = watch('type')
+    const title = watch('title')
+    const isFile = watch('isFile')
+    const isContent = watch('isContent')
+    const startDate = watch('startDate')
+    const endDate = watch('endDate')
+    const submitEndHour = watch('submitEndHour')
+    const submitEndMinute = watch('submitEndMinute')
 
     if (startDate && endDate) {
       if (new Date(startDate) >= new Date(endDate)) {
-        return false;
+        return false
       }
     }
 
     if (!disableSubmitDate) {
       if (submitEndHour === 0 && submitEndMinute === 0) {
-        return false;
+        return false
       }
     }
 
     if (type && title) {
       if (type === ActivityType.POST) {
-        return isFile || isContent;
+        return isFile || isContent
       }
-      return true;
+      return true
     }
-    return false;
-  })();
+    return false
+  })()
 
   return (
     <div className="col-span-6">
       {isLoading && <Blank />}
-      <div className="flex h-screen-6 flex-col bg-gray-50 p-2 md:h-screen md:px-10 md:pb-20 md:pt-10 3xl:px-[208px] 3xl:pb-[128px] 3xl:pt-[64px]">
+      <div className="h-screen-6 3xl:px-[208px] 3xl:pb-[128px] 3xl:pt-[64px] flex flex-col bg-gray-50 p-2 md:h-screen md:px-10 md:pt-10 md:pb-20">
         <div className="relative h-full">
-          <div className="h-full overflow-y-auto bg-white p-2 md:px-10 md:py-5 3xl:px-30 3xl:py-20">
+          <div className="3xl:px-30 3xl:py-20 h-full overflow-y-auto bg-white p-2 md:px-10 md:py-5">
             <div className="flex w-full flex-col gap-2 bg-white pb-8">
               <div className="text-3xl font-bold">차시 {activitySessionData ? '수정' : '생성'}하기</div>
               <div className="text-18 font-normal text-[#444]">
                 학생들에게 활동/활동보고서의 상세 내용을 안내할 수 있습니다.
               </div>
             </div>
-            <div className="min-w-2/3 h-full">
+            <div className="h-full min-w-2/3">
               <table className="w-full table-fixed">
-                <tr className="h-14 border-b border-t border-[#AAAAAA] border-t-[#333333]">
-                  <td className="w-52 whitespace-pre py-3 font-bold text-[#333333]">
+                <tr className="h-14 border-t border-b border-[#AAAAAA] border-t-[#333333]">
+                  <td className="w-52 py-3 font-bold whitespace-pre text-[#333333]">
                     <div className="flex gap-x-0.5">
                       <p>타입</p>
                       <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
@@ -204,14 +204,14 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                             {...register('type', {
                               required: !activitySessionData,
                               onChange: () => {
-                                setValue('title', '');
-                                setValue('content', '');
-                                setValue('endDate', '');
-                                setValue('isFile', false);
-                                setValue('isFileRequired', false);
-                                setValue('isContent', false);
-                                setValue('isContentRequired', false);
-                                setContent([]);
+                                setValue('title', '')
+                                setValue('content', '')
+                                setValue('endDate', '')
+                                setValue('isFile', false)
+                                setValue('isFileRequired', false)
+                                setValue('isContent', false)
+                                setValue('isContentRequired', false)
+                                setContent([])
                               },
                             })}
                             disabled={!!activitySessionData}
@@ -229,7 +229,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                 </tr>
 
                 <tr className="border-gray-[#444] h-14 border-b py-3">
-                  <td className="whitespace-pre font-bold text-[#333333]">
+                  <td className="font-bold whitespace-pre text-[#333333]">
                     <div className="flex gap-x-0.5">
                       <p>제목</p>
                       <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
@@ -247,7 +247,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                 </tr>
 
                 <tr className="border-gray-[#444] border-b">
-                  <td className="h-14 whitespace-pre py-3 font-bold text-[#333333]">
+                  <td className="h-14 py-3 font-bold whitespace-pre text-[#333333]">
                     <div className="flex gap-x-0.5">
                       <p>내용</p>
                     </div>
@@ -265,7 +265,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
 
                 {activitySessiontype === ActivityType.POST && (
                   <tr className="border-gray-[#444] border-b">
-                    <td className="h-14 whitespace-pre py-3 font-bold text-[#333333]">
+                    <td className="h-14 py-3 font-bold whitespace-pre text-[#333333]">
                       <div className="flex gap-x-0.5">
                         <p>과제 제출 방식</p>
                         <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
@@ -306,7 +306,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
 
                 {(activitySessiontype === ActivityType.POST || activitySessiontype === ActivityType.SURVEY) && (
                   <tr className="border-gray-[#444] border-b">
-                    <td className="h-14 whitespace-pre py-3 font-bold text-[#333333]">시작시간</td>
+                    <td className="h-14 py-3 font-bold whitespace-pre text-[#333333]">시작시간</td>
                     <td className="py-3">
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-2">
@@ -332,7 +332,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                 )}
                 {(activitySessiontype === ActivityType.POST || activitySessiontype === ActivityType.SURVEY) && (
                   <tr className="border-gray-[#444] border-b">
-                    <td className="h-14 whitespace-pre py-3 font-bold text-[#333333]">
+                    <td className="h-14 py-3 font-bold whitespace-pre text-[#333333]">
                       <div className="flex gap-x-0.5">
                         <p>제출 시간대</p>
                       </div>
@@ -344,26 +344,26 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                             <TextInput
                               type="text"
                               maxLength={2}
-                              className="my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                              className="focus:border-brand-1 my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               disabled={disableSubmitDate}
                               value={startHour < 0 ? 0 : startHour}
                               onChange={(e) => {
                                 if (/^\d*$/.test(e.target.value)) {
                                   if (!isNaN(Number(e.target.value))) {
-                                    const _startHour = Number(e.target.value);
+                                    const _startHour = Number(e.target.value)
                                     if (Number(e.target.value) >= 0 && _startHour < 24) {
-                                      setStartHour(_startHour);
+                                      setStartHour(_startHour)
                                     }
                                   }
                                 }
                               }}
                               onBlur={(e) => {
-                                const _startHour = Number(e.target.value);
+                                const _startHour = Number(e.target.value)
                                 if ((startHour || 0) > (endHour || 0)) {
-                                  setEndHour((startHour || 0) + 1);
+                                  setEndHour((startHour || 0) + 1)
                                 }
                                 if (_startHour === endHour && (startMinute || 0) > (endMinute || 0)) {
-                                  setEndMinute(startMinute || 0);
+                                  setEndMinute(startMinute || 0)
                                 }
                               }}
                             />
@@ -372,22 +372,22 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                               type="text"
                               maxLength={2}
                               disabled={disableSubmitDate}
-                              className="my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                              className="focus:border-brand-1 my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               value={startMinute < 0 ? 0 : startMinute}
                               onChange={(e) => {
                                 if (/^\d*$/.test(e.target.value)) {
                                   if (!isNaN(Number(e.target.value))) {
-                                    const _startMinute = Number(e.target.value);
+                                    const _startMinute = Number(e.target.value)
                                     if (_startMinute >= 0 && _startMinute < 60) {
-                                      setStartMinute(_startMinute);
+                                      setStartMinute(_startMinute)
                                     }
                                   }
                                 }
                               }}
                               onBlur={(e) => {
-                                const _startMinute = Number(e.target.value);
+                                const _startMinute = Number(e.target.value)
                                 if (startHour === endHour && _startMinute > (endMinute || 0)) {
-                                  setEndMinute(_startMinute);
+                                  setEndMinute(_startMinute)
                                 }
                               }}
                             />
@@ -396,26 +396,26 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                             <TextInput
                               type="text"
                               maxLength={2}
-                              className="my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                              className="focus:border-brand-1 my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               disabled={disableSubmitDate}
                               value={endHour < 0 ? 0 : endHour}
                               onChange={(e) => {
                                 if (/^\d*$/.test(e.target.value)) {
                                   if (!isNaN(Number(e.target.value))) {
-                                    const _endHour = Number(e.target.value);
+                                    const _endHour = Number(e.target.value)
                                     if (_endHour >= 0 && _endHour < 24) {
-                                      setEndHour(_endHour);
+                                      setEndHour(_endHour)
                                     }
                                   }
                                 }
                               }}
                               onBlur={(e) => {
-                                const _endHour = Number(e.target.value);
+                                const _endHour = Number(e.target.value)
                                 if ((startHour || 0) > _endHour) {
-                                  setStartHour(_endHour);
+                                  setStartHour(_endHour)
                                 }
                                 if (startHour === _endHour && (startMinute || 0) > (endMinute || 0)) {
-                                  setEndMinute(startMinute);
+                                  setEndMinute(startMinute)
                                 }
                               }}
                             />
@@ -424,22 +424,22 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                               type="text"
                               maxLength={2}
                               disabled={disableSubmitDate}
-                              className="my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                              className="focus:border-brand-1 my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               value={endMinute < 0 ? 0 : endMinute}
                               onChange={(e) => {
                                 if (/^\d*$/.test(e.target.value)) {
                                   if (!isNaN(Number(e.target.value))) {
-                                    const _endMinute = Number(e.target.value);
+                                    const _endMinute = Number(e.target.value)
                                     if (_endMinute >= 0 && _endMinute < 60) {
-                                      setEndMinute(_endMinute);
+                                      setEndMinute(_endMinute)
                                     }
                                   }
                                 }
                               }}
                               onBlur={(e) => {
-                                const _endMinute = Number(e.target.value);
+                                const _endMinute = Number(e.target.value)
                                 if (startHour === endHour && (startMinute || 0) > _endMinute) {
-                                  setStartMinute(_endMinute);
+                                  setStartMinute(_endMinute)
                                 }
                               }}
                             />
@@ -460,7 +460,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
 
                 {(activitySessiontype === ActivityType.POST || activitySessiontype === ActivityType.SURVEY) && (
                   <tr className="border-gray-[#444] border-b">
-                    <td className="h-14 whitespace-pre py-3 font-bold text-[#333333]">마감기한</td>
+                    <td className="h-14 py-3 font-bold whitespace-pre text-[#333333]">마감기한</td>
                     <td className="py-3">
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-2">
@@ -483,7 +483,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                 )}
 
                 <tr className="border-gray-[#444] border-b">
-                  <td className="h-14 whitespace-pre py-3 font-bold text-[#333333]">첨부파일</td>
+                  <td className="h-14 py-3 font-bold whitespace-pre text-[#333333]">첨부파일</td>
                   <td className="py-3">
                     {/* 이미지 */}
                     {[...imageObjectMap].length > 0 && (
@@ -518,9 +518,9 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                       className="sr-only"
                       multiple
                       onChange={(e) => {
-                        const files = e.target.files;
-                        if (!files || files.length === 0) return;
-                        addFiles(files);
+                        const files = e.target.files
+                        if (!files || files.length === 0) return
+                        addFiles(files)
                       }}
                     />
                     <div className="flex items-center gap-4">
@@ -537,7 +537,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
               </table>
               {activitySessiontype === ActivityType.SURVEY && (
                 <>
-                  <div className="pb-2 pt-6">
+                  <div className="pt-6 pb-2">
                     <div className="flex items-center space-x-8 border-b border-b-[#333333]">
                       <div className="mb-2 text-xl font-bold">설문지 만들기</div>
                     </div>
@@ -551,7 +551,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
           </div>
 
           {/* 하단 버튼 영역 */}
-          <div className="absolute -bottom-14 left-0 w-full 3xl:-bottom-20">
+          <div className="3xl:-bottom-20 absolute -bottom-14 left-0 w-full">
             <div className="flex items-center justify-between">
               <div>
                 <Button
@@ -577,25 +577,25 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                     // file image 처리
                     const imageFiles = [...imageObjectMap.values()]
                       .filter((value) => !value.isDelete && value.image instanceof File)
-                      .map((value) => value.image) as File[];
-                    const imageFileNames = await handleUploadFile(UploadFileTypeEnum['activityv3/images'], imageFiles);
+                      .map((value) => value.image) as File[]
+                    const imageFileNames = await handleUploadFile(UploadFileTypeEnum['activityv3/images'], imageFiles)
                     // url image 처리
                     const imageUrlNames = [...imageObjectMap.values()]
                       .filter((value) => !value.isDelete && typeof value.image === 'string')
-                      .map((value) => value.image) as string[];
-                    const allImageNames = [...imageUrlNames, ...imageFileNames];
+                      .map((value) => value.image) as string[]
+                    const allImageNames = [...imageUrlNames, ...imageFileNames]
                     // file document 처리
                     const documentFiles = [...documentObjectMap.values()]
                       .filter((value) => !value.isDelete && value.document instanceof File)
-                      .map((value) => value.document) as File[];
+                      .map((value) => value.document) as File[]
                     const documentFileNames = await handleUploadFile(
                       UploadFileTypeEnum['activityv3/files'],
                       documentFiles,
-                    );
+                    )
                     const documentUrlNames = [...documentObjectMap.values()]
                       .filter((value) => !value.isDelete && typeof value.document === 'string')
-                      .map((value) => value.document) as string[];
-                    const allDocumentNames = [...documentUrlNames, ...documentFileNames];
+                      .map((value) => value.document) as string[]
+                    const allDocumentNames = [...documentUrlNames, ...documentFileNames]
                     const _data = {
                       ...data,
                       surveyContent: data.type === 'SURVEY' ? JSON.stringify(content) : '',
@@ -613,22 +613,22 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                       isContent: !!data.isContent,
                       isFileRequired: !!data.isFile && !!data.isFileRequired,
                       isContentRequired: !!data.isContent && !!data.isContentRequired,
-                    };
+                    }
                     if (activitySessionData) {
                       updateActivitySession({ id: activitySessionData.id, data: _data })
                         .then((data) => {
-                          setToastMsg('차시가 수정되었습니다.');
-                          push(`/teacher/activityv3/${activityv3Id}/session/${data.id}`);
+                          setToastMsg('차시가 수정되었습니다.')
+                          push(`/teacher/activityv3/${activityv3Id}/session/${data.id}`)
                         })
-                        .catch((error: any) => setToastMsg(error.message));
+                        .catch((error: any) => setToastMsg(error.message))
                     } else {
                       createActivitySession({ data: _data })
                         .then((data) => {
-                          setToastMsg('차시가 추가되었습니다.');
-                          push(`/teacher/activityv3/${activityv3Id}`); // 차시 추가 후 활동상세페이지로
+                          setToastMsg('차시가 추가되었습니다.')
+                          push(`/teacher/activityv3/${activityv3Id}`) // 차시 추가 후 활동상세페이지로
                           // push(`/teacher/activityv3/${activityv3Id}/session/${data.id}`);
                         })
-                        .catch((error: any) => setToastMsg(error.message));
+                        .catch((error: any) => setToastMsg(error.message))
                     }
                   })}
                 >
@@ -644,11 +644,11 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
           modalOpen={previewOpen}
           setModalClose={() => setPreviewOpen(false)}
         >
-          <div className="flex max-h-screen-12 flex-col lg:border-r lg:border-gray-300">
+          <div className="max-h-screen-12 flex flex-col lg:border-r lg:border-gray-300">
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-300 bg-gray-50 px-4 py-2">
               <div className="flex items-center gap-2">
                 <span className="text-lg font-bold">미리보기</span>
-                <span className="ml-2 text-14 text-gray-600">학생에게 보여지는 화면입니다.</span>
+                <span className="text-14 ml-2 text-gray-600">학생에게 보여지는 화면입니다.</span>
               </div>
               <CloseButton onClick={() => setPreviewOpen(false)} />
             </div>
@@ -679,5 +679,5 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
         )}
       </div>
     </div>
-  );
-};
+  )
+}

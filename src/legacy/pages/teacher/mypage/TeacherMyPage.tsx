@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import BgLogo from 'src/assets/images/Intersect.png';
-import { ReactComponent as RightArrow } from 'src/assets/svg/mypage-right-arrow.svg';
-import SvgUser from 'src/assets/svg/user.svg';
-import { ErrorBlank } from 'src/components';
-import { BackButton, IconButton, Section, TopNavbar } from 'src/components/common';
-import { Icon } from 'src/components/common/icons';
-import { Constants } from 'src/constants';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { meState } from 'src/store';
-import { useLogout } from 'src/util/hooks';
-import { checkNewVersion } from 'src/util/status';
+import { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import BgLogo from '@/asset/images/Intersect.png'
+import { ReactComponent as RightArrow } from '@/asset/svg/mypage-right-arrow.svg'
+import SvgUser from '@/asset/svg/user.svg'
+import { ErrorBlank } from '@/legacy/components'
+import { BackButton, IconButton, Section, TopNavbar } from '@/legacy/components/common'
+import { Icon } from '@/legacy/components/common/icons'
+import { Constants } from '@/legacy/constants'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { meState } from 'src/store'
+import { useLogout } from '@/legacy/util/hooks'
+import { checkNewVersion } from '@/legacy/util/status'
 
 enum selectedType {
   none = 1,
@@ -23,30 +23,30 @@ enum selectedType {
 }
 
 export function TeacherMyPage() {
-  const logout = useLogout();
-  const { t } = useLanguage();
+  const logout = useLogout()
+  const { t } = useLanguage()
 
-  checkNewVersion();
+  checkNewVersion()
 
-  const { push } = useHistory();
-  const meRecoil = useRecoilValue(meState);
+  const { push } = useHistory()
+  const meRecoil = useRecoilValue(meState)
 
-  const [selectedItem, setSelectedItem] = useState(selectedType.myinfo);
+  const [selectedItem, setSelectedItem] = useState(selectedType.myinfo)
 
   const selectedCheck = (item: selectedType) => {
     if (item === selectedItem) {
-      setSelectedItem(selectedType.none);
+      setSelectedItem(selectedType.none)
     } else {
-      setSelectedItem(item);
+      setSelectedItem(item)
     }
-  };
+  }
 
   const spacedName = (name: string) => {
-    return name.split('').join('  ');
-  };
+    return name.split('').join('  ')
+  }
 
   if (!meRecoil) {
-    return <ErrorBlank />;
+    return <ErrorBlank />
   }
 
   return (
@@ -62,20 +62,20 @@ export function TeacherMyPage() {
             </div>
             <div className="flex w-full flex-col items-center bg-white">
               <div className="flex w-full flex-col items-center bg-white">
-                <div className="relative z-10 mb-4 mt-6 w-40 rounded-lg md:mt-8">
+                <div className="relative z-10 mt-6 mb-4 w-40 rounded-lg md:mt-8">
                   <img
                     src={`${Constants.imageUrl}${meRecoil?.profile}`}
                     alt="프로필 이미지"
                     loading="lazy"
                     className="h-48 w-40 rounded-lg object-cover"
                     onError={({ currentTarget }) => {
-                      currentTarget.onerror = null;
-                      currentTarget.src = SvgUser;
-                      currentTarget.className = 'w-full';
+                      currentTarget.onerror = null
+                      currentTarget.src = SvgUser
+                      currentTarget.className = 'w-full'
                     }}
                   />
                 </div>
-                <img className="absolute bottom-10 right-0 h-auto w-auto" src={BgLogo} alt="" />
+                <img className="absolute right-0 bottom-10 h-auto w-auto" src={BgLogo} alt="" />
                 <p className="z-10 text-2xl font-bold">{spacedName(meRecoil?.name)}</p>
                 <p className="z-10 mt-1">{meRecoil?.email}</p>
                 <div className="flex flex-row items-center justify-center gap-1 pt-6">
@@ -128,7 +128,7 @@ export function TeacherMyPage() {
           </a>
 
           <div
-            className=" border-gray-6 cursor-pointer border-b-2 py-3"
+            className="border-gray-6 cursor-pointer border-b-2 py-3"
             onClick={() => selectedCheck(selectedType.manual)}
           >
             <div className="flex items-center justify-between">
@@ -137,7 +137,7 @@ export function TeacherMyPage() {
             </div>
           </div>
           {selectedItem === selectedType.manual && (
-            <div className=" border-gray-6 border-b-2 bg-gray-100">
+            <div className="border-gray-6 border-b-2 bg-gray-100">
               <a
                 href={`https://superschoolofficial.notion.site/f9bae37feef94ee7b9f886b5e074fdac`}
                 target="_blank"
@@ -255,7 +255,7 @@ export function TeacherMyPage() {
             </div>
           </div>
           {selectedItem === selectedType.superstudy && (
-            <div className=" border-gray-6 border-b-2 bg-gray-100">
+            <div className="border-gray-6 border-b-2 bg-gray-100">
               <a href={`https://superstudy.kr`} target="_blank" rel="noreferrer">
                 <div className="flex cursor-pointer items-center justify-between py-1">
                   <div className="text-gray-1 font-sfpro pl-4 font-bold">홈페이지</div>
@@ -264,24 +264,24 @@ export function TeacherMyPage() {
               </a>
               <a href={`https://www.youtube.com/channel/UCuUvswD4AMOlBnRE1jTkznA`} target="_blank" rel="noreferrer">
                 <div className="flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-sfpro  pl-4 font-bold">유투브</div>
+                  <div className="text-gray-1 font-sfpro pl-4 font-bold">유투브</div>
                   <RightArrow />
                 </div>
               </a>
               <a href={`https://www.instagram.com/superstudy_official_/`} target="_blank" rel="noreferrer">
                 <div className="flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-sfpro  pl-4 font-bold">인스타그램</div>
+                  <div className="text-gray-1 font-sfpro pl-4 font-bold">인스타그램</div>
                   <RightArrow />
                 </div>
               </a>
               <a href={`https://m.facebook.com/profile.php?id=100083550129006&_rdr`} target="_blank" rel="noreferrer">
-                <div className="flex cursor-pointer items-center  justify-between py-1">
-                  <div className="text-gray-1 font-sfpro  pl-4 font-bold">페이스북</div>
+                <div className="flex cursor-pointer items-center justify-between py-1">
+                  <div className="text-gray-1 font-sfpro pl-4 font-bold">페이스북</div>
                   <RightArrow />
                 </div>
               </a>
               <a href={`https://blog.naver.com/superschool-do`} target="_blank" rel="noreferrer">
-                <div className="flex cursor-pointer items-center  justify-between py-1">
+                <div className="flex cursor-pointer items-center justify-between py-1">
                   <div className="text-gray-1 font-sfpro pl-4 font-bold">블로그</div>
                   <RightArrow />
                 </div>
@@ -299,7 +299,7 @@ export function TeacherMyPage() {
           <div
             className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
             onClick={() => {
-              logout();
+              logout()
             }}
           >
             <div className="text-gray-1 font-sfpro font-bold">로그아웃</div>
@@ -308,5 +308,5 @@ export function TeacherMyPage() {
         </Section>
       </div>
     </div>
-  );
+  )
 }

@@ -1,44 +1,44 @@
-import { Route, Switch, useHistory, useLocation, useParams } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { BackButton, Blank, List, TopNavbar } from 'src/components/common';
-import Counselingv3Card from 'src/components/studentCard/Counselingv3Card';
-import { StudyInfoCard2 } from 'src/components/studentCard/StudyInfoCard2';
-import { useTeacherStudentCard } from 'src/container/teacher-studentcard';
-import { ScoreUse } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { cn } from 'src/lib/tailwind-merge';
-import { meState } from 'src/store';
-import { ActivityV3Page } from './ActivityV3Page';
-import { AllCardPage } from './AllCardPage';
-import { GeneralCardPage } from './GeneralCardPage';
-import { PointLogsPage } from './PointLogsPage';
-import { ScoreCardPage } from './ScoreCardPage';
+import { Route, Switch, useHistory, useLocation, useParams } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { BackButton, Blank, List, TopNavbar } from '@/legacy/components/common'
+import Counselingv3Card from '@/legacy/components/studentCard/Counselingv3Card'
+import { StudyInfoCard2 } from '@/legacy/components/studentCard/StudyInfoCard2'
+import { useTeacherStudentCard } from 'src/container/teacher-studentcard'
+import { ScoreUse } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { cn } from '@/legacy/lib/tailwind-merge'
+import { meState } from 'src/store'
+import { ActivityV3Page } from './ActivityV3Page'
+import { AllCardPage } from './AllCardPage'
+import { GeneralCardPage } from './GeneralCardPage'
+import { PointLogsPage } from './PointLogsPage'
+import { ScoreCardPage } from './ScoreCardPage'
 
 export function StudentCardDetailPage() {
-  const meRecoil = useRecoilValue(meState);
-  const { t, currentLang } = useLanguage();
+  const meRecoil = useRecoilValue(meState)
+  const { t, currentLang } = useLanguage()
 
-  const { id, cardType, groupId } = useParams<{ id: string; cardType: string; groupId: string }>();
-  const { replace } = useHistory();
-  const { search } = useLocation();
-  const { studentInfo, isForbidden, isLoading } = useTeacherStudentCard(Number(id));
-  const searchParams = new URLSearchParams(search);
+  const { id, cardType, groupId } = useParams<{ id: string; cardType: string; groupId: string }>()
+  const { replace } = useHistory()
+  const { search } = useLocation()
+  const { studentInfo, isForbidden, isLoading } = useTeacherStudentCard(Number(id))
+  const searchParams = new URLSearchParams(search)
 
-  if (isLoading) return <Blank />;
+  if (isLoading) return <Blank />
 
   const handleReplace = (path: string) => {
     replace({
       pathname: path,
       search: searchParams.toString(),
-    });
-  };
+    })
+  }
 
   return (
     <>
       <div className="block md:hidden">
         <TopNavbar title={t('student_information', '학생정보')} left={<BackButton />} />
       </div>
-      <div className="col-span-6 h-screen-4 md:col-span-6 md:h-screen 2xl:col-span-4">
+      <div className="h-screen-4 col-span-6 md:col-span-6 md:h-screen 2xl:col-span-4">
         {isForbidden ? (
           <div className="relative h-full bg-gray-50">
             <div className="bg-gray relative h-full w-auto p-4">
@@ -191,5 +191,5 @@ export function StudentCardDetailPage() {
         )}
       </div>
     </>
-  );
+  )
 }

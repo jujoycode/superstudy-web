@@ -1,61 +1,61 @@
-import clsx from 'clsx';
-import { uniqBy } from 'lodash';
-import { useEffect, useState } from 'react';
-import { CoachMark } from 'react-coach-mark';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { ReactComponent as Close } from 'src/assets/svg/close.svg';
-import { ChatRoomList } from 'src/components/chat/ChatRoomList';
-import { BackButton, Blank, Divider, Label, Section, Select, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Checkbox } from 'src/components/common/Checkbox';
-import { Guide, useCoachMark } from 'src/components/common/CoachMark';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { TextInput } from 'src/components/common/TextInput';
-import { Icon } from 'src/components/common/icons';
-import SolidSVGIcon from 'src/components/icon/SolidSVGIcon';
-import { useTeacherChatRoomList } from 'src/container/teacher-chat-room-list';
-import { MergedGroupType, useTeacherChatUserList } from 'src/container/teacher-chat-user-list';
-import { GroupType, ResponseGroupDto, Role } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { Routes } from 'src/routes';
-import { meState, toastState } from 'src/store';
-import { MenuType, UserDatas } from 'src/types';
-import { exportCSVToExcel } from 'src/util/download-excel';
-import { Validator } from 'src/util/validator';
-import * as XLSX from 'xlsx';
-import { ChatDetailPage } from './ChatDetailPage';
-import { ChatSMSPage } from './ChatSMSPage';
+import clsx from 'clsx'
+import { uniqBy } from 'lodash'
+import { useEffect, useState } from 'react'
+import { CoachMark } from 'react-coach-mark'
+import { useHistory, useLocation } from 'react-router-dom'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { ReactComponent as Close } from '@/asset/svg/close.svg'
+import { ChatRoomList } from '@/legacy/components/chat/ChatRoomList'
+import { BackButton, Blank, Divider, Label, Section, Select, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Guide, useCoachMark } from '@/legacy/components/common/CoachMark'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { Icon } from '@/legacy/components/common/icons'
+import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
+import { useTeacherChatRoomList } from 'src/container/teacher-chat-room-list'
+import { MergedGroupType, useTeacherChatUserList } from 'src/container/teacher-chat-user-list'
+import { GroupType, ResponseGroupDto, Role } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { Routes } from 'src/routes'
+import { meState, toastState } from 'src/store'
+import { MenuType, UserDatas } from 'src/types'
+import { exportCSVToExcel } from '@/legacy/util/download-excel'
+import { Validator } from '@/legacy/util/validator'
+import * as XLSX from 'xlsx'
+import { ChatDetailPage } from './ChatDetailPage'
+import { ChatSMSPage } from './ChatSMSPage'
 
-const headers = ['id', '이름', '전화번호', '문구1', '문구2', '문구3'];
+const headers = ['id', '이름', '전화번호', '문구1', '문구2', '문구3']
 
 interface ChatListPageProps {
-  groupData?: ResponseGroupDto;
+  groupData?: ResponseGroupDto
 }
 
 export function ChatListPage({ groupData }: ChatListPageProps) {
-  const { push } = useHistory();
+  const { push } = useHistory()
 
-  const meRecoil = useRecoilValue(meState);
+  const meRecoil = useRecoilValue(meState)
 
-  const pathname = useLocation().pathname;
-  const [chatRoomId, setChatRoomId] = useState('');
-  const pathRoomId = pathname.replace('/teacher/chat', '').replace('/', '');
-  const [mobileSmsSendView, setMobileSmsSendView] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [isDragIn, setDragIn] = useState(false);
+  const pathname = useLocation().pathname
+  const [chatRoomId, setChatRoomId] = useState('')
+  const pathRoomId = pathname.replace('/teacher/chat', '').replace('/', '')
+  const [mobileSmsSendView, setMobileSmsSendView] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [isDragIn, setDragIn] = useState(false)
 
-  const setToastMsg = useSetRecoilState(toastState);
+  const setToastMsg = useSetRecoilState(toastState)
 
-  const [selectedMenu, setSelectedMenu] = useState<MenuType>(MenuType.List);
-  const [, setStudentName] = useState('');
-  const [_studentName, set_studentName] = useState('');
+  const [selectedMenu, setSelectedMenu] = useState<MenuType>(MenuType.List)
+  const [, setStudentName] = useState('')
+  const [_studentName, set_studentName] = useState('')
 
-  const [content, setContent] = useState(groupData ? groupData.name : '');
+  const [content, setContent] = useState(groupData ? groupData.name : '')
 
-  const [nameInput, setNameInput] = useState('');
-  const [phoneInput, setPhoneInput] = useState('');
-  const { t } = useLanguage();
+  const [nameInput, setNameInput] = useState('')
+  const [phoneInput, setPhoneInput] = useState('')
+  const { t } = useLanguage()
 
   const {
     allGroups,
@@ -68,32 +68,32 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
     selectedUserDatas,
     //setKeyword,
     reSearch,
-  } = useTeacherChatUserList(selectedMenu);
+  } = useTeacherChatUserList(selectedMenu)
 
-  const everyGroup = uniqBy(allGroups.concat(lectureGroups), 'id');
+  const everyGroup = uniqBy(allGroups.concat(lectureGroups), 'id')
 
-  const [selectedGroupType, setSelectedGroupType] = useState<GroupType | 'LECTURE'>();
+  const [selectedGroupType, setSelectedGroupType] = useState<GroupType | 'LECTURE'>()
 
-  const { selectedUsers, setSelectedUsers, createNewRoom, refetchRoomList } = useTeacherChatRoomList();
+  const { selectedUsers, setSelectedUsers, createNewRoom, refetchRoomList } = useTeacherChatRoomList()
 
   useEffect(() => {
-    refetchRoomList();
-    setChatRoomId(pathRoomId);
-  }, [pathRoomId]);
+    refetchRoomList()
+    setChatRoomId(pathRoomId)
+  }, [pathRoomId])
 
-  const userIds = selectedUsers.map((el) => el.id);
+  const userIds = selectedUsers.map((el) => el.id)
 
   const getTitle = (ud: UserDatas) => {
     if (ud.role === '') {
-      return '직접입력 : ' + ud.name + ' ' + ud.title;
+      return '직접입력 : ' + ud.name + ' ' + ud.title
     } else if (ud.role === Role.USER) {
-      return '학생 : ' + ud.klass + ' ' + ud.studNum + '번 ' + ud.name;
+      return '학생 : ' + ud.klass + ' ' + ud.studNum + '번 ' + ud.name
     } else if (ud.role === Role.PARENT) {
-      return '보호자 : ' + ud.klass;
+      return '보호자 : ' + ud.klass
     } else {
-      return ud.klass ? '선생님 : ' + ud.klass : '선생님';
+      return ud.klass ? '선생님 : ' + ud.klass : '선생님'
     }
-  };
+  }
 
   const coachList: Array<Guide> = [
     {
@@ -120,8 +120,8 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
     //     </div>
     //   ),
     // },
-  ];
-  const { coach, refs } = useCoachMark('sms', coachList);
+  ]
+  const { coach, refs } = useCoachMark('sms', coachList)
 
   async function downloadAsExcel() {
     const content =
@@ -133,7 +133,7 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
       '\n' +
       selectedUsers
         .sort((a: UserDatas, b: UserDatas) => {
-          return a?.name < b?.name ? -1 : 1;
+          return a?.name < b?.name ? -1 : 1
         })
         .map((item) =>
           [
@@ -145,65 +145,65 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
             item.userText3,
           ].join(),
         )
-        .join('\n');
-    exportCSVToExcel(content, 'SMS수신자등록양식');
+        .join('\n')
+    exportCSVToExcel(content, 'SMS수신자등록양식')
   }
 
   const handleFileUpload = (file: File) => {
-    const reader = new FileReader();
+    const reader = new FileReader()
 
     reader.onload = (e) => {
-      if (!e.target) return;
-      const wb = XLSX.read(e.target.result);
-      const wsname = wb.SheetNames[0];
+      if (!e.target) return
+      const wb = XLSX.read(e.target.result)
+      const wsname = wb.SheetNames[0]
       const data = XLSX.utils.sheet_to_json(wb.Sheets[wsname], {
         header: 1,
         defval: '',
-      });
+      })
 
-      const fileHeaders = data[4];
+      const fileHeaders = data[4]
       if (!Array.isArray(fileHeaders) || !areHeadersMatching(fileHeaders, headers)) {
-        setToastMsg('업로드 양식이 맞지 않습니다.');
+        setToastMsg('업로드 양식이 맞지 않습니다.')
       } else {
-        readExcel(data.slice(5));
+        readExcel(data.slice(5))
       }
 
-      setLoading(false);
-      setDragIn(false);
-    };
-    reader.readAsArrayBuffer(file);
-  };
+      setLoading(false)
+      setDragIn(false)
+    }
+    reader.readAsArrayBuffer(file)
+  }
 
   const areHeadersMatching = (fileHeaders: string[], expectedHeaders: string[]): boolean => {
-    if (fileHeaders.length !== expectedHeaders.length) return false;
-    return fileHeaders.every((header, index) => header.trim() === expectedHeaders[index]);
-  };
+    if (fileHeaders.length !== expectedHeaders.length) return false
+    return fileHeaders.every((header, index) => header.trim() === expectedHeaders[index])
+  }
 
   const readExcel = (data: any[]) => {
-    const readData: any[] = [...selectedUsers];
+    const readData: any[] = [...selectedUsers]
 
     data.map((row: any) => {
-      const filteredArr = Array.from<string>(row).filter((value) => value !== '');
-      const obj: { [key: string]: any } = {};
+      const filteredArr = Array.from<string>(row).filter((value) => value !== '')
+      const obj: { [key: string]: any } = {}
 
       for (let i = 0; i < headers.length; i++) {
-        const key = headers[i];
-        const value = row[i];
-        obj[key] = value;
+        const key = headers[i]
+        const value = row[i]
+        obj[key] = value
       }
 
-      let phoneNum = String(obj['전화번호']).replaceAll('-', '');
+      let phoneNum = String(obj['전화번호']).replaceAll('-', '')
 
-      phoneNum = phoneNum.startsWith('10') ? `0${phoneNum}` : phoneNum;
+      phoneNum = phoneNum.startsWith('10') ? `0${phoneNum}` : phoneNum
 
       const updateItem = readData?.find(
         (el) => el.id === Number(obj['id']) || (el.title !== '' && el.title === phoneNum),
-      );
+      )
 
       if (updateItem) {
-        updateItem.userText1 = obj['문구1'];
-        updateItem.userText2 = obj['문구2'];
-        updateItem.userText3 = obj['문구3'];
+        updateItem.userText1 = obj['문구1']
+        updateItem.userText2 = obj['문구2']
+        updateItem.userText3 = obj['문구3']
       } else {
         // 신규 사용자의 경우 전화번호 유효성 검증
         // 아이디와 이름이 있는 경우에는 신규 사용자가 아니므로 전화번호 유효성 검증x
@@ -219,27 +219,27 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
             userText1: obj['문구1'],
             userText2: obj['문구2'],
             userText3: obj['문구3'],
-          };
+          }
 
-          readData.push(inputUser);
+          readData.push(inputUser)
         } else {
           // 아이디와 이름이 없고 전화번호 유효성 검증 실패
-          setToastMsg('전화번호가 규칙에 맞지않습니다. : ' + phoneNum);
+          setToastMsg('전화번호가 규칙에 맞지않습니다. : ' + phoneNum)
         }
       }
-    });
+    })
 
-    setSelectedUsers(readData);
-  };
+    setSelectedUsers(readData)
+  }
 
   const handleDrop: React.DragEventHandler<HTMLLabelElement> = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    if (loading) return;
-    setLoading(true);
-    const f = e.dataTransfer.files[0];
-    handleFileUpload(f);
-  };
+    e.stopPropagation()
+    e.preventDefault()
+    if (loading) return
+    setLoading(true)
+    const f = e.dataTransfer.files[0]
+    handleFileUpload(f)
+  }
 
   return (
     <>
@@ -261,8 +261,8 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
             <Button.xl
               children={t('chat_list')}
               onClick={() => {
-                setChatRoomId('');
-                setSelectedMenu(MenuType.List);
+                setChatRoomId('')
+                setSelectedMenu(MenuType.List)
               }}
               className={clsx(
                 selectedMenu === MenuType.List ? 'bg-brand-1 text-light_orange' : 'bg-light_orange text-brand-1',
@@ -271,15 +271,15 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
             <Button.xl
               children={t('new_chat')}
               onClick={() => {
-                setSelectedMenu(MenuType.Chat);
-                setSelectedUsers([]);
-                setSelectedUserType(-1);
-                setSelectedGroup(null);
-                setChatRoomId('');
-                setStudentGroups([]);
-                setContent('');
-                set_studentName('');
-                push(`${Routes.teacher.chat}`);
+                setSelectedMenu(MenuType.Chat)
+                setSelectedUsers([])
+                setSelectedUserType(-1)
+                setSelectedGroup(null)
+                setChatRoomId('')
+                setStudentGroups([])
+                setContent('')
+                set_studentName('')
+                push(`${Routes.teacher.chat}`)
               }}
               className={clsx(
                 selectedMenu === MenuType.Chat ? 'bg-brand-1 text-light_orange' : 'bg-light_orange text-brand-1',
@@ -288,15 +288,15 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
             <Button.xl
               children="SMS"
               onClick={() => {
-                setSelectedMenu(MenuType.SMS);
-                setSelectedUsers([]);
-                setSelectedUserType(-1);
-                setSelectedGroup(null);
-                setChatRoomId('');
-                setStudentGroups([]);
-                setContent('');
-                set_studentName('');
-                push(`${Routes.teacher.chat}`);
+                setSelectedMenu(MenuType.SMS)
+                setSelectedUsers([])
+                setSelectedUserType(-1)
+                setSelectedGroup(null)
+                setChatRoomId('')
+                setStudentGroups([])
+                setContent('')
+                set_studentName('')
+                push(`${Routes.teacher.chat}`)
               }}
               className={clsx(
                 selectedMenu === MenuType.SMS ? 'bg-brand-1 text-light_orange' : 'bg-light_orange text-brand-1',
@@ -318,12 +318,12 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                           ref={refs[0]}
                           value={selectedUserType}
                           onChange={(e) => {
-                            setSelectedUserType(Number(e.target.value));
+                            setSelectedUserType(Number(e.target.value))
                             if (e.target.value === '2') {
-                              setSelectedGroup(null);
+                              setSelectedGroup(null)
                             }
 
-                            reSearch(Number(e.target.value), _studentName, selectedGroup?.id);
+                            reSearch(Number(e.target.value), _studentName, selectedGroup?.id)
                           }}
                         >
                           <option value={-1}>{t('group_type')}</option>
@@ -354,8 +354,8 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                             children={t('add')}
                             onClick={() => {
                               if (phoneInput && !Validator.phoneNumberRule(phoneInput)) {
-                                setToastMsg('전화번호가 규칙에 맞지않습니다.');
-                                return;
+                                setToastMsg('전화번호가 규칙에 맞지않습니다.')
+                                return
                               }
 
                               if (!selectedUsers?.find((el) => el.id === Number(phoneInput))) {
@@ -367,9 +367,9 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                                   studNum: -1,
                                   klass: '',
                                   useNokInfo: false,
-                                };
+                                }
 
-                                setSelectedUsers(selectedUsers.concat(inputUser));
+                                setSelectedUsers(selectedUsers.concat(inputUser))
                               }
                             }}
                           />
@@ -381,7 +381,7 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                               value={selectedGroupType}
                               disabled={selectedUserType === 2}
                               onChange={(e) => {
-                                setSelectedGroupType(e.target.value as GroupType);
+                                setSelectedGroupType(e.target.value as GroupType)
                               }}
                             >
                               <option selected disabled value={undefined}>
@@ -398,8 +398,8 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                               onChange={(e) => {
                                 setSelectedGroup(
                                   everyGroup?.find((tg: MergedGroupType) => tg.id === Number(e.target.value)) || null,
-                                );
-                                reSearch(selectedUserType, _studentName, Number(e.target.value));
+                                )
+                                reSearch(selectedUserType, _studentName, Number(e.target.value))
                               }}
                             >
                               <option value={-1}>{t('select_class')}</option>
@@ -414,17 +414,17 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                             </Select.lg>
                           </div>
                           <div className="w-full cursor-pointer text-sm">
-                            <div className="flex items-center space-x-2 pb-2 pt-3">
+                            <div className="flex items-center space-x-2 pt-3 pb-2">
                               <SearchInput
                                 placeholder={`${t('name')}`}
                                 value={_studentName}
                                 onChange={(e) => {
-                                  set_studentName(e.target.value);
-                                  if (e.target.value === '') setStudentName('');
+                                  set_studentName(e.target.value)
+                                  if (e.target.value === '') setStudentName('')
                                 }}
                                 onSearch={() => {
                                   //setKeyword(_studentName);
-                                  reSearch(selectedUserType, _studentName, selectedGroup?.id);
+                                  reSearch(selectedUserType, _studentName, selectedGroup?.id)
                                 }}
                                 className="w-full"
                               />
@@ -432,7 +432,7 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                                 className="cursor-pointer"
                                 onClick={() => {
                                   //setKeyword(_studentName);
-                                  reSearch(selectedUserType, _studentName, selectedGroup?.id);
+                                  reSearch(selectedUserType, _studentName, selectedGroup?.id)
                                 }}
                               />
                             </div>
@@ -452,19 +452,19 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                               )}
                               onDrop={handleDrop}
                               onDragOver={(e) => {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                setDragIn(true);
+                                e.stopPropagation()
+                                e.preventDefault()
+                                setDragIn(true)
                               }}
                               onDragEnter={(e) => {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                setDragIn(true);
+                                e.stopPropagation()
+                                e.preventDefault()
+                                setDragIn(true)
                               }}
                               onDragLeave={(e) => {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                setDragIn(false);
+                                e.stopPropagation()
+                                e.preventDefault()
+                                setDragIn(false)
                               }}
                             >
                               {loading ? '업로드 중...' : '문자 수신자 등록 양식 파일을 선택(드래그)해주세요.'}
@@ -475,14 +475,14 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                               type="file"
                               className="hidden"
                               onChange={(e) => {
-                                const file = e.target.files?.[0];
+                                const file = e.target.files?.[0]
                                 if (file) {
-                                  setDragIn(false);
-                                  setLoading(true);
-                                  handleFileUpload(file);
+                                  setDragIn(false)
+                                  setLoading(true)
+                                  handleFileUpload(file)
                                 }
 
-                                e.target.value = '';
+                                e.target.value = ''
                               }}
                             />
                           </div>
@@ -530,7 +530,7 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                       </div>
 
                       {selectedUserDatas.length > 0 && (
-                        <div className="grid w-full grid-flow-row grid-cols-2 gap-1 px-3 pb-4 pr-4 lg:grid-cols-3 xl:grid-cols-4">
+                        <div className="grid w-full grid-flow-row grid-cols-2 gap-1 px-3 pr-4 pb-4 lg:grid-cols-3 xl:grid-cols-4">
                           {selectedUserDatas?.map((item: UserDatas) => (
                             <div
                               key={item.id}
@@ -540,12 +540,12 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                               }`}
                               onClick={() => {
                                 if (userIds.includes(item.id)) {
-                                  setSelectedUsers(selectedUsers.filter((u) => u.id !== item.id));
+                                  setSelectedUsers(selectedUsers.filter((u) => u.id !== item.id))
                                 } else {
                                   if (selectedMenu === MenuType.Chat || item.phone) {
-                                    setSelectedUsers(selectedUsers.concat(item));
+                                    setSelectedUsers(selectedUsers.concat(item))
                                   } else {
-                                    setToastMsg('전화번호가 없어 수신자로 지정할 수 없습니다.');
+                                    setToastMsg('전화번호가 없어 수신자로 지정할 수 없습니다.')
                                   }
                                 }
                               }}
@@ -575,7 +575,7 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                         {selectedUsers
                           ?.slice()
                           ?.sort((a: UserDatas, b: UserDatas) => {
-                            return a?.name < b?.name ? -1 : 1;
+                            return a?.name < b?.name ? -1 : 1
                           })
                           .map((el) => (
                             <div
@@ -583,7 +583,7 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
                               title={getTitle(el)}
                               onClick={() => setSelectedUsers(selectedUsers.filter((u) => u.id !== el.id))}
                               className={clsx(
-                                'm-1s text-2sm mr-2 mt-2 flex w-max cursor-pointer items-center space-x-2 whitespace-nowrap rounded-full border-2 bg-white px-2.5 py-1.5 font-bold',
+                                'm-1s text-2sm mt-2 mr-2 flex w-max cursor-pointer items-center space-x-2 rounded-full border-2 bg-white px-2.5 py-1.5 font-bold whitespace-nowrap',
                                 el.role === ''
                                   ? 'border-green-400 text-green-400'
                                   : el.role === Role.USER
@@ -704,5 +704,5 @@ export function ChatListPage({ groupData }: ChatListPageProps) {
         </div>
       )}
     </>
-  );
+  )
 }

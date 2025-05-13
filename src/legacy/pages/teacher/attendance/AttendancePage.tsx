@@ -1,23 +1,23 @@
-import { useEffect, useRef, useState } from 'react';
-import { Row } from 'read-excel-file';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { SuperModal } from 'src/components';
-import { BackButton, Blank, Chip, Divider, Section, Select, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { Icon } from 'src/components/common/icons';
-import { TextInput } from 'src/components/common/TextInput';
-import { GroupContainer } from 'src/container/group';
-import { DayOfWeekEnum, useTeacherAttendanceBook1 } from 'src/container/teacher-attendance-book-1';
-import { useAttendanceDownload } from 'src/container/teacher-attendance-download';
-import { useTeacherTimetableDetail } from 'src/container/teacher-timetable-v3-detail';
-import { Attendance, ResponseTimetableV3Dto, Role } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { useModals } from 'src/modals/ModalStack';
-import { StudentModal } from 'src/modals/StudentModal';
-import { languageState, meState, toastState } from 'src/store';
-import { AbsentSave, PeriodSubjectTeacher } from 'src/types';
-import { DateFormat, DateUtil } from 'src/util/date';
-import { getNickName } from 'src/util/status';
+import { useEffect, useRef, useState } from 'react'
+import { Row } from 'read-excel-file'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { SuperModal } from '@/legacy/components'
+import { BackButton, Blank, Chip, Divider, Section, Select, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { Icon } from '@/legacy/components/common/icons'
+import { TextInput } from '@/legacy/components/common/TextInput'
+import { GroupContainer } from 'src/container/group'
+import { DayOfWeekEnum, useTeacherAttendanceBook1 } from 'src/container/teacher-attendance-book-1'
+import { useAttendanceDownload } from 'src/container/teacher-attendance-download'
+import { useTeacherTimetableDetail } from 'src/container/teacher-timetable-v3-detail'
+import { Attendance, ResponseTimetableV3Dto, Role } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { useModals } from 'src/modals/ModalStack'
+import { StudentModal } from 'src/modals/StudentModal'
+import { languageState, meState, toastState } from 'src/store'
+import { AbsentSave, PeriodSubjectTeacher } from 'src/types'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { getNickName } from '@/legacy/util/status'
 import {
   getDayOfSemester,
   getDayOfYear,
@@ -25,64 +25,64 @@ import {
   getThisYear,
   toLocaleDateFormatString,
   weekCount,
-} from 'src/util/time';
+} from '@/legacy/util/time'
 
 type TimeTableInfo = {
-  studentId: string;
-  day: Date;
-  period: number;
-  dayOfWeek: keyof typeof DayOfWeekEnum;
-};
+  studentId: string
+  day: Date
+  period: number
+  dayOfWeek: keyof typeof DayOfWeekEnum
+}
 
 const createNumberArray = (startNumber: number, lastNumber: number) => {
-  if (lastNumber < startNumber) return [];
-  return Array.from({ length: lastNumber - startNumber + 1 }, (_, i) => i + startNumber);
-};
+  if (lastNumber < startNumber) return []
+  return Array.from({ length: lastNumber - startNumber + 1 }, (_, i) => i + startNumber)
+}
 
 const nullSafeValue = (str: string | number | boolean | typeof Date | null | undefined) => {
-  return (str as string) ?? '';
-};
+  return (str as string) ?? ''
+}
 
 const getStudentIdList = (data?: Row[]) => {
-  return data?.map((row) => row[1] as string) || [];
-};
+  return data?.map((row) => row[1] as string) || []
+}
 
 const mergeSubjectAndTeacher = (subject: string, teacher: string) => {
-  const subjects = subject.split(',');
-  const teachers = teacher.split(',');
+  const subjects = subject.split(',')
+  const teachers = teacher.split(',')
 
-  let merged = '';
+  let merged = ''
 
   for (let i = 0; i < subjects.length; i++) {
-    merged += `${nullSafeValue(subjects[i])}-${nullSafeValue(teachers[i])}\n`;
+    merged += `${nullSafeValue(subjects[i])}-${nullSafeValue(teachers[i])}\n`
   }
 
-  return merged;
-};
+  return merged
+}
 
-const subjectAndTeacher: string[] = [];
+const subjectAndTeacher: string[] = []
 
 const getRows = (rowsParam?: Row[]) => {
   if (rowsParam && rowsParam?.length >= 5) {
-    const [row0, row1, rowId, row2, row3, row4, ...restTemp] = rowsParam;
-    const last1 = restTemp[restTemp.length - 2];
-    const last2 = restTemp[restTemp.length - 1];
-    const rest = restTemp.slice(0, -2);
+    const [row0, row1, rowId, row2, row3, row4, ...restTemp] = rowsParam
+    const last1 = restTemp[restTemp.length - 2]
+    const last2 = restTemp[restTemp.length - 1]
+    const rest = restTemp.slice(0, -2)
 
-    subjectAndTeacher.length = 0;
+    subjectAndTeacher.length = 0
 
     if (row1.length > 0 && row2.length > 0 && row1.length === row2.length) {
       for (let i = 2; i < row1.length; i++) {
         if (nullSafeValue(row1[i]) !== '' && nullSafeValue(row2[i]) !== '') {
-          subjectAndTeacher[i] = mergeSubjectAndTeacher(nullSafeValue(row1[i]), nullSafeValue(row2[i]));
+          subjectAndTeacher[i] = mergeSubjectAndTeacher(nullSafeValue(row1[i]), nullSafeValue(row2[i]))
         }
       }
     }
 
-    return { row0, row1, rowId, row2, row3, row4, rest, last1, last2 };
+    return { row0, row1, rowId, row2, row3, row4, rest, last1, last2 }
   }
-  return { row0: [], row1: [], rowId: [], row2: [], row3: [], row4: [], rest: [], last1: [], last2: [] };
-};
+  return { row0: [], row1: [], rowId: [], row2: [], row3: [], row4: [], rest: [], last1: [], last2: [] }
+}
 
 const makeSubjectMap = (
   studentIdList: string[],
@@ -92,33 +92,33 @@ const makeSubjectMap = (
   rest: Row[],
   periodCount: number,
 ): Map<string, Map<number, PeriodSubjectTeacher[]>> => {
-  if (!studentIdList) return new Map();
-  const studentMap = new Map<string, Map<number, PeriodSubjectTeacher[]>>();
+  if (!studentIdList) return new Map()
+  const studentMap = new Map<string, Map<number, PeriodSubjectTeacher[]>>()
 
   studentIdList.forEach((studentId) => {
-    const studentAttendanceList = rest.find((row) => row[1] === studentId);
-    if (!studentAttendanceList) return;
+    const studentAttendanceList = rest.find((row) => row[1] === studentId)
+    if (!studentAttendanceList) return
 
-    const studentSubjectMap = new Map<number, PeriodSubjectTeacher[]>(); // 요일별 과목
+    const studentSubjectMap = new Map<number, PeriodSubjectTeacher[]>() // 요일별 과목
     for (const dayOfWeek of Object.values(DayOfWeekEnum)) {
-      const classByDay: PeriodSubjectTeacher[] = [];
+      const classByDay: PeriodSubjectTeacher[] = []
       for (let i = 0; i < periodCount; i++) {
-        const subject = nullSafeValue(row1[3 + i + dayOfWeek * periodCount]).toString();
-        const teacher = nullSafeValue(row2[3 + i + dayOfWeek * periodCount]).toString();
-        const mark = nullSafeValue(studentAttendanceList[3 + i + dayOfWeek * periodCount]).toString();
+        const subject = nullSafeValue(row1[3 + i + dayOfWeek * periodCount]).toString()
+        const teacher = nullSafeValue(row2[3 + i + dayOfWeek * periodCount]).toString()
+        const mark = nullSafeValue(studentAttendanceList[3 + i + dayOfWeek * periodCount]).toString()
         classByDay.push({
           period: i,
           subject,
           teacher,
           mark,
-        });
+        })
       }
-      studentSubjectMap.set(dayOfWeek, classByDay);
+      studentSubjectMap.set(dayOfWeek, classByDay)
     }
-    studentMap.set(studentId, studentSubjectMap);
-  });
-  return studentMap;
-};
+    studentMap.set(studentId, studentSubjectMap)
+  })
+  return studentMap
+}
 
 const getPreviousContentByPeriod = (
   attendanceAbsentData: Attendance[] | undefined,
@@ -129,17 +129,17 @@ const getPreviousContentByPeriod = (
     return (
       absentData.userId === +studentId &&
       absentData.attendanceDay === DateUtil.formatDate(day.toISOString(), DateFormat['YYYY-MM-DD'])
-    );
-  });
+    )
+  })
   const previousContent = JSON.parse(previousAbsentData?.content || '{ "attendance": [] }') as {
-    attendance: AbsentSave[];
-  };
-  const previousContentByPeriod = new Map<number, AbsentSave>();
+    attendance: AbsentSave[]
+  }
+  const previousContentByPeriod = new Map<number, AbsentSave>()
   previousContent.attendance.forEach((absentSave) => {
-    previousContentByPeriod.set(absentSave.period, absentSave);
-  });
-  return previousContentByPeriod;
-};
+    previousContentByPeriod.set(absentSave.period, absentSave)
+  })
+  return previousContentByPeriod
+}
 
 const getStudentAttendanceByDayOfWeekMobile = (
   rowsParam: Row[] | undefined,
@@ -147,19 +147,19 @@ const getStudentAttendanceByDayOfWeekMobile = (
   selectedDayOfWeek: number,
   classCount: number,
 ) => {
-  const studentData = rowsParam?.find((row) => row[1] === studentNumber);
-  if (!studentData) return [];
+  const studentData = rowsParam?.find((row) => row[1] === studentNumber)
+  if (!studentData) return []
 
   const updatedStudentData = studentData.map((value, index) =>
     subjectAndTeacher.filter((item) => item !== undefined).length < 10 || subjectAndTeacher[index] ? value : '',
-  );
+  )
 
   const dayOfWeekData = updatedStudentData.slice(
     3 + (selectedDayOfWeek - 1) * classCount,
     3 + (selectedDayOfWeek - 1) * classCount + classCount,
-  );
-  return dayOfWeekData;
-};
+  )
+  return dayOfWeekData
+}
 
 const getStudentAttendanceByDayOfWeek = (
   rowsParam: Row[] | undefined,
@@ -167,143 +167,143 @@ const getStudentAttendanceByDayOfWeek = (
   dayOfWeek: keyof typeof DayOfWeekEnum, // 0: 월요일, 1: 화요일, 2: 수요일, 3: 목요일, 4: 금요일, 5: 토요일
   classCount: number,
 ) => {
-  const studentData = rowsParam?.find((row) => row[1] === studentNumber);
-  if (!studentData) return [];
+  const studentData = rowsParam?.find((row) => row[1] === studentNumber)
+  if (!studentData) return []
 
   const updatedStudentData = studentData.map((value, index) =>
     subjectAndTeacher.filter((item) => item !== undefined).length < 8 || subjectAndTeacher[index] ? value : '',
-  );
+  )
 
   const dayOfWeekData = updatedStudentData.slice(
     3 + DayOfWeekEnum[dayOfWeek] * classCount,
     3 + DayOfWeekEnum[dayOfWeek] * classCount + classCount,
-  );
-  return dayOfWeekData;
-};
+  )
+  return dayOfWeekData
+}
 
 const getStudentAttendanceHead = (rowsParam: Row[] | undefined, studentId: string) => {
-  const studentData = rowsParam?.find((row) => row[1] === studentId);
-  if (!studentData) return [];
-  return [studentData[0], studentData[2]];
-};
+  const studentData = rowsParam?.find((row) => row[1] === studentId)
+  if (!studentData) return []
+  return [studentData[0], studentData[2]]
+}
 
 const setCommentColor = (last1: Row, last2: Row) => {
   const specialCommentList = last2.map((value, index) => {
-    if (!value) return [];
-    const requestCommentList = last1[index] ? last1[index].toString().split('\n') : [];
+    if (!value) return []
+    const requestCommentList = last1[index] ? last1[index].toString().split('\n') : []
 
     const requestCommentListEx: string[] = requestCommentList.map((item) => {
-      const parts = item.split(':');
-      return parts[0];
-    });
+      const parts = item.split(':')
+      return parts[0]
+    })
 
-    const commentList = value.toString().split('\n');
+    const commentList = value.toString().split('\n')
     return commentList.map((comment) => {
-      const frontPart = comment.split(':')[0];
-      return { isColored: !requestCommentListEx.includes(frontPart), comment };
-    });
-  });
-  return specialCommentList;
-};
+      const frontPart = comment.split(':')[0]
+      return { isColored: !requestCommentListEx.includes(frontPart), comment }
+    })
+  })
+  return specialCommentList
+}
 
 export function AttendancePage() {
-  const { t } = useLanguage();
-  const { pushModal } = useModals();
-  const me = useRecoilValue(meState);
-  const lastPeriod = me?.school.lastPeriod || 8;
-  const hasSaturdayClass = me?.school.hasSaturdayClass || false;
+  const { t } = useLanguage()
+  const { pushModal } = useModals()
+  const me = useRecoilValue(meState)
+  const lastPeriod = me?.school.lastPeriod || 8
+  const hasSaturdayClass = me?.school.hasSaturdayClass || false
 
-  const language = useRecoilValue(languageState);
-  const year = +getThisYear();
-  const semester = +getThisSemester();
+  const language = useRecoilValue(languageState)
+  const year = +getThisYear()
+  const semester = +getThisSemester()
 
-  const [toastMsg, setToastMsg] = useRecoilState(toastState);
+  const [toastMsg, setToastMsg] = useRecoilState(toastState)
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [absentComment, setAbsentComment] = useState('');
+  const [modalOpen, setModalOpen] = useState(false)
+  const [absentComment, setAbsentComment] = useState('')
 
-  const [selday, setSelday] = useState(new Date());
-  const [selectedDayOfWeek, setSelectedDayOfWeek] = useState(new Date().getDay());
-  const [tselweek, selmonday, seltuesday, selwednesday, selthursday, selfriday, selsaturday] = weekCount(selday);
-  const [absentType1, setAbsentType1] = useState('출석');
-  const [absentType2, setAbsentType2] = useState('출석');
-  const [absentMark, setAbsentMark] = useState('.');
+  const [selday, setSelday] = useState(new Date())
+  const [selectedDayOfWeek, setSelectedDayOfWeek] = useState(new Date().getDay())
+  const [tselweek, selmonday, seltuesday, selwednesday, selthursday, selfriday, selsaturday] = weekCount(selday)
+  const [absentType1, setAbsentType1] = useState('출석')
+  const [absentType2, setAbsentType2] = useState('출석')
+  const [absentMark, setAbsentMark] = useState('.')
 
-  const [lecture, setLecture] = useState<ResponseTimetableV3Dto[] | undefined>();
+  const [lecture, setLecture] = useState<ResponseTimetableV3Dto[] | undefined>()
 
-  const { allKlassGroupsUnique: allKlassGroups, teacherKlubGroups } = GroupContainer.useContext();
+  const { allKlassGroupsUnique: allKlassGroups, teacherKlubGroups } = GroupContainer.useContext()
 
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const scrollRefM = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const scrollRefM = useRef<HTMLDivElement>(null)
 
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isScrolledM, setIsScrolledM] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolledM, setIsScrolledM] = useState(false)
 
-  const [absentInfo, setAbsentInfo] = useState<TimeTableInfo | undefined>();
+  const [absentInfo, setAbsentInfo] = useState<TimeTableInfo | undefined>()
 
   const handleScroll = () => {
     if (scrollRef.current) {
-      setIsScrolled(scrollRef.current.scrollTop !== 0);
+      setIsScrolled(scrollRef.current.scrollTop !== 0)
     }
-  };
+  }
   const handleScrollM = () => {
     if (scrollRefM.current) {
-      setIsScrolledM(scrollRefM.current.scrollTop !== 0);
+      setIsScrolledM(scrollRefM.current.scrollTop !== 0)
     }
-  };
+  }
 
   // 교사 시간표
-  const { teachers, timetableV3Teacher, teacherId, setTeacherId } = useTeacherTimetableDetail('출석부', selday);
+  const { teachers, timetableV3Teacher, teacherId, setTeacherId } = useTeacherTimetableDetail('출석부', selday)
 
   let uniqueTimetableV3Teacher = timetableV3Teacher
     ?.filter((obj, index, self) => index === self.findIndex((t) => t.groupId === obj.groupId))
     ?.sort((a, b) => {
       if (!a.room || !b.room) {
-        return 0;
+        return 0
       }
-      const aData = a.room.match('([0-9]|[0-9][0-9])학년 ([0-9]|[0-9][0-9])반');
-      const bData = b.room.match('([0-9]|[0-9][0-9])학년 ([0-9]|[0-9][0-9])반');
+      const aData = a.room.match('([0-9]|[0-9][0-9])학년 ([0-9]|[0-9][0-9])반')
+      const bData = b.room.match('([0-9]|[0-9][0-9])학년 ([0-9]|[0-9][0-9])반')
 
       if (aData && bData) {
         if (aData?.[1] === bData?.[1]) {
-          return Number(aData?.[2]) - Number(bData?.[2]);
+          return Number(aData?.[2]) - Number(bData?.[2])
         } else {
-          return Number(aData?.[1]) - Number(bData?.[1]);
+          return Number(aData?.[1]) - Number(bData?.[1])
         }
       } else if (a.room > b.room) {
-        return 1; // a를 b보다 뒤로 보냄
+        return 1 // a를 b보다 뒤로 보냄
       } else if (a.room < b.room) {
-        return -1; // a를 b보다 앞으로 보냄
+        return -1 // a를 b보다 앞으로 보냄
       } else {
-        return 0; // 순서를 변경하지 않음
+        return 0 // 순서를 변경하지 않음
       }
-    });
+    })
 
   useEffect(() => {
     if (selectedDayOfWeek === 0) {
-      setSelectedDayOfWeek(1);
+      setSelectedDayOfWeek(1)
     } else if (!hasSaturdayClass && selectedDayOfWeek >= 6) {
-      setSelectedDayOfWeek(5);
+      setSelectedDayOfWeek(5)
     } else if (hasSaturdayClass && selectedDayOfWeek >= 7) {
-      setSelectedDayOfWeek(6);
+      setSelectedDayOfWeek(6)
     }
-  }, [selectedDayOfWeek]);
+  }, [selectedDayOfWeek])
 
-  const [groupId, setSelectedGroupId] = useState(me?.klassGroupId || 0);
+  const [groupId, setSelectedGroupId] = useState(me?.klassGroupId || 0)
   const hasEditPermission = () => {
-    return me?.id === selectedKlass?.homeRoomTeacherId;
-  };
+    return me?.id === selectedKlass?.homeRoomTeacherId
+  }
 
   // 내수업 선택시 출석부에서 내 수업을 하이라이트
   useEffect(() => {
-    setLecture(timetableV3Teacher?.filter((obj) => obj.groupId === groupId));
-  }, [timetableV3Teacher, groupId, selday]);
+    setLecture(timetableV3Teacher?.filter((obj) => obj.groupId === groupId))
+  }, [timetableV3Teacher, groupId, selday])
   const isSelectedLecture = (day: number, time: number) => {
-    return lecture?.find((obj) => obj.time === time && obj.day === day);
-  };
+    return lecture?.find((obj) => obj.time === time && obj.day === day)
+  }
 
   const { downloadStudentNameMatrix, downloadAttendanceBook, loadingAttendanceBookDataSemester } =
-    useAttendanceDownload({ groupId, startDate: selmonday.toISOString() });
+    useAttendanceDownload({ groupId, startDate: selmonday.toISOString() })
 
   const { rows, attendanceAbsentData, handleAbsent, createAttendanceCheck } = useTeacherAttendanceBook1({
     groupId,
@@ -311,63 +311,63 @@ export function AttendancePage() {
     semester: +getDayOfSemester(selday),
     startDate: selmonday.toISOString(),
     endDate: hasSaturdayClass ? selsaturday.toISOString() : selfriday.toISOString(),
-  });
+  })
 
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(false)
   const [editType, setEditType] = useState<{
-    mark: string;
-    type1: string;
-    type2: string;
-    absent: boolean;
+    mark: string
+    type1: string
+    type2: string
+    absent: boolean
   }>({
     mark: '.',
     type1: '',
     type2: '',
     absent: false,
-  });
+  })
 
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false)
 
-  const selectedKlass = allKlassGroups?.find((klass) => klass.id === groupId);
-  const klassName = selectedKlass?.name || '';
-  const teacher = selectedKlass?.homeRoomTeacherName || '선생님';
-  const teacherNickName = getNickName(selectedKlass?.homeRoomTeacherNickName);
+  const selectedKlass = allKlassGroups?.find((klass) => klass.id === groupId)
+  const klassName = selectedKlass?.name || ''
+  const teacher = selectedKlass?.homeRoomTeacherName || '선생님'
+  const teacherNickName = getNickName(selectedKlass?.homeRoomTeacherNickName)
 
-  const { row0, row1, rowId, row2, row3, row4, rest, last1, last2 } = getRows(rows);
-  const studentIdList = getStudentIdList(rest);
-  const studentMap = makeSubjectMap(studentIdList, row1, row2, row3, rest, lastPeriod + 1);
-  const coloredComment = setCommentColor(last1, last2);
+  const { row0, row1, rowId, row2, row3, row4, rest, last1, last2 } = getRows(rows)
+  const studentIdList = getStudentIdList(rest)
+  const studentMap = makeSubjectMap(studentIdList, row1, row2, row3, rest, lastPeriod + 1)
+  const coloredComment = setCommentColor(last1, last2)
 
   const handleDateChange = (offset: number) => {
-    const tempDay = selday;
-    tempDay.setDate(tempDay.getDate() + offset);
-    setSelday(new Date(tempDay));
-  };
+    const tempDay = selday
+    tempDay.setDate(tempDay.getDate() + offset)
+    setSelday(new Date(tempDay))
+  }
 
   const setAbsentReady = (studentId: string, day: Date, period: number, dayOfWeek: keyof typeof DayOfWeekEnum) => {
-    setAbsentInfo({ studentId, day, period, dayOfWeek });
-    setAbsentComment(getAbsentInfoComment(studentId, selmonday, period) || '');
-    setModalOpen(true);
-  };
+    setAbsentInfo({ studentId, day, period, dayOfWeek })
+    setAbsentComment(getAbsentInfoComment(studentId, selmonday, period) || '')
+    setModalOpen(true)
+  }
 
   const setAbsent = (studentId: string, day: Date, period: number, dayOfWeek: keyof typeof DayOfWeekEnum) => {
-    if (!editMode) return;
+    if (!editMode) return
 
     // console.log('setAbsent', { studentId, day, period, dayOfWeek, editMode });
     // 특정 요일의 과목, 선생님, 교시
-    const studentAttendanceByWeek = studentMap.get(studentId);
+    const studentAttendanceByWeek = studentMap.get(studentId)
     // console.log('studentAttendanceByWeek', studentAttendanceByWeek);
-    if (!studentAttendanceByWeek) return;
+    if (!studentAttendanceByWeek) return
 
-    const studentAttendanceByDayOfWeek = studentAttendanceByWeek.get(DayOfWeekEnum[dayOfWeek]);
+    const studentAttendanceByDayOfWeek = studentAttendanceByWeek.get(DayOfWeekEnum[dayOfWeek])
     // console.log('studentAttendanceByDayOfWeek', studentAttendanceByDayOfWeek);
-    if (!studentAttendanceByDayOfWeek) return;
+    if (!studentAttendanceByDayOfWeek) return
 
     // console.log('attendanceAbsentData', attendanceAbsentData);
-    const previousContentByPeriod = getPreviousContentByPeriod(attendanceAbsentData, day, studentId);
+    const previousContentByPeriod = getPreviousContentByPeriod(attendanceAbsentData, day, studentId)
 
     const attendance = studentAttendanceByDayOfWeek.map((periodSubjectTeacher: PeriodSubjectTeacher) => {
-      const previousData = previousContentByPeriod.get(periodSubjectTeacher.period);
+      const previousData = previousContentByPeriod.get(periodSubjectTeacher.period)
       if (
         periodSubjectTeacher.period === period ||
         !editType.absent ||
@@ -386,7 +386,7 @@ export function AttendancePage() {
           absent: editType.absent,
           type1: editType.type1,
           type2: editType.type2,
-        };
+        }
       }
       return {
         subject: previousData?.subject || periodSubjectTeacher.subject,
@@ -399,8 +399,8 @@ export function AttendancePage() {
         absent: previousData?.absent || false,
         type1: previousData?.type1 || '',
         type2: previousData?.type2 || '',
-      };
-    });
+      }
+    })
 
     handleAbsent({
       attendanceDay: toLocaleDateFormatString(day),
@@ -416,125 +416,125 @@ export function AttendancePage() {
       sendNoti: true,
       notiType: 'day',
       period: 0,
-    });
+    })
 
-    return;
-  };
+    return
+  }
 
   const getAbsentInfo = (studentId: string, day: Date, period: number) => {
-    const previousContentByPeriod = getPreviousContentByPeriod(attendanceAbsentData, day, studentId).get(period);
+    const previousContentByPeriod = getPreviousContentByPeriod(attendanceAbsentData, day, studentId).get(period)
 
-    return previousContentByPeriod;
-  };
+    return previousContentByPeriod
+  }
 
   const getAbsentInfoString = (studentId: string, day: Date, period: number) => {
-    const info = getAbsentInfo(studentId, day, period);
+    const info = getAbsentInfo(studentId, day, period)
 
     if (info) {
-      const checker = info?.editor || info?.creator;
-      const checkTime = new Date(info?.edittime || info?.createtime);
+      const checker = info?.editor || info?.creator
+      const checkTime = new Date(info?.edittime || info?.createtime)
       if (isNaN(checkTime.getTime())) {
-        return info?.comment;
+        return info?.comment
       } else {
-        return info?.comment + '/' + checker + '/' + DateUtil.formatDate(checkTime, DateFormat['YYYY-MM-DD HH:mm']);
+        return info?.comment + '/' + checker + '/' + DateUtil.formatDate(checkTime, DateFormat['YYYY-MM-DD HH:mm'])
       }
     } else {
-      return '';
+      return ''
     }
-  };
+  }
 
   const getAbsentInfoComment = (studentId: string, day: Date, period: number) => {
-    const info = getAbsentInfo(studentId, day, period);
+    const info = getAbsentInfo(studentId, day, period)
 
-    return info?.comment;
-  };
+    return info?.comment
+  }
 
   useEffect(() => {
-    let mark = '.';
-    let type1: string = absentType1;
-    let type2: string = absentType2;
-    let absent = true;
+    let mark = '.'
+    let type1: string = absentType1
+    let type2: string = absentType2
+    let absent = true
     switch (absentType2 + absentType1) {
       case '출석출석':
-        type1 = '';
-        type2 = '';
-        mark = '.';
-        absent = false;
-        break;
+        type1 = ''
+        type2 = ''
+        mark = '.'
+        absent = false
+        break
       case '질병결석':
-        mark = '♡';
-        break;
+        mark = '♡'
+        break
       case '미인정결석':
-        mark = '♥';
-        break;
+        mark = '♥'
+        break
       case '기타결석':
-        mark = '▲';
-        break;
+        mark = '▲'
+        break
       case '인정결석':
-        mark = '△';
-        break;
+        mark = '△'
+        break
 
       case '질병지각':
-        mark = '＃';
-        break;
+        mark = '＃'
+        break
       case '미인정지각':
-        mark = 'Ｘ';
-        break;
+        mark = 'Ｘ'
+        break
       case '기타지각':
-        mark = '≠';
-        break;
+        mark = '≠'
+        break
       case '인정지각':
-        mark = '◁';
-        break;
+        mark = '◁'
+        break
 
       case '질병조퇴':
-        mark = '＠';
-        break;
+        mark = '＠'
+        break
       case '미인정조퇴':
-        mark = '◎';
-        break;
+        mark = '◎'
+        break
       case '기타조퇴':
-        mark = '∞';
-        break;
+        mark = '∞'
+        break
       case '인정조퇴':
-        mark = '▷';
-        break;
+        mark = '▷'
+        break
 
       case '질병결과':
-        mark = '☆';
-        break;
+        mark = '☆'
+        break
       case '미인정결과':
-        mark = '◇';
-        break;
+        mark = '◇'
+        break
       case '기타결과':
-        mark = '＝';
-        break;
+        mark = '＝'
+        break
       case '인정결과':
-        mark = '▽';
-        break;
+        mark = '▽'
+        break
 
       case '질병기타':
-        mark = 'v';
-        break;
+        mark = 'v'
+        break
       case '미인정기타':
-        mark = 'v';
-        break;
+        mark = 'v'
+        break
       case '기타기타':
-        mark = 'v';
-        break;
+        mark = 'v'
+        break
       case '인정기타':
-        mark = 'v';
-        break;
+        mark = 'v'
+        break
     }
-    setAbsentMark(mark);
-    setEditType({ mark, type1, type2, absent });
-  }, [absentType1, absentType2]);
+    setAbsentMark(mark)
+    setEditType({ mark, type1, type2, absent })
+  }, [absentType1, absentType2])
 
   const permittedGroups = allKlassGroups.filter((item) => {
     if (me?.role === Role.TEACHER) {
-      return item.id === me.klassGroupId;
+      return item.id === me.klassGroupId
     } else if (me?.role === Role.HEAD || me?.role === Role.PRE_HEAD) {
-      return item.name?.startsWith(me?.headNumber.toString());
+      return item.name?.startsWith(me?.headNumber.toString())
     } else if (
       me?.role === Role.HEAD_PRINCIPAL ||
       me?.role === Role.PRE_PRINCIPAL ||
@@ -542,37 +542,37 @@ export function AttendancePage() {
       me?.role === Role.VICE_PRINCIPAL ||
       me?.role === Role.ADMIN
     ) {
-      return true;
+      return true
     } else {
-      return false;
+      return false
     }
-  });
+  })
 
   const attendenceCheck = (lectureId: string, idx: number, myLecture: boolean) => {
     if (hasEditPermission() || myLecture) {
-      const dayKorean = nullSafeValue(row0[0]) + ' ' + nullSafeValue(row0[idx - ((idx - 3) % (lastPeriod + 1)) + 1]);
-      const parts = dayKorean.match(/(\d+)[년월일]/g);
+      const dayKorean = nullSafeValue(row0[0]) + ' ' + nullSafeValue(row0[idx - ((idx - 3) % (lastPeriod + 1)) + 1])
+      const parts = dayKorean.match(/(\d+)[년월일]/g)
 
       if (parts && parts.length === 3) {
-        const month = parts[1].slice(0, -1).padStart(2, '0'); // '월'을 제거하고, 2자리가 되도록 앞에 '0'을 추가
-        const year = +month >= 3 ? parts[0].slice(0, -1) : +parts[0].slice(0, -1) + 1; // '년'을 제거
-        const day = parts[2].slice(0, -1).padStart(2, '0'); // '일'을 제거하고, 2자리가 되도록 앞에 '0'을 추가
+        const month = parts[1].slice(0, -1).padStart(2, '0') // '월'을 제거하고, 2자리가 되도록 앞에 '0'을 추가
+        const year = +month >= 3 ? parts[0].slice(0, -1) : +parts[0].slice(0, -1) + 1 // '년'을 제거
+        const day = parts[2].slice(0, -1).padStart(2, '0') // '일'을 제거하고, 2자리가 되도록 앞에 '0'을 추가
 
-        const formatDate = `${year}-${month}-${day}`;
+        const formatDate = `${year}-${month}-${day}`
 
-        const result = confirm(`${year}년 ${month}월 ${day}일 ${row4[idx]}교시의 출석 확인을 하셨습니까? `);
+        const result = confirm(`${year}년 ${month}월 ${day}일 ${row4[idx]}교시의 출석 확인을 하셨습니까? `)
         if (result) {
-          createAttendanceCheck(+lectureId, formatDate);
+          createAttendanceCheck(+lectureId, formatDate)
         }
       } else {
-        setToastMsg('출석확인 저장을 실패했습니다.');
+        setToastMsg('출석확인 저장을 실패했습니다.')
       }
     } else {
-      setToastMsg('출석확인 권한이 없습니다.');
+      setToastMsg('출석확인 권한이 없습니다.')
     }
-  };
+  }
 
-  const handleSubmitButton = () => {};
+  const handleSubmitButton = () => {}
 
   return (
     <div className="col-span-6">
@@ -649,7 +649,7 @@ export function AttendancePage() {
           <div className="flex flex-row px-6 py-2 text-center">
             <div
               onClick={() => setSelectedDayOfWeek(1)}
-              className={`w-full cursor-pointer rounded-bl-xl rounded-tl-xl border border-white px-1 ${
+              className={`w-full cursor-pointer rounded-tl-xl rounded-bl-xl border border-white px-1 ${
                 selectedDayOfWeek === 1 ? 'bg-orange-1 text-red-500' : 'bg-gray-300'
               } `}
             >
@@ -682,7 +682,7 @@ export function AttendancePage() {
             <div
               onClick={() => setSelectedDayOfWeek(5)}
               className={`w-full cursor-pointer ${
-                hasSaturdayClass ? '' : 'rounded-br-xl rounded-tr-xl'
+                hasSaturdayClass ? '' : 'rounded-tr-xl rounded-br-xl'
               } border border-white px-1 ${selectedDayOfWeek === 5 ? 'bg-lightpurple-1 text-red-500' : 'bg-gray-300'} `}
             >
               금
@@ -691,7 +691,7 @@ export function AttendancePage() {
             {hasSaturdayClass && (
               <div
                 onClick={() => setSelectedDayOfWeek(6)}
-                className={`w-full cursor-pointer rounded-br-xl rounded-tr-xl border border-white px-1 ${
+                className={`w-full cursor-pointer rounded-tr-xl rounded-br-xl border border-white px-1 ${
                   selectedDayOfWeek === 6 ? 'bg-orange-1 text-red-500' : 'bg-gray-300'
                 } `}
               >
@@ -712,7 +712,7 @@ export function AttendancePage() {
                         <tr className={'h-2'}>
                           <td
                             colSpan={3}
-                            className="w-30 border border-grey-6 bg-gray-50 py-2 text-center"
+                            className="border-grey-6 w-30 border bg-gray-50 py-2 text-center"
                           >{`${nullSafeValue(row1[2])}`}</td>
                           {createNumberArray(
                             3 + (selectedDayOfWeek - 1) * (lastPeriod + 1),
@@ -720,7 +720,7 @@ export function AttendancePage() {
                           ).map((i, index) => (
                             <td
                               key={i}
-                              className={`break-all border border-grey-6 text-sm ${
+                              className={`border-grey-6 border text-sm break-all ${
                                 selectedDayOfWeek === 1
                                   ? 'bg-orange-1'
                                   : selectedDayOfWeek === 2
@@ -746,7 +746,7 @@ export function AttendancePage() {
                         <tr className={'h-2'}>
                           <td
                             colSpan={3}
-                            className="w-30 border border-grey-6 bg-gray-50 py-2 text-center"
+                            className="border-grey-6 w-30 border bg-gray-50 py-2 text-center"
                           >{`${nullSafeValue(row2[2])}`}</td>
                           {createNumberArray(
                             3 + (selectedDayOfWeek - 1) * (lastPeriod + 1),
@@ -754,7 +754,7 @@ export function AttendancePage() {
                           ).map((i, index) => (
                             <td
                               key={i}
-                              className={`break-all border border-grey-6 text-sm ${
+                              className={`border-grey-6 border text-sm break-all ${
                                 selectedDayOfWeek === 1
                                   ? 'bg-orange-1'
                                   : selectedDayOfWeek === 2
@@ -780,7 +780,7 @@ export function AttendancePage() {
                         <tr className={'h-2'}>
                           <td
                             colSpan={3}
-                            className="w-30 border border-grey-6 bg-gray-50 py-2 text-center"
+                            className="border-grey-6 w-30 border bg-gray-50 py-2 text-center"
                           >{`${nullSafeValue(row3[2])}`}</td>
                           {createNumberArray(
                             3 + (selectedDayOfWeek - 1) * (lastPeriod + 1),
@@ -788,7 +788,7 @@ export function AttendancePage() {
                           ).map((i, index) => (
                             <td
                               key={i}
-                              className={`break-all border border-grey-6 text-sm ${
+                              className={`border-grey-6 border text-sm break-all ${
                                 selectedDayOfWeek === 1
                                   ? 'bg-orange-1'
                                   : selectedDayOfWeek === 2
@@ -820,10 +820,10 @@ export function AttendancePage() {
 
                     {/* 번호 이름 row */}
                     <tr className={'h-2'}>
-                      <td className="w-15 border border-grey-6 bg-gray-50 text-center">{`${nullSafeValue(
+                      <td className="border-grey-6 w-15 border bg-gray-50 text-center">{`${nullSafeValue(
                         row4[0],
                       )}`}</td>
-                      <td colSpan={2} className="w-15 border border-grey-6 bg-gray-50 text-center">{`${nullSafeValue(
+                      <td colSpan={2} className="border-grey-6 w-15 border bg-gray-50 text-center">{`${nullSafeValue(
                         row4[2],
                       )}`}</td>
                       {createNumberArray(
@@ -832,7 +832,7 @@ export function AttendancePage() {
                       ).map((i) => (
                         <td
                           key={i}
-                          className={`break-all border border-grey-6 text-sm ${
+                          className={`border-grey-6 border text-sm break-all ${
                             selectedDayOfWeek === 1
                               ? 'bg-orange-1'
                               : selectedDayOfWeek === 2
@@ -860,12 +860,12 @@ export function AttendancePage() {
                               <td
                                 colSpan={index + 1}
                                 key={index}
-                                className="w-15 cursor-pointer border border-grey-6 text-sm"
+                                className="border-grey-6 w-15 cursor-pointer border text-sm"
                                 onClick={() => pushModal(<StudentModal id={Number(studentId)} />)}
                               >
                                 {nullSafeValue(cell)}
                               </td>
-                            );
+                            )
                           })}
                           {getStudentAttendanceByDayOfWeekMobile(
                             rest,
@@ -876,7 +876,7 @@ export function AttendancePage() {
                             return (
                               <td
                                 key={index}
-                                className={`border border-grey-6 bg-gray-50 text-center ${
+                                className={`border-grey-6 border bg-gray-50 text-center ${
                                   selectedDayOfWeek === 1
                                     ? 'bg-orange-3'
                                     : selectedDayOfWeek === 2
@@ -892,7 +892,7 @@ export function AttendancePage() {
                                               : 'bg-brand-1'
                                 } ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                                 onClick={() => {
-                                  if (!editMode) return;
+                                  if (!editMode) return
                                   selectedDayOfWeek === 1
                                     ? setAbsentReady(studentId, selmonday, index, 'monday')
                                     : selectedDayOfWeek === 2
@@ -903,26 +903,26 @@ export function AttendancePage() {
                                           ? setAbsentReady(studentId, selthursday, index, 'thursday')
                                           : selectedDayOfWeek === 5
                                             ? setAbsentReady(studentId, selfriday, index, 'friday')
-                                            : setAbsentReady(studentId, selsaturday, index, 'saturday');
+                                            : setAbsentReady(studentId, selsaturday, index, 'saturday')
                                 }}
                               >
                                 {nullSafeValue(cell)}
                               </td>
-                            );
+                            )
                           })}
                         </tr>
-                      );
+                      )
                     })}
 
                     {/* 출결신청 */}
                     <tr className="h-2">
                       <td
                         colSpan={3}
-                        className="w-20 border border-grey-6 bg-gray-50 py-2 text-center"
+                        className="border-grey-6 w-20 border bg-gray-50 py-2 text-center"
                       >{`${nullSafeValue(last1[2])}`}</td>
                       <td
                         colSpan={lastPeriod + 1}
-                        className="whitespace-pre-line border border-grey-6 text-left text-xs"
+                        className="border-grey-6 border text-left text-xs whitespace-pre-line"
                       >{`${nullSafeValue(last1[3 + (selectedDayOfWeek - 1) * (lastPeriod + 1)])}`}</td>
                     </tr>
 
@@ -930,15 +930,15 @@ export function AttendancePage() {
                     <tr className="h-2">
                       <td
                         colSpan={3}
-                        className="w-30 border border-grey-6 bg-gray-50 py-2 text-center"
+                        className="border-grey-6 w-30 border bg-gray-50 py-2 text-center"
                       >{`${nullSafeValue(last2[2])}`}</td>
                       <td
                         colSpan={lastPeriod + 1}
-                        className="whitespace-pre-line border border-grey-6 text-left text-xs"
+                        className="border-grey-6 border text-left text-xs whitespace-pre-line"
                       >
                         {coloredComment[3 + (selectedDayOfWeek - 1) * (lastPeriod + 1)]?.map(
                           ({ isColored, comment }, selectedDayOfWeek) => {
-                            return <p className={`${isColored ? 'text-red-500' : ''}`}>{comment}</p>;
+                            return <p className={`${isColored ? 'text-red-500' : ''}`}>{comment}</p>
                           },
                         )}
                       </td>
@@ -968,8 +968,8 @@ export function AttendancePage() {
                   onChange={(e) => {
                     e.target.value === '출석'
                       ? setAbsentType1('출석')
-                      : absentType1 === '출석' && setAbsentType1('결석');
-                    setAbsentType2(e.target.value);
+                      : absentType1 === '출석' && setAbsentType1('결석')
+                    setAbsentType2(e.target.value)
                   }}
                 >
                   {['출석', '인정', '질병', '미인정', '기타'].map((subject: string) => (
@@ -984,8 +984,8 @@ export function AttendancePage() {
                   onChange={(e) => {
                     e.target.value === '출석'
                       ? setAbsentType2('출석')
-                      : absentType2 === '출석' && setAbsentType2('인정');
-                    setAbsentType1(e.target.value);
+                      : absentType2 === '출석' && setAbsentType2('인정')
+                    setAbsentType1(e.target.value)
                   }}
                 >
                   {['출석', '결석', '지각', '조퇴', '결과', '기타'].map((subject: string) => (
@@ -1012,7 +1012,7 @@ export function AttendancePage() {
                     klassName &&
                     '(' + klassName + ` - ${t('homeroom_teacher', '담임선생님')} : ` + teacher + teacherNickName + ')'}
                 </h1>
-                <div className="mb-5 text-sm text-grey-5">*{t('attendance_check_and_document_comparison')}</div>
+                <div className="text-grey-5 mb-5 text-sm">*{t('attendance_check_and_document_comparison')}</div>
               </div>
               <div className="flex space-x-2">
                 <Select.lg
@@ -1073,9 +1073,9 @@ export function AttendancePage() {
             <Button.lg
               children="Excel"
               onClick={() => {
-                setLoading(true);
-                downloadAttendanceBook();
-                setLoading(false);
+                setLoading(true)
+                downloadAttendanceBook()
+                setLoading(false)
               }}
               className="filled-green w-30"
             />
@@ -1119,9 +1119,9 @@ export function AttendancePage() {
             <Button.lg
               children={t('roster', '명렬표')}
               onClick={() => {
-                setLoading(true);
-                downloadStudentNameMatrix();
-                setLoading(false);
+                setLoading(true)
+                downloadStudentNameMatrix()
+                setLoading(false)
               }}
               className="filled-green w-30"
             />
@@ -1141,39 +1141,39 @@ export function AttendancePage() {
               <table className="mb-16 w-full table-fixed border-collapse rounded-lg bg-white text-center">
                 <thead className="sticky top-0 bg-black">
                   <tr className="z-900 h-2 bg-black">
-                    <td colSpan={3} className="w-30 border border-grey-6 bg-gray-50 py-2 text-center"></td>
+                    <td colSpan={3} className="border-grey-6 w-30 border bg-gray-50 py-2 text-center"></td>
                     <td
                       colSpan={lastPeriod + 1}
-                      className="w-1/5 border border-grey-6 bg-orange-2 py-2"
+                      className="border-grey-6 bg-orange-2 w-1/5 border py-2"
                     >{`${nullSafeValue(row0[4])} ${nullSafeValue(row0[3])}`}</td>
                     <td
                       colSpan={lastPeriod + 1}
-                      className="w-1/5 border border-grey-6 bg-pink-2 py-2"
+                      className="border-grey-6 bg-pink-2 w-1/5 border py-2"
                     >{`${nullSafeValue(row0[4 + (lastPeriod + 1) * 1])} ${nullSafeValue(
                       row0[3 + (lastPeriod + 1) * 1],
                     )}`}</td>
                     <td
                       colSpan={lastPeriod + 1}
-                      className="w-1/5 border border-grey-6 bg-lightblue-2 py-2"
+                      className="border-grey-6 bg-lightblue-2 w-1/5 border py-2"
                     >{`${nullSafeValue(row0[4 + (lastPeriod + 1) * 2])} ${nullSafeValue(
                       row0[3 + (lastPeriod + 1) * 2],
                     )}`}</td>
                     <td
                       colSpan={lastPeriod + 1}
-                      className="w-1/5 border border-grey-6 bg-lightgreen-2 py-2"
+                      className="border-grey-6 bg-lightgreen-2 w-1/5 border py-2"
                     >{`${nullSafeValue(row0[4 + (lastPeriod + 1) * 3])} ${nullSafeValue(
                       row0[3 + (lastPeriod + 1) * 3],
                     )}`}</td>
                     <td
                       colSpan={lastPeriod + 1}
-                      className="w-1/5 border border-grey-6 bg-lightpurple-2 py-2"
+                      className="border-grey-6 bg-lightpurple-2 w-1/5 border py-2"
                     >{`${nullSafeValue(row0[4 + (lastPeriod + 1) * 4])} ${nullSafeValue(
                       row0[3 + (lastPeriod + 1) * 4],
                     )}`}</td>
                     {hasSaturdayClass && (
                       <td
                         colSpan={lastPeriod + 1}
-                        className="w-1/5 border border-grey-6 bg-orange-2 py-2"
+                        className="border-grey-6 bg-orange-2 w-1/5 border py-2"
                       >{`${nullSafeValue(row0[4 + (lastPeriod + 1) * 5])} ${nullSafeValue(
                         row0[3 + (lastPeriod + 1) * 5],
                       )}`}</td>
@@ -1184,12 +1184,12 @@ export function AttendancePage() {
                       <tr className={'h-2 bg-black'}>
                         <td
                           colSpan={3}
-                          className="w-30 border border-grey-6 bg-gray-50 py-2 text-center"
+                          className="border-grey-6 w-30 border bg-gray-50 py-2 text-center"
                         >{`${nullSafeValue(row1[2])}`}</td>
                         {createNumberArray(3, 2 + (lastPeriod + 1) * 1).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-orange-1 text-sm ${isSelectedLecture(1, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-orange-1 cursor-pointer border text-sm break-all ${isSelectedLecture(1, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >
                             {nullSafeValue(row1[i]).substring(0, 2)}
@@ -1198,7 +1198,7 @@ export function AttendancePage() {
                         {createNumberArray(3 + (lastPeriod + 1) * 1, 2 + (lastPeriod + 1) * 2).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-pink-1 text-sm ${isSelectedLecture(2, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-pink-1 cursor-pointer border text-sm break-all ${isSelectedLecture(2, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >
                             {nullSafeValue(row1[i]).substring(0, 2)}
@@ -1207,7 +1207,7 @@ export function AttendancePage() {
                         {createNumberArray(3 + (lastPeriod + 1) * 2, 2 + (lastPeriod + 1) * 3).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-lightblue-1 text-sm ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-lightblue-1 cursor-pointer border text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >
                             {nullSafeValue(row1[i]).substring(0, 2)}
@@ -1216,7 +1216,7 @@ export function AttendancePage() {
                         {createNumberArray(3 + (lastPeriod + 1) * 3, 2 + (lastPeriod + 1) * 4).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-lightgreen-1 text-sm ${isSelectedLecture(4, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-lightgreen-1 cursor-pointer border text-sm break-all ${isSelectedLecture(4, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >
                             {nullSafeValue(row1[i]).substring(0, 2)}
@@ -1225,7 +1225,7 @@ export function AttendancePage() {
                         {createNumberArray(3 + (lastPeriod + 1) * 4, 2 + (lastPeriod + 1) * 5).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-lightpurple-1 text-sm ${isSelectedLecture(5, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-lightpurple-1 cursor-pointer border text-sm break-all ${isSelectedLecture(5, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >
                             {nullSafeValue(row1[i]).substring(0, 2)}
@@ -1236,7 +1236,7 @@ export function AttendancePage() {
                           createNumberArray(3 + (lastPeriod + 1) * 5, 2 + (lastPeriod + 1) * 6).map((i, index) => (
                             <td
                               key={i}
-                              className={`cursor-pointer break-all border border-grey-6 bg-orange-1 text-sm ${isSelectedLecture(6, index) && 'bg-red-500 text-white'} `}
+                              className={`border-grey-6 bg-orange-1 cursor-pointer border text-sm break-all ${isSelectedLecture(6, index) && 'bg-red-500 text-white'} `}
                               onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                             >
                               {nullSafeValue(row1[i]).substring(0, 2)}
@@ -1246,40 +1246,40 @@ export function AttendancePage() {
                       <tr className={'h-2'}>
                         <td
                           colSpan={3}
-                          className="w-30 border border-grey-6 bg-gray-50 py-2 text-center"
+                          className="border-grey-6 w-30 border bg-gray-50 py-2 text-center"
                         >{`${nullSafeValue(row2[2])}`}</td>
                         {createNumberArray(3, 2 + (lastPeriod + 1) * 1).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-orange-1 text-sm ${isSelectedLecture(1, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-orange-1 cursor-pointer border text-sm break-all ${isSelectedLecture(1, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >{`${nullSafeValue(row2[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 1, 2 + (lastPeriod + 1) * 2).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-pink-1 text-sm ${isSelectedLecture(2, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-pink-1 cursor-pointer border text-sm break-all ${isSelectedLecture(2, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >{`${nullSafeValue(row2[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 2, 2 + (lastPeriod + 1) * 3).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-lightblue-1 text-sm ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-lightblue-1 cursor-pointer border text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >{`${nullSafeValue(row2[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 3, 2 + (lastPeriod + 1) * 4).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-lightgreen-1 text-sm ${isSelectedLecture(4, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-lightgreen-1 cursor-pointer border text-sm break-all ${isSelectedLecture(4, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >{`${nullSafeValue(row2[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 4, 2 + (lastPeriod + 1) * 5).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-lightpurple-1 text-sm ${isSelectedLecture(5, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-lightpurple-1 cursor-pointer border text-sm break-all ${isSelectedLecture(5, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >{`${nullSafeValue(row2[i])}`}</td>
                         ))}
@@ -1288,7 +1288,7 @@ export function AttendancePage() {
                           createNumberArray(3 + (lastPeriod + 1) * 5, 2 + (lastPeriod + 1) * 6).map((i, index) => (
                             <td
                               key={i}
-                              className={`cursor-pointer break-all border border-grey-6 bg-orange-1 text-sm ${isSelectedLecture(6, index) && 'bg-red-500 text-white'} `}
+                              className={`border-grey-6 bg-orange-1 cursor-pointer border text-sm break-all ${isSelectedLecture(6, index) && 'bg-red-500 text-white'} `}
                               onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                             >{`${nullSafeValue(row2[i])}`}</td>
                           ))}
@@ -1297,40 +1297,40 @@ export function AttendancePage() {
                       <tr className={'h-2'}>
                         <td
                           colSpan={3}
-                          className="w-30 border border-grey-6 bg-gray-50 py-2 text-center"
+                          className="border-grey-6 w-30 border bg-gray-50 py-2 text-center"
                         >{`${nullSafeValue(row3[2])}`}</td>
                         {createNumberArray(3, 2 + (lastPeriod + 1) * 1).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-orange-1 text-sm ${isSelectedLecture(1, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-orange-1 cursor-pointer border text-sm break-all ${isSelectedLecture(1, index) && 'bg-red-500 text-white'} `}
                             onClick={() => attendenceCheck(nullSafeValue(rowId[i]), i, !!isSelectedLecture(1, index))}
                           >{`${nullSafeValue(row2[i]) === '' ? '' : nullSafeValue(row3[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 1, 2 + (lastPeriod + 1) * 2).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-pink-1 text-sm ${isSelectedLecture(2, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-pink-1 cursor-pointer border text-sm break-all ${isSelectedLecture(2, index) && 'bg-red-500 text-white'} `}
                             onClick={() => attendenceCheck(nullSafeValue(rowId[i]), i, !!isSelectedLecture(2, index))}
                           >{`${nullSafeValue(row2[i]) === '' ? '' : nullSafeValue(row3[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 2, 2 + (lastPeriod + 1) * 3).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-lightblue-1 text-sm ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-lightblue-1 cursor-pointer border text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
                             onClick={() => attendenceCheck(nullSafeValue(rowId[i]), i, !!isSelectedLecture(3, index))}
                           >{`${nullSafeValue(row2[i]) === '' ? '' : nullSafeValue(row3[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 3, 2 + (lastPeriod + 1) * 4).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-lightgreen-1 text-sm ${isSelectedLecture(4, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-lightgreen-1 cursor-pointer border text-sm break-all ${isSelectedLecture(4, index) && 'bg-red-500 text-white'} `}
                             onClick={() => attendenceCheck(nullSafeValue(rowId[i]), i, !!isSelectedLecture(4, index))}
                           >{`${nullSafeValue(row2[i]) === '' ? '' : nullSafeValue(row3[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 4, 2 + (lastPeriod + 1) * 5).map((i, index) => (
                           <td
                             key={i}
-                            className={`cursor-pointer break-all border border-grey-6 bg-lightpurple-1 text-sm ${isSelectedLecture(5, index) && 'bg-red-500 text-white'} `}
+                            className={`border-grey-6 bg-lightpurple-1 cursor-pointer border text-sm break-all ${isSelectedLecture(5, index) && 'bg-red-500 text-white'} `}
                             onClick={() => attendenceCheck(nullSafeValue(rowId[i]), i, !!isSelectedLecture(5, index))}
                           >{`${nullSafeValue(row2[i]) === '' ? '' : nullSafeValue(row3[i])}`}</td>
                         ))}
@@ -1339,7 +1339,7 @@ export function AttendancePage() {
                           createNumberArray(3 + (lastPeriod + 1) * 5, 2 + (lastPeriod + 1) * 6).map((i, index) => (
                             <td
                               key={i}
-                              className={`cursor-pointer break-all border border-grey-6 bg-orange-1 text-sm ${isSelectedLecture(6, index) && 'bg-red-500 text-white'} `}
+                              className={`border-grey-6 bg-orange-1 cursor-pointer border text-sm break-all ${isSelectedLecture(6, index) && 'bg-red-500 text-white'} `}
                               onClick={() => attendenceCheck(nullSafeValue(rowId[i]), i, !!isSelectedLecture(6, index))}
                             >{`${nullSafeValue(row2[i]) === '' ? '' : nullSafeValue(row3[i])}`}</td>
                           ))}
@@ -1349,38 +1349,38 @@ export function AttendancePage() {
 
                   {/* 번호 이름 row */}
                   <tr className={'z-100 h-2'}>
-                    <td className="border border-grey-6 bg-gray-50 text-center">{`${nullSafeValue(row4[0])}`}</td>
-                    <td colSpan={2} className="border border-grey-6 bg-gray-50 text-center">{`${nullSafeValue(
+                    <td className="border-grey-6 border bg-gray-50 text-center">{`${nullSafeValue(row4[0])}`}</td>
+                    <td colSpan={2} className="border-grey-6 border bg-gray-50 text-center">{`${nullSafeValue(
                       row4[2],
                     )}`}</td>
                     {createNumberArray(3, 2 + (lastPeriod + 1) * 1).map((i) => (
-                      <td key={i} className="break-all border border-grey-6 bg-orange-1 text-sm">{`${nullSafeValue(
+                      <td key={i} className="border-grey-6 bg-orange-1 border text-sm break-all">{`${nullSafeValue(
                         row4[i],
                       )}`}</td>
                     ))}
                     {createNumberArray(3 + (lastPeriod + 1) * 1, 2 + (lastPeriod + 1) * 2).map((i) => (
-                      <td key={i} className="break-all border border-grey-6 bg-pink-1 text-sm">{`${nullSafeValue(
+                      <td key={i} className="border-grey-6 bg-pink-1 border text-sm break-all">{`${nullSafeValue(
                         row4[i],
                       )}`}</td>
                     ))}
                     {createNumberArray(3 + (lastPeriod + 1) * 2, 2 + (lastPeriod + 1) * 3).map((i) => (
-                      <td key={i} className="break-all border border-grey-6 bg-lightblue-1 text-sm">{`${nullSafeValue(
+                      <td key={i} className="border-grey-6 bg-lightblue-1 border text-sm break-all">{`${nullSafeValue(
                         row4[i],
                       )}`}</td>
                     ))}
                     {createNumberArray(3 + (lastPeriod + 1) * 3, 2 + (lastPeriod + 1) * 4).map((i) => (
-                      <td key={i} className="break-all border border-grey-6 bg-lightgreen-1 text-sm">{`${nullSafeValue(
+                      <td key={i} className="border-grey-6 bg-lightgreen-1 border text-sm break-all">{`${nullSafeValue(
                         row4[i],
                       )}`}</td>
                     ))}
                     {createNumberArray(3 + (lastPeriod + 1) * 4, 2 + (lastPeriod + 1) * 5).map((i) => (
-                      <td key={i} className="break-all border border-grey-6 bg-lightpurple-1 text-sm">{`${nullSafeValue(
+                      <td key={i} className="border-grey-6 bg-lightpurple-1 border text-sm break-all">{`${nullSafeValue(
                         row4[i],
                       )}`}</td>
                     ))}
                     {hasSaturdayClass &&
                       createNumberArray(3 + (lastPeriod + 1) * 5, 2 + (lastPeriod + 1) * 6).map((i) => (
-                        <td key={i} className="break-all border border-grey-6 bg-orange-1 text-sm">{`${nullSafeValue(
+                        <td key={i} className="border-grey-6 bg-orange-1 border text-sm break-all">{`${nullSafeValue(
                           row4[i],
                         )}`}</td>
                       ))}
@@ -1395,7 +1395,7 @@ export function AttendancePage() {
                             <td
                               colSpan={index + 1}
                               key={index}
-                              className={`border border-grey-6 ${index === 1 ? 'text-left' : 'text-center'} cursor-pointer text-sm`}
+                              className={`border-grey-6 border ${index === 1 ? 'text-left' : 'text-center'} cursor-pointer text-sm`}
                               onClick={() => pushModal(<StudentModal id={Number(studentId)} />)}
                             >
                               {nullSafeValue(cell)}
@@ -1403,7 +1403,7 @@ export function AttendancePage() {
                                 {nullSafeValue(cell)}
                               </Tooltip> */}
                             </td>
-                          );
+                          )
                         })}
                         {/* 월요일 */}
                         {getStudentAttendanceByDayOfWeek(rest, studentId, 'monday', lastPeriod + 1).map(
@@ -1412,17 +1412,17 @@ export function AttendancePage() {
                               <td
                                 key={index}
                                 onClick={() => {
-                                  if (!editMode) return;
-                                  setAbsentReady(studentId, selmonday, index, 'monday');
+                                  if (!editMode) return
+                                  setAbsentReady(studentId, selmonday, index, 'monday')
                                 }}
-                                className={`border border-grey-6 bg-gray-50 bg-orange-3 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
+                                className={`border-grey-6 bg-orange-3 border bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                               >
                                 {nullSafeValue(cell)}
                                 {/* <Tooltip value={getAbsentInfoString(studentId, selmonday, index) || ''} placement={'bottom'}>
                                   {nullSafeValue(cell)}
                                 </Tooltip> */}
                               </td>
-                            );
+                            )
                           },
                         )}
                         {/* 화요일 */}
@@ -1432,14 +1432,14 @@ export function AttendancePage() {
                               <td
                                 key={index}
                                 onClick={() => {
-                                  if (!editMode) return;
-                                  setAbsentReady(studentId, seltuesday, index, 'tuesday');
+                                  if (!editMode) return
+                                  setAbsentReady(studentId, seltuesday, index, 'tuesday')
                                 }}
-                                className={`border border-grey-6 bg-gray-50 bg-pink-3 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
+                                className={`border-grey-6 bg-pink-3 border bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                               >
                                 {nullSafeValue(cell)}
                               </td>
-                            );
+                            )
                           },
                         )}
                         {/* 수요일 */}
@@ -1449,14 +1449,14 @@ export function AttendancePage() {
                               <td
                                 key={index}
                                 onClick={() => {
-                                  if (!editMode) return;
-                                  setAbsentReady(studentId, selwednesday, index, 'wednesday');
+                                  if (!editMode) return
+                                  setAbsentReady(studentId, selwednesday, index, 'wednesday')
                                 }}
-                                className={`border border-grey-6 bg-gray-50 bg-lightblue-3 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
+                                className={`border-grey-6 bg-lightblue-3 border bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                               >
                                 {nullSafeValue(cell)}
                               </td>
-                            );
+                            )
                           },
                         )}
                         {/* 목요일 */}
@@ -1466,14 +1466,14 @@ export function AttendancePage() {
                               <td
                                 key={index}
                                 onClick={() => {
-                                  if (!editMode) return;
-                                  setAbsentReady(studentId, selthursday, index, 'thursday');
+                                  if (!editMode) return
+                                  setAbsentReady(studentId, selthursday, index, 'thursday')
                                 }}
-                                className={`border border-grey-6 bg-gray-50 bg-lightgreen-3 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
+                                className={`border-grey-6 bg-lightgreen-3 border bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                               >
                                 {nullSafeValue(cell)}
                               </td>
-                            );
+                            )
                           },
                         )}
                         {/* 금요일 */}
@@ -1483,17 +1483,17 @@ export function AttendancePage() {
                               <td
                                 key={index}
                                 onClick={() => {
-                                  if (!editMode) return;
-                                  setAbsentReady(studentId, selfriday, index, 'friday');
+                                  if (!editMode) return
+                                  setAbsentReady(studentId, selfriday, index, 'friday')
                                 }}
-                                className={`border border-grey-6 bg-gray-50 bg-lightpurple-3 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
+                                className={`border-grey-6 bg-lightpurple-3 border bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                               >
                                 {nullSafeValue(cell)}
                                 {/* <Tooltip value={getAbsentInfoString(studentId, selfriday, index) || ''} placement={'bottom'}>
                                   {nullSafeValue(cell)}
                                 </Tooltip> */}
                               </td>
-                            );
+                            )
                           },
                         )}
                         {/* 토요일 */}
@@ -1504,25 +1504,25 @@ export function AttendancePage() {
                                 <td
                                   key={index}
                                   onClick={() => {
-                                    if (!editMode) return;
-                                    setAbsentReady(studentId, selsaturday, index, 'saturday');
+                                    if (!editMode) return
+                                    setAbsentReady(studentId, selsaturday, index, 'saturday')
                                   }}
-                                  className={`border border-grey-6 bg-gray-50 bg-orange-3 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
+                                  className={`border-grey-6 bg-orange-3 border bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                                 >
                                   {nullSafeValue(cell)}
                                 </td>
-                              );
+                              )
                             },
                           )}
                       </tr>
-                    );
+                    )
                   })}
 
                   {/* 출결신청 */}
                   <tr className="h-2">
                     <td
                       colSpan={3}
-                      className="w-30 border border-grey-6 bg-gray-50 py-2 text-center"
+                      className="border-grey-6 w-30 border bg-gray-50 py-2 text-center"
                     >{`${nullSafeValue(last1[2])}`}</td>
                     {Array(hasSaturdayClass ? 6 : 5)
                       .fill(1)
@@ -1530,7 +1530,7 @@ export function AttendancePage() {
                         <td
                           key={index}
                           colSpan={lastPeriod + 1}
-                          className="whitespace-pre-line border border-grey-6 text-left text-xs"
+                          className="border-grey-6 border text-left text-xs whitespace-pre-line"
                         >{`${nullSafeValue(last1[3 + index * (lastPeriod + 1)])}`}</td>
                       ))}
                   </tr>
@@ -1539,7 +1539,7 @@ export function AttendancePage() {
                   <tr className="h-2">
                     <td
                       colSpan={3}
-                      className="w-30 border border-grey-6 bg-gray-50 py-2 text-center"
+                      className="border-grey-6 w-30 border bg-gray-50 py-2 text-center"
                     >{`${nullSafeValue(last2[2])}`}</td>
                     {Array(hasSaturdayClass ? 6 : 5)
                       .fill(1)
@@ -1549,14 +1549,14 @@ export function AttendancePage() {
                             <td
                               key={index}
                               colSpan={lastPeriod + 1}
-                              className="whitespace-pre-line border border-grey-6 text-left text-xs"
+                              className="border-grey-6 border text-left text-xs whitespace-pre-line"
                             >
                               {coloredComment[3 + index * (lastPeriod + 1)].map(({ isColored, comment }, index) => {
                                 return (
                                   <p key={index} className={`${isColored ? 'text-red-500' : ''}`}>
                                     {comment}
                                   </p>
-                                );
+                                )
                               })}
                             </td>
                           )}
@@ -1568,7 +1568,7 @@ export function AttendancePage() {
             )}
 
             {hasEditPermission() && !editMode ? (
-              <div className="mb-64 mt-6 flex flex-col items-center justify-center">
+              <div className="mt-6 mb-64 flex flex-col items-center justify-center">
                 <Button.lg children="수정하기" onClick={() => setEditMode(true)} className="filled-primary" />
               </div>
             ) : (
@@ -1584,7 +1584,7 @@ export function AttendancePage() {
                 >
                   출석
                 </div>
-                <div className="space-x-2 space-y-2">
+                <div className="space-y-2 space-x-2">
                   <Chip
                     children="♡질병결석"
                     onClick={() => setEditType({ mark: '♡', type1: '결석', type2: '질병', absent: true })}
@@ -1711,7 +1711,7 @@ export function AttendancePage() {
                 </div>
                 <div
                   onClick={() => setEditMode(false)}
-                  className="mt-2 grid w-30 cursor-pointer place-items-center rounded-lg bg-brand-1 text-center align-middle text-white"
+                  className="bg-brand-1 mt-2 grid w-30 cursor-pointer place-items-center rounded-lg text-center align-middle text-white"
                 >
                   닫기
                 </div>
@@ -1724,7 +1724,7 @@ export function AttendancePage() {
       <SuperModal
         modalOpen={modalOpen}
         setModalClose={() => {
-          setModalOpen(false);
+          setModalOpen(false)
         }}
         className="w-max"
       >
@@ -1737,8 +1737,8 @@ export function AttendancePage() {
             children="확인"
             onClick={() => {
               if (absentInfo) {
-                setAbsent(absentInfo?.studentId, absentInfo?.day, absentInfo?.period, absentInfo?.dayOfWeek);
-                setModalOpen(false);
+                setAbsent(absentInfo?.studentId, absentInfo?.day, absentInfo?.period, absentInfo?.dayOfWeek)
+                setModalOpen(false)
               }
             }}
             className="filled-primary"
@@ -1746,5 +1746,5 @@ export function AttendancePage() {
         </Section>
       </SuperModal>
     </div>
-  );
+  )
 }

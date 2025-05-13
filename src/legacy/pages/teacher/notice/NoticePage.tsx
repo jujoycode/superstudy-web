@@ -1,37 +1,37 @@
-import { range } from 'lodash';
-import { useEffect, useState } from 'react';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { ErrorBlank } from 'src/components';
-import { BackButton, Blank, Chip, HorizontalScrollView, Select, TopNavbar } from 'src/components/common';
-import { ButtonV2 } from 'src/components/common/ButtonV2';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { Tabs } from 'src/components/common/Tabs';
-import { Icon } from 'src/components/common/icons';
-import { NoticeCard } from 'src/components/notice/NoticeCard';
-import { useCodeByCategoryName } from 'src/container/category';
-import { TeacherNoticeContainer } from 'src/container/teacher-notice';
-import { Category, Code, Notice } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { isUpdateNoticeState, meState } from 'src/store';
-import { TabType } from 'src/types';
-import { getThisYear } from 'src/util/time';
-import { BoardMobilePage } from '../board/BoardMobilePage';
-import { NewsletterMobilePage } from '../newsletter/NewsletterMobilePage';
-import { NoticeAddPage } from './NoticeAddPage';
-import { NoticeDetailPage } from './NoticeDetailPage';
-import { NoticeMobilePage } from './NoticeMobilePage';
+import { range } from 'lodash'
+import { useEffect, useState } from 'react'
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { ErrorBlank } from '@/legacy/components'
+import { BackButton, Blank, Chip, HorizontalScrollView, Select, TopNavbar } from '@/legacy/components/common'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Tabs } from '@/legacy/components/common/Tabs'
+import { Icon } from '@/legacy/components/common/icons'
+import { NoticeCard } from '@/legacy/components/notice/NoticeCard'
+import { useCodeByCategoryName } from 'src/container/category'
+import { TeacherNoticeContainer } from 'src/container/teacher-notice'
+import { Category, Code, Notice } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { isUpdateNoticeState, meState } from 'src/store'
+import { TabType } from 'src/types'
+import { getThisYear } from '@/legacy/util/time'
+import { BoardMobilePage } from '../board/BoardMobilePage'
+import { NewsletterMobilePage } from '../newsletter/NewsletterMobilePage'
+import { NoticeAddPage } from './NoticeAddPage'
+import { NoticeDetailPage } from './NoticeDetailPage'
+import { NoticeMobilePage } from './NoticeMobilePage'
 
 function NoticePageView() {
-  const { pathname } = useLocation();
-  const { push } = useHistory();
-  const { t } = useLanguage();
+  const { pathname } = useLocation()
+  const { push } = useHistory()
+  const { t } = useLanguage()
 
-  const setIsUpdateNotice = useSetRecoilState(isUpdateNoticeState);
-  const meRecoil = useRecoilValue(meState);
+  const setIsUpdateNotice = useSetRecoilState(isUpdateNoticeState)
+  const meRecoil = useRecoilValue(meState)
 
-  const filters = [t('title'), t('author')];
-  const thisYear = +getThisYear();
+  const filters = [t('title'), t('author')]
+  const thisYear = +getThisYear()
 
   const {
     filteredNoticeList,
@@ -42,34 +42,34 @@ function NoticePageView() {
     setCategory,
     year,
     setYear,
-  } = TeacherNoticeContainer.useContext();
-  const { categoryData } = useCodeByCategoryName(Category.noticetype);
+  } = TeacherNoticeContainer.useContext()
+  const { categoryData } = useCodeByCategoryName(Category.noticetype)
 
-  const [tabType, setTabType] = useState(TabType.NOTICE);
-  const [filter, setFilter] = useState(filters[0]);
-  const [searchWriter, setSearchWriter] = useState('');
-  const [searchTitle, setSearchTitle] = useState('');
+  const [tabType, setTabType] = useState(TabType.NOTICE)
+  const [filter, setFilter] = useState(filters[0])
+  const [searchWriter, setSearchWriter] = useState('')
+  const [searchTitle, setSearchTitle] = useState('')
 
   const handleFilterChange = (e: any) => {
-    setSearchWriter('');
-    setSearchTitle('');
-    setFilter(e.target.value);
-  };
+    setSearchWriter('')
+    setSearchTitle('')
+    setFilter(e.target.value)
+  }
 
   useEffect(() => {
-    const getLocal = localStorage.getItem('tabType');
+    const getLocal = localStorage.getItem('tabType')
     if (!getLocal) {
-      return;
+      return
     } else if (getLocal === 'BOARD') {
-      setTabType(TabType.BOARD);
+      setTabType(TabType.BOARD)
     } else if (getLocal === 'NOTICE') {
-      setTabType(TabType.NOTICE);
+      setTabType(TabType.NOTICE)
     } else if (getLocal === 'NEWSLETTER') {
-      setTabType(TabType.NEWSLETTER);
+      setTabType(TabType.NEWSLETTER)
     }
-  }, [tabType]);
+  }, [tabType])
 
-  const isDetail = !pathname.endsWith('/teacher/notice');
+  const isDetail = !pathname.endsWith('/teacher/notice')
 
   return (
     <>
@@ -87,8 +87,8 @@ function NoticePageView() {
               children={tab.name}
               selected={tabType === tab.type}
               onClick={() => {
-                setTabType(tab.type);
-                localStorage.setItem('tabType', tab.type);
+                setTabType(tab.type)
+                localStorage.setItem('tabType', tab.type)
               }}
             />
           ))}
@@ -111,9 +111,9 @@ function NoticePageView() {
             children={t('add')}
             onClick={() => {
               if (meRecoil?.canEditNotice) {
-                push('/teacher/notice/add');
+                push('/teacher/notice/add')
               } else {
-                alert('관리자에게 작성 권한을 요청해 주세요');
+                alert('관리자에게 작성 권한을 요청해 주세요')
               }
             }}
           />
@@ -136,7 +136,7 @@ function NoticePageView() {
             />
           ))}
         </HorizontalScrollView>
-        <div className="flex items-center space-x-2 px-6 pb-6 pt-3">
+        <div className="flex items-center space-x-2 px-6 pt-3 pb-6">
           <Select.lg value={year} onChange={(e) => setYear(Number(e.target.value))}>
             <option defaultChecked hidden>
               {t('year', '년도')}
@@ -202,7 +202,7 @@ function NoticePageView() {
         </Switch>
       </div>
     </>
-  );
+  )
 }
 
 export function NoticePage() {
@@ -210,5 +210,5 @@ export function NoticePage() {
     <TeacherNoticeContainer.ContextProvider>
       <NoticePageView />
     </TeacherNoticeContainer.ContextProvider>
-  );
+  )
 }

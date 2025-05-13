@@ -1,47 +1,47 @@
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from 'src/components';
-import { BackButton, Blank, Section, TopNavbar } from 'src/components/common';
-import { Button } from 'src/components/common/Button';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { Icon } from 'src/components/common/icons';
-import { OutingCard } from 'src/components/outing/OutingCard';
-import { OutingsExcelDownloadView } from 'src/components/outing/OutingExcelDownloadView';
-import { GroupContainer } from 'src/container/group';
-import { useTeacherOutgoing } from 'src/container/teacher-outgoing';
-import { UserContainer } from 'src/container/user';
-import { ResponseCreateOutingDto, Role } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { compareOutings } from 'src/util/document';
-import { PermissionUtil } from 'src/util/permission';
-import { getCurrentSchoolYear, isValidDate, makeDateToString } from 'src/util/time';
-import { OutingAddPage } from './OutingAddPage';
-import { OutingDetailPage } from './OutingDetailPage';
+import clsx from 'clsx'
+import { useEffect, useState } from 'react'
+import { Route, Switch } from 'react-router'
+import { Link, useHistory, useLocation } from 'react-router-dom'
+import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
+import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
+import { Button } from '@/legacy/components/common/Button'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Icon } from '@/legacy/components/common/icons'
+import { OutingCard } from '@/legacy/components/outing/OutingCard'
+import { OutingsExcelDownloadView } from '@/legacy/components/outing/OutingExcelDownloadView'
+import { GroupContainer } from 'src/container/group'
+import { useTeacherOutgoing } from 'src/container/teacher-outgoing'
+import { UserContainer } from 'src/container/user'
+import { ResponseCreateOutingDto, Role } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { compareOutings } from '@/legacy/util/document'
+import { PermissionUtil } from '@/legacy/util/permission'
+import { getCurrentSchoolYear, isValidDate, makeDateToString } from '@/legacy/util/time'
+import { OutingAddPage } from './OutingAddPage'
+import { OutingDetailPage } from './OutingDetailPage'
 
 export function OutingPage() {
-  const { replace } = useHistory();
-  const { me } = UserContainer.useContext();
-  const { t, currentLang } = useLanguage();
-  const userRole = me?.role;
+  const { replace } = useHistory()
+  const { me } = UserContainer.useContext()
+  const { t, currentLang } = useLanguage()
+  const userRole = me?.role
 
-  const [agreeAll, setAgreeAll] = useState(false);
-  const [_studentName, set_studentName] = useState('');
+  const [agreeAll, setAgreeAll] = useState(false)
+  const [_studentName, set_studentName] = useState('')
 
-  const [frontSortType, setFrontSortType] = useState('');
-  const [sortOrder, setSortOrder] = useState<'ASC' | 'DESC'>('ASC');
-  const { allKlassGroups: groups } = GroupContainer.useContext();
-  const schoolYear = getCurrentSchoolYear();
+  const [frontSortType, setFrontSortType] = useState('')
+  const [sortOrder, setSortOrder] = useState<'ASC' | 'DESC'>('ASC')
+  const { allKlassGroups: groups } = GroupContainer.useContext()
+  const schoolYear = getCurrentSchoolYear()
 
   const toggleSort = (sortType: string) => {
     if (frontSortType === sortType) {
-      setSortOrder(sortOrder === 'ASC' ? 'DESC' : 'ASC');
+      setSortOrder(sortOrder === 'ASC' ? 'DESC' : 'ASC')
     } else {
-      setFrontSortType(sortType);
-      setSortOrder('ASC');
+      setFrontSortType(sortType)
+      setSortOrder('ASC')
     }
-  };
+  }
 
   const {
     signature: { canvasRef, sigPadData, clearSignature },
@@ -69,35 +69,35 @@ export function OutingPage() {
     setSelectedGroup,
     approveOuting,
     approveOutings,
-  } = useTeacherOutgoing();
+  } = useTeacherOutgoing()
 
-  const { pathname } = useLocation();
-  const isDetail = !pathname.endsWith('/teacher/outing');
+  const { pathname } = useLocation()
+  const isDetail = !pathname.endsWith('/teacher/outing')
 
   const searchAlert = () => {
     const confirmed = window.confirm(
       '승인 전 상태의 내용만 일괄 승인이 가능합니다. \n승인 전 상태인 건들을 조회하시겠습니까?',
-    );
+    )
     if (confirmed) {
-      setFilter(filters[1]);
+      setFilter(filters[1])
     }
-  };
+  }
 
   useEffect(() => {
     if (open) {
       if (stamp) {
-        setStampMode(true);
+        setStampMode(true)
       } else {
-        setStampMode(false);
+        setStampMode(false)
       }
     }
-  }, [open]);
+  }, [open])
 
   return (
     <>
       {error && <ErrorBlank />}
       {isLoading && <Blank reversed />}
-      <div className={`col-span-3 h-screen-6 md:h-screen ${isDetail ? 'hidden' : 'block'} md:block`}>
+      <div className={`h-screen-6 col-span-3 md:h-screen ${isDetail ? 'hidden' : 'block'} md:block`}>
         <div className="md:hidden">
           <TopNavbar title="확인증" left={<BackButton />} />
         </div>
@@ -109,10 +109,10 @@ export function OutingPage() {
               <Link
                 children={t('write', '작성하기')}
                 to="/teacher/outing/add"
-                className="rounded-md bg-light_orange px-4 py-2 text-sm text-brand-1 hover:bg-brand-1 hover:text-light_orange focus:outline-none"
+                className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-none"
               />
             </div>
-            <div className="mb-5 text-sm text-grey-5">
+            <div className="text-grey-5 mb-5 text-sm">
               ※ {t('early_leave_pass_outpass_certificate', '조퇴증,외출증,확인증')}
               {currentLang === 'ko' ? ' / ' : <br />}
               {t('documents_before_early_leave_outpass_certificate', '조퇴,외출,확인 전 작성 서류')}
@@ -126,36 +126,36 @@ export function OutingPage() {
                 value={makeDateToString(new Date(startDate))}
                 min={schoolYear.start}
                 max={schoolYear.end}
-                className="h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
+                className="focus:border-brand-1 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
                 onChange={(e) => {
-                  const selectedDate = new Date(e.target.value);
+                  const selectedDate = new Date(e.target.value)
                   if (!isValidDate(selectedDate)) {
-                    return;
+                    return
                   }
                   if (endDate && selectedDate > new Date(endDate)) {
-                    setEndDate(e.target.value);
+                    setEndDate(e.target.value)
                   }
-                  setStartDate(e.target.value);
-                  setPage(1);
+                  setStartDate(e.target.value)
+                  setPage(1)
                 }}
               />
               <div className="px-4 text-xl font-bold">~</div>
               <input
-                className="h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:border-brand-1 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
+                className="focus:border-brand-1 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
                 type="date"
                 value={makeDateToString(new Date(endDate))}
                 min={schoolYear.start}
                 max={schoolYear.end}
                 onChange={(e) => {
-                  const selectedDate = new Date(e.target.value);
+                  const selectedDate = new Date(e.target.value)
                   if (!isValidDate(selectedDate)) {
-                    return;
+                    return
                   }
                   if (startDate && selectedDate < new Date(startDate)) {
-                    setStartDate(e.target.value);
+                    setStartDate(e.target.value)
                   }
-                  setEndDate(e.target.value);
-                  setPage(1);
+                  setEndDate(e.target.value)
+                  setPage(1)
                 }}
               />
             </div>
@@ -210,9 +210,9 @@ export function OutingPage() {
                   placeholder={t('search_by_name', '이름 검색')}
                   value={_studentName}
                   onChange={(e) => {
-                    set_studentName(e.target.value);
-                    if (e.target.value === '') replace(`/teacher/outing`);
-                    setPage(1);
+                    set_studentName(e.target.value)
+                    if (e.target.value === '') replace(`/teacher/outing`)
+                    setPage(1)
                   }}
                   onSearch={() => _studentName && replace(`/teacher/outing?username=${_studentName}`)}
                   className="w-full"
@@ -222,7 +222,7 @@ export function OutingPage() {
                   onClick={() => {
                     _studentName.trim() === ''
                       ? alert('텍스트 내용을 입력해주세요.')
-                      : replace(`/teacher/outing?username=${_studentName.trim()}`);
+                      : replace(`/teacher/outing?username=${_studentName.trim()}`)
                   }}
                 />
               </div>
@@ -243,13 +243,13 @@ export function OutingPage() {
               onClick={() => {
                 if (filter.value === 'BEFORE_APPROVAL') {
                   if (outings && outings.total > 0) {
-                    setOpen(true);
-                    setAgreeAll(true);
+                    setOpen(true)
+                    setAgreeAll(true)
                   } else {
-                    alert('승인할 서류가 없습니다.');
+                    alert('승인할 서류가 없습니다.')
                   }
                 } else {
-                  searchAlert();
+                  searchAlert()
                 }
               }}
               className="filled-primary"
@@ -359,9 +359,9 @@ export function OutingPage() {
       <SuperModal
         modalOpen={open}
         setModalClose={() => {
-          setStampMode(false);
-          clearSignature();
-          setOpen(false);
+          setStampMode(false)
+          clearSignature()
+          setOpen(false)
         }}
         className="w-max"
         ablePropragation
@@ -385,7 +385,7 @@ export function OutingPage() {
                   style={{ backgroundImage: `url("${stampImgUrl}")` }}
                 ></div>
               ) : (
-                <div className="absolute inset-0 z-10 overflow-hidden rounded bg-grey-4">
+                <div className="bg-grey-4 absolute inset-0 z-10 overflow-hidden rounded">
                   <div className="flex h-full w-full items-center justify-center">
                     <div className="min-w-max text-center">도장을 등록해주세요.</div>
                   </div>
@@ -397,7 +397,7 @@ export function OutingPage() {
           </div>
           <div className="grid grid-cols-2 gap-2">
             <label>
-              <div className="flex h-13 w-full cursor-pointer items-center justify-center rounded-lg border border-brandblue-1 bg-white px-6 font-bold text-current">
+              <div className="border-brandblue-1 flex h-13 w-full cursor-pointer items-center justify-center rounded-lg border bg-white px-6 font-bold text-current">
                 도장등록
               </div>
               <input
@@ -405,9 +405,9 @@ export function OutingPage() {
                 className="sr-only"
                 accept=".png, .jpeg, .jpg"
                 onChange={(e) => {
-                  if (!e.target?.files) return;
-                  updateStamp(e.target.files[0]);
-                  setStampMode(true);
+                  if (!e.target?.files) return
+                  updateStamp(e.target.files[0])
+                  setStampMode(true)
                 }}
               />
             </label>
@@ -415,8 +415,8 @@ export function OutingPage() {
               <Button.xl
                 children="도장 사용하기"
                 onClick={() => {
-                  setStampMode(true);
-                  clearSignature();
+                  setStampMode(true)
+                  clearSignature()
                 }}
                 className="filled-blue"
               />
@@ -426,27 +426,27 @@ export function OutingPage() {
                 disabled={!stampImgUrl}
                 onClick={() => {
                   if (!stampImgUrl) {
-                    alert('도장이 등록되어 있지 않습니다.');
+                    alert('도장이 등록되어 있지 않습니다.')
                   } else {
                     if (agreeAll) {
-                      approveOutings();
+                      approveOutings()
                     } else {
-                      approveOuting();
+                      approveOuting()
                     }
-                    setStampMode(false);
+                    setStampMode(false)
                   }
                 }}
                 className={clsx(
                   'text-white',
-                  stampImgUrl ? 'border-4 border-red-500 bg-brandblue-1' : 'bg-brandblue-5',
+                  stampImgUrl ? 'bg-brandblue-1 border-4 border-red-500' : 'bg-brandblue-5',
                 )}
               />
             )}
             <Button.xl
               children="서명 다시하기"
               onClick={() => {
-                setStampMode(false);
-                clearSignature();
+                setStampMode(false)
+                clearSignature()
               }}
               className="outlined-primary"
             />
@@ -457,17 +457,17 @@ export function OutingPage() {
                 children="서명으로 승인"
                 onClick={() => {
                   if (!sigPadData) {
-                    alert('서명 후 승인해 주세요.');
+                    alert('서명 후 승인해 주세요.')
                   } else {
-                    agreeAll ? approveOutings() : approveOuting();
+                    agreeAll ? approveOutings() : approveOuting()
                   }
                 }}
-                className={clsx('text-white', sigPadData ? 'border-4 border-green-500 bg-brand-1' : 'bg-brand-5')}
+                className={clsx('text-white', sigPadData ? 'bg-brand-1 border-4 border-green-500' : 'bg-brand-5')}
               />
             )}
           </div>
         </Section>
       </SuperModal>
     </>
-  );
+  )
 }

@@ -13,7 +13,7 @@ import { IBGetSubmissionStatusCountParams, RPPFGetSubmissionStatusStatus } from 
 import { handleBatchBlobDownload, BlobDownloadItem } from '@/legacy/hooks/useBatchDownload'
 import { modifyRppfPdf } from '@/legacy/util/ib_rppf_pdf'
 
-import IBSubmitPdfPreviewPopup from '../IBSubmitPdfPreviewPopup'
+import IBSubmitPdfPreviewPopup from '@/legacy/pages/ibSubmitPdfPreviewPopup'
 
 import RPPFOverviewPanel from './RPPFOverviewPanel'
 export default function RPPFView({ grade, klass }: IBGetSubmissionStatusCountParams) {

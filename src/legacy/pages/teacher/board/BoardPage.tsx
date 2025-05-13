@@ -1,47 +1,47 @@
-import { useState } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
-import { SelectMenus } from 'src/components';
-import { BoardCard } from 'src/components/board/BoardCard';
-import { Blank, Select } from 'src/components/common';
-import { SearchInput } from 'src/components/common/SearchInput';
-import { Icon } from 'src/components/common/icons';
-import { useTeacherBoard } from 'src/container/teacher-board';
-import { useTeacherKlassGroup } from 'src/container/teacher-klass-groups';
-import { Board, BoardCategoryEnum, Group } from 'src/generated/model';
-import { useLanguage } from 'src/hooks/useLanguage';
-import { BoardAddPage } from './BoardAddPage';
-import { BoardDetailPage } from './BoardDetailPage';
+import { useState } from 'react'
+import { Link, Route, Switch } from 'react-router-dom'
+import { SelectMenus } from '@/legacy/components'
+import { BoardCard } from '@/legacy/components/board/BoardCard'
+import { Blank, Select } from '@/legacy/components/common'
+import { SearchInput } from '@/legacy/components/common/SearchInput'
+import { Icon } from '@/legacy/components/common/icons'
+import { useTeacherBoard } from 'src/container/teacher-board'
+import { useTeacherKlassGroup } from 'src/container/teacher-klass-groups'
+import { Board, BoardCategoryEnum, Group } from '@/legacy/generated/model'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { BoardAddPage } from './BoardAddPage'
+import { BoardDetailPage } from './BoardDetailPage'
 
 export function BoardsPage() {
-  const { t } = useLanguage();
-  const filters = [t('title'), t('author')];
-  const { groups, selectedGroup, homeKlass, setSelectedGroup } = useTeacherKlassGroup();
+  const { t } = useLanguage()
+  const filters = [t('title'), t('author')]
+  const { groups, selectedGroup, homeKlass, setSelectedGroup } = useTeacherKlassGroup()
   const { boards, selectedCategory, isLoading, setSelectedCategory, unReadBoardList } = useTeacherBoard(
     selectedGroup?.id,
-  );
-  const [filter, setFilter] = useState(filters[0]);
-  const [searchWriter, setSearchWriter] = useState('');
-  const [searchTitle, setSearchTitle] = useState('');
+  )
+  const [filter, setFilter] = useState(filters[0])
+  const [searchWriter, setSearchWriter] = useState('')
+  const [searchTitle, setSearchTitle] = useState('')
   const handleFilterChange = (e: any) => {
-    setSearchWriter('');
-    setSearchTitle('');
-    setFilter(e.target.value);
-  };
+    setSearchWriter('')
+    setSearchTitle('')
+    setFilter(e.target.value)
+  }
 
   return (
     <>
       {isLoading && <Blank reversed />}
       <div className="col-span-2 hidden h-screen md:block">
-        <div className="flex place-items-center justify-between px-6 pb-3 pt-6">
+        <div className="flex place-items-center justify-between px-6 pt-6 pb-3">
           <h1 className="text-2xl font-semibold">{t('class_bulletin_board')}</h1>
           <Link
             children={t('add')}
             to="/teacher/board/add"
-            className="rounded-md bg-light_orange px-4 py-2 text-sm text-brand-1 hover:bg-brand-1 hover:text-light_orange focus:outline-none"
+            className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-none"
           />
         </div>
 
-        <div className="flex items-center space-x-2 px-6 pb-2 pt-3">
+        <div className="flex items-center space-x-2 px-6 pt-3 pb-2">
           <div className="w-32 cursor-pointer">
             <SelectMenus items={groups} value={selectedGroup} onChange={(value: Group) => setSelectedGroup(value)} />
           </div>
@@ -56,7 +56,7 @@ export function BoardsPage() {
           </div>
         </div>
 
-        <div className="flex items-center space-x-2 px-6 pb-6 pt-0">
+        <div className="flex items-center space-x-2 px-6 pt-0 pb-6">
           <div className="cursor-pointer">
             <Select.lg value={filter} onChange={handleFilterChange}>
               {filters.map((option, index) => (
@@ -114,5 +114,5 @@ export function BoardsPage() {
         </Switch>
       </div>
     </>
-  );
+  )
 }
