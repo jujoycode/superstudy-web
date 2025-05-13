@@ -26,14 +26,13 @@ import { getExtOfFilename } from '@/legacy/util/file'
 import { meState } from '@/stores'
 
 export function NewsletterAddPage() {
-  const { id } = useParams<{ id: string }>()
+  const { id = '' } = useParams<{ id: string }>()
   const meRecoil = useRecoilValue(meState)
   const { t } = useLanguage()
 
   const { allKlassGroups } = GroupContainer.useContext()
   const gradeChunks = _.chunk(_.uniq(_.map(allKlassGroups, 'grade')), 3)
 
-  const isElementary = allKlassGroups.find((item) => item.grade >= 4)
   const [_studentName, set_studentName] = useState('')
   const [, setStudentName] = useState('')
 
