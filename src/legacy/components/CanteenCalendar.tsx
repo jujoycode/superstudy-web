@@ -11,7 +11,7 @@ export function CanteenCalendar({ ...props }: CanteenCalendarProps) {
 
   return (
     <Calendar
-      calendarType="US"
+      calendarType="gregory"
       locale={`${t('language')}`}
       prevLabel={<Icon.ChevronLeft />}
       nextLabel={<Icon.ChevronRight />}
