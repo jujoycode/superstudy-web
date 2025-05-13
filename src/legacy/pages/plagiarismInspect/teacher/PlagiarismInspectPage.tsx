@@ -1,10 +1,12 @@
 import clsx from 'clsx'
-import PlagiarismInspect from '@/legacy/components/ib/plagiarismInspect/PlagiarismInspect'
-import FileUploadInspector from '@/legacy/components/ib/plagiarismInspect/FileUploadInspector'
 import { useState } from 'react'
-import InputInspector from '@/legacy/components/ib/plagiarismInspect/InputInspector'
-import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
+
 import { Blank } from '@/legacy/components/common'
+import FileUploadInspector from '@/legacy/components/ib/plagiarismInspect/FileUploadInspector'
+import InputInspector from '@/legacy/components/ib/plagiarismInspect/InputInspector'
+import PlagiarismInspect from '@/legacy/components/ib/plagiarismInspect/PlagiarismInspect'
+import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
+
 interface PlagiarismInspectPageProps {
   showInspector: boolean
   selectedType: 'upload' | 'input' | null
