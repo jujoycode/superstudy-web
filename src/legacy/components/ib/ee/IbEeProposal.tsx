@@ -46,7 +46,7 @@ export function IbEeProposal({
     handleSubmit,
     watch,
     setValue,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBProposalDto>({
     defaultValues:
       type === 'update' && proposalData

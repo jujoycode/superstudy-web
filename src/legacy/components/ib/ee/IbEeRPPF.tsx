@@ -62,7 +62,7 @@ export function IbEeRPPF({
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestCreateRPPFDto>({
     defaultValues: {
       contents:

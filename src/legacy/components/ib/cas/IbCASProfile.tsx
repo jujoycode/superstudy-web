@@ -33,7 +33,7 @@ export function IbCASProfile({
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestIBProfileDto>({
     defaultValues: {
       ...profileData,

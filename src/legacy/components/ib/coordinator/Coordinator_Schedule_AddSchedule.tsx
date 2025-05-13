@@ -1,7 +1,7 @@
 import { PropsWithChildren, useRef, useState } from 'react'
 import { map } from 'lodash'
 import NODATA from '@/assets/images/no-data.png'
-import SelectBar, { SelectBarOptionProps } from '@/legacy/components/common/SelectBar'
+import SelectBar from '@/legacy/components/common/SelectBar'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { useIBDeadlineCreateDeadline } from '@/legacy/generated/endpoint'
 import {

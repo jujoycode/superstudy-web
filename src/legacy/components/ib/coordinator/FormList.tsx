@@ -32,19 +32,11 @@ export default function FormList({ type = 'EE_RPPF' }: FormListProps) {
   const [activeModalType, setActiveModalType] = useState<'Create' | 'Update'>()
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
 
-  const {
-    data: interviews,
-    isLoading: interviewLoading,
-    refetch: interviewRefetch,
-  } = useInterviewFindAllInterview({
+  const { data: interviews, refetch: interviewRefetch } = useInterviewFindAllInterview({
     category: type,
   })
 
-  const {
-    data: checklists,
-    isLoading: checkListLoading,
-    refetch: checkListRefetch,
-  } = useChecklistGetitems({
+  const { data: checklists, refetch: checkListRefetch } = useChecklistGetitems({
     location: 'ESSAY',
   })
 
