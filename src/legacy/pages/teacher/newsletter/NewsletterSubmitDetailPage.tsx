@@ -23,7 +23,7 @@ export function NewsletterSubmitDetailPage() {
         {newsletter?.surveyContent && studentNewsletter?.content && (
           <SuperSurveyComponent
             surveyContent={newsletter?.surveyContent || ''}
-            setContent={(c: any) => {}}
+            setContent={() => {}}
             content={JSON.parse(studentNewsletter?.content || '{}')}
             readOnly={true}
           />

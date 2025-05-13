@@ -37,23 +37,6 @@ export default function AnnouncementDetailCard({ announcement }: AnnouncementPro
     return url
   }
 
-  const handleDownload = (pdfFile: string) => {
-    fetch(getUrl(pdfFile)) // PDF 파일에 대한 URL 가져오기
-      .then((response) => response.blob()) // 파일 데이터를 Blob 형식으로 변환
-      .then((blob) => {
-        // Blob 데이터로부터 URL 생성
-        const url = window.URL.createObjectURL(new Blob([blob]))
-        // 가상 링크 생성
-        const link = document.createElement('a')
-        link.href = url
-        link.setAttribute('download', getFileNameFromUrl(pdfFile)) // 파일명 설정
-        document.body.appendChild(link)
-        link.click()
-        link.parentNode?.removeChild(link)
-      })
-      .catch((error) => console.error('Error downloading PDF:', error))
-  }
-
   const getTypeName = (type: AnnouncementType) => {
     if (type === 'SERVICE') {
       return '서비스'

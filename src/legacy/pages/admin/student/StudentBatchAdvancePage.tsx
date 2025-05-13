@@ -83,7 +83,7 @@ export function StudentBatchAdvancePage() {
 
     // 학급별 병렬 처리
     await Promise.all(
-      Object.entries(klassBatches).map(async ([klassKey, klassItems]) => {
+      Object.entries(klassBatches).map(async ([_, klassItems]) => {
         // 각 학급 내에서는 순차 처리
         for (const { item, index } of klassItems) {
           try {

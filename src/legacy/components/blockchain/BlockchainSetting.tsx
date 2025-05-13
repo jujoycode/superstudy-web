@@ -24,8 +24,8 @@ export default function BlockchainSetting({
 }: BlockchainSettingProps) {
   const [coachMark1, setCoachMark1] = useState<boolean>(false)
   const [coachMark2, setCoachMark2] = useState<boolean>(false)
-  const { wallet, contract, isContractLoading, isWalletLoading } = useBlockChain()
-  const { createWallet, isCreating, isError, error } = useBlockChainWallet()
+  const { wallet, contract } = useBlockChain()
+  const { createWallet } = useBlockChainWallet()
   const { createContract } = useBlockChainContract()
   const { requestId } = useBlockChainRequest()
 

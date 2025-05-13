@@ -141,7 +141,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
         .then(() => {
           //
         })
-        .catch((error) => {
+        .catch(() => {
           // refetch 중에 발생한 에러를 처리하는 작업
           //alert(error?.message);
         })

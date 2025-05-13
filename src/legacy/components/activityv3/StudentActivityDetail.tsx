@@ -26,7 +26,7 @@ interface StudentActivityDetailProps {
 
 export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ activityv3, studentGroups }) => {
   const { id } = useParams<{ id: string }>()
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [, setToastMsg] = useRecoilState(toastState)
   const { studentId } = useParams<{ studentId: string }>()
   const [selectedUserId, setSelectedUserId] = useState<number>(Number(studentId))
   const [userSelectView, setUserSelectView] = useState(false)
@@ -209,8 +209,8 @@ export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ ac
                 {studentActivityV3.studentText && (
                   <div className="text-12 mt-auto flex items-center justify-end space-x-2 px-2 font-bold">
                     <span className="font-semibold text-gray-400">글자 수 (공백 제외)</span>&nbsp;
-                    {studentActivityV3.studentText?.replaceAll(' ', '').length}자&nbsp;
-                    {new TextEncoder().encode(studentActivityV3.studentText?.replaceAll(' ', '')).length} Byte
+                    {studentActivityV3.studentText?.replace(/ /g, '').length}자&nbsp;
+                    {new TextEncoder().encode(studentActivityV3.studentText?.replace(/ /g, '')).length} Byte
                     <span className="font-semibold text-gray-400">글자 수 (공백 포함)</span>&nbsp;
                     {studentActivityV3.studentText?.length}자&nbsp;
                     {new TextEncoder().encode(studentActivityV3.studentText).length}Byte

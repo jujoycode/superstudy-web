@@ -23,8 +23,8 @@ export const TeacherActivitySessionDetailView: React.FC<TeacherActivitySessionDe
   const files = studentActivity?.files || []
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
-  const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
-  const [focusPdfFile, setFocusPdfFile] = useState('')
+  const [, setPdfModalOpen] = useState(false)
+  const [, setFocusPdfFile] = useState('')
 
   const images = studentActivity?.images?.filter((image) => !isPdfFile(image)) || []
   const Pdfs = studentActivity?.images?.filter((image) => isPdfFile(image)) || []
@@ -74,7 +74,7 @@ export const TeacherActivitySessionDetailView: React.FC<TeacherActivitySessionDe
             </div>
           </div>
         ))}
-        {Pdfs?.map((pdfFile: string, i: number) => {
+        {Pdfs?.map((pdfFile: string) => {
           return (
             <>
               <div key={pdfFile}>
@@ -117,7 +117,7 @@ export const TeacherActivitySessionDetailView: React.FC<TeacherActivitySessionDe
             noImgDetails
             scalable={false}
             images={viewerImages}
-            onChange={(activeImage, index) => setActiveIndex(index)}
+            onChange={(_, index) => setActiveIndex(index)}
             onClose={() => setImagesModalOpen(false)}
             activeIndex={activeIndex}
           />

@@ -8,7 +8,6 @@ import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { useTeacherNewsletter } from '@/legacy/container/teacher-newsletter'
 import { Newsletter, NewsletterType } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { meState } from '@/stores'
 
 const filters = ['제목', '작성자']
 

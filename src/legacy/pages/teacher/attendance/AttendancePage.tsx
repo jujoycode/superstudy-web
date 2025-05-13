@@ -215,24 +215,22 @@ export function AttendancePage() {
   const hasSaturdayClass = me?.school.hasSaturdayClass || false
 
   const language = useRecoilValue(languageState)
-  const year = +getThisYear()
-  const semester = +getThisSemester()
 
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
+  const [, setToastMsg] = useRecoilState(toastState)
 
   const [modalOpen, setModalOpen] = useState(false)
   const [absentComment, setAbsentComment] = useState('')
 
   const [selday, setSelday] = useState(new Date())
   const [selectedDayOfWeek, setSelectedDayOfWeek] = useState(new Date().getDay())
-  const [tselweek, selmonday, seltuesday, selwednesday, selthursday, selfriday, selsaturday] = weekCount(selday)
+  const [, selmonday, seltuesday, selwednesday, selthursday, selfriday, selsaturday] = weekCount(selday)
   const [absentType1, setAbsentType1] = useState('출석')
   const [absentType2, setAbsentType2] = useState('출석')
   const [absentMark, setAbsentMark] = useState('.')
 
   const [lecture, setLecture] = useState<ResponseTimetableV3Dto[] | undefined>()
 
-  const { allKlassGroupsUnique: allKlassGroups, teacherKlubGroups } = GroupContainer.useContext()
+  const { allKlassGroupsUnique: allKlassGroups } = GroupContainer.useContext()
 
   const scrollRef = useRef<HTMLDivElement>(null)
   const scrollRefM = useRef<HTMLDivElement>(null)
@@ -428,22 +426,6 @@ export function AttendancePage() {
     return previousContentByPeriod
   }
 
-  const getAbsentInfoString = (studentId: string, day: Date, period: number) => {
-    const info = getAbsentInfo(studentId, day, period)
-
-    if (info) {
-      const checker = info?.editor || info?.creator
-      const checkTime = new Date(info?.edittime || info?.createtime)
-      if (isNaN(checkTime.getTime())) {
-        return info?.comment
-      } else {
-        return info?.comment + '/' + checker + '/' + DateUtil.formatDate(checkTime, DateFormat['YYYY-MM-DD HH:mm'])
-      }
-    } else {
-      return ''
-    }
-  }
-
   const getAbsentInfoComment = (studentId: string, day: Date, period: number) => {
     const info = getAbsentInfo(studentId, day, period)
 
@@ -572,8 +554,6 @@ export function AttendancePage() {
       setToastMsg('출석확인 권한이 없습니다.')
     }
   }
-
-  const handleSubmitButton = () => {}
 
   return (
     <div className="col-span-6">
@@ -938,7 +918,7 @@ export function AttendancePage() {
                         className="border-grey-6 border text-left text-xs whitespace-pre-line"
                       >
                         {coloredComment[3 + (selectedDayOfWeek - 1) * (lastPeriod + 1)]?.map(
-                          ({ isColored, comment }, selectedDayOfWeek) => {
+                          ({ isColored, comment }) => {
                             return <p className={`${isColored ? 'text-red-500' : ''}`}>{comment}</p>
                           },
                         )}

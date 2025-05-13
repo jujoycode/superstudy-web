@@ -56,7 +56,6 @@ export function OutingDetailPage({
     isLoading,
     outing,
     isLoadingDoc,
-    errorDoc,
     resendAlimtalk,
   } = useTeacherOutingDetail(Number(id))
 
