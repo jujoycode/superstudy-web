@@ -231,7 +231,7 @@ export function ActivitySessionPage() {
                 value={studentText}
               />
               <div className="flex items-center justify-end pb-1">
-                공백제외&nbsp;<span className="text-brand-1">{studentText.replaceAll(' ', '').length}</span>
+                공백제외&nbsp;<span className="text-brand-1">{studentText.replace(/ /g, '').length}</span>
                 &nbsp;자&nbsp; 공백포함&nbsp;
                 <span className="text-brand-1">{studentText.length}</span>&nbsp;자
               </div>

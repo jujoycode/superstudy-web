@@ -1,16 +1,19 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { Link, useHistory, useLocation } from 'react-router'
+import { Link, useLocation } from 'react-router'
 import { useRecoilValue } from 'recoil'
-import { ReactComponent as Logo } from '@/legacy/assets/svg/logo.svg'
+
+import { useHistory } from '@/hooks/useHistory'
 import { BackButton, Blank, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useStudentFirstLogin } from '@/legacy/container/student-first-login'
-import { meState } from '@/stores'
 import { useLogout } from '@/legacy/util/hooks'
 import { Validator } from '@/legacy/util/validator'
+import { meState } from '@/stores'
+
+import Logo from '@/assets/svg/logo.svg'
 
 export function FirstLoginPage() {
   const { push } = useHistory()
@@ -78,7 +81,9 @@ export function FirstLoginPage() {
         }
       />
       <div className="mt-6 mb-3">
-        <Logo className="mx-auto mb-4" />
+        <div className="mx-auto mb-4">
+          <Logo />
+        </div>
         <span className="flex justify-center text-center text-sm sm:text-base">
           슈퍼스쿨에 오신 것을 환영합니다.
           <br />

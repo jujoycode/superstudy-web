@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -9,8 +11,9 @@ import { FieldtripSuburbsSeparatePaper } from '@/legacy/components/fieldtrip/Fie
 import { useStudentFieldtripDetail } from '@/legacy/container/student-fieldtrip-detail'
 import { UserContainer } from '@/legacy/container/user'
 import { FieldtripStatus, Role } from '@/legacy/generated/model'
-import { FieldtripAddPage } from './FieldtripAddPage'
 import { getNickName } from '@/legacy/util/status'
+
+import { FieldtripAddPage } from './FieldtripAddPage'
 
 export function FieldtripDetailPage() {
   const { push } = useHistory()
@@ -18,18 +21,10 @@ export function FieldtripDetailPage() {
   const { id } = useParams<{ id: string }>()
   const [mode, setMode] = useState(false)
   const { me, isMeLoading } = UserContainer.useContext()
-  const {
-    cannotSchedules,
-    fieldtrip,
-    isFieldtripLoading,
-    error,
-    deleteFieldtrip,
-    resendAlimtalk,
-    errorMessage,
-    refetchFieldtrip,
-  } = useStudentFieldtripDetail(Number(id))
+  const { fieldtrip, isFieldtripLoading, error, deleteFieldtrip, resendAlimtalk, errorMessage, refetchFieldtrip } =
+    useStudentFieldtripDetail(Number(id))
 
-  let homeplans: any = []
+  let homeplans: Record<string, string>[] = []
 
   try {
     if (fieldtrip?.type === 'HOME') {
@@ -47,7 +42,7 @@ export function FieldtripDetailPage() {
     console.log(err)
   }
 
-  const applyFilesWithTwo: any = []
+  const applyFilesWithTwo: string[][] = []
 
   try {
     if (fieldtrip?.applyFiles instanceof Array) {
@@ -136,7 +131,7 @@ export function FieldtripDetailPage() {
 
         {fieldtrip?.type === 'SUBURBS' && (
           <>
-            {applyFilesWithTwo.map((el: any, i: number) => (
+            {applyFilesWithTwo.map((el: string[], i: number) => (
               <div key={i} className="w-full bg-white p-5">
                 <FieldtripSuburbsSeparatePaper
                   studentName={(fieldtrip?.student?.name || '') + getNickName(fieldtrip?.student?.nickName)}

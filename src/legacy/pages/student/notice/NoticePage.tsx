@@ -1,15 +1,14 @@
 import { useMemo, useState } from 'react'
 import { useLocation } from 'react-router'
-import { useRecoilValue } from 'recoil'
+
 import { Blank, List, Select, TopNavbar } from '@/legacy/components/common'
 import { FeedsItem } from '@/legacy/components/common/FeedsItem'
+import { Icon } from '@/legacy/components/common/icons'
 import { NoItem } from '@/legacy/components/common/NoItem'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { Tabs } from '@/legacy/components/common/Tabs'
-import { Icon } from '@/legacy/components/common/icons'
 import { useStudentNotice } from '@/legacy/container/student-notice'
 import { Board, Newsletter, NewsletterType, Notice } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 import { TabType } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { weekAfter } from '@/legacy/util/time'
@@ -19,7 +18,6 @@ const filters = ['제목', '작성자']
 // COMPLETE
 export function NoticePage() {
   const { pathname } = useLocation()
-  const meRecoil = useRecoilValue(meState)
 
   const [blankOpen, setBlankOpen] = useState(false)
 

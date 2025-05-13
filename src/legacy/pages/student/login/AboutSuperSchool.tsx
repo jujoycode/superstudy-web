@@ -1,8 +1,9 @@
-import { ReactComponent as Logo } from '@/legacy/assets/svg/logo.svg'
-import { YoutubeLink } from '@/legacy/components/YoutubeLink'
 import { BackButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
+import { YoutubeLink } from '@/legacy/components/YoutubeLink'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+
+import Logo from '@/assets/svg/logo.svg'
 
 export function AboutSuperSchoolPage() {
   const { t } = useLanguage()
@@ -18,7 +19,9 @@ export function AboutSuperSchoolPage() {
           }
         />
         <div className="flex flex-col items-center justify-center">
-          <Logo className="mt-5 w-28" />
+          <div className="mt-5 w-28">
+            <Logo />
+          </div>
           <div className="font-bold">{t('intro_superschool')}</div>
         </div>
 

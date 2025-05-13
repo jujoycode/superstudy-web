@@ -3,10 +3,11 @@ import { addDays, eachDayOfInterval, isSameDay } from 'date-fns'
 import { chain, concat, every, findIndex, flatten, get, last } from 'lodash'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SelectValues, SuperModal } from '@/legacy/components'
-import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
 import {
   BackButton,
   Badge,
@@ -19,19 +20,20 @@ import {
 } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Icon } from '@/legacy/components/common/icons'
 import { MobileImageUpload } from '@/legacy/components/common/MobileImageUpload'
 import { SignDataCheck, SignPad, ToSign } from '@/legacy/components/common/SignPad'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { ToggleSwitch } from '@/legacy/components/common/ToggleSwitch'
 import { WarningBlank } from '@/legacy/components/common/WarningBlank'
-import { Icon } from '@/legacy/components/common/icons'
 import { FieldtripDatePicker } from '@/legacy/components/fieldtrip/FieldtripDatePicker'
+import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
 import { useStudentFieldtripAddSuburbs } from '@/legacy/container/student-fieldtrip-add-suburbs'
 import { UserContainer } from '@/legacy/container/user'
 import { Fieldtrip, Role } from '@/legacy/generated/model'
-import { childState } from '@/stores'
 import { getCustomString } from '@/legacy/util/string'
 import { differenceWithSchedulesWithHalfDay, isWeekendDay } from '@/legacy/util/time'
+import { childState } from '@/stores'
 
 const relationshipType = ['부', '모', '기타']
 const selectOptions = ['가족동반여행', '친·인척 방문', '답사∙견학 활동', '체험활동']
@@ -91,13 +93,10 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
   const [excludeDates, setExcludeDates] = useState<Date[]>([])
   const [count, setCount] = useState(0)
 
-  const [totalUsedDayCnt, setTotalUsedDayCnt] = useState(1.0) // 전체 사용일수
   const [sHalfUsedDayCnt, setSHalfUsedDayCnt] = useState(0.0) // 시작반일 사용시 0.5 fix
   const [wholeUsedDayCnt, setWholeUsedDayCnt] = useState(1.0) // 반일 외 사용일수
   const [eHalfUsedDayCnt, setEHalfUsedDayCnt] = useState(0.0) // 종료반일 사용시 0.5 fix
   const [sHalfDate, setSHalfDate] = useState('')
-  const [wholeStartDate, setWholeStartDate] = useState('')
-  const [wholeEndDate, setWholeEndDate] = useState('')
   const [eHalfDate, setEHalfDate] = useState('')
 
   const [dayHomePlan, setDayHomePlan] = useState(false)
@@ -115,11 +114,9 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
     createFieldtrip,
     prevUsedDays,
     isHomePlanType,
-
     imageObjectMap,
     handleImageAdd,
     toggleImageDelete,
-
     setState: {
       setPurpose,
       setContent,
@@ -248,8 +245,6 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
       setWholeUsedDayCnt(_wholeUsedDayCnt)
       setEHalfUsedDayCnt(_eHalfUsedDayCnt)
       setSHalfDate(_sHalfDate)
-      setWholeStartDate(_wholeStartDate)
-      setWholeEndDate(_wholeEndDate)
       setWholeDayPeriod(_wholeStartDate + '~' + _wholeEndDate)
       setEHalfDate(_eHalfDate)
     }
@@ -463,7 +458,10 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
             {isHomePlanType() === false && (
               <div className="flex items-center space-x-2">
                 <span className="flex items-center py-2" onClick={() => setInfoHalfDayModalopen(true)}>
-                  반일 신청 <Icon.Info className="ml-2 h-7 w-7" />
+                  반일 신청{' '}
+                  <div className="ml-2 h-7 w-7">
+                    <Icon.Info />
+                  </div>
                 </span>
                 <ToggleSwitch
                   checked={startHalf}
@@ -512,7 +510,10 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
             {isHomePlanType() === false && (
               <div className="flex items-center space-x-2">
                 <span className="flex items-center py-2" onClick={() => setInfoHalfDayModalopen(true)}>
-                  반일 신청 <Icon.Info className="ml-2 h-7 w-7" />
+                  반일 신청{' '}
+                  <div className="ml-2 h-7 w-7">
+                    <Icon.Info />
+                  </div>
                 </span>
                 <ToggleSwitch
                   checked={endHalf}

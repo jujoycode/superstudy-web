@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { SetterOrUpdater } from 'recoil'
+
 import { BackButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { userDeleteUser } from '@/legacy/generated/endpoint'

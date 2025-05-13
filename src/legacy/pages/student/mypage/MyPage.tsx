@@ -2,9 +2,10 @@ import preval from 'preval.macro'
 import { useState } from 'react'
 import Barcode from 'react-barcode'
 import { Link } from 'react-router'
-import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
-import { ReactComponent as RightArrow } from '@/legacy/assets/svg/mypage-right-arrow.svg'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import { useHistory } from '@/hooks/useHistory'
 import { StudentIDCard } from '@/legacy/components'
 import { Blank, IconButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -12,11 +13,11 @@ import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Constants } from '@/legacy/constants'
 import { useParentGetChildrenInfo } from '@/legacy/container/parent-get-children-info'
 import { ResponseUserDto, Role, ScoreUse } from '@/legacy/generated/model'
-import { meState } from '@/stores'
 import { globalEnv } from '@/legacy/util/global-env'
 import { useLogout } from '@/legacy/util/hooks'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper.min.css'
+import { meState } from '@/stores'
+
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 
 export function MyPage() {
   const logout = useLogout()

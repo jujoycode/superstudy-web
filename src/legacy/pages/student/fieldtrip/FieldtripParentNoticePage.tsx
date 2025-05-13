@@ -1,11 +1,12 @@
 import { useParams } from 'react-router'
+
 import { ErrorBlank, Td } from '@/legacy/components'
 import { Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { useParentFieldtripNotice } from '@/legacy/container/parent-fieldtrip-notice'
 import { makeStartEndToString } from '@/legacy/util/time'
 
 export function FieldtripParentNoticePage() {
-  const { uuid } = useParams<{ uuid: string }>()
+  const { uuid = '' } = useParams<{ uuid: string }>()
   const { data: fieldtrip, isLoading, error, me } = useParentFieldtripNotice(uuid)
 
   return (

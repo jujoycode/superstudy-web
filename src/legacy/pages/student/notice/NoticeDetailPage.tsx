@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import { useParams } from 'react-router'
+
 import { BackButton, Blank, TopNavbar } from '@/legacy/components/common'
 import { FeedsDetail } from '@/legacy/components/common/FeedsDetail'
 import { ErrorBlank } from '@/legacy/components/ErrorBlank'
@@ -8,14 +8,8 @@ import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 export function NoticeDetailPage() {
   let { id } = useParams<{ id: string }>()
-  id = id.split('/')[0]
-
-  const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
-  const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
-  const [focusPdfFile, setFocusPdfFile] = useState('')
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  const { notice, isNoticeLoading, errorMessage, images, Pdfs, files, viewerImages } = useStudentNoticeDetail(+id)
+  id = id?.split('/')[0]
+  const { notice, isNoticeLoading, errorMessage } = useStudentNoticeDetail(Number(id))
 
   return (
     <div>

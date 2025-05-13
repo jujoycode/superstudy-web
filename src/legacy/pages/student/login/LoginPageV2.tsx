@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { useRecoilState } from 'recoil'
-import { ReactComponent as Logo } from '@/legacy/assets/svg/logo_superschool.svg'
+
 import { Label } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
@@ -10,8 +10,10 @@ import { InputDel } from '@/legacy/components/common/InputDel'
 import { PasswordInputToggle } from '@/legacy/components/common/PasswordInputToggle'
 import { NoticePopup } from '@/legacy/components/NoticePopup'
 import { UserContainer } from '@/legacy/container/user'
-import { isStayLoggedInState } from '@/stores'
 import { isEmail } from '@/legacy/util/validator'
+import { isStayLoggedInState } from '@/stores'
+
+import Logo from '@/assets/svg/logo_superschool.svg'
 
 export function LoginV2() {
   const { t } = useTranslation(undefined, { keyPrefix: 'login_page' })
@@ -61,9 +63,8 @@ export function LoginV2() {
         {/* {noticeOpen2 && (
           <NoticePopup2 noticeOpen={noticeOpen2} setNoticeClose={() => setNoticeOpen2(false)} width="w-max" />
         )} */}
-
         <header className="pt-14 pb-8 md:pt-16 xl:pt-[70px] 2xl:pt-20">
-          <Logo className="w-full" />
+          <Logo />
         </header>
         <section className="mb-4 w-full p-6 md:rounded-lg md:border md:border-gray-300">
           <div className="flex flex-col gap-2 pb-4">

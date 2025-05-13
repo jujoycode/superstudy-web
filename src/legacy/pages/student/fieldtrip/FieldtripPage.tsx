@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { useHistory } from '@/hooks/useHistory'
+import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { ReactComponent as RightArrow } from '@/legacy/assets/svg/mypage-right-arrow.svg'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { BackButton, Badge, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -9,30 +9,20 @@ import { Icon } from '@/legacy/components/common/icons'
 import { useStudentFieldtrip } from '@/legacy/container/student-fieldtrip'
 import { UserContainer } from '@/legacy/container/user'
 import { FieldtripStatus, Role } from '@/legacy/generated/model'
-import { childState } from '@/stores'
 import { makeStartEndToString } from '@/legacy/util/time'
+import { childState } from '@/stores'
+
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 
 export function FieldtripPage() {
   const [modalopen, setModalopen] = useState(false)
-  const [hasProcessing, setHasProcessing] = useState(false)
 
   const { me } = UserContainer.useContext()
   const child = useRecoilValue(childState)
-  const { fieldtrips, isPrimaryGuardian, isLoading, error, setRecalculateDays } = useStudentFieldtrip()
+  const { fieldtrips, isLoading, error, setRecalculateDays } = useStudentFieldtrip()
 
-  const isNotParent = me?.role !== 'PARENT'
   const school = me?.school
   const { push } = useHistory()
-
-  useEffect(() => {
-    const processing = fieldtrips?.some(
-      (fieldtrip) =>
-        fieldtrip.fieldtripStatus !== 'DELETE_APPEAL' &&
-        fieldtrip.fieldtripStatus !== 'RETURNED' &&
-        fieldtrip.fieldtripStatus !== 'PROCESSED',
-    )
-    setHasProcessing(processing || false)
-  }, [fieldtrips])
 
   return (
     <>
@@ -45,16 +35,6 @@ export function FieldtripPage() {
             <BackButton className="h-15" />
           </div>
         }
-        // right={
-        //   <div
-        //     onClick={() => {
-        //       setRecalculateDays(true);
-        //     }}
-        //     className="flex h-15 w-10 items-center "
-        //   >
-        //     <Icon.Refresh />
-        //   </div>
-        // }
       />
       <div className="scroll-box h-screen-12 overflow-y-auto">
         <Section className="bg-[#F7F7F7]">

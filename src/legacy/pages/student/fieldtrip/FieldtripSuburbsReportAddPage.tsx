@@ -1,9 +1,10 @@
 import clsx from 'clsx'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
-import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
 import {
   BackButton,
   Blank,
@@ -19,6 +20,7 @@ import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { MobileImageUpload } from '@/legacy/components/common/MobileImageUpload'
 import { SignDataCheck, SignPad, ToSign } from '@/legacy/components/common/SignPad'
 import { TextInput } from '@/legacy/components/common/TextInput'
+import { ImageObjectComponent } from '@/legacy/components/ImageObjectComponent'
 import { useStudentFieldtripSuburbsReportAdd } from '@/legacy/container/student-fieldtrip-suburbs-report-add'
 import { FieldtripStatus, Role } from '@/legacy/generated/model'
 import { getCustomString } from '@/legacy/util/string'
@@ -56,7 +58,7 @@ export function FieldtripSuburbsReportAddPage() {
 
   const [agree, setAgree] = useState(false)
   const [openSignModal, setSignModal] = useState(false)
-  const trimmedContent = resultText.replaceAll(' ', '')
+  const trimmedContent = resultText.replace(/ /g, '')
 
   if (fieldtrip && isUpdateFieldtripSuccess) {
     if (fieldtrip?.fieldtripResultStatus === FieldtripStatus.WAITING) {

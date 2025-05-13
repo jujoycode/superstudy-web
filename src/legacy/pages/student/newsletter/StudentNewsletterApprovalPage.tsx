@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Linkify from 'react-linkify'
 import { useParams } from 'react-router'
+
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, BottomFixed, CloseButton, Section, TopNavbar } from '@/legacy/components/common'
@@ -13,7 +14,7 @@ import { useSignature } from '@/legacy/hooks/useSignature'
 import { makeDateToString } from '@/legacy/util/time'
 
 export function StudentNewsletterApprovalPage() {
-  const { uuid } = useParams<{ uuid: string }>()
+  const { uuid = '' } = useParams<{ uuid: string }>()
   const { push } = useHistory()
   const { studentNewsletter, approveStudentNewsletter, isLoading, errorMessage } =
     useParentStudentNewsletterApproval(uuid)

@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useState } from 'react'
-import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
+
 import { SuperModal } from '@/legacy/components'
 import { BackButton, Label, PhoneNumberField, Section, Textarea, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -9,8 +9,6 @@ import { TextInput } from '@/legacy/components/common/TextInput'
 import { meState } from '@/stores'
 
 export function FieldtripSuburbsReportDetailPage() {
-  const { push } = useHistory()
-
   const meRecoil = useRecoilValue(meState)
 
   const [reason, setReason] = useState('')
@@ -20,13 +18,9 @@ export function FieldtripSuburbsReportDetailPage() {
   const [startAt, setStartAt] = useState('')
   const [endAt, setEndAt] = useState('')
   const [modalopen, setModalopen] = useState(false)
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      {/* {loading && <Blank />}
-        {isLoading && <Blank />}
-        {error && <ErrorBlank />} */}
       <TopNavbar
         title="교외 체험학습 결과 보고서 확인"
         left={
@@ -96,7 +90,6 @@ export function FieldtripSuburbsReportDetailPage() {
           value={content}
           onChange={(e) => {
             setContent(e.target.value)
-            setCount(e.target.value.length)
           }}
           className="h-auto border"
         />

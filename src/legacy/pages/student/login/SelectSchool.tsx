@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+
 import { useHistory } from '@/hooks/useHistory'
 import { BackButton, Label, Select, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useSchoolsFindAll } from '@/legacy/generated/endpoint'
 import { buildSearch } from '@/legacy/lib/router'
-import { Routes } from '@/legacy/constants/routes'
 
 interface SelectSchoolForm {
   schoolCode: string
@@ -32,7 +32,7 @@ export function SelectSchool() {
 
   function signup() {
     if (!schoolId) return
-    push({ pathname: Routes.auth.signup, search: buildSearch({ schoolId }) })
+    push('/signup', { search: buildSearch({ schoolId }) })
   }
 
   return (

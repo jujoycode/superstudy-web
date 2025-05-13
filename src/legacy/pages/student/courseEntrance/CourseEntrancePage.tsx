@@ -132,8 +132,8 @@ export function CourseEntrancePage() {
         {waiting ? (
           <>
             <Section className="mt-20">
-              <div className="flex justify-center">
-                <Logo className="w-[70px]" />
+              <div className="flex w-[70px] justify-center">
+                <Logo />
               </div>
 
               <div className="text-center text-2xl font-bold">
@@ -174,7 +174,9 @@ export function CourseEntrancePage() {
         ) : (
           <>
             <Section className="mt-20">
-              <Logo className="w-[70px] opacity-50" />
+              <div className="w-[70px] opacity-50">
+                <Logo />
+              </div>
 
               <div>
                 <div className="text-2xl font-bold">{isSeason ? '수강신청 기간' : '수강신청 기간이 아닙니다.'}</div>

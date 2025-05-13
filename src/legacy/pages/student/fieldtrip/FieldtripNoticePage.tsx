@@ -1,4 +1,5 @@
 import { useParams } from 'react-router'
+
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, TopNavbar } from '@/legacy/components/common'
 import { FieldtripPaper } from '@/legacy/components/fieldtrip/FieldtripPaper'

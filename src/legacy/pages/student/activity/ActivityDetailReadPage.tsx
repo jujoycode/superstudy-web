@@ -189,7 +189,9 @@ export function ActivityDetailReadPage({
             onSearch={handleCommentCreateSubmit}
             className="w-full bg-gray-50 text-sm"
           />
-          <Icon.Send onClick={handleCommentCreateSubmit} />
+          <div onClick={handleCommentCreateSubmit}>
+            <Icon.Send />
+          </div>
         </div>
       </BottomFixed>
       <div className="absolute">

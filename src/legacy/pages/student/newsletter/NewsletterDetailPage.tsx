@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { ErrorBlank } from '@/legacy/components/ErrorBlank'
+
+import { useHistory } from '@/hooks/useHistory'
 import {
   BackButton,
   Blank,
@@ -18,19 +18,20 @@ import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
 import { FeedsDetail } from '@/legacy/components/common/FeedsDetail'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { Typography } from '@/legacy/components/common/Typography'
+import { ErrorBlank } from '@/legacy/components/ErrorBlank'
 import { useStudentNewsletterAdd } from '@/legacy/container/student-newsletter-add'
 import { useStudentNewsletterDetail } from '@/legacy/container/student-newsletter-detail'
 import { NewsletterType, RequestUpsertStudentNewsletterDto, Role } from '@/legacy/generated/model'
 import { useSignature } from '@/legacy/hooks/useSignature'
-import { meState, toastState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isPdfFile } from '@/legacy/util/file'
+import { meState, toastState } from '@/stores'
+
 import { NewsletterAddPage } from './NewsletterAddPage'
 
 export function NewsletterDetailPage() {
-  const { push } = useHistory()
   let { id } = useParams<{ id: string }>()
-  id = id.split('/')[0]
+  id = id?.split('/')[0]
 
   const meRecoil = useRecoilValue(meState)
 
@@ -53,13 +54,13 @@ export function NewsletterDetailPage() {
     isLoading,
     refetch,
     errorMessage: newsletterErrorMessage,
-  } = useStudentNewsletterDetail(+id)
+  } = useStudentNewsletterDetail(Number(id))
 
   const { canvasRef, sigPadData, clearSignature } = useSignature()
   const [openSignModal, setOpenSignModal] = useState(false)
   const [confirmModalOpen, setConfirmModalOpen] = useState(false)
 
-  const { upsertStudentNewsletter, isLoading: isLoadingAdd, errorMessage } = useStudentNewsletterAdd(newsletter?.id)
+  const { upsertStudentNewsletter, errorMessage } = useStudentNewsletterAdd(newsletter?.id)
 
   const [content, setContent] = useState<any>(() => {
     return studentNewsletter?.content ? JSON.parse(studentNewsletter.content) : {}
@@ -72,27 +73,10 @@ export function NewsletterDetailPage() {
   }, [studentNewsletter])
 
   const [isUpdateState, setUpdateState] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
-  const [focusPdfFile, setFocusPdfFile] = useState('')
 
   const isNotParent = meRecoil?.role !== Role.PARENT
 
-  const images = newsletter?.images.filter((image) => !isPdfFile(image)) || []
-  const Pdfs = newsletter?.images.filter((image) => isPdfFile(image)) || []
-  const documents = newsletter?.files || []
-
   const handleSubmit = () => {
-    const data: RequestUpsertStudentNewsletterDto = {
-      nokName: nokName,
-      nokPhone: nokPhone,
-      newsletterId: newsletter?.id || 0,
-      content: JSON.stringify(content),
-      studentSignature: sigPadData,
-    }
-
     const regExp = /^010(?:\d{4})\d{4}$/
     if (nokPhone && !regExp.test(nokPhone.replace(/-/g, ''))) {
       alert('보호자 연락처를 확인해 주세요.')
@@ -136,7 +120,6 @@ export function NewsletterDetailPage() {
         newsletterData={newsletter}
         setUpdateState={(b: boolean) => {
           setUpdateState(b)
-          setIsSubmitted(true)
           refetch()
         }}
       />

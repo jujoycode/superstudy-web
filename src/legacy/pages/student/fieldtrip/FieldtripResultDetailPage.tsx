@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -14,7 +16,6 @@ import { Constants } from '@/legacy/constants'
 import { useFieldtripResultDetail } from '@/legacy/container/student-fieldtrip-result-detail'
 import { UserContainer } from '@/legacy/container/user'
 import { FieldtripStatus, Role } from '@/legacy/generated/model'
-import { useSignedUrl } from '@/legacy/lib/query'
 import { splitStringByUnicode } from '@/legacy/util/fieldtrip'
 import { isPdfFile } from '@/legacy/util/file'
 import { getNickName } from '@/legacy/util/status'
@@ -31,16 +32,8 @@ export function FieldtripResultDetailPage() {
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
-  const [focusPdfFile, setFocusPdfFile] = useState('')
-
-  const { data: resultApprover1Signature } = useSignedUrl(fieldtrip?.resultApprover1Signature)
-  const { data: resultApprover2Signature } = useSignedUrl(fieldtrip?.resultApprover2Signature)
-  const { data: resultApprover3Signature } = useSignedUrl(fieldtrip?.resultApprover3Signature)
-  const { data: resultApprover4Signature } = useSignedUrl(fieldtrip?.resultApprover4Signature)
-  const { data: resultApprover5Signature } = useSignedUrl(fieldtrip?.resultApprover5Signature)
 
   const images = fieldtrip?.resultFiles.filter((image) => !isPdfFile(image)) || []
-  const Pdfs = fieldtrip?.resultFiles.filter((image) => isPdfFile(image)) || []
 
   const viewerImages: ImageDecorator[] = []
   for (const image of images) {
@@ -49,17 +42,6 @@ export function FieldtripResultDetailPage() {
         src: `${Constants.imageUrl}${image}`,
       })
     }
-  }
-
-  let name = '가정'
-
-  switch (fieldtrip?.type) {
-    case 'HOME':
-      name = '가정'
-      break
-    case 'SUBURBS':
-      name = '교외 체험'
-      break
   }
 
   let content = []
@@ -117,8 +99,8 @@ export function FieldtripResultDetailPage() {
     separateResultText(fieldtrip?.resultText)
   }, [fieldtrip])
 
-  let homeplans: any = []
-  const resultFilesWithTwo: any = []
+  let homeplans: string[] = []
+  const resultFilesWithTwo: string[][] = []
 
   try {
     if (fieldtrip?.type === 'HOME') {
@@ -189,7 +171,7 @@ export function FieldtripResultDetailPage() {
 
       {fieldtrip?.type === 'HOME' && (
         <>
-          {homeplans?.map((content: any, i: number) => (
+          {homeplans?.map((content: string, i: number) => (
             <div key={i} className="w-full bg-white p-5">
               <FieldtripSeparatePaper
                 studentName={fieldtrip?.student?.name + getNickName(fieldtrip?.student?.nickName)}
@@ -206,7 +188,7 @@ export function FieldtripResultDetailPage() {
 
       {fieldtrip?.type === 'SUBURBS' && resultTextPages.length > 0 && (
         <>
-          {resultTextPages.slice(1).map((el: any, i: number) => (
+          {resultTextPages.slice(1).map((el: string, i: number) => (
             <div key={i} className="w-full bg-white p-5">
               <FieldtripSuburbsTextSeparatePaper
                 studentName={fieldtrip?.student?.name || ''}
@@ -219,7 +201,7 @@ export function FieldtripResultDetailPage() {
       )}
       {fieldtrip?.type === 'SUBURBS' && (
         <>
-          {resultFilesWithTwo.map((el: any, i: number) => (
+          {resultFilesWithTwo.map((el: string[], i: number) => (
             <div key={i} className="w-full bg-white p-5">
               <FieldtripSuburbsSeparatePaper
                 studentName={(fieldtrip?.student?.name || '') + getNickName(fieldtrip?.student?.nickName)}
@@ -303,13 +285,13 @@ export function FieldtripResultDetailPage() {
           noImgDetails
           scalable={false}
           images={viewerImages}
-          onChange={(activeImage, index) => setActiveIndex(index)}
+          onChange={(_, index) => setActiveIndex(index)}
           onClose={() => setImagesModalOpen(false)}
           activeIndex={activeIndex}
         />
       </div>
       <div className="absolute">
-        <PdfViewer isOpen={hasPdfModalOpen} fileUrl={focusPdfFile} onClose={() => setPdfModalOpen(false)} />
+        <PdfViewer isOpen={hasPdfModalOpen} fileUrl={''} onClose={() => setPdfModalOpen(false)} />
       </div>
     </>
   )

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
+
+import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, Td } from '@/legacy/components'
 import { Blank, BottomFixed, CloseButton, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -13,8 +15,9 @@ import { useSignature } from '@/legacy/hooks/useSignature'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isPdfFile } from '@/legacy/util/file'
 import { fieldtripPeriodDayCnt, makeStartEndToString } from '@/legacy/util/time'
+
 export function FieldtripApprovalPage() {
-  const { uuid } = useParams<{ uuid: string }>()
+  const { uuid = '' } = useParams<{ uuid: string }>()
   const { push } = useHistory()
 
   const { clearSignature, canvasRef, sigPadData } = useSignature()
