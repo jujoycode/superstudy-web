@@ -33,7 +33,6 @@ export function NewsletterAddPage() {
   const { allKlassGroups } = GroupContainer.useContext()
   const gradeChunks = _.chunk(_.uniq(_.map(allKlassGroups, 'grade')), 3)
 
-  const isElementary = allKlassGroups.find((item) => item.grade >= 4)
   const [_studentName, set_studentName] = useState('')
   const [, setStudentName] = useState('')
 
@@ -73,7 +72,7 @@ export function NewsletterAddPage() {
     setSelectedUsers,
     loading,
     setLoading,
-  } = useTeacherNewsletterAdd(id)
+  } = useTeacherNewsletterAdd(id || '')
 
   const {
     allGroups,
