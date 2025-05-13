@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Routes } from 'src/routes'
+import { Routes } from '@/legacy/constants/routes'
 import { useHistory } from '@/hooks/useHistory'
 import {
   useGroupsDelete,

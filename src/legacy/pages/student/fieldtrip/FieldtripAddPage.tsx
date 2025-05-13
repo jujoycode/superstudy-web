@@ -143,7 +143,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
       accommodation,
       agree,
       studentSafeAgree,
-      studentSafeText,
+      fieldtripSafety,
       destination,
       overseas,
       guideName,
@@ -187,7 +187,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
     } else {
       setDayHomePlan(false)
     }
-  }, [fieldtripData])
+  }, [fieldtripData, homePlan])
 
   const clearHomePlane = () => {
     const _homePlan = (n: number) => {
@@ -248,7 +248,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
       setWholeDayPeriod(_wholeStartDate + '~' + _wholeEndDate)
       setEHalfDate(_eHalfDate)
     }
-  }, [startAt, endAt, startHalf, endHalf])
+  }, [startAt, endAt, startHalf, endHalf, hasSaturdayClass, cannotSchedules, setUsedDays])
 
   useEffect(() => {
     if (!startAt || !me) {
@@ -283,7 +283,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
       maxDay++
     }
     setMaxDate(addDays(startAt, maxDay - 1))
-  }, [startAt, me, notSelectableDates])
+  }, [startAt, me, notSelectableDates, holidays])
 
   useEffect(() => {
     if (!parentsName || !parentsPhone) {
@@ -295,7 +295,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
         setParentsPhone(me.nokPhone)
       }
     }
-  }, [me])
+  }, [me, parentsName, parentsPhone, setParentsName, setParentsPhone])
 
   useEffect(() => {
     const holidaySchedules = chain(cannotSchedules)
@@ -352,7 +352,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
         return
       }
     }
-  }, [usedDays, prevUsedDays])
+  }, [usedDays, prevUsedDays, isHomePlanType, homePlan, setHomePlan])
 
   const name = isHomePlanType() ? '가정' : '교외 체험'
 
@@ -1009,7 +1009,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
 
           <Label.col>
             <Label.Text children="*학생안전" />
-            <div>{studentSafeText}</div>
+            <div className="text-left text-xs whitespace-pre-wrap">{fieldtripSafety}</div>
           </Label.col>
           <div className="float-right">
             <Label.row>
