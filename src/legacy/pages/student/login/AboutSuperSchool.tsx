@@ -1,9 +1,8 @@
+import Logo from '@/assets/svg/logo.svg'
 import { BackButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { YoutubeLink } from '@/legacy/components/YoutubeLink'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-
-import Logo from '@/assets/svg/logo.svg'
 
 export function AboutSuperSchoolPage() {
   const { t } = useLanguage()

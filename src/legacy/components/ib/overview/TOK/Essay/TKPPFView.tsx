@@ -14,9 +14,8 @@ import { handleBatchBlobDownload } from '@/legacy/hooks/useBatchDownload'
 import { BlobDownloadItem } from '@/legacy/hooks/useBatchDownload'
 import { modifyTkppfPdf } from '@/legacy/util/ib_tkppf_pdf'
 
-import IBSubmitPdfPreviewPopup from '../@/legacy/pages/ibSubmitPdfPreviewPopup'
-
 import TKPPFOverviewPanel from './TKPPFOverviewPanel'
+import IBSubmitPdfPreviewPopup from '../@/legacy/pages/ibSubmitPdfPreviewPopup'
 
 export default function TKPPFView({ grade, klass }: TKPPFGetSubmissionStatusCountParams) {
   const { push } = useHistory()

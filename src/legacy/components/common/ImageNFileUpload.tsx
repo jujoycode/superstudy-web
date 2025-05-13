@@ -1,10 +1,9 @@
 import { ChangeEvent, InputHTMLAttributes } from 'react'
 
+import ADDFILE from '@/assets/images/addfile.png'
 import { fileType } from '@/legacy/hooks/useImageAndDocument'
 
 import { Typography } from './Typography'
-
-import ADDFILE from '@/assets/images/addfile.png'
 
 export interface ImageNFileUploadProps extends InputHTMLAttributes<HTMLInputElement> {
   addFiles?: (files: FileList, availableType?: fileType[]) => void

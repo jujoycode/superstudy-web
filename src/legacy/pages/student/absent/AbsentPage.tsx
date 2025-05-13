@@ -1,6 +1,7 @@
 import { t } from 'i18next'
 import { useState } from 'react'
 
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
@@ -8,8 +9,6 @@ import { useStudentAbsent } from '@/legacy/container/student-absent'
 import { AbsentStatus, Role } from '@/legacy/generated/model'
 import { getPeriodStr } from '@/legacy/util/status'
 import { makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
-
-import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 
 export function AbsentPage() {
   const { push } = useHistory()

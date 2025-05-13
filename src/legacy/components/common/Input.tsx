@@ -3,10 +3,9 @@ import { InputHTMLAttributes, forwardRef, useEffect, useState } from 'react'
 
 import { cn } from '@/legacy/lib/tailwind-merge'
 
+import { Typography } from './Typography'
 import ColorSVGIcon from '../icon/ColorSVGIcon'
 import SVGIcon from '../icon/SVGIcon'
-
-import { Typography } from './Typography'
 
 export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string

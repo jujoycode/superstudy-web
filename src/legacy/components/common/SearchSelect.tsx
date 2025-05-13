@@ -1,9 +1,8 @@
 import clsx from 'clsx'
 import { forwardRef, ReactElement, useEffect, useRef, useState } from 'react'
 
-import SVGIcon from '../icon/SVGIcon'
-
 import { Input } from './Input'
+import SVGIcon from '../icon/SVGIcon'
 
 export interface SearchSelectOptionProps {
   id: number

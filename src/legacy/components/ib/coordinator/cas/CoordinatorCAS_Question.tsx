@@ -1,6 +1,7 @@
 import { concat, sortBy } from 'lodash'
 import { useState } from 'react'
 
+import NODATA from '@/assets/images/no-data.png'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -18,8 +19,6 @@ import { CoordinatorEE_Form_AddCheckList } from '../ee/CoordinatorEE_Form_AddChe
 import { ModalType } from '../FAQList'
 
 import { CoordinatorCAS_Question_AddQuestion } from './CoordinatorCAS_Question_AddQuestion'
-
-import NODATA from '@/assets/images/no-data.png'
 
 export const CAS_QUESTION_TYPES: Record<string, string> = {
   CAS_PROFILE: 'CAS 프로필',

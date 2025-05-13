@@ -1,12 +1,11 @@
 import { useTranslation } from 'react-i18next'
 
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import { Typography } from '@/legacy/components/common/Typography'
 import { ResponseIBPortfolioListDto } from '@/legacy/generated/model'
 
 import CASPercent from './CASPercent'
-
-import NODATA from '@/assets/images/no-data.png'
 
 interface PortfolioCardProps {
   data: ResponseIBPortfolioListDto

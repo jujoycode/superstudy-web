@@ -5,13 +5,13 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { Absent } from '@/legacy/pages/teacher/absent'
 import type { ActivityV3 } from './activityV3'
 import type { Board } from './board'
 import type { Fieldtrip } from './fieldtrip'
 import type { Newsletter } from './newsletter'
 import type { Notice } from './notice'
 import type { Outing } from './outing'
+import type { Absent } from '@/legacy/pages/teacher/absent'
 
 export interface ResponseStudentNotificationDashboardDto {
   /** 안읽은 활동기록부(공지) 데이터 */

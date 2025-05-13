@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import { useState, useEffect, type ChangeEvent } from 'react'
 import { useRecoilValue } from 'recoil'
 
+import SvgUser from '@/assets/svg/user.svg'
 import { CloseButton, Label, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
@@ -21,8 +22,6 @@ import { getRoleTitle } from '@/legacy/util/permission'
 import { getNickName } from '@/legacy/util/status'
 import { getHoursfromHHmmString, getMinutesfromHHmmString, makeHHmmString } from '@/legacy/util/time'
 import { meState } from '@/stores'
-
-import SvgUser from '@/assets/svg/user.svg'
 
 enum contentType {
   setting = 1,

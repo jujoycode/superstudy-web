@@ -6,10 +6,10 @@ import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useTeacherRecordSummaryItem } from '@/legacy/container/teacher-record-summary-item'
 import { Summary } from '@/legacy/generated/model'
+import { forbiddenWords } from '@/legacy/pages/teacher/ForbiddenWords'
 import { meState } from '@/stores'
 import { SuperModal } from '../SuperModal'
 // * 추후 상수로 고도화...
-import { forbiddenWords } from '@/legacy/pages/teacher/ForbiddenWords'
 
 interface SummaryItemProps {
   summary: Summary

@@ -1,6 +1,7 @@
 import { t } from 'i18next'
 import { useParams } from 'react-router'
 
+import FileItemIcon from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, Td2 } from '@/legacy/components'
 import { Blank, BottomFixed, CloseButton, Label, Section, TopNavbar } from '@/legacy/components/common'
@@ -10,8 +11,6 @@ import { useStudentAbsentApprove } from '@/legacy/container/student-absent-appro
 import { useSignedUrl } from '@/legacy/lib/query'
 import { getPeriodStr } from '@/legacy/util/status'
 import { makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
-
-import FileItemIcon from '@/assets/svg/file-item-icon.svg'
 
 export function AbsentApprovalPage() {
   const { uuid = '' } = useParams<{ uuid: string }>()

@@ -2,15 +2,15 @@ import { concat } from 'lodash'
 import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 
 import { Blank } from '@/legacy/components/common'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import { useChecklistCreateChecklist, useChecklistDeleteChecklist } from '@/legacy/generated/endpoint'
 import { ChecklistLocation, ResponseChecklistDto } from '@/legacy/generated/model'
 
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import SVGIcon from '../../../icon/SVGIcon'
 import { FormInputField } from '../../FormInputField'
-import AlertV2 from '@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Typography } from '@/legacy/components/common/Typography'
 
 interface CoordinatorEE_Form_AddCheckListProps {
   modalOpen: boolean

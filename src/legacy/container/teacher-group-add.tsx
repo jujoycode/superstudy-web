@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Routes } from 'src/routes'
 import { useHistory } from '@/hooks/useHistory'
 import {
   useGroupsCreate,
@@ -16,7 +17,6 @@ import {
   User,
 } from '@/legacy/generated/model'
 // ! 지훈쌤 개선안 적용
-import { Routes } from 'src/routes'
 import { GroupContainer } from './group'
 
 export function useTeacherGroupAdd({ groupId, onSubmit }: { groupId?: number; onSubmit?: () => void }) {

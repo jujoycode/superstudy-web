@@ -1,6 +1,7 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
@@ -12,8 +13,6 @@ import { FeedbackReferenceTable, ResponseIBDto } from '@/legacy/generated/model'
 
 import FeedbackViewer from '../FeedbackViewer'
 import { IBPagination } from '../ProjectList'
-
-import NODATA from '@/assets/images/no-data.png'
 
 const itemsPerPage = 10
 

@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { useHistory } from '@/hooks/useHistory'
 import { useSetRecoilState } from 'recoil'
+import { Routes } from 'src/routes'
+import { useHistory } from '@/hooks/useHistory'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useNoticesCreate, useNoticesUpdate } from '@/legacy/generated/endpoint'
 import { Notice, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 // ! 지훈쌤 개선안 적용
-import { Routes } from 'src/routes'
-import { isUpdateNoticeState } from '@/stores'
 import { DocumentObject } from '@/legacy/types/document-object'
 import { ImageObject } from '@/legacy/types/image-object'
+import { isUpdateNoticeState } from '@/stores'
 
 const initialNoticeState: Notice = {
   id: 0,

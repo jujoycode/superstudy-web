@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { Routes } from '@/legacy/constants/routes'
-import { useHistory } from '@/hooks/useHistory'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
+import { useHistory } from '@/hooks/useHistory'
 import { Constants } from '@/legacy/constants'
 import { QueryKey } from '@/legacy/constants/query-key'
+import { Routes } from '@/legacy/constants/routes'
 import {
   useNewsLettersDelete,
   useNewsLettersFindOne,
@@ -14,10 +14,10 @@ import {
 import { NewsletterCategoryEnum, NewsletterType, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { isPdfFile } from '@/legacy/util/file'
 import { DocumentObject } from '@/legacy/types/document-object'
 import { ImageObject } from '@/legacy/types/image-object'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { isPdfFile } from '@/legacy/util/file'
 
 interface NewsletterCore {
   id: number

@@ -11,9 +11,8 @@ import { GroupType, Role, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignedUrl } from '@/legacy/lib/query'
-import { getNickName } from '@/legacy/util/status'
-
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
+import { getNickName } from '@/legacy/util/status'
 
 export function TeacherDetailsPage() {
   const { t } = useLanguage()

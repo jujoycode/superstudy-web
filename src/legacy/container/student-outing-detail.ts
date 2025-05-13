@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
+import { useHistory } from '@/hooks/useHistory'
 import { useOutingsApproveByParentApp, useOutingsDelete, useOutingsFindOne } from '@/legacy/generated/endpoint'
-import { childState, meState } from '@/stores'
 import { errorType } from '@/legacy/types'
+import { childState, meState } from '@/stores'
 import { useDialog } from './DialogContext'
 
 export function useStudentOutingDetail(id: number) {

@@ -6,9 +6,8 @@ import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { parentManagementUpdateParent, useParentManagementGetParentInfo } from '@/legacy/generated/endpoint'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { getNickName } from '@/legacy/util/status'
-
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
+import { getNickName } from '@/legacy/util/status'
 
 export function ParentDetailsPage() {
   const { year } = useContext(AdminContext)

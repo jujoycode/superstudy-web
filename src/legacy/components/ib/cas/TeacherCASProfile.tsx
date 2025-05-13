@@ -1,9 +1,8 @@
+import SvgUser from '@/assets/images/no_profile.png'
 import { Typography } from '@/legacy/components/common/Typography'
 import { Constants } from '@/legacy/constants'
 import { ResponseIBPortfolioDto } from '@/legacy/generated/model'
 import { makeStudNum5 } from '@/legacy/util/status'
-
-import SvgUser from '@/assets/images/no_profile.png'
 
 interface TeacherCASProfileProps {
   data: ResponseIBPortfolioDto

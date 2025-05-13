@@ -4,10 +4,9 @@ import { HTMLAttributes } from 'react'
 import { ResponsePaginatedIBDto } from '@/legacy/generated/model'
 import { useSearch } from '@/legacy/lib/router'
 
-import SVGIcon from '../icon/SVGIcon'
-
 import { PaginationLink } from './Pagination'
 import { Typography } from './Typography'
+import SVGIcon from '../icon/SVGIcon'
 
 export interface PaginationV2Props extends HTMLAttributes<HTMLDivElement> {
   data?: ResponsePaginatedIBDto

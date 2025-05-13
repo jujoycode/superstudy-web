@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
 import { useQueryClient } from 'react-query'
+import SvgUser from '@/assets/svg/user.svg'
 import { Select } from '@/legacy/components/common'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { Constants } from '@/legacy/constants'
@@ -9,7 +10,6 @@ import { useTeacherStudentUpdate } from '@/legacy/container/teacher-student-upda
 import { useTeacherStudentCard } from '@/legacy/container/teacher-studentcard'
 import { Category, Code, ResponseParentUserDto } from '@/legacy/generated/model'
 import { Validator } from '@/legacy/util/validator'
-import SvgUser from '@/assets/svg/user.svg'
 
 interface StudentInfoCardProps {
   id: number

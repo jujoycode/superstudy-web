@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
 
+import Close from '@/assets/svg/close.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ChatRoomList } from '@/legacy/components/chat/ChatRoomList'
 import { BackButton, Divider, Label, Section, TopNavbar } from '@/legacy/components/common'
@@ -14,8 +15,6 @@ import { useStudentChatUserList } from '@/legacy/container/student-chat-user-lis
 import { UserDatas } from '@/legacy/types'
 
 import { ChatDetailPage } from './ChatDetailPage'
-
-import Close from '@/assets/svg/close.svg'
 
 export function ChatListPage() {
   const { push } = useHistory()

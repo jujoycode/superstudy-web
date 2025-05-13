@@ -2,7 +2,10 @@ import clsx from 'clsx'
 import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 
 import { Blank } from '@/legacy/components/common'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Input } from '@/legacy/components/common/Input'
+import { Typography } from '@/legacy/components/common/Typography'
 import {
   useIBProfileCreateTemplate,
   useIBProfileUpdateTemplateItem,
@@ -16,14 +19,10 @@ import {
   ResponseInterviewDto,
 } from '@/legacy/generated/model'
 
+import { CAS_QUESTION_TYPES } from './CoordinatorCAS_Question'
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import SVGIcon from '../../../icon/SVGIcon'
 import { FormInputField } from '../../FormInputField'
-import AlertV2 from '@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Typography } from '@/legacy/components/common/Typography'
-
-import { CAS_QUESTION_TYPES } from './CoordinatorCAS_Question'
 
 interface CoordinatorCAS_Question_AddQuestionProps {
   type: string

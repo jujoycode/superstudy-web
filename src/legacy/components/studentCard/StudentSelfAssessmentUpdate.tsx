@@ -8,9 +8,9 @@ import { Icon } from '@/legacy/components/common/icons'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useStudentSelfAssessmentCreate } from '@/legacy/generated/endpoint'
 import { StudentSelfAssessment } from '@/legacy/generated/model'
+import { SELF_TEST_TYPES } from '@/legacy/pages/student/self-test/self-test.type'
 import { getDayOfYear } from '@/legacy/util/time'
 // * 추후 types로 이관
-import { SELF_TEST_TYPES } from '@/legacy/pages/student/self-test/self-test.type'
 
 interface StudentSelfAssessmentUpdateProps {
   studentSelfAssessment?: StudentSelfAssessment

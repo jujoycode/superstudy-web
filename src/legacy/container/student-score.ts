@@ -1,3 +1,4 @@
+import { SchoolExamParams } from 'src/pages/student/score/SchoolExamPage'
 import {
   useStudentExamScoreCheckStudentDataFile,
   useStudentExamScoreGetAnalysedScores,
@@ -7,7 +8,6 @@ import {
   useStudentExamScorePatchStudentExamScores,
 } from '@/legacy/generated/endpoint'
 import { StudentExamScoreGetStudentMockExamScoresByParentParams } from '@/legacy/generated/model'
-import { SchoolExamParams } from 'src/pages/student/score/SchoolExamPage'
 
 export interface MockScore {
   year: number

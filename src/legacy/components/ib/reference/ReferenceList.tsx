@@ -1,10 +1,9 @@
 import { format } from 'date-fns'
 
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import { Typography } from '@/legacy/components/common/Typography'
 import { ResponseReferenceInfoDto, ResponseReferenceInfoDtoCategory } from '@/legacy/generated/model'
-
-import NODATA from '@/assets/images/no-data.png'
 
 interface EEReferenceListProps {
   data?: ResponseReferenceInfoDto[]

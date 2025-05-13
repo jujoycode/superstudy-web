@@ -15,9 +15,8 @@ import { type ResponseGroupDto, type ResponseStudentInfoDto, UploadFileTypeEnum 
 import { useSignedUrl } from '@/legacy/lib/query'
 import { useSearch } from '@/legacy/lib/router'
 import { cn } from '@/legacy/lib/tailwind-merge'
-import { getNickName } from '@/legacy/util/status'
-
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
+import { getNickName } from '@/legacy/util/status'
 
 const MAX_UPLOAD_FILES = 25
 

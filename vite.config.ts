@@ -4,6 +4,7 @@ import { execSync } from 'child_process'
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import tailwindcssPostcss from '@tailwindcss/postcss'
+import svgr from 'vite-plugin-svgr'
 
 // 메타 태그 생성 함수
 const generateMetaTag = () => {
@@ -80,6 +81,16 @@ export default defineConfig(({ mode }) => {
           }
         },
       },
+      // SVG를 React 컴포넌트로 변환하는 플러그인
+      svgr({
+        svgrOptions: {
+          exportType: 'default',
+          ref: true,
+          svgo: false,
+          titleProp: true,
+        },
+        include: '**/*.svg',
+      }),
       // React 플러그인
       react({
         jsxImportSource: 'react',
@@ -129,7 +140,6 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@/': '/src',
         '@/legacy': '/src/legacy',
-        '@/assets': '/src/assets',
         '@/atoms': '/src/components/atoms',
         '@/molecules': '/src/components/molecules',
         '@/organisms': '/src/components/organisms',

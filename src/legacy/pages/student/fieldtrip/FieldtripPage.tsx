@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { BackButton, Badge, Blank, Section, TopNavbar } from '@/legacy/components/common'
@@ -11,8 +12,6 @@ import { UserContainer } from '@/legacy/container/user'
 import { FieldtripStatus, Role } from '@/legacy/generated/model'
 import { makeStartEndToString } from '@/legacy/util/time'
 import { childState } from '@/stores'
-
-import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 
 export function FieldtripPage() {
   const [modalopen, setModalopen] = useState(false)

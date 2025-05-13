@@ -8,9 +8,8 @@ import {
   ResponseUserDto,
 } from '@/legacy/generated/model'
 
-import SVGIcon from '../icon/SVGIcon'
-
 import ProjectCard from './ProjectCard'
+import SVGIcon from '../icon/SVGIcon'
 
 interface ProjectListProps {
   title: string

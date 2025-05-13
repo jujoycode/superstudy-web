@@ -2,6 +2,9 @@ import { id } from 'date-fns/locale'
 import { PropsWithChildren, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import { useIBReferenceCreate, useIBReferenceUpdate } from '@/legacy/container/ib-coordinator'
 import {
   ReferenceInfoGetReferenceInfoListCategory,
@@ -17,9 +20,6 @@ import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import { DocumentCard } from '../../DocumentCard'
 import { ImageCard } from '../../ImageCard'
 import { InputField } from '../../InputField'
-import AlertV2 from '@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Typography } from '@/legacy/components/common/Typography'
 
 interface CoordinatorEE_FAQ_AddRefProps {
   modalOpen: boolean

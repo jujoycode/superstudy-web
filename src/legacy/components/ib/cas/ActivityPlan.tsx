@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -32,8 +33,6 @@ import { meState } from '@/stores'
 
 import { Feedback } from '../Feedback'
 import { InputField } from '../InputField'
-
-import NODATA from '@/assets/images/no-data.png'
 
 interface ActivityPlanProps {
   data: ResponseIBDto

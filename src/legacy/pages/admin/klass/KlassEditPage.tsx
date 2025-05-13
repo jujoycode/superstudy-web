@@ -13,9 +13,8 @@ import { klassManagementCreateKlass } from '@/legacy/generated/endpoint'
 import { RequestCreateKlassDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
-import { toastState } from '@/stores'
-
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
+import { toastState } from '@/stores'
 
 export function KlassEditPage() {
   const { push } = useHistory()

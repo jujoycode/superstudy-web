@@ -4,6 +4,7 @@ import { Routes, useParams } from 'react-router'
 import { Route } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 
+import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { SuperModal, Tab } from '@/legacy/components'
 import { Blank } from '@/legacy/components/common'
@@ -15,7 +16,6 @@ import { ResponseGroupDto, StudentGroup, StudentNewsletter } from '@/legacy/gene
 import { newsletterOpenedGroupState } from '@/stores'
 
 import { NewsletterSubmitDetailPage } from './NewsletterSubmitDetailPage'
-import RightArrow from '@/assets/svg/mypage-right-arrow.svg'
 
 export function NewsletterSubmitPage() {
   const { push } = useHistory()

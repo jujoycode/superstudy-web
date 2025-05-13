@@ -1,20 +1,18 @@
 import { map, max, orderBy } from 'lodash'
 import { useState } from 'react'
 
+import NODATA from '@/assets/images/no-data.png'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 import { useEEEvaluationGetItems } from '@/legacy/generated/endpoint'
 import { ResponseEEEvaluationDto } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
-import FrontPaginatedList from '../../../FrontPaginatedList '
-import AlertV2 from '@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Typography } from '@/legacy/components/common/Typography'
-
 import { CoordinatorEE_Eval_AddEval } from './CoordinatorEE_Eval_AddEval'
 import { CoordinatorEE_Eval_UpdateEval } from './CoordinatorEE_Eval_UpdateEval'
-
-import NODATA from '@/assets/images/no-data.png'
+import FrontPaginatedList from '../../../FrontPaginatedList '
 
 export type ModalType = 'Update' | 'Add' | null
 export type CategoryType = 'Ref' | 'FAQ' | ''

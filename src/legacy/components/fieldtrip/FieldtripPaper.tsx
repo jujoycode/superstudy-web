@@ -5,13 +5,13 @@ import { useRecoilValue } from 'recoil'
 import { useSchoolWording } from '@/legacy/container/school-wording'
 import { Fieldtrip, ResponseUserDto } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
-import { meState } from '@/stores'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName } from '@/legacy/util/status'
 import { getCustomString } from '@/legacy/util/string'
 import { fieldtripPeriodDayCnt, makeDateToString2 } from '@/legacy/util/time'
-import { Td2 } from '../Td2'
+import { meState } from '@/stores'
 import { Checkbox } from '../common/Checkbox'
+import { Td2 } from '../Td2'
 
 interface FieldtripPaperProps {
   school: ResponseUserDto['school'] | undefined

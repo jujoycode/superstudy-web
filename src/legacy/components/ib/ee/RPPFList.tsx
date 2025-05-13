@@ -1,6 +1,7 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -16,8 +17,6 @@ import FeedbackViewer from '../FeedbackViewer'
 
 import { IbEeInterview } from './IbEeInterview'
 import { IbEeRPPF } from './IbEeRPPF'
-
-import NODATA from '@/assets/images/no-data.png'
 
 interface RPPFListProps {
   data: ResponseIBDto

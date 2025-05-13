@@ -2,7 +2,10 @@ import { concat, find, map } from 'lodash'
 import { PropsWithChildren, useState } from 'react'
 
 import { Blank } from '@/legacy/components/common'
+import AlertV2 from '@/legacy/components/common/AlertV2'
+import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
+import { Typography } from '@/legacy/components/common/Typography'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { PopupModal } from '@/legacy/components/PopupModal'
 import { SuperModal } from '@/legacy/components/SuperModal'
@@ -16,9 +19,6 @@ import {
 import { useTokEvaluationGetCriteriaById } from '../../../../generated/endpoint'
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import { EvalInputField } from '../../EvalInputField'
-import AlertV2 from '@/legacy/components/common/AlertV2'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
-import { Typography } from '@/legacy/components/common/Typography'
 
 interface CoordinatorTOK_Eval_UpdateEvalProps {
   modalOpen: boolean

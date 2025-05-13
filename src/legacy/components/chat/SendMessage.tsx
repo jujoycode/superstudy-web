@@ -5,6 +5,7 @@ import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { twMerge } from 'tailwind-merge'
 
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { Icon } from '@/legacy/components/common/icons'
 import { Constants } from '@/legacy/constants'
 import {
@@ -18,8 +19,6 @@ import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl } from '@/legacy/util/file'
 import { isSameMinute } from '@/legacy/util/time'
-
-import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 
 interface SendMessageProps {
   PreMessageData?: Chat

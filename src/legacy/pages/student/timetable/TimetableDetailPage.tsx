@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 
+import KlassIcon from '@/assets/svg/attendance-class.svg'
+import UserIcon from '@/assets/svg/attendance-user.svg'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { useStudentTimetableDetail } from '@/legacy/container/student-timetable-detail'
 import { LectureType, ResponseTimetableV3Dto, Role } from '@/legacy/generated/model'
 import { dayOfKorWeek } from '@/legacy/util/date'
 import { childState, meState } from '@/stores'
-
-import KlassIcon from '@/assets/svg/attendance-class.svg'
-import UserIcon from '@/assets/svg/attendance-user.svg'
 
 export function TimetableDetailPage() {
   const me = useRecoilValue(meState)

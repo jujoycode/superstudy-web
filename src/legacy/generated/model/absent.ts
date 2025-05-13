@@ -5,9 +5,9 @@
  * Super School API 상세
  * OpenAPI spec version: 0.1
  */
-import type { AbsentStatus } from '@/legacy/pages/teacher/absentStatus'
 import type { Group } from './group'
 import type { User } from './user'
+import type { AbsentStatus } from '@/legacy/pages/teacher/absentStatus'
 
 export interface Absent {
   /** 아이디 */

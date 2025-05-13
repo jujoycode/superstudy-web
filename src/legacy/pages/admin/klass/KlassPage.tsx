@@ -25,10 +25,9 @@ import {
 } from '@/legacy/generated/endpoint'
 import { RequestGroupTeacherDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getNickName } from '@/legacy/util/status'
 import { toastState, warningState } from '@/stores'
-
-import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 export function KlassPage() {
   const { t } = useLanguage()

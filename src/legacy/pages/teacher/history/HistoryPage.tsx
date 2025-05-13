@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { Route, Routes, useLocation } from 'react-router'
 
+import Refresh from '@/assets/svg/refresh.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, FrontPagination } from '@/legacy/components'
 import { AbsentCard } from '@/legacy/components/absent/AbsentCard'
@@ -28,7 +29,6 @@ import { getSearchYearByMonth, getThisYear, makeStartEndToString } from '@/legac
 import { HistoryAbsentDetailPage } from './HistoryAbsentDetailPage'
 import { HistoryFieldtripDetailPage } from './HistoryFieldtripDetailPage'
 import { HistoryOutingDetailPage } from './HistoryOutingDetailPage'
-import Refresh from '@/assets/svg/refresh.svg'
 
 export interface MergedGroupType {
   id: number
@@ -426,7 +426,6 @@ export function HistoryPage() {
 
             {/* 확인증 */}
             {selectedDocType === 0 &&
-              // eslint-disable-next-line react/jsx-no-undef
               outings?.items?.map((outing: ResponseCreateOutingDto) => (
                 <OutingCard key={outing.id} outing={outing} type={'history'} />
               ))}

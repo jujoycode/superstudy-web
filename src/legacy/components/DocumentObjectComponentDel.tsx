@@ -1,10 +1,9 @@
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { Constants } from '@/legacy/constants'
 import { DocumentObject } from '@/legacy/types/document-object'
 import { getFileNameFromUrl } from '@/legacy/util/file'
 
 import { Icon } from './common/icons'
-
-import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 
 interface DocumentObjectComponentProps {
   id: number

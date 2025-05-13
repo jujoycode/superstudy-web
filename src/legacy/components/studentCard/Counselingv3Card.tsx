@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react'
 
+import DownArrow from '@/assets/icons/chevron-down.svg'
+import Plus from '@/assets/svg/plus.svg'
 import { Blank, Select } from '@/legacy/components/common'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useCodeByCategoryName } from '@/legacy/container/category'
@@ -9,10 +11,8 @@ import { Category, Code, ResponseCounselingDetailDto } from '@/legacy/generated/
 import { AccessLevels } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isValidDate } from '@/legacy/util/time'
-import Recorder from '../rec/Recorder'
 import CounselingDetailCard from './CounselingDetailCard'
-import DownArrow from '@/assets/icons/chevron-down.svg'
-import Plus from '@/assets/svg/plus.svg'
+import Recorder from '../rec/Recorder'
 
 interface CounselingCardProps {
   studentId: number

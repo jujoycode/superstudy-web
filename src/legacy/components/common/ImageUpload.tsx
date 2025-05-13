@@ -1,9 +1,8 @@
 import clsx from 'clsx'
 import { InputHTMLAttributes } from 'react'
 
-import { useLanguage } from '@/legacy/hooks/useLanguage'
-
 import { ReactComponent as FileUploadImg } from '@/assets/svg/upload-image.svg'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
 
 export interface ImageUploadProps extends InputHTMLAttributes<HTMLInputElement> {}
 

@@ -2,6 +2,7 @@ import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2, BadgeV2Color } from '@/legacy/components/common/BadgeV2'
@@ -18,8 +19,6 @@ import { PopupModal } from '../../PopupModal'
 import FeedbackViewer from '../FeedbackViewer'
 
 import { IbEeProposal } from './IbEeProposal'
-
-import NODATA from '@/assets/images/no-data.png'
 
 interface ProposalListProps {
   data: ResponseIBDto

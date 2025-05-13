@@ -1,15 +1,15 @@
 import { addYears, format } from 'date-fns'
 import { useState } from 'react'
-import { useHistory } from '@/hooks/useHistory'
 import { useRecoilValue } from 'recoil'
+import { useHistory } from '@/hooks/useHistory'
 import {
   useFieldtripsDelete,
   useFieldtripsFindOne,
   useFieldtripsResend,
   useSchedulesFindRejectSchedule,
 } from '@/legacy/generated/endpoint'
-import { childState } from '@/stores'
 import { errorType } from '@/legacy/types'
+import { childState } from '@/stores'
 
 export function useStudentFieldtripDetail(id: number) {
   const { push } = useHistory()
