@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import Close from '@/assets/svg/close.svg'
+import { ReactComponent as Close } from '@/assets/svg/close.svg'
 import { ErrorBlank } from '@/legacy/components'
 import { AllSelectCheckbox } from '@/legacy/components/AllSelectCheckbox'
 import { Blank, Label, Section, Select, Textarea } from '@/legacy/components/common'

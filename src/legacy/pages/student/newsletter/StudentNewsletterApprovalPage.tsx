@@ -126,7 +126,7 @@ export function StudentNewsletterApprovalPage() {
           </Section>
           <SuperSurveyComponent
             surveyContent={newsletter?.surveyContent || ''}
-            setContent={(c: any) => {}}
+            setContent={() => {}}
             content={JSON.parse(studentNewsletter?.content || '{}')}
           />
           <Section>

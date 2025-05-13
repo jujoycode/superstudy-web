@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useCanteenFindByYearMonth, useSchedulesFindAll } from '@/legacy/generated/endpoint'
-import { Schedule } from '@/legacy/generated/model'
+import { Schedule } from '@/legacy/types'
 import { getCalendarRange, makeDateToString } from '@/legacy/util/time'
-// 기존 버그
 
 export function useTeacherCanteen() {
   const [dateRange, setDateRange] = useState<{ startDate: Date; endDate: Date }>()

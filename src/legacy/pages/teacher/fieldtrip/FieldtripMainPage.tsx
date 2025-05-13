@@ -284,7 +284,10 @@ export function FieldtripMainPage() {
                     }
                     return 0
                   })
-                  .filter(() => me?.role)}
+                  .filter(
+                    (_) => me?.role,
+                    // && fieldtrip?.fieldtripResultStatus === 'PROCESSED'
+                  )}
                 setCsvData={(b: boolean) => setCsvData(b)}
                 isCsvData={isCsvData}
               />

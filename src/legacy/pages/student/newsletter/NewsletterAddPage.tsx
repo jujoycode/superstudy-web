@@ -166,7 +166,7 @@ export function NewsletterAddPage({ studentNewsletterData, newsletterData, setUp
             </div>
           </div>
         ))}
-        {Pdfs?.map((pdfFile: string, i: number) => {
+        {Pdfs?.map((pdfFile: string) => {
           return (
             <>
               <div key={pdfFile}>
@@ -285,7 +285,7 @@ export function NewsletterAddPage({ studentNewsletterData, newsletterData, setUp
           noImgDetails
           scalable={false}
           images={viewerImages}
-          onChange={(activeImage, index) => setActiveIndex(index)}
+          onChange={(_, index) => setActiveIndex(index)}
           onClose={() => setImagesModalOpen(false)}
           activeIndex={activeIndex}
         />

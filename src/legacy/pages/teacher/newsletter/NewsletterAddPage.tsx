@@ -26,9 +26,9 @@ import { getExtOfFilename } from '@/legacy/util/file'
 import { meState } from '@/stores'
 
 export function NewsletterAddPage() {
-  const { id = '' } = useParams<{ id: string }>()
-  const meRecoil = useRecoilValue(meState)
   const { t } = useLanguage()
+  const meRecoil = useRecoilValue(meState)
+  const { id } = useParams<{ id: string }>()
 
   const { allKlassGroups } = GroupContainer.useContext()
   const gradeChunks = _.chunk(_.uniq(_.map(allKlassGroups, 'grade')), 3)
@@ -72,7 +72,7 @@ export function NewsletterAddPage() {
     setSelectedUsers,
     loading,
     setLoading,
-  } = useTeacherNewsletterAdd(id)
+  } = useTeacherNewsletterAdd(id || '')
 
   const {
     allGroups,
