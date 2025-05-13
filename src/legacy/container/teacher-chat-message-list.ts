@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Routes } from 'src/routes'
 import { useHistory } from '@/hooks/useHistory'
+import { Routes } from '@/legacy/constants/routes'
 import {
   useChatCreateMessage,
   useChatDeleteMessage,
@@ -36,7 +36,7 @@ export function useTeacherChatMessageList(chatroomId: number) {
         setNewMessage('')
         refetchChatMessages()
           .then(() => {})
-          .catch((error) => {
+          .catch(() => {
             // refetch 중에 발생한 에러를 처리하는 작업
             //alert(error?.message);
           })
