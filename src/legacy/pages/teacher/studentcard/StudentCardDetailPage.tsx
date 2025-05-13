@@ -1,5 +1,6 @@
-import { Route, Switch, useHistory, useLocation, useParams } from 'react-router-dom'
+import { Route, Routes, useLocation, useParams } from 'react-router'
 import { useRecoilValue } from 'recoil'
+import { useHistory } from '@/hooks/useHistory'
 import { BackButton, Blank, List, TopNavbar } from '@/legacy/components/common'
 import Counselingv3Card from '@/legacy/components/studentCard/Counselingv3Card'
 import { StudyInfoCard2 } from '@/legacy/components/studentCard/StudyInfoCard2'
@@ -78,19 +79,18 @@ export function StudentCardDetailPage() {
                 </button>
               </List>
               <div>
-                <Switch>
+                <Routes>
                   <Route
-                    exact
                     path={`/teacher/studentcard/:groupId/:id/default`}
-                    component={() => <StudyInfoCard2 studentId={Number(id)} isCard={true} isForbidden={isForbidden} />}
+                    Component={() => <StudyInfoCard2 studentId={Number(id)} isCard={true} isForbidden={isForbidden} />}
                   />
-                  <Route path={`/teacher/studentcard/:groupId/:id/activityv3`} component={ActivityV3Page} />
+                  <Route path={`/teacher/studentcard/:groupId/:id/activityv3`} Component={ActivityV3Page} />
                   <Route
                     path={`/teacher/studentcard/:groupId/:id/counseling`}
-                    component={() => <Counselingv3Card studentId={Number(id)} groupId={Number(groupId)} />}
+                    Component={() => <Counselingv3Card studentId={Number(id)} groupId={Number(groupId)} />}
                   />
-                  <Route exact path={`/teacher/studentcard/:groupId/:id/pointlogs`} component={PointLogsPage} />
-                </Switch>
+                  <Route path={`/teacher/studentcard/:groupId/:id/pointlogs`} Component={PointLogsPage} />
+                </Routes>
               </div>
             </div>
           </div>
@@ -166,24 +166,24 @@ export function StudentCardDetailPage() {
                   </button>
                 </List>
                 <div>
-                  <Switch>
-                    <Route path={`/teacher/studentcard/:groupId/:id/score`} component={ScoreCardPage} />
+                  <Routes>
+                    <Route path={`/teacher/studentcard/:groupId/:id/score`} Component={ScoreCardPage} />
 
-                    <Route path={`/teacher/studentcard/:groupId/:id/activityv3`} component={ActivityV3Page} />
+                    <Route path={`/teacher/studentcard/:groupId/:id/activityv3`} Component={ActivityV3Page} />
                     <Route
                       path={`/teacher/studentcard/:groupId/:id/all`}
-                      component={() => (
+                      Component={() => (
                         <StudyInfoCard2 studentId={studentInfo?.student.id} isCard={true} isForbidden={isForbidden} />
                       )}
                     />
                     <Route
                       path={`/teacher/studentcard/:groupId/:id/counseling`}
-                      component={() => <Counselingv3Card studentId={Number(id)} groupId={Number(groupId)} />}
+                      Component={() => <Counselingv3Card studentId={Number(id)} groupId={Number(groupId)} />}
                     />
-                    <Route exact path={`/teacher/studentcard/:groupId/:id/general`} component={GeneralCardPage} />
-                    <Route exact path={`/teacher/studentcard/:groupId/:id/default`} component={AllCardPage} />
-                    <Route exact path={`/teacher/studentcard/:groupId/:id/pointlogs`} component={PointLogsPage} />
-                  </Switch>
+                    <Route path={`/teacher/studentcard/:groupId/:id/general`} Component={GeneralCardPage} />
+                    <Route path={`/teacher/studentcard/:groupId/:id/default`} Component={AllCardPage} />
+                    <Route path={`/teacher/studentcard/:groupId/:id/pointlogs`} Component={PointLogsPage} />
+                  </Routes>
                 </div>
               </div>
             </div>
