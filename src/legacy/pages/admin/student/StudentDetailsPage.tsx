@@ -11,7 +11,7 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignedUrl } from '@/legacy/lib/query'
 
-import { AdminContext } from '../AdminMainPage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 export function StudentDetailsPage() {
   const { t } = useLanguage()

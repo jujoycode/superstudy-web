@@ -25,7 +25,7 @@ import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
 import { toastState, warningState } from '@/stores'
 
-import { AdminContext } from '../AdminMainPage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 export function StudentPage() {
   const { t } = useLanguage()

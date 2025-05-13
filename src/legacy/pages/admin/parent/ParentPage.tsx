@@ -20,7 +20,7 @@ import { useSearch } from '@/legacy/lib/router'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
 
-import { AdminContext } from '../AdminMainPage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 export function ParentPage() {
   const { t } = useLanguage()

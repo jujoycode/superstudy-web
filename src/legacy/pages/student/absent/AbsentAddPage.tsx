@@ -3,7 +3,6 @@ import { t } from 'i18next'
 import moment from 'moment'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-
 import { ErrorBlank, SelectValues, SuperModal } from '@/legacy/components'
 import { BackButton, Badge, Blank, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -114,7 +113,6 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
     handleImageAdd,
     toggleImageDelete,
     hasNoImageToUpload,
-    isUploadLoading,
     uploadProgress,
   } = useStudentAbsentAdd({
     absentData,

@@ -11,7 +11,7 @@ import { RequestCreateStudentDto, RequestCreateUserBulkDto } from '@/legacy/gene
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { toastState, warningState } from '@/stores'
 
-import { AdminContext } from '../AdminMainPage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 export function StudentBatchPage() {
   const { goBack } = useHistory()

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { useRecoilValue } from 'recoil'
 

@@ -4,11 +4,7 @@ import { Button } from '@/legacy/components/common/Button'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { Routes } from '@/legacy/constants/routes'
 
-interface FindIdSuccessPageProps {
-  phone: string
-}
-
-export function FindIdSuccessPage({ phone }: FindIdSuccessPageProps) {
+export function FindIdSuccessPage() {
   const { push } = useHistory()
   const { t } = useLanguage()
 

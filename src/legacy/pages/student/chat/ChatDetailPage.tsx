@@ -126,7 +126,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
         .then(() => {
           //
         })
-        .catch((error) => {
+        .catch(() => {
           //alert(error?.message);
         })
     })
@@ -188,7 +188,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
 
   // 채팅이 업데이트될 때마다 아래로 스크롤
   const chatListRef = useRef<HTMLImageElement | null>(null)
-  const chatReadRef = useRef<HTMLImageElement | null>(null)
+
   useEffect(() => {
     chatListRef.current?.scrollTo(0, chatListRef.current.scrollHeight)
   }, [chatMessages, myReadTime])

@@ -78,7 +78,7 @@ export default function RPPFDetailPage() {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: {},
   } = useForm<RequestCreateRPPFDto>({
     defaultValues: {
       contents:

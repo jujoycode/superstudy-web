@@ -28,26 +28,23 @@ export function NewsletterDetailPage() {
   const {
     newsletter,
     isLoading,
-    images,
-    Pdfs,
-    documents,
     viewerImages,
     isPublishModalOpen,
     errorMessage,
     setIsPublishModalOpen,
     handleNewsletterDelete,
     handleNewsletterPublish,
-  } = useTeacherNewsletterDetail({ id: +id })
+  } = useTeacherNewsletterDetail({ id: Number(id) })
 
   const [isEndAtModalOpen, setEndAtModalOpen] = useState(false)
   const [endAt, setEndAt] = useState(newsletter?.endAt || '')
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
-  const [focusPdfFile, setFocusPdfFile] = useState('')
   const [activeIndex, setActiveIndex] = useState(0)
+  const [focusPdfFile] = useState('')
   // 설문조사용도
-  const [content, setContent] = useState<Record<string, string>>({})
+  const [content] = useState<Record<string, string>>({})
 
   const getFeedsDetail = () => {
     return (
@@ -224,7 +221,7 @@ export function NewsletterDetailPage() {
                             </tr>
                           </thead>
                           <tbody>
-                            {newsletter?.userInfo.map((row: UserDatas | any, rowIndex: any) => (
+                            {newsletter?.userInfo.map((row: UserDatas | any) => (
                               <tr>
                                 <td className="border border-gray-300 text-center">
                                   {row.sn === undefined ? row.children[0].studentNumber : row.sn}
@@ -277,7 +274,7 @@ export function NewsletterDetailPage() {
                     </div>
                     <Button.xl
                       children={t('delete')}
-                      onClick={() => handleNewsletterDelete(+id)}
+                      onClick={() => handleNewsletterDelete(Number(id))}
                       className="filled-primary"
                     />
                   </Section>
@@ -292,7 +289,7 @@ export function NewsletterDetailPage() {
               noImgDetails
               scalable={false}
               images={viewerImages}
-              onChange={(activeImage, index) => setActiveIndex(index)}
+              onChange={(_, index) => setActiveIndex(index)}
               onClose={() => setImagesModalOpen(false)}
               activeIndex={activeIndex}
             />

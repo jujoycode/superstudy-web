@@ -16,7 +16,7 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
 import { toastState } from '@/stores'
 
-import { AdminContext } from '../AdminMainPage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 export function ParentEditPage() {
   const { goBack } = useHistory()

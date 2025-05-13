@@ -166,7 +166,7 @@ export function ActivitySessionPage() {
         )}
       </div>
       <List>
-        {activitySessions?.map((session, index) => {
+        {activitySessions?.map((session) => {
           const isSubmitted = session.studentActivitySessions.some(
             (studentSession) => studentSession.userId === meRecoil?.id && studentSession.isSubmitted,
           )
@@ -260,7 +260,7 @@ export function ActivitySessionPage() {
           noImgDetails
           scalable={false}
           images={viewerImages}
-          onChange={(activeImage, index) => setActiveIndex(index)}
+          onChange={(_, index) => setActiveIndex(index)}
           onClose={() => setImagesModalOpen(false)}
           activeIndex={activeIndex}
         />

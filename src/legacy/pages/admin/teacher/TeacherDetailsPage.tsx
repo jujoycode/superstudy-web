@@ -13,7 +13,7 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignedUrl } from '@/legacy/lib/query'
 import { getNickName } from '@/legacy/util/status'
 
-import { AdminContext } from '../AdminMainPage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 export function TeacherDetailsPage() {
   const { t } = useLanguage()

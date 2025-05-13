@@ -320,7 +320,7 @@ export function AbsentDetailPage() {
             noImgDetails
             scalable={false}
             images={viewerImages}
-            onChange={(activeImage, index) => setActiveIndex(index)}
+            onChange={(_, index) => setActiveIndex(index)}
             onClose={() => setImagesModalOpen(false)}
             activeIndex={activeIndex}
           />

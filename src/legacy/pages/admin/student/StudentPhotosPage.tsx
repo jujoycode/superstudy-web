@@ -17,7 +17,7 @@ import { useSearch } from '@/legacy/lib/router'
 import { cn } from '@/legacy/lib/tailwind-merge'
 import { getNickName } from '@/legacy/util/status'
 
-import { AdminContext } from '../AdminMainPage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 const MAX_UPLOAD_FILES = 25
 

@@ -11,7 +11,7 @@ import { RequestAdvancedStudentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { toastState, warningState } from '@/stores'
 
-import { AdminContext } from '../AdminMainPage'
+import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 
 export function StudentBatchAdvancePage() {
   const { goBack } = useHistory()

@@ -332,7 +332,7 @@ const AbsentComparisonPage: React.FC = () => {
     setNiceComparisonContent({ ...niceComparison, content })
   }, [niceComparison])
 
-  const { differenceNS, niceEmptyNumber, schoolEmptyNumber, content } = niceComparisonContent
+  const { niceEmptyNumber, schoolEmptyNumber, content } = niceComparisonContent
 
   const firstGroups = groups?.filter((el) => el.grade === 1) || []
   const secondGroups = groups?.filter((el) => el.grade === 2) || []
