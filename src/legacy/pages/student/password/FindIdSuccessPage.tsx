@@ -1,8 +1,8 @@
 import { useHistory } from '@/hooks/useHistory'
 import { BackButton, BottomFixed, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
-import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { Routes } from '@/legacy/constants/routes'
+import { useLanguage } from '@/legacy/hooks/useLanguage'
 
 export function FindIdSuccessPage() {
   const { push } = useHistory()
