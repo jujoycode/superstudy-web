@@ -23,20 +23,26 @@ import {
   twoFactorState,
 } from '@/stores'
 import { createContainer } from './createContainer'
+import { useAuthStore } from '@/stores2/auth'
+import { useSchoolStore } from '@/stores2/school'
+import { useUserStore } from '@/stores2/user'
 
 export function userHook() {
   const logout = useLogout()
-  const [me, setMe] = useRecoilState(meState)
-  const isStayLoggedIn = useRecoilValue(isStayLoggedInState)
+  // const [me, setMe] = useRecoilState(meState);
+  // const isStayLoggedIn = useRecoilValue(isStayLoggedInState);
+  const { isStayLoggedIn, setRefreshToken, token, setToken, setTwoFactor: setTwoFactorState } = useAuthStore()
+  const { profile: me, setProfile: setMe, setChild } = useUserStore()
+  const { schoolProperties, setSchoolProperties } = useSchoolStore()
   const { setStorage, getStorage } = useBrowserStorage()
 
-  const setChild = useSetRecoilState(childState)
-  const [token, setToken] = useRecoilState(tokenState)
-  const [, setRefreshToken] = useRecoilState(refreshTokenState)
-  const setTwoFactorState = useSetRecoilState(twoFactorState)
+  // const setChild = useSetRecoilState(childState);
+  // const [token, setToken] = useRecoilState(tokenState);
+  // const [refreshToken, setRefreshToken] = useRecoilState(refreshTokenState);
+  // const setTwoFactorState = useSetRecoilState(twoFactorState);
   const [errorMessage, setErrorMessage] = useState<string>()
   const [errorCode, setErrorCode] = useState('')
-  const [schoolProperties, setSchoolProperties] = useRecoilState(schoolPropertiesState)
+  // const [schoolProperties, setSchoolProperties] = useRecoilState(schoolPropertiesState);
 
   // 로그인 시 자동로그인 체크하지 않으면 30분 후 자동 로그아웃
   useLogoutOnIdle(logout, isStayLoggedIn, 30)
