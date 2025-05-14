@@ -5,21 +5,21 @@ import type { Languages } from '@/legacy/util/i18n'
 
 const storageEffect =
   (key: string): AtomEffect<string | null> =>
-  ({ setSelf }) => {
-    setSelf(localStorage.getItem(key) || sessionStorage.getItem(key))
-  }
+    ({ setSelf }) => {
+      setSelf(localStorage.getItem(key) || sessionStorage.getItem(key))
+    }
 
 const localStorageEffect =
   (key: string): AtomEffect<any> =>
-  ({ setSelf, onSet }) => {
-    const savedValue = localStorage.getItem(key)
-    if (savedValue !== null) {
-      setSelf(JSON.parse(savedValue))
+    ({ setSelf, onSet }) => {
+      const savedValue = localStorage.getItem(key)
+      if (savedValue !== null) {
+        setSelf(JSON.parse(savedValue))
+      }
+      onSet((newValue, _, isReset) => {
+        isReset ? localStorage.removeItem(key) : localStorage.setItem(key, JSON.stringify(newValue))
+      })
     }
-    onSet((newValue, _, isReset) => {
-      isReset ? localStorage.removeItem(key) : localStorage.setItem(key, JSON.stringify(newValue))
-    })
-  }
 
 export const tokenState = atom<string | null>({ key: 'token', default: null, effects: [storageEffect('token')] })
 

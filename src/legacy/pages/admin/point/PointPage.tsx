@@ -10,13 +10,13 @@ import { Pagination } from '@/legacy/components/common/Pagination'
 import { Routes } from '@/legacy/constants/routes'
 import { adminPointDelete, useAdminPointGet } from '@/legacy/generated/endpoint'
 import { useSearch } from '@/legacy/lib/router'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 
 export function PointPage() {
   const { t } = useTranslation()
   const { t: ta } = useTranslation('admin', { keyPrefix: 'point_page' })
   const { page, size } = useSearch({ page: 1, size: 25 })
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
 
   const { data: points } = useAdminPointGet({ page, size })
 

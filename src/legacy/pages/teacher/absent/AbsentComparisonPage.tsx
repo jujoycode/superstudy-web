@@ -2,9 +2,7 @@ import clsx from 'clsx'
 import _, { range } from 'lodash'
 import React, { useEffect, useState, useCallback } from 'react'
 import { useLocation } from 'react-router'
-import { useRecoilValue } from 'recoil'
 import * as XLSX from 'xlsx'
-
 import { useHistory } from '@/hooks/useHistory'
 import { Label, Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -25,7 +23,7 @@ import {
 import { GroupType } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getSearchYearByMonth, getThisYear } from '@/legacy/util/time'
-import { tokenState } from '@/stores'
+import { useAuthStore } from '@/stores2/auth'
 
 const headers = [
   '번호',
@@ -105,7 +103,6 @@ const AbsentComparisonPage: React.FC = () => {
   const { search } = useLocation()
   const { replace } = useHistory()
   const { me } = UserContainer.useContext()
-
   const [niceFile, setNiceFile] = useState<File | undefined | null>(null)
   const [niceFileContent, setNiceFileContent] = useState<any[]>([])
   const [niceComparisonContent, setNiceComparisonContent] = useState<any>({})
@@ -118,7 +115,7 @@ const AbsentComparisonPage: React.FC = () => {
   const selectedGroupId = Number(searchParams.get('selectedGroupId') || 0)
   const { t } = useLanguage()
 
-  const token = useRecoilValue(tokenState)
+  const { token } = useAuthStore()
 
   const { data: userGroupsData } = useGroupsFindComparison(
     { type: GroupType.KLASS, year },

@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import { useOutingsCreate, useOutingsUpdate, useStudentGroupsFindByGroupId } from '@/legacy/generated/endpoint'
 import { Category, Outing, OutingTypeEnum, ResponseGroupDto, StudentGroup, User } from '@/legacy/generated/model'
 import { AbsentTimeType, errorType } from '@/legacy/types'
 import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
-import { childState } from '@/stores'
 import { useCodeByCategoryName } from './category'
 import { GroupContainer } from './group'
+import { useUserStore } from '@/stores2/user'
 
 const getMeridiemHours = (date?: string) => {
   if (!date) return 0
@@ -17,7 +16,7 @@ const getMeridiemHours = (date?: string) => {
 
 export function useTeacherOutingAdd(outingData?: Outing) {
   const { push } = useHistory()
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
   const [errorMessage, setErrorMessage] = useState('')
   const [approverName] = useState<string>()
   const [startAt, setStartAt] = useState<Date>(outingData ? new Date(outingData.startAt) : new Date())
@@ -125,7 +124,7 @@ export function useTeacherOutingAdd(outingData?: Outing) {
   }
   const { mutate: updateOutingMutate, isLoading: isUpdateOutingLoading } = useOutingsUpdate({
     mutation: {
-      onSuccess: () => {},
+      onSuccess: () => { },
       onError: (error) => {
         const errorMsg: errorType | undefined = error?.response?.data ? (error?.response?.data as errorType) : undefined
 

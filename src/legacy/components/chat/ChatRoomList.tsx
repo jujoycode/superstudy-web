@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router'
-import { useSetRecoilState } from 'recoil'
-
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { MessageBox } from '@/legacy/components/chat/MessageBox'
 import { Section } from '@/legacy/components/common'
@@ -12,7 +10,7 @@ import { useTeacherChatRoomList } from '@/legacy/container/teacher-chat-room-lis
 import { useDashboardGetDashBoardData } from '@/legacy/generated/endpoint'
 import { ResponseChatroomInfoDto, ResponseDashboardDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { newMsgCntState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 
 interface ChatRoomListProps {}
 
@@ -20,7 +18,7 @@ export function ChatRoomList({}: ChatRoomListProps) {
   const { chatRooms } = useTeacherChatRoomList()
   const { t } = useLanguage()
 
-  const setNewMsgCnt = useSetRecoilState(newMsgCntState)
+  const { setNewMsgCnt } = useNotificationStore()
 
   const [_name, set_Name] = useState('')
 

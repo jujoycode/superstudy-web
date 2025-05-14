@@ -21,7 +21,8 @@ import { Role } from '@/legacy/generated/model'
 import { Schedule } from '@/legacy/types'
 import { checkNewVersion } from '@/legacy/util/status'
 import { makeDateToString, makeMonthDayToString } from '@/legacy/util/time'
-import { childState, newMsgCntState } from '@/stores'
+import { newMsgCntState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function CanteenPage() {
   const { push } = useHistory()
@@ -29,8 +30,7 @@ export function CanteenPage() {
   checkNewVersion()
 
   const { me, isMeLoading, isMeWithChildrenLoading } = UserContainer.useContext()
-
-  const myChild = useRecoilValue(childState)
+  const { child: myChild } = useUserStore()
   const newMsgCnt = useRecoilValue(newMsgCntState)
 
   const {

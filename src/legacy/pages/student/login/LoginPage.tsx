@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
-import { useRecoilState } from 'recoil'
-
 import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
 import { BackButton, Blank, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -11,10 +9,10 @@ import { NoticePopup } from '@/legacy/components/NoticePopup'
 import { NoticePopup2 } from '@/legacy/components/NoticePopup2'
 import { UserContainer } from '@/legacy/container/user'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { isStayLoggedInState } from '@/stores'
+import { useAuthStore } from '@/stores2/auth'
 
 export function Login() {
-  const [isStayLoggedIn, setIsStayLoggedIn] = useRecoilState(isStayLoggedInState)
+  const { isStayLoggedIn, setIsStayLoggedIn } = useAuthStore()
   const { handleLogin, errorMessage, errorCode } = UserContainer.useContext()
   const { t } = useLanguage()
 
@@ -34,7 +32,7 @@ export function Login() {
   }, [])
 
   const handleStayLoggedIn = () => {
-    setIsStayLoggedIn((prevState) => !prevState)
+    setIsStayLoggedIn(!isStayLoggedIn)
   }
 
   return (

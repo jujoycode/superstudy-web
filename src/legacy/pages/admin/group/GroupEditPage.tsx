@@ -14,13 +14,13 @@ import { RequestCreateGroupOnlyDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 
 export function GroupEditPage() {
   const { push } = useHistory()
   const { id: idString } = useParams<{ id: string }>()
   const id = Number(idString)
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const { year } = useContext(AdminContext)
   const { t } = useLanguage()
 

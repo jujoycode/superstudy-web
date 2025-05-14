@@ -4,7 +4,7 @@ import { useSetRecoilState } from 'recoil'
 import { useDashboardGetDashBoardData } from '@/legacy/generated/endpoint'
 import { ResponseDashboardDto, ResponseParentApproveDto, Role } from '@/legacy/generated/model'
 import { dashboardNewItem } from '@/legacy/types'
-import { newMsgCntState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 import { useUserStore } from '@/stores2/user'
 
 export function useDashboard() {
@@ -12,7 +12,7 @@ export function useDashboard() {
   const [dashboardItem, setDashboardItem] = useState<dashboardNewItem[]>()
   const [toDoList, setToDoList] = useState<ResponseDashboardDto>()
 
-  const setNewMsgCnt = useSetRecoilState(newMsgCntState)
+  const { setNewMsgCnt } = useNotificationStore()
 
   useDashboardGetDashBoardData<ResponseDashboardDto>({
     query: {

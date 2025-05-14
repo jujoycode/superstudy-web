@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
-import { useSetRecoilState } from 'recoil'
 import { Constants } from '@/legacy/constants'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'
@@ -13,7 +12,7 @@ import { StudentModal } from '@/legacy/modals/StudentModal'
 import { getNickName } from '@/legacy/util/status'
 import { getThisYear } from '@/legacy/util/time'
 import { Validator } from '@/legacy/util/validator'
-import { warningState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 import { Select } from '../common'
 import { Icon } from '../common/icons'
 import { TextInput } from '../common/TextInput'
@@ -27,7 +26,7 @@ interface StudentInfoCardProps {
 export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
   const { t } = useLanguage()
   const { pushModal } = useModals()
-  const setToastMsg = useSetRecoilState(warningState)
+  const { setWarning: setToastMsg } = useNotificationStore()
 
   const thisYear = getThisYear()
   const [studentStatesKey, setStudentStatesKey] = useState(0)

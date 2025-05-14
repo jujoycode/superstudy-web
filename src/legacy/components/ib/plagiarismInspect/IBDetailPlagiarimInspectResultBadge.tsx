@@ -1,13 +1,10 @@
 import clsx from 'clsx'
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import { Typography } from '@/legacy/components/common/Typography'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { useGetPlagiarismInspectDetail } from '@/legacy/container/plagiarism-inspector'
 import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
-import { schoolPropertiesState } from '@/stores'
-
+import { useSchoolStore } from '@/stores2/school'
 import LoadingPopup from './LoadingPopup'
 
 interface IBDetailPlagiarimInspectResultBadgeProps {
@@ -61,7 +58,7 @@ export const IBDetailPlagiarimInspectResultBadge: React.FC<IBDetailPlagiarimInsp
   enabled = true,
   errorMessage,
 }) => {
-  const schoolProperties = useRecoilValue(schoolPropertiesState)
+  const { schoolProperties } = useSchoolStore()
   const [isCausePopupOpen, setIsCausePopupOpen] = useState(false)
 
   const hasLicenseKey = !!schoolProperties?.find((property) => property.key === 'COPYKILLER_LICENSE_KEY')?.value

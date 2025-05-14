@@ -21,7 +21,7 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getErrorMsg } from '@/legacy/util/status'
-import { toastState, warningState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 
 export function StudentEditPage() {
   const { goBack } = useHistory()
@@ -30,8 +30,7 @@ export function StudentEditPage() {
   const { year } = useContext(AdminContext)
   const { t } = useLanguage()
 
-  const setToastMsg = useSetRecoilState(toastState)
-  const setToastWarnMsg = useSetRecoilState(warningState)
+  const { setToast: setToastMsg, setWarning: setToastWarnMsg } = useNotificationStore()
 
   const {
     handleSubmit,

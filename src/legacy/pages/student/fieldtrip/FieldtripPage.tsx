@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import { ReactComponent as RightArrow } from '@/assets/svg/mypage-right-arrow.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
@@ -11,13 +9,13 @@ import { useStudentFieldtrip } from '@/legacy/container/student-fieldtrip'
 import { UserContainer } from '@/legacy/container/user'
 import { FieldtripStatus, Role } from '@/legacy/generated/model'
 import { makeStartEndToString } from '@/legacy/util/time'
-import { childState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function FieldtripPage() {
   const [modalopen, setModalopen] = useState(false)
 
   const { me } = UserContainer.useContext()
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
   const { fieldtrips, isLoading, error, setRecalculateDays } = useStudentFieldtrip()
 
   const school = me?.school

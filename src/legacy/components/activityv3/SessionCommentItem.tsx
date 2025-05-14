@@ -1,14 +1,11 @@
 import { format } from 'date-fns'
 import { FC, useState } from 'react'
-import { useRecoilState } from 'recoil'
 import { twMerge } from 'tailwind-merge'
-
 import { Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { useSessionCommentDelete, useSessionCommentUpdate } from '@/legacy/generated/endpoint'
 import { ResponseUserDto, SessionComment } from '@/legacy/generated/model'
-import { toastState } from '@/stores'
-
+import { useNotificationStore } from '@/stores2/notification'
 import { SuperModal } from '../SuperModal'
 
 interface SessionCommentItemProps {
@@ -18,7 +15,7 @@ interface SessionCommentItemProps {
 }
 
 export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionComment, refetch }) => {
-  const [, setToastMsg] = useRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const [updateView, setUpdateView] = useState(false)
   const [content, setContent] = useState<string>(sessionComment.content || '')
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)

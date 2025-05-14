@@ -1,8 +1,6 @@
 import clsx from 'clsx'
 import { useState } from 'react'
 import { useLocation, useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -25,7 +23,7 @@ import { CopykillerTargetTable, ResponseCopykillerResponseDto } from '@/legacy/g
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { usePolling } from '@/legacy/hooks/usePolling'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
-import { meState, schoolPropertiesState } from '@/stores'
+import { useSchoolStore } from '@/stores2/school'
 import { useUserStore } from '@/stores2/user'
 
 import NODATA from '@/assets/images/no-data.png'
@@ -36,7 +34,7 @@ export const EssayDetailPage = () => {
   const location = useLocation()
   const { push } = useHistory()
   const { me } = useUserStore()
-  const schoolProperties = useRecoilValue(schoolPropertiesState)
+  const { schoolProperties } = useSchoolStore()
 
   const [isLoading, setIsLoading] = useState(true)
   const _type = location.state?.type

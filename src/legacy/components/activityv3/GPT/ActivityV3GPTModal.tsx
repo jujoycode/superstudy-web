@@ -1,8 +1,6 @@
 import _ from 'lodash'
 import { FC, useEffect, useRef, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { useRecoilState } from 'recoil'
-
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { Avatar, Label, Radio, RadioGroup, Select, Textarea } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
@@ -20,7 +18,7 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ActivityV3, ResponseStudentCardStudentDto, SubjectType } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 
 interface ActivityV3GPTModalProps {
   activityV3s?: ActivityV3[]
@@ -40,7 +38,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
   refetch,
 }) => {
   const { t, currentLang } = useLanguage()
-  const [, setToastMsg] = useRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const [currentStep, setCurrentStep] = useState(1)
   const [modalStep, setModalStep] = useState(1)
   const [question, setQuestion] = useState('')

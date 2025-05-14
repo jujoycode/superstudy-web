@@ -19,7 +19,7 @@ import { form } from '@/legacy/lib/form'
 import { cn } from '@/legacy/lib/tailwind-merge'
 import { getNickName } from '@/legacy/util/status'
 import { numberWithSign } from '@/legacy/util/string'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 import { useModals } from './ModalStack'
 
 export interface AssignPointModalProps {
@@ -31,7 +31,7 @@ export function AssignPointModal({ studentId, groupId: defaultGroupId }: AssignP
   const { t } = useTranslation()
   const { t: tm } = useTranslation('modal', { keyPrefix: 'assign_point_modal' })
   const { popModal } = useModals()
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const [groupId, setGroupId] = useState(defaultGroupId)
   const [studentIds, setStudentIds] = useState<number[]>(studentId ? [studentId] : [])
 

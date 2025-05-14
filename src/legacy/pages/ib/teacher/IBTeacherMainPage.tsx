@@ -1,9 +1,7 @@
 import clsx from 'clsx'
 import { useState } from 'react'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
 import { twMerge } from 'tailwind-merge'
-
 import { useHistory } from '@/hooks/useHistory'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
@@ -17,13 +15,13 @@ import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 import { useGetPlagiarismInspectList } from '@/legacy/container/plagiarism-inspector'
 import type { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
 import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/teacher/PlagiarismInspectPage'
-import { schoolPropertiesState } from '@/stores'
+import { useSchoolStore } from '@/stores2/school'
 
 export default function IBTeacherMainPage() {
   const { push } = useHistory()
   const { pathname } = useLocation()
   const { permission } = useCoordinatorCheck()
-  const schoolProperties = useRecoilValue(schoolPropertiesState)
+  const { schoolProperties } = useSchoolStore()
 
   // 표절 검사 활성화 여부
   const enabledPlagiarismInspect = !!schoolProperties?.find((property) => property.key === 'COPYKILLER_LICENSE_KEY')

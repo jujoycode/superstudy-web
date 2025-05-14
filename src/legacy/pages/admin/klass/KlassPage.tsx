@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useParams } from 'react-router'
-import { useSetRecoilState } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -27,14 +25,14 @@ import { RequestGroupTeacherDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getNickName } from '@/legacy/util/status'
-import { toastState, warningState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 
 export function KlassPage() {
   const { t } = useLanguage()
   const { push, replace } = useHistory()
   const { id: idString } = useParams<{ id: string }>()
   const klassId = Number(idString ?? 0)
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg, setWarning: setWarningMsg } = useNotificationStore()
   const { year } = useContext(AdminContext)
   const [homeroomTeacherId, setHomeroomTeacherId] = useState<number>()
   const [editHomeroomTeacher, setEditHomeroomTeacher] = useState(false)
@@ -42,8 +40,6 @@ export function KlassPage() {
   const [editStudents, setEditStudents] = useState(false)
   const [studentKeyword, setStudentKeyword] = useState('')
   const [groupStudents, setGroupStudents] = useState(new Map())
-
-  const setWarningMsg = useSetRecoilState(warningState)
 
   useEffect(() => {
     const now = new Date()

@@ -15,7 +15,7 @@ import { PointCreateBody, PointUpdateBody } from '@/legacy/generated/model'
 import { form } from '@/legacy/lib/form'
 import { cn } from '@/legacy/lib/tailwind-merge'
 import { getErrorMsg } from '@/legacy/util/status'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 
 type PointSaveBody = PointCreateBody | PointUpdateBody
 
@@ -29,7 +29,7 @@ export function PointEditPage() {
   const { goBack } = useHistory()
   const { id: idString } = useParams<{ id?: string }>()
   const id = Number(idString)
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
 
   const {
     formState: { errors, isValid },

@@ -1,5 +1,4 @@
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -11,7 +10,7 @@ import { useIBProfileGetById } from '@/legacy/container/ib-cas'
 import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/student/PlagiarismInspectPage'
 import { useLogout } from '@/legacy/util/hooks'
 import { makeStudNum5 } from '@/legacy/util/status'
-import { meState, schoolPropertiesState } from '@/stores'
+import { useSchoolStore } from '@/stores2/school'
 import CASInterviewDetailPage from './CAS/CASInterviewDetailPage'
 import { CASMainPage } from './CAS/CASMainPage'
 import { CASReflectionDiaryDetailPage } from './CAS/CASReflectionDiaryDetailPage'
@@ -42,7 +41,7 @@ export const IBStudentPage = () => {
   const { push } = useHistory()
   const logout = useLogout()
   const { me } = useUserStore()
-  const schoolProperties = useRecoilValue(schoolPropertiesState)
+  const { schoolProperties } = useSchoolStore()
   const { data } = useIBProfileGetById(me?.id || 0)
 
   // 표절 검사 활성화 여부

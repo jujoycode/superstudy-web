@@ -8,7 +8,7 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup, StudentNewsletter } from '@/legacy/generated/model'
 import { makeDateToString } from '@/legacy/util/time'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 import { useTeacherKlassGroup } from './teacher-klass-groups'
 
 type NewData = ResponseGroupDto & {
@@ -19,7 +19,7 @@ type NewData = ResponseGroupDto & {
 
 export function useTeacherNewsletterSubmit(newsletterId: number) {
   const [result, setResult] = useState<NewData[]>([])
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const [isCsvData, setCsvData] = useState(false)
   const [nowDate] = useState(makeDateToString(new Date()))
 

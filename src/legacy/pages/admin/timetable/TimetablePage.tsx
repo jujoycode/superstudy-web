@@ -3,7 +3,6 @@ import { range } from 'lodash'
 import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-
 import { Label, Section, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
@@ -49,7 +48,7 @@ import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getFileNameFromUrl } from '@/legacy/util/file'
 import { getNickName } from '@/legacy/util/status'
 import { getThisSemester, WeekList } from '@/legacy/util/time'
-import { meState, toastState, warningState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 import { useUserStore } from '@/stores2/user'
 
 export enum TimetableTarget {
@@ -124,8 +123,7 @@ export function TimetablePage() {
 
   const daysOfWeekString = ['일', t('monday'), t('tuesday'), t('wednesday'), t('thursday'), t('friday'), '토']
 
-  const setToastMsg = useSetRecoilState(toastState)
-  const setWarningMsg = useSetRecoilState(warningState)
+  const { setToast: setToastMsg, setWarning: setWarningMsg } = useNotificationStore()
 
   useEffect(() => {
     const now = new Date()

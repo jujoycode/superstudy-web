@@ -10,7 +10,7 @@ import { studentManagementBulkCreateStudent } from '@/legacy/generated/endpoint'
 import { RequestCreateStudentDto, RequestCreateUserBulkDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
-import { toastState, warningState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 
 export function StudentBatchPage() {
   const { goBack } = useHistory()
@@ -20,8 +20,7 @@ export function StudentBatchPage() {
   const [itemResults, setItemResults] = useState<RequestCreateUserBulkDto[]>([])
   const [duplicateEmails, setDuplicateEmails] = useState<Record<string, number>>({})
 
-  const setToastMsg = useSetRecoilState(toastState)
-  const setWarningMsg = useSetRecoilState(warningState)
+  const { setToast: setToastMsg, setWarning: setWarningMsg } = useNotificationStore()
 
   useEffect(() => {
     const now = new Date()

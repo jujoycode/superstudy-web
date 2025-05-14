@@ -1,43 +1,32 @@
 import { useEffect, useRef, useState } from 'react'
 import { Navigate } from 'react-router'
-import { useRecoilValue, useResetRecoilState } from 'recoil'
 import { useSchoolPropertyGetProperties } from '@/legacy/generated/endpoint'
-import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
 import { RN } from '@/legacy/lib/rn'
-import { childState, isStayLoggedInState, refreshTokenState, tokenState, twoFactorState } from '@/stores'
 import { useUserStore } from '@/stores2/user'
+import { useAuthStore } from '@/stores2/auth'
 
 export function useAuth() {
-  const token = useRecoilValue(tokenState)
-  const twoFactor = useRecoilValue(twoFactorState)
-
-  return { authenticated: token !== null, twoFactorAutㅔhenticated: twoFactor !== null && twoFactor !== 'false' }
+  const { token, twoFactor } = useAuthStore()
+  return { authenticated: token !== null, twoFactorAuthenticated: twoFactor !== null && twoFactor !== 'false' }
 }
 
 export function useLogout() {
-  const { removeStorage } = useBrowserStorage()
-  const resetToken = useResetRecoilState(tokenState)
-  const resetRefreshToken = useResetRecoilState(refreshTokenState)
-  const resetTwoFactor = useResetRecoilState(twoFactorState)
-  const resetStayedLoggedIn = useResetRecoilState(isStayLoggedInState)
-  const resetChild = useResetRecoilState(childState)
+  const { reset: resetAuth } = useAuthStore()
+  const { setChild } = useUserStore()
+
   return () => {
-    const tagValue = { schoolId: null, role: null }
     RN.flareLane('setUserId', null)
-    RN.flareLane('setTags', tagValue)
-    removeStorage('token')
-    removeStorage('refreshToken')
-    removeStorage('two-factor')
+    RN.flareLane('setTags', { schoolId: null, role: null })
+
+    // TODO: 직접 set 하는 부분 없에기
     localStorage.removeItem('childToken')
     localStorage.removeItem('child-user-id')
     localStorage.removeItem('tabType')
-    localStorage.removeItem('isStayLoggedIn')
     localStorage.removeItem('reqParent_userInfo')
-    resetToken()
-    resetRefreshToken()
-    resetTwoFactor()
-    resetStayedLoggedIn()
-    resetChild()
+    // localStorage.removeItem('isStayLoggedIn')
+
+    resetAuth()
+    setChild(undefined)
 
     Navigate({ to: '/login' })
   }

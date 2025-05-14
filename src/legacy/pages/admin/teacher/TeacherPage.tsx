@@ -22,7 +22,7 @@ import { useSearch } from '@/legacy/lib/router'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
-import { toastState, warningState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 
 export function TeacherPage() {
   const { t } = useLanguage()
@@ -35,8 +35,7 @@ export function TeacherPage() {
   const [sortField, setSortField] = useState<string>('')
   const [sortDirection, setSortDirection] = useState<'ASC' | 'DESC'>('ASC')
 
-  const setToastMsg = useSetRecoilState(toastState)
-  const setWarningMsg = useSetRecoilState(warningState)
+  const { setToast: setToastMsg, setWarning: setWarningMsg } = useNotificationStore()
 
   useEffect(() => {
     const now = new Date()

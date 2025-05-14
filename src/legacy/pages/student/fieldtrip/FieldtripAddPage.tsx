@@ -4,8 +4,6 @@ import { chain, concat, every, findIndex, flatten, get, last } from 'lodash'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SelectValues, SuperModal } from '@/legacy/components'
 import {
@@ -33,7 +31,7 @@ import { UserContainer } from '@/legacy/container/user'
 import { Fieldtrip, Role } from '@/legacy/generated/model'
 import { getCustomString } from '@/legacy/util/string'
 import { differenceWithSchedulesWithHalfDay, isWeekendDay } from '@/legacy/util/time'
-import { childState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 const relationshipType = ['부', '모', '기타']
 const selectOptions = ['가족동반여행', '친·인척 방문', '답사∙견학 활동', '체험활동']
@@ -54,17 +52,15 @@ interface FieldtripAddPageProps {
 }
 
 export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAddPageProps) {
-  const params = useParams<MatchParams>()
   const [matchParamsType, setMatchParamsType] = useState<string | undefined>(undefined)
-
   const { me } = UserContainer.useContext()
+  const { child: myChild } = useUserStore()
   let hasSaturdayClass = me?.school.hasSaturdayClass || false
-  const myChild = useRecoilValue(childState)
   if (me?.role === Role.PARENT) {
     hasSaturdayClass = myChild?.school.hasSaturdayClass || false
   }
-
   const { t } = useTranslation()
+  const params = useParams<MatchParams>()
 
   useEffect(() => {
     if (params.type) {

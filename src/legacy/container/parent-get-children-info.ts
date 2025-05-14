@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useSetRecoilState } from 'recoil'
 import { useUserDeleteChild, useUserMeWithChildren } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 import { UserContainer } from './user'
 import { useUserStore } from '@/stores2/user'
 
@@ -10,7 +10,7 @@ export function useParentGetChildrenInfo() {
   const { me: meRecoil } = useUserStore()
   const { refetchMe } = UserContainer.useContext()
 
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
 
   const { data: childrenInfos, refetch } = useUserMeWithChildren({
     query: {

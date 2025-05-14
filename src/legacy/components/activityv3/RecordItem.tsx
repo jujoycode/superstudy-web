@@ -1,13 +1,10 @@
 import { format } from 'date-fns'
 import { FC, useState } from 'react'
-import { useRecoilState } from 'recoil'
-
 import { Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { useRecordDelete, useRecordUpdate } from '@/legacy/generated/endpoint'
 import { Record } from '@/legacy/generated/model'
-import { toastState } from '@/stores'
-
+import { useNotificationStore } from '@/stores2/notification'
 import { SuperModal } from '../SuperModal'
 
 interface RecordItemProps {
@@ -16,7 +13,7 @@ interface RecordItemProps {
 }
 
 export const RecordItem: FC<RecordItemProps> = ({ record, refetch }) => {
-  const [, setToastMsg] = useRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const [updateView, setUpdateView] = useState(false)
   const [content, setContent] = useState<string>(record.content || '')
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)

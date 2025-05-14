@@ -31,7 +31,7 @@ import {
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getNickName } from '@/legacy/util/status'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 
 const steps = range(1, 6) as (1 | 2 | 3 | 4 | 5)[]
 
@@ -123,7 +123,7 @@ export function ApprovalLinePage() {
   const { data: approvalLines } = useApprovalLineGetApprovalLineByType2({ type1, type2, year: String(year) })
   const { data: allTeachers } = useAdminCommonSearchTeachers({ year })
 
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
 
   // Initialization
   useEffect(() => {

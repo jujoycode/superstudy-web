@@ -5,13 +5,12 @@ import { useSmsGetFieldtripsByTeacher, useSmsRemainSmsCredit, useSmsSendMessage 
 import { RequestCreateSmsMessageDto } from '@/legacy/generated/model'
 import { errorType } from '@/legacy/types'
 import { makeDateToString } from '@/legacy/util/time'
-import { meState, toastState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 import { useUserStore } from '@/stores2/user'
 
 export function useTeacherSms() {
   const { me } = useUserStore()
-
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
 
   const [wait, setWait] = useState(false)
   const [isSendPage, setIsSendPage] = useState(true)

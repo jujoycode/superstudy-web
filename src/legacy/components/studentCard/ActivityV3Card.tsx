@@ -1,8 +1,6 @@
 import { Chart as ChartJS, registerables } from 'chart.js'
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
 import { Chart } from 'react-chartjs-2'
-import { useRecoilState, useRecoilValue } from 'recoil'
-
 import { Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
@@ -15,7 +13,7 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ActivityV3, Record } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState, toastState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 import { useUserStore } from '@/stores2/user'
 
 ChartJS.register(...registerables)
@@ -41,7 +39,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
 }) => {
   const { t } = useLanguage()
   const { me } = useUserStore()
-  const [, setToastMsg] = useRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
 
   const sav = activityv3.studentActivityV3s?.[0]
   const [isSubmitSummary, setSubmitSummary] = useState(false)

@@ -26,7 +26,7 @@ import { Category, RequestGroupTeacherDto, RequestModifyGroupOnlyDto, SubjectTyp
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getErrorMsg, getNickName } from '@/legacy/util/status'
-import { toastState, warningState } from '@/stores'
+import { useNotificationStore } from '@/stores2/notification'
 
 const SubjectTypes = [
   { id: 0, name: '과목', value: SubjectType.LECTURE },
@@ -39,14 +39,12 @@ export function GroupPage() {
   const { push, replace } = useHistory()
   const { id: idString } = useParams<{ id: string }>()
   const groupId = Number(idString ?? 0)
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg, setWarning: setWarningMsg } = useNotificationStore()
   const [editGroup, setEditGroup] = useState(false)
   const [editTeachers, setEditTeachers] = useState(false)
   const [editStudents, setEditStudents] = useState(false)
   const [studentKeyword, setStudentKeyword] = useState('')
   const { t } = useLanguage()
-
-  const setWarningMsg = useSetRecoilState(warningState)
 
   useEffect(() => {
     const now = new Date()
