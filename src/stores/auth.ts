@@ -1,4 +1,3 @@
-// src/stores/auth-store.ts
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
@@ -7,15 +6,11 @@ type AuthState = {
   token: string | null
   refreshToken: string | null
   twoFactor: string | null
-  newsletterOpenedGroup: string[]
-  newMsgCnt: number
 
   setIsStayLoggedIn: (value: boolean) => void
   setToken: (token: string | null) => void
   setRefreshToken: (token: string | null) => void
   setTwoFactor: (value: string | null) => void
-  setNewsletterOpenedGroup: (groups: string[]) => void
-  setNewMsgCnt: (count: number) => void
   reset: () => void
 }
 
@@ -24,8 +19,6 @@ const initialState = {
   token: null,
   refreshToken: null,
   twoFactor: 'false',
-  newsletterOpenedGroup: [],
-  newMsgCnt: 0,
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -37,8 +30,6 @@ export const useAuthStore = create<AuthState>()(
       setToken: (token) => set({ token }),
       setRefreshToken: (refreshToken) => set({ refreshToken }),
       setTwoFactor: (twoFactor) => set({ twoFactor }),
-      setNewsletterOpenedGroup: (newsletterOpenedGroup) => set({ newsletterOpenedGroup }),
-      setNewMsgCnt: (newMsgCnt) => set({ newMsgCnt }),
       reset: () => set(initialState),
     }),
     {
@@ -48,7 +39,6 @@ export const useAuthStore = create<AuthState>()(
         token: state.token,
         refreshToken: state.refreshToken,
         twoFactor: state.twoFactor,
-        newsletterOpenedGroup: state.newsletterOpenedGroup,
       }),
     },
   ),
