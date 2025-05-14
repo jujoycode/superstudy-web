@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useSetRecoilState } from 'recoil'
+
 import {
   useGroupsFindOne,
   useNewsLettersFindOne,
@@ -8,7 +8,7 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup, StudentNewsletter } from '@/legacy/generated/model'
 import { makeDateToString } from '@/legacy/util/time'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 import { useTeacherKlassGroup } from './teacher-klass-groups'
 
 type NewData = ResponseGroupDto & {

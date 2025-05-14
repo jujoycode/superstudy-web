@@ -11,7 +11,7 @@ import { useGetFeedbackBatchExist, useGetUnreadFeedbackCount } from '@/legacy/co
 import { useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
 import { ResponseIBDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 import TkppfIbSubmitInformPopup from './TkppfIbSubmitInformPopup'
 import FeedbackViewer from '../../FeedbackViewer'

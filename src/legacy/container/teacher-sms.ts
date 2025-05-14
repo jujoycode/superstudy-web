@@ -1,12 +1,11 @@
 import moment from 'moment'
 import { useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { useSmsGetFieldtripsByTeacher, useSmsRemainSmsCredit, useSmsSendMessage } from '@/legacy/generated/endpoint'
 import { RequestCreateSmsMessageDto } from '@/legacy/generated/model'
 import { errorType } from '@/legacy/types'
 import { makeDateToString } from '@/legacy/util/time'
-import { useNotificationStore } from '@/stores2/notification'
-import { useUserStore } from '@/stores2/user'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 
 export function useTeacherSms() {
   const { me } = useUserStore()

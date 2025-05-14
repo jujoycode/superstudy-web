@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Link, useParams } from 'react-router'
-import { useSetRecoilState } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import { Label } from '@/legacy/components/common'
@@ -15,7 +14,7 @@ import { PointCreateBody, PointUpdateBody } from '@/legacy/generated/model'
 import { form } from '@/legacy/lib/form'
 import { cn } from '@/legacy/lib/tailwind-merge'
 import { getErrorMsg } from '@/legacy/util/status'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 
 type PointSaveBody = PointCreateBody | PointUpdateBody
 

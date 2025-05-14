@@ -16,7 +16,7 @@ import { useTeacherChatUserList } from '@/legacy/container/teacher-chat-user-lis
 import { CalendarIdEnum, Role, ScheduleCategoryEnum } from '@/legacy/generated/model'
 import { MenuType } from '@/legacy/types'
 import { weekAfter, weekAgo } from '@/legacy/util/time'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function CalendarPage() {
   const { me } = useUserStore()

@@ -15,7 +15,7 @@ import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 import { useGetPlagiarismInspectList } from '@/legacy/container/plagiarism-inspector'
 import type { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
 import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/teacher/PlagiarismInspectPage'
-import { useSchoolStore } from '@/stores2/school'
+import { useSchoolStore } from '@/stores/school'
 
 export default function IBTeacherMainPage() {
   const { push } = useHistory()

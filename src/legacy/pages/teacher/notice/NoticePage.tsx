@@ -1,8 +1,6 @@
 import { range } from 'lodash'
 import { useEffect, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import { useSetRecoilState } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Chip, HorizontalScrollView, Select, TopNavbar } from '@/legacy/components/common'
@@ -17,22 +15,18 @@ import { Category, Code, Notice } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { TabType } from '@/legacy/types'
 import { getThisYear } from '@/legacy/util/time'
-import { isUpdateNoticeState } from '@/stores'
-
 import { NoticeAddPage } from './NoticeAddPage'
 import { NoticeDetailPage } from './NoticeDetailPage'
 import { NoticeMobilePage } from './NoticeMobilePage'
 import { BoardMobilePage } from '../board/BoardMobilePage'
 import { NewsletterMobilePage } from '../newsletter/NewsletterMobilePage'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 function NoticePageView() {
   const { pathname } = useLocation()
   const { push } = useHistory()
   const { t } = useLanguage()
-
-  const setIsUpdateNotice = useSetRecoilState(isUpdateNoticeState)
-  const { me: meRecoil } = useUserStore()
+  const { me: meRecoil, setIsUpdateNotice } = useUserStore()
 
   const filters = [t('title'), t('author')]
   const thisYear = +getThisYear()

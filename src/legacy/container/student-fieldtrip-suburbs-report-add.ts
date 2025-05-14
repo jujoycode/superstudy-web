@@ -6,7 +6,7 @@ import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { errorType } from '@/legacy/types'
 import { ImageObject } from '@/legacy/types/image-object'
 import { UserContainer } from './user'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 type Props = {
   id: number

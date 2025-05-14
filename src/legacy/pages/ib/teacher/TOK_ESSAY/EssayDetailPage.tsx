@@ -23,8 +23,8 @@ import { CopykillerTargetTable, ResponseCopykillerResponseDto } from '@/legacy/g
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { usePolling } from '@/legacy/hooks/usePolling'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
-import { useSchoolStore } from '@/stores2/school'
-import { useUserStore } from '@/stores2/user'
+import { useSchoolStore } from '@/stores/school'
+import { useUserStore } from '@/stores/user'
 
 import NODATA from '@/assets/images/no-data.png'
 

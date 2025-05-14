@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { range } from 'lodash'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
+
 import { ErrorBlank } from '@/legacy/components'
 import { Badge, Blank, Select } from '@/legacy/components/common'
 import { GroupContainer } from '@/legacy/container/group'
@@ -9,7 +9,7 @@ import { useTeacherTimetableDetail } from '@/legacy/container/teacher-timetable-
 import { LectureType, ResponseTimetableV3Dto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { convertClassFormat } from '@/legacy/util/validator'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 interface TimetableDetailPageProps {
   onSelectLecture: (info: ResponseTimetableV3Dto | undefined) => void

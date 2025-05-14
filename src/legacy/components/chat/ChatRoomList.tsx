@@ -10,7 +10,7 @@ import { useTeacherChatRoomList } from '@/legacy/container/teacher-chat-room-lis
 import { useDashboardGetDashBoardData } from '@/legacy/generated/endpoint'
 import { ResponseChatroomInfoDto, ResponseDashboardDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 
 interface ChatRoomListProps {}
 

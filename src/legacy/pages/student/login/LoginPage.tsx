@@ -9,7 +9,7 @@ import { NoticePopup } from '@/legacy/components/NoticePopup'
 import { NoticePopup2 } from '@/legacy/components/NoticePopup2'
 import { UserContainer } from '@/legacy/container/user'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useAuthStore } from '@/stores2/auth'
+import { useAuthStore } from '@/stores/auth'
 
 export function Login() {
   const { isStayLoggedIn, setIsStayLoggedIn } = useAuthStore()

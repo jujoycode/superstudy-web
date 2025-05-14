@@ -2,7 +2,6 @@ import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router'
 import { Link } from 'react-router'
-import { useSetRecoilState } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import { Label, Select } from '@/legacy/components/common'
@@ -15,7 +14,7 @@ import { RequestModifyParentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 
 export function ParentEditPage() {
   const { goBack } = useHistory()

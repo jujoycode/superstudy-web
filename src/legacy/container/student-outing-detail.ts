@@ -3,7 +3,7 @@ import { useHistory } from '@/hooks/useHistory'
 import { useOutingsApproveByParentApp, useOutingsDelete, useOutingsFindOne } from '@/legacy/generated/endpoint'
 import { errorType } from '@/legacy/types'
 import { useDialog } from './DialogContext'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentOutingDetail(id: number) {
   const { push } = useHistory()

@@ -6,7 +6,7 @@ import {
   useFieldtripsFindOneByUUID,
 } from '@/legacy/generated/endpoint'
 import { errorType } from '@/legacy/types'
-import { useUserStore } from '@/stores2/user';
+import { useUserStore } from '@/stores/user';
 
 export function useParentFieldtripApprove({ sigPadData, uuid }: { sigPadData: string; uuid: string }) {
   const [isShowSignModal, setIsShowSignModal] = useState(false)

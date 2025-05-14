@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useFieldtripsFindAllByStudent, useFieldtripsReCalculateFieldtripDays } from '@/legacy/generated/endpoint'
 import { Fieldtrip } from '@/legacy/generated/model'
 import { UserContainer } from './user'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentFieldtrip() {
   const { child } = useUserStore()

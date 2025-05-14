@@ -8,7 +8,7 @@ import { ToggleSwitch } from '@/legacy/components/common/ToggleSwitch'
 import { notificationSettingsUpdate, useNotificationSettingsGetMine } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
 import { convertTimeToKorean } from '@/legacy/util/time'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 const daysOfWeekString = ['일', '월', '화', '수', '목', '금', '토']
 

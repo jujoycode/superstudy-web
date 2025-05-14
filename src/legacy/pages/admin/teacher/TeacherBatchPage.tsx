@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
 import readXlsxFile from 'read-excel-file'
-import { useSetRecoilState } from 'recoil'
 
 import { Blank } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -9,7 +8,7 @@ import { teacherManagementBulkCreateTeacher, teacherManagementRequestSignUp } fr
 import { RequestCreateTeacherDto, RequestCreateUserBulkDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 
 export function TeacherBatchPage() {
   const { year } = useContext(AdminContext)

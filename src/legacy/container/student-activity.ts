@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useHistory } from '@/hooks/useHistory'
 import { ActivityFilterEnum } from '@/legacy/constants/activity-filter.enum'
 import { useActivityFindByStudent } from '@/legacy/generated/endpoint'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentActivity() {
   const { replace } = useHistory()

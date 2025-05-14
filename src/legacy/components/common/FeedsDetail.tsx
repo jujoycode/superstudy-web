@@ -14,7 +14,7 @@ import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { PdfCard } from './PdfCard'
 import { PdfViewer } from './PdfViewer'
 import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 interface FeedsDetailProps {
   category1?: string

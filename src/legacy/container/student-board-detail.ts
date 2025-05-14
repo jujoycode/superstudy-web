@@ -4,7 +4,7 @@ import { Constants } from '@/legacy/constants'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useBoardFindOne } from '@/legacy/generated/endpoint'
 import { isPdfFile } from '@/legacy/util/file'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentBoardDetail(boardId?: number) {
   const [errorMessage, setErrorMessage] = useState('')

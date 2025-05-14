@@ -1,5 +1,5 @@
 import { useFieldtripsFindOne } from '@/legacy/generated/endpoint'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import { UserContainer } from './user'
 
 export function useStudentFieldtripNotice(id: number) {

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useSetRecoilState } from 'recoil'
 
 import { SuperModal } from '@/legacy/components'
 import { Label, Select } from '@/legacy/components/common'
@@ -19,7 +18,7 @@ import { form } from '@/legacy/lib/form'
 import { cn } from '@/legacy/lib/tailwind-merge'
 import { getNickName } from '@/legacy/util/status'
 import { numberWithSign } from '@/legacy/util/string'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 import { useModals } from './ModalStack'
 
 export interface AssignPointModalProps {

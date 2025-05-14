@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import {
   useOtpSendPost,
@@ -9,8 +8,8 @@ import {
 } from '@/legacy/generated/endpoint'
 import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
 import { errorType } from '@/legacy/types'
-import { useAuthStore } from '@/stores2/auth'
-import { useNotificationStore } from '@/stores2/notification'
+import { useAuthStore } from '@/stores/auth'
+import { useNotificationStore } from '@/stores/notification'
 
 export function useOtp() {
   const [otpSendResult, setOtpSendResult] = useState(false)

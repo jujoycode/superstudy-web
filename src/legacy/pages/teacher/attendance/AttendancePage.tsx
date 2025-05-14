@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { Row } from 'read-excel-file'
-import { useRecoilState } from 'recoil'
 import { SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Chip, Divider, Section, Select, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -18,9 +17,9 @@ import { AbsentSave, PeriodSubjectTeacher } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName } from '@/legacy/util/status'
 import { getDayOfSemester, getDayOfYear, toLocaleDateFormatString, weekCount } from '@/legacy/util/time'
-import { toastState } from '@/stores'
-import { useUserStore } from '@/stores2/user'
-import { useLanguageStore } from '@/stores2/language'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
+import { useLanguageStore } from '@/stores/language'
 
 type TimeTableInfo = {
   studentId: string
@@ -208,9 +207,8 @@ export function AttendancePage() {
   const lastPeriod = me?.school.lastPeriod || 8
   const hasSaturdayClass = me?.school.hasSaturdayClass || false
 
+  const { setToast: setToastMsg } = useNotificationStore()
   const { currentLanguage: language } = useLanguageStore()
-
-  const [, setToastMsg] = useRecoilState(toastState)
 
   const [modalOpen, setModalOpen] = useState(false)
   const [absentComment, setAbsentComment] = useState('')

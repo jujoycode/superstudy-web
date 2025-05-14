@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useHistory } from '@/hooks/useHistory'
 import { useAbsentsDelete, useAbsentsFindOne, useAbsentsResend } from '@/legacy/generated/endpoint'
 import { errorType } from '@/legacy/types'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentAbsentDetail(id: number) {
   const { push } = useHistory()

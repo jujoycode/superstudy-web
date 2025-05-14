@@ -6,7 +6,7 @@ import {
   useFieldtripsFindOneByUUID,
 } from '@/legacy/generated/endpoint'
 import { errorType } from '@/legacy/types'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 type Props = {
   uuid: string

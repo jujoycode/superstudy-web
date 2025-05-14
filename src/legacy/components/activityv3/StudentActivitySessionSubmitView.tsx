@@ -6,7 +6,7 @@ import { ActivitySession, StudentActivitySession, UploadFileTypeEnum } from '@/l
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { checkFileSizeLimit100MB, isPdfFile } from '@/legacy/util/file'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 import { Label, Textarea } from '../common'
 import { Button } from '../common/Button'
 import { FileUpload } from '../common/FileUpload'

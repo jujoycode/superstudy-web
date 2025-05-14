@@ -7,7 +7,7 @@ import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import { useIBInterviewCreate, useInterviewGetByStudentId } from '@/legacy/container/ib-student-interview'
 import { RequestCreateQnaDto, ResponseStudentInterviewDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import SolidSVGIcon from '../../icon/SolidSVGIcon'
 

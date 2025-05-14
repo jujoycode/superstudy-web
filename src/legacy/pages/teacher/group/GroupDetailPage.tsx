@@ -7,7 +7,7 @@ import { TeacharAllGroup } from '@/legacy/container/teacher-group-all'
 import { useTeacherGroupDetail } from '@/legacy/container/teacher-group-detail'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName, makeStudNum5 } from '@/legacy/util/status'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import { GroupAddPage } from './GroupAddPage'
 
 interface GroupDetailPageProps {

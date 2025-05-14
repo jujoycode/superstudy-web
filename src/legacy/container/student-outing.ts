@@ -1,6 +1,6 @@
 import { useHistory } from '@/hooks/useHistory'
 import { useOutingsFindAllByStudent } from '@/legacy/generated/endpoint'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentOuting() {
   const { push } = useHistory()

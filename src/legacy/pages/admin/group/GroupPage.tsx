@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useParams } from 'react-router'
-import { useSetRecoilState } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import { Label, Select } from '@/legacy/components/common'
@@ -26,7 +25,7 @@ import { Category, RequestGroupTeacherDto, RequestModifyGroupOnlyDto, SubjectTyp
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getErrorMsg, getNickName } from '@/legacy/util/status'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 
 const SubjectTypes = [
   { id: 0, name: '과목', value: SubjectType.LECTURE },

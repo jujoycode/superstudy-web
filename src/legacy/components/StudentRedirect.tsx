@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export const StudentRedirect = () => {
   const { me, child: myChild } = useUserStore()

@@ -15,7 +15,7 @@ import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 import { useGroupsFindAllKlassBySchool, useStudentGroupsFindByGroupId } from '@/legacy/generated/endpoint'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { padLeftstr } from '@/legacy/util/status'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import ProjectList from './ProjectList'
 
 export const STATUS_GROUPS = {

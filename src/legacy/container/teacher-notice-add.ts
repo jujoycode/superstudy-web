@@ -9,7 +9,7 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { DocumentObject } from '@/legacy/types/document-object'
 import { ImageObject } from '@/legacy/types/image-object'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 const initialNoticeState: Notice = {
   id: 0,

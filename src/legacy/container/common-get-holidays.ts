@@ -2,7 +2,7 @@ import { addYears, eachDayOfInterval, format } from 'date-fns'
 import { chain, concat, flatten } from 'lodash'
 import { useState } from 'react'
 import { useSchedulesFindRejectSchedule } from '@/legacy/generated/endpoint'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 enum RejectScheduleType {
   HOLIDAY = '공휴일',

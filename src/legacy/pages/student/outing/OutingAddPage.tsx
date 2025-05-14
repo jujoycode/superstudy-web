@@ -13,7 +13,7 @@ import { useStudentOutingAdd } from '@/legacy/container/student-outing-add'
 import { UserContainer } from '@/legacy/container/user'
 import { OutingTypeEnum, OutingUse, ResponseCreateOutingDto, Role } from '@/legacy/generated/model'
 import { AbsentTimeType, periodArray } from '@/legacy/types'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 const reportType = [OutingTypeEnum.조퇴, OutingTypeEnum.외출, OutingTypeEnum.확인]
 

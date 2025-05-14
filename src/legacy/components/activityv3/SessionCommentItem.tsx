@@ -5,7 +5,7 @@ import { Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { useSessionCommentDelete, useSessionCommentUpdate } from '@/legacy/generated/endpoint'
 import { ResponseUserDto, SessionComment } from '@/legacy/generated/model'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 import { SuperModal } from '../SuperModal'
 
 interface SessionCommentItemProps {

@@ -13,7 +13,7 @@ import {
   useStudentActivityV3SaveByTeacher,
 } from '@/legacy/generated/endpoint'
 import { getNickName, padLeftstr } from '@/legacy/util/status'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 import { RecordItem } from './RecordItem'
 
 interface StudentActivityDetailProps {

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { useLanguageStore } from '@/stores2/language'
+import { useLanguageStore } from '@/stores/language'
 import type { TOptions } from 'i18next'
 
 export const useLanguage = () => {

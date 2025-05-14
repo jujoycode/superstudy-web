@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
+
 import { twMerge } from 'tailwind-merge'
 
 import { useHistory } from '@/hooks/useHistory'
@@ -22,7 +22,7 @@ import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { PopupModal } from '@/legacy/components/PopupModal'
 import { useGetIBProject } from '@/legacy/container/ib-project-get-filter'
 import { ResponseIBDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 import CAS from '@/assets/images/CAS.png'
 import EE from '@/assets/images/EE.png'

@@ -2,7 +2,7 @@ import { useQueryClient } from 'react-query'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useUserUpdateMe } from '@/legacy/generated/endpoint'
 import { UpdateUserDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentParentMyInfoUpdate() {
   const queryClient = useQueryClient()

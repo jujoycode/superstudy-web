@@ -10,7 +10,7 @@ import { useExhibitionCreate } from '@/legacy/container/ib-tok-exhibition'
 import { RequestExhibitionDto, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { ImageCard } from '../ImageCard'
 

@@ -14,7 +14,7 @@ import {
   TeacherStudentAssessment,
 } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 
 interface GeneralGPTModalProps {
   studentId: number

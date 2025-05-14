@@ -2,8 +2,6 @@ import { format } from 'date-fns'
 import _ from 'lodash'
 import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRecoilState } from 'recoil'
-
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { SuperModal } from '@/legacy/components'
@@ -47,7 +45,7 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import type { nameWithId } from '@/legacy/types'
 import { getFileNameFromUrl } from '@/legacy/util/file'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
 
 interface ActivityV3AddPageProps {
   activityv3Data?: ActivityV3
@@ -77,7 +75,7 @@ const subjectExclusionValues = [
 
 export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3Data }) => {
   const [currentStep, setCurrentStep] = useState(1)
-  const [, setToastMsg] = useRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const [selectedGroupIds, setSelectedGroupIds] = useState<number[]>([])
   const [previewOpen, setPreviewOpen] = useState(false)
   const [selectGroupModalOpen, setSelectGroupModalOpen] = useState(false)

@@ -14,7 +14,7 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getFileNameFromUrlToAnn } from '@/legacy/util/file'
 import { isHTML } from '@/legacy/util/validator'
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
-import { useLanguageStore } from '@/stores2/language'
+import { useLanguageStore } from '@/stores/language'
 
 export default function AnnouncementDetailPage() {
   const [hasPdfModalOpen, setPdfModalOpen] = useState(false)

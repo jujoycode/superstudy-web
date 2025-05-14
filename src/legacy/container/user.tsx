@@ -12,9 +12,9 @@ import { RN } from '@/legacy/lib/rn'
 import { errorType } from '@/legacy/types'
 import { useLogout } from '@/legacy/util/hooks'
 import { isEmail } from '@/legacy/util/validator'
-import { useUserStore } from '@/stores2/user'
-import { useAuthStore } from '@/stores2/auth'
-import { useSchoolStore } from '@/stores2/school'
+import { useUserStore } from '@/stores/user'
+import { useAuthStore } from '@/stores/auth'
+import { useSchoolStore } from '@/stores/school'
 import { createContainer } from './createContainer'
 
 export function userHook() {

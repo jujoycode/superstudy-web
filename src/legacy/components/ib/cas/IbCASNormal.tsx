@@ -20,7 +20,7 @@ import {
   RequestIBDto,
 } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 

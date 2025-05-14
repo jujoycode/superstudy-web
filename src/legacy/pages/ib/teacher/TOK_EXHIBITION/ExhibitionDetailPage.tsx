@@ -39,8 +39,8 @@ import { usePolling } from '@/legacy/hooks/usePolling'
 import { useSignedUrl } from '@/legacy/lib/query'
 import { handleSingleBlobDownload } from '@/legacy/util/download-blob'
 import { createTokExhibitionPdf } from '@/legacy/util/ib/tok-exhibition-pdf'
-import { useSchoolStore } from '@/stores2/school'
-import { useUserStore } from '@/stores2/user'
+import { useSchoolStore } from '@/stores/school'
+import { useUserStore } from '@/stores/user'
 
 type tabType = 'feedback' | 'evaluation'
 

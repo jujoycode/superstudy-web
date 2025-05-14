@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-import { useUserStore } from '@/stores2/user'
+
+import { useUserStore } from '@/stores/user'
 
 export function useStudentMyPage() {
   const { me } = useUserStore()

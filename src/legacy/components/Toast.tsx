@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 
 /**
  * Toast

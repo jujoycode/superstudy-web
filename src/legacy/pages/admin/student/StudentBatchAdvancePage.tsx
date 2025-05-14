@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
 import readXlsxFile from 'read-excel-file'
-import { useSetRecoilState } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
@@ -10,7 +9,7 @@ import { studentManagementAdvancedStudent } from '@/legacy/generated/endpoint'
 import { RequestAdvancedStudentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 
 export function StudentBatchAdvancePage() {
   const { goBack } = useHistory()

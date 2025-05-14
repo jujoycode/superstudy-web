@@ -153,7 +153,7 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/two-factor',
-    element: <AuthGuard path="/two-factor" component={TwoFactor} />,
+    element: <AuthGuard component={TwoFactor} />,
   },
   {
     path: '/terms-of-use',
@@ -631,7 +631,7 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/add-child/:uuid',
-    element: <AuthGuard path="/add-child/:uuid" component={AddChildrenPage} />,
+    element: <AuthGuard component={AddChildrenPage} />,
   },
   {
     path: '/parent-signup',
@@ -643,15 +643,15 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/login',
-    element: <AuthGuard path="/login" guestOnly={true} component={LoginV2} />,
+    element: <AuthGuard guestOnly={true} component={LoginV2} />,
   },
   {
     path: '/select-school',
-    element: <AuthGuard path="/select-school" guestOnly={true} component={SelectSchool} />,
+    element: <AuthGuard guestOnly={true} component={SelectSchool} />,
   },
   {
     path: '/signup',
-    element: <AuthGuard path="/signup" guestOnly={true} component={Signup} />,
+    element: <AuthGuard guestOnly={true} component={Signup} />,
   },
 ]
 

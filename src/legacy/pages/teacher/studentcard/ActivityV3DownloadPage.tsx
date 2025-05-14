@@ -1,13 +1,13 @@
 import { format } from 'date-fns'
 import { useLocation } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
+
 import { Button } from '@/legacy/components/common/Button'
 import {
   useStudentActivityV3DownloadRecordSummary,
   useStudentRecordontrollerDownloadRecordSummary,
 } from '@/legacy/generated/endpoint'
 import { downloadExcel } from '@/legacy/util/download-excel'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export const ActivityV3DownloadPage = () => {
   const { pathname } = useLocation()

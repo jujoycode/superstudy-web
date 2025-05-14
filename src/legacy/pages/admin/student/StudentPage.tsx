@@ -2,7 +2,6 @@ import { debounce } from 'lodash'
 import { type ChangeEvent, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
-import { useSetRecoilState } from 'recoil'
 
 import { Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -24,7 +23,7 @@ import { useSearch } from '@/legacy/lib/router'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { getNickName } from '@/legacy/util/status'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 
 export function StudentPage() {
   const { t } = useLanguage()

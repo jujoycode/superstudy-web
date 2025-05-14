@@ -18,7 +18,7 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ActivityV3, ResponseStudentCardStudentDto, SubjectType } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 
 interface ActivityV3GPTModalProps {
   activityV3s?: ActivityV3[]

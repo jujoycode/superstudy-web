@@ -1,5 +1,4 @@
 import { ChangeEvent, useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 
 import BgLogo from '@/assets/images/Intersect.png'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
@@ -19,7 +18,7 @@ import { useLogout } from '@/legacy/util/hooks'
 import { getNickName } from '@/legacy/util/status'
 import { getHoursfromHHmmString, getMinutesfromHHmmString } from '@/legacy/util/time'
 import { Validator } from '@/legacy/util/validator'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function TeacherInfoPage() {
   const { me: meRecoil } = useUserStore()

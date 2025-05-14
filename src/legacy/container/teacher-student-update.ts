@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react'
-import { useSetRecoilState } from 'recoil'
+
 import { useCounselingSendParentSignUpV2, useCounselingUpdateStudent } from '@/legacy/generated/endpoint'
 import { UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
@@ -7,7 +7,7 @@ import { errorType } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { checkFileSizeLimit100MB } from '@/legacy/util/file'
 import { Validator } from '@/legacy/util/validator'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 
 export function useTeacherStudentUpdate() {
   const { setToast: setToastMsg } = useNotificationStore()

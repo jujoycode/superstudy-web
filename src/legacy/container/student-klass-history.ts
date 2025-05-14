@@ -1,6 +1,6 @@
-import { useRecoilValue } from 'recoil'
+
 import { useStudentGroupsFindKlassHistoryByStudent } from '@/legacy/generated/endpoint'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentKlassHistory() {
   const { me: meRecoil } = useUserStore()

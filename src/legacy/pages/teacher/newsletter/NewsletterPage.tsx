@@ -1,7 +1,5 @@
 import { ChangeEventHandler, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { Blank, Chip, HorizontalScrollView, Select } from '@/legacy/components/common'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -11,24 +9,22 @@ import { NewsletterCard } from '@/legacy/components/newsletter/NewsletterCard'
 import { useTeacherNewsletter } from '@/legacy/container/teacher-newsletter'
 import { Newsletter, NewsletterCategoryEnum } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState, newsletterOpenedGroupState } from '@/stores'
-
+import { useNotificationStore } from '@/stores/notification'
 import { NewsletterAddPage } from './NewsletterAddPage'
 import { NewsletterCheckDownloadPage } from './NewsletterCheckDownloadPage'
 import { NewsletterCheckPage } from './NewsletterCheckPage'
 import { NewsletterDetailPage } from './NewsletterDetailPage'
 import { NewsletterDownloadPage } from './NewsletterDownloadPage'
 import { NewsletterSubmitPage } from './NewsletterSubmitPage'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function NewsletterPage() {
   const { me } = useUserStore()
   const { t } = useLanguage()
   const history = useHistory()
   const filters = [t('title'), t('author')]
-  const setNewsletterOpenedGroup = useSetRecoilState(newsletterOpenedGroupState)
+  const { setNewsletterOpenedGroup } = useNotificationStore()
   const { newsletters, unReadnewslettersList, category, isLoading, setCategory } = useTeacherNewsletter()
-
   const [filter, setFilter] = useState(filters[0])
   const [searchWriter, setSearchWriter] = useState('')
   const [searchTitle, setSearchTitle] = useState('')

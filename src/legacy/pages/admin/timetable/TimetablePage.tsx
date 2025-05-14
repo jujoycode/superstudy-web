@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import { range } from 'lodash'
 import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { Label, Section, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
@@ -48,8 +47,8 @@ import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getFileNameFromUrl } from '@/legacy/util/file'
 import { getNickName } from '@/legacy/util/status'
 import { getThisSemester, WeekList } from '@/legacy/util/time'
-import { useNotificationStore } from '@/stores2/notification'
-import { useUserStore } from '@/stores2/user'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 
 export enum TimetableTarget {
   KLASS = '학급',

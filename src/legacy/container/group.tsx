@@ -9,8 +9,8 @@ import {
 import { ResponseGroupDto, ResponseSubjectGroupDto, Role } from '@/legacy/generated/model'
 import { getThisYear } from '@/legacy/util/time'
 import { createContainer } from './createContainer'
-import { useUserStore } from '@/stores2/user'
-import { useAuthStore } from '@/stores2/auth'
+import { useUserStore } from '@/stores/user'
+import { useAuthStore } from '@/stores/auth'
 
 export function groupHook() {
   const { me } = useUserStore()

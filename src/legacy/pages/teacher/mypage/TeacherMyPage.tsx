@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
 
 import BgLogo from '@/assets/images/Intersect.png'
 import { ReactComponent as RightArrow } from '@/assets/svg/mypage-right-arrow.svg'
@@ -12,7 +11,7 @@ import { Constants } from '@/legacy/constants'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useLogout } from '@/legacy/util/hooks'
 import { checkNewVersion } from '@/legacy/util/status'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 enum selectedType {
   none = 1,

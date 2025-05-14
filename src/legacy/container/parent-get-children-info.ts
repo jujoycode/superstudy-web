@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import { useSetRecoilState } from 'recoil'
+
 import { useUserDeleteChild, useUserMeWithChildren } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 import { UserContainer } from './user'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useParentGetChildrenInfo() {
   const { me: meRecoil } = useUserStore()

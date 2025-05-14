@@ -13,7 +13,7 @@ import { useTeacherSms } from '@/legacy/container/teacher-sms'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { UserDatas } from '@/legacy/types'
 import { isValidDate, makeDateToString } from '@/legacy/util/time'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 type SmsInfoType = {
   receiverId: number

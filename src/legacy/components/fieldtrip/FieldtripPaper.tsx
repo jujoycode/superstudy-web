@@ -8,7 +8,7 @@ import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName } from '@/legacy/util/status'
 import { getCustomString } from '@/legacy/util/string'
 import { fieldtripPeriodDayCnt, makeDateToString2 } from '@/legacy/util/time'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import { Checkbox } from '../common/Checkbox'
 import { Td2 } from '../Td2'
 

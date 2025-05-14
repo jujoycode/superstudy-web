@@ -6,7 +6,7 @@ import { ReactComponent as RightArrow } from '@/assets/svg/mypage-right-arrow.sv
 import { useDashboard } from '@/legacy/container/dashboard'
 import { Role } from '@/legacy/generated/model'
 import { dashboardNewItem } from '@/legacy/types'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function Dashboard() {
   const [showAll, setShowAll] = useState(false)

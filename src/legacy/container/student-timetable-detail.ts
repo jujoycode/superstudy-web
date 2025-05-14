@@ -2,7 +2,7 @@ import { useTimetablev3GetTimetableByStudentId } from '@/legacy/generated/endpoi
 import { Role } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { UserContainer } from './user'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentTimetableDetail() {
   const { me } = UserContainer.useContext()

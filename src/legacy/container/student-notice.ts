@@ -3,7 +3,7 @@ import { QueryKey } from '@/legacy/constants/query-key'
 import { useBoardFindAll, useNewsLettersFindAll, useNoticesFindAll } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
 import { TabType } from '@/legacy/types'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentNotice(tabType: TabType) {
   const { me, child } = useUserStore()

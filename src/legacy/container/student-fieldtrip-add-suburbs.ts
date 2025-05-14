@@ -9,7 +9,7 @@ import { ImageObject } from '@/legacy/types/image-object'
 import { usePrevious } from '@/legacy/util/hooks'
 import { useSchoolWording } from './school-wording'
 import { UserContainer } from './user'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 type Props<T> = {
   startAt: Date | null

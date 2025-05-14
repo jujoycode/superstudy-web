@@ -9,7 +9,7 @@ import { useStudentFieldtrip } from '@/legacy/container/student-fieldtrip'
 import { UserContainer } from '@/legacy/container/user'
 import { FieldtripStatus, Role } from '@/legacy/generated/model'
 import { makeStartEndToString } from '@/legacy/util/time'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function FieldtripPage() {
   const [modalopen, setModalopen] = useState(false)

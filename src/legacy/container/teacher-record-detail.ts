@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
+
 import { useStudentActivityFindByUserId, useSummariesCreate } from '@/legacy/generated/endpoint'
 import { StudentGroup, Summary } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 type Props = {
   userId: number

@@ -2,7 +2,6 @@ import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import { SuperModal } from '@/legacy/components'
@@ -22,7 +21,7 @@ import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
 import { useIBOutlineStatusApprove, useIBOutlineStatusReject, useOutlineUpdate } from '@/legacy/container/ib-tok-essay'
 import { RequestIBTokOutlineDto, ResponseIBDtoStatus, ResponseIBTokOutlineDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 import NODATA from '@/assets/images/no-data.png'
 

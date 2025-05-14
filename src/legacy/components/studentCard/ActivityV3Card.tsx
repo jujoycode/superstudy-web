@@ -13,8 +13,8 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ActivityV3, Record } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useNotificationStore } from '@/stores2/notification'
-import { useUserStore } from '@/stores2/user'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 
 ChartJS.register(...registerables)
 

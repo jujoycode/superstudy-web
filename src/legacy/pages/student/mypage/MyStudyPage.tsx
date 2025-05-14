@@ -1,7 +1,7 @@
 import { BackButton, TopNavbar } from '@/legacy/components/common'
 import { StudyInfoCard2 } from '@/legacy/components/studentCard/StudyInfoCard2'
 import { Role } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function MyStudyPage() {
   const { me, child } = useUserStore()

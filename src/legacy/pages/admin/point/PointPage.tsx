@@ -1,7 +1,6 @@
 import { sumBy } from 'lodash'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
-import { useSetRecoilState } from 'recoil'
 
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
@@ -10,7 +9,7 @@ import { Pagination } from '@/legacy/components/common/Pagination'
 import { Routes } from '@/legacy/constants/routes'
 import { adminPointDelete, useAdminPointGet } from '@/legacy/generated/endpoint'
 import { useSearch } from '@/legacy/lib/router'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 
 export function PointPage() {
   const { t } = useTranslation()

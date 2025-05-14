@@ -4,7 +4,7 @@ import { Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { useRecordDelete, useRecordUpdate } from '@/legacy/generated/endpoint'
 import { Record } from '@/legacy/generated/model'
-import { useNotificationStore } from '@/stores2/notification'
+import { useNotificationStore } from '@/stores/notification'
 import { SuperModal } from '../SuperModal'
 
 interface RecordItemProps {

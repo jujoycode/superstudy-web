@@ -45,7 +45,7 @@ import { SelfTestPage } from './self-test/SelfTestPage'
 import { TimetableDetailPage } from './timetable/TimetableDetailPage'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { ApplyPage } from '@/legacy/pages/teacher/absent/ApplyPage'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function StudentMainPage() {
   const { replace } = useHistory()

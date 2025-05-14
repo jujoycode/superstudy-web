@@ -10,7 +10,7 @@ import { PasswordInputToggle } from '@/legacy/components/common/PasswordInputTog
 import { NoticePopup } from '@/legacy/components/NoticePopup'
 import { UserContainer } from '@/legacy/container/user'
 import { isEmail } from '@/legacy/util/validator'
-import { useAuthStore } from '@/stores2/auth'
+import { useAuthStore } from '@/stores/auth'
 
 export function LoginV2() {
   const { t } = useTranslation(undefined, { keyPrefix: 'login_page' })

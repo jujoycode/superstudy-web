@@ -23,7 +23,7 @@ import {
 import { GroupType } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getSearchYearByMonth, getThisYear } from '@/legacy/util/time'
-import { useAuthStore } from '@/stores2/auth'
+import { useAuthStore } from '@/stores/auth'
 
 const headers = [
   '번호',

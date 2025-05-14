@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Viewer from 'react-viewer'
-import { useRecoilValue } from 'recoil'
 import { ReactComponent as ChatIcon } from '@/assets/svg/chat.svg'
 import { ReactComponent as ClockIcon } from '@/assets/svg/clock.svg'
 import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
@@ -21,8 +20,8 @@ import { Role } from '@/legacy/generated/model'
 import { Schedule } from '@/legacy/types'
 import { checkNewVersion } from '@/legacy/util/status'
 import { makeDateToString, makeMonthDayToString } from '@/legacy/util/time'
-import { newMsgCntState } from '@/stores'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
+import { useNotificationStore } from '@/stores/notification'
 
 export function CanteenPage() {
   const { push } = useHistory()
@@ -31,7 +30,7 @@ export function CanteenPage() {
 
   const { me, isMeLoading, isMeWithChildrenLoading } = UserContainer.useContext()
   const { child: myChild } = useUserStore()
-  const newMsgCnt = useRecoilValue(newMsgCntState)
+  const { newMsgCnt } = useNotificationStore()
 
   const {
     daysWithSchedule,

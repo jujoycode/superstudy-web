@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router'
-import { useRecoilValue } from 'recoil'
+
 import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -19,7 +19,7 @@ import { useEssayGetByIBId } from '@/legacy/container/ib-essay-find'
 import { useIBEssaySent } from '@/legacy/container/ib-essay-send'
 import { ResponseIBDto } from '@/legacy/generated/model'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 interface LocationState {
   project: ResponseIBDto

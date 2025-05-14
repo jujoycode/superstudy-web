@@ -7,7 +7,7 @@ import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
 import { useCodeByCategoryName } from './category'
 import { GroupContainer } from './group'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 const getMeridiemHours = (date?: string) => {
   if (!date) return 0

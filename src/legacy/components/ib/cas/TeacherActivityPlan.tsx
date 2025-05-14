@@ -27,7 +27,7 @@ import {
 } from '@/legacy/generated/model'
 import { useHandleGoBack } from '@/legacy/hooks/useHandleGoBack'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import { Feedback } from '../Feedback'
 import { InputField } from '../InputField'
 

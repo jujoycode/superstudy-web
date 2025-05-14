@@ -19,7 +19,7 @@ import { Absent, AbsentStatus, Role } from '@/legacy/generated/model'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { AbsentTimeType } from '@/legacy/types'
 import { makeDateToString } from '@/legacy/util/time'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 const reportType = ['결석', '지각', '조퇴', '결과']
 const descriptionType = ['인정', '질병', '기타', '미인정']

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useHistory } from '@/hooks/useHistory'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import { useFieldtripResultResend, useFieldtripsFindOne } from '@/legacy/generated/endpoint'
 import type { errorType } from '@/legacy/types'
 

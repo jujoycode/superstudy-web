@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { useSetRecoilState } from 'recoil'
+
 import { useStudentNewsletterUpsert } from '@/legacy/generated/endpoint'
 import { RequestUpsertStudentNewsletterDto } from '@/legacy/generated/model'
-import { useNotificationStore } from '@/stores2/notification'
-import { useUserStore } from '@/stores2/user'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentNewsletterAdd(id?: number) {
   const { child } = useUserStore()

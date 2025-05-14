@@ -8,7 +8,7 @@ import {
   useSchedulesFindRejectSchedule,
 } from '@/legacy/generated/endpoint'
 import { errorType } from '@/legacy/types'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentFieldtripDetail(id: number) {
   const { push } = useHistory()

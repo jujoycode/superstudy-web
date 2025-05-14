@@ -12,7 +12,7 @@ import useIntersectionObserver from '@/legacy/hooks/useIntersectionObserver'
 import { isPdfFile } from '@/legacy/util/file'
 import { Icon } from './icons'
 import { PdfCard } from './PdfCard'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 interface FeedsItemProps {
   to: string

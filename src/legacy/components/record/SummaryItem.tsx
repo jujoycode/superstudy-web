@@ -1,13 +1,11 @@
 import { SetStateAction, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import { Blank, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useTeacherRecordSummaryItem } from '@/legacy/container/teacher-record-summary-item'
 import { Summary } from '@/legacy/generated/model'
 import { forbiddenWords } from '@/legacy/pages/teacher/ForbiddenWords'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import { SuperModal } from '../SuperModal'
 // * 추후 상수로 고도화...
 

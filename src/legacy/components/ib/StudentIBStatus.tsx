@@ -16,7 +16,7 @@ import { Typography } from '@/legacy/components/common/Typography'
 import { ResponsePaginatedIBDto } from '@/legacy/generated/model'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { CategoryType, IBProject, ModalType } from '@/legacy/pages/ib/student/IBStudentMainPage'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import { PopupModal } from '../PopupModal'
 
 import { IbCASNormal } from './cas/IbCASNormal'

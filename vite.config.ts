@@ -136,14 +136,17 @@ export default defineConfig(({ mode }) => {
       minify: 'esbuild',
       rollupOptions: {
         output: {
-          entryFileNames: 'assets/[name].[hash].js',
-          chunkFileNames: 'assets/[name].[hash].js',
-          assetFileNames: 'assets/[name].[hash].[ext]',
+          manualChunks: {
+            'vendor': ['react', 'react-dom', 'react-router-dom'],
+          },
+          entryFileNames: 'static/[name].[hash].js',
+          chunkFileNames: 'static/[name].[hash].js',
+          assetFileNames: 'static/[name].[hash].[ext]',
         },
       },
     },
     optimizeDeps: {
-      include: ['swiper', 'swiper/css'],
+      include: ['swiper'],
       esbuildOptions: {
         loader: {
           '.svg': 'tsx',
@@ -161,8 +164,7 @@ export default defineConfig(({ mode }) => {
         '@/pages': '/src/components/pages',
         '@/layouts': '/src/components/layouts',
         '@/hooks': '/src/hooks',
-        '@/stores': '/src/store',
-        '@/stores2': '/src/stores',
+        '@/stores': '/src/stores',
         '@/routers': '/src/routers',
         '@/assets': '/src/assets',
       },

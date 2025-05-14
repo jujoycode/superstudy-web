@@ -2,7 +2,6 @@ import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -22,7 +21,7 @@ import { useIBProposalUpdateWaitPlan } from '@/legacy/container/ib-proposal-sent
 import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
 import { useExhibitionPlanSubmit, useExhibitionPlanUpdate } from '@/legacy/container/ib-tok-exhibition'
 import { RequestIBTokExhibitionPlanDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 import NODATA from '@/assets/images/no-data.png'
 

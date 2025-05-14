@@ -3,7 +3,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilValue } from 'recoil'
+
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import {
   BackButton,
@@ -33,7 +33,7 @@ import {
 import { useSignature } from '@/legacy/hooks/useSignature'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { makeDateToString } from '@/legacy/util/time'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 interface NewsletterAddPageProps {
   newsletterData: ResponseNewsletterDetailDto
