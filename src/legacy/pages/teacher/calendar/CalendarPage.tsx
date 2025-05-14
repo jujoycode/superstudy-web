@@ -1,10 +1,9 @@
 import { addMonths, endOfMonth, format, startOfMonth, subMonths } from 'date-fns'
 import { t } from 'i18next'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
 import { useRecoilValue } from 'recoil'
-
-import { Calendar, CalendarData } from '@/atoms/Calendar'
+import { Calendar, type CalendarData } from '@/atoms/Calendar'
 import { ErrorBlank } from '@/legacy/components'
 import { LnbCalendarsItem } from '@/legacy/components/calendar/LnbCalendarsItem'
 import { Blank, Label } from '@/legacy/components/common'
@@ -228,6 +227,7 @@ export function CalendarPage() {
                   </button>
                 </div>
               </div>
+              // TODO: tuiModal은 여기로 분리
               <Calendar
                 data={data}
                 now={selectedDate}
