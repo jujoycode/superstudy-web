@@ -67,3 +67,6 @@
 .lnb-calendars-item {
   padding: 3px 0;
 }
+.tui-full-calendar-button {
+  display: flex !important;
+}
