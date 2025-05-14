@@ -1,12 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
-import { format } from 'date-fns'
 import { EventClickArg, EventInput } from '@fullcalendar/core/index.js'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import FullCalendar from '@fullcalendar/react'
-import { CustomTuiModal } from '@/legacy/components/calendar/CustomTuiModal'
-import { MergedGroupType } from '@/legacy/container/teacher-chat-user-list'
-import { Group } from '@/legacy/generated/model'
+import { format } from 'date-fns'
+import { useEffect, useRef } from 'react'
 
 export interface CalendarData extends Partial<EventInput> {
   title: string
@@ -16,18 +13,9 @@ export interface CalendarData extends Partial<EventInput> {
 
 interface CalendarProps {
   data: CalendarData[]
-  handleCalendarCreate?: (calendarData: CalendarData) => Promise<void>
-  handleCalendarUpdate?: (id: number, calendarData: CalendarData) => Promise<void>
   now?: Date
-  // TODO: 아래 Props들은 추후 legacy CustomTuiModal 변경하며 개선 예정
-  schoolType?: string
-  modalOpen?: boolean
-  setModalOpen?: (open: boolean) => void
-  groupProps?: {
-    allGroups: Group[]
-    selectedGroup: MergedGroupType | null
-    setSelectedGroup: (group: MergedGroupType | null) => void
-  }
+  handleEventClick?: (e: EventClickArg) => void
+  handleDayClick?: (date: Date) => void
 }
 
 /**
@@ -37,23 +25,10 @@ interface CalendarProps {
  */
 export function Calendar({
   data,
-  handleCalendarCreate = async () => {},
-  handleCalendarUpdate = async () => {},
   now = new Date(),
-  modalOpen = false,
-  setModalOpen,
-  schoolType = '',
-  groupProps,
+  handleEventClick = () => {},
+  handleDayClick = () => {},
 }: CalendarProps) {
-  const [selectedData, setSelectedData] = useState<CalendarData>()
-  const [_modalOpen, _setModalOpen] = useState<boolean>(false)
-
-  // TODO: 더 나은 구조 고민 필요
-  if (!setModalOpen) {
-    setModalOpen = _setModalOpen
-    modalOpen = _modalOpen
-  }
-
   const calendarRef = useRef<FullCalendar>(null)
 
   // now의 변경을 추적하여 캘린더에 반영
@@ -66,36 +41,6 @@ export function Calendar({
     if (calendarApi) {
       calendarApi.gotoDate(format(date, 'yyyy-MM-dd'))
     }
-  }
-
-  const createCalendar = (calendarData: CalendarData) => {
-    handleCalendarCreate(calendarData)
-      .then(() => setSelectedData(undefined))
-      .catch((err) => console.error(err))
-      .finally(() => setModalOpen(false))
-  }
-
-  const updateCalendar = (calendarData: CalendarData) => {
-    if (!selectedData || !selectedData?.id) return
-    handleCalendarUpdate(Number(selectedData.id), calendarData)
-      .then(() => setSelectedData(undefined))
-      .catch((err) => console.error(err))
-      .finally(() => setModalOpen(false))
-  }
-
-  const handleEventClick = (e: EventClickArg) => {
-    const currentData = data.find((el) => el.id === e.event.id)
-    if (!currentData) return
-    setSelectedData(currentData)
-    setModalOpen(true)
-  }
-
-  const handleDayClick = (date: Date) => {
-    if (!date) return
-    const newData: CalendarData = { title: '', start: date, end: date }
-    setSelectedData(newData)
-    setNow(date)
-    setModalOpen(true)
   }
 
   return (
@@ -112,20 +57,6 @@ export function Calendar({
         eventClick={handleEventClick}
         navLinkDayClick={handleDayClick}
         eventContent={(eventInfo) => <>{eventInfo.event.title}</>}
-      />
-      <CustomTuiModal
-        isOpen={modalOpen}
-        onClose={() => {
-          setModalOpen(false)
-          setSelectedData(undefined)
-        }}
-        onSubmit={!selectedData?.id ? createCalendar : updateCalendar}
-        calendars={data}
-        schedule={selectedData}
-        startDate={selectedData?.start ? new Date(selectedData.start) : new Date()}
-        endDate={selectedData?.end ? new Date(selectedData.end) : new Date()}
-        schoolType={schoolType}
-        groupProps={groupProps}
       />
     </>
   )

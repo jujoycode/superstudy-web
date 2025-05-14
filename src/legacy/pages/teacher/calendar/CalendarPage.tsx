@@ -1,9 +1,11 @@
+import { EventClickArg } from '@fullcalendar/core/index.js'
 import { addMonths, endOfMonth, format, startOfMonth, subMonths } from 'date-fns'
 import { t } from 'i18next'
 import { useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
 import { Calendar, type CalendarData } from '@/atoms/Calendar'
 import { ErrorBlank } from '@/legacy/components'
+import { CustomTuiModal } from '@/legacy/components/calendar/CustomTuiModal'
 import { LnbCalendarsItem } from '@/legacy/components/calendar/LnbCalendarsItem'
 import { Blank, Label } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
@@ -20,8 +22,9 @@ export function CalendarPage() {
   const { me } = useUserStore()
 
   const [modalOpen, setModalOpen] = useState(false)
-  const [selectedDate, _setSelectedDate] = useState<Date>(new Date())
   const [isLoading, setLoading] = useState(false)
+  const [selectedData, setSelectedData] = useState<CalendarData>()
+  const [selectedDate, _setSelectedDate] = useState<Date>(new Date())
 
   const setSelectedDate = (date: Date) => {
     _setSelectedDate(date)
@@ -101,52 +104,61 @@ export function CalendarPage() {
       backgroundColor: CALENDAR_TYPES.find((TYPE) => TYPE.id === el.calendarId)?.bgColor || '',
     })) || []
 
+  const formatCalendarData = (calendarData: CalendarData) => ({
+    title: calendarData.title,
+    location: calendarData.location,
+    isAllDay: calendarData.isAllDay,
+    start: String(calendarData.start),
+    end: String(calendarData.end),
+    category: calendarData.isAllDay ? ScheduleCategoryEnum.allday : ScheduleCategoryEnum.time,
+    calendarId: calendarData.calendarId,
+    attendee: calendarData.attendee,
+    grade: calendarData.grade,
+    groupId: Number(calendarData.groupId),
+  })
+
   const createCalendar = async (calendarData: CalendarData) => {
     setLoading(true)
-    const createData = {
-      title: calendarData.title,
-      location: calendarData.location,
-      isAllDay: calendarData.isAllDay,
-      start: String(calendarData.start),
-      end: String(calendarData.end),
-      category: calendarData.isAllDay ? ScheduleCategoryEnum.allday : ScheduleCategoryEnum.time,
-      calendarId: calendarData.calendarId,
-      attendee: calendarData.attendee,
-      grade: calendarData.grade,
-      groupId: Number(calendarData.groupId),
-    }
     try {
-      await handleCalendarCreate(createData)
+      await handleCalendarCreate(formatCalendarData(calendarData))
       await refetchCalendar()
+      setSelectedData(undefined)
     } catch (err) {
       console.error(err)
     } finally {
       setLoading(false)
+      setModalOpen(false)
     }
   }
 
-  const updateCalendar = async (id: number, calendarData: CalendarData) => {
+  const updateCalendar = async (calendarData: CalendarData) => {
+    if (!selectedData || !selectedData?.id) return
     setLoading(true)
-    const updateData = {
-      title: calendarData.title,
-      location: calendarData.location,
-      isAllDay: calendarData.isAllDay,
-      start: String(calendarData.start),
-      end: String(calendarData.end),
-      category: calendarData.isAllDay ? ScheduleCategoryEnum.allday : ScheduleCategoryEnum.time,
-      calendarId: calendarData.calendarId,
-      attendee: calendarData.attendee,
-      grade: calendarData.grade,
-      groupId: Number(calendarData.groupId),
-    }
     try {
-      await handleCalendarUpdate(id, updateData)
+      await handleCalendarUpdate(Number(selectedData.id), formatCalendarData(calendarData))
       await refetchCalendar()
+      setSelectedData(undefined)
     } catch (err) {
       console.error(err)
     } finally {
       setLoading(false)
+      setModalOpen(false)
     }
+  }
+
+  const handleEventClick = (e: EventClickArg) => {
+    const currentData = data.find((el) => el.id === e.event.id)
+    if (!currentData) return
+    setSelectedData(currentData)
+    setModalOpen(true)
+  }
+
+  const handleDayClick = (date: Date) => {
+    if (!date) return
+    const newData: CalendarData = { title: '', start: date, end: date }
+    setSelectedData(newData)
+    setSelectedDate(date)
+    setModalOpen(true)
   }
 
   return (
@@ -226,14 +238,23 @@ export function CalendarPage() {
                   </button>
                 </div>
               </div>
-              // TODO: tuiModal은 여기로 분리
               <Calendar
                 data={data}
                 now={selectedDate}
-                handleCalendarCreate={createCalendar}
-                handleCalendarUpdate={updateCalendar}
-                modalOpen={modalOpen}
-                setModalOpen={setModalOpen}
+                handleEventClick={handleEventClick}
+                handleDayClick={handleDayClick}
+              />
+              <CustomTuiModal
+                isOpen={modalOpen}
+                onClose={() => {
+                  setModalOpen(false)
+                  setSelectedData(undefined)
+                }}
+                onSubmit={!selectedData?.id ? createCalendar : updateCalendar}
+                calendars={data}
+                schedule={selectedData}
+                startDate={selectedData?.start ? new Date(selectedData.start) : new Date()}
+                endDate={selectedData?.end ? new Date(selectedData.end) : new Date()}
                 schoolType={schoolType}
                 groupProps={groupProps}
               />
