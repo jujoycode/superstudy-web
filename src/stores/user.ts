@@ -4,7 +4,7 @@ import type { ResponseUserDto } from '@/legacy/generated/model'
 
 type UserState = {
   // 상태
-  profile: ResponseUserDto | undefined
+  me: ResponseUserDto | undefined
   child: ResponseUserDto | undefined
   selectedGroupId: number | undefined
   isUpdateMe: boolean
@@ -12,7 +12,7 @@ type UserState = {
   initialized: boolean
 
   // 액션
-  setProfile: (profile: ResponseUserDto | undefined) => void
+  setMe: (me: ResponseUserDto | undefined) => void
   setChild: (child: ResponseUserDto | undefined) => void
   setSelectedGroupId: (id: number | undefined) => void
   setIsUpdateMe: (isUpdate: boolean) => void
@@ -23,7 +23,7 @@ type UserState = {
 
 // 초기 상태
 const initialState = {
-  profile: undefined,
+  me: undefined,
   child: undefined,
   selectedGroupId: 0,
   isUpdateMe: false,
@@ -32,25 +32,15 @@ const initialState = {
 }
 
 export const useUserStore = create<UserState>()(
-  persist(
-    (set) => ({
-      ...initialState,
-      // 액션
-      setProfile: (profile) => set({ profile }),
-      setChild: (child) => set({ child }),
-      setSelectedGroupId: (selectedGroupId) => set({ selectedGroupId }),
-      setIsUpdateMe: (isUpdateMe) => set({ isUpdateMe }),
-      setIsUpdateNotice: (isUpdateNotice) => set({ isUpdateNotice }),
-      setInitialized: (initialized) => set({ initialized }),
-      reset: () => set(initialState),
-    }),
-    {
-      name: 'user-storage',
-      partialize: (state) => ({
-        profile: state.profile,
-        child: state.child,
-        selectedGroupId: state.selectedGroupId,
-      }),
-    },
-  ),
+  (set) => ({
+    ...initialState,
+    // 액션
+    setMe: (me) => set({ me }),
+    setChild: (child) => set({ child }),
+    setSelectedGroupId: (selectedGroupId) => set({ selectedGroupId }),
+    setIsUpdateMe: (isUpdateMe) => set({ isUpdateMe }),
+    setIsUpdateNotice: (isUpdateNotice) => set({ isUpdateNotice }),
+    setInitialized: (initialized) => set({ initialized }),
+    reset: () => set(initialState),
+  }),
 )
