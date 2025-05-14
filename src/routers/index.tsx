@@ -117,6 +117,9 @@ import { PrivacyPolicy } from '@/legacy/pages/student/PrivacyPolicy'
 import { SelfTestPage } from '@/legacy/pages/student/self-test/SelfTestPage'
 import { TermsOfUse } from '@/legacy/pages/student/TermsOfUse'
 import { TimetableDetailPage } from '@/legacy/pages/student/timetable/TimetableDetailPage'
+// import { StudentMainPage } from '@/legacy/pages/student';
+// import { TeacherMainPage } from '@/legacy/pages/teacher/TeacherMainPage';
+// import { AdminMainPage } from '@/legacy/pages/admin/AdminMainPage';
 import AbsentComparisonPage from '@/legacy/pages/teacher/absent/AbsentComparisonPage'
 import { TeacherApplyPage } from '@/legacy/pages/teacher/absent/TeacherApplyPage'
 import { ActivityV3AddPage } from '@/legacy/pages/teacher/activityv3/ActivityV3AddPage'

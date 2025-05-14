@@ -19,9 +19,15 @@ interface CalendarProps {
 }
 
 /**
- * Calendar
- * @desc fullcalendar 라이브러리를 사용한 캘린더 컴포넌트입니다.
- * @author Suh Jihun
+ * 캘린더 컴포넌트
+ * 
+ * fullcalendar 라이브러리를 사용하여 구현된 캘린더입니다.  
+ * 이벤트 표시 및 날짜 클릭 기능을 제공합니다.
+ * 
+ * @param data - 캘린더에 표시할 이벤트 데이터 배열  
+ * @param now - 현재 날짜 (기본값: 현재 날짜)  
+ * @param handleEventClick - 이벤트 클릭 시 호출될 함수  
+ * @param handleDayClick - 날짜 클릭 시 호출될 함수  
  */
 export function Calendar({
   data,

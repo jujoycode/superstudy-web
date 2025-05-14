@@ -40,6 +40,6 @@
       "@/routers": ["src/routers/index.tsx"]
     }
   },
-  "include": ["src", "src/types/svg.d.ts"],
+  "include": ["src", "src/types/svg.d.ts", ".storybook"],
   "exclude": ["node_modules", "src/legacy/container"]
 }
