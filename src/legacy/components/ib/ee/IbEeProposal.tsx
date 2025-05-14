@@ -1,8 +1,6 @@
 import clsx from 'clsx'
 import { PropsWithChildren, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRecoilValue } from 'recoil'
-
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
@@ -12,8 +10,7 @@ import { useIBCreate } from '@/legacy/container/ib-project'
 import { useIBProposalCreate } from '@/legacy/container/ib-proposal-create'
 import { useIBProposalUpdate } from '@/legacy/container/ib-proposal-update'
 import { RequestIBDto, RequestIBProposalDto, ResponseIBProposalDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores2/user'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 
@@ -40,7 +37,7 @@ export function IbEeProposal({
   proposalData,
   ablePropragation = false,
 }: PropsWithChildren<IbEeProposalProps>) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const {
     control,
     handleSubmit,

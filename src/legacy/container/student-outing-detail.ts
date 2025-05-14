@@ -3,13 +3,14 @@ import { useRecoilValue } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import { useOutingsApproveByParentApp, useOutingsDelete, useOutingsFindOne } from '@/legacy/generated/endpoint'
 import { errorType } from '@/legacy/types'
-import { childState, meState } from '@/stores'
+import { childState } from '@/stores'
 import { useDialog } from './DialogContext'
+import { useUserStore } from '@/stores2/user'
 
 export function useStudentOutingDetail(id: number) {
   const { push } = useHistory()
   const [errorMessage, setErrorMessage] = useState('')
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
   const child = useRecoilValue(childState)
 
   const [openSignModal, setSignModal] = useState(false)

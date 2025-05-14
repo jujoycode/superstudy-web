@@ -1,14 +1,12 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import AccordionV2 from '@/legacy/components/common/AccordionV2'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import Stepper from '@/legacy/components/common/Stepper'
 import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import { TooltipV2 } from '@/legacy/components/common/TooltipV2'
 import { ResponseTokEvaluationCriteriaDto, ResponseTokEvaluationSummaryDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 import { EvaluationData } from './EvaluationList'
 
@@ -35,7 +33,7 @@ export default function Evaluation({
   criteria = {} as ResponseTokEvaluationCriteriaDto,
   placeholder,
 }: EvaluationProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const [accordionIsOpen, setAccordionIsOpen] = useState<boolean>(false)
   const [gradeScores, setGradeScores] = useState<Record<number, number>>({})

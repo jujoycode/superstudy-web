@@ -20,12 +20,12 @@ import { useIBProfileGetById } from '@/legacy/container/ib-cas'
 import { useIBInterviewUpdate, useInterviewQNA } from '@/legacy/container/ib-student-interview'
 import { IBInterviewQnaContentDto, RequestUpdateQnaDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export default function CASInterviewDetailPage() {
   const history = useHistory()
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { qnaId: qnaIdParam, studentId: studentIdParam } = useParams<{
     id: string
     qnaId: string

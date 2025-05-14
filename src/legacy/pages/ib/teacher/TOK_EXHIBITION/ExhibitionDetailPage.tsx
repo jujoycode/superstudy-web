@@ -42,6 +42,7 @@ import { useSignedUrl } from '@/legacy/lib/query'
 import { handleSingleBlobDownload } from '@/legacy/util/download-blob'
 import { createTokExhibitionPdf } from '@/legacy/util/ib/tok-exhibition-pdf'
 import { meState, schoolPropertiesState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 type tabType = 'feedback' | 'evaluation'
 
@@ -62,7 +63,7 @@ export const ExhibitionDetailPage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [rejectExhibitionConfirmModalOpen, setRejectExhibitionConfirmModalOpen] = useState<boolean>(false)
   const [type, setType] = useState<tabType>('feedback')
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const schoolProperties = useRecoilValue(schoolPropertiesState)
   const { data } = useexhibitionGetByIBId(id)
 

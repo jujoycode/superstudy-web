@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRecoilValue } from 'recoil'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
@@ -28,8 +27,7 @@ import {
 } from '@/legacy/generated/model'
 import { useHandleGoBack } from '@/legacy/hooks/useHandleGoBack'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores2/user'
 import { Feedback } from '../Feedback'
 import { InputField } from '../InputField'
 
@@ -44,7 +42,7 @@ interface TeacherActivityPlanProps {
 type tabType = 'feedback' | 'activity'
 
 function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPlanProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [editMode, setEditMode] = useState<boolean>(false)
   const [isFocused, setIsFocused] = useState(false)
   const [calendarOpen, setCalendarOpen] = useState<boolean>(false)

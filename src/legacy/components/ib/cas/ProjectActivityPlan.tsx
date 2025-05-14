@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRecoilValue } from 'recoil'
-
 import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -35,8 +33,7 @@ import {
 } from '@/legacy/generated/model'
 import { useHandleGoBack } from '@/legacy/hooks/useHandleGoBack'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores2/user'
 import { Feedback } from '../Feedback'
 import { InputField } from '../InputField'
 
@@ -55,7 +52,7 @@ function ProjectActivityPlan({
   setEdit,
   hasPermission = true,
 }: ProjectActivityPlanProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const [editMode, setEditMode] = useState<boolean>(false)
   const handleChangeStatus = () => {

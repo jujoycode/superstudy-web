@@ -22,10 +22,11 @@ import {
 import { ActivityType } from '@/legacy/generated/model'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { meState, toastState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function ActivitySessionPage() {
   const { id } = useParams<{ id: string }>()
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
 
   const { push } = useHistory()
   const setToastMsg = useSetRecoilState(toastState)

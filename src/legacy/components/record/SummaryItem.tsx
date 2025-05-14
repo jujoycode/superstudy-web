@@ -7,7 +7,7 @@ import { TextInput } from '@/legacy/components/common/TextInput'
 import { useTeacherRecordSummaryItem } from '@/legacy/container/teacher-record-summary-item'
 import { Summary } from '@/legacy/generated/model'
 import { forbiddenWords } from '@/legacy/pages/teacher/ForbiddenWords'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 import { SuperModal } from '../SuperModal'
 // * 추후 상수로 고도화...
 
@@ -16,7 +16,7 @@ interface SummaryItemProps {
 }
 
 export function SummaryItem({ summary }: SummaryItemProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [recordSummary, setRecordSummary] = useState(summary.content ?? '')
   const [updateState, setUpdateState] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)

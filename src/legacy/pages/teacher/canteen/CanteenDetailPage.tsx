@@ -1,14 +1,12 @@
 import { format } from 'date-fns'
 import { useState } from 'react'
 import Viewer from 'react-viewer'
-import { useRecoilValue } from 'recoil'
-
 import { Divider, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Constants } from '@/legacy/constants'
 import { Canteen, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface CanteenDetailPageProps {
   selectedDate: Date
@@ -17,7 +15,7 @@ interface CanteenDetailPageProps {
 }
 
 export function CanteenDetailPage({ selectedDate, canteen, setSubmitState }: CanteenDetailPageProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { t } = useLanguage()
   const [isImageModalOpen, setImageModalOpen] = useState(false)
 

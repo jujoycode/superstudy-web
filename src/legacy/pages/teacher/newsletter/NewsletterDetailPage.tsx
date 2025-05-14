@@ -16,12 +16,12 @@ import { NewsletterType, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { UserDatas } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function NewsletterDetailPage() {
   const { push } = useHistory()
   const { id } = useParams<{ id: string }>()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { t } = useLanguage()
 
   const { mutate: updateEndAt } = useNewsLettersUpdateEndAt()

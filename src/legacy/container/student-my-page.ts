@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function useStudentMyPage() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const [isEditMode, setIsEditMode] = useState(false)
   const [isPrimaryGuardian, setIsPrimaryGuardian] = useState(-1)

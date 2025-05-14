@@ -32,7 +32,7 @@ import type {
   ResponseIBTokExhibitionPlanDto,
 } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 import NODATA from '@/assets/images/no-data.png'
 
@@ -45,7 +45,7 @@ export const ExhibitionPlanDetailPage = () => {
   const history = useHistory()
   const { ibId: idParam } = useParams<{ ibId: string }>()
   const id = Number(idParam)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [editMode, setEditMode] = useState<boolean>(false)
   const { data, klassNum, isLoading, refetch } = useIBGetById(id)
 

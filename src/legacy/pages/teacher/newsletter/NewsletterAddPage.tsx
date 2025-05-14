@@ -23,11 +23,11 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { MenuType, UserDatas } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getExtOfFilename } from '@/legacy/util/file'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function NewsletterAddPage() {
   const { t } = useLanguage()
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
   const { id = '' } = useParams<{ id: string }>()
 
   const { allKlassGroups } = GroupContainer.useContext()

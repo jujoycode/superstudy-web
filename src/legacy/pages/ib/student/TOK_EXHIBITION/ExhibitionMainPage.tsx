@@ -24,7 +24,7 @@ import {
 } from '@/legacy/container/ib-tok-exhibition'
 import { ResponseExhibitionDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export type TOKProject = 'EXHIBITION' | 'EXHIBITION_PLAN'
 export type LocationState = {
@@ -34,7 +34,7 @@ export type LocationState = {
 export const ExhibitionMainPage = () => {
   const { t } = useLanguage()
   const { id: idParams } = useParams<{ id: string }>()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const location = useLocation()
   const initialType = location.state?.type as LocationState['type']
   const id = Number(idParams)

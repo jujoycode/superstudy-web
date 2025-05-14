@@ -3,7 +3,6 @@ import _ from 'lodash'
 import QueryString from 'qs'
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router'
-import { useRecoilValue } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
@@ -16,8 +15,7 @@ import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 import { useGroupsFindAllKlassBySchool, useStudentGroupsFindByGroupId } from '@/legacy/generated/endpoint'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { padLeftstr } from '@/legacy/util/status'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores2/user'
 import ProjectList from './ProjectList'
 
 export const STATUS_GROUPS = {
@@ -43,7 +41,7 @@ type IBProjectTypes = 'NORMAL' | 'EE' | 'CAS' | 'TOK'
 export default function TeacherIBStatus() {
   const location = useLocation()
   const history = useHistory()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { setQueryParamsWithStorage, removeStoredQueryParams } = useQueryParams()
   const defaultOptions: SelectedOptions = {
     grade: 0,

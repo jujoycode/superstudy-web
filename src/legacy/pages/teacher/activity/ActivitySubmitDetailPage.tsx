@@ -3,8 +3,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilValue } from 'recoil'
-
+import { useUserStore } from '@/stores2/user'
 import { ReactComponent as Arrow } from '@/assets/svg/arrow-up-circle.svg'
 import { ErrorBlank } from '@/legacy/components'
 import { CommentItem } from '@/legacy/components/CommentItem'
@@ -16,14 +15,13 @@ import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { useTeacherActivitySubmitDetail } from '@/legacy/container/teacher-activity-submit-detail'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { meState } from '@/stores'
 
 interface ActivitySubmitDetailPageProps {
   activityId: number
 }
 
 export function ActivitySubmitDetailPage({ activityId }: ActivitySubmitDetailPageProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { said } = useParams<{ said: string }>()
 
   const {

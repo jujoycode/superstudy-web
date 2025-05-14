@@ -32,6 +32,7 @@ import TOKRRSDetailPage from './TOK_ESSAY/TOKRRSDetailPage'
 import { ExhibitionDetailPage } from './TOK_EXHIBITION/ExhibitionDetailPage'
 import { ExhibitionMainPage } from './TOK_EXHIBITION/ExhibitionMainPage'
 import { ExhibitionPlanDetailPage } from './TOK_EXHIBITION/ExhibitionPlanDetailPage'
+import { useUserStore } from '@/stores2/user'
 
 import Logo from '@/assets/images/logo_color.png'
 import SvgUser from '@/assets/images/no_profile.png'
@@ -40,7 +41,7 @@ export const IBStudentPage = () => {
   const { pathname } = useLocation()
   const { push } = useHistory()
   const logout = useLogout()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const schoolProperties = useRecoilValue(schoolPropertiesState)
   const { data } = useIBProfileGetById(me?.id || 0)
 

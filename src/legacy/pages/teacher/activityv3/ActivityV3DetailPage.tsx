@@ -32,6 +32,7 @@ import { Role, StudentGroup, SubjectType } from '@/legacy/generated/model'
 import { checkSubmitted } from '@/legacy/util/activityv3'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { meState, toastState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface ActivityV3DetailPageProps {}
 
@@ -62,7 +63,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
   const view = searchParams.get('view') || 'group'
   const selectedFilter = searchParams.get('selectedFilter') || 'all'
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [, setToastMsg] = useRecoilState(toastState)
 
   const [selectedGroupIds, setSelectedGroupIds] = useState<number[]>([])

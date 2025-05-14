@@ -1,11 +1,9 @@
 import { Navigate } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
-
-import { meState, childState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export const StudentRedirect = () => {
-  const me = useRecoilValue(meState)
-  const myChild = useRecoilValue(childState)
+  const { me, child: myChild } = useUserStore()
+
   return (
     <Navigate
       to={me?.school.isCourseActive || myChild?.school.isCourseActive ? '/student/courseentrance' : '/student/canteen'}

@@ -16,6 +16,7 @@ import {
 import { ActivityV3, Record } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { meState, toastState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 ChartJS.register(...registerables)
 
@@ -39,7 +40,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
   showDisabledActivity = false,
 }) => {
   const { t } = useLanguage()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [, setToastMsg] = useRecoilState(toastState)
 
   const sav = activityv3.studentActivityV3s?.[0]

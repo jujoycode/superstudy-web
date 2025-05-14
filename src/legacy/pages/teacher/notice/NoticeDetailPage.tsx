@@ -15,6 +15,7 @@ import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isUpdateNoticeState, meState } from '@/stores'
 
 import { NoticeAddPage } from './NoticeAddPage'
+import { useUserStore } from '@/stores2/user'
 
 interface NoticeAddProps {
   categoryData?: Code[]
@@ -23,7 +24,7 @@ interface NoticeAddProps {
 export function NoticeDetailPage({ categoryData }: NoticeAddProps) {
   const { id } = useParams<{ id: string }>()
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [isUpdateNotice, setIsUpdateNotice] = useRecoilState(isUpdateNoticeState)
   const { notice, isNoticeLoading, viewerImages, errorMessage, handleNoticeDelete } = useTeacherNoticeDetail(Number(id))
   const { t } = useLanguage()

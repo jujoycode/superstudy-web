@@ -9,7 +9,7 @@ import { Typography } from '@/legacy/components/common/Typography'
 import { usePointLogGet } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
 import { numberWithSign } from '@/legacy/util/string'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 const encouragements = [
   { min: 10, message: '🌟 훌륭해요! 좋은 행동이 쌓이고 있어요.\n계속해서 좋은 모습을 기대할게요!' },
@@ -28,7 +28,7 @@ const encouragements = [
 
 export function PointLogsPage() {
   const { t: ts } = useTranslation('student', { keyPrefix: 'pointlogs_page' })
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const studentId = me?.role === Role.USER ? me.id : +(localStorage.getItem('child-user-id') || '0')
   const { data: pointLogs } = usePointLogGet({ size: 10000, studentId, join: ['teacher'] })

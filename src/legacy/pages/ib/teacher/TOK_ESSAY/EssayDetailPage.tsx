@@ -26,6 +26,7 @@ import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { usePolling } from '@/legacy/hooks/usePolling'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
 import { meState, schoolPropertiesState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 import NODATA from '@/assets/images/no-data.png'
 
@@ -34,7 +35,7 @@ type tabType = 'feedback' | 'evaluation' | 'checklist'
 export const EssayDetailPage = () => {
   const location = useLocation()
   const { push } = useHistory()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const schoolProperties = useRecoilValue(schoolPropertiesState)
 
   const [isLoading, setIsLoading] = useState(true)

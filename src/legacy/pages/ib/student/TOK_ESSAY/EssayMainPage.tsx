@@ -24,7 +24,7 @@ import { useIBProposalUpdateWaitPlan } from '@/legacy/container/ib-proposal-sent
 import { useOutlineSubmit, useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
 import { ResponseTKPPFDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export type TOKEssayProject = 'OUTLINE' | 'ESSAY' | 'TKPPF' | 'RRS'
 export type LocationState = {
@@ -37,7 +37,7 @@ export const EssayMainPage = () => {
   const location = useLocation()
   const initialType = location.state?.type as LocationState['type']
   const id = Number(idParams)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [type, setType] = useState<TOKEssayProject>(initialType || 'OUTLINE')
   const [toggle, setToggle] = useState<boolean>(false)
   const { data, isLoading, refetch } = useIBGetById(id)

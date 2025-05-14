@@ -31,7 +31,7 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface LocationState {
   title: string
@@ -54,7 +54,7 @@ export default function RRSDetailPage() {
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isSubmitLoading, setIsSubmitLoading] = useState(false)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { data, isLoading } = useRRSGetById(id, rrsId)
   const { data: ibData } = useIBGetById(Number(id))
   const {

@@ -19,9 +19,10 @@ import { NewsletterCheckPage } from './NewsletterCheckPage'
 import { NewsletterDetailPage } from './NewsletterDetailPage'
 import { NewsletterDownloadPage } from './NewsletterDownloadPage'
 import { NewsletterSubmitPage } from './NewsletterSubmitPage'
+import { useUserStore } from '@/stores2/user'
 
 export function NewsletterPage() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { t } = useLanguage()
   const history = useHistory()
   const filters = [t('title'), t('author')]

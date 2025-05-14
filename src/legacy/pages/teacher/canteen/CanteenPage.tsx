@@ -22,9 +22,10 @@ import { makeDateToString, makeMonthDayToString, makeMonthDayToStringEN } from '
 import { meState, newMsgCntState } from '@/stores'
 import { CanteenDetailPage } from './CanteenDetailPage'
 import { CanteenSubmitPage } from './CanteenSubmitPage'
+import { useUserStore } from '@/stores2/user'
 
 export function CanteenPage() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const newMsgCnt = useRecoilValue(newMsgCntState)
   const { t } = useLanguage()
 

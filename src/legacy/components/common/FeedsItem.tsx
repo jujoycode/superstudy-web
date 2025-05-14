@@ -2,8 +2,6 @@ import clsx from 'clsx'
 import parse from 'html-react-parser'
 import { RefObject, useEffect, useRef, useState } from 'react'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilValue } from 'recoil'
-
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { ReactComponent as SvgImage } from '@/assets/svg/upload-image.svg'
 import { useHistory } from '@/hooks/useHistory'
@@ -12,10 +10,9 @@ import { Constants } from '@/legacy/constants'
 import { Role } from '@/legacy/generated/model'
 import useIntersectionObserver from '@/legacy/hooks/useIntersectionObserver'
 import { isPdfFile } from '@/legacy/util/file'
-import { childState, meState } from '@/stores'
-
 import { Icon } from './icons'
 import { PdfCard } from './PdfCard'
+import { useUserStore } from '@/stores2/user'
 
 interface FeedsItemProps {
   to: string
@@ -60,9 +57,7 @@ export function FeedsItem({
 }: FeedsItemProps) {
   const { push } = useHistory()
 
-  const meRecoil = useRecoilValue(meState)
-
-  const myChild = useRecoilValue(childState)
+  const { me: meRecoil, child: myChild } = useUserStore()
 
   const itemRef = useRef<HTMLDivElement>(null)
 

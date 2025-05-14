@@ -18,7 +18,7 @@ import { IbTKPPF } from '@/legacy/components/ib/tok/IbTKPPF'
 import { useIBDeadline } from '@/legacy/container/ib-deadline'
 import { useIBTKPPFCreate, useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
 import { RequestCreateTKPPFDto, ResponseIBDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface LocationState {
   title: string
@@ -31,7 +31,7 @@ export default function TKPPFDetailPage() {
   const title = location.state?.title as LocationState['title']
   const data = location.state?.data as LocationState['data']
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [modalOpen, setModalOpen] = useState<boolean>(false)
   const { id, tkppfId } = useParams<{ id: string; tkppfId: string }>()
 

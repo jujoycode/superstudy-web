@@ -29,7 +29,7 @@ import { StudentModal } from '@/legacy/modals/StudentModal'
 import { dayOfEngWeek, dayOfKorWeek } from '@/legacy/util/date'
 import { getNickName } from '@/legacy/util/status'
 import { getThisSemester, getThisYear } from '@/legacy/util/time'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 import { TimetableNeisForm } from './TimetableNeisForm'
 
 const groups = [
@@ -145,7 +145,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
   const { t, currentLang } = useLanguage()
   const { pushModal } = useModals()
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const lastPeriod = me?.school.lastPeriod || 8
 
   const { allKlassGroups } = GroupContainer.useContext()
@@ -834,7 +834,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                                     onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => {
                                       const target = event.currentTarget
                                       target.onerror = null // prevents looping
-                                      target.src = SvgUser
+                                      target.src = SvgUser as unknown as string
                                     }}
                                   />
                                 </p>
@@ -990,7 +990,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                 onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => {
                   const target = event.currentTarget
                   target.onerror = null // prevents looping
-                  target.src = SvgUser
+                  target.src = SvgUser as unknown as string
                 }}
               />
             </div>

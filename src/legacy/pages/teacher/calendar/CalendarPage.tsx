@@ -1,9 +1,8 @@
 //@ts-ignore
 // import Calendar from '@toast-ui/react-calendar'
 import { t } from 'i18next'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
-import { useRecoilValue } from 'recoil'
 import { ErrorBlank } from '@/legacy/components'
 import { CustomTuiModal } from '@/legacy/components/calendar/CustomTuiModal'
 import { LnbCalendarsItem } from '@/legacy/components/calendar/LnbCalendarsItem'
@@ -16,7 +15,7 @@ import { useTeacherChatUserList } from '@/legacy/container/teacher-chat-user-lis
 import { CalendarIdEnum, Role } from '@/legacy/generated/model'
 import { MenuType } from '@/legacy/types'
 import { DayAfter, DayAgo, makeDateToString } from '@/legacy/util/time'
-import { languageState, meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function CalendarPage() {
   const {
@@ -40,8 +39,7 @@ export function CalendarPage() {
   const [currentDateString, setCurrentDateString] = useState('')
   const [isLoading, setLoading] = useState(false)
 
-  const me = useRecoilValue(meState)
-  const language = useRecoilValue(languageState)
+  const { me } = useUserStore()
 
   const calendars = [
     {
@@ -63,36 +61,6 @@ export function CalendarPage() {
       borderColor: '#8CD23C',
     },
   ]
-
-  const getDayName = useMemo(() => {
-    return (model: any) => {
-      let dayName = ''
-      switch (model.label) {
-        case 'Sun':
-          dayName = language === 'ko' ? '일' : 'Sun'
-          break
-        case 'Mon':
-          dayName = language === 'ko' ? '월' : 'Mon'
-          break
-        case 'Tue':
-          dayName = language === 'ko' ? '화' : 'Tue'
-          break
-        case 'Wed':
-          dayName = language === 'ko' ? '수' : 'Wed'
-          break
-        case 'Thu':
-          dayName = language === 'ko' ? '목' : 'Thu'
-          break
-        case 'Fri':
-          dayName = language === 'ko' ? '금' : 'Fri'
-          break
-        case 'Sat':
-          dayName = language === 'ko' ? '토' : 'Sat'
-          break
-      }
-      return `<span class="tui-full-calendar-dayname-name" style="padding-left:calc(50% - 4px);">${dayName}</span>`
-    }
-  }, [language])
 
   const readOnly = me?.role !== Role.ADMIN && me?.canEditTimetable === false
 
@@ -255,7 +223,6 @@ export function CalendarPage() {
     },
   ]
   const { coach, refs, reOpenCoach } = useCoachMark('calenderLineAdmin', coachList)
-  const calendarKey = useMemo(() => `calendar-${language}`, [language])
 
   return (
     <>

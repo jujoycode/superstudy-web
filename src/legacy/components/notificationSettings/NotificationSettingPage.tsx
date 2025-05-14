@@ -2,20 +2,18 @@ import clsx from 'clsx'
 import { format } from 'date-fns'
 import { range } from 'lodash'
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import { Divider, Select } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { ToggleSwitch } from '@/legacy/components/common/ToggleSwitch'
 import { notificationSettingsUpdate, useNotificationSettingsGetMine } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
 import { convertTimeToKorean } from '@/legacy/util/time'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 const daysOfWeekString = ['일', '월', '화', '수', '목', '금', '토']
 
 export function NotificationSettingPage() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const [disturbTime, setDisturbTime] = useState(false)
   const { data: notificationSetting } = useNotificationSettingsGetMine()

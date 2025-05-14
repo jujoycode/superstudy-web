@@ -13,7 +13,7 @@ import { useSchoolManagementGetSchoolInfo } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getDayOfYear, getThisYear } from '@/legacy/util/time'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 import { ApprovalLinePage } from './approval-line/ApprovalLinePage'
 import { ExpiredUserPage } from './expired-user/ExpiredUserPage'
 import { GroupEditPage } from './group/GroupEditPage'
@@ -47,7 +47,7 @@ import { TimetablePage } from './timetable/TimetablePage'
 export const AdminContext = createContext({ year: +getThisYear() })
 
 export function AdminMainPage() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const scrollRef = useRef<HTMLDivElement>(null)
 

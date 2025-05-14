@@ -28,8 +28,8 @@ import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { usePolling } from '@/legacy/hooks/usePolling'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
 import { meState, schoolPropertiesState } from '@/stores'
-
 import NODATA from '@/assets/images/no-data.png'
+import { useUserStore } from '@/stores2/user'
 
 type tabType = 'feedback' | 'evaluation' | 'checklist'
 
@@ -49,7 +49,7 @@ export const EEEssayPage = () => {
   const klassNum = location.state?.student?.klassNum || ibKlassNum
 
   const { push } = useHistory()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const schoolProperties = useRecoilValue(schoolPropertiesState)
   const [type, setType] = useState<tabType>(_type || 'checklist')
   const [isOpen, setIsOpen] = useState<boolean>(false)

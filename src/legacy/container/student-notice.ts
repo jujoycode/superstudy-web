@@ -4,11 +4,12 @@ import { QueryKey } from '@/legacy/constants/query-key'
 import { useBoardFindAll, useNewsLettersFindAll, useNoticesFindAll } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
 import { TabType } from '@/legacy/types'
-import { childState, meState } from '@/stores'
+import { childState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function useStudentNotice(tabType: TabType) {
   const child = useRecoilValue(childState)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const grade =
     me?.role === Role.PARENT ? +(child?.klassGroupName?.charAt(0) || '0') : +(me?.klassGroupName?.charAt(0) || '0')

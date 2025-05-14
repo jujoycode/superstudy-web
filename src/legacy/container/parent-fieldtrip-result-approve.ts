@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import {
   useFieldtripResultApproveResultByParent,
   useFieldtripResultApproveResultByParentApp,
@@ -7,7 +6,7 @@ import {
   useFieldtripsFindOneByUUID,
 } from '@/legacy/generated/endpoint'
 import { errorType } from '@/legacy/types'
-import { childState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 type Props = {
   uuid: string
@@ -17,14 +16,13 @@ type Props = {
 export function useParentFieldtripResultApprove({ uuid, sigPadData }: Props) {
   const [errorMessage, setErrorMessage] = useState('')
   const [isShowSignModal, setIsShowSignModal] = useState(false)
-  const child = useRecoilValue(childState)
-
+  const { child } = useUserStore()
   const {
     data: fieldtrip,
     isLoading: isGetFieldtrip,
     isError: isGetFieldtripError,
   } = uuid.length > 20
-    ? useFieldtripsFindOneByUUID(uuid, {
+      ? useFieldtripsFindOneByUUID(uuid, {
         query: {
           onError: (err) => {
             const errorMsg: errorType | undefined = err?.response?.data as errorType
@@ -41,7 +39,7 @@ export function useParentFieldtripResultApprove({ uuid, sigPadData }: Props) {
           },
         },
       })
-    : useFieldtripsFindOne(Number(uuid), {
+      : useFieldtripsFindOne(Number(uuid), {
         query: {
           onError: (err) => {
             const errorMsg: errorType | undefined = err?.response?.data as unknown as errorType
@@ -96,17 +94,17 @@ export function useParentFieldtripResultApprove({ uuid, sigPadData }: Props) {
   const approveResult = async () => {
     uuid.length > 20
       ? await approveResultMutate({
-          uuid,
-          data: {
-            signature: sigPadData,
-          },
-        })
+        uuid,
+        data: {
+          signature: sigPadData,
+        },
+      })
       : await approveResultMutateApp({
-          id: Number(uuid),
-          data: {
-            signature: sigPadData,
-          },
-        })
+        id: Number(uuid),
+        data: {
+          signature: sigPadData,
+        },
+      })
   }
 
   const hideSignModal = () => {

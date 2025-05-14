@@ -14,13 +14,13 @@ import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { useActivityFindOne, useStudentActivityFindOneByActivityId } from '@/legacy/generated/endpoint'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 import { ActivityDetailReadPage } from './ActivityDetailReadPage'
 import { ActivityDetailSubmitPage } from './ActivityDetailSubmitPage'
 
 export function ActivityDetailPage() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { id } = useParams<{ id: string }>()
 
   const { error, data: activity } = useActivityFindOne(Number(id), {

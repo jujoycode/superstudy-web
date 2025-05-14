@@ -17,13 +17,13 @@ import IBLayout from '@/legacy/components/ib/IBLayout'
 import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBInterviewUpdate, useInterviewQNA } from '@/legacy/container/ib-student-interview'
 import { RequestCreateQnaDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export const EERppfInterviewDetailPage = () => {
   const history = useHistory()
   const location = useLocation()
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { id: idParam, qnaId: qnaIdParam } = useParams<{ id: string; qnaId: string }>()
   const id = Number(idParam)
   const qnaId = Number(qnaIdParam)

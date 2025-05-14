@@ -33,7 +33,7 @@ import {
 import { useSignature } from '@/legacy/hooks/useSignature'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { makeDateToString } from '@/legacy/util/time'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface NewsletterAddPageProps {
   newsletterData: ResponseNewsletterDetailDto
@@ -44,7 +44,7 @@ interface NewsletterAddPageProps {
 // TODO : 본 파일 삭제
 
 export function NewsletterAddPage({ studentNewsletterData, newsletterData, setUpdateState }: NewsletterAddPageProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const { canvasRef, sigPadData, clearSignature } = useSignature()
 

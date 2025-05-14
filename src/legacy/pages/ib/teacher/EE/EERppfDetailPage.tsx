@@ -24,12 +24,12 @@ import { useRPPFGetById } from '@/legacy/container/ib-rppf-findId'
 import { useRPPFUpdateRPPFStatusReject } from '@/legacy/generated/endpoint'
 import { RequestCreateRPPFDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export const EERppfDetailPage = () => {
   const history = useHistory()
   const location = useLocation()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const { id, rppfId } = useParams<{ id: string; rppfId: string }>()
 

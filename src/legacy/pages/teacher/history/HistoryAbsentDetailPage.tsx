@@ -18,7 +18,7 @@ import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { extractImageData, extractReactData, extractReactDataArray, getDoc, getPdfImageSize } from '@/legacy/util/pdf'
 import { buttonEnableState } from '@/legacy/util/permission'
 import { makeStartEndToString } from '@/legacy/util/time'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface HistoryAbsentDetailPageProps {
   setAbsentId: (n: number) => void
@@ -32,7 +32,7 @@ export function HistoryAbsentDetailPage({ setAbsentId, userId }: HistoryAbsentDe
   const pdfPaperRefs = useRef<any[]>([])
   const parent2Ref = useRef(null)
   const pdf2PaperRefs = useRef<any[]>([])
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const [clicked, setClicked] = useState(false)
 

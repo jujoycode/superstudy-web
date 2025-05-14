@@ -25,7 +25,7 @@ import { useIBOutlineStatusApprove, useIBOutlineStatusReject, useTKPPFGetByIBId 
 import { ResponseIBDtoStatus } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export type TOKProject = 'OUTLINE' | 'ESSAY' | 'TKPPF' | 'RRS'
 export type LocationState = {
@@ -36,7 +36,7 @@ export const EssayMainPage = () => {
   const { t } = useLanguage()
   const { ibId: idParams } = useParams<{ ibId: string }>()
   const location = useLocation()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const initialType = location.state?.type || 'OUTLINE'
   const id = Number(idParams)

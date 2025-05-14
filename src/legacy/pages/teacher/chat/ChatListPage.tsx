@@ -25,6 +25,7 @@ import { MenuType, UserDatas } from '@/legacy/types'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { Validator } from '@/legacy/util/validator'
 import { meState, toastState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 import { ChatDetailPage } from './ChatDetailPage'
 import { ChatSMSPage } from './ChatSMSPage'
@@ -34,7 +35,7 @@ const headers = ['id', '이름', '전화번호', '문구1', '문구2', '문구3'
 export function ChatListPage() {
   const { push } = useHistory()
 
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
 
   const pathname = useLocation().pathname
   const [chatRoomId, setChatRoomId] = useState('')

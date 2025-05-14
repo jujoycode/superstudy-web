@@ -193,7 +193,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
                   alt=""
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null
-                    currentTarget.src = SvgUser
+                    currentTarget.src = SvgUser as unknown as string
                     currentTarget.className = 'w-full'
                   }}
                 />
@@ -230,7 +230,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
               className="w-full rounded-[8px] object-fill"
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null
-                currentTarget.src = SvgUser
+                currentTarget.src = SvgUser as unknown as string
                 currentTarget.className = 'rounded-[8px] object-fill w-full'
               }}
             />

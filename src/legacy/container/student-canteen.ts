@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useCanteenFindByYearMonth, useSchedulesFindAll } from '@/legacy/generated/endpoint'
 // @ts-ignore
 import { CalendarIdEnum, Schedule } from '@/legacy/generated/model'
 import { getCalendarRange, makeDateToString } from '@/legacy/util/time'
-import { childState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function useStudentCanteen() {
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
   const [dateRange, setDateRange] = useState<{ startDate: Date; endDate: Date }>()
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [errorMessage, setErrorMessage] = useState('')

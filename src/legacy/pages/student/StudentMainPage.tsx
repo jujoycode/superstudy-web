@@ -12,7 +12,7 @@ import { AbsentDetailPage } from '@/legacy/pages/student/absent/AbsentDetailPage
 import { AbsentPage } from '@/legacy/pages/student/absent/AbsentPage'
 import { useAuth } from '@/legacy/util/hooks'
 import { PermissionUtil } from '@/legacy/util/permission'
-import { childState, meState } from '@/stores'
+import { childState } from '@/stores'
 import { ActivitySessionDetailPage } from './activityv3/ActivitySessionDetailPage'
 import { ActivitySessionPage } from './activityv3/ActivitySessionPage'
 import { ActivityV3Page } from './activityv3/ActivityV3Page'
@@ -47,10 +47,11 @@ import { SelfTestPage } from './self-test/SelfTestPage'
 import { TimetableDetailPage } from './timetable/TimetableDetailPage'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { ApplyPage } from '@/legacy/pages/teacher/absent/ApplyPage'
+import { useUserStore } from '@/stores2/user'
 
 export function StudentMainPage() {
   const { replace } = useHistory()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const myChild = useRecoilValue(childState)
   const { pathname } = useLocation()
   const { authenticated } = useAuth()

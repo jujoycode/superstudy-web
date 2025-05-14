@@ -6,10 +6,10 @@ import { useRecoilValue } from 'recoil'
 import { TopNavbar, BackButton, Blank, Section } from '@/legacy/components/common'
 import { useNotificationLogFindAll, useNotificationLogRead } from '@/legacy/generated/endpoint'
 import { makeDateToString } from '@/legacy/util/time'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export const NotificationPage = () => {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { data, refetch, isLoading } = useNotificationLogFindAll()
 
   const [loading, setLoading] = useState(false)

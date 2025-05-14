@@ -17,7 +17,7 @@ import { BoardCategoryEnum, Group, RequestCreateBoardDto } from '@/legacy/genera
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getExtOfFilename } from '@/legacy/util/file'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface BoardAddProps {
   homeKlass?: Group
@@ -26,7 +26,7 @@ interface BoardAddProps {
 
 export function BoardAddPage({ homeKlass, groups }: BoardAddProps) {
   const { id } = useParams<{ id: string }>()
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
   const { t } = useLanguage()
 
   const {

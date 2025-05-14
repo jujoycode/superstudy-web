@@ -20,7 +20,7 @@ import { useIBProposalUpdateWaitPlan } from '@/legacy/container/ib-proposal-sent
 import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
 import { useOutlineSubmit, useOutlineUpdate } from '@/legacy/container/ib-tok-essay'
 import { RequestIBTokOutlineDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 import NODATA from '@/assets/images/no-data.png'
 
@@ -29,7 +29,7 @@ export const OutlineDetailPage = () => {
   const { id: idParam } = useParams<{ id: string }>()
   const id = Number(idParam)
   const [editMode, setEditMode] = useState<boolean>(false)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { data, isLoading, refetch } = useIBGetById(id)
   const [alertMessage, setAlertMessage] = useState<{ text: string; action?: () => void } | null>(null)
   const { data: Questions } = useThemeQuestionFindAll('TOK_ESSAY')

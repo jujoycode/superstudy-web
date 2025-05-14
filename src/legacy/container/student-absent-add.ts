@@ -1,7 +1,6 @@
 import { t } from 'i18next'
 import moment from 'moment'
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import { useAbsentsCreate, useAbsentsFindAllByStudent, useAbsentsUpdate } from '@/legacy/generated/endpoint'
 import { Absent, AbsentStatus, Role, UploadFileTypeEnum } from '@/legacy/generated/model'
@@ -11,8 +10,8 @@ import { AbsentDescription, AbsentTimeType, errorType } from '@/legacy/types'
 import { ImageObject } from '@/legacy/types/image-object'
 import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString, makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
-import { childState } from '@/stores'
 import { UserContainer } from './user'
+import { useUserStore } from '@/stores2/user'
 
 const reasonType = [
   '상고',
@@ -63,7 +62,7 @@ type Props = {
 export function useStudentAbsentAdd({ absentData, returnToDetail }: Props) {
   const { push } = useHistory()
   const { me } = UserContainer.useContext()
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
 
   const {
     reason: _reasonText = '',
@@ -211,7 +210,7 @@ export function useStudentAbsentAdd({ absentData, returnToDetail }: Props) {
           setLoading(false)
           setSignModal(false)
           //setErrorMessage(errorMsg?.message || '슈퍼스쿨에 문의하여 결재자 지정상태를 확인하세요.');
-        } catch (error) {}
+        } catch (error) { }
       },
     },
     request: {
@@ -360,9 +359,8 @@ export function useStudentAbsentAdd({ absentData, returnToDetail }: Props) {
             .filter((f) => f.reason === '생리')
             .map((mense) => {
               const statusText = mense.absentStatus === AbsentStatus.PROCESSED ? '결재완료' : '결재중'
-              return `${makeStartEndToString(mense.startAt, mense.endAt, mense.reportType)} ${mense.description}${
-                mense.reportType
-              } ${mense.reason} ${statusText}`
+              return `${makeStartEndToString(mense.startAt, mense.endAt, mense.reportType)} ${mense.description}${mense.reportType
+                } ${mense.reason} ${statusText}`
             })
 
           setMensesTexts(mensesText)

@@ -1,17 +1,14 @@
 import { useEffect, useState } from 'react'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilValue } from 'recoil'
 import { Constants } from '@/legacy/constants'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useBoardFindOne } from '@/legacy/generated/endpoint'
 import { isPdfFile } from '@/legacy/util/file'
-import { childState, meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function useStudentBoardDetail(boardId?: number) {
   const [errorMessage, setErrorMessage] = useState('')
-
-  const meRecoil = useRecoilValue(meState)
-  const child = useRecoilValue(childState)
+  const { me: meRecoil, child } = useUserStore()
 
   const {
     data: board,

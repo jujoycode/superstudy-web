@@ -15,10 +15,10 @@ import {
 } from '@/legacy/generated/model'
 import { errorType } from '@/legacy/types'
 import { getNickName } from '@/legacy/util/status'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function useChatRoomInfo(chatroomId: number) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const [chatRoomInfo, setChatRoomInfo] = useState<ResponseChatroomInfoDetailDto>()
   const [chatRoomTitle, setChatRoomTitle] = useState<string>()
@@ -121,7 +121,7 @@ export function useChatRoomInfo(chatroomId: number) {
       onSuccess: () => {
         alert('내보내기를 성공하였습니다.')
         refetchRoomInfo()
-          .then(() => {})
+          .then(() => { })
           .catch(() => {
             // refetch 중에 발생한 에러를 처리하는 작업
             //alert(error?.message);
@@ -147,7 +147,7 @@ export function useChatRoomInfo(chatroomId: number) {
       onSuccess: () => {
         alert('대화방 정보를 설정하였습니다.')
         refetchRoomInfo()
-          .then(() => {})
+          .then(() => { })
           .catch(() => {
             // refetch 중에 발생한 에러를 처리하는 작업
             //alert(error?.message);

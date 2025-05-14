@@ -10,11 +10,12 @@ import {
 } from '@/legacy/generated/endpoint'
 import { errorType } from '@/legacy/types'
 import { childState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function useStudentFieldtripDetail(id: number) {
   const { push } = useHistory()
   const [errorMessage, setErrorMessage] = useState('')
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
 
   const {
     data: fieldtrip,

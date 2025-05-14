@@ -18,7 +18,7 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { useSocket } from '@/legacy/lib/socket'
 import { isNowOrFuture } from '@/legacy/util/time'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface ChatDetailPageProps {
   id: string
@@ -29,7 +29,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const [isSettingOpen, setSettingOpen] = useState(false)
   const [isSettingAttendee, setSettingAttendee] = useState(false)

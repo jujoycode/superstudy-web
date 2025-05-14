@@ -8,6 +8,7 @@ import { errorType } from '@/legacy/types'
 import { ImageObject } from '@/legacy/types/image-object'
 import { childState } from '@/stores'
 import { UserContainer } from './user'
+import { useUserStore } from '@/stores2/user'
 
 type Props = {
   id: number
@@ -20,7 +21,8 @@ type Images = Array<{
 
 export function useStudentFieldtripSuburbsReportAdd({ id }: Props) {
   const { me } = UserContainer.useContext()
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
+
 
   const [errorMessage, setErrorMessage] = useState('')
   const [parentsName, setParentsName] = useState(me?.nokName || '')

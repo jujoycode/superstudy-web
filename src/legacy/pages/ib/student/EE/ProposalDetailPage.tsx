@@ -21,7 +21,7 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBProposalDelete } from '@/legacy/container/ib-proposal-delete'
 import { useIBProposalUpdate } from '@/legacy/container/ib-proposal-update'
 import { RequestIBProposalUpdateDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export const ProposalDetailPage = () => {
   const history = useHistory()
@@ -29,7 +29,7 @@ export const ProposalDetailPage = () => {
   const id = Number(idParam)
   const proposalId = Number(proposalIdParam)
   const [editMode, setEditMode] = useState<boolean>(false)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { data, isLoading, refetch } = useIBGetById(id)
   const [alertMessage, setAlertMessage] = useState<{ text: string; action?: () => void } | null>(null)
   const proposalData = data?.proposals?.find((proposal) => proposal.id === proposalId)

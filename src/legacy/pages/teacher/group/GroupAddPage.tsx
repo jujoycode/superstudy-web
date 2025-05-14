@@ -15,6 +15,7 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName } from '@/legacy/util/status'
 import { getThisYear } from '@/legacy/util/time'
 import { meState, toastState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface GroupAddPageProps {
   groupData?: ResponseGroupDto
@@ -27,7 +28,7 @@ interface userTeacher {
 }
 
 export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { t } = useLanguage()
 
   const SubjectTypes = [

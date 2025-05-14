@@ -8,7 +8,7 @@ import { useTeacherStudentCard } from '@/legacy/container/teacher-studentcard'
 import { ScoreUse } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { cn } from '@/legacy/lib/tailwind-merge'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 import { ActivityV3Page } from './ActivityV3Page'
 import { AllCardPage } from './AllCardPage'
 import { GeneralCardPage } from './GeneralCardPage'
@@ -16,7 +16,7 @@ import { PointLogsPage } from './PointLogsPage'
 import { ScoreCardPage } from './ScoreCardPage'
 
 export function StudentCardDetailPage() {
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
   const { t, currentLang } = useLanguage()
 
   const { id, cardType, groupId } = useParams<{ id: string; cardType: string; groupId: string }>()

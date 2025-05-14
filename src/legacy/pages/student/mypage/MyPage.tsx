@@ -15,12 +15,12 @@ import { useParentGetChildrenInfo } from '@/legacy/container/parent-get-children
 import { ResponseUserDto, Role, ScoreUse } from '@/legacy/generated/model'
 import { globalEnv } from '@/legacy/util/global-env'
 import { useLogout } from '@/legacy/util/hooks'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function MyPage() {
   const logout = useLogout()
 
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
   const { childrenInfoList, refetch, deleteChild } = useParentGetChildrenInfo()
   const localChildId = +(localStorage.getItem('child-user-id') || '0')
   const history = useHistory()

@@ -24,9 +24,10 @@ import { form } from '@/legacy/lib/form'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getErrorMsg } from '@/legacy/util/status'
 import { meState, toastState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function TeacherEditPage() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { t } = useLanguage()
   const { goBack } = useHistory()
   const { id: idString } = useParams<{ id: string }>()

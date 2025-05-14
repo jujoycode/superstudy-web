@@ -1,13 +1,14 @@
 import { t } from 'i18next'
 import { useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 import { useDashboardGetDashBoardData } from '@/legacy/generated/endpoint'
 import { ResponseDashboardDto, ResponseParentApproveDto, Role } from '@/legacy/generated/model'
 import { dashboardNewItem } from '@/legacy/types'
-import { meState, newMsgCntState } from '@/stores'
+import { newMsgCntState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function useDashboard() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [dashboardItem, setDashboardItem] = useState<dashboardNewItem[]>()
   const [toDoList, setToDoList] = useState<ResponseDashboardDto>()
 
@@ -39,7 +40,7 @@ export function useDashboard() {
             : me?.role === Role.PARENT
               ? '/student/activity'
               : // 선생님
-                '/teacher/activity',
+              '/teacher/activity',
       })
     }
 
@@ -54,7 +55,7 @@ export function useDashboard() {
             : me?.role === Role.PARENT
               ? '/student/notice'
               : // 선생님
-                '/teacher/notice',
+              '/teacher/notice',
       })
     }
 
@@ -69,7 +70,7 @@ export function useDashboard() {
             : me?.role === Role.PARENT
               ? '/student/outing'
               : // 선생님
-                '/teacher/outing',
+              '/teacher/outing',
       })
     }
 
@@ -84,7 +85,7 @@ export function useDashboard() {
             : me?.role === Role.PARENT
               ? '/student/absent'
               : // 선생님
-                '/teacher/absent',
+              '/teacher/absent',
       })
     }
 
@@ -99,7 +100,7 @@ export function useDashboard() {
             : me?.role === Role.PARENT
               ? '/student/fieldtrip'
               : // 선생님
-                '/teacher/fieldtrip',
+              '/teacher/fieldtrip',
       })
     }
 
@@ -114,7 +115,7 @@ export function useDashboard() {
             : me?.role === Role.PARENT
               ? '/student/fieldtrip/result'
               : // 선생님
-                '/teacher/fieldtrip/result',
+              '/teacher/fieldtrip/result',
       })
     }
 
@@ -129,7 +130,7 @@ export function useDashboard() {
             : me?.role === Role.PARENT
               ? '/student/chat'
               : // 선생님
-                '/teacher/chat',
+              '/teacher/chat',
       })
     }
 
@@ -144,7 +145,7 @@ export function useDashboard() {
             : me?.role === Role.PARENT
               ? '/student/activity'
               : // 선생님
-                '/teacher/activity',
+              '/teacher/activity',
       })
     }
 
@@ -159,7 +160,7 @@ export function useDashboard() {
             : me?.role === Role.PARENT
               ? '/student/board'
               : // 선생님
-                '/teacher/board',
+              '/teacher/board',
       })
     }
 
@@ -174,7 +175,7 @@ export function useDashboard() {
             : me?.role === Role.PARENT
               ? '/student/newsletter'
               : // 선생님
-                '/teacher/newsletter',
+              '/teacher/newsletter',
       })
     }
 
@@ -189,7 +190,7 @@ export function useDashboard() {
             : me?.role === Role.PARENT
               ? '/student/newsletter'
               : // 선생님
-                '/teacher/newsletter',
+              '/teacher/newsletter',
       })
     }
 

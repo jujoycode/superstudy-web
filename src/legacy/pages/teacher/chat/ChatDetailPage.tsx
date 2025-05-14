@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { twMerge } from 'tailwind-merge'
-
 import ChatSendDisabled from '@/assets/svg/chat-send-disabled.svg'
 import ChatSendEnabled from '@/assets/svg/chat-send-enabled.svg'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
@@ -24,8 +22,7 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { useSocket } from '@/legacy/lib/socket'
 import { isNowOrFuture } from '@/legacy/util/time'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores2/user'
 interface ChatDetailPageProps {
   id: string
 }
@@ -36,7 +33,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const {
     chatRoomInfo,
@@ -233,7 +230,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
               alt=""
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null // prevents looping
-                currentTarget.src = SvgUser
+                currentTarget.src = SvgUser as unknown as string
               }}
             />
             {/* <span className="absolute w-4 h-4 bg-gray-500 rounded-full right-0 bottom-0 border-2 border-white"></span> */}

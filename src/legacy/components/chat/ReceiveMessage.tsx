@@ -104,7 +104,7 @@ export function ReceiveMessage({
               alt=""
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null // prevents looping
-                currentTarget.src = SvgUser
+                currentTarget.src = SvgUser as unknown as string
                 currentTarget.className = 'rounded-full mr-1 w-12 h-12 mx-auto'
               }}
             />

@@ -1,9 +1,8 @@
 import { addYears, eachDayOfInterval, format } from 'date-fns'
 import { chain, concat, flatten } from 'lodash'
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useSchedulesFindRejectSchedule } from '@/legacy/generated/endpoint'
-import { childState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 enum RejectScheduleType {
   HOLIDAY = '공휴일',
@@ -15,7 +14,7 @@ export function useCommonGetHolidays() {
   const [excludeDates, setExcludeDates] = useState<Date[]>([])
   const [holidays, setHolidays] = useState<Date[]>([])
 
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
 
   const _uniqDate = (date: Date, i: number, self: Date[]) => {
     return self.findIndex((d) => d.getTime() === date.getTime()) === i

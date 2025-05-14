@@ -6,7 +6,7 @@ import Linkify from 'react-linkify'
 import { useLocation, useParams } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
@@ -32,7 +32,8 @@ import {
 import { ActivityType, Role, StudentGroup } from '@/legacy/generated/model'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
-import { meState, toastState } from '@/stores'
+import { toastState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface ActivityV3SessionDetailPageProps {}
 
@@ -56,8 +57,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
   const selectedUserId = searchParams.get('selectedUserId')
   const view = searchParams.get('view') || 'group'
   const selectedFilter = searchParams.get('selectedFilter') || 'all'
-
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [, setToastMsg] = useRecoilState(toastState)
   const [searchedStudentname, setSearchedStudentName] = useState('')
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)

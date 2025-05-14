@@ -9,7 +9,7 @@ import { useTeacherTimetableDetail } from '@/legacy/container/teacher-timetable-
 import { LectureType, ResponseTimetableV3Dto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { convertClassFormat } from '@/legacy/util/validator'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface TimetableDetailPageProps {
   onSelectLecture: (info: ResponseTimetableV3Dto | undefined) => void
@@ -18,7 +18,7 @@ interface TimetableDetailPageProps {
 
 export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDetailPageProps) {
   const { t } = useLanguage()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const hasSaturdayClass = me?.school.hasSaturdayClass || false
 
   const { allKlassGroupsUnique: allKlassGroups } = GroupContainer.useContext()

@@ -23,15 +23,15 @@ import { useStudentNewsletterDetail } from '@/legacy/container/student-newslette
 import { NewsletterType, RequestUpsertStudentNewsletterDto, Role } from '@/legacy/generated/model'
 import { useSignature } from '@/legacy/hooks/useSignature'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { meState, toastState } from '@/stores'
-
+import { toastState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 import { NewsletterAddPage } from './NewsletterAddPage'
 
 export function NewsletterDetailPage() {
   let { id } = useParams<{ id: string }>()
   id = id?.split('/')[0]
 
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
 
   const [nokName, setNokName] = useState('')
 

@@ -9,11 +9,12 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ResponseGroupDto, ResponseSubjectGroupDto, Role } from '@/legacy/generated/model'
 import { getThisYear } from '@/legacy/util/time'
-import { meState, tokenState } from '@/stores'
+import { tokenState } from '@/stores'
 import { createContainer } from './createContainer'
+import { useUserStore } from '@/stores2/user'
 
 export function groupHook() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const token = useRecoilValue(tokenState)
   const queryClient = useQueryClient()
 

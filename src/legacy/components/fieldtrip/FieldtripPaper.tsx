@@ -1,7 +1,6 @@
 import { add } from 'date-fns'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useRecoilValue } from 'recoil'
 import { useSchoolWording } from '@/legacy/container/school-wording'
 import { Fieldtrip, ResponseUserDto } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
@@ -9,7 +8,7 @@ import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName } from '@/legacy/util/status'
 import { getCustomString } from '@/legacy/util/string'
 import { fieldtripPeriodDayCnt, makeDateToString2 } from '@/legacy/util/time'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 import { Checkbox } from '../common/Checkbox'
 import { Td2 } from '../Td2'
 
@@ -36,7 +35,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
   const { data: resultApprover4Signature } = useSignedUrl(fieldtrip?.resultApprover4Signature)
   const { data: resultApprover5Signature } = useSignedUrl(fieldtrip?.resultApprover5Signature)
 
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
 
   const schoolName = school?.name
   const [agree] = useState(true)

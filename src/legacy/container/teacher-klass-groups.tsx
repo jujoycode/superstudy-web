@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { useGroupsFindAllKlassBySchool } from '@/legacy/generated/endpoint'
 import { Group, ResponseGroupDto, Role } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function useTeacherKlassGroup(selectedYear?: number) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const [selectedGroup, setSelectedGroup] = useState<Group>()
   const [, setAllKlassGroups] = useState<ResponseGroupDto[]>([])

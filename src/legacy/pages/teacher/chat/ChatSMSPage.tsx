@@ -1,7 +1,5 @@
 import { clsx } from 'clsx'
 import { useEffect, useRef, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
 import { FrontPagination } from '@/legacy/components'
 import { Blank, Label, Section, Select, Textarea } from '@/legacy/components/common'
@@ -15,7 +13,7 @@ import { useTeacherSms } from '@/legacy/container/teacher-sms'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { UserDatas } from '@/legacy/types'
 import { isValidDate, makeDateToString } from '@/legacy/util/time'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 type SmsInfoType = {
   receiverId: number
@@ -35,7 +33,7 @@ interface SmsPageProps {
 }
 
 export function ChatSMSPage({ isMobileView, selectedUsers }: SmsPageProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { t } = useLanguage()
 
   const [smsInfos, setSmsInfos] = useState<SmsInfoType[]>([])

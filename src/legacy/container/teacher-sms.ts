@@ -6,9 +6,10 @@ import { RequestCreateSmsMessageDto } from '@/legacy/generated/model'
 import { errorType } from '@/legacy/types'
 import { makeDateToString } from '@/legacy/util/time'
 import { meState, toastState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function useTeacherSms() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const setToastMsg = useSetRecoilState(toastState)
 

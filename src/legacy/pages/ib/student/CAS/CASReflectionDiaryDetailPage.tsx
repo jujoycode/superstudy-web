@@ -33,7 +33,7 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 const urlDecorator = (decoratedHref: string, decoratedText: string, key: number) => (
   <a href={decoratedHref} key={key} target="_blank" rel="noopener noreferrer" className="underline">
@@ -50,7 +50,7 @@ export const CASReflectionDiaryDetailPage = () => {
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isSubmitLoading, setIsSubmitLoading] = useState(false)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { data, isLoading } = useReflectionDiaryGetById(id, me?.id || 0)
   const {
     addFiles,

@@ -12,12 +12,12 @@ import { TextInput } from '@/legacy/components/common/TextInput'
 import { useStudentFirstLogin } from '@/legacy/container/student-first-login'
 import { useLogout } from '@/legacy/util/hooks'
 import { Validator } from '@/legacy/util/validator'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function FirstLoginPage() {
   const { push } = useHistory()
   const { pathname } = useLocation()
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
 
   const { isLoading, isChannelTalk, handleStudentFirstLogin } = useStudentFirstLogin()
 

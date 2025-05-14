@@ -7,11 +7,11 @@ import {
   useStudentRecordontrollerDownloadRecordSummary,
 } from '@/legacy/generated/endpoint'
 import { downloadExcel } from '@/legacy/util/download-excel'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export const ActivityV3DownloadPage = () => {
   const { pathname } = useLocation()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const groupIdMatch = pathname.match(/\/teacher\/studentcard\/(\d+)/)
   const groupId = groupIdMatch ? groupIdMatch[1] : me?.klassGroupId || 0
 

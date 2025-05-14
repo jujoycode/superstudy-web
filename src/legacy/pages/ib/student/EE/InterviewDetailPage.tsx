@@ -17,7 +17,7 @@ import IBLayout from '@/legacy/components/ib/IBLayout'
 import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBInterviewUpdate, useInterviewQNA } from '@/legacy/container/ib-student-interview'
 import { RequestCreateQnaDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface LocationState {
   title: string
@@ -28,7 +28,7 @@ export default function InterviewDetailPage() {
   const location = useLocation()
   const title = location.state?.title as LocationState['title']
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { id: idParam, qnaId: qnaIdParam } = useParams<{ id: string; qnaId: string }>()
   const { data: ibData } = useIBGetById(Number(idParam))
   const id = Number(idParam)

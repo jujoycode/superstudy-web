@@ -4,7 +4,8 @@ import { useRecoilValue, useResetRecoilState } from 'recoil'
 import { useSchoolPropertyGetProperties } from '@/legacy/generated/endpoint'
 import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
 import { RN } from '@/legacy/lib/rn'
-import { childState, isStayLoggedInState, meState, refreshTokenState, tokenState, twoFactorState } from '@/stores'
+import { childState, isStayLoggedInState, refreshTokenState, tokenState, twoFactorState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function useAuth() {
   const token = useRecoilValue(tokenState)
@@ -85,7 +86,7 @@ export function useWindowSize() {
  * @returns 학교 속성 정보 데이터
  */
 export function useSchoolProperties() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const { data } = useSchoolPropertyGetProperties({
     query: {

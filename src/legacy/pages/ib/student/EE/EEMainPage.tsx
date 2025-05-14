@@ -24,7 +24,7 @@ import { useIBProposalSentAll, useIBProposalUpdateWaitPlan } from '@/legacy/cont
 import { useRPPFGetByIBIdFindAll } from '@/legacy/container/ib-rppf-findAll'
 import { ResponseRPPFDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export type EEProject = 'PROPOSAL' | 'ESSAY' | 'RPPF' | 'RRS'
 export type LocationState = {
@@ -32,7 +32,7 @@ export type LocationState = {
 }
 
 export const EEMainPage = () => {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { t } = useLanguage()
   const { id: idParams } = useParams<{ id: string }>()
   const location = useLocation()

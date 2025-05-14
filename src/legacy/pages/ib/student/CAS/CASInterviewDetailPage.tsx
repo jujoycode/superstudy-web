@@ -16,12 +16,12 @@ import { Feedback } from '@/legacy/components/ib/Feedback'
 import IBLayout from '@/legacy/components/ib/IBLayout'
 import { useIBInterviewDelete, useIBInterviewUpdate, useInterviewQNA } from '@/legacy/container/ib-student-interview'
 import { RequestCreateQnaDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export default function CASInterviewDetailPage() {
   const history = useHistory()
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { qnaId: qnaIdParam } = useParams<{ id: string; qnaId: string }>()
 
   const qnaId = Number(qnaIdParam)

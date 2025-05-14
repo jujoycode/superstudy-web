@@ -14,7 +14,7 @@ import { useGroupsFindLectureGroupsByTeacher } from '@/legacy/generated/endpoint
 import { Group, GroupType, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName } from '@/legacy/util/status'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 import { StudentCardDetailPage } from './StudentCardDetailPage'
 
 const GroupTypes: { id: number; type: '' | GroupType | 'LECTURE'; name: string }[] = [
@@ -44,7 +44,7 @@ export function StudentCardPage() {
   const { pathname } = useLocation()
   const { push, replace } = useHistory()
   const { t } = useLanguage()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   // Get path param
   const groupIdMatch = pathname.match(/\/teacher\/studentcard\/(\d+)/)

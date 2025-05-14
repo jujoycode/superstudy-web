@@ -50,6 +50,7 @@ import { getFileNameFromUrl } from '@/legacy/util/file'
 import { getNickName } from '@/legacy/util/status'
 import { getThisSemester, WeekList } from '@/legacy/util/time'
 import { meState, toastState, warningState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export enum TimetableTarget {
   KLASS = '학급',
@@ -85,7 +86,7 @@ interface LectureInfoType {
 
 export function TimetablePage() {
   const subjectInputRef = useRef<HTMLInputElement>(null)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const lastPeriod = me?.school.lastPeriod || 8
   const hasSaturdayClass = me?.school.hasSaturdayClass || false
 

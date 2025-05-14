@@ -83,6 +83,7 @@ import { PointDashboard } from './pointlogs/PointDashboard'
 import { RecordPage } from './record/RecordPage'
 import { StudentCardPage } from './studentcard/StudentCardPage'
 import { TimetablePage } from './timetable/TimetablePage'
+import { useUserStore } from '@/stores2/user'
 
 export function TeacherMainPage() {
   const { replace } = useHistory()
@@ -90,7 +91,7 @@ export function TeacherMainPage() {
   const { t, changeLanguage, currentLang } = useLanguage()
 
   const setNewMsgCnt = useSetRecoilState(newMsgCntState)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const manuals = [
     {
       id: 1,

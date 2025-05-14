@@ -1,7 +1,5 @@
 import { PropsWithChildren, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRecoilValue } from 'recoil'
-
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
@@ -25,8 +23,7 @@ import {
   ResponseIBStudentDto,
 } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores2/user'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 
@@ -46,7 +43,7 @@ export function IbCASProject({
   onSuccess,
   ablePropragation = false,
 }: PropsWithChildren<IbCASProjectProps>) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [isFocused, setIsFocused] = useState(false)
   const [isFocused2, setIsFocused2] = useState(false)
   const [calendarOpen, setCalendarOpen] = useState<boolean>(false)

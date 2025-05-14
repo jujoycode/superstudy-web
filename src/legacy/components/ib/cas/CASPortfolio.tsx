@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
-import { useRecoilValue } from 'recoil'
-
 import NODATA from '@/assets/images/no-data.png'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -10,8 +8,7 @@ import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import { PopupModal } from '@/legacy/components/PopupModal'
 import { useIBPortfolioGetById } from '@/legacy/container/ib-cas'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores2/user'
 import CASChart from './CASChart'
 import CASPortfolioDataList from './CASPortfolioDataList'
 import CASPortfolioTimeline from './CASPortfolioTimeline'
@@ -24,7 +21,7 @@ type ModalType = 'SELECT' | 'IBCAS' | 'IBPROJECT' | null
 type CategoryType = 'IBCAS' | 'IBPROJECT' | null
 
 export default function CASPortfolio() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const location = useLocation()
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>(null)

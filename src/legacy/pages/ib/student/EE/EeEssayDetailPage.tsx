@@ -19,7 +19,7 @@ import { useEssayGetByIBId } from '@/legacy/container/ib-essay-find'
 import { useIBEssaySent } from '@/legacy/container/ib-essay-send'
 import { ResponseIBDto } from '@/legacy/generated/model'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface LocationState {
   project: ResponseIBDto
@@ -31,7 +31,7 @@ export const EeEssayDetailPage = () => {
   const location = useLocation()
   const project = location.state?.project as LocationState['project']
   const _type = location.state?.type as LocationState['type']
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const { data: essay, refetch, isLoading } = useEssayGetByIBId(project.id)
   const [modalType, setModalType] = useState<'update' | 'update_check'>('update')

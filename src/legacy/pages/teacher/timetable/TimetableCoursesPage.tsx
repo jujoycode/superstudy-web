@@ -5,7 +5,7 @@ import { useCourseGet } from '@/legacy/generated/endpoint'
 import { Course, CourseStatus } from '@/legacy/generated/model'
 import { courseTimeToString } from '@/legacy/util/course'
 import { dayOfKorWeek } from '@/legacy/util/date'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface TimetableCoursesPageProps {
   selectedCourse?: Course
@@ -13,7 +13,7 @@ interface TimetableCoursesPageProps {
 }
 
 export function TimetableCoursesPage({ selectedCourse, onSelectCourse }: TimetableCoursesPageProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const { data: courses = [] } = useCourseGet({ teacherId: me?.id ?? 0 }, { query: { enabled: !!me } })
 

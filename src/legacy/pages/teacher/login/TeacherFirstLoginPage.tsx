@@ -12,12 +12,12 @@ import { GroupContainer } from '@/legacy/container/group'
 import { useTeacherFirstLogin } from '@/legacy/container/teacher-first-login'
 import { ResponseGroupDto } from '@/legacy/generated/model'
 import { Validator } from '@/legacy/util/validator'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function TeacherFirstLoginPage() {
   const { push } = useHistory()
   const { pathname } = useLocation()
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
 
   const { teacherKlassGroups } = GroupContainer.useContext()
   const { isLoading, handleTeacherFirstLogin } = useTeacherFirstLogin()

@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import QueryString from 'qs'
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router'
-import { useRecoilValue } from 'recoil'
 import CAS from '@/assets/images/CAS.png'
 import EE from '@/assets/images/EE.png'
 import NODATA from '@/assets/images/no-data.png'
@@ -17,8 +16,7 @@ import { Typography } from '@/legacy/components/common/Typography'
 import { ResponsePaginatedIBDto } from '@/legacy/generated/model'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { CategoryType, IBProject, ModalType } from '@/legacy/pages/ib/student/IBStudentMainPage'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores2/user'
 import { PopupModal } from '../PopupModal'
 
 import { IbCASNormal } from './cas/IbCASNormal'
@@ -47,7 +45,7 @@ interface SelectedOptions {
 type IBProjectTypes = 'NORMAL' | 'EE' | 'CAS' | 'TOK'
 
 export default function StudentIBStatus({ data }: StudentIBStatusProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const history = useHistory()
   const { setQueryParamsWithStorage, removeStoredQueryParams } = useQueryParams()
   const location = useLocation()

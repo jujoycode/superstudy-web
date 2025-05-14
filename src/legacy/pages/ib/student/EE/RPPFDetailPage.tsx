@@ -20,7 +20,7 @@ import { useIBDeadline } from '@/legacy/container/ib-deadline'
 import { useIBRPPFCreate } from '@/legacy/container/ib-rppf-create'
 import { useRPPFGetById } from '@/legacy/container/ib-rppf-findId'
 import { RequestCreateRPPFDto, ResponseIBDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 interface LocationState {
   title: string
@@ -33,7 +33,7 @@ export default function RPPFDetailPage() {
   const title = location.state?.title as LocationState['title']
   const data = location.state?.data as LocationState['data']
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [modalOpen, setModalOpen] = useState<boolean>(false)
   const { id, rppfId } = useParams<{ id: string; rppfId: string }>()
 

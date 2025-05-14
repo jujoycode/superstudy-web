@@ -1,7 +1,5 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
@@ -13,7 +11,7 @@ import { useGetFeedbackBatchExist, useGetUnreadFeedbackCount } from '@/legacy/co
 import { useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
 import { ResponseIBDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 import TkppfIbSubmitInformPopup from './TkppfIbSubmitInformPopup'
 import FeedbackViewer from '../../FeedbackViewer'
@@ -24,7 +22,7 @@ interface ExhibitionListProps {
 }
 
 export default function TKPPFList({ data }: ExhibitionListProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [unreadCount, setUnreadCount] = useState<number | undefined>(undefined)
   const [alertMessage, setAlertMessage] = useState<string | null>(null)

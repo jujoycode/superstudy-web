@@ -22,7 +22,7 @@ import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { PopupModal } from '@/legacy/components/PopupModal'
 import { useGetIBProject } from '@/legacy/container/ib-project-get-filter'
 import { ResponseIBDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 import CAS from '@/assets/images/CAS.png'
 import EE from '@/assets/images/EE.png'
@@ -41,7 +41,7 @@ export const IBStudentMainPage = () => {
   const [activeModal, setActiveModal] = useState<ModalType>(null)
   const [alertMessage, setAlertMessage] = useState<string | null>(null)
   const [selectedValue, setSelectedValue] = useState<IBProject>('')
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const handleSuccess = (
     action: 'save' | 'requestApproval' | 'TOK_EXHIBITION' | 'TOK_ESSAY' | 'CAS_NORMAL' | 'CAS_PROJECT',

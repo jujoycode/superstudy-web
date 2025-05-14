@@ -24,13 +24,13 @@ import { useIBProposalUpdate } from '@/legacy/container/ib-proposal-update'
 import { useIBRejectPlanByProposal, useIBUpdateIBProposalStatusInProgress } from '@/legacy/generated/endpoint'
 import { RequestIBProposalUpdateDto, ResponseIBDtoStatus } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 import NODATA from '@/assets/images/no-data.png'
 
 export const EEProposalDetailPage = () => {
   const { id, proposalId } = useParams<{ id: string; proposalId: string }>()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { data, klassNum, isLoading } = useIBGetById(Number(id))
   const { push } = useHistory()
   const permission = usePermission(data?.mentor ?? null, me?.id ?? 0)

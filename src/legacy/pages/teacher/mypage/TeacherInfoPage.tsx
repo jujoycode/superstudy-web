@@ -19,10 +19,10 @@ import { useLogout } from '@/legacy/util/hooks'
 import { getNickName } from '@/legacy/util/status'
 import { getHoursfromHHmmString, getMinutesfromHHmmString } from '@/legacy/util/time'
 import { Validator } from '@/legacy/util/validator'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores2/user'
 
 export function TeacherInfoPage() {
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
   const { t } = useLanguage()
   const { allTeacherGroups, errorGroups } = GroupContainer.useContext()
   const [isUpdateMe, setIsUpdateMe] = useState(false)
@@ -187,7 +187,7 @@ export function TeacherInfoPage() {
                       className="h-48 w-40 rounded-lg object-cover"
                       onError={({ currentTarget }) => {
                         currentTarget.onerror = null
-                        currentTarget.src = SvgUser
+                        currentTarget.src = SvgUser as unknown as string
                         currentTarget.className = 'w-full'
                       }}
                     />

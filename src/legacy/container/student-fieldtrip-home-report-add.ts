@@ -5,6 +5,7 @@ import { Role } from '@/legacy/generated/model'
 import { errorType } from '@/legacy/types'
 import { childState } from '@/stores'
 import { UserContainer } from './user'
+import { useUserStore } from '@/stores2/user'
 
 type Props = {
   id: number
@@ -17,7 +18,7 @@ type HomePlan = Array<{
 
 export function useStudentFieldtripHomeReportAdd({ id }: Props) {
   const { me } = UserContainer.useContext()
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
 
   const [errorMessage, setErrorMessage] = useState('')
 

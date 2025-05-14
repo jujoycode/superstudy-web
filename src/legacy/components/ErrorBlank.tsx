@@ -1,9 +1,6 @@
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores2/user'
 import { PermissionUtil } from '@/legacy/util/permission'
-import { meState } from '@/stores'
-
 import { Button } from './common/Button'
 
 interface ErrorBlankProps {
@@ -13,8 +10,8 @@ interface ErrorBlankProps {
 export function ErrorBlank({
   text = '삭제된 컨텐츠이거나 일시적 오류입니다. 잠시후 다시 시도해주세요.',
 }: ErrorBlankProps) {
+  const { me } = useUserStore()
   const { push } = useHistory()
-  const me = useRecoilValue(meState)
 
   const path = PermissionUtil.isNotStudentNotParent(me?.role) ? '/teacher' : '/student/canteen'
 

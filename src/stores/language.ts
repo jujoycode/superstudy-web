@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { type Languages } from '@/legacy/util/i18n'
+import type { Languages } from '@/legacy/util/i18n'
 
 type LanguageState = {
   // 상태
