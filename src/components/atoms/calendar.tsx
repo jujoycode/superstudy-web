@@ -6,6 +6,7 @@ import { format } from 'date-fns'
 import { useEffect, useRef, useState } from 'react'
 
 import { CustomTuiModal } from '@/legacy/components/calendar/CustomTuiModal'
+import { Group } from '@/legacy/generated/model'
 
 export interface CalendarData extends Partial<EventInput> {
   title: string
@@ -15,25 +16,24 @@ export interface CalendarData extends Partial<EventInput> {
 
 interface CalendarProps {
   data: CalendarData[]
-  schoolType?: string
   handleCalendarCreate?: (calendarData: CalendarData) => Promise<void>
   handleCalendarUpdate?: (id: number, calendarData: CalendarData) => Promise<void>
   now?: Date
-  refetch?: () => void
+  // TODO: 아래 Props들은 추후 legacy CustomTuiModal 변경하며 개선 예정
+  schoolType?: string
   groupProps?: {
-    allGroups: any[]
-    selectedGroup: any
-    setSelectedGroup: (group: any) => void
+    allGroups: Group[]
+    selectedGroup: Group
+    setSelectedGroup: (group: Group) => void
   }
 }
 
 export const Calendar = ({
   data,
-  schoolType = '',
   handleCalendarCreate = async () => {},
   handleCalendarUpdate = async () => {},
   now = new Date(),
-  refetch = () => {},
+  schoolType = '',
   groupProps,
 }: CalendarProps) => {
   const [selectedData, setSelectedData] = useState<CalendarData>()
@@ -52,48 +52,32 @@ export const Calendar = ({
     }
   }
 
-  const handleCreateSchedule = (calendarData: CalendarData) => {
+  const createCalendar = (calendarData: CalendarData) => {
     handleCalendarCreate(calendarData)
-      .then(() => {
-        setModalOpen(false)
-        setSelectedData(undefined)
-        refetch()
-      })
-      .catch((err) => {
-        console.log(err?.message)
-        setModalOpen(false)
-      })
+      .then(() => setSelectedData(undefined))
+      .catch((err) => console.error(err))
+      .finally(() => setModalOpen(false))
   }
 
-  const handleUpdateSchedule = (calendarData: CalendarData) => {
+  const updateCalendar = (calendarData: CalendarData) => {
     if (!selectedData || !selectedData?.id) return
     handleCalendarUpdate(Number(selectedData.id), calendarData)
-      .then(() => {
-        setSelectedData(undefined)
-        refetch()
-        setModalOpen(false)
-      })
-      .catch((err) => {
-        console.log(err?.message)
-        setModalOpen(false)
-      })
+      .then(() => setSelectedData(undefined))
+      .catch((err) => console.error(err))
+      .finally(() => setModalOpen(false))
   }
 
   const handleEventClick = (e: EventClickArg) => {
     const currentData = data.find((el) => el.id === e.event.id)
-    if (currentData) {
-      setSelectedData(currentData)
-      setModalOpen(true)
-    }
+    if (!currentData) return
+    setSelectedData(currentData)
+    setModalOpen(true)
   }
 
   const handleDayClick = (date: Date) => {
     if (!date) return
-    setSelectedData({
-      title: '',
-      start: date,
-      end: date,
-    })
+    const newData: CalendarData = { title: '', start: date, end: date }
+    setSelectedData(newData)
     setNow(date)
     setModalOpen(true)
   }
@@ -105,13 +89,7 @@ export const Calendar = ({
         initialView="dayGridMonth"
         headerToolbar={false}
         ref={calendarRef}
-        events={
-          data?.map((el) => ({
-            ...el,
-            start: format(new Date(el.start), 'yyyy-MM-dd'),
-            end: format(new Date(el.end), 'yyyy-MM-dd'),
-          })) || []
-        }
+        events={data}
         locale="ko"
         navLinks={true}
         nowIndicator={true}
@@ -120,20 +98,18 @@ export const Calendar = ({
         eventContent={(eventInfo) => <>{eventInfo.event.title}</>}
       />
       <CustomTuiModal
-        {...{
-          isOpen: modalOpen,
-          onClose: () => {
-            setModalOpen(false)
-            setSelectedData(undefined)
-          },
-          onSubmit: !selectedData?.id ? handleCreateSchedule : handleUpdateSchedule,
-          calendars: data,
-          schedule: selectedData,
-          startDate: selectedData?.start ? new Date(selectedData.start) : new Date(),
-          endDate: selectedData?.end ? new Date(selectedData.end) : new Date(),
-          schoolType: schoolType,
-          groupProps: groupProps,
+        isOpen={modalOpen}
+        onClose={() => {
+          setModalOpen(false)
+          setSelectedData(undefined)
         }}
+        onSubmit={!selectedData?.id ? createCalendar : updateCalendar}
+        calendars={data}
+        schedule={selectedData}
+        startDate={selectedData?.start ? new Date(selectedData.start) : new Date()}
+        endDate={selectedData?.end ? new Date(selectedData.end) : new Date()}
+        schoolType={schoolType}
+        groupProps={groupProps}
       />
     </>
   )
