@@ -9,13 +9,12 @@ interface CustomTuiModalProps {
   isOpen: boolean
   onClose: () => void
   onSubmit: (e: any) => void
-  submitText: string
   calendars: any[]
   schedule: any
   startDate: Date
   endDate: Date
   schoolType: string
-  groupProps: {
+  groupProps?: {
     allGroups: any[]
     selectedGroup: any
     setSelectedGroup: (group: any) => void
@@ -51,7 +50,7 @@ export function CustomTuiModal({
   const [startAt, setStartAt] = useState('')
   const [endAt, setEndAt] = useState('')
   const [selectedGrade, setSelectedGrade] = useState('')
-  const { allGroups, selectedGroup, setSelectedGroup } = groupProps
+  const { allGroups, selectedGroup, setSelectedGroup = () => {} } = groupProps || {}
   const [selectedGroupType, setSelectedGroupType] = useState<GroupType>(GroupType.KLASS)
   // 상세 일정 카테고리
   const baseAttendees = [
