@@ -1,7 +1,4 @@
 import React, { useState } from 'react'
-
-import 'tailwindcss/index.css'
-
 import { ButtonV2 } from './ButtonV2'
 import { Input } from './Input'
 import TimePicker from './TimePicker'
@@ -105,7 +102,7 @@ const ScheduleAndPeriodPicker: React.FC<ScheduleAndPeriodPickerProps> = ({
   const weekdays = ['일', '월', '화', '수', '목', '금', '토']
 
   return (
-    <div className="border-primary-gray-200 text-13 flex w-[280px] flex-col items-center gap-4 rounded-lg border bg-white py-4 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]">
+    <div className="flex w-[280px] flex-col items-center gap-4 rounded-lg border border-primary-gray-200 bg-white py-4 text-13 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]">
       {/* 달력 */}
       <div className="flex w-[248px] flex-col items-center gap-2">
         <div className="flex w-full items-center justify-around gap-1">
@@ -177,21 +174,21 @@ const ScheduleAndPeriodPicker: React.FC<ScheduleAndPeriodPickerProps> = ({
               {localDate.startDate &&
                 localDate.endDate &&
                 isBetween(calendarDate, localDate.startDate, localDate.endDate) && (
-                  <div className="bg-primary-orange-100 absolute inset-0 h-full w-full"></div>
+                  <div className="absolute inset-0 h-full w-full bg-primary-orange-100"></div>
                 )}
               {localDate.startDate && isSameDay(calendarDate, localDate.startDate) && (
-                <div className="bg-primary-orange-100 absolute inset-y-0 left-1/2 h-full w-1/2"></div>
+                <div className="absolute inset-y-0 left-1/2 h-full w-1/2 bg-primary-orange-100"></div>
               )}
               {localDate.endDate && isSameDay(calendarDate, localDate.endDate) && (
-                <div className="bg-primary-orange-100 absolute inset-y-0 right-1/2 h-full w-1/2"></div>
+                <div className="absolute inset-y-0 right-1/2 h-full w-1/2 bg-primary-orange-100"></div>
               )}
               <Typography
                 variant="body3"
-                className={`z-10 flex h-8 w-8 cursor-pointer items-center justify-center font-medium ${isCurrentMonth ? 'text-primary-gray-900' : 'text-primary-gray-400'} ${isSameDay(calendarDate, today) ? 'border-primary-orange-400 rounded-full border' : ''} ${
+                className={`z-10 flex h-8 w-8 cursor-pointer items-center justify-center font-medium ${isCurrentMonth ? 'text-primary-gray-900' : 'text-primary-gray-400'} ${isSameDay(calendarDate, today) ? 'rounded-full border border-primary-orange-400' : ''} ${
                   localDate.startDate && isSameDay(calendarDate, localDate.startDate)
-                    ? 'bg-primary-orange-800 rounded-full text-white'
+                    ? 'rounded-full bg-primary-orange-800 text-white'
                     : localDate.endDate && isSameDay(calendarDate, localDate.endDate)
-                      ? 'bg-primary-orange-800 rounded-full text-white'
+                      ? 'rounded-full bg-primary-orange-800 text-white'
                       : ''
                 }`}
                 onClick={() => handleDateSelect(calendarDate)}
@@ -204,7 +201,7 @@ const ScheduleAndPeriodPicker: React.FC<ScheduleAndPeriodPickerProps> = ({
       </div>
       <div className="w-full border-t border-gray-200"></div>
       <div className="flex w-[248px] flex-row items-center justify-between gap-4">
-        <Typography variant="body3" className="text-primary-gray-700 font-medium">
+        <Typography variant="body3" className="font-medium text-primary-gray-700">
           활동 주기
         </Typography>
         <Input.Basic
