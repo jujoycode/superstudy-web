@@ -9,8 +9,8 @@ import './legacy/util/i18n'
 import { App } from './App'
 
 import './index.css'
-import './calendar.css'
-import 'swiper/swiper.css'
+// import './calendar.css'
+// import 'swiper/swiper.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
