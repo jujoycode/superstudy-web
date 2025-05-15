@@ -2,7 +2,6 @@ import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLocation, useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -20,14 +19,14 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBTKPPFCreate, useIBTKPPFRequestReject, useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
 import { RequestCreateTKPPFDto, ResponseTKPPFDto, TKPPFContentResponseDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 type TKPPFKeys = 'sequence1' | 'sequence2' | 'sequence3'
 
 export const TKPPFDetailPage = () => {
   const history = useHistory()
   const location = useLocation()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const { ibId: idParam, tkppfId: tkppfIdParam } = useParams<{ ibId: string; tkppfId: string }>()
 

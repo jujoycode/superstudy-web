@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { Routes, useParams } from 'react-router'
 import { Route } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
 import { ReactComponent as RightArrow } from '@/assets/svg/mypage-right-arrow.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { SuperModal, Tab } from '@/legacy/components'
@@ -12,17 +11,16 @@ import { Icon } from '@/legacy/components/common/icons'
 import { NewsletterSubmitterItem } from '@/legacy/components/newsletter/NewsletterSubmitterItem'
 import { useTeacherNewsletterSubmit } from '@/legacy/container/teacher-newsletter-submit'
 import { ResponseGroupDto, StudentGroup, StudentNewsletter } from '@/legacy/generated/model'
-import { newsletterOpenedGroupState } from '@/stores'
-
+import { useNotificationStore } from '@/stores/notification'
 import { NewsletterSubmitDetailPage } from './NewsletterSubmitDetailPage'
 
 export function NewsletterSubmitPage() {
   const { push } = useHistory()
-  const { id = '' } = useParams<{ id: string }>()
   const queryClient = useQueryClient()
+  const { id = '' } = useParams<{ id: string }>()
   const [modalOpen, setModalOpen] = useState(false)
 
-  const [newsletterOpenedGroup, setNewsletterOpenedGroup] = useRecoilState(newsletterOpenedGroupState)
+  const { newsletterOpenedGroup, setNewsletterOpenedGroup } = useNotificationStore()
 
   const {
     result,
@@ -46,7 +44,7 @@ export function NewsletterSubmitPage() {
   const handleSelectKlassGroup = (klassGroup: ResponseGroupDto) => {
     newsletterOpenedGroup.includes(klassGroup.name as string)
       ? setNewsletterOpenedGroup(newsletterOpenedGroup.filter((el) => el !== klassGroup.name))
-      : setNewsletterOpenedGroup((prevState) => [...prevState, klassGroup.name as string])
+      : setNewsletterOpenedGroup([...newsletterOpenedGroup, klassGroup.name as string])
     selectKlassGroup(klassGroup.id)
     push(`/teacher/newsletter/submit/${id}`)
   }

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -18,7 +17,7 @@ import { useEssayGetByIBId } from '@/legacy/container/ib-essay-find'
 import { useIBEssaySent } from '@/legacy/container/ib-essay-send'
 import { ResponseIBDto } from '@/legacy/generated/model'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 import NODATA from '@/assets/images/no-data.png'
 
@@ -32,7 +31,7 @@ export const TOKEssayDetailPage = () => {
   const location = useLocation()
   const project = location.state?.project as LocationState['project']
   const _type = location.state?.type as LocationState['type']
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const { data: essay, refetch, isLoading } = useEssayGetByIBId(project.id)
   const [modalType, setModalType] = useState<'update' | 'update_check'>('update')

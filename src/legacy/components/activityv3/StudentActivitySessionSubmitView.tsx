@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilState } from 'recoil'
 import { Constants } from '@/legacy/constants'
 import { useStudentActivitySessionSaveOne } from '@/legacy/generated/endpoint'
 import { ActivitySession, StudentActivitySession, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { checkFileSizeLimit100MB, isPdfFile } from '@/legacy/util/file'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
 import { Label, Textarea } from '../common'
 import { Button } from '../common/Button'
 import { FileUpload } from '../common/FileUpload'
@@ -30,7 +29,7 @@ export const StudentActivitySessionSubmitView: React.FC<StudentActivitySessionSu
   refetch,
 }) => {
   const now = new Date()
-  const [, setToastMsg] = useRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const { mutate: saveStudentActivitySession } = useStudentActivitySessionSaveOne({
     mutation: {
       onSuccess: () => {

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
 
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -22,7 +21,7 @@ import { useIBExhibitionPlanStatusApprove, useIBExhibitionPlanStatusReject } fro
 import { ResponseIBDtoStatus } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export type TOKProject = 'EXHIBITION' | 'EXHIBITION_PLAN'
 
@@ -30,7 +29,7 @@ export const ExhibitionMainPage = () => {
   const { t } = useLanguage()
   const { ibId: idParams } = useParams<{ ibId: string }>()
   const location = useLocation()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const initialType = location.state?.type || 'EXHIBITION_PLAN'
   const id = Number(idParams)

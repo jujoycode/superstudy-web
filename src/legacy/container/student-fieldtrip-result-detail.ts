@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import { useFieldtripResultResend, useFieldtripsFindOne } from '@/legacy/generated/endpoint'
-import { errorType } from '@/legacy/types'
-import { childState } from '@/stores'
+import type { errorType } from '@/legacy/types'
 
 type Props = {
   id: number
@@ -11,8 +10,8 @@ type Props = {
 
 export function useFieldtripResultDetail({ id }: Props) {
   const { push } = useHistory()
+  const { child } = useUserStore()
   const [errorMessage, setErrorMessage] = useState('')
-  const child = useRecoilValue(childState)
 
   const {
     data: fieldtrip,

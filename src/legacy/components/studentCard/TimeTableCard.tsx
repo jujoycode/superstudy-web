@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 
 import { useStudentTimetableDetail } from '@/legacy/container/teacher-student-timetable-detail'
 import { LectureType, ResponseTimetableV3Dto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { dayOfKorWeek } from '@/legacy/util/date'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 interface TimeTableCardProps {
   studentId?: number
@@ -16,7 +15,7 @@ export function TimeTableCard({ studentId }: TimeTableCardProps) {
   const { t } = useLanguage()
   const { timetableV3Student } = useStudentTimetableDetail(studentId)
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const hasSaturdayClass = me?.school.hasSaturdayClass || false
 
   const timesArray: number[] | undefined = timetableV3Student?.map((item: ResponseTimetableV3Dto) => item.time)

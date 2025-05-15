@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { useRecoilValue } from 'recoil'
 import {
   useGroupsFindAllKlassBySchool,
   useGroupsFindKlassByUser,
@@ -9,12 +8,13 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ResponseGroupDto, ResponseSubjectGroupDto, Role } from '@/legacy/generated/model'
 import { getThisYear } from '@/legacy/util/time'
-import { meState, tokenState } from '@/stores'
 import { createContainer } from './createContainer'
+import { useUserStore } from '@/stores/user'
+import { useAuthStore } from '@/stores/auth'
 
 export function groupHook() {
-  const me = useRecoilValue(meState)
-  const token = useRecoilValue(tokenState)
+  const { me } = useUserStore()
+  const { token } = useAuthStore()
   const queryClient = useQueryClient()
 
   const [teacherKlubGroups, setTeacherKlubGroups] = useState<ResponseGroupDto[]>([])

@@ -1,7 +1,5 @@
 import { PropsWithChildren, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRecoilValue } from 'recoil'
-
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
@@ -11,8 +9,7 @@ import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useIBCreate } from '@/legacy/container/ib-project'
 import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
 import { RequestIBDto, RequestIBTokExhibitionPlanDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores/user'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 
@@ -37,7 +34,7 @@ export function IbExhibitionPlan({
   onSuccess,
   ablePropragation = false,
 }: PropsWithChildren<IbExhibitionProps>) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [selectedIds, setSelectedIds] = useState<number[]>([])
   const [selectedNames, setSelectedNames] = useState<string[]>([])
   const [checkedAttributes, setCheckedAttributes] = useState<Commetary[]>([

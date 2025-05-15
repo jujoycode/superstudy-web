@@ -1,8 +1,6 @@
 import clsx from 'clsx'
 import { t } from 'i18next'
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SelectValues } from '@/legacy/components'
 import { BackButton, Badge, Blank, BottomFixed, Label, Section, TopNavbar } from '@/legacy/components/common'
@@ -15,7 +13,7 @@ import { useStudentOutingAdd } from '@/legacy/container/student-outing-add'
 import { UserContainer } from '@/legacy/container/user'
 import { OutingTypeEnum, OutingUse, ResponseCreateOutingDto, Role } from '@/legacy/generated/model'
 import { AbsentTimeType, periodArray } from '@/legacy/types'
-import { childState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 const reportType = [OutingTypeEnum.조퇴, OutingTypeEnum.외출, OutingTypeEnum.확인]
 
@@ -27,7 +25,7 @@ interface OutingAddPageProps {
 export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
   const { push } = useHistory()
   const { me, errorMessage: meErrorMessage } = UserContainer.useContext()
-  const myChild = useRecoilValue(childState)
+  const { child: myChild } = useUserStore()
 
   if (me?.role === Role.PARENT && !myChild?.name) {
     alert('자녀가 선택되지 않았습니다.')

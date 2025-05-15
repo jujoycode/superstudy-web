@@ -1,9 +1,9 @@
-import { useRecoilValue } from 'recoil'
+
 import { useStudentGroupsFindKlassHistoryByStudent } from '@/legacy/generated/endpoint'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentKlassHistory() {
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
 
   const { data: klassHistoryList } = useStudentGroupsFindKlassHistoryByStudent({
     query: {

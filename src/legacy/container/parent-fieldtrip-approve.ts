@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import {
   useFieldtripsApproveByParent,
   useFieldtripsApproveByParentApp,
@@ -7,21 +6,21 @@ import {
   useFieldtripsFindOneByUUID,
 } from '@/legacy/generated/endpoint'
 import { errorType } from '@/legacy/types'
-import { childState } from '@/stores'
+import { useUserStore } from '@/stores/user';
 
 export function useParentFieldtripApprove({ sigPadData, uuid }: { sigPadData: string; uuid: string }) {
   const [isShowSignModal, setIsShowSignModal] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [isSuccess, setSuccess] = useState(false)
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
 
   const {
     data: fieldtrip,
     isLoading: isGetFieldtripLoading,
     error: fieldtripError,
   } = uuid.length > 20
-    ? useFieldtripsFindOneByUUID(uuid)
-    : useFieldtripsFindOne(Number(uuid), {
+      ? useFieldtripsFindOneByUUID(uuid)
+      : useFieldtripsFindOne(Number(uuid), {
         request: {
           headers: {
             'child-user-id': child?.id,
@@ -72,13 +71,13 @@ export function useParentFieldtripApprove({ sigPadData, uuid }: { sigPadData: st
   const approveFieldtrip = () => {
     uuid.length > 20
       ? approveFieldtripMutate({
-          uuid,
-          data: { signature: sigPadData },
-        })
+        uuid,
+        data: { signature: sigPadData },
+      })
       : approveFieldtripMutateApp({
-          id: Number(uuid),
-          data: { signature: sigPadData },
-        })
+        id: Number(uuid),
+        data: { signature: sigPadData },
+      })
   }
 
   const isLoading = isApproveFieldtripLoading || isGetFieldtripLoading

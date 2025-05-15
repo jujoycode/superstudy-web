@@ -1,11 +1,9 @@
 import { forwardRef } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import { Time } from '@/legacy/components/common/Time'
 import { Role } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
-import { childState, meState } from '@/stores'
 import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
+import { useUserStore } from '@/stores/user'
 
 interface NewsletterPaperProps {
   newsletter?: any
@@ -17,8 +15,7 @@ export const NewsletterPaper = forwardRef(({ newsletter, studentNewsletter }: Ne
   const { data: studentSignature } = useSignedUrl(studentNewsletter?.studentSignature)
   const { data: parentSignature } = useSignedUrl(studentNewsletter?.parentSignature)
 
-  const meRecoil = useRecoilValue(meState)
-  const myChild = useRecoilValue(childState)
+  const { me: meRecoil, child: myChild } = useUserStore()
   const schoolName = meRecoil?.role === Role.PARENT ? myChild?.school.name : meRecoil?.school.name
 
   return (

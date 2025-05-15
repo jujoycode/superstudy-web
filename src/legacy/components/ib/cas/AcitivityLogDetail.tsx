@@ -6,7 +6,6 @@ import Linkify from 'react-linkify'
 import { useLocation, useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilValue } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -21,8 +20,7 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores/user'
 import { DocumentCard } from '../DocumentCard'
 import { Feedback } from '../Feedback'
 import { ImageCard } from '../ImageCard'
@@ -58,7 +56,7 @@ function AcitivityLogDetail({ type = 'student', status, hasPermission = true }: 
       console.error('활동일지 수정 중 오류 발생:', error)
     },
   })
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const {
     addFiles,

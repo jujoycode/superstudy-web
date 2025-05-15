@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { useState } from 'react'
 import { useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
+
 import { Blank, Label, Select, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
@@ -23,11 +23,11 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { MenuType, UserDatas } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getExtOfFilename } from '@/legacy/util/file'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export function NewsletterAddPage() {
   const { t } = useLanguage()
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
   const { id = '' } = useParams<{ id: string }>()
 
   const { allKlassGroups } = GroupContainer.useContext()

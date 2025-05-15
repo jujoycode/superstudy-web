@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useFieldtripsFindAllByStudent, useFieldtripsReCalculateFieldtripDays } from '@/legacy/generated/endpoint'
 import { Fieldtrip } from '@/legacy/generated/model'
-import { childState } from '@/stores'
 import { UserContainer } from './user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentFieldtrip() {
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
   const [fieldtrips, setFieldtrips] = useState<Fieldtrip[]>()
   const [recalculateDays, setRecalculateDays] = useState(false)
   const { me } = UserContainer.useContext()

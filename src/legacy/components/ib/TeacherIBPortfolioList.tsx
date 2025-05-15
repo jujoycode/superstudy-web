@@ -3,8 +3,6 @@ import _ from 'lodash'
 import QueryString from 'qs'
 import { useEffect, useMemo, useState } from 'react'
 import { useLocation } from 'react-router'
-import { useRecoilValue } from 'recoil'
-
 import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import { Check } from '@/legacy/components/common/Check'
@@ -15,8 +13,7 @@ import { Typography } from '@/legacy/components/common/Typography'
 import { useGetIBPortfolio } from '@/legacy/container/ib-portfolio-get-filter'
 import { useGroupsFindAllKlassBySchool } from '@/legacy/generated/endpoint'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores/user'
 import PortfolioCard from './cas/PortfolioCard'
 
 interface FilterOption {
@@ -27,7 +24,7 @@ interface FilterOption {
 }
 
 export default function TeacherIBPortfolioList() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const location = useLocation()
   const history = useHistory()
   const { setQueryParamsWithStorage } = useQueryParams()

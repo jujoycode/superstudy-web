@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
@@ -13,7 +11,7 @@ import { useTeacherBoardDetail } from '@/legacy/container/teacher-board-detail'
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 interface BoardDetailPageProps {
   page: number
@@ -23,7 +21,7 @@ interface BoardDetailPageProps {
 export function BoardDetailPage({ page, limit }: BoardDetailPageProps) {
   const { push } = useHistory()
   const { id } = useParams<{ id: string }>()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { t } = useLanguage()
 
   const { board, isBoardLoading, viewerImages, errorMessage, handleBoardDelete } = useTeacherBoardDetail(Number(id))

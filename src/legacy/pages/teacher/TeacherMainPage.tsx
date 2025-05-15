@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, LinkProps, Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { ReactComponent as RightArrow } from '@/assets/svg/RightFillArrow.svg'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
@@ -48,7 +47,6 @@ import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { globalEnv } from '@/legacy/util/global-env'
 import { useLogout } from '@/legacy/util/hooks'
 import { getNickName } from '@/legacy/util/status'
-import { meState, newMsgCntState } from 'src/store'
 import { ActivityDetailPage } from './activity/ActivityDetailPage'
 import { ActivityPage } from './activity/ActivityPage'
 import { ActivityV3AddPage } from './activityv3/ActivityV3AddPage'
@@ -83,14 +81,17 @@ import { PointDashboard } from './pointlogs/PointDashboard'
 import { RecordPage } from './record/RecordPage'
 import { StudentCardPage } from './studentcard/StudentCardPage'
 import { TimetablePage } from './timetable/TimetablePage'
+import { useUserStore } from '@/stores/user'
+import { useNotificationStore } from '@/stores/notification'
 
 export function TeacherMainPage() {
   const { replace } = useHistory()
   const { pathname } = useLocation()
+  const { me } = useUserStore()
   const { t, changeLanguage, currentLang } = useLanguage()
+  // TODO 채팅 머지 후, 재 수정, 신규 메시지
+  const { newMsgCnt, setNewMsgCnt } = useNotificationStore()
 
-  const setNewMsgCnt = useSetRecoilState(newMsgCntState)
-  const me = useRecoilValue(meState)
   const manuals = [
     {
       id: 1,
@@ -158,9 +159,6 @@ export function TeacherMainPage() {
   if (me?.firstVisit && !pathname.startsWith('/teacher/first-login')) {
     replace('/teacher/first-login')
   }
-
-  // TODO 채팅 머지 후, 재 수정, 신규 메시지
-  const newMsgCnt = useRecoilValue(newMsgCntState)
 
   const tabs = useMemo(
     () => [

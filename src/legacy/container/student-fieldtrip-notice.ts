@@ -1,11 +1,10 @@
-import { useRecoilValue } from 'recoil'
 import { useFieldtripsFindOne } from '@/legacy/generated/endpoint'
-import { childState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 import { UserContainer } from './user'
 
 export function useStudentFieldtripNotice(id: number) {
   const { me } = UserContainer.useContext()
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
 
   const {
     data: fieldtrip,

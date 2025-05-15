@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { useOutingsCreate, useOutingsUpdate } from '@/legacy/generated/endpoint'
 import { Category, Outing, OutingStatus, OutingTypeEnum, Role } from '@/legacy/generated/model'
 import { AbsentTimeType, errorType } from '@/legacy/types'
 import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
-import { childState } from '@/stores'
-
 import { useCodeByCategoryName } from './category'
 import { UserContainer } from './user'
+import { useUserStore } from '@/stores/user'
 
 const getMeridiemHours = (date?: string) => {
   if (!date) return 0
@@ -20,7 +17,7 @@ const getMeridiemHours = (date?: string) => {
 export function useStudentOutingAdd(outingData?: Outing, goDetail?: () => void) {
   const { push } = useHistory()
   const { me } = UserContainer.useContext()
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
   const [errorMessage, setErrorMessage] = useState('')
   const [successId, setSuccessId] = useState<number>()
   const [approverName, setApproverName] = useState<string>()

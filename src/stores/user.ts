@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
 import type { ResponseUserDto } from '@/legacy/generated/model'
 
 type UserState = {

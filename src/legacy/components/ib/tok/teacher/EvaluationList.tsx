@@ -1,7 +1,5 @@
 import { omit } from 'lodash'
 import { FC, useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import NODATA from '@/assets/images/no-data.png'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -14,8 +12,7 @@ import {
   ResponseTokEvaluationInitialDataDto,
   ResponseTokEvaluationSummaryDto,
 } from '@/legacy/generated/model'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores/user'
 import Evaluation from './Evaluation'
 
 interface EvaluationListProps {
@@ -43,7 +40,7 @@ export const EvaluationList: FC<EvaluationListProps> = ({
   disabled = false,
   finalDisabled = false,
 }) => {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [hasError, setHasError] = useState<boolean>(false)
 
   const myData = evaluationData?.evaluations.find(

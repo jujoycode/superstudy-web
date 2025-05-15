@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useNewsLettersFindOne, useStudentNewsletterFindOneByStudent } from '@/legacy/generated/endpoint'
-import { childState, meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentNewsletterDetail(id?: number) {
   const [errorMessage, setErrorMessage] = useState('')
-  const meRecoil = useRecoilValue(meState)
-  const child = useRecoilValue(childState)
+  const { me: meRecoil, child } = useUserStore()
   const {
     data: newsletter,
     isLoading: isNewsletterLoading,

@@ -1,14 +1,11 @@
 import { useQueryClient } from 'react-query'
 import { Routes, useParams } from 'react-router'
 import { Route } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { NewsletterCheckerItem } from '@/legacy/components/newsletter/NewsletterCheckerItem'
 import { useTeacherNewsletterCheck } from '@/legacy/container/teacher-newsletter-check'
 import { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup } from '@/legacy/generated/model'
-import { newsletterOpenedGroupState } from '@/stores'
-
+import { useNotificationStore } from '@/stores/notification'
 import { NewsletterCheckDetailPage } from './NewsletterCheckDetailPage'
 
 export function NewsletterCheckPage() {
@@ -16,14 +13,14 @@ export function NewsletterCheckPage() {
   const { id = '' } = useParams<{ id: string }>()
   const queryClient = useQueryClient()
 
-  const [newsletterOpenedGroup, setNewsletterOpenedGroup] = useRecoilState(newsletterOpenedGroupState)
+  const { newsletterOpenedGroup, setNewsletterOpenedGroup } = useNotificationStore()
   const { result, newsletter, studentsCount, unCheckCount, unCheckPerson, totalPerson, selectKlassGroup } =
     useTeacherNewsletterCheck(Number(id))
 
   const handleSelectKlassGroup = (klassGroup: ResponseGroupDto) => {
     newsletterOpenedGroup.includes(klassGroup.name as string)
       ? setNewsletterOpenedGroup(newsletterOpenedGroup.filter((el) => el !== klassGroup.name))
-      : setNewsletterOpenedGroup((prevState) => [...prevState, klassGroup.name as string])
+      : setNewsletterOpenedGroup([...newsletterOpenedGroup, klassGroup.name as string])
 
     selectKlassGroup(klassGroup.id)
     push(`/teacher/newsletter/check/${id}`)

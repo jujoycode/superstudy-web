@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilValue } from 'recoil'
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { Constants } from '@/legacy/constants'
 import { useSessionCommentCreate } from '@/legacy/generated/endpoint'
 import { ActivitySession, StudentActivitySession } from '@/legacy/generated/model'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 import { BottomFixed, Divider, Section } from '../common'
 import { SessionCommentItem } from './SessionCommentItem'
 import { Button } from '../common/Button'
@@ -34,7 +33,7 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
   refetch = () => {},
 }) => {
   const now = new Date()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [text, setText] = useState('')
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)

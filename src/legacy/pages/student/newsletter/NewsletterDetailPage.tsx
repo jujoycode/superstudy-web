@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-
 import {
   BackButton,
   Blank,
@@ -23,20 +21,18 @@ import { useStudentNewsletterDetail } from '@/legacy/container/student-newslette
 import { NewsletterType, RequestUpsertStudentNewsletterDto, Role } from '@/legacy/generated/model'
 import { useSignature } from '@/legacy/hooks/useSignature'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { meState, toastState } from '@/stores'
-
+import { useUserStore } from '@/stores/user'
+import { useNotificationStore } from '@/stores/notification'
 import { NewsletterAddPage } from './NewsletterAddPage'
 
 export function NewsletterDetailPage() {
   let { id } = useParams<{ id: string }>()
   id = id?.split('/')[0]
 
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
+  const { setToast: setToastMsg } = useNotificationStore()
 
   const [nokName, setNokName] = useState('')
-
-  const setToastMsg = useSetRecoilState(toastState)
-
   const [nokPhone, setNokPhone] = useState('')
 
   useEffect(() => {

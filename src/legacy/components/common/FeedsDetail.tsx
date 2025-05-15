@@ -4,18 +4,17 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilValue } from 'recoil'
 
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { Constants } from '@/legacy/constants'
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { childState, meState } from '@/stores'
 
 import { PdfCard } from './PdfCard'
 import { PdfViewer } from './PdfViewer'
 import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
+import { useUserStore } from '@/stores/user'
 
 interface FeedsDetailProps {
   category1?: string
@@ -63,8 +62,8 @@ export function FeedsDetail({
   createAt,
   isPreview = false,
 }: FeedsDetailProps) {
-  const meRecoil = useRecoilValue(meState)
-  const myChild = useRecoilValue(childState)
+  const { me: meRecoil, child: myChild } = useUserStore()
+  const {} = useUserStore()
   const { t } = useLanguage()
 
   const schoolName = meRecoil?.role === Role.PARENT ? myChild?.school.name : meRecoil?.school.name

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import CertificationBadge from '@/legacy/components/blockchain/CertificationBadge'
@@ -13,7 +12,7 @@ import { OutingStatus, Role } from '@/legacy/generated/model'
 import { approveButtonType } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { PermissionUtil, buttonEnableState } from '@/legacy/util/permission'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 import { OutingUpdatePage } from './OutingUpdatePage'
 
@@ -33,7 +32,7 @@ export function OutingDetailPage({
   isLoading: isLoadingProps,
 }: OutingDetailPageProps) {
   const { id } = useParams<{ id: string }>()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [changeMode, setChangeMode] = useState(false)
   const { data, isLoading: isLoadingBlockChain } = useBlockChainDocument({
     referenceTable: 'OUTING',

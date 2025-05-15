@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router'
-import { useSetRecoilState } from 'recoil'
-
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Blank, Section, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -18,7 +16,7 @@ import { extractReactData, getDoc } from '@/legacy/util/pdf'
 import { buttonEnableState } from '@/legacy/util/permission'
 import { getNickName } from '@/legacy/util/status'
 import { makeDateToString, makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
 
 import { FieldtripUpdatePage } from './FieldtripUpdatePage'
 
@@ -36,7 +34,7 @@ export function FieldtripDetailPage({ setOpen, setFieldtripId, setAgreeAll, me }
   const separatePaperRefs = useRef<any[]>([])
   const planRef = useRef(null)
 
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
 
   const [notApprovedReason, setNotApprovedReason] = useState('')
   const [deleteReason, setDeleteReason] = useState('')

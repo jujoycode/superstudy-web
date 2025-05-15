@@ -1,8 +1,6 @@
 import clsx from 'clsx'
 import { useState } from 'react'
 import { useLocation, useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -27,8 +25,8 @@ import { CopykillerTargetTable, ResponseCopykillerResponseDto } from '@/legacy/g
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { usePolling } from '@/legacy/hooks/usePolling'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
-import { meState, schoolPropertiesState } from '@/stores'
-
+import { useUserStore } from '@/stores/user'
+import { useSchoolStore } from '@/stores/school'
 import NODATA from '@/assets/images/no-data.png'
 
 type tabType = 'feedback' | 'evaluation' | 'checklist'
@@ -49,8 +47,8 @@ export const EEEssayPage = () => {
   const klassNum = location.state?.student?.klassNum || ibKlassNum
 
   const { push } = useHistory()
-  const me = useRecoilValue(meState)
-  const schoolProperties = useRecoilValue(schoolPropertiesState)
+  const { me } = useUserStore()
+  const { schoolProperties } = useSchoolStore()
   const [type, setType] = useState<tabType>(_type || 'checklist')
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [alertMessage, setAlertMessage] = useState<string | null>(null)

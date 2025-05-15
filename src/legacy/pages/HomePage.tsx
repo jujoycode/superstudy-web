@@ -55,7 +55,7 @@ export function HomePage() {
                 </button>
               </div>
 
-              <div className="w-full text-center text-gray-600">
+              <div className="mt-4 w-full text-center text-gray-600">
                 <div className="text-white">
                   v{globalEnv.version} build at{' '}
                   {__BUILD_TIME__.split('T')[0] + ' ' + __BUILD_TIME__.split('T')[1].substring(0, 8)}
@@ -63,7 +63,11 @@ export function HomePage() {
                 슈퍼스쿨 <br />
                 Copyright 2022. SUPERSCHOOL all right reserved.
               </div>
-              <Button.lg children={t('get_started')} onClick={() => push('/login')} className="filled-primary" />
+              <Button.lg
+                children={t('get_started')}
+                onClick={() => push('/login')}
+                className="filled-primary mt-4 w-full"
+              />
             </Section>
           </div>
         </BottomFixed>

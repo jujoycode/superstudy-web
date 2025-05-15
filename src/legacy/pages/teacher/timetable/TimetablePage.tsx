@@ -1,12 +1,11 @@
 import clsx from 'clsx'
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import { BackButton, Blank, Divider, TopNavbar } from '@/legacy/components/common'
 import { useSchoolsFindOne } from '@/legacy/generated/endpoint'
 import { Course, ResponseTimetableV3Dto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 import { TimetableAttendancePage } from './TimetableAttendancePage'
 import { TimetableCoursePage } from './TimetableCoursePage'
 import { TimetableCoursesPage } from './TimetableCoursesPage'
@@ -15,7 +14,7 @@ import { TimetableDetailPage } from './TimetableDetailPage'
 export function TimetablePage() {
   const { goBack } = useHistory()
   const { t } = useLanguage()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [blankOpen, setBlankOpen] = useState(false)
   const [lectureInfo, setLectureInfo] = useState<ResponseTimetableV3Dto>()
   const [isKlass, setIsKlass] = useState(false)

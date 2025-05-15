@@ -1,6 +1,5 @@
 import { addYears, format } from 'date-fns'
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useFieldtripsCreate, useFieldtripsUpdate, useSchedulesFindRejectSchedule } from '@/legacy/generated/endpoint'
 import { Fieldtrip, FieldtripType, Role, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
@@ -8,9 +7,9 @@ import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { errorType } from '@/legacy/types'
 import { ImageObject } from '@/legacy/types/image-object'
 import { usePrevious } from '@/legacy/util/hooks'
-import { childState } from '@/stores'
 import { useSchoolWording } from './school-wording'
 import { UserContainer } from './user'
+import { useUserStore } from '@/stores/user'
 
 type Props<T> = {
   startAt: Date | null
@@ -46,7 +45,7 @@ export function useStudentFieldtripAddSuburbs<T extends { [key: string]: string 
 }: Props<T>) {
   const matchParamsType = params?.type
   const { me } = UserContainer.useContext()
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
   // Form State
   const [success, setSuccess] = useState<number>()
   const [content, setContent] = useState(fieldtripData?.content || '')

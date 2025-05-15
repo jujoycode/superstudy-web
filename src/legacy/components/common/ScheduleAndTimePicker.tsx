@@ -1,8 +1,5 @@
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-
-import 'tailwindcss/index.css'
-
 import { ButtonV2 } from './ButtonV2'
 import { LayeredTabs, Tab } from './LayeredTabs'
 import SelectBar from './SelectBar'
@@ -156,7 +153,7 @@ const ScheduleAndTimePicker: React.FC<ScheduleAndTimePickerProps> = ({ initialDe
   const weekdays = ['일', '월', '화', '수', '목', '금', '토']
 
   return (
-    <div className="border-primary-gray-200 text-13 flex w-[280px] flex-col items-center gap-4 rounded-lg border bg-white py-4 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]">
+    <div className="flex w-[280px] flex-col items-center gap-4 rounded-lg border border-primary-gray-200 bg-white py-4 text-13 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]">
       {/* 달력 */}
       <div className="flex w-[248px] flex-col items-center gap-2">
         <div className="flex w-full items-center justify-around gap-1">
@@ -192,9 +189,9 @@ const ScheduleAndTimePicker: React.FC<ScheduleAndTimePickerProps> = ({ initialDe
             <div key={calendarDate.toISOString()} className={`relative flex items-center justify-center`}>
               <Typography
                 variant="body3"
-                className={`z-10 flex h-8 w-8 cursor-pointer items-center justify-center font-medium ${isCurrentMonth ? 'text-primary-gray-900' : 'text-primary-gray-400'} ${isSameDay(calendarDate, new Date()) ? 'border-primary-orange-400 rounded-full border' : ''} ${
+                className={`z-10 flex h-8 w-8 cursor-pointer items-center justify-center font-medium ${isCurrentMonth ? 'text-primary-gray-900' : 'text-primary-gray-400'} ${isSameDay(calendarDate, new Date()) ? 'rounded-full border border-primary-orange-400' : ''} ${
                   localDeadline && isSameDay(calendarDate, localDeadline)
-                    ? 'bg-primary-orange-800 rounded-full text-white'
+                    ? 'rounded-full bg-primary-orange-800 text-white'
                     : ''
                 }`}
                 onClick={() => handleDateSelect(calendarDate)}
@@ -220,7 +217,7 @@ const ScheduleAndTimePicker: React.FC<ScheduleAndTimePickerProps> = ({ initialDe
             containerWidth="w-[58px]"
             dropdownWidth="w-[100px]"
           />
-          <Typography variant="body2" className="text-primary-gray-700 font-medium">
+          <Typography variant="body2" className="font-medium text-primary-gray-700">
             :
           </Typography>
           <SelectBar

@@ -1,8 +1,6 @@
 import clsx from 'clsx'
 import { t } from 'i18next'
 import { useEffect, useState } from 'react'
-import { SetterOrUpdater } from 'recoil'
-
 import { BackButton, Blank, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
@@ -13,7 +11,7 @@ import { Validator } from '@/legacy/util/validator'
 
 interface MyInfoUpdatePageProps {
   me: ResponseUserDto
-  setIsUpdateMe: SetterOrUpdater<boolean>
+  setIsUpdateMe: (isUpdate: boolean) => void
 }
 
 export function MyInfoUpdatePage({ me, setIsUpdateMe }: MyInfoUpdatePageProps) {

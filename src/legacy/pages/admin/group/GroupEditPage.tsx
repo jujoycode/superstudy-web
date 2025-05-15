@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useParams } from 'react-router'
-import { useSetRecoilState } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import { Label } from '@/legacy/components/common'
@@ -14,13 +13,13 @@ import { RequestCreateGroupOnlyDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
 
 export function GroupEditPage() {
   const { push } = useHistory()
   const { id: idString } = useParams<{ id: string }>()
   const id = Number(idString)
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const { year } = useContext(AdminContext)
   const { t } = useLanguage()
 

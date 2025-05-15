@@ -1,29 +1,25 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { QueryClientProvider } from 'react-query'
-import { RecoilRoot } from 'recoil'
-
-import { GroupContainer } from '@/legacy/container/group'
-import { UserContainer } from '@/legacy/container/user'
 import { queryClient } from '@/legacy/lib/query'
+import { QueryClientProvider } from 'react-query'
+import { UserContainer } from '@/legacy/container/user'
+import { GroupContainer } from '@/legacy/container/group'
+import './legacy/util/i18n'
 
 import { App } from './App'
-import './recoil-patch'
 
-import 'swiper/css'
-import './legacy/styles/CalendarPage.css'
-import './legacy/util/i18n'
+import './index.css'
+// import './calendar.css'
+// import 'swiper/swiper.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RecoilRoot>
-      <QueryClientProvider client={queryClient}>
-        <UserContainer.ContextProvider>
-          <GroupContainer.ContextProvider>
-            <App />
-          </GroupContainer.ContextProvider>
-        </UserContainer.ContextProvider>
-      </QueryClientProvider>
-    </RecoilRoot>
+    <QueryClientProvider client={queryClient}>
+      <UserContainer.ContextProvider>
+        <GroupContainer.ContextProvider>
+          <App />
+        </GroupContainer.ContextProvider>
+      </UserContainer.ContextProvider>
+    </QueryClientProvider>
   </StrictMode>,
 )

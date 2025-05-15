@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import {
   useSchoolPropertyGetProperties,
   useUserLogin,
@@ -13,36 +12,19 @@ import { RN } from '@/legacy/lib/rn'
 import { errorType } from '@/legacy/types'
 import { useLogout } from '@/legacy/util/hooks'
 import { isEmail } from '@/legacy/util/validator'
-import {
-  childState,
-  isStayLoggedInState,
-  meState,
-  refreshTokenState,
-  schoolPropertiesState,
-  tokenState,
-  twoFactorState,
-} from '@/stores'
+import { useUserStore } from '@/stores/user'
+import { useAuthStore } from '@/stores/auth'
+import { useSchoolStore } from '@/stores/school'
 import { createContainer } from './createContainer'
-import { useAuthStore } from '@/stores2/auth'
-import { useSchoolStore } from '@/stores2/school'
-import { useUserStore } from '@/stores2/user'
 
 export function userHook() {
   const logout = useLogout()
-  // const [me, setMe] = useRecoilState(meState);
-  // const isStayLoggedIn = useRecoilValue(isStayLoggedInState);
-  const { isStayLoggedIn, setRefreshToken, token, setToken, setTwoFactor: setTwoFactorState } = useAuthStore()
-  const { profile: me, setProfile: setMe, setChild } = useUserStore()
-  const { schoolProperties, setSchoolProperties } = useSchoolStore()
   const { setStorage, getStorage } = useBrowserStorage()
-
-  // const setChild = useSetRecoilState(childState);
-  // const [token, setToken] = useRecoilState(tokenState);
-  // const [refreshToken, setRefreshToken] = useRecoilState(refreshTokenState);
-  // const setTwoFactorState = useSetRecoilState(twoFactorState);
+  const { me, setMe, setChild } = useUserStore()
+  const { token, isStayLoggedIn, setToken, setRefreshToken, setTwoFactor: setTwoFactorState } = useAuthStore()
+  const { schoolProperties, setSchoolProperties } = useSchoolStore()
   const [errorMessage, setErrorMessage] = useState<string>()
   const [errorCode, setErrorCode] = useState('')
-  // const [schoolProperties, setSchoolProperties] = useRecoilState(schoolPropertiesState);
 
   // 로그인 시 자동로그인 체크하지 않으면 30분 후 자동 로그아웃
   useLogoutOnIdle(logout, isStayLoggedIn, 30)

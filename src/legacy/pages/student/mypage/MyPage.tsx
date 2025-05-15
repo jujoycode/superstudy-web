@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Barcode from 'react-barcode'
 import { Link } from 'react-router'
-import { useRecoilValue } from 'recoil'
+
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { ReactComponent as RightArrow } from '@/assets/svg/mypage-right-arrow.svg'
@@ -15,12 +15,12 @@ import { useParentGetChildrenInfo } from '@/legacy/container/parent-get-children
 import { ResponseUserDto, Role, ScoreUse } from '@/legacy/generated/model'
 import { globalEnv } from '@/legacy/util/global-env'
 import { useLogout } from '@/legacy/util/hooks'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export function MyPage() {
   const logout = useLogout()
 
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
   const { childrenInfoList, refetch, deleteChild } = useParentGetChildrenInfo()
   const localChildId = +(localStorage.getItem('child-user-id') || '0')
   const history = useHistory()

@@ -1,8 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useParams } from 'react-router-dom'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -23,17 +21,17 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getErrorMsg } from '@/legacy/util/status'
-import { meState, toastState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 
 export function TeacherEditPage() {
-  const me = useRecoilValue(meState)
+  const { setToast: setToastMsg } = useNotificationStore()
+  const { me } = useUserStore()
   const { t } = useLanguage()
   const { goBack } = useHistory()
   const { id: idString } = useParams<{ id: string }>()
   const id = Number(idString)
   const { year } = useContext(AdminContext)
-
-  const setToastMsg = useSetRecoilState(toastState)
 
   const {
     formState: { errors, isValid },

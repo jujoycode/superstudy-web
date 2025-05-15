@@ -1,7 +1,5 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
@@ -22,8 +20,7 @@ import { useRPPFUpdateRPPFStatusReject } from '@/legacy/generated/endpoint'
 import { FeedbackReferenceTable, ResponseIBDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { LocationState } from '@/legacy/types/ib'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores/user'
 interface RppfListProps {
   id: number
   data: ResponseIBDto
@@ -33,7 +30,7 @@ interface RppfListProps {
 
 export const RPPFList = ({ id, data: proposalData, studentData }: RppfListProps) => {
   const { push } = useHistory()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const permission = usePermission(proposalData?.mentor ?? null, me?.id ?? 0)
   const hasPermission = permission[0] === 'mentor' || permission[1] === 'IB_EE'

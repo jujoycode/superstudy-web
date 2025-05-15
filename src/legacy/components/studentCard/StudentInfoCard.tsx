@@ -132,7 +132,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                             loading="lazy"
                             onError={({ currentTarget }) => {
                               currentTarget.onerror = null // prevents looping
-                              currentTarget.src = SvgUser
+                              currentTarget.src = SvgUser as unknown as string
                               currentTarget.className = 'w-full'
                             }}
                           />
@@ -158,7 +158,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   loading="lazy"
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null // prevents looping
-                    currentTarget.src = SvgUser
+                    currentTarget.src = SvgUser as unknown as string
                     currentTarget.className = 'w-full'
                   }}
                 />

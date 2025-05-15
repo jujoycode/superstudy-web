@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import moment from 'moment'
 import { useState } from 'react'
 import { Link, Route, Routes, useLocation, useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
+
 import { twMerge } from 'tailwind-merge'
 
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -28,7 +28,7 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBProposalUpdateWaitPlan } from '@/legacy/container/ib-proposal-sent'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateUtil } from '@/legacy/util/date'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export type CASProject = 'ACTIVITY_PLAN' | 'ACTIVITY_LOG'
 
@@ -38,7 +38,7 @@ export const CASMainPage = () => {
   const { id: idParams } = useParams<{ id: string }>()
   const { pathname } = useLocation()
   const id = Number(idParams)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { data, isLoading, refetch } = useIBGetById(id)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false)

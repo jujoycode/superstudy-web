@@ -1,17 +1,17 @@
 import { format } from 'date-fns'
 import { useLocation } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
+
 import { Button } from '@/legacy/components/common/Button'
 import {
   useStudentActivityV3DownloadRecordSummary,
   useStudentRecordontrollerDownloadRecordSummary,
 } from '@/legacy/generated/endpoint'
 import { downloadExcel } from '@/legacy/util/download-excel'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export const ActivityV3DownloadPage = () => {
   const { pathname } = useLocation()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const groupIdMatch = pathname.match(/\/teacher\/studentcard\/(\d+)/)
   const groupId = groupIdMatch ? groupIdMatch[1] : me?.klassGroupId || 0
 

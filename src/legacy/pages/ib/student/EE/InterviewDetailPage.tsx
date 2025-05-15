@@ -2,7 +2,6 @@ import { format } from 'date-fns'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLocation, useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -17,7 +16,7 @@ import IBLayout from '@/legacy/components/ib/IBLayout'
 import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBInterviewUpdate, useInterviewQNA } from '@/legacy/container/ib-student-interview'
 import { RequestCreateQnaDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 interface LocationState {
   title: string
@@ -28,7 +27,7 @@ export default function InterviewDetailPage() {
   const location = useLocation()
   const title = location.state?.title as LocationState['title']
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { id: idParam, qnaId: qnaIdParam } = useParams<{ id: string; qnaId: string }>()
   const { data: ibData } = useIBGetById(Number(idParam))
   const id = Number(idParam)

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useLocation, useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -24,7 +23,7 @@ import { useIBProposalSentAll, useIBProposalUpdateWaitPlan } from '@/legacy/cont
 import { useRPPFGetByIBIdFindAll } from '@/legacy/container/ib-rppf-findAll'
 import { ResponseRPPFDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export type EEProject = 'PROPOSAL' | 'ESSAY' | 'RPPF' | 'RRS'
 export type LocationState = {
@@ -32,7 +31,7 @@ export type LocationState = {
 }
 
 export const EEMainPage = () => {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { t } = useLanguage()
   const { id: idParams } = useParams<{ id: string }>()
   const location = useLocation()

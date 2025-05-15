@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useLocation, useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -23,13 +22,13 @@ import { ResponseIBDtoStatus } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import type { EEProject } from '@/legacy/pages/ib/student/EE/EEMainPage'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export const EEMainPage = () => {
   const { id } = useParams<{ id: string }>()
   const { t } = useLanguage()
   const location = useLocation()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { data, klassNum, refetch, isLoading } = useIBGetById(Number(id))
   const [filter, setFilter] = useState<EEProject>(location.state?.type || 'PROPOSAL')
   const [alertMessage, setAlertMessage] = useState<string | null>(null)

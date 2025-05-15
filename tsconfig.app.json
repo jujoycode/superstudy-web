@@ -36,11 +36,10 @@
       "@/pages/*": ["src/components/pages/*"],
       "@/layouts/*": ["src/components/layouts/*"],
       "@/hooks/*": ["src/hooks/*"],
-      "@/stores": ["src/store.ts"],
-      "@/stores2/*": ["src/stores/*"],
+      "@/stores/*": ["src/stores/*"],
       "@/routers": ["src/routers/index.tsx"]
     }
   },
-  "include": ["src", "src/types/svg.d.ts"],
+  "include": ["src", "src/types/svg.d.ts", ".storybook"],
   "exclude": ["node_modules", "src/legacy/container"]
 }

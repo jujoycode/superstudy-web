@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
 import readXlsxFile from 'read-excel-file'
-import { useSetRecoilState } from 'recoil'
 
 import { Blank } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -9,7 +8,7 @@ import { teacherManagementBulkCreateTeacher, teacherManagementRequestSignUp } fr
 import { RequestCreateTeacherDto, RequestCreateUserBulkDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
-import { toastState, warningState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
 
 export function TeacherBatchPage() {
   const { year } = useContext(AdminContext)
@@ -19,8 +18,7 @@ export function TeacherBatchPage() {
   const [duplicateEmails, setDuplicateEmails] = useState<Record<string, number>>({})
   const { t } = useLanguage()
 
-  const setToastMsg = useSetRecoilState(toastState)
-  const setWarningMsg = useSetRecoilState(warningState)
+  const { setToast: setToastMsg, setWarning: setWarningMsg } = useNotificationStore()
 
   useEffect(() => {
     const now = new Date()

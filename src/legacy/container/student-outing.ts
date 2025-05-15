@@ -1,11 +1,10 @@
-import { useRecoilValue } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import { useOutingsFindAllByStudent } from '@/legacy/generated/endpoint'
-import { childState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentOuting() {
-  const child = useRecoilValue(childState)
   const { push } = useHistory()
+  const { child } = useUserStore()
   const { data, error, isLoading } = useOutingsFindAllByStudent({
     query: {
       onError: ({ message }) => {

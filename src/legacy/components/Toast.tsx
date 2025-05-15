@@ -1,7 +1,5 @@
 import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
-
-import { toastState, warningState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
 
 /**
  * Toast
@@ -12,8 +10,12 @@ import { toastState, warningState } from '@/stores'
  * setToastMsg("토스트 표시할 메시지");
  */
 export function Toast() {
-  const [toastMsg, setToastMsg] = useRecoilState(toastState)
-  const [warningMsg, setWarningMsg] = useRecoilState(warningState)
+  const {
+    toast: toastMsg,
+    setToast: setToastMsg,
+    warning: warningMsg,
+    setWarning: setWarningMsg,
+  } = useNotificationStore()
 
   useEffect(() => {
     const timer = setTimeout(

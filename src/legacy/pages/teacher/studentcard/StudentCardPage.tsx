@@ -1,7 +1,7 @@
 import { chain, filter, some, uniqBy } from 'lodash'
 import { useEffect, useMemo, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router'
-import { useRecoilValue } from 'recoil'
+
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Select, TopNavbar } from '@/legacy/components/common'
@@ -14,7 +14,7 @@ import { useGroupsFindLectureGroupsByTeacher } from '@/legacy/generated/endpoint
 import { Group, GroupType, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName } from '@/legacy/util/status'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 import { StudentCardDetailPage } from './StudentCardDetailPage'
 
 const GroupTypes: { id: number; type: '' | GroupType | 'LECTURE'; name: string }[] = [
@@ -44,7 +44,7 @@ export function StudentCardPage() {
   const { pathname } = useLocation()
   const { push, replace } = useHistory()
   const { t } = useLanguage()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   // Get path param
   const groupIdMatch = pathname.match(/\/teacher\/studentcard\/(\d+)/)

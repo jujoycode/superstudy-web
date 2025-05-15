@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { HTMLAttributes, forwardRef } from 'react'
+import { HTMLAttributes, createElement, forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export interface TypographyProps extends HTMLAttributes<HTMLElement> {
@@ -29,11 +29,10 @@ const styles = {
   caption3: 'text-[#121316] text-[11px] leading-[14px] font-medium',
 }
 
-export const Typography = forwardRef<HTMLElement, TypographyProps>(function Typography({
-  className,
-  variant,
-  ...props
-}) {
+export const Typography = forwardRef<HTMLElement, TypographyProps>(function Typography(
+  { className, variant, ...props },
+  ref,
+) {
   const Component =
     variant === 'heading'
       ? 'h1'
@@ -49,5 +48,5 @@ export const Typography = forwardRef<HTMLElement, TypographyProps>(function Typo
 
   const combinedClassName = twMerge(clsx(styles[variant], 'whitespace-pre-wrap', className))
 
-  return <Component className={combinedClassName} {...props} />
+  return createElement(Component, { ref, className: combinedClassName, ...props })
 })

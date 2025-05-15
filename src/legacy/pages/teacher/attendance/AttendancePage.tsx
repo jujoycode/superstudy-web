@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { Row } from 'read-excel-file'
-import { useRecoilState, useRecoilValue } from 'recoil'
-
 import { SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Chip, Divider, Section, Select, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -19,7 +17,9 @@ import { AbsentSave, PeriodSubjectTeacher } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName } from '@/legacy/util/status'
 import { getDayOfSemester, getDayOfYear, toLocaleDateFormatString, weekCount } from '@/legacy/util/time'
-import { languageState, meState, toastState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
+import { useLanguageStore } from '@/stores/language'
 
 type TimeTableInfo = {
   studentId: string
@@ -203,13 +203,12 @@ const setCommentColor = (last1: Row, last2: Row) => {
 export function AttendancePage() {
   const { t } = useLanguage()
   const { pushModal } = useModals()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const lastPeriod = me?.school.lastPeriod || 8
   const hasSaturdayClass = me?.school.hasSaturdayClass || false
 
-  const language = useRecoilValue(languageState)
-
-  const [, setToastMsg] = useRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
+  const { currentLanguage: language } = useLanguageStore()
 
   const [modalOpen, setModalOpen] = useState(false)
   const [absentComment, setAbsentComment] = useState('')

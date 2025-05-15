@@ -1,7 +1,5 @@
 import { PropsWithChildren, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRecoilValue } from 'recoil'
-
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import SelectBar from '@/legacy/components/common/SelectBar'
@@ -12,8 +10,7 @@ import { useExhibitionCreate } from '@/legacy/container/ib-tok-exhibition'
 import { RequestExhibitionDto, UploadFileTypeEnum } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores/user'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { ImageCard } from '../ImageCard'
 
@@ -34,7 +31,7 @@ export function IbExhibition({
   onSuccess,
   ablePropragation = false,
 }: PropsWithChildren<IbExhibitionProps>) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [wordCounts, setWordCounts] = useState<{ [key: string]: number }>({
     target1: 0,
     target2: 0,

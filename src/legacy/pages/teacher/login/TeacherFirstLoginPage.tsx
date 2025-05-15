@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import { Blank, Label, PhoneNumberField, Section } from '@/legacy/components/common'
@@ -12,12 +11,12 @@ import { GroupContainer } from '@/legacy/container/group'
 import { useTeacherFirstLogin } from '@/legacy/container/teacher-first-login'
 import { ResponseGroupDto } from '@/legacy/generated/model'
 import { Validator } from '@/legacy/util/validator'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export function TeacherFirstLoginPage() {
   const { push } = useHistory()
   const { pathname } = useLocation()
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
 
   const { teacherKlassGroups } = GroupContainer.useContext()
   const { isLoading, handleTeacherFirstLogin } = useTeacherFirstLogin()

@@ -1,7 +1,6 @@
 import { sumBy } from 'lodash'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
-import { useSetRecoilState } from 'recoil'
 
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
@@ -10,13 +9,13 @@ import { Pagination } from '@/legacy/components/common/Pagination'
 import { Routes } from '@/legacy/constants/routes'
 import { adminPointDelete, useAdminPointGet } from '@/legacy/generated/endpoint'
 import { useSearch } from '@/legacy/lib/router'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
 
 export function PointPage() {
   const { t } = useTranslation()
   const { t: ta } = useTranslation('admin', { keyPrefix: 'point_page' })
   const { page, size } = useSearch({ page: 1, size: 25 })
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
 
   const { data: points } = useAdminPointGet({ page, size })
 

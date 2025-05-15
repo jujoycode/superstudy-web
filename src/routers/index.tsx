@@ -117,6 +117,9 @@ import { PrivacyPolicy } from '@/legacy/pages/student/PrivacyPolicy'
 import { SelfTestPage } from '@/legacy/pages/student/self-test/SelfTestPage'
 import { TermsOfUse } from '@/legacy/pages/student/TermsOfUse'
 import { TimetableDetailPage } from '@/legacy/pages/student/timetable/TimetableDetailPage'
+// import { StudentMainPage } from '@/legacy/pages/student';
+// import { TeacherMainPage } from '@/legacy/pages/teacher/TeacherMainPage';
+// import { AdminMainPage } from '@/legacy/pages/admin/AdminMainPage';
 import AbsentComparisonPage from '@/legacy/pages/teacher/absent/AbsentComparisonPage'
 import { TeacherApplyPage } from '@/legacy/pages/teacher/absent/TeacherApplyPage'
 import { ActivityV3AddPage } from '@/legacy/pages/teacher/activityv3/ActivityV3AddPage'
@@ -153,7 +156,7 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/two-factor',
-    element: <AuthGuard path="/two-factor" component={TwoFactor} />,
+    element: <AuthGuard component={TwoFactor} />,
   },
   {
     path: '/terms-of-use',
@@ -631,7 +634,7 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/add-child/:uuid',
-    element: <AuthGuard path="/add-child/:uuid" component={AddChildrenPage} />,
+    element: <AuthGuard component={AddChildrenPage} />,
   },
   {
     path: '/parent-signup',
@@ -643,15 +646,15 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/login',
-    element: <AuthGuard path="/login" guestOnly={true} component={LoginV2} />,
+    element: <AuthGuard guestOnly={true} component={LoginV2} />,
   },
   {
     path: '/select-school',
-    element: <AuthGuard path="/select-school" guestOnly={true} component={SelectSchool} />,
+    element: <AuthGuard guestOnly={true} component={SelectSchool} />,
   },
   {
     path: '/signup',
-    element: <AuthGuard path="/signup" guestOnly={true} component={Signup} />,
+    element: <AuthGuard guestOnly={true} component={Signup} />,
   },
 ]
 

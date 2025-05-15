@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useUserGetAllTeachers } from '@/legacy/generated/endpoint'
 import { ResponseGroupDto, ResponseTeachersDto, Role } from '@/legacy/generated/model'
 import { UserDatas } from '@/legacy/types'
-import { childState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentChatUserList() {
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
   const [selectedGroup, setSelectedGroup] = useState<ResponseGroupDto | null>(null)
   const [selectedUserDatas, setSelectedUserDatas] = useState<UserDatas[]>([]) // 0 학생, 1 보호자, 2 선생님
   const [teacherList, setTeacherList] = useState<ResponseTeachersDto[]>([])

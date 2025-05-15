@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRecoilValue } from 'recoil'
 import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -29,8 +28,7 @@ import {
 } from '@/legacy/generated/model'
 import { useHandleGoBack } from '@/legacy/hooks/useHandleGoBack'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores/user'
 import { Feedback } from '../Feedback'
 import { InputField } from '../InputField'
 
@@ -41,7 +39,7 @@ interface ActivityPlanProps {
 }
 
 function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const handleGoBack = useHandleGoBack('/ib/student')
   const [editMode, setEditMode] = useState<boolean>(false)
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false)

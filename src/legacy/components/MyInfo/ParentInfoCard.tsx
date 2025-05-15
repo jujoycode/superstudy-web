@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
@@ -12,7 +11,7 @@ import type { ResponseUserDto, UpdateUserDto } from '@/legacy/generated/model'
 import { queryClient } from '@/legacy/lib/query'
 import type { errorType } from '@/legacy/types'
 import { Validator } from '@/legacy/util/validator'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 interface ParentInfoCardProps {
   isNotParent: boolean
@@ -32,7 +31,7 @@ export function ParentInfoCard({ me, isNotParent }: ParentInfoCardProps) {
   const [addBtnParent, setAddBtnParent] = useState(false)
   const { handleParentMyInfoUpdate } = useStudentParentMyInfoUpdate()
 
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
 
   const handleSubmit = (nokName: string, nokPhone: string) => {
     if (isNotParent) {

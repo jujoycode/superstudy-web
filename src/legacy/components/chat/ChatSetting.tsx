@@ -1,8 +1,7 @@
 import clsx from 'clsx'
 import { useState, useEffect, type ChangeEvent } from 'react'
-import { useRecoilValue } from 'recoil'
-
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
+import { useUserStore } from '@/stores/user'
 import { CloseButton, Label, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
@@ -21,7 +20,6 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { getRoleTitle } from '@/legacy/util/permission'
 import { getNickName } from '@/legacy/util/status'
 import { getHoursfromHHmmString, getMinutesfromHHmmString, makeHHmmString } from '@/legacy/util/time'
-import { meState } from '@/stores'
 
 enum contentType {
   setting = 1,
@@ -53,10 +51,8 @@ export function ChatSetting({
   searchUserList,
   info,
 }: ChatSettingProps) {
-  const me = useRecoilValue(meState)
-
+  const { me } = useUserStore()
   const [isStudentView] = useState(me?.role === Role.USER || me?.role === Role.PARENT)
-
   const { handleUploadFile } = useFileUpload()
 
   const [selContent, setSelContent] = useState(contentType.setting)
@@ -189,7 +185,7 @@ export function ChatSetting({
                           loading="lazy"
                           onError={({ currentTarget }) => {
                             currentTarget.onerror = null // prevents looping
-                            currentTarget.src = SvgUser
+                            currentTarget.src = SvgUser as unknown as string
                             currentTarget.className = 'w-full'
                           }}
                         />
@@ -211,7 +207,7 @@ export function ChatSetting({
                   loading="lazy"
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null // prevents looping
-                    currentTarget.src = SvgUser
+                    currentTarget.src = SvgUser as unknown as string
                     currentTarget.className = 'w-full'
                   }}
                 />
@@ -359,7 +355,7 @@ export function ChatSetting({
                               alt=""
                               onError={({ currentTarget }) => {
                                 currentTarget.onerror = null // prevents looping
-                                currentTarget.src = SvgUser
+                                currentTarget.src = SvgUser as unknown as string
                                 //currentTarget.className = 'w-full ';
                               }}
                             />
@@ -424,7 +420,7 @@ export function ChatSetting({
                             alt=""
                             onError={({ currentTarget }) => {
                               currentTarget.onerror = null // prevents looping
-                              currentTarget.src = SvgUser
+                              currentTarget.src = SvgUser as unknown as string
                               //currentTarget.className = 'w-full ';
                             }}
                           />

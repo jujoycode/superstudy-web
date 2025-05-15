@@ -1,10 +1,9 @@
-import { useRecoilValue } from 'recoil'
 import { OutingStatus, OutingTypeEnum, OutingUse, ResponseCreateOutingDto, Role } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName, getPeriodStrEx } from '@/legacy/util/status'
 import { makeDateToString, makeDateToStringByFormat } from '@/legacy/util/time'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 import { Button } from '../common/Button'
 
 interface OutingCardProps {
@@ -13,7 +12,7 @@ interface OutingCardProps {
 }
 
 export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const startAt = DateUtil.formatDate(outing?.startAt || '', DateFormat['YYYY-MM-DD HH:mm'])
   const endAt = DateUtil.formatDate(outing?.endAt || '', DateFormat['YYYY-MM-DD HH:mm'])

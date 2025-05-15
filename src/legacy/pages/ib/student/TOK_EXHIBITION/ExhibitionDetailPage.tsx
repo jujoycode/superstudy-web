@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import { useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -28,7 +27,7 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { handleSingleBlobDownload } from '@/legacy/util/download-blob'
 import { createTokExhibitionPdf } from '@/legacy/util/ib/tok-exhibition-pdf'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 const urlDecorator = (decoratedHref: string, decoratedText: string, key: number) => (
   <a href={decoratedHref} key={key} target="_blank" rel="noopener noreferrer" className="underline">
@@ -44,7 +43,7 @@ export const ExhibitionDetailPage = () => {
   const [editMode, setEditMode] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const { data: IBData, klassNum, isLoading: isIBLoading } = useIBGetById(id)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { data, isLoading, refetch } = useexhibitionGetByIBId(id)
 
   const [wordCounts, setWordCounts] = useState<{ [key: string]: number }>({

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useLocation, useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -24,7 +23,7 @@ import {
 } from '@/legacy/container/ib-tok-exhibition'
 import { ResponseExhibitionDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export type TOKProject = 'EXHIBITION' | 'EXHIBITION_PLAN'
 export type LocationState = {
@@ -34,7 +33,7 @@ export type LocationState = {
 export const ExhibitionMainPage = () => {
   const { t } = useLanguage()
   const { id: idParams } = useParams<{ id: string }>()
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const location = useLocation()
   const initialType = location.state?.type as LocationState['type']
   const id = Number(idParams)

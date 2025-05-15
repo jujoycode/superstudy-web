@@ -3,7 +3,6 @@ import { uniqBy } from 'lodash'
 import { useEffect, useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
 import { useLocation } from 'react-router-dom'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
 import * as XLSX from 'xlsx'
 import { ReactComponent as Close } from '@/assets/svg/close.svg'
 import { useHistory } from '@/hooks/useHistory'
@@ -24,7 +23,8 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { MenuType, UserDatas } from '@/legacy/types'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { Validator } from '@/legacy/util/validator'
-import { meState, toastState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 
 import { ChatDetailPage } from './ChatDetailPage'
 import { ChatSMSPage } from './ChatSMSPage'
@@ -34,7 +34,7 @@ const headers = ['id', '이름', '전화번호', '문구1', '문구2', '문구3'
 export function ChatListPage() {
   const { push } = useHistory()
 
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
 
   const pathname = useLocation().pathname
   const [chatRoomId, setChatRoomId] = useState('')
@@ -43,7 +43,7 @@ export function ChatListPage() {
   const [loading, setLoading] = useState(false)
   const [isDragIn, setDragIn] = useState(false)
 
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
 
   const [selectedMenu, setSelectedMenu] = useState<MenuType>(MenuType.List)
   const [_studentName, set_studentName] = useState('')

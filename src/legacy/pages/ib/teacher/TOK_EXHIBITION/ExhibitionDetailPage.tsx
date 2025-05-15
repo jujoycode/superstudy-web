@@ -3,8 +3,6 @@ import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -41,7 +39,8 @@ import { usePolling } from '@/legacy/hooks/usePolling'
 import { useSignedUrl } from '@/legacy/lib/query'
 import { handleSingleBlobDownload } from '@/legacy/util/download-blob'
 import { createTokExhibitionPdf } from '@/legacy/util/ib/tok-exhibition-pdf'
-import { meState, schoolPropertiesState } from '@/stores'
+import { useSchoolStore } from '@/stores/school'
+import { useUserStore } from '@/stores/user'
 
 type tabType = 'feedback' | 'evaluation'
 
@@ -57,14 +56,13 @@ export const ExhibitionDetailPage = () => {
   const { ibId: idParam, exhibitionId: exhibitionIdParam } = useParams<{ ibId: string; exhibitionId: string }>()
   const id = Number(idParam)
   const exhibitionId = Number(exhibitionIdParam)
-
-  const [editMode, setEditMode] = useState<boolean>(false)
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [rejectExhibitionConfirmModalOpen, setRejectExhibitionConfirmModalOpen] = useState<boolean>(false)
-  const [type, setType] = useState<tabType>('feedback')
-  const me = useRecoilValue(meState)
-  const schoolProperties = useRecoilValue(schoolPropertiesState)
+  const { me } = useUserStore()
+  const { schoolProperties } = useSchoolStore()
   const { data } = useexhibitionGetByIBId(id)
+  const [type, setType] = useState<tabType>('feedback')
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [editMode, setEditMode] = useState<boolean>(false)
+  const [rejectExhibitionConfirmModalOpen, setRejectExhibitionConfirmModalOpen] = useState<boolean>(false)
 
   // 표절 검사 활성화 여부
   const enabledPlagiarismInspect = !!schoolProperties?.find((property) => property.key === 'COPYKILLER_LICENSE_KEY')

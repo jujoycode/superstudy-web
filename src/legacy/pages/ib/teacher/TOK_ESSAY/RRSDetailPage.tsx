@@ -5,7 +5,6 @@ import Linkify from 'react-linkify'
 import { useLocation, useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -20,7 +19,7 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useRRSGetById } from '@/legacy/container/ib-rrs-findId'
 import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 const urlDecorator = (decoratedHref: string, decoratedText: string, key: number) => (
   <a href={decoratedHref} key={key} target="_blank" rel="noopener noreferrer" className="underline">
@@ -36,7 +35,7 @@ export default function RRSDetailPage() {
   const id = Number(idParam)
   const rrsId = Number(rrsIdParam)
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { data: rrs } = useRRSGetById(id, rrsId)
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)

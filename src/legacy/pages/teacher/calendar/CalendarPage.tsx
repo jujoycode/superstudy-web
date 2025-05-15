@@ -1,9 +1,9 @@
-//@ts-ignore
-// import Calendar from '@toast-ui/react-calendar'
+import { EventClickArg } from '@fullcalendar/core/index.js'
+import { addMonths, endOfMonth, format, startOfMonth, subMonths } from 'date-fns'
 import { t } from 'i18next'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
-import { useRecoilValue } from 'recoil'
+import { Calendar, type CalendarData } from '@/atoms/Calendar'
 import { ErrorBlank } from '@/legacy/components'
 import { CustomTuiModal } from '@/legacy/components/calendar/CustomTuiModal'
 import { LnbCalendarsItem } from '@/legacy/components/calendar/LnbCalendarsItem'
@@ -13,227 +13,42 @@ import { Guide, useCoachMark } from '@/legacy/components/common/CoachMark'
 import { Icon } from '@/legacy/components/common/icons'
 import { useTeacherCalendarDetail } from '@/legacy/container/teacher-calendar-detail'
 import { useTeacherChatUserList } from '@/legacy/container/teacher-chat-user-list'
-import { CalendarIdEnum, Role } from '@/legacy/generated/model'
+import { CalendarIdEnum, Role, ScheduleCategoryEnum } from '@/legacy/generated/model'
 import { MenuType } from '@/legacy/types'
-import { DayAfter, DayAgo, makeDateToString } from '@/legacy/util/time'
-import { languageState, meState } from '@/stores'
+import { weekAfter, weekAgo } from '@/legacy/util/time'
+import { useUserStore } from '@/stores/user'
 
 export function CalendarPage() {
+  const { me } = useUserStore()
+
+  const [modalOpen, setModalOpen] = useState(false)
+  const [isLoading, setLoading] = useState(false)
+  const [selectedData, setSelectedData] = useState<CalendarData>()
+  const [selectedDate, _setSelectedDate] = useState<Date>(new Date())
+
+  const setSelectedDate = (date: Date) => {
+    _setSelectedDate(date)
+    setDateRange({
+      startDate: weekAgo(startOfMonth(date)),
+      endDate: weekAfter(endOfMonth(date)),
+    })
+  }
+
   const {
     setDateRange,
     errorMessage,
-    calendarData: schedules,
+    calendarData,
     isCalendarLoading,
     refetchCalendar,
     handleCalendarCreate,
     handleCalendarUpdate,
-    handleCalendarDelete,
     calendarId: filterId,
     setCalendarId: setFilterId,
   } = useTeacherCalendarDetail()
 
-  // 그룹 조회
   const groupProps = useTeacherChatUserList(MenuType.List)
-  const [modalOpen, setModalOpen] = useState(false)
-  const [event, setEvent] = useState<any>(null)
-  const calendarRef = useRef<any>(null)
-  const [currentDateString, setCurrentDateString] = useState('')
-  const [isLoading, setLoading] = useState(false)
 
-  const me = useRecoilValue(meState)
-  const language = useRecoilValue(languageState)
-
-  const calendars = [
-    {
-      id: CalendarIdEnum.NUMBER_0,
-      name: t('academic_schedule'),
-      bgColor: '#9e5fff',
-      borderColor: '#9e5fff',
-    },
-    {
-      id: CalendarIdEnum.NUMBER_1,
-      name: t('teacher_schedule'),
-      bgColor: '#00a9ff',
-      borderColor: '#00a9ff',
-    },
-    {
-      id: CalendarIdEnum.NUMBER_2,
-      name: t('group_schedule'),
-      bgColor: '#8CD23C',
-      borderColor: '#8CD23C',
-    },
-  ]
-
-  const getDayName = useMemo(() => {
-    return (model: any) => {
-      let dayName = ''
-      switch (model.label) {
-        case 'Sun':
-          dayName = language === 'ko' ? '일' : 'Sun'
-          break
-        case 'Mon':
-          dayName = language === 'ko' ? '월' : 'Mon'
-          break
-        case 'Tue':
-          dayName = language === 'ko' ? '화' : 'Tue'
-          break
-        case 'Wed':
-          dayName = language === 'ko' ? '수' : 'Wed'
-          break
-        case 'Thu':
-          dayName = language === 'ko' ? '목' : 'Thu'
-          break
-        case 'Fri':
-          dayName = language === 'ko' ? '금' : 'Fri'
-          break
-        case 'Sat':
-          dayName = language === 'ko' ? '토' : 'Sat'
-          break
-      }
-      return `<span class="tui-full-calendar-dayname-name" style="padding-left:calc(50% - 4px);">${dayName}</span>`
-    }
-  }, [language])
-
-  const readOnly = me?.role !== Role.ADMIN && me?.canEditTimetable === false
-
-  const onClickNavi = (event: any) => {
-    const calendar = calendarRef?.current?.getInstance()
-    if (calendar) {
-      const { target } = event
-      let action = target.dataset ? target.dataset.action : target.getAttribute('data-action')
-      action = action?.replace('move-', '')
-
-      const _date = calendar.getDate().toDate()
-      _date.setDate(1)
-      calendar.setDate(_date)
-
-      typeof calendar[action] === 'function' && calendar[action]()
-      calendar.render()
-
-      setCurrentDateString(makeDateToString(calendar.getDate()) || '')
-    }
-  }
-
-  const handleCreateSchedule = (scheduleData: any) => {
-    try {
-      setModalOpen(false)
-      setEvent(null)
-      handleCalendarCreate({
-        title: scheduleData?.title,
-        location: scheduleData?.location,
-        isAllDay: scheduleData?.isAllDay,
-        start: scheduleData?.start,
-        end: scheduleData?.end,
-        category: scheduleData?.isAllDay ? 'allday' : 'time',
-        calendarId: scheduleData?.calendarId,
-        attendee: scheduleData?.attendee,
-        grade: scheduleData?.grade,
-        groupId: scheduleData?.groupId,
-      })
-        .then(() => setLoading(false))
-        .then(() => refetchCalendar())
-    } catch (err: any) {}
-  }
-
-  const handleUpdateSchedule = (schedule: any) => {
-    try {
-      handleCalendarUpdate(event?.schedule?.id, {
-        title: schedule.title,
-        location: schedule.location,
-        isAllDay: schedule.isAllDay,
-        category: schedule.isAllDay ? 'allday' : 'time',
-        calendarId: schedule.calendarId,
-        attendee: schedule.attendee,
-        start: schedule.start,
-        end: schedule.end,
-        grade: schedule.grade,
-        groupId: schedule.groupId,
-      })
-        .then(() => setLoading(false))
-        .then(() => refetchCalendar())
-        .then(() => setEvent(null))
-        .then(() => setModalOpen(false))
-    } catch (err: any) {
-      console.log(err?.message)
-    }
-  }
-
-  useEffect(() => {
-    const calendar = calendarRef?.current?.getInstance()
-
-    if (calendar) {
-      setDateRange({
-        startDate: DayAgo(calendar.getDateRangeStart().toDate()),
-        endDate: DayAfter(calendar.getDateRangeEnd().toDate()),
-      })
-
-      if (!calendar?.events?.beforeCreateSchedule?.length) {
-        calendar.on('beforeCreateSchedule', (event: any) => {
-          setModalOpen(true)
-          setEvent(event)
-          //calendar.setDate();
-        })
-      }
-
-      if (!calendar?.events?.beforeUpdateSchedule?.length) {
-        calendar.on('beforeUpdateSchedule', (event: any) => {
-          calendar.setDate()
-          if (event?.triggerEventName === 'click') {
-            refetchCalendar().then(() => {
-              setModalOpen(true)
-              setEvent(event)
-            })
-          } else {
-            const { schedule, changes } = event
-            handleUpdateSchedule({
-              title: schedule.title,
-              location: schedule.location,
-              isAllDay: schedule.isAllDay,
-              category: schedule.isAllDay ? 'allday' : 'time',
-              ...changes,
-              calendarId: changes?.calendarId || schedule.calendarId,
-              start: changes?.start?.toDate() || schedule.start?.toDate(),
-              end: changes?.end?.toDate() || schedule.end?.toDate(),
-              groupId: changes?.groupId || schedule.groupId,
-            })
-          }
-        })
-      }
-
-      if (!calendar?.events?.beforeDeleteSchedule?.length) {
-        calendar.on('beforeDeleteSchedule', (scheduleData: any) => {
-          calendar.setDate()
-          const { schedule } = scheduleData
-          try {
-            refetchCalendar().then(() => handleCalendarDelete(schedule.id))
-          } catch (err: any) {
-            console.log(err?.message)
-          }
-        })
-      }
-
-      setCurrentDateString(makeDateToString(calendar.getDate()) || '')
-    }
-  }, [currentDateString])
-
-  useEffect(() => {
-    const calendar = calendarRef?.current?.getInstance()
-
-    if (calendar) {
-      const _schedules = schedules && JSON.parse(JSON.stringify(schedules))
-
-      const updatedArray = _schedules?.map((obj: any) => ({
-        ...obj,
-        title:
-          (obj.grade ? `[${obj.grade}학년] ${obj.title}` : obj.group ? `[${obj.group.name}] ${obj.title}` : obj.title) +
-          (obj.attendee === '일반' ? '' : ' (' + obj.attendee + ')'),
-      }))
-
-      calendar.clear()
-      calendar.createSchedules(updatedArray)
-    }
-  }, [schedules])
-
+  // 코치마크
   const coachList: Array<Guide> = [
     {
       comment: (
@@ -255,11 +70,100 @@ export function CalendarPage() {
     },
   ]
   const { coach, refs, reOpenCoach } = useCoachMark('calenderLineAdmin', coachList)
-  const calendarKey = useMemo(() => `calendar-${language}`, [language])
+
+  const CALENDAR_TYPES = [
+    {
+      id: CalendarIdEnum.NUMBER_0,
+      name: t('academic_schedule'),
+      bgColor: '#9e5fff',
+      borderColor: '#9e5fff',
+    },
+    {
+      id: CalendarIdEnum.NUMBER_1,
+      name: t('teacher_schedule'),
+      bgColor: '#00a9ff',
+      borderColor: '#00a9ff',
+    },
+    {
+      id: CalendarIdEnum.NUMBER_2,
+      name: t('group_schedule'),
+      bgColor: '#8CD23C',
+      borderColor: '#8CD23C',
+    },
+  ]
+
+  const schoolType = me?.school?.schoolType || ''
+  const readOnly = me?.role !== Role.ADMIN && me?.canEditTimetable === false
+
+  const data: CalendarData[] =
+    calendarData?.map((el) => ({
+      id: String(el.id),
+      title: el.title + el.attendee && el.attendee !== '일반' ? `(${el.attendee})` : '',
+      start: el.start,
+      end: el.end,
+      backgroundColor: CALENDAR_TYPES.find((TYPE) => TYPE.id === el.calendarId)?.bgColor || '',
+    })) || []
+
+  const formatCalendarData = (calendarData: CalendarData) => ({
+    title: calendarData.title,
+    location: calendarData.location,
+    isAllDay: calendarData.isAllDay,
+    start: String(calendarData.start),
+    end: String(calendarData.end),
+    category: calendarData.isAllDay ? ScheduleCategoryEnum.allday : ScheduleCategoryEnum.time,
+    calendarId: calendarData.calendarId,
+    attendee: calendarData.attendee,
+    grade: calendarData.grade,
+    groupId: Number(calendarData.groupId),
+  })
+
+  const createCalendar = async (calendarData: CalendarData) => {
+    setLoading(true)
+    try {
+      await handleCalendarCreate(formatCalendarData(calendarData))
+      await refetchCalendar()
+      setSelectedData(undefined)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoading(false)
+      setModalOpen(false)
+    }
+  }
+
+  const updateCalendar = async (calendarData: CalendarData) => {
+    if (!selectedData || !selectedData?.id) return
+    setLoading(true)
+    try {
+      await handleCalendarUpdate(Number(selectedData.id), formatCalendarData(calendarData))
+      await refetchCalendar()
+      setSelectedData(undefined)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoading(false)
+      setModalOpen(false)
+    }
+  }
+
+  const handleEventClick = (e: EventClickArg) => {
+    const currentData = data.find((el) => el.id === e.event.id)
+    if (!currentData) return
+    setSelectedData(currentData)
+    setModalOpen(true)
+  }
+
+  const handleDayClick = (date: Date) => {
+    if (!date) return
+    const newData: CalendarData = { title: '', start: date, end: date }
+    setSelectedData(newData)
+    setSelectedDate(date)
+    setModalOpen(true)
+  }
 
   return (
     <>
-      {(isCalendarLoading || isLoading) && <Blank />}
+      {isCalendarLoading || (isLoading && <Blank />)}
       {errorMessage && <ErrorBlank />}
       {<CoachMark {...coach} />}
       <div className="col-span-6 grid grid-cols-6">
@@ -269,7 +173,6 @@ export function CalendarPage() {
               <div className="flex items-center space-x-2 border-b border-[#E5E5E5] pb-3">
                 <button
                   children={t('add_new_event')}
-                  id="btn-new-schedule"
                   type="button"
                   data-toggle="modal"
                   onClick={() => {
@@ -288,7 +191,7 @@ export function CalendarPage() {
                   ?
                 </div>
               </div>
-              <div id="lnb-calendars" className="lnb-calendars">
+              <div className="lnb-calendars">
                 <div>
                   <div className="lnb-calendars-item">
                     <Label.row>
@@ -298,14 +201,14 @@ export function CalendarPage() {
                   </div>
                 </div>
                 <div id="calendarList" className="lnb-calendars-d1" ref={refs[0]}>
-                  {calendars.map((el: any) => (
+                  {CALENDAR_TYPES.map(({ id, name, bgColor }) => (
                     <LnbCalendarsItem
-                      key={el.id}
-                      value={el.id}
+                      key={id}
+                      value={id}
                       checked={false}
-                      color={el.bgColor}
-                      text={el.name}
-                      onClick={() => setFilterId(el.id)}
+                      color={bgColor}
+                      text={name}
+                      onClick={() => setFilterId(id)}
                     />
                   ))}
                 </div>
@@ -316,45 +219,44 @@ export function CalendarPage() {
               <div className="flex items-center space-x-6" id="menu">
                 <button
                   children={t('today')}
-                  type="button"
                   className="rounded-full border border-gray-300 px-6 py-2 text-sm hover:border-gray-400"
-                  data-action="move-today"
-                  onClick={(e) => onClickNavi(e)}
+                  onClick={() => setSelectedDate(new Date())}
                 />
                 <div className="flex items-center space-x-2">
                   <button
                     className="rounded-full border border-gray-300 p-2 hover:border-gray-400"
-                    data-action="move-prev"
-                    onClick={(e) => onClickNavi(e)}
+                    onClick={() => setSelectedDate(subMonths(selectedDate, 1))}
                   >
                     <Icon.ChevronLeft className="h-4 w-4" data-action="move-prev" />
                   </button>
-                  <p>{currentDateString}</p>
+                  <p>{format(selectedDate, 'yyyy-MM-dd')}</p>
                   <button
                     className="rounded-full border border-gray-300 p-2 hover:border-gray-400"
-                    data-action="move-next"
-                    onClick={(e) => onClickNavi(e)}
+                    onClick={() => setSelectedDate(addMonths(selectedDate, 1))}
                   >
                     <Icon.ChevronRight className="h-4 w-4" data-action="move-next" />
                   </button>
                 </div>
               </div>
+              <Calendar
+                data={data}
+                now={selectedDate}
+                handleEventClick={handleEventClick}
+                handleDayClick={handleDayClick}
+              />
               <CustomTuiModal
-                {...{
-                  isOpen: modalOpen,
-                  onClose: () => {
-                    setModalOpen(false)
-                    setEvent(null)
-                  },
-                  onSubmit: !event?.schedule?.id ? handleCreateSchedule : handleUpdateSchedule,
-                  submitText: event?.triggerEventName === 'mouseup' ? 'Save' : 'Update',
-                  calendars: calendars,
-                  schedule: schedules?.find((el: any) => el.id === event?.schedule?.id),
-                  startDate: event?.start?.toDate() || event?.schedule?.start?.toDate() || new Date(),
-                  endDate: event?.end?.toDate() || event?.schedule?.end?.toDate() || new Date(),
-                  schoolType: me?.school?.schoolType || '',
-                  groupProps: groupProps,
+                isOpen={modalOpen}
+                onClose={() => {
+                  setModalOpen(false)
+                  setSelectedData(undefined)
                 }}
+                onSubmit={!selectedData?.id ? createCalendar : updateCalendar}
+                calendars={data}
+                schedule={selectedData}
+                startDate={selectedData?.start ? new Date(selectedData.start) : new Date()}
+                endDate={selectedData?.end ? new Date(selectedData.end) : new Date()}
+                schoolType={schoolType}
+                groupProps={groupProps}
               />
             </div>
           </div>

@@ -1,7 +1,5 @@
 import { PropsWithChildren, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRecoilValue } from 'recoil'
-
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
@@ -22,8 +20,7 @@ import {
   RequestIBDto,
 } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { meState } from '@/stores'
-
+import { useUserStore } from '@/stores/user'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 
@@ -43,7 +40,7 @@ export function IbCASNormal({
   onSuccess,
   ablePropragation = false,
 }: PropsWithChildren<IbCASNormalProps>) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [isFocused, setIsFocused] = useState(false)
   const [calendarOpen, setCalendarOpen] = useState<boolean>(false)
   const [selectedIds, setSelectedIds] = useState<number[]>([])

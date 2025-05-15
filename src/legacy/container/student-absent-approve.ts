@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import {
   useAbsentsApproveByParent,
   useAbsentsApproveByParentApp,
@@ -8,21 +7,21 @@ import {
 } from '@/legacy/generated/endpoint'
 import { useSignature } from '@/legacy/hooks/useSignature'
 import { errorType } from '@/legacy/types'
-import { childState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentAbsentApprove(uuid: string) {
   const { sigPadData, clearSignature, canvasRef } = useSignature()
   const [openSign, setSign] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [comment, setComment] = useState('')
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
   const {
     data: absent,
     isError: isGetAbsentError,
     refetch,
     isLoading: isGetAbsentLoading,
   } = uuid.length > 20
-    ? useAbsentsFindOneByUUID(uuid, {
+      ? useAbsentsFindOneByUUID(uuid, {
         // UUID 로 조회
         query: {
           onSuccess: (res) => {
@@ -35,7 +34,7 @@ export function useStudentAbsentApprove(uuid: string) {
           },
         },
       })
-    : useAbsentsFindOne(Number(uuid), {
+      : useAbsentsFindOne(Number(uuid), {
         request: {
           headers: {
             'child-user-id': child?.id,
@@ -87,19 +86,19 @@ export function useStudentAbsentApprove(uuid: string) {
   const signAbsent = () => {
     uuid.length > 20
       ? signAbsentMutate({
-          uuid,
-          data: {
-            comment,
-            signature: sigPadData,
-          },
-        })
+        uuid,
+        data: {
+          comment,
+          signature: sigPadData,
+        },
+      })
       : signAbsentMutateApp({
-          id: Number(uuid),
-          data: {
-            comment,
-            signature: sigPadData,
-          },
-        })
+        id: Number(uuid),
+        data: {
+          comment,
+          signature: sigPadData,
+        },
+      })
   }
 
   useEffect(() => {

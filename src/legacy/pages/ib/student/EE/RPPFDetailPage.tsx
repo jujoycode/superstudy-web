@@ -3,7 +3,6 @@ import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLocation, useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -20,7 +19,7 @@ import { useIBDeadline } from '@/legacy/container/ib-deadline'
 import { useIBRPPFCreate } from '@/legacy/container/ib-rppf-create'
 import { useRPPFGetById } from '@/legacy/container/ib-rppf-findId'
 import { RequestCreateRPPFDto, ResponseIBDto } from '@/legacy/generated/model'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 interface LocationState {
   title: string
@@ -33,7 +32,7 @@ export default function RPPFDetailPage() {
   const title = location.state?.title as LocationState['title']
   const data = location.state?.data as LocationState['data']
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const [modalOpen, setModalOpen] = useState<boolean>(false)
   const { id, rppfId } = useParams<{ id: string; rppfId: string }>()
 

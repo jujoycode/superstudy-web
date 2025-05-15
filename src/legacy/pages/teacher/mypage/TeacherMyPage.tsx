@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
 
 import BgLogo from '@/assets/images/Intersect.png'
 import { ReactComponent as RightArrow } from '@/assets/svg/mypage-right-arrow.svg'
@@ -12,7 +11,7 @@ import { Constants } from '@/legacy/constants'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useLogout } from '@/legacy/util/hooks'
 import { checkNewVersion } from '@/legacy/util/status'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 enum selectedType {
   none = 1,
@@ -29,7 +28,7 @@ export function TeacherMyPage() {
 
   checkNewVersion()
 
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
 
   const [selectedItem, setSelectedItem] = useState(selectedType.myinfo)
 
@@ -70,7 +69,7 @@ export function TeacherMyPage() {
                     className="h-48 w-40 rounded-lg object-cover"
                     onError={({ currentTarget }) => {
                       currentTarget.onerror = null
-                      currentTarget.src = SvgUser
+                      currentTarget.src = SvgUser as unknown as string
                       currentTarget.className = 'w-full'
                     }}
                   />

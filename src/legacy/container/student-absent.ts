@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useAbsentsFindAllByStudent } from '@/legacy/generated/endpoint'
-import { childState } from '@/stores'
 import { UserContainer } from './user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentAbsent() {
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
   const { me } = UserContainer.useContext()
   const { data, isLoading, error } = useAbsentsFindAllByStudent({
     request: {

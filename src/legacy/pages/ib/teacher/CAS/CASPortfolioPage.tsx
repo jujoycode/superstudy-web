@@ -1,5 +1,4 @@
 import { useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -13,7 +12,7 @@ import TeacherCASRefNInt from '@/legacy/components/ib/cas/TeacherCASRefInt'
 import IBLayout from '@/legacy/components/ib/IBLayout'
 import { useIBPortfolioGetById } from '@/legacy/container/ib-cas'
 import { makeStudNum5 } from '@/legacy/util/status'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 import NODATA from '@/assets/images/no-data.png'
 
@@ -21,7 +20,7 @@ function CASPortfolioPage() {
   const { id: idParams } = useParams<{ id: string }>()
 
   const id = Number(idParams)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { data, isLoading } = useIBPortfolioGetById(id || 0)
 
   if (me == null || data?.profile.user === undefined) {

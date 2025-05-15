@@ -1,6 +1,5 @@
 import { differenceInSeconds, parseISO } from 'date-fns'
 import { twMerge } from 'tailwind-merge'
-
 import { useHistory } from '@/hooks/useHistory'
 import { StudentGroup } from '@/legacy/generated/model'
 import { useModals } from '@/legacy/modals/ModalStack'

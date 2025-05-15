@@ -1,12 +1,10 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
-
 import { OutingStatus, OutingTypeEnum, ResponseCreateOutingDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString } from '@/legacy/util/time'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 interface OutingCardProps {
   outing: ResponseCreateOutingDto
@@ -17,7 +15,7 @@ export function OutingCard({ outing, type }: OutingCardProps) {
   const { pathname, search } = useLocation()
   const { t } = useLanguage()
 
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const startAt = DateUtil.formatDate(outing.startAt, DateFormat['YYYY-MM-DD HH:mm'])
   const endAt = DateUtil.formatDate(outing.endAt, DateFormat['YYYY-MM-DD HH:mm'])

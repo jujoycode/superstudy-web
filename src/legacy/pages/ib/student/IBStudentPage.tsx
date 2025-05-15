@@ -1,5 +1,4 @@
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -11,7 +10,7 @@ import { useIBProfileGetById } from '@/legacy/container/ib-cas'
 import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/student/PlagiarismInspectPage'
 import { useLogout } from '@/legacy/util/hooks'
 import { makeStudNum5 } from '@/legacy/util/status'
-import { meState, schoolPropertiesState } from '@/stores'
+import { useSchoolStore } from '@/stores/school'
 import CASInterviewDetailPage from './CAS/CASInterviewDetailPage'
 import { CASMainPage } from './CAS/CASMainPage'
 import { CASReflectionDiaryDetailPage } from './CAS/CASReflectionDiaryDetailPage'
@@ -32,6 +31,7 @@ import TOKRRSDetailPage from './TOK_ESSAY/TOKRRSDetailPage'
 import { ExhibitionDetailPage } from './TOK_EXHIBITION/ExhibitionDetailPage'
 import { ExhibitionMainPage } from './TOK_EXHIBITION/ExhibitionMainPage'
 import { ExhibitionPlanDetailPage } from './TOK_EXHIBITION/ExhibitionPlanDetailPage'
+import { useUserStore } from '@/stores/user'
 
 import Logo from '@/assets/images/logo_color.png'
 import SvgUser from '@/assets/images/no_profile.png'
@@ -40,8 +40,8 @@ export const IBStudentPage = () => {
   const { pathname } = useLocation()
   const { push } = useHistory()
   const logout = useLogout()
-  const me = useRecoilValue(meState)
-  const schoolProperties = useRecoilValue(schoolPropertiesState)
+  const { me } = useUserStore()
+  const { schoolProperties } = useSchoolStore()
   const { data } = useIBProfileGetById(me?.id || 0)
 
   // 표절 검사 활성화 여부

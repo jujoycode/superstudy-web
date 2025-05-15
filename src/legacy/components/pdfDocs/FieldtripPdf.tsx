@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { Fieldtrip } from '@/legacy/generated/model'
 import { FieldtripPaperType } from '@/legacy/types'
 import { splitStringByUnicode } from '@/legacy/util/fieldtrip'
 import { getNickName } from '@/legacy/util/status'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 import { FieldtripPaper } from '../fieldtrip/FieldtripPaper'
 import { FieldtripSeparatePaper } from '../fieldtrip/FieldtripSeparatePaper'
 import { FieldtripSuburbsSeparatePaper } from '../fieldtrip/FieldtripSuburbsSeparatePaper'
@@ -37,7 +36,7 @@ export function FieldtripPdf({
   isDownload,
   nextExtractPdfData,
 }: FieldtripPdfProps) {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const fidletripPaperRef = useRef(null)
   const separatePaperRefs = useRef<any[]>([])

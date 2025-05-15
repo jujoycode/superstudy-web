@@ -4,8 +4,6 @@ import Linkify from 'react-linkify'
 import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilValue } from 'recoil'
-
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { PdfCard } from '@/legacy/components/common/PdfCard'
@@ -14,13 +12,13 @@ import { Time } from '@/legacy/components/common/Time'
 import { Constants } from '@/legacy/constants'
 import { useActivityFindOne, useStudentActivityFindOneByActivityId } from '@/legacy/generated/endpoint'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 import { ActivityDetailReadPage } from './ActivityDetailReadPage'
 import { ActivityDetailSubmitPage } from './ActivityDetailSubmitPage'
 
 export function ActivityDetailPage() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { id } = useParams<{ id: string }>()
 
   const { error, data: activity } = useActivityFindOne(Number(id), {

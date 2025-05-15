@@ -1,15 +1,14 @@
 import clsx from 'clsx'
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 
 import { SuperModal } from '@/legacy/components'
 import { BackButton, Label, PhoneNumberField, Section, Textarea, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export function FieldtripSuburbsReportDetailPage() {
-  const meRecoil = useRecoilValue(meState)
+  const { me: meRecoil } = useUserStore()
 
   const [reason, setReason] = useState('')
   const [content, setContent] = useState('')

@@ -6,7 +6,6 @@ import Linkify from 'react-linkify'
 import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -24,7 +23,7 @@ import { RequestIBBasicContentUpdateDto } from '@/legacy/generated/model'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 const urlDecorator = (decoratedHref: string, decoratedText: string, key: number) => (
   <a href={decoratedHref} key={key} target="_blank" rel="noopener noreferrer" className="underline">
@@ -39,7 +38,7 @@ export const CASReflectionDiaryDetailPage = () => {
   const studentId = Number(studentIdParam)
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { data, isLoading } = useReflectionDiaryGetById(id, studentId || 0)
   const { setDocumentObjectMap, setImageObjectMap } = useImageAndDocument({
     images: data?.images,

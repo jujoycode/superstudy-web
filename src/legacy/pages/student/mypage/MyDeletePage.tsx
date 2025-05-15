@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import { SetterOrUpdater } from 'recoil'
-
 import { BackButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { userDeleteUser } from '@/legacy/generated/endpoint'
@@ -8,7 +6,7 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useLogout } from '@/legacy/util/hooks'
 
 interface MyDeletePageProps {
-  setIsDeleteMe: SetterOrUpdater<boolean>
+  setIsDeleteMe: (isDeleteMe: boolean) => void
 }
 
 export function MyDeletePage({ setIsDeleteMe }: MyDeletePageProps) {

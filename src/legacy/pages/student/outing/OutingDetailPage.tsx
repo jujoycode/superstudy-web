@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
-
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -12,14 +10,13 @@ import { useStudentOutingDetail } from '@/legacy/container/student-outing-detail
 import { UserContainer } from '@/legacy/container/user'
 import { OutingStatus, OutingUse, Role } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
-import { childState } from '@/stores'
-
+import { useUserStore } from '@/stores/user'
 import { OutingAddPage } from './OutingAddPage'
 
 export function OutingDetailPage() {
   const { id } = useParams<{ id: string }>()
   const { me } = UserContainer.useContext()
-  const myChild = useRecoilValue(childState)
+  const { child: myChild } = useUserStore()
   const { outing, isLoading, error, deleteOuting, errorMessage, openSignModal, setSignModal, signOuting } =
     useStudentOutingDetail(Number(id))
 

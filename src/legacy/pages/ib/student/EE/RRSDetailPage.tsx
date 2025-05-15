@@ -6,7 +6,6 @@ import Linkify from 'react-linkify'
 import { useLocation, useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
@@ -31,7 +30,7 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { fileType, useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 interface LocationState {
   title: string
@@ -54,7 +53,7 @@ export default function RRSDetailPage() {
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isSubmitLoading, setIsSubmitLoading] = useState(false)
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
   const { data, isLoading } = useRRSGetById(id, rrsId)
   const { data: ibData } = useIBGetById(Number(id))
   const {
