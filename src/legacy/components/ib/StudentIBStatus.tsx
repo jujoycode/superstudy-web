@@ -34,10 +34,6 @@ export const STATUS_GROUPS = {
   완료: ['COMPLETE'],
 }
 
-interface StudentIBStatusProps {
-  data?: ResponsePaginatedIBDto
-}
-
 interface SelectedOptions {
   projectType: IBProjectTypes
   pages: Record<string, number>
@@ -46,7 +42,7 @@ interface SelectedOptions {
 type IBProjectTypes = 'NORMAL' | 'EE' | 'CAS' | 'TOK'
 
 export default function StudentIBStatus() {
-  const { data } = useOutletContext<{ data: StudentIBStatusProps }>()
+  const { data } = useOutletContext<{ data: ResponsePaginatedIBDto }>()
   const { me } = useUserStore()
   const history = useHistory()
   const { setQueryParamsWithStorage, removeStoredQueryParams } = useQueryParams()

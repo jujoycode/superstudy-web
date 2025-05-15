@@ -1,7 +1,6 @@
 import { createBrowserRouter, Navigate, Outlet, type RouteObject } from 'react-router-dom'
 import CASPortfolio from '@/legacy/components/ib/cas/CASPortfolio'
 import StudentIBStatus from '@/legacy/components/ib/StudentIBStatus'
-import { StudentRedirect } from '@/legacy/components/StudentRedirect'
 import { AdminMainPage } from '@/legacy/pages/admin/AdminMainPage'
 import { ApprovalLinePage } from '@/legacy/pages/admin/approval-line/ApprovalLinePage'
 import { ExpiredUserPage } from '@/legacy/pages/admin/expired-user/ExpiredUserPage'
@@ -9,7 +8,6 @@ import { GroupEditPage } from '@/legacy/pages/admin/group/GroupEditPage'
 import { GroupPage } from '@/legacy/pages/admin/group/GroupPage'
 import { IbCoordinatorPage } from '@/legacy/pages/admin/ib/IbCoordinatorPage'
 import { IbPage } from '@/legacy/pages/admin/ib/IbPage'
-import { IbStudentPage } from '@/legacy/pages/admin/ib/ibStudentPage'
 import { KlassEditPage } from '@/legacy/pages/admin/klass/KlassEditPage'
 import { KlassPage } from '@/legacy/pages/admin/klass/KlassPage'
 import { ParentDetailsPage } from '@/legacy/pages/admin/parent/ParentDetailsPage'
@@ -287,7 +285,7 @@ export const routers: RouteObject[] = [
         path: 'ib',
         children: [
           { index: true, element: <IbPage /> },
-          { path: 'student', element: <IbStudentPage /> },
+          { path: 'student', element: <IBStudentPage /> },
           { path: 'teacher', element: <IbCoordinatorPage /> },
         ],
       },
@@ -537,91 +535,6 @@ export const routers: RouteObject[] = [
     ],
   },
   {
-    path: '/ib',
-    element: <IBStudentPage />,
-    children: [
-      {
-        path: 'student',
-        element: <IBStudentMainPage />,
-        children: [
-          { index: true, element: <StudentIBStatus /> },
-          { path: 'portfolio', element: <CASPortfolio /> },
-        ],
-      },
-      {
-        path: 'ee/:id',
-        children: [
-          {
-            index: true,
-            element: <EEMainPage />,
-          },
-          {
-            path: 'rrs/:rrsId',
-            element: <RRSDetailPage />,
-          },
-          { path: 'interview/:qnaId', element: <InterviewDetailPage /> },
-          { path: 'rppf/:rppfId', element: <RPPFDetailPage /> },
-          { path: 'essay/:essayId', element: <EeEssayDetailPage /> },
-          { path: 'proposal/:proposalId', element: <ProposalDetailPage /> },
-        ],
-      },
-      { path: 'cas/:id', element: <CASMainPage /> },
-      {
-        path: 'tok/exhibition',
-        children: [
-          {
-            path: 'plan/:id',
-            element: <ExhibitionPlanDetailPage />,
-          },
-          {
-            path: ':id',
-            children: [
-              { index: true, element: <ExhibitionMainPage /> },
-              { path: 'detail/:exhibitionId', element: <ExhibitionDetailPage /> },
-            ],
-          },
-        ],
-      },
-      {
-        path: 'tok/essay',
-        children: [
-          {
-            path: ':id',
-            children: [
-              { index: true, element: <EssayMainPage /> },
-              { path: 'tkppf/:tkppfId', element: <TKPPFDetailPage /> },
-              { path: 'rrs/:rrsId', element: <TOKRRSDetailPage /> },
-            ],
-          },
-          { path: 'outline/:id', element: <OutlineDetailPage /> },
-          { path: 'detail/:id', element: <TOKEssayDetailPage /> },
-        ],
-      },
-
-      {
-        path: 'reference',
-        children: [
-          { index: true, element: <IBStudentReferencePage /> },
-          { path: ':id', element: <IBStudentReferenceDetailPage /> },
-        ],
-      },
-
-      {
-        path: 'portfolio',
-        children: [
-          { path: 'reflection-diary/:id', element: <CASReflectionDiaryDetailPage /> },
-          { path: 'interview/:id/:qnaId', element: <CASInterviewDetailPage /> },
-        ],
-      },
-
-      { path: 'plagiarism-inspection', element: <PlagiarismInspectPage /> },
-    ],
-  },
-  {
-    path: '/plagiarism-inspect/detail/:id',
-    element: <DetailResultPopup />,
-  },
-  {
     path: '/reset-password/:id',
     element: <ResetPasswordPageV1 />,
   },
@@ -676,6 +589,91 @@ export const routers: RouteObject[] = [
         <Signup />
       </AuthGuard>
     ),
+  },
+  {
+    path: '/ib',
+    element: <IBStudentPage />,
+    children: [
+      {
+        path: 'student',
+        element: <IBStudentMainPage />,
+        children: [
+          { index: true, element: <StudentIBStatus /> },
+          { path: 'portfolio', element: <CASPortfolio /> },
+        ],
+      },
+      {
+        path: 'student/ee/:id',
+        children: [
+          {
+            index: true,
+            element: <EEMainPage />,
+          },
+          {
+            path: 'rrs/:rrsId',
+            element: <RRSDetailPage />,
+          },
+          { path: 'interview/:qnaId', element: <InterviewDetailPage /> },
+          { path: 'rppf/:rppfId', element: <RPPFDetailPage /> },
+          { path: 'essay/:essayId', element: <EeEssayDetailPage /> },
+          { path: 'proposal/:proposalId', element: <ProposalDetailPage /> },
+        ],
+      },
+      { path: 'student/cas/:id', element: <CASMainPage /> },
+      {
+        path: 'student/tok/exhibition',
+        children: [
+          {
+            path: 'plan/:id',
+            element: <ExhibitionPlanDetailPage />,
+          },
+          {
+            path: ':id',
+            children: [
+              { index: true, element: <ExhibitionMainPage /> },
+              { path: 'detail/:exhibitionId', element: <ExhibitionDetailPage /> },
+            ],
+          },
+        ],
+      },
+      {
+        path: 'student/tok/essay',
+        children: [
+          {
+            path: ':id',
+            children: [
+              { index: true, element: <EssayMainPage /> },
+              { path: 'tkppf/:tkppfId', element: <TKPPFDetailPage /> },
+              { path: 'rrs/:rrsId', element: <TOKRRSDetailPage /> },
+            ],
+          },
+          { path: 'outline/:id', element: <OutlineDetailPage /> },
+          { path: 'detail/:id', element: <TOKEssayDetailPage /> },
+        ],
+      },
+
+      {
+        path: 'student/reference',
+        children: [
+          { index: true, element: <IBStudentReferencePage /> },
+          { path: ':id', element: <IBStudentReferenceDetailPage /> },
+        ],
+      },
+
+      {
+        path: 'student/portfolio',
+        children: [
+          { path: 'reflection-diary/:id', element: <CASReflectionDiaryDetailPage /> },
+          { path: 'interview/:id/:qnaId', element: <CASInterviewDetailPage /> },
+        ],
+      },
+
+      { path: 'student/plagiarism-inspection', element: <PlagiarismInspectPage /> },
+    ],
+  },
+  {
+    path: '/plagiarism-inspect/detail/:id',
+    element: <DetailResultPopup />,
   },
 ]
 
