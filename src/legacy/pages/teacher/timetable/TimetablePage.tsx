@@ -1,5 +1,5 @@
-import clsx from 'clsx'
 import { useState } from 'react'
+import clsx from 'clsx'
 import { useHistory } from '@/hooks/useHistory'
 import { BackButton, Blank, Divider, TopNavbar } from '@/legacy/components/common'
 import { useSchoolsFindOne } from '@/legacy/generated/endpoint'

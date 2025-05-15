@@ -1,6 +1,4 @@
-// import preval from 'preval.macro'
-// import { format } from 'date-fns'
-import { useNavigate } from 'react-router'
+import { useEffect } from 'react'
 import superstudyLight from '@/assets/images/superstudy-light.png'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
@@ -8,15 +6,21 @@ import { BottomFixed, Screen, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { globalEnv } from '@/legacy/util/global-env'
-import { useAuth } from '@/legacy/util/hooks'
+import { useUserStore } from '@/stores/user'
+import { Role } from '../generated/model'
 
 export function HomePage() {
-  const { authenticated } = useAuth()
   const { push } = useHistory()
   const { t } = useLanguage()
-  const navigate = useNavigate()
+  const { me } = useUserStore()
 
-  if (authenticated) navigate('/student')
+  useEffect(() => {
+    if (me?.role === Role.USER || me?.role === Role.PARENT) {
+      window.location.replace('/student')
+    } else {
+      window.location.replace('/teacher')
+    }
+  }, [me])
 
   const redirectToStore = () => {
     const userAgent = navigator.userAgent

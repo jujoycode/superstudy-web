@@ -44,7 +44,7 @@ export function LoginV2() {
   useEffect(() => {
     setFrontError('')
     setErrorMessage('')
-  }, [])
+  }, [setErrorMessage])
 
   const handleStayLoggedIn = () => {
     setIsStayLoggedIn(!isStayLoggedIn)

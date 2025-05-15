@@ -25,5 +25,7 @@ export function AuthRoute({ component: Component, guestOnly }: AuthRouteProps) {
     return <Redirect to="/login" />
   }
 
+  // Role에 따른 불법 접근 차단
+
   return <Component />
 }

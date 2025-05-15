@@ -144,6 +144,7 @@ import { StudentCardPage } from '@/legacy/pages/teacher/studentcard/StudentCardP
 import { AdminGuard } from './guard/AdminGuard'
 import { AuthGuard } from './guard/AuthGuard'
 import { StudentGuard } from './guard/StudentGuard'
+import { StudentLayout } from '@/layouts/StudentLayout'
 import { TeacherLayout } from '@/layouts/TeacherLayout'
 
 /**
@@ -303,9 +304,11 @@ export const routers: RouteObject[] = [
   {
     path: '/student',
     element: (
+      // <AuthGuard>
       <StudentGuard>
-        <Outlet />
+        <StudentLayout />
       </StudentGuard>
+      // </AuthGuard>
     ),
     children: [
       {
