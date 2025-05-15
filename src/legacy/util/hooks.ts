@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import { Navigate } from 'react-router'
 import { useSchoolPropertyGetProperties } from '@/legacy/generated/endpoint'
 import { RN } from '@/legacy/lib/rn'
-import { useUserStore } from '@/stores/user'
 import { useAuthStore } from '@/stores/auth'
+import { useUserStore } from '@/stores/user'
 
 export function useAuth() {
   const { token, twoFactor } = useAuthStore()
+
   return { authenticated: token !== null, twoFactorAuthenticated: twoFactor !== null && twoFactor !== 'false' }
 }
 

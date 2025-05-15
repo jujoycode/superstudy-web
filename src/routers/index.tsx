@@ -299,9 +299,11 @@ export const routers: RouteObject[] = [
   {
     path: '/student',
     element: (
+      // <AuthGuard>
       <StudentGuard>
         <Outlet />
       </StudentGuard>
+      // </AuthGuard>
     ),
     children: [
       {
