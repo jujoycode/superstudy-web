@@ -1,6 +1,6 @@
 // import preval from 'preval.macro'
 // import { format } from 'date-fns'
-import { Navigate } from 'react-router'
+import { useNavigate } from 'react-router'
 import superstudyLight from '@/assets/images/superstudy-light.png'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
@@ -14,8 +14,9 @@ export function HomePage() {
   const { authenticated } = useAuth()
   const { push } = useHistory()
   const { t } = useLanguage()
+  const navigate = useNavigate()
 
-  if (authenticated) return <Navigate to="/student" />
+  if (authenticated) navigate('/student')
 
   const redirectToStore = () => {
     const userAgent = navigator.userAgent

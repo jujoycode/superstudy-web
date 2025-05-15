@@ -1,5 +1,4 @@
 import { Navigate, useLocation } from 'react-router-dom'
-import { Routes } from '@/legacy/constants/routes'
 import { Role } from '@/legacy/generated/model'
 import { useUserStore } from '@/stores/user'
 
@@ -40,64 +39,45 @@ type PathKey =
 
 const PERMISSION_MAP: Record<PathKey, (permission?: TeacherPermission, user?: User) => boolean> = {
   '/admin/school': () => false,
-  '/admin/teacher': (permission) => permission?.adminTeacher || false,
-  '/admin/student': (permission) => permission?.adminStudent || false,
-  '/admin/parent': (permission) => permission?.adminParent || false,
-  '/admin/class': (permission) => permission?.adminClass || false,
-  '/admin/group': (permission) => permission?.adminGroup || false,
-  '/admin/approval-line': (permission) => permission?.adminApprovalLine || false,
-  '/admin/timetable': (permission) => permission?.adminTimetable || false,
-  '/admin/sms': (permission) => permission?.adminSms || false,
-  '/admin/score': (permission, user) => (permission?.adminScore && user?.school?.schoolType === 'HS') || false,
-  '/admin/ib': (permission, user) => (permission?.adminIb && (user?.schoolId === 2 || user?.schoolId === 106)) || false,
+  '/admin/teacher': (p) => p?.adminTeacher || false,
+  '/admin/student': (p) => p?.adminStudent || false,
+  '/admin/parent': (p) => p?.adminParent || false,
+  '/admin/class': (p) => p?.adminClass || false,
+  '/admin/group': (p) => p?.adminGroup || false,
+  '/admin/approval-line': (p) => p?.adminApprovalLine || false,
+  '/admin/timetable': (p) => p?.adminTimetable || false,
+  '/admin/sms': (p) => p?.adminSms || false,
+  '/admin/score': (p, u) => (p?.adminScore && u?.school?.schoolType === 'HS') || false,
+  '/admin/ib': (p, u) => (p?.adminIb && (u?.schoolId === 2 || u?.schoolId === 106)) || false,
 }
 
 export function AdminGuard({ children }: Props) {
   const { me } = useUserStore()
   const location = useLocation()
+  const path = Object.keys(PERMISSION_MAP).find((p) => location.pathname.startsWith(p)) as PathKey | undefined
+  const hasPermission = !path || PERMISSION_MAP[path](me?.teacherPermission, me)
 
-  // 관리자가 아닌 경우 접근 불가
   if (!me || (me.role !== Role.ADMIN && !me.teacherPermission)) {
     return <Navigate to="/" replace />
   }
 
-  // 관리자는 모든 권한 있음
   if (me.role === Role.ADMIN) {
-    return <>{children}</>
+    return children
   }
 
-  // 현재 경로에 따른 권한 체크
-  const checkPermissionByPath = () => {
-    const path = Object.keys(PERMISSION_MAP).find((p) => location.pathname.startsWith(p)) as PathKey | undefined
-    if (!path) return true // 매핑되지 않은 경로는 접근 허용
-
-    return PERMISSION_MAP[path](me.teacherPermission, me)
-  }
-
-  // 권한이 없는 경우 접근 가능한 첫 페이지로 리다이렉션
-  if (!checkPermissionByPath() && location.pathname !== '/admin') {
+  if (!hasPermission && location.pathname !== '/admin') {
     return <Navigate to="/admin" replace />
   }
 
-  // 루트 경로에서 접근 가능한 첫 번째 페이지로 리다이렉션
   if (location.pathname === '/admin') {
-    const availableRoutes = [
-      me.teacherPermission?.adminTeacher && Routes.admin.teacher.index,
-      me.teacherPermission?.adminStudent && Routes.admin.student.index,
-      me.teacherPermission?.adminParent && Routes.admin.parent.index,
-      me.teacherPermission?.adminClass && Routes.admin.klass.index,
-      me.teacherPermission?.adminGroup && Routes.admin.group.index,
-      me.teacherPermission?.adminApprovalLine && Routes.admin.approvalLine,
-      me.teacherPermission?.adminTimetable && Routes.admin.timetable,
-      me.teacherPermission?.adminSms && Routes.admin.sms,
-      me.teacherPermission?.adminScore && me.school?.schoolType === 'HS' && Routes.admin.score.index,
-      me.teacherPermission?.adminIb && (me.schoolId === 2 || me.schoolId === 106) && Routes.admin.ib.index,
-    ].filter(Boolean)[0]
+    const redirectPath = (Object.keys(PERMISSION_MAP) as PathKey[]).find((key) =>
+      PERMISSION_MAP[key](me.teacherPermission, me),
+    )
 
-    if (availableRoutes) {
-      return <Navigate to={availableRoutes} replace />
+    if (redirectPath) {
+      return <Navigate to={redirectPath} replace />
     }
   }
 
-  return <>{children}</>
+  return children
 }

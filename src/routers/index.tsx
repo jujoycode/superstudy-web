@@ -122,9 +122,6 @@ import { PrivacyPolicy } from '@/legacy/pages/student/PrivacyPolicy'
 import { SelfTestPage } from '@/legacy/pages/student/self-test/SelfTestPage'
 import { TermsOfUse } from '@/legacy/pages/student/TermsOfUse'
 import { TimetableDetailPage } from '@/legacy/pages/student/timetable/TimetableDetailPage'
-// import { StudentMainPage } from '@/legacy/pages/student';
-// import { TeacherMainPage } from '@/legacy/pages/teacher/TeacherMainPage';
-// import { AdminMainPage } from '@/legacy/pages/admin/AdminMainPage';
 import AbsentComparisonPage from '@/legacy/pages/teacher/absent/AbsentComparisonPage'
 import { TeacherApplyPage } from '@/legacy/pages/teacher/absent/TeacherApplyPage'
 import { ActivityV3AddPage } from '@/legacy/pages/teacher/activityv3/ActivityV3AddPage'
@@ -148,6 +145,7 @@ import { RecordPage } from '@/legacy/pages/teacher/record/RecordPage'
 import { StudentCardPage } from '@/legacy/pages/teacher/studentcard/StudentCardPage'
 import { AdminGuard } from './guard/AdminGuard'
 import { AuthGuard } from './guard/AuthGuard'
+import { TeacherLayout } from '@/layouts/TeacherLayout'
 
 /**
  * Router
@@ -162,7 +160,11 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/two-factor',
-    element: <AuthGuard component={TwoFactor} />,
+    element: (
+      <AuthGuard>
+        <TwoFactor />
+      </AuthGuard>
+    ),
   },
   {
     path: '/terms-of-use',
@@ -399,7 +401,11 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/teacher',
-    // element: <AuthGuard>{/* <TeacherLayout/> */}</AuthGuard>,
+    element: (
+      <AuthGuard>
+        <TeacherLayout />
+      </AuthGuard>
+    ),
     children: [
       { path: 'canteen', element: <CanteenPage /> },
       { path: 'timetable', element: <TimetablePage /> },
@@ -632,7 +638,11 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/add-child/:uuid',
-    element: <AuthGuard component={AddChildrenPage} />,
+    element: (
+      <AuthGuard>
+        <AddChildrenPage />
+      </AuthGuard>
+    ),
   },
   {
     path: '/parent-signup',
@@ -644,15 +654,27 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/login',
-    element: <AuthGuard guestOnly={true} component={LoginV2} />,
+    element: (
+      <AuthGuard guestOnly={true}>
+        <LoginV2 />
+      </AuthGuard>
+    ),
   },
   {
     path: '/select-school',
-    element: <AuthGuard guestOnly={true} component={SelectSchool} />,
+    element: (
+      <AuthGuard guestOnly={true}>
+        <SelectSchool />
+      </AuthGuard>
+    ),
   },
   {
     path: '/signup',
-    element: <AuthGuard guestOnly={true} component={Signup} />,
+    element: (
+      <AuthGuard guestOnly={true}>
+        <Signup />
+      </AuthGuard>
+    ),
   },
 ]
 
