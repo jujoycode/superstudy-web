@@ -1,88 +1,30 @@
-import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, LinkProps, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import clsx from 'clsx'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { ReactComponent as RightArrow } from '@/assets/svg/RightFillArrow.svg'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { useHistory } from '@/hooks/useHistory'
-import { AuthRoute, Blank } from '@/legacy/components/common'
+import { useLogout } from '@/hooks/useLogout'
+import { Blank } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
 import { NotificationModal } from '@/legacy/components/notification/NotificationModal'
 import { Toast } from '@/legacy/components/Toast'
 import { Constants } from '@/legacy/constants'
 import {
-  externalCreateToken,
   useDashboardGetDashBoardData,
+  externalCreateToken,
   useNotificationLogFindRecent,
 } from '@/legacy/generated/endpoint'
 import { OutingUse, ResponseDashboardDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { cn } from '@/legacy/lib/tailwind-merge'
-import CASInterviewDetailPage from '@/legacy/pages/ib/teacher/CAS/CASInterviewDetailPage'
-import { CASMainPage } from '@/legacy/pages/ib/teacher/CAS/CASMainPage'
-import CASPortfolioPage from '@/legacy/pages/ib/teacher/CAS/CASPortfolioPage'
-import { CASReflectionDiaryDetailPage } from '@/legacy/pages/ib/teacher/CAS/CASReflectionDiaryDetailPage'
-import { CoordinatorPage } from '@/legacy/pages/ib/teacher/coordinator/CoordinatorPage'
-import { EEEssayPage } from '@/legacy/pages/ib/teacher/EE/EEEssayPage'
-import { EEMainPage } from '@/legacy/pages/ib/teacher/EE/EEMainPage'
-import { EEProposalDetailPage } from '@/legacy/pages/ib/teacher/EE/EEProposalDetailPage'
-import { EERppfDetailPage } from '@/legacy/pages/ib/teacher/EE/EERppfDetailPage'
-import { EERppfInterviewDetailPage } from '@/legacy/pages/ib/teacher/EE/EERppfInterviewDetailPage'
-import EERrsDetailPage from '@/legacy/pages/ib/teacher/EE/EERrsDetailPage'
-import IBTeacherMainPage from '@/legacy/pages/ib/teacher/IBTeacherMainPage'
-import { IBTeacherReferenceDetailPage } from '@/legacy/pages/ib/teacher/IBTeacherReferenceDetailPage'
-import { IBTeacherReferencePage } from '@/legacy/pages/ib/teacher/IBTeacherReferencePage'
-import { EssayDetailPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/EssayDetailPage'
-import { EssayMainPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/EssayMainPage'
-import { OutlineDetailPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/OutlineDetailPage'
-import RRSDetailPage from '@/legacy/pages/ib/teacher/TOK_ESSAY/RRSDetailPage'
-import { TKPPFDetailPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/TKPPFDetailPage'
-import { ExhibitionDetailPage } from '@/legacy/pages/ib/teacher/TOK_EXHIBITION/ExhibitionDetailPage'
-import { ExhibitionMainPage } from '@/legacy/pages/ib/teacher/TOK_EXHIBITION/ExhibitionMainPage'
-import { ExhibitionPlanDetailPage } from '@/legacy/pages/ib/teacher/TOK_EXHIBITION/ExhibitionPlanDetailPage'
-import AbsentComparisonPage from '@/legacy/pages/teacher/absent/AbsentComparisonPage'
-import { AbsentPage } from '@/legacy/pages/teacher/absent/AbsentPage'
-import { TeacherApplyPage } from '@/legacy/pages/teacher/absent/TeacherApplyPage'
-import { DateFormat, DateUtil } from '@/legacy/util/date'
+import { DateFormat } from '@/legacy/util/date'
+import { DateUtil } from '@/legacy/util/date'
 import { globalEnv } from '@/legacy/util/global-env'
-import { useLogout } from '@/legacy/util/hooks'
 import { getNickName } from '@/legacy/util/status'
-import { ActivityDetailPage } from './activity/ActivityDetailPage'
-import { ActivityPage } from './activity/ActivityPage'
-import { ActivityV3AddPage } from './activityv3/ActivityV3AddPage'
-import { ActivityV3DetailPage } from './activityv3/ActivityV3DetailPage'
-import { ActivityV3Page } from './activityv3/ActivityV3Page'
-import { ActivityV3ReportPage } from './activityv3/ActivityV3ReportPage'
-import { ActivityV3SessionAddPage } from './activityv3/ActivityV3SessionAddPage'
-import { ActivityV3SessionDetailPage } from './activityv3/ActivityV3SessionDetailPage'
-import { ActivityV3SessionReportPage } from './activityv3/ActivityV3SessionReportPage'
-import { ActivityV3SessionUpdatePage } from './activityv3/ActivityV3SessionUpdatePage'
-import { ActivityV3UpdatePage } from './activityv3/ActivityV3UpdatePage'
-import AnnouncementPage from './announcement/AnnouncementPage'
-import { AttendancePage } from './attendance/AttendancePage'
-import { BoardsPage } from './board/BoardPage'
-import { CalendarPage } from './calendar/CalendarPage'
-import { CanteenPage } from './canteen/CanteenPage'
-import { ChatListPage } from './chat/ChatListPage'
-import { FieldtripMainPage } from './fieldtrip/FieldtripMainPage'
-import { FieldtripNoticePage } from './fieldtrip/FieldtripNoticePage'
-import { FieldtripResultPage } from './fieldtrip/FieldtripResultPage'
-import { GroupPage } from './group/GroupPage'
-import { HistoryPage } from './history/HistoryPage'
-import { LoginPage } from './login/LoginPage'
-import { TeacherFirstLoginPage } from './login/TeacherFirstLoginPage'
-import { NotificationSettingsPage } from './mypage/NotificationSettingsPage'
-import { TeacherInfoPage } from './mypage/TeacherInfoPage'
-import { TeacherMyPage } from './mypage/TeacherMyPage'
-import { NewsletterPage } from './newsletter/NewsletterPage'
-import { NoticePage } from './notice/NoticePage'
-import { OutingPage } from './outing/OutingPage'
-import { PointDashboard } from './pointlogs/PointDashboard'
-import { RecordPage } from './record/RecordPage'
-import { StudentCardPage } from './studentcard/StudentCardPage'
-import { TimetablePage } from './timetable/TimetablePage'
-import { useUserStore } from '@/stores/user'
 import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 
 export function TeacherMainPage() {
   const { replace } = useHistory()
@@ -616,69 +558,6 @@ export function TeacherMainPage() {
 
       <div className="scroll-box h-screen w-full grid-cols-6 overflow-x-hidden overflow-y-scroll md:grid md:overflow-y-hidden">
         <Routes>
-          <Route path="/teacher/canteen" Component={CanteenPage} />
-          <Route path="/teacher/timetable" Component={TimetablePage} />
-          <Route path="/teacher/attendance" Component={AttendancePage} />
-          <Route path="/teacher/absent/comparison" Component={AbsentComparisonPage} />
-          <Route path="/teacher/absent" Component={AbsentPage} />
-          <Route path="/teacher/history" Component={HistoryPage} />
-          <Route path="/teacher/update" Component={TeacherInfoPage} />
-          <AuthRoute path="/teacher/first-login" component={TeacherFirstLoginPage} />
-          <Route path="/teacher/fieldtrip/notice" Component={FieldtripNoticePage} />
-          <Route path="/teacher/fieldtrip/result" Component={FieldtripResultPage} />
-          <Route path="/teacher/board" Component={BoardsPage} />
-          <Route path="/teacher/chat" Component={ChatListPage} />
-          <Route path="/teacher/fieldtrip" Component={FieldtripMainPage} />
-          <Route path="/teacher/calendar" Component={CalendarPage} />
-          <Route path="/teacher/project" Component={IBTeacherMainPage} />
-          <Route
-            path="/teacher/ib/portfolio/:studentId/reflection-diary/:id"
-            Component={CASReflectionDiaryDetailPage}
-          />
-          <Route path="/teacher/ib/portfolio/:studentId/interview/:id/:qnaId" Component={CASInterviewDetailPage} />
-          <Route path="/teacher/ib/cas/portfolio/:id" Component={CASPortfolioPage} />
-          <Route path="/teacher/ib/cas/:id" Component={CASMainPage} />
-          <Route path="/teacher/ib/ee/:id/proposal/:proposalId" Component={EEProposalDetailPage} />
-          <Route path="/teacher/ib/ee/:id/essay/:essayId" Component={EEEssayPage} />
-          <Route path="/teacher/ib/ee/:id/rppf/:rppfId" Component={EERppfDetailPage} />
-          <Route path="/teacher/ib/ee/:id/interview/:qnaId" Component={EERppfInterviewDetailPage} />
-          <Route path="/teacher/ib/ee/:id/rrs/:rrsId" Component={EERrsDetailPage} />
-          <Route path="/teacher/ib/ee/:id" Component={EEMainPage} />
-          <Route path="/teacher/ib/coordinatorPage/:type" Component={CoordinatorPage} />
-          <Route path="/teacher/ib/reference/:id" Component={IBTeacherReferenceDetailPage} />
-          <Route path="/teacher/ib/reference" Component={IBTeacherReferencePage} />
-          <Route path="/teacher/ib/tok/exhibition/:ibId/detail/:exhibitionId" Component={ExhibitionDetailPage} />
-          <Route path="/teacher/ib/tok/exhibition/:ibId" Component={ExhibitionMainPage} />
-          <Route path="/teacher/ib/tok/plan/:ibId" Component={ExhibitionPlanDetailPage} />
-          <Route path="/teacher/ib/tok/essay/:ibId/detail/:essayId" Component={EssayDetailPage} />
-          <Route path="/teacher/ib/tok/essay/:ibId" Component={EssayMainPage} />
-          <Route path="/teacher/ib/tok/outline/:ibId/detail/:outlineId" Component={OutlineDetailPage} />
-          <Route path="/teacher/ib/tok/tkppf/:ibId/detail/:tkppfId" Component={TKPPFDetailPage} />
-          <Route path="/teacher/ib/tok/rrs/:ibId/detail/:rrsId" Component={RRSDetailPage} />
-          <Route path="/teacher/activityv3/:id/session/add" Component={ActivityV3SessionAddPage} />
-          <Route path="/teacher/activityv3/:id/session/:sessionId/update" Component={ActivityV3SessionUpdatePage} />
-          <Route path="/teacher/activityv3/:id/session/:sessionId/:studentId" Component={ActivityV3SessionReportPage} />
-          <Route path="/teacher/activityv3/:id/session/:sessionId" Component={ActivityV3SessionDetailPage} />
-          <Route path="/teacher/activityv3/add" Component={ActivityV3AddPage} />
-          <Route path="/teacher/activityv3/:id/update" Component={ActivityV3UpdatePage} />
-          <Route path="/teacher/activityv3/:id/:studentId" Component={ActivityV3ReportPage} />
-          <Route path="/teacher/activityv3/:id" Component={ActivityV3DetailPage} />
-          <Route path="/teacher/activityv3" Component={ActivityV3Page} />
-          <Route path="/teacher/activity/:id" Component={ActivityDetailPage} />
-          <Route path="/teacher/activity" Component={ActivityPage} />
-          <Route path="/teacher/record" Component={RecordPage} />
-          <Route path="/teacher/outing" Component={OutingPage} />
-          <Route path="/teacher/studentcard" Component={StudentCardPage} />
-          <Route path="/teacher/groups" Component={GroupPage} />
-          <Route path="/teacher/pointlogs" Component={PointDashboard} />
-          <Route path="/teacher/notice" Component={NoticePage} />
-          <Route path="/teacher/newsletter" Component={NewsletterPage} />
-          <Route path="/teacher/apply" Component={TeacherApplyPage} />
-          <Route path="/teacher/mypage" Component={TeacherMyPage} />
-          <Route path="/teacher/notification-settings" Component={NotificationSettingsPage} />
-          <Route path="/teacher/login" Component={LoginPage} />
-          <Route path="/teacher/announcement" Component={AnnouncementPage} />
-
           <Route path="/teacher">
             {process.env.REACT_APP_MENU_TYPE === '2' ? (
               <Navigate to="/teacher/absent" />
@@ -690,7 +569,6 @@ export function TeacherMainPage() {
           </Route>
         </Routes>
       </div>
-
       <Toast />
     </div>
   )
