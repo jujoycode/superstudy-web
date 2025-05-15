@@ -130,7 +130,7 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks: {
-            'vendor': ['react', 'react-dom', 'react-router-dom'],
+            vendor: ['react', 'react-dom', 'react-router-dom'],
           },
           entryFileNames: 'static/[name].[hash].js',
           chunkFileNames: 'static/[name].[hash].js',
@@ -155,7 +155,7 @@ export default defineConfig(({ mode }) => {
         '@/molecules': '/src/components/molecules',
         '@/organisms': '/src/components/organisms',
         '@/pages': '/src/components/pages',
-        '@/layouts': '/src/components/layouts',
+        '@/layouts': '/src/layouts',
         '@/hooks': '/src/hooks',
         '@/stores': '/src/stores',
         '@/routers': '/src/routers',

@@ -1,14 +1,13 @@
-import type { ComponentType } from 'react'
+import { ReactNode } from 'react'
 import { Navigate, useLocation } from 'react-router'
-
 import { useAuth } from '@/legacy/util/hooks'
 
 interface AuthGuardProps {
-  component: ComponentType
+  children: ReactNode
   guestOnly?: boolean
 }
 
-export function AuthGuard({ component: Component, guestOnly }: AuthGuardProps) {
+export function AuthGuard({ children, guestOnly }: AuthGuardProps) {
   const { authenticated } = useAuth()
   const location = useLocation()
 
@@ -19,5 +18,6 @@ export function AuthGuard({ component: Component, guestOnly }: AuthGuardProps) {
   if (!guestOnly && !authenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />
   }
-  return <Component />
+
+  return <>{children}</>
 }

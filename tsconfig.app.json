@@ -34,7 +34,7 @@
       "@/molecules/*": ["src/components/molecules/*"],
       "@/organisms/*": ["src/components/organisms/*"],
       "@/pages/*": ["src/components/pages/*"],
-      "@/layouts/*": ["src/components/layouts/*"],
+      "@/layouts/*": ["src/layouts/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/stores/*": ["src/stores/*"],
       "@/routers": ["src/routers/index.tsx"]
