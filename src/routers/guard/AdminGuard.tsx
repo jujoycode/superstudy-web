@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { Routes } from '@/legacy/constants/routes'
 import { Role } from '@/legacy/generated/model'
 import { useUserStore } from '@/stores/user'
@@ -10,10 +10,11 @@ interface Props {
 
 export function AdminGuard({ children, requiredPermission }: Props) {
   const { me } = useUserStore()
+  const navigate = useNavigate()
 
   // 관리자가 아닌 경우 접근 불가
   if (!me || (me.role !== Role.ADMIN && !me.teacherPermission)) {
-    return <Navigate to="/" replace />
+    return navigate('/', { replace: true })
   }
 
   // 특정 권한이 필요한 경우 체크
@@ -56,7 +57,7 @@ export function AdminGuard({ children, requiredPermission }: Props) {
     }
 
     if (!hasPermission) {
-      return <Navigate to={Routes.admin.index} replace />
+      return navigate(Routes.admin.index, { replace: true })
     }
   }
 

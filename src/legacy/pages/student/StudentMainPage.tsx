@@ -1,6 +1,7 @@
-import clsx from 'clsx'
 import { useMemo } from 'react'
 import { Navigate, Route, Routes, useLocation, Link } from 'react-router-dom'
+import clsx from 'clsx'
+import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
@@ -9,8 +10,9 @@ import { Role } from '@/legacy/generated/model'
 import { AbsentAddPage } from '@/legacy/pages/student/absent/AbsentAddPage'
 import { AbsentDetailPage } from '@/legacy/pages/student/absent/AbsentDetailPage'
 import { AbsentPage } from '@/legacy/pages/student/absent/AbsentPage'
-import { useAuth } from '@/legacy/util/hooks'
+import { ApplyPage } from '@/legacy/pages/teacher/absent/ApplyPage'
 import { PermissionUtil } from '@/legacy/util/permission'
+import { useUserStore } from '@/stores/user'
 import { ActivitySessionDetailPage } from './activityv3/ActivitySessionDetailPage'
 import { ActivitySessionPage } from './activityv3/ActivitySessionPage'
 import { ActivityV3Page } from './activityv3/ActivityV3Page'
@@ -43,16 +45,12 @@ import { PointLogsPage } from './point/PointLogsPage'
 import { ScorePage } from './score/ScorePage'
 import { SelfTestPage } from './self-test/SelfTestPage'
 import { TimetableDetailPage } from './timetable/TimetableDetailPage'
-import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
-import { ApplyPage } from '@/legacy/pages/teacher/absent/ApplyPage'
-import { useUserStore } from '@/stores/user'
 
 export function StudentMainPage() {
   const { replace } = useHistory()
   const { me } = useUserStore()
   const { child: myChild } = useUserStore()
   const { pathname } = useLocation()
-  const { authenticated } = useAuth()
   const { push } = useHistory()
 
   if (PermissionUtil.isNotStudentNotParent(me?.role)) {
@@ -81,7 +79,7 @@ export function StudentMainPage() {
       },
       { path: '/student/mypage', icon: Icon.MoreVertical, name: '더보기', extra: ['/student/announcement'] },
     ],
-    [me?.role, authenticated],
+    [me?.role],
   )
 
   return (

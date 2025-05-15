@@ -88,11 +88,8 @@ export default tseslint.config(
         {
           groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
           pathGroups: [
-            { pattern: 'react*', group: 'builtin', position: 'before' },
-            { pattern: '@/atoms/*', group: 'internal', position: 'before' },
-            { pattern: '@/molecules/*', group: 'internal', position: 'before' },
-            { pattern: '@/organisms/*', group: 'internal', position: 'before' },
-            { pattern: '@/*', group: 'internal', position: 'after' },
+            { pattern: 'react*', group: 'builtin' },
+            { pattern: '@/*', group: 'sibling' },
           ],
           pathGroupsExcludedImportTypes: [],
           alphabetize: { order: 'asc', caseInsensitive: true },
