@@ -1,4 +1,6 @@
 import { createBrowserRouter, Navigate, type RouteObject } from 'react-router-dom'
+import CASPortfolio from '@/legacy/components/ib/cas/CASPortfolio'
+import StudentIBStatus from '@/legacy/components/ib/StudentIBStatus'
 import { StudentRedirect } from '@/legacy/components/StudentRedirect'
 import { AdminMainPage } from '@/legacy/pages/admin/AdminMainPage'
 import { ApprovalLinePage } from '@/legacy/pages/admin/approval-line/ApprovalLinePage'
@@ -40,6 +42,8 @@ import InterviewDetailPage from '@/legacy/pages/ib/student/EE/InterviewDetailPag
 import { ProposalDetailPage } from '@/legacy/pages/ib/student/EE/ProposalDetailPage'
 import RPPFDetailPage from '@/legacy/pages/ib/student/EE/RPPFDetailPage'
 import RRSDetailPage from '@/legacy/pages/ib/student/EE/RRSDetailPage'
+import { IBStudentMainPage } from '@/legacy/pages/ib/student/IBStudentMainPage'
+import { IBStudentPage } from '@/legacy/pages/ib/student/IBStudentPage'
 import { IBStudentReferenceDetailPage } from '@/legacy/pages/ib/student/IBStudentReferenceDetailPage'
 import { IBStudentReferencePage } from '@/legacy/pages/ib/student/IBStudentReferencePage'
 import { EssayMainPage } from '@/legacy/pages/ib/student/TOK_ESSAY/EssayMainPage'
@@ -142,6 +146,7 @@ import { NewsletterPage } from '@/legacy/pages/teacher/newsletter/NewsletterPage
 import { PointDashboard } from '@/legacy/pages/teacher/pointlogs/PointDashboard'
 import { RecordPage } from '@/legacy/pages/teacher/record/RecordPage'
 import { StudentCardPage } from '@/legacy/pages/teacher/studentcard/StudentCardPage'
+import { AdminGuard } from './guard/AdminGuard'
 import { AuthGuard } from './guard/AuthGuard'
 
 /**
@@ -209,12 +214,12 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/admin',
-    element: <AdminMainPage />,
+    element: (
+      <AdminGuard>
+        <AdminMainPage />
+      </AdminGuard>
+    ),
     children: [
-      {
-        index: true,
-        element: <Navigate to="/admin/school" replace />,
-      },
       { path: 'school', element: <SchoolPage /> },
       {
         path: 'teacher',
@@ -525,9 +530,17 @@ export const routers: RouteObject[] = [
     ],
   },
   {
-    path: '/ib/student',
-    // element: <AuthGuard>{/* <IBLayout/> */}</AuthGuard>,
+    path: '/ib',
+    element: <IBStudentPage />,
     children: [
+      {
+        path: 'student',
+        element: <IBStudentMainPage />,
+        children: [
+          { index: true, element: <StudentIBStatus /> },
+          { path: 'portfolio', element: <CASPortfolio /> },
+        ],
+      },
       {
         path: 'ee/:id',
         children: [

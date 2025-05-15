@@ -1,7 +1,8 @@
+import { useEffect, useRef, useState } from 'react'
+import { useLocation, useOutletContext } from 'react-router'
 import clsx from 'clsx'
 import QueryString from 'qs'
-import { useEffect, useRef, useState } from 'react'
-import { useLocation } from 'react-router'
+
 import CAS from '@/assets/images/CAS.png'
 import EE from '@/assets/images/EE.png'
 import NODATA from '@/assets/images/no-data.png'
@@ -44,7 +45,8 @@ interface SelectedOptions {
 
 type IBProjectTypes = 'NORMAL' | 'EE' | 'CAS' | 'TOK'
 
-export default function StudentIBStatus({ data }: StudentIBStatusProps) {
+export default function StudentIBStatus() {
+  const { data } = useOutletContext<{ data: StudentIBStatusProps }>()
   const { me } = useUserStore()
   const history = useHistory()
   const { setQueryParamsWithStorage, removeStoredQueryParams } = useQueryParams()

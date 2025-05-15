@@ -1,21 +1,21 @@
-import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { Link, Route, Routes, useLocation } from 'react-router-dom'
-
+import { Link, Outlet, useLocation } from 'react-router-dom'
+import clsx from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
+import CAS from '@/assets/images/CAS.png'
+import EE from '@/assets/images/EE.png'
+import TOK from '@/assets/images/TOK.png'
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import { Typography } from '@/legacy/components/common/Typography'
-import CASPortfolio from '@/legacy/components/ib/cas/CASPortfolio'
 import { IbCASNormal } from '@/legacy/components/ib/cas/IbCASNormal'
 import { IbCASProject } from '@/legacy/components/ib/cas/IbCASProject'
 import { IbEeProposal } from '@/legacy/components/ib/ee/IbEeProposal'
 import IBLayout from '@/legacy/components/ib/IBLayout'
-import StudentIBStatus from '@/legacy/components/ib/StudentIBStatus'
 import { IbExhibitionPlan } from '@/legacy/components/ib/tok/IbExhibitionPlan'
 import { IbOutline } from '@/legacy/components/ib/tok/IbOutline'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
@@ -23,10 +23,6 @@ import { PopupModal } from '@/legacy/components/PopupModal'
 import { useGetIBProject } from '@/legacy/container/ib-project-get-filter'
 import { ResponseIBDto } from '@/legacy/generated/model'
 import { useUserStore } from '@/stores/user'
-
-import CAS from '@/assets/images/CAS.png'
-import EE from '@/assets/images/EE.png'
-import TOK from '@/assets/images/TOK.png'
 
 export type IBProject = '' | 'CAS' | 'EE' | 'TOK'
 export type ModalType = 'projectSelection' | 'IbEeProposal' | 'IbTok' | 'IbCAS' | null
@@ -190,10 +186,7 @@ export const IBStudentMainPage = () => {
             }
             bottomContent={
               <div className="flex h-full items-center">
-                <Routes>
-                  <Route path="/ib/student" Component={() => <StudentIBStatus data={data} />} />
-                  <Route path="/ib/student/portfolio" Component={() => <CASPortfolio />} />
-                </Routes>
+                <Outlet context={{ data }} />
               </div>
             }
             bottomBgColor={pathname.startsWith('/ib/student/portfolio') ? 'bg-primary-gray-50' : 'white'}
