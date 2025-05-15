@@ -1,5 +1,4 @@
-import { createBrowserRouter, Navigate, type RouteObject } from 'react-router-dom'
-import { StudentRedirect } from '@/legacy/components/StudentRedirect'
+import { createBrowserRouter, Navigate, Outlet, type RouteObject } from 'react-router-dom'
 import { AdminMainPage } from '@/legacy/pages/admin/AdminMainPage'
 import { ApprovalLinePage } from '@/legacy/pages/admin/approval-line/ApprovalLinePage'
 import { ExpiredUserPage } from '@/legacy/pages/admin/expired-user/ExpiredUserPage'
@@ -140,6 +139,7 @@ import { PointDashboard } from '@/legacy/pages/teacher/pointlogs/PointDashboard'
 import { RecordPage } from '@/legacy/pages/teacher/record/RecordPage'
 import { StudentCardPage } from '@/legacy/pages/teacher/studentcard/StudentCardPage'
 import { AuthGuard } from './guard/AuthGuard'
+import { StudentGuard } from './guard/StudentGuard'
 import { TeacherLayout } from '@/layouts/TeacherLayout'
 
 /**
@@ -298,7 +298,11 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/student',
-    // element: <AuthGuard>{/* <StudentLayout /> */}</AuthGuard>,
+    element: (
+      <StudentGuard>
+        <Outlet />
+      </StudentGuard>
+    ),
     children: [
       {
         path: 'notice',
@@ -388,10 +392,6 @@ export const routers: RouteObject[] = [
       { path: 'notification-settings', element: <NotificationSettingsPage /> },
       { path: 'pointlogs', element: <PointLogsPage /> },
       { path: 'score/:id/:type', element: <ScorePage /> },
-      {
-        index: true,
-        element: <StudentRedirect />,
-      },
     ],
   },
   {
@@ -402,7 +402,7 @@ export const routers: RouteObject[] = [
       </AuthGuard>
     ),
     children: [
-      { path: 'canteen', element: <CanteenPage /> },
+      { path: 'canteen/:date', element: <CanteenPage /> },
       { path: 'timetable', element: <TimetablePage /> },
       { path: 'attendance', element: <AttendancePage /> },
       { path: 'absent/comparison', element: <AbsentComparisonPage /> },
