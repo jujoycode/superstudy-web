@@ -1,5 +1,5 @@
-import clsx from 'clsx'
 import { InputHTMLAttributes, forwardRef, useEffect, useState } from 'react'
+import clsx from 'clsx'
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {}
 
@@ -12,7 +12,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
       ref={ref}
       type="checkbox"
       onClick={(e) => (e.stopPropagation(), onClick?.(e))}
-      className={clsx('checkbox', className)}
+      className={clsx(
+        'checkbox',
+        props.disabled ? 'bg-primary-gray-100 cursor-not-allowed opacity-60' : 'cursor-pointer',
+        className,
+      )}
       {...props}
     />
   )
