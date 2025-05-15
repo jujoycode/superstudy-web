@@ -6,18 +6,17 @@ const meta: Meta<typeof Container> = {
   component: Container,
   tags: ['autodocs'],
   parameters: {
-    layout: 'fullscreen',
+    layout: 'padded',
   },
 }
 
 export default meta
 type Story = StoryObj<typeof Container>
 
-const defaultClassName = 'border min-w-[500px] h-[500px]'
-
 export const defaultContainer: Story = {
   args: {
-    className: defaultClassName,
+    className: 'border',
+    paddingY: '20',
   },
 }
 
@@ -26,7 +25,8 @@ export const BoxContainer: Story = {
     flex: true,
     justify: 'center',
     items: 'center',
-    className: defaultClassName,
+    className: 'border',
+    paddingY: '4',
     children: <div className="h-32 w-32 rounded-lg bg-gray-200" />,
   },
 }
@@ -37,7 +37,9 @@ export const MultipleBoxContainer: Story = {
     justify: 'center',
     items: 'center',
     gap: '4',
-    className: defaultClassName,
+    paddingY: '4',
+    height: 'screen',
+    className: 'border',
     children: (
       <>
         <div className="h-32 w-32 rounded-lg bg-gray-200" />
