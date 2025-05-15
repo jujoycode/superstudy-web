@@ -34,7 +34,7 @@ export function StudentDetailsPage() {
       <Admin.Section>
         <Admin.H2>{t('student_information')}</Admin.H2>
         <div className="flex gap-2">
-          <Button.sm as={Link} children={t('edit')} to={`${id}/edit`} className="outlined-gray" />
+          <Button.sm as={Link} children={t('edit')} to={`/admin/student/${id}/edit`} className="outlined-gray" />
         </div>
         <Admin.Card className="grid grid-cols-3 divide-x">
           <Admin.Cell>

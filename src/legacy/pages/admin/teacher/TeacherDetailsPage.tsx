@@ -1,6 +1,6 @@
-import clsx from 'clsx'
 import { ChangeEvent, useContext } from 'react'
 import { Link, useParams } from 'react-router'
+import clsx from 'clsx'
 
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -35,7 +35,7 @@ export function TeacherDetailsPage() {
       <Admin.Section>
         <Admin.H2>{t('teacher_information')}</Admin.H2>
         <div className="flex gap-2">
-          <Button.sm as={Link} children={t('edit')} to={`${id}/edit`} className="outlined-gray" />
+          <Button.sm as={Link} children={t('edit')} to={`/admin/teacher/${id}/edit`} className="outlined-gray" />
         </div>
         <Admin.Card className="grid grid-cols-5 divide-x">
           <Admin.Cell>

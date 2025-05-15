@@ -1,5 +1,6 @@
-import { createBrowserRouter, type RouteObject } from 'react-router-dom'
+import { createBrowserRouter, Navigate, type RouteObject } from 'react-router-dom'
 import { StudentRedirect } from '@/legacy/components/StudentRedirect'
+import { AdminMainPage } from '@/legacy/pages/admin/AdminMainPage'
 import { ApprovalLinePage } from '@/legacy/pages/admin/approval-line/ApprovalLinePage'
 import { ExpiredUserPage } from '@/legacy/pages/admin/expired-user/ExpiredUserPage'
 import { GroupEditPage } from '@/legacy/pages/admin/group/GroupEditPage'
@@ -208,20 +209,19 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/admin',
-    // element: <AuthGuard>{/* <AdminLayout /> */}</AuthGuard>,
+    element: <AdminMainPage />,
     children: [
+      {
+        index: true,
+        element: <Navigate to="/admin/school" replace />,
+      },
       { path: 'school', element: <SchoolPage /> },
       {
         path: 'teacher',
         children: [
           { index: true, element: <TeacherPage /> },
-          {
-            path: ':id',
-            children: [
-              { index: true, element: <TeacherDetailsPage /> },
-              { path: 'edit', element: <TeacherEditPage /> },
-            ],
-          },
+          { path: ':id/edit', element: <TeacherEditPage /> },
+          { path: ':id', element: <TeacherDetailsPage /> },
           { path: 'new', element: <TeacherEditPage /> },
           {
             path: 'batch/new',
@@ -242,26 +242,16 @@ export const routers: RouteObject[] = [
           },
           { path: 'photos', element: <StudentPhotosPage /> },
           { path: 'new', element: <StudentEditPage /> },
-          {
-            path: ':id',
-            children: [
-              { index: true, element: <StudentDetailsPage /> },
-              { path: 'edit', element: <StudentEditPage /> },
-            ],
-          },
+          { path: ':id/edit', element: <StudentEditPage /> },
+          { path: ':id', element: <StudentDetailsPage /> },
         ],
       },
       {
         path: 'parent',
         children: [
           { index: true, element: <ParentPage /> },
-          {
-            path: ':id',
-            children: [
-              { index: true, element: <ParentDetailsPage /> },
-              { path: 'edit', element: <ParentEditPage /> },
-            ],
-          },
+          { path: ':id/edit', element: <ParentEditPage /> },
+          { path: ':id', element: <ParentDetailsPage /> },
         ],
       },
       { path: 'expired-user', element: <ExpiredUserPage /> },
@@ -298,13 +288,8 @@ export const routers: RouteObject[] = [
         children: [
           { index: true, element: <PointPage /> },
           { path: 'new', element: <PointEditPage /> },
-          {
-            path: ':id',
-            children: [
-              { index: true, element: <PointDetailsPage /> },
-              { path: 'edit', element: <PointEditPage /> },
-            ],
-          },
+          { path: ':id/edit', element: <PointEditPage /> },
+          { path: ':id', element: <PointDetailsPage /> },
         ],
       },
     ],
