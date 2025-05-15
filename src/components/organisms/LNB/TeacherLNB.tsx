@@ -5,7 +5,7 @@ import { NavigationHeader } from '@/molecules/navigation/NavigationHeader'
 export function TeacherLNB() {
   return (
     // 전역 Container
-    <Container flex direction="col" justify="start" items="center" gap="2">
+    <Container flex direction="col" justify="start" items="center" gap="2" width="224px">
       <NavigationHeader />
 
       <Divider />

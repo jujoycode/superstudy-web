@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link, LinkProps, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Link, LinkProps, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import clsx from 'clsx'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { ReactComponent as RightArrow } from '@/assets/svg/RightFillArrow.svg'
@@ -544,7 +544,7 @@ export function TeacherMainPage() {
       </div>
 
       {/*/!* Mobile V *!/*/}
-      <nav className="bottom-nav z-100 md:hidden">
+      {/* <nav className="bottom-nav z-100 md:hidden">
         {tabs.map((tab) => {
           const active = [tab.path, ...(tab.extra ?? [])].some((path) => pathname.startsWith(path))
           return (
@@ -554,21 +554,12 @@ export function TeacherMainPage() {
             </Link>
           )
         })}
-      </nav>
+      </nav> */}
 
       <div className="scroll-box h-screen w-full grid-cols-6 overflow-x-hidden overflow-y-scroll md:grid md:overflow-y-hidden">
-        <Routes>
-          <Route path="/teacher">
-            {process.env.REACT_APP_MENU_TYPE === '2' ? (
-              <Navigate to="/teacher/absent" />
-            ) : (
-              <Navigate
-                to={`/teacher/canteen/${DateUtil.formatDate(new Date().toISOString(), DateFormat['YYYY-MM-DD'])}`}
-              />
-            )}
-          </Route>
-        </Routes>
+        <Outlet />
       </div>
+
       <Toast />
     </div>
   )
