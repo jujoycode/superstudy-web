@@ -28,19 +28,23 @@ import { NotificationSettingsPage } from '@/legacy/pages/student/mypage/Notifica
 import { NoticePage } from '@/legacy/pages/student/notice/NoticePage'
 import { OutingPage } from '@/legacy/pages/student/outing/OutingPage'
 import AbsentComparisonPage from '@/legacy/pages/teacher/absent/AbsentComparisonPage'
+import { AbsentPage } from '@/legacy/pages/teacher/absent/AbsentPage'
 import { TeacherApplyPage } from '@/legacy/pages/teacher/absent/TeacherApplyPage'
 import { ActivityV3AddPage } from '@/legacy/pages/teacher/activityv3/ActivityV3AddPage'
+import { ActivityV3DetailPage } from '@/legacy/pages/teacher/activityv3/ActivityV3DetailPage'
+import { ActivityV3Page } from '@/legacy/pages/teacher/activityv3/ActivityV3Page'
 import { ActivityV3ReportPage } from '@/legacy/pages/teacher/activityv3/ActivityV3ReportPage'
 import { ActivityV3SessionAddPage } from '@/legacy/pages/teacher/activityv3/ActivityV3SessionAddPage'
+import { ActivityV3SessionDetailPage } from '@/legacy/pages/teacher/activityv3/ActivityV3SessionDetailPage'
 import { ActivityV3SessionReportPage } from '@/legacy/pages/teacher/activityv3/ActivityV3SessionReportPage'
 import { ActivityV3SessionUpdatePage } from '@/legacy/pages/teacher/activityv3/ActivityV3SessionUpdatePage'
 import { ActivityV3UpdatePage } from '@/legacy/pages/teacher/activityv3/ActivityV3UpdatePage'
 import { AttendancePage } from '@/legacy/pages/teacher/attendance/AttendancePage'
 import { BoardsPage } from '@/legacy/pages/teacher/board/BoardPage'
 import { CalendarPage } from '@/legacy/pages/teacher/calendar/CalendarPage'
+import { FieldtripMainPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripMainPage'
 import { FieldtripResultPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripResultPage'
 import { HistoryPage } from '@/legacy/pages/teacher/history/HistoryPage'
-import { LoginPage } from '@/legacy/pages/teacher/login/LoginPage'
 import { TeacherFirstLoginPage } from '@/legacy/pages/teacher/login/TeacherFirstLoginPage'
 import { TeacherInfoPage } from '@/legacy/pages/teacher/mypage/TeacherInfoPage'
 import { TeacherMyPage } from '@/legacy/pages/teacher/mypage/TeacherMyPage'
@@ -48,19 +52,14 @@ import { NewsletterPage } from '@/legacy/pages/teacher/newsletter/NewsletterPage
 import { PointDashboard } from '@/legacy/pages/teacher/pointlogs/PointDashboard'
 import { RecordPage } from '@/legacy/pages/teacher/record/RecordPage'
 import { StudentCardPage } from '@/legacy/pages/teacher/studentcard/StudentCardPage'
-import { AuthGuard } from './guard/AuthGuard'
-import { AbsentPage } from '@/legacy/pages/teacher/absent/AbsentPage'
-import { FieldtripMainPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripMainPage'
-import { ActivityV3Page } from '@/legacy/pages/teacher/activityv3/ActivityV3Page'
-import { ActivityV3DetailPage } from '@/legacy/pages/teacher/activityv3/ActivityV3DetailPage'
-import { ActivityV3SessionDetailPage } from '@/legacy/pages/teacher/activityv3/ActivityV3SessionDetailPage'
+import { AuthRouter } from './guard/AuthRouter'
 
 export const teacherRoutes = {
   path: '/teacher',
   element: (
-    <AuthGuard>
+    <AuthRouter>
       <TeacherLayout />
-    </AuthGuard>
+    </AuthRouter>
   ),
   children: [
     // 출석부

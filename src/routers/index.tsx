@@ -25,7 +25,7 @@ import { ResetPasswordPageV1 } from '@/legacy/pages/student/password/ResetPasswo
 import { PrivacyPolicy } from '@/legacy/pages/student/PrivacyPolicy'
 import { TermsOfUse } from '@/legacy/pages/student/TermsOfUse'
 import { adminRoutes } from './admin.router'
-import { AuthGuard } from './guard/AuthGuard'
+import { AuthRouter } from './guard/AuthRouter'
 import { studentRoutes } from './student.router'
 import { teacherRoutes } from './teacher.router'
 
@@ -43,9 +43,9 @@ export const routers: RouteObject[] = [
   {
     path: '/two-factor',
     element: (
-      <AuthGuard>
+      <AuthRouter>
         <TwoFactor />
-      </AuthGuard>
+      </AuthRouter>
     ),
   },
   {
@@ -118,9 +118,9 @@ export const routers: RouteObject[] = [
   {
     path: '/add-child/:uuid',
     element: (
-      <AuthGuard>
+      <AuthRouter>
         <AddChildrenPage />
-      </AuthGuard>
+      </AuthRouter>
     ),
   },
   {
@@ -134,25 +134,25 @@ export const routers: RouteObject[] = [
   {
     path: '/login',
     element: (
-      <AuthGuard guestOnly={true}>
+      <AuthRouter guestOnly={true}>
         <LoginV2 />
-      </AuthGuard>
+      </AuthRouter>
     ),
   },
   {
     path: '/select-school',
     element: (
-      <AuthGuard guestOnly={true}>
+      <AuthRouter guestOnly={true}>
         <SelectSchool />
-      </AuthGuard>
+      </AuthRouter>
     ),
   },
   {
     path: '/signup',
     element: (
-      <AuthGuard guestOnly={true}>
+      <AuthRouter guestOnly={true}>
         <Signup />
-      </AuthGuard>
+      </AuthRouter>
     ),
   },
   {
