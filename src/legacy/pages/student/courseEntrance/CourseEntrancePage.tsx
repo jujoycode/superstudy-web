@@ -1,31 +1,28 @@
-// @ts-ignore
 import { addHours, differenceInSeconds, format } from 'date-fns'
 import { useState } from 'react'
 import { useLocation } from 'react-router'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-
 import sugang from '@/assets/images/sugang.png'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { Blank, Section } from '@/legacy/components/common'
 import { externalCreateToken, externalUpdateQueue, useCourseSeasonGet } from '@/legacy/generated/endpoint'
-import { childState, toastState } from '@/stores'
+import { useUserStore } from '@/stores/user'
+import { useNotificationStore } from '@/stores/notification'
 
 export function CourseEntrancePage() {
   const { push } = useHistory()
   const location = useLocation()
 
-  const myChild = useRecoilValue(childState)
+  const { child: myChild } = useUserStore()
+  const { setToast: setToastMsg } = useNotificationStore()
 
   const [waiting, setWaiting] = useState(false)
-  const [waitingPosition, setWaitingPosition] = useState(0)
   const [waitingTime, setWaitingTime] = useState(0)
+  const [waitingPosition, setWaitingPosition] = useState(0)
   const [applyTerm, setApplyTerm] = useState('')
   const [applyStartTime, setApplyStartTime] = useState(new Date())
   const [seasonName, setSeasonName] = useState('')
   const [isSeason, setIsSeason] = useState(false)
-
-  const setToastMsg = useSetRecoilState(toastState)
 
   const params = new URLSearchParams(location.search)
 

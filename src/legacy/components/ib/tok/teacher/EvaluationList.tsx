@@ -12,7 +12,7 @@ import {
   ResponseTokEvaluationInitialDataDto,
   ResponseTokEvaluationSummaryDto,
 } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import Evaluation from './Evaluation'
 
 interface EvaluationListProps {

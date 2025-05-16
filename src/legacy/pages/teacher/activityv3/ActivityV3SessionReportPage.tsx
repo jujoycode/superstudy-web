@@ -6,7 +6,6 @@ import Linkify from 'react-linkify'
 import { useParams } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilState } from 'recoil'
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { SuperModal } from '@/legacy/components'
@@ -32,8 +31,8 @@ import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { getNickName } from '@/legacy/util/status'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
-import { toastState } from '@/stores'
-import { useUserStore } from '@/stores2/user'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 
 interface ActivityV3SessionReportPageProps {}
 
@@ -43,7 +42,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
   const [activeIndex, setActiveIndex] = useState(0)
   const [isSurveyModalOpen, setSurveyModalOpen] = useState(false)
   const [userSelectView, setUserSelectView] = useState(false)
-  const [, setToastMsg] = useRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const { replace } = useHistory()
   const [selectedUserId, setSelectedUserId] = useState<number>(Number(studentId))
   const [sessionComment, setSessionComment] = useState('')

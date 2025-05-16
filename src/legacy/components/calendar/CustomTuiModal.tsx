@@ -45,7 +45,7 @@ export function CustomTuiModal({
   const subjectRef = useRef<any>(null)
   const { t } = useLanguage()
 
-  const [calendarId, setCalendarId] = useState(calendars[0].id)
+  const [calendarId, setCalendarId] = useState(calendars[0]?.id)
   const [title, setTitle] = useState('')
   const [startAt, setStartAt] = useState('')
   const [endAt, setEndAt] = useState('')
@@ -354,7 +354,7 @@ export function CustomTuiModal({
                   </button>
                   <ul className="tui-full-calendar-dropdown-menu max-h-60 overflow-y-auto" style={{ zIndex: 1004 }}>
                     {allGroups
-                      ?.filter((g) => g.type === selectedGroupType && g.id > 0)
+                      ?.filter((g) => g.type === selectedGroupType && g?.id > 0)
                       ?.map((group: MergedGroupType) => (
                         <li
                           key={group.id}

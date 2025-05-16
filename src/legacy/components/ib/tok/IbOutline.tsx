@@ -7,7 +7,7 @@ import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useIBCreate } from '@/legacy/container/ib-project'
 import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
 import { RequestIBDto, RequestIBTokOutlineDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 

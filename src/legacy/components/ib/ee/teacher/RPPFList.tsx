@@ -20,7 +20,7 @@ import { useRPPFUpdateRPPFStatusReject } from '@/legacy/generated/endpoint'
 import { FeedbackReferenceTable, ResponseIBDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { LocationState } from '@/legacy/types/ib'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 interface RppfListProps {
   id: number
   data: ResponseIBDto

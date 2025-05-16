@@ -1,6 +1,4 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-
 import { ReactComponent as Close } from '@/assets/svg/close.svg'
 import { ErrorBlank, SelectMenus } from '@/legacy/components'
 import { Blank, Label } from '@/legacy/components/common'
@@ -14,8 +12,8 @@ import { Category, GroupType, ResponseGroupDto, StudentGroup, SubjectType, User 
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName } from '@/legacy/util/status'
 import { getThisYear } from '@/legacy/util/time'
-import { meState, toastState } from '@/stores'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
+import { useNotificationStore } from '@/stores/notification'
 
 interface GroupAddPageProps {
   groupData?: ResponseGroupDto
@@ -37,7 +35,7 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
     { id: 2, name: t('other'), value: SubjectType.ETC },
   ]
 
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
 
   const { allKlassGroupsUnique: allKlassGroups } = GroupContainer.useContext()
   const {

@@ -6,7 +6,7 @@ import { CloseButton } from './common'
 
 interface SuperModalProps extends HTMLAttributes<HTMLDivElement> {
   modalOpen: boolean
-  setModalClose: () => void
+  setModalClose?: () => void
   hasClose?: boolean
   ablePropragation?: boolean
 }
@@ -34,7 +34,7 @@ export function SuperModal({
       }}
     >
       <div className={cn('relative w-80 rounded-lg bg-white', className)} {...props}>
-        {hasClose && (
+        {hasClose && setModalClose && (
           <div className="absolute top-3 right-3">
             <CloseButton onClick={() => setModalClose()} />
           </div>

@@ -86,18 +86,12 @@ export default tseslint.config(
       'import/order': [
         'error',
         {
-          groups: ['builtin', 'external', 'internal', 'index'],
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
           pathGroups: [
-            {
-              pattern: 'react*',
-              group: 'builtin',
-            },
-            {
-              pattern: '@/*',
-              group: 'internal',
-              position: 'after',
-            },
+            { pattern: 'react*', group: 'builtin' },
+            { pattern: '@/*', group: 'sibling' },
           ],
+          pathGroupsExcludedImportTypes: [],
           alphabetize: { order: 'asc', caseInsensitive: true },
         },
       ],

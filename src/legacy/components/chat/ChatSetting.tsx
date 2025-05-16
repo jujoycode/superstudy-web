@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useState, useEffect, type ChangeEvent } from 'react'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import { CloseButton, Label, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'

@@ -11,7 +11,7 @@ import { ImageObject } from '@/legacy/types/image-object'
 import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString, makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
 import { UserContainer } from './user'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 const reasonType = [
   '상고',

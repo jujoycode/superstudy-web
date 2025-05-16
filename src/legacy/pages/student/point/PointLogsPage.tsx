@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useRecoilValue } from 'recoil'
 
 import { BackButton, TopNavbar } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -9,7 +8,7 @@ import { Typography } from '@/legacy/components/common/Typography'
 import { usePointLogGet } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
 import { numberWithSign } from '@/legacy/util/string'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 const encouragements = [
   { min: 10, message: '🌟 훌륭해요! 좋은 행동이 쌓이고 있어요.\n계속해서 좋은 모습을 기대할게요!' },

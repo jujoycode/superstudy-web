@@ -6,8 +6,8 @@ interface NotificationState {
   newsletterOpenedGroup: string[]
   newMsgCnt: number
 
-  setToast: (toast: string) => void
-  setWarning: (toast: string) => void
+  setToast: (toast: string | undefined) => void
+  setWarning: (warning: string | undefined) => void
   setNewsletterOpenedGroup: (groups: string[]) => void
   setNewMsgCnt: (count: number) => void
   reset: () => void
@@ -18,7 +18,7 @@ const initialState = {
   toast: undefined,
   warning: undefined,
   newsletterOpenedGroup: [],
-  newMsgCnt: 0
+  newMsgCnt: 0,
 }
 
 export const useNotificationStore = create<NotificationState>()((set) => ({

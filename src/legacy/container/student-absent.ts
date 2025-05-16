@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useAbsentsFindAllByStudent } from '@/legacy/generated/endpoint'
 import { UserContainer } from './user'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentAbsent() {
   const { child } = useUserStore()

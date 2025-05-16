@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useParams } from 'react-router'
-import { useRecoilState } from 'recoil'
-
 import { Avatar, Blank, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
@@ -15,8 +13,7 @@ import {
   useStudentActivityV3SaveByTeacher,
 } from '@/legacy/generated/endpoint'
 import { getNickName, padLeftstr } from '@/legacy/util/status'
-import { toastState } from '@/stores'
-
+import { useNotificationStore } from '@/stores/notification'
 import { RecordItem } from './RecordItem'
 
 interface StudentActivityDetailProps {
@@ -26,7 +23,7 @@ interface StudentActivityDetailProps {
 
 export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ activityv3, studentGroups }) => {
   const { id } = useParams<{ id: string }>()
-  const [, setToastMsg] = useRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const { studentId } = useParams<{ studentId: string }>()
   const [selectedUserId, setSelectedUserId] = useState<number>(Number(studentId))
   const [userSelectView, setUserSelectView] = useState(false)

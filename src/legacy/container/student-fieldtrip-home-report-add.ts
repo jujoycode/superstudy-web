@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useFieldtripResultUpdateResult, useFieldtripsFindOne } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
 import { errorType } from '@/legacy/types'
-import { childState } from '@/stores'
 import { UserContainer } from './user'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 type Props = {
   id: number

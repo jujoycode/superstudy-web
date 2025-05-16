@@ -1,5 +1,3 @@
-import { useRecoilValue } from 'recoil'
-
 import { ErrorBlank } from '@/legacy/components'
 import { Blank, Label, Section, Select, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -15,7 +13,7 @@ import { Code, Notice } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getExtOfFilename } from '@/legacy/util/file'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 interface NoticeAddProps {
   noticeData?: Notice

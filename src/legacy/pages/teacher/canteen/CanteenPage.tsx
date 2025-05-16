@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Viewer from 'react-viewer'
-import { useRecoilValue } from 'recoil'
 import ChatIcon from '@/assets/svg/chat.svg'
 import ClockIcon from '@/assets/svg/clock.svg'
 import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
@@ -19,14 +18,14 @@ import { CalendarIdEnum } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { checkNewVersion } from '@/legacy/util/status'
 import { makeDateToString, makeMonthDayToString, makeMonthDayToStringEN } from '@/legacy/util/time'
-import { meState, newMsgCntState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 import { CanteenDetailPage } from './CanteenDetailPage'
 import { CanteenSubmitPage } from './CanteenSubmitPage'
-import { useUserStore } from '@/stores2/user'
 
 export function CanteenPage() {
   const { me } = useUserStore()
-  const newMsgCnt = useRecoilValue(newMsgCntState)
+  const { newMsgCnt } = useNotificationStore()
   const { t } = useLanguage()
 
   checkNewVersion()

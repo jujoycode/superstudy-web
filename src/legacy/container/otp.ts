@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import {
   useOtpSendPost,
@@ -9,7 +8,8 @@ import {
 } from '@/legacy/generated/endpoint'
 import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
 import { errorType } from '@/legacy/types'
-import { toastState, tokenState, twoFactorState } from '@/stores'
+import { useAuthStore } from '@/stores/auth'
+import { useNotificationStore } from '@/stores/notification'
 
 export function useOtp() {
   const [otpSendResult, setOtpSendResult] = useState(false)
@@ -17,9 +17,8 @@ export function useOtp() {
   const [seconds, setSeconds] = useState(0) // 3분은 180초입니다.
   const [remainSecString, setRemainSecString] = useState('')
   const { setStorage } = useBrowserStorage()
-  const setToastMsg = useSetRecoilState(toastState)
-  const setTwoFactorState = useSetRecoilState(twoFactorState)
-  const token = useRecoilValue(tokenState)
+  const { setToast: setToastMsg } = useNotificationStore()
+  const { token, setTwoFactor: setTwoFactorState } = useAuthStore()
   const { push } = useHistory()
 
   useEffect(() => {

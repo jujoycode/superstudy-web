@@ -1,5 +1,5 @@
 // src/legacy/hooks/useBrowserStorage.ts
-import { useAuthStore } from '@/stores2/auth'
+import { useAuthStore } from '@/stores/auth'
 
 /**
  * 브라우저 스토리지(localStorage/sessionStorage)를 관리하는 훅

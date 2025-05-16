@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import { useAbsentsCreate, useAbsentsUpdate, useStudentGroupsFindByGroupId } from '@/legacy/generated/endpoint'
 import { Absent, ResponseGroupDto, Role, StudentGroup, UploadFileTypeEnum, User } from '@/legacy/generated/model'
@@ -9,9 +8,9 @@ import { AbsentDescription, AbsentTimeType, errorType } from '@/legacy/types'
 import { ImageObject } from '@/legacy/types/image-object'
 import { getPeriodNum, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
-import { childState } from '@/stores'
 import { GroupContainer } from './group'
 import { UserContainer } from './user'
+import { useUserStore } from '@/stores/user'
 
 const reasonType = [
   '상고',
@@ -52,7 +51,7 @@ type Props = {
 export function useTeacherAbsentAdd({ absentData, returnToDetail }: Props) {
   const { push } = useHistory()
   const { me } = UserContainer.useContext()
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
   const { allKlassGroupsUnique: allKlassGroups } = GroupContainer.useContext()
   const [selectedGroup, setSelectedGroup] = useState<ResponseGroupDto | null>(allKlassGroups[0] || null)
   const [studentGroups, setStudentGroups] = useState<StudentGroup[]>([])
@@ -178,7 +177,7 @@ export function useTeacherAbsentAdd({ absentData, returnToDetail }: Props) {
           alert(errorMsg?.message || '결재자 지정상태를 확인하세요.')
           setLoading(false)
           setSignModal(false)
-        } catch {}
+        } catch { }
       },
     },
     request: {

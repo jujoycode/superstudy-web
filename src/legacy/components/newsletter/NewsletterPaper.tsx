@@ -3,7 +3,7 @@ import { Time } from '@/legacy/components/common/Time'
 import { Role } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
 import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 interface NewsletterPaperProps {
   newsletter?: any

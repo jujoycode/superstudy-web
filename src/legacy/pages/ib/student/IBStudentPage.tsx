@@ -1,5 +1,7 @@
-import { Link, Route, Routes, useLocation } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
+import { Link, Outlet, Route, Routes, useLocation } from 'react-router-dom'
+
+import Logo from '@/assets/images/logo_color.png'
+import SvgUser from '@/assets/images/no_profile.png'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank } from '@/legacy/components'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -8,41 +10,17 @@ import ColorSVGIcon from '@/legacy/components/icon/ColorSVGIcon'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { Constants } from '@/legacy/constants'
 import { useIBProfileGetById } from '@/legacy/container/ib-cas'
-import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/student/PlagiarismInspectPage'
 import { useLogout } from '@/legacy/util/hooks'
 import { makeStudNum5 } from '@/legacy/util/status'
-import { meState, schoolPropertiesState } from '@/stores'
-import CASInterviewDetailPage from './CAS/CASInterviewDetailPage'
-import { CASMainPage } from './CAS/CASMainPage'
-import { CASReflectionDiaryDetailPage } from './CAS/CASReflectionDiaryDetailPage'
-import { EeEssayDetailPage } from './EE/EeEssayDetailPage'
-import { EEMainPage } from './EE/EEMainPage'
-import InterviewDetailPage from './EE/InterviewDetailPage'
-import { ProposalDetailPage } from './EE/ProposalDetailPage'
-import RPPFDetailPage from './EE/RPPFDetailPage'
-import RRSDetailPage from './EE/RRSDetailPage'
-import { IBStudentMainPage } from './IBStudentMainPage'
-import { IBStudentReferenceDetailPage } from './IBStudentReferenceDetailPage'
-import { IBStudentReferencePage } from './IBStudentReferencePage'
-import { EssayMainPage } from './TOK_ESSAY/EssayMainPage'
-import { OutlineDetailPage } from './TOK_ESSAY/OutlineDetailPage'
-import TKPPFDetailPage from './TOK_ESSAY/TKPPFDetailPage'
-import { TOKEssayDetailPage } from './TOK_ESSAY/TOKEssayDetailPage'
-import TOKRRSDetailPage from './TOK_ESSAY/TOKRRSDetailPage'
-import { ExhibitionDetailPage } from './TOK_EXHIBITION/ExhibitionDetailPage'
-import { ExhibitionMainPage } from './TOK_EXHIBITION/ExhibitionMainPage'
-import { ExhibitionPlanDetailPage } from './TOK_EXHIBITION/ExhibitionPlanDetailPage'
-import { useUserStore } from '@/stores2/user'
-
-import Logo from '@/assets/images/logo_color.png'
-import SvgUser from '@/assets/images/no_profile.png'
+import { useSchoolStore } from '@/stores/school'
+import { useUserStore } from '@/stores/user'
 
 export const IBStudentPage = () => {
   const { pathname } = useLocation()
   const { push } = useHistory()
   const logout = useLogout()
   const { me } = useUserStore()
-  const schoolProperties = useRecoilValue(schoolPropertiesState)
+  const { schoolProperties } = useSchoolStore()
   const { data } = useIBProfileGetById(me?.id || 0)
 
   // 표절 검사 활성화 여부
@@ -185,29 +163,7 @@ export const IBStudentPage = () => {
         </div>
       </div>
       <div className="scroll-box h-screen w-full grid-cols-6 overflow-x-hidden overflow-y-scroll md:grid md:overflow-y-hidden">
-        <Routes>
-          <Route path="/ib/student/ee/:id/proposal/:proposalId" Component={ProposalDetailPage} />
-          <Route path="/ib/student/ee/:id/essay/:essayId" Component={EeEssayDetailPage} />
-          <Route path="/ib/student/ee/:id/rppf/:rppfId" Component={RPPFDetailPage} />
-          <Route path="/ib/student/ee/:id/interview/:qnaId" Component={InterviewDetailPage} />
-          <Route path="/ib/student/ee/:id/rrs/:rrsId" Component={RRSDetailPage} />
-          <Route path="/ib/student/ee/:id" Component={EEMainPage} />
-          <Route path="/ib/student/cas/:id" Component={CASMainPage} />
-          <Route path="/ib/student/tok/exhibition/:id/detail/:exhibitionId" Component={ExhibitionDetailPage} />
-          <Route path="/ib/student/tok/exhibition/plan/:id" Component={ExhibitionPlanDetailPage} />
-          <Route path="/ib/student/tok/exhibition/:id" Component={ExhibitionMainPage} />
-          <Route path="/ib/student/tok/essay/outline/:id" Component={OutlineDetailPage} />
-          <Route path="/ib/student/tok/essay/detail/:id" Component={TOKEssayDetailPage} />
-          <Route path="/ib/student/tok/essay/:id/rrs/:rrsId" Component={TOKRRSDetailPage} />
-          <Route path="/ib/student/tok/essay/:id/tkppf/:tkppfId" Component={TKPPFDetailPage} />
-          <Route path="/ib/student/tok/essay/:id" Component={EssayMainPage} />
-          <Route path="/ib/student/reference/:id" Component={IBStudentReferenceDetailPage} />
-          <Route path="/ib/student/reference" Component={IBStudentReferencePage} />
-          <Route path="/ib/student/portfolio/reflection-diary/:id" Component={CASReflectionDiaryDetailPage} />
-          <Route path="/ib/student/portfolio/interview/:id/:qnaId" Component={CASInterviewDetailPage} />
-          <Route path="/ib/student/plagiarism-inspection" Component={PlagiarismInspectPage} />
-          <Route path="/ib/student" Component={IBStudentMainPage} />
-        </Routes>
+        <Outlet />
       </div>
     </div>
   )

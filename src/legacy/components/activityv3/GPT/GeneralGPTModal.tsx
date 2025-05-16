@@ -1,7 +1,5 @@
 import { FC, useState } from 'react'
-import { useRecoilState } from 'recoil'
 import { twMerge } from 'tailwind-merge'
-
 import { Avatar, Textarea } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
@@ -16,7 +14,7 @@ import {
   TeacherStudentAssessment,
 } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
 
 interface GeneralGPTModalProps {
   studentId: number
@@ -56,7 +54,7 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
   studentInfo,
 }) => {
   const { t, currentLang } = useLanguage()
-  const [, setToastMsg] = useRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const [content, setContent] = useState('')
   const [question, setQuestion] = useState('')
   const [sentence, setSentence] = useState('')

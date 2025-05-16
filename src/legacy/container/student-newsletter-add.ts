@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+
 import { useStudentNewsletterUpsert } from '@/legacy/generated/endpoint'
 import { RequestUpsertStudentNewsletterDto } from '@/legacy/generated/model'
-import { childState, toastState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentNewsletterAdd(id?: number) {
-  const child = useRecoilValue(childState)
+  const { child } = useUserStore()
   const queryClient = useQueryClient()
-
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const [errorMessage, setErrorMessage] = useState('')
 
   const { mutate: upsertStudentNewsletterMutate, isLoading } = useStudentNewsletterUpsert({

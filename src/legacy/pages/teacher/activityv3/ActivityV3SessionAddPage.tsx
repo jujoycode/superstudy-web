@@ -2,8 +2,6 @@ import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { SuperModal } from '@/legacy/components'
 import { ActivitySessionTeacherView } from '@/legacy/components/activityv3/ActivitySessionTeacherView'
@@ -27,14 +25,14 @@ import {
 } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
 
 interface ActivityV3SessionAddPageProps {
   activitySessionData?: ActivitySession
 }
 
 export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> = ({ activitySessionData }) => {
-  const [, setToastMsg] = useRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const { push, goBack } = useHistory()
   const { id } = useParams<{ id: string }>()
 

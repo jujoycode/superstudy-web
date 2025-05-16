@@ -1,5 +1,5 @@
 import { useHistory } from '@/hooks/useHistory'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import { PermissionUtil } from '@/legacy/util/permission'
 import { Button } from './common/Button'
 

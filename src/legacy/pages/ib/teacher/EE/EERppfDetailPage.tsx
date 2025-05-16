@@ -3,7 +3,6 @@ import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLocation, useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -24,7 +23,7 @@ import { useRPPFGetById } from '@/legacy/container/ib-rppf-findId'
 import { useRPPFUpdateRPPFStatusReject } from '@/legacy/generated/endpoint'
 import { RequestCreateRPPFDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export const EERppfDetailPage = () => {
   const history = useHistory()

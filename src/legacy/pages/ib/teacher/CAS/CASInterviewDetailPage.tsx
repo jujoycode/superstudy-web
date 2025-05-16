@@ -2,7 +2,6 @@ import { format } from 'date-fns'
 import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -20,7 +19,7 @@ import { useIBProfileGetById } from '@/legacy/container/ib-cas'
 import { useIBInterviewUpdate, useInterviewQNA } from '@/legacy/container/ib-student-interview'
 import { IBInterviewQnaContentDto, RequestUpdateQnaDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export default function CASInterviewDetailPage() {
   const history = useHistory()

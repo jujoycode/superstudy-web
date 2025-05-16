@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
@@ -12,7 +11,7 @@ import { TextInput } from '@/legacy/components/common/TextInput'
 import { useStudentFirstLogin } from '@/legacy/container/student-first-login'
 import { useLogout } from '@/legacy/util/hooks'
 import { Validator } from '@/legacy/util/validator'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function FirstLoginPage() {
   const { push } = useHistory()

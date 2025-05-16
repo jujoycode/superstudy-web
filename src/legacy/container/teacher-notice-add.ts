@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { useSetRecoilState } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { Routes } from '@/legacy/constants/routes'
@@ -10,7 +9,7 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { DocumentObject } from '@/legacy/types/document-object'
 import { ImageObject } from '@/legacy/types/image-object'
-import { isUpdateNoticeState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 const initialNoticeState: Notice = {
   id: 0,
@@ -32,7 +31,7 @@ export function useTeacherNoticeAdd(noticeData?: Notice) {
   const { push } = useHistory()
   const queryClient = useQueryClient()
 
-  const setIsNoticeUpdate = useSetRecoilState(isUpdateNoticeState)
+  const { setIsUpdateNotice: setIsNoticeUpdate } = useUserStore()
 
   const [notice, setNotice] = useState<Notice>(noticeData || initialNoticeState)
   const [errorMessage, setErrorMessage] = useState('')

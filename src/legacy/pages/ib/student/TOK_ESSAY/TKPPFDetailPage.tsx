@@ -2,7 +2,6 @@ import { format } from 'date-fns'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLocation, useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -18,7 +17,7 @@ import { IbTKPPF } from '@/legacy/components/ib/tok/IbTKPPF'
 import { useIBDeadline } from '@/legacy/container/ib-deadline'
 import { useIBTKPPFCreate, useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
 import { RequestCreateTKPPFDto, ResponseIBDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 interface LocationState {
   title: string

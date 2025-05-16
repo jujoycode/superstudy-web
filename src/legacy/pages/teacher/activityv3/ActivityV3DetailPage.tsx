@@ -5,9 +5,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useLocation, useParams } from 'react-router-dom'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilState, useRecoilValue } from 'recoil'
 import { twMerge } from 'tailwind-merge'
-
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { Activityv3SubmitterItem } from '@/legacy/components/activityv3/ActivityV3SubmitterItem'
@@ -31,8 +29,8 @@ import {
 import { Role, StudentGroup, SubjectType } from '@/legacy/generated/model'
 import { checkSubmitted } from '@/legacy/util/activityv3'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { meState, toastState } from '@/stores'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
+import { useNotificationStore } from '@/stores/notification'
 
 interface ActivityV3DetailPageProps {}
 
@@ -64,7 +62,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
   const selectedFilter = searchParams.get('selectedFilter') || 'all'
 
   const { me } = useUserStore()
-  const [, setToastMsg] = useRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
 
   const [selectedGroupIds, setSelectedGroupIds] = useState<number[]>([])
   const [showDialog, setShowDialog] = useState(false)

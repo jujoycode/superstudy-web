@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useUserGetAllTeachers } from '@/legacy/generated/endpoint'
 import { ResponseGroupDto, ResponseTeachersDto, Role } from '@/legacy/generated/model'
 import { UserDatas } from '@/legacy/types'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentChatUserList() {
   const { child } = useUserStore()

@@ -3,7 +3,6 @@ import { addMonths, endOfMonth, format, startOfMonth, subMonths } from 'date-fns
 import { t } from 'i18next'
 import { useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
-import { useRecoilValue } from 'recoil'
 import { Calendar, type CalendarData } from '@/atoms/Calendar'
 import { ErrorBlank } from '@/legacy/components'
 import { CustomTuiDetailModal } from '@/legacy/components/calendar/CustomTuiDetailModal'
@@ -18,10 +17,10 @@ import { useTeacherChatUserList } from '@/legacy/container/teacher-chat-user-lis
 import { CalendarIdEnum, Role, ScheduleCategoryEnum } from '@/legacy/generated/model'
 import { MenuType } from '@/legacy/types'
 import { weekAfter, weekAgo } from '@/legacy/util/time'
-import { meState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export function CalendarPage() {
-  const me = useRecoilValue(meState)
+  const { me } = useUserStore()
 
   const [modalOpen, setModalOpen] = useState(false)
   const [detailModalOpen, setDetailModalOpen] = useState(false)

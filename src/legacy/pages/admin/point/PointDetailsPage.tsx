@@ -18,7 +18,7 @@ export function PointDetailsPage() {
     <Admin.Section>
       <Admin.H2>{ta('point_details')}</Admin.H2>
       <div className="flex gap-2">
-        <Button.sm as={Link} children={t('edit')} to={`${id}/edit`} className="outlined-gray" />
+        <Button.sm as={Link} children={t('edit')} to={`/admin/point/${id}/edit`} className="outlined-gray" />
       </div>
       <Admin.Card>
         <Admin.Cell className="flex flex-col gap-4">

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNewsLettersFindOne, useStudentNewsletterFindOneByStudent } from '@/legacy/generated/endpoint'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentNewsletterDetail(id?: number) {
   const [errorMessage, setErrorMessage] = useState('')

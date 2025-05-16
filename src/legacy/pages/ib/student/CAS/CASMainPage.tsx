@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import moment from 'moment'
 import { useState } from 'react'
 import { Link, Route, Routes, useLocation, useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
+
 import { twMerge } from 'tailwind-merge'
 
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -28,7 +28,7 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBProposalUpdateWaitPlan } from '@/legacy/container/ib-proposal-sent'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateUtil } from '@/legacy/util/date'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export type CASProject = 'ACTIVITY_PLAN' | 'ACTIVITY_LOG'
 

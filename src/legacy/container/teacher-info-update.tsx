@@ -1,13 +1,12 @@
 import { useQueryClient } from 'react-query'
-import { useSetRecoilState } from 'recoil'
 import { QueryKey } from '@/legacy/constants/query-key'
 import { useUserUpdateMe } from '@/legacy/generated/endpoint'
 import { UpdateUserDto } from '@/legacy/generated/model'
-import { isUpdateMeState } from '@/stores'
+import { useUserStore } from '@/stores/user'
 
 export function useTeacherInfoUpdate() {
   const queryClient = useQueryClient()
-  const setIsUpdateMe = useSetRecoilState(isUpdateMeState)
+  const { setIsUpdateMe } = useUserStore()
 
   const { mutateAsync: updateMeMutateAsync, isLoading: isUpdateMeLoading } = useUserUpdateMe({
     mutation: {

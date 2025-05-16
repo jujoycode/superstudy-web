@@ -4,8 +4,6 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { BackButton, List, ListItem, Textarea, TopNavbar } from '@/legacy/components/common'
@@ -21,15 +19,15 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ActivityType } from '@/legacy/generated/model'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { meState, toastState } from '@/stores'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
+import { useNotificationStore } from '@/stores/notification'
 
 export function ActivitySessionPage() {
   const { id } = useParams<{ id: string }>()
   const { me: meRecoil } = useUserStore()
 
   const { push } = useHistory()
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
 
   const { data: activityv3 } = useActivityV3FindOne(Number(id))
   const { data: studentActivityV3 } = useStudentActivityV3FindByStudent({ activityv3Id: Number(id) })

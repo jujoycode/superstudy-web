@@ -13,7 +13,7 @@ import { Typography } from '@/legacy/components/common/Typography'
 import { useGetIBPortfolio } from '@/legacy/container/ib-portfolio-get-filter'
 import { useGroupsFindAllKlassBySchool } from '@/legacy/generated/endpoint'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import PortfolioCard from './cas/PortfolioCard'
 
 interface FilterOption {

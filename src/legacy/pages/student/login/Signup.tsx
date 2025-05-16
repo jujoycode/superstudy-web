@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
-import { useSetRecoilState } from 'recoil'
-
 import { useHistory } from '@/hooks/useHistory'
 import { BackButton, Divider, Label, PhoneNumberField, Select, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -19,13 +17,13 @@ import { RequestSignupDto } from '@/legacy/generated/model'
 import { form } from '@/legacy/lib/form'
 import { useSearch } from '@/legacy/lib/router'
 import { Validator } from '@/legacy/util/validator'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
 
 export function Signup() {
   const { push } = useHistory()
   const { t } = useTranslation(undefined, { keyPrefix: 'signup_page' })
   const { schoolId } = useSearch({ schoolId: 0 })
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const [otpNumStudent, setOtpNumStudent] = useState('')
   const [otpNumParent, setOtpNumParent] = useState('')
   const [privacy, setPrivacy] = useState(false)

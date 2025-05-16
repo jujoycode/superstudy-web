@@ -6,7 +6,7 @@ import Stepper from '@/legacy/components/common/Stepper'
 import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import { TooltipV2 } from '@/legacy/components/common/TooltipV2'
 import { ResponseTokEvaluationCriteriaDto, ResponseTokEvaluationSummaryDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 import { EvaluationData } from './EvaluationList'
 

@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router'
 import { useBrowserStorage } from '@/hooks/useBrowserStorage'
 import { RN } from '@/legacy/lib/rn'
-import { useAuthStore } from '@/stores2/auth'
+import { useAuthStore } from '@/stores/auth'
 
 export function useAuth() {
   const token = useAuthStore((state) => state.token)

@@ -1,6 +1,5 @@
 import { addYears, format } from 'date-fns'
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useHistory } from '@/hooks/useHistory'
 import {
   useFieldtripsDelete,
@@ -9,8 +8,7 @@ import {
   useSchedulesFindRejectSchedule,
 } from '@/legacy/generated/endpoint'
 import { errorType } from '@/legacy/types'
-import { childState } from '@/stores'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentFieldtripDetail(id: number) {
   const { push } = useHistory()

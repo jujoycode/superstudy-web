@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useState } from 'react'
 import { Link, Route, Routes, useLocation, useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
+
 import { twMerge } from 'tailwind-merge'
 
 import { SuperModal } from '@/legacy/components'
@@ -29,7 +29,7 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { ResponseIBDtoStatus } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export type CASProject = 'ACTIVITY_PLAN' | 'ACTIVITY_LOG'
 

@@ -1,19 +1,17 @@
-import type { TOptions } from 'i18next'
 import { useTranslation } from 'react-i18next'
-import { useRecoilState } from 'recoil'
-
-import type { Languages } from '@/legacy/util/i18n'
-import { languageState } from '@/stores'
+import { useLanguageStore } from '@/stores/language'
+import type { TOptions } from 'i18next'
 
 export const useLanguage = () => {
+  const { currentLanguage, setLanguage } = useLanguageStore()
   const { t: originalT, i18n } = useTranslation<'translation'>()
-  const [currentLang, setCurrentLang] = useRecoilState<Languages>(languageState)
 
   const changeLanguage = () => {
-    const nextLang: Languages = currentLang === 'ko' ? 'en' : 'ko'
+    const nextLang = currentLanguage === 'ko' ? 'en' : 'ko'
+
     i18n.changeLanguage(nextLang)
     localStorage.setItem('language', nextLang)
-    setCurrentLang(nextLang)
+    setLanguage(nextLang)
   }
 
   const t = (key: string, defaultText?: string, options?: TOptions & { defaultValue?: string }): string => {
@@ -21,5 +19,5 @@ export const useLanguage = () => {
     return originalT(key, { ...options, defaultValue })
   }
 
-  return { currentLang, t, changeLanguage }
+  return { currentLang: currentLanguage, t, changeLanguage }
 }

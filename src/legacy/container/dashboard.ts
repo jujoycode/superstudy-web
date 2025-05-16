@@ -1,18 +1,18 @@
 import { t } from 'i18next'
 import { useState } from 'react'
-import { useSetRecoilState } from 'recoil'
+
 import { useDashboardGetDashBoardData } from '@/legacy/generated/endpoint'
 import { ResponseDashboardDto, ResponseParentApproveDto, Role } from '@/legacy/generated/model'
 import { dashboardNewItem } from '@/legacy/types'
-import { newMsgCntState } from '@/stores'
-import { useUserStore } from '@/stores2/user'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 
 export function useDashboard() {
   const { me } = useUserStore()
   const [dashboardItem, setDashboardItem] = useState<dashboardNewItem[]>()
   const [toDoList, setToDoList] = useState<ResponseDashboardDto>()
 
-  const setNewMsgCnt = useSetRecoilState(newMsgCntState)
+  const { setNewMsgCnt } = useNotificationStore()
 
   useDashboardGetDashBoardData<ResponseDashboardDto>({
     query: {

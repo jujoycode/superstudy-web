@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
+
 import { useHistory } from '@/hooks/useHistory'
 import { useUserGetUser, useUserParentSignUp } from '@/legacy/generated/endpoint'
 import { RequestParentSignUpDto } from '@/legacy/generated/model'
 import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
 import { NotNullable } from '@/legacy/types'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useParentSignUp(uuid: string | null) {
   const { push } = useHistory()

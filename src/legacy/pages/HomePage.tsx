@@ -1,6 +1,4 @@
-// import preval from 'preval.macro'
-// import { format } from 'date-fns'
-import { Navigate } from 'react-router'
+import { useEffect } from 'react'
 import superstudyLight from '@/assets/images/superstudy-light.png'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
@@ -8,14 +6,21 @@ import { BottomFixed, Screen, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { globalEnv } from '@/legacy/util/global-env'
-import { useAuth } from '@/legacy/util/hooks'
+import { useUserStore } from '@/stores/user'
+import { Role } from '../generated/model'
 
 export function HomePage() {
-  const { authenticated } = useAuth()
   const { push } = useHistory()
   const { t } = useLanguage()
+  const { me } = useUserStore()
 
-  if (authenticated) return <Navigate to="/student" />
+  useEffect(() => {
+    if (me?.role === Role.USER || me?.role === Role.PARENT) {
+      window.location.replace('/student')
+    } else {
+      window.location.replace('/teacher')
+    }
+  }, [me])
 
   const redirectToStore = () => {
     const userAgent = navigator.userAgent
@@ -55,7 +60,7 @@ export function HomePage() {
                 </button>
               </div>
 
-              <div className="w-full text-center text-gray-600">
+              <div className="mt-4 w-full text-center text-gray-600">
                 <div className="text-white">
                   v{globalEnv.version} build at{' '}
                   {__BUILD_TIME__.split('T')[0] + ' ' + __BUILD_TIME__.split('T')[1].substring(0, 8)}
@@ -63,7 +68,11 @@ export function HomePage() {
                 슈퍼스쿨 <br />
                 Copyright 2022. SUPERSCHOOL all right reserved.
               </div>
-              <Button.lg children={t('get_started')} onClick={() => push('/login')} className="filled-primary" />
+              <Button.lg
+                children={t('get_started')}
+                onClick={() => push('/login')}
+                className="filled-primary mt-4 w-full"
+              />
             </Section>
           </div>
         </BottomFixed>

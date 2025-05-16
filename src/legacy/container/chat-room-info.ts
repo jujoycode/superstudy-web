@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
+
 import {
   useChatroomAddUser,
   useChatroomGetChatroomDetailInfo,
@@ -15,7 +15,7 @@ import {
 } from '@/legacy/generated/model'
 import { errorType } from '@/legacy/types'
 import { getNickName } from '@/legacy/util/status'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useChatRoomInfo(chatroomId: number) {
   const { me } = useUserStore()

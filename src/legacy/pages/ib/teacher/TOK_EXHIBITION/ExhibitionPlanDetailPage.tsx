@@ -2,7 +2,6 @@ import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import { Blank } from '@/legacy/components/common'
@@ -32,7 +31,7 @@ import type {
   ResponseIBTokExhibitionPlanDto,
 } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 import NODATA from '@/assets/images/no-data.png'
 

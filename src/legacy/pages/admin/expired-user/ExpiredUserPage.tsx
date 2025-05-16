@@ -1,5 +1,3 @@
-import { useSetRecoilState } from 'recoil'
-
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox, useCheckbox } from '@/legacy/components/common/Checkbox'
@@ -9,7 +7,7 @@ import { adminCommonDeleteUser, useAdminCommonGetExpiredUsers } from '@/legacy/g
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSearch } from '@/legacy/lib/router'
-import { toastState } from '@/stores'
+import { useNotificationStore } from '@/stores/notification'
 
 export function ExpiredUserPage() {
   const { page, size } = useSearch({ page: 1, size: 25 })
@@ -18,7 +16,7 @@ export function ExpiredUserPage() {
   const { data: responseData } = useAdminCommonGetExpiredUsers({ page, limit: size })
   const cb = useCheckbox(responseData?.items)
   const ids = cb.items.map(({ id }) => id)
-  const setToastMsg = useSetRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
 
   async function deleteExpiredUser() {
     if (!confirm(`삭제된 계정은 복구할 수 없습니다.\n만료된 계정 ${cb.items.length}개를 삭제하시겠습니까?`)) return

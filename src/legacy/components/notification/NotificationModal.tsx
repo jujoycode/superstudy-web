@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Blank, Section } from '@/legacy/components/common'
 import { useNotificationLogFindAll, useNotificationLogRead } from '@/legacy/generated/endpoint'
 import { makeDateToString } from '@/legacy/util/time'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export const NotificationModal = () => {
   const { me } = useUserStore()

@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import moment from 'moment'
 import { useEffect, useMemo, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { useRecoilValue } from 'recoil'
+
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { SelectMenus, SuperModal } from '@/legacy/components'
 import { Divider, Label, Section, Select } from '@/legacy/components/common'
@@ -29,7 +29,7 @@ import { StudentModal } from '@/legacy/modals/StudentModal'
 import { dayOfEngWeek, dayOfKorWeek } from '@/legacy/util/date'
 import { getNickName } from '@/legacy/util/status'
 import { getThisSemester, getThisYear } from '@/legacy/util/time'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import { TimetableNeisForm } from './TimetableNeisForm'
 
 const groups = [

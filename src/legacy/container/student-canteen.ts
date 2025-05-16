@@ -3,7 +3,7 @@ import { useCanteenFindByYearMonth, useSchedulesFindAll } from '@/legacy/generat
 // @ts-ignore
 import { CalendarIdEnum, Schedule } from '@/legacy/generated/model'
 import { getCalendarRange, makeDateToString } from '@/legacy/util/time'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 export function useStudentCanteen() {
   const { child } = useUserStore()

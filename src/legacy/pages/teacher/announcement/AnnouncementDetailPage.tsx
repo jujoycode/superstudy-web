@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import { useParams } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
 import { ErrorBlank } from '@/legacy/components'
 import AnnouncementDetailCard from '@/legacy/components/announcement/AnnouncementDetailCard'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
@@ -14,16 +13,16 @@ import { useAnnouncementDetail } from '@/legacy/container/announcement-detail'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getFileNameFromUrlToAnn } from '@/legacy/util/file'
 import { isHTML } from '@/legacy/util/validator'
-import { languageState } from '@/stores'
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
+import { useLanguageStore } from '@/stores/language'
 
 export default function AnnouncementDetailPage() {
-  const { id } = useParams<{ id: string }>()
-  const { errorMessage, isLoading, announcement } = useAnnouncementDetail(Number(id))
   const [hasPdfModalOpen, setPdfModalOpen] = useState(false)
   const [focusPdfFile, setFocusPdfFile] = useState('')
   const { t } = useLanguage()
-  const language = useRecoilValue(languageState)
+  const { id } = useParams<{ id: string }>()
+  const { currentLanguage: language } = useLanguageStore()
+  const { errorMessage, isLoading, announcement } = useAnnouncementDetail(Number(id))
 
   const getUrl = (fileName: string) => {
     let url = ''

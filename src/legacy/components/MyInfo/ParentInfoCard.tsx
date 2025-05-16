@@ -11,7 +11,7 @@ import type { ResponseUserDto, UpdateUserDto } from '@/legacy/generated/model'
 import { queryClient } from '@/legacy/lib/query'
 import type { errorType } from '@/legacy/types'
 import { Validator } from '@/legacy/util/validator'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 interface ParentInfoCardProps {
   isNotParent: boolean

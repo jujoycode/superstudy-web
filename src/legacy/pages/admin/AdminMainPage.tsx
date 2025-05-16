@@ -2,8 +2,8 @@ import clsx from 'clsx'
 import { range } from 'lodash'
 import { createContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
+import { Link, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
+
 import { ReactComponent as ExitAdmin } from '@/assets/svg/exit-admin.svg'
 import { ReactComponent as LogoAdmin } from '@/assets/svg/logo-admin.svg'
 import { Select } from '@/legacy/components/common'
@@ -13,7 +13,7 @@ import { useSchoolManagementGetSchoolInfo } from '@/legacy/generated/endpoint'
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getDayOfYear, getThisYear } from '@/legacy/util/time'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import { ApprovalLinePage } from './approval-line/ApprovalLinePage'
 import { ExpiredUserPage } from './expired-user/ExpiredUserPage'
 import { GroupEditPage } from './group/GroupEditPage'
@@ -241,7 +241,8 @@ export function AdminMainPage() {
         </aside>
 
         <main ref={scrollRef} className="h-screen-4 flex-1 overflow-auto bg-white px-6">
-          <Routes>
+          <Outlet />
+          {/* <Routes>
             {adminRoutes.map((route) => (
               <Route key={route.path} path={route.path} Component={route.component} />
             ))}
@@ -250,7 +251,7 @@ export function AdminMainPage() {
                 to={adminRoutesPermitted.length > 0 ? adminRoutesPermitted[0].path : RouterConstant.admin.index}
               />
             </Route>
-          </Routes>
+          </Routes> */}
         </main>
       </div>
 

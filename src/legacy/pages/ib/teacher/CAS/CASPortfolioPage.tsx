@@ -1,5 +1,4 @@
 import { useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -13,7 +12,7 @@ import TeacherCASRefNInt from '@/legacy/components/ib/cas/TeacherCASRefInt'
 import IBLayout from '@/legacy/components/ib/IBLayout'
 import { useIBPortfolioGetById } from '@/legacy/container/ib-cas'
 import { makeStudNum5 } from '@/legacy/util/status'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 import NODATA from '@/assets/images/no-data.png'
 

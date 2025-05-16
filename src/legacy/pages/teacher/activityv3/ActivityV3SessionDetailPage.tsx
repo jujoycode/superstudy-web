@@ -1,13 +1,11 @@
-import { differenceInSeconds, format } from 'date-fns'
-import _ from 'lodash'
 import { useMemo, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import { useLocation, useParams } from 'react-router-dom'
 import Viewer from 'react-viewer'
+import { differenceInSeconds, format } from 'date-fns'
+import _ from 'lodash'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilState } from 'recoil'
-
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { SuperModal } from '@/legacy/components'
@@ -17,6 +15,7 @@ import { BackButton, Label, Radio, RadioGroup, Select, TopNavbar } from '@/legac
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
+import FileDownloadProgressModal from '@/legacy/components/common/FileDownloadProgressModal'
 import { Icon } from '@/legacy/components/common/icons'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { SuperSurveyComponent } from '@/legacy/components/survey/SuperSurveyComponent'
@@ -30,10 +29,12 @@ import {
   useStudentActivitySessionFindOneByTeacher,
 } from '@/legacy/generated/endpoint'
 import { ActivityType, Role, StudentGroup } from '@/legacy/generated/model'
+import { handleSizeLimitedBatchDownload } from '@/legacy/util/download-batch'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
+import { makeStudNum5 } from '@/legacy/util/status'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
-import { toastState } from '@/stores'
-import { useUserStore } from '@/stores2/user'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 
 interface ActivityV3SessionDetailPageProps {}
 
@@ -58,13 +59,99 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
   const view = searchParams.get('view') || 'group'
   const selectedFilter = searchParams.get('selectedFilter') || 'all'
   const { me } = useUserStore()
-  const [, setToastMsg] = useRecoilState(toastState)
+  const { setToast: setToastMsg } = useNotificationStore()
   const [searchedStudentname, setSearchedStudentName] = useState('')
   const [hasImagesModalOpen, setImagesModalOpen] = useState(false)
   const [isDownloadModalOpen, setDownloadModalOpen] = useState(false)
   const [isSurveyModalOpen, setSurveyModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const [showDialog, setShowDialog] = useState(false)
+  // 제출물 일괄 다운로드 프로그래스
+  const [progress, setProgress] = useState({
+    isDownloading: false,
+    percentage: 0,
+    isError: false,
+  })
+
+  const handleBatchDownload = (submittedStudentGroups: StudentGroup[], groupName: string) => {
+    const groupFilter = activitySession?.studentActivitySessions?.filter((s) =>
+      submittedStudentGroups.some((sg) => sg.user?.id === s.userId),
+    )
+
+    // 제출한 학생의 학번 정보와 다운받을 파일 정보 추출
+
+    const fileInfo = submittedStudentGroups
+      .map((studentGroup) => {
+        const klassNum = makeStudNum5({
+          grade: Number(studentGroup.user?.studentGroups?.[0]?.group?.grade),
+          classNum: Number(studentGroup.user?.studentGroups?.[0]?.group?.klass),
+          studentNum: Number(studentGroup.user?.studentGroups?.[0]?.studentNumber),
+        })
+
+        const studentActivitySession = groupFilter?.find((s) => s.userId === studentGroup.user?.id)
+        const files = studentActivitySession?.files || []
+        const images = studentActivitySession?.images || []
+
+        return {
+          user: {
+            id: studentGroup.user?.id,
+            name: studentGroup.user?.name,
+            klassNum,
+          },
+          fileUrls: [...files, ...images],
+        }
+      })
+      .sort((a, b) => parseInt(a.user.klassNum) - parseInt(b.user.klassNum))
+
+    // 해당 그룹에 제출한 학생이 없으면 다운로드 진행하지 않고 토스트 메시지 표시
+    if (groupFilter?.length === 0) {
+      setToastMsg('<b>[이미지/파일]을 제출한 학생이 없습니다.</b>')
+      return
+    }
+
+    const fileUrls: string[] = []
+    const fileNames: string[] = []
+
+    fileInfo.forEach((file) => {
+      file.fileUrls.forEach((fileUrl) => {
+        fileUrls.push(fileUrl)
+        fileNames.push(file.user.klassNum + '_' + file.user.name + '_' + getFileNameFromUrl(fileUrl))
+      })
+    })
+
+    if (fileUrls.length === 0) {
+      setToastMsg('<b>[이미지/파일]을 제출한 학생이 없습니다.</b>')
+      return
+    } else {
+      setToastMsg('<b>[이미지/파일]을 제출한 학생의 제출파일</b>만 다운로드 됩니다.')
+    }
+
+    setProgress({
+      isDownloading: true,
+      percentage: 0,
+      isError: false,
+    })
+
+    // 활동 차시 번호 추출
+    const activitySessionNumber = (activityv3?.activitySessions?.findIndex((session) => session.id === id) || 0) + 1
+
+    const fileTitle = `${groupName}_${activitySession?.activityv3?.title}_${activitySessionNumber}차시`
+
+    void handleSizeLimitedBatchDownload({
+      files: fileUrls,
+      baseFileName: fileTitle,
+      options: {
+        fileNames: fileNames,
+        onProgress: (info) => {
+          setProgress({
+            isDownloading: info.percentage !== 100 && !info.isError,
+            percentage: info.percentage,
+            isError: info.isError || false,
+          })
+        },
+      },
+    })
+  }
 
   const handleConfirm = () => {
     deleteActivitySession({ id: Number(id) })
@@ -188,15 +275,11 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
             <p onClick={() => replace('/teacher/activityv3')} className="cursor-pointer">
               활동 기록
             </p>
-            <div className="-rotate-90">
-              <Icon.FillArrow />
-            </div>
+            <Icon.FillArrow className="-rotate-90" />
             <p onClick={() => replace(`/teacher/activityv3/${activityv3.id}`)} className="cursor-pointer">
               {activityv3?.title?.length >= 15 ? activityv3.title?.slice(0, 15) + '...' : activityv3.title || '활동명'}
             </p>
-            <div className="-rotate-90">
-              <Icon.FillArrow />
-            </div>
+            <Icon.FillArrow className="-rotate-90" />
             <p className="cursor-pointer">
               {activitySession.title.length >= 15
                 ? activitySession.title.slice(0, 15) + '...'
@@ -618,10 +701,23 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                             <div className="flex justify-between py-2">
                               <div className="flex w-full items-center justify-between">
                                 <div className="text-xl font-bold">{ga.group?.name}</div>
-                                <div className="text-lg">
-                                  제출&nbsp;
-                                  <span className="text-brand-1">{submittedStudentGroups.length || 0}</span>/
-                                  {studentGroups?.length || 0}명
+                                <div className="flex items-center gap-4">
+                                  {activitySession?.isFile && (
+                                    <Button
+                                      className="border border-gray-600"
+                                      onClick={() => {
+                                        handleBatchDownload(submittedStudentGroups, ga.group?.name || '')
+                                      }}
+                                    >
+                                      파일 일괄 다운로드
+                                    </Button>
+                                  )}
+
+                                  <div className="text-lg">
+                                    제출&nbsp;
+                                    <span className="text-brand-1">{submittedStudentGroups.length || 0}</span>/
+                                    {studentGroups?.length || 0}명
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -681,6 +777,15 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
           </div>
         </div>
       </div>
+      <FileDownloadProgressModal
+        percentage={progress.percentage}
+        isDownloading={progress.isDownloading}
+        isError={progress.isError}
+        onErrorConfirm={() => {
+          setProgress({ isDownloading: false, percentage: 0, isError: false })
+        }}
+      />
+
       {showDialog && (
         <ConfirmDialog
           message="해당 차시를 삭제하시겠습니까 ?"

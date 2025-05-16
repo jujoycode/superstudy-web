@@ -1,5 +1,5 @@
-import clsx from 'clsx'
 import { InputHTMLAttributes, forwardRef } from 'react'
+import clsx from 'clsx'
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {}
 
@@ -9,7 +9,7 @@ export const ToggleSwitch = forwardRef<HTMLInputElement, CheckboxProps>(function
 ) {
   return (
     <div className="px-2">
-      <label className="flex cursor-pointer items-center">
+      <label className={`flex ${props.disabled ? 'cursor-not-allowed' : 'cursor-pointer'} items-center`}>
         {/* <!— toggle —> */}
         <div className="relative">
           {/* <!— input —> */}

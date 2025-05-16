@@ -1,21 +1,16 @@
 import { t } from 'i18next'
 import { useState } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
-
 import { BackButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { ParentInfoCard } from '@/legacy/components/MyInfo/ParentInfoCard'
 import { useStudentKlassHistory } from '@/legacy/container/student-klass-history'
 import { Role } from '@/legacy/generated/model'
-import { isUpdateMeState } from '@/stores'
-import { useUserStore } from '@/stores2/user'
-
+import { useUserStore } from '@/stores/user'
 import { MyDeletePage } from './MyDeletePage'
 import { MyInfoUpdatePage } from './MyInfoUpdatePage'
 
 export function MyInfoPage() {
-  const { me } = useUserStore()
-  const [isUpdateMe, setIsUpdateMe] = useRecoilState(isUpdateMeState)
+  const { me, isUpdateMe, setIsUpdateMe } = useUserStore()
   const [isDeleteMe, setIsDeleteMe] = useState(false)
 
   const { klassHistoryList } = useStudentKlassHistory()

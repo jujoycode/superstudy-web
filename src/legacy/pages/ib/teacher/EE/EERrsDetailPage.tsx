@@ -5,7 +5,6 @@ import Linkify from 'react-linkify'
 import { useLocation, useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -21,7 +20,7 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useRRSGetById } from '@/legacy/container/ib-rrs-findId'
 import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 const urlDecorator = (decoratedHref: string, decoratedText: string, key: number) => (
   <a href={decoratedHref} key={key} target="_blank" rel="noopener noreferrer" className="underline">

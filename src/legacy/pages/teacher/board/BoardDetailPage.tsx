@@ -11,7 +11,7 @@ import { useTeacherBoardDetail } from '@/legacy/container/teacher-board-detail'
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 interface BoardDetailPageProps {
   page: number

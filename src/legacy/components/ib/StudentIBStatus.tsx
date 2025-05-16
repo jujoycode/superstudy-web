@@ -1,7 +1,8 @@
+import { useEffect, useRef, useState } from 'react'
+import { useLocation, useOutletContext } from 'react-router'
 import clsx from 'clsx'
 import QueryString from 'qs'
-import { useEffect, useRef, useState } from 'react'
-import { useLocation } from 'react-router'
+
 import CAS from '@/assets/images/CAS.png'
 import EE from '@/assets/images/EE.png'
 import NODATA from '@/assets/images/no-data.png'
@@ -16,7 +17,7 @@ import { Typography } from '@/legacy/components/common/Typography'
 import { ResponsePaginatedIBDto } from '@/legacy/generated/model'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { CategoryType, IBProject, ModalType } from '@/legacy/pages/ib/student/IBStudentMainPage'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import { PopupModal } from '../PopupModal'
 
 import { IbCASNormal } from './cas/IbCASNormal'
@@ -33,10 +34,6 @@ export const STATUS_GROUPS = {
   완료: ['COMPLETE'],
 }
 
-interface StudentIBStatusProps {
-  data?: ResponsePaginatedIBDto
-}
-
 interface SelectedOptions {
   projectType: IBProjectTypes
   pages: Record<string, number>
@@ -44,7 +41,8 @@ interface SelectedOptions {
 
 type IBProjectTypes = 'NORMAL' | 'EE' | 'CAS' | 'TOK'
 
-export default function StudentIBStatus({ data }: StudentIBStatusProps) {
+export default function StudentIBStatus() {
+  const { data } = useOutletContext<{ data: ResponsePaginatedIBDto }>()
   const { me } = useUserStore()
   const history = useHistory()
   const { setQueryParamsWithStorage, removeStoredQueryParams } = useQueryParams()

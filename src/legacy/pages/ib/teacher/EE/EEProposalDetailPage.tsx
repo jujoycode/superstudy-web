@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router'
-import { useRecoilValue } from 'recoil'
 
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -24,7 +23,7 @@ import { useIBProposalUpdate } from '@/legacy/container/ib-proposal-update'
 import { useIBRejectPlanByProposal, useIBUpdateIBProposalStatusInProgress } from '@/legacy/generated/endpoint'
 import { RequestIBProposalUpdateDto, ResponseIBDtoStatus } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 
 import NODATA from '@/assets/images/no-data.png'
 

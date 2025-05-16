@@ -1,12 +1,13 @@
-import { createBrowserRouter, type RouteObject } from 'react-router-dom'
-import { StudentRedirect } from '@/legacy/components/StudentRedirect'
+import { createBrowserRouter, Navigate, Outlet, type RouteObject } from 'react-router-dom'
+import CASPortfolio from '@/legacy/components/ib/cas/CASPortfolio'
+import StudentIBStatus from '@/legacy/components/ib/StudentIBStatus'
+import { AdminMainPage } from '@/legacy/pages/admin/AdminMainPage'
 import { ApprovalLinePage } from '@/legacy/pages/admin/approval-line/ApprovalLinePage'
 import { ExpiredUserPage } from '@/legacy/pages/admin/expired-user/ExpiredUserPage'
 import { GroupEditPage } from '@/legacy/pages/admin/group/GroupEditPage'
 import { GroupPage } from '@/legacy/pages/admin/group/GroupPage'
 import { IbCoordinatorPage } from '@/legacy/pages/admin/ib/IbCoordinatorPage'
 import { IbPage } from '@/legacy/pages/admin/ib/IbPage'
-import { IbStudentPage } from '@/legacy/pages/admin/ib/ibStudentPage'
 import { KlassEditPage } from '@/legacy/pages/admin/klass/KlassEditPage'
 import { KlassPage } from '@/legacy/pages/admin/klass/KlassPage'
 import { ParentDetailsPage } from '@/legacy/pages/admin/parent/ParentDetailsPage'
@@ -39,6 +40,8 @@ import InterviewDetailPage from '@/legacy/pages/ib/student/EE/InterviewDetailPag
 import { ProposalDetailPage } from '@/legacy/pages/ib/student/EE/ProposalDetailPage'
 import RPPFDetailPage from '@/legacy/pages/ib/student/EE/RPPFDetailPage'
 import RRSDetailPage from '@/legacy/pages/ib/student/EE/RRSDetailPage'
+import { IBStudentMainPage } from '@/legacy/pages/ib/student/IBStudentMainPage'
+import { IBStudentPage } from '@/legacy/pages/ib/student/IBStudentPage'
 import { IBStudentReferenceDetailPage } from '@/legacy/pages/ib/student/IBStudentReferenceDetailPage'
 import { IBStudentReferencePage } from '@/legacy/pages/ib/student/IBStudentReferencePage'
 import { EssayMainPage } from '@/legacy/pages/ib/student/TOK_ESSAY/EssayMainPage'
@@ -138,7 +141,11 @@ import { NewsletterPage } from '@/legacy/pages/teacher/newsletter/NewsletterPage
 import { PointDashboard } from '@/legacy/pages/teacher/pointlogs/PointDashboard'
 import { RecordPage } from '@/legacy/pages/teacher/record/RecordPage'
 import { StudentCardPage } from '@/legacy/pages/teacher/studentcard/StudentCardPage'
+import { AdminGuard } from './guard/AdminGuard'
 import { AuthGuard } from './guard/AuthGuard'
+import { StudentGuard } from './guard/StudentGuard'
+import { StudentLayout } from '@/layouts/StudentLayout'
+import { TeacherLayout } from '@/layouts/TeacherLayout'
 
 /**
  * Router
@@ -153,7 +160,11 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/two-factor',
-    element: <AuthGuard path="/two-factor" component={TwoFactor} />,
+    element: (
+      <AuthGuard>
+        <TwoFactor />
+      </AuthGuard>
+    ),
   },
   {
     path: '/terms-of-use',
@@ -205,20 +216,19 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/admin',
-    // element: <AuthGuard>{/* <AdminLayout /> */}</AuthGuard>,
+    element: (
+      <AdminGuard>
+        <AdminMainPage />
+      </AdminGuard>
+    ),
     children: [
       { path: 'school', element: <SchoolPage /> },
       {
         path: 'teacher',
         children: [
           { index: true, element: <TeacherPage /> },
-          {
-            path: ':id',
-            children: [
-              { index: true, element: <TeacherDetailsPage /> },
-              { path: 'edit', element: <TeacherEditPage /> },
-            ],
-          },
+          { path: ':id/edit', element: <TeacherEditPage /> },
+          { path: ':id', element: <TeacherDetailsPage /> },
           { path: 'new', element: <TeacherEditPage /> },
           {
             path: 'batch/new',
@@ -239,26 +249,16 @@ export const routers: RouteObject[] = [
           },
           { path: 'photos', element: <StudentPhotosPage /> },
           { path: 'new', element: <StudentEditPage /> },
-          {
-            path: ':id',
-            children: [
-              { index: true, element: <StudentDetailsPage /> },
-              { path: 'edit', element: <StudentEditPage /> },
-            ],
-          },
+          { path: ':id/edit', element: <StudentEditPage /> },
+          { path: ':id', element: <StudentDetailsPage /> },
         ],
       },
       {
         path: 'parent',
         children: [
           { index: true, element: <ParentPage /> },
-          {
-            path: ':id',
-            children: [
-              { index: true, element: <ParentDetailsPage /> },
-              { path: 'edit', element: <ParentEditPage /> },
-            ],
-          },
+          { path: ':id/edit', element: <ParentEditPage /> },
+          { path: ':id', element: <ParentDetailsPage /> },
         ],
       },
       { path: 'expired-user', element: <ExpiredUserPage /> },
@@ -286,7 +286,7 @@ export const routers: RouteObject[] = [
         path: 'ib',
         children: [
           { index: true, element: <IbPage /> },
-          { path: 'student', element: <IbStudentPage /> },
+          { path: 'student', element: <IBStudentPage /> },
           { path: 'teacher', element: <IbCoordinatorPage /> },
         ],
       },
@@ -295,20 +295,21 @@ export const routers: RouteObject[] = [
         children: [
           { index: true, element: <PointPage /> },
           { path: 'new', element: <PointEditPage /> },
-          {
-            path: ':id',
-            children: [
-              { index: true, element: <PointDetailsPage /> },
-              { path: 'edit', element: <PointEditPage /> },
-            ],
-          },
+          { path: ':id/edit', element: <PointEditPage /> },
+          { path: ':id', element: <PointDetailsPage /> },
         ],
       },
     ],
   },
   {
     path: '/student',
-    // element: <AuthGuard>{/* <StudentLayout /> */}</AuthGuard>,
+    element: (
+      // <AuthGuard>
+      <StudentGuard>
+        <StudentLayout />
+      </StudentGuard>
+      // </AuthGuard>
+    ),
     children: [
       {
         path: 'notice',
@@ -398,17 +399,17 @@ export const routers: RouteObject[] = [
       { path: 'notification-settings', element: <NotificationSettingsPage /> },
       { path: 'pointlogs', element: <PointLogsPage /> },
       { path: 'score/:id/:type', element: <ScorePage /> },
-      {
-        index: true,
-        element: <StudentRedirect />,
-      },
     ],
   },
   {
     path: '/teacher',
-    // element: <AuthGuard>{/* <TeacherLayout/> */}</AuthGuard>,
+    element: (
+      <AuthGuard>
+        <TeacherLayout />
+      </AuthGuard>
+    ),
     children: [
-      { path: 'canteen', element: <CanteenPage /> },
+      { path: 'canteen/:date', element: <CanteenPage /> },
       { path: 'timetable', element: <TimetablePage /> },
       { path: 'attendance', element: <AttendancePage /> },
       { path: 'absent/comparison', element: <AbsentComparisonPage /> },
@@ -537,83 +538,6 @@ export const routers: RouteObject[] = [
     ],
   },
   {
-    path: '/ib/student',
-    // element: <AuthGuard>{/* <IBLayout/> */}</AuthGuard>,
-    children: [
-      {
-        path: 'ee/:id',
-        children: [
-          {
-            index: true,
-            element: <EEMainPage />,
-          },
-          {
-            path: 'rrs/:rrsId',
-            element: <RRSDetailPage />,
-          },
-          { path: 'interview/:qnaId', element: <InterviewDetailPage /> },
-          { path: 'rppf/:rppfId', element: <RPPFDetailPage /> },
-          { path: 'essay/:essayId', element: <EeEssayDetailPage /> },
-          { path: 'proposal/:proposalId', element: <ProposalDetailPage /> },
-        ],
-      },
-      { path: 'cas/:id', element: <CASMainPage /> },
-      {
-        path: 'tok/exhibition',
-        children: [
-          {
-            path: 'plan/:id',
-            element: <ExhibitionPlanDetailPage />,
-          },
-          {
-            path: ':id',
-            children: [
-              { index: true, element: <ExhibitionMainPage /> },
-              { path: 'detail/:exhibitionId', element: <ExhibitionDetailPage /> },
-            ],
-          },
-        ],
-      },
-      {
-        path: 'tok/essay',
-        children: [
-          {
-            path: ':id',
-            children: [
-              { index: true, element: <EssayMainPage /> },
-              { path: 'tkppf/:tkppfId', element: <TKPPFDetailPage /> },
-              { path: 'rrs/:rrsId', element: <TOKRRSDetailPage /> },
-            ],
-          },
-          { path: 'outline/:id', element: <OutlineDetailPage /> },
-          { path: 'detail/:id', element: <TOKEssayDetailPage /> },
-        ],
-      },
-
-      {
-        path: 'reference',
-        children: [
-          { index: true, element: <IBStudentReferencePage /> },
-          { path: ':id', element: <IBStudentReferenceDetailPage /> },
-        ],
-      },
-
-      {
-        path: 'portfolio',
-        children: [
-          { path: 'reflection-diary/:id', element: <CASReflectionDiaryDetailPage /> },
-          { path: 'interview/:id/:qnaId', element: <CASInterviewDetailPage /> },
-        ],
-      },
-
-      { path: 'plagiarism-inspection', element: <PlagiarismInspectPage /> },
-    ],
-  },
-  {
-    path: '/plagiarism-inspect/detail/:id',
-    element: <DetailResultPopup />,
-  },
-  {
     path: '/reset-password/:id',
     element: <ResetPasswordPageV1 />,
   },
@@ -631,7 +555,11 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/add-child/:uuid',
-    element: <AuthGuard path="/add-child/:uuid" component={AddChildrenPage} />,
+    element: (
+      <AuthGuard>
+        <AddChildrenPage />
+      </AuthGuard>
+    ),
   },
   {
     path: '/parent-signup',
@@ -643,15 +571,112 @@ export const routers: RouteObject[] = [
   },
   {
     path: '/login',
-    element: <AuthGuard path="/login" guestOnly={true} component={LoginV2} />,
+    element: (
+      <AuthGuard guestOnly={true}>
+        <LoginV2 />
+      </AuthGuard>
+    ),
   },
   {
     path: '/select-school',
-    element: <AuthGuard path="/select-school" guestOnly={true} component={SelectSchool} />,
+    element: (
+      <AuthGuard guestOnly={true}>
+        <SelectSchool />
+      </AuthGuard>
+    ),
   },
   {
     path: '/signup',
-    element: <AuthGuard path="/signup" guestOnly={true} component={Signup} />,
+    element: (
+      <AuthGuard guestOnly={true}>
+        <Signup />
+      </AuthGuard>
+    ),
+  },
+  {
+    path: '/ib',
+    element: <IBStudentPage />,
+    children: [
+      {
+        path: 'student',
+        element: <IBStudentMainPage />,
+        children: [
+          { index: true, element: <StudentIBStatus /> },
+          { path: 'portfolio', element: <CASPortfolio /> },
+        ],
+      },
+      {
+        path: 'student/ee/:id',
+        children: [
+          {
+            index: true,
+            element: <EEMainPage />,
+          },
+          {
+            path: 'rrs/:rrsId',
+            element: <RRSDetailPage />,
+          },
+          { path: 'interview/:qnaId', element: <InterviewDetailPage /> },
+          { path: 'rppf/:rppfId', element: <RPPFDetailPage /> },
+          { path: 'essay/:essayId', element: <EeEssayDetailPage /> },
+          { path: 'proposal/:proposalId', element: <ProposalDetailPage /> },
+        ],
+      },
+      { path: 'student/cas/:id', element: <CASMainPage /> },
+      {
+        path: 'student/tok/exhibition',
+        children: [
+          {
+            path: 'plan/:id',
+            element: <ExhibitionPlanDetailPage />,
+          },
+          {
+            path: ':id',
+            children: [
+              { index: true, element: <ExhibitionMainPage /> },
+              { path: 'detail/:exhibitionId', element: <ExhibitionDetailPage /> },
+            ],
+          },
+        ],
+      },
+      {
+        path: 'student/tok/essay',
+        children: [
+          {
+            path: ':id',
+            children: [
+              { index: true, element: <EssayMainPage /> },
+              { path: 'tkppf/:tkppfId', element: <TKPPFDetailPage /> },
+              { path: 'rrs/:rrsId', element: <TOKRRSDetailPage /> },
+            ],
+          },
+          { path: 'outline/:id', element: <OutlineDetailPage /> },
+          { path: 'detail/:id', element: <TOKEssayDetailPage /> },
+        ],
+      },
+
+      {
+        path: 'student/reference',
+        children: [
+          { index: true, element: <IBStudentReferencePage /> },
+          { path: ':id', element: <IBStudentReferenceDetailPage /> },
+        ],
+      },
+
+      {
+        path: 'student/portfolio',
+        children: [
+          { path: 'reflection-diary/:id', element: <CASReflectionDiaryDetailPage /> },
+          { path: 'interview/:id/:qnaId', element: <CASInterviewDetailPage /> },
+        ],
+      },
+
+      { path: 'student/plagiarism-inspection', element: <PlagiarismInspectPage /> },
+    ],
+  },
+  {
+    path: '/plagiarism-inspect/detail/:id',
+    element: <DetailResultPopup />,
   },
 ]
 

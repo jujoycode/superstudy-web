@@ -10,7 +10,7 @@ import { useIBCreate } from '@/legacy/container/ib-project'
 import { useIBProposalCreate } from '@/legacy/container/ib-proposal-create'
 import { useIBProposalUpdate } from '@/legacy/container/ib-proposal-update'
 import { RequestIBDto, RequestIBProposalDto, ResponseIBProposalDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores2/user'
+import { useUserStore } from '@/stores/user'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 
