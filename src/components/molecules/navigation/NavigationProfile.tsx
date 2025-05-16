@@ -2,26 +2,37 @@ import { Avatar } from '@/atoms/Avatar'
 import { Container } from '@/atoms/Container'
 import { Text } from '@/atoms/Text'
 
-export function NavigationProfile() {
+export type NavigationProfileProps = {
+  name: string
+  email: string
+  school: string
+  src?: string
+}
+
+export function NavigationProfile({ name, email, school, src }: NavigationProfileProps) {
   return (
-    <Container flex direction="row" justify="between" items="center" gap="2" width="184px" noPadding>
+    <Container flex direction="row" justify="between" items="start" gap="3" width="224px" noPadding>
       {/* Avatar */}
-      <Container>
-        <Avatar />
+      <Container noPadding width="fit">
+        <Avatar rounded="md" src={src} />
       </Container>
 
-      <Container flex direction="col" justify="between" items="center" gap="2">
+      <Container flex direction="col" items="start" gap="2" noPadding>
         {/* Name */}
-
-        {/* Email & School */}
-        <Container flex direction="row" justify="between" items="center" gap="2">
-          <Text>이름</Text>
+        <Container flex direction="row" justify="between" items="center" gap="1">
+          <Text size="lg" weight="lg">
+            {name}
+          </Text>
         </Container>
 
         {/* Email & School */}
-        <Container flex direction="col" items="start" gap="2">
-          <Text>이메일</Text>
-          <Text>학교</Text>
+        <Container flex direction="col" items="start">
+          <Text size="sm" weight="sm" variant="dim">
+            {email}
+          </Text>
+          <Text size="sm" weight="sm" variant="dim">
+            {school}
+          </Text>
         </Container>
       </Container>
     </Container>

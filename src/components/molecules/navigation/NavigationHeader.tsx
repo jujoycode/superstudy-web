@@ -2,21 +2,28 @@ import { Container } from '@/atoms/Container'
 import { Icon } from '@/atoms/Icon'
 import { NavigationProfile } from '@/molecules/navigation/NavigationProfile'
 
-export function NavigationHeader() {
-  return (
-    <Container>
-      {/* Logo & Language Icon & Notification Icon */}
-      <Container flex direction="row" items="center" justify="between" width="184px" noPadding>
-        <Icon name="logo" className="h-[40px] w-[70px]" />
+export type NavigationHeaderProps = {
+  name: string
+  email: string
+  school: string
+  src?: string
+}
 
-        <Container flex direction="row" items="end" gap="2">
-          <Icon name="bell" size="md" fill />
-          <Icon name="world" size="md" />
+export function NavigationHeader({ name, email, school, src }: NavigationHeaderProps) {
+  return (
+    <Container flex gap="4">
+      {/* Logo & Language Icon & Notification Icon */}
+      <Container flex direction="row" items="center" justify="end" width="184px" noPadding>
+        <Icon name="logo" customSize={{ width: '70px', height: '40px' }} />
+
+        <Container flex direction="row" justify="end" items="end" gap="3">
+          <Icon name="world" customSize={{ width: '20px', height: '20px' }} />
+          <Icon name="bell" customSize={{ width: '20px', height: '20px' }} />
         </Container>
       </Container>
 
       {/* Avatar & Name & Email & School Name */}
-      <NavigationProfile />
+      <NavigationProfile name={name} email={email} school={school} src={src} />
     </Container>
   )
 }

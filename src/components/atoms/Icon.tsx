@@ -1,11 +1,15 @@
-import { ReactComponent as Bell } from '@/assets/icons/bell.svg'
+import { ReactComponent as Bell } from '@/assets/icons/new-bell.svg'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
-import { ReactComponent as World } from '@/assets/svg/world.svg'
+import { ReactComponent as World } from '@/assets/icons/new-world.svg'
 
 export type IconProps = {
   name: 'logo' | 'world' | 'bell'
   color?: 'primary' | 'secondary' | 'tertiary'
   size?: 'sm' | 'md' | 'lg'
+  customSize?: {
+    width: string
+    height: string
+  }
   fill?: boolean
   className?: string
 }
@@ -25,7 +29,7 @@ const colorMap = {
 /**
  * Icon 컴포넌트
  */
-export function Icon({ name, color, size = 'md', fill = false, className = '' }: IconProps) {
+export function Icon({ name, color, size = 'md', customSize, fill = false, className = '' }: IconProps) {
   const IconComponent = {
     logo: Logo,
     world: World,
@@ -36,8 +40,8 @@ export function Icon({ name, color, size = 'md', fill = false, className = '' }:
   const colorClass = color ? colorMap[color] : ''
 
   return (
-    <div className={`inline-flex ${sizeClass} ${colorClass} ${className}`}>
-      <IconComponent fill={fill ? 'currentColor' : 'none'} width="100%" height="100%" />
+    <div className={`inline-flex ${customSize ? '' : sizeClass} ${colorClass} ${className}`}>
+      <IconComponent fill={fill ? 'currentColor' : 'none'} width={customSize?.width} height={customSize?.height} />
     </div>
   )
 }
