@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
 import { Calendar, type CalendarData } from '@/atoms/Calendar'
 import { ErrorBlank } from '@/legacy/components'
+import { CustomTuiDetailModal } from '@/legacy/components/calendar/CustomTuiDetailModal'
 import { CustomTuiModal } from '@/legacy/components/calendar/CustomTuiModal'
 import { LnbCalendarsItem } from '@/legacy/components/calendar/LnbCalendarsItem'
 import { Blank, Label } from '@/legacy/components/common'
@@ -22,6 +23,7 @@ export function CalendarPage() {
   const { me } = useUserStore()
 
   const [modalOpen, setModalOpen] = useState(false)
+  const [detailModalOpen, setDetailModalOpen] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [selectedData, setSelectedData] = useState<CalendarData>()
   const [selectedDate, _setSelectedDate] = useState<Date>(new Date())
@@ -42,6 +44,7 @@ export function CalendarPage() {
     refetchCalendar,
     handleCalendarCreate,
     handleCalendarUpdate,
+    handleCalendarDelete,
     calendarId: filterId,
     setCalendarId: setFilterId,
   } = useTeacherCalendarDetail()
@@ -94,6 +97,7 @@ export function CalendarPage() {
 
   const schoolType = me?.school?.schoolType || ''
   const readOnly = me?.role !== Role.ADMIN && me?.canEditTimetable === false
+  const selectedType = CALENDAR_TYPES.find((TYPE) => TYPE.id === selectedData.calendarId)
 
   const data: CalendarData[] =
     calendarData?.map((el) => ({
@@ -146,11 +150,26 @@ export function CalendarPage() {
     }
   }
 
+  const deleteCalendar = async (id: number) => {
+    setLoading(true)
+    try {
+      await handleCalendarDelete(id)
+      await refetchCalendar()
+      setSelectedData(undefined)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoading(false)
+      setModalOpen(false)
+      setDetailModalOpen(false)
+    }
+  }
+
   const handleEventClick = (e: EventClickArg) => {
     const currentData = data.find((el) => el.id === e.event.id)
     if (!currentData) return
     setSelectedData(currentData)
-    setModalOpen(true)
+    setDetailModalOpen(true)
   }
 
   const handleDayClick = (date: Date) => {
@@ -159,6 +178,12 @@ export function CalendarPage() {
     setSelectedData(newData)
     setSelectedDate(date)
     setModalOpen(true)
+  }
+
+  const formatDateRange = (start: string | Date, end?: string | Date) => {
+    const startDate = format(new Date(start), 'yyyy.MM.dd')
+    if (!end || end === start) return startDate
+    return `${startDate} ~ ${format(new Date(end), 'yyyy.MM.dd')}`
   }
 
   return (
@@ -244,6 +269,19 @@ export function CalendarPage() {
                 handleEventClick={handleEventClick}
                 handleDayClick={handleDayClick}
               />
+              {detailModalOpen && selectedData && (
+                <CustomTuiDetailModal
+                  title={selectedData.title}
+                  date={formatDateRange(selectedData.start, selectedData.end)}
+                  type={selectedType?.name || ''}
+                  backgroundColor={selectedType?.bgColor || ''}
+                  onEdit={() => {
+                    setModalOpen(true)
+                    setDetailModalOpen(false)
+                  }}
+                  onDelete={() => deleteCalendar(Number(selectedData.id))}
+                />
+              )}
               <CustomTuiModal
                 isOpen={modalOpen}
                 onClose={() => {
