@@ -1,4 +1,4 @@
-import { ReactComponent as DownloadIcon } from 'src/assets/svg/file-download.svg'
+import { ReactComponent as DownloadIcon } from '@/assets/svg/file-download.svg'
 import { SuperModal } from '../SuperModal'
 import AlertV2 from './AlertV2'
 import { Typography } from './Typography'
