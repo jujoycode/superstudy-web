@@ -31,8 +31,8 @@ export function Avatar({ src, alt = '', className, size = 'md', rounded = 'full'
 
   const roundedClasses = {
     none: 'rounded-none',
-    sm: 'rounded',
-    md: 'rounded-md',
+    sm: 'rounded-lg',
+    md: 'rounded-xl',
     full: 'rounded-full',
   }
 
