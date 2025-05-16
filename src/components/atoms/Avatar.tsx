@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import noProfileImg from '@/assets/images/no_profile.png'
 import { cn } from '@/utils/commonUtil'
 
 interface AvatarProps {
-  src: string
+  src?: string
   alt?: string
   className?: string
   size?: 'sm' | 'md' | 'lg'
@@ -10,7 +11,7 @@ interface AvatarProps {
 }
 
 export function Avatar({ src, alt = '', className, size = 'md', rounded = 'full' }: AvatarProps) {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(!!src)
   const [error, setError] = useState(false)
 
   const handleLoad = () => {
@@ -28,28 +29,17 @@ export function Avatar({ src, alt = '', className, size = 'md', rounded = 'full'
     lg: 'w-16 h-16',
   }
 
-  // Tailwind에서 w-12는 48px입니다 (12 * 4px = 48px)
-
   const roundedClasses = {
     none: 'rounded-none',
     sm: 'rounded',
-    md: 'rounded-lg',
+    md: 'rounded-md',
     full: 'rounded-full',
   }
 
-  if (error) {
+  if (!src || error) {
     return (
-      <div
-        className={cn(
-          'flex items-center justify-center bg-gray-200 text-gray-400',
-          sizeClasses[size],
-          roundedClasses[rounded],
-          className,
-        )}
-        role="img"
-        aria-label={alt || '프로필 이미지 로드 실패'}
-      >
-        {alt?.charAt(0) || '?'}
+      <div className={cn('relative overflow-hidden', sizeClasses[size], roundedClasses[rounded], className)}>
+        <img src={noProfileImg} alt={alt} className="h-full w-full object-cover" />
       </div>
     )
   }

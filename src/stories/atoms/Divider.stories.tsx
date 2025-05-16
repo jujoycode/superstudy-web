@@ -7,7 +7,6 @@ const LOREM_IPSUM =
 const meta: Meta<typeof Divider> = {
   title: 'Atoms/Divider',
   component: Divider,
-  tags: ['autodocs'],
   parameters: {
     layout: 'padded',
   },

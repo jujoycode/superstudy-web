@@ -1,0 +1,17 @@
+import type { Meta, StoryObj } from '@storybook/react'
+import { NavigationHeader } from '@/molecules/navigation/NavigationHeader'
+
+const meta: Meta<typeof NavigationHeader> = {
+  title: 'Molecules/Navigation/NavigationHeader',
+  component: NavigationHeader,
+  parameters: {
+    layout: 'padded',
+  },
+}
+
+export default meta
+type Story = StoryObj<typeof NavigationHeader>
+
+export const DefaultNavigationHeader: Story = {
+  args: {},
+}

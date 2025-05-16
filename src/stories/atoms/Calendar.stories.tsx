@@ -5,7 +5,6 @@ import { addDays, subDays } from 'date-fns'
 const meta: Meta<typeof Calendar> = {
   title: 'Atoms/Calendar',
   component: Calendar,
-  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },
