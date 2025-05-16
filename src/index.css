@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
+
 @layer base {
+  html {
+    font-family: 'Pretendard', sans-serif;
+  }
+  
   .filled-primary {
     background-color: theme('colors.brand-1');
     border: 1px solid transparent;

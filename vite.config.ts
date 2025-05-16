@@ -157,6 +157,7 @@ export default defineConfig(({ mode }) => {
         '@/pages': '/src/components/pages',
         '@/layouts': '/src/layouts',
         '@/hooks': '/src/hooks',
+        '@/utils': '/src/utils',
         '@/stores': '/src/stores',
         '@/routers': '/src/routers',
         '@/assets': '/src/assets',
