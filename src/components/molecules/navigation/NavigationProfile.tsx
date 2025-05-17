@@ -12,15 +12,15 @@ export type NavigationProfileProps = {
 
 export function NavigationProfile({ name, email, school, src }: NavigationProfileProps) {
   return (
-    <Container flex direction="row" justify="between" items="start" gap="3" width="224px" noPadding>
+    <Container flex direction="row" justify="between" items="start" gap="3" width="184px" noPadding>
       {/* Avatar */}
       <Container noPadding width="fit">
         <Avatar rounded="md" src={src} />
       </Container>
 
-      <Container flex direction="col" items="start" gap="2" noPadding>
+      <Container flex direction="col" items="start" gap="1" noPadding>
         {/* Name */}
-        <Container flex direction="row" items="center" gap="1">
+        <Container flex direction="row" items="center" justify="between" gap="1" noPadding>
           <Text size="lg" weight="lg">
             {name}
           </Text>
@@ -28,7 +28,7 @@ export function NavigationProfile({ name, email, school, src }: NavigationProfil
         </Container>
 
         {/* Email & School */}
-        <Container flex direction="col" items="start">
+        <Container flex direction="col" items="start" noPadding>
           <Text size="sm" weight="sm" variant="dim">
             {email}
           </Text>

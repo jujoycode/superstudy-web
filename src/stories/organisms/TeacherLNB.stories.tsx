@@ -16,10 +16,32 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     HeaderProps: {
-      name: '김선생',
-      email: 'teacher@example.com',
+      name: '김수학선생님',
+      email: 'team@super.kr',
       school: '슈퍼고등학교',
-      src: 'https://via.placeholder.com/150',
     },
+    ItemProps: [
+      {
+        title: '출석',
+        items: [
+          {
+            title: '출석부',
+            link: '/attendance/register',
+          },
+          {
+            title: '시간표/출석체크',
+            link: '/attendance/timetable',
+          },
+          {
+            title: '학인증',
+            link: '/attendance/certificate',
+          },
+          {
+            title: '결석신고서',
+            external: 'https://www.google.com',
+          },
+        ],
+      },
+    ],
   },
 }

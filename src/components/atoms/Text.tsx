@@ -14,18 +14,18 @@ export interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
   as?: 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 }
 
-const variantClasses: Record<TextVariant, string> = {
+const variantOptions: Record<TextVariant, string> = {
   default: 'text-black-100',
   dim: 'text-gray-500',
 }
 
-const weightClasses: Record<TextWeight, string> = {
+const weightOptions: Record<TextWeight, string> = {
   sm: 'font-normal',
   md: 'font-medium',
   lg: 'font-semibold',
 }
 
-const sizeClasses: Record<TextSize, string> = {
+const sizeOptions: Record<TextSize, string> = {
   sm: 'text-[12px]',
   md: 'text-[14px]',
   lg: 'text-[16px]',
@@ -42,7 +42,7 @@ export function Text({
 }: TextProps) {
   return (
     <Component
-      className={cn('font-pretendard', weightClasses[weight], sizeClasses[size], variantClasses[variant], className)}
+      className={cn('font-pretendard', weightOptions[weight], sizeOptions[size], variantOptions[variant], className)}
       {...props}
     >
       {children}

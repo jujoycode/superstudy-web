@@ -13,7 +13,7 @@ export function NavigationHeader({ ProfileProps }: NavigationHeaderProps) {
       <Container flex direction="row" items="center" justify="end" width="184px" noPadding>
         <Icon name="logo" customSize={{ width: '70px', height: '40px' }} />
 
-        <Container flex direction="row" justify="end" items="end" gap="3">
+        <Container flex direction="row" justify="end" items="end" gap="3" noPadding>
           <Icon name="world" customSize={{ width: '20px', height: '20px' }} />
           <Icon name="bell" customSize={{ width: '20px', height: '20px' }} />
         </Container>

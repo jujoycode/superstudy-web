@@ -1,32 +1,38 @@
+import { Button } from '@/atoms/Button'
 import { Container } from '@/atoms/Container'
 import { Divider } from '@/atoms/Divider'
 import { NavigationHeader } from '@/molecules/navigation/NavigationHeader'
+import { NavigationBarItem, type NavigationBarItemProps } from '@/molecules/navigation/NavigationBarItem'
 import type { NavigationProfileProps } from '@/molecules/navigation/NavigationProfile'
 
 export type TeacherLNBProps = {
   HeaderProps: NavigationProfileProps
+  ItemProps: NavigationBarItemProps
 }
 
-export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
+export function TeacherLNB({ HeaderProps, ItemProps }: TeacherLNBProps) {
   return (
-    // 전역 Container
-    <Container flex direction="col" justify="start" items="center" gap="2" width="224px">
+    <Container flex direction="col" justify="start" items="center" gap="2" width="224px" noPadding>
       <NavigationHeader ProfileProps={HeaderProps} />
 
       <Divider />
 
-      {/* 메뉴 Container */}
       <Container flex direction="col" justify="between" items="center" gap="2">
-        {[].map((_) => {
-          return <></>
-        })}
+        <NavigationBarItem data={ItemProps} />
       </Container>
 
       <Divider />
 
-      {/* 푸터 Container */}
-      <Container flex direction="row" justify="between" items="center" gap="2">
-        <></>
+      <Container flex direction="row" items="center" justify="center" paddingX="5">
+        <Button variant="link" size="sm" className="text-gray-600">
+          내 정보 관리
+        </Button>
+
+        <Divider orientation="vertical" height="h-3" />
+
+        <Button variant="link" size="sm" className="text-gray-600">
+          로그아웃
+        </Button>
       </Container>
     </Container>
   )

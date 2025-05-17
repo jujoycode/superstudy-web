@@ -1,26 +1,37 @@
 type DividerProps = {
   variant?: 'full' | 'half' | 'quarter'
+  orientation?: 'horizontal' | 'vertical'
   color?: string
   marginY?: string
   marginX?: string
   thickness?: string
+  height?: string
   className?: string
-  orientation?: 'horizontal' | 'vertical'
 }
+
+const widthOptions = {
+  full: 'w-full',
+  half: 'w-1/2',
+  quarter: 'w-1/4',
+} as const
+
+const heightOptions = {
+  full: 'h-full',
+  half: 'h-1/2',
+  quarter: 'h-1/4',
+} as const
 
 export function Divider({
   variant = 'full',
+  orientation = 'horizontal',
   color = 'bg-gray-200',
   marginY = 'my-2',
   marginX = 'mx-2',
   thickness = 'h-px',
+  height = 'h-4',
   className = '',
-  orientation = 'horizontal',
 }: DividerProps) {
-  const widthClass = variant === 'full' ? 'w-full' : variant === 'half' ? 'w-1/2' : 'w-1/4'
-  const heightClass = variant === 'full' ? 'h-full' : variant === 'half' ? 'h-1/2' : 'h-1/4'
-
-  const dimensionClass = orientation === 'horizontal' ? widthClass : heightClass
+  const dimensionClass = orientation === 'horizontal' ? widthOptions[variant] : height ? height : heightOptions[variant]
   const marginClass = orientation === 'horizontal' ? marginY : marginX
   const thicknessClass = orientation === 'horizontal' ? thickness : 'w-px'
 
