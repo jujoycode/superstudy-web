@@ -1,5 +1,5 @@
+import { FC } from 'react'
 import clsx from 'clsx'
-import React, { FC } from 'react'
 
 interface CustomTuiDetailModalProps {
   title: string

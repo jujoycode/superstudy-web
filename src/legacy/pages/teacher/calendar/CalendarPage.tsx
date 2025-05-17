@@ -1,8 +1,8 @@
+import { useState } from 'react'
+import { CoachMark } from 'react-coach-mark'
 import { EventClickArg } from '@fullcalendar/core/index.js'
 import { addMonths, endOfMonth, format, startOfMonth, subMonths } from 'date-fns'
 import { t } from 'i18next'
-import { useState } from 'react'
-import { CoachMark } from 'react-coach-mark'
 import { Calendar, type CalendarData } from '@/atoms/Calendar'
 import { ErrorBlank } from '@/legacy/components'
 import { CustomTuiDetailModal } from '@/legacy/components/calendar/CustomTuiDetailModal'
@@ -97,7 +97,7 @@ export function CalendarPage() {
 
   const schoolType = me?.school?.schoolType || ''
   const readOnly = me?.role !== Role.ADMIN && me?.canEditTimetable === false
-  const selectedType = CALENDAR_TYPES.find((TYPE) => TYPE.id === selectedData.calendarId)
+  const selectedType = CALENDAR_TYPES.find((TYPE) => TYPE.id === selectedData?.calendarId)
 
   const data: CalendarData[] =
     calendarData?.map((el) => ({
