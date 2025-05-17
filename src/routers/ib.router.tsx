@@ -1,5 +1,4 @@
 import CASPortfolio from '@/legacy/components/ib/cas/CASPortfolio'
-import StudentIBStatus from '@/legacy/components/ib/StudentIBStatus'
 import CASInterviewDetailPage from '@/legacy/pages/ib/student/CAS/CASInterviewDetailPage'
 import { CASMainPage } from '@/legacy/pages/ib/student/CAS/CASMainPage'
 import { CASReflectionDiaryDetailPage } from '@/legacy/pages/ib/student/CAS/CASReflectionDiaryDetailPage'

@@ -1,4 +1,4 @@
-import { Link, Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 
 import Logo from '@/assets/images/logo_color.png'
 import SvgUser from '@/assets/images/no_profile.png'

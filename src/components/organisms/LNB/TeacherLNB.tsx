@@ -6,7 +6,7 @@ export function TeacherLNB() {
   return (
     // 전역 Container
     <Container flex direction="col" justify="start" items="center" gap="2" width="224px">
-      <NavigationHeader />
+      <NavigationHeader name="김수학선생님" email="team@super.kr" school="슈퍼고등학교" />
 
       <Divider />
 
