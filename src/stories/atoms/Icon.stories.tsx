@@ -12,37 +12,16 @@ const meta: Meta<typeof Icon> = {
 export default meta
 type Story = StoryObj<typeof Icon>
 
-export const LogoIcon: Story = {
-  args: {
-    name: 'logo',
-    size: 'md',
-  },
-}
-
-export const WorldIcon: Story = {
-  args: {
-    name: 'world',
-    size: 'md',
-  },
-}
-
-export const BellIcon: Story = {
-  args: {
-    name: 'bell',
-    size: 'md',
-  },
-}
-
 export const SmallIcon: Story = {
   args: {
-    name: 'logo',
+    name: 'bell',
     size: 'sm',
   },
 }
 
 export const LargeIcon: Story = {
   args: {
-    name: 'logo',
+    name: 'bell',
     size: 'lg',
   },
 }

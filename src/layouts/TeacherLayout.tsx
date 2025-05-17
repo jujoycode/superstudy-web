@@ -19,7 +19,7 @@ export function TeacherLayout() {
 
   return (
     <Container flex height="full" direction="row" justify="start" items="start" gap="2">
-      <TeacherLNB />
+      <TeacherLNB HeaderProps={{ name: '김수학선생님', email: 'team@super.kr', school: '슈퍼고등학교' }} />
       {pathname === '/teacher' ? <></> : <Outlet />}
 
       <Toast />

@@ -1,10 +1,13 @@
 import { ReactComponent as Bell } from '@/assets/icons/new-bell.svg'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { ReactComponent as World } from '@/assets/icons/new-world.svg'
+import { ReactComponent as RightFillArrow } from '@/assets/svg/RightFillArrow.svg'
+
+type IconName = 'logo' | 'world' | 'bell' | 'rightFillArrow'
 
 export type IconProps = {
-  name: 'logo' | 'world' | 'bell'
-  color?: 'primary' | 'secondary' | 'tertiary'
+  name: IconName
+  color?: 'primary' | 'secondary'
   size?: 'sm' | 'md' | 'lg'
   customSize?: {
     width: string
@@ -34,6 +37,7 @@ export function Icon({ name, color, size = 'md', customSize, fill = false, class
     logo: Logo,
     world: World,
     bell: Bell,
+    rightFillArrow: RightFillArrow,
   }[name]
 
   const sizeClass = sizeMap[size] || sizeMap.md

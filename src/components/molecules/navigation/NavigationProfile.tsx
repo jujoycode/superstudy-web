@@ -1,5 +1,6 @@
 import { Avatar } from '@/atoms/Avatar'
 import { Container } from '@/atoms/Container'
+import { Icon } from '@/atoms/Icon'
 import { Text } from '@/atoms/Text'
 
 export type NavigationProfileProps = {
@@ -19,10 +20,11 @@ export function NavigationProfile({ name, email, school, src }: NavigationProfil
 
       <Container flex direction="col" items="start" gap="2" noPadding>
         {/* Name */}
-        <Container flex direction="row" justify="between" items="center" gap="1">
+        <Container flex direction="row" items="center" gap="1">
           <Text size="lg" weight="lg">
             {name}
           </Text>
+          <Icon name="rightFillArrow" size="sm" />
         </Container>
 
         {/* Email & School */}

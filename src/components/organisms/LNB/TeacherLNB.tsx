@@ -1,12 +1,17 @@
 import { Container } from '@/atoms/Container'
 import { Divider } from '@/atoms/Divider'
 import { NavigationHeader } from '@/molecules/navigation/NavigationHeader'
+import type { NavigationProfileProps } from '@/molecules/navigation/NavigationProfile'
 
-export function TeacherLNB() {
+export type TeacherLNBProps = {
+  HeaderProps: NavigationProfileProps
+}
+
+export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
   return (
     // 전역 Container
     <Container flex direction="col" justify="start" items="center" gap="2" width="224px">
-      <NavigationHeader name="김수학선생님" email="team@super.kr" school="슈퍼고등학교" />
+      <NavigationHeader ProfileProps={HeaderProps} />
 
       <Divider />
 
@@ -16,6 +21,8 @@ export function TeacherLNB() {
           return <></>
         })}
       </Container>
+
+      <Divider />
 
       {/* 푸터 Container */}
       <Container flex direction="row" justify="between" items="center" gap="2">

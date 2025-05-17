@@ -1,15 +1,12 @@
 import { Container } from '@/atoms/Container'
 import { Icon } from '@/atoms/Icon'
-import { NavigationProfile } from '@/molecules/navigation/NavigationProfile'
+import { NavigationProfile, type NavigationProfileProps } from '@/molecules/navigation/NavigationProfile'
 
 export type NavigationHeaderProps = {
-  name: string
-  email: string
-  school: string
-  src?: string
+  ProfileProps: NavigationProfileProps
 }
 
-export function NavigationHeader({ name, email, school, src }: NavigationHeaderProps) {
+export function NavigationHeader({ ProfileProps }: NavigationHeaderProps) {
   return (
     <Container flex gap="4">
       {/* Logo & Language Icon & Notification Icon */}
@@ -23,7 +20,7 @@ export function NavigationHeader({ name, email, school, src }: NavigationHeaderP
       </Container>
 
       {/* Avatar & Name & Email & School Name */}
-      <NavigationProfile name={name} email={email} school={school} src={src} />
+      <NavigationProfile {...ProfileProps} />
     </Container>
   )
 }
