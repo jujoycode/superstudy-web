@@ -1,5 +1,4 @@
 import type { NavigationBarItemProps } from '@/molecules/navigation/NavigationBarItem'
-import { title } from 'process'
 
 export class MenuConstant {
   public static readonly MENU_ITEMS: NavigationBarItemProps = [

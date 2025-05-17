@@ -4,6 +4,7 @@ import { Container } from '@/atoms/Container'
 import { Toast } from '@/legacy/components/Toast'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { TeacherLNB } from '@/organisms/LNB/TeacherLNB'
+import { MenuConstant } from '@/constants/MenuConstant'
 
 export function TeacherLayout() {
   const navigate = useNavigate()
@@ -19,7 +20,10 @@ export function TeacherLayout() {
 
   return (
     <Container flex height="full" direction="row" justify="start" items="start" gap="2">
-      <TeacherLNB HeaderProps={{ name: '김수학선생님', email: 'team@super.kr', school: '슈퍼고등학교' }} />
+      <TeacherLNB
+        HeaderProps={{ name: '김수학선생님', email: 'team@super.kr', school: '슈퍼고등학교' }}
+        ItemProps={MenuConstant.MENU_ITEMS}
+      />
       {pathname === '/teacher' ? <></> : <Outlet />}
 
       <Toast />
