@@ -1,8 +1,8 @@
 import { Button } from '@/atoms/Button'
 import { Container } from '@/atoms/Container'
 import { Divider } from '@/atoms/Divider'
-import { NavigationHeader } from '@/molecules/navigation/NavigationHeader'
 import { NavigationBarItem, type NavigationBarItemProps } from '@/molecules/navigation/NavigationBarItem'
+import { NavigationHeader } from '@/molecules/navigation/NavigationHeader'
 import type { NavigationProfileProps } from '@/molecules/navigation/NavigationProfile'
 
 export type TeacherLNBProps = {
