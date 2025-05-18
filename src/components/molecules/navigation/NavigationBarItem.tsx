@@ -1,5 +1,5 @@
-import { Icon } from '@/atoms/Icon'
 import { Container } from '@/atoms/Container'
+import { Icon } from '@/atoms/Icon'
 
 export type NavigationBarItemProps = NavigationItem[]
 
@@ -15,7 +15,12 @@ const CategoryHeader = ({ title }: { title: string }) => (
 )
 
 const SubNavigationItem = ({ title, link, external }: { title: string; link?: string; external?: string }) => (
-  <a href={link} className="mb-2 text-[15px] font-medium text-gray-800" tabIndex={0} aria-label={title}>
+  <a
+    href={link || external}
+    className="mb-2 text-[15px] font-medium text-gray-800"
+    tabIndex={0}
+    aria-label={title || external}
+  >
     {title}
     {external && <Icon name="rightUpArrow" />}
   </a>
@@ -42,10 +47,10 @@ const NavigationItem = ({ item }: { item: NavigationItem }) => {
 
   return (
     <a
-      href={item.link}
+      href={item.link || item.external}
       className="flex items-center justify-between text-[15px] font-medium text-gray-800"
       tabIndex={0}
-      aria-label={item.title}
+      aria-label={item.title || item.external}
     >
       {item.title}
       {item.external && <Icon name="rightUpArrow" color="gray" customSize={{ width: '16px', height: '16px' }} />}
