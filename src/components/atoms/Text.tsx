@@ -20,9 +20,9 @@ const variantOptions: Record<TextVariant, string> = {
 }
 
 const weightOptions: Record<TextWeight, string> = {
-  sm: 'font-normal',
-  md: 'font-medium',
-  lg: 'font-semibold',
+  sm: '400',
+  md: '500',
+  lg: '600',
 }
 
 const sizeOptions: Record<TextSize, string> = {

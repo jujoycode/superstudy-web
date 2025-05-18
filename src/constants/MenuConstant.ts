@@ -1,47 +1,47 @@
-import type { NavigationBarItemProps } from '@/molecules/navigation/NavigationBarItem'
+import type { NavigationItem } from '@/molecules/navigation/NavigationBarItem'
 
 export class MenuConstant {
-  public static readonly MENU_ITEMS: NavigationBarItemProps = [
+  public static readonly MENU_ITEMS: NavigationItem[] = [
     {
       title: '출석',
       items: [
         {
           title: '출석부',
-          link: '/attendance/register',
+          link: '',
         },
         {
           title: '시간표/출석체크',
-          link: '/attendance/timetable',
+          link: '',
         },
         {
           title: '학인증',
-          link: '/attendance/certificate',
+          link: '',
         },
         {
           title: '결석신고서',
-          link: '/attendance/absence',
+          items: []
         },
         {
-          title: '재입학층',
+          title: '체험학습',
           items: [
             {
               title: '신청서',
-              link: '/attendance/readmission/application',
+              link: '',
             },
             {
-              title: '등본서',
-              link: '/attendance/readmission/certificate',
+              title: '통보서',
+              link: '',
             },
             {
               title: '결과보고서',
-              link: '/attendance/readmission/report',
-            },
-            {
-              title: '출결재관리',
-              link: '/attendance/readmission/management',
+              link: '',
             },
           ],
         },
+        {
+          title: '출결서류관리',
+          link: ''
+        }
       ],
     },
     {
@@ -49,11 +49,11 @@ export class MenuConstant {
       items: [
         {
           title: '학생정보',
-          link: '/info/student',
+          link: '',
         },
         {
           title: '그룹정보',
-          link: '/info/group',
+          link: '',
         },
       ],
     },
@@ -62,15 +62,15 @@ export class MenuConstant {
       items: [
         {
           title: '활동기록',
-          link: '/activity/records',
+          link: '',
         },
         {
           title: '프로젝트',
-          link: '/activity/projects',
+          link: '',
         },
         {
-          title: '과제 활동목적',
-          link: '/activity/assignments',
+          title: '과제 활동분석',
+          link: '',
         },
       ],
     },
@@ -79,11 +79,49 @@ export class MenuConstant {
       items: [
         {
           title: '캘린더',
-          link: '/schedule/calendar',
+          link: '',
         },
         {
           title: '급식표',
-          link: '/schedule/meal',
+          link: '',
+        },
+      ],
+    },
+    {
+      title: '신청',
+      items: [
+        {
+          title: '상담신청',
+          link: '',
+        },
+        {
+          title: '수강신청',
+          link: '',
+        },
+        {
+          title: '야자신청',
+          link: '',
+        },
+      ],
+    },
+    {
+      title: '공지',
+      items: [
+        {
+          title: '공지사항',
+          link: '',
+        },
+        {
+          title: '학급게시판',
+          link: '',
+        },
+        {
+          title: '가정통신문',
+          link: '',
+        },
+        {
+          title: '메시지',
+          link: '',
         },
       ],
     },
@@ -94,6 +132,27 @@ export class MenuConstant {
           title: '문의하기',
           external: 'https://www.google.com',
         },
+        {
+          title: '슈퍼스쿨 사용안내',
+          items: [
+            {
+              title: 'child1',
+              link: '',
+            },
+            {
+              title: 'child2',
+              link: '',
+            },
+            {
+              title: 'child3',
+              link: '',
+            },
+          ]
+        },
+        {
+          title: '슈퍼스쿨 공지사항',
+          link: '',
+        }
       ],
     }
   ]

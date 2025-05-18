@@ -980,6 +980,21 @@
   --color-primary-orange-800: #ff600c;
   --color-primary-orange-850: #cc4700;
 
+    /* SuperSchool Default Brand Color */
+    /* This colors change in ThemeProvider */
+    --color-primary-50: #FFF8F5;
+    --color-primary-100: #FFE8DB;
+    --color-primary-200: #FFD8C2;
+    --color-primary-300: #FFCBAD;
+    --color-primary-400: #FFBC99;
+    --color-primary-700: #FF803D;
+    --color-primary-800: #FF600C;
+    --color-primary-850: #CC4700;
+    --color-primary-900: #CC4700;
+    --color-primary-950: #A23800;
+    --color-primary-999: #CC4700;
+    /*  */
+
   --color-primary-green-800: #00a876;
   --color-primary-blue-800: #0066ff;
 

@@ -1,0 +1,79 @@
+@import 'tailwindcss';
+
+@layer base {
+  :root {
+    /* SuperSchool Default Brand Color */
+    /* This colors change in ThemeProvider */
+    --color-primary-50: #FFF8F5;
+    --color-primary-100: #FFE8DB;
+    --color-primary-200: #FFD8C2;
+    --color-primary-300: #FFCBAD;
+    --color-primary-400: #FFBC99;
+    --color-primary-700: #FF803D;
+    --color-primary-800: #FF600C;
+    --color-primary-850: #CC4700;
+    --color-primary-900: #CC4700;
+    --color-primary-950: #A23800;
+    --color-primary-999: #CC4700;
+
+    /* Gray Scale */
+    --color-gray-50: #F9FAFB;
+    --color-gray-100: #F4F6F8;
+    --color-gray-200: #E8EAED;
+    --color-gray-300: #D8DBDF;
+    --color-gray-400: #C7CBD1;
+    --color-gray-500: #898D94;
+    --color-gray-600: #61656B;
+    --color-gray-700: #4C5057;
+    --color-gray-800: #24282D;
+    --color-gray-900: #121417;
+
+    /* Other Colors */
+    --primary-blue-800: #0066FF;
+    --primary-green-800: #00A876;
+
+    /* System Colors */
+    --system-red-50: #FFF3F3;
+    --system-red-100: #FFEBEB;
+    --system-red-400: #FFADAD;
+    --system-red-800: #FF2626;
+
+    --system-green-50: #F3FBF9;
+    --system-green-100: #DDF4ED;
+    --system-green-400: #78CEB9;
+    --system-green-800: #00A876;
+    --system-green-850: #007D58;
+
+    --system-blue-50: #F2F9FF;
+    --system-blue-100: #DBEEFF;
+    --system-blue-400: #66B2FF;
+    --system-blue-800: #0066FF;
+
+    --system-error-100: #FFEBEB;
+    --system-error-400: #FFADAD;
+    --system-error-800: #FF2626;
+
+    --system-success-100: #DDF4ED;
+    --system-success-400: #78CEB9;
+    --system-success-800: #00A876;
+
+    --system-pending-100: #DBEEFF;
+    --system-pending-400: #66B2FF;
+    --system-pending-800: #0066FF;
+
+  /* Dimmed Effect */
+  --color-dimmed: rgba(0, 0, 0, 0.6);
+  --color-dimmed-60: rgba(0, 0, 0, 0.6); 
+  --color-dimmed-8: rgba(0, 0, 0, 0.08);
+  --color-dim-8: rgba(0, 0, 0, 0.08);
+
+  /* Gradient */
+  --color-gradient-green-400: linear-gradient(rgba(0, 190, 133, 1), rgba(118, 218, 188, 1));
+  --color-gradient-green-800: linear-gradient(rgba(0, 168, 118, 1), rgba(92, 202, 175, 1));
+  --color-gradient-blue-400: linear-gradient(rgba(53, 111, 255, 1), rgba(102, 178, 255, 1));
+  --color-gradient-blue-800: linear-gradient(rgba(0, 102, 255, 1), rgba(67, 161, 255, 1));
+  --color-gradient-orange-400: linear-gradient(rgba(255, 128, 61, 1), rgba(255, 188, 153, 1));
+  --color-gradient-orange-800: linear-gradient(rgba(255, 96, 12, 1), rgba(255, 128, 61, 1));
+  --color-gradient-navy-400: linear-gradient(rgba(110, 131, 163, 1), rgba(164, 192, 207, 1));
+  }
+}
