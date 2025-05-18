@@ -3,12 +3,14 @@ import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { ReactComponent as World } from '@/assets/icons/new-world.svg'
 import { ReactComponent as RightFillArrow } from '@/assets/svg/RightFillArrow.svg'
 import { ReactComponent as RightUpArrow } from '@/assets/svg/RightUpArrow.svg'
+import { ReactComponent as ChevronDown } from '@/assets/icons/chevron-down.svg'
+import { ReactComponent as ChevronUp } from '@/assets/icons/chevron-up.svg'
 
-type IconName = 'logo' | 'world' | 'bell' | 'rightFillArrow' | 'rightUpArrow'
+type IconName = 'logo' | 'world' | 'bell' | 'rightFillArrow' | 'rightUpArrow' | 'chevronDown' | 'chevronUp'
 
 export type IconProps = {
   name: IconName
-  color?: 'primary' | 'secondary' | 'tertiary' | 'gray'
+  color?: 'primary' | 'secondary' | 'tertiary' | 'gray-400'
   size?: 'sm' | 'md' | 'lg'
   customSize?: {
     width: string
@@ -28,7 +30,7 @@ const colorOptions = {
   primary: 'text-primary',
   secondary: 'text-secondary',
   tertiary: 'text-tertiary',
-  gray: 'text-gray-400',
+  'gray-400': 'text-gray-400',
 }
 
 /**
@@ -41,6 +43,8 @@ export function Icon({ name, color, size = 'md', customSize, fill = false, class
     bell: Bell,
     rightFillArrow: RightFillArrow,
     rightUpArrow: RightUpArrow,
+    chevronDown: ChevronDown,
+    chevronUp: ChevronUp,
   }[name]
 
   const sizeClass = sizeOptions[size] || sizeOptions.md
@@ -48,7 +52,12 @@ export function Icon({ name, color, size = 'md', customSize, fill = false, class
 
   return (
     <div className={`inline-flex ${customSize ? '' : sizeClass} ${colorClass} ${className}`}>
-      <IconComponent fill={fill ? 'currentColor' : 'none'} width={customSize?.width} height={customSize?.height} />
+      <IconComponent
+        fill={fill ? 'currentColor' : 'none'}
+        width={customSize?.width}
+        height={customSize?.height}
+        color={colorClass}
+      />
     </div>
   )
 }

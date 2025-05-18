@@ -1,13 +1,13 @@
 import { Button } from '@/atoms/Button'
 import { Container } from '@/atoms/Container'
 import { Divider } from '@/atoms/Divider'
-import { NavigationBarItem, type NavigationBarItemProps } from '@/molecules/navigation/NavigationBarItem'
+import { NavigationBarItem, type NavigationItem } from '@/molecules/navigation/NavigationBarItem'
 import { NavigationHeader } from '@/molecules/navigation/NavigationHeader'
 import type { NavigationProfileProps } from '@/molecules/navigation/NavigationProfile'
 
 export type TeacherLNBProps = {
   HeaderProps: NavigationProfileProps
-  ItemProps: NavigationBarItemProps
+  ItemProps: NavigationItem[]
 }
 
 export function TeacherLNB({ HeaderProps, ItemProps }: TeacherLNBProps) {
@@ -17,13 +17,11 @@ export function TeacherLNB({ HeaderProps, ItemProps }: TeacherLNBProps) {
 
       <Divider />
 
-      <Container flex direction="col" justify="between" items="center" gap="2">
+      <Container flex direction="col" justify="between" items="center">
         <NavigationBarItem data={ItemProps} />
       </Container>
 
-      <Divider />
-
-      <Container flex direction="row" items="center" justify="center" paddingX="5">
+      <Container flex direction="row" items="center" justify="center" paddingX="5" paddingY="4">
         <Button variant="link" size="sm" className="text-gray-600">
           내 정보 관리
         </Button>
