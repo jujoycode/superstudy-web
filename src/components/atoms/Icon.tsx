@@ -54,6 +54,7 @@ export function Icon({ name, color, size = 'md', customSize, fill = false, class
     <div className={`inline-flex ${customSize ? '' : sizeClass} ${colorClass} ${className}`}>
       <IconComponent
         fill={fill ? 'currentColor' : 'none'}
+        stroke={!fill ? 'currentColor' : 'none'}
         width={customSize?.width}
         height={customSize?.height}
         color={colorClass}
