@@ -62,6 +62,10 @@ import { FieldtripDetailPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripD
 import { FieldtripNoticeDetailPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripNoticeDetailPage'
 import { FieldtripResultDetailPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripResultDetailPage'
 import { HistoryDetailPage } from '@/legacy/pages/teacher/history/HistoryDetailPage'
+import TeacherIBOverview from '@/legacy/components/ib/TeacherIBOverview'
+import TeacherIBPortfolioList from '@/legacy/components/ib/TeacherIBPortfolioList'
+import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/teacher/PlagiarismInspectPage'
+import TeacherIBStatus from '@/legacy/components/ib/TeacherIBStatus'
 
 export const teacherRoutes = {
   path: '/teacher',
@@ -168,7 +172,16 @@ export const teacherRoutes = {
     },
 
     // 프로젝트
-    { path: 'project', element: <IBTeacherMainPage /> },
+    {
+      path: 'project',
+      element: <IBTeacherMainPage />,
+      children: [
+        { index: true, element: <TeacherIBStatus /> },
+        { path: 'overview', element: <TeacherIBOverview /> },
+        { path: 'portfolio', element: <TeacherIBPortfolioList /> },
+        { path: 'plagiarism-inspection', element: <PlagiarismInspectPage /> },
+      ],
+    },
 
     // IB
     {
