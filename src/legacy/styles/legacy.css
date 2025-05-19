@@ -82,6 +82,47 @@
   height: var(--height-screen-64);
 }
 
+.min-w-4 {
+  min-width: var(--min-width-4);
+}
+.min-w-10 {
+  min-width: var(--min-width-10);
+}
+.min-w-100 {
+  min-width: var(--min-width-100);
+}
+.min-w-1\/2 {
+  min-width: var(--min-width-1\/2);
+}
+.min-w-1\/2-2 {
+  min-width: var(--min-width-1\/2-2);
+}
+
+/* Min Height */
+.min-h-48 {
+  min-height: var(--min-height-48);
+}
+.min-h-64 {
+  min-height: var(--min-height-64);
+}
+.min-h-screen-48 {
+  min-height: var(--min-height-screen-48);
+}
+
+.max-w-2\/3 {
+  max-width: var(--max-width-2\/3);
+}
+.max-w-3\/4 {
+  max-width: var(--max-width-3\/4);
+}
+
+.max-h-screen-12 {
+  max-height: var(--max-height-screen-12);
+}
+.max-h-screen-48 {
+  max-height: var(--max-height-screen-48);
+}
+
 .filled-primary {
   background-color: #ee853a;
   border: 1px solid transparent;
@@ -295,7 +336,7 @@
   border-radius: 0.25rem;
   border-width: 2px;
   border-style: dashed;
-  border-color: theme('colors.grey-5');
+  border-color: theme('colors.gray.500');
   background-color: theme('colors.white');
 }
 
@@ -324,7 +365,7 @@
   border-radius: 0.25rem;
   border-width: 2px;
   border-style: dashed;
-  border-color: theme('colors.grey-5');
+  border-color: theme('colors.gray.500');
   background-color: theme('colors.white');
 }
 
@@ -969,21 +1010,17 @@
   --min-width-100: 25rem;
   --min-width-1/2: 50%;
   --min-width-1/2-2: calc(50% - 0.5rem);
-  --min-width-3/4: 75%;
 
   /* Min Height */
   --min-height-48: 12rem;
   --min-height-64: 16rem;
-  --min-height-96: 24rem;
   --min-height-screen-48: calc(100vh - 12rem);
 
   /* Max Width */
-  --max-width-1/3: 33%;
   --max-width-2/3: 66%;
   --max-width-3/4: 75%;
 
   /* Max Height */
-  --max-height-2/3: 66%;
   --max-height-screen-12: calc(100vh - 3rem);
   --max-height-screen-48: calc(100vh - 12rem);
 
