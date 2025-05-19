@@ -1,14 +1,7 @@
+/* eslint-disable import/order */
 import { TeacherLayout } from '@/layouts/TeacherLayout'
 import { GroupPage } from '@/legacy/pages/admin/group/GroupPage'
 import { TimetablePage } from '@/legacy/pages/admin/timetable/TimetablePage'
-import CASInterviewDetailPage from '@/legacy/pages/ib/student/CAS/CASInterviewDetailPage'
-import { CASMainPage } from '@/legacy/pages/ib/student/CAS/CASMainPage'
-import { CASReflectionDiaryDetailPage } from '@/legacy/pages/ib/student/CAS/CASReflectionDiaryDetailPage'
-import RRSDetailPage from '@/legacy/pages/ib/student/EE/RRSDetailPage'
-import { OutlineDetailPage } from '@/legacy/pages/ib/student/TOK_ESSAY/OutlineDetailPage'
-import TKPPFDetailPage from '@/legacy/pages/ib/student/TOK_ESSAY/TKPPFDetailPage'
-import { ExhibitionDetailPage } from '@/legacy/pages/ib/student/TOK_EXHIBITION/ExhibitionDetailPage'
-import { ExhibitionPlanDetailPage } from '@/legacy/pages/ib/student/TOK_EXHIBITION/ExhibitionPlanDetailPage'
 import CASPortfolioPage from '@/legacy/pages/ib/teacher/CAS/CASPortfolioPage'
 import { CoordinatorPage } from '@/legacy/pages/ib/teacher/coordinator/CoordinatorPage'
 import { EEEssayPage } from '@/legacy/pages/ib/teacher/EE/EEEssayPage'
@@ -19,14 +12,6 @@ import EERrsDetailPage from '@/legacy/pages/ib/teacher/EE/EERrsDetailPage'
 import IBTeacherMainPage from '@/legacy/pages/ib/teacher/IBTeacherMainPage'
 import { IBTeacherReferenceDetailPage } from '@/legacy/pages/ib/teacher/IBTeacherReferenceDetailPage'
 import { EssayDetailPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/EssayDetailPage'
-import { ActivityDetailPage } from '@/legacy/pages/student'
-import AnnouncementPage from '@/legacy/pages/student/announcement/AnnouncementPage'
-import { CanteenPage } from '@/legacy/pages/student/canteen/CanteenPage'
-import { ChatListPage } from '@/legacy/pages/student/chat/ChatListPage'
-import { FieldtripNoticePage } from '@/legacy/pages/student/fieldtrip/FieldtripNoticePage'
-import { NotificationSettingsPage } from '@/legacy/pages/student/mypage/NotificationSettingsPage'
-import { NoticePage } from '@/legacy/pages/student/notice/NoticePage'
-import { OutingPage } from '@/legacy/pages/student/outing/OutingPage'
 import AbsentComparisonPage from '@/legacy/pages/teacher/absent/AbsentComparisonPage'
 import { AbsentPage } from '@/legacy/pages/teacher/absent/AbsentPage'
 import { TeacherApplyPage } from '@/legacy/pages/teacher/absent/TeacherApplyPage'
@@ -52,14 +37,30 @@ import { NewsletterPage } from '@/legacy/pages/teacher/newsletter/NewsletterPage
 import { PointDashboard } from '@/legacy/pages/teacher/pointlogs/PointDashboard'
 import { RecordPage } from '@/legacy/pages/teacher/record/RecordPage'
 import { StudentCardPage } from '@/legacy/pages/teacher/studentcard/StudentCardPage'
-import { RoleGuard } from './guard/RoleGuard'
+import { FieldtripNoticePage } from '@/legacy/pages/teacher/fieldtrip/FieldtripNoticePage'
+import { CASReflectionDiaryDetailPage } from '@/legacy/pages/ib/teacher/CAS/CASReflectionDiaryDetailPage'
+import CASInterviewDetailPage from '@/legacy/pages/ib/teacher/CAS/CASInterviewDetailPage'
+import { ExhibitionDetailPage } from '@/legacy/pages/ib/teacher/TOK_EXHIBITION/ExhibitionDetailPage'
+import { ExhibitionPlanDetailPage } from '@/legacy/pages/ib/teacher/TOK_EXHIBITION/ExhibitionPlanDetailPage'
+
+import { TKPPFDetailPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/TKPPFDetailPage'
+import RRSDetailPage from '@/legacy/pages/ib/teacher/TOK_ESSAY/RRSDetailPage'
+import { ChatListPage } from '@/legacy/pages/teacher/chat/ChatListPage'
+import { NoticePage } from '@/legacy/pages/teacher/notice/NoticePage'
+import { CanteenPage } from '@/legacy/pages/teacher/canteen/CanteenPage'
+import AnnouncementPage from '@/legacy/pages/teacher/announcement/AnnouncementPage'
+import { NotificationSettingsPage } from '@/legacy/pages/teacher/mypage/NotificationSettingsPage'
+import { ActivityDetailPage } from '@/legacy/pages/teacher/activity/ActivityDetailPage'
+import { OutingPage } from '@/legacy/pages/teacher/outing/OutingPage'
+import { CASMainPage } from '@/legacy/pages/ib/teacher/CAS/CASMainPage'
+import { OutlineDetailPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/OutlineDetailPage'
 
 export const teacherRoutes = {
   path: '/teacher',
   element: (
-    <RoleGuard>
-      <TeacherLayout />
-    </RoleGuard>
+    // <RoleGuard>
+    <TeacherLayout />
+    // </RoleGuard>
   ),
   children: [
     // 출석부

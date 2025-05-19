@@ -80,7 +80,7 @@ export function ActivityV3Page() {
   const thisYear = +getThisYear()
 
   return (
-    <div className="col-span-6">
+    <div className="w-full">
       <div className="md:hidden">
         <TopNavbar
           title="활동기록"

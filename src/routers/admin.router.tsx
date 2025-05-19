@@ -34,11 +34,11 @@ import { RoleGuard } from './guard/RoleGuard'
 export const adminRoutes = {
   path: '/admin',
   element: (
-    <RoleGuard>
-      <AdminGuard>
-        <AdminMainPage />
-      </AdminGuard>
-    </RoleGuard>
+    // <RoleGuard>
+    //   <AdminGuard>
+    <AdminMainPage />
+    //   </AdminGuard>
+    // </RoleGuard>
   ),
   children: [
     { path: 'school', element: <SchoolPage /> },

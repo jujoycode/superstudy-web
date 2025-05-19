@@ -40,7 +40,8 @@ export function RoleGuard({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!me && currentPath !== '/login') {
-      navigate('/login')
+      // navigate('/login')
+      return
     } else {
       // 현재 사용자의 Role에 맞는 URL 패턴
       const allowedPatterns = ROLE_URL_PATTERNS[me!.role] || []
