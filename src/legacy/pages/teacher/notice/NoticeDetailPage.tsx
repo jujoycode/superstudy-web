@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
+import { useUserStore } from '@/stores/user'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -11,7 +12,6 @@ import { Code, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { NoticeAddPage } from './NoticeAddPage'
-import { useUserStore } from '@/stores/user'
 
 interface NoticeAddProps {
   categoryData?: Code[]
@@ -19,6 +19,7 @@ interface NoticeAddProps {
 
 export function NoticeDetailPage({ categoryData }: NoticeAddProps) {
   const { id } = useParams<{ id: string }>()
+  console.log('id ', id)
 
   const { me, isUpdateNotice, setIsUpdateNotice } = useUserStore()
   const { notice, isNoticeLoading, viewerImages, errorMessage, handleNoticeDelete } = useTeacherNoticeDetail(Number(id))

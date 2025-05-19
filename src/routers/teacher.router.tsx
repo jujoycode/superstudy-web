@@ -205,6 +205,7 @@ export const teacherRoutes = {
     { path: 'canteen/:date', element: <CanteenPage /> },
 
     // 공지사항
+    { path: 'notice/*', element: <NoticePage /> },
     { path: 'notice', element: <NoticePage /> },
 
     // 학급게시판

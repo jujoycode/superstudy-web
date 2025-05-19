@@ -27,4 +27,21 @@
   select {
     @apply focus:ring-0 focus:outline-none;
   }
+
+  /* Number Input remove default updown button */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  /* Safari hidden */
+  select option[disabled] {
+    display: none;
+  }
 }
