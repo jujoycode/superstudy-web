@@ -188,7 +188,7 @@ export function CoordinatorEE_FAQ_AddRef({
       }}
     >
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white`}>
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6 backdrop-blur-[20px]">
+        <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6">
           <Typography variant="title1" className="text-gray-900">
             {type === 'create' ? '참고자료 작성' : '참고자료 수정'}
           </Typography>
@@ -220,7 +220,7 @@ export function CoordinatorEE_FAQ_AddRef({
           )}
         </div>
 
-        <div className="sticky bottom-0 flex h-[104px] justify-between border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]">
+        <div className=".backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-between border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8">
           <div className="flex flex-row items-center gap-3">
             <ButtonV2 variant="solid" color="gray100" size={48} onClick={handleBack}>
               {type === 'create' ? '이전' : '취소'}
