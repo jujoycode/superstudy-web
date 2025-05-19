@@ -12,7 +12,7 @@ export function HorizontalScrollView({
   children,
 }: PropsWithChildren<HorizontalScrollViewProps>) {
   return (
-    <div className={clsx('horizontal-scroll-view-outer', classNameOuter)}>
+    <div className={clsx('overflow-x-auto', classNameOuter)}>
       <div className="inline-block">
         <ul className={clsx('horizontal-scroll-view-inner', classNameInner)}>{children}</ul>
       </div>

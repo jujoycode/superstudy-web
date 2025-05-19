@@ -19,6 +19,7 @@ interface NoticeAddProps {
 
 export function NoticeDetailPage({ categoryData }: NoticeAddProps) {
   const { id } = useParams<{ id: string }>()
+  console.log('id ', id)
 
   const { me, isUpdateNotice, setIsUpdateNotice } = useUserStore()
   const { notice, isNoticeLoading, viewerImages, errorMessage, handleNoticeDelete } = useTeacherNoticeDetail(Number(id))
