@@ -1,14 +1,29 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router'
 import superstudyLight from '@/assets/images/superstudy-light.png'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
+import { useAuthStore } from '@/stores/auth'
+import { useUserStore } from '@/stores/user'
 import { BottomFixed, Screen, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { globalEnv } from '@/legacy/util/global-env'
+import { getDefaultPath } from '../../routers/guard/AuthGuard'
 
 export function HomePage() {
   const { push } = useHistory()
   const { t } = useLanguage()
+  const { me } = useUserStore()
+  const { token } = useAuthStore()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (me && token) {
+      const path = getDefaultPath(me.role)
+      navigate(path, { replace: true })
+    }
+  }, [me, token, navigate])
 
   const redirectToStore = () => {
     const userAgent = navigator.userAgent

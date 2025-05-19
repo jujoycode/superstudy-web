@@ -136,13 +136,6 @@ export function StudentMainPage() {
             <Route path="/student/self-test" Component={SelfTestPage} />
             <Route path="/student/notification-settings" Component={NotificationSettingsPage} />
             <Route path="/student/score/:id/:type" Component={ScorePage} />
-            <Route path="/student">
-              {me?.school.isCourseActive || myChild?.school.isCourseActive ? (
-                <Navigate to="/student/courseentrance" />
-              ) : (
-                <Navigate to="/student/canteen" />
-              )}
-            </Route>
           </Routes>
         </div>
 

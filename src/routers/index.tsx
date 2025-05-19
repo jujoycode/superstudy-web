@@ -24,10 +24,11 @@ import { FindPasswordPageV2 } from '@/legacy/pages/student/password/FindPassword
 import { ResetPasswordPageV1 } from '@/legacy/pages/student/password/ResetPasswordPageV1'
 import { PrivacyPolicy } from '@/legacy/pages/student/PrivacyPolicy'
 import { TermsOfUse } from '@/legacy/pages/student/TermsOfUse'
-import { adminRoutes } from './admin.router'
 import { AuthRouter } from './AuthRouter'
-import { studentRoutes } from './student.router'
-import { teacherRoutes } from './teacher.router'
+import { adminRoutes } from './mainRouter/admin.router'
+import { ibRoutes } from './mainRouter/ib.router'
+import { studentRoutes } from './mainRouter/student.router'
+import { teacherRoutes } from './mainRouter/teacher.router'
 
 /**
  * Router
@@ -159,6 +160,7 @@ export const routers: RouteObject[] = [
   adminRoutes,
   studentRoutes,
   teacherRoutes,
+  ibRoutes,
 ]
 
 export const router = createBrowserRouter(routers)

@@ -54,13 +54,17 @@ import { ActivityDetailPage } from '@/legacy/pages/teacher/activity/ActivityDeta
 import { OutingPage } from '@/legacy/pages/teacher/outing/OutingPage'
 import { CASMainPage } from '@/legacy/pages/ib/teacher/CAS/CASMainPage'
 import { OutlineDetailPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/OutlineDetailPage'
+import { AuthRouter } from '../AuthRouter'
+import { AuthGuard } from '../guard/AuthGuard'
 
 export const teacherRoutes = {
   path: '/teacher',
   element: (
-    // <RoleGuard>
-    <TeacherLayout />
-    // </RoleGuard>
+    <AuthRouter>
+      <AuthGuard>
+        <TeacherLayout />
+      </AuthGuard>
+    </AuthRouter>
   ),
   children: [
     // 출석부
