@@ -327,13 +327,23 @@
   background-color: var(--color-counselingCategory-0);
 }
 .bg-counselingCategory-1 {
-  background-color: var(--color-counselingCategory-0);
+  background-color: var(--color-counselingCategory-1);
 }
 .bg-counselingCategory-2 {
-  background-color: var(--color-counselingCategory-0);
+  background-color: var(--color-counselingCategory-2);
 }
 .bg-counselingCategory-3 {
-  background-color: var(--color-counselingCategory-0);
+  background-color: var(--color-counselingCategory-3);
+}
+
+.bg-users-user {
+  background-color: var(--color-users-user);
+}
+.bg-users-teacher {
+  background-color: var(--color-users-teacher);
+}
+.bg-users-admin {
+  background-color: var(--color-users-admin);
 }
 
 .backdrop-blur-20 {
@@ -1150,7 +1160,6 @@
   --color-counselingCategory-2: rgba(50, 99, 227, 0.12);
   --color-counselingCategory-3: rgba(252, 121, 0, 0.12);
 
-  --color-users-user: #fdc400;
   --color-users-user: #fdc400;
   --color-users-teacher: #00a85f;
   --color-users-admin: #3263e3;
