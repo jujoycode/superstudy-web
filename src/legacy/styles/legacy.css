@@ -932,17 +932,6 @@
   --background-image-gradient-white: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
 
   /* Colors */
-  --color-grey-0: #f2f4f6;
-  --color-grey-1: #262626;
-  --color-grey-2: #364250;
-  --color-grey-3: #727272;
-  --color-grey-4: #bdbdbd;
-  --color-grey-5: #8d95a1;
-  --color-grey-6: #eaedf3;
-  --color-grey-7: #c4c4c4;
-  --color-grey-8: #4e5968;
-  --color-grey-9: #f2f2f2;
-
   --color-pink-0: #fff0f6;
   --color-pink-1: #ffdeeb;
   --color-pink-2: #fcc2d7;

@@ -138,15 +138,15 @@ export function FeedsItem({
                         <div className="py-1 text-sm font-bold text-red-500">~{submitDate}</div>
                       )}
                       {submitDate && new Date(submitDate) < new Date() ? (
-                        <div className="bg-grey-7 rounded-md px-2 py-1 text-sm">기간만료</div>
+                        <div className="bg-gray-7 rounded-md px-2 py-1 text-sm">기간만료</div>
                       ) : (
                         <div className="filled-red rounded-md px-2 py-1 text-sm">제출필요</div>
                       )}
                     </>
                   ) : (
-                    <div className="bg-grey-7 rounded-md px-2 py-1 text-sm">제출완료</div>
+                    <div className="bg-gray-7 rounded-md px-2 py-1 text-sm">제출완료</div>
                   )}
-                  {submitText && <div className="bg-grey-7 rounded-md px-2 py-1 text-sm">{submitText}</div>}
+                  {submitText && <div className="bg-gray-7 rounded-md px-2 py-1 text-sm">{submitText}</div>}
                 </div>
               </div>
             )}

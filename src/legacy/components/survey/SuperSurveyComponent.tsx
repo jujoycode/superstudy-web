@@ -147,7 +147,7 @@ export function SuperSurveyComponent({
                         readOnly ? 'cursor-default' : 'cursor-pointer'
                       }`}
                     >
-                      <span className="text-grey-3 mb-1 text-2xl">+</span>
+                      <span className="text-gray-3 mb-1 text-2xl">+</span>
                       <span className="text-sm">첨부파일을 선택해주세요.</span>
                       <input type="file" multiple className="sr-only" onChange={handleFileAdd} disabled={readOnly} />
                     </label>

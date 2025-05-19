@@ -55,8 +55,8 @@ export function NewsletterPreview({ title, images, klasses, endAt }: NewsletterP
                   </span>
                 ))}
             </div>
-            <div className="text-grey-1 flex text-lg font-bold">{title}</div>
-            <div className="text-grey-3 flex text-sm">{now}</div>
+            <div className="text-gray-1 flex text-lg font-bold">{title}</div>
+            <div className="text-gray-3 flex text-sm">{now}</div>
             <Time date={endAt} />
             <div className="grid w-full grid-flow-row grid-cols-3 gap-2">
               {images?.map((image: string, i: number) => {
