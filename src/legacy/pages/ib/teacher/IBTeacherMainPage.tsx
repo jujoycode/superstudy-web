@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 import { useHistory } from '@/hooks/useHistory'
+import { useSchoolStore } from '@/stores/school'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import IBLayout from '@/legacy/components/ib/IBLayout'
@@ -15,7 +16,6 @@ import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 import { useGetPlagiarismInspectList } from '@/legacy/container/plagiarism-inspector'
 import type { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
 import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/teacher/PlagiarismInspectPage'
-import { useSchoolStore } from '@/stores/school'
 
 export default function IBTeacherMainPage() {
   const { push } = useHistory()

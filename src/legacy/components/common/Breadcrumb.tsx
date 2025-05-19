@@ -3,9 +3,9 @@ import React from 'react'
 
 import { useHistory } from '@/hooks/useHistory'
 
-import { Typography } from './Typography'
 import SolidSVGIcon from '../icon/SolidSVGIcon'
 import SVGIcon from '../icon/SVGIcon'
+import { Typography } from './Typography'
 
 interface BreadcrumbProps {
   className?: string

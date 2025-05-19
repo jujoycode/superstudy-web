@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useParams } from 'react-router'
+import { useUserStore } from '@/stores/user'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Divider, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -7,7 +8,6 @@ import { TeacharAllGroup } from '@/legacy/container/teacher-group-all'
 import { useTeacherGroupDetail } from '@/legacy/container/teacher-group-detail'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName, makeStudNum5 } from '@/legacy/util/status'
-import { useUserStore } from '@/stores/user'
 import { GroupAddPage } from './GroupAddPage'
 
 interface GroupDetailPageProps {

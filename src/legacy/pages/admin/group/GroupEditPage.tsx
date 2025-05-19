@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { Link, useParams } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
@@ -13,7 +14,6 @@ import { RequestCreateGroupOnlyDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
-import { useNotificationStore } from '@/stores/notification'
 
 export function GroupEditPage() {
   const { push } = useHistory()

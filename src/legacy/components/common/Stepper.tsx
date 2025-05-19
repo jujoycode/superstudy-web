@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 
-import { Typography } from './Typography'
 import SVGIcon from '../icon/SVGIcon'
+import { Typography } from './Typography'
 
 interface StepperProps {
   setNumber: (value: number) => void

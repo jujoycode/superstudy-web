@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 import {
   BackButton,
   Blank,
@@ -21,8 +23,6 @@ import { useStudentNewsletterDetail } from '@/legacy/container/student-newslette
 import { NewsletterType, RequestUpsertStudentNewsletterDto, Role } from '@/legacy/generated/model'
 import { useSignature } from '@/legacy/hooks/useSignature'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { useUserStore } from '@/stores/user'
-import { useNotificationStore } from '@/stores/notification'
 import { NewsletterAddPage } from './NewsletterAddPage'
 
 export function NewsletterDetailPage() {

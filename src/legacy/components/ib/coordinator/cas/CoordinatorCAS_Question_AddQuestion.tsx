@@ -19,10 +19,10 @@ import {
   ResponseInterviewDto,
 } from '@/legacy/generated/model'
 
-import { CAS_QUESTION_TYPES } from './CoordinatorCAS_Question'
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import SVGIcon from '../../../icon/SVGIcon'
 import { FormInputField } from '../../FormInputField'
+import { CAS_QUESTION_TYPES } from './CoordinatorCAS_Question'
 
 interface CoordinatorCAS_Question_AddQuestionProps {
   type: string

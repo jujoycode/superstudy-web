@@ -1,11 +1,11 @@
 import { format } from 'date-fns'
 import { FC, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { useNotificationStore } from '@/stores/notification'
 import { Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { useSessionCommentDelete, useSessionCommentUpdate } from '@/legacy/generated/endpoint'
 import { ResponseUserDto, SessionComment } from '@/legacy/generated/model'
-import { useNotificationStore } from '@/stores/notification'
 import { SuperModal } from '../SuperModal'
 
 interface SessionCommentItemProps {

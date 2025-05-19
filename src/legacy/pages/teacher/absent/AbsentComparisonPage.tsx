@@ -4,6 +4,7 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { useLocation } from 'react-router'
 import * as XLSX from 'xlsx'
 import { useHistory } from '@/hooks/useHistory'
+import { useAuthStore } from '@/stores/auth'
 import { Label, Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
@@ -23,7 +24,6 @@ import {
 import { GroupType } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getSearchYearByMonth, getThisYear } from '@/legacy/util/time'
-import { useAuthStore } from '@/stores/auth'
 
 const headers = [
   '번호',

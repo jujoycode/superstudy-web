@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useLocation, useParams } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -16,7 +17,6 @@ import IBLayout from '@/legacy/components/ib/IBLayout'
 import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBInterviewUpdate, useInterviewQNA } from '@/legacy/container/ib-student-interview'
 import { RequestCreateQnaDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores/user'
 
 interface LocationState {
   title: string

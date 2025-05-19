@@ -1,5 +1,5 @@
-import { approveButtonType } from '@/legacy/types'
 import { Role } from '@/legacy/generated/model'
+import { approveButtonType } from '@/legacy/types'
 
 export const PermissionUtil = {
   hasOutingAuthorization: (userRole?: Role) => {

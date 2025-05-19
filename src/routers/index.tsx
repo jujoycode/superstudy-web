@@ -26,7 +26,6 @@ import { PrivacyPolicy } from '@/legacy/pages/student/PrivacyPolicy'
 import { TermsOfUse } from '@/legacy/pages/student/TermsOfUse'
 import { adminRoutes } from './admin.router'
 import { AuthRouter } from './AuthRouter'
-import { RoleGuard } from './guard/RoleGuard'
 import { studentRoutes } from './student.router'
 import { teacherRoutes } from './teacher.router'
 

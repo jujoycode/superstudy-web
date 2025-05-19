@@ -2,6 +2,8 @@ import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useParams } from 'react-router-dom'
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
@@ -21,8 +23,6 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getErrorMsg } from '@/legacy/util/status'
-import { useNotificationStore } from '@/stores/notification'
-import { useUserStore } from '@/stores/user'
 
 export function TeacherEditPage() {
   const { setToast: setToastMsg } = useNotificationStore()

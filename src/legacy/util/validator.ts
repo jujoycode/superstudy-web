@@ -19,7 +19,7 @@ export function jsonParseSafe<T>(jsonString: string | null, defaultValue: T): T 
     }
     const jsonObj = JSON.parse(jsonString) as T
     return jsonObj
-  } catch (error) {
+  } catch {
     return defaultValue
   }
 }

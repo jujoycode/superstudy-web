@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router'
 import { Container } from '@/atoms/Container'
 import { TeacherLNB } from '@/organisms/LNB/TeacherLNB'
-import { MenuConstant } from '@/constants/MenuConstant'
+import { MenuConstant } from '@/constants/menuConstant'
 import { Toast } from '@/legacy/components/Toast'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 

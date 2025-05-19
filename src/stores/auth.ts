@@ -36,7 +36,6 @@ export const useAuthStore = create<AuthState>()((set) => ({
   setToken: (token) => {
     if (typeof window !== 'undefined') {
       if (token) {
-        console.log('token', token)
         const storage = useAuthStore.getState().isStayLoggedIn ? localStorage : sessionStorage
         storage.setItem('token', token)
         storage.setItem('tokenIssue', new Date().toISOString())

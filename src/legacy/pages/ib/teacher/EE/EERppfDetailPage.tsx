@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useLocation, useParams } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -23,7 +24,6 @@ import { useRPPFGetById } from '@/legacy/container/ib-rppf-findId'
 import { useRPPFUpdateRPPFStatusReject } from '@/legacy/generated/endpoint'
 import { RequestCreateRPPFDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { useUserStore } from '@/stores/user'
 
 export const EERppfDetailPage = () => {
   const history = useHistory()

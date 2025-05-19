@@ -1,6 +1,8 @@
 import { Chart as ChartJS, registerables } from 'chart.js'
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
 import { Chart } from 'react-chartjs-2'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 import { Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
@@ -13,8 +15,6 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ActivityV3, Record } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useNotificationStore } from '@/stores/notification'
-import { useUserStore } from '@/stores/user'
 
 ChartJS.register(...registerables)
 
@@ -213,8 +213,8 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
               {gptContents && (
                 <div className="flex w-full flex-col space-y-2 border-b border-gray-300 px-4 py-2">
                   <div className="text-16 mb-1 font-bold">탐구 역량</div>
-                  <div className="relative -mb-2 -mt-2 h-[300px] w-full overflow-hidden">
-                    <div className="h-[calc(100% + 40px)] absolute -bottom-2 -top-2 left-0 right-0">
+                  <div className="relative -mt-2 -mb-2 h-[300px] w-full overflow-hidden">
+                    <div className="h-[calc(100% + 40px)] absolute -top-2 right-0 -bottom-2 left-0">
                       <Chart
                         type="radar"
                         datasetIdKey="id"
@@ -293,7 +293,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
             <p className="text-12 leading-5 text-gray-500">
               {t('text_activity_memo', '활동기록에서 활동 진행 중 학생에 대한 메모를 하실 수 있습니다.')}
             </p>
-            <p className="text-13 whitespace-pre-line leading-5">
+            <p className="text-13 leading-5 whitespace-pre-line">
               {sav?.records?.map((record: Record) => (
                 <>
                   <span>{record?.content}</span>
@@ -345,11 +345,11 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
               <>
                 <div>
                   {sav?.title && (
-                    <p className="text-14 w-full whitespace-pre-line border-b border-gray-300 leading-5">
+                    <p className="text-14 w-full border-b border-gray-300 leading-5 whitespace-pre-line">
                       {sav?.title}
                     </p>
                   )}
-                  {sav?.summary && <p className="text-13 whitespace-pre-line leading-5">{sav.summary}</p>}
+                  {sav?.summary && <p className="text-13 leading-5 whitespace-pre-line">{sav.summary}</p>}
                 </div>
                 {me?.schoolId !== 183 && (
                   <Button

@@ -1,6 +1,6 @@
+import clsx from 'clsx'
 import { ChangeEvent, useContext } from 'react'
 import { Link, useParams } from 'react-router'
-import clsx from 'clsx'
 
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'

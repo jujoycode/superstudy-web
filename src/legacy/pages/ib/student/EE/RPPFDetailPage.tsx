@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useLocation, useParams } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -19,7 +20,6 @@ import { useIBDeadline } from '@/legacy/container/ib-deadline'
 import { useIBRPPFCreate } from '@/legacy/container/ib-rppf-create'
 import { useRPPFGetById } from '@/legacy/container/ib-rppf-findId'
 import { RequestCreateRPPFDto, ResponseIBDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores/user'
 
 interface LocationState {
   title: string

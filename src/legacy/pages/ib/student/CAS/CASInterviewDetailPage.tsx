@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -15,7 +16,6 @@ import { Feedback } from '@/legacy/components/ib/Feedback'
 import IBLayout from '@/legacy/components/ib/IBLayout'
 import { useIBInterviewDelete, useIBInterviewUpdate, useInterviewQNA } from '@/legacy/container/ib-student-interview'
 import { RequestCreateQnaDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores/user'
 
 export default function CASInterviewDetailPage() {
   const history = useHistory()

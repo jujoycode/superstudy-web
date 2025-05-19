@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useParams } from 'react-router'
+import { useNotificationStore } from '@/stores/notification'
 import { Avatar, Blank, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
@@ -13,7 +14,6 @@ import {
   useStudentActivityV3SaveByTeacher,
 } from '@/legacy/generated/endpoint'
 import { getNickName, padLeftstr } from '@/legacy/util/status'
-import { useNotificationStore } from '@/stores/notification'
 import { RecordItem } from './RecordItem'
 
 interface StudentActivityDetailProps {

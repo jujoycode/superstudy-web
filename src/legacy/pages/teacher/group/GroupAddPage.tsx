@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ReactComponent as Close } from '@/assets/svg/close.svg'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 import { ErrorBlank, SelectMenus } from '@/legacy/components'
 import { Blank, Label } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -12,8 +14,6 @@ import { Category, GroupType, ResponseGroupDto, StudentGroup, SubjectType, User 
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName } from '@/legacy/util/status'
 import { getThisYear } from '@/legacy/util/time'
-import { useUserStore } from '@/stores/user'
-import { useNotificationStore } from '@/stores/notification'
 
 interface GroupAddPageProps {
   groupData?: ResponseGroupDto

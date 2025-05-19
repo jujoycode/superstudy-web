@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
+import { useNotificationStore } from '@/stores/notification'
 import { MessageBox } from '@/legacy/components/chat/MessageBox'
 import { Section } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
@@ -10,7 +11,6 @@ import { useTeacherChatRoomList } from '@/legacy/container/teacher-chat-room-lis
 import { useDashboardGetDashBoardData } from '@/legacy/generated/endpoint'
 import { ResponseChatroomInfoDto, ResponseDashboardDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useNotificationStore } from '@/stores/notification'
 
 interface ChatRoomListProps {}
 

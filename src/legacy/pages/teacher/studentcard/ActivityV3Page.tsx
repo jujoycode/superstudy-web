@@ -3,6 +3,7 @@ import _, { range } from 'lodash'
 import { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 
+import { useUserStore } from '@/stores/user'
 import { ActivityV3GPTModal } from '@/legacy/components/activityv3/GPT/ActivityV3GPTModal'
 import { Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -21,7 +22,6 @@ import {
 import { SubjectType } from '@/legacy/generated/model'
 import { downloadExcel } from '@/legacy/util/download-excel'
 import { getThisYear } from '@/legacy/util/time'
-import { useUserStore } from '@/stores/user'
 
 export const ActivityV3Page = () => {
   const { pathname } = useLocation()

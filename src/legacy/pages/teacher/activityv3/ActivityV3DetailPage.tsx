@@ -8,6 +8,8 @@ import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { twMerge } from 'tailwind-merge'
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 import { Activityv3SubmitterItem } from '@/legacy/components/activityv3/ActivityV3SubmitterItem'
 import { SessionDownloadModal } from '@/legacy/components/activityv3/SessionDownloadModal'
 import { SessionTable } from '@/legacy/components/activityv3/SessionTable'
@@ -29,8 +31,6 @@ import {
 import { Role, StudentGroup, SubjectType } from '@/legacy/generated/model'
 import { checkSubmitted } from '@/legacy/util/activityv3'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { useUserStore } from '@/stores/user'
-import { useNotificationStore } from '@/stores/notification'
 
 interface ActivityV3DetailPageProps {}
 

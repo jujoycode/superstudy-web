@@ -1,5 +1,7 @@
 import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
+import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
+import { useNotificationStore } from '@/stores/notification'
 import { Constants } from '@/legacy/constants'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'
@@ -12,12 +14,10 @@ import { StudentModal } from '@/legacy/modals/StudentModal'
 import { getNickName } from '@/legacy/util/status'
 import { getThisYear } from '@/legacy/util/time'
 import { Validator } from '@/legacy/util/validator'
-import { useNotificationStore } from '@/stores/notification'
 import { Select } from '../common'
 import { Icon } from '../common/icons'
 import { TextInput } from '../common/TextInput'
 import { Time } from '../common/Time'
-import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 
 interface StudentInfoCardProps {
   id: number

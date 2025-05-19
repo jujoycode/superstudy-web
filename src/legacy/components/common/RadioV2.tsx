@@ -2,8 +2,8 @@ import clsx from 'clsx'
 import React, { forwardRef, InputHTMLAttributes, ReactNode, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import type { TypographyProps } from './Typography'
 import { Typography } from './Typography'
+import type { TypographyProps } from './Typography'
 
 interface RadioProps<T = any> extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
   size?: 16 | 20 | 24

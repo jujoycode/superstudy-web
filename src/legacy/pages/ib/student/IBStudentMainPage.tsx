@@ -1,12 +1,13 @@
+import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import clsx from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
 import CAS from '@/assets/images/CAS.png'
 import EE from '@/assets/images/EE.png'
 import TOK from '@/assets/images/TOK.png'
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
@@ -22,7 +23,6 @@ import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { PopupModal } from '@/legacy/components/PopupModal'
 import { useGetIBProject } from '@/legacy/container/ib-project-get-filter'
 import { ResponseIBDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores/user'
 
 export type IBProject = '' | 'CAS' | 'EE' | 'TOK'
 export type ModalType = 'projectSelection' | 'IbEeProposal' | 'IbTok' | 'IbCAS' | null

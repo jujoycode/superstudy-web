@@ -6,6 +6,8 @@ import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 import { BackButton, List, ListItem, Textarea, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Time } from '@/legacy/components/common/Time'
@@ -19,8 +21,6 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ActivityType } from '@/legacy/generated/model'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
-import { useUserStore } from '@/stores/user'
-import { useNotificationStore } from '@/stores/notification'
 
 export function ActivitySessionPage() {
   const { id } = useParams<{ id: string }>()

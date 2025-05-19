@@ -3,6 +3,8 @@ import { Link, Outlet, useLocation } from 'react-router-dom'
 import Logo from '@/assets/images/logo_color.png'
 import SvgUser from '@/assets/images/no_profile.png'
 import { useHistory } from '@/hooks/useHistory'
+import { useSchoolStore } from '@/stores/school'
+import { useUserStore } from '@/stores/user'
 import { ErrorBlank } from '@/legacy/components'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Typography } from '@/legacy/components/common/Typography'
@@ -12,8 +14,6 @@ import { Constants } from '@/legacy/constants'
 import { useIBProfileGetById } from '@/legacy/container/ib-cas'
 import { useLogout } from '@/legacy/util/hooks'
 import { makeStudNum5 } from '@/legacy/util/status'
-import { useSchoolStore } from '@/stores/school'
-import { useUserStore } from '@/stores/user'
 
 export const IBStudentPage = () => {
   const { pathname } = useLocation()

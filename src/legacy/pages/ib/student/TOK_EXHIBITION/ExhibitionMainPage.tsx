@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLocation, useParams } from 'react-router'
 
+import { useUserStore } from '@/stores/user'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -23,7 +24,6 @@ import {
 } from '@/legacy/container/ib-tok-exhibition'
 import { ResponseExhibitionDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useUserStore } from '@/stores/user'
 
 export type TOKProject = 'EXHIBITION' | 'EXHIBITION_PLAN'
 export type LocationState = {

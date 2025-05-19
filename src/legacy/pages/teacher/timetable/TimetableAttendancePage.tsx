@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
+import { useUserStore } from '@/stores/user'
 import { SelectMenus, SuperModal } from '@/legacy/components'
 import { Divider, Label, Section, Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -29,7 +30,6 @@ import { StudentModal } from '@/legacy/modals/StudentModal'
 import { dayOfEngWeek, dayOfKorWeek } from '@/legacy/util/date'
 import { getNickName } from '@/legacy/util/status'
 import { getThisSemester, getThisYear } from '@/legacy/util/time'
-import { useUserStore } from '@/stores/user'
 import { TimetableNeisForm } from './TimetableNeisForm'
 
 const groups = [

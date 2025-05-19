@@ -4,8 +4,8 @@ import NODATA from '@/assets/images/no-data.png'
 import { Typography } from '@/legacy/components/common/Typography'
 import { MockScore } from '@/legacy/container/student-score'
 
-import BottomSheetListSelection from './BottomSheetListSelection'
 import SVGIcon from '../icon/SVGIcon'
+import BottomSheetListSelection from './BottomSheetListSelection'
 
 interface BottomSheetProps {
   data?: MockScore[]

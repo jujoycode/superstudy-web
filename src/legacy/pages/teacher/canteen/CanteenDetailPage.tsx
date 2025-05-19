@@ -1,12 +1,12 @@
 import { format } from 'date-fns'
 import { useState } from 'react'
 import Viewer from 'react-viewer'
+import { useUserStore } from '@/stores/user'
 import { Divider, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Constants } from '@/legacy/constants'
 import { Canteen, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useUserStore } from '@/stores/user'
 
 interface CanteenDetailPageProps {
   selectedDate: Date
