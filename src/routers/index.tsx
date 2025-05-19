@@ -38,11 +38,7 @@ import { teacherRoutes } from './teacher.router'
 export const routers: RouteObject[] = [
   {
     path: '/',
-    element: (
-      <RoleGuard>
-        <HomePage />
-      </RoleGuard>
-    ),
+    element: <HomePage />,
     index: true,
   },
   {

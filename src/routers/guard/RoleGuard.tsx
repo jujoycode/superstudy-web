@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router'
 import { useUserStore } from '@/stores/user'
 import { Role } from '@/legacy/generated/model/role'
@@ -38,24 +38,24 @@ export function RoleGuard({ children }: { children: ReactNode }) {
   const location = useLocation()
   const currentPath = location.pathname
 
-  // 로그인하지 않은 사용자 처리
-  if (!me) {
-    navigate('/')
-    return
-  }
+  useEffect(() => {
+    if (!me && currentPath !== '/login') {
+      navigate('/login')
+    } else {
+      // 현재 사용자의 Role에 맞는 URL 패턴
+      const allowedPatterns = ROLE_URL_PATTERNS[me!.role] || []
 
-  // 현재 사용자의 Role에 맞는 URL 패턴
-  const allowedPatterns = ROLE_URL_PATTERNS[me.role] || []
+      // URL이 현재 Role의 허용 패턴과 일치하는지 확인
+      const isAllowedUrl = allowedPatterns.some((pattern) => pattern.test(currentPath))
 
-  // URL이 현재 Role의 허용 패턴과 일치하는지 확인
-  const isAllowedUrl = allowedPatterns.some((pattern) => pattern.test(currentPath))
-
-  // URL이 허용되지 않은 경우 리다이렉션
-  if (!isAllowedUrl) {
-    // 해당 Role의 기본 URL로 리다이렉션
-    const redirectUrl = DEFAULT_REDIRECT_URLS[me.role] || '/'
-    navigate(redirectUrl)
-  }
+      // URL이 허용되지 않은 경우 리다이렉션
+      if (!isAllowedUrl) {
+        // 해당 Role의 기본 URL로 리다이렉션
+        const redirectUrl = DEFAULT_REDIRECT_URLS[me!.role] || '/'
+        navigate(redirectUrl)
+      }
+    }
+  }, [me, navigate, currentPath])
 
   return children
 }
