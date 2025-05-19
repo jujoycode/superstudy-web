@@ -84,14 +84,14 @@ export function MyPage() {
                       <table>
                         <tbody>
                           <tr>
-                            <td className="text-grey-4 flex justify-between py-1 pr-3 text-xs">
+                            <td className="text-gray-4 flex justify-between py-1 pr-3 text-xs">
                               <p>성</p>
                               <p>명</p>
                             </td>
                             <td className="text-sm font-bold tracking-widest text-black">{child?.name}</td>
                           </tr>
                           <tr>
-                            <td className="text-grey-4 flex justify-between py-1 pr-3 text-xs">
+                            <td className="text-gray-4 flex justify-between py-1 pr-3 text-xs">
                               <p>학</p>
                               <p>번</p>
                             </td>
@@ -101,7 +101,7 @@ export function MyPage() {
                             </td>
                           </tr>
                           {/* <tr>
-                          <td className="text-xs text-grey-4 pr-3">생년월일</td>
+                          <td className="text-xs text-gray-4 pr-3">생년월일</td>
                           <td className="text-black text-sm">
                             {child?.birthDate && makeDateToString(child.birthDate, '.')}
                           </td>

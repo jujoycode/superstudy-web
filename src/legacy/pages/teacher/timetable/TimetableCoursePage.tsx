@@ -154,7 +154,7 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
 
       {tab === 'list' && (
         <div>
-          <div className="bg-grey-100 flex flex-wrap items-center justify-between rounded-lg border p-5">
+          <div className="flex flex-wrap items-center justify-between rounded-lg border bg-gray-100 p-5">
             <p
               className={clsx(
                 'flex cursor-pointer flex-wrap',

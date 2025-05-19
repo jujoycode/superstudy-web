@@ -140,7 +140,7 @@ export function FirstLoginPage() {
           {password2 && password1 !== password2 && (
             <div className="text-red-600">비밀번호 확인이 일치하지 않습니다.</div>
           )}
-          <div className="text-grey-3">
+          <div className="text-gray-3">
             &nbsp; 안전한 개인정보의 보호를 위해 문자,숫자,특수문자가 포함된 8자 이상의 비밀번호를 입력하세요.
             <br />
             &nbsp; 사용 가능한 특수문자는 ! @ # $ % & * ? 입니다.
@@ -153,7 +153,7 @@ export function FirstLoginPage() {
             onChange={(e) => setPhone(e.target.value)}
             className={Validator.phoneNumberRule(phone) ? 'border-gray-300' : 'border-red-700'}
           />
-          <div className="text-grey-3">&nbsp; 전화번호가 없는 학생은 보호자의 전화번호를 입력하세요.</div>
+          <div className="text-gray-3">&nbsp; 전화번호가 없는 학생은 보호자의 전화번호를 입력하세요.</div>
         </Label.col>
 
         <Label.col>
@@ -199,7 +199,7 @@ export function FirstLoginPage() {
             onChange={(e) => setNokPhone(e.target.value)}
             className={nokPhone ? 'border-gray-300' : 'border-red-700'}
           />
-          <div className="text-grey-3">
+          <div className="text-gray-3">
             &nbsp; 작성하신 보호자 연락처로 보호자 가입요청 메시지가 전달됩니다. 학교에 제출한 보호자의 정보와 상이할
             경우 추후 학교 제출 연락처로 변경되니, 꼭 학교에 제출한 보호자의 정보로 입력하시기 바랍니다.
           </div>

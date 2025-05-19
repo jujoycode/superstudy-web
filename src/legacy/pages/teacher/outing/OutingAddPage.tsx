@@ -132,7 +132,7 @@ export function OutingAddPage({ outingData }: OutingAddPageProps) {
                   <div
                     key={el.id}
                     className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-1 text-sm ${
-                      userIds.includes(el.user?.id) ? 'border-brand-1 bg-light_orange' : 'border-grey-6'
+                      userIds.includes(el.user?.id) ? 'border-brand-1 bg-light_orange' : 'border-gray-6'
                     }`}
                     onClick={() => {
                       if (el?.user) {

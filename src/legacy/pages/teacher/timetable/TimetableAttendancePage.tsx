@@ -632,11 +632,11 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
           </p>
         </div>
         {showSubject && lectureInfo.type === LectureType.SELECT && (
-          <div className="bg-grey-100 mb-3 flex items-center justify-between rounded-lg border px-5">
+          <div className="mb-3 flex items-center justify-between rounded-lg border bg-gray-100 px-5">
             {lectureInfo.info}
           </div>
         )}
-        <div className="bg-grey-100 flex flex-wrap items-center justify-between rounded-lg border p-5">
+        <div className="flex flex-wrap items-center justify-between rounded-lg border bg-gray-100 p-5">
           <p
             className={clsx(
               'flex cursor-pointer flex-wrap',
@@ -783,14 +783,14 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                         .map((_: any, c: number) => (
                           <td
                             key={c}
-                            className={`border-grey-7 border ${
+                            className={`border-gray-7 border ${
                               selSeat === r.toString() + c.toString()
                                 ? 'bg-blue-300'
                                 : getStudentSeat(r, c)?.absent
                                   ? absentOfSelectedPeriod.get(getStudentSeat(r, c)?.id || 0)
                                     ? 'bg-red-300'
                                     : 'bg-white'
-                                  : 'bg-grey-6'
+                                  : 'bg-gray-6'
                             } h-24 min-h-24 w-16 cursor-pointer rounded-md ${seatEditMode ? '' : 'not-draggable'}`}
                             draggable
                             onClick={() => {
@@ -851,7 +851,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
 
             <br />
             <div className="mb-6 flex w-full items-center justify-center space-x-2">
-              <div className="border-grey-7 bg-grey-6 rounded-md border px-3 py-2">교탁</div>
+              <div className="border-gray-7 bg-gray-6 rounded-md border px-3 py-2">교탁</div>
             </div>
 
             {me?.name === teacherName ? (
@@ -1006,8 +1006,8 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
               </div>
               <div className="text-sm">{selectedUserId.role}</div>
               <div className="text-sm">{selectedUserId.job}</div>
-              <div className="text-grey-2 text-sm">희망학과 | {selectedUserId.major}</div>
-              <div className="text-grey-2 text-sm">장래희망 | {selectedUserId.hope}</div>
+              <div className="text-gray-2 text-sm">희망학과 | {selectedUserId.major}</div>
+              <div className="text-gray-2 text-sm">장래희망 | {selectedUserId.hope}</div>
             </div>
           </div>
           <Divider />

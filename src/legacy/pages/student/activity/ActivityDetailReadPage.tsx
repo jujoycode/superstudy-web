@@ -157,7 +157,7 @@ export function ActivityDetailReadPage({
             /> */}
           </>
         ) : (
-          <div className="text-grey-3 whitespace-pre-line">{studentActivity?.content}</div>
+          <div className="text-gray-3 whitespace-pre-line">{studentActivity?.content}</div>
         )}
         <Divider />
         {studentActivity?.updatedAt && activity?.updatedAt && studentActivity.updatedAt !== activity.updatedAt && (

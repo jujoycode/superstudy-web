@@ -120,7 +120,7 @@ export function StudentNewsletterApprovalPage() {
               </>
             ) : null}
 
-            <div className="feedback_space text-grey-2 text-sm break-words break-all whitespace-pre-line">
+            <div className="feedback_space text-gray-2 text-sm break-words break-all whitespace-pre-line">
               <Linkify>{newsletter?.content}</Linkify>
             </div>
           </Section>

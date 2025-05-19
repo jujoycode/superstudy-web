@@ -167,6 +167,175 @@
   z-index: var(--z-index-150);
 }
 
+.bg-pink-1 {
+  background-color: var(--color-pink-1);
+}
+.bg-pink-2 {
+  background-color: var(--color-pink-2);
+}
+.bg-pink-3 {
+  background-color: var(--color-pink-3);
+}
+
+.bg-orange-0 {
+  background-color: var(--color-orange-0);
+}
+.bg-orange-1 {
+  background-color: var(--color-orange-1);
+}
+.bg-orange-2 {
+  background-color: var(--color-orange-2);
+}
+.bg-orange-3 {
+  background-color: var(--color-orange-3);
+}
+
+.bg-lightblue-1 {
+  background-color: var(--color-lightblue-1);
+}
+.bg-lightblue-2 {
+  background-color: var(--color-lightblue-2);
+}
+.bg-lightblue-3 {
+  background-color: var(--color-lightblue-3);
+}
+
+.bg-lightgreen-1 {
+  background-color: var(--color-lightgreen-1);
+}
+.bg-lightgreen-2 {
+  background-color: var(--color-lightgreen-2);
+}
+.bg-lightgreen-3 {
+  background-color: var(--color-lightgreen-3);
+}
+
+.bg-brand-1 {
+  background-color: var(--color-brand-1);
+}
+.text-brand-1 {
+  color: var(--color-brand-1);
+}
+.border-brand-1 {
+  border-color: var(--color-brand-1);
+}
+.bg-brand-5 {
+  background-color: var(--color-brand-5);
+}
+.text-brand-5 {
+  color: var(--color-brand-5);
+}
+
+.bg-schedule-teacher {
+  background-color: var(--color-schedule-teacher);
+}
+.bg-schedule-group {
+  background-color: var(--color-schedule-group);
+}
+.bg-schedule-school {
+  background-color: var(--color-schedule-school);
+}
+
+.bg-darkgray {
+  background-color: var(--color-darkgray);
+}
+.text-darkgray {
+  color: var(--color-darkgray);
+}
+.border-darkgray {
+  border-color: var(--color-darkgray);
+}
+
+.bg-light_orange {
+  background-color: var(--color-light_orange);
+}
+.text-light_orange {
+  color: var(--color-light_orange);
+}
+
+.bg-brandblue-1 {
+  background-color: var(--color-brandblue-1);
+}
+.text-brandblue-1 {
+  color: var(--color-brandblue-1);
+}
+.border-brandblue-1 {
+  border-color: var(--color-brandblue-1);
+}
+.text-brandblue-5 {
+  color: var(--color-brandblue-5);
+}
+
+.bg-lightpurple-1 {
+  background-color: var(--color-lightpurple-1);
+}
+.bg-lightpurple-2 {
+  background-color: var(--color-lightpurple-2);
+}
+.bg-lightpurple-3 {
+  background-color: var(--color-lightpurple-3);
+}
+.text-lightpurple-4 {
+  color: var(--color-lightpurple-4);
+}
+
+.bg-littlegray {
+  background-color: var(--color-littlegray);
+}
+
+.bg-littleblack {
+  background-color: var(--color-littleblack);
+}
+.text-littleblack {
+  color: var(--color-littleblack);
+}
+
+.bg-peach_orange {
+  background-color: var(--color-peach_orange);
+}
+.bg-mint_green {
+  background-color: var(--color-mint_green);
+}
+.bg-light_golden {
+  background-color: var(--color-light_golden);
+}
+.bg-lavender_blue {
+  background-color: var(--color-lavender_blue);
+}
+
+.text-text_black {
+  color: var(--color-text_black);
+}
+
+.bg-coach_orange {
+  background-color: var(--color-coach_orange);
+}
+.text-coach_orange {
+  color: var(--color-coach_orange);
+}
+.border-coach_orange {
+  border-color: var(--color-coach_orange);
+}
+.border-b-coach_orange {
+  border-bottom-color: var(--color-coach_orange);
+}
+.border-t-coach_orange {
+  border-top-color: var(--color-coach_orange);
+}
+
+.bg-counselingCategory-0 {
+  background-color: var(--color-counselingCategory-0);
+}
+.bg-counselingCategory-1 {
+  background-color: var(--color-counselingCategory-0);
+}
+.bg-counselingCategory-2 {
+  background-color: var(--color-counselingCategory-0);
+}
+.bg-counselingCategory-3 {
+  background-color: var(--color-counselingCategory-0);
+}
+
 .backdrop-blur-20 {
   backdrop-filter: blur(20px);
 }
@@ -932,7 +1101,6 @@
   --background-image-gradient-white: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
 
   /* Colors */
-  --color-pink-0: #fff0f6;
   --color-pink-1: #ffdeeb;
   --color-pink-2: #fcc2d7;
   --color-pink-3: #fff0f0;
@@ -942,12 +1110,10 @@
   --color-orange-2: #ffd8a8;
   --color-orange-3: #fff0e0;
 
-  --color-lightblue-0: #e8f3ff;
   --color-lightblue-1: #c9e2ff;
   --color-lightblue-2: #90c2ff;
   --color-lightblue-3: #e0e8ff;
 
-  --color-lightgreen-0: #ebfbee;
   --color-lightgreen-1: #d3f9d8;
   --color-lightgreen-2: #b2f2bb;
   --color-lightgreen-3: #e5fbe0;
@@ -961,11 +1127,9 @@
 
   --color-darkgray: #4d5562;
   --color-light_orange: #fdf3eb;
-  --color-light_blue: #e8f3ff;
   --color-brandblue-1: #2f80ed;
   --color-brandblue-5: #eaf2fd;
 
-  --color-lightpurple-0: #f3f0ff;
   --color-lightpurple-1: #e5dbff;
   --color-lightpurple-2: #d0bfff;
   --color-lightpurple-3: #f0dfff;
@@ -986,8 +1150,8 @@
   --color-counselingCategory-2: rgba(50, 99, 227, 0.12);
   --color-counselingCategory-3: rgba(252, 121, 0, 0.12);
 
-  --color-users-student: #fdc400;
-  --color-users-parent: #fdc400;
+  --color-users-user: #fdc400;
+  --color-users-user: #fdc400;
   --color-users-teacher: #00a85f;
   --color-users-admin: #3263e3;
 

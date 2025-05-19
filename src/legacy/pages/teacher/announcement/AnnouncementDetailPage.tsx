@@ -45,8 +45,8 @@ export default function AnnouncementDetailPage() {
   const recipients = [
     { label: t('administrator'), isActive: announcement?.toAdmin, color: 'bg-users-admin' },
     { label: t('teacher'), isActive: announcement?.toTeacher, color: 'bg-users-teacher' },
-    { label: t('student'), isActive: announcement?.toStudent, color: 'bg-users-student' },
-    { label: t('parent'), isActive: announcement?.toParent, color: 'bg-users-parent' },
+    { label: t('student'), isActive: announcement?.toStudent, color: 'bg-users-user' },
+    { label: t('parent'), isActive: announcement?.toParent, color: 'bg-users-user' },
   ]
 
   return (

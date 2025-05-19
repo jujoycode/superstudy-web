@@ -510,7 +510,7 @@ export function ChatListPage() {
                               key={item.id}
                               title={getTitle(item)}
                               className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-1 ${
-                                userIds.includes(item.id) ? 'border-brand-1 bg-light_orange' : 'border-grey-6'
+                                userIds.includes(item.id) ? 'border-brand-1 bg-light_orange' : 'border-gray-6'
                               }`}
                               onClick={() => {
                                 if (userIds.includes(item.id)) {
@@ -613,7 +613,7 @@ export function ChatListPage() {
             </div>
           ) : (
             <div className="col-span-3 hidden h-full w-full flex-col items-center justify-center space-y-4 md:flex">
-              <div className="text-grey-2">
+              <div className="text-gray-2">
                 {meRecoil?.teacherProperty?.chatStartTime &&
                 meRecoil?.teacherProperty?.chatEndTime &&
                 meRecoil?.teacherProperty?.chatStartTime !== meRecoil?.teacherProperty?.chatEndTime ? (

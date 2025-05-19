@@ -20,42 +20,42 @@ export function ApplyPage() {
         {me?.school.isOutingActive !== OutingUse.NONE && (
           <div
             onClick={() => push('/student/outing')}
-            className="border-grey-9 flex cursor-pointer items-center justify-between border-b pb-4"
+            className="border-gray-9 flex cursor-pointer items-center justify-between border-b pb-4"
           >
             <div>
               <div className="font-sfpro font-bold text-gray-800">확인증</div>
-              <div className="text-grey-5 text-sm">조퇴, 외출, 확인 전 작성 서류</div>
+              <div className="text-gray-5 text-sm">조퇴, 외출, 확인 전 작성 서류</div>
             </div>
             <RightArrow />
           </div>
         )}
         <div
           onClick={() => push('/student/absent')}
-          className="border-grey-9 flex cursor-pointer items-center justify-between border-b pb-4"
+          className="border-gray-9 flex cursor-pointer items-center justify-between border-b pb-4"
         >
           <div>
             <div className="font-sfpro font-bold text-gray-800">{t(`absentTitle`, '결석신고서')}</div>
-            <div className="text-grey-5 text-sm">조퇴, 외출, 지각, 결과, 결석 후 작성 서류</div>
+            <div className="text-gray-5 text-sm">조퇴, 외출, 지각, 결과, 결석 후 작성 서류</div>
           </div>
           <RightArrow />
         </div>
         <div
           onClick={() => push('/student/fieldtrip')}
-          className="border-grey-9 flex cursor-pointer items-center justify-between border-b pb-4"
+          className="border-gray-9 flex cursor-pointer items-center justify-between border-b pb-4"
         >
           <div>
             <div className="font-sfpro font-bold text-gray-800">체험학습</div>
-            <div className="text-grey-5 text-sm">체험학습, 가정학습 전후 작성하는 서류</div>
+            <div className="text-gray-5 text-sm">체험학습, 가정학습 전후 작성하는 서류</div>
           </div>
           <RightArrow />
         </div>
         <div
           onClick={() => push('/student/pointlogs')}
-          className="border-grey-9 flex cursor-pointer items-center justify-between border-b pb-4"
+          className="border-gray-9 flex cursor-pointer items-center justify-between border-b pb-4"
         >
           <div>
             <div className="font-sfpro font-bold text-gray-800">상벌점기록</div>
-            <div className="text-grey-5 text-sm">학교 생활 중 받은 상벌점기록</div>
+            <div className="text-gray-5 text-sm">학교 생활 중 받은 상벌점기록</div>
           </div>
           <RightArrow />
         </div>
