@@ -64,19 +64,19 @@ export default function ResultCard({ data }: { data: ResponseCopykillerResponseD
   }
 
   return (
-    <div className="border-primary-gray-200 flex h-[210px] w-[392px] flex-col justify-between rounded-xl border bg-white p-6 shadow-[0px_4px_8px_0px_#F4F6F8]">
+    <div className="flex h-[210px] w-[392px] flex-col justify-between rounded-xl border border-gray-200 bg-white p-6 shadow-[0px_4px_8px_0px_#F4F6F8]">
       <div className="flex flex-col gap-2">
         <Typography
           variant="title2"
           className={cn(
-            'text-18 text-primary-gray-900 line-clamp-3',
+            'text-18 line-clamp-3 text-gray-900',
             data.completeStatus === 'Y' && 'cursor-pointer hover:underline',
           )}
           onClick={data.completeStatus === 'Y' ? handleTitleClick : undefined}
         >
           {data.title}
         </Typography>
-        <Typography variant="body3" className={cn('text-14 text-primary-gray-600')}>
+        <Typography variant="body3" className={cn('text-14 text-gray-600')}>
           {format(new Date(data.createdAt), 'yyyy.MM.dd')}
         </Typography>
       </div>
@@ -119,10 +119,10 @@ export default function ResultCard({ data }: { data: ResponseCopykillerResponseD
           footerClassName="px-8"
         >
           <div className="flex flex-col gap-4">
-            <div className="border-primary-gray-200 flex flex-col gap-4 rounded-lg border p-4">
+            <div className="flex flex-col gap-4 rounded-lg border border-gray-200 p-4">
               <Typography variant="body2">{textPreviewData?.title}</Typography>
             </div>
-            <div className="scroll-box border-primary-gray-200 flex h-[400px] w-full flex-col gap-4 overflow-y-auto rounded-lg border p-4">
+            <div className="scroll-box flex h-[400px] w-full flex-col gap-4 overflow-y-auto rounded-lg border border-gray-200 p-4">
               <Typography variant="body2">{textPreviewData?.content}</Typography>
             </div>
           </div>

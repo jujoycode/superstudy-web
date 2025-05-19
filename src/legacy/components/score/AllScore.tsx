@@ -39,20 +39,20 @@ export const AllScore = ({ studentId, grade: initialGrade }: AllScoreProps) => {
               childrenWrapperClassName={clsx(
                 type === 'ALL' ||
                   type === 'TEST' ||
-                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-primary-gray-700': type === 'ALL' })}>종합성적</p>
+              <p className={clsx({ 'text-gray-700': type === 'ALL' })}>종합성적</p>
             </Tab>
             <Tab
               value="TEST"
               childrenWrapperClassName={clsx(
                 type === 'ALL' ||
                   type === 'TEST' ||
-                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-primary-gray-700': type === 'TEST' })}>지필평가</p>
+              <p className={clsx({ 'text-gray-700': type === 'TEST' })}>지필평가</p>
             </Tab>
           </LayeredTabs.TwoDepth>
           {type === 'TEST' && (
@@ -64,7 +64,7 @@ export const AllScore = ({ studentId, grade: initialGrade }: AllScoreProps) => {
               size={40}
               containerWidth="w-30"
               dropdownWidth="w-40"
-              priorityFontClass="text-primary-gray-900"
+              priorityFontClass="text-gray-900"
             />
           )}
         </div>

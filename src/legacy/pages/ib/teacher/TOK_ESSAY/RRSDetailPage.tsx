@@ -91,7 +91,7 @@ export default function RRSDetailPage() {
                 <div className="flex w-full justify-between">
                   <Typography
                     variant="heading"
-                    className="text-primary-gray-900 w-[692px] overflow-hidden text-ellipsis whitespace-nowrap"
+                    className="w-[692px] overflow-hidden text-ellipsis whitespace-nowrap text-gray-900"
                   >
                     {title}
                   </Typography>
@@ -108,11 +108,11 @@ export default function RRSDetailPage() {
             <div className="flex h-full flex-row gap-4 py-6">
               <div className="flex w-[848px] flex-col justify-between rounded-xl bg-white p-6">
                 <div className="flex flex-col">
-                  <div className="border-b-primary-gray-100 flex flex-col items-start gap-1 border-b pb-6">
-                    <Typography variant="title1" className="text-primary-gray-900">
+                  <div className="flex flex-col items-start gap-1 border-b border-b-gray-100 pb-6">
+                    <Typography variant="title1" className="text-gray-900">
                       {rrs.title}
                     </Typography>
-                    <Typography variant="body3" className="text-primary-gray-500">
+                    <Typography variant="body3" className="text-gray-500">
                       {format(new Date(rrs.createdAt), 'yyyy.MM.dd')}
                     </Typography>
                   </div>
@@ -154,7 +154,7 @@ export default function RRSDetailPage() {
                           {rrs.files.map((fileUrl: string, index) => (
                             <div
                               key={index}
-                              className="border-primary-gray-200 flex h-12 w-max items-center gap-2 rounded-lg border bg-white px-4"
+                              className="flex h-12 w-max items-center gap-2 rounded-lg border border-gray-200 bg-white px-4"
                             >
                               <SVGIcon.Link size={16} weight="bold" color="gray700" />
                               <button
@@ -184,7 +184,7 @@ export default function RRSDetailPage() {
                 </footer>
               </div>
               <div className="flex h-[720px] w-[416px] flex-col gap-6 rounded-xl bg-white p-6">
-                <Typography variant="title1" className="text-primary-gray-900">
+                <Typography variant="title1" className="text-gray-900">
                   진행기록
                 </Typography>
                 <div className="h-full w-full">
@@ -199,7 +199,7 @@ export default function RRSDetailPage() {
             </div>
           </div>
         }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
       />
       <div className="absolute">
         <Viewer

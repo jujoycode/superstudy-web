@@ -132,9 +132,9 @@ export default function Evaluation({
             rightTextClassName="text-primary-800"
             setAccordionIsOpen={setAccordionIsOpen}
             typographyVariant="title3"
-            typographyClassName={clsx('font-medium', disabled ? 'text-primary-gray-500' : 'text-primary-gray-900')}
+            typographyClassName={clsx('font-medium', disabled ? 'text-gray-500' : 'text-gray-900')}
           >
-            <div className={clsx('mt-4 p-4', { 'bg-primary-gray-50': !isFinal, 'border-t': !isFinal })}>
+            <div className={clsx('mt-4 p-4', { 'bg-gray-50': !isFinal, 'border-t': !isFinal })}>
               <RadioV2.Group onChange={(value: number) => handleScoreChange(value, 0)} className="flex flex-col gap-2">
                 {grades.map((grade) => (
                   <div className="flex items-center justify-between" key={grade.id}>
@@ -150,7 +150,7 @@ export default function Evaluation({
                         disabled={disabled}
                         className={clsx({ 'cursor-not-allowed': disabled })}
                         label={`${grade.name} (${grade.minScore}~${grade.maxScore})`}
-                        labelClassName="text-primary-gray-900 ml-[6px]"
+                        labelClassName="text-gray-900 ml-[6px]"
                       />
                       {grade.description && <TooltipV2 content={grade.description} />}
                     </div>

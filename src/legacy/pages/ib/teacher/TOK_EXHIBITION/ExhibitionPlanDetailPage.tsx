@@ -284,7 +284,7 @@ export const ExhibitionPlanDetailPage = () => {
                 <div className="flex w-full items-start justify-between">
                   <Typography
                     variant="heading"
-                    className="text-primary-gray-900 w-[692px] overflow-hidden text-ellipsis whitespace-nowrap"
+                    className="w-[692px] overflow-hidden text-ellipsis whitespace-nowrap text-gray-900"
                   >
                     {data?.tokExhibitionPlan?.themeQuestion}
                   </Typography>
@@ -328,7 +328,7 @@ export const ExhibitionPlanDetailPage = () => {
                           className="h-40"
                           mode="page"
                         />
-                        <div className="border-b-primary-gray-100 flex flex-col gap-4 border-b pb-10">
+                        <div className="flex flex-col gap-4 border-b border-b-gray-100 pb-10">
                           <Typography variant="title2">
                             지식영역<span className="text-primary-red-800">*</span>
                           </Typography>
@@ -348,7 +348,7 @@ export const ExhibitionPlanDetailPage = () => {
                             ))}
                           </Check.Group>
                         </div>
-                        <div className="border-b-primary-gray-100 flex flex-col gap-10 border-b pb-10">
+                        <div className="flex flex-col gap-10 border-b border-b-gray-100 pb-10">
                           <InputField
                             label="대상"
                             subLabel="1"
@@ -382,7 +382,7 @@ export const ExhibitionPlanDetailPage = () => {
                             mode="page"
                           />
                         </div>
-                        <div className="border-b-primary-gray-100 flex flex-col gap-10 border-b pb-10">
+                        <div className="flex flex-col gap-10 border-b border-b-gray-100 pb-10">
                           <InputField
                             label="대상"
                             subLabel="2"
@@ -416,7 +416,7 @@ export const ExhibitionPlanDetailPage = () => {
                             required
                           />
                         </div>
-                        <div className="border-b-primary-gray-100 flex flex-col gap-10 border-b pb-10">
+                        <div className="flex flex-col gap-10 border-b border-b-gray-100 pb-10">
                           <InputField
                             label="대상"
                             titleVariant="title2"
@@ -454,7 +454,7 @@ export const ExhibitionPlanDetailPage = () => {
                       <div className="flex flex-col gap-4 pt-10">
                         <header className="flex flex-row items-center justify-between">
                           <Typography variant="title2">Commentary 구성</Typography>
-                          <Typography variant="caption" className="text-primary-gray-500">
+                          <Typography variant="caption" className="text-gray-500">
                             설정한 세 가지 대상이 아래 기준에 부합하는지 확인해보세요.
                           </Typography>
                         </header>
@@ -470,8 +470,8 @@ export const ExhibitionPlanDetailPage = () => {
                           {commentary?.map((item, index) => (
                             <div
                               key={item.id}
-                              className={`text-15 text-primary-gray-700 flex h-[54px] flex-row items-center gap-4 px-6 font-medium ${
-                                index % 2 === 0 ? 'bg-primary-gray-50' : 'bg-white'
+                              className={`text-15 flex h-[54px] flex-row items-center gap-4 px-6 font-medium text-gray-700 ${
+                                index % 2 === 0 ? 'bg-gray-50' : 'bg-white'
                               }`}
                             >
                               <div className="min-w-[172px] text-start">{item.name}</div>
@@ -511,11 +511,11 @@ export const ExhibitionPlanDetailPage = () => {
                 ) : (
                   <>
                     <div className="flex flex-col" id="pdf-download">
-                      <div className="border-b-primary-gray-100 mb-6 flex flex-col items-start gap-1 border-b pb-6">
-                        <Typography variant="title1" className="text-primary-gray-900">
+                      <div className="mb-6 flex flex-col items-start gap-1 border-b border-b-gray-100 pb-6">
+                        <Typography variant="title1" className="text-gray-900">
                           {data?.tokExhibitionPlan?.themeQuestion}
                         </Typography>
-                        <Typography variant="body3" className="text-primary-gray-500">
+                        <Typography variant="body3" className="text-gray-500">
                           {format(new Date(data?.createdAt), 'yyyy.MM.dd')}
                         </Typography>
                       </div>
@@ -523,8 +523,8 @@ export const ExhibitionPlanDetailPage = () => {
                         <div className="flex flex-col gap-10">
                           <div className="flex flex-col gap-4">
                             <Typography variant="title2">질문 설명</Typography>
-                            <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                              <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                            <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                              <Typography variant="body2" className="font-medium text-gray-700">
                                 {data?.tokExhibitionPlan?.description}
                               </Typography>
                             </div>
@@ -548,17 +548,14 @@ export const ExhibitionPlanDetailPage = () => {
                             {[1, 2, 3].map((num) => {
                               const targetKey = `target${num}` as keyof ResponseIBTokExhibitionPlanDto
                               return (
-                                <div
-                                  key={targetKey}
-                                  className="border-t-primary-gray-100 flex flex-col gap-10 border-t py-10"
-                                >
+                                <div key={targetKey} className="flex flex-col gap-10 border-t border-t-gray-100 py-10">
                                   <div className="flex flex-col gap-4">
-                                    <Typography variant="title2" className="text-primary-gray-900">
+                                    <Typography variant="title2" className="text-gray-900">
                                       대상&nbsp;
                                       <span className="text-primary-800">{num}</span>
                                     </Typography>
-                                    <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                                    <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                                      <Typography variant="body2" className="font-medium text-gray-700">
                                         {typeof data?.tokExhibitionPlan?.[targetKey] === 'string'
                                           ? (data?.tokExhibitionPlan?.[targetKey] as string)
                                           : Array.isArray(data?.tokExhibitionPlan?.[targetKey])
@@ -568,10 +565,10 @@ export const ExhibitionPlanDetailPage = () => {
                                     </div>
                                   </div>
                                   <div className="flex flex-col gap-4">
-                                    <Typography variant="title2" className="text-primary-gray-900">
+                                    <Typography variant="title2" className="text-gray-900">
                                       연관 개념 렌즈
                                     </Typography>
-                                    <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
+                                    <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
                                       {typeof data?.tokExhibitionPlan?.[
                                         `conceptualLens${num}` as keyof ResponseIBTokExhibitionPlanDto
                                       ] === 'string'
@@ -592,11 +589,11 @@ export const ExhibitionPlanDetailPage = () => {
                                     </div>
                                   </div>
                                   <div className="flex flex-col gap-4">
-                                    <Typography variant="title2" className="text-primary-gray-900">
+                                    <Typography variant="title2" className="text-gray-900">
                                       Knowledge Frame
                                     </Typography>
-                                    <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                                    <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                                      <Typography variant="body2" className="font-medium text-gray-700">
                                         {typeof data?.tokExhibitionPlan?.[
                                           `knowledgeFrame${num}` as keyof ResponseIBTokExhibitionPlanDto
                                         ] === 'string'
@@ -622,21 +619,19 @@ export const ExhibitionPlanDetailPage = () => {
                             })}
                           </div>
                         </div>
-                        <div className="border-t-primary-gray-100 flex flex-col gap-4 border-t pt-10">
+                        <div className="flex flex-col gap-4 border-t border-t-gray-100 pt-10">
                           <header className="flex flex-row items-center justify-between">
-                            <Typography variant="title2" className="text-primary-gray-900">
+                            <Typography variant="title2" className="text-gray-900">
                               Commentary 구성
                             </Typography>
-                            <Typography variant="caption" className="text-primary-gray-500">
+                            <Typography variant="caption" className="text-gray-500">
                               설정한 세 가지 대상이 아래 기준에 부합하는지 확인해보세요.
                             </Typography>
                           </header>
                           <div className="flex w-full flex-col">
                             {/* Table Head */}
                             <div className="text-15 bottom-1 flex flex-row items-center gap-4 bg-white px-6 py-4 text-gray-500">
-                              <div className="text-primary-gray-500 min-w-[172px] text-start font-normal">
-                                세 가지 대상
-                              </div>
+                              <div className="min-w-[172px] text-start font-normal text-gray-500">세 가지 대상</div>
                               {[1, 2, 3].map((num) => {
                                 const targetKey = `target${num}` as keyof ResponseIBTokExhibitionPlanDto
                                 return (
@@ -653,7 +648,7 @@ export const ExhibitionPlanDetailPage = () => {
                                     size={32}
                                     placeholder={`대상 ${num}`}
                                     className="w-[176px] text-[14px]"
-                                    inputClassName="overflow-hidden text-ellipsis whitespace-nowrap disabled:text-primary-gray-900 text-[14px] font-medium"
+                                    inputClassName="overflow-hidden text-ellipsis whitespace-nowrap disabled:text-gray-900 text-[14px] font-medium"
                                     onlyInput
                                   />
                                 )
@@ -663,8 +658,8 @@ export const ExhibitionPlanDetailPage = () => {
                             {commentary?.map((item, index) => (
                               <div
                                 key={item.id}
-                                className={`text-15 text-primary-gray-700 flex h-[54px] flex-row items-center gap-4 px-6 font-medium ${
-                                  index % 2 === 0 ? 'bg-primary-gray-50' : 'bg-white'
+                                className={`text-15 flex h-[54px] flex-row items-center gap-4 px-6 font-medium text-gray-700 ${
+                                  index % 2 === 0 ? 'bg-gray-50' : 'bg-white'
                                 }`}
                               >
                                 <div className="min-w-[172px] text-start">{item.name}</div>
@@ -748,7 +743,7 @@ export const ExhibitionPlanDetailPage = () => {
                 </footer>
               </div>
               <div className="flex h-[720px] w-[416px] flex-col gap-6 rounded-xl bg-white p-6">
-                <Typography variant="title1" className="text-primary-gray-900">
+                <Typography variant="title1" className="text-gray-900">
                   진행기록
                 </Typography>
                 {data?.status !== 'PENDING' && data?.status !== 'WAIT_MENTOR' ? (
@@ -772,7 +767,7 @@ export const ExhibitionPlanDetailPage = () => {
             </div>
           </div>
         }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
         floatingButton={!editMode && getFloatingUI(data?.status)}
       />
 

@@ -17,8 +17,8 @@ export const ScoreCardPage = () => {
 
   return (
     <div className="scroll-box h-screen-12 md:h-screen-5 mt-6 overflow-y-auto px-4 pb-4">
-      <div className="border-primary-gray-200 flex flex-col gap-10 rounded-xl border bg-white py-4">
-        <div className="border-b-primary-gray-200 flex h-12 w-full flex-row items-end gap-4 border-b px-8">
+      <div className="flex flex-col gap-10 rounded-xl border border-gray-200 bg-white py-4">
+        <div className="flex h-12 w-full flex-row items-end gap-4 border-b border-b-gray-200 px-8">
           <Link
             to={`/teacher/studentcard/${groupId}/${id}/score`}
             className={twMerge(

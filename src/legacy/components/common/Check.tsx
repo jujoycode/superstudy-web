@@ -246,7 +246,7 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
     <label
       onClick={handleLabelClick}
       className={`flex items-center gap-2 rounded-lg border px-4 py-3.5 ${
-        checked ? (disabled ? 'border-primary-100' : 'border-primary-400') : 'border-primary-gray-200'
+        checked ? (disabled ? 'border-primary-100' : 'border-primary-400') : 'border-gray-200'
       } ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
     >
       <input
@@ -261,11 +261,7 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
       {renderIcon()}
       <Typography
         variant="body3"
-        className={clsx(
-          'font-medium break-words',
-          checked && 'text-primary-gray-900',
-          !checked && disabled && 'text-primary-gray-400',
-        )}
+        className={clsx('font-medium break-words', checked && 'text-gray-900', !checked && disabled && 'text-gray-400')}
       >
         {label}
       </Typography>
@@ -398,11 +394,7 @@ const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
       {renderIcon()}
       <Typography
         variant="body3"
-        className={clsx(
-          'font-medium break-words',
-          checked && 'text-primary-gray-900',
-          !checked && disabled && 'text-primary-gray-400',
-        )}
+        className={clsx('font-medium break-words', checked && 'text-gray-900', !checked && disabled && 'text-gray-400')}
       >
         {label}
       </Typography>

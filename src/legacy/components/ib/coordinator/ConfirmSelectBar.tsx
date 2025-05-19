@@ -102,11 +102,11 @@ const ConfirmSelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
       <div
         ref={ref}
         className={clsx(
-          'border-primary-gray-200 relative border select-none',
+          'relative border border-gray-200 select-none',
           containerWidth,
           {
-            'border-primary-gray-700': isFocused,
-            'bg-primary-gray-100 cursor-not-allowed': (readonly || disabled) && !(size === 48 && readonly),
+            'border-gray-700': isFocused,
+            'cursor-not-allowed bg-gray-100': (readonly || disabled) && !(size === 48 && readonly),
             'bg-white': size === 48 && readonly, // size가 48이면서 readonly일 때 배경색을 white로 설정
           },
           sizeClass,
@@ -134,9 +134,9 @@ const ConfirmSelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
               clsx(
                 fontClass, // 공통 폰트 클래스
                 {
-                  'text-primary-gray-400': disabled || (!readonly && !value), // 비활성 상태이거나 선택된 값이 없는 경우
-                  'text-primary-gray-700': readonly && size === 48, // readonly이면서 size가 48일 때
-                  'text-primary-gray-900': (readonly && size !== 48) || (!readonly && value), // readonly에서 size가 48이 아니거나 값이 있는 경우
+                  'text-gray-400': disabled || (!readonly && !value), // 비활성 상태이거나 선택된 값이 없는 경우
+                  'text-gray-700': readonly && size === 48, // readonly이면서 size가 48일 때
+                  'text-gray-900': (readonly && size !== 48) || (!readonly && value), // readonly에서 size가 48이 아니거나 값이 있는 경우
                 },
                 { 'cursor-not-allowed': readonly || disabled },
                 readonly || disabled ? 'cursor-not-allowed' : 'cursor-pointer',
@@ -162,7 +162,7 @@ const ConfirmSelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
         {isShowOptions && (
           <div
             className={clsx(
-              'border-primary-gray-200 absolute top-full left-0 z-10 mt-2 overflow-hidden rounded-lg border bg-white shadow-md',
+              'absolute top-full left-0 z-10 mt-2 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md',
               computedDropdownWidth,
             )}
           >
@@ -186,7 +186,7 @@ const ConfirmSelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
                     {
                       'text-primary-800 flex items-center justify-between': option.value === tempValue,
                     },
-                    'text-primary-gray-900 hover:bg-primary-gray-100 cursor-pointer rounded-md bg-white px-2.5 py-1.5',
+                    'cursor-pointer rounded-md bg-white px-2.5 py-1.5 text-gray-900 hover:bg-gray-100',
                     fontClass,
                   )}
                   aria-selected={option.value === tempValue}

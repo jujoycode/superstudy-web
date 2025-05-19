@@ -163,7 +163,7 @@ export const TKPPFDetailPage = () => {
             </div>
           </div>
         }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
         bottomContent={
           <div className="flex flex-grow flex-col">
             <div className="flex h-full flex-row gap-4 py-6">
@@ -184,10 +184,10 @@ export const TKPPFDetailPage = () => {
                             return (
                               <div key={num} className="flex flex-col gap-4">
                                 <div className="flex items-center justify-between">
-                                  <Typography variant="title2" className="text-primary-gray-900">
+                                  <Typography variant="title2" className="text-gray-900">
                                     TKPPF {num}차
                                   </Typography>
-                                  <Typography variant="caption" className="text-primary-gray-500">
+                                  <Typography variant="caption" className="text-gray-500">
                                     최초 저장일 : {format(new Date(sequence.createdAt), 'yyyy.MM.dd')}
                                   </Typography>
                                 </div>
@@ -207,7 +207,7 @@ export const TKPPFDetailPage = () => {
                 ) : (
                   <div className="flex flex-col gap-6">
                     <div className="flex flex-row items-center justify-between">
-                      <Typography variant="title1" className="text-primary-gray-900">
+                      <Typography variant="title1" className="text-gray-900">
                         공식 TKPPF
                       </Typography>
                     </div>
@@ -223,14 +223,14 @@ export const TKPPFDetailPage = () => {
                         return (
                           <div key={num} className="flex flex-col gap-4">
                             <div className="flex items-center justify-between">
-                              <Typography variant="title2" className="text-primary-gray-900">
+                              <Typography variant="title2" className="text-gray-900">
                                 TKPPF {num}차
                               </Typography>
-                              <Typography variant="caption" className="text-primary-gray-500">
+                              <Typography variant="caption" className="text-gray-500">
                                 최초 제출일 : {format(new Date(sequence.createdAt), 'yyyy.MM.dd')}
                               </Typography>
                             </div>
-                            <div className="border-primary-gray-200 flex flex-col gap-4 rounded-lg border p-4">
+                            <div className="flex flex-col gap-4 rounded-lg border border-gray-200 p-4">
                               <Typography variant="body2">{sequence.text}</Typography>
                             </div>
                           </div>
@@ -278,7 +278,7 @@ export const TKPPFDetailPage = () => {
                 </footer>
               </div>
               <div className="flex h-[720px] w-[416px] flex-col gap-6 rounded-xl bg-white p-6">
-                <Typography variant="title1" className="text-primary-gray-900">
+                <Typography variant="title1" className="text-gray-900">
                   진행기록
                 </Typography>
                 <div className="h-full w-full">
@@ -355,7 +355,7 @@ export const TKPPFDetailPage = () => {
         }
       >
         <div className="flex flex-col gap-6">
-          <Typography variant="body1" className="text-primary-gray-900">
+          <Typography variant="body1" className="text-gray-900">
             학생에게 TKPPF에 대한 피드백을 남겨주세요.
           </Typography>
           <TextareaV2

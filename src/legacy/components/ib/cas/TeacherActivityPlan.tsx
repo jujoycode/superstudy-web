@@ -339,8 +339,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     </Typography>
                     <div className="relative">
                       <div
-                        className={`border-primary-gray-200 flex h-12 items-center gap-2 rounded-lg border px-4 py-[9px] focus:ring-0 focus:outline-none ${
-                          isFocused && 'border-primary-gray-700'
+                        className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-4 py-[9px] focus:ring-0 focus:outline-none ${
+                          isFocused && 'border-gray-700'
                         }`}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
@@ -348,7 +348,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                       >
                         <SVGIcon.Calendar size={20} color="gray700" />
                         <input
-                          className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-ib-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
+                          className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-none"
                           placeholder="활동 일정 및 주기 선택"
                           value={
                             date.startDate && date.endDate
@@ -386,7 +386,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                         Strands
                         <span className="text-primary-red-800">*</span>
                       </Typography>
-                      <Typography variant="caption2" className="text-primary-gray-500">
+                      <Typography variant="caption2" className="text-gray-500">
                         단위 : 시간
                       </Typography>
                     </div>
@@ -395,7 +395,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                         className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border p-4 ${
                           strands.creativity && strands.creativity > 0
                             ? 'border-primary-100 bg-primary-50'
-                            : 'border-primary-gray-100'
+                            : 'border-gray-100'
                         }`}
                       >
                         <SolidSVGIcon.C size={20} color="orange800" />
@@ -411,7 +411,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                         className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border p-4 ${
                           strands.activity && strands.activity > 0
                             ? 'border-ib-blue-100 bg-ib-blue-50'
-                            : 'border-primary-gray-100'
+                            : 'border-gray-100'
                         }`}
                       >
                         <SolidSVGIcon.A size={20} color="orange800" />
@@ -427,7 +427,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                         className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border p-4 ${
                           strands.service && strands.service > 0
                             ? 'border-ib-green-100 bg-ib-green-50'
-                            : 'border-primary-gray-100'
+                            : 'border-gray-100'
                         }`}
                       >
                         <SolidSVGIcon.S size={20} color="orange800" />
@@ -503,12 +503,12 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                       ))}
                     </Check.Group>
                   </div>
-                  <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t pt-10">
+                  <div className="flex flex-col gap-10 border-t border-t-gray-100 pt-10">
                     <div className="flex flex-col gap-2">
                       <Typography variant="title2" className="font-semibold">
                         활동 설명
                       </Typography>
-                      <Typography variant="caption2" className="text-primary-gray-500">
+                      <Typography variant="caption2" className="text-gray-500">
                         6하원칙에 따라 작성해 주세요.
                       </Typography>
                     </div>
@@ -579,7 +579,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                       required
                     />
                   </div>
-                  <div className="border-t-primary-gray-100 flex flex-col border-t pt-10">
+                  <div className="flex flex-col border-t border-t-gray-100 pt-10">
                     <InputField
                       label="개인적인 목표"
                       mode="page"
@@ -592,13 +592,13 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     />
                   </div>
                   {riskAssessment && (
-                    <div className="border-t-primary-gray-100 flex flex-col border-t pt-10">
+                    <div className="flex flex-col border-t border-t-gray-100 pt-10">
                       <div className="flex flex-col gap-8">
                         <div className="flex flex-col gap-2">
                           <Typography variant="title3" className="font-semibold">
                             위험평가
                           </Typography>
-                          <Typography variant="caption2" className="text-primary-gray-500">
+                          <Typography variant="caption2" className="text-gray-500">
                             위험평가는 스스로를 보호하기 위해 매우 중요합니다. 하고자 하는 활동에 대해 심사숙고하여
                             위험평가를 해주세요.
                           </Typography>
@@ -655,11 +655,11 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                   </Typography>
                   <div className="relative">
                     <div
-                      className={`border-primary-gray-200 flex h-12 items-center gap-2 rounded-lg border px-4 py-[9px] focus:ring-0 focus:outline-none`}
+                      className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-4 py-[9px] focus:ring-0 focus:outline-none`}
                     >
                       <SVGIcon.Calendar size={20} color="gray700" />
                       <input
-                        className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-ib-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
+                        className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-none"
                         readOnly
                         placeholder="활동 일정 및 주기 선택"
                         value={
@@ -685,7 +685,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <Typography variant="title2" className="font-semibold">
                       Strands
                     </Typography>
-                    <Typography variant="caption2" className="text-primary-gray-500">
+                    <Typography variant="caption2" className="text-gray-500">
                       단위 : 시간
                     </Typography>
                   </div>
@@ -694,7 +694,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.creativity && data.cas.strands.creativity > 0
                           ? 'border-primary-100 bg-primary-50 border'
-                          : 'border-primary-gray-100 border'
+                          : 'border border-gray-100'
                       } p-4`}
                     >
                       <SolidSVGIcon.C size={20} color="orange800" />
@@ -711,7 +711,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.activity && data.cas.strands.activity > 0
                           ? 'border-ib-blue-100 bg-ib-blue-50 border'
-                          : 'border-primary-gray-100 border'
+                          : 'border border-gray-100'
                       } p-4`}
                     >
                       <SolidSVGIcon.A size={20} color="orange800" />
@@ -728,7 +728,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.service && data.cas.strands.service > 0
                           ? 'border-ib-green-100 bg-ib-green-50 border'
-                          : 'border-primary-gray-100 border'
+                          : 'border border-gray-100'
                       } p-4`}
                     >
                       <SolidSVGIcon.S size={20} color="orange800" />
@@ -802,12 +802,12 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     ))}
                   </Check.Group>
                 </div>
-                <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t pt-10">
+                <div className="flex flex-col gap-10 border-t border-t-gray-100 pt-10">
                   <div className="flex flex-col gap-2">
                     <Typography variant="title2" className="font-semibold">
                       활동 설명
                     </Typography>
-                    <Typography variant="caption2" className="text-primary-gray-500">
+                    <Typography variant="caption2" className="text-gray-500">
                       6하원칙에 따라 작성해 주세요.
                     </Typography>
                   </div>
@@ -815,8 +815,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <Typography variant="title2" className="font-semibold">
                       누가
                     </Typography>
-                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
-                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                    <div className="shrink grow basis-0 rounded-lg border border-gray-200 bg-white p-4">
+                      <Typography variant="body2" className="font-medium text-gray-700">
                         {data.cas?.sixWhDescription.who || '-'}
                       </Typography>
                     </div>
@@ -825,8 +825,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <Typography variant="title2" className="font-semibold">
                       언제
                     </Typography>
-                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
-                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                    <div className="shrink grow basis-0 rounded-lg border border-gray-200 bg-white p-4">
+                      <Typography variant="body2" className="font-medium text-gray-700">
                         {data.cas?.sixWhDescription.when || '-'}
                       </Typography>
                     </div>
@@ -835,8 +835,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <Typography variant="title2" className="font-semibold">
                       어디서
                     </Typography>
-                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
-                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                    <div className="shrink grow basis-0 rounded-lg border border-gray-200 bg-white p-4">
+                      <Typography variant="body2" className="font-medium text-gray-700">
                         {data.cas?.sixWhDescription.where || '-'}
                       </Typography>
                     </div>
@@ -845,8 +845,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <Typography variant="title2" className="font-semibold">
                       무엇을
                     </Typography>
-                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
-                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                    <div className="shrink grow basis-0 rounded-lg border border-gray-200 bg-white p-4">
+                      <Typography variant="body2" className="font-medium text-gray-700">
                         {data.cas?.sixWhDescription.what || '-'}
                       </Typography>
                     </div>
@@ -855,8 +855,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <Typography variant="title2" className="font-semibold">
                       어떻게
                     </Typography>
-                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
-                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                    <div className="shrink grow basis-0 rounded-lg border border-gray-200 bg-white p-4">
+                      <Typography variant="body2" className="font-medium text-gray-700">
                         {data.cas?.sixWhDescription.how || '-'}
                       </Typography>
                     </div>
@@ -865,30 +865,30 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <Typography variant="title2" className="font-semibold">
                       왜
                     </Typography>
-                    <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
-                      <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                    <div className="shrink grow basis-0 rounded-lg border border-gray-200 bg-white p-4">
+                      <Typography variant="body2" className="font-medium text-gray-700">
                         {data.cas?.sixWhDescription.why || '-'}
                       </Typography>
                     </div>
                   </div>
                 </div>
-                <div className="border-t-primary-gray-100 flex flex-col gap-4 border-t pt-10">
+                <div className="flex flex-col gap-4 border-t border-t-gray-100 pt-10">
                   <Typography variant="title2" className="font-semibold">
                     개인적인 목표
                   </Typography>
-                  <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white px-4 py-[13px]">
-                    <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                  <div className="shrink grow basis-0 rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                    <Typography variant="body2" className="font-medium text-gray-700">
                       {data.cas?.goal || '-'}
                     </Typography>
                   </div>
                 </div>
                 {useRiskAssessment && (
-                  <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t pt-10">
+                  <div className="flex flex-col gap-10 border-t border-t-gray-100 pt-10">
                     <div className="flex flex-col gap-2">
                       <Typography variant="title2" className="font-semibold">
                         위험평가
                       </Typography>
-                      <Typography variant="caption2" className="text-primary-gray-500">
+                      <Typography variant="caption2" className="text-gray-500">
                         위험평가는 스스로를 보호하기 위해 매우 중요합니다. 하고자 하는 활동에 대해 심사숙고하여
                         위험평가를 해주세요.
                       </Typography>
@@ -898,8 +898,8 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                         <Typography variant="title2" className="font-semibold">
                           {`${index + 1}. ${item.question}`}
                         </Typography>
-                        <div className="border-primary-gray-200 shrink grow basis-0 rounded-lg border bg-white p-4">
-                          <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                        <div className="shrink grow basis-0 rounded-lg border border-gray-200 bg-white p-4">
+                          <Typography variant="body2" className="font-medium text-gray-700">
                             {item.answer || '-'}
                           </Typography>
                         </div>

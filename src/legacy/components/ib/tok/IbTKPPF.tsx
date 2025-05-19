@@ -121,13 +121,13 @@ export function IbTKPPF({
 
         <form>
           <div className="scroll-box flex max-h-[608px] flex-col overflow-auto pt-4 pb-8">
-            <div className={clsx('border-b-primary-gray-100 flex flex-col gap-3 border-b pb-6')}>
+            <div className={clsx('flex flex-col gap-3 border-b border-b-gray-100 pb-6')}>
               <div className="flex flex-row items-center justify-between gap-2">
                 <Typography variant="title3" className="font-semibold">
                   TKPPF 1차
                 </Typography>
                 {tkppf?.sequence1 && (
-                  <Typography variant="caption" className="text-primary-gray-500">
+                  <Typography variant="caption" className="text-gray-500">
                     최초 제출일 : {format(new Date(tkppf?.sequence1?.updatedAt), 'yy.MM.dd')}
                   </Typography>
                 )}
@@ -135,19 +135,19 @@ export function IbTKPPF({
               <TextareaV2
                 placeholder="내용을 입력해주세요."
                 className="h-[308px]"
-                readonlyBackground="bg-primary-gray-100"
+                readonlyBackground="bg-gray-100"
                 value={tkppf?.sequence1?.text}
                 readonly={isTextareaReadonly(0)}
                 {...register(`sequence1.text`)}
               />
             </div>
-            <div className={clsx('border-b-primary-gray-100 flex flex-col gap-3 border-b py-6')}>
+            <div className={clsx('flex flex-col gap-3 border-b border-b-gray-100 py-6')}>
               <div className="flex flex-row items-center justify-between gap-2">
                 <Typography variant="title3" className="font-semibold">
                   TKPPF 2차
                 </Typography>
                 {tkppf?.sequence2 && (
-                  <Typography variant="caption" className="text-primary-gray-500">
+                  <Typography variant="caption" className="text-gray-500">
                     최초 제출일 : {format(new Date(tkppf?.sequence2?.updatedAt), 'yy.MM.dd')}
                   </Typography>
                 )}
@@ -155,7 +155,7 @@ export function IbTKPPF({
               <TextareaV2
                 placeholder="내용을 입력해주세요."
                 className="h-[308px]"
-                readonlyBackground="bg-primary-gray-100"
+                readonlyBackground="bg-gray-100"
                 value={tkppf?.sequence2?.text}
                 readonly={isTextareaReadonly(1)}
                 {...register(`sequence2.text`)}
@@ -167,7 +167,7 @@ export function IbTKPPF({
                   TKPPF 3차
                 </Typography>
                 {tkppf?.sequence3 && (
-                  <Typography variant="caption" className="text-primary-gray-500">
+                  <Typography variant="caption" className="text-gray-500">
                     최초 제출일 : {format(new Date(tkppf?.sequence3?.updatedAt), 'yy.MM.dd')}
                   </Typography>
                 )}
@@ -175,7 +175,7 @@ export function IbTKPPF({
               <TextareaV2
                 placeholder="내용을 입력해주세요."
                 className="h-[308px]"
-                readonlyBackground="bg-primary-gray-100"
+                readonlyBackground="bg-gray-100"
                 value={tkppf?.sequence3?.text}
                 readonly={isTextareaReadonly(2)}
                 {...register(`sequence3.text`)}
@@ -185,7 +185,7 @@ export function IbTKPPF({
 
           <div
             className={clsx(
-              'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]',
+              'sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8 backdrop-blur-[20px]',
             )}
           >
             <ButtonV2

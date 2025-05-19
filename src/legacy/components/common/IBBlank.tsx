@@ -21,7 +21,7 @@ export function IBBlank({ type = 'main' }: IBBlankProps) {
         }}
         className={clsx(
           'absolute top-0 right-0 z-100 m-0 flex h-screen w-[calc(100%-224px)] items-center justify-center',
-          'bg-primary-gray-50',
+          'bg-gray-50',
         )}
       >
         <Icon.LoaderOrangeCommon />
@@ -40,7 +40,7 @@ export function IBBlank({ type = 'main' }: IBBlankProps) {
         }}
         className={clsx(
           'absolute top-0 right-0 z-100 m-0 flex h-screen w-[calc(100%-224px)] items-center justify-center opacity-60',
-          'bg-primary-gray-50',
+          'bg-gray-50',
         )}
       >
         <Icon.LoaderOrangeCommon />
@@ -58,7 +58,7 @@ export function IBBlank({ type = 'main' }: IBBlankProps) {
         'z-100 flex h-full w-full items-center justify-center',
         'bg-white',
         type === 'section-opacity' &&
-          'bg-primary-gray-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform opacity-80',
+          'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform bg-gray-50 opacity-80',
       )}
     >
       <Icon.LoaderOrangeCommon />

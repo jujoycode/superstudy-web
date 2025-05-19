@@ -15,13 +15,13 @@ export function DocumentCard({ id, documentObjet, onDeleteClick }: DocumentCardP
     return null
   }
   return (
-    <div className="bg-primary-gray-50 flex items-center justify-center gap-2 rounded-lg px-4 py-[9px]">
+    <div className="flex items-center justify-center gap-2 rounded-lg bg-gray-50 px-4 py-[9px]">
       {typeof documentObjet.document === 'string' ? (
-        <Typography variant="body2" className="text-primary-gray-700 font-medium">
+        <Typography variant="body2" className="font-medium text-gray-700">
           {getFileNameFromUrl(documentObjet.document)}
         </Typography>
       ) : (
-        <Typography variant="body2" className="text-primary-gray-700 font-medium">
+        <Typography variant="body2" className="font-medium text-gray-700">
           {documentObjet.document.name}
         </Typography>
       )}

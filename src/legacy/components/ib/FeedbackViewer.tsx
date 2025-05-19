@@ -48,11 +48,7 @@ export default function FeedbackViewer({ referenceId, referenceTable, modalOpen,
             </div>
             <div
               className={`flex flex-col gap-3 rounded-xl ${
-                sender === null
-                  ? 'bg-primary-gray-50'
-                  : data?.items[0].sender.role === 'USER'
-                    ? 'bg-primary-gray-50'
-                    : 'bg-primary-50'
+                sender === null ? 'bg-gray-50' : data?.items[0].sender.role === 'USER' ? 'bg-gray-50' : 'bg-primary-50'
               } p-5`}
             >
               {sender === null ? (
@@ -90,7 +86,7 @@ export default function FeedbackViewer({ referenceId, referenceTable, modalOpen,
                       <Typography variant="body2" className="whitespace-pre-line">
                         {data.items[0].content.split('\n')[0]}
                       </Typography>
-                      <Typography variant="caption" className="text-primary-gray-500 whitespace-pre-line">
+                      <Typography variant="caption" className="whitespace-pre-line text-gray-500">
                         {data.items[0].content.split('\n')[1]}
                       </Typography>
                     </>

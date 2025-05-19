@@ -186,7 +186,7 @@ export const EvaluationList: FC<EvaluationListProps> = ({
             {totalScore}점
           </Typography>
         </div>
-        <div className="scroll-box border-primary-gray-200 max-h-[456px] overflow-y-scroll rounded-lg border">
+        <div className="scroll-box max-h-[456px] overflow-y-scroll rounded-lg border border-gray-200">
           {criterias.map((criteria, index) => (
             <AccordionV2
               key={criteria.id}
@@ -194,18 +194,18 @@ export const EvaluationList: FC<EvaluationListProps> = ({
               title={criteria.area}
               // TODO: 채점이 하나라도 되어 있으면 점수 계산해서 보여줘야 함
               rightText={criteriaScores[criteria.id] ? criteriaScores[criteria.id] + '점' : '채점 전'}
-              className="border-b-primary-gray-200 [&:not(:last-child)]:border-b"
+              className="border-b-gray-200 [&:not(:last-child)]:border-b"
               arrowColor="gray400"
               parentClassName="p-4"
             >
-              <div className="bg-primary-gray-50">
+              <div className="bg-gray-50">
                 {criteria.levels?.map((level) => (
                   <div
                     key={level.id}
-                    className="border-primary-gray-200 bg-primary-gray-50 flex flex-col gap-2 border-t px-4 pb-2 first:pt-4 last:pb-4 [&:not(:first-child)]:pt-2"
+                    className="flex flex-col gap-2 border-t border-gray-200 bg-gray-50 px-4 pb-2 first:pt-4 last:pb-4 [&:not(:first-child)]:pt-2"
                   >
                     <div className="flex flex-row items-center justify-between">
-                      <Typography variant="caption" className="text-primary-gray-500">
+                      <Typography variant="caption" className="text-gray-500">
                         {level.name} ({level.minScore}~{level.maxScore})
                       </Typography>
                       {level.description && <TooltipV2 content={level.description} />}

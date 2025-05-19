@@ -61,7 +61,7 @@ const SearchSelect = forwardRef<HTMLDivElement, SearchSelectProps>(
         className={clsx(
           'relative select-none',
           {
-            'bg-primary-gray-100 cursor-not-allowed': readonly || disabled,
+            'cursor-not-allowed bg-gray-100': readonly || disabled,
           },
           className,
         )}
@@ -88,11 +88,11 @@ const SearchSelect = forwardRef<HTMLDivElement, SearchSelectProps>(
         {isShowOptions && (
           <ul
             className={clsx(
-              'border-primary-gray-200 absolute top-full left-0 z-60 mt-2 max-h-[236px] w-full overflow-hidden overflow-y-auto rounded-lg border bg-white p-1.5 shadow-md',
+              'absolute top-full left-0 z-60 mt-2 max-h-[236px] w-full overflow-hidden overflow-y-auto rounded-lg border border-gray-200 bg-white p-1.5 shadow-md',
             )}
           >
             {filteredOptions.length === 0 ? (
-              <li className="text-primary-gray-900 px-2.5 py-1.5">일치하는 선생님이 존재하지 않습니다.</li>
+              <li className="px-2.5 py-1.5 text-gray-900">일치하는 선생님이 존재하지 않습니다.</li>
             ) : (
               filteredOptions.map((option) => (
                 <li
@@ -105,7 +105,7 @@ const SearchSelect = forwardRef<HTMLDivElement, SearchSelectProps>(
                     {
                       'text-primary-800 flex items-center justify-between': option.value === value,
                     },
-                    `text-primary-gray-900 hover:bg-primary-gray-100 cursor-pointer rounded-md bg-white px-2.5 py-1.5`,
+                    `cursor-pointer rounded-md bg-white px-2.5 py-1.5 text-gray-900 hover:bg-gray-100`,
                   )}
                   aria-selected={option.value === value}
                 >

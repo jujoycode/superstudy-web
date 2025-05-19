@@ -94,7 +94,7 @@ function StudentActivityStatus({ data, mentor }: StudentActivityStatusProps) {
         <Typography variant="title1" className="font-bold">
           활동현황
         </Typography>
-        <Typography variant="body3" className="text-primary-gray-700">
+        <Typography variant="body3" className="text-gray-700">
           희망 감독교사 · {mentor ? `${mentor} 선생님` : '미정'}
         </Typography>
       </header>

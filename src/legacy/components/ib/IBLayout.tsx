@@ -101,7 +101,7 @@ const IBLayout: React.FC<LayoutProps> = ({
         </div>
         {/* 하단 플로팅 영역 */}
         {floatingButton && (
-          <div className="border-primary-gray-100 sticky bottom-0 left-0 z-50 flex w-full justify-center border-t bg-white/70 px-52 py-5 backdrop-blur-[20px]">
+          <div className="sticky bottom-0 left-0 z-50 flex w-full justify-center border-t border-gray-100 bg-white/70 px-52 py-5 backdrop-blur-[20px]">
             <div className="flex w-full max-w-[1280px] justify-center">{floatingButton}</div>
           </div>
         )}

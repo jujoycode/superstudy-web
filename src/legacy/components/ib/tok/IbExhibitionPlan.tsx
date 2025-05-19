@@ -158,7 +158,7 @@ export function IbExhibitionPlan({
         </div>
 
         <div className="scroll-box flex max-h-[608px] flex-col overflow-auto pt-4 pb-8">
-          <div className="border-b-primary-gray-100 border-b">
+          <div className="border-b border-b-gray-100">
             <div className="flex flex-col gap-6 px-8 pb-8">
               <InputField
                 label="질문 선택"
@@ -201,7 +201,7 @@ export function IbExhibitionPlan({
               </div>
             </div>
           </div>
-          <div className="border-b-primary-gray-100 border-b">
+          <div className="border-b border-b-gray-100">
             <div className="flex flex-col gap-6 p-8">
               <InputField
                 label="대상"
@@ -231,7 +231,7 @@ export function IbExhibitionPlan({
               />
             </div>
           </div>
-          <div className="border-b-primary-gray-100 border-b">
+          <div className="border-b border-b-gray-100">
             <div className="flex flex-col gap-6 p-8">
               <InputField
                 label="대상"
@@ -289,10 +289,10 @@ export function IbExhibitionPlan({
               required
             />
           </div>
-          <div className="border-t-primary-gray-100 flex flex-col gap-3 border-t px-8 pt-8">
+          <div className="flex flex-col gap-3 border-t border-t-gray-100 px-8 pt-8">
             <header className="flex flex-row items-center justify-between">
               <Typography variant="title3">Commentary 구성</Typography>
-              <Typography variant="caption" className="text-primary-gray-500">
+              <Typography variant="caption" className="text-gray-500">
                 설정한 세 가지 대상이 아래 기준에 부합하는지 확인해보세요.
               </Typography>
             </header>
@@ -308,8 +308,8 @@ export function IbExhibitionPlan({
               {commentary?.map((item, index) => (
                 <div
                   key={item.id}
-                  className={`text-15 text-primary-gray-700 flex h-[54px] flex-row items-center gap-4 px-6 font-medium ${
-                    index % 2 === 0 ? 'bg-primary-gray-50' : 'bg-white'
+                  className={`text-15 flex h-[54px] flex-row items-center gap-4 px-6 font-medium text-gray-700 ${
+                    index % 2 === 0 ? 'bg-gray-50' : 'bg-white'
                   }`}
                 >
                   <div className="min-w-[172px] text-start">{item.name}</div>
@@ -348,7 +348,7 @@ export function IbExhibitionPlan({
 
         <div
           className={
-            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]'
+            'sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]'
           }
         >
           <ButtonV2 variant="solid" color="gray100" size={48} onClick={handleBack}>

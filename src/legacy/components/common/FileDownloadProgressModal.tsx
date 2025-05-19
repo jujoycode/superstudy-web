@@ -23,7 +23,7 @@ export default function FileDownloadProgressModal({
           <DownloadIcon />
           <div className="w-full">
             <div className="flex w-full justify-between">
-              <Typography variant="title2" className="text-primary-gray-900">
+              <Typography variant="title2" className="text-gray-900">
                 파일 다운로드 중
               </Typography>
               <Typography variant="title2" className="text-primary-800">
@@ -31,10 +31,10 @@ export default function FileDownloadProgressModal({
               </Typography>
             </div>
             {/* 프로그레스 바 */}
-            <div className="bg-primary-gray-200 mt-2 mb-4 h-2 w-full rounded-2xl">
+            <div className="mt-2 mb-4 h-2 w-full rounded-2xl bg-gray-200">
               <div className="bg-primary-800 h-2 rounded-2xl" style={{ width: `${percentage}%` }} />
             </div>
-            <Typography variant="body2" className="text-primary-gray-700">
+            <Typography variant="body2" className="text-gray-700">
               전체 파일의 크기가 1.5GB 이상이면,
               <br />
               여러개의 압축파일로 분할 다운로드 됩니다.

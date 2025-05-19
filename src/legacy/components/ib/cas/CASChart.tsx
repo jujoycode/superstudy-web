@@ -108,7 +108,7 @@ function CASChart({ data }: CASChartProps) {
         ) : (
           <div className="relative flex h-[200px] w-[200px] items-center justify-center">
             {/* 바깥 원 */}
-            <div className="bg-primary-gray-200 absolute h-full w-full rounded-full"></div>
+            <div className="absolute h-full w-full rounded-full bg-gray-200"></div>
             {/* 안쪽 투명 영역 */}
             <div className="absolute h-[68%] w-[68%] rounded-full bg-white"></div>
           </div>

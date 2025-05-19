@@ -102,7 +102,7 @@ const ScheduleAndPeriodPicker: React.FC<ScheduleAndPeriodPickerProps> = ({
   const weekdays = ['일', '월', '화', '수', '목', '금', '토']
 
   return (
-    <div className="border-primary-gray-200 text-13 flex w-[280px] flex-col items-center gap-4 rounded-lg border bg-white py-4 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]">
+    <div className="text-13 flex w-[280px] flex-col items-center gap-4 rounded-lg border border-gray-200 bg-white py-4 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]">
       {/* 달력 */}
       <div className="flex w-[248px] flex-col items-center gap-2">
         <div className="flex w-full items-center justify-around gap-1">
@@ -159,7 +159,7 @@ const ScheduleAndPeriodPicker: React.FC<ScheduleAndPeriodPickerProps> = ({
               variant="caption"
               key={day}
               className={`text-center ${
-                index === 0 ? 'text-primary-red-400' : index === 6 ? 'text-ib-blue-400' : 'text-primary-gray-500'
+                index === 0 ? 'text-primary-red-400' : index === 6 ? 'text-ib-blue-400' : 'text-gray-500'
               }`}
             >
               {day}
@@ -184,7 +184,7 @@ const ScheduleAndPeriodPicker: React.FC<ScheduleAndPeriodPickerProps> = ({
               )}
               <Typography
                 variant="body3"
-                className={`z-10 flex h-8 w-8 cursor-pointer items-center justify-center font-medium ${isCurrentMonth ? 'text-primary-gray-900' : 'text-primary-gray-400'} ${isSameDay(calendarDate, today) ? 'border-primary-400 rounded-full border' : ''} ${
+                className={`z-10 flex h-8 w-8 cursor-pointer items-center justify-center font-medium ${isCurrentMonth ? 'text-gray-900' : 'text-gray-400'} ${isSameDay(calendarDate, today) ? 'border-primary-400 rounded-full border' : ''} ${
                   localDate.startDate && isSameDay(calendarDate, localDate.startDate)
                     ? 'bg-primary-800 rounded-full text-white'
                     : localDate.endDate && isSameDay(calendarDate, localDate.endDate)
@@ -201,7 +201,7 @@ const ScheduleAndPeriodPicker: React.FC<ScheduleAndPeriodPickerProps> = ({
       </div>
       <div className="w-full border-t border-gray-200"></div>
       <div className="flex w-[248px] flex-row items-center justify-between gap-4">
-        <Typography variant="body3" className="text-primary-gray-700 font-medium">
+        <Typography variant="body3" className="font-medium text-gray-700">
           활동 주기
         </Typography>
         <Input.Basic

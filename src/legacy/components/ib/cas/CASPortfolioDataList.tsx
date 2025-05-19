@@ -27,10 +27,10 @@ function CASPortfolioDataList({ data, user }: CASPortfolioDataListProps) {
           className="relative flex w-full cursor-pointer items-center justify-center"
           onClick={() => setOpen((prev) => !prev)}
         >
-          <div className="bg-primary-gray-100 absolute top-1/2 left-0 h-[1px] w-[calc(50%-12px)] -translate-y-1/2 transform"></div>
-          <div className="bg-primary-gray-100 absolute top-1/2 right-0 h-[1px] w-[calc(50%-12px)] -translate-y-1/2 transform"></div>
+          <div className="absolute top-1/2 left-0 h-[1px] w-[calc(50%-12px)] -translate-y-1/2 transform bg-gray-100"></div>
+          <div className="absolute top-1/2 right-0 h-[1px] w-[calc(50%-12px)] -translate-y-1/2 transform bg-gray-100"></div>
           <div className="relative z-10 flex items-center gap-1 bg-white px-3">
-            <Typography variant="body3" className="text-primary-gray-700 font-medium">
+            <Typography variant="body3" className="font-medium text-gray-700">
               {open ? '접기' : '전체보기'}
             </Typography>
             <SVGIcon.Arrow size={12} color="gray700" rotate={open ? 90 : 270} className="relative z-10" />

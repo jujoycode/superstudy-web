@@ -56,7 +56,7 @@ const Timeline = ({ data }: TimelineProps) => {
   const currentPercent = isCurrentInRange ? calculatePosition(currentDate) : null
 
   return (
-    <main className="border-primary-gray-100 bg-primary-gray-50 flex w-full flex-row items-center justify-between gap-4 rounded-xl border p-5">
+    <main className="flex w-full flex-row items-center justify-between gap-4 rounded-xl border border-gray-100 bg-gray-50 p-5">
       <div className="flex w-[264px] min-w-[264px] shrink-0 flex-col gap-2">
         <span className="flex flex-row items-center gap-1">
           {data.cas?.strands.activity || data.cas?.strands.activity || data.cas?.strands.service ? (
@@ -71,7 +71,7 @@ const Timeline = ({ data }: TimelineProps) => {
             </BadgeV2>
           )}
         </span>
-        <Typography variant="body3" className="text-primary-gray-700">
+        <Typography variant="body3" className="text-gray-700">
           {data.startAt && data.endAt
             ? `${DateUtil.formatDate(new Date(data.startAt), DateFormat['YYYY.MM.DD'])} ~ ${DateUtil.formatDate(
                 new Date(data.endAt),
@@ -87,7 +87,7 @@ const Timeline = ({ data }: TimelineProps) => {
           <div className="relative h-2 w-full">
             <div
               className={`absolute h-full rounded-sm ${
-                data.startAt && data.endAt ? 'border-dim-8 bg-gradient-navy-400' : 'bg-primary-gray-200'
+                data.startAt && data.endAt ? 'border-dim-8 bg-gradient-navy-400' : 'bg-gray-200'
               }`}
               style={{
                 left: `${startPercent}%`,
@@ -121,7 +121,7 @@ const Timeline = ({ data }: TimelineProps) => {
                     new Date(`${year}-${month.toString().padStart(2, '0')}-01`) <= timelineEndDate
 
                   return isWithinRange ? (
-                    <Typography variant="body3" key={`${year}-${month}`} className="text-primary-gray-400 w-11">
+                    <Typography variant="body3" key={`${year}-${month}`} className="w-11 text-gray-400">
                       {month}
                     </Typography>
                   ) : null

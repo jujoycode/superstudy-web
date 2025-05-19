@@ -56,10 +56,10 @@ export default function LoadingPopup({
     >
       <div className="flex w-full flex-col items-center justify-center">
         <img src={CheckFile} alt="checkFile" className="mb-6 h-12 w-12" />
-        <Typography variant="title2" className="text-primary-gray-900 mb-2 font-semibold">
+        <Typography variant="title2" className="mb-2 font-semibold text-gray-900">
           {status === 'N' ? progressText : '표절 검사에 실패하였습니다.'}
         </Typography>
-        <Typography variant="body2" className="text-primary-gray-700 mb-6 text-center">
+        <Typography variant="body2" className="mb-6 text-center text-gray-700">
           {status === 'N' ? '검사가 완료되면 검사결과 화면으로 이동합니다.\n잠시만 기다려주세요.' : cause}
         </Typography>
         <ButtonV2 variant="solid" color="gray100" size={48} className="w-full" onClick={handleClick}>

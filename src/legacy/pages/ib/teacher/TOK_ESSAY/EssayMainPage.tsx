@@ -170,7 +170,7 @@ export const EssayMainPage = () => {
         return (
           <div>
             <div className="mx-auto flex w-[1280px] items-center justify-between">
-              <Typography variant="caption2" className="text-primary-gray-400 flex items-center gap-1">
+              <Typography variant="caption2" className="flex items-center gap-1 text-gray-400">
                 <SolidSVGIcon.Info color="gray400" size={16} />
                 TKPPF 제출정보 기입과 에세이 평가 완료 후 활동종료 승인이 가능합니다.
               </Typography>
@@ -290,7 +290,7 @@ export const EssayMainPage = () => {
                     <div className="flex w-full items-start justify-between">
                       <Typography
                         variant="heading"
-                        className="text-primary-gray-900 w-[692px] overflow-hidden text-ellipsis whitespace-nowrap"
+                        className="w-[692px] overflow-hidden text-ellipsis whitespace-nowrap text-gray-900"
                       >
                         {`${data?.leader.name}의 TOK 에세이`}
                       </Typography>
@@ -303,7 +303,7 @@ export const EssayMainPage = () => {
                 <LayeredTabs.OneDepth
                   onChange={(selectedType: TOKProject) => setType(selectedType)}
                   value={type}
-                  inActiveClassName="text-primary-gray-900 border-primary-gray-900"
+                  inActiveClassName="text-gray-900 border-gray-900"
                 >
                   <Tab value="OUTLINE">
                     <p>아웃라인</p>
@@ -336,7 +336,7 @@ export const EssayMainPage = () => {
                 </div>
               </div>
             }
-            bottomBgColor="bg-primary-gray-50"
+            bottomBgColor="bg-gray-50"
             floatingButton={getFloatingUI(data?.status)}
           />
         </div>

@@ -207,33 +207,33 @@ export default function StudentIBStatus() {
               childrenWrapperClassName={clsx(
                 selectedOptions.projectType === 'NORMAL' ||
                   selectedOptions.projectType === 'CAS' ||
-                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-primary-gray-700': selectedOptions.projectType === 'NORMAL' })}>전체</p>
+              <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'NORMAL' })}>전체</p>
             </Tab>
             <Tab
               value="CAS"
               childrenWrapperClassName={clsx(
                 selectedOptions.projectType === 'CAS' ||
                   selectedOptions.projectType === 'EE' ||
-                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-primary-gray-700': selectedOptions.projectType === 'CAS' })}>CAS</p>
+              <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'CAS' })}>CAS</p>
             </Tab>
             <Tab
               value="EE"
               childrenWrapperClassName={clsx(
                 selectedOptions.projectType === 'EE' ||
                   selectedOptions.projectType === 'TOK' ||
-                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-primary-gray-700': selectedOptions.projectType === 'EE' })}>EE</p>
+              <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'EE' })}>EE</p>
             </Tab>
             <Tab value="TOK">
-              <p className={clsx({ 'text-primary-gray-700': selectedOptions.projectType === 'TOK' })}>TOK</p>
+              <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'TOK' })}>TOK</p>
             </Tab>
           </LayeredTabs.TwoDepth>
         </div>
@@ -256,7 +256,7 @@ export default function StudentIBStatus() {
           </div>
         ) : (
           <>
-            <div className="border-b-primary-gray-200 border-b pt-5 pb-10">
+            <div className="border-b border-b-gray-200 pt-5 pb-10">
               <ProjectList
                 title="담당교사 지정대기"
                 params={{
@@ -272,7 +272,7 @@ export default function StudentIBStatus() {
                 }
               />
             </div>
-            <div className="border-b-primary-gray-200 border-b py-10">
+            <div className="border-b border-b-gray-200 py-10">
               <ProjectList
                 title="계획중"
                 params={{
@@ -288,7 +288,7 @@ export default function StudentIBStatus() {
                 }
               />
             </div>
-            <div className="border-b-primary-gray-200 border-b py-10">
+            <div className="border-b border-b-gray-200 py-10">
               <ProjectList
                 title="진행중"
                 params={{
@@ -304,7 +304,7 @@ export default function StudentIBStatus() {
                 }
               />
             </div>
-            <div className="border-b-primary-gray-200 border-b py-10">
+            <div className="border-b border-b-gray-200 py-10">
               <ProjectList
                 title="완료"
                 params={{

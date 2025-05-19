@@ -66,61 +66,49 @@ export function MockExamPage({ studentId }: MockExamPageProps) {
             params && (
               <div className="w-full pt-4">
                 <table className="w-full table-fixed border-collapse">
-                  <thead className="text-15 text-primary-gray-600 text-center font-normal">
+                  <thead className="text-15 text-center font-normal text-gray-600">
                     <tr>
-                      <td className="border-b-primary-gray-200 bg-primary-gray-50 w-[129px] border-b px-2 py-[9px]">
-                        영역
-                      </td>
-                      <td className="bg-primary-gray-50 w-1/4 border-x border-b border-gray-200 px-2 py-[9px]">점수</td>
-                      <td className="bg-primary-gray-50 w-1/4 border-x border-b border-gray-200 px-2 py-[9px]">표준</td>
-                      <td className="bg-primary-gray-50 w-1/4 border-x border-b border-gray-200 px-2 py-[9px]">백분</td>
-                      <td className="bg-primary-gray-50 w-1/4 border-b border-l border-gray-200 px-2 py-[9px]">등급</td>
+                      <td className="w-[129px] border-b border-b-gray-200 bg-gray-50 px-2 py-[9px]">영역</td>
+                      <td className="w-1/4 border-x border-b border-gray-200 bg-gray-50 px-2 py-[9px]">점수</td>
+                      <td className="w-1/4 border-x border-b border-gray-200 bg-gray-50 px-2 py-[9px]">표준</td>
+                      <td className="w-1/4 border-x border-b border-gray-200 bg-gray-50 px-2 py-[9px]">백분</td>
+                      <td className="w-1/4 border-b border-l border-gray-200 bg-gray-50 px-2 py-[9px]">등급</td>
                     </tr>
                   </thead>
-                  <tbody className="text-15 text-primary-gray-900 text-center">
+                  <tbody className="text-15 text-center text-gray-900">
                     {simpleScores.map((score: any, index: number) => (
                       <tr key={score.subject}>
                         <td
                           className={`w-[129px] border-r border-b border-r-gray-100 px-2 py-[11px] font-medium ${
-                            index === simpleScores.length - 1
-                              ? 'border-b-primary-gray-200'
-                              : 'border-b-primary-gray-100'
+                            index === simpleScores.length - 1 ? 'border-b-gray-200' : 'border-b-gray-100'
                           }`}
                         >
                           {score.subject}
                         </td>
                         <td
-                          className={`border-primary-gray-100 w-1/4 border px-2 py-[11px] font-medium ${
-                            index === simpleScores.length - 1
-                              ? 'border-b-primary-gray-200'
-                              : 'border-b-primary-gray-100'
+                          className={`w-1/4 border border-gray-100 px-2 py-[11px] font-medium ${
+                            index === simpleScores.length - 1 ? 'border-b-gray-200' : 'border-b-gray-100'
                           }`}
                         >
                           {score.score || '-'}
                         </td>
                         <td
-                          className={`border-primary-gray-100 w-1/4 border px-2 py-[11px] font-medium ${
-                            index === simpleScores.length - 1
-                              ? 'border-b-primary-gray-200'
-                              : 'border-b-primary-gray-100'
+                          className={`w-1/4 border border-gray-100 px-2 py-[11px] font-medium ${
+                            index === simpleScores.length - 1 ? 'border-b-gray-200' : 'border-b-gray-100'
                           }`}
                         >
                           {score.standard_score || '-'}
                         </td>
                         <td
-                          className={`border-primary-gray-100 w-1/4 border px-2 py-[11px] font-medium ${
-                            index === simpleScores.length - 1
-                              ? 'border-b-primary-gray-200'
-                              : 'border-b-primary-gray-100'
+                          className={`w-1/4 border border-gray-100 px-2 py-[11px] font-medium ${
+                            index === simpleScores.length - 1 ? 'border-b-gray-200' : 'border-b-gray-100'
                           }`}
                         >
                           {score.percentage || '-'}
                         </td>
                         <td
-                          className={`border-primary-gray-100 w-1/4 border-b border-l px-2 py-[11px] font-medium ${
-                            index === simpleScores.length - 1
-                              ? 'border-b-primary-gray-200'
-                              : 'border-b-primary-gray-100'
+                          className={`w-1/4 border-b border-l border-gray-100 px-2 py-[11px] font-medium ${
+                            index === simpleScores.length - 1 ? 'border-b-gray-200' : 'border-b-gray-100'
                           }`}
                         >
                           {score.rank || '-'}
@@ -131,17 +119,13 @@ export function MockExamPage({ studentId }: MockExamPageProps) {
                       const isOptional = score.subject === '탐구1' || score.subject === '탐구2'
                       return (
                         <tr key={score.subject}>
-                          <td className="border-b-primary-gray-100 w-[129px] border-r border-b border-r-gray-100 px-2 py-[11px]">
+                          <td className="w-[129px] border-r border-b border-r-gray-100 border-b-gray-100 px-2 py-[11px]">
                             {score.subject}&nbsp;{isOptional ? `(${score.sub_subject})` : ''}
                           </td>
-                          <td className="border-primary-gray-100 w-1/4 border px-2 py-[11px]">{score.score || '-'}</td>
-                          <td className="border-primary-gray-100 w-1/4 border px-2 py-[11px]">
-                            {score.standard_score || '-'}
-                          </td>
-                          <td className="border-primary-gray-100 w-1/4 border px-2 py-[11px]">
-                            {score.percentage || '-'}
-                          </td>
-                          <td className="border-primary-gray-100 w-1/4 border-b border-l px-2 py-[11px]">
+                          <td className="w-1/4 border border-gray-100 px-2 py-[11px]">{score.score || '-'}</td>
+                          <td className="w-1/4 border border-gray-100 px-2 py-[11px]">{score.standard_score || '-'}</td>
+                          <td className="w-1/4 border border-gray-100 px-2 py-[11px]">{score.percentage || '-'}</td>
+                          <td className="w-1/4 border-b border-l border-gray-100 px-2 py-[11px]">
                             {score.rank || '-'}
                           </td>
                         </tr>

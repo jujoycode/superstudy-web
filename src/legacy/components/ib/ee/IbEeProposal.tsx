@@ -185,7 +185,7 @@ export function IbEeProposal({
           />
           {(selectedSubject === '언어와문학' || selectedSubject === '영어B') && (
             <div className="flex flex-col gap-2 px-[1px]">
-              <Typography variant="title3" className="text-primary-gray-900 font-semibold">
+              <Typography variant="title3" className="font-semibold text-gray-900">
                 세부 카테고리<span className="text-primary-red-800">*</span>
               </Typography>
               <RadioV2.Group
@@ -259,7 +259,7 @@ export function IbEeProposal({
 
         <div
           className={clsx(
-            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]',
+            'sticky bottom-0 flex h-[104px] gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8 backdrop-blur-[20px]',
             {
               'justify-between': type === 'create',
               'justify-end': type !== 'create',

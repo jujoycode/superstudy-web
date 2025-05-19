@@ -60,7 +60,7 @@ export function PopupModal({
             headerClassName,
           )}
         >
-          <Typography variant="title1" className="text-primary-gray-900">
+          <Typography variant="title1" className="text-gray-900">
             {title}
           </Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
@@ -86,7 +86,7 @@ export function PopupModal({
           <div
             className={twMerge(
               `sticky bottom-0 flex h-[104px] justify-end gap-4 ${
-                bottomBorder && 'border-t-primary-gray-100 border-t'
+                bottomBorder && 'border-t border-t-gray-100'
               }bg-white/70 pt-6 pb-8 backdrop-blur-[20px]`,
               footerClassName,
             )}

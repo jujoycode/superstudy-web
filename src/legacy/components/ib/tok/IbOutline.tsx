@@ -153,7 +153,7 @@ export function IbOutline({
               required
             />
           </div>
-          <div className="border-t-primary-gray-100 flex flex-col gap-6 border-t px-8 pt-8">
+          <div className="flex flex-col gap-6 border-t border-t-gray-100 px-8 pt-8">
             <InputField
               label="지식영역"
               subLabel="1"
@@ -200,7 +200,7 @@ export function IbOutline({
               />
             </div>
           </div>
-          <div className="border-t-primary-gray-100 flex flex-col gap-6 border-t px-8 pt-8">
+          <div className="flex flex-col gap-6 border-t border-t-gray-100 px-8 pt-8">
             <InputField
               label="지식영역"
               subLabel="2"
@@ -251,7 +251,7 @@ export function IbOutline({
 
         <div
           className={
-            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]'
+            'sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]'
           }
         >
           <ButtonV2 variant="solid" color="gray100" size={48} onClick={handleBack}>

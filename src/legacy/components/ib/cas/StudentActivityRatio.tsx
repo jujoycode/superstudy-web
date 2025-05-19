@@ -20,7 +20,7 @@ function StudentActivityRatio({ before, after }: StudentActivityRatioProps) {
   const AfterservicePercent = ((after?.service || 0) / AftertotalSum) * 100 || 0
   return (
     <div className="flex flex-col gap-2">
-      <div className="border-primary-gray-200 flex flex-col gap-2 rounded-lg border p-4">
+      <div className="flex flex-col gap-2 rounded-lg border border-gray-200 p-4">
         <div className="flex flex-row items-center justify-between">
           <Typography variant="body3" className="font-medium">
             현재 진행중
@@ -48,7 +48,7 @@ function StudentActivityRatio({ before, after }: StudentActivityRatioProps) {
         </div>
         <div className="flex h-2 w-full">
           {totalSum === 0 ? (
-            <div className="bg-primary-gray-200 h-full w-full rounded-[2px]"></div>
+            <div className="h-full w-full rounded-[2px] bg-gray-200"></div>
           ) : (
             <>
               {creativityPercent > 0 && (

@@ -171,7 +171,7 @@ export function IbExhibition({
               // {...register(`themeQuestion` as const)}
             />
           </div>
-          <div className="border-t-primary-gray-100 flex flex-col gap-3 border-t px-8 py-8">
+          <div className="flex flex-col gap-3 border-t border-t-gray-100 px-8 py-8">
             <Typography variant="title3" className="font-semibold">
               서론
             </Typography>
@@ -180,7 +180,7 @@ export function IbExhibition({
               onWordCountChange={(count) => handleWordCountChange('introduction', count)}
               placeholder="내용을 입력해주세요."
               className="h-[308px]"
-              readonlyBackground="bg-primary-gray-100"
+              readonlyBackground="bg-gray-100"
               value={watch('introduction')}
               {...register(`introduction` as const)}
             />
@@ -191,7 +191,7 @@ export function IbExhibition({
               const targetContentValue = watch(targetContentField)
 
               return (
-                <div key={targetKey} className="border-t-primary-gray-100 flex flex-col gap-3 border-t px-8 py-8">
+                <div key={targetKey} className="flex flex-col gap-3 border-t border-t-gray-100 px-8 py-8">
                   <div className="flex flex-row items-center">
                     <Typography variant="title3" className="font-semibold">
                       대상
@@ -207,7 +207,7 @@ export function IbExhibition({
                       onWordCountChange={(count) => handleWordCountChange(`target${targetKey}`, count)}
                       placeholder="내용을 입력해주세요."
                       className="h-[308px]"
-                      readonlyBackground="bg-primary-gray-100"
+                      readonlyBackground="bg-gray-100"
                       value={targetContentValue}
                       {...register(targetContentField)}
                     />
@@ -215,7 +215,7 @@ export function IbExhibition({
                       htmlFor={`file-upload-${targetKey}`}
                       className="allow-click absolute right-4 bottom-4 z-30 cursor-pointer"
                     >
-                      <div className="border-primary-gray-400 text-primary-gray-900 active:border-primary-gray-100 active:bg-primary-gray-400 disabled:border-primary-gray-100 disabled:bg-primary-gray-200 disabled:text-primary-gray-400 flex h-8 items-center rounded-md border px-3 text-[14px] font-medium disabled:cursor-not-allowed">
+                      <div className="flex h-8 items-center rounded-md border border-gray-400 px-3 text-[14px] font-medium text-gray-900 active:border-gray-100 active:bg-gray-400 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-200 disabled:text-gray-400">
                         이미지 첨부하기
                       </div>
                       <input
@@ -240,7 +240,7 @@ export function IbExhibition({
               )
             })}
           </div>
-          <div className="border-t-primary-gray-100 flex flex-col gap-3 border-t px-8 py-8">
+          <div className="flex flex-col gap-3 border-t border-t-gray-100 px-8 py-8">
             <Typography variant="title3" className="font-semibold">
               결론
             </Typography>
@@ -249,12 +249,12 @@ export function IbExhibition({
               onWordCountChange={(count) => handleWordCountChange('conclusion', count)}
               placeholder="내용을 입력해주세요."
               className="h-[308px]"
-              readonlyBackground="bg-primary-gray-100"
+              readonlyBackground="bg-gray-100"
               value={watch('conclusion')}
               {...register(`conclusion` as const)}
             />
           </div>
-          <div className="border-t-primary-gray-100 flex flex-col gap-3 border-t px-8 pt-8">
+          <div className="flex flex-col gap-3 border-t border-t-gray-100 px-8 pt-8">
             <div className="flex flex-row items-center">
               <Typography variant="title3" className="font-semibold">
                 Reference
@@ -263,7 +263,7 @@ export function IbExhibition({
             <TextareaV2
               placeholder="내용을 입력해주세요."
               className="h-[308px]"
-              readonlyBackground="bg-primary-gray-100"
+              readonlyBackground="bg-gray-100"
               value={referenceValue}
               {...register(`reference` as const)}
             />
@@ -272,11 +272,11 @@ export function IbExhibition({
 
         <div
           className={
-            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-between gap-4 border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]'
+            'sticky bottom-0 flex h-[104px] justify-between gap-4 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]'
           }
         >
           <div className="text-12 flex flex-row items-center">
-            <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
+            <p className="text-gray-500">총 단어 수</p>&nbsp;
             <p className="text-primary-800 font-medium">{totalWordCount}</p>
           </div>
           <div className="flex gap-3">

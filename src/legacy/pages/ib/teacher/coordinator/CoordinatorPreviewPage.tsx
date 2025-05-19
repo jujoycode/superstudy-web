@@ -64,7 +64,7 @@ export const CoordinatorPreviewPage = () => {
 
   return (
     <div className="col-span-6">
-      <div className="bg-primary-gray-50 h-screen w-full pt-10 pb-20">
+      <div className="h-screen w-full bg-gray-50 pt-10 pb-20">
         <IBLayout
           topContent={null}
           hasContour={false}
@@ -79,11 +79,11 @@ export const CoordinatorPreviewPage = () => {
               <div className="flex flex-grow flex-col rounded-xl bg-white p-6">
                 {type === 'FAQ' ? (
                   <div className="flex flex-col">
-                    <div className="border-b-primary-gray-100 flex flex-col items-start gap-1 border-b pb-6">
-                      <Typography variant="title1" className="text-primary-gray-900">
+                    <div className="flex flex-col items-start gap-1 border-b border-b-gray-100 pb-6">
+                      <Typography variant="title1" className="text-gray-900">
                         {data.title}
                       </Typography>
-                      <Typography variant="body3" className="text-primary-gray-500">
+                      <Typography variant="body3" className="text-gray-500">
                         2024.09.01 · 관리자
                       </Typography>
                     </div>
@@ -108,11 +108,11 @@ export const CoordinatorPreviewPage = () => {
                 ) : type === 'REF' ? (
                   // REF 렌더링
                   <div className="flex flex-col">
-                    <div className="border-b-primary-gray-100 flex flex-col items-start gap-1 border-b bg-white pb-6">
-                      <Typography variant="title1" className="text-primary-gray-900">
+                    <div className="flex flex-col items-start gap-1 border-b border-b-gray-100 bg-white pb-6">
+                      <Typography variant="title1" className="text-gray-900">
                         {data.title}
                       </Typography>
-                      <Typography variant="body3" className="text-primary-gray-500">
+                      <Typography variant="body3" className="text-gray-500">
                         2024.09.01 · 관리자
                       </Typography>
                     </div>
@@ -161,7 +161,7 @@ export const CoordinatorPreviewPage = () => {
                             {(data as REFData).files!.map((fileUrl: string | File, index: number) => (
                               <div
                                 key={index}
-                                className="border-primary-gray-200 flex h-12 w-max items-center gap-2 rounded-lg border bg-white px-4"
+                                className="flex h-12 w-max items-center gap-2 rounded-lg border border-gray-200 bg-white px-4"
                               >
                                 <SVGIcon.Link size={16} weight="bold" color="gray700" />
                                 <button
@@ -173,7 +173,7 @@ export const CoordinatorPreviewPage = () => {
                                       typeof fileUrl == 'string' ? getFileNameFromUrl(fileUrl) : fileUrl.name,
                                     )
                                   }
-                                  className="text-primary-gray-900 text-[15px] font-normal"
+                                  className="text-[15px] font-normal text-gray-900"
                                 >
                                   {typeof fileUrl == 'string' ? getFileNameFromUrl(fileUrl) : fileUrl.name}
                                 </button>
@@ -190,7 +190,7 @@ export const CoordinatorPreviewPage = () => {
               </div>
             </>
           }
-          bottomBgColor="bg-primary-gray-50"
+          bottomBgColor="bg-gray-50"
         />
       </div>
     </div>

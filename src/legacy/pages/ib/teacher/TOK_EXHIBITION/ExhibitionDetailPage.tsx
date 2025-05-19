@@ -433,7 +433,7 @@ export const ExhibitionDetailPage = () => {
                             onWordCountChange={(count) => handleWordCountChange('introduction', count)}
                             placeholder="내용을 입력해주세요."
                             className="h-[308px]"
-                            readonlyBackground="bg-primary-gray-100"
+                            readonlyBackground="bg-gray-100"
                             value={watch('introduction')}
                             {...register(`introduction` as const)}
                           />
@@ -460,7 +460,7 @@ export const ExhibitionDetailPage = () => {
                                     onWordCountChange={(count) => handleWordCountChange(`target${targetKey}`, count)}
                                     placeholder="내용을 입력해주세요."
                                     className="h-[308px]"
-                                    readonlyBackground="bg-primary-gray-100"
+                                    readonlyBackground="bg-gray-100"
                                     value={targetContentValue}
                                     {...register(targetContentField)}
                                   />
@@ -468,7 +468,7 @@ export const ExhibitionDetailPage = () => {
                                     htmlFor={`file-upload-${targetKey}`}
                                     className="allow-click absolute right-4 bottom-4 z-30 cursor-pointer"
                                   >
-                                    <div className="border-primary-gray-400 text-primary-gray-900 active:border-primary-gray-100 active:bg-primary-gray-400 disabled:border-primary-gray-100 disabled:bg-primary-gray-200 disabled:text-primary-gray-400 flex h-8 items-center rounded-md border px-3 text-[14px] font-medium disabled:cursor-not-allowed">
+                                    <div className="flex h-8 items-center rounded-md border border-gray-400 px-3 text-[14px] font-medium text-gray-900 active:border-gray-100 active:bg-gray-400 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-200 disabled:text-gray-400">
                                       이미지 첨부하기
                                     </div>
                                     <input
@@ -514,7 +514,7 @@ export const ExhibitionDetailPage = () => {
                             onWordCountChange={(count) => handleWordCountChange('conclusion', count)}
                             placeholder="내용을 입력해주세요."
                             className="h-[308px]"
-                            readonlyBackground="bg-primary-gray-100"
+                            readonlyBackground="bg-gray-100"
                             value={watch('conclusion')}
                             {...register(`conclusion` as const)}
                           />
@@ -528,7 +528,7 @@ export const ExhibitionDetailPage = () => {
                           <TextareaV2
                             placeholder="내용을 입력해주세요."
                             className="h-[308px]"
-                            readonlyBackground="bg-primary-gray-100"
+                            readonlyBackground="bg-gray-100"
                             value={referenceValue}
                             {...register(`reference` as const)}
                           />
@@ -538,18 +538,18 @@ export const ExhibitionDetailPage = () => {
                   </>
                 ) : (
                   <div className="flex flex-col">
-                    <div className="border-b-primary-gray-100 flex flex-col items-start gap-1 border-b pb-6">
+                    <div className="flex flex-col items-start gap-1 border-b border-b-gray-100 pb-6">
                       <div className="flex w-full flex-row items-center justify-between">
-                        <Typography variant="title1" className="text-primary-gray-900">
+                        <Typography variant="title1" className="text-gray-900">
                           {data.themeQuestion}
                         </Typography>
 
                         <div className="text-12 flex flex-row items-center">
-                          <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
+                          <p className="text-gray-500">총 단어 수</p>&nbsp;
                           <p className="text-primary-800 font-medium">{totalWordCount}</p>
                         </div>
                       </div>
-                      <Typography variant="body3" className="text-primary-gray-500">
+                      <Typography variant="body3" className="text-gray-500">
                         {format(new Date(data?.createdAt), 'yyyy.MM.dd')}
                       </Typography>
                     </div>
@@ -560,7 +560,7 @@ export const ExhibitionDetailPage = () => {
                         </div>
                         <Typography variant="body1">{data?.introduction}</Typography>
                         <span className="flex flex-row items-center">
-                          <Typography variant="caption" className="text-primary-gray-500">
+                          <Typography variant="caption" className="text-gray-500">
                             단어수
                           </Typography>
                           &nbsp;
@@ -576,9 +576,9 @@ export const ExhibitionDetailPage = () => {
                         const targetContentKey = `targetContent${num}` as keyof ResponseExhibitionDto
                         const wordCountKey = `wordCount${num}` as keyof ResponseExhibitionDto
                         return (
-                          <div key={num} className="border-t-primary-gray-100 flex flex-col gap-10 border-t py-10">
+                          <div key={num} className="flex flex-col gap-10 border-t border-t-gray-100 py-10">
                             <div className="flex flex-col gap-4">
-                              <Typography variant="title2" className="text-primary-gray-900">
+                              <Typography variant="title2" className="text-gray-900">
                                 대상&nbsp;
                                 <span className="text-primary-800">{num}</span>
                               </Typography>
@@ -591,24 +591,24 @@ export const ExhibitionDetailPage = () => {
                                   className="h-[294px] w-[392px] rounded-lg object-cover"
                                 />
                               )}
-                              <Typography variant="body1" className="text-primary-gray-900">
+                              <Typography variant="body1" className="text-gray-900">
                                 {data[targetContentKey]}
                               </Typography>
-                              <Typography variant="caption" className="text-primary-gray-500">
+                              <Typography variant="caption" className="text-gray-500">
                                 단어수 <span className="text-primary-800">{data[wordCountKey]}</span>
                               </Typography>
                             </div>
                           </div>
                         )
                       })}
-                      <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t py-10">
+                      <div className="flex flex-col gap-10 border-t border-t-gray-100 py-10">
                         <div className="flex flex-col gap-4">
                           <div className="flex flex-row items-center">
                             <Typography variant="title2">결론</Typography>
                           </div>
                           <Typography variant="body1">{data?.conclusion}</Typography>
                           <span className="flex flex-row items-center">
-                            <Typography variant="caption" className="text-primary-gray-500">
+                            <Typography variant="caption" className="text-gray-500">
                               단어수
                             </Typography>
                             &nbsp;
@@ -618,11 +618,11 @@ export const ExhibitionDetailPage = () => {
                           </span>
                         </div>
                       </div>
-                      <div className="border-t-primary-gray-100 flex flex-col gap-4 border-t py-10">
-                        <Typography variant="title2" className="text-primary-gray-900">
+                      <div className="flex flex-col gap-4 border-t border-t-gray-100 py-10">
+                        <Typography variant="title2" className="text-gray-900">
                           Reference
                         </Typography>
-                        <Typography variant="body1" className="text-primary-gray-900">
+                        <Typography variant="body1" className="text-gray-900">
                           {data.reference}
                         </Typography>
                       </div>
@@ -638,7 +638,7 @@ export const ExhibitionDetailPage = () => {
                       </ButtonV2>
                       <div className="flex flex-row items-center gap-4">
                         <div className="text-12 flex flex-row items-center">
-                          <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
+                          <p className="text-gray-500">총 단어 수</p>&nbsp;
                           <p className="text-primary-800 font-medium">{totalWordCount}</p>
                         </div>
                         <ButtonV2 size={40} variant="solid" color="orange100" onClick={handleSubmit(onSubmit)}>
@@ -706,13 +706,13 @@ export const ExhibitionDetailPage = () => {
             </div>
           </div>
         }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
         floatingButton={
           hasPermission &&
           ((ibData?.status === 'WAIT_COMPLETE' && (
             <div>
               <div className="mx-auto flex w-[1280px] items-center justify-between">
-                <Typography variant="caption2" className="text-primary-gray-400 flex items-center gap-1">
+                <Typography variant="caption2" className="flex items-center gap-1 text-gray-400">
                   <SolidSVGIcon.Info color="gray400" size={16} />
                   전시회 평가 완료 후 전시회 종료 승인이 가능합니다.
                 </Typography>

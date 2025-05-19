@@ -78,14 +78,14 @@ function TwoDepth<T>({ children, value, onChange, fullWidth = false, size = 'lar
               isActive ? 'bg-white text-[#121316]' : 'bg-[#f4f6f8] text-[#898d94]',
               isActive && index === 0
                 ? size === 'large'
-                  ? 'border-r-primary-gray-200 rounded-l-lg border-r'
-                  : 'border-r-primary-gray-200 rounded-l-md border-r'
+                  ? 'rounded-l-lg border-r border-r-gray-200'
+                  : 'rounded-l-md border-r border-r-gray-200'
                 : isActive && index === children.length - 1
                   ? size === 'large'
-                    ? 'border-l-primary-gray-200 rounded-r-lg border-l'
-                    : 'border-l-primary-gray-200 rounded-r-md border-l'
+                    ? 'rounded-r-lg border-l border-l-gray-200'
+                    : 'rounded-r-md border-l border-l-gray-200'
                   : isActive
-                    ? 'border-primary-gray-200 border-r border-l'
+                    ? 'border-r border-l border-gray-200'
                     : '',
               fullWidth && 'flex-grow basis-0 text-center',
               tab.props.childrenWrapperClassName,
@@ -116,9 +116,7 @@ function ThirdDepth<T>({ children, value, onChange }: LayeredTabsProps<T>) {
             onClick={() => handleTabClick(tab.props.value)}
             className={clsx(
               'flex cursor-pointer items-center justify-center rounded-lg px-4 py-[9px]',
-              isActive
-                ? 'bg-primary-gray-700 text-white'
-                : 'bg-primary-gray-50 text-primary-gray-700 hover:bg-primary-gray-200',
+              isActive ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-200',
             )}
           >
             <div className="text-center text-[15px] font-medium">{tab.props.children}</div>
@@ -142,7 +140,7 @@ function Title<T>({ children, className, value, onChange }: LayeredTabsProps<T>)
           <div key={String(tab.props.value)} onClick={() => handleTabClick(tab.props.value)}>
             <Typography
               variant="title1"
-              className={clsx('cursor-pointer', isActive ? 'text-primary-gray-900' : 'text-primary-gray-400')}
+              className={clsx('cursor-pointer', isActive ? 'text-gray-900' : 'text-gray-400')}
             >
               {tab.props.children}
             </Typography>

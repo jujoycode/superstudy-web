@@ -55,7 +55,7 @@ function PlagiarismInspectPage() {
           topContent={
             <div>
               <div className="w-full pt-16 pb-6">
-                <Typography variant="heading" className="text-primary-gray-900">
+                <Typography variant="heading" className="text-gray-900">
                   표절률 검사
                 </Typography>
               </div>
@@ -78,7 +78,7 @@ function PlagiarismInspectPage() {
               </div>
             </div>
           }
-          bottomBgColor={plagiarismInspectList.items.length > 0 ? 'bg-primary-gray-50' : 'bg-white'}
+          bottomBgColor={plagiarismInspectList.items.length > 0 ? 'bg-gray-50' : 'bg-white'}
         />
       )}
     </div>

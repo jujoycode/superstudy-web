@@ -29,7 +29,7 @@ export default function ReferenceList({ data, type, user = 'student' }: EERefere
       <main>
         {data && data.length > 0 ? (
           <table className="w-full">
-            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
+            <thead className="border-y border-y-gray-100 text-[15px] font-medium text-gray-500">
               <tr>
                 <td className="w-[68px] py-[9px] pr-2 pl-6 text-center">번호</td>
                 <td className="w-[956px] px-2 py-[9px] text-center">제목</td>
@@ -39,7 +39,7 @@ export default function ReferenceList({ data, type, user = 'student' }: EERefere
             <tbody>
               {data?.map((ref, index) => {
                 return (
-                  <tr key={ref.id} className="border-b-primary-gray-100 border-b">
+                  <tr key={ref.id} className="border-b border-b-gray-100">
                     <td className="py-[11px] pr-2 pl-6 text-center">{index + 1}</td>
                     <td
                       className="max-w-[956px] cursor-pointer overflow-hidden px-2 py-[11px] text-start text-ellipsis whitespace-nowrap"
@@ -64,7 +64,7 @@ export default function ReferenceList({ data, type, user = 'student' }: EERefere
             <div className="h-12 w-12 px-[2.50px]">
               <img src={NODATA} className="h-12 w-[43px] object-cover" />
             </div>
-            <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
+            <Typography variant="body2" className="text-center font-medium text-gray-700">
               현재 등록된 자료가 없습니다.
             </Typography>
           </div>

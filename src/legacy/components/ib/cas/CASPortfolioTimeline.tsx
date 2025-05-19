@@ -59,7 +59,7 @@ function CASPortfolioTimeline({ data }: CASPortfolioTimelineProps) {
           <div className="relative flex h-full w-full justify-between">
             {Array.from({ length: 22 }, (_, i) => (
               <div className="relative" key={i}>
-                <div className="bg-primary-gray-100 absolute top-0 left-0 h-full w-[1px] -translate-x-1/2 transform" />
+                <div className="absolute top-0 left-0 h-full w-[1px] -translate-x-1/2 transform bg-gray-100" />
               </div>
             ))}
           </div>
@@ -102,9 +102,7 @@ function CASPortfolioTimeline({ data }: CASPortfolioTimelineProps) {
             <div className="relative z-10 ml-2 h-2 w-[485px]">
               <div
                 className={`absolute h-full ${
-                  project.startAt && project.endAt
-                    ? 'border-dim-8 bg-gradient-navy-400 rounded-[4px]'
-                    : 'bg-primary-gray-200'
+                  project.startAt && project.endAt ? 'border-dim-8 bg-gradient-navy-400 rounded-[4px]' : 'bg-gray-200'
                 }`}
                 style={{
                   left: `${startPercent}%`,
@@ -117,7 +115,7 @@ function CASPortfolioTimeline({ data }: CASPortfolioTimelineProps) {
       })}
       <div className="flex w-full flex-row gap-6">
         <div className="min-w-[284px]">
-          <Typography variant="caption3" className="text-primary-gray-500 font-medium">{`${DateUtil.formatDate(
+          <Typography variant="caption3" className="font-medium text-gray-500">{`${DateUtil.formatDate(
             new Date(timelineStartDate),
             DateFormat['YYYY.MM.DD'],
           )} ~ ${DateUtil.formatDate(new Date(timelineEndDate), DateFormat['YYYY.MM.DD'])}`}</Typography>
@@ -130,10 +128,10 @@ function CASPortfolioTimeline({ data }: CASPortfolioTimelineProps) {
             return (
               <div
                 key={i}
-                className="text-primary-gray-400 absolute w-4 text-center"
+                className="absolute w-4 text-center text-gray-400"
                 style={{ left: `${left}%`, transform: 'translateX(-50%)' }}
               >
-                <Typography variant="caption3" className="text-primary-gray-400">
+                <Typography variant="caption3" className="text-gray-400">
                   {currentMonth.getMonth() + 1}
                 </Typography>
               </div>

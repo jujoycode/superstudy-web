@@ -162,12 +162,12 @@ export function IbEeInterview({
           </div>
           <div
             className={clsx(
-              'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-between border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
+              'sticky bottom-0 flex h-[104px] justify-between border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
             )}
           >
             <div className="flex flex-row items-center gap-1">
               <SolidSVGIcon.Info color="gray400" size={16} />
-              <Typography variant="caption2" className="text-primary-gray-500">
+              <Typography variant="caption2" className="text-gray-500">
                 이미 작성한 인터뷰의 수정은 인터뷰 상세에서 수정 가능합니다
               </Typography>
             </div>

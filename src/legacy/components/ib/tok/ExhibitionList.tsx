@@ -101,15 +101,15 @@ export default function ExhibitionList({ ibId, data, canCreate, refetch }: Exhib
           </div>
         ) : (
           <table className="w-full">
-            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
+            <thead className="border-y border-y-gray-100 text-[15px] font-medium text-gray-500">
               <tr>
                 <td className="w-[964px] py-[9px] pr-2 pl-6 text-center">질문</td>
                 <td className="w-[150px] px-2 py-[9px] text-center">수정일</td>
                 <td className="w-[166px] py-[9px] pr-6 pl-2 text-center">피드백</td>
               </tr>
             </thead>
-            <tbody className="text-15 text-primary-gray-900 font-medium">
-              <tr className="border-b-primary-gray-100 border-b">
+            <tbody className="text-15 font-medium text-gray-900">
+              <tr className="border-b border-b-gray-100">
                 <td
                   className="box-border h-[54px] cursor-pointer overflow-hidden py-4 pr-2 pl-6 text-center text-ellipsis whitespace-nowrap"
                   onClick={() =>

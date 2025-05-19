@@ -45,13 +45,13 @@ export function IbApprove({
           <Typography variant="body1">{`활동종료 승인요청 전 '학문적 진실성' 항목에 대한 동의가 필요합니다.`}</Typography>
           <Typography
             variant="body2"
-            className="bg-primary-gray-50 text-primary-gray-700 rounded-lg px-4 py-[13px]"
+            className="rounded-lg bg-gray-50 px-4 py-[13px] text-gray-700"
           >{`소논문은 전적으로 학생 본인에 의해 쓰였으며, 인용하였다고 출처 표시를 한 부분을 제외하고 어떠한 부분도 다른 저자(인공지능)의 자료를 사용하지 않았음을 약속합니다. 추후 학업적 진실성에 어긋난다고 확인되는 경우 IB 졸업장이 취소될 수 있음을 인지하고 있습니다.`}</Typography>
           <div className="flex items-center gap-2">
             <Check.Basic checked={check} onChange={() => setChecked(!check)} />
             <Typography
               variant="title3"
-              className="text-primary-gray-900 cursor-pointer font-medium"
+              className="cursor-pointer font-medium text-gray-900"
               onClick={() => setChecked(!check)}
             >
               위 내용을 확인 하였으며, 동의합니다.

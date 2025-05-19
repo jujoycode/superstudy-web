@@ -13,7 +13,7 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   onWordCountChange?: (count: number) => void
   readonly?: boolean
   disabled?: boolean
-  readonlyBackground?: 'bg-white' | 'bg-primary-gray-100'
+  readonlyBackground?: 'bg-white' | 'bg-gray-100'
   wrapperClassName?: string
   textareaClassName?: string
 }
@@ -90,12 +90,12 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
         className={cn(
           clsx(
             className,
-            'border-primary-gray-200 relative flex flex-col justify-between gap-4 rounded-lg border p-4 focus:ring-0 focus:outline-none',
+            'relative flex flex-col justify-between gap-4 rounded-lg border border-gray-200 p-4 focus:ring-0 focus:outline-none',
             {
-              'bg-primary-gray-100': (readonly && readonlyBackground === 'bg-primary-gray-100') || disabled,
+              'bg-gray-100': (readonly && readonlyBackground === 'bg-gray-100') || disabled,
               'cursor-not-allowed': readonly || disabled,
               'cursor-pointer': !readonly && !disabled,
-              'border-primary-gray-700': isFocused,
+              'border-gray-700': isFocused,
               [readonlyBackground]: readonly && readonlyBackground,
               'border--': isError,
             },
@@ -109,9 +109,9 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
           ref={ref}
           className={cn(
             clsx(
-              `text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-ib-blue-800 focus:text-primary-gray-700 h-full min-h-max w-full resize-none border-none p-0 font-medium read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400`,
+              `text-15 caret-ib-blue-800 h-full min-h-max w-full resize-none border-none p-0 font-medium text-gray-900 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400`,
               {
-                'bg-primary-gray-100': (readonly && readonlyBackground === 'bg-primary-gray-100') || disabled,
+                'bg-gray-100': (readonly && readonlyBackground === 'bg-gray-100') || disabled,
                 'cursor-not-allowed': readonly || disabled,
                 'cursor-pointer': !readonly && !disabled,
                 [readonlyBackground]: readonly && readonlyBackground,
@@ -127,7 +127,7 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
         />
         {showWordCount && (
           <div className="text-12 flex flex-row items-center">
-            <p className="text-primary-gray-500">단어 수</p>&nbsp;
+            <p className="text-gray-500">단어 수</p>&nbsp;
             <p className="text-primary-800 font-medium">
               <p className="text-primary-800 font-medium">
                 {typeof inputValue === 'string' && inputValue.trim()
@@ -142,7 +142,7 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
         )}
         {showLength && (
           <div className="text-12 flex flex-row items-center">
-            <Typography variant="caption" className={clsx('text-primary-gray-400', { 'text--': isError })}>
+            <Typography variant="caption" className={clsx('text-gray-400', { 'text--': isError })}>
               {typeof inputValue === 'string' && new Intl.NumberFormat().format(inputValue.length)}
               {typeof maxLength === 'number' && <> / {new Intl.NumberFormat().format(maxLength)}</>}
               {typeof displayMaxLength === 'number' && <> / {new Intl.NumberFormat().format(displayMaxLength)}</>}

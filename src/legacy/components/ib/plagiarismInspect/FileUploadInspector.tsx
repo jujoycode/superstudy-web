@@ -92,17 +92,17 @@ export default function FileUploadInspector({ fileData, handleBack }: FileUpload
         <Typography variant="heading" className="mb-16">
           파일 업로드
         </Typography>
-        <Typography variant="title2" className="text-primary-gray-900 mb-4">
+        <Typography variant="title2" className="mb-4 text-gray-900">
           첨부파일 확인
         </Typography>
-        <div className="border-primary-gray-200 mb-3 flex h-12 w-full items-center justify-between gap-2 rounded-lg border bg-white px-4">
+        <div className="mb-3 flex h-12 w-full items-center justify-between gap-2 rounded-lg border border-gray-200 bg-white px-4">
           <SVGIcon.LinkV2 size={16} weight="bold" color="gray700" />
-          <Typography variant="body2" className="text-primary-gray-900 w-[544px]">
+          <Typography variant="body2" className="w-[544px] text-gray-900">
             {fileData.name}
           </Typography>
           <ColorSVGIcon.Close className="cursor-pointer" color="dimmed" size={24} onClick={() => handleBack()} />
         </div>
-        <Typography variant="caption2" className="text-primary-gray-500 flex items-start gap-1">
+        <Typography variant="caption2" className="flex items-start gap-1 text-gray-500">
           <SolidSVGIcon.Info color="gray400" size={16} />
           hwp, doc, docx, xls, xlsx, ppt, pptx, pdf 형식만 업로드 가능합니다.
           <br />

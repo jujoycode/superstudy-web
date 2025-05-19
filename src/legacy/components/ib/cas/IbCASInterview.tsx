@@ -194,7 +194,7 @@ export function IbCASInterview({
           </div>
           <div
             className={clsx(
-              'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-3 border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
+              'sticky bottom-0 flex h-[104px] justify-end gap-3 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
             )}
           >
             <ButtonV2 variant="solid" color="gray100" size={48} onClick={handleBack}>
@@ -245,7 +245,7 @@ export function IbCASInterview({
                 <Check.Basic checked={check} onChange={handleAllCheck} />
                 <Typography
                   variant="title3"
-                  className="text-primary-gray-900 cursor-pointer font-medium"
+                  className="cursor-pointer font-medium text-gray-900"
                   onClick={handleAllCheck}
                 >
                   모든 내용을 확인하였습니다.
@@ -255,7 +255,7 @@ export function IbCASInterview({
           </div>
           <div
             className={clsx(
-              'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] items-center justify-end gap-3 border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
+              'sticky bottom-0 flex h-[104px] items-center justify-end gap-3 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
             )}
           >
             <ButtonV2 variant="solid" color="gray100" size={48} onClick={() => setStep(0)}>

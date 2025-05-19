@@ -157,7 +157,7 @@ const BottomSheetListSelection: React.FC<BottomSheetListSelectionProps> = ({ isO
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <div className="bg-primary-gray-300 h-1 w-12 rounded-3xl" />
+          <div className="h-1 w-12 rounded-3xl bg-gray-300" />
         </div>
 
         {/* 스크롤 가능한 컨텐츠 */}

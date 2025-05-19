@@ -67,23 +67,20 @@ const Stepper: React.FC<StepperProps> = ({
   return (
     <div className="flex flex-col items-end justify-center gap-1">
       <div
-        className={clsx(
-          'border-primary-gray-200 flex w-max flex-row items-center gap-1 overflow-hidden rounded-md border',
-          {
-            'bg-white': !disabled,
-            'border-primary-gray-700': isFocused,
-            'bg-primary-gray-100': disabled || readonly,
-            'cursor-not-allowed': readonly || disabled,
-            'cursor-pointer': !readonly && !disabled,
-            'border-primary-red-800': isError,
-          },
-        )}
+        className={clsx('flex w-max flex-row items-center gap-1 overflow-hidden rounded-md border border-gray-200', {
+          'bg-white': !disabled,
+          'border-gray-700': isFocused,
+          'bg-gray-100': disabled || readonly,
+          'cursor-not-allowed': readonly || disabled,
+          'cursor-pointer': !readonly && !disabled,
+          'border-primary-red-800': isError,
+        })}
         onFocus={!readonly && !disabled ? handleFocus : undefined}
         onBlur={!readonly && !disabled ? handleBlur : undefined}
       >
         <div
-          className={clsx('border-r-primary-gray-200 flex h-8 w-8 items-center justify-center border-r', {
-            'bg-primary-gray-100': number <= min,
+          className={clsx('flex h-8 w-8 items-center justify-center border-r border-r-gray-200', {
+            'bg-gray-100': number <= min,
             'cursor-not-allowed': number <= min,
           })}
         >
@@ -106,12 +103,12 @@ const Stepper: React.FC<StepperProps> = ({
             onChange={handleInputChange}
             readOnly={readonly}
             disabled={disabled}
-            className="text-primary-gray-700 caret-ib-blue-800 disabled:text-primary-gray-400 h-full w-full border-none bg-transparent p-0 text-center text-sm font-medium focus:ring-0 focus:outline-none"
+            className="caret-ib-blue-800 h-full w-full border-none bg-transparent p-0 text-center text-sm font-medium text-gray-700 focus:ring-0 focus:outline-none disabled:text-gray-400"
           />
         </div>
         <div
-          className={clsx('border-l-primary-gray-200 flex h-8 w-8 items-center justify-center border-l', {
-            'bg-primary-gray-100': number >= max,
+          className={clsx('flex h-8 w-8 items-center justify-center border-l border-l-gray-200', {
+            'bg-gray-100': number >= max,
             'cursor-not-allowed': number >= max,
           })}
         >

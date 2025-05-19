@@ -76,25 +76,25 @@ export default function FAQList({ type = 'IB_ALL' }: FAQListProps) {
 
   const Header = () => (
     <>
-      <div className="text-primary-gray-500 w-[68px] text-center font-medium">번호</div>
-      <div className="text-primary-gray-500 w-[92px] text-center font-medium">유형</div>
-      <div className="text-primary-gray-500 w-[632px] text-center font-medium">제목</div>
-      <div className="text-primary-gray-500 w-[188px] text-center font-medium">수정일</div>
-      <div className="text-primary-gray-500 w-[188px] text-center font-medium">관리</div>
+      <div className="w-[68px] text-center font-medium text-gray-500">번호</div>
+      <div className="w-[92px] text-center font-medium text-gray-500">유형</div>
+      <div className="w-[632px] text-center font-medium text-gray-500">제목</div>
+      <div className="w-[188px] text-center font-medium text-gray-500">수정일</div>
+      <div className="w-[188px] text-center font-medium text-gray-500">관리</div>
     </>
   )
 
   // Item 컴포넌트
   const Item = ({ item, index }: { item: any; index: number }) => (
     <>
-      <div className="text-primary-gray-900 w-[68px] text-center font-medium">{index}</div>
+      <div className="w-[68px] text-center font-medium text-gray-900">{index}</div>
       <div className="flex w-[92px] justify-center">
         <BadgeV2 color="gray" type="solid_regular">
           {item.category === '참고자료' ? '참고자료' : 'FAQ'}
         </BadgeV2>
       </div>
-      <div className="text-primary-gray-900 w-[632px] text-left font-medium">{item.title}</div>
-      <div className="text-primary-gray-900 w-[188px] text-center font-medium">
+      <div className="w-[632px] text-left font-medium text-gray-900">{item.title}</div>
+      <div className="w-[188px] text-center font-medium text-gray-900">
         {format(new Date(item.updatedAt), 'yyyy.MM.dd')}
       </div>
       <div className="flex w-[188px] flex-row justify-center gap-2">
@@ -168,7 +168,7 @@ export default function FAQList({ type = 'IB_ALL' }: FAQListProps) {
   return (
     <div className="min-h-[664px] rounded-xl bg-white">
       <div className="flex flex-row items-center justify-between p-6">
-        <Typography variant="title1" className="text-primary-gray-900">
+        <Typography variant="title1" className="text-gray-900">
           참고자료 및 FAQ
         </Typography>
         {isIBPermission[type] && mergedItems.length > 0 && (
@@ -195,7 +195,7 @@ export default function FAQList({ type = 'IB_ALL' }: FAQListProps) {
           </div>
           {isIBPermission[type] ? (
             <>
-              <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
+              <Typography variant="body2" className="text-center font-medium text-gray-700">
                 작성한 참고자료 및 FAQ가 없습니다.
                 <br />
                 참고자료 및 FAQ를 추가해주세요.
@@ -205,7 +205,7 @@ export default function FAQList({ type = 'IB_ALL' }: FAQListProps) {
               </ButtonV2>
             </>
           ) : (
-            <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
+            <Typography variant="body2" className="text-center font-medium text-gray-700">
               작성한 참고자료 및 FAQ가 없습니다.
             </Typography>
           )}

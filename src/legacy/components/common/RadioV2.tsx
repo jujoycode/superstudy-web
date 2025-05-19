@@ -47,8 +47,8 @@ const RadioIndicator = ({ size = 24, checked, disabled }: { size: number; checke
   return (
     <span
       className={clsx('flex items-center justify-center rounded-full border-2 transition-colors', {
-        'border-primary-gray-200 bg-white': !disabled,
-        'border-primary-gray-200 bg-primary-gray-100': disabled,
+        'border-gray-200 bg-white': !disabled,
+        'border-gray-200 bg-gray-100': disabled,
         'cursor-not-allowed': disabled,
       })}
       style={{ width: size, height: size }}
@@ -57,7 +57,7 @@ const RadioIndicator = ({ size = 24, checked, disabled }: { size: number; checke
         <span
           className={clsx('rounded-full', {
             'bg-primary-800': !disabled,
-            'bg-primary-gray-300': disabled,
+            'bg-gray-300': disabled,
           })}
           style={{
             width: `${size * 0.5}px`,
@@ -125,7 +125,7 @@ const Box = forwardRef<HTMLInputElement, RadioBoxProps>(function Box(
       <label
         onClick={handleLabelClick}
         className={clsx(
-          `border-primary-gray-200 flex w-full flex-row items-start gap-2 overflow-hidden rounded-lg border px-4 py-[14px]`,
+          `flex w-full flex-row items-start gap-2 overflow-hidden rounded-lg border border-gray-200 px-4 py-[14px]`,
           props.checked && 'border-primary-400',
           props.disabled || 'cursor-pointer',
         )}
@@ -133,7 +133,7 @@ const Box = forwardRef<HTMLInputElement, RadioBoxProps>(function Box(
         <RadioIndicator size={20} checked={props.checked} disabled={props.disabled} />
         <div className="flex flex-1 flex-col">
           {content && (
-            <Typography variant="body2" className="text-primary-gray-900 text-[15px] font-medium">
+            <Typography variant="body2" className="text-[15px] font-medium text-gray-900">
               {content}
             </Typography>
           )}
@@ -148,9 +148,9 @@ const Box = forwardRef<HTMLInputElement, RadioBoxProps>(function Box(
   return (
     <label
       onClick={handleLabelClick}
-      className={`border-primary-gray-200 flex w-full cursor-pointer flex-row items-center gap-4 rounded-xl border p-6 shadow-[0_4px_8px_0_#F4F6F8] ${
+      className={`flex w-full cursor-pointer flex-row items-center gap-4 rounded-xl border border-gray-200 p-6 shadow-[0_4px_8px_0_#F4F6F8] ${
         props.checked && 'border-primary-400 shadow-[0_4px_8px_0_#ffe8db]'
-      } ${props.disabled && 'bg-primary-gray-100'} overflow-hidden`}
+      } ${props.disabled && 'bg-gray-100'} overflow-hidden`}
     >
       {showImage && image && (
         <div className="h-12 w-12 overflow-hidden rounded-xl">
@@ -180,20 +180,20 @@ const Label = forwardRef<HTMLInputElement, RadioLabelProps>(function Box(
   return (
     <label
       onClick={handleLabelClick}
-      className={`border-primary-gray-200 flex w-full cursor-pointer flex-row items-center justify-between rounded-xl border bg-white p-6 shadow-[0_4px_8px_0_#F4F6F8] ${
+      className={`flex w-full cursor-pointer flex-row items-center justify-between rounded-xl border border-gray-200 bg-white p-6 shadow-[0_4px_8px_0_#F4F6F8] ${
         props.checked && 'border-primary-800 shadow-[0_4px_8px_0_#ffe8db]'
-      } ${props.disabled && 'bg-primary-gray-50'} overflow-hidden`}
+      } ${props.disabled && 'bg-gray-50'} overflow-hidden`}
     >
       <div className="flex flex-col justify-start gap-1">
-        <Typography variant="body3" className="text-primary-gray-700">
+        <Typography variant="body3" className="text-gray-700">
           {title}
         </Typography>
         <div className="flex flex-row items-end justify-start gap-2">
-          <Typography variant="title1" className="text-primary-gray-900 font-semibold">
+          <Typography variant="title1" className="font-semibold text-gray-900">
             {currentNum}
             {type === 'count' ? '명' : '개'}
           </Typography>
-          <Typography variant="caption2" className="text-primary-gray-500 flex h-6 flex-col justify-center">
+          <Typography variant="caption2" className="flex h-6 flex-col justify-center text-gray-500">
             /&nbsp;{TotalNum}
             {type === 'count' ? '명' : '개'}
           </Typography>
@@ -223,11 +223,11 @@ const Chip = forwardRef<HTMLInputElement, RadioChipProps>(function Chip(
       } ${
         checked
           ? disabled
-            ? 'bg-primary-gray-400 text-white'
-            : 'bg-primary-gray-700 text-white'
+            ? 'bg-gray-400 text-white'
+            : 'bg-gray-700 text-white'
           : disabled
-            ? 'bg-primary-gray-50 text-primary-gray-400'
-            : 'bg-primary-gray-50 text-primary-gray-700'
+            ? 'bg-gray-50 text-gray-400'
+            : 'bg-gray-50 text-gray-700'
       }`}
     >
       <input ref={ref} type="checkbox" checked={checked} disabled={disabled} className="hidden" {...props} />

@@ -76,8 +76,8 @@ export function Coordinator_Schedule_UpdateSchedule({
                   </Typography>
                   <div className="relative">
                     <div
-                      className={`border-primary-gray-200 flex h-10 w-full items-center gap-2 rounded-lg border bg-white px-3 py-[9px] focus:ring-0 focus:outline-none ${
-                        isFocused && 'border-primary-gray-700'
+                      className={`flex h-10 w-full items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-[9px] focus:ring-0 focus:outline-none ${
+                        isFocused && 'border-gray-700'
                       }`}
                       onFocus={handleFocus}
                       onBlur={handleBlur}
@@ -85,7 +85,7 @@ export function Coordinator_Schedule_UpdateSchedule({
                     >
                       <SVGIcon.Calendar size={20} color="gray700" />
                       <input
-                        className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-ib-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none bg-white p-0 font-medium focus:ring-0 focus:outline-none"
+                        className="text-15 caret-ib-blue-800 w-full flex-1 border-none bg-white p-0 font-medium text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-none"
                         placeholder="마감기한 선택"
                         value={
                           deadline.deadlineTime
@@ -119,7 +119,7 @@ export function Coordinator_Schedule_UpdateSchedule({
                       <Button.lg
                         key={day}
                         className={twMerge(
-                          'border-primary-gray-300 text-primary-gray-700 disabled:border-primary-gray-200 disabled:bg-primary-gray-100 disabled:text-primary-gray-400 h-[40px] border bg-white',
+                          'h-[40px] border border-gray-300 bg-white text-gray-700 disabled:border-gray-200 disabled:bg-gray-100 disabled:text-gray-400',
                           deadline.remindDays?.includes(day) && 'border-primary-400 bg-primary-100 text-primary-800',
                         )}
                         disabled={!deadline.deadlineTime}
@@ -144,7 +144,7 @@ export function Coordinator_Schedule_UpdateSchedule({
 
         <div
           className={
-            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]'
+            'sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8 backdrop-blur-[20px]'
           }
         >
           <div className="flex justify-end gap-3">

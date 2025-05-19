@@ -51,7 +51,7 @@ function StudentActivityTimeline({ data, user }: StudentActivityTimelineProps) {
   const calculatedHeight = projectCount * projectHeight + (projectCount > 0 ? (projectCount - 1) * projectGap : 0)
 
   return (
-    <div className="border-primary-gray-200 relative flex w-full flex-col gap-2 rounded-lg border px-4 pt-4 pb-[7px]">
+    <div className="relative flex w-full flex-col gap-2 rounded-lg border border-gray-200 px-4 pt-4 pb-[7px]">
       {/* 텍스트 영역 */}
       <div className="flex w-full gap-3">
         <div className="flex min-w-[204px] flex-col gap-2 pb-[9px]">
@@ -67,7 +67,7 @@ function StudentActivityTimeline({ data, user }: StudentActivityTimelineProps) {
               </span>
             </div>
           ))}
-          <Typography variant="caption3" className="text-primary-gray-500 flex h-5 items-center font-medium">
+          <Typography variant="caption3" className="flex h-5 items-center font-medium text-gray-500">
             {`${DateUtil.formatDate(timelineStartDate, DateFormat['YYYY.MM.DD'])} ~ ${DateUtil.formatDate(
               timelineEndDate,
               DateFormat['YYYY.MM.DD'],
@@ -88,7 +88,7 @@ function StudentActivityTimeline({ data, user }: StudentActivityTimelineProps) {
               >
                 <div
                   className={`absolute h-full w-[1px] -translate-x-1/2 transform ${
-                    i === 0 || i === 21 ? 'bg-primary-gray-100' : ''
+                    i === 0 || i === 21 ? 'bg-gray-100' : ''
                   }`}
                   style={{
                     borderLeft: i === 0 || i === 21 ? 'none' : '1px dashed var(--Gray-200, #E8EAED)',
@@ -117,7 +117,7 @@ function StudentActivityTimeline({ data, user }: StudentActivityTimelineProps) {
                       className={`absolute h-full ${
                         project.startAt && project.endAt
                           ? 'border-dim-8 bg-gradient-navy-400 rounded-[4px]'
-                          : 'bg-primary-gray-200'
+                          : 'bg-gray-200'
                       }`}
                       style={{
                         left: `${startPixel}px`,
@@ -139,7 +139,7 @@ function StudentActivityTimeline({ data, user }: StudentActivityTimelineProps) {
                     className="absolute w-4 text-center"
                     style={{ left: `${left}px`, transform: 'translateX(-50%)' }}
                   >
-                    <Typography variant="body3" className="text-primary-gray-400 text-[11px]">
+                    <Typography variant="body3" className="text-[11px] text-gray-400">
                       {currentMonth.getMonth() + 1}
                     </Typography>
                   </div>

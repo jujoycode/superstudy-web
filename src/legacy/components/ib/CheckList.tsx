@@ -51,14 +51,14 @@ CheckList.Teacher = ({ charCount, student }: TeacherCheckListProps) => {
 
   return (
     <section className="flex flex-col gap-4">
-      <div className="border-primary-gray-200 bg-primary-gray-50 flex items-center gap-[6px] rounded-lg border px-4 py-[6px]">
-        <Typography variant="body3" className="text-primary-gray-700 font-semibold">
+      <div className="flex items-center gap-[6px] rounded-lg border border-gray-200 bg-gray-50 px-4 py-[6px]">
+        <Typography variant="body3" className="font-semibold text-gray-700">
           {student.studentGroup.group.grade}
           {String(student.studentGroup.group.klass).padStart(2, '0')}
           {String(student.studentGroup.studentNumber).padStart(2, '0')}
         </Typography>
-        <span className="text-primary-gray-400 mx-1">·</span>
-        <Typography variant="body3" className="text-primary-gray-700 font-semibold">
+        <span className="mx-1 text-gray-400">·</span>
+        <Typography variant="body3" className="font-semibold text-gray-700">
           {student.name}
         </Typography>
       </div>
@@ -67,7 +67,7 @@ CheckList.Teacher = ({ charCount, student }: TeacherCheckListProps) => {
           <Check.Box key={item.id} label={item.content} size={20} value={item.id} checked={item.check} disabled />
         ))}
       </Check.Group>
-      <div className="bg-primary-gray-50 flex flex-row items-center justify-between rounded-lg px-4 py-3">
+      <div className="flex flex-row items-center justify-between rounded-lg bg-gray-50 px-4 py-3">
         <Typography variant="body3">사용 단어 수</Typography>
         <Input.Basic size={32} type="number" value={charCount} readonly />
       </div>

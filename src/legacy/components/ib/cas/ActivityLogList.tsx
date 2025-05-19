@@ -116,7 +116,7 @@ export default function ActivityLogList({ id, status, writerId }: ActivityLogLis
               </div>
             ) : (
               <table className="w-full">
-                <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
+                <thead className="border-y border-y-gray-100 text-[15px] font-medium text-gray-500">
                   <tr>
                     <td className="w-[100px] py-[9px] pr-2 pl-6 text-center">번호</td>
                     <td className="w-[540px] px-2 py-[9px] text-center">제목</td>
@@ -133,7 +133,7 @@ export default function ActivityLogList({ id, status, writerId }: ActivityLogLis
                       const feedback = feedbacks?.items?.find((item) => item.referenceId === activityLog.id)
                       const itemNumber = data.total - (currentPage - 1) * itemsPerPage - index
                       return (
-                        <tr key={activityLog.id} className="border-b-primary-gray-100 border-b">
+                        <tr key={activityLog.id} className="border-b border-b-gray-100">
                           <td className="py-4 pr-2 pl-6 text-center">{itemNumber}</td>
                           <td
                             className="cursor-pointer px-2 py-4 text-start"

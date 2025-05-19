@@ -103,7 +103,7 @@ const ProjectList: React.FC<ProjectListProps> = ({
         onClick={toggleAccordion}
       >
         <span className="flex flex-row items-center gap-1">
-          <Typography variant="title3" className="text-primary-gray-900">
+          <Typography variant="title3" className="text-gray-900">
             {title}
           </Typography>
           {isLoading ? (
@@ -163,28 +163,28 @@ export default ProjectList
 const DummyCard = () => (
   <>
     <div
-      className={`border-primary-gray-200 box-border flex h-[223px] w-[308px] animate-pulse cursor-pointer flex-col rounded-xl border bg-white shadow`}
+      className={`box-border flex h-[223px] w-[308px] animate-pulse cursor-pointer flex-col rounded-xl border border-gray-200 bg-white shadow`}
     >
-      <div className="border-b-primary-gray-100 box-border flex flex-row items-center border-b px-5 py-3">
+      <div className="box-border flex flex-row items-center border-b border-b-gray-100 px-5 py-3">
         <div className="h-4 flex-1 rounded bg-slate-200"></div>
       </div>
       <div className="flex w-[308px] flex-1 flex-col justify-between px-5 pt-5">
         <div>
           <nav className="box-border flex w-full flex-row items-center justify-between">
-            <span className="bg-primary-gray-100 h-6 w-10 rounded"></span>
-            <span className="bg-primary-gray-100 h-6 w-20 rounded"></span>
+            <span className="h-6 w-10 rounded bg-gray-100"></span>
+            <span className="h-6 w-20 rounded bg-gray-100"></span>
           </nav>
           <main className="box-border flex flex-col gap-3 py-6">
-            <span className="bg-primary-gray-100 h-6 w-40 rounded"></span>
+            <span className="h-6 w-40 rounded bg-gray-100"></span>
             <div className="flex w-full flex-col gap-2">
               <span className="flex flex-row gap-2">
-                <span className="bg-primary-gray-100 h-6 w-14 rounded"></span>
-                <span className="bg-primary-gray-100 h-6 w-30 rounded"></span>
+                <span className="h-6 w-14 rounded bg-gray-100"></span>
+                <span className="h-6 w-30 rounded bg-gray-100"></span>
               </span>
 
               <span className="flex flex-row gap-2">
-                <span className="bg-primary-gray-100 h-6 w-14 rounded"></span>
-                <span className="bg-primary-gray-100 h-6 w-30 rounded"></span>
+                <span className="h-6 w-14 rounded bg-gray-100"></span>
+                <span className="h-6 w-30 rounded bg-gray-100"></span>
               </span>
             </div>
           </main>
@@ -192,28 +192,28 @@ const DummyCard = () => (
       </div>
     </div>
     <div
-      className={`border-primary-gray-200 box-border flex h-[223px] w-[308px] animate-pulse cursor-pointer flex-col rounded-xl border bg-white shadow`}
+      className={`box-border flex h-[223px] w-[308px] animate-pulse cursor-pointer flex-col rounded-xl border border-gray-200 bg-white shadow`}
     >
-      <div className="border-b-primary-gray-100 box-border flex flex-row items-center border-b px-5 py-3">
+      <div className="box-border flex flex-row items-center border-b border-b-gray-100 px-5 py-3">
         <div className="h-4 flex-1 rounded bg-slate-200"></div>
       </div>
       <div className="flex w-[308px] flex-1 flex-col justify-between px-5 pt-5">
         <div>
           <nav className="box-border flex w-full flex-row items-center justify-between">
-            <span className="bg-primary-gray-100 h-6 w-10 rounded"></span>
-            <span className="bg-primary-gray-100 h-6 w-20 rounded"></span>
+            <span className="h-6 w-10 rounded bg-gray-100"></span>
+            <span className="h-6 w-20 rounded bg-gray-100"></span>
           </nav>
           <main className="box-border flex flex-col gap-3 py-6">
-            <span className="bg-primary-gray-100 h-6 w-40 rounded"></span>
+            <span className="h-6 w-40 rounded bg-gray-100"></span>
             <div className="flex w-full flex-col gap-2">
               <span className="flex flex-row gap-2">
-                <span className="bg-primary-gray-100 h-6 w-14 rounded"></span>
-                <span className="bg-primary-gray-100 h-6 w-30 rounded"></span>
+                <span className="h-6 w-14 rounded bg-gray-100"></span>
+                <span className="h-6 w-30 rounded bg-gray-100"></span>
               </span>
 
               <span className="flex flex-row gap-2">
-                <span className="bg-primary-gray-100 h-6 w-14 rounded"></span>
-                <span className="bg-primary-gray-100 h-6 w-30 rounded"></span>
+                <span className="h-6 w-14 rounded bg-gray-100"></span>
+                <span className="h-6 w-30 rounded bg-gray-100"></span>
               </span>
             </div>
           </main>
@@ -243,9 +243,7 @@ export const IBPagination: React.FC<PaginationProps> = ({ totalItems, itemsPerPa
     <div className="flex items-center justify-center gap-1 py-4">
       <button
         className={`flex h-8 w-8 items-center justify-center ${
-          currentPage === 1
-            ? 'text-primary-gray-400'
-            : 'hover:bg-primary-gray-50 hover:text-primary-gray-700 hover:rounded-md'
+          currentPage === 1 ? 'text-gray-400' : 'hover:rounded-md hover:bg-gray-50 hover:text-gray-700'
         }`}
         onClick={() => handlePageClick(currentPage - 1)}
         disabled={currentPage === 1}
@@ -258,8 +256,8 @@ export const IBPagination: React.FC<PaginationProps> = ({ totalItems, itemsPerPa
           key={index}
           className={`text-14 h-8 w-8 font-medium ${
             currentPage === index + 1
-              ? 'bg-primary-gray-700 rounded-md text-white'
-              : 'text-primary-gray-700 hover:bg-primary-gray-50 hover:text-primary-gray-700' // hover 스타일
+              ? 'rounded-md bg-gray-700 text-white'
+              : 'text-gray-700 hover:bg-gray-50 hover:text-gray-700' // hover 스타일
           }`}
           onClick={() => handlePageClick(index + 1)}
         >
@@ -269,9 +267,7 @@ export const IBPagination: React.FC<PaginationProps> = ({ totalItems, itemsPerPa
 
       <button
         className={`flex h-8 w-8 items-center justify-center ${
-          currentPage === totalPages
-            ? 'text-primary-gray-400'
-            : 'hover:bg-primary-gray-50 hover:text-primary-gray-700 hover:rounded-md'
+          currentPage === totalPages ? 'text-gray-400' : 'hover:rounded-md hover:bg-gray-50 hover:text-gray-700'
         }`}
         onClick={() => handlePageClick(currentPage + 1)}
         disabled={currentPage === totalPages}

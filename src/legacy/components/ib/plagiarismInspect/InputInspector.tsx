@@ -92,14 +92,14 @@ export default function InputInspector({ handleBack }: InputInspectorProps) {
         <Typography variant="heading" className="mb-16">
           직접 입력
         </Typography>
-        <Typography variant="title2" className="text-primary-gray-900 mb-4">
+        <Typography variant="title2" className="mb-4 text-gray-900">
           검사내용 입력
         </Typography>
         <Input.Basic
           placeholder="제목을 입력해주세요"
           onChange={(e) => handleChange('title', e.target.value)}
           size={48}
-          className="text-primary-gray-900 mb-3 font-medium"
+          className="mb-3 font-medium text-gray-900"
         />
         <TextareaV2
           showLength

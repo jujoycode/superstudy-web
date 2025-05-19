@@ -15,7 +15,7 @@ const badgeUI = (status: ResponseCopykillerResponseDtoCompleteStatus, copyRatio:
       return (
         <>
           <SVGIcon.Check color="orange800" size={16} weight="bold" />
-          <Typography variant="body3" className="text-primary-gray-900 font-medium">
+          <Typography variant="body3" className="font-medium text-gray-900">
             표절률 <span className="text-primary-800">{copyRatio}%</span>
           </Typography>
         </>
@@ -24,7 +24,7 @@ const badgeUI = (status: ResponseCopykillerResponseDtoCompleteStatus, copyRatio:
       return (
         <>
           <SVGIcon.More color="gray700" size={16} weight="bold" />
-          <Typography variant="body3" className="text-primary-gray-900 font-medium">
+          <Typography variant="body3" className="font-medium text-gray-900">
             검사 진행중
           </Typography>
         </>
@@ -45,7 +45,7 @@ export default function Badge({ status, copyRatio }: BadgeProps) {
     <div
       className={clsx(
         'flex h-8 items-center gap-1 rounded-lg px-[10px] py-[6px]',
-        status === 'Y' ? 'bg-primary-50' : 'bg-primary-gray-100',
+        status === 'Y' ? 'bg-primary-50' : 'bg-gray-100',
       )}
     >
       {badgeUI(status, copyRatio)}

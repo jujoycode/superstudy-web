@@ -98,14 +98,14 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
     <div className={clsx('flex flex-col justify-start gap-1', className)}>
       <div
         className={clsx(
-          'border-primary-gray-200 relative flex items-center justify-between gap-2 border focus:ring-0 focus:outline-none',
+          'relative flex items-center justify-between gap-2 border border-gray-200 focus:ring-0 focus:outline-none',
           {
             'bg-white': (!disabled && !readonly) || (readonly && size === 48),
-            'bg-primary-gray-100': disabled || readonly,
+            'bg-gray-100': disabled || readonly,
             'cursor-not-allowed': readonly || disabled,
             'cursor-pointer': !readonly && !disabled,
             'border--': errorMessage,
-            'border-primary-gray-700': isFocused,
+            'border-gray-700': isFocused,
           },
           sizeClass,
         )}
@@ -122,11 +122,9 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
           className={cn(
             clsx(
               isSearch ? 'w-full flex-1' : 'w-full',
-              `border-none p-0 ${
-                readonly && size === 48 ? 'text-primary-gray-700 bg-white' : 'text-primary-gray-900'
-              } ${
-                (disabled || readonly) && 'bg-primary-gray-100'
-              } placeholder-primary-gray-400 caret-ib-blue-800 focus:text-primary-gray-700 read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:text-gray-400`,
+              `border-none p-0 ${readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'} ${
+                (disabled || readonly) && 'bg-gray-100'
+              } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-none disabled:text-gray-400`,
               fontClass,
             ),
             inputClassName,
@@ -227,14 +225,14 @@ export const InputSelect = forwardRef<HTMLInputElement, TextInputProps>(function
     <div className={clsx('flex flex-col justify-start gap-1', className)}>
       <div
         className={clsx(
-          'border-primary-gray-200 relative flex items-center justify-between gap-2 border focus:ring-0 focus:outline-none',
+          'relative flex items-center justify-between gap-2 border border-gray-200 focus:ring-0 focus:outline-none',
           {
             'bg-white': (!disabled && !readonly) || (readonly && size === 48),
-            'bg-primary-gray-100': disabled || readonly,
+            'bg-gray-100': disabled || readonly,
             'cursor-not-allowed': readonly || disabled,
             'cursor-pointer': !readonly && !disabled && !selectId,
             'border--': errorMessage,
-            'border-primary-gray-700': isFocused,
+            'border-gray-700': isFocused,
           },
           sizeClass,
         )}
@@ -242,7 +240,7 @@ export const InputSelect = forwardRef<HTMLInputElement, TextInputProps>(function
         onBlur={!readonly && !disabled && !selectId ? handleBlur : undefined}
       >
         {selectId ? (
-          <div className="bg-primary-gray-400 hover:bg-primary-gray-600 flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1">
+          <div className="flex cursor-pointer items-center gap-1 rounded-lg bg-gray-400 px-2 py-1 hover:bg-gray-600">
             <Typography variant="body3">{value}</Typography>
             <SVGIcon.Close color="white" size={10} weight="bold" onClick={onCancel} />
           </div>
@@ -252,11 +250,9 @@ export const InputSelect = forwardRef<HTMLInputElement, TextInputProps>(function
             className={cn(
               clsx(
                 isSearch ? 'w-full flex-1' : 'w-full',
-                `border-none p-0 ${
-                  readonly && size === 48 ? 'text-primary-gray-700 bg-white' : 'text-primary-gray-900'
-                } ${
-                  (disabled || readonly) && 'bg-primary-gray-100'
-                } placeholder-primary-gray-400 caret-ib-blue-800 focus:text-primary-gray-700 read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:text-gray-400`,
+                `border-none p-0 ${readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'} ${
+                  (disabled || readonly) && 'bg-gray-100'
+                } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-none disabled:text-gray-400`,
                 fontClass,
               ),
               inputClassName,
@@ -349,32 +345,30 @@ export const InputLabel = forwardRef<HTMLInputElement, TextInputProps>(function 
     <div className={clsx('flex flex-col justify-start gap-1', className)}>
       <div
         className={clsx(
-          'border-primary-gray-200 relative flex items-center justify-between gap-2 border focus:ring-0 focus:outline-none',
+          'relative flex items-center justify-between gap-2 border border-gray-200 focus:ring-0 focus:outline-none',
           {
             'bg-white': (!disabled && !readonly) || (readonly && size === 48),
-            'bg-primary-gray-100': disabled || readonly,
+            'bg-gray-100': disabled || readonly,
             'cursor-not-allowed': readonly || disabled,
             'cursor-pointer': !readonly && !disabled,
             'border--': errorMessage,
-            'border-primary-gray-700': isFocused,
+            'border-gray-700': isFocused,
           },
           sizeClass,
         )}
         onFocus={!readonly && !disabled ? handleFocus : undefined}
         onBlur={!readonly && !disabled ? handleBlur : undefined}
       >
-        <Typography variant="body3" className={clsx('text-primary-gray-500 min-w-max', labelClass)}>
+        <Typography variant="body3" className={clsx('min-w-max text-gray-500', labelClass)}>
           {label}
         </Typography>
         <input
           ref={ref}
           className={cn(
             clsx(
-              `w-full border-none p-0 ${
-                readonly && size === 48 ? 'text-primary-gray-700 bg-white' : 'text-primary-gray-900'
-              } ${
-                (disabled || readonly) && 'bg-primary-gray-100'
-              } placeholder-primary-gray-400 caret-ib-blue-800 focus:text-primary-gray-700 read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:text-gray-400`,
+              `w-full border-none p-0 ${readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'} ${
+                (disabled || readonly) && 'bg-gray-100'
+              } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-none disabled:text-gray-400`,
               fontClass,
             ),
           )}
@@ -451,14 +445,14 @@ export const InputScale = forwardRef<HTMLInputElement, TextInputProps>(function 
     <div className={clsx('flex flex-col justify-start gap-1', className)}>
       <div
         className={clsx(
-          'border-primary-gray-200 relative flex items-center justify-end gap-2 border focus:ring-0 focus:outline-none',
+          'relative flex items-center justify-end gap-2 border border-gray-200 focus:ring-0 focus:outline-none',
           {
             'bg-white': (!disabled && !readonly) || (readonly && size === 48),
-            'bg-primary-gray-100': disabled || readonly,
+            'bg-gray-100': disabled || readonly,
             'cursor-not-allowed': readonly || disabled,
             'cursor-pointer': !readonly && !disabled,
             'border--': errorMessage,
-            'border-primary-gray-700': isFocused,
+            'border-gray-700': isFocused,
           },
           sizeClass,
         )}
@@ -470,10 +464,10 @@ export const InputScale = forwardRef<HTMLInputElement, TextInputProps>(function 
           className={cn(
             clsx(
               `w-full border-none p-0 text-right ${
-                readonly && size === 48 ? 'text-primary-gray-700 bg-white' : 'text-primary-gray-900'
+                readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'
               } ${
-                (disabled || readonly) && 'bg-primary-gray-100'
-              } placeholder-primary-gray-400 caret-ib-blue-800 focus:text-primary-gray-700 read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:text-gray-400`,
+                (disabled || readonly) && 'bg-gray-100'
+              } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-none disabled:text-gray-400`,
               fontClass,
             ),
           )}
@@ -484,7 +478,7 @@ export const InputScale = forwardRef<HTMLInputElement, TextInputProps>(function 
           placeholder={placeholder}
           {...props}
         />
-        <Typography variant="body3" className="text-primary-gray-500 min-w-max">
+        <Typography variant="body3" className="min-w-max text-gray-500">
           {label}
         </Typography>
       </div>

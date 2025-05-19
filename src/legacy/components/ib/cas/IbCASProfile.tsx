@@ -141,7 +141,7 @@ export function IbCASProfile({
           </div>
           <div
             className={clsx(
-              'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
+              'sticky bottom-0 flex h-[104px] justify-end border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
             )}
           >
             <ButtonV2

@@ -138,16 +138,16 @@ export function IbPage() {
           </ButtonV2>
         )}
       </div>
-      <Admin.Box className="border-y-primary-gray-300 flex flex-col border-y">
+      <Admin.Box className="flex flex-col border-y border-y-gray-300">
         {editMode ? (
           <>
-            <div className="border-primary-gray-300 flex flex-row items-center border-b p-4">
+            <div className="flex flex-row items-center border-b border-gray-300 p-4">
               <Typography variant="body3" className="min-w-[117px] font-medium">
                 학교 이름
               </Typography>
               <InputField name="name" placeholder="학교 이름을 입력해주세요." control={control} className="flex-1" />
             </div>
-            <div className="border-primary-gray-300 flex flex-row items-center border-b p-4">
+            <div className="flex flex-row items-center border-b border-gray-300 p-4">
               <Typography variant="body3" className="min-w-[117px] font-medium">
                 학교 번호
               </Typography>
@@ -168,19 +168,19 @@ export function IbPage() {
           </>
         ) : (
           <>
-            <div className="border-primary-gray-300 flex flex-row items-center border-b p-4">
+            <div className="flex flex-row items-center border-b border-gray-300 p-4">
               <Typography variant="body3" className="min-w-[117px] font-medium">
                 학교 이름
               </Typography>
-              <Typography variant="body3" className="text-primary-gray-700">
+              <Typography variant="body3" className="text-gray-700">
                 {data?.name || '학교 이름을 입력해주세요.'}
               </Typography>
             </div>
-            <div className="border-primary-gray-300 flex flex-row items-center border-b p-4">
+            <div className="flex flex-row items-center border-b border-gray-300 p-4">
               <Typography variant="body3" className="min-w-[117px] font-medium">
                 학교 번호
               </Typography>
-              <Typography variant="body3" className="text-primary-gray-700">
+              <Typography variant="body3" className="text-gray-700">
                 {data?.code || '학교 번호를 입력해주세요.'}
               </Typography>
             </div>
@@ -188,7 +188,7 @@ export function IbPage() {
               <Typography variant="body3" className="min-w-[117px] font-medium">
                 Session
               </Typography>
-              <Typography variant="body3" className="text-primary-gray-700">
+              <Typography variant="body3" className="text-gray-700">
                 {data && formatSession(data?.session)}
               </Typography>
             </div>

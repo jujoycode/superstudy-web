@@ -167,8 +167,8 @@ export function IbEeRPPF({
                 <div
                   key={index}
                   className={clsx('flex flex-col gap-3 px-8', {
-                    'border-b-primary-gray-100 border-b pb-6': index === 0,
-                    'border-b-primary-gray-100 border-b py-6': index === 1,
+                    'border-b border-b-gray-100 pb-6': index === 0,
+                    'border-b border-b-gray-100 py-6': index === 1,
                     'pt-6': index === 2,
                   })}
                 >
@@ -177,7 +177,7 @@ export function IbEeRPPF({
                       {title}
                     </Typography>
                     {content.createdAt && (
-                      <Typography variant="caption" className="text-primary-gray-500">
+                      <Typography variant="caption" className="text-gray-500">
                         최초 제출일 : {format(new Date(content.createdAt), 'yy.MM.dd')}
                       </Typography>
                     )}
@@ -187,7 +187,7 @@ export function IbEeRPPF({
                     onWordCountChange={(count) => handleWordCountChange(index, count)}
                     placeholder={isTextareaReadonly(index) ? '입력 기간이 아닙니다.' : '내용을 입력해주세요.'}
                     className="h-[308px]"
-                    readonlyBackground="bg-primary-gray-100"
+                    readonlyBackground="bg-gray-100"
                     value={content.text}
                     readonly={isTextareaReadonly(index)}
                     {...register(`contents.${index}.text` as const)}
@@ -199,11 +199,11 @@ export function IbEeRPPF({
 
           <div
             className={clsx(
-              'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-between gap-4 border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
+              'sticky bottom-0 flex h-[104px] justify-between gap-4 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
             )}
           >
             <div className="text-12 flex flex-row items-center">
-              <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
+              <p className="text-gray-500">총 단어 수</p>&nbsp;
               <p className="text-primary-800 font-medium">{wordCounts.reduce((total, count) => total + count, 0)}</p>
             </div>
             <ButtonV2

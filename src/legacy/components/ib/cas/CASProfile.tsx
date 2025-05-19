@@ -52,13 +52,13 @@ function CASProfile({ data, refetch, me }: CASProfileProps) {
           <div className="flex flex-row items-center justify-between">
             <Typography variant="title1">내 프로필</Typography>
             <div className="flex flex-row items-center">
-              <Typography variant="body3" className="text-primary-gray-700">
+              <Typography variant="body3" className="text-gray-700">
                 지도교사
               </Typography>
-              <Typography variant="body3" className="text-primary-gray-400 mx-1">
+              <Typography variant="body3" className="mx-1 text-gray-400">
                 ·
               </Typography>
-              <Typography variant="body3" className="text-primary-gray-700">
+              <Typography variant="body3" className="text-gray-700">
                 {data?.profile.mentor ? `${data.profile.mentor.name} 선생님` : '미지정'}
               </Typography>
             </div>
@@ -90,7 +90,7 @@ function CASProfile({ data, refetch, me }: CASProfileProps) {
                 </Typography>
               </div>
               {/* TODO : 서버에서 전달받은 코드 사용 */}
-              <Typography variant="caption2" className="text-primary-gray-500 font-medium">
+              <Typography variant="caption2" className="font-medium text-gray-500">
                 응시코드 {profile?.ibCode || '-'}
               </Typography>
             </div>
@@ -114,7 +114,7 @@ function CASProfile({ data, refetch, me }: CASProfileProps) {
                 {data.profile.casInfo?.map((qna) => {
                   return (
                     <div key={qna.question} className="flex flex-col gap-1">
-                      <Typography variant="body3" className="text-primary-gray-500">
+                      <Typography variant="body3" className="text-gray-500">
                         {qna.question}
                       </Typography>
                       <Typography variant="body3" className="font-medium">

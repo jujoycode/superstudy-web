@@ -41,7 +41,7 @@ function CASPercent({ data }: CASPercentProps) {
       </div>
       <div className="flex h-2 w-full">
         {totalSum === 0 ? (
-          <div className="bg-primary-gray-200 h-full w-full rounded-[2px]"></div>
+          <div className="h-full w-full rounded-[2px] bg-gray-200"></div>
         ) : (
           <>
             {creativityPercent > 0 && (

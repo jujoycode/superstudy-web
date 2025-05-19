@@ -78,7 +78,7 @@ export function ExamScoreBoard({ studentId }: ExamScoreBoardProps) {
         <>
           {selectedSemester === '성적분석' ? (
             <div className="scrollable-wide text-12 mt-4">
-              <table className="border-primary-gray-200 w-full table-auto border text-left text-gray-500 rtl:text-right">
+              <table className="w-full table-auto border border-gray-200 text-left text-gray-500 rtl:text-right">
                 <thead className="bg-gray-200 text-gray-700 uppercase">
                   <tr>
                     <th scope="col" className="h-4 min-w-[120px] border-r border-gray-300 p-2 text-center">
@@ -159,7 +159,7 @@ export function ExamScoreBoard({ studentId }: ExamScoreBoardProps) {
             </div>
           ) : (
             <div className="scrollable-wide text-12 mt-4">
-              <table className="border-primary-gray-200 w-full table-auto border text-left text-gray-500 rtl:text-right">
+              <table className="w-full table-auto border border-gray-200 text-left text-gray-500 rtl:text-right">
                 <thead className="bg-gray-200 text-gray-700 uppercase">
                   <tr>
                     <th scope="col" className="h-4 min-w-[120px] border-r border-gray-300 p-2 text-center">

@@ -78,17 +78,17 @@ export default function InspectorButtonContainer({ type, onTypeSelect, onFileUpl
       return (
         <div
           className={clsx(
-            'border-primary-gray-200 bg-primary-gray-50 flex h-[240px] cursor-pointer flex-col items-center justify-center rounded-xl border px-6 py-11 shadow-[0px_4px_8px_0px_#F4F6F8]',
+            'flex h-[240px] cursor-pointer flex-col items-center justify-center rounded-xl border border-gray-200 bg-gray-50 px-6 py-11 shadow-[0px_4px_8px_0px_#F4F6F8]',
             variant === 'horizontal' ? 'w-[416px]' : 'w-[368px]',
           )}
           onClick={() => fileInputRef.current?.click()}
         >
           <div className="flex h-full w-full flex-col items-center justify-center">
             <img src={buttonObject[type].image} alt="add-file" className="h-[48px] w-[48px]" />
-            <Typography variant="title3" className="text-primary-gray-900 mt-4 mb-2">
+            <Typography variant="title3" className="mt-4 mb-2 text-gray-900">
               {buttonObject[type].title}
             </Typography>
-            <Typography variant="caption" className="text-primary-gray-600 text-center">
+            <Typography variant="caption" className="text-center text-gray-600">
               {buttonObject[type].description}
             </Typography>
             <input
@@ -107,16 +107,16 @@ export default function InspectorButtonContainer({ type, onTypeSelect, onFileUpl
       return (
         <div
           className={clsx(
-            'border-primary-gray-200 bg-primary-gray-50 flex h-[240px] cursor-pointer flex-col items-center justify-center rounded-xl border px-6 py-11 shadow-[0px_4px_8px_0px_#F4F6F8]',
+            'flex h-[240px] cursor-pointer flex-col items-center justify-center rounded-xl border border-gray-200 bg-gray-50 px-6 py-11 shadow-[0px_4px_8px_0px_#F4F6F8]',
             variant === 'horizontal' ? 'w-[416px]' : 'w-[368px]',
           )}
           onClick={onClick}
         >
           <img src={buttonObject[type].image} alt="add-file" className="h-[48px] w-[48px]" />
-          <Typography variant="title3" className="text-primary-gray-900 mt-4 mb-2">
+          <Typography variant="title3" className="mt-4 mb-2 text-gray-900">
             {buttonObject[type].title}
           </Typography>
-          <Typography variant="caption" className="text-primary-gray-600 text-center">
+          <Typography variant="caption" className="text-center text-gray-600">
             {buttonObject[type].description}
           </Typography>
         </div>
@@ -132,7 +132,7 @@ export default function InspectorButtonContainer({ type, onTypeSelect, onFileUpl
         type === 'vertical' && 'p-6',
       )}
     >
-      <Typography variant="title1" className="text-primary-gray-900">
+      <Typography variant="title1" className="text-gray-900">
         {type === 'vertical' ? '검사하기' : '파일 업로드 또는 직접 입력하여 표절률을 검사해보세요'}
       </Typography>
       <div className={clsx('flex gap-4', type === 'vertical' && 'flex-col')}>

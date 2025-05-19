@@ -10,7 +10,7 @@ const HintMessage = ({ message, direction = 'right' }: HintMessageProps) => {
 
   return (
     <div
-      className="text-md border-primary-gray-900 text-primary-gray-900 relative flex h-4 w-4 cursor-pointer items-center justify-center rounded-full border text-sm"
+      className="text-md relative flex h-4 w-4 cursor-pointer items-center justify-center rounded-full border border-gray-900 text-sm text-gray-900"
       onClick={() => setShowCoachMark(!showCoachMark)}
     >
       {showCoachMark && (

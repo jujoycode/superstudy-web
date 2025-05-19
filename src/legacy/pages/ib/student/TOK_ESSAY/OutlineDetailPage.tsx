@@ -209,7 +209,7 @@ export const OutlineDetailPage = () => {
                           required
                         />
                       </div>
-                      <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t py-10">
+                      <div className="flex flex-col gap-10 border-t border-t-gray-100 py-10">
                         <InputField
                           label="지식영역"
                           subLabel="1"
@@ -268,7 +268,7 @@ export const OutlineDetailPage = () => {
                           />
                         </div>
                       </div>
-                      <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t py-10">
+                      <div className="flex flex-col gap-10 border-t border-t-gray-100 py-10">
                         <InputField
                           label="지식영역"
                           subLabel="2"
@@ -332,16 +332,16 @@ export const OutlineDetailPage = () => {
                 ) : (
                   <>
                     <div className="flex flex-col">
-                      <div className="border-b-primary-gray-100 flex flex-col items-start gap-1 border-b pb-6">
+                      <div className="flex flex-col items-start gap-1 border-b border-b-gray-100 pb-6">
                         <Typography variant="title1">{data?.tokOutline?.themeQuestion}</Typography>
-                        <Typography variant="body3" className="text-primary-gray-500">
+                        <Typography variant="body3" className="text-gray-500">
                           {format(new Date(data?.createdAt), 'yyyy.MM.dd')}
                         </Typography>
                       </div>
                       <div className="flex flex-col gap-4 pt-6">
                         <Typography variant="title2">핵심용어 (설명)</Typography>
-                        <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                          <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                        <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                          <Typography variant="body2" className="font-medium text-gray-700">
                             {data?.tokOutline?.keyword}
                           </Typography>
                         </div>
@@ -349,14 +349,14 @@ export const OutlineDetailPage = () => {
                       <div className="flex flex-col py-10">
                         <div className="flex flex-col gap-4">
                           <Typography variant="title2">본인이 이해한 주제의 내용은?</Typography>
-                          <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                            <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                          <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                            <Typography variant="body2" className="font-medium text-gray-700">
                               {data?.tokOutline?.content}
                             </Typography>
                           </div>
                         </div>
                       </div>
-                      <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t py-10">
+                      <div className="flex flex-col gap-10 border-t border-t-gray-100 py-10">
                         <div className="flex flex-col gap-4">
                           <div className="flex flex-row items-center">
                             <Typography variant="title2">지식영역</Typography>&nbsp;
@@ -364,8 +364,8 @@ export const OutlineDetailPage = () => {
                               1
                             </Typography>
                           </div>
-                          <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                            <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                          <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                            <Typography variant="body2" className="font-medium text-gray-700">
                               {data?.tokOutline?.knowledgeArea1}
                             </Typography>
                           </div>
@@ -373,13 +373,13 @@ export const OutlineDetailPage = () => {
                         <div className="flex flex-col gap-4">
                           <Typography variant="title2">지식주장</Typography>
                           <div className="flex flex-col gap-3">
-                            <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                              <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                            <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                              <Typography variant="body2" className="font-medium text-gray-700">
                                 {data?.tokOutline?.argument1}
                               </Typography>
                             </div>
-                            <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                              <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                            <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                              <Typography variant="body2" className="font-medium text-gray-700">
                                 {data?.tokOutline?.argument1Example}
                               </Typography>
                             </div>
@@ -388,20 +388,20 @@ export const OutlineDetailPage = () => {
                         <div className="flex flex-col gap-4">
                           <Typography variant="title2">반론</Typography>
                           <div className="flex flex-col gap-3">
-                            <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                              <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                            <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                              <Typography variant="body2" className="font-medium text-gray-700">
                                 {data?.tokOutline?.counterArgument1}
                               </Typography>
                             </div>
-                            <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                              <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                            <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                              <Typography variant="body2" className="font-medium text-gray-700">
                                 {data?.tokOutline?.counterArgument1Example}
                               </Typography>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t py-10">
+                      <div className="flex flex-col gap-10 border-t border-t-gray-100 py-10">
                         <div className="flex flex-col gap-4">
                           <div className="flex flex-row items-center">
                             <Typography variant="title2">지식영역</Typography>&nbsp;
@@ -409,8 +409,8 @@ export const OutlineDetailPage = () => {
                               2
                             </Typography>
                           </div>
-                          <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                            <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                          <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                            <Typography variant="body2" className="font-medium text-gray-700">
                               {data?.tokOutline?.knowledgeArea2}
                             </Typography>
                           </div>
@@ -418,13 +418,13 @@ export const OutlineDetailPage = () => {
                         <div className="flex flex-col gap-4">
                           <Typography variant="title2">지식주장</Typography>
                           <div className="flex flex-col gap-3">
-                            <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                              <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                            <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                              <Typography variant="body2" className="font-medium text-gray-700">
                                 {data?.tokOutline?.argument2}
                               </Typography>
                             </div>
-                            <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                              <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                            <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                              <Typography variant="body2" className="font-medium text-gray-700">
                                 {data?.tokOutline?.argument2Example}
                               </Typography>
                             </div>
@@ -433,13 +433,13 @@ export const OutlineDetailPage = () => {
                         <div className="flex flex-col gap-4">
                           <Typography variant="title2">반론</Typography>
                           <div className="flex flex-col gap-3">
-                            <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                              <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                            <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                              <Typography variant="body2" className="font-medium text-gray-700">
                                 {data?.tokOutline?.counterArgument2}
                               </Typography>
                             </div>
-                            <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                              <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                            <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                              <Typography variant="body2" className="font-medium text-gray-700">
                                 {data?.tokOutline?.counterArgument2Example}
                               </Typography>
                             </div>
@@ -516,7 +516,7 @@ export const OutlineDetailPage = () => {
             </div>
           </div>
         }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
         floatingButton={
           !editMode &&
           (data?.status === 'PENDING' ||
