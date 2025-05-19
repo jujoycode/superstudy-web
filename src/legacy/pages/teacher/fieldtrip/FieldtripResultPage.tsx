@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
 
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
@@ -292,7 +292,8 @@ export function FieldtripResultPage() {
         )}
       </div>
       <div className="col-span-3 bg-gray-50 md:p-6">
-        <Routes>
+        <Outlet context={{ me, setOpen, setFieldtripId, setAgreeAll, school: me?.school }} />
+        {/* <Routes>
           <Route
             path="/teacher/fieldtrip/result/:id"
             Component={() => (
@@ -305,7 +306,7 @@ export function FieldtripResultPage() {
               />
             )}
           />
-        </Routes>
+        </Routes> */}
       </div>
       <SuperModal
         modalOpen={open}

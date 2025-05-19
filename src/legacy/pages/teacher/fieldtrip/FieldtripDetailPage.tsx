@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router'
+import { useOutletContext, useParams } from 'react-router'
+import { useNotificationStore } from '@/stores/notification'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Blank, Section, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -16,7 +17,6 @@ import { extractReactData, getDoc } from '@/legacy/util/pdf'
 import { buttonEnableState } from '@/legacy/util/permission'
 import { getNickName } from '@/legacy/util/status'
 import { makeDateToString, makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
-import { useNotificationStore } from '@/stores/notification'
 
 import { FieldtripUpdatePage } from './FieldtripUpdatePage'
 
@@ -27,7 +27,8 @@ interface FieldtripDetailPageProps {
   me: ResponseUserDto
 }
 
-export function FieldtripDetailPage({ setOpen, setFieldtripId, setAgreeAll, me }: FieldtripDetailPageProps) {
+export function FieldtripDetailPage() {
+  const { me, setOpen, setFieldtripId, setAgreeAll } = useOutletContext<FieldtripDetailPageProps>()
   const { pushWithQueryParams } = useQueryParams()
   const { id = '' } = useParams<{ id: string }>()
   const ref = useRef(null)

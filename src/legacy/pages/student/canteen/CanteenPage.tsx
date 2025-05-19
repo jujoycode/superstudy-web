@@ -5,6 +5,8 @@ import { ReactComponent as ChatIcon } from '@/assets/svg/chat.svg'
 import { ReactComponent as ClockIcon } from '@/assets/svg/clock.svg'
 import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 import { ErrorBlank } from '@/legacy/components'
 import AnnouncementPopup from '@/legacy/components/announcement/Announcement'
 import { CanteenCalendar } from '@/legacy/components/CanteenCalendar'
@@ -20,8 +22,6 @@ import { Role } from '@/legacy/generated/model'
 import { Schedule } from '@/legacy/types'
 import { checkNewVersion } from '@/legacy/util/status'
 import { makeDateToString, makeMonthDayToString } from '@/legacy/util/time'
-import { useUserStore } from '@/stores/user'
-import { useNotificationStore } from '@/stores/notification'
 
 export function CanteenPage() {
   const { push } = useHistory()

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
 
 import { ErrorBlank, FrontPagination } from '@/legacy/components'
 import { BackButton, TopNavbar } from '@/legacy/components/common'
@@ -175,12 +175,13 @@ export function FieldtripNoticePage() {
         )}
       </div>
       <div className="col-span-3 bg-gray-50 md:p-6">
-        <Routes>
+        <Outlet context={{ school: me?.school }} />
+        {/* <Routes>
           <Route
             path="/teacher/fieldtrip/notice/:id"
             Component={() => <FieldtripNoticeDetailPage school={me?.school} />}
           />
-        </Routes>
+        </Routes> */}
       </div>
     </>
   )

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useOutletContext, useParams } from 'react-router-dom'
 
 import { SuperModal } from '@/legacy/components'
 import { Blank, Section, Textarea } from '@/legacy/components/common'
@@ -28,13 +28,8 @@ interface FieldtripResultDetailPageProps {
   me: ResponseUserDto | undefined
 }
 
-export function FieldtripResultDetailPage({
-  school,
-  setOpen,
-  setAgreeAll,
-  setFieldtripId,
-  me,
-}: FieldtripResultDetailPageProps) {
+export function FieldtripResultDetailPage() {
+  const { me, setOpen, setFieldtripId, setAgreeAll, school } = useOutletContext<FieldtripResultDetailPageProps>()
   const { pushWithQueryParams } = useQueryParams()
   const { id = '' } = useParams<{ id: string }>()
   const ref = useRef(null)

@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
 
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
@@ -123,6 +123,9 @@ export function FieldtripMainPage() {
     const klass = parseInt(studentGradeKlass.split(' ')[1])
     return grade * 10000 + klass * 100 + parseInt(studentNumber)
   }
+
+  console.log(data)
+  console.log(isViewAuth)
 
   return (
     <>
@@ -386,7 +389,8 @@ export function FieldtripMainPage() {
       </div>
       {me?.school && (
         <div className="col-span-3 bg-gray-50 md:p-6">
-          <Routes>
+          <Outlet context={{ setOpen, setFieldtripId, setAgreeAll, me }} />
+          {/* <Routes>
             <Route
               path="/teacher/fieldtrip/:id"
               Component={() => (
@@ -408,7 +412,7 @@ export function FieldtripMainPage() {
                 // />
               )}
             />
-          </Routes>
+          </Routes> */}
         </div>
       )}
       <SuperModal

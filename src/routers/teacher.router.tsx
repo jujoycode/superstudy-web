@@ -1,7 +1,5 @@
 /* eslint-disable import/order */
 import { TeacherLayout } from '@/layouts/TeacherLayout'
-import { GroupPage } from '@/legacy/pages/admin/group/GroupPage'
-import { TimetablePage } from '@/legacy/pages/admin/timetable/TimetablePage'
 import CASPortfolioPage from '@/legacy/pages/ib/teacher/CAS/CASPortfolioPage'
 import { CoordinatorPage } from '@/legacy/pages/ib/teacher/coordinator/CoordinatorPage'
 import { EEEssayPage } from '@/legacy/pages/ib/teacher/EE/EEEssayPage'
@@ -54,6 +52,15 @@ import { ActivityDetailPage } from '@/legacy/pages/teacher/activity/ActivityDeta
 import { OutingPage } from '@/legacy/pages/teacher/outing/OutingPage'
 import { CASMainPage } from '@/legacy/pages/ib/teacher/CAS/CASMainPage'
 import { OutlineDetailPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/OutlineDetailPage'
+import { TimetablePage } from '@/legacy/pages/teacher/timetable/TimetablePage'
+import { GroupPage } from '@/legacy/pages/teacher/group/GroupPage'
+import { OutingDetailPage } from '@/legacy/pages/teacher/outing/OutingDetailPage'
+import { OutingAddPage } from '@/legacy/pages/teacher/outing/OutingAddPage'
+import { AbsentAddPage } from '@/legacy/pages/teacher/absent/AbsentAddPage'
+import { AbsentDetailPage } from '@/legacy/pages/teacher/absent/AbsentDetailPage'
+import { FieldtripDetailPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripDetailPage'
+import { FieldtripNoticeDetailPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripNoticeDetailPage'
+import { FieldtripResultDetailPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripResultDetailPage'
 
 export const teacherRoutes = {
   path: '/teacher',
@@ -73,25 +80,40 @@ export const teacherRoutes = {
     { path: 'apply', element: <TeacherApplyPage /> },
 
     // 확인증
-    { path: 'outing', element: <OutingPage /> },
-
+    {
+      path: 'outing',
+      element: <OutingPage />,
+      children: [
+        { path: ':id', element: <OutingDetailPage /> },
+        { path: 'add', element: <OutingAddPage /> },
+      ],
+    },
     // 결석신고서
     {
       path: 'absent',
+      element: <AbsentPage />,
       children: [
-        { index: true, element: <AbsentPage /> },
-        { path: 'comparison', element: <AbsentComparisonPage /> },
+        { path: ':id', element: <AbsentDetailPage /> },
+        { path: 'add', element: <AbsentAddPage /> },
       ],
     },
+    { path: 'comparison', element: <AbsentComparisonPage /> },
 
     // 체험학습
     {
+      path: 'fieldtrip/notice',
+      element: <FieldtripNoticePage />,
+      children: [{ path: ':id', element: <FieldtripNoticeDetailPage /> }],
+    },
+    {
+      path: 'fieldtrip/result',
+      element: <FieldtripResultPage />,
+      children: [{ path: ':id', element: <FieldtripResultDetailPage /> }],
+    },
+    {
       path: 'fieldtrip',
-      children: [
-        { index: true, element: <FieldtripMainPage /> },
-        { path: 'notice', element: <FieldtripNoticePage /> },
-        { path: 'result', element: <FieldtripResultPage /> },
-      ],
+      element: <FieldtripMainPage />,
+      children: [{ path: ':id', element: <FieldtripDetailPage /> }],
     },
 
     // 출결서류관리

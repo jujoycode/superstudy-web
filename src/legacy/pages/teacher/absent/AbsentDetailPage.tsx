@@ -2,7 +2,7 @@ import { t } from 'i18next'
 import moment from 'moment'
 import { useRef, useState } from 'react'
 import { Document, Page } from 'react-pdf'
-import { useParams } from 'react-router'
+import { useOutletContext, useParams } from 'react-router'
 
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { AbsentPaper } from '@/legacy/components/absent/AbsentPaper'
@@ -31,7 +31,8 @@ interface AbsentDetailPageProps {
   me?: ResponseUserDto
 }
 
-export function AbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, userId, me }: AbsentDetailPageProps) {
+export function AbsentDetailPage() {
+  const { setOpen, setAbsentId, setAgreeAll, userId, me } = useOutletContext<AbsentDetailPageProps>()
   const { id } = useParams<{ id: string }>()
   const ref = useRef(null)
   const parentRef = useRef(null)
