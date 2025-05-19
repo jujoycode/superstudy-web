@@ -124,9 +124,6 @@ export function FieldtripMainPage() {
     return grade * 10000 + klass * 100 + parseInt(studentNumber)
   }
 
-  console.log(data)
-  console.log(isViewAuth)
-
   return (
     <>
       {error && <ErrorBlank />}
@@ -369,10 +366,7 @@ export function FieldtripMainPage() {
           <div className="h-screen-18 overflow-y-auto pb-10 md:pb-0">
             {data?.items
               ?.sort((a, b) => compareFieldTrips(a, b, frontSortType, sortOrder))
-              .map(
-                (fieldtrip) =>
-                  me?.role && <FieldtripCard key={fieldtrip.id} fieldtrip={fieldtrip} type={'fieldtrip'} />,
-              )}
+              .map((fieldtrip) => <FieldtripCard key={fieldtrip.id} fieldtrip={fieldtrip} type={'fieldtrip'} />)}
           </div>
         )}
         {data && data.total > limit && (

@@ -61,6 +61,7 @@ import { AbsentDetailPage } from '@/legacy/pages/teacher/absent/AbsentDetailPage
 import { FieldtripDetailPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripDetailPage'
 import { FieldtripNoticeDetailPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripNoticeDetailPage'
 import { FieldtripResultDetailPage } from '@/legacy/pages/teacher/fieldtrip/FieldtripResultDetailPage'
+import { HistoryDetailPage } from '@/legacy/pages/teacher/history/HistoryDetailPage'
 
 export const teacherRoutes = {
   path: '/teacher',
@@ -117,7 +118,11 @@ export const teacherRoutes = {
     },
 
     // 출결서류관리
-    { path: 'history', element: <HistoryPage /> },
+    {
+      path: 'history',
+      element: <HistoryPage />,
+      children: [{ path: ':id', element: <HistoryDetailPage /> }],
+    },
 
     // 학생정보
     { path: 'studentcard', element: <StudentCardPage /> },

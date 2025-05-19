@@ -1,7 +1,7 @@
+import { range } from 'lodash'
 import { useMemo, useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { Route, Routes, useLocation } from 'react-router'
-import { range } from 'lodash'
+import { Outlet, Route, Routes, useLocation, Navigate } from 'react-router'
 import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, FrontPagination } from '@/legacy/components'
@@ -24,11 +24,6 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { PermissionUtil } from '@/legacy/util/permission'
 import { getSearchYearByMonth, getThisYear, makeStartEndToString } from '@/legacy/util/time'
-
-import { HistoryAbsentDetailPage } from './HistoryAbsentDetailPage'
-import { HistoryFieldtripDetailPage } from './HistoryFieldtripDetailPage'
-import { HistoryOutingDetailPage } from './HistoryOutingDetailPage'
-
 export interface MergedGroupType {
   id: number
   name: string
@@ -471,30 +466,19 @@ export function HistoryPage() {
         </div>
       </div>
       <div className="scroll-box col-span-3 overflow-y-auto md:bg-gray-50">
-        <Routes>
-          <Route
-            path="/teacher/history/:id"
-            Component={() =>
-              selectedDocType === 0 ? (
-                <HistoryOutingDetailPage
-                  outings={outings}
-                  setOutingId={(n: number) => setOutingId(n)}
-                  setOpen={(b: boolean) => setOpen(b)}
-                  setAgreeAll={(b: boolean) => setAgreeAll(b)}
-                />
-              ) : selectedDocType === 1 ? (
-                <HistoryAbsentDetailPage userId={me?.id} setAbsentId={(n: number) => setAbsentId(n)} />
-              ) : (
-                <HistoryFieldtripDetailPage
-                  setOpen={(b: boolean) => setOpen(b)}
-                  setFieldtripId={(n: number) => setFieldtripId(n)}
-                  setAgreeAll={(b: boolean) => setAgreeAll(b)}
-                  me={me}
-                />
-              )
-            }
-          />
-        </Routes>
+        <Outlet
+          context={{
+            selectedDocType,
+            outings,
+            setOutingId,
+            setOpen,
+            setAgreeAll,
+            userId: me?.id,
+            setAbsentId,
+            setFieldtripId,
+            me,
+          }}
+        />
       </div>
     </>
   )
