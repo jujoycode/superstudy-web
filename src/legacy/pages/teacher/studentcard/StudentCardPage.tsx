@@ -1,6 +1,6 @@
 import { chain, filter, some, uniqBy } from 'lodash'
 import { useEffect, useMemo, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router'
+import { Outlet, useLocation } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
 import { useUserStore } from '@/stores/user'
 import { ErrorBlank } from '@/legacy/components'
@@ -211,9 +211,7 @@ export function StudentCardPage() {
           </div>
         </div>
       </div>
-      <Routes>
-        <Route path="/teacher/studentcard/:groupId/:id/:cardType" Component={StudentCardDetailPage} />
-      </Routes>
+      <Outlet />
     </div>
   )
 }

@@ -15,7 +15,6 @@ import { AbsentPage } from '@/legacy/pages/teacher/absent/AbsentPage'
 import { TeacherApplyPage } from '@/legacy/pages/teacher/absent/TeacherApplyPage'
 import { ActivityV3AddPage } from '@/legacy/pages/teacher/activityv3/ActivityV3AddPage'
 import { ActivityV3DetailPage } from '@/legacy/pages/teacher/activityv3/ActivityV3DetailPage'
-import { ActivityV3Page } from '@/legacy/pages/teacher/activityv3/ActivityV3Page'
 import { ActivityV3ReportPage } from '@/legacy/pages/teacher/activityv3/ActivityV3ReportPage'
 import { ActivityV3SessionAddPage } from '@/legacy/pages/teacher/activityv3/ActivityV3SessionAddPage'
 import { ActivityV3SessionDetailPage } from '@/legacy/pages/teacher/activityv3/ActivityV3SessionDetailPage'
@@ -68,6 +67,16 @@ import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/teacher/Plag
 import TeacherIBStatus from '@/legacy/components/ib/TeacherIBStatus'
 import { AuthRouter } from '../AuthRouter'
 import { AuthGuard } from '../guard/AuthGuard'
+import { StudentCardDetailPage } from '@/legacy/pages/teacher/studentcard/StudentCardDetailPage'
+import { StudyInfoCard2 } from '@/legacy/components/studentCard/StudyInfoCard2'
+import { ScoreCardPage } from '@/legacy/pages/teacher/studentcard/ScoreCardPage'
+import Counselingv3Card from '@/legacy/components/studentCard/Counselingv3Card'
+import { GeneralCardPage } from '@/legacy/pages/teacher/studentcard/GeneralCardPage'
+import { AllCardPage } from '@/legacy/pages/teacher/studentcard/AllCardPage'
+import { PointLogsPage } from '@/legacy/pages/teacher/studentcard/PointLogsPage'
+import { ActivityV3Page } from '@/legacy/pages/teacher/activityv3/ActivityV3Page'
+
+import { ActivityV3Page as ActivityV3CardPage } from '@/legacy/pages/teacher/studentcard/ActivityV3Page'
 
 export const teacherRoutes = {
   path: '/teacher',
@@ -133,7 +142,25 @@ export const teacherRoutes = {
     },
 
     // 학생정보
-    { path: 'studentcard', element: <StudentCardPage /> },
+    {
+      path: 'studentcard',
+      element: <StudentCardPage />,
+      children: [
+        {
+          path: ':groupId',
+          element: <StudentCardDetailPage />,
+          children: [
+            { path: ':id/all', element: <StudyInfoCard2 /> },
+            { path: ':id/activityv3', element: <ActivityV3CardPage /> },
+            { path: ':id/score', element: <ScoreCardPage /> },
+            { path: ':id/counseling', element: <Counselingv3Card /> },
+            { path: ':id/general', element: <GeneralCardPage /> },
+            { path: ':id/default', element: <AllCardPage /> },
+            { path: ':id/pointlogs', element: <PointLogsPage /> },
+          ],
+        },
+      ],
+    },
 
     // 생활기록부
     { path: 'record', element: <RecordPage /> },
