@@ -74,7 +74,7 @@ export default function EssayList({ data, studentData }: EssayListProps) {
           </div>
         ) : (
           <table className="w-full text-center">
-            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px]">
+            <thead className="border-y border-y-gray-100 text-[15px] text-gray-500">
               <tr className="flex w-full items-center justify-between gap-[16px] px-[24px] py-[9px] font-medium">
                 <th className="w-[176px]">과목</th>
                 <th className="w-[524px]">연구주제</th>
@@ -83,8 +83,8 @@ export default function EssayList({ data, studentData }: EssayListProps) {
                 <th className="w-[156px]">체크리스트</th>
               </tr>
             </thead>
-            <tbody className="text-primary-gray-900 text-[15px] font-medium">
-              <tr className="border-b-primary-gray-100 flex w-full items-center justify-between gap-[16px] border-b px-[24px] py-[9px]">
+            <tbody className="text-[15px] font-medium text-gray-900">
+              <tr className="flex w-full items-center justify-between gap-[16px] border-b border-b-gray-100 px-[24px] py-[9px]">
                 <td className="line-clamp-1 w-[176px]">{approvedProposal?.subject}</td>
                 <td
                   className="line-clamp-1 w-[524px] cursor-pointer"

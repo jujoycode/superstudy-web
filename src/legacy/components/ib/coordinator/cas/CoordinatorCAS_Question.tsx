@@ -161,7 +161,7 @@ export const CoordinatorCAS_Question = () => {
           </div>
           {permission === 'IB_CAS' ? (
             <>
-              <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
+              <Typography variant="body2" className="text-center font-medium text-gray-700">
                 생성한 양식이 없습니다.
                 <br />
                 양식을 추가해주세요.
@@ -171,7 +171,7 @@ export const CoordinatorCAS_Question = () => {
               </ButtonV2>
             </>
           ) : (
-            <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
+            <Typography variant="body2" className="text-center font-medium text-gray-700">
               생성한 양식이 없습니다.
             </Typography>
           )}

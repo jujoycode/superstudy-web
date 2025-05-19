@@ -193,7 +193,7 @@ export const ExhibitionMainPage = () => {
                 </div>
               </div>
             }
-            bottomBgColor="bg-primary-gray-50"
+            bottomBgColor="bg-gray-50"
             floatingButton={
               (type === 'EXHIBITION_PLAN' &&
                 ['PENDING', 'REJECT_PLAN', 'WAIT_PLAN_APPROVE', 'WAITING_FOR_NEXT_PROPOSAL', 'WAIT_MENTOR'].includes(
@@ -227,7 +227,7 @@ export const ExhibitionMainPage = () => {
               (Exhibition?.id && data.status !== 'COMPLETE' && (
                 <div>
                   <div className="mx-auto flex w-[1280px] items-center justify-between">
-                    <Typography variant="caption2" className="text-primary-gray-500 flex items-center gap-1">
+                    <Typography variant="caption2" className="flex items-center gap-1 text-gray-500">
                       <SolidSVGIcon.Info color="gray400" size={16} />세 가지 대상과 이에 대한 이미지, 설명, 레퍼런스를
                       모두 입력 및 추가하셔야 전시회 종료 승인 요청이 가능합니다.
                     </Typography>

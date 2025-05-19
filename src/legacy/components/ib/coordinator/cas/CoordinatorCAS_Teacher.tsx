@@ -309,7 +309,7 @@ const CoordinatorCAS_Teacher: FC = () => {
   return (
     <div className="min-h-[664px] rounded-xl bg-white">
       <div className="flex flex-row justify-between px-6 pt-6">
-        <Typography variant="title1" className="text-primary-gray-900 flex h-10 items-center">
+        <Typography variant="title1" className="flex h-10 items-center text-gray-900">
           담당교사 지정
         </Typography>
       </div>
@@ -319,13 +319,13 @@ const CoordinatorCAS_Teacher: FC = () => {
             <Tab
               value="INSTRUCTOR"
               childrenWrapperClassName={
-                'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10'
+                'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10'
               }
             >
-              <p className={clsx({ 'text-primary-gray-700': mentorType === 'INSTRUCTOR' })}>지도교사</p>
+              <p className={clsx({ 'text-gray-700': mentorType === 'INSTRUCTOR' })}>지도교사</p>
             </Tab>
             <Tab value="SUPERVISOR">
-              <p className={clsx({ 'text-primary-gray-700': mentorType === 'SUPERVISOR' })}>감독교사</p>
+              <p className={clsx({ 'text-gray-700': mentorType === 'SUPERVISOR' })}>감독교사</p>
             </Tab>
           </LayeredTabs.TwoDepth>
           <SelectBar
@@ -336,7 +336,7 @@ const CoordinatorCAS_Teacher: FC = () => {
             size={40}
             containerWidth="w-30"
             dropdownWidth="w-40"
-            priorityFontClass="text-primary-gray-900"
+            priorityFontClass="text-gray-900"
           />
           <SelectBar
             options={klasses}
@@ -348,7 +348,7 @@ const CoordinatorCAS_Teacher: FC = () => {
             containerWidth="w-30"
             dropdownWidth="w-40"
             className={clsx({ 'cursor-not-allowed': !selectedOptions.grade })}
-            priorityFontClass={clsx({ 'text-primary-gray-900': selectedOptions.grade })}
+            priorityFontClass={clsx({ 'text-gray-900': selectedOptions.grade })}
           />
           <SearchInput
             onChange={(e) => {

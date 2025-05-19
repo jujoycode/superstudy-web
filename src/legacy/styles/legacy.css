@@ -15,6 +15,73 @@
   aspect-ratio: 3/4;
 }
 
+.h-screen-2 {
+  height: calc(100vh - 2rem);
+}
+.h-screen-3 {
+  height: calc(100vh - 3rem);
+}
+.h-screen-3\.5 {
+  height: calc(100vh - 3.5rem);
+}
+.h-screen-4 {
+  height: calc(100vh - 4rem);
+}
+.h-screen-4\.5 {
+  height: calc(100vh - 4.5rem);
+}
+.h-screen-5 {
+  height: calc(100vh - 5rem);
+}
+.h-screen-6 {
+  height: calc(100vh - 6rem);
+}
+.h-screen-7 {
+  height: calc(100vh - 7rem);
+}
+.h-screen-8 {
+  height: calc(100vh - 8rem);
+}
+.h-screen-9 {
+  height: calc(100vh - 9rem);
+}
+.h-screen-10 {
+  height: calc(100vh - 10rem);
+}
+.h-screen-12 {
+  height: calc(100vh - 12rem);
+}
+.h-screen-13 {
+  height: calc(100vh - 13rem);
+}
+.h-screen-14 {
+  height: calc(100vh - 14rem);
+}
+.h-screen-15 {
+  height: calc(100vh - 15rem);
+}
+.h-screen-16 {
+  height: calc(100vh - 16rem);
+}
+.h-screen-18 {
+  height: calc(100vh - 18rem);
+}
+.h-screen-20 {
+  height: calc(100vh - 20rem);
+}
+.h-screen-22 {
+  height: calc(100vh - 22rem);
+}
+.h-screen-30 {
+  height: calc(100vh - 30rem);
+}
+.h-screen-32 {
+  height: calc(100vh - 32rem);
+}
+.h-screen-64 {
+  height: calc(100% - 64rem);
+}
+
 .filled-primary {
   background-color: #ee853a;
   border: 1px solid transparent;
@@ -846,12 +913,6 @@
   --color-users-teacher: #00a85f;
   --color-users-admin: #3263e3;
 
-  /* Dimmed Effect */
-  --color-dimmed: rgba(0, 0, 0, 0.6);
-  --color-dimmed-60: rgba(0, 0, 0, 0.6); /* Dialogs */
-  --color-dimmed-8: rgba(0, 0, 0, 0.08); /* Border */
-  --color-dim-8: rgba(0, 0, 0, 0.08);
-
   /* Gradient */
   --color-gradient-green-400: linear-gradient(rgba(0, 190, 133, 1), rgba(118, 218, 188, 1));
   --color-gradient-green-800: linear-gradient(rgba(0, 168, 118, 1), rgba(92, 202, 175, 1));
@@ -879,10 +940,6 @@
   --text-28--line-height: 2.1rem;
 
   /* Height */
-  --height-10vh: 10vh;
-  --height-20vh: 20vh;
-  --height-30vh: 30vh;
-  --height-80vh: 80vh;
   --height-screen-2: calc(100vh - 2rem);
   --height-screen-3: calc(100vh - 3rem);
   --height-screen-3.5: calc(100vh - 3.5rem);
@@ -905,23 +962,6 @@
   --height-screen-30: calc(100vh - 30rem);
   --height-screen-32: calc(100vh - 32rem);
   --height-screen-64: calc(100% - 64rem);
-
-  /* Inset */
-  --inset-auto: auto;
-  --inset-1/2: 50%;
-  --inset-1/3: 33.333333%;
-  --inset-2/3: 66.666667%;
-  --inset-1/4: 25%;
-  --inset-2/4: 50%;
-  --inset-3/4: 75%;
-  --inset-full: 100%;
-  --inset--1/2: -50%;
-  --inset--1/3: -33.333333%;
-  --inset--2/3: -66.666667%;
-  --inset--1/4: -25%;
-  --inset--2/4: -50%;
-  --inset--3/4: -75%;
-  --inset--full: -100%;
 
   /* Min Width */
   --min-width-4: 1rem;

@@ -60,7 +60,7 @@ export default function ExhibitionList({ data }: ExhibitionListProps) {
     <section className="h-[664px]">
       {isLoading && <Blank />}
       <header className="flex min-h-[88px] flex-row items-center justify-between gap-4 p-6 pb-6">
-        <Typography variant="title1" className="text-primary-gray-900">
+        <Typography variant="title1" className="text-gray-900">
           전시회
         </Typography>
       </header>
@@ -71,7 +71,7 @@ export default function ExhibitionList({ data }: ExhibitionListProps) {
               <img src={NODATA} className="h-12 w-[43px] object-cover" />
             </div>
             <span className="text-center">
-              <Typography variant="body2" className="text-primary-gray-700 font-medium">
+              <Typography variant="body2" className="font-medium text-gray-700">
                 기획안 승인 후, 학생이 전시회를 작성해야
                 <br />
                 확인할 수 있습니다.
@@ -80,15 +80,15 @@ export default function ExhibitionList({ data }: ExhibitionListProps) {
           </div>
         ) : (
           <table className="w-full">
-            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
+            <thead className="border-y border-y-gray-100 text-[15px] font-medium text-gray-500">
               <tr>
                 <td className="w-[964px] py-[9px] pr-2 pl-6 text-center">질문</td>
                 <td className="w-[150px] px-2 py-[9px] text-center">수정일</td>
                 <td className="w-[166px] py-[9px] pr-6 pl-2 text-center">피드백</td>
               </tr>
             </thead>
-            <tbody className="text-primary-gray-900 text-[15px] font-medium">
-              <tr className="border-b-primary-gray-100 border-b">
+            <tbody className="text-[15px] font-medium text-gray-900">
+              <tr className="border-b border-b-gray-100">
                 <td
                   className="cursor-pointer overflow-hidden py-4 pr-2 pl-6 text-center text-ellipsis whitespace-nowrap"
                   onClick={() =>

@@ -214,7 +214,7 @@ export const EssayMainPage = () => {
                 </div>
               </div>
             }
-            bottomBgColor="bg-primary-gray-50"
+            bottomBgColor="bg-gray-50"
             floatingButton={
               (type === 'OUTLINE' &&
                 (data.status === 'PENDING' ||

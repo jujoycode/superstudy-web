@@ -51,7 +51,7 @@ export default function InterviewView({ grade, klass }: IBGetSubmissionStatusCou
   return (
     <div>
       {notiLoading && <Blank />}
-      <Typography variant="title1" className="text-primary-gray-900">
+      <Typography variant="title1" className="text-gray-900">
         인터뷰일지
       </Typography>
       <RadioV2.Group
@@ -70,7 +70,7 @@ export default function InterviewView({ grade, klass }: IBGetSubmissionStatusCou
 
       {status === 'NOT_SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             인터뷰일지 미작성
           </Typography>
           <InterviewOverviewPanel
@@ -83,7 +83,7 @@ export default function InterviewView({ grade, klass }: IBGetSubmissionStatusCou
       )}
       {status === 'SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             인터뷰일지 작성
           </Typography>
           <InterviewOverviewPanel

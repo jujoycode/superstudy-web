@@ -221,7 +221,7 @@ export const TOKEssayDetailPage = () => {
             </ButtonV2>
           )
         }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
       />
       {isOpen && (
         <IbEssay

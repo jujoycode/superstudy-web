@@ -100,7 +100,7 @@ export default function CoordinatorEE_Eval() {
           </div>
           {permission === 'IB_EE' ? (
             <>
-              <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
+              <Typography variant="body2" className="text-center font-medium text-gray-700">
                 작성한 평가가 없습니다.
                 <br />
                 평가를 추가해주세요.
@@ -110,7 +110,7 @@ export default function CoordinatorEE_Eval() {
               </ButtonV2>
             </>
           ) : (
-            <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
+            <Typography variant="body2" className="text-center font-medium text-gray-700">
               작성한 평가가 없습니다.
             </Typography>
           )}

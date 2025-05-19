@@ -124,7 +124,7 @@ export function CoordinatorEE_Form_AddCheckList({
 
           <div
             className={
-              'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]'
+              'sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8 backdrop-blur-[20px]'
             }
           >
             <div className="flex justify-end gap-3">

@@ -99,8 +99,8 @@ export function CoordinatorEE_Eval_AddEval({
                 className={clsx(
                   'flex cursor-pointer items-center justify-center rounded-lg px-4 py-[9px] whitespace-pre',
                   index === selectedCriteriaIndex
-                    ? 'bg-primary-gray-700 text-white'
-                    : 'bg-primary-gray-50 text-primary-gray-700 hover:bg-primary-gray-200',
+                    ? 'bg-gray-700 text-white'
+                    : 'bg-gray-50 text-gray-700 hover:bg-gray-200',
                 )}
               >
                 {`기준 ${alphabetArray[index]}`}

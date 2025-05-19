@@ -56,7 +56,7 @@ export default function ProposalList({ data }: ProposalListProps) {
         <Typography variant="title1">제안서</Typography>
       </header>
       <table className="w-full text-center">
-        <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px]">
+        <thead className="border-y border-y-gray-100 text-[15px] text-gray-500">
           <tr className="flex w-full items-center justify-between gap-[16px] px-[24px] py-[9px] font-medium">
             <th className="w-[68px]">순위</th>
             <th className="w-[200px]">과목</th>
@@ -66,14 +66,14 @@ export default function ProposalList({ data }: ProposalListProps) {
             <th className="w-[156px]">상태</th>
           </tr>
         </thead>
-        <tbody className="text-primary-gray-900 text-[15px] font-medium">
+        <tbody className="text-[15px] font-medium text-gray-900">
           {data?.proposals
             ?.filter((proposal) => proposal.status !== 'PENDING')
             ?.sort((a, b) => a.rank - b.rank)
             .map((proposal) => (
               <tr
                 key={proposal.id}
-                className="border-b-primary-gray-100 flex w-full items-center justify-between gap-[16px] border-b px-[24px] py-[9px]"
+                className="flex w-full items-center justify-between gap-[16px] border-b border-b-gray-100 px-[24px] py-[9px]"
               >
                 <td className="w-[68px]">{proposal.rank}</td>
                 <td className="line-clamp-1 w-[200px]">{proposal.subject}</td>

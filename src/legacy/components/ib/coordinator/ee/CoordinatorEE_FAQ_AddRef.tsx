@@ -189,7 +189,7 @@ export function CoordinatorEE_FAQ_AddRef({
     >
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white`}>
         <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6 backdrop-blur-[20px]">
-          <Typography variant="title1" className="text-primary-gray-900">
+          <Typography variant="title1" className="text-gray-900">
             {type === 'create' ? '참고자료 작성' : '참고자료 수정'}
           </Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} />
@@ -220,7 +220,7 @@ export function CoordinatorEE_FAQ_AddRef({
           )}
         </div>
 
-        <div className="border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-between border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]">
+        <div className="sticky bottom-0 flex h-[104px] justify-between border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]">
           <div className="flex flex-row items-center gap-3">
             <ButtonV2 variant="solid" color="gray100" size={48} onClick={handleBack}>
               {type === 'create' ? '이전' : '취소'}
@@ -231,14 +231,14 @@ export function CoordinatorEE_FAQ_AddRef({
               size={48}
               disabled={isDisabled}
               onClick={onPreview}
-              className="text-primary-gray-700"
+              className="text-gray-700"
             >
               미리보기
             </ButtonV2>
           </div>
           <div className="flex flex-row items-center gap-3">
             <label htmlFor="file-upload" className="allow-click cursor-pointer">
-              <div className="border-primary-gray-400 text-primary-gray-700 active:border-primary-gray-100 active:bg-primary-gray-400 disabled:border-primary-gray-100 disabled:bg-primary-gray-200 disabled:text-primary-gray-400 flex h-12 min-w-[64px] items-center rounded-[6px] border px-3 text-[16px] font-semibold disabled:cursor-not-allowed">
+              <div className="flex h-12 min-w-[64px] items-center rounded-[6px] border border-gray-400 px-3 text-[16px] font-semibold text-gray-700 active:border-gray-100 active:bg-gray-400 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-200 disabled:text-gray-400">
                 파일 첨부하기
               </div>
               <input

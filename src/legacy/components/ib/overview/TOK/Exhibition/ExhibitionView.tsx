@@ -109,7 +109,7 @@ export default function ExhibitionView({ grade, klass }: ExhibitionGetSubmission
 
       {status === 'PENDING' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             전시회 미작성
           </Typography>
           <ExhibitionOverviewPanel
@@ -122,7 +122,7 @@ export default function ExhibitionView({ grade, klass }: ExhibitionGetSubmission
       )}
       {status === 'IN_PROGRESS' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             전시회 진행중
           </Typography>
           <ExhibitionOverviewPanel
@@ -136,7 +136,7 @@ export default function ExhibitionView({ grade, klass }: ExhibitionGetSubmission
       )}
       {status === 'EVALUATING' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             전시회 평가
           </Typography>
           <ExhibitionOverviewPanel
@@ -159,7 +159,7 @@ export default function ExhibitionView({ grade, klass }: ExhibitionGetSubmission
       )}
       {status === 'COMPLETE' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             전시회 완료
           </Typography>
           <ExhibitionOverviewPanel

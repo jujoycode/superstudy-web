@@ -79,7 +79,7 @@ export default function EssayView({ grade, klass, ibType }: EssayGetSubmissionSt
   return (
     <div>
       {(isDownloading || notiLoading) && <Blank />}
-      <Typography variant="title1" className="text-primary-gray-900">
+      <Typography variant="title1" className="text-gray-900">
         에세이
       </Typography>
       <RadioV2.Group
@@ -105,7 +105,7 @@ export default function EssayView({ grade, klass, ibType }: EssayGetSubmissionSt
 
       {status === 'NOT_SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             에세이 미제출
           </Typography>
           <EssayOverviewPanel
@@ -118,7 +118,7 @@ export default function EssayView({ grade, klass, ibType }: EssayGetSubmissionSt
       )}
       {status === 'SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             에세이 진행중
           </Typography>
           <EssayOverviewPanel
@@ -130,7 +130,7 @@ export default function EssayView({ grade, klass, ibType }: EssayGetSubmissionSt
       )}
       {status === 'EVALUATING' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             에세이 평가
           </Typography>
           <EssayOverviewPanel
@@ -153,7 +153,7 @@ export default function EssayView({ grade, klass, ibType }: EssayGetSubmissionSt
       )}
       {status === 'COMPLETE' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             에세이 완료
           </Typography>
           <EssayOverviewPanel

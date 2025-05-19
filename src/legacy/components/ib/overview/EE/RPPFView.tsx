@@ -95,7 +95,7 @@ export default function RPPFView({ grade, klass }: IBGetSubmissionStatusCountPar
   return (
     <div>
       {(isDownloading || notiLoading) && <Blank />}
-      <Typography variant="title1" className="text-primary-gray-900">
+      <Typography variant="title1" className="text-gray-900">
         RPPF
       </Typography>
       <RadioV2.Group
@@ -126,7 +126,7 @@ export default function RPPFView({ grade, klass }: IBGetSubmissionStatusCountPar
 
       {status === 'NOT_SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             RPPF 미작성
           </Typography>
           <RPPFOverviewPanel
@@ -139,7 +139,7 @@ export default function RPPFView({ grade, klass }: IBGetSubmissionStatusCountPar
       )}
       {status === 'IN_PROGRESS' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             RPPF 진행중
           </Typography>
           <RPPFOverviewPanel
@@ -164,7 +164,7 @@ export default function RPPFView({ grade, klass }: IBGetSubmissionStatusCountPar
       )}
       {status === 'IB_TEACHER_FEEDBACK' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             지도의견
           </Typography>
           <RPPFOverviewPanel
@@ -183,7 +183,7 @@ export default function RPPFView({ grade, klass }: IBGetSubmissionStatusCountPar
       )}
       {status === 'COMPLETED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             RPPF 완료
           </Typography>
           <RPPFOverviewPanel

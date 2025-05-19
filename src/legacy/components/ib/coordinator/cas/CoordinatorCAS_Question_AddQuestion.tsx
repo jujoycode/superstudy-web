@@ -124,9 +124,7 @@ export function CoordinatorCAS_Question_AddQuestion({
                     onClick={() => setCategory(value)}
                     className={clsx(
                       'flex cursor-pointer items-center justify-center rounded-lg px-4 py-[9px] whitespace-pre',
-                      category === value
-                        ? 'bg-primary-gray-700 text-white'
-                        : 'bg-primary-gray-50 text-primary-gray-700 hover:bg-primary-gray-200',
+                      category === value ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-200',
                     )}
                   >
                     {name}
@@ -220,7 +218,7 @@ export function CoordinatorCAS_Question_AddQuestion({
 
           <div
             className={
-              'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]'
+              'sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8 backdrop-blur-[20px]'
             }
           >
             <div className="flex justify-end gap-3">

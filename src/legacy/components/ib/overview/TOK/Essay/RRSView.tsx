@@ -64,7 +64,7 @@ export default function RRSView({ grade, klass }: RRSGetSubmissionStatusCountPar
 
       {status === 'NOT_SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             RRS 미작성
           </Typography>
           <RRSOverviewPanel
@@ -77,7 +77,7 @@ export default function RRSView({ grade, klass }: RRSGetSubmissionStatusCountPar
       )}
       {status === 'SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             RRS 진행중
           </Typography>
           <RRSOverviewPanel
