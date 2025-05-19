@@ -1,6 +1,7 @@
 import { omit } from 'lodash'
 import { FC, useEffect, useState } from 'react'
 import NODATA from '@/assets/images/no-data.png'
+import { useUserStore } from '@/stores/user'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -12,7 +13,6 @@ import {
   ResponseTokEvaluationInitialDataDto,
   ResponseTokEvaluationSummaryDto,
 } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores/user'
 import Evaluation from './Evaluation'
 
 interface EvaluationListProps {

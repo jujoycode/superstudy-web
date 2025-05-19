@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
 import type { ResponseUserDto } from '@/legacy/generated/model'
 
 type UserState = {
@@ -30,14 +31,30 @@ const initialState = {
   initialized: false,
 }
 
-export const useUserStore = create<UserState>()((set) => ({
-  ...initialState,
-  // 액션
-  setMe: (me) => set({ me }),
-  setChild: (child) => set({ child }),
-  setSelectedGroupId: (selectedGroupId) => set({ selectedGroupId }),
-  setIsUpdateMe: (isUpdateMe) => set({ isUpdateMe }),
-  setIsUpdateNotice: (isUpdateNotice) => set({ isUpdateNotice }),
-  setInitialized: (initialized) => set({ initialized }),
-  reset: () => set(initialState),
-}))
+export const useUserStore = create<UserState>()(
+  persist(
+    (set) => ({
+      ...initialState,
+      // 액션
+      setMe: (me) => set({ me }),
+      setChild: (child) => set({ child }),
+      setSelectedGroupId: (selectedGroupId) => set({ selectedGroupId }),
+      setIsUpdateMe: (isUpdateMe) => set({ isUpdateMe }),
+      setIsUpdateNotice: (isUpdateNotice) => set({ isUpdateNotice }),
+      setInitialized: (initialized) => set({ initialized }),
+      reset: () => set(initialState),
+    }),
+    {
+      name: 'user-storage',
+      storage: createJSONStorage(() => sessionStorage),
+      partialize: (state) => ({
+        me: state.me,
+        child: state.child,
+        selectedGroupId: state.selectedGroupId,
+        isUpdateMe: state.isUpdateMe,
+        isUpdateNotice: state.isUpdateNotice,
+        initialized: state.initialized,
+      }),
+    },
+  ),
+)

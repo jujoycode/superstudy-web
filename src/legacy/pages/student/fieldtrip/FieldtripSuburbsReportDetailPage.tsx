@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import { useState } from 'react'
 
+import { useUserStore } from '@/stores/user'
 import { SuperModal } from '@/legacy/components'
 import { BackButton, Label, PhoneNumberField, Section, Textarea, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
-import { useUserStore } from '@/stores/user'
 
 export function FieldtripSuburbsReportDetailPage() {
   const { me: meRecoil } = useUserStore()

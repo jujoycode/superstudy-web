@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { use100vh } from 'react-div-100vh'
 import { Link, useLocation } from 'react-router-dom'
 
+import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { BackButton, Blank, Label, PhoneNumberField, Section, Select, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
@@ -11,8 +12,6 @@ import { useOtp } from '@/legacy/container/otp'
 import { useParentSignUp } from '@/legacy/container/parent-sign-up'
 import { useLogout } from '@/legacy/util/hooks'
 import { Validator } from '@/legacy/util/validator'
-
-import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 
 export function ParentSignupPage() {
   const vh = use100vh()

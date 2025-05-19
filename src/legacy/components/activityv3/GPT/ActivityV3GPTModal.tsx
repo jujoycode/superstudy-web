@@ -2,6 +2,7 @@ import _ from 'lodash'
 import { FC, useEffect, useRef, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
+import { useNotificationStore } from '@/stores/notification'
 import { Avatar, Label, Radio, RadioGroup, Select, Textarea } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Coachmark2 } from '@/legacy/components/common/CoachMark2'
@@ -18,7 +19,6 @@ import {
 } from '@/legacy/generated/endpoint'
 import { ActivityV3, ResponseStudentCardStudentDto, SubjectType } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useNotificationStore } from '@/stores/notification'
 
 interface ActivityV3GPTModalProps {
   activityV3s?: ActivityV3[]

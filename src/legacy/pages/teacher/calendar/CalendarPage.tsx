@@ -1,9 +1,10 @@
-import { useState } from 'react'
-import { CoachMark } from 'react-coach-mark'
 import { EventClickArg } from '@fullcalendar/core/index.js'
 import { addMonths, endOfMonth, format, startOfMonth, subMonths } from 'date-fns'
 import { t } from 'i18next'
+import { useState } from 'react'
+import { CoachMark } from 'react-coach-mark'
 import { Calendar, type CalendarData } from '@/atoms/Calendar'
+import { useUserStore } from '@/stores/user'
 import { ErrorBlank } from '@/legacy/components'
 import { CustomTuiDetailModal } from '@/legacy/components/calendar/CustomTuiDetailModal'
 import { CustomTuiModal } from '@/legacy/components/calendar/CustomTuiModal'
@@ -17,7 +18,6 @@ import { useTeacherChatUserList } from '@/legacy/container/teacher-chat-user-lis
 import { CalendarIdEnum, Role, ScheduleCategoryEnum } from '@/legacy/generated/model'
 import { MenuType } from '@/legacy/types'
 import { weekAfter, weekAgo } from '@/legacy/util/time'
-import { useUserStore } from '@/stores/user'
 
 export function CalendarPage() {
   const { me } = useUserStore()

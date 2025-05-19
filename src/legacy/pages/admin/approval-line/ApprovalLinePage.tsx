@@ -2,6 +2,7 @@ import { range } from 'lodash'
 import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
 
+import { useNotificationStore } from '@/stores/notification'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
@@ -30,7 +31,6 @@ import {
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getNickName } from '@/legacy/util/status'
-import { useNotificationStore } from '@/stores/notification'
 
 const steps = range(1, 6) as (1 | 2 | 3 | 4 | 5)[]
 

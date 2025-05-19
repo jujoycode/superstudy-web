@@ -1,10 +1,10 @@
-import { ReactComponent as Bell } from '@/assets/icons/new-bell.svg'
-import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
-import { ReactComponent as World } from '@/assets/icons/new-world.svg'
-import { ReactComponent as RightFillArrow } from '@/assets/svg/RightFillArrow.svg'
-import { ReactComponent as RightUpArrow } from '@/assets/svg/RightUpArrow.svg'
 import { ReactComponent as ChevronDown } from '@/assets/icons/chevron-down.svg'
 import { ReactComponent as ChevronUp } from '@/assets/icons/chevron-up.svg'
+import { ReactComponent as Bell } from '@/assets/icons/new-bell.svg'
+import { ReactComponent as World } from '@/assets/icons/new-world.svg'
+import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
+import { ReactComponent as RightFillArrow } from '@/assets/svg/RightFillArrow.svg'
+import { ReactComponent as RightUpArrow } from '@/assets/svg/RightUpArrow.svg'
 
 type IconName = 'logo' | 'world' | 'bell' | 'rightFillArrow' | 'rightUpArrow' | 'chevronDown' | 'chevronUp'
 
@@ -54,6 +54,7 @@ export function Icon({ name, color, size = 'md', customSize, fill = false, class
     <div className={`inline-flex ${customSize ? '' : sizeClass} ${colorClass} ${className}`}>
       <IconComponent
         fill={fill ? 'currentColor' : 'none'}
+        stroke={!fill ? 'currentColor' : 'none'}
         width={customSize?.width}
         height={customSize?.height}
         color={colorClass}

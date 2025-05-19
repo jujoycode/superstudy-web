@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import { ErrorBlank, SelectValues, SuperModal } from '@/legacy/components'
 import {
   BackButton,
@@ -31,7 +32,6 @@ import { UserContainer } from '@/legacy/container/user'
 import { Fieldtrip, Role } from '@/legacy/generated/model'
 import { getCustomString } from '@/legacy/util/string'
 import { differenceWithSchedulesWithHalfDay, isWeekendDay } from '@/legacy/util/time'
-import { useUserStore } from '@/stores/user'
 
 const relationshipType = ['부', '모', '기타']
 const selectOptions = ['가족동반여행', '친·인척 방문', '답사∙견학 활동', '체험활동']

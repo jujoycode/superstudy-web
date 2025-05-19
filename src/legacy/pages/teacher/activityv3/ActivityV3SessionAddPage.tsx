@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
 import { SuperModal } from '@/legacy/components'
 import { ActivitySessionTeacherView } from '@/legacy/components/activityv3/ActivitySessionTeacherView'
 import { Blank, CloseButton, Label, Radio, RadioGroup, Textarea } from '@/legacy/components/common'
@@ -25,7 +26,6 @@ import {
 } from '@/legacy/generated/model'
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
-import { useNotificationStore } from '@/stores/notification'
 
 interface ActivityV3SessionAddPageProps {
   activitySessionData?: ActivitySession

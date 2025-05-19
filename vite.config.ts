@@ -86,7 +86,6 @@ export default defineConfig(({ mode }) => {
           ref: true,
           svgo: false,
           titleProp: true,
-          dimensions: false,
         },
         include: '**/*.svg',
         esbuildOptions: {
@@ -158,6 +157,7 @@ export default defineConfig(({ mode }) => {
         '@/pages': '/src/components/pages',
         '@/layouts': '/src/layouts',
         '@/hooks': '/src/hooks',
+        '@/providers': '/src/components/providers',
         '@/utils': '/src/utils',
         '@/constants': '/src/constants',
         '@/stores': '/src/stores',

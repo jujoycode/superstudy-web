@@ -3,6 +3,7 @@ import { useRef, useState } from 'react'
 import { Document, Page } from 'react-pdf'
 import { useParams } from 'react-router'
 
+import { useUserStore } from '@/stores/user'
 import { SuperModal } from '@/legacy/components'
 import { AbsentPaper } from '@/legacy/components/absent/AbsentPaper'
 import { ParentConfirmPaper } from '@/legacy/components/absent/ParentConfirmPaper'
@@ -17,7 +18,6 @@ import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { extractImageData, extractReactData, extractReactDataArray, getDoc, getPdfImageSize } from '@/legacy/util/pdf'
 import { buttonEnableState } from '@/legacy/util/permission'
 import { makeStartEndToString } from '@/legacy/util/time'
-import { useUserStore } from '@/stores/user'
 
 interface HistoryAbsentDetailPageProps {
   setAbsentId: (n: number) => void

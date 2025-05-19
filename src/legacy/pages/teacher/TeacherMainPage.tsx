@@ -1,11 +1,13 @@
+import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, LinkProps, Outlet, useLocation } from 'react-router-dom'
-import clsx from 'clsx'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { ReactComponent as RightArrow } from '@/assets/svg/RightFillArrow.svg'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { useLogout } from '@/hooks/useLogout'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 import { Blank } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
 import { NotificationModal } from '@/legacy/components/notification/NotificationModal'
@@ -23,8 +25,6 @@ import { DateFormat } from '@/legacy/util/date'
 import { DateUtil } from '@/legacy/util/date'
 import { globalEnv } from '@/legacy/util/global-env'
 import { getNickName } from '@/legacy/util/status'
-import { useNotificationStore } from '@/stores/notification'
-import { useUserStore } from '@/stores/user'
 
 export function TeacherMainPage() {
   const { replace } = useHistory()

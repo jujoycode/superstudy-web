@@ -1,5 +1,7 @@
 import { useParams } from 'react-router'
 
+import NODATA from '@/assets/images/no-data.png'
+import { useUserStore } from '@/stores/user'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
@@ -12,9 +14,6 @@ import TeacherCASRefNInt from '@/legacy/components/ib/cas/TeacherCASRefInt'
 import IBLayout from '@/legacy/components/ib/IBLayout'
 import { useIBPortfolioGetById } from '@/legacy/container/ib-cas'
 import { makeStudNum5 } from '@/legacy/util/status'
-import { useUserStore } from '@/stores/user'
-
-import NODATA from '@/assets/images/no-data.png'
 
 function CASPortfolioPage() {
   const { id: idParams } = useParams<{ id: string }>()

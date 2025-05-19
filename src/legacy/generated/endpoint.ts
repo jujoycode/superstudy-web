@@ -6,15 +6,7 @@
  * OpenAPI spec version: 0.1
  */
 import { useQuery, useMutation } from 'react-query'
-import type {
-  UseQueryOptions,
-  UseMutationOptions,
-  QueryFunction,
-  MutationFunction,
-  UseQueryResult,
-  QueryKey,
-} from 'react-query'
-
+import { ErrorType, mutator } from '../lib/axios'
 import type {
   ResponsePaginationTeacherInfoDto,
   AdminCommonSearchTeachersParams,
@@ -608,7 +600,14 @@ import type {
   RequestIBBasicContentUpdateDto,
   RequestIBBasicContentDto,
 } from './model'
-import { ErrorType, mutator } from '../lib/axios'
+import type {
+  UseQueryOptions,
+  UseMutationOptions,
+  QueryFunction,
+  MutationFunction,
+  UseQueryResult,
+  QueryKey,
+} from 'react-query'
 
 // eslint-disable-next-line
 type SecondParameter<T extends (...args: any) => any> = T extends (config: any, args: infer P) => any ? P : never

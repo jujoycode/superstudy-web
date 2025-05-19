@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
+import SVGIcon from '../icon/SVGIcon'
 import { ButtonV2 } from './ButtonV2'
 import { Input } from './Input'
 import TimePicker from './TimePicker'
 import { Typography } from './Typography'
-import SVGIcon from '../icon/SVGIcon'
 
 interface ScheduleAndPeriodPickerProps {
   initialDate?: {

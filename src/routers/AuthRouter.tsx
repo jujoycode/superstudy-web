@@ -15,6 +15,7 @@ export function AuthRouter({ children, guestOnly }: AuthRouterProps) {
     if (guestOnly && authenticated) {
       navigate('/')
     }
+
     if (!guestOnly && !authenticated) {
       navigate('/login')
     }

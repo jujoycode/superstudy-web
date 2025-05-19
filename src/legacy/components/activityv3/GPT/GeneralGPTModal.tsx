@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { useNotificationStore } from '@/stores/notification'
 import { Avatar, Textarea } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
@@ -14,7 +15,6 @@ import {
   TeacherStudentAssessment,
 } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useNotificationStore } from '@/stores/notification'
 
 interface GeneralGPTModalProps {
   studentId: number

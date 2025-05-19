@@ -28,10 +28,8 @@ export function LoginV2() {
     if (!localStorage.getItem('noticeShow')) {
       setNoticeOpen(true)
     }
-    // if (!localStorage.getItem('noticeShow3')) {
-    //   setNoticeOpen2(true);
-    // }
   }, [])
+
   const handleLoginClick = () => {
     if (!isEmail(email)) {
       setFrontError('아이디는 이메일 형식으로 입력해 주세요.')

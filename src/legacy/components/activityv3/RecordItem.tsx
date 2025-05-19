@@ -1,10 +1,10 @@
 import { format } from 'date-fns'
 import { FC, useState } from 'react'
+import { useNotificationStore } from '@/stores/notification'
 import { Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { useRecordDelete, useRecordUpdate } from '@/legacy/generated/endpoint'
 import { Record } from '@/legacy/generated/model'
-import { useNotificationStore } from '@/stores/notification'
 import { SuperModal } from '../SuperModal'
 
 interface RecordItemProps {

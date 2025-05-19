@@ -6,6 +6,7 @@ import Linkify from 'react-linkify'
 import { useParams } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -27,7 +28,6 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { handleSingleBlobDownload } from '@/legacy/util/download-blob'
 import { createTokExhibitionPdf } from '@/legacy/util/ib/tok-exhibition-pdf'
-import { useUserStore } from '@/stores/user'
 
 const urlDecorator = (decoratedHref: string, decoratedText: string, key: number) => (
   <a href={decoratedHref} key={key} target="_blank" rel="noopener noreferrer" className="underline">

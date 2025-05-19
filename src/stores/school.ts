@@ -2,7 +2,6 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { ResponseSchoolPropertyDto } from '@/legacy/generated/model'
 
-
 type SchoolState = {
   // 상태
   schoolProperties: ResponseSchoolPropertyDto[]

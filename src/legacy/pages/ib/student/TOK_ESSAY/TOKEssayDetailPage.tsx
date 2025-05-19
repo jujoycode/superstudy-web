@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router'
 
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -17,9 +19,6 @@ import { useEssayGetByIBId } from '@/legacy/container/ib-essay-find'
 import { useIBEssaySent } from '@/legacy/container/ib-essay-send'
 import { ResponseIBDto } from '@/legacy/generated/model'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
-import { useUserStore } from '@/stores/user'
-
-import NODATA from '@/assets/images/no-data.png'
 
 interface LocationState {
   project: ResponseIBDto

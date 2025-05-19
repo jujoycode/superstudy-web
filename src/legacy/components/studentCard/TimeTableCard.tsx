@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
+import { useUserStore } from '@/stores/user'
 import { useStudentTimetableDetail } from '@/legacy/container/teacher-student-timetable-detail'
 import { LectureType, ResponseTimetableV3Dto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { dayOfKorWeek } from '@/legacy/util/date'
-import { useUserStore } from '@/stores/user'
 
 interface TimeTableCardProps {
   studentId?: number

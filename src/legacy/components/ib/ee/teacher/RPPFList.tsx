@@ -2,6 +2,7 @@ import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -20,7 +21,6 @@ import { useRPPFUpdateRPPFStatusReject } from '@/legacy/generated/endpoint'
 import { FeedbackReferenceTable, ResponseIBDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { LocationState } from '@/legacy/types/ib'
-import { useUserStore } from '@/stores/user'
 interface RppfListProps {
   id: number
   data: ResponseIBDto

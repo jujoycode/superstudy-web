@@ -130,6 +130,11 @@ export default tseslint.config(
               position: 'before',
             },
             {
+              pattern: '@/providers/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
               pattern: '@/utils/**',
               group: 'internal',
               position: 'before',

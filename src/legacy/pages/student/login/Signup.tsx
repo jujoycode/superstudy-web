@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
 import { BackButton, Divider, Label, PhoneNumberField, Select, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
@@ -17,7 +18,6 @@ import { RequestSignupDto } from '@/legacy/generated/model'
 import { form } from '@/legacy/lib/form'
 import { useSearch } from '@/legacy/lib/router'
 import { Validator } from '@/legacy/util/validator'
-import { useNotificationStore } from '@/stores/notification'
 
 export function Signup() {
   const { push } = useHistory()

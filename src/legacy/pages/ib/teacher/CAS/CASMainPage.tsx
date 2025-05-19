@@ -4,6 +4,7 @@ import { Link, Route, Routes, useLocation, useParams } from 'react-router'
 
 import { twMerge } from 'tailwind-merge'
 
+import { useUserStore } from '@/stores/user'
 import { SuperModal } from '@/legacy/components'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -29,7 +30,6 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { ResponseIBDtoStatus } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useUserStore } from '@/stores/user'
 
 export type CASProject = 'ACTIVITY_PLAN' | 'ACTIVITY_LOG'
 

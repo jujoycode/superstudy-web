@@ -1,6 +1,6 @@
 import { chain, filter, some, uniqBy } from 'lodash'
 import { useEffect, useMemo, useState } from 'react'
-import { Outlet, Route, Routes, useLocation } from 'react-router'
+import { Outlet, useLocation } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
 import { useUserStore } from '@/stores/user'
 import { ErrorBlank } from '@/legacy/components'

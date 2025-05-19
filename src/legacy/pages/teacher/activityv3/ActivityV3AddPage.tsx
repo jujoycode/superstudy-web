@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
 import { SuperModal } from '@/legacy/components'
 import {
   ActivityCriteriaSelectModal,
@@ -45,7 +46,6 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import type { nameWithId } from '@/legacy/types'
 import { getFileNameFromUrl } from '@/legacy/util/file'
-import { useNotificationStore } from '@/stores/notification'
 
 interface ActivityV3AddPageProps {
   activityv3Data?: ActivityV3

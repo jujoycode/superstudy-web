@@ -1,5 +1,6 @@
 import { PropsWithChildren, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useUserStore } from '@/stores/user'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
@@ -23,7 +24,6 @@ import {
   ResponseIBStudentDto,
 } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { useUserStore } from '@/stores/user'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 

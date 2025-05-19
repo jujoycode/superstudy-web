@@ -70,13 +70,17 @@ import { PointLogsPage } from '@/legacy/pages/teacher/studentcard/PointLogsPage'
 import { ActivityV3Page } from '@/legacy/pages/teacher/activityv3/ActivityV3Page'
 
 import { ActivityV3Page as ActivityV3CardPage } from '@/legacy/pages/teacher/studentcard/ActivityV3Page'
+import { AuthRouter } from '../AuthRouter'
+import { AuthGuard } from '../guard/AuthGuard'
 
 export const teacherRoutes = {
   path: '/teacher',
   element: (
-    // <RoleGuard>
-    <TeacherLayout />
-    // </RoleGuard>
+    <AuthRouter>
+      <AuthGuard>
+        <TeacherLayout />
+      </AuthGuard>
+    </AuthRouter>
   ),
   children: [
     // 출석부
@@ -254,6 +258,7 @@ export const teacherRoutes = {
     { path: 'canteen/:date', element: <CanteenPage /> },
 
     // 공지사항
+    { path: 'notice/*', element: <NoticePage /> },
     { path: 'notice', element: <NoticePage /> },
 
     // 학급게시판

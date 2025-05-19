@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import { useMemo } from 'react'
 
+import { useUserStore } from '@/stores/user'
 import { useCourseGet } from '@/legacy/generated/endpoint'
 import { Course, CourseStatus } from '@/legacy/generated/model'
 import { courseTimeToString } from '@/legacy/util/course'
 import { dayOfKorWeek } from '@/legacy/util/date'
-import { useUserStore } from '@/stores/user'
 
 interface TimetableCoursesPageProps {
   selectedCourse?: Course

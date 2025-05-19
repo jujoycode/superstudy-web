@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { TeacherLNB } from '@/organisms/LNB/TeacherLNB'
-import { MenuConstant } from '@/constants/MenuConstant'
+import { MenuConstant } from '@/constants/menuConstant'
 
 const meta = {
   title: 'Organisms/TeacherLNB',

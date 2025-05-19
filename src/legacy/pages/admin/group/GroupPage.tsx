@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { Link, useParams } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
@@ -25,7 +26,6 @@ import { Category, RequestGroupTeacherDto, RequestModifyGroupOnlyDto, SubjectTyp
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
 import { getErrorMsg, getNickName } from '@/legacy/util/status'
-import { useNotificationStore } from '@/stores/notification'
 
 const SubjectTypes = [
   { id: 0, name: '과목', value: SubjectType.LECTURE },

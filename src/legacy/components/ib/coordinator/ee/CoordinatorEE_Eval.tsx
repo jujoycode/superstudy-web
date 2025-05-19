@@ -10,9 +10,9 @@ import { useEEEvaluationGetItems } from '@/legacy/generated/endpoint'
 import { ResponseEEEvaluationDto } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
+import FrontPaginatedList from '../../../FrontPaginatedList '
 import { CoordinatorEE_Eval_AddEval } from './CoordinatorEE_Eval_AddEval'
 import { CoordinatorEE_Eval_UpdateEval } from './CoordinatorEE_Eval_UpdateEval'
-import FrontPaginatedList from '../../../FrontPaginatedList '
 
 export type ModalType = 'Update' | 'Add' | null
 export type CategoryType = 'Ref' | 'FAQ' | ''

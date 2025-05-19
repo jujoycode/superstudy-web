@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import Viewer from 'react-viewer'
 
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -15,7 +16,6 @@ import { NewsletterType, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { UserDatas } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { useUserStore } from '@/stores/user'
 
 export function NewsletterDetailPage() {
   const { push } = useHistory()

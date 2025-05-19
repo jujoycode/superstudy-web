@@ -5,6 +5,7 @@ import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
+import { useUserStore } from '@/stores/user'
 import {
   BackButton,
   Blank,
@@ -33,7 +34,6 @@ import {
 import { useSignature } from '@/legacy/hooks/useSignature'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { makeDateToString } from '@/legacy/util/time'
-import { useUserStore } from '@/stores/user'
 
 interface NewsletterAddPageProps {
   newsletterData: ResponseNewsletterDetailDto

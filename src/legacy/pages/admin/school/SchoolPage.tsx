@@ -1,6 +1,7 @@
 import { Checkbox } from '@mui/material'
 import { type ChangeEvent, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNotificationStore } from '@/stores/notification'
 import BlockchainSetting from '@/legacy/components/blockchain/BlockchainSetting'
 import { Label, Radio, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -17,7 +18,6 @@ import { OutingUse, type RequestUpdateSchoolInfoDto, ScoreUse, UploadFileTypeEnu
 import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignedUrl } from '@/legacy/lib/query'
-import { useNotificationStore } from '@/stores/notification'
 
 export interface PrivacyManager {
   name: string
