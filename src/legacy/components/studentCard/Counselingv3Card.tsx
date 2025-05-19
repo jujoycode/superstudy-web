@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 
+import { useOutletContext } from 'react-router-dom'
 import { ReactComponent as DownArrow } from '@/assets/icons/chevron-down.svg'
 import { ReactComponent as Plus } from '@/assets/svg/plus.svg'
 import { Blank, Select } from '@/legacy/components/common'
@@ -11,15 +12,17 @@ import { Category, Code, ResponseCounselingDetailDto } from '@/legacy/generated/
 import { AccessLevels } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isValidDate } from '@/legacy/util/time'
-import CounselingDetailCard from './CounselingDetailCard'
 import Recorder from '../rec/Recorder'
+import CounselingDetailCard from './CounselingDetailCard'
 
 interface CounselingCardProps {
   studentId: number
   groupId: number
 }
 
-export default function Counselingv3Card({ studentId }: CounselingCardProps) {
+export default function Counselingv3Card() {
+  const { studentId } = useOutletContext<CounselingCardProps>()
+
   const { me } = UserContainer.useContext()
   const [page, setPage] = useState(1)
   const [uploading, setUploading] = useState(false)
