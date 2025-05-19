@@ -1,7 +1,9 @@
 import { ReactNode, useState } from 'react'
 import { Container } from '@/atoms/Container'
+import { Divider } from '@/atoms/Divider'
 import { Icon } from '@/atoms/Icon'
 import { Text } from '@/atoms/Text'
+import { cn } from '@/legacy/lib/tailwind-merge'
 
 export type NavigationItem = {
   title: string
@@ -11,7 +13,7 @@ export type NavigationItem = {
 }
 
 const CategoryHeader = ({ title }: { title: string }) => (
-  <Text size="md" weight="sm" className="mb-1 text-gray-700">
+  <Text size="md" weight="sm" className="mb-1 text-[16px] font-[500] text-gray-800">
     {title}
   </Text>
 )
@@ -45,7 +47,7 @@ const LinkWrapper = ({
 
 const SubNavigationItem = ({ title, link, external }: { title: string; link?: string; external?: string }) => (
   <a
-    className="hover:text-primary-800 active:text-primary group ml-2 flex items-center text-[14px] font-medium text-gray-700"
+    className="group ml-4 flex items-center py-1 text-[14px] font-[400] text-gray-700 hover:bg-gray-50"
     href={link}
     aria-label={title}
   >
@@ -67,7 +69,7 @@ const NavigationItem = ({ item }: { item: NavigationItem }) => {
     return (
       <Container flex direction="col" noPadding>
         <div
-          className="hover:text-primary-800 active:text-primary group mb-0.5 flex cursor-pointer items-center justify-between text-[14px] font-medium text-gray-900"
+          className="group mb-0.5 flex cursor-pointer items-center justify-between py-2 text-[14px] font-[400] text-gray-700 hover:bg-gray-50 hover:text-black"
           onClick={() => setIsOpen(!isOpen)}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
@@ -98,7 +100,7 @@ const NavigationItem = ({ item }: { item: NavigationItem }) => {
           </div>
         </div>
         {isOpen && (
-          <Container flex direction="col" paddingX="3" gap="1" noPadding>
+          <Container flex direction="col" className="pb-2" paddingX="0">
             {item.items.map((subItem, index) => (
               <SubNavigationItem
                 key={`subitem-${index}`}
@@ -117,7 +119,10 @@ const NavigationItem = ({ item }: { item: NavigationItem }) => {
     <LinkWrapper
       href={item.link}
       title={item.title}
-      className="group flex items-center justify-between text-[14px] font-medium text-gray-800"
+      className={cn(
+        'group flex items-center justify-between py-2 text-[14px] font-[400] text-gray-700 hover:bg-gray-50 hover:text-black',
+        item.title === '활동기록' && 'text-brand-1',
+      )}
     >
       <span>{item.title}</span>
       {item.external && (
@@ -132,14 +137,20 @@ const NavigationItem = ({ item }: { item: NavigationItem }) => {
   )
 }
 
-const NavigationCategory = ({ category }: { category: NavigationItem }) => (
-  <Container flex direction="col" className="mb-3" paddingX="2">
-    <CategoryHeader title={category.title} />
-    <Container flex direction="col" gap="1" noPadding>
-      {category.items?.map((item, index) => <NavigationItem key={`item-${index}`} item={item} />)}
+const NavigationCategory = ({ category }: { category: NavigationItem }) => {
+  const [isOpen, setOpen] = useState(true)
+
+  return (
+    <Container flex direction="col" className="mb-3" paddingX="2">
+      <CategoryHeader title={category.title} />
+      {isOpen && (
+        <Container flex direction="col" noPadding>
+          {category.items?.map((item, index) => <NavigationItem key={`item-${index}`} item={item} />)}
+        </Container>
+      )}
     </Container>
-  </Container>
-)
+  )
+}
 
 export function NavigationBarItem({ data }: { data: NavigationItem[] }) {
   if (!data || data.length === 0) {
