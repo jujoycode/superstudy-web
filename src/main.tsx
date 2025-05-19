@@ -10,6 +10,7 @@ import { App } from './App'
 
 import './index.css'
 import './calendar.css'
+import './legacy/styles/legacy.css'
 // import 'swiper/swiper.css'
 
 createRoot(document.getElementById('root')!).render(
