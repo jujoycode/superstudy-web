@@ -25,8 +25,8 @@ export function MockBottomSheet({ data, onChange }: BottomSheetProps) {
   if (data?.length === 0 || !data) {
     return (
       <>
-        <div className="border-primary-gray-200 bg-primary-gray-100 flex h-12 cursor-pointer flex-row items-center justify-between rounded-lg border px-4 py-3">
-          <Typography variant="body2" className="text-primary-gray-400 font-medium">
+        <div className="flex h-12 cursor-pointer flex-row items-center justify-between rounded-lg border border-gray-200 bg-gray-100 px-4 py-3">
+          <Typography variant="body2" className="font-medium text-gray-400">
             시험 선택
           </Typography>
         </div>
@@ -34,7 +34,7 @@ export function MockBottomSheet({ data, onChange }: BottomSheetProps) {
           <div className="h-12 w-12 px-[2.50px]">
             <img src={NODATA} className="h-12 w-[43px] object-cover" />
           </div>
-          <Typography variant="body1" className="text-primary-gray-700">
+          <Typography variant="body1" className="text-gray-700">
             성적내역이 없습니다.
           </Typography>
         </div>
@@ -45,7 +45,7 @@ export function MockBottomSheet({ data, onChange }: BottomSheetProps) {
   return (
     <>
       <div
-        className="border-primary-gray-200 flex h-12 cursor-pointer flex-row items-center justify-between rounded-lg border bg-white px-4 py-3"
+        className="flex h-12 cursor-pointer flex-row items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-3"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Typography variant="body2" className="font-medium">
@@ -61,7 +61,7 @@ export function MockBottomSheet({ data, onChange }: BottomSheetProps) {
             <div key={index} className="flex flex-row items-center justify-between py-4">
               <Typography
                 variant={isSelected ? 'title3' : 'body1'}
-                className={isSelected ? 'text-primary-orange-800 font-semibold' : 'text-primary-gray-700'}
+                className={isSelected ? 'text-primary-800 font-semibold' : 'text-gray-700'}
                 onClick={() => handleClick(item, index)}
               >
                 {item.year}년 {item.grade}학년 {item.month}월 모의고사

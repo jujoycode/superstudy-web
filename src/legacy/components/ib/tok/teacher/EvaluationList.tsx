@@ -282,8 +282,8 @@ export const EvaluationList: FC<EvaluationListProps> = ({
             />
 
             {/* 선생님 평가 점수 */}
-            <div className="border-primary-gray-200 rounded-lg border">
-              <div className="[&>*]:border-primary-gray-200 [&>*:not(:last-child)]:border-b">
+            <div className="rounded-lg border border-gray-200">
+              <div className="[&>*]:border-gray-200 [&>*:not(:last-child)]:border-b">
                 <Evaluation
                   accordionTitle={me.name}
                   evaluationData={myEvaluation}

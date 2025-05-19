@@ -305,8 +305,8 @@ export function NewslettersDownloadView({
                   <div className="py-2 text-center text-lg text-white">
                     *{studentNewsletter?.length} 장의 가정통신문 설문 서류를 다운로드합니다.
                     <br />
-                    <b className="text-primary-orange-800">웹페이지 비율을 100%</b>로 조정 후, 다운로드를 진행해야 학생
-                    및 학부모 서명이 정상적으로 보여집니다.
+                    <b className="text-primary-800">웹페이지 비율을 100%</b>로 조정 후, 다운로드를 진행해야 학생 및
+                    학부모 서명이 정상적으로 보여집니다.
                     <br />
                     서류양이 많을 경우 다운로드가 최대 수 분까지 지연될 수 있습니다. <br />
                   </div>

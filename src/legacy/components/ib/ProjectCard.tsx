@@ -41,26 +41,26 @@ function CasProjectCard({ data, user }: ProjectCardProps) {
     <div
       className={`flex ${
         user.role === 'USER' ? 'h-[294px]' : 'h-[338px]'
-      } border-primary-gray-200 w-[308px] cursor-pointer flex-col rounded-xl border bg-white shadow-[0_4px_8px_0_rgb(244,246,248)]`}
+      } w-[308px] cursor-pointer flex-col rounded-xl border border-gray-200 bg-white shadow-[0_4px_8px_0_rgb(244,246,248)]`}
     >
       {/* flag 영역 */}
       {user.role !== 'USER' && data.leader.studentGroup && (
-        <div className="border-b-primary-gray-100 flex flex-row items-center justify-between border-b px-5 py-2">
+        <div className="flex flex-row items-center justify-between border-b border-b-gray-100 px-5 py-2">
           <div className="flex flex-row items-center">
-            <Typography variant="body3" className="text-primary-gray-700">
+            <Typography variant="body3" className="text-gray-700">
               {data.leader.studentGroup.group.grade}
               {String(data.leader.studentGroup.group.klass).padStart(2, '0')}
               {String(data.leader.studentGroup.studentNumber).padStart(2, '0')}
             </Typography>
             <span className="mx-1">·</span>
-            <Typography variant="body3" className="text-primary-gray-700">
+            <Typography variant="body3" className="text-gray-700">
               {data.leader.name} {data.ibType === 'CAS_PROJECT' && data.members && `외 ${data.members?.length}명`}
             </Typography>
           </div>
           {data.status === 'WAIT_MENTOR' && data.mentor !== null && (
             <div className="flex flex-row items-center gap-1">
               <SVGIcon.Check color="orange800" size={12} weight="bold" />
-              <Typography variant="caption" className="text-primary-orange-800 font-medium">
+              <Typography variant="caption" className="text-primary-800 font-medium">
                 감독교사 요청함
               </Typography>
             </div>
@@ -68,7 +68,7 @@ function CasProjectCard({ data, user }: ProjectCardProps) {
           {data.status === 'WAIT_COMPLETE' && (
             <div className="flex flex-row items-center gap-1">
               <SVGIcon.Check color="orange800" size={12} weight="bold" />
-              <Typography variant="caption" className="text-primary-orange-800 font-medium">
+              <Typography variant="caption" className="text-primary-800 font-medium">
                 완료승인 요청함
               </Typography>
             </div>
@@ -121,7 +121,7 @@ function CasProjectCard({ data, user }: ProjectCardProps) {
               {data.status === 'PENDING' || data.status === 'WAIT_MENTOR' ? (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       활동기간
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -134,7 +134,7 @@ function CasProjectCard({ data, user }: ProjectCardProps) {
                     </Typography>
                   </span>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       감독교사
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -145,7 +145,7 @@ function CasProjectCard({ data, user }: ProjectCardProps) {
               ) : (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       활동기간
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -158,7 +158,7 @@ function CasProjectCard({ data, user }: ProjectCardProps) {
                     </Typography>
                   </span>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       감독교사
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -170,26 +170,26 @@ function CasProjectCard({ data, user }: ProjectCardProps) {
             </div>
           </main>
         </div>
-        <footer className="border-t-primary-gray-100 flex flex-col border-t">
+        <footer className="flex flex-col border-t border-t-gray-100">
           {message && (
             <div className="flex flex-row items-center justify-between gap-3 px-5 py-3">
               <div className="flex flex-row items-center gap-1">
                 <ColorSVGIcon.New color="orange800" size={16} />
-                <Typography variant="caption" className="text-primary-gray-700">
+                <Typography variant="caption" className="text-gray-700">
                   {message}
                 </Typography>
               </div>
               <SVGIcon.Arrow size={12} color="gray700" rotate={180} />
             </div>
           )}
-          <div className="border-t-primary-gray-100 flex flex-row items-center justify-between gap-3 border-t px-5 py-4">
+          <div className="flex flex-row items-center justify-between gap-3 border-t border-t-gray-100 px-5 py-4">
             <Typography variant="body3" className="font-medium">
               작성한 활동일지
             </Typography>
             <div className="mx-2 h-[1px] flex-1 border-t border-dashed border-gray-300"></div>
             <span
               className={`flex h-4 w-4 items-center justify-center rounded ${
-                data.activityLog?.length === 0 ? 'bg-primary-gray-500' : 'bg-primary-orange-800'
+                data.activityLog?.length === 0 ? 'bg-gray-500' : 'bg-primary-800'
               } text-11 px-1 py-px font-medium text-white`}
             >
               {data.activityLog ? data.activityLog.length : 0}
@@ -230,26 +230,26 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
     <div
       className={`flex ${
         user.role === 'USER' ? 'h-[294px]' : 'h-[338px]'
-      } border-primary-gray-200 w-[308px] cursor-pointer flex-col rounded-xl border bg-white shadow-[0_4px_8px_0_rgb(244,246,248)]`}
+      } w-[308px] cursor-pointer flex-col rounded-xl border border-gray-200 bg-white shadow-[0_4px_8px_0_rgb(244,246,248)]`}
     >
       {/* flag 영역 */}
       {user.role !== 'USER' && data.leader.studentGroup && (
-        <div className="border-b-primary-gray-100 flex flex-row items-center justify-between border-b px-5 py-2">
+        <div className="flex flex-row items-center justify-between border-b border-b-gray-100 px-5 py-2">
           <div className="flex flex-row items-center">
-            <Typography variant="body3" className="text-primary-gray-700">
+            <Typography variant="body3" className="text-gray-700">
               {data.leader.studentGroup.group.grade}
               {String(data.leader.studentGroup.group.klass).padStart(2, '0')}
               {String(data.leader.studentGroup.studentNumber).padStart(2, '0')}
             </Typography>
             <span className="mx-1">·</span>
-            <Typography variant="body3" className="text-primary-gray-700">
+            <Typography variant="body3" className="text-gray-700">
               {data.leader.name}
             </Typography>
           </div>
           {data.status === 'WAIT_COMPLETE' && (
             <div className="flex flex-row items-center gap-1">
               <SVGIcon.Check color="orange800" size={12} weight="bold" />
-              <Typography variant="caption" className="text-primary-orange-800 font-medium">
+              <Typography variant="caption" className="text-primary-800 font-medium">
                 완료승인 요청함
               </Typography>
             </div>
@@ -294,7 +294,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
               {data.status === 'PENDING' && data.proposals && (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       1순위
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -303,7 +303,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                   </span>
                   {data.proposals.length > 1 && (
                     <span className="flex flex-row gap-1">
-                      <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                      <Typography variant="body3" className="w-14 font-normal text-gray-500">
                         2순위
                       </Typography>
                       <Typography variant="body3" className="font-normal">
@@ -319,7 +319,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                   {data.proposals.length > 2 ? (
                     <>
                       <span className="flex flex-row gap-1">
-                        <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                        <Typography variant="body3" className="w-14 font-normal text-gray-500">
                           후순위
                         </Typography>
                         <Typography variant="body3" className="font-normal">
@@ -327,7 +327,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                         </Typography>
                       </span>
                       <span className="flex flex-row gap-1">
-                        <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                        <Typography variant="body3" className="w-14 font-normal text-gray-500">
                           지도교사
                         </Typography>
                         <Typography variant="body3" className="font-normal">
@@ -338,7 +338,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                   ) : (
                     <>
                       <span className="flex flex-row gap-1">
-                        <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                        <Typography variant="body3" className="w-14 font-normal text-gray-500">
                           1순위
                         </Typography>
                         <Typography variant="body3" className="font-normal">
@@ -347,7 +347,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                       </span>
                       {data.proposals.length > 1 && (
                         <span className="flex flex-row gap-1">
-                          <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                          <Typography variant="body3" className="w-14 font-normal text-gray-500">
                             2순위
                           </Typography>
                           <Typography variant="body3" className="font-normal">
@@ -365,7 +365,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                   {data.proposals.length > 2 ? (
                     <>
                       <span className="flex flex-row gap-1">
-                        <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                        <Typography variant="body3" className="w-14 font-normal text-gray-500">
                           후순위
                         </Typography>
                         <Typography variant="body3" className="font-normal">
@@ -373,7 +373,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                         </Typography>
                       </span>
                       <span className="flex flex-row gap-1">
-                        <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                        <Typography variant="body3" className="w-14 font-normal text-gray-500">
                           지도교사
                         </Typography>
                         <Typography variant="body3" className="font-normal">
@@ -384,7 +384,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                   ) : (
                     <>
                       <span className="flex flex-row gap-1">
-                        <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                        <Typography variant="body3" className="w-14 font-normal text-gray-500">
                           후순위
                         </Typography>
                         <Typography variant="body3" className="font-normal">
@@ -393,7 +393,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                       </span>
                       {data.proposals.length > 1 && (
                         <span className="flex flex-row gap-1">
-                          <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                          <Typography variant="body3" className="w-14 font-normal text-gray-500">
                             지도교사
                           </Typography>
                           <Typography variant="body3" className="font-normal">
@@ -408,7 +408,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
               {data.status === 'REJECT_PLAN' && data.proposals && approvedProposal && (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       과목
                     </Typography>
                     {/* TODO 제안서 반려 시 반려된 과목 정보 불러오기 */}
@@ -417,7 +417,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                     </Typography>
                   </span>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       지도교사
                     </Typography>
                     {/* TODO 제안서 반려 시 지정된 멘토 정보 불러오기 */}
@@ -431,7 +431,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
               {data.status === 'IN_PROGRESS' && data.proposals && approvedProposal && (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       과목
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -439,7 +439,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                     </Typography>
                   </span>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       지도교사
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -452,7 +452,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
               {data.status === 'WAIT_COMPLETE' && data.proposals && approvedProposal && (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       과목
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -460,7 +460,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                     </Typography>
                   </span>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       지도교사
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -473,7 +473,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
               {data.status === 'WAIT_PLAN_APPROVE' && data.proposals && approvedProposal && (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       과목
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -481,7 +481,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                     </Typography>
                   </span>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       지도교사
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -494,7 +494,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
               {data.status === 'WAIT_PLAN_APPROVE' && data.proposals && !approvedProposal && (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       1순위
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -502,7 +502,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                     </Typography>
                   </span>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       지도교사
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -514,7 +514,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
               {data.status === 'COMPLETE' && data.proposals && approvedProposal && (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       과목
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -522,7 +522,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                     </Typography>
                   </span>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       지도교사
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -534,7 +534,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
               {data.status === 'REJECT_COMPLETE' && data.proposals && approvedProposal && (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       과목
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -542,7 +542,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
                     </Typography>
                   </span>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       지도교사
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -555,10 +555,10 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
           </main>
         </div>
         {message && (
-          <div className="border-t-primary-gray-100 flex flex-row items-center justify-between gap-3 border-t px-5 py-3">
+          <div className="flex flex-row items-center justify-between gap-3 border-t border-t-gray-100 px-5 py-3">
             <div className="flex flex-row items-center gap-1">
               <ColorSVGIcon.New color="orange800" size={16} />
-              <Typography variant="caption" className="text-primary-gray-700">
+              <Typography variant="caption" className="text-gray-700">
                 {message}
               </Typography>
             </div>
@@ -578,26 +578,26 @@ function TokExProjectCard({ data, user }: ProjectCardProps) {
     <div
       className={`flex ${
         user.role === 'USER' ? 'h-[294px]' : 'h-[338px]'
-      } border-primary-gray-200 w-[308px] cursor-pointer flex-col rounded-xl border bg-white shadow-[0_4px_8px_0_rgb(244,246,248)]`}
+      } w-[308px] cursor-pointer flex-col rounded-xl border border-gray-200 bg-white shadow-[0_4px_8px_0_rgb(244,246,248)]`}
     >
       {/* flag 영역 */}
       {user.role !== 'USER' && data.leader.studentGroup && (
-        <div className="border-b-primary-gray-100 flex flex-row items-center justify-between border-b px-5 py-2">
+        <div className="flex flex-row items-center justify-between border-b border-b-gray-100 px-5 py-2">
           <div className="flex flex-row items-center">
-            <Typography variant="body3" className="text-primary-gray-700">
+            <Typography variant="body3" className="text-gray-700">
               {data.leader.studentGroup.group.grade}
               {String(data.leader.studentGroup.group.klass).padStart(2, '0')}
               {String(data.leader.studentGroup.studentNumber).padStart(2, '0')}
             </Typography>
             <span className="mx-1">·</span>
-            <Typography variant="body3" className="text-primary-gray-700">
+            <Typography variant="body3" className="text-gray-700">
               {data.leader.name}
             </Typography>
           </div>
           {data.status === 'WAIT_COMPLETE' && (
             <div className="flex flex-row items-center gap-1">
               <SVGIcon.Check color="orange800" size={12} weight="bold" />
-              <Typography variant="caption" className="text-primary-orange-800 font-medium">
+              <Typography variant="caption" className="text-primary-800 font-medium">
                 완료승인 요청함
               </Typography>
             </div>
@@ -650,7 +650,7 @@ function TokExProjectCard({ data, user }: ProjectCardProps) {
               {data.status === 'PENDING' || data.status === 'WAIT_MENTOR' ? (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       분류
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -658,7 +658,7 @@ function TokExProjectCard({ data, user }: ProjectCardProps) {
                     </Typography>
                   </span>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       지도교사
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -669,7 +669,7 @@ function TokExProjectCard({ data, user }: ProjectCardProps) {
               ) : (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       분류
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -677,7 +677,7 @@ function TokExProjectCard({ data, user }: ProjectCardProps) {
                     </Typography>
                   </span>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       지도교사
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -690,10 +690,10 @@ function TokExProjectCard({ data, user }: ProjectCardProps) {
           </main>
         </div>
         {message && (
-          <div className="border-t-primary-gray-100 flex flex-row items-center justify-between gap-3 border-t px-5 py-3">
+          <div className="flex flex-row items-center justify-between gap-3 border-t border-t-gray-100 px-5 py-3">
             <div className="flex flex-row items-center gap-1">
               <ColorSVGIcon.New color="orange800" size={16} />
-              <Typography variant="caption" className="text-primary-gray-700">
+              <Typography variant="caption" className="text-gray-700">
                 {message}
               </Typography>
             </div>
@@ -712,26 +712,26 @@ function TokEsProjectCard({ data, user }: ProjectCardProps) {
     <div
       className={`flex ${
         user.role === 'USER' ? 'h-[294px]' : 'h-[338px]'
-      } border-primary-gray-200 w-[308px] flex-col rounded-xl border bg-white shadow-[0_4px_8px_0_rgb(244,246,248)]`}
+      } w-[308px] flex-col rounded-xl border border-gray-200 bg-white shadow-[0_4px_8px_0_rgb(244,246,248)]`}
     >
       {/* flag 영역 */}
       {user.role !== 'USER' && data.leader.studentGroup && (
-        <div className="border-b-primary-gray-100 flex flex-row items-center justify-between border-b px-5 py-2">
+        <div className="flex flex-row items-center justify-between border-b border-b-gray-100 px-5 py-2">
           <div className="flex flex-row items-center">
-            <Typography variant="body3" className="text-primary-gray-700">
+            <Typography variant="body3" className="text-gray-700">
               {data.leader.studentGroup.group.grade}
               {String(data.leader.studentGroup.group.klass).padStart(2, '0')}
               {String(data.leader.studentGroup.studentNumber).padStart(2, '0')}
             </Typography>
             <span className="mx-1">·</span>
-            <Typography variant="body3" className="text-primary-gray-700">
+            <Typography variant="body3" className="text-gray-700">
               {data.leader.name}
             </Typography>
           </div>
           {data.status === 'WAIT_COMPLETE' && (
             <div className="flex flex-row items-center gap-1">
               <SVGIcon.Check color="orange800" size={12} weight="bold" />
-              <Typography variant="caption" className="text-primary-orange-800 font-medium">
+              <Typography variant="caption" className="text-primary-800 font-medium">
                 완료승인 요청함
               </Typography>
             </div>
@@ -780,7 +780,7 @@ function TokEsProjectCard({ data, user }: ProjectCardProps) {
               {data.status === 'PENDING' || data.status === 'WAIT_MENTOR' ? (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       분류
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -788,7 +788,7 @@ function TokEsProjectCard({ data, user }: ProjectCardProps) {
                     </Typography>
                   </span>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       지도교사
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -799,7 +799,7 @@ function TokEsProjectCard({ data, user }: ProjectCardProps) {
               ) : (
                 <>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       분류
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -807,7 +807,7 @@ function TokEsProjectCard({ data, user }: ProjectCardProps) {
                     </Typography>
                   </span>
                   <span className="flex flex-row gap-1">
-                    <Typography variant="body3" className="text-primary-gray-500 w-14 font-normal">
+                    <Typography variant="body3" className="w-14 font-normal text-gray-500">
                       지도교사
                     </Typography>
                     <Typography variant="body3" className="font-normal">
@@ -820,10 +820,10 @@ function TokEsProjectCard({ data, user }: ProjectCardProps) {
           </main>
         </div>
         {message && (
-          <div className="border-t-primary-gray-100 flex flex-row items-center justify-between gap-3 border-t px-5 py-3">
+          <div className="flex flex-row items-center justify-between gap-3 border-t border-t-gray-100 px-5 py-3">
             <div className="flex flex-row items-center gap-1">
               <ColorSVGIcon.New color="orange800" size={16} />
-              <Typography variant="caption" className="text-primary-gray-700">
+              <Typography variant="caption" className="text-gray-700">
                 {message}
               </Typography>
             </div>

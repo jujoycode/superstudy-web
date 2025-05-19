@@ -29,7 +29,7 @@ export function ImageNFileUpload({ addFiles, availableType, onChange, ...props }
       onClick={(e) => {
         e.stopPropagation()
       }}
-      className="border-primary-gray-200 bg-primary-gray-50 flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border py-8"
+      className="flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-gray-200 bg-gray-50 py-8"
     >
       <div className="h-12 w-12 px-[2.50px]">
         <img src={ADDFILE} className="h-12 w-[43px] object-cover" />

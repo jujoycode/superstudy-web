@@ -15,7 +15,7 @@ function CASCard({ data, user }: CASCardProps) {
   const { push } = useHistory()
   return (
     <div
-      className={`border-primary-gray-200 box-border flex h-[198px] w-[256px] cursor-pointer flex-col rounded-xl border bg-white shadow-[0_4px_8px_0_rgb(244,246,248)]`}
+      className={`box-border flex h-[198px] w-[256px] cursor-pointer flex-col rounded-xl border border-gray-200 bg-white shadow-[0_4px_8px_0_rgb(244,246,248)]`}
     >
       <div className="flex h-[158px] flex-col gap-4 p-4">
         <nav className="box-border flex w-full flex-row items-center justify-between">
@@ -57,7 +57,7 @@ function CASCard({ data, user }: CASCardProps) {
           </Typography>
           <div className="flex w-full flex-col gap-1">
             <span className="flex flex-row gap-1">
-              <Typography variant="caption" className="text-primary-gray-500 w-14 font-normal">
+              <Typography variant="caption" className="w-14 font-normal text-gray-500">
                 활동기간
               </Typography>
               <Typography variant="caption" className="font-normal">
@@ -70,7 +70,7 @@ function CASCard({ data, user }: CASCardProps) {
               </Typography>
             </span>
             <span className="flex flex-row gap-1">
-              <Typography variant="caption" className="text-primary-gray-500 w-14 font-normal">
+              <Typography variant="caption" className="w-14 font-normal text-gray-500">
                 감독교사
               </Typography>
               <Typography variant="caption" className="font-normal">
@@ -80,14 +80,14 @@ function CASCard({ data, user }: CASCardProps) {
           </div>
         </main>
       </div>
-      <footer className="border-t-primary-gray-100 flex h-10 flex-row items-center justify-between gap-3 border-t px-4 py-3">
+      <footer className="flex h-10 flex-row items-center justify-between gap-3 border-t border-t-gray-100 px-4 py-3">
         <Typography variant="caption3" className="font-medium">
           작성한 활동일지
         </Typography>
         <div className="mx-2 h-[1px] flex-1 border-t border-dashed border-gray-300"></div>
         <span
           className={`flex h-4 w-4 items-center justify-center rounded ${
-            data.activityLog?.length === 0 ? 'bg-primary-gray-500' : 'bg-primary-orange-800'
+            data.activityLog?.length === 0 ? 'bg-gray-500' : 'bg-primary-800'
           } text-11 px-1 py-px font-medium text-white`}
         >
           {data.activityLog ? data.activityLog.length : 0}

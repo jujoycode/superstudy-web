@@ -129,7 +129,7 @@ export function MyInfoUpdatePage({ me, setIsUpdateMe }: MyInfoUpdatePageProps) {
           {password2 && password !== password2 && (
             <div className="text-red-600">비밀번호 확인이 일치하지 않습니다.</div>
           )}
-          <div className="text-grey-3">
+          <div className="text-gray-3">
             &nbsp; 안전한 개인정보의 보호를 위해 문자,숫자,특수문자가 포함된 8자 이상의 비밀번호를 입력하세요.
             <br />
             &nbsp; 사용 가능한 특수문자는 ! @ # $ % & * ? 입니다.
@@ -175,7 +175,7 @@ export function MyInfoUpdatePage({ me, setIsUpdateMe }: MyInfoUpdatePageProps) {
                   }}
                 />
               </div>
-              <div className="text-grey-3">&nbsp; * 생년월일 수정은 담임선생님의 학생카드 페이지에서 가능합니다.</div>
+              <div className="text-gray-3">&nbsp; * 생년월일 수정은 담임선생님의 학생카드 페이지에서 가능합니다.</div>
             </Label.col>
             {/* <Label.col>
               <Label.Text children="희망진로" />
@@ -204,12 +204,12 @@ export function MyInfoUpdatePage({ me, setIsUpdateMe }: MyInfoUpdatePageProps) {
                 className={clsx(nokPhone ? 'border-gray-300' : 'border-red-700')}
               />
               {me.parents?.length === 0 ? (
-                <div className="text-grey-3">
+                <div className="text-gray-3">
                   &nbsp; * 보호자 정보 수정은 &quot;보호자가 가입대기중일 경우&quot; 담임선생님의 학생카드 페이지에서
                   가능합니다.
                 </div>
               ) : (
-                <div className="text-grey-3">&nbsp; * 보호자 정보 수정은 보호자의 MY페이지에서 가능합니다.</div>
+                <div className="text-gray-3">&nbsp; * 보호자 정보 수정은 보호자의 MY페이지에서 가능합니다.</div>
               )}
             </Label.col>
           </>

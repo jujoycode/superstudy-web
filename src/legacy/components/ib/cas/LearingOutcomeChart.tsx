@@ -48,7 +48,7 @@ const LearningOutcomeChart = ({ projects }: LearningOutcomeChartProps) => {
             {Array.from({ length: 9 }, (_, i) => (
               <div className="relative" key={i}>
                 {/* 기준선 */}
-                <div className="bg-primary-gray-100 absolute top-0 left-0 h-full w-[1px] -translate-x-1/2 transform" />
+                <div className="absolute top-0 left-0 h-full w-[1px] -translate-x-1/2 transform bg-gray-100" />
               </div>
             ))}
           </div>
@@ -63,9 +63,7 @@ const LearningOutcomeChart = ({ projects }: LearningOutcomeChartProps) => {
           {/* 막대 그래프 */}
           <div className="z-10 ml-2 h-3 w-[264px]">
             <div
-              className={`h-full ${
-                hasData ? 'border-dim-8 bg-gradient-navy-400 rounded-r-[4px]' : 'bg-primary-gray-200'
-              }`}
+              className={`h-full ${hasData ? 'border-dim-8 bg-gradient-navy-400 rounded-r-[4px]' : 'bg-gray-200'}`}
               style={{
                 width: hasData
                   ? `${Math.min(learningOutcomeCounts[name], maxDataValue) * barWidthPerUnit}%` // 데이터가 8을 초과하지 않도록 제한
@@ -82,7 +80,7 @@ const LearningOutcomeChart = ({ projects }: LearningOutcomeChartProps) => {
             return (
               <div className="relative w-4 text-center" key={month}>
                 <div className="bg-dim-300 absolute top-0 left-1/2 h-full w-px -translate-x-1/2 transform" />
-                <Typography variant="caption3" className="text-primary-gray-400">
+                <Typography variant="caption3" className="text-gray-400">
                   {month}
                 </Typography>
               </div>

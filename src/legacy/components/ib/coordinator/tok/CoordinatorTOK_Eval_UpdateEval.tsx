@@ -67,7 +67,7 @@ export function CoordinatorTOK_Eval_UpdateEval({
     return (
       <SuperModal modalOpen={modalOpen} setModalClose={setModalClose} hasClose={false} className="w-[416px] rounded-xl">
         <div className="p-8 pb-5">
-          <div className="text-primary-gray-900 w-full text-center text-lg leading-[26px] font-semibold">
+          <div className="w-full text-center text-lg leading-[26px] font-semibold text-gray-900">
             평가 항목을 수정하면
             <br />
             지금까지 평가된 학생의 데이터가 변경됩니다.

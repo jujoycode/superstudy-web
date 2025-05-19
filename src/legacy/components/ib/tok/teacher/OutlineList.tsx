@@ -63,21 +63,21 @@ export default function OutlineList({ data, isLoading }: OutlineListProps) {
     <section className="h-[664px]">
       {isLoading && <Blank />}
       <header className="flex min-h-[88px] flex-row items-center justify-between gap-4 p-6 pb-6">
-        <Typography variant="title1" className="text-primary-gray-900">
+        <Typography variant="title1" className="text-gray-900">
           아웃라인
         </Typography>
       </header>
       <main>
         <table className="w-full">
-          <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
+          <thead className="border-y border-y-gray-100 text-[15px] font-medium text-gray-500">
             <tr>
               <td className="w-[964px] py-[9px] pr-2 pl-6 text-center">주제</td>
               <td className="w-[150px] px-2 py-[9px] text-center">수정일</td>
               <td className="w-[166px] py-[9px] pr-6 pl-2 text-center">피드백</td>
             </tr>
           </thead>
-          <tbody className="text-primary-gray-900 text-[15px] font-medium">
-            <tr className="border-b-primary-gray-100 border-b">
+          <tbody className="text-[15px] font-medium text-gray-900">
+            <tr className="border-b border-b-gray-100">
               <td
                 className="cursor-pointer py-4 pr-2 pl-6 text-center"
                 onClick={() =>

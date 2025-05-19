@@ -143,7 +143,7 @@ export function FieldtripPage() {
                   </div>
                   {fieldtrip?.fieldtripStatus === 'PROCESSED' && (
                     <div
-                      className="border-grey-6 flex cursor-pointer items-center justify-between border-t border-b pt-4 pb-4"
+                      className="border-gray-6 flex cursor-pointer items-center justify-between border-t border-b pt-4 pb-4"
                       onClick={() => push(`/student/fieldtrip/notice/${fieldtrip.id}`)}
                     >
                       <div className="font-sfpro font-bold text-gray-800">

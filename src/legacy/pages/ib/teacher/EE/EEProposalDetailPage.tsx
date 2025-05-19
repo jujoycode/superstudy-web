@@ -228,7 +228,7 @@ export const EEProposalDetailPage = () => {
                       {`${data.leader?.name}의 EE 제안서`}
                     </Typography>
                     <div className="flex items-center space-x-2">
-                      <div className="text-16 text-primary-orange-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
+                      <div className="text-16 text-primary-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
                         {klassNum} · {data.leader?.name}
                       </div>
                       {data?.activityFrequency && (
@@ -264,7 +264,7 @@ export const EEProposalDetailPage = () => {
                               type="select"
                               options={EE_SUBJECTS}
                               size={40}
-                              titleClassName="text-primary-gray-900"
+                              titleClassName="text-gray-900"
                               titleVariant="title2"
                               required
                               mode="page"
@@ -310,7 +310,7 @@ export const EEProposalDetailPage = () => {
                               label="모델 논문"
                               control={control}
                               placeholder="모델 논문을 입력해주세요"
-                              titleClassName="text-primary-gray-900"
+                              titleClassName="text-gray-900"
                               titleVariant="title2"
                               mode="page"
                               required
@@ -321,7 +321,7 @@ export const EEProposalDetailPage = () => {
                               control={control}
                               placeholder="모델 논문 요약을 입력해주세요"
                               className="h-40"
-                              titleClassName="text-primary-gray-900"
+                              titleClassName="text-gray-900"
                               titleVariant="title2"
                               type="textarea"
                               mode="page"
@@ -332,7 +332,7 @@ export const EEProposalDetailPage = () => {
                               label="연구주제"
                               control={control}
                               placeholder="연구주제를 입력해주세요"
-                              titleClassName="text-primary-gray-900"
+                              titleClassName="text-gray-900"
                               titleVariant="title2"
                               required
                               mode="page"
@@ -343,7 +343,7 @@ export const EEProposalDetailPage = () => {
                               control={control}
                               placeholder="연구 질문을 입력해주세요"
                               className="h-40"
-                              titleClassName="text-primary-gray-900"
+                              titleClassName="text-gray-900"
                               titleVariant="title2"
                               type="textarea"
                               mode="page"
@@ -355,7 +355,7 @@ export const EEProposalDetailPage = () => {
                               control={control}
                               placeholder="연구의 필요성을 입력해주세요"
                               className="h-40"
-                              titleClassName="text-primary-gray-900"
+                              titleClassName="text-gray-900"
                               titleVariant="title2"
                               type="textarea"
                               mode="page"
@@ -367,7 +367,7 @@ export const EEProposalDetailPage = () => {
                               control={control}
                               placeholder="연구 방법을 입력해주세요"
                               className="h-40"
-                              titleClassName="text-primary-gray-900"
+                              titleClassName="text-gray-900"
                               titleVariant="title2"
                               type="textarea"
                               mode="page"
@@ -382,7 +382,7 @@ export const EEProposalDetailPage = () => {
                         <ProposalViewField label="과목" className="py-[13px]">
                           <div className="flex gap-2">
                             <SVGIcon.Note size={20} color="gray700" weight="bold" className="cursor-default" />
-                            <Typography variant="body2" className="text-primary-gray-700">
+                            <Typography variant="body2" className="text-gray-700">
                               {proposal.subject}
                             </Typography>
                           </div>
@@ -474,7 +474,7 @@ export const EEProposalDetailPage = () => {
                   </div>
                 </div>
                 <div className="flex h-[720px] w-[416px] flex-col gap-6 rounded-xl bg-white p-6">
-                  <Typography variant="title1" className="text-primary-gray-900">
+                  <Typography variant="title1" className="text-gray-900">
                     진행기록
                   </Typography>
                   {proposal?.status === 'ACCEPT' ||

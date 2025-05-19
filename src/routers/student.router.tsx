@@ -41,11 +41,11 @@ export const studentRoutes = {
   path: '/student',
   element: (
     // TODO: 동작 테스트 필요
-    <RoleGuard>
-      <StudentGuard>
+    // <RoleGuard>
+    //   <StudentGuard>
         <StudentLayout />
-      </StudentGuard>
-    </RoleGuard>
+    //   </StudentGuard>
+    // </RoleGuard>
   ),
   children: [
     // 활동

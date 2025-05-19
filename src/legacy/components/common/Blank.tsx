@@ -20,9 +20,7 @@ export function Blank({ text, reversed, children }: PropsWithChildren<BlankProps
         e.preventDefault()
         e.stopPropagation()
       }}
-      className={clsx(
-        'bg-opacity-40 fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center bg-[#000000]',
-      )}
+      className={clsx('bg-littleblack fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center')}
     >
       {text || children || reversed ? (
         <div className="text-2xl">

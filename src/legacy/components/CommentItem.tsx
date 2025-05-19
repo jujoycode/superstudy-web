@@ -52,7 +52,7 @@ export function CommentItem({ comment, userId, userRole, updateComment, deleteCo
         <div style={{ width: 'calc(100% - 4rem)' }}>
           <div className="align-center flex justify-between">
             <div className="flex items-center space-x-2 overflow-hidden">
-              <div className="text-grey-1 min-w-max font-bold">{comment.user?.name}</div>
+              <div className="text-gray-1 min-w-max font-bold">{comment.user?.name}</div>
               <Time date={comment.updatedAt} />
             </div>
             {!updateState ? (
@@ -100,7 +100,7 @@ export function CommentItem({ comment, userId, userRole, updateComment, deleteCo
               </div>
             </>
           ) : (
-            <div className="text-grey-2 mt-1 text-left whitespace-normal">{comment.content}</div>
+            <div className="text-gray-2 mt-1 text-left whitespace-normal">{comment.content}</div>
           )}
         </div>
       </div>

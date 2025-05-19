@@ -42,19 +42,19 @@ export function TimeTableCard({ studentId }: TimeTableCardProps) {
       <table className="mx-auto mt-4 w-full rounded-md border text-center">
         <thead>
           <tr>
-            <td colSpan={2} className="bg-grey-9 border" />
-            <td className="bg-grey-9 min-w-max border py-4">{t('monday', '월')}</td>
-            <td className="bg-grey-9 min-w-max border">{t('tuesday', '화')}</td>
-            <td className="bg-grey-9 min-w-max border">{t('wednesday', '수')}</td>
-            <td className="bg-grey-9 min-w-max border">{t('thursday', '목')}</td>
-            <td className="bg-grey-9 min-w-max border">{t('friday', '금')}</td>
-            {hasSaturdayClass && <td className="bg-grey-9 min-w-max border">{t('saturday', '토')}</td>}
+            <td colSpan={2} className="bg-gray-9 border" />
+            <td className="bg-gray-9 min-w-max border py-4">{t('monday', '월')}</td>
+            <td className="bg-gray-9 min-w-max border">{t('tuesday', '화')}</td>
+            <td className="bg-gray-9 min-w-max border">{t('wednesday', '수')}</td>
+            <td className="bg-gray-9 min-w-max border">{t('thursday', '목')}</td>
+            <td className="bg-gray-9 min-w-max border">{t('friday', '금')}</td>
+            {hasSaturdayClass && <td className="bg-gray-9 min-w-max border">{t('saturday', '토')}</td>}
           </tr>
         </thead>
         <tbody>
           {Array.from({ length: maxTime }, (_, i) => (
             <tr key={i}>
-              <td colSpan={2} className="bg-grey-9 border px-2 py-2.5">
+              <td colSpan={2} className="bg-gray-9 border px-2 py-2.5">
                 {i + 1}
               </td>
               {Array.from({ length: hasSaturdayClass ? 6 : 5 }, (_, dayNum) => {
@@ -62,7 +62,7 @@ export function TimeTableCard({ studentId }: TimeTableCardProps) {
                 return (
                   <td
                     key={dayNum}
-                    className={`border-grey-50 min-h-10.5 min-w-9.5 cursor-pointer border px-1 py-2 text-xs md:text-base ${todayNum === dayNum + 1 ? 'bg-brand-1 bg-opacity-20' : ''} ${i === 0 && dayNum === 0 ? 'border-t-0 border-l-0' : ''} ${i === 0 && dayNum === (hasSaturdayClass ? 5 : 4) ? 'border-t-0 border-r-0' : ''} ${i === maxTime - 1 && dayNum === 0 ? 'border-b-0 border-l-0' : ''} ${
+                    className={`min-h-10.5 min-w-9.5 cursor-pointer border border-gray-50 px-1 py-2 text-xs md:text-base ${todayNum === dayNum + 1 ? 'bg-brand-1 bg-opacity-20' : ''} ${i === 0 && dayNum === 0 ? 'border-t-0 border-l-0' : ''} ${i === 0 && dayNum === (hasSaturdayClass ? 5 : 4) ? 'border-t-0 border-r-0' : ''} ${i === maxTime - 1 && dayNum === 0 ? 'border-b-0 border-l-0' : ''} ${
                       i === maxTime - 1 && dayNum === (hasSaturdayClass ? 5 : 4) ? 'border-r-0 border-b-0' : ''
                     } ${i === 0 || i === maxTime - 1 ? 'border-t-0 border-b-0' : ''} ${dayNum === 0 || dayNum === (hasSaturdayClass ? 5 : 4) ? 'border-r-0 border-l-0' : ''} ${
                       lecture?.id !== undefined && selectedLectureInfo?.id === lecture?.id
@@ -84,29 +84,29 @@ export function TimeTableCard({ studentId }: TimeTableCardProps) {
 
       {selectedLectureInfo && (
         <div className="mt-2 flex w-full items-center justify-center">
-          <div className="border-grey-5 w-full rounded-xl border bg-white px-4">
+          <div className="border-gray-5 w-full rounded-xl border bg-white px-4">
             <div className="text-base text-gray-500">
               {dayOfKorWeek(selectedLectureInfo.day)}요일 {selectedLectureInfo.time + '교시'}
             </div>
 
             <table className="mb-2 w-full table-fixed">
               <tr>
-                <td colSpan={2} className="bg-grey-7 rounded-l-lg text-center">
+                <td colSpan={2} className="bg-gray-7 rounded-l-lg text-center">
                   과목
                 </td>
-                <td colSpan={3} className="bg-grey-9 pl-2 font-bold">
+                <td colSpan={3} className="bg-gray-9 pl-2 font-bold">
                   {selectedLectureInfo?.subject}
                 </td>
-                <td colSpan={2} className="bg-grey-7 text-center">
+                <td colSpan={2} className="bg-gray-7 text-center">
                   선생님
                 </td>
-                <td colSpan={3} className="bg-grey-9 pl-2 font-bold">
+                <td colSpan={3} className="bg-gray-9 pl-2 font-bold">
                   {selectedLectureInfo.teacherName}
                 </td>
-                <td colSpan={2} className="bg-grey-7 text-center">
+                <td colSpan={2} className="bg-gray-7 text-center">
                   장소
                 </td>
-                <td colSpan={3} className="bg-grey-9 rounded-r-lg pl-2 font-bold">
+                <td colSpan={3} className="bg-gray-9 rounded-r-lg pl-2 font-bold">
                   {selectedLectureInfo?.room}
                 </td>
               </tr>

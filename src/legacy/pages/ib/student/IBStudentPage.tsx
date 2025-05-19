@@ -46,13 +46,13 @@ export const IBStudentPage = () => {
   return (
     <div className="flex">
       <div className="w-[224px] flex-shrink-0">
-        <div className="border-primary-gray-200 flex h-screen flex-grow flex-col gap-6 border-r bg-white py-10">
+        <div className="flex h-screen flex-grow flex-col gap-6 border-r border-gray-200 bg-white py-10">
           {/* 로고 영역 */}
           <div className="h-10 w-full px-5">
             <img src={Logo} className="h-10 w-[70px] object-cover" />
           </div>
           {/* 학생 프로필 영역 */}
-          <div className="border-b-primary-gray-100 flex items-center gap-3 border-b px-5 pb-6 select-none">
+          <div className="flex items-center gap-3 border-b border-b-gray-100 px-5 pb-6 select-none">
             <div className="flex h-12 w-12 overflow-hidden rounded-xl">
               <img
                 className="mx-auto h-12 w-12 rounded-xl"
@@ -74,10 +74,10 @@ export const IBStudentPage = () => {
                   {makeStudNum5({ grade, classNum, studentNum: me?.studentNumber })}
                 </Typography>
               </div>
-              {/* <Typography variant="caption2" className="font-medium text-primary-gray-500">
+              {/* <Typography variant="caption2" className="font-medium text-gray-500">
                 응시코드 18472
               </Typography> */}
-              <Typography variant="caption2" className="text-primary-gray-500 font-medium">
+              <Typography variant="caption2" className="font-medium text-gray-500">
                 응시코드 {data?.ibCode || '-'}
               </Typography>
             </div>
@@ -86,19 +86,19 @@ export const IBStudentPage = () => {
           <div className="scroll-box h-screen-13 flex flex-grow flex-col overflow-y-auto px-3 tracking-tighter">
             <nav className={`flex-1`} aria-label="Sidebar">
               <Link
-                className="hover:bg-primary-gray-50 flex flex-row items-center gap-2 px-2 py-4 hover:rounded-lg"
+                className="flex flex-row items-center gap-2 px-2 py-4 hover:rounded-lg hover:bg-gray-50"
                 to={'/ib/student'}
               >
                 <ColorSVGIcon.Project size={24} color={pathname === '/ib/student' ? 'orange800' : 'gray400'} />
                 <Typography
                   variant="title3"
-                  className={pathname === '/ib/student' ? 'text-primary-orange-800' : 'text-primary-gray-900'}
+                  className={pathname === '/ib/student' ? 'text-primary-800' : 'text-gray-900'}
                 >
                   프로젝트
                 </Typography>
               </Link>
               <div
-                className="hover:bg-primary-gray-50 flex cursor-pointer flex-row items-center gap-2 px-2 py-4 hover:rounded-lg"
+                className="flex cursor-pointer flex-row items-center gap-2 px-2 py-4 hover:rounded-lg hover:bg-gray-50"
                 onClick={() => {
                   window.open(
                     'https://essayreview.co.kr/apa-citation-generator',
@@ -116,7 +116,7 @@ export const IBStudentPage = () => {
 
               {enabledPlagiarismInspect && (
                 <Link
-                  className="hover:bg-primary-gray-50 flex flex-row items-center gap-2 px-2 py-4 hover:rounded-lg"
+                  className="flex flex-row items-center gap-2 px-2 py-4 hover:rounded-lg hover:bg-gray-50"
                   to={'/ib/student/plagiarism-inspection'}
                 >
                   <ColorSVGIcon.CopyCheck
@@ -126,9 +126,7 @@ export const IBStudentPage = () => {
                   <Typography
                     variant="title3"
                     className={
-                      pathname.startsWith('/ib/student/plagiarism-inspection')
-                        ? 'text-primary-orange-800'
-                        : 'text-primary-gray-900'
+                      pathname.startsWith('/ib/student/plagiarism-inspection') ? 'text-primary-800' : 'text-gray-900'
                     }
                   >
                     표절률 검사
@@ -145,7 +143,7 @@ export const IBStudentPage = () => {
             <div className="flex w-full items-center">
               <Typography
                 variant="caption"
-                className="text-primary-gray-600 w-1/2 cursor-pointer text-center"
+                className="w-1/2 cursor-pointer text-center text-gray-600"
                 onClick={() => alert('내정보 관리')}
               >
                 내정보 관리
@@ -153,7 +151,7 @@ export const IBStudentPage = () => {
               <div className="h-3 w-px bg-[#e8eaec]" />
               <Typography
                 variant="body3"
-                className="text-primary-gray-600 w-1/2 cursor-pointer text-center text-[13px]"
+                className="w-1/2 cursor-pointer text-center text-[13px] text-gray-600"
                 onClick={logout}
               >
                 로그아웃

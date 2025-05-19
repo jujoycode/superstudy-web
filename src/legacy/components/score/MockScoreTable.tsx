@@ -143,68 +143,62 @@ const MockScoreTable: React.FC<{ scores: any[] }> = ({ scores }) => {
       </nav>
       <div className="scrollable-wide w-full">
         <table className="table-auto border-collapse">
-          <thead className="text-13 text-primary-gray-600 text-center font-normal">
+          <thead className="text-13 text-center font-normal text-gray-600">
             <tr>
-              <td className="bg-primary-gray-50 min-w-[120px] p-2" rowSpan={2}>
+              <td className="min-w-[120px] bg-gray-50 p-2" rowSpan={2}>
                 구분
               </td>
-              <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+              <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                 국어영역
               </td>
-              <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+              <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                 수학영역
               </td>
-              <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+              <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                 영어영역
               </td>
-              <td colSpan={3} className="bg-primary-gray-50 border-l border-gray-200 p-2">
+              <td colSpan={3} className="border-l border-gray-200 bg-gray-50 p-2">
                 한국사
               </td>
               {SubjectGroups[SubjectEnum.사회]
                 .filter((subject) => SubjectScore[subject])
                 .map((subject) => (
-                  <td key={subject} colSpan={3} className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">
+                  <td key={subject} colSpan={3} className="border-x border-b border-gray-200 bg-gray-50 p-2">
                     {subject}
                   </td>
                 ))}
               {SubjectGroups[SubjectEnum.과학]
                 .filter((subject) => SubjectScore[subject])
                 .map((subject) => (
-                  <td key={subject} colSpan={3} className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">
+                  <td key={subject} colSpan={3} className="border-x border-b border-gray-200 bg-gray-50 p-2">
                     {subject}
                   </td>
                 ))}
-              <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+              <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                 국영수사과
               </td>
-              <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+              <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                 국영수사
               </td>
-              <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+              <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                 국영수과
               </td>
-              <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+              <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                 국영수
               </td>
             </tr>
             <tr>
               {subjectGroups.map((subject, index) => (
                 <>
-                  <td
-                    key={`${subject}-표점`}
-                    className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap"
-                  >
+                  <td key={`${subject}-표점`} className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">
                     표점
                   </td>
-                  <td
-                    key={`${subject}-등급`}
-                    className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap"
-                  >
+                  <td key={`${subject}-등급`} className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">
                     등급
                   </td>
                   <td
                     key={`${subject}-백분`}
-                    className={`bg-primary-gray-50 border-gray-200 p-2 whitespace-nowrap ${
+                    className={`border-gray-200 bg-gray-50 p-2 whitespace-nowrap ${
                       index === subjectGroups.length - 1 ? 'border-y border-l' : 'border'
                     }`}
                   >
@@ -214,10 +208,10 @@ const MockScoreTable: React.FC<{ scores: any[] }> = ({ scores }) => {
               ))}
             </tr>
           </thead>
-          <tbody className="text-13 text-primary-gray-900 text-center">
+          <tbody className="text-13 text-center text-gray-900">
             {Object.entries(groupedScores).map(([period]) => (
               <tr key={period}>
-                <td className="border-t-primary-gray-200 border-t border-r border-r-gray-100 p-2">{period}</td>
+                <td className="border-t border-r border-t-gray-200 border-r-gray-100 p-2">{period}</td>
                 {subjectGroups.map((subject, index) => {
                   const subjectData = subjectAveragesByPeriod[subject]?.find((entry) => entry.period === period)
                   return (

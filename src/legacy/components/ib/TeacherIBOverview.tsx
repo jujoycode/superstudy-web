@@ -127,7 +127,7 @@ export default function TeacherIBOverview() {
             size={40}
             containerWidth="w-30"
             dropdownWidth="w-40"
-            priorityFontClass="text-primary-gray-900"
+            priorityFontClass="text-gray-900"
           />
           <SelectBar
             options={klasses}
@@ -137,7 +137,7 @@ export default function TeacherIBOverview() {
             size={40}
             containerWidth="w-30"
             dropdownWidth="w-40"
-            priorityFontClass="text-primary-gray-900"
+            priorityFontClass="text-gray-900"
           />
         </div>
         <div>
@@ -150,23 +150,23 @@ export default function TeacherIBOverview() {
               childrenWrapperClassName={clsx(
                 projectType === 'CAS' ||
                   projectType === 'EE' ||
-                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-primary-gray-700': projectType === 'CAS' })}>CAS</p>
+              <p className={clsx({ 'text-gray-700': projectType === 'CAS' })}>CAS</p>
             </Tab>
             <Tab
               value="EE"
               childrenWrapperClassName={clsx(
                 projectType === 'EE' ||
                   projectType === 'TOK' ||
-                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                  'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-primary-gray-700': projectType === 'EE' })}>EE</p>
+              <p className={clsx({ 'text-gray-700': projectType === 'EE' })}>EE</p>
             </Tab>
             <Tab value="TOK">
-              <p className={clsx({ 'text-primary-gray-700': projectType === 'TOK' })}>TOK</p>
+              <p className={clsx({ 'text-gray-700': projectType === 'TOK' })}>TOK</p>
             </Tab>
           </LayeredTabs.TwoDepth>
         </div>

@@ -67,7 +67,7 @@ export function BoardCard({ board, isNew }: BoardCardProps) {
                 )}
               </div>
             </div>
-            <div className="text-grey-1 text-lg font-bold">
+            <div className="text-gray-1 text-lg font-bold">
               {board.title}{' '}
               {isNew && (
                 <small className="inline-block h-6 w-6 rounded-full bg-red-500 text-center text-xs leading-6 text-white">

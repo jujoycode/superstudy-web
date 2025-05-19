@@ -56,11 +56,11 @@ export function PopupModal({
         {/* 상단 고정 헤더 */}
         <div
           className={twMerge(
-            'sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6 backdrop-blur-[20px]',
+            '.backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6',
             headerClassName,
           )}
         >
-          <Typography variant="title1" className="text-primary-gray-900">
+          <Typography variant="title1" className="text-gray-900">
             {title}
           </Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
@@ -86,8 +86,8 @@ export function PopupModal({
           <div
             className={twMerge(
               `sticky bottom-0 flex h-[104px] justify-end gap-4 ${
-                bottomBorder && 'border-t-primary-gray-100 border-t'
-              }bg-white/70 pt-6 pb-8 backdrop-blur-[20px]`,
+                bottomBorder && 'border-t border-t-gray-100'
+              }bg-white/70 .backdrop-blur-20 pt-6 pb-8`,
               footerClassName,
             )}
           >

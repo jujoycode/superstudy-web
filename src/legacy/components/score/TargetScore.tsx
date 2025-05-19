@@ -74,37 +74,35 @@ export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
           <Typography variant="title1">목표성적</Typography>
           <div className="scrollable w-full">
             <table className="w-full table-auto border-collapse">
-              <thead className="text-13 text-primary-gray-600 text-center font-normal">
+              <thead className="text-13 text-center font-normal text-gray-600">
                 <tr>
-                  <td className="bg-primary-gray-50 w-[120px] p-2">과목</td>
-                  <td className="border-primary-gray-200 bg-primary-gray-50 border-x border-b p-2">단위수</td>
-                  <td className="border-primary-gray-200 bg-primary-gray-50 border-x border-b p-2">점수</td>
-                  <td className="border-primary-gray-200 bg-primary-gray-50 border-x border-b p-2">석차등급</td>
-                  <td className="border-primary-gray-200 bg-primary-gray-50 border-x border-b p-2">
+                  <td className="w-[120px] bg-gray-50 p-2">과목</td>
+                  <td className="border-x border-b border-gray-200 bg-gray-50 p-2">단위수</td>
+                  <td className="border-x border-b border-gray-200 bg-gray-50 p-2">점수</td>
+                  <td className="border-x border-b border-gray-200 bg-gray-50 p-2">석차등급</td>
+                  <td className="border-x border-b border-gray-200 bg-gray-50 p-2">
                     석차(동점자수)
                     <br />/ 수강자수
                   </td>
-                  <td className="border-primary-gray-200 bg-primary-gray-50 border-x border-b p-2">
-                    과목평균(표준편차)
-                  </td>
-                  <td className="border-primary-gray-200 bg-primary-orange-50 border-x border-b p-2">목표등급</td>
-                  <td className="border-primary-gray-200 bg-primary-orange-50 border-x border-b p-2">목표석차</td>
-                  <td className="border-primary-gray-200 bg-primary-orange-50 border-x border-b p-2">목표점수</td>
-                  <td className="border-primary-gray-200 bg-primary-orange-50 border-b border-l p-2">경쟁자수</td>
+                  <td className="border-x border-b border-gray-200 bg-gray-50 p-2">과목평균(표준편차)</td>
+                  <td className="bg-primary-50 border-x border-b border-gray-200 p-2">목표등급</td>
+                  <td className="bg-primary-50 border-x border-b border-gray-200 p-2">목표석차</td>
+                  <td className="bg-primary-50 border-x border-b border-gray-200 p-2">목표점수</td>
+                  <td className="bg-primary-50 border-b border-l border-gray-200 p-2">경쟁자수</td>
                 </tr>
               </thead>
-              <tbody className="text-13 text-primary-gray-900 text-center">
+              <tbody className="text-13 text-center text-gray-900">
                 <tr>
-                  <td className={`border-b-primary-gray-100 border-t-primary-gray-200 border-t border-b p-2`}>-</td>
-                  <td className="border-primary-gray-100 border p-2">-</td>
-                  <td className="border-primary-gray-100 border p-2">-</td>
-                  <td className="border-primary-gray-100 border p-2">-</td>
-                  <td className="border-primary-gray-100 border p-2 text-center">-</td>
-                  <td className="border-primary-gray-100 border p-2">-</td>
-                  <td className="border-primary-gray-100 border p-2">-</td>
-                  <td className="border-primary-gray-100 border p-2">-</td>
-                  <td className="border-primary-gray-100 border p-2">-</td>
-                  <td className="border-primary-gray-100 border-y border-l p-2">-</td>
+                  <td className={`border-t border-b border-t-gray-200 border-b-gray-100 p-2`}>-</td>
+                  <td className="border border-gray-100 p-2">-</td>
+                  <td className="border border-gray-100 p-2">-</td>
+                  <td className="border border-gray-100 p-2">-</td>
+                  <td className="border border-gray-100 p-2 text-center">-</td>
+                  <td className="border border-gray-100 p-2">-</td>
+                  <td className="border border-gray-100 p-2">-</td>
+                  <td className="border border-gray-100 p-2">-</td>
+                  <td className="border border-gray-100 p-2">-</td>
+                  <td className="border-y border-l border-gray-100 p-2">-</td>
                 </tr>
               </tbody>
             </table>
@@ -122,10 +120,10 @@ export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
             <span className="flex flex-row items-center gap-1">
               <SolidSVGIcon.Info color="gray400" size={16} />
               <div className="flex flex-row items-center">
-                <Typography variant="caption2" className="text-primary-gray-500">
+                <Typography variant="caption2" className="text-gray-500">
                   현재 보여지는 성적은
                 </Typography>
-                <Typography variant="caption2" className="text-primary-orange-800">
+                <Typography variant="caption2" className="text-primary-800">
                   {data &&
                     ` ${data.analysed_target_score.grade}학년 ${data.analysed_target_score.semester}학기 ${
                       data.analysed_target_score.step === 'final'
@@ -135,45 +133,33 @@ export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
                           : '1차 지필고사'
                     } `}
                 </Typography>
-                <Typography variant="caption2" className="text-primary-gray-500">
+                <Typography variant="caption2" className="text-gray-500">
                   기준입니다.
                 </Typography>
               </div>
             </span>
-            <Typography variant="caption2" className="text-primary-gray-500 text-right">
+            <Typography variant="caption2" className="text-right text-gray-500">
               9 등급 체계의 과목만 목표성적에 보여집니다.
             </Typography>
           </div>
         </div>
         <div className="scrollable w-full">
           <table className="w-full table-auto border-collapse">
-            <thead className="text-13 text-primary-gray-600 text-center font-normal">
+            <thead className="text-13 text-center font-normal text-gray-600">
               <tr>
-                <td className="border-primary-gray-200 bg-primary-gray-50 min-w-[120px] border-b p-2">과목</td>
-                <td className="border-primary-gray-200 bg-primary-gray-50 min-w-[120px] border-x border-b p-2">
-                  단위수
-                </td>
-                <td className="border-primary-gray-200 bg-primary-gray-50 min-w-[120px] border-x border-b p-2">점수</td>
-                <td className="border-primary-gray-200 bg-primary-gray-50 min-w-[120px] border-x border-b p-2">
-                  석차등급
-                </td>
-                <td className="border-primary-gray-200 bg-primary-gray-50 min-w-[120px] border-x border-b p-2">
+                <td className="min-w-[120px] border-b border-gray-200 bg-gray-50 p-2">과목</td>
+                <td className="min-w-[120px] border-x border-b border-gray-200 bg-gray-50 p-2">단위수</td>
+                <td className="min-w-[120px] border-x border-b border-gray-200 bg-gray-50 p-2">점수</td>
+                <td className="min-w-[120px] border-x border-b border-gray-200 bg-gray-50 p-2">석차등급</td>
+                <td className="min-w-[120px] border-x border-b border-gray-200 bg-gray-50 p-2">
                   석차(동점자수)
                   <br />/ 수강자수
                 </td>
-                <td className="border-primary-gray-200 bg-primary-gray-50 min-w-[120px] border-x border-b p-2">
-                  과목평균(표준편차)
-                </td>
-                <td className="border-primary-gray-200 bg-primary-orange-50 min-w-[120px] border-x border-b p-2">
-                  목표등급
-                </td>
-                <td className="border-primary-gray-200 bg-primary-orange-50 min-w-[120px] border-x border-b p-2">
-                  목표석차
-                </td>
-                <td className="border-primary-gray-200 bg-primary-orange-50 min-w-[120px] border-x border-b p-2">
-                  목표점수
-                </td>
-                <td className="border-primary-gray-200 bg-primary-orange-50 relative min-w-[120px] border-b border-l p-2">
+                <td className="min-w-[120px] border-x border-b border-gray-200 bg-gray-50 p-2">과목평균(표준편차)</td>
+                <td className="bg-primary-50 min-w-[120px] border-x border-b border-gray-200 p-2">목표등급</td>
+                <td className="bg-primary-50 min-w-[120px] border-x border-b border-gray-200 p-2">목표석차</td>
+                <td className="bg-primary-50 min-w-[120px] border-x border-b border-gray-200 p-2">목표점수</td>
+                <td className="bg-primary-50 relative min-w-[120px] border-b border-l border-gray-200 p-2">
                   경쟁자수
                   <div className="absolute top-1.5 right-1.5">
                     <HintMessage
@@ -184,32 +170,30 @@ export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
                 </td>
               </tr>
             </thead>
-            <tbody className="text-13 text-primary-gray-900 text-center">
+            <tbody className="text-13 text-center text-gray-900">
               {sortedScores.map((score: any, index: number) => (
                 <tr key={index}>
                   <td
-                    className={`border-r-primary-gray-100 border-t-primary-gray-100 border-t border-r p-2 whitespace-nowrap ${
-                      index === sortedScores.length - 1 ? 'border-b-primary-gray-100 border-b' : ''
+                    className={`border-t border-r border-t-gray-100 border-r-gray-100 p-2 whitespace-nowrap ${
+                      index === sortedScores.length - 1 ? 'border-b border-b-gray-100' : ''
                     }`}
                   >
                     {score.subject_name}
                   </td>
-                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">{score.credit}</td>
-                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">{score.score}</td>
-                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">{score.rank_score}</td>
-                  <td className="border-primary-gray-100 border p-2 text-center whitespace-nowrap">
+                  <td className="border border-gray-100 p-2 whitespace-nowrap">{score.credit}</td>
+                  <td className="border border-gray-100 p-2 whitespace-nowrap">{score.score}</td>
+                  <td className="border border-gray-100 p-2 whitespace-nowrap">{score.rank_score}</td>
+                  <td className="border border-gray-100 p-2 text-center whitespace-nowrap">
                     {score.position || '-'}({score.num_same_score || '-'})/
                     {score.subject_total_student_sum_real || '-'}
                   </td>
-                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">
+                  <td className="border border-gray-100 p-2 whitespace-nowrap">
                     {score.score_mean || '-'} ({score.score_std || '-'})
                   </td>
-                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">{score.target_rank || '-'}</td>
-                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">
-                    {score.target_position || '-'}
-                  </td>
-                  <td className="border-primary-gray-100 border p-2 whitespace-nowrap">{score.target_score || '-'}</td>
-                  <td className="border-primary-gray-100 border-y border-l p-2 whitespace-nowrap">
+                  <td className="border border-gray-100 p-2 whitespace-nowrap">{score.target_rank || '-'}</td>
+                  <td className="border border-gray-100 p-2 whitespace-nowrap">{score.target_position || '-'}</td>
+                  <td className="border border-gray-100 p-2 whitespace-nowrap">{score.target_score || '-'}</td>
+                  <td className="border-y border-l border-gray-100 p-2 whitespace-nowrap">
                     {score.n_people_ahead || '-'}
                   </td>
                 </tr>
@@ -538,7 +522,7 @@ const TargetScoreBarChart = ({ data }: { data: any }) => {
       <div className="h-[432px] w-full min-w-[704px]">
         <Chart type="bar" options={options} datasetIdKey="id" data={chartData} ref={chartRef} />
       </div>
-      <div className="bg-primary-gray-100 flex w-fit items-center justify-center gap-4 rounded-lg px-5 py-2">
+      <div className="flex w-fit items-center justify-center gap-4 rounded-lg bg-gray-100 px-5 py-2">
         <div className="flex flex-row items-center gap-1.5">
           <span className="border-dim-8 bg-gradient-orange-400 h-3 w-3 rounded-[4px]" />
           <Typography variant="caption2" className="font-medium">
@@ -885,7 +869,7 @@ const TargetScoreRadarChart = ({ data }: { data: any }) => {
       <div className="h-[432px] w-[480px]">
         <Chart type="radar" options={options} datasetIdKey="id" data={chartData} ref={chartRef} />
       </div>
-      <div className="bg-primary-gray-100 flex w-fit items-center justify-center gap-4 rounded-lg px-5 py-2">
+      <div className="flex w-fit items-center justify-center gap-4 rounded-lg bg-gray-100 px-5 py-2">
         <div className="flex cursor-pointer flex-row items-center gap-1.5">
           <span className="border-dim-8 bg-gradient-orange-400 h-3 w-3 rounded-[4px]" />
           <Typography variant="caption2" className="font-medium">

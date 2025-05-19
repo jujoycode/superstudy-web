@@ -77,7 +77,7 @@ export default function RRSList({ id, status }: RRSListProps) {
     <section className="flex h-[664px] flex-col">
       {isLoading && <IBBlank />}
       <header className="flex min-h-[88px] flex-row items-center justify-between gap-4 p-6 pb-6">
-        <Typography variant="title1" className="text-primary-gray-900">
+        <Typography variant="title1" className="text-gray-900">
           RRS
         </Typography>
         {data?.total !== 0 && status !== 'COMPLETE' && (
@@ -109,7 +109,7 @@ export default function RRSList({ id, status }: RRSListProps) {
           </div>
         ) : (
           <table className="w-full">
-            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px]">
+            <thead className="border-y border-y-gray-100 text-[15px] text-gray-500">
               <tr>
                 <th className="w-[100px] py-[9px] pr-2 pl-6 text-center font-medium">번호</th>
                 <th className="w-[756px] px-2 py-[9px] text-center font-medium">제목</th>
@@ -117,7 +117,7 @@ export default function RRSList({ id, status }: RRSListProps) {
                 <th className="w-[208px] py-[9px] pr-6 pl-2 text-center font-medium">피드백</th>
               </tr>
             </thead>
-            <tbody className="text-primary-gray-900 text-[15px] font-medium">
+            <tbody className="text-[15px] font-medium text-gray-900">
               {data?.items
                 ?.slice()
                 .reverse()
@@ -125,7 +125,7 @@ export default function RRSList({ id, status }: RRSListProps) {
                   const feedback = feedbacks?.items?.find((item) => item.referenceId === rrs.id)
                   const itemNumber = data.total - (currentPage - 1) * 10 - index
                   return (
-                    <tr key={rrs.id} className="border-b-primary-gray-100 border-b">
+                    <tr key={rrs.id} className="border-b border-b-gray-100">
                       <td className="py-[11px] pr-2 pl-6 text-center">{itemNumber}</td>
                       <td
                         className="cursor-pointer px-2 py-[11px] text-start"

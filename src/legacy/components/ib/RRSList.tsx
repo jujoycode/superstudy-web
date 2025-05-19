@@ -111,7 +111,7 @@ const RRSList = memo(({ id, title, status }: RRSListProps) => {
           </div>
         ) : (
           <table className="w-full text-center">
-            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
+            <thead className="border-y border-y-gray-100 text-[15px] font-medium text-gray-500">
               <tr className="flex w-full items-center justify-between gap-[16px] px-[24px] py-[9px]">
                 <td className="w-[68px]">번호</td>
                 <td className="w-[740px]">제목</td>
@@ -126,7 +126,7 @@ const RRSList = memo(({ id, title, status }: RRSListProps) => {
                 return (
                   <tr
                     key={rrs.id}
-                    className="border-b-primary-gray-100 flex w-full items-center justify-between gap-[16px] border-b px-[24px] py-[9px]"
+                    className="flex w-full items-center justify-between gap-[16px] border-b border-b-gray-100 px-[24px] py-[9px]"
                   >
                     <td className="w-[68px]">{itemNumber}</td>
                     <td

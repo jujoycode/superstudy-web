@@ -36,7 +36,7 @@ export function RecordCard({ record, selectedSAIds, setSelectedSAIds }: RecordCa
             </a>
           </div>
 
-          <h3 className="text-grey-3 mt-2 text-sm">{makeDateToString(new Date(activity?.createdAt || ''), '.')}</h3>
+          <h3 className="text-gray-3 mt-2 text-sm">{makeDateToString(new Date(activity?.createdAt || ''), '.')}</h3>
         </div>
         <Checkbox
           className="h-6 w-6"

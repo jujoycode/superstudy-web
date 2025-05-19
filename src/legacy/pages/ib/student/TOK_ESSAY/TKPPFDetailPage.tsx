@@ -130,7 +130,7 @@ export default function TKPPFDetailPage() {
                             <TextareaV2
                               placeholder="내용을 입력해주세요."
                               className="h-[308px]"
-                              readonlyBackground="bg-primary-gray-100"
+                              readonlyBackground="bg-gray-100"
                               value={tkppf?.sequence1?.text}
                               {...register(`sequence1.text`)}
                             />
@@ -146,7 +146,7 @@ export default function TKPPFDetailPage() {
                             <TextareaV2
                               placeholder="내용을 입력해주세요."
                               className="h-[308px]"
-                              readonlyBackground="bg-primary-gray-100"
+                              readonlyBackground="bg-gray-100"
                               value={tkppf?.sequence2?.text}
                               {...register(`sequence2.text`)}
                             />
@@ -162,7 +162,7 @@ export default function TKPPFDetailPage() {
                             <TextareaV2
                               placeholder="내용을 입력해주세요."
                               className="h-[308px]"
-                              readonlyBackground="bg-primary-gray-100"
+                              readonlyBackground="bg-gray-100"
                               value={tkppf?.sequence3?.text}
                               {...register(`sequence3.text`)}
                             />
@@ -181,11 +181,11 @@ export default function TKPPFDetailPage() {
                         <div className={'flex flex-col gap-4 pt-6'}>
                           <div className="flex items-center justify-between">
                             <Typography variant="title2">TKPPF 1차</Typography>
-                            <Typography variant="caption" className="text-primary-gray-500">
+                            <Typography variant="caption" className="text-gray-500">
                               최초 제출일 : {format(new Date(tkppf?.sequence1.createdAt), 'yyyy.MM.dd')}
                             </Typography>
                           </div>
-                          <div className="border-primary-gray-200 flex flex-col gap-4 rounded-lg border p-4">
+                          <div className="flex flex-col gap-4 rounded-lg border border-gray-200 p-4">
                             <Typography variant="body2">{tkppf?.sequence1.text}</Typography>
                           </div>
                         </div>
@@ -194,11 +194,11 @@ export default function TKPPFDetailPage() {
                         <div className={'flex flex-col gap-4 py-10'}>
                           <div className="flex items-center justify-between">
                             <Typography variant="title2">TKPPF 2차</Typography>
-                            <Typography variant="caption" className="text-primary-gray-500">
+                            <Typography variant="caption" className="text-gray-500">
                               최초 제출일 : {format(new Date(tkppf?.sequence2.createdAt), 'yyyy.MM.dd')}
                             </Typography>
                           </div>
-                          <div className="border-primary-gray-200 flex flex-col gap-4 rounded-lg border p-4">
+                          <div className="flex flex-col gap-4 rounded-lg border border-gray-200 p-4">
                             <Typography variant="body2">{tkppf?.sequence2.text}</Typography>
                           </div>
                         </div>
@@ -207,11 +207,11 @@ export default function TKPPFDetailPage() {
                         <div className={'flex flex-col gap-4'}>
                           <div className="flex items-center justify-between">
                             <Typography variant="title2">TKPPF 3차</Typography>
-                            <Typography variant="caption" className="text-primary-gray-500">
+                            <Typography variant="caption" className="text-gray-500">
                               최초 제출일 : {format(new Date(tkppf?.sequence3.createdAt), 'yyyy.MM.dd')}
                             </Typography>
                           </div>
-                          <div className="border-primary-gray-200 flex flex-col gap-4 rounded-lg border p-4">
+                          <div className="flex flex-col gap-4 rounded-lg border border-gray-200 p-4">
                             <Typography variant="body2">{tkppf?.sequence3.text}</Typography>
                           </div>
                         </div>
@@ -271,7 +271,7 @@ export default function TKPPFDetailPage() {
             </div>
           </div>
         }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
         floatingButton={
           !editMode &&
           (() => {

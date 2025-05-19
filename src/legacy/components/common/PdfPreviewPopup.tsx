@@ -64,7 +64,7 @@ export default function PdfPreviewPopup({
         )
       }
     >
-      <div ref={divRef} className="scroll-box bg-primary-gray-100 h-full w-full overflow-y-auto pt-8 pb-2">
+      <div ref={divRef} className="scroll-box h-full w-full overflow-y-auto bg-gray-100 pt-8 pb-2">
         <Document
           file={fileUrl} // 여기는 가지고 계신 pdf 주소
           onLoadSuccess={onDocumentLoadSuccess}

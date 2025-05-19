@@ -24,8 +24,8 @@ const getPlagiarismInspectResultUI = (
       return (
         <>
           <SVGIcon.Check color="orange800" size={16} weight="bold" />
-          <Typography variant="body3" className="text-primary-gray-900">
-            표절률이 <span className="text-primary-orange-800">{copyRatio}%</span>
+          <Typography variant="body3" className="text-gray-900">
+            표절률이 <span className="text-primary-800">{copyRatio}%</span>
             입니다
           </Typography>
         </>
@@ -34,7 +34,7 @@ const getPlagiarismInspectResultUI = (
       return (
         <>
           <SVGIcon.Check color="gray400" size={16} weight="bold" />
-          <Typography variant="body3" className="text-primary-gray-900">
+          <Typography variant="body3" className="text-gray-900">
             표절 검사에 실패하였습니다.
           </Typography>
         </>
@@ -43,7 +43,7 @@ const getPlagiarismInspectResultUI = (
       return (
         <>
           <SVGIcon.More color="gray700" size={16} weight="bold" />
-          <Typography variant="body3" className="text-primary-gray-900">
+          <Typography variant="body3" className="text-gray-900">
             검사 진행중
           </Typography>
         </>
@@ -97,7 +97,7 @@ export const IBDetailPlagiarimInspectResultBadge: React.FC<IBDetailPlagiarimInsp
     <div
       className={clsx(
         'flex h-8 items-center gap-1 rounded-lg px-[10px] py-[6px]',
-        status === 'Y' ? 'bg-primary-orange-50' : 'bg-primary-gray-100',
+        status === 'Y' ? 'bg-primary-50' : 'bg-gray-100',
         (status === 'Y' || status === 'F') && 'cursor-pointer',
       )}
       onClick={handleClick}

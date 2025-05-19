@@ -217,7 +217,7 @@ export const EEMainPage = () => {
                 </div>
               </div>
             }
-            bottomBgColor="bg-primary-gray-50"
+            bottomBgColor="bg-gray-50"
             floatingButton={
               (EEType === 'PROPOSAL' &&
                 (data?.status === 'PENDING' || data?.status === 'REJECT_PLAN') &&

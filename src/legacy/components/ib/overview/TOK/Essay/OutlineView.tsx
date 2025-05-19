@@ -126,7 +126,7 @@ export default function OutlineView({ grade, klass }: IBGetTokOutlineSubmissionS
 
       {status === 'NOT_SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             아웃라인 미제출
           </Typography>
           <OutlineOverviewPanel
@@ -139,7 +139,7 @@ export default function OutlineView({ grade, klass }: IBGetTokOutlineSubmissionS
       )}
       {status === 'SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             아웃라인 승인 전
           </Typography>
           <OutlineOverviewPanel
@@ -164,7 +164,7 @@ export default function OutlineView({ grade, klass }: IBGetTokOutlineSubmissionS
       )}
       {status === 'APPROVED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             아웃라인 승인 완료
           </Typography>
           <OutlineOverviewPanel

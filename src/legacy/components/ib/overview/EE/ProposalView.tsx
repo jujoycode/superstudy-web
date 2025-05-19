@@ -145,7 +145,7 @@ export default function ProposalView({ grade, klass }: IBGetSubmissionStatusCoun
   return (
     <div>
       {notiLoading && <Blank />}
-      <Typography variant="title1" className="text-primary-gray-900">
+      <Typography variant="title1" className="text-gray-900">
         제안서
       </Typography>
       <RadioV2.Group
@@ -176,7 +176,7 @@ export default function ProposalView({ grade, klass }: IBGetSubmissionStatusCoun
       {status === 'NOT_SUBMITTED' && (
         <>
           <div className="flex flex-col gap-4">
-            <Typography variant="title2" className="text-primary-gray-900">
+            <Typography variant="title2" className="text-gray-900">
               제안서 미제출
             </Typography>
             <ProposalOverviewPanel
@@ -190,7 +190,7 @@ export default function ProposalView({ grade, klass }: IBGetSubmissionStatusCoun
       )}
       {status === 'SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             제안서 승인 전
           </Typography>
           <ProposalOverviewPanel
@@ -212,7 +212,7 @@ export default function ProposalView({ grade, klass }: IBGetSubmissionStatusCoun
       )}
       {status === 'APPROVED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             제안서 승인 완료
           </Typography>
           <ProposalOverviewPanel

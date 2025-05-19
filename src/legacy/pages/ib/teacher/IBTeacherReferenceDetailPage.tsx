@@ -80,9 +80,9 @@ export const IBTeacherReferenceDetailPage = () => {
             <div className="flex flex-grow flex-col py-6">
               <div className="flex min-h-[720px] flex-col justify-between rounded-xl bg-white p-6">
                 <div className="flex flex-col">
-                  <div className="border-b-primary-gray-100 flex flex-col items-start gap-1 border-b pb-6">
+                  <div className="flex flex-col items-start gap-1 border-b border-b-gray-100 pb-6">
                     <Typography variant="title1">{data.title}</Typography>
-                    <Typography variant="body3" className="text-primary-gray-500">
+                    <Typography variant="body3" className="text-gray-500">
                       {format(new Date(data.createdAt), 'yyyy.MM.dd')} · {data.writer.name}
                     </Typography>
                   </div>
@@ -124,7 +124,7 @@ export const IBTeacherReferenceDetailPage = () => {
                           {data.files.map((fileUrl: string, index) => (
                             <div
                               key={index}
-                              className="border-primary-gray-200 flex h-12 w-max items-center gap-3 rounded-lg border bg-white px-4"
+                              className="flex h-12 w-max items-center gap-3 rounded-lg border border-gray-200 bg-white px-4"
                             >
                               <SVGIcon.Link size={16} weight="bold" color="gray700" />
                               <button

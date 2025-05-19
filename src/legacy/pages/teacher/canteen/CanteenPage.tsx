@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Viewer from 'react-viewer'
-import ChatIcon from '@/assets/svg/chat.svg'
-import ClockIcon from '@/assets/svg/clock.svg'
+import { ReactComponent as ChatIcon } from '@/assets/svg/chat.svg'
+import { ReactComponent as ClockIcon } from '@/assets/svg/clock.svg'
 import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 import { ErrorBlank } from '@/legacy/components'
 import AnnouncementPopup from '@/legacy/components/announcement/Announcement'
 import { CanteenCalendar } from '@/legacy/components/CanteenCalendar'
@@ -18,8 +20,6 @@ import { CalendarIdEnum } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { checkNewVersion } from '@/legacy/util/status'
 import { makeDateToString, makeMonthDayToString, makeMonthDayToStringEN } from '@/legacy/util/time'
-import { useNotificationStore } from '@/stores/notification'
-import { useUserStore } from '@/stores/user'
 import { CanteenDetailPage } from './CanteenDetailPage'
 import { CanteenSubmitPage } from './CanteenSubmitPage'
 
@@ -122,8 +122,8 @@ export function CanteenPage() {
         </div>
         <div className="h-0.5 w-full bg-gray-50" />
         <div className="px-6 py-4">
-          {/* <div className="pb-3 text-sm text-grey-5">{makeMonthDayToString(selectedDate)}</div> */}
-          <div className="text-grey-5 pb-3 text-sm">
+          {/* <div className="pb-3 text-sm text-gray-5">{makeMonthDayToString(selectedDate)}</div> */}
+          <div className="text-gray-5 pb-3 text-sm">
             {t('language') === 'ko' ? makeMonthDayToString(selectedDate) : makeMonthDayToStringEN(selectedDate)}
           </div>
           <div className="flex flex-col space-y-3">
@@ -196,7 +196,7 @@ export function CanteenPage() {
               </small>
             )}
           </div>
-          <div className="bg-grey-8 h-16 w-16 rounded-full">
+          <div className="bg-gray-8 h-16 w-16 rounded-full">
             <Link className="flex h-full w-full flex-col items-center justify-center" to={'/teacher/timetable'}>
               <ClockIcon />
               <div className="text-sm text-white">시간표</div>
@@ -236,7 +236,7 @@ export function CanteenPage() {
 
           <div className="h-0.5 w-full bg-gray-50" />
           <div className="px-6 py-4">
-            <div className="text-grey-5 pb-3 text-sm">
+            <div className="text-gray-5 pb-3 text-sm">
               {t('language') === 'ko' ? makeMonthDayToString(selectedDate) : makeMonthDayToStringEN(selectedDate)}
             </div>
             <div className="flex flex-col space-y-3">

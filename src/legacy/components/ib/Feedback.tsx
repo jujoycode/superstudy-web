@@ -18,7 +18,7 @@ interface FeedbackProps {
   user: ResponseUserDto
   readonly?: boolean
   disabled?: boolean
-  readonlyBackground?: 'bg-white' | 'bg-primary-gray-100'
+  readonlyBackground?: 'bg-white' | 'bg-gray-100'
   className?: string
   useTextarea?: boolean
 }
@@ -71,11 +71,7 @@ export const Feedback: FC<FeedbackProps> = ({
                 <div
                   key={item.id}
                   className={`flex flex-col gap-3 rounded-xl p-5 ${
-                    item.sender === null
-                      ? 'bg-primary-gray-50'
-                      : item.sender.role !== 'USER'
-                        ? 'bg-primary-orange-50'
-                        : 'bg-primary-gray-50'
+                    item.sender === null ? 'bg-gray-50' : item.sender.role !== 'USER' ? 'bg-primary-50' : 'bg-gray-50'
                   }`}
                 >
                   {item.sender === null ? (
@@ -90,11 +86,11 @@ export const Feedback: FC<FeedbackProps> = ({
                     <div className="flex flex-row items-center justify-between">
                       <span className="flex flex-row items-center gap-2">
                         <SolidSVGIcon.Talk size={24} color="orange800" weight="bold" />
-                        <Typography variant="title3" className="text-primary-orange-800">
+                        <Typography variant="title3" className="text-primary-800">
                           {item.sender.name}선생님의 피드백
                         </Typography>
                       </span>
-                      <Typography variant="caption" className="text-primary-gray-500">
+                      <Typography variant="caption" className="text-gray-500">
                         {format(date, 'yyyy.MM.dd HH:mm')}
                       </Typography>
                     </div>
@@ -104,7 +100,7 @@ export const Feedback: FC<FeedbackProps> = ({
                         <SolidSVGIcon.Talk size={24} color="gray700" weight="bold" />
                         <Typography variant="title3">학생이 남긴 댓글</Typography>
                       </span>
-                      <Typography variant="caption" className="text-primary-gray-500">
+                      <Typography variant="caption" className="text-gray-500">
                         {format(date, 'yyyy.MM.dd HH:mm')}
                       </Typography>
                     </div>
@@ -119,7 +115,7 @@ export const Feedback: FC<FeedbackProps> = ({
                           <Typography variant="body2" className="whitespace-pre-line">
                             {item.content.split('\n')[0]}
                           </Typography>
-                          <Typography variant="caption" className="text-primary-gray-500 whitespace-pre-line">
+                          <Typography variant="caption" className="whitespace-pre-line text-gray-500">
                             {item.content.split('\n')[1]}
                           </Typography>
                         </>
@@ -150,14 +146,13 @@ export const Feedback: FC<FeedbackProps> = ({
       {useTextarea && (
         <div
           className={clsx(
-            'border-primary-gray-200 relative flex flex-col justify-between gap-4 rounded-lg border p-4 focus:ring-0 focus:outline-none',
+            'relative flex flex-col justify-between gap-4 rounded-lg border border-gray-200 p-4 focus:ring-0 focus:outline-none',
             {
               'bg-white': readonly && readonlyBackground === 'bg-white',
-              'bg-primary-gray-100':
-                (readonly && readonlyBackground === 'bg-primary-gray-100') || disabled || isFetching,
+              'bg-gray-100': (readonly && readonlyBackground === 'bg-gray-100') || disabled || isFetching,
               'cursor-not-allowed': readonly || disabled || isFetching,
               'cursor-pointer': !readonly && !disabled && !isFetching,
-              'border-primary-gray-700': isFocused,
+              'border-gray-700': isFocused,
             },
           )}
           onFocus={handleFocus}
@@ -167,11 +162,10 @@ export const Feedback: FC<FeedbackProps> = ({
             value={content}
             onChange={(e) => setContent(e.target.value)}
             className={clsx(
-              `text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:text-primary-gray-700 h-16 resize-none border-none p-0 focus:border-none focus:ring-0 disabled:text-gray-400`,
+              `text-15 caret-ib-blue-800 h-16 resize-none border-none p-0 text-gray-900 placeholder-gray-400 focus:border-none focus:text-gray-700 focus:ring-0 disabled:text-gray-400`,
               {
                 'bg-white': readonly && readonlyBackground === 'bg-white',
-                'bg-primary-gray-100':
-                  (readonly && readonlyBackground === 'bg-primary-gray-100') || disabled || isFetching,
+                'bg-gray-100': (readonly && readonlyBackground === 'bg-gray-100') || disabled || isFetching,
                 'cursor-not-allowed': readonly || disabled || isFetching,
                 'cursor-pointer': !readonly && !disabled && !isFetching,
               },
@@ -183,7 +177,7 @@ export const Feedback: FC<FeedbackProps> = ({
             }`}
           />
           <nav className="flex flex-row items-center justify-between">
-            <Typography variant="caption" className="text-primary-gray-500">
+            <Typography variant="caption" className="text-gray-500">
               {content.length}&nbsp;/&nbsp;1,000
             </Typography>
             <ButtonV2

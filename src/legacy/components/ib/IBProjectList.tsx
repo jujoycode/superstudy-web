@@ -97,7 +97,7 @@ function IBProjectList({ studentId, currentProjectId, children }: IBProjectListP
     <div
       style={tooltipStyle}
       ref={tooltipRef}
-      className={`border-primary-gray-200 z-100 mt-2 flex w-[632px] flex-col rounded-lg border shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]`}
+      className={`z-100 mt-2 flex w-[632px] flex-col rounded-lg border border-gray-200 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]`}
     >
       <div className={`relative flex w-[632px] flex-col rounded-xl bg-white p-1.5`}>
         {isLoading ? (
@@ -143,13 +143,13 @@ function IBProjectList({ studentId, currentProjectId, children }: IBProjectListP
                           return (
                             <div
                               key={project.id}
-                              className="hover:bg-primary-gray-100 flex max-w-[600px] cursor-pointer items-center justify-between px-[10px] py-[6px] hover:rounded-lg"
+                              className="flex max-w-[600px] cursor-pointer items-center justify-between px-[10px] py-[6px] hover:rounded-lg hover:bg-gray-100"
                               onClick={() => handleProjectClick(project)}
                             >
                               <Typography
                                 variant="body2"
                                 className={`font-medium ${
-                                  selectProject ? 'text-primary-orange-800' : ''
+                                  selectProject ? 'text-primary-800' : ''
                                 } max-w-[550px] overflow-hidden text-ellipsis whitespace-nowrap`}
                                 title={displayTitle}
                               >

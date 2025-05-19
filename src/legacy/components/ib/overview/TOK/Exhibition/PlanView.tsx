@@ -127,7 +127,7 @@ export default function PlanView({ grade, klass }: IBGetSubmissionStatusCountPar
 
       {status === 'NOT_SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             기획안 미제출
           </Typography>
           <PlanOverviewPanel
@@ -140,7 +140,7 @@ export default function PlanView({ grade, klass }: IBGetSubmissionStatusCountPar
       )}
       {status === 'SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             기획안 승인 전
           </Typography>
           <PlanOverviewPanel
@@ -161,7 +161,7 @@ export default function PlanView({ grade, klass }: IBGetSubmissionStatusCountPar
       )}
       {status === 'APPROVED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             기획안 승인 완료
           </Typography>
           <PlanOverviewPanel

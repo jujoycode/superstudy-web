@@ -165,7 +165,7 @@ export default function ProposalList({ data, refetch }: ProposalListProps) {
           </div>
         ) : (
           <table className="w-full text-center">
-            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
+            <thead className="border-y border-y-gray-100 text-[15px] font-medium text-gray-500">
               <tr className="flex w-full items-center justify-between gap-[16px] px-[24px] py-[9px]">
                 <td className="w-[68px]">순위</td>
                 <td className="w-[200px]">과목</td>
@@ -182,7 +182,7 @@ export default function ProposalList({ data, refetch }: ProposalListProps) {
                   return (
                     <tr
                       key={proposal.id}
-                      className="border-b-primary-gray-100 text-15 flex w-full items-center justify-between gap-[16px] border-b px-[24px] py-[9px] font-medium"
+                      className="text-15 flex w-full items-center justify-between gap-[16px] border-b border-b-gray-100 px-[24px] py-[9px] font-medium"
                     >
                       <td className="w-[68px]">{proposal.rank}</td>
                       <td title={proposal.subject} className="line-clamp-1 w-[200px]">
@@ -297,10 +297,10 @@ export default function ProposalList({ data, refetch }: ProposalListProps) {
                             {proposal.rank}순위
                           </Typography>
                           <div
-                            className={`hover: border-primary-gray-200 hover:border-primary-orange-200 hover:bg-primary-orange-50 flex w-full flex-row items-center gap-4 rounded-xl border p-6 ${
+                            className={`hover: hover:border-primary-200 hover:bg-primary-50 flex w-full flex-row items-center gap-4 rounded-xl border border-gray-200 p-6 ${
                               snapshot.isDragging
-                                ? 'border-primary-orange-400 bg-primary-orange-50 shadow-md'
-                                : 'border-primary-gray-200 hover:border-primary-orange-200 hover:bg-primary-orange-50'
+                                ? 'border-primary-400 bg-primary-50 shadow-md'
+                                : 'hover:border-primary-200 hover:bg-primary-50 border-gray-200'
                             }`}
                           >
                             <div>
@@ -308,7 +308,7 @@ export default function ProposalList({ data, refetch }: ProposalListProps) {
                             </div>
                             <div className="flex flex-1 flex-col">
                               <Typography variant="title3">{proposal.researchTopic}</Typography>
-                              <Typography variant="body3" className="text-primary-gray-600">
+                              <Typography variant="body3" className="text-gray-600">
                                 {format(new Date(proposal.createdAt), 'yyyy.MM.dd')}
                               </Typography>
                             </div>

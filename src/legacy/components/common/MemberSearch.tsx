@@ -95,7 +95,7 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
   }
 
   return (
-    <div className="border-primary-gray-200 text-13 z-100 flex h-[473px] w-[280px] flex-col items-center rounded-lg border bg-white py-4 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]">
+    <div className="text-13 z-100 flex h-[473px] w-[280px] flex-col items-center rounded-lg border border-gray-200 bg-white py-4 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.08)]">
       <div className="top-0 z-10 flex w-[248px] flex-col items-center gap-2 pb-4">
         <div className="flex w-full items-center justify-around gap-1">
           <Input.Basic
@@ -113,7 +113,7 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
         <>
           <div className="top-0 z-10 flex w-[248px] flex-col">
             {grade === 0 ? (
-              <Typography variant="body3" className="text-primary-gray-500 px-2 py-1.5">
+              <Typography variant="body3" className="px-2 py-1.5 text-gray-500">
                 전체 학년
               </Typography>
             ) : klass === 0 ? (
@@ -122,7 +122,7 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
                 onClick={() => setGrade(0)}
               >
                 <SVGIcon.Arrow weight="bold" color="gray400" size={16} />
-                <Typography variant="body3" className="text-primary-gray-500">
+                <Typography variant="body3" className="text-gray-500">
                   {grade}학년
                 </Typography>
               </div>
@@ -132,7 +132,7 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
                 onClick={() => setKlass(0)}
               >
                 <SVGIcon.Arrow weight="bold" color="gray400" size={16} />
-                <Typography variant="body3" className="text-primary-gray-500">
+                <Typography variant="body3" className="text-gray-500">
                   {grade}학년 {klass}반
                 </Typography>
               </div>
@@ -176,7 +176,7 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
                     <div
                       key={klassKey}
                       className={`flex cursor-pointer flex-row items-center justify-between gap-2 px-2 py-1.5 ${
-                        klass === Number(klassKey) ? 'bg-primary-gray-100' : ''
+                        klass === Number(klassKey) ? 'bg-gray-100' : ''
                       }`}
                       onClick={() => setKlass(Number(klassKey))}
                     >
@@ -196,16 +196,13 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
                       return (
                         <li
                           key={student.id}
-                          className="hover:bg-primary-gray-50 flex cursor-pointer justify-between px-2 py-1.5 hover:rounded-md"
+                          className="flex cursor-pointer justify-between px-2 py-1.5 hover:rounded-md hover:bg-gray-50"
                           onClick={(e) => {
                             if (!me) handleCheckChange(student, !isChecked)
                             e.stopPropagation() // 클릭 이벤트 중지
                           }}
                         >
-                          <Typography
-                            variant="body2"
-                            className={`font-medium ${isChecked && 'text-primary-orange-800'}`}
-                          >
+                          <Typography variant="body2" className={`font-medium ${isChecked && 'text-primary-800'}`}>
                             {student.name}&nbsp;·&nbsp;{student.studentGroup.group.grade}
                             {String(student.studentGroup.group.klass).padStart(2, '0')}
                             {String(student.studentGroup.studentNumber).padStart(2, '0')}
@@ -224,8 +221,8 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
                 </>
               )}
             </div>
-            <div className="border-t-primary-gray-100 flex w-[248px] flex-col border-t pt-4">
-              <Typography variant="body3" className="text-primary-gray-500 px-2 py-1.5">
+            <div className="flex w-[248px] flex-col border-t border-t-gray-100 pt-4">
+              <Typography variant="body3" className="px-2 py-1.5 text-gray-500">
                 전체 학년
               </Typography>
               <ul>
@@ -235,13 +232,13 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
                   return (
                     <li
                       key={student.id}
-                      className="hover:bg-primary-gray-50 flex cursor-pointer justify-between px-2 py-1.5 hover:rounded-md"
+                      className="flex cursor-pointer justify-between px-2 py-1.5 hover:rounded-md hover:bg-gray-50"
                       onClick={(e) => {
                         if (!me) handleCheckChange(student, !isChecked)
                         e.stopPropagation() // 클릭 이벤트 중지
                       }}
                     >
-                      <Typography variant="body2" className={`font-medium ${isChecked && 'text-primary-orange-800'}`}>
+                      <Typography variant="body2" className={`font-medium ${isChecked && 'text-primary-800'}`}>
                         {student.name}&nbsp;·&nbsp;{student.studentGroup.group.grade}
                         {String(student.studentGroup.group.klass).padStart(2, '0')}
                         {String(student.studentGroup.studentNumber).padStart(2, '0')}
@@ -269,13 +266,13 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
               return (
                 <li
                   key={student.id}
-                  className="hover:bg-primary-gray-50 flex cursor-pointer justify-between px-2 py-1.5 hover:rounded-md"
+                  className="flex cursor-pointer justify-between px-2 py-1.5 hover:rounded-md hover:bg-gray-50"
                   onClick={(e) => {
                     if (!me) handleCheckChange(student, !isChecked)
                     e.stopPropagation() // 클릭 이벤트 중지
                   }}
                 >
-                  <Typography variant="body2" className={`font-medium ${isChecked && 'text-primary-orange-800'}`}>
+                  <Typography variant="body2" className={`font-medium ${isChecked && 'text-primary-800'}`}>
                     {student.name}&nbsp;·&nbsp;{student.studentGroup.group.grade}
                     {String(student.studentGroup.group.klass).padStart(2, '0')}
                     {String(student.studentGroup.studentNumber).padStart(2, '0')}
@@ -293,7 +290,7 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
           </ul>
         </div>
       )}
-      <footer className="border-t-primary-gray-100 mt-auto flex w-full flex-row items-center justify-end gap-2 border-t px-4 pt-4">
+      <footer className="mt-auto flex w-full flex-row items-center justify-end gap-2 border-t border-t-gray-100 px-4 pt-4">
         <ButtonV2 color="gray100" variant="solid" size={32} onClick={onCancel}>
           취소
         </ButtonV2>

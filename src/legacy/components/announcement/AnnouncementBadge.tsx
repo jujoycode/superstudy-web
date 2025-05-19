@@ -18,8 +18,8 @@ export default function AnnouncementBadge({ news, type }: AnnouncementBadgeProps
   const recipients = [
     { label: t('administrator'), isActive: news.toAdmin, color: 'bg-users-admin' },
     { label: t('teacher'), isActive: news.toTeacher, color: 'bg-users-teacher' },
-    { label: t('student'), isActive: news.toStudent, color: 'bg-users-student' },
-    { label: t('parent'), isActive: news.toParent, color: 'bg-users-parent' },
+    { label: t('student'), isActive: news.toStudent, color: 'bg-users-user' },
+    { label: t('parent'), isActive: news.toParent, color: 'bg-users-user' },
   ]
 
   return (

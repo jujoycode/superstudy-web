@@ -241,7 +241,7 @@ export const ExhibitionPlanDetailPage = () => {
                           className="h-40"
                           mode="page"
                         />
-                        <div className="border-b-primary-gray-100 flex flex-col gap-4 border-b pb-10">
+                        <div className="flex flex-col gap-4 border-b border-b-gray-100 pb-10">
                           <Typography variant="title2">
                             지식영역<span className="text-primary-red-800">*</span>
                           </Typography>
@@ -261,7 +261,7 @@ export const ExhibitionPlanDetailPage = () => {
                             ))}
                           </Check.Group>
                         </div>
-                        <div className="border-b-primary-gray-100 flex flex-col gap-10 border-b pb-10">
+                        <div className="flex flex-col gap-10 border-b border-b-gray-100 pb-10">
                           <InputField
                             label="대상"
                             subLabel="1"
@@ -295,7 +295,7 @@ export const ExhibitionPlanDetailPage = () => {
                             mode="page"
                           />
                         </div>
-                        <div className="border-b-primary-gray-100 flex flex-col gap-10 border-b pb-10">
+                        <div className="flex flex-col gap-10 border-b border-b-gray-100 pb-10">
                           <InputField
                             label="대상"
                             subLabel="2"
@@ -329,7 +329,7 @@ export const ExhibitionPlanDetailPage = () => {
                             required
                           />
                         </div>
-                        <div className="border-b-primary-gray-100 flex flex-col gap-10 border-b pb-10">
+                        <div className="flex flex-col gap-10 border-b border-b-gray-100 pb-10">
                           <InputField
                             label="대상"
                             titleVariant="title2"
@@ -364,10 +364,10 @@ export const ExhibitionPlanDetailPage = () => {
                           />
                         </div>
                       </div>
-                      <div className="border-t-primary-gray-100 flex flex-col gap-4 border-t pt-10">
+                      <div className="flex flex-col gap-4 border-t border-t-gray-100 pt-10">
                         <header className="flex flex-row items-center justify-between">
                           <Typography variant="title2">Commentary 구성</Typography>
-                          <Typography variant="caption" className="text-primary-gray-500">
+                          <Typography variant="caption" className="text-gray-500">
                             설정한 세 가지 대상이 아래 기준에 부합하는지 확인해보세요.
                           </Typography>
                         </header>
@@ -383,8 +383,8 @@ export const ExhibitionPlanDetailPage = () => {
                           {commentary?.map((item, index) => (
                             <div
                               key={item.id}
-                              className={`text-15 text-primary-gray-700 flex h-[54px] flex-row items-center gap-4 px-6 font-medium ${
-                                index % 2 === 0 ? 'bg-primary-gray-50' : 'bg-white'
+                              className={`text-15 flex h-[54px] flex-row items-center gap-4 px-6 font-medium text-gray-700 ${
+                                index % 2 === 0 ? 'bg-gray-50' : 'bg-white'
                               }`}
                             >
                               <div className="min-w-[172px] text-start">{item.name}</div>
@@ -424,17 +424,17 @@ export const ExhibitionPlanDetailPage = () => {
                 ) : (
                   <>
                     <div className="flex flex-col">
-                      <div className="border-b-primary-gray-100 flex flex-col items-start gap-1 border-b pb-6">
+                      <div className="flex flex-col items-start gap-1 border-b border-b-gray-100 pb-6">
                         <Typography variant="title1">{data?.tokExhibitionPlan?.themeQuestion}</Typography>
-                        <Typography variant="body3" className="text-primary-gray-500">
+                        <Typography variant="body3" className="text-gray-500">
                           {format(new Date(data?.createdAt), 'yyyy.MM.dd')}
                         </Typography>
                       </div>
                       <div className="flex flex-col gap-10 pt-6 pb-10">
                         <div className="flex flex-col gap-4">
                           <Typography variant="title2">질문 설명</Typography>
-                          <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                            <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                          <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                            <Typography variant="body2" className="font-medium text-gray-700">
                               {data?.tokExhibitionPlan?.description}
                             </Typography>
                           </div>
@@ -460,103 +460,103 @@ export const ExhibitionPlanDetailPage = () => {
                         </div>
                       </div>
 
-                      <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t py-10">
+                      <div className="flex flex-col gap-10 border-t border-t-gray-100 py-10">
                         <div className="flex flex-col gap-4">
                           <div className="flex flex-row items-center">
                             <Typography variant="title2">대상</Typography>&nbsp;
-                            <Typography variant="title2" className="text-primary-orange-800">
+                            <Typography variant="title2" className="text-primary-800">
                               1
                             </Typography>
                           </div>
-                          <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                            <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                          <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                            <Typography variant="body2" className="font-medium text-gray-700">
                               {data?.tokExhibitionPlan?.target1}
                             </Typography>
                           </div>
                         </div>
                         <div className="flex flex-col gap-4">
                           <Typography variant="title2">연관 개념 렌즈</Typography>
-                          <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                            <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                          <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                            <Typography variant="body2" className="font-medium text-gray-700">
                               {data?.tokExhibitionPlan?.conceptualLens1}
                             </Typography>
                           </div>
                         </div>
                         <div className="flex flex-col gap-4">
                           <Typography variant="title2">Knowledge Frame</Typography>
-                          <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                            <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                          <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                            <Typography variant="body2" className="font-medium text-gray-700">
                               {data?.tokExhibitionPlan?.knowledgeFrame1}
                             </Typography>
                           </div>
                         </div>
                       </div>
-                      <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t py-10">
+                      <div className="flex flex-col gap-10 border-t border-t-gray-100 py-10">
                         <div className="flex flex-col gap-4">
                           <div className="flex flex-row items-center">
                             <Typography variant="title2">대상</Typography>&nbsp;
-                            <Typography variant="title2" className="text-primary-orange-800">
+                            <Typography variant="title2" className="text-primary-800">
                               2
                             </Typography>
                           </div>
-                          <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                            <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                          <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                            <Typography variant="body2" className="font-medium text-gray-700">
                               {data?.tokExhibitionPlan?.target2}
                             </Typography>
                           </div>
                         </div>
                         <div className="flex flex-col gap-4">
                           <Typography variant="title2">연관 개념 렌즈</Typography>
-                          <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                            <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                          <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                            <Typography variant="body2" className="font-medium text-gray-700">
                               {data?.tokExhibitionPlan?.conceptualLens2}
                             </Typography>
                           </div>
                         </div>
                         <div className="flex flex-col gap-4">
                           <Typography variant="title2">Knowledge Frame</Typography>
-                          <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                            <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                          <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                            <Typography variant="body2" className="font-medium text-gray-700">
                               {data?.tokExhibitionPlan?.knowledgeFrame2}
                             </Typography>
                           </div>
                         </div>
                       </div>
-                      <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t py-10">
+                      <div className="flex flex-col gap-10 border-t border-t-gray-100 py-10">
                         <div className="flex flex-col gap-4">
                           <div className="flex flex-row items-center">
                             <Typography variant="title2">대상</Typography>&nbsp;
-                            <Typography variant="title2" className="text-primary-orange-800">
+                            <Typography variant="title2" className="text-primary-800">
                               3
                             </Typography>
                           </div>
-                          <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                            <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                          <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                            <Typography variant="body2" className="font-medium text-gray-700">
                               {data?.tokExhibitionPlan?.target3}
                             </Typography>
                           </div>
                         </div>
                         <div className="flex flex-col gap-4">
                           <Typography variant="title2">연관 개념 렌즈</Typography>
-                          <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                            <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                          <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                            <Typography variant="body2" className="font-medium text-gray-700">
                               {data?.tokExhibitionPlan?.conceptualLens3}
                             </Typography>
                           </div>
                         </div>
                         <div className="flex flex-col gap-4">
                           <Typography variant="title2">Knowledge Frame</Typography>
-                          <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
-                            <Typography variant="body2" className="text-primary-gray-700 font-medium">
+                          <div className="rounded-lg border border-gray-200 bg-white px-4 py-[13px]">
+                            <Typography variant="body2" className="font-medium text-gray-700">
                               {data?.tokExhibitionPlan?.knowledgeFrame3}
                             </Typography>
                           </div>
                         </div>
                       </div>
-                      <div className="border-t-primary-gray-100 flex flex-col gap-4 border-t py-10">
+                      <div className="flex flex-col gap-4 border-t border-t-gray-100 py-10">
                         <header className="flex flex-row items-center justify-between">
                           <Typography variant="title2">Commentary 구성</Typography>
-                          <Typography variant="caption" className="text-primary-gray-500">
+                          <Typography variant="caption" className="text-gray-500">
                             설정한 세 가지 대상이 아래 기준에 부합하는지 확인해보세요.
                           </Typography>
                         </header>
@@ -572,8 +572,8 @@ export const ExhibitionPlanDetailPage = () => {
                           {commentary?.map((item, index) => (
                             <div
                               key={item.id}
-                              className={`text-15 text-primary-gray-700 flex h-[54px] flex-row items-center gap-4 px-6 font-medium ${
-                                index % 2 === 0 ? 'bg-primary-gray-50' : 'bg-white'
+                              className={`text-15 flex h-[54px] flex-row items-center gap-4 px-6 font-medium text-gray-700 ${
+                                index % 2 === 0 ? 'bg-gray-50' : 'bg-white'
                               }`}
                             >
                               <div className="min-w-[172px] text-start">{item.name}</div>
@@ -681,7 +681,7 @@ export const ExhibitionPlanDetailPage = () => {
             </div>
           </div>
         }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
         floatingButton={
           !editMode &&
           ['PENDING', 'REJECT_PLAN', 'WAIT_PLAN_APPROVE', 'WAITING_FOR_NEXT_PROPOSAL', 'WAIT_MENTOR'].includes(

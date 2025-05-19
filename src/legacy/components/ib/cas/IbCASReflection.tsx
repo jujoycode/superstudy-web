@@ -93,7 +93,7 @@ export function IbCASReflection({
     >
       {isSubmitLoading && <Blank />}
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white px-8`}>
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6 backdrop-blur-[20px]">
+        <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6">
           <Typography variant="title1">성찰일지 작성</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
         </div>
@@ -125,13 +125,13 @@ export function IbCASReflection({
             )}
           </div>
 
-          <div className="border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-between border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]">
+          <div className=".backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-between border-t border-t-gray-100 bg-white/70 pt-6 pb-8">
             <ButtonV2 variant="solid" color="gray100" size={48} onClick={handleBack}>
               이전
             </ButtonV2>
             <div className="flex flex-row items-center gap-3">
               <label htmlFor="file-upload" className="allow-click cursor-pointer">
-                <div className="border-primary-gray-400 text-primary-gray-900 active:border-primary-gray-100 active:bg-primary-gray-400 disabled:border-primary-gray-100 disabled:bg-primary-gray-200 disabled:text-primary-gray-400 flex h-10 min-w-[64px] items-center rounded-[6px] border px-3 text-[14px] font-medium disabled:cursor-not-allowed">
+                <div className="flex h-10 min-w-[64px] items-center rounded-[6px] border border-gray-400 px-3 text-[14px] font-medium text-gray-900 active:border-gray-100 active:bg-gray-400 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-200 disabled:text-gray-400">
                   파일 첨부하기
                 </div>
                 <input

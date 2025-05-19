@@ -51,7 +51,7 @@ export default function ActivityLogView({ grade, klass }: IBGetSubmissionStatusC
   return (
     <div>
       {notiLoading && <Blank />}
-      <Typography variant="title1" className="text-primary-gray-900">
+      <Typography variant="title1" className="text-gray-900">
         성찰일지
       </Typography>
       <RadioV2.Group
@@ -70,7 +70,7 @@ export default function ActivityLogView({ grade, klass }: IBGetSubmissionStatusC
 
       {status === 'NOT_SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             성찰일지 미작성
           </Typography>
           <ActivityLogOverviewPanel
@@ -83,7 +83,7 @@ export default function ActivityLogView({ grade, klass }: IBGetSubmissionStatusC
       )}
       {status === 'SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             성찰일지 작성
           </Typography>
           <ActivityLogOverviewPanel

@@ -279,7 +279,7 @@ export const ProposalDetailPage = () => {
                       <ProposalViewField label="과목" className="py-[13px]">
                         <div className="flex gap-2">
                           <SVGIcon.Note size={20} color="gray700" weight="bold" className="cursor-default" />
-                          <Typography variant="body2" className="text-primary-gray-700">
+                          <Typography variant="body2" className="text-gray-700">
                             {proposalData?.subject}
                           </Typography>
                         </div>
@@ -427,7 +427,7 @@ export const ProposalDetailPage = () => {
         //     </ButtonV2>
         //   ) : null
         // }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
       />
 
       {alertMessage && (

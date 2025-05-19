@@ -440,7 +440,7 @@ export function FieldtripMainPage() {
                   style={{ backgroundImage: `url("${stampImgUrl}")` }}
                 ></div>
               ) : (
-                <div className="bg-grey-4 absolute inset-0 z-10 overflow-hidden rounded">
+                <div className="bg-gray-4 absolute inset-0 z-10 overflow-hidden rounded">
                   <div className="flex h-full w-full items-center justify-center">
                     <div className="min-w-max text-center">도장을 등록해주세요.</div>
                   </div>

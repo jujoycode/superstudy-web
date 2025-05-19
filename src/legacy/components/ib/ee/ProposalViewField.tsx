@@ -13,12 +13,12 @@ interface ProposalViewFieldProps {
 export const ProposalViewField = ({ label, value, className, children }: PropsWithChildren<ProposalViewFieldProps>) => {
   return (
     <section className="flex flex-col gap-4">
-      <Typography variant="title2" className="text-primary-gray-900">
+      <Typography variant="title2" className="text-gray-900">
         {label}
       </Typography>
       <Typography
         variant="body2"
-        className={clsx('border-primary-gray-200 text-15 text-primary-gray-700 rounded-lg border p-4', className)}
+        className={clsx('text-15 rounded-lg border border-gray-200 p-4 text-gray-700', className)}
       >
         {value || children}
       </Typography>

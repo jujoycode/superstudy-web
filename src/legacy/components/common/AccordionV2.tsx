@@ -56,7 +56,7 @@ const AccordionV2 = ({
           {tagText && (
             <Typography
               variant="caption2"
-              className="border-primary-gray-400 flex items-center justify-center rounded border px-[6px] py-[2px]"
+              className="flex items-center justify-center rounded border border-gray-400 px-[6px] py-[2px]"
             >
               {tagText}
             </Typography>
@@ -66,7 +66,7 @@ const AccordionV2 = ({
               {title}
             </Typography>
             {useCount && (
-              <Typography variant="title3" className="text-primary-orange-800">
+              <Typography variant="title3" className="text-primary-800">
                 {count}
               </Typography>
             )}

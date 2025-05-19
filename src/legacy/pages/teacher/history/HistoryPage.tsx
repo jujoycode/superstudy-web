@@ -166,7 +166,7 @@ export function HistoryPage() {
                   {t('refresh', '새로고침')}
                 </div>
               </div>
-              <div className="text-grey-5 mb-5 text-sm">{`※ 확인증, ${t(
+              <div className="text-gray-5 mb-5 text-sm">{`※ 확인증, ${t(
                 `absentTitle`,
                 '결석신고서',
               )}, 체험학습 과거이력관리`}</div>

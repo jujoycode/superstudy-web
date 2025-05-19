@@ -69,10 +69,10 @@ export default function RRSOverviewPanel(props: OverviewPanelProps) {
         <div key={groupKey}>
           {/* 반 이름 출력 */}
           <div className="mb-4 flex items-center gap-3">
-            <Typography variant="body3" className="text-primary-gray-500 font-medium">
+            <Typography variant="body3" className="font-medium text-gray-500">
               {group.name}
             </Typography>
-            <hr className="border-primary-gray-100 flex-1 border-t" />
+            <hr className="flex-1 border-t border-gray-100" />
           </div>
 
           {/* 해당 반의 학생 목록 출력 */}
@@ -82,19 +82,19 @@ export default function RRSOverviewPanel(props: OverviewPanelProps) {
               .map((student) => (
                 <div
                   key={student.id}
-                  className={`bg-primary-gray-50 text-14 text-primary-gray-700 flex h-[48px] w-[195px] items-center justify-between rounded-lg py-[14px] pr-4 pl-4 ${
+                  className={`text-14 flex h-[48px] w-[195px] items-center justify-between rounded-lg bg-gray-50 py-[14px] pr-4 pl-4 text-gray-700 ${
                     goDetailPage && 'hover:cursor-pointer'
                   }`}
                   onClick={goDetailPage ? () => goDetailPage(student.id) : undefined}
                 >
                   <div className="flex flex-row items-center">
-                    <Typography variant="body3" className="text-primary-gray-700">
+                    <Typography variant="body3" className="text-gray-700">
                       {student.leader.studentGroup.group.grade}
                       {String(student.leader.studentGroup.group.klass).padStart(2, '0')}
                       {String(student.leader.studentGroup.studentNumber).padStart(2, '0')}
                     </Typography>
                     <span className="mx-1">·</span>
-                    <Typography variant="body3" className="text-primary-gray-700">
+                    <Typography variant="body3" className="text-gray-700">
                       {student.leader.name}
                     </Typography>
                   </div>
@@ -107,13 +107,13 @@ export default function RRSOverviewPanel(props: OverviewPanelProps) {
   }
 
   const totalStudents = useMemo(() => studentsToDisplay.length, [studentsToDisplay])
-  const containerStyles = clsx('w-full rounded-xl border border-primary-gray-200 p-6 flex flex-col gap-6', className)
+  const containerStyles = clsx('w-full rounded-xl border border-gray-200 p-6 flex flex-col gap-6', className)
 
   return (
     <div className={containerStyles}>
       <div className="flex justify-between">
-        <Typography variant="title3" className="text-primary-gray-900">
-          {title} <span className="text-primary-orange-800">{totalStudents}명</span>
+        <Typography variant="title3" className="text-gray-900">
+          {title} <span className="text-primary-800">{totalStudents}명</span>
         </Typography>
         {totalStudents > 0 && buttonText && (
           <ButtonV2 variant="outline" color="gray400" size={32} onClick={buttonHandler}>

@@ -132,7 +132,7 @@ export const CoordinatorTOK_Question = () => {
           </div>
           {permission === 'IB_TOK' ? (
             <>
-              <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
+              <Typography variant="body2" className="text-center font-medium text-gray-700">
                 생성된 양식이 없습니다.
                 <br />
                 양식을 추가해주세요.
@@ -142,7 +142,7 @@ export const CoordinatorTOK_Question = () => {
               </ButtonV2>
             </>
           ) : (
-            <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
+            <Typography variant="body2" className="text-center font-medium text-gray-700">
               생성된 양식이 없습니다.
             </Typography>
           )}

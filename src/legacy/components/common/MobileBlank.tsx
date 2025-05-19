@@ -20,9 +20,7 @@ export function MobileBlank({ text, reversed, children }: PropsWithChildren<Blan
         e.preventDefault()
         e.stopPropagation()
       }}
-      className={clsx(
-        'bg-primary-gray-50 fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center opacity-60',
-      )}
+      className={clsx('fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center bg-gray-50 opacity-60')}
     >
       {text || children || reversed ? (
         <div className="text-2xl">

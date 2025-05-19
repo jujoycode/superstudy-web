@@ -20,7 +20,7 @@ export function ScorePage() {
           </div>
         }
       />
-      <div className="border-b-primary-gray-200 flex h-12 w-full flex-row items-end gap-4 border-b px-5">
+      <div className="flex h-12 w-full flex-row items-end gap-4 border-b border-b-gray-200 px-5">
         <Link
           to={`/student/score/${id}/school-exam`}
           className={twMerge(

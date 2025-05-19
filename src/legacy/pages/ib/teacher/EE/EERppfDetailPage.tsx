@@ -174,7 +174,7 @@ export const EERppfDetailPage = () => {
                   <Typography variant="heading" className="w-[692px] overflow-hidden text-ellipsis whitespace-nowrap">
                     {`${data?.leader?.name}의 EE RPPF`}
                   </Typography>
-                  <div className="text-16 text-primary-orange-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
+                  <div className="text-16 text-primary-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
                     {klassNum} · {data?.leader?.name}
                   </div>
                 </div>
@@ -182,7 +182,7 @@ export const EERppfDetailPage = () => {
             </div>
           </div>
         }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
         bottomContent={
           <div className="flex flex-grow flex-col">
             <div className="flex h-full flex-row gap-4 py-6">
@@ -192,12 +192,12 @@ export const EERppfDetailPage = () => {
                     <form>
                       <div className="scroll-box flex h-full flex-col gap-6 overflow-auto pt-4">
                         <div className="flex flex-row items-center justify-between">
-                          <Typography variant="title1" className="text-primary-gray-900">
+                          <Typography variant="title1" className="text-gray-900">
                             공식 RPPF
                           </Typography>
                           <div className="text-12 flex flex-row items-center">
-                            <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-                            <p className="text-primary-orange-800 font-medium">
+                            <p className="text-gray-500">총 단어 수</p>&nbsp;
+                            <p className="text-primary-800 font-medium">
                               {wordCounts.reduce((sum, count) => sum + count, 0)}
                             </p>
                           </div>
@@ -213,10 +213,10 @@ export const EERppfDetailPage = () => {
                               key={content.id}
                             >
                               <div className="flex items-center justify-between">
-                                <Typography variant="title2" className="text-primary-gray-900">
+                                <Typography variant="title2" className="text-gray-900">
                                   RPPF {content.sequence}차
                                 </Typography>
-                                <Typography variant="caption" className="text-primary-gray-500">
+                                <Typography variant="caption" className="text-gray-500">
                                   최초 저장일 : {format(new Date(content.createdAt), 'yyyy.MM.dd')}
                                 </Typography>
                               </div>
@@ -242,12 +242,12 @@ export const EERppfDetailPage = () => {
                 ) : (
                   <div className="flex flex-col">
                     <div className="flex flex-row items-center justify-between">
-                      <Typography variant="title1" className="text-primary-gray-900">
+                      <Typography variant="title1" className="text-gray-900">
                         공식 RPPF
                       </Typography>
                       <div className="text-12 flex flex-row items-center">
-                        <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-                        <p className="text-primary-orange-800 font-medium">
+                        <p className="text-gray-500">총 단어 수</p>&nbsp;
+                        <p className="text-primary-800 font-medium">
                           {wordCounts.reduce((sum, count) => sum + count, 0)}
                         </p>
                       </div>
@@ -263,18 +263,18 @@ export const EERppfDetailPage = () => {
                           key={content.id}
                         >
                           <div className="flex items-center justify-between">
-                            <Typography variant="title2" className="text-primary-gray-900">
+                            <Typography variant="title2" className="text-gray-900">
                               RPPF {content.sequence}차
                             </Typography>
-                            <Typography variant="caption" className="text-primary-gray-500">
+                            <Typography variant="caption" className="text-gray-500">
                               최초 저장일 : {format(new Date(content.createdAt), 'yyyy.MM.dd')}
                             </Typography>
                           </div>
-                          <div className="border-primary-gray-200 flex flex-col gap-4 rounded-lg border p-4">
+                          <div className="flex flex-col gap-4 rounded-lg border border-gray-200 p-4">
                             <Typography variant="body2">{content.text}</Typography>
                             <div className="text-12 flex flex-row items-center">
-                              <p className="text-primary-gray-500">단어 수</p>&nbsp;
-                              <p className="text-primary-orange-800 font-medium">{content.wordCount}</p>
+                              <p className="text-gray-500">단어 수</p>&nbsp;
+                              <p className="text-primary-800 font-medium">{content.wordCount}</p>
                             </div>
                           </div>
                         </div>
@@ -321,7 +321,7 @@ export const EERppfDetailPage = () => {
                 </footer>
               </div>
               <div className="flex h-[720px] w-[416px] flex-col gap-6 rounded-xl bg-white p-6">
-                <Typography variant="title1" className="text-primary-gray-900">
+                <Typography variant="title1" className="text-gray-900">
                   진행기록
                 </Typography>
                 <div className="h-full w-full">
@@ -435,7 +435,7 @@ export const EERppfDetailPage = () => {
         }
       >
         <div className="flex flex-col gap-6">
-          <Typography variant="body1" className="text-primary-gray-900">
+          <Typography variant="body1" className="text-gray-900">
             학생에게 RPPF에 대한 피드백을 남겨주세요.
           </Typography>
           <TextareaV2

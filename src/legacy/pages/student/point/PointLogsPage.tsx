@@ -57,15 +57,15 @@ export function PointLogsPage() {
         <div className="rounded-xl border text-center">
           <div className="grid grid-cols-3 divide-x py-4">
             <div className="flex flex-col px-4">
-              <Typography variant="caption" className="text-primary-gray-700">
+              <Typography variant="caption" className="text-gray-700">
                 {ts('merits')}
               </Typography>
-              <Typography variant="title2" className="text-primary-green-800">
+              <Typography variant="title2" className="text-ib-green-800">
                 {numberWithSign(merits)}
               </Typography>
             </div>
             <div className="flex flex-col px-4">
-              <Typography variant="caption" className="text-primary-gray-700">
+              <Typography variant="caption" className="text-gray-700">
                 {ts('demerits')}
               </Typography>
               <Typography variant="title2" className="text-primary-red-800">
@@ -73,10 +73,10 @@ export function PointLogsPage() {
               </Typography>
             </div>
             <div className="flex flex-col px-4">
-              <Typography variant="caption" className="text-primary-gray-700">
+              <Typography variant="caption" className="text-gray-700">
                 {ts('total')}
               </Typography>
-              <Typography variant="title2" className="text-primary-gray-900">
+              <Typography variant="title2" className="text-gray-900">
                 {numberWithSign(merits + demerits)}
               </Typography>
             </div>
@@ -90,7 +90,7 @@ export function PointLogsPage() {
         </div>
       </div>
 
-      <div className="bg-primary-gray-100 h-2.5"></div>
+      <div className="h-2.5 bg-gray-100"></div>
 
       <div className="px-5 pt-10 pb-12">
         <Admin.Table className="w-full border-b text-center">

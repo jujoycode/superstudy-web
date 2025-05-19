@@ -55,7 +55,7 @@ export default function PaginationV2({ data, onPageChange, className, ...props }
             variant="body3"
             className={clsx(
               'flex h-8 w-8 items-center justify-center rounded-md',
-              p === page && 'bg-primary-gray-700 text-white',
+              p === page && 'bg-gray-700 text-white',
             )}
           >
             {p}

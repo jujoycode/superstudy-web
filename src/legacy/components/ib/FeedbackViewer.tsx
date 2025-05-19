@@ -36,7 +36,7 @@ export default function FeedbackViewer({ referenceId, referenceTable, modalOpen,
           </div>
         ) : (
           <>
-            <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pb-6 backdrop-blur-[20px]">
+            <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pb-6">
               <Typography variant="title1">
                 {sender
                   ? sender.role === 'USER'
@@ -48,11 +48,7 @@ export default function FeedbackViewer({ referenceId, referenceTable, modalOpen,
             </div>
             <div
               className={`flex flex-col gap-3 rounded-xl ${
-                sender === null
-                  ? 'bg-primary-gray-50'
-                  : data?.items[0].sender.role === 'USER'
-                    ? 'bg-primary-gray-50'
-                    : 'bg-primary-orange-50'
+                sender === null ? 'bg-gray-50' : data?.items[0].sender.role === 'USER' ? 'bg-gray-50' : 'bg-primary-50'
               } p-5`}
             >
               {sender === null ? (
@@ -75,7 +71,7 @@ export default function FeedbackViewer({ referenceId, referenceTable, modalOpen,
                 <div className="flex flex-row items-center justify-between">
                   <span className="flex flex-row items-center gap-2">
                     <SolidSVGIcon.Talk size={24} color="orange800" />
-                    <Typography variant="title3" className="text-primary-orange-800">
+                    <Typography variant="title3" className="text-primary-800">
                       {data?.items[0].sender.name}선생님의 피드백
                     </Typography>
                   </span>
@@ -90,7 +86,7 @@ export default function FeedbackViewer({ referenceId, referenceTable, modalOpen,
                       <Typography variant="body2" className="whitespace-pre-line">
                         {data.items[0].content.split('\n')[0]}
                       </Typography>
-                      <Typography variant="caption" className="text-primary-gray-500 whitespace-pre-line">
+                      <Typography variant="caption" className="whitespace-pre-line text-gray-500">
                         {data.items[0].content.split('\n')[1]}
                       </Typography>
                     </>

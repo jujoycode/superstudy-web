@@ -110,9 +110,9 @@ export default function CASInterviewDetailPage() {
               <div className="flex w-[848px] flex-col justify-between rounded-xl bg-white p-6">
                 {editMode ? (
                   <div className="flex flex-col gap-3 pt-4">
-                    <div className="border-b-primary-gray-100 flex flex-col items-start gap-1 border-b pb-6">
+                    <div className="flex flex-col items-start gap-1 border-b border-b-gray-100 pb-6">
                       <Typography variant="title1">{interview.title}</Typography>
-                      <Typography variant="body3" className="text-primary-gray-500">
+                      <Typography variant="body3" className="text-gray-500">
                         {format(new Date(interview.qna.createdAt), 'yyyy.MM.dd')}
                       </Typography>
                     </div>
@@ -122,7 +122,7 @@ export default function CASInterviewDetailPage() {
                           return (
                             <div key={index} className="flex flex-col gap-3">
                               <div className="flex flex-row items-start">
-                                <Typography variant="title3" className="text-primary-orange-800">
+                                <Typography variant="title3" className="text-primary-800">
                                   Q{interview.qna.content.filter((i, idx) => !i.added && idx < index).length + 1}.&nbsp;
                                 </Typography>
                                 <input type="hidden" value={item.question} {...register(`content.${index}.question`)} />
@@ -144,13 +144,10 @@ export default function CASInterviewDetailPage() {
                       {interview.qna.content.map((item, index) => {
                         if (item.added) {
                           return (
-                            <div
-                              key={index}
-                              className="border-t-primary-gray-200 flex flex-col gap-3 border-t pt-6 pb-10"
-                            >
+                            <div key={index} className="flex flex-col gap-3 border-t border-t-gray-200 pt-6 pb-10">
                               <Typography variant="title2">개별 질문</Typography>
                               <div className="flex flex-row items-start">
-                                <Typography variant="title3" className="text-primary-orange-800">
+                                <Typography variant="title3" className="text-primary-800">
                                   Q{interview.qna.content.filter((i, idx) => i.added && idx < index).length + 1}.&nbsp;
                                 </Typography>
                                 <input type="hidden" value={item.question} {...register(`content.${index}.question`)} />
@@ -171,9 +168,9 @@ export default function CASInterviewDetailPage() {
                   </div>
                 ) : (
                   <div className="flex flex-col">
-                    <div className="border-b-primary-gray-100 flex flex-col items-start gap-1 border-b pb-6">
+                    <div className="flex flex-col items-start gap-1 border-b border-b-gray-100 pb-6">
                       <Typography variant="title1">{interview.title}</Typography>
-                      <Typography variant="body3" className="text-primary-gray-500">
+                      <Typography variant="body3" className="text-gray-500">
                         {format(new Date(interview.qna.createdAt), 'yyyy.MM.dd')}
                       </Typography>
                     </div>
@@ -184,12 +181,12 @@ export default function CASInterviewDetailPage() {
                         .map((item, index) => (
                           <div key={index} className="flex flex-col gap-3">
                             <div className="flex flex-row items-start">
-                              <Typography variant="title3" className="text-primary-orange-800">
+                              <Typography variant="title3" className="text-primary-800">
                                 Q{index + 1}.&nbsp;
                               </Typography>
                               <Typography variant="title3">{item.question}</Typography>
                             </div>
-                            <div className="border-primary-gray-200 rounded-lg border p-4">
+                            <div className="rounded-lg border border-gray-200 p-4">
                               <Typography variant="body2" className="font-medium">
                                 {item.answer}
                               </Typography>
@@ -200,19 +197,19 @@ export default function CASInterviewDetailPage() {
                       {/* 추가 질문이 있는 경우에만 표시 */}
                     </div>
                     {interview.qna.content.some((item) => item.added) && (
-                      <div className="border-t-primary-gray-200 flex flex-col gap-3 border-t pt-6 pb-10">
+                      <div className="flex flex-col gap-3 border-t border-t-gray-200 pt-6 pb-10">
                         <Typography variant="title2">개별 질문</Typography>
                         {interview.qna.content
                           .filter((item) => item.added)
                           .map((item, index) => (
                             <div key={index} className="flex flex-col gap-3">
                               <div className="flex flex-row items-start">
-                                <Typography variant="title3" className="text-primary-orange-800">
+                                <Typography variant="title3" className="text-primary-800">
                                   Q{index + 1}.&nbsp;
                                 </Typography>
                                 <Typography variant="title3">{item.question}</Typography>
                               </div>
-                              <div className="border-primary-gray-200 rounded-lg border p-4">
+                              <div className="rounded-lg border border-gray-200 p-4">
                                 <Typography variant="body2" className="font-medium">
                                   {item.answer}
                                 </Typography>
@@ -278,7 +275,7 @@ export default function CASInterviewDetailPage() {
             </div>
           </div>
         }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
       />
       {alertMessage && (
         <AlertV2

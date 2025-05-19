@@ -137,7 +137,7 @@ export const EEEssayPage = () => {
                 <div className="h-12 w-12 px-[2.50px]">
                   <img src={NODATA} className="h-12 w-[43px] object-cover" />
                 </div>
-                <Typography variant="body2" className="text-primary-gray-900">
+                <Typography variant="body2" className="text-gray-900">
                   진행기록이 없습니다.
                 </Typography>
               </div>
@@ -222,7 +222,7 @@ export const EEEssayPage = () => {
                   <Typography variant="heading" className="w-[692px] overflow-hidden text-ellipsis whitespace-nowrap">
                     {`${data?.leader?.name}의 EE 에세이`}
                   </Typography>
-                  <div className="text-16 text-primary-orange-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
+                  <div className="text-16 text-primary-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
                     {klassNum} · {data?.leader?.name}
                   </div>
                 </div>
@@ -283,7 +283,7 @@ export const EEEssayPage = () => {
                     value="feedback"
                     childrenWrapperClassName={clsx(
                       type === 'checklist' &&
-                        'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                        'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
                     )}
                   >
                     <p>진행기록</p>
@@ -292,7 +292,7 @@ export const EEEssayPage = () => {
                     value="evaluation"
                     childrenWrapperClassName={clsx(
                       type === 'feedback' &&
-                        'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                        'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
                     )}
                   >
                     <p>평가</p>

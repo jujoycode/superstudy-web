@@ -25,7 +25,7 @@ export function TeacherApplyPage() {
           >
             <div>
               <div className="font-sfpro text-lg font-bold text-gray-800">출석부</div>
-              <div className="text-grey-5 text-sm">반별 출석상태 조회/관리</div>
+              <div className="text-gray-5 text-sm">반별 출석상태 조회/관리</div>
             </div>
             <RightArrow />
           </div>
@@ -35,7 +35,7 @@ export function TeacherApplyPage() {
           >
             <div>
               <div className="font-sfpro text-lg font-bold text-gray-800">시간표/출석체크</div>
-              <div className="text-grey-5 text-sm">교사별/학급별 시간표 조회 및 출석체크</div>
+              <div className="text-gray-5 text-sm">교사별/학급별 시간표 조회 및 출석체크</div>
             </div>
             <RightArrow />
           </div>
@@ -46,7 +46,7 @@ export function TeacherApplyPage() {
             >
               <div>
                 <div className="font-sfpro text-lg font-bold text-gray-800">확인증</div>
-                <div className="text-grey-5 text-sm">조퇴증,외출증,확인증 / 조퇴,외출,확인 전 작성 서류</div>
+                <div className="text-gray-5 text-sm">조퇴증,외출증,확인증 / 조퇴,외출,확인 전 작성 서류</div>
               </div>
               <RightArrow />
             </div>
@@ -57,7 +57,7 @@ export function TeacherApplyPage() {
           >
             <div>
               <div className="font-sfpro text-lg font-bold text-gray-800">{t(`absentTitle`, '결석신고서')}</div>
-              <div className="text-grey-5 text-sm">구,결석계 / 조퇴,외출,결과,지각,결석 후 작성 서류</div>
+              <div className="text-gray-5 text-sm">구,결석계 / 조퇴,외출,결과,지각,결석 후 작성 서류</div>
             </div>
             <RightArrow />
           </div>
@@ -69,7 +69,7 @@ export function TeacherApplyPage() {
           >
             <div>
               <div className="font-sfpro text-lg font-bold text-gray-800">체험학습</div>
-              <div className="text-grey-5 text-sm">신청,통보,결과보고서 / 체험학습 관련 작성 서류</div>
+              <div className="text-gray-5 text-sm">신청,통보,결과보고서 / 체험학습 관련 작성 서류</div>
             </div>
             {selectedFieldtrip ? <Icon.ChevronDown /> : <RightArrow />}
           </div>
@@ -107,7 +107,7 @@ export function TeacherApplyPage() {
           >
             <div>
               <div className="font-sfpro text-lg font-bold text-gray-800">학생정보</div>
-              <div className="text-grey-5 text-sm">학생 신상정보 관리, 상담카드</div>
+              <div className="text-gray-5 text-sm">학생 신상정보 관리, 상담카드</div>
             </div>
             <RightArrow />
           </div>
@@ -117,7 +117,7 @@ export function TeacherApplyPage() {
           >
             <div>
               <div className="font-sfpro text-lg font-bold text-gray-800">출결서류관리</div>
-              <div className="text-grey-5 text-sm">{`학생증, ${t(
+              <div className="text-gray-5 text-sm">{`학생증, ${t(
                 `absentTitle`,
                 '결석신고서',
               )}, 체험학습 이력관리`}</div>
@@ -130,7 +130,7 @@ export function TeacherApplyPage() {
           >
             <div>
               <div className="font-sfpro text-lg font-bold text-gray-800">상벌점관리</div>
-              <div className="text-grey-5 text-sm">상벌점 부여 및 조회</div>
+              <div className="text-gray-5 text-sm">상벌점 부여 및 조회</div>
             </div>
             <RightArrow />
           </div>

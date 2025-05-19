@@ -111,7 +111,7 @@ export function CoordinatorCAS_Question_AddQuestion({
         }`}
       >
         <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white px-8`}>
-          <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6 backdrop-blur-[20px]">
+          <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6">
             <Typography variant="title1">{CAS_QUESTION_TYPES[type]} 작성</Typography>
             <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} />
           </div>
@@ -124,9 +124,7 @@ export function CoordinatorCAS_Question_AddQuestion({
                     onClick={() => setCategory(value)}
                     className={clsx(
                       'flex cursor-pointer items-center justify-center rounded-lg px-4 py-[9px] whitespace-pre',
-                      category === value
-                        ? 'bg-primary-gray-700 text-white'
-                        : 'bg-primary-gray-50 text-primary-gray-700 hover:bg-primary-gray-200',
+                      category === value ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-200',
                     )}
                   >
                     {name}
@@ -220,7 +218,7 @@ export function CoordinatorCAS_Question_AddQuestion({
 
           <div
             className={
-              'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]'
+              '.backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8'
             }
           >
             <div className="flex justify-end gap-3">

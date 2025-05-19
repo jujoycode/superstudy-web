@@ -164,8 +164,8 @@ export function CoordinatorEE_FAQ_AddFaq({
       }}
     >
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white px-8`}>
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6 backdrop-blur-[20px]">
-          <Typography variant="title1" className="text-primary-gray-900">
+        <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6">
+          <Typography variant="title1" className="text-gray-900">
             {type === 'create' ? 'FAQ 작성' : 'FAQ 수정'}
           </Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} />
@@ -194,7 +194,7 @@ export function CoordinatorEE_FAQ_AddFaq({
 
         <div
           className={
-            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-between gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]'
+            '.backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-between gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8'
           }
         >
           <div>

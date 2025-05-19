@@ -164,8 +164,8 @@ export default function RPPFDetailPage() {
                         <div className="flex flex-row items-center justify-between">
                           <Typography variant="title1">공식 RPPF</Typography>
                           <div className="text-12 flex flex-row items-center">
-                            <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-                            <p className="text-primary-orange-800 font-medium">
+                            <p className="text-gray-500">총 단어 수</p>&nbsp;
+                            <p className="text-primary-800 font-medium">
                               {wordCounts.reduce((sum, count) => sum + count, 0)}
                             </p>
                           </div>
@@ -182,7 +182,7 @@ export default function RPPFDetailPage() {
                             >
                               <div className="flex items-center justify-between">
                                 <Typography variant="title2">RPPF {content.sequence}차</Typography>
-                                <Typography variant="caption" className="text-primary-gray-500">
+                                <Typography variant="caption" className="text-gray-500">
                                   최초 저장일 : {format(new Date(content.createdAt), 'yyyy.MM.dd')}
                                 </Typography>
                               </div>
@@ -211,8 +211,8 @@ export default function RPPFDetailPage() {
                     <div className="flex flex-row items-center justify-between">
                       <Typography variant="title1">공식 RPPF</Typography>
                       <div className="text-12 flex flex-row items-center">
-                        <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-                        <p className="text-primary-orange-800 font-medium">
+                        <p className="text-gray-500">총 단어 수</p>&nbsp;
+                        <p className="text-primary-800 font-medium">
                           {wordCounts.reduce((sum, count) => sum + count, 0)}
                         </p>
                       </div>
@@ -229,15 +229,15 @@ export default function RPPFDetailPage() {
                         >
                           <div className="flex items-center justify-between">
                             <Typography variant="title2">RPPF {content.sequence}차</Typography>
-                            <Typography variant="caption" className="text-primary-gray-500">
+                            <Typography variant="caption" className="text-gray-500">
                               최초 저장일 : {format(new Date(content.createdAt), 'yyyy.MM.dd')}
                             </Typography>
                           </div>
-                          <div className="border-primary-gray-200 flex flex-col gap-4 rounded-lg border p-4">
+                          <div className="flex flex-col gap-4 rounded-lg border border-gray-200 p-4">
                             <Typography variant="body2">{content.text}</Typography>
                             <div className="text-12 flex flex-row items-center">
-                              <p className="text-primary-gray-500">단어 수</p>&nbsp;
-                              <p className="text-primary-orange-800 font-medium">{content.wordCount}</p>
+                              <p className="text-gray-500">단어 수</p>&nbsp;
+                              <p className="text-primary-800 font-medium">{content.wordCount}</p>
                             </div>
                           </div>
                         </div>
@@ -298,7 +298,7 @@ export default function RPPFDetailPage() {
             </div>
           </div>
         }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
         floatingButton={
           !editMode &&
           (() => {

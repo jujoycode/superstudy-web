@@ -88,9 +88,7 @@ const FrontPaginatedList = <T,>({
               }
             }}
             className={`flex h-8 w-8 items-center justify-center ${
-              currentPage === 1
-                ? 'text-primary-gray-400'
-                : 'hover:bg-primary-gray-50 hover:text-primary-gray-700 hover:rounded-md'
+              currentPage === 1 ? 'text-gray-400' : 'hover:rounded-md hover:bg-gray-50 hover:text-gray-700'
             }`}
             disabled={startPage === 1}
           >
@@ -108,8 +106,8 @@ const FrontPaginatedList = <T,>({
                 className={clsx(
                   'h-8 w-8 rounded-md',
                   currentPage === page
-                    ? 'bg-primary-gray-700 rounded-md text-white'
-                    : 'text-primary-gray-700 hover:bg-primary-gray-50 hover:text-primary-gray-700',
+                    ? 'rounded-md bg-gray-700 text-white'
+                    : 'text-gray-700 hover:bg-gray-50 hover:text-gray-700',
                 )}
               >
                 {page}
@@ -125,9 +123,7 @@ const FrontPaginatedList = <T,>({
               }
             }}
             className={`flex h-8 w-8 items-center justify-center ${
-              currentPage === totalPages
-                ? 'text-primary-gray-400'
-                : 'hover:bg-primary-gray-50 hover:text-primary-gray-700 hover:rounded-md'
+              currentPage === totalPages ? 'text-gray-400' : 'hover:rounded-md hover:bg-gray-50 hover:text-gray-700'
             }`}
             disabled={startPage + 10 > totalPages}
           >

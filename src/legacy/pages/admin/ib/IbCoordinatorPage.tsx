@@ -117,8 +117,8 @@ export function IbCoordinatorPage() {
         </Link>
       </div>
       <Admin.H1 className="pt-10">IB 관리자 및 코디 지정</Admin.H1>
-      <Admin.Box className="border-y-primary-gray-300 flex flex-col border-y">
-        <div className="border-b-primary-gray-300 flex items-center gap-4 border-b p-4">
+      <Admin.Box className="flex flex-col border-y border-y-gray-300">
+        <div className="flex items-center gap-4 border-b border-b-gray-300 p-4">
           <Typography variant="body3" className="w-[200px] text-center font-semibold">
             구분
           </Typography>
@@ -126,7 +126,7 @@ export function IbCoordinatorPage() {
             교사 지정
           </Typography>
         </div>
-        <div className="border-b-primary-gray-300 flex items-center gap-4 border-b p-4">
+        <div className="flex items-center gap-4 border-b border-b-gray-300 p-4">
           <Typography variant="body3" className="w-[200px] font-medium">
             IB 관리자
           </Typography>
@@ -144,7 +144,7 @@ export function IbCoordinatorPage() {
             dropdownWidth="w-[176px]"
           />
         </div>
-        <div className="border-b-primary-gray-300 flex items-center gap-4 border-b p-4">
+        <div className="flex items-center gap-4 border-b border-b-gray-300 p-4">
           <Typography variant="body3" className="w-[200px] font-medium">
             CAS 코디네이터
           </Typography>
@@ -162,7 +162,7 @@ export function IbCoordinatorPage() {
             dropdownWidth="w-[176px]"
           />
         </div>
-        <div className="border-b-primary-gray-300 flex items-center gap-4 border-b p-4">
+        <div className="flex items-center gap-4 border-b border-b-gray-300 p-4">
           <Typography variant="body3" className="w-[200px] font-medium">
             EE 코디네이터
           </Typography>

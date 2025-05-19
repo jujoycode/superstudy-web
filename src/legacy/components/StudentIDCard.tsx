@@ -291,14 +291,14 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
                 <table>
                   <tbody>
                     <tr>
-                      <td className="text-grey-4 flex justify-between py-1 pr-3 text-xs">
+                      <td className="text-gray-4 flex justify-between py-1 pr-3 text-xs">
                         <p>성</p>
                         <p>명</p>
                       </td>
                       <td className="text-sm font-bold tracking-widest text-black">{meRecoil?.name}</td>
                     </tr>
                     <tr>
-                      <td className="text-grey-4 flex justify-between py-1 pr-3 text-xs">
+                      <td className="text-gray-4 flex justify-between py-1 pr-3 text-xs">
                         <p>학</p>
                         <p>번</p>
                       </td>
@@ -308,17 +308,17 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
                       </td>
                     </tr>
                     <tr>
-                      <td className="text-grey-4 pr-3 text-xs">생년월일</td>
+                      <td className="text-gray-4 pr-3 text-xs">생년월일</td>
                       <td className="text-sm text-black">
                         {meRecoil?.birthDate && makeDateToString(meRecoil.birthDate, '.')}
                       </td>
                     </tr>
                     <tr>
-                      <td className="text-grey-4 pr-3 text-xs">유효기간</td>
+                      <td className="text-gray-4 pr-3 text-xs">유효기간</td>
                       <td className="text-sm text-gray-500">{DateUtil.getYear() + 1}.02.28</td>
                     </tr>
                     <tr>
-                      <td className="text-grey-4 flex justify-between py-1 pr-3 text-xs">
+                      <td className="text-gray-4 flex justify-between py-1 pr-3 text-xs">
                         <p>발</p>
                         <p>급</p>
                         <p>일</p>

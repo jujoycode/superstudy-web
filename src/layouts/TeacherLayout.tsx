@@ -10,13 +10,13 @@ export function TeacherLayout() {
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
-  useEffect(() => {
-    navigate(
-      process.env.REACT_APP_MENU_TYPE === '2'
-        ? '/teacher/absent'
-        : `/teacher/canteen/${DateUtil.formatDate(new Date().toISOString(), DateFormat['YYYY-MM-DD'])}`,
-    )
-  }, [navigate])
+  // useEffect(() => {
+  //   navigate(
+  //     process.env.REACT_APP_MENU_TYPE === '2'
+  //       ? '/teacher/absent'
+  //       : `/teacher/canteen/${DateUtil.formatDate(new Date().toISOString(), DateFormat['YYYY-MM-DD'])}`,
+  //   )
+  // }, [navigate])
 
   return (
     <Container flex height="full" direction="row" justify="start" items="start" gap="2">

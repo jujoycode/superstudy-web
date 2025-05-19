@@ -81,7 +81,7 @@ export function CoordinatorEE_Eval_UpdateEval({
     return (
       <SuperModal modalOpen={modalOpen} setModalClose={setModalClose} hasClose={false} className="w-[416px] rounded-xl">
         <div className="p-8 pb-5">
-          <div className="text-primary-gray-900 w-full text-center text-lg leading-[26px] font-semibold">
+          <div className="w-full text-center text-lg leading-[26px] font-semibold text-gray-900">
             평가 항목을 수정하면
             <br />
             지금까지 평가된 학생의 데이터가 변경됩니다.
@@ -187,8 +187,8 @@ export function CoordinatorEE_Eval_UpdateEval({
                 className={clsx(
                   'flex cursor-pointer items-center justify-center rounded-lg px-4 py-[9px] whitespace-pre',
                   checkCriteriaSelected(criteria.id ? criteria : index)
-                    ? 'bg-primary-gray-700 text-white'
-                    : 'bg-primary-gray-50 text-primary-gray-700 hover:bg-primary-gray-200',
+                    ? 'bg-gray-700 text-white'
+                    : 'bg-gray-50 text-gray-700 hover:bg-gray-200',
                 )}
               >
                 {`기준 ${alphabetArray[index]}`}

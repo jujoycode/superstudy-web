@@ -59,24 +59,24 @@ export function IbEeCheckList({
     >
       <div className={`relative w-[632px] overflow-hidden rounded-xl bg-white px-8`}>
         {isLoading && <IBBlank type="section-opacity" />}
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6 backdrop-blur-[20px]">
+        <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6">
           <Typography variant="title1">체크리스트 작성</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} />
         </div>
 
         <form>
-          <section className="border-b-primary-gray-100 flex flex-col gap-4 border-b pb-8">
+          <section className="flex flex-col gap-4 border-b border-b-gray-100 pb-8">
             <Check.Group selectedValues={selectedOptions} onChange={handleGroupChange} className="flex flex-col gap-3">
               {CheckList?.map((item) => <Check.Box label={item.content} size={20} key={item.id} />)}
             </Check.Group>
-            <div className="bg-primary-gray-50 flex flex-row items-center justify-between rounded-lg px-4 py-3">
+            <div className="flex flex-row items-center justify-between rounded-lg bg-gray-50 px-4 py-3">
               <Typography variant="body3">에세이에 사용한 단어 수를 입력해주세요</Typography>
               <Input.Basic size={32} placeholder="예) 3600" />
             </div>
           </section>
           <section className="flex flex-col gap-4 py-8">
             <Typography variant="title3">학문적 진실성 동의</Typography>
-            <Typography variant="body2" className="bg-primary-gray-50 rounded-lg px-4 py-[13px]">
+            <Typography variant="body2" className="rounded-lg bg-gray-50 px-4 py-[13px]">
               소논문은 전적으로 학생 본인에 의해 쓰였으며, 인용하였다고 출처 표시를 한 부분을 제외하고 어떠한 부분도
               다른 저자(인공지능)의 자료를 사용하지 않았음을 약속합니다. 추후 학업적 진실성에 어긋난다고 확인되는 경우
               IB 졸업장이 취소될 수 있음을 인지하고 있습니다.
@@ -89,7 +89,7 @@ export function IbEeCheckList({
             </span>
           </section>
 
-          <div className="border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]">
+          <div className=".backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8">
             <ButtonV2
               type="submit"
               variant="solid"

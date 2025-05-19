@@ -14,7 +14,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
       onClick={(e) => (e.stopPropagation(), onClick?.(e))}
       className={clsx(
         'checkbox',
-        props.disabled ? 'bg-primary-gray-100 cursor-not-allowed opacity-60' : 'cursor-pointer',
+        props.disabled ? 'cursor-not-allowed bg-gray-100 opacity-60' : 'cursor-pointer',
         className,
       )}
       {...props}

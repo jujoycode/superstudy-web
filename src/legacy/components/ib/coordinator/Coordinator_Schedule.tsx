@@ -81,19 +81,19 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
 
   const Header = () => (
     <>
-      <Typography variant="body2" className="text-primary-gray-500 w-[68px] text-center font-medium">
+      <Typography variant="body2" className="w-[68px] text-center font-medium text-gray-500">
         번호
       </Typography>
-      <Typography variant="body2" className="text-primary-gray-500 w-[304px] text-center font-medium">
+      <Typography variant="body2" className="w-[304px] text-center font-medium text-gray-500">
         항목
       </Typography>
-      <Typography variant="body2" className="text-primary-gray-500 w-[304px] text-center font-medium">
+      <Typography variant="body2" className="w-[304px] text-center font-medium text-gray-500">
         마감기한
       </Typography>
-      <Typography variant="body2" className="text-primary-gray-500 w-[304px] text-center font-medium">
+      <Typography variant="body2" className="w-[304px] text-center font-medium text-gray-500">
         알림주기
       </Typography>
-      <Typography variant="body2" className="text-primary-gray-500 w-[188px] text-center font-medium">
+      <Typography variant="body2" className="w-[188px] text-center font-medium text-gray-500">
         관리
       </Typography>
     </>
@@ -151,7 +151,7 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
     <div className="min-h-[664px] rounded-xl bg-white">
       {(isLoading || isFetching) && <Blank />}
       <div className="flex flex-row items-center justify-between p-6">
-        <Typography variant="title1" className="text-primary-gray-900">
+        <Typography variant="title1" className="text-gray-900">
           일정 및 알림발송
         </Typography>
         {isIBPermission[type] && items.length > 0 && (
@@ -186,7 +186,7 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
           </div>
           {isIBPermission[type] ? (
             <>
-              <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
+              <Typography variant="body2" className="text-center font-medium text-gray-700">
                 작성한 일정 및 알림발송이 없습니다.
                 <br />
                 일정 및 알림발송을 추가해주세요.
@@ -196,7 +196,7 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
               </ButtonV2>
             </>
           ) : (
-            <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
+            <Typography variant="body2" className="text-center font-medium text-gray-700">
               작성한 일정 및 알림발송이 없습니다.
             </Typography>
           )}
@@ -233,7 +233,7 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
               children="삭제하기"
               disabled={isLoading}
               onClick={() => deleteDeadline({ id: selectedSchedule.id })}
-              className="bg-primary-orange-800 disabled:filled-gray-dark text-white"
+              className="bg-primary-800 disabled:filled-gray-dark text-white"
             />
           </Section>
         </SuperModal>

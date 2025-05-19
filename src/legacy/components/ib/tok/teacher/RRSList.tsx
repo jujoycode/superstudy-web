@@ -70,7 +70,7 @@ export default function RRSList({ title, data: ibData, studentData }: RRSListPro
   return (
     <section className="flex h-[664px] flex-col">
       <header className="p-6 px-6">
-        <Typography variant="title1" className="text-primary-gray-900">
+        <Typography variant="title1" className="text-gray-900">
           RRS
         </Typography>
       </header>
@@ -82,15 +82,15 @@ export default function RRSList({ title, data: ibData, studentData }: RRSListPro
             </div>
             <span className="flex flex-col items-center">
               {ibData?.status === 'WAIT_COMPLETE' || ibData?.status === 'COMPLETE' ? (
-                <Typography variant="body2" className="text-primary-gray-900 font-medium">
+                <Typography variant="body2" className="font-medium text-gray-900">
                   작성된 RRS가 없습니다.
                 </Typography>
               ) : (
                 <>
-                  <Typography variant="body2" className="text-primary-gray-900 font-medium">
+                  <Typography variant="body2" className="font-medium text-gray-900">
                     학생이 RRS를 작성해야
                   </Typography>
-                  <Typography variant="body2" className="text-primary-gray-900 font-medium">
+                  <Typography variant="body2" className="font-medium text-gray-900">
                     확인할 수 있습니다.
                   </Typography>
                 </>
@@ -99,7 +99,7 @@ export default function RRSList({ title, data: ibData, studentData }: RRSListPro
           </div>
         ) : (
           <table className="w-full">
-            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px]">
+            <thead className="border-y border-y-gray-100 text-[15px] text-gray-500">
               <tr>
                 <th className="w-[100px] py-[9px] pr-2 pl-6 text-center font-medium">번호</th>
                 <th className="w-[756px] px-2 py-[9px] text-center font-medium">제목</th>
@@ -107,7 +107,7 @@ export default function RRSList({ title, data: ibData, studentData }: RRSListPro
                 <th className="w-[208px] py-[9px] pr-6 pl-2 text-center font-medium">피드백</th>
               </tr>
             </thead>
-            <tbody className="text-primary-gray-900 text-[15px] font-medium">
+            <tbody className="text-[15px] font-medium text-gray-900">
               {data?.items
                 ?.slice()
                 .reverse()
@@ -115,7 +115,7 @@ export default function RRSList({ title, data: ibData, studentData }: RRSListPro
                   const feedback = feedbacks?.items?.find((item) => item.referenceId === rrs.id)
                   const itemNumber = data.total - (currentPage - 1) * 10 - index
                   return (
-                    <tr key={rrs.id} className="border-b-primary-gray-100 border-b">
+                    <tr key={rrs.id} className="border-b border-b-gray-100">
                       <td className="py-[11px] pr-2 pl-6 text-center">{itemNumber}</td>
                       <td
                         className="cursor-pointer px-2 py-[11px] text-start"

@@ -166,7 +166,7 @@ export function IbEeProposal({
     >
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white px-8`}>
         {(isLoading || isCreatingProposal || isUpdatingProposal) && <IBBlank type="section-opacity" />}
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6 backdrop-blur-[20px]">
+        <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6">
           <Typography variant="title1">제안서 작성</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
         </div>
@@ -185,7 +185,7 @@ export function IbEeProposal({
           />
           {(selectedSubject === '언어와문학' || selectedSubject === '영어B') && (
             <div className="flex flex-col gap-2 px-[1px]">
-              <Typography variant="title3" className="text-primary-gray-900 font-semibold">
+              <Typography variant="title3" className="font-semibold text-gray-900">
                 세부 카테고리<span className="text-primary-red-800">*</span>
               </Typography>
               <RadioV2.Group
@@ -259,7 +259,7 @@ export function IbEeProposal({
 
         <div
           className={clsx(
-            'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] gap-4 border-t bg-white/70 pt-6 pb-8 backdrop-blur-[20px]',
+            '.backdrop-blur-20 sticky bottom-0 flex h-[104px] gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8',
             {
               'justify-between': type === 'create',
               'justify-end': type !== 'create',

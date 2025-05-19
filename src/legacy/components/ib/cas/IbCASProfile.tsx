@@ -108,7 +108,7 @@ export function IbCASProfile({
     >
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white`}>
         {isLoading && <IBBlank type="section-opacity" />}
-        <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6 backdrop-blur-[20px]">
+        <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6">
           <Typography variant="title1">{type === 'create' ? '프로필 생성' : '프로필 수정'}</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
         </div>
@@ -121,7 +121,7 @@ export function IbCASProfile({
                   return (
                     <div key={question} className="flex flex-col gap-3">
                       <div className="flex flex-row items-start">
-                        <Typography variant="title3" className="text-primary-orange-800">
+                        <Typography variant="title3" className="text-primary-800">
                           Q{index + 1}.&nbsp;
                         </Typography>
                         <Typography variant="title3">{question}</Typography>
@@ -141,7 +141,7 @@ export function IbCASProfile({
           </div>
           <div
             className={clsx(
-              'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
+              '.backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-end border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8',
             )}
           >
             <ButtonV2

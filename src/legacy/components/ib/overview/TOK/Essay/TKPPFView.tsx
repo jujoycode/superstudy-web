@@ -123,7 +123,7 @@ export default function TKPPFView({ grade, klass }: TKPPFGetSubmissionStatusCoun
 
       {status === 'NOT_SUBMITTED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             TKPPF 미작성
           </Typography>
           <TKPPFOverviewPanel
@@ -136,7 +136,7 @@ export default function TKPPFView({ grade, klass }: TKPPFGetSubmissionStatusCoun
       )}
       {status === 'IN_PROGRESS' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             TKPPF 진행중
           </Typography>
           <TKPPFOverviewPanel
@@ -161,7 +161,7 @@ export default function TKPPFView({ grade, klass }: TKPPFGetSubmissionStatusCoun
       )}
       {status === 'IB_TEACHER_FEEDBACK' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             TKPPF 지도의견
           </Typography>
           <TKPPFOverviewPanel
@@ -180,7 +180,7 @@ export default function TKPPFView({ grade, klass }: TKPPFGetSubmissionStatusCoun
       )}
       {status === 'COMPLETED' && (
         <div className="flex flex-col gap-4">
-          <Typography variant="title2" className="text-primary-gray-900">
+          <Typography variant="title2" className="text-gray-900">
             TKPPF 완료
           </Typography>
           <TKPPFOverviewPanel

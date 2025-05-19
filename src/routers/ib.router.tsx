@@ -26,9 +26,9 @@ import { RoleGuard } from './guard/RoleGuard'
 export const ibRoutes = {
   path: '/ib/student',
   element: (
-    <RoleGuard>
-      <IBStudentPage />
-    </RoleGuard>
+    // <RoleGuard>
+    <IBStudentPage />
+    // </RoleGuard>
   ),
   children: [
     // IB 메인

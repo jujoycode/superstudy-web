@@ -68,7 +68,7 @@ export default function RRSList({ id, data: ibData, studentData }: RRSListProps)
   return (
     <section className="flex h-[664px] flex-col">
       <header className="flex min-h-[88px] flex-row items-center justify-between gap-4 p-6 pb-6">
-        <Typography variant="title1" className="text-primary-gray-900">
+        <Typography variant="title1" className="text-gray-900">
           RRS
         </Typography>
       </header>
@@ -80,15 +80,15 @@ export default function RRSList({ id, data: ibData, studentData }: RRSListProps)
             </div>
             <span className="flex flex-col items-center">
               {ibData?.status === 'WAIT_COMPLETE' || ibData?.status === 'COMPLETE' ? (
-                <Typography variant="body2" className="text-primary-gray-900 font-medium">
+                <Typography variant="body2" className="font-medium text-gray-900">
                   작성된 RRS가 없습니다.
                 </Typography>
               ) : (
                 <>
-                  <Typography variant="body2" className="text-primary-gray-900 font-medium">
+                  <Typography variant="body2" className="font-medium text-gray-900">
                     학생이 RRS를 작성해야
                   </Typography>
-                  <Typography variant="body2" className="text-primary-gray-900 font-medium">
+                  <Typography variant="body2" className="font-medium text-gray-900">
                     확인할 수 있습니다.
                   </Typography>
                 </>
@@ -97,7 +97,7 @@ export default function RRSList({ id, data: ibData, studentData }: RRSListProps)
           </div>
         ) : (
           <table className="w-full text-center">
-            <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px]">
+            <thead className="border-y border-y-gray-100 text-[15px] text-gray-500">
               <tr className="flex w-full items-center justify-between gap-[16px] px-[24px] py-[9px] font-medium">
                 <th className="w-[68px]">번호</th>
                 <th className="w-[740px]">제목</th>
@@ -105,7 +105,7 @@ export default function RRSList({ id, data: ibData, studentData }: RRSListProps)
                 <th className="w-[176px]">학생 댓글</th>
               </tr>
             </thead>
-            <tbody className="text-primary-gray-900 text-[15px] font-medium">
+            <tbody className="text-[15px] font-medium text-gray-900">
               {data?.items
                 ?.slice()
                 .reverse()
@@ -115,7 +115,7 @@ export default function RRSList({ id, data: ibData, studentData }: RRSListProps)
                   return (
                     <tr
                       key={rrs.id}
-                      className="border-b-primary-gray-100 flex w-full items-center justify-between gap-[16px] border-b px-[24px] py-[9px]"
+                      className="flex w-full items-center justify-between gap-[16px] border-b border-b-gray-100 px-[24px] py-[9px]"
                     >
                       <td className="w-[68px]">{itemNumber}</td>
                       <td

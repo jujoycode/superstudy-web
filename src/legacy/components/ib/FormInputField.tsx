@@ -36,7 +36,7 @@ export const FormInputField = ({
       <div className="flex flex-col gap-3 rounded-md bg-gray-50 p-4">
         <div className="flex items-center justify-between">
           <Typography variant="title3" className="font-semibold">
-            {label} <span className="text-primary-orange-800">{index + 1}</span>
+            {label} <span className="text-primary-800">{index + 1}</span>
           </Typography>
           <ColorSVGIcon.Close color="gray700" size={24} onClick={deleteQuestion} className="cursor-pointer" />
         </div>
@@ -109,7 +109,7 @@ FormInputField.Question = ({
       <div className="flex flex-col gap-3 rounded-md bg-gray-50 p-4">
         <div className="flex items-center justify-between">
           <Typography variant="title3" className="font-semibold">
-            {label} <span className="text-primary-orange-800">{index + 1}</span>
+            {label} <span className="text-primary-800">{index + 1}</span>
           </Typography>
           <ColorSVGIcon.Close color="gray700" size={24} onClick={deleteQuestion} className="cursor-pointer" />
         </div>

@@ -144,14 +144,14 @@ const MockRankTable: React.FC<{ scores: any[]; isLoading: boolean }> = ({ scores
             <span className="flex flex-row items-center gap-1">
               <SolidSVGIcon.Info color="gray400" size={16} />
               <div className="flex flex-row items-center">
-                <Typography variant="caption2" className="text-primary-gray-500">
+                <Typography variant="caption2" className="text-gray-500">
                   현재 보여지는 성적은
                 </Typography>
-                <Typography variant="caption2" className="text-primary-orange-800">
+                <Typography variant="caption2" className="text-primary-800">
                   {latestExamInfo &&
                     ` ${latestExamInfo.insertion_year}학년도 ${latestExamInfo.grade}학년 ${latestExamInfo.month}월 `}
                 </Typography>
-                <Typography variant="caption2" className="text-primary-gray-500">
+                <Typography variant="caption2" className="text-gray-500">
                   기준입니다.
                 </Typography>
               </div>
@@ -164,36 +164,36 @@ const MockRankTable: React.FC<{ scores: any[]; isLoading: boolean }> = ({ scores
       </nav>
       <div className="scrollable-wide w-full">
         <table className="w-full table-auto border-collapse">
-          <thead className="text-13 text-primary-gray-600 text-center font-normal">
+          <thead className="text-13 text-center font-normal text-gray-600">
             <tr>
-              <td className="bg-primary-gray-50 min-w-[80px] p-2">과목</td>
-              <td className="bg-primary-gray-50 min-w-[100px] border-x border-b border-gray-200 p-2">국어영역</td>
-              <td className="bg-primary-gray-50 min-w-[100px] border-x border-b border-gray-200 p-2">수학영역</td>
-              <td className="bg-primary-gray-50 min-w-[100px] border-x border-b border-gray-200 p-2">영어영역</td>
-              <td className="bg-primary-gray-50 min-w-[100px] border-x border-b border-gray-200 p-2">한국사</td>
+              <td className="min-w-[80px] bg-gray-50 p-2">과목</td>
+              <td className="min-w-[100px] border-x border-b border-gray-200 bg-gray-50 p-2">국어영역</td>
+              <td className="min-w-[100px] border-x border-b border-gray-200 bg-gray-50 p-2">수학영역</td>
+              <td className="min-w-[100px] border-x border-b border-gray-200 bg-gray-50 p-2">영어영역</td>
+              <td className="min-w-[100px] border-x border-b border-gray-200 bg-gray-50 p-2">한국사</td>
               {SubjectGroups[SubjectEnum.사회]
                 .filter((subject) => SubjectScore[subject])
                 .map((subject) => (
-                  <td key={subject} className="bg-primary-gray-50 min-w-[100px] border-x border-b border-gray-200 p-2">
+                  <td key={subject} className="min-w-[100px] border-x border-b border-gray-200 bg-gray-50 p-2">
                     {subject}
                   </td>
                 ))}
               {SubjectGroups[SubjectEnum.과학]
                 .filter((subject) => SubjectScore[subject])
                 .map((subject) => (
-                  <td key={subject} className="bg-primary-gray-50 min-w-[100px] border-x border-b border-gray-200 p-2">
+                  <td key={subject} className="min-w-[100px] border-x border-b border-gray-200 bg-gray-50 p-2">
                     {subject}
                   </td>
                 ))}
-              <td className="bg-primary-gray-50 min-w-[100px] border-x border-b border-gray-200 p-2">국영수사과</td>
-              <td className="bg-primary-gray-50 min-w-[100px] border-x border-b border-gray-200 p-2">국영수사</td>
-              <td className="bg-primary-gray-50 min-w-[100px] border-x border-b border-gray-200 p-2">국영수과</td>
-              <td className="bg-primary-gray-50 min-w-[100px] border-b border-l border-gray-200 p-2">국영수</td>
+              <td className="min-w-[100px] border-x border-b border-gray-200 bg-gray-50 p-2">국영수사과</td>
+              <td className="min-w-[100px] border-x border-b border-gray-200 bg-gray-50 p-2">국영수사</td>
+              <td className="min-w-[100px] border-x border-b border-gray-200 bg-gray-50 p-2">국영수과</td>
+              <td className="min-w-[100px] border-b border-l border-gray-200 bg-gray-50 p-2">국영수</td>
             </tr>
           </thead>
-          <tbody className="text-13 text-primary-gray-900 text-center">
+          <tbody className="text-13 text-center text-gray-900">
             <tr>
-              <td className="border-t-primary-gray-200 border-t border-r border-r-gray-100 p-2">최고등급</td>
+              <td className="border-t border-r border-t-gray-200 border-r-gray-100 p-2">최고등급</td>
               {[
                 '국어',
                 '수학',

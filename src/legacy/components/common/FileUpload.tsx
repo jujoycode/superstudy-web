@@ -36,7 +36,7 @@ export function FileUpload({ children, className, ...props }: FileUploadProps) {
     >
       {children}
       <label className="text-brand-1 flex h-12 cursor-pointer items-center justify-center space-x-1">
-        <span className="text-grey-3 mb-1 text-2xl">+</span>
+        <span className="text-gray-3 mb-1 text-2xl">+</span>
         <span className="text-sm">{t('select_file')}</span>
         <input type="file" multiple className="sr-only" {...props} />
       </label>

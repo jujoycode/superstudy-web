@@ -12,7 +12,7 @@ interface BreadcrumbProps {
   data: Record<string, string>
 }
 
-const notLastDepthStyle = 'text-primary-gray-700 hover:cursor-pointer'
+const notLastDepthStyle = 'text-gray-700 hover:cursor-pointer'
 const lastDepthStyle = 'font-medium cursor-default'
 
 export default function Breadcrumb({ className, data }: BreadcrumbProps) {
@@ -33,7 +33,7 @@ export default function Breadcrumb({ className, data }: BreadcrumbProps) {
               onClick={() => {
                 if (!isLastDepth && data[depth]) push(data[depth])
               }}
-              className={clsx('text-primary-gray-900', isLastDepth ? lastDepthStyle : notLastDepthStyle)}
+              className={clsx('text-gray-900', isLastDepth ? lastDepthStyle : notLastDepthStyle)}
             >
               {depth}
             </Typography>

@@ -283,7 +283,7 @@ export const CASMainPage = () => {
                       >
                         {data?.ibType === 'CAS_NORMAL' ? '[일반]' : '[프로젝트]'}&nbsp;{data?.title}
                       </Typography>
-                      <div className="text-16 text-primary-orange-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
+                      <div className="text-16 text-primary-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
                         {klassNum} · {data?.leader.name}
                       </div>
                     </div>
@@ -361,7 +361,7 @@ export const CASMainPage = () => {
                 </div>
               </div>
             }
-            bottomBgColor="bg-primary-gray-50"
+            bottomBgColor="bg-gray-50"
             floatingButton={getFloatingUI(data?.status)}
           />
         </div>
@@ -415,22 +415,22 @@ export const CASMainPage = () => {
                 학생은 활동을 시작할 수 있습니다.
               </Typography>
             </div>
-            <div className="border-primary-gray-200 bg-primary-gray-50 flex flex-col gap-2 rounded-lg border p-4">
+            <div className="flex flex-col gap-2 rounded-lg border border-gray-200 bg-gray-50 p-4">
               <span className="flex flex-row items-start gap-2">
-                <Typography variant="body2" className="text-primary-gray-500 min-w-[92px]">
+                <Typography variant="body2" className="min-w-[92px] text-gray-500">
                   활동 제목
                 </Typography>
-                <Typography variant="body2" className="text-primary-gray-700">
+                <Typography variant="body2" className="text-gray-700">
                   {data.ibType === 'CAS_NORMAL' ? '[일반]' : '[프로젝트]'}&nbsp;
                   {data.title}
                 </Typography>
               </span>
               <span className="flex flex-row items-start gap-2">
-                <Typography variant="body2" className="text-primary-gray-500 min-w-[92px]">
+                <Typography variant="body2" className="min-w-[92px] text-gray-500">
                   학생
                 </Typography>
                 {data.ibType === 'CAS_NORMAL' ? (
-                  <Typography variant="body2" className="text-primary-gray-700">
+                  <Typography variant="body2" className="text-gray-700">
                     {data.leader.studentGroup.group.grade}
                     {String(data.leader.studentGroup.group.klass).padStart(2, '0')}
                     {String(data.leader.studentGroup.studentNumber).padStart(2, '0')}&nbsp;{data.leader.name}

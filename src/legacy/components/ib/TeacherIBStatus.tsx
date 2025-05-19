@@ -231,7 +231,7 @@ export default function TeacherIBStatus() {
                   size={40}
                   containerWidth="w-30"
                   dropdownWidth="w-40"
-                  priorityFontClass="text-primary-gray-900"
+                  priorityFontClass="text-gray-900"
                 />
                 <SelectBar
                   disabled={!selectedOptions.grade}
@@ -243,7 +243,7 @@ export default function TeacherIBStatus() {
                   containerWidth="w-30"
                   dropdownWidth="w-40"
                   className={clsx({ 'cursor-not-allowed': !selectedOptions.grade })}
-                  priorityFontClass={clsx({ 'text-primary-gray-900': selectedOptions.grade })}
+                  priorityFontClass={clsx({ 'text-gray-900': selectedOptions.grade })}
                 />
                 <SelectBar
                   disabled={!isOptionSelected}
@@ -254,7 +254,7 @@ export default function TeacherIBStatus() {
                   size={40}
                   containerWidth="min-w-[120px]"
                   dropdownWidth="w-40"
-                  priorityFontClass={clsx({ 'text-primary-gray-900': isOptionSelected })}
+                  priorityFontClass={clsx({ 'text-gray-900': isOptionSelected })}
                 />
               </div>
               <div className="h-[40px] w-[244px]">
@@ -268,33 +268,33 @@ export default function TeacherIBStatus() {
                     childrenWrapperClassName={clsx(
                       selectedOptions.projectType === 'NORMAL' ||
                         selectedOptions.projectType === 'CAS' ||
-                        'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                        'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
                     )}
                   >
-                    <p className={clsx({ 'text-primary-gray-700': selectedOptions.projectType === 'NORMAL' })}>전체</p>
+                    <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'NORMAL' })}>전체</p>
                   </Tab>
                   <Tab
                     value="CAS"
                     childrenWrapperClassName={clsx(
                       selectedOptions.projectType === 'CAS' ||
                         selectedOptions.projectType === 'EE' ||
-                        'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                        'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
                     )}
                   >
-                    <p className={clsx({ 'text-primary-gray-700': selectedOptions.projectType === 'CAS' })}>CAS</p>
+                    <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'CAS' })}>CAS</p>
                   </Tab>
                   <Tab
                     value="EE"
                     childrenWrapperClassName={clsx(
                       selectedOptions.projectType === 'EE' ||
                         selectedOptions.projectType === 'TOK' ||
-                        'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                        'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
                     )}
                   >
-                    <p className={clsx({ 'text-primary-gray-700': selectedOptions.projectType === 'EE' })}>EE</p>
+                    <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'EE' })}>EE</p>
                   </Tab>
                   <Tab value="TOK">
-                    <p className={clsx({ 'text-primary-gray-700': selectedOptions.projectType === 'TOK' })}>TOK</p>
+                    <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'TOK' })}>TOK</p>
                   </Tab>
                 </LayeredTabs.TwoDepth>
               </div>
@@ -317,7 +317,7 @@ export default function TeacherIBStatus() {
                   onChange={() => handleOptionChange('checked', !selectedOptions.checked)}
                   size={20}
                 />
-                <Typography variant="body3" className="text-primary-gray-700 font-medium">
+                <Typography variant="body3" className="font-medium text-gray-700">
                   담당학생만 보기
                 </Typography>
               </label>
@@ -339,8 +339,8 @@ export default function TeacherIBStatus() {
             <div className="flex items-center gap-4 py-4">
               <hr className="flex-1" />
               <Typography variant="body3" className="font-medium">
-                {selectedOptions.studentName} <span className="text-primary-gray-700 font-normal">검색결과</span>{' '}
-                <span className="text-primary-orange-800">
+                {selectedOptions.studentName} <span className="font-normal text-gray-700">검색결과</span>{' '}
+                <span className="text-primary-800">
                   {counts['COMPLETE'] +
                     counts['IN_PROGRESS,REJECT_COMPLETE,WAIT_COMPLETE'] +
                     counts['WAIT_MENTOR,WAITING_FOR_NEXT_PROPOSAL'] +
@@ -354,7 +354,7 @@ export default function TeacherIBStatus() {
             ref={(el) => {
               projectListRefs.current.page1 = el
             }}
-            className="border-b-primary-gray-200 border-b pt-5 pb-10"
+            className="border-b border-b-gray-200 pt-5 pb-10"
           >
             <ProjectList
               title="담당교사 지정대기"
@@ -382,7 +382,7 @@ export default function TeacherIBStatus() {
             ref={(el) => {
               projectListRefs.current.page2 = el
             }}
-            className="border-b-primary-gray-200 border-b py-10"
+            className="border-b border-b-gray-200 py-10"
           >
             <ProjectList
               title="계획중"
@@ -410,7 +410,7 @@ export default function TeacherIBStatus() {
             ref={(el) => {
               projectListRefs.current.page3 = el
             }}
-            className="border-b-primary-gray-200 border-b py-10"
+            className="border-b border-b-gray-200 py-10"
           >
             <ProjectList
               title="진행중"
@@ -438,7 +438,7 @@ export default function TeacherIBStatus() {
             ref={(el) => {
               projectListRefs.current.page4 = el
             }}
-            className="border-b-primary-gray-200 border-b py-10"
+            className="border-b border-b-gray-200 py-10"
           >
             <ProjectList
               title="완료"

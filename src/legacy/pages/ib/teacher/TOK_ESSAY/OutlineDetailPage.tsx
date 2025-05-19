@@ -229,7 +229,7 @@ export const OutlineDetailPage = () => {
                   <Typography variant="heading" className="w-[692px] overflow-hidden text-ellipsis whitespace-nowrap">
                     {outlineData.themeQuestion}
                   </Typography>
-                  <div className="text-16 text-primary-orange-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
+                  <div className="text-16 text-primary-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
                     {klassNum} · {ibData?.leader?.name}
                   </div>
                 </div>
@@ -237,7 +237,7 @@ export const OutlineDetailPage = () => {
             </div>
           </div>
         }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
         bottomContent={
           <div className="flex flex-grow flex-col">
             <div className="flex h-full flex-row gap-4 py-6">
@@ -282,7 +282,7 @@ export const OutlineDetailPage = () => {
                         required
                       />
                     </div>
-                    <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t py-10">
+                    <div className="flex flex-col gap-10 border-t border-t-gray-100 py-10">
                       <InputField
                         label="지식영역"
                         subLabel="1"
@@ -341,7 +341,7 @@ export const OutlineDetailPage = () => {
                         />
                       </div>
                     </div>
-                    <div className="border-t-primary-gray-100 flex flex-col gap-10 border-t py-10">
+                    <div className="flex flex-col gap-10 border-t border-t-gray-100 py-10">
                       <InputField
                         label="지식영역"
                         subLabel="2"
@@ -405,26 +405,26 @@ export const OutlineDetailPage = () => {
                   <div className="flex flex-col pb-10" id="pdf-download">
                     <div className="mb-6 flex flex-col gap-1">
                       <Typography variant="title1">{outlineData.themeQuestion}</Typography>
-                      <Typography variant="body3" className="text-primary-gray-500">
+                      <Typography variant="body3" className="text-gray-500">
                         {format(new Date(outlineData.createdAt), 'yyyy.MM.dd')}
                       </Typography>
                     </div>
                     <div className="flex flex-col gap-10">
-                      <div className="border-t-primary-gray-100 flex flex-col gap-4 border-t pt-6">
-                        <Typography variant="title2" className="text-primary-gray-900">
+                      <div className="flex flex-col gap-4 border-t border-t-gray-100 pt-6">
+                        <Typography variant="title2" className="text-gray-900">
                           핵심용어 (설명)
                         </Typography>
-                        <div className="border-primary-gray-200 rounded-lg border p-4">
+                        <div className="rounded-lg border border-gray-200 p-4">
                           <Typography variant="body2" className="font-medium">
                             {outlineData.keyword}
                           </Typography>
                         </div>
                       </div>
                       <div className="flex flex-col gap-4">
-                        <Typography variant="title2" className="text-primary-gray-900">
+                        <Typography variant="title2" className="text-gray-900">
                           본인이 이해한 주제의 내용은?
                         </Typography>
-                        <div className="border-primary-gray-200 rounded-lg border p-4">
+                        <div className="rounded-lg border border-gray-200 p-4">
                           <Typography variant="body2" className="font-medium">
                             {outlineData.content}
                           </Typography>
@@ -439,28 +439,28 @@ export const OutlineDetailPage = () => {
                           `counterArgument${num}Example` as keyof ResponseIBTokOutlineDto
 
                         return (
-                          <div key={num} className="border-t-primary-gray-100 flex flex-col gap-10 border-t pt-10">
+                          <div key={num} className="flex flex-col gap-10 border-t border-t-gray-100 pt-10">
                             <div className="flex flex-col gap-4">
-                              <Typography variant="title2" className="text-primary-gray-900">
-                                지식영역 <span className="text-primary-orange-800">{num}</span>
+                              <Typography variant="title2" className="text-gray-900">
+                                지식영역 <span className="text-primary-800">{num}</span>
                               </Typography>
-                              <div className="border-primary-gray-200 rounded-lg border p-4">
+                              <div className="rounded-lg border border-gray-200 p-4">
                                 <Typography variant="body2" className="font-medium">
                                   {outlineData[knowledgeAreaKey]}
                                 </Typography>
                               </div>
                             </div>
                             <div className="flex flex-col gap-4">
-                              <Typography variant="title2" className="text-primary-gray-900">
+                              <Typography variant="title2" className="text-gray-900">
                                 지식주장
                               </Typography>
                               <div className="flex flex-col gap-3">
-                                <div className="border-primary-gray-200 rounded-lg border p-4">
+                                <div className="rounded-lg border border-gray-200 p-4">
                                   <Typography variant="body2" className="font-medium">
                                     {outlineData[argumentKey]}
                                   </Typography>
                                 </div>
-                                <div className="border-primary-gray-200 rounded-lg border p-4">
+                                <div className="rounded-lg border border-gray-200 p-4">
                                   <Typography variant="body2" className="font-medium">
                                     {outlineData[argumentExampleKey]}
                                   </Typography>
@@ -468,16 +468,16 @@ export const OutlineDetailPage = () => {
                               </div>
                             </div>
                             <div className="flex flex-col gap-4">
-                              <Typography variant="title2" className="text-primary-gray-900">
+                              <Typography variant="title2" className="text-gray-900">
                                 반론
                               </Typography>
                               <div className="flex flex-col gap-3">
-                                <div className="border-primary-gray-200 rounded-lg border p-4">
+                                <div className="rounded-lg border border-gray-200 p-4">
                                   <Typography variant="body2" className="font-medium">
                                     {outlineData[counterArgumentKey]}
                                   </Typography>
                                 </div>
-                                <div className="border-primary-gray-200 rounded-lg border p-4">
+                                <div className="rounded-lg border border-gray-200 p-4">
                                   <Typography variant="body2" className="font-medium">
                                     {outlineData[counterArgumentExampleKey]}
                                   </Typography>

@@ -186,7 +186,7 @@ export function IbEeEssay({
               <Check.Box key={item.id} label={item.content} size={20} value={item.id} checked={item.check} />
             ))}
           </Check.Group>
-          <div className="bg-primary-gray-50 flex flex-row items-center justify-between rounded-lg px-4 py-3">
+          <div className="flex flex-row items-center justify-between rounded-lg bg-gray-50 px-4 py-3">
             <Typography variant="body3">에세이에 사용한 단어 수를 입력해주세요</Typography>
             <Input.Basic
               size={32}
@@ -200,7 +200,7 @@ export function IbEeEssay({
         </section>
         <section className="flex flex-col gap-4 py-8">
           <Typography variant="title3">학문적 진실성 동의</Typography>
-          <Typography variant="body2" className="bg-primary-gray-50 rounded-lg px-4 py-[13px]">
+          <Typography variant="body2" className="rounded-lg bg-gray-50 px-4 py-[13px]">
             소논문은 전적으로 학생 본인에 의해 쓰였으며, 인용하였다고 출처 표시를 한 부분을 제외하고 어떠한 부분도 다른
             저자(인공지능)의 자료를 사용하지 않았음을 약속합니다. 추후 학업적 진실성에 어긋난다고 확인되는 경우 IB
             졸업장이 취소될 수 있음을 인지하고 있습니다.
@@ -220,7 +220,7 @@ export function IbEeEssay({
             <Check.Box key={item.id} label={item.content} size={20} value={item.id} checked={item.check} disabled />
           ))}
         </Check.Group>
-        <div className="bg-primary-gray-50 flex flex-row items-center justify-between rounded-lg px-4 py-3">
+        <div className="flex flex-row items-center justify-between rounded-lg bg-gray-50 px-4 py-3">
           <Typography variant="body3">에세이에 사용한 단어 수를 입력해주세요</Typography>
           <Input.Basic
             size={32}
@@ -234,11 +234,11 @@ export function IbEeEssay({
       </section>
     ) : step === 0 ? (
       <>
-        <section className="border-b-primary-gray-100 flex flex-col gap-4 border-b pb-8">
+        <section className="flex flex-col gap-4 border-b border-b-gray-100 pb-8">
           <Check.Group selectedValues={selectedIds} onChange={handleGroupChange} className="flex flex-col gap-3">
             {CheckList?.map((item) => <Check.Box label={item.content} size={20} key={item.id} value={item.id} />)}
           </Check.Group>
-          <div className="bg-primary-gray-50 flex flex-row items-center justify-between rounded-lg px-4 py-3">
+          <div className="flex flex-row items-center justify-between rounded-lg bg-gray-50 px-4 py-3">
             <Typography variant="body3">에세이에 사용한 단어 수를 입력해주세요</Typography>
             <Input.Basic
               size={32}
@@ -252,7 +252,7 @@ export function IbEeEssay({
         </section>
         <section className="flex flex-col gap-4 py-8">
           <Typography variant="title3">학문적 진실성 동의</Typography>
-          <Typography variant="body2" className="bg-primary-gray-50 rounded-lg px-4 py-[13px]">
+          <Typography variant="body2" className="rounded-lg bg-gray-50 px-4 py-[13px]">
             소논문은 전적으로 학생 본인에 의해 쓰였으며, 인용하였다고 출처 표시를 한 부분을 제외하고 어떠한 부분도 다른
             저자(인공지능)의 자료를 사용하지 않았음을 약속합니다. 추후 학업적 진실성에 어긋난다고 확인되는 경우 IB
             졸업장이 취소될 수 있음을 인지하고 있습니다.
@@ -269,7 +269,7 @@ export function IbEeEssay({
       <section className="flex flex-col gap-4">
         <Typography variant="body1">최대 10MB까지 PDF 파일만 첨부할 수 있습니다.</Typography>
         {[...documentObjectMap].length > 0 ? (
-          <div className="border-primary-gray-200 bg-primary-gray-50 flex flex-row items-center justify-between rounded-lg border p-4">
+          <div className="flex flex-row items-center justify-between rounded-lg border border-gray-200 bg-gray-50 p-4">
             {[...documentObjectMap].map(([key, value]) => {
               return typeof value.document === 'string' ? (
                 <Typography variant="body2" className="max-w-[427px] font-medium" key={key}>
@@ -282,7 +282,7 @@ export function IbEeEssay({
               )
             })}
             <label className="cursor-pointer" onClick={() => resetDocuments()}>
-              <div className="border-primary-gray-400 text-primary-gray-900 active:border-primary-gray-100 active:bg-primary-gray-400 disabled:border-primary-gray-100 disabled:bg-primary-gray-200 disabled:text-primary-gray-400 flex h-8 min-w-[64px] items-center rounded-[6px] border bg-white px-3 text-[14px] font-medium disabled:cursor-not-allowed">
+              <div className="flex h-8 min-w-[64px] items-center rounded-[6px] border border-gray-400 bg-white px-3 text-[14px] font-medium text-gray-900 active:border-gray-100 active:bg-gray-400 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-200 disabled:text-gray-400">
                 다시 첨부하기
               </div>
             </label>

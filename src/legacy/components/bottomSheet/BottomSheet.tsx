@@ -96,7 +96,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ isOpen, onClose, children, ti
         </div>
         {button && (
           <div className="px-5 pt-5 pb-10">
-            <button className="bg-primary-green-800 h-14 w-full rounded-lg text-white" onClick={button.onClick}>
+            <button className="bg-ib-green-800 h-14 w-full rounded-lg text-white" onClick={button.onClick}>
               {button.text}
             </button>
           </div>

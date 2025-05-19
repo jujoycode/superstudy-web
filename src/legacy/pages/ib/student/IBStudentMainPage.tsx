@@ -189,7 +189,7 @@ export const IBStudentMainPage = () => {
                 <Outlet context={{ data }} />
               </div>
             }
-            bottomBgColor={pathname.startsWith('/ib/student/portfolio') ? 'bg-primary-gray-50' : 'white'}
+            bottomBgColor={pathname.startsWith('/ib/student/portfolio') ? 'bg-gray-50' : 'white'}
           />
           {activeModal === 'projectSelection' && step === 0 && (
             <PopupModal

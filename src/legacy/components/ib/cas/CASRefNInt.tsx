@@ -201,7 +201,7 @@ function CASRefNInt({ data, user }: CASRefNIntProps) {
             </div>
           ) : (
             <table className="w-full">
-              <thead className="border-y-primary-gray-100 text-primary-gray-500 border-y text-[15px] font-medium">
+              <thead className="border-y border-y-gray-100 text-[15px] font-medium text-gray-500">
                 <tr>
                   <td className="w-[88px] py-[9px] pr-2 pl-6 text-center">번호</td>
                   <td className="w-[108px] px-2 py-[9px] text-center">유형</td>
@@ -211,14 +211,14 @@ function CASRefNInt({ data, user }: CASRefNIntProps) {
                   <td className="w-[150px] py-[9px] pr-6 pl-2 text-center">피드백</td>
                 </tr>
               </thead>
-              <tbody className="text-15 text-primary-gray-900 font-medium">
+              <tbody className="text-15 font-medium text-gray-900">
                 {mergedData?.map((item, index) => {
                   const itemNumber = mergedData.length - index
                   const feedback = isInterview(item)
                     ? interviewFeedbacks?.items?.find((feedback) => feedback.referenceId === item.qna.id)
                     : refFeedbacks?.items?.find((feedback) => feedback.referenceId === item.id)
                   return (
-                    <tr key={index} className="border-b-primary-gray-100 border-b">
+                    <tr key={index} className="border-b border-b-gray-100">
                       <td className="py-4 pr-2 pl-6 text-center">{itemNumber}</td>
                       <td className="relative h-full px-2 py-4">
                         <BadgeV2

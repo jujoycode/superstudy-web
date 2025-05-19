@@ -223,9 +223,9 @@ export const CASReflectionDiaryDetailPage = () => {
                   </form>
                 ) : (
                   <div className="flex flex-col">
-                    <div className="border-b-primary-gray-100 flex flex-col items-start gap-1 border-b pb-6">
+                    <div className="flex flex-col items-start gap-1 border-b border-b-gray-100 pb-6">
                       <Typography variant="title1">{data.title}</Typography>
-                      <Typography variant="body3" className="text-primary-gray-500">
+                      <Typography variant="body3" className="text-gray-500">
                         {format(new Date(data.createdAt), 'yyyy.MM.dd')}
                       </Typography>
                     </div>
@@ -267,7 +267,7 @@ export const CASReflectionDiaryDetailPage = () => {
                             {data.files.map((fileUrl: string, index) => (
                               <div
                                 key={index}
-                                className="border-primary-gray-200 flex h-12 w-max items-center gap-3 rounded-lg border bg-white px-4"
+                                className="flex h-12 w-max items-center gap-3 rounded-lg border border-gray-200 bg-white px-4"
                               >
                                 <SVGIcon.Link size={16} weight="bold" color="gray700" />
                                 <button
@@ -295,7 +295,7 @@ export const CASReflectionDiaryDetailPage = () => {
                       </ButtonV2>
                       <div className="flex flex-row items-center gap-2">
                         <label htmlFor="file-upload" className="cursor-pointer">
-                          <div className="border-primary-gray-400 text-primary-gray-900 active:border-primary-gray-100 active:bg-primary-gray-400 disabled:border-primary-gray-100 disabled:bg-primary-gray-200 disabled:text-primary-gray-400 flex h-10 min-w-[64px] items-center rounded-[6px] border px-3 text-[14px] font-medium disabled:cursor-not-allowed">
+                          <div className="flex h-10 min-w-[64px] items-center rounded-[6px] border border-gray-400 px-3 text-[14px] font-medium text-gray-900 active:border-gray-100 active:bg-gray-400 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-200 disabled:text-gray-400">
                             파일 첨부하기
                           </div>
                           <input
@@ -367,7 +367,7 @@ export const CASReflectionDiaryDetailPage = () => {
             </div>
           </div>
         }
-        bottomBgColor="bg-primary-gray-50"
+        bottomBgColor="bg-gray-50"
       />
       {alertMessage && <AlertV2 message={alertMessage} confirmText="확인" onConfirm={() => setAlertMessage(null)} />}
       {confirmOpen && (

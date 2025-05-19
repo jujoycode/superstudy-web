@@ -131,33 +131,33 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
         <Typography variant="title1">내신성적</Typography>
         <div className="scrollable-wide">
           <table className="w-full table-auto border-collapse">
-            <thead className="text-13 text-primary-gray-600 text-center font-normal">
+            <thead className="text-13 text-center font-normal text-gray-600">
               <tr>
-                <td className="bg-primary-gray-50 min-w-[80px] p-2" rowSpan={2}>
+                <td className="min-w-[80px] bg-gray-50 p-2" rowSpan={2}>
                   구분
                 </td>
-                <td colSpan={3} className={`bg-primary-orange-50 border-x border-gray-200 p-2`}>
+                <td colSpan={3} className={`bg-primary-50 border-x border-gray-200 p-2`}>
                   전교과
                 </td>
-                <td colSpan={3} className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>
+                <td colSpan={3} className={`border-x border-gray-200 bg-gray-50 p-2`}>
                   국영수사과
                 </td>
-                <td colSpan={3} className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>
+                <td colSpan={3} className={`border-x border-gray-200 bg-gray-50 p-2`}>
                   국영수사
                 </td>
-                <td colSpan={3} className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>
+                <td colSpan={3} className={`border-x border-gray-200 bg-gray-50 p-2`}>
                   국영수과
                 </td>
-                <td colSpan={3} className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>
+                <td colSpan={3} className={`border-x border-gray-200 bg-gray-50 p-2`}>
                   국영수
                 </td>
-                <td colSpan={3} className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>
+                <td colSpan={3} className={`border-x border-gray-200 bg-gray-50 p-2`}>
                   국영사
                 </td>
-                <td colSpan={3} className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>
+                <td colSpan={3} className={`border-x border-gray-200 bg-gray-50 p-2`}>
                   영수과
                 </td>
-                <td colSpan={3} className={`bg-primary-gray-50 border-l border-gray-200 p-2`}>
+                <td colSpan={3} className={`border-l border-gray-200 bg-gray-50 p-2`}>
                   국영
                 </td>
               </tr>
@@ -168,21 +168,21 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
                     <React.Fragment key={index}>
                       <td
                         className={`border border-gray-200 whitespace-nowrap ${
-                          index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
+                          index === 0 ? 'bg-primary-50' : 'bg-gray-50'
                         } p-2`}
                       >
                         등급
                       </td>
                       <td
                         className={`border border-gray-200 whitespace-nowrap ${
-                          index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
+                          index === 0 ? 'bg-primary-50' : 'bg-gray-50'
                         } p-2`}
                       >
                         Z점수
                       </td>
                       <td
                         className={`border-gray-200 whitespace-nowrap ${
-                          index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
+                          index === 0 ? 'bg-primary-50' : 'bg-gray-50'
                         } ${index === 7 ? 'border-y border-l' : 'border'} p-2`}
                       >
                         원점수
@@ -191,9 +191,9 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
                   ))}
               </tr>
             </thead>
-            <tbody className="text-13 text-primary-gray-900 text-center">
+            <tbody className="text-13 text-center text-gray-900">
               <tr>
-                <td className="border-t-primary-gray-200 border-t border-r border-r-gray-100 p-2">-</td>
+                <td className="border-t border-r border-t-gray-200 border-r-gray-100 p-2">-</td>
                 <td className="border border-gray-100 p-2">-</td>
                 <td className="border border-gray-100 p-2">-</td>
                 <td className="border border-gray-100 p-2">-</td>
@@ -239,16 +239,16 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
 
       <div className="scrollable-wide">
         <table className="w-full table-fixed border-collapse">
-          <thead className="text-13 text-primary-gray-600 text-center font-normal">
+          <thead className="text-13 text-center font-normal text-gray-600">
             <tr>
-              <td className="bg-primary-gray-50 p-2">학기</td>
-              <td className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>국영수사과</td>
-              <td className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>국영수사</td>
-              <td className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>국영수과</td>
-              <td className={`bg-primary-gray-50 border-gray-200 p-2`}>국영수</td>
+              <td className="bg-gray-50 p-2">학기</td>
+              <td className={`border-x border-gray-200 bg-gray-50 p-2`}>국영수사과</td>
+              <td className={`border-x border-gray-200 bg-gray-50 p-2`}>국영수사</td>
+              <td className={`border-x border-gray-200 bg-gray-50 p-2`}>국영수과</td>
+              <td className={`border-gray-200 bg-gray-50 p-2`}>국영수</td>
             </tr>
           </thead>
-          <tbody className="text-13 text-primary-gray-900 text-center">
+          <tbody className="text-13 text-center text-gray-900">
             {['1-1', '1-2', '2-1', '2-2', '3-1', '3-2'].map((semester, index) => (
               <tr key={semester}>
                 <td className={`border-t border-r border-gray-100 p-2 ${index === 5 ? 'border-b' : ''}`}>{semester}</td>
@@ -269,16 +269,16 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
       </div>
       <div className="scrollable-wide">
         <table className="w-full table-auto border-collapse">
-          <thead className="text-13 text-primary-gray-600 text-center font-normal">
+          <thead className="text-13 text-center font-normal text-gray-600">
             <tr>
-              <td className="bg-primary-gray-50 w-20 p-2" rowSpan={2}>
+              <td className="w-20 bg-gray-50 p-2" rowSpan={2}>
                 구분
               </td>
               {Object.keys(transformedData).map((subject, index) => (
                 <td
                   key={subject}
                   colSpan={3}
-                  className={`border-gray-200 p-2 ${index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'} ${
+                  className={`border-gray-200 p-2 ${index === 0 ? 'bg-primary-50' : 'bg-gray-50'} ${
                     index === Object.keys(transformedData).length - 1 ? 'border-l' : 'border-x'
                   }`}
                 >
@@ -291,21 +291,21 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
                 <React.Fragment key={subject}>
                   <td
                     className={`border border-gray-200 whitespace-nowrap ${
-                      index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
+                      index === 0 ? 'bg-primary-50' : 'bg-gray-50'
                     } p-2`}
                   >
                     등급
                   </td>
                   <td
                     className={`border border-gray-200 whitespace-nowrap ${
-                      index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
+                      index === 0 ? 'bg-primary-50' : 'bg-gray-50'
                     } p-2`}
                   >
                     Z점수
                   </td>
                   <td
                     className={`border-gray-200 whitespace-nowrap ${
-                      index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
+                      index === 0 ? 'bg-primary-50' : 'bg-gray-50'
                     } ${index === Object.keys(transformedData).length - 1 ? 'border-y border-l' : 'border'} p-2`}
                   >
                     원점수
@@ -314,10 +314,10 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
               ))}
             </tr>
           </thead>
-          <tbody className="text-13 text-primary-gray-900 text-center">
+          <tbody className="text-13 text-center text-gray-900">
             {transformedData['전교과'].map((score, rowIndex) => (
               <tr key={rowIndex}>
-                <td className="border-t-primary-gray-200 border-t border-r border-r-gray-100 p-2">{score.구분}</td>
+                <td className="border-t border-r border-t-gray-200 border-r-gray-100 p-2">{score.구분}</td>
                 {Object.keys(transformedData).map((subject) => (
                   <React.Fragment key={subject}>
                     <td className="border border-gray-100 p-2">{transformedData[subject][rowIndex].등급}</td>
@@ -369,26 +369,26 @@ const MockExamScore = ({ studentId }: ScoreAnalysisProps) => {
           <Typography variant="title1">모의고사 최저/최고 등급 비교</Typography>
           <div className="scrollable-wide">
             <table className="w-full table-fixed border-collapse">
-              <thead className="text-13 text-primary-gray-600 text-center font-normal">
+              <thead className="text-13 text-center font-normal text-gray-600">
                 <tr>
-                  <td className="bg-primary-gray-50 w-[80px] p-2">과목</td>
-                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">국어영역</td>
-                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">수학영역</td>
-                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">영어영역</td>
-                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">
+                  <td className="w-[80px] bg-gray-50 p-2">과목</td>
+                  <td className="border-x border-b border-gray-200 bg-gray-50 p-2">국어영역</td>
+                  <td className="border-x border-b border-gray-200 bg-gray-50 p-2">수학영역</td>
+                  <td className="border-x border-b border-gray-200 bg-gray-50 p-2">영어영역</td>
+                  <td className="border-x border-b border-gray-200 bg-gray-50 p-2">
                     탐구영역
                     <br />
                     (과목별)
                   </td>
-                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">전과목</td>
-                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">국영수사</td>
-                  <td className="bg-primary-gray-50 border-x border-b border-gray-200 p-2">국영수과</td>
-                  <td className="bg-primary-gray-50 border-b border-l border-gray-200 p-2">국영수</td>
+                  <td className="border-x border-b border-gray-200 bg-gray-50 p-2">전과목</td>
+                  <td className="border-x border-b border-gray-200 bg-gray-50 p-2">국영수사</td>
+                  <td className="border-x border-b border-gray-200 bg-gray-50 p-2">국영수과</td>
+                  <td className="border-b border-l border-gray-200 bg-gray-50 p-2">국영수</td>
                 </tr>
               </thead>
-              <tbody className="text-13 text-primary-gray-900 text-center">
+              <tbody className="text-13 text-center text-gray-900">
                 <tr>
-                  <td className="border-t-primary-gray-200 border-t border-r border-r-gray-100 p-2">최고등급</td>
+                  <td className="border-t border-r border-t-gray-200 border-r-gray-100 p-2">최고등급</td>
                   {Array(8)
                     .fill(null)
                     .map((_, index) => (
@@ -425,80 +425,80 @@ const MockExamScore = ({ studentId }: ScoreAnalysisProps) => {
           <Typography variant="title1">모의고사 점수</Typography>
           <div className="scrollable-wide">
             <table className="table-auto border-collapse">
-              <thead className="text-13 text-primary-gray-600 text-center font-normal">
+              <thead className="text-13 text-center font-normal text-gray-600">
                 <tr>
-                  <td className="bg-primary-gray-50 min-w-[120px] p-2" rowSpan={2}>
+                  <td className="min-w-[120px] bg-gray-50 p-2" rowSpan={2}>
                     구분
                   </td>
-                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+                  <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                     국영수탐
                   </td>
-                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+                  <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                     국영수
                   </td>
-                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+                  <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                     국수탐
                   </td>
-                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+                  <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                     국어영역
                   </td>
-                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+                  <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                     영어영역
                   </td>
-                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+                  <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                     수학영역
                   </td>
-                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+                  <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                     탐구1
                   </td>
-                  <td colSpan={3} className="bg-primary-gray-50 border-x border-gray-200 p-2">
+                  <td colSpan={3} className="border-x border-gray-200 bg-gray-50 p-2">
                     탐구2
                   </td>
-                  <td colSpan={3} className="bg-primary-gray-50 border-l border-gray-200 p-2">
+                  <td colSpan={3} className="border-l border-gray-200 bg-gray-50 p-2">
                     한국사
                   </td>
                 </tr>
                 <tr>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">표점</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">등급</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">표점</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">등급</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">표점</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">등급</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">표점</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">등급</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">표점</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">등급</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">표점</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">등급</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">표점</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">등급</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">백분</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">표점</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">등급</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">백분</td>
 
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">표점</td>
-                  <td className="bg-primary-gray-50 border border-gray-200 p-2 whitespace-nowrap">등급</td>
-                  <td className="bg-primary-gray-50 border-y border-l border-gray-200 p-2 whitespace-nowrap">백분</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">표점</td>
+                  <td className="border border-gray-200 bg-gray-50 p-2 whitespace-nowrap">등급</td>
+                  <td className="border-y border-l border-gray-200 bg-gray-50 p-2 whitespace-nowrap">백분</td>
                 </tr>
               </thead>
-              <tbody className="text-13 text-primary-gray-900 text-center">
+              <tbody className="text-13 text-center text-gray-900">
                 <tr>
-                  <td className="border-t-primary-gray-200 border-t border-r border-r-gray-100 p-2">-</td>
+                  <td className="border-t border-r border-t-gray-200 border-r-gray-100 p-2">-</td>
                   {Array(27)
                     .fill(null)
                     .map((_, index) => (
@@ -851,30 +851,30 @@ const ScoreAnalysisModal = ({ data, averages }: any) => {
             childrenWrapperClassName={clsx(
               scoreType === '등급' ||
                 scoreType === 'z점' ||
-                'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
             )}
           >
-            <p className={clsx({ 'text-primary-gray-700': scoreType === '등급' })}>등급</p>
+            <p className={clsx({ 'text-gray-700': scoreType === '등급' })}>등급</p>
           </Tab>
           <Tab
             value="z점"
             childrenWrapperClassName={clsx(
               scoreType === '등급' ||
                 scoreType === 'z점' ||
-                'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
             )}
           >
-            <p className={clsx({ 'text-primary-gray-700': scoreType === 'z점' })}>Z점수</p>
+            <p className={clsx({ 'text-gray-700': scoreType === 'z점' })}>Z점수</p>
           </Tab>
           <Tab
             value="원점"
             childrenWrapperClassName={clsx(
               scoreType === '등급' ||
                 scoreType === 'z점' ||
-                'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-primary-gray-200 after:content-[""] after:z-10',
+                'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
             )}
           >
-            <p className={clsx({ 'text-primary-gray-700': scoreType === '원점' })}>원점수</p>
+            <p className={clsx({ 'text-gray-700': scoreType === '원점' })}>원점수</p>
           </Tab>
         </LayeredTabs.TwoDepth>
       </nav>
@@ -884,7 +884,7 @@ const ScoreAnalysisModal = ({ data, averages }: any) => {
       </div>
       <div className="flex w-full flex-row items-center">
         <div className="min-w-0 flex-1"></div>
-        <div className="bg-primary-gray-100 mx-auto flex w-fit items-center justify-center gap-4 rounded-lg px-5 py-2">
+        <div className="mx-auto flex w-fit items-center justify-center gap-4 rounded-lg bg-gray-100 px-5 py-2">
           <div className="flex flex-row items-center gap-1.5">
             <span className="border-dim-8 bg-gradient-blue-400 h-3 w-3 rounded-[4px]" />
             <Typography variant="caption2" className="font-medium">
@@ -907,7 +907,7 @@ const ScoreAnalysisModal = ({ data, averages }: any) => {
         <span className="flex flex-1 flex-row items-center justify-end gap-1">
           <SolidSVGIcon.Info color="gray400" size={16} />
           <div className="flex flex-row items-center">
-            <Typography variant="caption2" className="text-primary-gray-400">
+            <Typography variant="caption2" className="text-gray-400">
               근거자료 : {averages.map((average: any) => average.semester).join(', ')}
             </Typography>
           </div>
@@ -1333,7 +1333,7 @@ export const MockExamScoreModal = ({ data, examDates }: any) => {
       </div>
       <div className="flex w-full flex-row items-center">
         <div className="min-w-0 flex-1"></div>
-        <div className="bg-primary-gray-100 mx-auto flex w-fit items-center justify-center gap-4 rounded-lg px-5 py-2">
+        <div className="mx-auto flex w-fit items-center justify-center gap-4 rounded-lg bg-gray-100 px-5 py-2">
           <div className="flex cursor-pointer flex-row items-center gap-1.5" onClick={() => toggleLabel('최고등급')}>
             <span className="border-dim-8 bg-gradient-blue-400 h-3 w-3 rounded-[4px]" />
             <Typography variant="caption2" className="font-medium">
@@ -1371,7 +1371,7 @@ export const MockExamScoreModal = ({ data, examDates }: any) => {
         <span className="flex flex-1 flex-row items-center justify-end gap-1">
           <SolidSVGIcon.Info color="gray400" size={16} />
           <div className="flex flex-row items-center">
-            <Typography variant="caption2" className="text-primary-gray-400">
+            <Typography variant="caption2" className="text-gray-400">
               근거자료 : {examDates.join(', ')}
             </Typography>
           </div>

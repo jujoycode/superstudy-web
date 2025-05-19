@@ -148,7 +148,7 @@ export default function TeacherIBPortfolioList() {
                 size={40}
                 containerWidth="w-30"
                 dropdownWidth="w-40"
-                priorityFontClass="text-primary-gray-900"
+                priorityFontClass="text-gray-900"
               />
               <SelectBar
                 disabled={!selectedOptions.grade}
@@ -160,7 +160,7 @@ export default function TeacherIBPortfolioList() {
                 containerWidth="w-30"
                 dropdownWidth="w-40"
                 className={clsx({ 'cursor-not-allowed': !selectedOptions.grade })}
-                priorityFontClass={clsx({ 'text-primary-gray-900': selectedOptions.grade })}
+                priorityFontClass={clsx({ 'text-gray-900': selectedOptions.grade })}
               />
             </div>
           </div>
@@ -171,7 +171,7 @@ export default function TeacherIBPortfolioList() {
                 onChange={() => handleOptionChange('checked', !selectedOptions.checked)}
                 size={20}
               />
-              <Typography variant="body3" className="text-primary-gray-700 font-medium">
+              <Typography variant="body3" className="font-medium text-gray-700">
                 담당학생만 보기
               </Typography>
             </label>
@@ -193,8 +193,8 @@ export default function TeacherIBPortfolioList() {
           <div className="flex items-center gap-4 py-4">
             <hr className="flex-1" />
             <Typography variant="body3" className="font-medium">
-              {selectedOptions.studentName} <span className="text-primary-gray-700 font-normal">검색결과</span>{' '}
-              <span className="text-primary-orange-800">{filteredData.length}</span>
+              {selectedOptions.studentName} <span className="font-normal text-gray-700">검색결과</span>{' '}
+              <span className="text-primary-800">{filteredData.length}</span>
             </Typography>
             <hr className="flex-1" />
           </div>
@@ -236,32 +236,32 @@ export default function TeacherIBPortfolioList() {
 
 const DummyCard = () => (
   <div
-    className={`border-primary-gray-200 box-border flex h-[380px] w-[308px] animate-pulse cursor-pointer flex-col rounded-xl border bg-white shadow`}
+    className={`box-border flex h-[380px] w-[308px] animate-pulse cursor-pointer flex-col rounded-xl border border-gray-200 bg-white shadow`}
   >
-    <div className="border-b-primary-gray-100 box-border flex flex-row items-center border-b px-5 py-3">
+    <div className="box-border flex flex-row items-center border-b border-b-gray-100 px-5 py-3">
       <div className="h-4 flex-1 rounded bg-slate-200"></div>
     </div>
     <div className="flex w-[308px] flex-1 flex-col justify-between px-5 pt-5">
       <div>
         <nav className="box-border flex w-full flex-row items-center justify-between">
-          <span className="bg-primary-gray-100 h-6 w-10 rounded"></span>
-          <span className="bg-primary-gray-100 h-6 w-20 rounded"></span>
+          <span className="h-6 w-10 rounded bg-gray-100"></span>
+          <span className="h-6 w-20 rounded bg-gray-100"></span>
         </nav>
         <main className="box-border flex flex-col gap-3 py-6">
-          <span className="bg-primary-gray-100 h-6 w-40 rounded"></span>
+          <span className="h-6 w-40 rounded bg-gray-100"></span>
           <div className="flex w-full flex-col gap-2">
             <span className="flex flex-row gap-2">
-              <span className="bg-primary-gray-100 h-6 w-14 rounded"></span>
-              <span className="bg-primary-gray-100 h-6 w-30 rounded"></span>
+              <span className="h-6 w-14 rounded bg-gray-100"></span>
+              <span className="h-6 w-30 rounded bg-gray-100"></span>
             </span>
 
             <span className="flex flex-row gap-2">
-              <span className="bg-primary-gray-100 h-6 w-14 rounded"></span>
-              <span className="bg-primary-gray-100 h-6 w-30 rounded"></span>
+              <span className="h-6 w-14 rounded bg-gray-100"></span>
+              <span className="h-6 w-30 rounded bg-gray-100"></span>
             </span>
             <span className="flex flex-row gap-2">
-              <span className="bg-primary-gray-100 h-6 w-14 rounded"></span>
-              <span className="bg-primary-gray-100 h-6 w-30 rounded"></span>
+              <span className="h-6 w-14 rounded bg-gray-100"></span>
+              <span className="h-6 w-30 rounded bg-gray-100"></span>
             </span>
           </div>
         </main>
@@ -269,12 +269,12 @@ const DummyCard = () => (
     </div>
     <div className="mt-auto flex flex-col gap-2 px-5 pb-5">
       <span className="flex flex-row items-center justify-between gap-2">
-        <span className="bg-primary-gray-100 h-6 w-14 rounded"></span>
-        <span className="bg-primary-gray-100 h-6 w-full rounded"></span>
+        <span className="h-6 w-14 rounded bg-gray-100"></span>
+        <span className="h-6 w-full rounded bg-gray-100"></span>
       </span>
       <span className="flex flex-row items-center justify-between gap-2">
-        <span className="bg-primary-gray-100 h-6 w-14 rounded"></span>
-        <span className="bg-primary-gray-100 h-6 w-full rounded"></span>
+        <span className="h-6 w-14 rounded bg-gray-100"></span>
+        <span className="h-6 w-full rounded bg-gray-100"></span>
       </span>
     </div>
   </div>

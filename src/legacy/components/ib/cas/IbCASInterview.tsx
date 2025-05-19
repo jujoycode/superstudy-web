@@ -145,7 +145,7 @@ export function IbCASInterview({
     >
       {step === 0 ? (
         <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white`}>
-          <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6 backdrop-blur-[20px]">
+          <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6">
             <Typography variant="title1">인터뷰일지 작성</Typography>
             <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
           </div>
@@ -173,7 +173,7 @@ export function IbCASInterview({
                         return (
                           <div key={question} className="flex flex-col gap-3">
                             <div className="flex flex-row items-start">
-                              <Typography variant="title3" className="text-primary-orange-800">
+                              <Typography variant="title3" className="text-primary-800">
                                 Q{index + 1}.&nbsp;
                               </Typography>
                               <Typography variant="title3">{question}</Typography>
@@ -194,7 +194,7 @@ export function IbCASInterview({
           </div>
           <div
             className={clsx(
-              'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] justify-end gap-3 border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
+              '.backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-end gap-3 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8',
             )}
           >
             <ButtonV2 variant="solid" color="gray100" size={48} onClick={handleBack}>
@@ -226,7 +226,7 @@ export function IbCASInterview({
       ) : (
         <div className={`relative w-[632px] overflow-hidden rounded-xl bg-white`}>
           {isLoading && <IBBlank type="section-opacity" />}
-          <div className="sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6 backdrop-blur-[20px]">
+          <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6">
             <Typography variant="title1">체크리스트 작성</Typography>
             <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
           </div>
@@ -245,7 +245,7 @@ export function IbCASInterview({
                 <Check.Basic checked={check} onChange={handleAllCheck} />
                 <Typography
                   variant="title3"
-                  className="text-primary-gray-900 cursor-pointer font-medium"
+                  className="cursor-pointer font-medium text-gray-900"
                   onClick={handleAllCheck}
                 >
                   모든 내용을 확인하였습니다.
@@ -255,7 +255,7 @@ export function IbCASInterview({
           </div>
           <div
             className={clsx(
-              'border-t-primary-gray-100 sticky bottom-0 flex h-[104px] items-center justify-end gap-3 border-t bg-white/70 px-8 pt-6 pb-8 backdrop-blur-[20px]',
+              '.backdrop-blur-20 sticky bottom-0 flex h-[104px] items-center justify-end gap-3 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8',
             )}
           >
             <ButtonV2 variant="solid" color="gray100" size={48} onClick={() => setStep(0)}>

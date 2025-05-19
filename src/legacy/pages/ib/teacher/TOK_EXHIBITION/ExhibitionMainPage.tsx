@@ -169,7 +169,7 @@ export const ExhibitionMainPage = () => {
         return (
           <div>
             <div className="mx-auto flex w-[1280px] items-center justify-between">
-              <Typography variant="caption2" className="text-primary-gray-400 flex items-center gap-1">
+              <Typography variant="caption2" className="flex items-center gap-1 text-gray-400">
                 <SolidSVGIcon.Info color="gray400" size={16} />
                 전시회 평가 완료 후 전시회 종료 승인이 가능합니다.
               </Typography>
@@ -279,11 +279,11 @@ export const ExhibitionMainPage = () => {
                     <div className="flex w-full items-start justify-between">
                       <Typography
                         variant="heading"
-                        className="text-primary-gray-900 w-[692px] overflow-hidden text-ellipsis whitespace-nowrap"
+                        className="w-[692px] overflow-hidden text-ellipsis whitespace-nowrap text-gray-900"
                       >
                         {acceptExhibitionTitle}
                       </Typography>
-                      <div className="text-16 text-primary-orange-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
+                      <div className="text-16 text-primary-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
                         {klassNum} · {data?.leader.name}
                       </div>
                     </div>
@@ -292,7 +292,7 @@ export const ExhibitionMainPage = () => {
                 <LayeredTabs.OneDepth
                   onChange={(selectedType: TOKProject) => setType(selectedType)}
                   value={type}
-                  inActiveClassName="text-primary-gray-900 border-primary-gray-900"
+                  inActiveClassName="text-gray-900 border-gray-900"
                 >
                   <Tab value="EXHIBITION_PLAN">
                     <p>기획안</p>
@@ -319,7 +319,7 @@ export const ExhibitionMainPage = () => {
                 </div>
               </div>
             }
-            bottomBgColor="bg-primary-gray-50"
+            bottomBgColor="bg-gray-50"
             floatingButton={getFloatingUI(data?.status)}
           />
         </div>

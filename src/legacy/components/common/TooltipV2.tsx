@@ -55,7 +55,7 @@ export function TooltipV2({ content }: TooltipV2Props) {
       style={tooltipStyle}
       ref={tooltipRef}
       className={clsx(
-        'border-primary-orange-400 z-10 flex w-[320px] flex-row items-start gap-2 rounded-lg border bg-white p-3 shadow-[0_4px_8px_0_#ffe8db]',
+        'border-primary-400 z-10 flex w-[320px] flex-row items-start gap-2 rounded-lg border bg-white p-3 shadow-[0_4px_8px_0_#ffe8db]',
       )}
     >
       {/* Content Section */}

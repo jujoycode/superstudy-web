@@ -183,7 +183,7 @@ const Coordinator_Teacher: FC<Coordinator_TeacherProps> = ({ type = 'EE' }) => {
   return (
     <div className="min-h-[664px] rounded-xl bg-white">
       <div className="flex flex-row justify-between px-6 pt-6">
-        <Typography variant="title1" className="text-primary-gray-900 flex h-10 items-center">
+        <Typography variant="title1" className="flex h-10 items-center text-gray-900">
           담당교사 지정
         </Typography>
       </div>
@@ -197,7 +197,7 @@ const Coordinator_Teacher: FC<Coordinator_TeacherProps> = ({ type = 'EE' }) => {
             size={40}
             containerWidth="w-30"
             dropdownWidth="w-40"
-            priorityFontClass="text-primary-gray-900"
+            priorityFontClass="text-gray-900"
           />
           <SelectBar
             options={klasses}
@@ -209,7 +209,7 @@ const Coordinator_Teacher: FC<Coordinator_TeacherProps> = ({ type = 'EE' }) => {
             containerWidth="w-30"
             dropdownWidth="w-40"
             className={clsx({ 'cursor-not-allowed': !selectedOptions.grade })}
-            priorityFontClass={clsx({ 'text-primary-gray-900': selectedOptions.grade })}
+            priorityFontClass={clsx({ 'text-gray-900': selectedOptions.grade })}
           />
         </div>
         <ConfirmSelectBar

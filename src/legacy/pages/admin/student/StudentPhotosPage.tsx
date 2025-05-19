@@ -96,8 +96,8 @@ export function StudentPhotosPage() {
                 key={student.id}
                 onClick={() => setSelectedStudent((prev) => (prev?.id === student.id ? undefined : student))}
                 className={cn(
-                  'hover:outline-primary-orange-700 flex w-20 cursor-pointer flex-col hover:outline',
-                  student.id === selectedStudent?.id && 'outline-primary-orange-700 outline',
+                  'hover:outline-primary-700 flex w-20 cursor-pointer flex-col hover:outline',
+                  student.id === selectedStudent?.id && 'outline-primary-700 outline',
                 )}
               >
                 <StudentImage url={student.profile} />
@@ -133,8 +133,8 @@ export function StudentPhotosPage() {
                 key={file.name}
                 onClick={() => setSelectedFile((prev) => (prev?.name === file.name ? undefined : file))}
                 className={cn(
-                  'hover:outline-primary-orange-700 flex w-20 cursor-pointer flex-col hover:outline',
-                  file.name === selectedFile?.name && 'outline-primary-orange-700 outline',
+                  'hover:outline-primary-700 flex w-20 cursor-pointer flex-col hover:outline',
+                  file.name === selectedFile?.name && 'outline-primary-700 outline',
                 )}
               >
                 <img src={URL.createObjectURL(file)} className="aspect-square object-cover" />

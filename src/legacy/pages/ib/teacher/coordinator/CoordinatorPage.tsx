@@ -45,7 +45,7 @@ export const CoordinatorPage = () => {
                     />
                   </div>
                   <div className="mb-6 flex h-10 w-full flex-row items-center justify-between">
-                    <Typography variant="heading" className="text-primary-gray-900">
+                    <Typography variant="heading" className="text-gray-900">
                       프로젝트 관리
                     </Typography>
                   </div>
@@ -53,7 +53,7 @@ export const CoordinatorPage = () => {
                 <LayeredTabs.OneDepth
                   onChange={(type) => replace(`/teacher/ib/coordinatorPage/${type}`)}
                   value={type}
-                  inActiveClassName="text-primary-gray-900 border-primary-gray-900"
+                  inActiveClassName="text-gray-900 border-gray-900"
                 >
                   {avaliableIBCategories.map((el) => (
                     <Tab value={el} key={el}>

@@ -65,16 +65,16 @@ export function CanteenSubmitPage({ selectedDate, canteenData, refetch }: Cantee
   }
 
   return (
-    <div className="border-grey-6 relative h-screen w-full border-l bg-white">
+    <div className="border-gray-6 relative h-screen w-full border-l bg-white">
       {loading && <Blank reversed />}
       <div className="h-screen overflow-y-scroll">
-        <div className="border-grey-6 flex w-full items-center justify-between border-b px-6 py-4">
+        <div className="border-gray-6 flex w-full items-center justify-between border-b px-6 py-4">
           <div className="text-xl font-bold">
             {t('language') === 'ko'
               ? `${selectedDate?.getFullYear()}년 ${selectedDate?.getMonth() + 1}월 ${selectedDate?.getDate()}일`
               : format(selectedDate, 'MMM d, yyyy')}
           </div>
-          <div className="border-grey-6 invisible cursor-pointer rounded border px-4 py-2 text-gray-700">수정</div>
+          <div className="border-gray-6 invisible cursor-pointer rounded border px-4 py-2 text-gray-700">수정</div>
         </div>
         <Section>
           {image && (

@@ -108,7 +108,7 @@ export const EEMainPage = () => {
         return (
           <div>
             <div className="mx-auto flex w-[1280px] items-center justify-between">
-              <Typography variant="caption2" className="text-primary-gray-500 flex items-center gap-1">
+              <Typography variant="caption2" className="flex items-center gap-1 text-gray-500">
                 <SolidSVGIcon.Info color="gray400" size={16} />
                 RPPF 제출정보 기입과 에세이 평가 완료 후 활동종료 승인이 가능합니다.
               </Typography>
@@ -217,7 +217,7 @@ export const EEMainPage = () => {
                       {`${data.leader?.name}의 EE`}
                     </Typography>
                     <div className="flex items-center space-x-2">
-                      <div className="text-16 text-primary-orange-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
+                      <div className="text-16 text-primary-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
                         {klassNum} · {proposalData.leader.name}
                       </div>
                       {proposalData.activityFrequency && (
@@ -235,7 +235,7 @@ export const EEMainPage = () => {
                 <LayeredTabs.OneDepth
                   onChange={(selectedType: EEProject) => setFilter(selectedType)}
                   value={filter}
-                  inActiveClassName="text-primary-gray-900 border-primary-gray-900"
+                  inActiveClassName="text-gray-900 border-gray-900"
                 >
                   <Tab value="PROPOSAL">
                     <p>제안서</p>

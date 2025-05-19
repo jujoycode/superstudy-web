@@ -118,7 +118,7 @@ export function CanteenPage() {
       </div>
       <div className="h-0.5 w-full bg-gray-50" />
       <div className="px-6 py-4">
-        <div className="text-grey-5 pb-3 text-sm">{makeMonthDayToString(selectedDate)}</div>
+        <div className="text-gray-5 pb-3 text-sm">{makeMonthDayToString(selectedDate)}</div>
         <div className="flex flex-col space-y-3" ref={conteenRef}>
           {selectedSchedules?.map((schedule: Schedule) => (
             <div key={schedule.id} className="flex w-full items-center space-x-2">
@@ -204,7 +204,7 @@ export function CanteenPage() {
               </small>
             )}
           </div>
-          <div className="bg-grey-8 h-16 w-16 rounded-full">
+          <div className="bg-gray-8 h-16 w-16 rounded-full">
             <Link className="flex h-full w-full flex-col items-center justify-center" to={'/student/timetable'}>
               <ClockIcon />
               <div className="text-sm text-white">시간표</div>

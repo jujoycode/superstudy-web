@@ -141,7 +141,7 @@ export default function FormList({ type = 'EE_RPPF' }: FormListProps) {
           </div>
           {permission === 'IB_EE' ? (
             <>
-              <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
+              <Typography variant="body2" className="text-center font-medium text-gray-700">
                 작성한 양식이 없습니다.
                 <br />
                 양식을 추가해주세요.
@@ -151,7 +151,7 @@ export default function FormList({ type = 'EE_RPPF' }: FormListProps) {
               </ButtonV2>
             </>
           ) : (
-            <Typography variant="body2" className="text-primary-gray-700 text-center font-medium">
+            <Typography variant="body2" className="text-center font-medium text-gray-700">
               작성한 양식이 없습니다.
             </Typography>
           )}
