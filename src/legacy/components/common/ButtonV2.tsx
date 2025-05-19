@@ -11,17 +11,17 @@ interface ButtonV2Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 const buttonStyles = {
   solid: {
     orange800:
-      'bg-primary-orange-800 text-white active:bg-primary-orange-850 disabled:bg-primary-orange-50 disabled:text-primary-orange-400 disabled:cursor-not-allowed cursor:pointer',
+      'bg-primary-800 text-white active:bg-primary-850 disabled:bg-primary-50 disabled:text-primary-400 disabled:cursor-not-allowed cursor:pointer',
     gray700:
       'bg-primary-gray-700 text-white active:bg-primary-gray-800 disabled:bg-primary-gray-100 disabled:text-primary-gray-400 disabled:cursor-not-allowed cursor:pointer',
     orange100:
-      'bg-primary-orange-100 text-primary-orange-800 active:bg-primary-orange-400 disabled:bg-primary-gray-100 disabled:text-primary-gray-400 disabled:cursor-not-allowed cursor:pointer',
+      'bg-primary-100 text-primary-800 active:bg-primary-400 disabled:bg-primary-gray-100 disabled:text-primary-gray-400 disabled:cursor-not-allowed cursor:pointer',
     gray100:
       'bg-primary-gray-100 text-primary-gray-900 active:bg-primary-gray-300 disabled:bg-primary-gray-100 disabled:text-primary-gray-400 disabled:cursor-not-allowed cursor:pointer',
   },
   outline: {
     orange700:
-      'border border-primary-orange-700 text-primary-orange-800 active:border-primary-orange-700 active:bg-primary-orange-100 disabled:border-primary-gray-100 disabled:text-primary-gray-400 disabled:bg-primary-gray-200 disabled:cursor-not-allowed cursor:pointer',
+      'border border-primary-700 text-primary-800 active:border-primary-700 active:bg-primary-100 disabled:border-primary-gray-100 disabled:text-primary-gray-400 disabled:bg-primary-gray-200 disabled:cursor-not-allowed cursor:pointer',
     gray400:
       'border border-primary-gray-400 text-primary-gray-900 active:border-primary-gray-100 active:bg-primary-gray-400 disabled:border-primary-gray-200 disabled:text-primary-gray-400 disabled:bg-primary-gray-100 disabled:cursor-not-allowed cursor:pointer',
   },

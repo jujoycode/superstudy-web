@@ -87,10 +87,10 @@ export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
                   <td className="border-primary-gray-200 bg-primary-gray-50 border-x border-b p-2">
                     과목평균(표준편차)
                   </td>
-                  <td className="border-primary-gray-200 bg-primary-orange-50 border-x border-b p-2">목표등급</td>
-                  <td className="border-primary-gray-200 bg-primary-orange-50 border-x border-b p-2">목표석차</td>
-                  <td className="border-primary-gray-200 bg-primary-orange-50 border-x border-b p-2">목표점수</td>
-                  <td className="border-primary-gray-200 bg-primary-orange-50 border-b border-l p-2">경쟁자수</td>
+                  <td className="border-primary-gray-200 bg-primary-50 border-x border-b p-2">목표등급</td>
+                  <td className="border-primary-gray-200 bg-primary-50 border-x border-b p-2">목표석차</td>
+                  <td className="border-primary-gray-200 bg-primary-50 border-x border-b p-2">목표점수</td>
+                  <td className="border-primary-gray-200 bg-primary-50 border-b border-l p-2">경쟁자수</td>
                 </tr>
               </thead>
               <tbody className="text-13 text-primary-gray-900 text-center">
@@ -125,7 +125,7 @@ export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
                 <Typography variant="caption2" className="text-primary-gray-500">
                   현재 보여지는 성적은
                 </Typography>
-                <Typography variant="caption2" className="text-primary-orange-800">
+                <Typography variant="caption2" className="text-primary-800">
                   {data &&
                     ` ${data.analysed_target_score.grade}학년 ${data.analysed_target_score.semester}학기 ${
                       data.analysed_target_score.step === 'final'
@@ -164,16 +164,10 @@ export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
                 <td className="border-primary-gray-200 bg-primary-gray-50 min-w-[120px] border-x border-b p-2">
                   과목평균(표준편차)
                 </td>
-                <td className="border-primary-gray-200 bg-primary-orange-50 min-w-[120px] border-x border-b p-2">
-                  목표등급
-                </td>
-                <td className="border-primary-gray-200 bg-primary-orange-50 min-w-[120px] border-x border-b p-2">
-                  목표석차
-                </td>
-                <td className="border-primary-gray-200 bg-primary-orange-50 min-w-[120px] border-x border-b p-2">
-                  목표점수
-                </td>
-                <td className="border-primary-gray-200 bg-primary-orange-50 relative min-w-[120px] border-b border-l p-2">
+                <td className="border-primary-gray-200 bg-primary-50 min-w-[120px] border-x border-b p-2">목표등급</td>
+                <td className="border-primary-gray-200 bg-primary-50 min-w-[120px] border-x border-b p-2">목표석차</td>
+                <td className="border-primary-gray-200 bg-primary-50 min-w-[120px] border-x border-b p-2">목표점수</td>
+                <td className="border-primary-gray-200 bg-primary-50 relative min-w-[120px] border-b border-l p-2">
                   경쟁자수
                   <div className="absolute top-1.5 right-1.5">
                     <HintMessage

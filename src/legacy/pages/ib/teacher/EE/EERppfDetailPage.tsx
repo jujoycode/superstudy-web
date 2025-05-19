@@ -174,7 +174,7 @@ export const EERppfDetailPage = () => {
                   <Typography variant="heading" className="w-[692px] overflow-hidden text-ellipsis whitespace-nowrap">
                     {`${data?.leader?.name}의 EE RPPF`}
                   </Typography>
-                  <div className="text-16 text-primary-orange-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
+                  <div className="text-16 text-primary-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
                     {klassNum} · {data?.leader?.name}
                   </div>
                 </div>
@@ -197,7 +197,7 @@ export const EERppfDetailPage = () => {
                           </Typography>
                           <div className="text-12 flex flex-row items-center">
                             <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-                            <p className="text-primary-orange-800 font-medium">
+                            <p className="text-primary-800 font-medium">
                               {wordCounts.reduce((sum, count) => sum + count, 0)}
                             </p>
                           </div>
@@ -247,7 +247,7 @@ export const EERppfDetailPage = () => {
                       </Typography>
                       <div className="text-12 flex flex-row items-center">
                         <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-                        <p className="text-primary-orange-800 font-medium">
+                        <p className="text-primary-800 font-medium">
                           {wordCounts.reduce((sum, count) => sum + count, 0)}
                         </p>
                       </div>
@@ -274,7 +274,7 @@ export const EERppfDetailPage = () => {
                             <Typography variant="body2">{content.text}</Typography>
                             <div className="text-12 flex flex-row items-center">
                               <p className="text-primary-gray-500">단어 수</p>&nbsp;
-                              <p className="text-primary-orange-800 font-medium">{content.wordCount}</p>
+                              <p className="text-primary-800 font-medium">{content.wordCount}</p>
                             </div>
                           </div>
                         </div>

@@ -80,7 +80,7 @@ export const InputField = forwardRef<HTMLDivElement, PropsWithChildren<InputFiel
               </Typography>
             )}
             {subLabel && (
-              <Typography variant={titleVariant} className="text-primary-orange-800 font-semibold">
+              <Typography variant={titleVariant} className="text-primary-800 font-semibold">
                 {subLabel}
               </Typography>
             )}

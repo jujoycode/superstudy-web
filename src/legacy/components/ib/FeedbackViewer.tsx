@@ -52,7 +52,7 @@ export default function FeedbackViewer({ referenceId, referenceTable, modalOpen,
                   ? 'bg-primary-gray-50'
                   : data?.items[0].sender.role === 'USER'
                     ? 'bg-primary-gray-50'
-                    : 'bg-primary-orange-50'
+                    : 'bg-primary-50'
               } p-5`}
             >
               {sender === null ? (
@@ -75,7 +75,7 @@ export default function FeedbackViewer({ referenceId, referenceTable, modalOpen,
                 <div className="flex flex-row items-center justify-between">
                   <span className="flex flex-row items-center gap-2">
                     <SolidSVGIcon.Talk size={24} color="orange800" />
-                    <Typography variant="title3" className="text-primary-orange-800">
+                    <Typography variant="title3" className="text-primary-800">
                       {data?.items[0].sender.name}선생님의 피드백
                     </Typography>
                   </span>

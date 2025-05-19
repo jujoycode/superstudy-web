@@ -131,7 +131,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
                 }}
                 className={clsx(
                   {
-                    'text-primary-orange-800 flex items-center justify-between': option.value === value,
+                    'text-primary-800 flex items-center justify-between': option.value === value,
                   },
                   `text-primary-gray-900 hover:bg-primary-gray-100 cursor-pointer rounded-md bg-white px-2.5 py-1.5 ${
                     fixedHeight && 'flex h-16 items-center'

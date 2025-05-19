@@ -136,7 +136,7 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
                 <td className="bg-primary-gray-50 min-w-[80px] p-2" rowSpan={2}>
                   구분
                 </td>
-                <td colSpan={3} className={`bg-primary-orange-50 border-x border-gray-200 p-2`}>
+                <td colSpan={3} className={`bg-primary-50 border-x border-gray-200 p-2`}>
                   전교과
                 </td>
                 <td colSpan={3} className={`bg-primary-gray-50 border-x border-gray-200 p-2`}>
@@ -168,21 +168,21 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
                     <React.Fragment key={index}>
                       <td
                         className={`border border-gray-200 whitespace-nowrap ${
-                          index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
+                          index === 0 ? 'bg-primary-50' : 'bg-primary-gray-50'
                         } p-2`}
                       >
                         등급
                       </td>
                       <td
                         className={`border border-gray-200 whitespace-nowrap ${
-                          index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
+                          index === 0 ? 'bg-primary-50' : 'bg-primary-gray-50'
                         } p-2`}
                       >
                         Z점수
                       </td>
                       <td
                         className={`border-gray-200 whitespace-nowrap ${
-                          index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
+                          index === 0 ? 'bg-primary-50' : 'bg-primary-gray-50'
                         } ${index === 7 ? 'border-y border-l' : 'border'} p-2`}
                       >
                         원점수
@@ -278,7 +278,7 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
                 <td
                   key={subject}
                   colSpan={3}
-                  className={`border-gray-200 p-2 ${index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'} ${
+                  className={`border-gray-200 p-2 ${index === 0 ? 'bg-primary-50' : 'bg-primary-gray-50'} ${
                     index === Object.keys(transformedData).length - 1 ? 'border-l' : 'border-x'
                   }`}
                 >
@@ -291,21 +291,21 @@ const AcademicScore = ({ studentId }: ScoreAnalysisProps) => {
                 <React.Fragment key={subject}>
                   <td
                     className={`border border-gray-200 whitespace-nowrap ${
-                      index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
+                      index === 0 ? 'bg-primary-50' : 'bg-primary-gray-50'
                     } p-2`}
                   >
                     등급
                   </td>
                   <td
                     className={`border border-gray-200 whitespace-nowrap ${
-                      index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
+                      index === 0 ? 'bg-primary-50' : 'bg-primary-gray-50'
                     } p-2`}
                   >
                     Z점수
                   </td>
                   <td
                     className={`border-gray-200 whitespace-nowrap ${
-                      index === 0 ? 'bg-primary-orange-50' : 'bg-primary-gray-50'
+                      index === 0 ? 'bg-primary-50' : 'bg-primary-gray-50'
                     } ${index === Object.keys(transformedData).length - 1 ? 'border-y border-l' : 'border'} p-2`}
                   >
                     원점수

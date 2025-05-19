@@ -26,13 +26,13 @@ export default function FileDownloadProgressModal({
               <Typography variant="title2" className="text-primary-gray-900">
                 파일 다운로드 중
               </Typography>
-              <Typography variant="title2" className="text-primary-orange-800">
+              <Typography variant="title2" className="text-primary-800">
                 {percentage}%
               </Typography>
             </div>
             {/* 프로그레스 바 */}
             <div className="bg-primary-gray-200 mt-2 mb-4 h-2 w-full rounded-2xl">
-              <div className="bg-primary-orange-800 h-2 rounded-2xl" style={{ width: `${percentage}%` }} />
+              <div className="bg-primary-800 h-2 rounded-2xl" style={{ width: `${percentage}%` }} />
             </div>
             <Typography variant="body2" className="text-primary-gray-700">
               전체 파일의 크기가 1.5GB 이상이면,

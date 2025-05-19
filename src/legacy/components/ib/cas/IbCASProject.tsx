@@ -258,7 +258,7 @@ export function IbCASProject({
                 >
                   <SVGIcon.Calendar size={20} color="gray700" />
                   <input
-                    className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
+                    className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-ib-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
                     value={
                       date.startDate && date.endDate
                         ? `${date.startDate.getFullYear()}.${(date.startDate.getMonth() + 1)
@@ -310,7 +310,7 @@ export function IbCASProject({
                 >
                   <SVGIcon.Profile size={20} color="gray700" />
                   <input
-                    className="text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
+                    className="text-primary-gray-900 placeholder-primary-gray-400 caret-ib-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
                     placeholder="멤버 선택"
                     readOnly
                   />
@@ -339,8 +339,8 @@ export function IbCASProject({
                           }}
                           className={`flex h-[48px] flex-row items-center gap-2 rounded-lg px-4 py-[9px] ${
                             leader.id === member.id
-                              ? 'bg-primary-orange-100'
-                              : 'bg-primary-gray-50 hover:border-primary-orange-400 hover:bg-primary-orange-50 cursor-pointer hover:border'
+                              ? 'bg-primary-100'
+                              : 'bg-primary-gray-50 hover:border-primary-400 hover:bg-primary-50 cursor-pointer hover:border'
                           }`}
                         >
                           {leader.id === member.id && (
@@ -387,7 +387,7 @@ export function IbCASProject({
                 <div
                   className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border ${
                     strands.creativity && strands.creativity > 0
-                      ? 'border-primary-orange-100 bg-primary-orange-50'
+                      ? 'border-primary-100 bg-primary-50'
                       : 'border-primary-gray-100'
                   } p-4`}
                 >
@@ -403,7 +403,7 @@ export function IbCASProject({
                 <div
                   className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border ${
                     strands.activity && strands.activity > 0
-                      ? 'border-primary-blue-100 bg-primary-blue-50'
+                      ? 'border-ib-blue-100 bg-ib-blue-50'
                       : 'border-primary-gray-100'
                   } p-4`}
                 >
@@ -419,7 +419,7 @@ export function IbCASProject({
                 <div
                   className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border ${
                     strands.service && strands.service > 0
-                      ? 'border-primary-green-100 bg-primary-green-50'
+                      ? 'border-ib-green-100 bg-ib-green-50'
                       : 'border-primary-gray-100'
                   } p-4`}
                 >

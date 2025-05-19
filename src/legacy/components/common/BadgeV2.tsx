@@ -10,9 +10,9 @@ interface BadgeV2Props extends HTMLAttributes<HTMLSpanElement> {
 
 const BadgeStyles = {
   solid_strong: {
-    orange: 'bg-primary-orange-800 text-white',
-    green: 'bg-primary-green-800 text-white',
-    blue: 'bg-primary-blue-800 text-white',
+    orange: 'bg-primary-800 text-white',
+    green: 'bg-ib-green-800 text-white',
+    blue: 'bg-ib-blue-800 text-white',
     red: 'bg-primary-red-800 text-white',
     gray: 'bg-primary-gray-500 text-white',
     navy: 'bg-[#405472] text-white',
@@ -20,9 +20,9 @@ const BadgeStyles = {
     brown: 'bg-[#6D4A3D] text-white',
   },
   solid_regular: {
-    orange: 'bg-primary-orange-100 text-primary-orange-800',
-    green: 'bg-primary-green-100 text-primary-green-800',
-    blue: 'bg-primary-blue-100 text-primary-blue-800',
+    orange: 'bg-primary-100 text-primary-800',
+    green: 'bg-ib-green-100 text-ib-green-800',
+    blue: 'bg-ib-blue-100 text-ib-blue-800',
     red: 'bg-primary-red-100 text-primary-red-800',
     gray: 'bg-primary-gray-100 text-primary-gray-700',
     navy: 'bg-[#EEF2F8] text-[#405472]',
@@ -30,9 +30,9 @@ const BadgeStyles = {
     brown: 'bg-[#F2ECEA] text-[#6D4A3D]',
   },
   line: {
-    orange: 'border border-primary-orange-400 bg-white text-primary-orange-800',
-    green: 'border border-primary-green-400 bg-white text-primary-green-800',
-    blue: 'border border-primary-blue-400 bg-white text-primary-blue-800',
+    orange: 'border border-primary-400 bg-white text-primary-800',
+    green: 'border border-ib-green-400 bg-white text-ib-green-800',
+    blue: 'border border-ib-blue-400 bg-white text-ib-blue-800',
     red: 'border border-primary-red-400 bg-white text-primary-red-800',
     gray: 'border border-primary-gray-400 bg-white text-primary-gray-700',
     navy: 'border border-[#A2ADBD] bg-white text-[#405472]',

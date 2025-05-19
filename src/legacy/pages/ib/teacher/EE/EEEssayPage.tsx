@@ -222,7 +222,7 @@ export const EEEssayPage = () => {
                   <Typography variant="heading" className="w-[692px] overflow-hidden text-ellipsis whitespace-nowrap">
                     {`${data?.leader?.name}의 EE 에세이`}
                   </Typography>
-                  <div className="text-16 text-primary-orange-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
+                  <div className="text-16 text-primary-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
                     {klassNum} · {data?.leader?.name}
                   </div>
                 </div>

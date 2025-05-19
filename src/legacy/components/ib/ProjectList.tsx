@@ -109,7 +109,7 @@ const ProjectList: React.FC<ProjectListProps> = ({
           {isLoading ? (
             <></>
           ) : (
-            <Typography variant="title3" className="text-primary-orange-800">
+            <Typography variant="title3" className="text-primary-800">
               {data?.total ?? 0}
             </Typography>
           )}

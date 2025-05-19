@@ -149,7 +149,7 @@ function IBProjectList({ studentId, currentProjectId, children }: IBProjectListP
                               <Typography
                                 variant="body2"
                                 className={`font-medium ${
-                                  selectProject ? 'text-primary-orange-800' : ''
+                                  selectProject ? 'text-primary-800' : ''
                                 } max-w-[550px] overflow-hidden text-ellipsis whitespace-nowrap`}
                                 title={displayTitle}
                               >

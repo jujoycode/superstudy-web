@@ -229,7 +229,7 @@ export const OutlineDetailPage = () => {
                   <Typography variant="heading" className="w-[692px] overflow-hidden text-ellipsis whitespace-nowrap">
                     {outlineData.themeQuestion}
                   </Typography>
-                  <div className="text-16 text-primary-orange-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
+                  <div className="text-16 text-primary-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
                     {klassNum} · {ibData?.leader?.name}
                   </div>
                 </div>
@@ -442,7 +442,7 @@ export const OutlineDetailPage = () => {
                           <div key={num} className="border-t-primary-gray-100 flex flex-col gap-10 border-t pt-10">
                             <div className="flex flex-col gap-4">
                               <Typography variant="title2" className="text-primary-gray-900">
-                                지식영역 <span className="text-primary-orange-800">{num}</span>
+                                지식영역 <span className="text-primary-800">{num}</span>
                               </Typography>
                               <div className="border-primary-gray-200 rounded-lg border p-4">
                                 <Typography variant="body2" className="font-medium">

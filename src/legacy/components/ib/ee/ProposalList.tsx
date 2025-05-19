@@ -297,10 +297,10 @@ export default function ProposalList({ data, refetch }: ProposalListProps) {
                             {proposal.rank}순위
                           </Typography>
                           <div
-                            className={`hover: border-primary-gray-200 hover:border-primary-orange-200 hover:bg-primary-orange-50 flex w-full flex-row items-center gap-4 rounded-xl border p-6 ${
+                            className={`hover: border-primary-gray-200 hover:border-primary-200 hover:bg-primary-50 flex w-full flex-row items-center gap-4 rounded-xl border p-6 ${
                               snapshot.isDragging
-                                ? 'border-primary-orange-400 bg-primary-orange-50 shadow-md'
-                                : 'border-primary-gray-200 hover:border-primary-orange-200 hover:bg-primary-orange-50'
+                                ? 'border-primary-400 bg-primary-50 shadow-md'
+                                : 'border-primary-gray-200 hover:border-primary-200 hover:bg-primary-50'
                             }`}
                           >
                             <div>

@@ -348,7 +348,7 @@ export const ExhibitionDetailPage = () => {
                                     대상
                                   </Typography>
                                   &nbsp;
-                                  <Typography variant="title3" className="text-primary-orange-800 font-semibold">
+                                  <Typography variant="title3" className="text-primary-800 font-semibold">
                                     {targetKey}
                                   </Typography>
                                 </div>
@@ -442,7 +442,7 @@ export const ExhibitionDetailPage = () => {
                           <Typography variant="title1">{data?.themeQuestion}</Typography>
                           <div className="text-12 flex flex-row items-center">
                             <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-                            <p className="text-primary-orange-800 font-medium">{totalWordCount}</p>
+                            <p className="text-primary-800 font-medium">{totalWordCount}</p>
                           </div>
                         </div>
                         <Typography variant="body3" className="text-primary-gray-500">
@@ -460,7 +460,7 @@ export const ExhibitionDetailPage = () => {
                               단어수
                             </Typography>
                             &nbsp;
-                            <Typography variant="caption" className="text-primary-orange-800 font-medium">
+                            <Typography variant="caption" className="text-primary-800 font-medium">
                               {data?.introductionWordCount}
                             </Typography>
                           </span>
@@ -470,7 +470,7 @@ export const ExhibitionDetailPage = () => {
                         <div className="flex flex-col gap-4">
                           <div className="flex flex-row items-center">
                             <Typography variant="title2">대상</Typography>&nbsp;
-                            <Typography variant="title2" className="text-primary-orange-800">
+                            <Typography variant="title2" className="text-primary-800">
                               1
                             </Typography>
                           </div>
@@ -491,7 +491,7 @@ export const ExhibitionDetailPage = () => {
                               단어수
                             </Typography>
                             &nbsp;
-                            <Typography variant="caption" className="text-primary-orange-800 font-medium">
+                            <Typography variant="caption" className="text-primary-800 font-medium">
                               {data?.wordCount1}
                             </Typography>
                           </span>
@@ -501,7 +501,7 @@ export const ExhibitionDetailPage = () => {
                         <div className="flex flex-col gap-4">
                           <div className="flex flex-row items-center">
                             <Typography variant="title2">대상</Typography>&nbsp;
-                            <Typography variant="title2" className="text-primary-orange-800">
+                            <Typography variant="title2" className="text-primary-800">
                               2
                             </Typography>
                           </div>
@@ -522,7 +522,7 @@ export const ExhibitionDetailPage = () => {
                               단어수
                             </Typography>
                             &nbsp;
-                            <Typography variant="caption" className="text-primary-orange-800 font-medium">
+                            <Typography variant="caption" className="text-primary-800 font-medium">
                               {data?.wordCount2}
                             </Typography>
                           </span>
@@ -532,7 +532,7 @@ export const ExhibitionDetailPage = () => {
                         <div className="flex flex-col gap-4">
                           <div className="flex flex-row items-center">
                             <Typography variant="title2">대상</Typography>&nbsp;
-                            <Typography variant="title2" className="text-primary-orange-800">
+                            <Typography variant="title2" className="text-primary-800">
                               3
                             </Typography>
                           </div>
@@ -553,7 +553,7 @@ export const ExhibitionDetailPage = () => {
                               단어수
                             </Typography>
                             &nbsp;
-                            <Typography variant="caption" className="text-primary-orange-800 font-medium">
+                            <Typography variant="caption" className="text-primary-800 font-medium">
                               {data?.wordCount3}
                             </Typography>
                           </span>
@@ -570,7 +570,7 @@ export const ExhibitionDetailPage = () => {
                               단어수
                             </Typography>
                             &nbsp;
-                            <Typography variant="caption" className="text-primary-orange-800 font-medium">
+                            <Typography variant="caption" className="text-primary-800 font-medium">
                               {data?.conclusionWordCount}
                             </Typography>
                           </span>
@@ -595,7 +595,7 @@ export const ExhibitionDetailPage = () => {
                       <div className="flex flex-row items-center gap-4">
                         <div className="text-12 flex flex-row items-center">
                           <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-                          <p className="text-primary-orange-800 font-medium">{totalWordCount}</p>
+                          <p className="text-primary-800 font-medium">{totalWordCount}</p>
                         </div>
                         <ButtonV2 size={40} variant="solid" color="orange100" onClick={handleSubmit(onSubmit)}>
                           저장하기

@@ -112,7 +112,7 @@ export default function Evaluation({
       <div
         className={clsx(
           'flex items-center justify-between gap-1 rounded-lg',
-          isFinal ? 'bg-primary-orange-50' : 'bg-white',
+          isFinal ? 'bg-primary-50' : 'bg-white',
           accordionIsOpen ? 'pt-3' : 'py-3',
         )}
       >
@@ -129,7 +129,7 @@ export default function Evaluation({
             className="w-full py-0"
             parentClassName="px-4"
             arrowColor={isFinal ? 'orange800' : 'gray400'}
-            rightTextClassName="text-primary-orange-800"
+            rightTextClassName="text-primary-800"
             setAccordionIsOpen={setAccordionIsOpen}
             typographyVariant="title3"
             typographyClassName={clsx('font-medium', disabled ? 'text-primary-gray-500' : 'text-primary-gray-900')}

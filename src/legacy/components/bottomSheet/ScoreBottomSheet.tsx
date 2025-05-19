@@ -62,7 +62,7 @@ export function ScoreBottomSheet({ data, onChange }: BottomSheetProps) {
             <div key={index} className="flex flex-row items-center justify-between py-4">
               <Typography
                 variant={isSelected ? 'title3' : 'body1'}
-                className={isSelected ? 'text-primary-orange-800 font-semibold' : 'text-primary-gray-700'}
+                className={isSelected ? 'text-primary-800 font-semibold' : 'text-primary-gray-700'}
                 onClick={() => handleClick(item, index)}
               >
                 {item.year}년 {item.grade}학년 {item.semester}학기 {item.step === 'final' ? '종합성적' : '중간고사'}

@@ -246,7 +246,7 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
     <label
       onClick={handleLabelClick}
       className={`flex items-center gap-2 rounded-lg border px-4 py-3.5 ${
-        checked ? (disabled ? 'border-primary-orange-100' : 'border-primary-orange-400') : 'border-primary-gray-200'
+        checked ? (disabled ? 'border-primary-100' : 'border-primary-400') : 'border-primary-gray-200'
       } ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
     >
       <input

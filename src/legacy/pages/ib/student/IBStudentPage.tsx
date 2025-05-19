@@ -92,7 +92,7 @@ export const IBStudentPage = () => {
                 <ColorSVGIcon.Project size={24} color={pathname === '/ib/student' ? 'orange800' : 'gray400'} />
                 <Typography
                   variant="title3"
-                  className={pathname === '/ib/student' ? 'text-primary-orange-800' : 'text-primary-gray-900'}
+                  className={pathname === '/ib/student' ? 'text-primary-800' : 'text-primary-gray-900'}
                 >
                   프로젝트
                 </Typography>
@@ -127,7 +127,7 @@ export const IBStudentPage = () => {
                     variant="title3"
                     className={
                       pathname.startsWith('/ib/student/plagiarism-inspection')
-                        ? 'text-primary-orange-800'
+                        ? 'text-primary-800'
                         : 'text-primary-gray-900'
                     }
                   >

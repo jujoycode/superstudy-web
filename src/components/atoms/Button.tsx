@@ -19,7 +19,7 @@ const variantOptions: Record<ButtonVariant, string> = {
 }
 
 const disabledOptions: Record<ButtonVariant, string> = {
-  solid: 'disabled:bg-primary-orange-50 disabled:text-primary-orange-400',
+  solid: 'disabled:bg-primary-50 disabled:text-primary-400',
   outline: 'disabled:border-gray-300 disabled:text-gray-500 disabled:hover:bg-transparent',
   link: 'disabled:text-gray-500',
 }

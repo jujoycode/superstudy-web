@@ -60,7 +60,7 @@ export function PointLogsPage() {
               <Typography variant="caption" className="text-primary-gray-700">
                 {ts('merits')}
               </Typography>
-              <Typography variant="title2" className="text-primary-green-800">
+              <Typography variant="title2" className="text-ib-green-800">
                 {numberWithSign(merits)}
               </Typography>
             </div>

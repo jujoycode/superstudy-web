@@ -70,9 +70,9 @@ export const CoordinatorPreviewPage = () => {
           hasContour={false}
           bottomContent={
             <>
-              <div className="bg-primary-orange-100 text-primary-orange-800 sticky top-0 z-10 mb-4 flex h-10 items-center gap-2 rounded-lg px-4 py-[11px]">
+              <div className="bg-primary-100 text-primary-800 sticky top-0 z-10 mb-4 flex h-10 items-center gap-2 rounded-lg px-4 py-[11px]">
                 <SolidSVGIcon.Info size={16} color="orange800" weight="bold" />
-                <Typography variant="caption" className="text-primary-orange-800 font-medium">
+                <Typography variant="caption" className="text-primary-800 font-medium">
                   학생/교사에게 보여지는 화면의 예시입니다.
                 </Typography>
               </div>
@@ -91,7 +91,7 @@ export const CoordinatorPreviewPage = () => {
                       {(data as FAQData).content.map((item: FAQItem, index: number) => (
                         <div key={index} className="flex flex-col gap-2">
                           <div className="flex flex-row items-center">
-                            <Typography variant="title3" className="text-primary-orange-800">
+                            <Typography variant="title3" className="text-primary-800">
                               Q{index + 1}.&nbsp;
                             </Typography>
                             <Typography variant="title3">{item.question}</Typography>

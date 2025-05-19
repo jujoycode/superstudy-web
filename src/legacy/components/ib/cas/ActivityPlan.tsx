@@ -324,7 +324,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                       >
                         <SVGIcon.Calendar size={20} color="gray700" />
                         <input
-                          className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
+                          className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-ib-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
                           placeholder="활동 일정 및 주기 선택"
                           value={
                             date.startDate && date.endDate
@@ -370,7 +370,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                       <div
                         className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border ${
                           strands.creativity && strands.creativity > 0
-                            ? 'border-primary-orange-100 bg-primary-orange-50'
+                            ? 'border-primary-100 bg-primary-50'
                             : 'border-primary-gray-100'
                         } p-4`}
                       >
@@ -386,7 +386,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                       <div
                         className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border ${
                           strands.activity && strands.activity > 0
-                            ? 'border-primary-blue-100 bg-primary-blue-50'
+                            ? 'border-ib-blue-100 bg-ib-blue-50'
                             : 'border-primary-gray-100'
                         } p-4`}
                       >
@@ -402,7 +402,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                       <div
                         className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border ${
                           strands.service && strands.service > 0
-                            ? 'border-primary-green-100 bg-primary-green-50'
+                            ? 'border-ib-green-100 bg-ib-green-50'
                             : 'border-primary-gray-100'
                         } p-4`}
                       >
@@ -635,7 +635,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     >
                       <SVGIcon.Calendar size={20} color="gray700" />
                       <input
-                        className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
+                        className="text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-ib-blue-800 focus:border-primary-gray-700 focus:text-primary-gray-700 w-full flex-1 border-none p-0 focus:ring-0 focus:outline-none"
                         readOnly
                         placeholder="활동 일정 및 주기 선택"
                         value={
@@ -669,7 +669,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <div
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.creativity && data.cas.strands.creativity > 0
-                          ? 'border-primary-orange-100 bg-primary-orange-50 border'
+                          ? 'border-primary-100 bg-primary-50 border'
                           : 'border-primary-gray-100 border'
                       } p-4`}
                     >
@@ -686,7 +686,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <div
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.activity && data.cas.strands.activity > 0
-                          ? 'border-primary-blue-100 bg-primary-blue-50 border'
+                          ? 'border-ib-blue-100 bg-ib-blue-50 border'
                           : 'border-primary-gray-100 border'
                       } p-4`}
                     >
@@ -703,7 +703,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <div
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.service && data.cas.strands.service > 0
-                          ? 'border-primary-green-100 bg-primary-green-50 border'
+                          ? 'border-ib-green-100 bg-ib-green-50 border'
                           : 'border-primary-gray-100 border'
                       } p-4`}
                     >

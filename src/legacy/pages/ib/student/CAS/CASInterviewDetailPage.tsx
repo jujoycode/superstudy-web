@@ -122,7 +122,7 @@ export default function CASInterviewDetailPage() {
                           return (
                             <div key={index} className="flex flex-col gap-3">
                               <div className="flex flex-row items-start">
-                                <Typography variant="title3" className="text-primary-orange-800">
+                                <Typography variant="title3" className="text-primary-800">
                                   Q{interview.qna.content.filter((i, idx) => !i.added && idx < index).length + 1}.&nbsp;
                                 </Typography>
                                 <input type="hidden" value={item.question} {...register(`content.${index}.question`)} />
@@ -150,7 +150,7 @@ export default function CASInterviewDetailPage() {
                             >
                               <Typography variant="title2">개별 질문</Typography>
                               <div className="flex flex-row items-start">
-                                <Typography variant="title3" className="text-primary-orange-800">
+                                <Typography variant="title3" className="text-primary-800">
                                   Q{interview.qna.content.filter((i, idx) => i.added && idx < index).length + 1}.&nbsp;
                                 </Typography>
                                 <input type="hidden" value={item.question} {...register(`content.${index}.question`)} />
@@ -184,7 +184,7 @@ export default function CASInterviewDetailPage() {
                         .map((item, index) => (
                           <div key={index} className="flex flex-col gap-3">
                             <div className="flex flex-row items-start">
-                              <Typography variant="title3" className="text-primary-orange-800">
+                              <Typography variant="title3" className="text-primary-800">
                                 Q{index + 1}.&nbsp;
                               </Typography>
                               <Typography variant="title3">{item.question}</Typography>
@@ -207,7 +207,7 @@ export default function CASInterviewDetailPage() {
                           .map((item, index) => (
                             <div key={index} className="flex flex-col gap-3">
                               <div className="flex flex-row items-start">
-                                <Typography variant="title3" className="text-primary-orange-800">
+                                <Typography variant="title3" className="text-primary-800">
                                   Q{index + 1}.&nbsp;
                                 </Typography>
                                 <Typography variant="title3">{item.question}</Typography>

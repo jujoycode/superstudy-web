@@ -217,7 +217,7 @@ export const EEMainPage = () => {
                       {`${data.leader?.name}의 EE`}
                     </Typography>
                     <div className="flex items-center space-x-2">
-                      <div className="text-16 text-primary-orange-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
+                      <div className="text-16 text-primary-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
                         {klassNum} · {proposalData.leader.name}
                       </div>
                       {proposalData.activityFrequency && (

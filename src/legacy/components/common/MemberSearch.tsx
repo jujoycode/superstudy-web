@@ -202,10 +202,7 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
                             e.stopPropagation() // 클릭 이벤트 중지
                           }}
                         >
-                          <Typography
-                            variant="body2"
-                            className={`font-medium ${isChecked && 'text-primary-orange-800'}`}
-                          >
+                          <Typography variant="body2" className={`font-medium ${isChecked && 'text-primary-800'}`}>
                             {student.name}&nbsp;·&nbsp;{student.studentGroup.group.grade}
                             {String(student.studentGroup.group.klass).padStart(2, '0')}
                             {String(student.studentGroup.studentNumber).padStart(2, '0')}
@@ -241,7 +238,7 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
                         e.stopPropagation() // 클릭 이벤트 중지
                       }}
                     >
-                      <Typography variant="body2" className={`font-medium ${isChecked && 'text-primary-orange-800'}`}>
+                      <Typography variant="body2" className={`font-medium ${isChecked && 'text-primary-800'}`}>
                         {student.name}&nbsp;·&nbsp;{student.studentGroup.group.grade}
                         {String(student.studentGroup.group.klass).padStart(2, '0')}
                         {String(student.studentGroup.studentNumber).padStart(2, '0')}
@@ -275,7 +272,7 @@ const MemberSearch: React.FC<MemberSearchProps> = ({ initialStudents, onSave, on
                     e.stopPropagation() // 클릭 이벤트 중지
                   }}
                 >
-                  <Typography variant="body2" className={`font-medium ${isChecked && 'text-primary-orange-800'}`}>
+                  <Typography variant="body2" className={`font-medium ${isChecked && 'text-primary-800'}`}>
                     {student.name}&nbsp;·&nbsp;{student.studentGroup.group.grade}
                     {String(student.studentGroup.group.klass).padStart(2, '0')}
                     {String(student.studentGroup.studentNumber).padStart(2, '0')}

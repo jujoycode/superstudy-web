@@ -121,7 +121,7 @@ export function IbCASProfile({
                   return (
                     <div key={question} className="flex flex-col gap-3">
                       <div className="flex flex-row items-start">
-                        <Typography variant="title3" className="text-primary-orange-800">
+                        <Typography variant="title3" className="text-primary-800">
                           Q{index + 1}.&nbsp;
                         </Typography>
                         <Typography variant="title3">{question}</Typography>

@@ -288,7 +288,7 @@ export const ExhibitionPlanDetailPage = () => {
                   >
                     {data?.tokExhibitionPlan?.themeQuestion}
                   </Typography>
-                  <div className="text-16 text-primary-orange-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
+                  <div className="text-16 text-primary-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
                     {klassNum} · {data?.leader.name}
                   </div>
                 </div>
@@ -555,7 +555,7 @@ export const ExhibitionPlanDetailPage = () => {
                                   <div className="flex flex-col gap-4">
                                     <Typography variant="title2" className="text-primary-gray-900">
                                       대상&nbsp;
-                                      <span className="text-primary-orange-800">{num}</span>
+                                      <span className="text-primary-800">{num}</span>
                                     </Typography>
                                     <div className="border-primary-gray-200 rounded-lg border bg-white px-4 py-[13px]">
                                       <Typography variant="body2" className="text-primary-gray-700 font-medium">

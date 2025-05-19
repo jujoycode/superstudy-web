@@ -165,7 +165,7 @@ export default function RPPFDetailPage() {
                           <Typography variant="title1">공식 RPPF</Typography>
                           <div className="text-12 flex flex-row items-center">
                             <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-                            <p className="text-primary-orange-800 font-medium">
+                            <p className="text-primary-800 font-medium">
                               {wordCounts.reduce((sum, count) => sum + count, 0)}
                             </p>
                           </div>
@@ -212,7 +212,7 @@ export default function RPPFDetailPage() {
                       <Typography variant="title1">공식 RPPF</Typography>
                       <div className="text-12 flex flex-row items-center">
                         <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-                        <p className="text-primary-orange-800 font-medium">
+                        <p className="text-primary-800 font-medium">
                           {wordCounts.reduce((sum, count) => sum + count, 0)}
                         </p>
                       </div>
@@ -237,7 +237,7 @@ export default function RPPFDetailPage() {
                             <Typography variant="body2">{content.text}</Typography>
                             <div className="text-12 flex flex-row items-center">
                               <p className="text-primary-gray-500">단어 수</p>&nbsp;
-                              <p className="text-primary-orange-800 font-medium">{content.wordCount}</p>
+                              <p className="text-primary-800 font-medium">{content.wordCount}</p>
                             </div>
                           </div>
                         </div>

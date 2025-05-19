@@ -147,7 +147,7 @@ const MockRankTable: React.FC<{ scores: any[]; isLoading: boolean }> = ({ scores
                 <Typography variant="caption2" className="text-primary-gray-500">
                   현재 보여지는 성적은
                 </Typography>
-                <Typography variant="caption2" className="text-primary-orange-800">
+                <Typography variant="caption2" className="text-primary-800">
                   {latestExamInfo &&
                     ` ${latestExamInfo.insertion_year}학년도 ${latestExamInfo.grade}학년 ${latestExamInfo.month}월 `}
                 </Typography>

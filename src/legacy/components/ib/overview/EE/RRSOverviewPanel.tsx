@@ -113,7 +113,7 @@ export default function RRSOverviewPanel(props: OverviewPanelProps) {
     <div className={containerStyles}>
       <div className="flex justify-between">
         <Typography variant="title3" className="text-primary-gray-900">
-          {title} <span className="text-primary-orange-800">{totalStudents}명</span>
+          {title} <span className="text-primary-800">{totalStudents}명</span>
         </Typography>
         {totalStudents > 0 && buttonText && (
           <ButtonV2 variant="outline" color="gray400" size={32} onClick={buttonHandler}>

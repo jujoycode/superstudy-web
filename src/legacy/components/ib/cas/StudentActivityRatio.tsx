@@ -85,7 +85,7 @@ function StudentActivityRatio({ before, after }: StudentActivityRatioProps) {
           )}
         </div>
       </div>
-      <div className="border-primary-orange-200 flex flex-col gap-2 rounded-lg border p-4">
+      <div className="border-primary-200 flex flex-col gap-2 rounded-lg border p-4">
         <div className="flex flex-row items-center justify-between">
           <Typography variant="body3" className="font-medium">
             계획서 승인 후

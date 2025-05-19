@@ -56,7 +56,7 @@ const RadioIndicator = ({ size = 24, checked, disabled }: { size: number; checke
       {checked && (
         <span
           className={clsx('rounded-full', {
-            'bg-primary-orange-800': !disabled,
+            'bg-primary-800': !disabled,
             'bg-primary-gray-300': disabled,
           })}
           style={{
@@ -126,7 +126,7 @@ const Box = forwardRef<HTMLInputElement, RadioBoxProps>(function Box(
         onClick={handleLabelClick}
         className={clsx(
           `border-primary-gray-200 flex w-full flex-row items-start gap-2 overflow-hidden rounded-lg border px-4 py-[14px]`,
-          props.checked && 'border-primary-orange-400',
+          props.checked && 'border-primary-400',
           props.disabled || 'cursor-pointer',
         )}
       >
@@ -149,7 +149,7 @@ const Box = forwardRef<HTMLInputElement, RadioBoxProps>(function Box(
     <label
       onClick={handleLabelClick}
       className={`border-primary-gray-200 flex w-full cursor-pointer flex-row items-center gap-4 rounded-xl border p-6 shadow-[0_4px_8px_0_#F4F6F8] ${
-        props.checked && 'border-primary-orange-400 shadow-[0_4px_8px_0_#ffe8db]'
+        props.checked && 'border-primary-400 shadow-[0_4px_8px_0_#ffe8db]'
       } ${props.disabled && 'bg-primary-gray-100'} overflow-hidden`}
     >
       {showImage && image && (
@@ -181,7 +181,7 @@ const Label = forwardRef<HTMLInputElement, RadioLabelProps>(function Box(
     <label
       onClick={handleLabelClick}
       className={`border-primary-gray-200 flex w-full cursor-pointer flex-row items-center justify-between rounded-xl border bg-white p-6 shadow-[0_4px_8px_0_#F4F6F8] ${
-        props.checked && 'border-primary-orange-800 shadow-[0_4px_8px_0_#ffe8db]'
+        props.checked && 'border-primary-800 shadow-[0_4px_8px_0_#ffe8db]'
       } ${props.disabled && 'bg-primary-gray-50'} overflow-hidden`}
     >
       <div className="flex flex-col justify-start gap-1">

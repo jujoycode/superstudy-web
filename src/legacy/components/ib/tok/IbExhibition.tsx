@@ -197,7 +197,7 @@ export function IbExhibition({
                       대상
                     </Typography>
                     &nbsp;
-                    <Typography variant="title3" className="text-primary-orange-800 font-semibold">
+                    <Typography variant="title3" className="text-primary-800 font-semibold">
                       {targetKey}
                     </Typography>
                   </div>
@@ -277,7 +277,7 @@ export function IbExhibition({
         >
           <div className="text-12 flex flex-row items-center">
             <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-            <p className="text-primary-orange-800 font-medium">{totalWordCount}</p>
+            <p className="text-primary-800 font-medium">{totalWordCount}</p>
           </div>
           <div className="flex gap-3">
             <ButtonV2

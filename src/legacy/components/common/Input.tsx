@@ -104,7 +104,7 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
             'bg-primary-gray-100': disabled || readonly,
             'cursor-not-allowed': readonly || disabled,
             'cursor-pointer': !readonly && !disabled,
-            'border-system-error-800': errorMessage,
+            'border--': errorMessage,
             'border-primary-gray-700': isFocused,
           },
           sizeClass,
@@ -126,7 +126,7 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
                 readonly && size === 48 ? 'text-primary-gray-700 bg-white' : 'text-primary-gray-900'
               } ${
                 (disabled || readonly) && 'bg-primary-gray-100'
-              } placeholder-primary-gray-400 caret-primary-blue-800 focus:text-primary-gray-700 read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:text-gray-400`,
+              } placeholder-primary-gray-400 caret-ib-blue-800 focus:text-primary-gray-700 read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:text-gray-400`,
               fontClass,
             ),
             inputClassName,
@@ -158,7 +158,7 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
           </button>
         )}
       </div>
-      {errorMessage && <p className="text-system-error-800 text-sm">{errorMessage}</p>}
+      {errorMessage && <p className="text-- text-sm">{errorMessage}</p>}
     </div>
   )
 })
@@ -233,7 +233,7 @@ export const InputSelect = forwardRef<HTMLInputElement, TextInputProps>(function
             'bg-primary-gray-100': disabled || readonly,
             'cursor-not-allowed': readonly || disabled,
             'cursor-pointer': !readonly && !disabled && !selectId,
-            'border-system-error-800': errorMessage,
+            'border--': errorMessage,
             'border-primary-gray-700': isFocused,
           },
           sizeClass,
@@ -256,7 +256,7 @@ export const InputSelect = forwardRef<HTMLInputElement, TextInputProps>(function
                   readonly && size === 48 ? 'text-primary-gray-700 bg-white' : 'text-primary-gray-900'
                 } ${
                   (disabled || readonly) && 'bg-primary-gray-100'
-                } placeholder-primary-gray-400 caret-primary-blue-800 focus:text-primary-gray-700 read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:text-gray-400`,
+                } placeholder-primary-gray-400 caret-ib-blue-800 focus:text-primary-gray-700 read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:text-gray-400`,
                 fontClass,
               ),
               inputClassName,
@@ -290,7 +290,7 @@ export const InputSelect = forwardRef<HTMLInputElement, TextInputProps>(function
           </>
         )}
       </div>
-      {errorMessage && <p className="text-system-error-800 text-sm">{errorMessage}</p>}
+      {errorMessage && <p className="text-- text-sm">{errorMessage}</p>}
     </div>
   )
 })
@@ -355,7 +355,7 @@ export const InputLabel = forwardRef<HTMLInputElement, TextInputProps>(function 
             'bg-primary-gray-100': disabled || readonly,
             'cursor-not-allowed': readonly || disabled,
             'cursor-pointer': !readonly && !disabled,
-            'border-system-error-800': errorMessage,
+            'border--': errorMessage,
             'border-primary-gray-700': isFocused,
           },
           sizeClass,
@@ -374,7 +374,7 @@ export const InputLabel = forwardRef<HTMLInputElement, TextInputProps>(function 
                 readonly && size === 48 ? 'text-primary-gray-700 bg-white' : 'text-primary-gray-900'
               } ${
                 (disabled || readonly) && 'bg-primary-gray-100'
-              } placeholder-primary-gray-400 caret-primary-blue-800 focus:text-primary-gray-700 read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:text-gray-400`,
+              } placeholder-primary-gray-400 caret-ib-blue-800 focus:text-primary-gray-700 read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:text-gray-400`,
               fontClass,
             ),
           )}
@@ -401,7 +401,7 @@ export const InputLabel = forwardRef<HTMLInputElement, TextInputProps>(function 
           <ColorSVGIcon.Close color="gray400" size={iconClass} />
         </button>
       </div>
-      {errorMessage && <p className="text-system-error-800 text-sm">{errorMessage}</p>}
+      {errorMessage && <p className="text-- text-sm">{errorMessage}</p>}
     </div>
   )
 })
@@ -457,7 +457,7 @@ export const InputScale = forwardRef<HTMLInputElement, TextInputProps>(function 
             'bg-primary-gray-100': disabled || readonly,
             'cursor-not-allowed': readonly || disabled,
             'cursor-pointer': !readonly && !disabled,
-            'border-system-error-800': errorMessage,
+            'border--': errorMessage,
             'border-primary-gray-700': isFocused,
           },
           sizeClass,
@@ -473,7 +473,7 @@ export const InputScale = forwardRef<HTMLInputElement, TextInputProps>(function 
                 readonly && size === 48 ? 'text-primary-gray-700 bg-white' : 'text-primary-gray-900'
               } ${
                 (disabled || readonly) && 'bg-primary-gray-100'
-              } placeholder-primary-gray-400 caret-primary-blue-800 focus:text-primary-gray-700 read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:text-gray-400`,
+              } placeholder-primary-gray-400 caret-ib-blue-800 focus:text-primary-gray-700 read-only:pointer-events-none focus:ring-0 focus:outline-none disabled:text-gray-400`,
               fontClass,
             ),
           )}
@@ -488,7 +488,7 @@ export const InputScale = forwardRef<HTMLInputElement, TextInputProps>(function 
           {label}
         </Typography>
       </div>
-      {errorMessage && <p className="text-system-error-800 text-sm">{errorMessage}</p>}
+      {errorMessage && <p className="text-- text-sm">{errorMessage}</p>}
     </div>
   )
 })

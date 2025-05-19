@@ -74,7 +74,7 @@ export const Feedback: FC<FeedbackProps> = ({
                     item.sender === null
                       ? 'bg-primary-gray-50'
                       : item.sender.role !== 'USER'
-                        ? 'bg-primary-orange-50'
+                        ? 'bg-primary-50'
                         : 'bg-primary-gray-50'
                   }`}
                 >
@@ -90,7 +90,7 @@ export const Feedback: FC<FeedbackProps> = ({
                     <div className="flex flex-row items-center justify-between">
                       <span className="flex flex-row items-center gap-2">
                         <SolidSVGIcon.Talk size={24} color="orange800" weight="bold" />
-                        <Typography variant="title3" className="text-primary-orange-800">
+                        <Typography variant="title3" className="text-primary-800">
                           {item.sender.name}선생님의 피드백
                         </Typography>
                       </span>
@@ -167,7 +167,7 @@ export const Feedback: FC<FeedbackProps> = ({
             value={content}
             onChange={(e) => setContent(e.target.value)}
             className={clsx(
-              `text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-primary-blue-800 focus:text-primary-gray-700 h-16 resize-none border-none p-0 focus:border-none focus:ring-0 disabled:text-gray-400`,
+              `text-15 text-primary-gray-900 placeholder-primary-gray-400 caret-ib-blue-800 focus:text-primary-gray-700 h-16 resize-none border-none p-0 focus:border-none focus:ring-0 disabled:text-gray-400`,
               {
                 'bg-white': readonly && readonlyBackground === 'bg-white',
                 'bg-primary-gray-100':

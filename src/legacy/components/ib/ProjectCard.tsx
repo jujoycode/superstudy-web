@@ -60,7 +60,7 @@ function CasProjectCard({ data, user }: ProjectCardProps) {
           {data.status === 'WAIT_MENTOR' && data.mentor !== null && (
             <div className="flex flex-row items-center gap-1">
               <SVGIcon.Check color="orange800" size={12} weight="bold" />
-              <Typography variant="caption" className="text-primary-orange-800 font-medium">
+              <Typography variant="caption" className="text-primary-800 font-medium">
                 감독교사 요청함
               </Typography>
             </div>
@@ -68,7 +68,7 @@ function CasProjectCard({ data, user }: ProjectCardProps) {
           {data.status === 'WAIT_COMPLETE' && (
             <div className="flex flex-row items-center gap-1">
               <SVGIcon.Check color="orange800" size={12} weight="bold" />
-              <Typography variant="caption" className="text-primary-orange-800 font-medium">
+              <Typography variant="caption" className="text-primary-800 font-medium">
                 완료승인 요청함
               </Typography>
             </div>
@@ -189,7 +189,7 @@ function CasProjectCard({ data, user }: ProjectCardProps) {
             <div className="mx-2 h-[1px] flex-1 border-t border-dashed border-gray-300"></div>
             <span
               className={`flex h-4 w-4 items-center justify-center rounded ${
-                data.activityLog?.length === 0 ? 'bg-primary-gray-500' : 'bg-primary-orange-800'
+                data.activityLog?.length === 0 ? 'bg-primary-gray-500' : 'bg-primary-800'
               } text-11 px-1 py-px font-medium text-white`}
             >
               {data.activityLog ? data.activityLog.length : 0}
@@ -249,7 +249,7 @@ function EeProjectCard({ data, user }: ProjectCardProps) {
           {data.status === 'WAIT_COMPLETE' && (
             <div className="flex flex-row items-center gap-1">
               <SVGIcon.Check color="orange800" size={12} weight="bold" />
-              <Typography variant="caption" className="text-primary-orange-800 font-medium">
+              <Typography variant="caption" className="text-primary-800 font-medium">
                 완료승인 요청함
               </Typography>
             </div>
@@ -597,7 +597,7 @@ function TokExProjectCard({ data, user }: ProjectCardProps) {
           {data.status === 'WAIT_COMPLETE' && (
             <div className="flex flex-row items-center gap-1">
               <SVGIcon.Check color="orange800" size={12} weight="bold" />
-              <Typography variant="caption" className="text-primary-orange-800 font-medium">
+              <Typography variant="caption" className="text-primary-800 font-medium">
                 완료승인 요청함
               </Typography>
             </div>
@@ -731,7 +731,7 @@ function TokEsProjectCard({ data, user }: ProjectCardProps) {
           {data.status === 'WAIT_COMPLETE' && (
             <div className="flex flex-row items-center gap-1">
               <SVGIcon.Check color="orange800" size={12} weight="bold" />
-              <Typography variant="caption" className="text-primary-orange-800 font-medium">
+              <Typography variant="caption" className="text-primary-800 font-medium">
                 완료승인 요청함
               </Typography>
             </div>

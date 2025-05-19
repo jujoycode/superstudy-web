@@ -106,7 +106,7 @@ const Stepper: React.FC<StepperProps> = ({
             onChange={handleInputChange}
             readOnly={readonly}
             disabled={disabled}
-            className="text-primary-gray-700 caret-primary-blue-800 disabled:text-primary-gray-400 h-full w-full border-none bg-transparent p-0 text-center text-sm font-medium focus:ring-0 focus:outline-none"
+            className="text-primary-gray-700 caret-ib-blue-800 disabled:text-primary-gray-400 h-full w-full border-none bg-transparent p-0 text-center text-sm font-medium focus:ring-0 focus:outline-none"
           />
         </div>
         <div

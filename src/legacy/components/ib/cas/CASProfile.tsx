@@ -46,7 +46,7 @@ function CASProfile({ data, refetch, me }: CASProfileProps) {
       ) : (
         <section
           className={`flex w-[416px] flex-col gap-6 self-start rounded-xl bg-white p-6 ${
-            data === undefined && 'border-primary-orange-400 border shadow-[0_0_15px_5px_0_4px_8px_0_#ffe8db]'
+            data === undefined && 'border-primary-400 border shadow-[0_0_15px_5px_0_4px_8px_0_#ffe8db]'
           }`}
         >
           <div className="flex flex-row items-center justify-between">

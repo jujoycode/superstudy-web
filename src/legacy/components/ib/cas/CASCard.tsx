@@ -87,7 +87,7 @@ function CASCard({ data, user }: CASCardProps) {
         <div className="mx-2 h-[1px] flex-1 border-t border-dashed border-gray-300"></div>
         <span
           className={`flex h-4 w-4 items-center justify-center rounded ${
-            data.activityLog?.length === 0 ? 'bg-primary-gray-500' : 'bg-primary-orange-800'
+            data.activityLog?.length === 0 ? 'bg-primary-gray-500' : 'bg-primary-800'
           } text-11 px-1 py-px font-medium text-white`}
         >
           {data.activityLog ? data.activityLog.length : 0}

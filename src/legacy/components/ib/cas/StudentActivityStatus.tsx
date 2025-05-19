@@ -98,7 +98,7 @@ function StudentActivityStatus({ data, mentor }: StudentActivityStatusProps) {
           희망 감독교사 · {mentor ? `${mentor} 선생님` : '미정'}
         </Typography>
       </header>
-      <Typography variant="title3" className="bg-primary-orange-50 rounded-lg px-4 py-3 font-medium">
+      <Typography variant="title3" className="bg-primary-50 rounded-lg px-4 py-3 font-medium">
         {data.leader.studentGroup.group.grade}
         {String(data.leader.studentGroup.group.klass).padStart(2, '0')}
         {String(data.leader.studentGroup.studentNumber).padStart(2, '0')}

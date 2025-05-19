@@ -171,7 +171,7 @@ export const EvaluationList: FC<EvaluationListProps> = ({
     <>
       {isLoading && <Blank />}
       <div className="flex flex-col gap-3">
-        <div className="bg-primary-orange-50 flex items-center justify-between gap-1 rounded-lg px-4 py-3">
+        <div className="bg-primary-50 flex items-center justify-between gap-1 rounded-lg px-4 py-3">
           <div className="flex items-center gap-1">
             <Typography variant="title3" className="font-medium">
               채점 점수
@@ -181,7 +181,7 @@ export const EvaluationList: FC<EvaluationListProps> = ({
               (만점 {maxScore}점)
             </Typography>
           </div>
-          <Typography variant="title3" className="text-primary-orange-800 max-w-[206px] text-right">
+          <Typography variant="title3" className="text-primary-800 max-w-[206px] text-right">
             {/* TODO: 각 기준별 채점한 score의 총합 계산 필요*/}
             {totalScore}점
           </Typography>

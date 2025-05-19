@@ -27,7 +27,7 @@ const Accordion = ({ title, count = 0, isFirst = false, children }: PropsWithChi
       >
         <span className="flex flex-row items-center gap-1">
           <Typography variant="title3">{title}</Typography>
-          <Typography variant="title3" className="text-primary-orange-800">
+          <Typography variant="title3" className="text-primary-800">
             {count}
           </Typography>
         </span>

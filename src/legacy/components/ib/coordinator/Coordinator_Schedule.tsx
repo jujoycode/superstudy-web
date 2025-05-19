@@ -233,7 +233,7 @@ const Coordinator_Schedule: FC<Coordinator_ScheduleProps> = ({ type = 'IB_EE' })
               children="삭제하기"
               disabled={isLoading}
               onClick={() => deleteDeadline({ id: selectedSchedule.id })}
-              className="bg-primary-orange-800 disabled:filled-gray-dark text-white"
+              className="bg-primary-800 disabled:filled-gray-dark text-white"
             />
           </Section>
         </SuperModal>

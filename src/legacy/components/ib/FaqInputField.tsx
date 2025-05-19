@@ -37,7 +37,7 @@ export const FaqInputField = ({
       <div className="flex flex-col gap-3 rounded-md bg-gray-50 p-4">
         <div className="flex items-center justify-between">
           <Typography variant="title3" className="text-primary-gray-900 font-semibold">
-            질문 <span className="text-primary-orange-800">{index + 1}</span>
+            질문 <span className="text-primary-800">{index + 1}</span>
           </Typography>
           <ColorSVGIcon.Close color="gray700" size={24} onClick={() => onDelete(index)} />
         </div>

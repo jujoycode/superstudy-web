@@ -194,7 +194,7 @@ export default function TeacherIBPortfolioList() {
             <hr className="flex-1" />
             <Typography variant="body3" className="font-medium">
               {selectedOptions.studentName} <span className="text-primary-gray-700 font-normal">검색결과</span>{' '}
-              <span className="text-primary-orange-800">{filteredData.length}</span>
+              <span className="text-primary-800">{filteredData.length}</span>
             </Typography>
             <hr className="flex-1" />
           </div>

@@ -40,7 +40,7 @@ function PortfolioCard({ data }: PortfolioCardProps) {
             진행중인 활동
           </Typography>
           &nbsp;
-          <Typography variant="caption2" className="text-primary-orange-800 font-medium">
+          <Typography variant="caption2" className="text-primary-800 font-medium">
             {data.projectInfo.count}개
           </Typography>
         </div>
@@ -90,7 +90,7 @@ function PortfolioCard({ data }: PortfolioCardProps) {
                   <div className="mx-2 h-[1px] flex-1 border-t border-dashed border-gray-300"></div>
                   <span
                     className={`flex h-4 w-4 items-center justify-center rounded ${
-                      data.reflectionDiaryCount === 0 ? 'bg-primary-gray-500' : 'bg-primary-orange-800'
+                      data.reflectionDiaryCount === 0 ? 'bg-primary-gray-500' : 'bg-primary-800'
                     } text-11 px-1 py-px font-medium text-white`}
                   >
                     {data.reflectionDiaryCount}
@@ -103,7 +103,7 @@ function PortfolioCard({ data }: PortfolioCardProps) {
                   <div className="mx-2 h-[1px] flex-1 border-t border-dashed border-gray-300"></div>
                   <span
                     className={`flex h-4 w-4 items-center justify-center rounded ${
-                      data.interviewCount === 0 ? 'bg-primary-gray-500' : 'bg-primary-orange-800'
+                      data.interviewCount === 0 ? 'bg-primary-gray-500' : 'bg-primary-800'
                     } text-11 px-1 py-px font-medium text-white`}
                   >
                     {data.interviewCount}

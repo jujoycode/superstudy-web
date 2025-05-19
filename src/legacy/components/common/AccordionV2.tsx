@@ -66,7 +66,7 @@ const AccordionV2 = ({
               {title}
             </Typography>
             {useCount && (
-              <Typography variant="title3" className="text-primary-orange-800">
+              <Typography variant="title3" className="text-primary-800">
                 {count}
               </Typography>
             )}

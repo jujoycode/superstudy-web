@@ -170,8 +170,7 @@ export default function RppfIbSubmitInformPopup({
               제출내역
             </Typography>
             <Typography variant="caption" className="text-primary-gray-500">
-              총 단어수{' '}
-              <span className="text-primary-orange-800">{wordCounts.reduce((sum, count) => sum + count, 0)}</span>
+              총 단어수 <span className="text-primary-800">{wordCounts.reduce((sum, count) => sum + count, 0)}</span>
             </Typography>
           </div>
 
@@ -189,7 +188,7 @@ export default function RppfIbSubmitInformPopup({
               {rppfState?.contents[0].text}
             </Typography>
             <Typography variant="caption" className="text-primary-gray-500">
-              단어수 <span className="text-primary-orange-800">{rppfState?.contents[0].wordCount}</span>
+              단어수 <span className="text-primary-800">{rppfState?.contents[0].wordCount}</span>
             </Typography>
           </div>
 
@@ -207,7 +206,7 @@ export default function RppfIbSubmitInformPopup({
               {rppfState?.contents[1].text}
             </Typography>
             <Typography variant="caption" className="text-primary-gray-500">
-              단어수 <span className="text-primary-orange-800">{rppfState?.contents[1].wordCount}</span>
+              단어수 <span className="text-primary-800">{rppfState?.contents[1].wordCount}</span>
             </Typography>
           </div>
 
@@ -225,7 +224,7 @@ export default function RppfIbSubmitInformPopup({
               {rppfState?.contents[2].text}
             </Typography>
             <Typography variant="caption" className="text-primary-gray-500">
-              단어수 <span className="text-primary-orange-800">{rppfState?.contents[2].wordCount}</span>
+              단어수 <span className="text-primary-800">{rppfState?.contents[2].wordCount}</span>
             </Typography>
           </div>
 

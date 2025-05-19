@@ -464,7 +464,7 @@ export const ExhibitionPlanDetailPage = () => {
                         <div className="flex flex-col gap-4">
                           <div className="flex flex-row items-center">
                             <Typography variant="title2">대상</Typography>&nbsp;
-                            <Typography variant="title2" className="text-primary-orange-800">
+                            <Typography variant="title2" className="text-primary-800">
                               1
                             </Typography>
                           </div>
@@ -495,7 +495,7 @@ export const ExhibitionPlanDetailPage = () => {
                         <div className="flex flex-col gap-4">
                           <div className="flex flex-row items-center">
                             <Typography variant="title2">대상</Typography>&nbsp;
-                            <Typography variant="title2" className="text-primary-orange-800">
+                            <Typography variant="title2" className="text-primary-800">
                               2
                             </Typography>
                           </div>
@@ -526,7 +526,7 @@ export const ExhibitionPlanDetailPage = () => {
                         <div className="flex flex-col gap-4">
                           <div className="flex flex-row items-center">
                             <Typography variant="title2">대상</Typography>&nbsp;
-                            <Typography variant="title2" className="text-primary-orange-800">
+                            <Typography variant="title2" className="text-primary-800">
                               3
                             </Typography>
                           </div>

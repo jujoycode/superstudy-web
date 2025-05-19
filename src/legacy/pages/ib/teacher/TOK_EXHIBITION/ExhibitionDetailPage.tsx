@@ -392,7 +392,7 @@ export const ExhibitionDetailPage = () => {
                   <Typography variant="heading" className="w-[692px] overflow-hidden text-ellipsis whitespace-nowrap">
                     {ibData?.tokExhibitionPlan?.themeQuestion}
                   </Typography>
-                  <div className="text-16 text-primary-orange-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
+                  <div className="text-16 text-primary-800 rounded-lg border border-orange-100 bg-orange-50 px-4 py-2 font-semibold">
                     {klassNum} · {ibData?.leader.name}
                   </div>
                 </div>
@@ -450,7 +450,7 @@ export const ExhibitionDetailPage = () => {
                                     대상
                                   </Typography>
                                   &nbsp;
-                                  <Typography variant="title2" className="text-primary-orange-800 font-semibold">
+                                  <Typography variant="title2" className="text-primary-800 font-semibold">
                                     {targetKey}
                                   </Typography>
                                 </div>
@@ -546,7 +546,7 @@ export const ExhibitionDetailPage = () => {
 
                         <div className="text-12 flex flex-row items-center">
                           <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-                          <p className="text-primary-orange-800 font-medium">{totalWordCount}</p>
+                          <p className="text-primary-800 font-medium">{totalWordCount}</p>
                         </div>
                       </div>
                       <Typography variant="body3" className="text-primary-gray-500">
@@ -564,7 +564,7 @@ export const ExhibitionDetailPage = () => {
                             단어수
                           </Typography>
                           &nbsp;
-                          <Typography variant="caption" className="text-primary-orange-800 font-medium">
+                          <Typography variant="caption" className="text-primary-800 font-medium">
                             {data?.introductionWordCount}
                           </Typography>
                         </span>
@@ -580,7 +580,7 @@ export const ExhibitionDetailPage = () => {
                             <div className="flex flex-col gap-4">
                               <Typography variant="title2" className="text-primary-gray-900">
                                 대상&nbsp;
-                                <span className="text-primary-orange-800">{num}</span>
+                                <span className="text-primary-800">{num}</span>
                               </Typography>
                               {images[imageKey] && (
                                 <LazyLoadImage
@@ -595,7 +595,7 @@ export const ExhibitionDetailPage = () => {
                                 {data[targetContentKey]}
                               </Typography>
                               <Typography variant="caption" className="text-primary-gray-500">
-                                단어수 <span className="text-primary-orange-800">{data[wordCountKey]}</span>
+                                단어수 <span className="text-primary-800">{data[wordCountKey]}</span>
                               </Typography>
                             </div>
                           </div>
@@ -612,7 +612,7 @@ export const ExhibitionDetailPage = () => {
                               단어수
                             </Typography>
                             &nbsp;
-                            <Typography variant="caption" className="text-primary-orange-800 font-medium">
+                            <Typography variant="caption" className="text-primary-800 font-medium">
                               {data?.conclusionWordCount}
                             </Typography>
                           </span>
@@ -639,7 +639,7 @@ export const ExhibitionDetailPage = () => {
                       <div className="flex flex-row items-center gap-4">
                         <div className="text-12 flex flex-row items-center">
                           <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-                          <p className="text-primary-orange-800 font-medium">{totalWordCount}</p>
+                          <p className="text-primary-800 font-medium">{totalWordCount}</p>
                         </div>
                         <ButtonV2 size={40} variant="solid" color="orange100" onClick={handleSubmit(onSubmit)}>
                           저장하기

@@ -159,7 +159,7 @@ export default function CASInterviewDetailPage() {
                             <div key={index} className="flex flex-col gap-3">
                               <div className="flex flex-row items-start justify-between">
                                 <div className="flex flex-row items-start">
-                                  <Typography variant="title3" className="text-primary-orange-800">
+                                  <Typography variant="title3" className="text-primary-800">
                                     Q{questionListAdded.filter((i, idx) => !i.added && idx < index).length + 1}.&nbsp;
                                   </Typography>
                                   <input
@@ -192,7 +192,7 @@ export default function CASInterviewDetailPage() {
                               <Typography variant="title2">개별 질문</Typography>
                               <div className="flex flex-row items-start justify-between">
                                 <div className="flex flex-row items-start">
-                                  <Typography variant="title3" className="text-primary-orange-800">
+                                  <Typography variant="title3" className="text-primary-800">
                                     Q{questionListAdded.filter((i, idx) => i.added && idx < index).length + 1}.&nbsp;
                                   </Typography>
                                   <input
@@ -227,7 +227,7 @@ export default function CASInterviewDetailPage() {
                           <div className="flex flex-col gap-3" key={index}>
                             <div className="flex items-center justify-between">
                               <Typography variant="title3" className="font-semibold">
-                                추가 개별 질문 <span className="text-primary-orange-800">Q{index + 1}</span>
+                                추가 개별 질문 <span className="text-primary-800">Q{index + 1}</span>
                               </Typography>
                               <ColorSVGIcon.Close
                                 color="gray700"
@@ -293,7 +293,7 @@ export default function CASInterviewDetailPage() {
                         .map((item, index) => (
                           <div key={index} className="flex flex-col gap-3">
                             <div className="flex flex-row items-start">
-                              <Typography variant="title3" className="text-primary-orange-800">
+                              <Typography variant="title3" className="text-primary-800">
                                 Q{index + 1}.&nbsp;
                               </Typography>
                               <Typography variant="title3">{item.question}</Typography>
@@ -316,7 +316,7 @@ export default function CASInterviewDetailPage() {
                           .map((item, index) => (
                             <div key={index} className="flex flex-col gap-3">
                               <div className="flex flex-row items-start">
-                                <Typography variant="title3" className="text-primary-orange-800">
+                                <Typography variant="title3" className="text-primary-800">
                                   Q{index + 1}.&nbsp;
                                 </Typography>
                                 <Typography variant="title3">{item.question}</Typography>

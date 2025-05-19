@@ -204,9 +204,7 @@ export function IbEeRPPF({
           >
             <div className="text-12 flex flex-row items-center">
               <p className="text-primary-gray-500">총 단어 수</p>&nbsp;
-              <p className="text-primary-orange-800 font-medium">
-                {wordCounts.reduce((total, count) => total + count, 0)}
-              </p>
+              <p className="text-primary-800 font-medium">{wordCounts.reduce((total, count) => total + count, 0)}</p>
             </div>
             <ButtonV2
               disabled={isSaveButtonDisabled()}

@@ -340,7 +340,7 @@ export default function TeacherIBStatus() {
               <hr className="flex-1" />
               <Typography variant="body3" className="font-medium">
                 {selectedOptions.studentName} <span className="text-primary-gray-700 font-normal">검색결과</span>{' '}
-                <span className="text-primary-orange-800">
+                <span className="text-primary-800">
                   {counts['COMPLETE'] +
                     counts['IN_PROGRESS,REJECT_COMPLETE,WAIT_COMPLETE'] +
                     counts['WAIT_MENTOR,WAITING_FOR_NEXT_PROPOSAL'] +
