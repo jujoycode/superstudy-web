@@ -105,7 +105,7 @@ export function useOtp() {
           setOtpCheckResult(true)
           setSeconds(0)
           setToastMsg('인증번호가 확인되었습니다.')
-          setStorage('two-factor', 'true')
+          setStorage('twoFactor', 'true')
           setTwoFactorState('true')
           push('/')
         } else {

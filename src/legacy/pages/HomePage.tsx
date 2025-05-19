@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router'
 import superstudyLight from '@/assets/images/superstudy-light.png'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
@@ -7,14 +5,10 @@ import { BottomFixed, Screen, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { globalEnv } from '@/legacy/util/global-env'
-import { useUserStore } from '@/stores/user'
-import { Role } from '../generated/model'
 
 export function HomePage() {
   const { push } = useHistory()
   const { t } = useLanguage()
-  const { me } = useUserStore()
-  const navigate = useNavigate()
 
   const redirectToStore = () => {
     const userAgent = navigator.userAgent
@@ -27,16 +21,6 @@ export function HomePage() {
       window.location.href = 'https://apps.apple.com/app/id1611178586' // 여기에 애플 앱의 URL을 넣으세요.
     }
   }
-
-  useEffect(() => {
-    if (!me) return
-
-    if (me.role === Role.USER || me.role === Role.PARENT) {
-      navigate('/student')
-    } else {
-      navigate('/teacher')
-    }
-  }, [me, navigate])
 
   return (
     <div className="font-spoqa text-md box-border flex h-screen min-h-screen w-full min-w-full items-center justify-center font-normal">

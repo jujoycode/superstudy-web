@@ -34,16 +34,18 @@ import { OutingPage } from '@/legacy/pages/student/outing/OutingPage'
 import { PointLogsPage } from '@/legacy/pages/student/point/PointLogsPage'
 import { SelfTestPage } from '@/legacy/pages/student/self-test/SelfTestPage'
 import { TimetableDetailPage } from '@/legacy/pages/student/timetable/TimetableDetailPage'
+import { RoleGuard } from './guard/RoleGuard'
 import { StudentGuard } from './guard/StudentGuard'
 
 export const studentRoutes = {
   path: '/student',
   element: (
-    // <AuthGuard>
-    <StudentGuard>
-      <StudentLayout />
-    </StudentGuard>
-    // </AuthGuard>
+    // TODO: 동작 테스트 필요
+    <RoleGuard>
+      <StudentGuard>
+        <StudentLayout />
+      </StudentGuard>
+    </RoleGuard>
   ),
   children: [
     // 활동

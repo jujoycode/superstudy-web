@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom'
-import { Role } from '@/legacy/generated/model'
 import { useUserStore } from '@/stores/user'
+import { Role } from '@/legacy/generated/model'
 
 interface Props {
   children: React.ReactNode
@@ -57,11 +57,7 @@ export function AdminGuard({ children }: Props) {
   const path = Object.keys(PERMISSION_MAP).find((p) => location.pathname.startsWith(p)) as PathKey | undefined
   const hasPermission = !path || PERMISSION_MAP[path](me?.teacherPermission, me)
 
-  if (!me || (me.role !== Role.ADMIN && !me.teacherPermission)) {
-    return <Navigate to="/" replace />
-  }
-
-  if (me.role === Role.ADMIN) {
+  if (me?.role === Role.ADMIN) {
     return children
   }
 
@@ -71,7 +67,7 @@ export function AdminGuard({ children }: Props) {
 
   if (location.pathname === '/admin') {
     const redirectPath = (Object.keys(PERMISSION_MAP) as PathKey[]).find((key) =>
-      PERMISSION_MAP[key](me.teacherPermission, me),
+      PERMISSION_MAP[key](me?.teacherPermission, me),
     )
 
     if (redirectPath) {

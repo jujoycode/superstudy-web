@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react'
-import { Icon } from '@/atoms/Icon'
 import { Container } from '@/atoms/Container'
+import { Icon } from '@/atoms/Icon'
 import { Text } from '@/atoms/Text'
 
 export type NavigationItem = {

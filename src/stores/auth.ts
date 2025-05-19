@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
 
 type AuthState = {
   isStayLoggedIn: boolean
@@ -14,35 +13,79 @@ type AuthState = {
   reset: () => void
 }
 
-const initialState = {
-  isStayLoggedIn: typeof window !== 'undefined' ? localStorage.getItem('isStayLoggedIn') === 'true' : true,
-  token: null,
-  refreshToken: null,
-  twoFactor: 'false',
+// 브라우저 스토리지에서 초기값 가져오기
+const getInitialState = () => {
+  const isServer = typeof window === 'undefined'
+  return {
+    isStayLoggedIn: !isServer ? localStorage.getItem('isStayLoggedIn') === 'true' : true,
+    token: !isServer ? localStorage.getItem('token') : null,
+    refreshToken: !isServer ? localStorage.getItem('refreshToken') : null,
+    twoFactor: !isServer ? localStorage.getItem('twoFactor') : null,
+  }
 }
 
-export const useAuthStore = create<AuthState>()(
-  persist(
-    (set) => ({
-      ...initialState,
+export const useAuthStore = create<AuthState>()((set) => ({
+  ...getInitialState(),
 
-      setIsStayLoggedIn: (isStayLoggedIn) => set({ isStayLoggedIn }),
-      setToken: (token) => set({ token }),
-      setRefreshToken: (refreshToken) => set({ refreshToken }),
-      setTwoFactor: (twoFactor) => set({ twoFactor }),
-      reset: () => set(initialState),
-    }),
-    {
-      name: 'auth-storage',
-      partialize: (state) => ({
-        isStayLoggedIn: state.isStayLoggedIn,
-        token: state.token,
-        refreshToken: state.refreshToken,
-        twoFactor: state.twoFactor,
-      }),
-    },
-  ),
-)
+  setIsStayLoggedIn: (isStayLoggedIn) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('isStayLoggedIn', String(isStayLoggedIn))
+    }
+    set({ isStayLoggedIn })
+  },
+  setToken: (token) => {
+    if (typeof window !== 'undefined') {
+      if (token) {
+        const storage = useAuthStore.getState().isStayLoggedIn ? localStorage : sessionStorage
+        storage.setItem('token', token)
+        storage.setItem('tokenIssue', new Date().toISOString())
+      } else {
+        localStorage.removeItem('token')
+        sessionStorage.removeItem('token')
+        localStorage.removeItem('tokenIssue')
+        sessionStorage.removeItem('tokenIssue')
+      }
+    }
+    set({ token })
+  },
+  setRefreshToken: (refreshToken) => {
+    if (typeof window !== 'undefined') {
+      if (refreshToken) {
+        const storage = useAuthStore.getState().isStayLoggedIn ? localStorage : sessionStorage
+        storage.setItem('refreshToken', refreshToken)
+      } else {
+        localStorage.removeItem('refreshToken')
+        sessionStorage.removeItem('refreshToken')
+      }
+    }
+    set({ refreshToken })
+  },
+  setTwoFactor: (twoFactor) => {
+    if (typeof window !== 'undefined') {
+      if (twoFactor) {
+        const storage = useAuthStore.getState().isStayLoggedIn ? localStorage : sessionStorage
+        storage.setItem('twoFactor', twoFactor)
+      } else {
+        localStorage.removeItem('twoFactor')
+        sessionStorage.removeItem('twoFactor')
+      }
+    }
+    set({ twoFactor })
+  },
+  reset: () => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token')
+      localStorage.removeItem('refreshToken')
+      localStorage.removeItem('twoFactor')
+      localStorage.removeItem('tokenIssue')
+      sessionStorage.removeItem('token')
+      sessionStorage.removeItem('refreshToken')
+      sessionStorage.removeItem('twoFactor')
+      sessionStorage.removeItem('tokenIssue')
+    }
+    set(getInitialState())
+  },
+}))
 
 export const useBrowserStorage = () => {
   const isStayLoggedIn = useAuthStore((state) => state.isStayLoggedIn)

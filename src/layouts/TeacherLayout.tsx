@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router'
 import { Container } from '@/atoms/Container'
-import { Toast } from '@/legacy/components/Toast'
-import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { TeacherLNB } from '@/organisms/LNB/TeacherLNB'
 import { MenuConstant } from '@/constants/MenuConstant'
+import { Toast } from '@/legacy/components/Toast'
+import { DateFormat, DateUtil } from '@/legacy/util/date'
 
 export function TeacherLayout() {
   const navigate = useNavigate()

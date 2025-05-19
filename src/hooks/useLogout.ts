@@ -1,8 +1,8 @@
 // src/legacy/util/hooks.ts
 import { useNavigate } from 'react-router'
 import { useBrowserStorage } from '@/hooks/useBrowserStorage'
-import { RN } from '@/legacy/lib/rn'
 import { useAuthStore } from '@/stores/auth'
+import { RN } from '@/legacy/lib/rn'
 
 export function useAuth() {
   const token = useAuthStore((state) => state.token)
@@ -23,8 +23,7 @@ export function useLogout() {
     RN.flareLane('setTags', tagValue)
     removeStorage('token')
     removeStorage('refreshToken')
-    removeStorage('two-factor')
-    localStorage.removeItem('auth-storage')
+    removeStorage('twoFactor')
     localStorage.removeItem('isStayLoggedIn')
     localStorage.removeItem('childToken')
     localStorage.removeItem('child-user-id')

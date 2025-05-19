@@ -21,10 +21,15 @@ import { ExhibitionDetailPage } from '@/legacy/pages/ib/student/TOK_EXHIBITION/E
 import { ExhibitionMainPage } from '@/legacy/pages/ib/student/TOK_EXHIBITION/ExhibitionMainPage'
 import { ExhibitionPlanDetailPage } from '@/legacy/pages/ib/student/TOK_EXHIBITION/ExhibitionPlanDetailPage'
 import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/student/PlagiarismInspectPage'
+import { RoleGuard } from './guard/RoleGuard'
 
 export const ibRoutes = {
   path: '/ib/student',
-  element: <IBStudentPage />,
+  element: (
+    <RoleGuard>
+      <IBStudentPage />
+    </RoleGuard>
+  ),
   children: [
     // IB 메인
     { index: true, element: <IBStudentMainPage /> },

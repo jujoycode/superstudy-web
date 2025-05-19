@@ -52,14 +52,14 @@ import { NewsletterPage } from '@/legacy/pages/teacher/newsletter/NewsletterPage
 import { PointDashboard } from '@/legacy/pages/teacher/pointlogs/PointDashboard'
 import { RecordPage } from '@/legacy/pages/teacher/record/RecordPage'
 import { StudentCardPage } from '@/legacy/pages/teacher/studentcard/StudentCardPage'
-import { AuthRouter } from './guard/AuthRouter'
+import { RoleGuard } from './guard/RoleGuard'
 
 export const teacherRoutes = {
   path: '/teacher',
   element: (
-    <AuthRouter>
+    <RoleGuard>
       <TeacherLayout />
-    </AuthRouter>
+    </RoleGuard>
   ),
   children: [
     // 출석부

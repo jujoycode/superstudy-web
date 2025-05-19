@@ -86,13 +86,77 @@ export default tseslint.config(
       'import/order': [
         'error',
         {
-          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          groups: ['builtin', 'external', 'internal', 'sibling'],
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
           pathGroups: [
-            { pattern: 'react*', group: 'builtin' },
-            { pattern: '@/*', group: 'sibling' },
+            {
+              pattern: '@/',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/assets/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/atoms/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/molecules/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/organisms/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/pages/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/layouts/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/hooks/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/utils/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/constants/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/stores/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/routers',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/legacy/**',
+              group: 'internal',
+              position: 'after',
+            },
           ],
-          pathGroupsExcludedImportTypes: [],
           alphabetize: { order: 'asc', caseInsensitive: true },
+          pathGroupsExcludedImportTypes: [],
         },
       ],
 
