@@ -53,6 +53,7 @@ const SubNavigationItem = ({ title, link, external }: { title: string; link?: st
     {external && (
       <Icon
         name="rightUpArrow"
+        stroke
         color="gray-400"
         customSize={{ width: '16px', height: '16px' }}
         className="group-hover:text-primary-800 ml-1"
@@ -85,6 +86,7 @@ const NavigationItem = ({ item }: { item: NavigationItem }) => {
               <Icon
                 name="chevronUp"
                 color="gray-400"
+                stroke
                 customSize={{ width: '16px', height: '16px' }}
                 className="group-hover:text-primary-800"
               />
@@ -92,6 +94,7 @@ const NavigationItem = ({ item }: { item: NavigationItem }) => {
               <Icon
                 name="chevronDown"
                 color="gray-400"
+                stroke
                 customSize={{ width: '16px', height: '16px' }}
                 className="group-hover:text-primary-800"
               />
@@ -125,6 +128,7 @@ const NavigationItem = ({ item }: { item: NavigationItem }) => {
         <Icon
           name="rightUpArrow"
           color="gray-400"
+          stroke
           customSize={{ width: '16px', height: '16px' }}
           className="group-hover:text-primary-800"
         />
