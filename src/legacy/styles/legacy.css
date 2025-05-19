@@ -16,70 +16,70 @@
 }
 
 .h-screen-2 {
-  height: calc(100vh - 2rem);
+  height: var(--height-screen-2);
 }
 .h-screen-3 {
-  height: calc(100vh - 3rem);
+  height: var(--height-screen-3);
 }
 .h-screen-3\.5 {
-  height: calc(100vh - 3.5rem);
+  height: var(--height-screen-3\.5);
 }
 .h-screen-4 {
-  height: calc(100vh - 4rem);
+  height: var(--height-screen-4);
 }
 .h-screen-4\.5 {
-  height: calc(100vh - 4.5rem);
+  height: var(--height-screen-4\.5);
 }
 .h-screen-5 {
-  height: calc(100vh - 5rem);
+  height: var(--height-screen-5);
 }
 .h-screen-6 {
-  height: calc(100vh - 6rem);
+  height: var(--height-screen-6);
 }
 .h-screen-7 {
-  height: calc(100vh - 7rem);
+  height: var(--height-screen-7);
 }
 .h-screen-8 {
-  height: calc(100vh - 8rem);
+  height: var(--height-screen-8);
 }
 .h-screen-9 {
-  height: calc(100vh - 9rem);
+  height: var(--height-screen-9);
 }
 .h-screen-10 {
-  height: calc(100vh - 10rem);
+  height: var(--height-screen-10);
 }
 .h-screen-12 {
-  height: calc(100vh - 12rem);
+  height: var(--height-screen-12);
 }
 .h-screen-13 {
-  height: calc(100vh - 13rem);
+  height: var(--height-screen-13);
 }
 .h-screen-14 {
-  height: calc(100vh - 14rem);
+  height: var(--height-screen-14);
 }
 .h-screen-15 {
-  height: calc(100vh - 15rem);
+  height: var(--height-screen-15);
 }
 .h-screen-16 {
-  height: calc(100vh - 16rem);
+  height: var(--height-screen-16);
 }
 .h-screen-18 {
-  height: calc(100vh - 18rem);
+  height: var(--height-screen-18);
 }
 .h-screen-20 {
-  height: calc(100vh - 20rem);
+  height: var(--height-screen-20);
 }
 .h-screen-22 {
-  height: calc(100vh - 22rem);
+  height: var(--height-screen-22);
 }
 .h-screen-30 {
-  height: calc(100vh - 30rem);
+  height: var(--height-screen-30);
 }
 .h-screen-32 {
-  height: calc(100vh - 32rem);
+  height: var(--height-screen-32);
 }
 .h-screen-64 {
-  height: calc(100% - 64rem);
+  height: var(--height-screen-64);
 }
 
 .filled-primary {
@@ -961,7 +961,7 @@
   --height-screen-22: calc(100vh - 22rem);
   --height-screen-30: calc(100vh - 30rem);
   --height-screen-32: calc(100vh - 32rem);
-  --height-screen-64: calc(100% - 64rem);
+  --height-screen-64: calc(100vh - 64rem);
 
   /* Min Width */
   --min-width-4: 1rem;
