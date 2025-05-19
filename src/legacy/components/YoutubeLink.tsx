@@ -6,7 +6,7 @@ interface YoutubeLinkProps {
 }
 
 export function YoutubeLink({ ContentTitle, videoId }: YoutubeLinkProps) {
-  const apiKey = 'AIzaSyBAtyZhUd0e-HnxCa1VYILdGWf7HKiaNC4'
+  const apiKey = import.meta.env.VITE_API_URL
 
   const [videoTitel, setVideoTitel] = useState('')
   const [videoUrl, setVideoUrl] = useState('')

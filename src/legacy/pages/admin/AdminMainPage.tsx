@@ -1,8 +1,8 @@
-import clsx from 'clsx'
-import { range } from 'lodash'
 import { createContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
+import clsx from 'clsx'
+import { range } from 'lodash'
 
 import { ReactComponent as ExitAdmin } from '@/assets/svg/exit-admin.svg'
 import { ReactComponent as LogoAdmin } from '@/assets/svg/logo-admin.svg'

@@ -159,6 +159,7 @@ export default defineConfig(({ mode }) => {
         '@/layouts': '/src/layouts',
         '@/hooks': '/src/hooks',
         '@/utils': '/src/utils',
+        '@/constants': '/src/constants',
         '@/stores': '/src/stores',
         '@/routers': '/src/routers',
         '@/assets': '/src/assets',

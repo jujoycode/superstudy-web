@@ -5,24 +5,15 @@ SuperStury Web은 React와 TypeScript를 기반으로 한 현대적인 웹 애�
 ## 기술 스택
 
 ### 핵심 기술
+
 - **React 19**: 최신 React 기능을 활용한 컴포넌트 기반 UI 개발
 - **TypeScript**: 정적 타입 검사를 통한 안정적인 코드베이스 구축
 - **Vite**: 빠른 개발 환경과 최적화된 빌드 시스템
 - **React Router 7**: 클라이언트 사이드 라우팅
-- **Recoil**: 상태 관리 라이브러리
-
-### UI/UX
-- **TailwindCSS 4**: 유틸리티 우선 CSS 프레임워크
-- **Swiper**: 터치 슬라이더 구현
-- **React Beautiful DnD**: 드래그 앤 드롭 인터페이스
-- **Chart.js & React-Chartjs-2**: 데이터 시각화
-
-### API 통신
-- **React Query**: 서버 상태 관리 및 캐싱
-- **Axios**: HTTP 클라이언트
-- **Socket.io-client**: 실시간 양방향 통신
+- **Zustand 5**: 상태 관리 라이브러리
 
 ### 개발 도구
+
 - **Storybook**: UI 컴포넌트 개발 및 문서화
 - **ESLint & Prettier**: 코드 품질 및 일관성 유지
 - **Vitest**: 테스트 프레임워크
@@ -45,21 +36,24 @@ src/
 ## 아키텍처 및 패턴
 
 ### 컴포넌트 설계 원칙
+
 - **아토믹 디자인**: 재사용 가능한 작은 컴포넌트부터 복잡한 페이지까지 계층적 구조
 - **컴포지션 우선**: 상속보다는 컴포지션을 통한 컴포넌트 구성
-- **Container/Presenter 패턴**: 로직과 UI의 분리
 
 ### 상태 관리
-- **Recoil**: 전역 상태 관리를 위한 atom 및 selector 활용
+
+- **Zustand**: 전역 State 관리 및 Store 분리
 - **React Query**: 서버 상태 관리 및 캐싱 전략
 
 ### 코딩 컨벤션
+
 - **기능 중심 폴더 구조**: 관련 기능을 하나의 폴더에 그룹화
 - **타입 우선 접근**: 인터페이스와 타입 정의를 통한 개발
 - **조기 반환 패턴**: 가독성을 위한 조기 반환 패턴 적용
 - **이벤트 핸들러 명명 규칙**: `handle` 접두사 사용
 
 ## 접근성 및 성능
+
 - **웹 접근성 준수**: ARIA 속성, 키보드 내비게이션 지원
 - **반응형 디자인**: 다양한 디바이스 지원
 - **성능 최적화**: 코드 분할, 지연 로딩, 메모이제이션
@@ -80,6 +74,9 @@ yarn env:prod # 프로덕션 환경
 # API 코드 생성
 yarn gen
 
+# Storybook 생성
+yarn storybook
+
 # 테스트 실행
 yarn test
 
@@ -88,11 +85,14 @@ yarn build
 ```
 
 ## Docker 지원
+
 개발 및 프로덕션 환경을 위한 Docker 구성이 포함되어 있습니다:
+
 - `Dockerfile.dev`: 개발 환경용
 - `Dockerfile`: 프로덕션 환경용
 
 ## 향후 개발 계획
+
 - 마이크로 프론트엔드 아키텍처 도입 검토
 - 자동화된 E2E 테스트 강화
 - 국제화(i18n) 지원 개선

@@ -13,5 +13,9 @@ export default meta
 type Story = StoryObj<typeof NavigationProfile>
 
 export const DefaultNavigationProfile: Story = {
-  args: {},
+  args: {
+    name: '김수학선생님',
+    email: 'team@super.kr',
+    school: '슈퍼고등학교',
+  },
 }
