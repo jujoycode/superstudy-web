@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 /* legacy base */
 .filled-primary {
   background-color: #ee853a;
