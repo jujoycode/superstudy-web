@@ -1,0 +1,28 @@
+export const themes = {
+  default: {
+    'primary-50': '#FFF8F5',
+    'primary-100': '#FFE8DB',
+    'primary-200': '#FFD8C2',
+    'primary-300': '#FFCBAD',
+    'primary-400': '#FFBC99',
+    'primary-700': '#FF803D',
+    'primary-800': '#FF600C',
+    'primary-850': '#CC4700',
+    'primary-900': '#CC4700',
+    'primary-950': '#A23800',
+    'primary-999': '#CC4700',
+  },
+  theme_lg: {
+    'primary-50': '#FFF7FB',
+    'primary-100': '#FCDAED',
+    'primary-200': '#F8BFE0',
+    'primary-300': '#EE96C9',
+    'primary-400': '#E666B1',
+    'primary-700': '#E63596',
+    'primary-800': '#E6007E',
+    'primary-850': '#B20068',
+    'primary-900': '#8A0150',
+    'primary-950': '#66003B',
+    'primary-999': '#47002A',
+  },
+}

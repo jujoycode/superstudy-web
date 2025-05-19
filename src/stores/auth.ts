@@ -13,14 +13,19 @@ type AuthState = {
   reset: () => void
 }
 
+function getStorage(isStayLoggedIn: boolean, key: string): string | null {
+  return isStayLoggedIn ? localStorage.getItem(key) : sessionStorage.getItem(key)
+}
+
 // 브라우저 스토리지에서 초기값 가져오기
 const getInitialState = () => {
-  const isServer = typeof window === 'undefined'
+  const isStayLoggedIn = localStorage.getItem('isStayLoggedIn') === 'true'
+
   return {
-    isStayLoggedIn: !isServer ? localStorage.getItem('isStayLoggedIn') === 'true' : true,
-    token: !isServer ? localStorage.getItem('token') : null,
-    refreshToken: !isServer ? localStorage.getItem('refreshToken') : null,
-    twoFactor: !isServer ? localStorage.getItem('twoFactor') : null,
+    isStayLoggedIn,
+    token: getStorage(isStayLoggedIn, 'token'),
+    refreshToken: getStorage(isStayLoggedIn, 'refreshToken'),
+    twoFactor: getStorage(isStayLoggedIn, 'twoFactor'),
   }
 }
 
@@ -36,7 +41,6 @@ export const useAuthStore = create<AuthState>()((set) => ({
   setToken: (token) => {
     if (typeof window !== 'undefined') {
       if (token) {
-        console.log('token', token)
         const storage = useAuthStore.getState().isStayLoggedIn ? localStorage : sessionStorage
         storage.setItem('token', token)
         storage.setItem('tokenIssue', new Date().toISOString())

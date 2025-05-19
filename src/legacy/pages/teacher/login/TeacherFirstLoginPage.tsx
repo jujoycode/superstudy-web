@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import { Blank, Label, PhoneNumberField, Section } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
@@ -11,7 +12,6 @@ import { GroupContainer } from '@/legacy/container/group'
 import { useTeacherFirstLogin } from '@/legacy/container/teacher-first-login'
 import { ResponseGroupDto } from '@/legacy/generated/model'
 import { Validator } from '@/legacy/util/validator'
-import { useUserStore } from '@/stores/user'
 
 export function TeacherFirstLoginPage() {
   const { push } = useHistory()

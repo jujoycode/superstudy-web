@@ -1,7 +1,8 @@
+import { chain, filter, some, uniqBy } from 'lodash'
 import { useEffect, useMemo, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router'
-import { chain, filter, some, uniqBy } from 'lodash'
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Select, TopNavbar } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
@@ -13,7 +14,6 @@ import { useGroupsFindLectureGroupsByTeacher } from '@/legacy/generated/endpoint
 import { Group, GroupType, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName } from '@/legacy/util/status'
-import { useUserStore } from '@/stores/user'
 import { StudentCardDetailPage } from './StudentCardDetailPage'
 
 const GroupTypes: { id: number; type: '' | GroupType | 'LECTURE'; name: string }[] = [

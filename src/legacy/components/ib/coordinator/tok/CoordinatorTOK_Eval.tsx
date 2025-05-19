@@ -18,9 +18,9 @@ import {
 } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 
+import FrontPaginatedList from '../../../FrontPaginatedList '
 import { CoordinatorTOK_Eval_AddEval } from './CoordinatorTOK_Eval_AddEval'
 import { CoordinatorTOK_Eval_UpdateEval } from './CoordinatorTOK_Eval_UpdateEval'
-import FrontPaginatedList from '../../../FrontPaginatedList '
 
 export type ModalType = 'Category' | 'Update' | 'Add' | null
 export type CategoryType = 'Ref' | 'FAQ' | ''

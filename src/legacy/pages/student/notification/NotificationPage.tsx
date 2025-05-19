@@ -2,10 +2,10 @@ import _ from 'lodash'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { useUserStore } from '@/stores/user'
 import { TopNavbar, BackButton, Blank, Section } from '@/legacy/components/common'
 import { useNotificationLogFindAll, useNotificationLogRead } from '@/legacy/generated/endpoint'
 import { makeDateToString } from '@/legacy/util/time'
-import { useUserStore } from '@/stores/user'
 
 export const NotificationPage = () => {
   const { me } = useUserStore()

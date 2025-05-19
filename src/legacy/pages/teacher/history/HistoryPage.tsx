@@ -1,7 +1,7 @@
 import { range } from 'lodash'
 import { useMemo, useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { Outlet, Route, Routes, useLocation, Navigate } from 'react-router'
+import { Outlet, useLocation } from 'react-router'
 import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, FrontPagination } from '@/legacy/components'

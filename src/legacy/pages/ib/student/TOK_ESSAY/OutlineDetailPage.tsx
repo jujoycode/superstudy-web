@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router'
 
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -19,9 +21,6 @@ import { useIBProposalUpdateWaitPlan } from '@/legacy/container/ib-proposal-sent
 import { useThemeQuestionFindAll } from '@/legacy/container/ib-themequestion'
 import { useOutlineSubmit, useOutlineUpdate } from '@/legacy/container/ib-tok-essay'
 import { RequestIBTokOutlineDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores/user'
-
-import NODATA from '@/assets/images/no-data.png'
 
 export const OutlineDetailPage = () => {
   const history = useHistory()

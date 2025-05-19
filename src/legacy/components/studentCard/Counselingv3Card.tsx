@@ -11,8 +11,8 @@ import { Category, Code, ResponseCounselingDetailDto } from '@/legacy/generated/
 import { AccessLevels } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { isValidDate } from '@/legacy/util/time'
-import CounselingDetailCard from './CounselingDetailCard'
 import Recorder from '../rec/Recorder'
+import CounselingDetailCard from './CounselingDetailCard'
 
 interface CounselingCardProps {
   studentId: number

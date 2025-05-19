@@ -19,9 +19,9 @@ import {
   ResponseIBDeadlineitemsDto,
 } from '@/legacy/generated/model'
 
+import FrontPaginatedList from '../../FrontPaginatedList '
 import { Coordinator_Schedule_AddSchedule } from './Coordinator_Schedule_AddSchedule'
 import { Coordinator_Schedule_UpdateSchedule } from './Coordinator_Schedule_UpdateSchedule'
-import FrontPaginatedList from '../../FrontPaginatedList '
 
 // NOTE: 백엔드에서 마감기한 타입이 추가되면 그에 따라 항목 추가해야 함
 export const DEADLINE_TYPE_KOR: Record<DeadlineType, string> = {

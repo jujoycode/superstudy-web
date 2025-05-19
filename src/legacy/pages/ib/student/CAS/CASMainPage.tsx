@@ -5,6 +5,7 @@ import { Link, Route, Routes, useLocation, useParams } from 'react-router'
 
 import { twMerge } from 'tailwind-merge'
 
+import { useUserStore } from '@/stores/user'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -28,7 +29,6 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBProposalUpdateWaitPlan } from '@/legacy/container/ib-proposal-sent'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateUtil } from '@/legacy/util/date'
-import { useUserStore } from '@/stores/user'
 
 export type CASProject = 'ACTIVITY_PLAN' | 'ACTIVITY_LOG'
 

@@ -1,5 +1,6 @@
 import { useParams } from 'react-router'
 
+import { useUserStore } from '@/stores/user'
 import { ErrorBlank } from '@/legacy/components'
 import { AllSelectCheckbox } from '@/legacy/components/AllSelectCheckbox'
 import { BackButton, Blank, Label, Section, Select, Textarea, TopNavbar } from '@/legacy/components/common'
@@ -16,7 +17,6 @@ import { BoardCategoryEnum, Group, RequestCreateBoardDto } from '@/legacy/genera
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getExtOfFilename } from '@/legacy/util/file'
-import { useUserStore } from '@/stores/user'
 
 interface BoardAddProps {
   homeKlass?: Group

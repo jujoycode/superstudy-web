@@ -4,10 +4,10 @@ import { useLocation } from 'react-router'
 import sugang from '@/assets/images/sugang.png'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 import { Blank, Section } from '@/legacy/components/common'
 import { externalCreateToken, externalUpdateQueue, useCourseSeasonGet } from '@/legacy/generated/endpoint'
-import { useUserStore } from '@/stores/user'
-import { useNotificationStore } from '@/stores/notification'
 
 export function CourseEntrancePage() {
   const { push } = useHistory()

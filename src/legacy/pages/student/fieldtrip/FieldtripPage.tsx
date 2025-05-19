@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ReactComponent as RightArrow } from '@/assets/svg/mypage-right-arrow.svg'
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { BackButton, Badge, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -9,7 +10,6 @@ import { useStudentFieldtrip } from '@/legacy/container/student-fieldtrip'
 import { UserContainer } from '@/legacy/container/user'
 import { FieldtripStatus, Role } from '@/legacy/generated/model'
 import { makeStartEndToString } from '@/legacy/util/time'
-import { useUserStore } from '@/stores/user'
 
 export function FieldtripPage() {
   const [modalopen, setModalopen] = useState(false)

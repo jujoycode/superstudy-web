@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useLocation, useParams } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -19,7 +20,6 @@ import { useIBGetById } from '@/legacy/container/ib-project-get-student'
 import { useIBTKPPFCreate, useIBTKPPFRequestReject, useTKPPFGetByIBId } from '@/legacy/container/ib-tok-essay'
 import { RequestCreateTKPPFDto, ResponseTKPPFDto, TKPPFContentResponseDto } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
-import { useUserStore } from '@/stores/user'
 
 type TKPPFKeys = 'sequence1' | 'sequence2' | 'sequence3'
 

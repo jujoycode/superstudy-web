@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import { useParams } from 'react-router-dom'
+import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
+import { useLanguageStore } from '@/stores/language'
 import { ErrorBlank } from '@/legacy/components'
 import AnnouncementDetailCard from '@/legacy/components/announcement/AnnouncementDetailCard'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
@@ -13,8 +15,6 @@ import { useAnnouncementDetail } from '@/legacy/container/announcement-detail'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getFileNameFromUrlToAnn } from '@/legacy/util/file'
 import { isHTML } from '@/legacy/util/validator'
-import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
-import { useLanguageStore } from '@/stores/language'
 
 export default function AnnouncementDetailPage() {
   const [hasPdfModalOpen, setPdfModalOpen] = useState(false)

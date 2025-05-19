@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useParams } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
 import { Label } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
@@ -14,7 +15,6 @@ import { PointCreateBody, PointUpdateBody } from '@/legacy/generated/model'
 import { form } from '@/legacy/lib/form'
 import { cn } from '@/legacy/lib/tailwind-merge'
 import { getErrorMsg } from '@/legacy/util/status'
-import { useNotificationStore } from '@/stores/notification'
 
 type PointSaveBody = PointCreateBody | PointUpdateBody
 

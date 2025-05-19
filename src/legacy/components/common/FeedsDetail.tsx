@@ -6,15 +6,15 @@ import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
+import { useUserStore } from '@/stores/user'
 import { Constants } from '@/legacy/constants'
 import { Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 
+import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
 import { PdfCard } from './PdfCard'
 import { PdfViewer } from './PdfViewer'
-import { SuperSurveyComponent } from '../survey/SuperSurveyComponent'
-import { useUserStore } from '@/stores/user'
 
 interface FeedsDetailProps {
   category1?: string

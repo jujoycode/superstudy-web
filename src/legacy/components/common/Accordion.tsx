@@ -1,7 +1,7 @@
 import { PropsWithChildren, useState } from 'react'
 
-import { Typography } from './Typography'
 import SVGIcon from '../icon/SVGIcon'
+import { Typography } from './Typography'
 
 // 아코디언 Props 인터페이스
 interface AccordionProps {

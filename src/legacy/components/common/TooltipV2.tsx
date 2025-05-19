@@ -2,9 +2,9 @@ import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
-import { Typography } from './Typography'
 import ColorSVGIcon from '../icon/ColorSVGIcon'
 import SVGIcon from '../icon/SVGIcon'
+import { Typography } from './Typography'
 
 interface TooltipV2Props {
   position?: 'left' | 'center' | 'right'

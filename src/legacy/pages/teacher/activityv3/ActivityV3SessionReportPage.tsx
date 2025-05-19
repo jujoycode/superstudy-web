@@ -8,6 +8,8 @@ import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
+import { useUserStore } from '@/stores/user'
 import { SuperModal } from '@/legacy/components'
 import { SessionCommentItem } from '@/legacy/components/activityv3/SessionCommentItem'
 import { Avatar, BackButton, Textarea, TopNavbar } from '@/legacy/components/common'
@@ -31,8 +33,6 @@ import { downloadFile } from '@/legacy/util/download-image'
 import { getFileNameFromUrl, isPdfFile } from '@/legacy/util/file'
 import { getNickName } from '@/legacy/util/status'
 import { makeDateToString, makeTimeToString } from '@/legacy/util/time'
-import { useNotificationStore } from '@/stores/notification'
-import { useUserStore } from '@/stores/user'
 
 interface ActivityV3SessionReportPageProps {}
 

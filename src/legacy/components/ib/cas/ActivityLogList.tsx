@@ -1,6 +1,7 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -15,7 +16,6 @@ import FeedbackViewer from '../FeedbackViewer'
 import { IBPagination } from '../ProjectList'
 
 import { IbActivityLog } from './IbActivityLog'
-import NODATA from '@/assets/images/no-data.png'
 
 const itemsPerPage = 10
 

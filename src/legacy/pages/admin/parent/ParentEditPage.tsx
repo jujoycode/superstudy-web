@@ -4,6 +4,7 @@ import { useParams } from 'react-router'
 import { Link } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
 import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
@@ -14,7 +15,6 @@ import { RequestModifyParentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { form } from '@/legacy/lib/form'
 import { AdminContext } from '@/legacy/pages/admin/AdminMainPage'
-import { useNotificationStore } from '@/stores/notification'
 
 export function ParentEditPage() {
   const { goBack } = useHistory()

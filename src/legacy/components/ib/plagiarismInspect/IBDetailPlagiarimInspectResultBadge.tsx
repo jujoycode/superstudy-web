@@ -1,10 +1,10 @@
 import clsx from 'clsx'
 import { useState } from 'react'
+import { useSchoolStore } from '@/stores/school'
 import { Typography } from '@/legacy/components/common/Typography'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { useGetPlagiarismInspectDetail } from '@/legacy/container/plagiarism-inspector'
 import { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
-import { useSchoolStore } from '@/stores/school'
 import LoadingPopup from './LoadingPopup'
 
 interface IBDetailPlagiarimInspectResultBadgeProps {

@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react'
 
 import BgLogo from '@/assets/images/Intersect.png'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
+import { useUserStore } from '@/stores/user'
 import { ErrorBlank } from '@/legacy/components'
 import { BackButton, Blank, IconButton, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -18,7 +19,6 @@ import { useLogout } from '@/legacy/util/hooks'
 import { getNickName } from '@/legacy/util/status'
 import { getHoursfromHHmmString, getMinutesfromHHmmString } from '@/legacy/util/time'
 import { Validator } from '@/legacy/util/validator'
-import { useUserStore } from '@/stores/user'
 
 export function TeacherInfoPage() {
   const { me: meRecoil } = useUserStore()

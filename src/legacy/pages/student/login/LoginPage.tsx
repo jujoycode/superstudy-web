@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
+import { useAuthStore } from '@/stores/auth'
 import { BackButton, Blank, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
@@ -9,7 +10,6 @@ import { NoticePopup } from '@/legacy/components/NoticePopup'
 import { NoticePopup2 } from '@/legacy/components/NoticePopup2'
 import { UserContainer } from '@/legacy/container/user'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useAuthStore } from '@/stores/auth'
 
 export function Login() {
   const { isStayLoggedIn, setIsStayLoggedIn } = useAuthStore()

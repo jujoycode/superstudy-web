@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import { ReactComponent as ChatSendDisabled } from '@/assets/svg/chat-send-disabled.svg'
 import { ReactComponent as ChatSendEnabled } from '@/assets/svg/chat-send-enabled.svg'
+import { useUserStore } from '@/stores/user'
 import { ChatSetting } from '@/legacy/components/chat/ChatSetting'
 import { DateMessage } from '@/legacy/components/chat/DateMessage'
 import { ReceiveMessage } from '@/legacy/components/chat/ReceiveMessage'
@@ -18,7 +19,6 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { useSocket } from '@/legacy/lib/socket'
 import { isNowOrFuture } from '@/legacy/util/time'
-import { useUserStore } from '@/stores/user'
 
 interface ChatDetailPageProps {
   id: string

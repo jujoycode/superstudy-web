@@ -1,7 +1,10 @@
 import clsx from 'clsx'
 import { useState } from 'react'
 import { useLocation, useParams } from 'react-router'
+import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
+import { useSchoolStore } from '@/stores/school'
+import { useUserStore } from '@/stores/user'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
 import Breadcrumb from '@/legacy/components/common/Breadcrumb'
@@ -23,10 +26,6 @@ import { CopykillerTargetTable, ResponseCopykillerResponseDto } from '@/legacy/g
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { usePolling } from '@/legacy/hooks/usePolling'
 import { getUrlFromFile, handleDownload } from '@/legacy/util/file'
-import { useSchoolStore } from '@/stores/school'
-import { useUserStore } from '@/stores/user'
-
-import NODATA from '@/assets/images/no-data.png'
 
 type tabType = 'feedback' | 'evaluation' | 'checklist'
 

@@ -66,13 +66,17 @@ import TeacherIBOverview from '@/legacy/components/ib/TeacherIBOverview'
 import TeacherIBPortfolioList from '@/legacy/components/ib/TeacherIBPortfolioList'
 import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/teacher/PlagiarismInspectPage'
 import TeacherIBStatus from '@/legacy/components/ib/TeacherIBStatus'
+import { AuthRouter } from '../AuthRouter'
+import { AuthGuard } from '../guard/AuthGuard'
 
 export const teacherRoutes = {
   path: '/teacher',
   element: (
-    // <RoleGuard>
-    <TeacherLayout />
-    // </RoleGuard>
+    <AuthRouter>
+      <AuthGuard>
+        <TeacherLayout />
+      </AuthGuard>
+    </AuthRouter>
   ),
   children: [
     // 출석부

@@ -1,5 +1,6 @@
 import { PropsWithChildren, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useUserStore } from '@/stores/user'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
@@ -20,7 +21,6 @@ import {
   RequestIBDto,
 } from '@/legacy/generated/model'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
-import { useUserStore } from '@/stores/user'
 import ColorSVGIcon from '../../icon/ColorSVGIcon'
 import { InputField } from '../InputField'
 

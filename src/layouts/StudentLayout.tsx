@@ -1,9 +1,9 @@
+import clsx from 'clsx'
 import { useMemo } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import clsx from 'clsx'
+import { useUserStore } from '@/stores/user'
 import { Icon } from '@/legacy/components/common/icons'
 import { Role } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores/user'
 
 export function StudentLayout() {
   const { me } = useUserStore()

@@ -158,6 +158,7 @@ export default defineConfig(({ mode }) => {
         '@/pages': '/src/components/pages',
         '@/layouts': '/src/layouts',
         '@/hooks': '/src/hooks',
+        '@/providers': '/src/components/providers',
         '@/utils': '/src/utils',
         '@/constants': '/src/constants',
         '@/stores': '/src/stores',

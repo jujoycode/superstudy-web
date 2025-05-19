@@ -9,10 +9,10 @@ import {
   useThemeQuestionSaveThemeQuestions,
 } from '@/legacy/generated/endpoint'
 import { ThemeQuestionGetThemeQuestionItemsByTypeType } from '@/legacy/generated/model'
-import { THEME_QUESTION_TYPE_KOR } from './CoordinatorTOK_Question'
 import ColorSVGIcon from '../../../icon/ColorSVGIcon'
 import SVGIcon from '../../../icon/SVGIcon'
 import { FormInputField } from '../../FormInputField'
+import { THEME_QUESTION_TYPE_KOR } from './CoordinatorTOK_Question'
 
 interface CoordinatorTOK_Question_AddQuestionProps {
   type: ThemeQuestionGetThemeQuestionItemsByTypeType

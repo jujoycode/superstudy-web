@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 
+import { useUserStore } from '@/stores/user'
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
@@ -21,7 +22,6 @@ import { useIBExhibitionPlanStatusApprove, useIBExhibitionPlanStatusReject } fro
 import { ResponseIBDtoStatus } from '@/legacy/generated/model'
 import { usePermission } from '@/legacy/hooks/ib/usePermission'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { useUserStore } from '@/stores/user'
 
 export type TOKProject = 'EXHIBITION' | 'EXHIBITION_PLAN'
 

@@ -1,12 +1,12 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
+import { useUserStore } from '@/stores/user'
 import AccordionV2 from '@/legacy/components/common/AccordionV2'
 import { RadioV2 } from '@/legacy/components/common/RadioV2'
 import Stepper from '@/legacy/components/common/Stepper'
 import { TextareaV2 } from '@/legacy/components/common/TextareaV2'
 import { TooltipV2 } from '@/legacy/components/common/TooltipV2'
 import { ResponseTokEvaluationCriteriaDto, ResponseTokEvaluationSummaryDto } from '@/legacy/generated/model'
-import { useUserStore } from '@/stores/user'
 
 import { EvaluationData } from './EvaluationList'
 

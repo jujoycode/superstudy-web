@@ -5,6 +5,7 @@ import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { ReactComponent as SvgImage } from '@/assets/svg/upload-image.svg'
 import { useHistory } from '@/hooks/useHistory'
+import { useUserStore } from '@/stores/user'
 import { ListItem } from '@/legacy/components/common'
 import { Constants } from '@/legacy/constants'
 import { Role } from '@/legacy/generated/model'
@@ -12,7 +13,6 @@ import useIntersectionObserver from '@/legacy/hooks/useIntersectionObserver'
 import { isPdfFile } from '@/legacy/util/file'
 import { Icon } from './icons'
 import { PdfCard } from './PdfCard'
-import { useUserStore } from '@/stores/user'
 
 interface FeedsItemProps {
   to: string

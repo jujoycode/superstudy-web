@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { NavigationBarItem } from '@/molecules/navigation/NavigationBarItem'
-import { MenuConstant } from '@/constants/MenuConstant'
+import { MenuConstant } from '@/constants/menuConstant'
 
 const meta: Meta<typeof NavigationBarItem> = {
   title: 'Molecules/Navigation/NavigationBarItem',

@@ -2,10 +2,10 @@ import { useQueryClient } from 'react-query'
 import { Routes, useParams } from 'react-router'
 import { Route } from 'react-router-dom'
 import { useHistory } from '@/hooks/useHistory'
+import { useNotificationStore } from '@/stores/notification'
 import { NewsletterCheckerItem } from '@/legacy/components/newsletter/NewsletterCheckerItem'
 import { useTeacherNewsletterCheck } from '@/legacy/container/teacher-newsletter-check'
 import { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup } from '@/legacy/generated/model'
-import { useNotificationStore } from '@/stores/notification'
 import { NewsletterCheckDetailPage } from './NewsletterCheckDetailPage'
 
 export function NewsletterCheckPage() {

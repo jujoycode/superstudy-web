@@ -1,10 +1,10 @@
 import { Link, useLocation } from 'react-router-dom'
+import { useUserStore } from '@/stores/user'
 import { OutingStatus, OutingTypeEnum, ResponseCreateOutingDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName, getPeriodStr } from '@/legacy/util/status'
 import { makeDateToString } from '@/legacy/util/time'
-import { useUserStore } from '@/stores/user'
 
 interface OutingCardProps {
   outing: ResponseCreateOutingDto

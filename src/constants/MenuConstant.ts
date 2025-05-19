@@ -19,7 +19,7 @@ export class MenuConstant {
         },
         {
           title: '결석신고서',
-          items: []
+          items: [],
         },
         {
           title: '체험학습',
@@ -40,8 +40,8 @@ export class MenuConstant {
         },
         {
           title: '출결서류관리',
-          link: ''
-        }
+          link: '',
+        },
       ],
     },
     {
@@ -147,13 +147,13 @@ export class MenuConstant {
               title: 'child3',
               link: '',
             },
-          ]
+          ],
         },
         {
           title: '슈퍼스쿨 공지사항',
           link: '',
-        }
+        },
       ],
-    }
+    },
   ]
 }
