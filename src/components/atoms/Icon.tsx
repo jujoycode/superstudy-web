@@ -17,6 +17,7 @@ export type IconProps = {
     height: string
   }
   fill?: boolean
+  stroke?: boolean
   className?: string
 }
 
@@ -36,7 +37,15 @@ const colorOptions = {
 /**
  * Icon 컴포넌트
  */
-export function Icon({ name, color, size = 'md', customSize, fill = false, className = '' }: IconProps) {
+export function Icon({
+  name,
+  color,
+  size = 'md',
+  customSize,
+  fill = false,
+  stroke = false,
+  className = '',
+}: IconProps) {
   const IconComponent = {
     logo: Logo,
     world: World,
@@ -54,7 +63,7 @@ export function Icon({ name, color, size = 'md', customSize, fill = false, class
     <div className={`inline-flex ${customSize ? '' : sizeClass} ${colorClass} ${className}`}>
       <IconComponent
         fill={fill ? 'currentColor' : 'none'}
-        stroke={!fill ? 'currentColor' : 'none'}
+        stroke={stroke ? 'currentColor' : 'none'}
         width={customSize?.width}
         height={customSize?.height}
         color={colorClass}
