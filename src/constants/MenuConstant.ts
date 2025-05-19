@@ -14,7 +14,7 @@ export class MenuConstant {
           link: '',
         },
         {
-          title: '학인증',
+          title: '확인증',
           link: '',
         },
         {
