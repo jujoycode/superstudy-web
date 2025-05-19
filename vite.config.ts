@@ -86,7 +86,6 @@ export default defineConfig(({ mode }) => {
           ref: true,
           svgo: false,
           titleProp: true,
-          dimensions: false,
         },
         include: '**/*.svg',
         esbuildOptions: {
