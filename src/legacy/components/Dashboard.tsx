@@ -34,10 +34,10 @@ export function Dashboard() {
               <Link to={'/student/mypage'}>
                 <div className="flex w-full cursor-pointer items-center justify-between rounded-lg bg-white">
                   <div className="px-5 text-gray-800">
-                    <span className="mr-2 mb-0.5 inline-block h-2 w-2 rounded-full bg-red-500"></span>
+                    <span className="mr-2 mb-0.5 inline-block h-2 w-2 rounded-full bg-red-500" />
                     <span>상단에 표시된 자녀의 학교 정보를 조회할 수 있습니다.</span>
                     <br />
-                    <span className="mr-2 mb-0.5 inline-block h-2 w-2 rounded-full bg-red-500"></span>
+                    <span className="mr-2 mb-0.5 inline-block h-2 w-2 rounded-full bg-red-500" />
                     <span>
                       다자녀이거나 타학교로 전학/진학한 자녀의 보호자께서는 상단의{' '}
                       <span className="filled-primary rounded-md text-sm">자녀 선택</span> 버튼을 클릭하여 조회할 자녀를

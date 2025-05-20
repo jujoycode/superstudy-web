@@ -10,7 +10,7 @@ export const themes = {
     'color-primary-850': '#CC4700',
     'color-primary-900': '#CC4700',
     'color-primary-950': '#A23800',
-    'color-primary-999': '#CC4700',
+    'color-primary-999': '#501C00',
   },
   theme_lg: {
     'color-primary-50': '#FFF7FB',

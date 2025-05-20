@@ -7,7 +7,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { themes } from '@/constants/themeConstant'
 
 const meta: Meta<typeof Button> = {
-  title: 'Themes/Theme Toggle Button',
+  title: 'Themes/Theme',
   component: Button,
   parameters: {
     layout: 'centered',
@@ -26,7 +26,7 @@ export const ThemeToggleButton: Story = {
 
 const ThemeToggleButtonComponent = () => {
   const [theme, setTheme] = useState<Theme>('default')
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
 
   const handleToggleTheme = () => {
     const themeIndex = count % Object.keys(themes).length
@@ -49,10 +49,6 @@ const ThemeToggleButtonComponent = () => {
           <Button variant="outline" size="md">
             현재 테마 확인용 버튼
           </Button>
-        </Container>
-
-        <Container width="350px" paddingX="4" className="rounded-md border border-gray-200">
-          <Text size="sm">버튼을 클릭하면 테마가 전환됩니다. 테마가 변경되면 버튼 색상이 변경됩니다.</Text>
         </Container>
       </Container>
     </ThemeProvider>

@@ -1,13 +1,22 @@
 import clsx from 'clsx'
-import { useMemo } from 'react'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { useEffect, useMemo } from 'react'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useUserStore } from '@/stores/user'
+import { Blank } from '@/legacy/components/common'
 import { Icon } from '@/legacy/components/common/icons'
 import { Role } from '@/legacy/generated/model'
 
 export function StudentLayout() {
   const { me } = useUserStore()
   const { pathname } = useLocation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (pathname === '/student') {
+      navigate(`/student/canteen`)
+    }
+  }, [pathname, me, navigate])
+
   const tabs = useMemo(
     () => [
       { path: '/student/activity', icon: Icon.Activity, name: '활동', hidden: me?.role === Role.PARENT },
@@ -28,6 +37,10 @@ export function StudentLayout() {
     ],
     [me?.role],
   )
+
+  if (!me) {
+    return <Blank />
+  }
 
   return (
     <>

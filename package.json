@@ -44,7 +44,7 @@
     "@fullcalendar/react": "^6.1.17",
     "@mui/material": "^5.16.1",
     "@pdf-lib/fontkit": "^1.1.1",
-    "@storybook/addon-viewport": "^8.6.14",
+    "@storybook/addon-viewport": "^8.6.12",
     "@tailwindcss/vite": "^4.1.6",
     "@types/file-saver": "^2.0.7",
     "@types/js-cookie": "^3.0.6",

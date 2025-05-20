@@ -134,20 +134,7 @@ export class MenuConstant {
         },
         {
           title: '슈퍼스쿨 사용안내',
-          items: [
-            {
-              title: 'child1',
-              link: '',
-            },
-            {
-              title: 'child2',
-              link: '',
-            },
-            {
-              title: 'child3',
-              link: '',
-            },
-          ],
+          items: [],
         },
         {
           title: '슈퍼스쿨 공지사항',
