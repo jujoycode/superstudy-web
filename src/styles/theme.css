@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-
 @theme {
   /* SuperSchool Default Brand Color */
   /* This colors change in ThemeProvider */
@@ -13,7 +12,7 @@
   --color-primary-850: #cc4700;
   --color-primary-900: #cc4700;
   --color-primary-950: #a23800;
-  --color-primary-999: #501C00;
+  --color-primary-999: #501c00;
 
   /* Gray Scale */
   --color-gray-50: #f9fafb;
