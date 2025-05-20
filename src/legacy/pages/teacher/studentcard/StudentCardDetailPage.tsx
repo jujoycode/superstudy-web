@@ -2,18 +2,11 @@ import { Outlet, useLocation, useParams } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
 import { useUserStore } from '@/stores/user'
-import { BackButton, Blank, List, TopNavbar } from '@/legacy/components/common'
-import Counselingv3Card from '@/legacy/components/studentCard/Counselingv3Card'
-import { StudyInfoCard2 } from '@/legacy/components/studentCard/StudyInfoCard2'
+import { BackButton, Blank, TopNavbar } from '@/legacy/components/common'
 import { useTeacherStudentCard } from '@/legacy/container/teacher-studentcard'
 import { ScoreUse } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { cn } from '@/legacy/lib/tailwind-merge'
-import { ActivityV3Page } from './ActivityV3Page'
-import { AllCardPage } from './AllCardPage'
-import { GeneralCardPage } from './GeneralCardPage'
-import { PointLogsPage } from './PointLogsPage'
-import { ScoreCardPage } from './ScoreCardPage'
 
 export function StudentCardDetailPage() {
   const { me: meRecoil } = useUserStore()
