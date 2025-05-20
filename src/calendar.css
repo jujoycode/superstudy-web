@@ -1,5 +1,3 @@
-@import './index.css';
-
 .react-calendar__navigation {
   display: flex;
   align-items: center;
@@ -41,7 +39,7 @@
 }
 
 .react-calendar__month-view__days__day--neighboringMonth {
-  color: theme('colors.gray.400');
+  color: var(--color-gray-400);
 }
 
 .react-calendar__tile--active {

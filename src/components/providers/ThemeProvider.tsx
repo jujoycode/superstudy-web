@@ -1,7 +1,7 @@
 import { createContext, useEffect, useContext, type ReactNode } from 'react'
 import { themes } from '@/constants/themeConstant'
 
-type Theme = 'default' | 'theme_lg'
+export type Theme = 'default' | 'theme_lg'
 
 interface ThemeContextType {
   theme: Theme
