@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useMemo } from 'react'
-import { Navigate, Route, Routes, useLocation, Link } from 'react-router-dom'
+import { Route, Routes, useLocation, Link } from 'react-router'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { useUserStore } from '@/stores/user'
@@ -49,7 +49,6 @@ import { TimetableDetailPage } from './timetable/TimetableDetailPage'
 export function StudentMainPage() {
   const { replace } = useHistory()
   const { me } = useUserStore()
-  const { child: myChild } = useUserStore()
   const { pathname } = useLocation()
   const { push } = useHistory()
 

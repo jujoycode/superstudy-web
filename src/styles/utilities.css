@@ -1,4 +1,6 @@
-@layer utilities {
+@import 'tailwindcss';
+
+@utilities {
   .not-draggable {
     -webkit-user-drag: none;
     -khtml-user-drag: none;

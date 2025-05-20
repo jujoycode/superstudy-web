@@ -58,7 +58,7 @@ export function LoginV2() {
           <NoticePopup2 noticeOpen={noticeOpen2} setNoticeClose={() => setNoticeOpen2(false)} width="w-max" />
         )} */}
         <header className="pt-14 pb-8 md:pt-16 xl:pt-[70px] 2xl:pt-20">
-          <Logo />
+          <Logo className="w-full" />
         </header>
         <section className="mb-4 w-full p-6 md:rounded-lg md:border md:border-gray-300">
           <div className="flex flex-col gap-2 pb-4">

@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-@layer base {
+@base {
   body {
     font-family:
       'Pretendard',
