@@ -4,7 +4,7 @@
 
 @import './legacy/styles/legacy.css';
 
-@import './styles/base.css';
-@import './styles/components.css';
-@import './styles/theme.css';
-@import './styles/utilities.css';
+@import './styles/base.css' layer(base);
+@import './styles/components.css' layer(components);
+@import './styles/theme.css' layer(theme);
+@import './styles/utility.css' layer(utility);
