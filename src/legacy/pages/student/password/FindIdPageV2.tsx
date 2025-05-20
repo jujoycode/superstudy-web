@@ -41,7 +41,7 @@ export function FindIdPageV2() {
           )}
           <header className="hidden pt-8 pb-8 md:block md:pt-14 xl:pt-16 2xl:pt-20">
             <Link to={'/login'} className="cursor-pointer">
-              <Logo />
+              <Logo className="w-full" />
             </Link>
           </header>
           <section className="mb-6 w-full rounded-lg p-6 md:mb-8 md:border md:border-gray-300">
