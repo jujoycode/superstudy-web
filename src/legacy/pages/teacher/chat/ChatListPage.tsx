@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { uniqBy } from 'lodash'
 import { useEffect, useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
@@ -241,7 +241,7 @@ export function ChatListPage() {
                 setChatRoomId('')
                 setSelectedMenu(MenuType.List)
               }}
-              className={clsx(
+              className={cn(
                 selectedMenu === MenuType.List ? 'bg-brand-1 text-light_orange' : 'bg-light_orange text-brand-1',
               )}
             />
@@ -257,7 +257,7 @@ export function ChatListPage() {
                 set_studentName('')
                 push(`${Routes.teacher.chat}`)
               }}
-              className={clsx(
+              className={cn(
                 selectedMenu === MenuType.Chat ? 'bg-brand-1 text-light_orange' : 'bg-light_orange text-brand-1',
               )}
             />
@@ -273,7 +273,7 @@ export function ChatListPage() {
                 set_studentName('')
                 push(`${Routes.teacher.chat}`)
               }}
-              className={clsx(
+              className={cn(
                 selectedMenu === MenuType.SMS ? 'bg-brand-1 text-light_orange' : 'bg-light_orange text-brand-1',
               )}
             />
@@ -420,7 +420,7 @@ export function ChatListPage() {
                           <div className="w-4/5">
                             <label
                               htmlFor="excel-file"
-                              className={clsx(
+                              className={cn(
                                 'my-3 block w-full rounded-lg border-2 border-dotted py-2 text-center hover:bg-yellow-50',
                                 isDragIn ? 'border-yellow-600 bg-yellow-50' : 'border-gray-600 bg-slate-50',
                               )}
@@ -556,7 +556,7 @@ export function ChatListPage() {
                               key={el.id}
                               title={getTitle(el)}
                               onClick={() => setSelectedUsers(selectedUsers.filter((u) => u.id !== el.id))}
-                              className={clsx(
+                              className={cn(
                                 'm-1s text-2sm mt-2 mr-2 flex w-max cursor-pointer items-center space-x-2 rounded-full border-2 bg-white px-2.5 py-1.5 font-bold whitespace-nowrap',
                                 el.role === ''
                                   ? 'border-green-400 text-green-400'

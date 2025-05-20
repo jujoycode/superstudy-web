@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { ChangeEvent, useContext } from 'react'
 import { Link, useParams } from 'react-router'
 
@@ -128,25 +128,25 @@ export function TeacherDetailsPage() {
           <Admin.Cell className="grid grid-rows-5">
             <div>
               <Label.Text children={t('notice_management')} />
-              <p className={clsx('mt-2', !teacher?.teacherData?.canEditNotice && 'text-gray-300')}>
+              <p className={cn('mt-2', !teacher?.teacherData?.canEditNotice && 'text-gray-300')}>
                 {teacher?.teacherData?.canEditNotice ? t('exists') : t('none')}
               </p>
             </div>
             <div>
               <Label.Text children={t('newsletter_management')} />
-              <p className={clsx('mt-2', !teacher?.teacherData?.canEditNewsletter && 'text-gray-300')}>
+              <p className={cn('mt-2', !teacher?.teacherData?.canEditNewsletter && 'text-gray-300')}>
                 {teacher?.teacherData?.canEditNewsletter ? t('exists') : t('none')}
               </p>
             </div>
             <div>
               <Label.Text children={t('schedule_management')} />
-              <p className={clsx('mt-2', !teacher?.teacherData?.canEditTimetable && 'text-gray-300')}>
+              <p className={cn('mt-2', !teacher?.teacherData?.canEditTimetable && 'text-gray-300')}>
                 {teacher?.teacherData?.canEditTimetable ? t('exists') : t('none')}
               </p>
             </div>
             <div>
               <Label.Text children={t('meal_menu_management')} />
-              <p className={clsx('mt-2', !teacher?.teacherData?.canEditCanteen && 'text-gray-300')}>
+              <p className={cn('mt-2', !teacher?.teacherData?.canEditCanteen && 'text-gray-300')}>
                 {teacher?.teacherData?.canEditCanteen ? t('exists') : t('none')}
               </p>
             </div>
@@ -156,7 +156,7 @@ export function TeacherDetailsPage() {
             {teacher?.teacherData?.adminTeacher && (
               <div>
                 <Label.Text children="선생님 관리 권한" />
-                <p className={clsx('mt-2', !teacher?.teacherData?.adminTeacher && 'text-gray-300')}>
+                <p className={cn('mt-2', !teacher?.teacherData?.adminTeacher && 'text-gray-300')}>
                   {teacher?.teacherData?.adminTeacher ? '있음' : '없음'}
                 </p>
               </div>
@@ -164,7 +164,7 @@ export function TeacherDetailsPage() {
             {teacher?.teacherData?.adminStudent && (
               <div>
                 <Label.Text children="학생 관리 권한" />
-                <p className={clsx('mt-2', !teacher?.teacherData?.adminStudent && 'text-gray-300')}>
+                <p className={cn('mt-2', !teacher?.teacherData?.adminStudent && 'text-gray-300')}>
                   {teacher?.teacherData?.adminStudent ? '있음' : '없음'}
                 </p>
               </div>
@@ -172,7 +172,7 @@ export function TeacherDetailsPage() {
             {teacher?.teacherData?.adminParent && (
               <div>
                 <Label.Text children="보호자 관리 권한" />
-                <p className={clsx('mt-2', !teacher?.teacherData?.adminParent && 'text-gray-300')}>
+                <p className={cn('mt-2', !teacher?.teacherData?.adminParent && 'text-gray-300')}>
                   {teacher?.teacherData?.adminParent ? '있음' : '없음'}
                 </p>
               </div>
@@ -180,7 +180,7 @@ export function TeacherDetailsPage() {
             {teacher?.teacherData?.adminClass && (
               <div>
                 <Label.Text children="학급 관리 권한" />
-                <p className={clsx('mt-2', !teacher?.teacherData?.adminClass && 'text-gray-300')}>
+                <p className={cn('mt-2', !teacher?.teacherData?.adminClass && 'text-gray-300')}>
                   {teacher?.teacherData?.adminClass ? '있음' : '없음'}
                 </p>
               </div>
@@ -188,7 +188,7 @@ export function TeacherDetailsPage() {
             {teacher?.teacherData?.adminGroup && (
               <div>
                 <Label.Text children="그룹 관리 권한" />
-                <p className={clsx('mt-2', !teacher?.teacherData?.adminGroup && 'text-gray-300')}>
+                <p className={cn('mt-2', !teacher?.teacherData?.adminGroup && 'text-gray-300')}>
                   {teacher?.teacherData?.adminGroup ? '있음' : '없음'}
                 </p>
               </div>
@@ -196,7 +196,7 @@ export function TeacherDetailsPage() {
             {teacher?.teacherData?.adminApprovalLine && (
               <div>
                 <Label.Text children="결재라인 관리 권한" />
-                <p className={clsx('mt-2', !teacher?.teacherData?.adminApprovalLine && 'text-gray-300')}>
+                <p className={cn('mt-2', !teacher?.teacherData?.adminApprovalLine && 'text-gray-300')}>
                   {teacher?.teacherData?.adminApprovalLine ? '있음' : '없음'}
                 </p>
               </div>
@@ -204,7 +204,7 @@ export function TeacherDetailsPage() {
             {teacher?.teacherData?.adminTimetable && (
               <div>
                 <Label.Text children="시간표 관리 권한" />
-                <p className={clsx('mt-2', !teacher?.teacherData?.adminTimetable && 'text-gray-300')}>
+                <p className={cn('mt-2', !teacher?.teacherData?.adminTimetable && 'text-gray-300')}>
                   {teacher?.teacherData?.adminTimetable ? '있음' : '없음'}
                 </p>
               </div>
@@ -212,7 +212,7 @@ export function TeacherDetailsPage() {
             {teacher?.teacherData?.adminSms && (
               <div>
                 <Label.Text children="문자비용 관리 권한" />
-                <p className={clsx('mt-2', !teacher?.teacherData?.adminSms && 'text-gray-300')}>
+                <p className={cn('mt-2', !teacher?.teacherData?.adminSms && 'text-gray-300')}>
                   {teacher?.teacherData?.adminSms ? '있음' : '없음'}
                 </p>
               </div>
@@ -220,7 +220,7 @@ export function TeacherDetailsPage() {
             {teacher?.teacherData?.adminScore && (
               <div>
                 <Label.Text children="성적 관리 권한" />
-                <p className={clsx('mt-2', !teacher?.teacherData?.adminScore && 'text-gray-300')}>
+                <p className={cn('mt-2', !teacher?.teacherData?.adminScore && 'text-gray-300')}>
                   {teacher?.teacherData?.adminScore ? '있음' : '없음'}
                 </p>
               </div>
@@ -228,7 +228,7 @@ export function TeacherDetailsPage() {
             {teacher?.teacherData?.adminIb && (
               <div>
                 <Label.Text children="IB 관리 권한" />
-                <p className={clsx('mt-2', !teacher?.teacherData?.adminIb && 'text-gray-300')}>
+                <p className={cn('mt-2', !teacher?.teacherData?.adminIb && 'text-gray-300')}>
                   {teacher?.teacherData?.adminIb ? '있음' : '없음'}
                 </p>
               </div>

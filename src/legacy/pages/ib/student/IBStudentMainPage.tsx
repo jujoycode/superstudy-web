@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
@@ -146,7 +146,7 @@ export const IBStudentMainPage = () => {
                   <Link
                     to={`/ib/student`}
                     className={twMerge(
-                      clsx(
+                      cn(
                         'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
                         pathname.startsWith('/ib/student') && !pathname.includes('portfolio')
                           ? 'border-b-2 border-[#121316] text-[#121316]'
@@ -161,7 +161,7 @@ export const IBStudentMainPage = () => {
                   <Link
                     to={`/ib/student/portfolio`}
                     className={twMerge(
-                      clsx(
+                      cn(
                         'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
                         pathname.startsWith('/ib/student/portfolio')
                           ? 'border-b-2 border-[#121316] text-[#121316]'

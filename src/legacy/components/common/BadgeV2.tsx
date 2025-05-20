@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { HTMLAttributes } from 'react'
 
 export type BadgeV2Color = 'orange' | 'green' | 'blue' | 'red' | 'gray' | 'brown' | 'navy' | 'dark_green'
@@ -47,6 +47,6 @@ const sizeStyles = {
 }
 
 export function BadgeV2({ className, size = 24, type = 'solid_regular', color = 'gray', ...props }: BadgeV2Props) {
-  const spanClassNames = clsx(BadgeStyles[type]?.[color], sizeStyles[size], className)
+  const spanClassNames = cn(BadgeStyles[type]?.[color], sizeStyles[size], className)
   return <span className={spanClassNames} {...props} />
 }

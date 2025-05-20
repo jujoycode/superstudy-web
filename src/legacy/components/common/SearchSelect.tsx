@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { forwardRef, ReactElement, useEffect, useRef, useState } from 'react'
 
 import SVGIcon from '../icon/SVGIcon'
@@ -58,7 +58,7 @@ const SearchSelect = forwardRef<HTMLDivElement, SearchSelectProps>(
     return (
       <div
         ref={ref}
-        className={clsx(
+        className={cn(
           'relative select-none',
           {
             'cursor-not-allowed bg-gray-100': readonly || disabled,
@@ -87,7 +87,7 @@ const SearchSelect = forwardRef<HTMLDivElement, SearchSelectProps>(
         </div>
         {isShowOptions && (
           <ul
-            className={clsx(
+            className={cn(
               'absolute top-full left-0 z-60 mt-2 max-h-[236px] w-full overflow-hidden overflow-y-auto rounded-lg border border-gray-200 bg-white p-1.5 shadow-md',
             )}
           >
@@ -101,7 +101,7 @@ const SearchSelect = forwardRef<HTMLDivElement, SearchSelectProps>(
                     e.preventDefault()
                     handleOptionClick(option.value)
                   }}
-                  className={clsx(
+                  className={cn(
                     {
                       'text-primary-800 flex items-center justify-between': option.value === value,
                     },

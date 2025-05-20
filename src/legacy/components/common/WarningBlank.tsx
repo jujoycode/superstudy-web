@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { use100vh } from 'react-div-100vh'
 
 import { Icon } from './icons'
@@ -14,9 +14,7 @@ export function WarningBlank() {
         e.preventDefault()
         e.stopPropagation()
       }}
-      className={clsx(
-        'fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center bg-[#000000] opacity-60',
-      )}
+      className={cn('fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center bg-[#000000] opacity-60')}
     >
       <div className="hidden text-white md:flex md:flex-col md:justify-center">
         <Icon.LoaderOrangePC />

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { every, get } from 'lodash'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
@@ -193,7 +193,7 @@ export function FieldtripHomeReportAddPage() {
                       newHomePlan[i]['content'] = e.target.value.replace(/\n/g, ' ')
                       setHomePlan(newHomePlan)
                     }}
-                    className={clsx(
+                    className={cn(
                       'h-auto border',
                       plan['content'] ? 'border border-gray-300' : 'border-2 border-red-700',
                     )}
@@ -206,7 +206,7 @@ export function FieldtripHomeReportAddPage() {
                     <TextInput
                       placeholder="예시) 국어,영어,수학 등"
                       value={plan['subject1'] || ''}
-                      className={clsx(plan['subject1'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['subject1'] ? 'border-gray-300' : 'border-red-700')}
                       onChange={(e) => {
                         const newHomePlan = JSON.parse(JSON.stringify(homePlan))
                         newHomePlan[i]['subject1'] = e.target.value
@@ -224,7 +224,7 @@ export function FieldtripHomeReportAddPage() {
                         newHomePlan[i]['content1'] = e.target.value
                         setHomePlan(newHomePlan)
                       }}
-                      className={clsx(plan['content1'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['content1'] ? 'border-gray-300' : 'border-red-700')}
                     />
                   </Label.col>
                   <Label.col>
@@ -237,7 +237,7 @@ export function FieldtripHomeReportAddPage() {
                         newHomePlan[i]['subject2'] = e.target.value
                         setHomePlan(newHomePlan)
                       }}
-                      className={clsx(plan['subject2'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['subject2'] ? 'border-gray-300' : 'border-red-700')}
                     />
                   </Label.col>
                   <Label.col>
@@ -250,7 +250,7 @@ export function FieldtripHomeReportAddPage() {
                         newHomePlan[i]['content2'] = e.target.value
                         setHomePlan(newHomePlan)
                       }}
-                      className={clsx(plan['content2'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['content2'] ? 'border-gray-300' : 'border-red-700')}
                     />
                   </Label.col>
                   <Label.col>
@@ -263,7 +263,7 @@ export function FieldtripHomeReportAddPage() {
                         newHomePlan[i]['subject3'] = e.target.value
                         setHomePlan(newHomePlan)
                       }}
-                      className={clsx(plan['subject3'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['subject3'] ? 'border-gray-300' : 'border-red-700')}
                     />
                   </Label.col>
                   <Label.col>
@@ -276,7 +276,7 @@ export function FieldtripHomeReportAddPage() {
                         newHomePlan[i]['content3'] = e.target.value
                         setHomePlan(newHomePlan)
                       }}
-                      className={clsx(plan['content3'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['content3'] ? 'border-gray-300' : 'border-red-700')}
                     />
                   </Label.col>
                   <Label.col>
@@ -289,7 +289,7 @@ export function FieldtripHomeReportAddPage() {
                         newHomePlan[i]['subject4'] = e.target.value
                         setHomePlan(newHomePlan)
                       }}
-                      className={clsx(plan['subject4'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['subject4'] ? 'border-gray-300' : 'border-red-700')}
                     />
                   </Label.col>
                   <Label.col>
@@ -302,7 +302,7 @@ export function FieldtripHomeReportAddPage() {
                         newHomePlan[i]['content4'] = e.target.value
                         setHomePlan(newHomePlan)
                       }}
-                      className={clsx(plan['content4'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['content4'] ? 'border-gray-300' : 'border-red-700')}
                     />
                   </Label.col>
                   <Label.col>
@@ -315,7 +315,7 @@ export function FieldtripHomeReportAddPage() {
                         newHomePlan[i]['subject5'] = e.target.value
                         setHomePlan(newHomePlan)
                       }}
-                      className={clsx(plan['subject5'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['subject5'] ? 'border-gray-300' : 'border-red-700')}
                     />
                   </Label.col>
                   <Label.col>
@@ -328,7 +328,7 @@ export function FieldtripHomeReportAddPage() {
                         newHomePlan[i]['content5'] = e.target.value
                         setHomePlan(newHomePlan)
                       }}
-                      className={clsx(plan['content5'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['content5'] ? 'border-gray-300' : 'border-red-700')}
                     />
                   </Label.col>
                   <Label.col>
@@ -341,7 +341,7 @@ export function FieldtripHomeReportAddPage() {
                         newHomePlan[i]['subject6'] = e.target.value
                         setHomePlan(newHomePlan)
                       }}
-                      className={clsx(plan['subject6'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['subject6'] ? 'border-gray-300' : 'border-red-700')}
                     />
                   </Label.col>
                   <Label.col>
@@ -354,7 +354,7 @@ export function FieldtripHomeReportAddPage() {
                         newHomePlan[i]['content6'] = e.target.value
                         setHomePlan(newHomePlan)
                       }}
-                      className={clsx(plan['content6'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['content6'] ? 'border-gray-300' : 'border-red-700')}
                     />
                   </Label.col>
                   <Label.col>
@@ -367,7 +367,7 @@ export function FieldtripHomeReportAddPage() {
                         newHomePlan[i]['subject7'] = e.target.value
                         setHomePlan(newHomePlan)
                       }}
-                      className={clsx(plan['subject7'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['subject7'] ? 'border-gray-300' : 'border-red-700')}
                     />
                   </Label.col>
                   <Label.col>
@@ -380,7 +380,7 @@ export function FieldtripHomeReportAddPage() {
                         newHomePlan[i]['content7'] = e.target.value
                         setHomePlan(newHomePlan)
                       }}
-                      className={clsx(plan['content7'] ? 'border-gray-300' : 'border-red-700')}
+                      className={cn(plan['content7'] ? 'border-gray-300' : 'border-red-700')}
                     />
                   </Label.col>
                 </>

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { Link, Route, Routes, useParams } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
@@ -24,7 +24,7 @@ export function ScorePage() {
         <Link
           to={`/student/score/${id}/school-exam`}
           className={twMerge(
-            clsx(
+            cn(
               'flex w-full cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
               type === 'school-exam' ? 'border-b-2 border-[#121316] text-[#121316]' : 'mb-[2px] text-[#898d94]',
             ),
@@ -35,7 +35,7 @@ export function ScorePage() {
         <Link
           to={`/student/score/${id}/mock-exam`}
           className={twMerge(
-            clsx(
+            cn(
               'flex w-full cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
               type === 'mock-exam' ? 'border-b-2 border-[#121316] text-[#121316]' : 'mb-[2px] text-[#898d94]',
             ),

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 
@@ -101,7 +101,7 @@ export function FirstLoginPage() {
                 e.preventDefault()
               }
             }}
-            className={clsx(name ? 'border-gray-300' : 'border-red-700')}
+            className={cn(name ? 'border-gray-300' : 'border-red-700')}
           />
         </Label.col>
 
@@ -128,14 +128,14 @@ export function FirstLoginPage() {
             placeholder="비밀번호 (문자,숫자,특수문자를 포함한 8자 이상)"
             value={password1}
             onChange={(e) => setPassword1(Validator.removeSpace(String(e.target.value)))}
-            className={clsx(password1 && password1 === password2 ? 'border-gray-300' : 'border-red-700')}
+            className={cn(password1 && password1 === password2 ? 'border-gray-300' : 'border-red-700')}
           />
           <TextInput
             type="password"
             placeholder="동일한 비밀번호를 한번 더 입력해주세요."
             value={password2}
             onChange={(e) => setPassword2(Validator.removeSpace(String(e.target.value)))}
-            className={clsx(password2 && password1 === password2 ? 'border-gray-300' : 'border-red-700')}
+            className={cn(password2 && password1 === password2 ? 'border-gray-300' : 'border-red-700')}
           />
           {password2 && password1 !== password2 && (
             <div className="text-red-600">비밀번호 확인이 일치하지 않습니다.</div>

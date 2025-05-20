@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -205,7 +205,7 @@ export const EERppfDetailPage = () => {
                         <div className="flex flex-col">
                           {rppf?.contents.map((content, index) => (
                             <div
-                              className={clsx('flex flex-col gap-4', {
+                              className={cn('flex flex-col gap-4', {
                                 'pt-6': index === 0,
                                 'py-10': index === 1,
                                 'pb-10': index === 2,
@@ -255,7 +255,7 @@ export const EERppfDetailPage = () => {
                     <div className="flex flex-col">
                       {rppf?.contents.map((content, index) => (
                         <div
-                          className={clsx('flex flex-col gap-4', {
+                          className={cn('flex flex-col gap-4', {
                             'pt-6': index === 0,
                             'py-10': index === 1,
                             'pb-10': index === 2,

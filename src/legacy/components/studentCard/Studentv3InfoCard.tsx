@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useEffect, useMemo, useState } from 'react'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { useNotificationStore } from '@/stores/notification'
@@ -349,7 +349,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
                   className="h-6 w-30 rounded-none border-0 border-b border-gray-400 p-0 focus:border-b-2 focus:border-black focus:ring-0"
                 >
                   {studentStates?.map((item: Code) => (
-                    <option key={item.key} value={item.key} className={clsx(item?.etc1 === 'true' && 'text-red-500')}>
+                    <option key={item.key} value={item.key} className={cn(item?.etc1 === 'true' && 'text-red-500')}>
                       {t(`${item.name}`)}
                     </option>
                   ))}

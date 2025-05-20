@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { t } from 'i18next'
 import { useEffect, useState } from 'react'
 import { BackButton, Blank, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
@@ -192,7 +192,7 @@ export function MyInfoUpdatePage({ me, setIsUpdateMe }: MyInfoUpdatePageProps) {
                 value={nokName}
                 disabled
                 onChange={(e) => setNokName(e.target.value)}
-                className={clsx(nokName ? 'border-gray-300' : 'border-red-700')}
+                className={cn(nokName ? 'border-gray-300' : 'border-red-700')}
               />
             </Label.col>
             <Label.col>
@@ -201,7 +201,7 @@ export function MyInfoUpdatePage({ me, setIsUpdateMe }: MyInfoUpdatePageProps) {
                 value={nokPhone}
                 disabled
                 onChange={(e) => setNokPhone(e.target.value)}
-                className={clsx(nokPhone ? 'border-gray-300' : 'border-red-700')}
+                className={cn(nokPhone ? 'border-gray-300' : 'border-red-700')}
               />
               {me.parents?.length === 0 ? (
                 <div className="text-gray-3">

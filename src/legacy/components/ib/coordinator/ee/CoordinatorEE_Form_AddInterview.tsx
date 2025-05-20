@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren, useRef, useState } from 'react'
 
 import { Blank } from '@/legacy/components/common'
@@ -116,7 +116,7 @@ export function CoordinatorEE_Form_AddInterview({
                 <div
                   key={JSON.stringify(interview)}
                   onClick={() => setSelectedInterviewIndex(index)}
-                  className={clsx(
+                  className={cn(
                     'flex cursor-pointer items-center justify-center rounded-lg px-4 py-[9px] whitespace-pre',
                     index === selectedInterviewIndex
                       ? 'bg-gray-700 text-white'

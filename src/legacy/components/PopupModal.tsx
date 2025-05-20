@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -69,7 +69,7 @@ export function PopupModal({
         {/* 스크롤 가능한 콘텐츠 영역 */}
         <div
           className={twMerge(
-            clsx(
+            cn(
               `scroll-box ${footerButtons ? 'max-h-[608px]' : 'max-h-[712px]'} overflow-auto ${
                 size === 'large' && 'pt-4 pb-8'
               }`,

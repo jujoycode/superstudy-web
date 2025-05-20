@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import _ from 'lodash'
 import { PropsWithChildren, useState } from 'react'
 
@@ -134,7 +134,7 @@ export function ExamUpdateModal({
                   />
                   <label
                     htmlFor="score-file"
-                    className={clsx(
+                    className={cn(
                       'flex w-full items-center justify-center rounded-lg border border-dashed border-[#cccccc] py-4 text-lg text-[#222222] hover:bg-indigo-50',
                     )}
                   >

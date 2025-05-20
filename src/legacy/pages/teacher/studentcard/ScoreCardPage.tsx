@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { Link, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 import { AllScore } from '@/legacy/components/score/AllScore'
@@ -22,7 +22,7 @@ export const ScoreCardPage = () => {
           <Link
             to={`/teacher/studentcard/${groupId}/${id}/score`}
             className={twMerge(
-              clsx(
+              cn(
                 'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
                 pathname.includes('score') && !pathname.includes('target-score') && !pathname.includes('analysis')
                   ? 'border-b-2 border-[#121316] text-[#121316]'
@@ -35,7 +35,7 @@ export const ScoreCardPage = () => {
           <Link
             to={`/teacher/studentcard/${groupId}/${id}/score/analysis`}
             className={twMerge(
-              clsx(
+              cn(
                 'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
                 pathname.includes('analysis')
                   ? 'border-b-2 border-[#121316] text-[#121316]'
@@ -48,7 +48,7 @@ export const ScoreCardPage = () => {
           <Link
             to={`/teacher/studentcard/${groupId}/${id}/score/target-score`}
             className={twMerge(
-              clsx(
+              cn(
                 'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
                 pathname.includes('target-score')
                   ? 'border-b-2 border-[#121316] text-[#121316]'

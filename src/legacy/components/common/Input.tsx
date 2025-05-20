@@ -1,7 +1,5 @@
-import clsx from 'clsx'
 import { InputHTMLAttributes, forwardRef, useEffect, useState } from 'react'
-
-import { cn } from '@/legacy/lib/tailwind-merge'
+import { cn } from '@/utils/commonUtil'
 
 import ColorSVGIcon from '../icon/ColorSVGIcon'
 import SVGIcon from '../icon/SVGIcon'
@@ -95,9 +93,9 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
   const handleBlur = () => setIsFocused(false)
 
   return (
-    <div className={clsx('flex flex-col justify-start gap-1', className)}>
+    <div className={cn('flex flex-col justify-start gap-1', className)}>
       <div
-        className={clsx(
+        className={cn(
           'relative flex items-center justify-between gap-2 border border-gray-200 focus:ring-0 focus:outline-none',
           {
             'bg-white': (!disabled && !readonly) || (readonly && size === 48),
@@ -120,7 +118,7 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
         <input
           ref={ref}
           className={cn(
-            clsx(
+            cn(
               isSearch ? 'w-full flex-1' : 'w-full',
               `border-none p-0 ${readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'} ${
                 (disabled || readonly) && 'bg-gray-100'
@@ -142,7 +140,7 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
           <button
             type="button"
             tabIndex={-1}
-            className={clsx(
+            className={cn(
               'flex-shrink-0 transition-opacity duration-150',
               { 'invisible opacity-0': !isFocused || !inputValue },
               { 'visible opacity-100': isFocused && inputValue },
@@ -222,9 +220,9 @@ export const InputSelect = forwardRef<HTMLInputElement, TextInputProps>(function
   const handleBlur = () => setIsFocused(false)
 
   return (
-    <div className={clsx('flex flex-col justify-start gap-1', className)}>
+    <div className={cn('flex flex-col justify-start gap-1', className)}>
       <div
-        className={clsx(
+        className={cn(
           'relative flex items-center justify-between gap-2 border border-gray-200 focus:ring-0 focus:outline-none',
           {
             'bg-white': (!disabled && !readonly) || (readonly && size === 48),
@@ -248,7 +246,7 @@ export const InputSelect = forwardRef<HTMLInputElement, TextInputProps>(function
           <input
             ref={ref}
             className={cn(
-              clsx(
+              cn(
                 isSearch ? 'w-full flex-1' : 'w-full',
                 `border-none p-0 ${readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'} ${
                   (disabled || readonly) && 'bg-gray-100'
@@ -276,7 +274,7 @@ export const InputSelect = forwardRef<HTMLInputElement, TextInputProps>(function
                 color="gray700"
                 rotate={90}
                 size={16}
-                className={clsx({
+                className={cn({
                   'cursor-not-allowed': readonly || disabled,
                 })}
               />
@@ -342,9 +340,9 @@ export const InputLabel = forwardRef<HTMLInputElement, TextInputProps>(function 
   const handleBlur = () => setIsFocused(false)
 
   return (
-    <div className={clsx('flex flex-col justify-start gap-1', className)}>
+    <div className={cn('flex flex-col justify-start gap-1', className)}>
       <div
-        className={clsx(
+        className={cn(
           'relative flex items-center justify-between gap-2 border border-gray-200 focus:ring-0 focus:outline-none',
           {
             'bg-white': (!disabled && !readonly) || (readonly && size === 48),
@@ -359,13 +357,13 @@ export const InputLabel = forwardRef<HTMLInputElement, TextInputProps>(function 
         onFocus={!readonly && !disabled ? handleFocus : undefined}
         onBlur={!readonly && !disabled ? handleBlur : undefined}
       >
-        <Typography variant="body3" className={clsx('min-w-max text-gray-500', labelClass)}>
+        <Typography variant="body3" className={cn('min-w-max text-gray-500', labelClass)}>
           {label}
         </Typography>
         <input
           ref={ref}
           className={cn(
-            clsx(
+            cn(
               `w-full border-none p-0 ${readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'} ${
                 (disabled || readonly) && 'bg-gray-100'
               } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-none disabled:text-gray-400`,
@@ -382,7 +380,7 @@ export const InputLabel = forwardRef<HTMLInputElement, TextInputProps>(function 
         <button
           type="button"
           tabIndex={-1}
-          className={clsx(
+          className={cn(
             'flex-shrink-0 transition-opacity duration-150',
             { 'invisible opacity-0': !isFocused || !inputValue },
             { 'visible opacity-100': isFocused && inputValue },
@@ -442,9 +440,9 @@ export const InputScale = forwardRef<HTMLInputElement, TextInputProps>(function 
   const handleBlur = () => setIsFocused(false)
 
   return (
-    <div className={clsx('flex flex-col justify-start gap-1', className)}>
+    <div className={cn('flex flex-col justify-start gap-1', className)}>
       <div
-        className={clsx(
+        className={cn(
           'relative flex items-center justify-end gap-2 border border-gray-200 focus:ring-0 focus:outline-none',
           {
             'bg-white': (!disabled && !readonly) || (readonly && size === 48),
@@ -462,7 +460,7 @@ export const InputScale = forwardRef<HTMLInputElement, TextInputProps>(function 
         <input
           ref={ref}
           className={cn(
-            clsx(
+            cn(
               `w-full border-none p-0 text-right ${
                 readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'
               } ${

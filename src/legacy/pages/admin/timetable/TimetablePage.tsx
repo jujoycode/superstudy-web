@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { range } from 'lodash'
 import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -508,7 +508,7 @@ export function TimetablePage() {
                             }
                           }
                         }}
-                        className={clsx(
+                        className={cn(
                           'h-full w-full',
                           exchangeMode === ExchangeModeEnum.DAY && changeDay1 === index
                             ? 'bg-gray-100'
@@ -573,7 +573,7 @@ export function TimetablePage() {
                               }
                             }
                           }}
-                          className={clsx(
+                          className={cn(
                             'h-full w-full',
                             day === lecture?.day && time === lecture.time ? 'bg-gray-100' : 'hover:bg-gray-50',
                           )}
@@ -657,7 +657,7 @@ export function TimetablePage() {
                       {neisIng.map((item) => (
                         <div key={item.id} className="my-1 flex items-center space-x-3">
                           <div
-                            className={clsx(
+                            className={cn(
                               'w-24 flex-shrink-0 rounded-md border px-2 py-1 text-center text-sm',
                               item.timeTableType === 'neis-total' ? `text-blue-500` : 'text-orange-400',
                             )}
@@ -686,7 +686,7 @@ export function TimetablePage() {
                           <div className="w-40 flex-shrink-0">
                             <div className="flex flex-row-reverse items-center">
                               <div
-                                className={clsx(
+                                className={cn(
                                   'w-14 rounded-md px-2 py-1 text-center text-sm font-bold',
                                   item.status === 'FAILED' ? `bg-red-400 text-white` : 'text-text_black bg-green-300',
                                 )}

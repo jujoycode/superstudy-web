@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { InputHTMLAttributes, forwardRef } from 'react'
 
 interface NumberInputProps extends InputHTMLAttributes<HTMLInputElement> {}
@@ -15,5 +15,5 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(functi
     }, 0)
   }
 
-  return <input ref={ref} type="number" className={clsx('text-input', className)} {...props} onWheel={preventWheel} />
+  return <input ref={ref} type="number" className={cn('text-input', className)} {...props} onWheel={preventWheel} />
 })

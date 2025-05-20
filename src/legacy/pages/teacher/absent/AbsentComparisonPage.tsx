@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import _, { range } from 'lodash'
 import React, { useEffect, useState, useCallback } from 'react'
 import { useLocation } from 'react-router'
@@ -501,7 +501,7 @@ const AbsentComparisonPage: React.FC = () => {
 
         <label
           htmlFor="nice-file"
-          className={clsx(
+          className={cn(
             'my-6 block w-full rounded-lg border-2 border-dotted py-8 text-center hover:bg-yellow-50',
             isDragIn ? 'border-yellow-600 bg-yellow-50' : 'border-gray-600 bg-slate-50',
           )}

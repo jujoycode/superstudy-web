@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { map } from 'lodash'
 import { PropsWithChildren, useState } from 'react'
 
@@ -184,7 +184,7 @@ export function CoordinatorEE_Eval_UpdateEval({
                 onClick={() =>
                   criteria.id ? setSelectedCriteriaId(criteria.id) : setSelectedCriteriaId(String(index))
                 }
-                className={clsx(
+                className={cn(
                   'flex cursor-pointer items-center justify-center rounded-lg px-4 py-[9px] whitespace-pre',
                   checkCriteriaSelected(criteria.id ? criteria : index)
                     ? 'bg-gray-700 text-white'

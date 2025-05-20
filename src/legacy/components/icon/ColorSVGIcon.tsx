@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 
 export interface ColorSVGIconProps {
   color?: 'gray700' | 'gray400' | 'orange800' | 'orange' | 'white' | 'dimmed'
@@ -21,7 +21,7 @@ const ColorSVGIconBase = ({
       width={size}
       height={size}
       onClick={onClick}
-      className={clsx(className, {
+      className={cn(className, {
         'rotate-0': rotate === 0,
         'rotate-90': rotate === 90,
         'rotate-180': rotate === 180,

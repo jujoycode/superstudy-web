@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { HTMLAttributes, createElement, forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -46,7 +46,7 @@ export const Typography = forwardRef<HTMLElement, TypographyProps>(function Typo
               ? 'span'
               : 'p'
 
-  const combinedClassName = twMerge(clsx(styles[variant], 'whitespace-pre-wrap', className))
+  const combinedClassName = twMerge(cn(styles[variant], 'whitespace-pre-wrap', className))
 
   return createElement(Component, { ref, className: combinedClassName, ...props })
 })

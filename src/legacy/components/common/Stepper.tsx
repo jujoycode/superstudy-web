@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
 
 import SVGIcon from '../icon/SVGIcon'
@@ -67,7 +67,7 @@ const Stepper: React.FC<StepperProps> = ({
   return (
     <div className="flex flex-col items-end justify-center gap-1">
       <div
-        className={clsx('flex w-max flex-row items-center gap-1 overflow-hidden rounded-md border border-gray-200', {
+        className={cn('flex w-max flex-row items-center gap-1 overflow-hidden rounded-md border border-gray-200', {
           'bg-white': !disabled,
           'border-gray-700': isFocused,
           'bg-gray-100': disabled || readonly,
@@ -79,7 +79,7 @@ const Stepper: React.FC<StepperProps> = ({
         onBlur={!readonly && !disabled ? handleBlur : undefined}
       >
         <div
-          className={clsx('flex h-8 w-8 items-center justify-center border-r border-r-gray-200', {
+          className={cn('flex h-8 w-8 items-center justify-center border-r border-r-gray-200', {
             'bg-gray-100': number <= min,
             'cursor-not-allowed': number <= min,
           })}
@@ -87,7 +87,7 @@ const Stepper: React.FC<StepperProps> = ({
           <button
             onClick={handleMinusClick}
             disabled={disabled || readonly || number <= (range?.min || 0)}
-            className={clsx({ 'cursor-not-allowed': readonly || disabled || number <= min })}
+            className={cn({ 'cursor-not-allowed': readonly || disabled || number <= min })}
           >
             <SVGIcon.Minus
               size={16}
@@ -107,7 +107,7 @@ const Stepper: React.FC<StepperProps> = ({
           />
         </div>
         <div
-          className={clsx('flex h-8 w-8 items-center justify-center border-l border-l-gray-200', {
+          className={cn('flex h-8 w-8 items-center justify-center border-l border-l-gray-200', {
             'bg-gray-100': number >= max,
             'cursor-not-allowed': number >= max,
           })}
@@ -115,7 +115,7 @@ const Stepper: React.FC<StepperProps> = ({
           <button
             onClick={handlePlusClick}
             disabled={disabled || readonly}
-            className={clsx({
+            className={cn({
               'cursor-not-allowed': disabled || readonly || number >= max,
             })}
           >

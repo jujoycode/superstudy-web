@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
 
 import { ReactComponent as Close } from '@/assets/svg/close.svg'
@@ -204,7 +204,7 @@ export function OutingAddPage({ outingData }: OutingAddPageProps) {
             <Badge
               children="교시설정"
               onClick={() => setTimeType(AbsentTimeType.PERIOD)}
-              className={clsx(
+              className={cn(
                 'py-1.5',
                 timeType === AbsentTimeType.PERIOD ? 'bg-brand-1 text-white' : 'bg-white text-black',
               )}
@@ -212,7 +212,7 @@ export function OutingAddPage({ outingData }: OutingAddPageProps) {
             <Badge
               children="시간설정"
               onClick={() => setTimeType(AbsentTimeType.TIME)}
-              className={clsx(
+              className={cn(
                 'py-1.5',
                 timeType === AbsentTimeType.TIME ? 'bg-brand-1 text-white' : 'bg-white text-black',
               )}
@@ -412,7 +412,7 @@ export function OutingAddPage({ outingData }: OutingAddPageProps) {
                 placeholder="조퇴/외출/확인 사유를 자세하게 입력해주세요"
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
-                className={clsx(reason ? 'border border-gray-300' : 'border-2 border-red-700')}
+                className={cn(reason ? 'border border-gray-300' : 'border-2 border-red-700')}
               />
             </Label.col>
           </div>

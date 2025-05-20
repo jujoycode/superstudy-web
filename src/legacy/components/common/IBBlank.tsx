@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { use100vh } from 'react-div-100vh'
 
 import { Icon } from './icons'
@@ -19,7 +19,7 @@ export function IBBlank({ type = 'main' }: IBBlankProps) {
           e.preventDefault()
           e.stopPropagation()
         }}
-        className={clsx(
+        className={cn(
           'absolute top-0 right-0 z-100 m-0 flex h-screen w-[calc(100%-224px)] items-center justify-center',
           'bg-gray-50',
         )}
@@ -38,7 +38,7 @@ export function IBBlank({ type = 'main' }: IBBlankProps) {
           e.preventDefault()
           e.stopPropagation()
         }}
-        className={clsx(
+        className={cn(
           'absolute top-0 right-0 z-100 m-0 flex h-screen w-[calc(100%-224px)] items-center justify-center opacity-60',
           'bg-gray-50',
         )}
@@ -54,7 +54,7 @@ export function IBBlank({ type = 'main' }: IBBlankProps) {
         e.preventDefault()
         e.stopPropagation()
       }}
-      className={clsx(
+      className={cn(
         'z-100 flex h-full w-full items-center justify-center',
         'bg-white',
         type === 'section-opacity' &&
