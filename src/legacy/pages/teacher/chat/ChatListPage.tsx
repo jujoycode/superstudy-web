@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { uniqBy } from 'lodash'
 import { useEffect, useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import * as XLSX from 'xlsx'
 import { ReactComponent as Close } from '@/assets/svg/close.svg'
 import { useHistory } from '@/hooks/useHistory'
@@ -33,12 +33,11 @@ const headers = ['id', '이름', '전화번호', '문구1', '문구2', '문구3'
 
 export function ChatListPage() {
   const { push } = useHistory()
-
+  const { id } = useParams<{ id: string }>()
   const { me: meRecoil } = useUserStore()
-
   const pathname = useLocation().pathname
   const [chatRoomId, setChatRoomId] = useState('')
-  const pathRoomId = pathname.replace('/teacher/chat', '').replace('/', '')
+  const pathRoomId = id || pathname.replace('/teacher/chat', '').replace('/', '')
   const [mobileSmsSendView, setMobileSmsSendView] = useState(false)
   const [loading, setLoading] = useState(false)
   const [isDragIn, setDragIn] = useState(false)

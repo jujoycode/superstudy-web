@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import { useHistory } from '@/hooks/useHistory'
 
 import AnnouncementBadge from '@/legacy/components/announcement/AnnouncementBadge'
@@ -83,9 +83,7 @@ export default function AnnouncementPage() {
           isDetail ? 'block' : 'hidden'
         }`}
       >
-        <Routes>
-          <Route path="/teacher/announcement/:id" element={<AnnouncementDetailPage />} />
-        </Routes>
+        <Outlet />
       </div>
     </>
   )

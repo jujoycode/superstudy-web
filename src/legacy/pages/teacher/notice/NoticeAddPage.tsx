@@ -1,3 +1,4 @@
+import { useOutletContext } from 'react-router-dom'
 import { useUserStore } from '@/stores/user'
 import { ErrorBlank } from '@/legacy/components'
 import { Blank, Label, Section, Select, Textarea } from '@/legacy/components/common'
@@ -20,7 +21,10 @@ interface NoticeAddProps {
   categoryData?: Code[]
 }
 
-export function NoticeAddPage({ noticeData, categoryData }: NoticeAddProps) {
+export function NoticeAddPage({ noticeData: noticeProps, categoryData: categoryProps }: NoticeAddProps) {
+  const contextData = useOutletContext<NoticeAddProps>()
+  const noticeData = noticeProps || contextData.noticeData
+  const categoryData = categoryProps || contextData.categoryData
   const { me: meRecoil } = useUserStore()
   const { t } = useLanguage()
 

@@ -77,6 +77,26 @@ import { PointLogsPage } from '@/legacy/pages/teacher/studentcard/PointLogsPage'
 import { ActivityV3Page } from '@/legacy/pages/teacher/activityv3/ActivityV3Page'
 
 import { ActivityV3Page as ActivityV3CardPage } from '@/legacy/pages/teacher/studentcard/ActivityV3Page'
+import { CASDetailPage } from '@/legacy/pages/ib/teacher/CAS/CASDetailPage'
+import AcitivityLogDetail from '@/legacy/components/ib/cas/AcitivityLogDetail'
+import TeahcerActivityLogList from '@/legacy/components/ib/cas/TeacherActivityLogList'
+import { EEMainPage } from '@/legacy/pages/ib/teacher/EE/EEMainPage'
+import { EssayMainPage } from '@/legacy/pages/ib/teacher/TOK_ESSAY/EssayMainPage'
+import { ExhibitionMainPage } from '@/legacy/pages/ib/teacher/TOK_EXHIBITION/ExhibitionMainPage'
+import { IBTeacherReferencePage } from '@/legacy/pages/ib/teacher/IBTeacherReferencePage'
+import { NoticeDetailPage } from '@/legacy/pages/teacher/notice/NoticeDetailPage'
+import { NoticeAddPage } from '@/legacy/pages/teacher/notice/NoticeAddPage'
+import { BoardDetailPage } from '@/legacy/pages/teacher/board/BoardDetailPage'
+import { BoardAddPage } from '@/legacy/pages/teacher/board/BoardAddPage'
+import { NewsletterAddPage } from '@/legacy/pages/teacher/newsletter/NewsletterAddPage'
+import { NewsletterSubmitPage } from '@/legacy/pages/teacher/newsletter/NewsletterSubmitPage'
+import { NewsletterCheckPage } from '@/legacy/pages/teacher/newsletter/NewsletterCheckPage'
+import { NewsletterDownloadPage } from '@/legacy/pages/teacher/newsletter/NewsletterDownloadPage'
+import { NewsletterCheckDownloadPage } from '@/legacy/pages/teacher/newsletter/NewsletterCheckDownloadPage'
+import { NewsletterDetailPage } from '@/legacy/pages/teacher/newsletter/NewsletterDetailPage'
+import { NewsletterSubmitDetailPage } from '@/legacy/pages/teacher/newsletter/NewsletterSubmitDetailPage'
+import { NewsletterCheckDetailPage } from '@/legacy/pages/teacher/newsletter/NewsletterCheckDetailPage'
+import AnnouncementDetailPage from '@/legacy/pages/teacher/announcement/AnnouncementDetailPage'
 
 export const teacherRoutes = {
   path: '/teacher',
@@ -218,33 +238,40 @@ export const teacherRoutes = {
     {
       path: 'ib',
       children: [
-        // CAS 포트폴리오
         {
-          path: 'portfolio/:studentId',
-          children: [
-            { path: 'reflection-diary/:id', element: <CASReflectionDiaryDetailPage /> },
-            { path: 'interview/:id/:qnaId', element: <CASInterviewDetailPage /> },
-          ],
+          path: 'cas/portfolio/:id',
+          element: <CASPortfolioPage />,
         },
 
         // CAS 상세
         {
-          path: 'cas',
+          path: 'portfolio/:studentId/reflection-diary/:id',
+          element: <CASReflectionDiaryDetailPage />,
+        },
+        {
+          path: 'portfolio/:studentId/interview/:id/:qnaId',
+          element: <CASInterviewDetailPage />,
+        },
+        {
+          path: 'cas/:id',
+          element: <CASMainPage />,
           children: [
-            { path: 'portfolio/:id', element: <CASPortfolioPage /> },
-            { path: ':id', element: <CASMainPage /> },
+            { path: 'plan', element: <CASDetailPage /> },
+            { path: 'activitylog/:activitylogId', element: <AcitivityLogDetail /> },
+            { path: 'activitylog', element: <TeahcerActivityLogList /> },
           ],
         },
 
         // EE
         {
-          path: 'ee/:id',
+          path: 'ee',
           children: [
-            { path: 'proposal/:proposalId', element: <EEProposalDetailPage /> },
-            { path: 'essay/:essayId', element: <EEEssayPage /> },
-            { path: 'rppf/:rppfId', element: <EERppfDetailPage /> },
-            { path: 'interview/:qnaId', element: <EERppfInterviewDetailPage /> },
-            { path: 'rrs/:rrsId', element: <EERrsDetailPage /> },
+            { path: ':id', element: <EEMainPage /> },
+            { path: ':id/proposal/:proposalId', element: <EEProposalDetailPage /> },
+            { path: ':id/essay/:essayId', element: <EEEssayPage /> },
+            { path: ':id/rppf/:rppfId', element: <EERppfDetailPage /> },
+            { path: ':id/interview/:qnaId', element: <EERppfInterviewDetailPage /> },
+            { path: ':id/rrs/:rrsId', element: <EERrsDetailPage /> },
           ],
         },
 
@@ -252,12 +279,30 @@ export const teacherRoutes = {
         {
           path: 'tok',
           children: [
-            { path: 'exhibition/:ibId/detail/:exhibitionId', element: <ExhibitionDetailPage /> },
-            { path: 'plan/:ibId', element: <ExhibitionPlanDetailPage /> },
-            { path: 'essay/:ibId/detail/:essayId', element: <EssayDetailPage /> },
-            { path: 'outline/:ibId/detail/:outlineId', element: <OutlineDetailPage /> },
+            {
+              path: 'essay',
+              children: [
+                {
+                  path: ':ibId',
+                  element: <EssayMainPage />,
+                },
+                { path: ':ibId/detail/:essayId', element: <EssayDetailPage /> },
+              ],
+            },
             { path: 'tkppf/:ibId/detail/:tkppfId', element: <TKPPFDetailPage /> },
+            { path: 'outline/:ibId/detail/:outlineId', element: <OutlineDetailPage /> },
             { path: 'rrs/:ibId/detail/:rrsId', element: <RRSDetailPage /> },
+            {
+              path: 'exhibition',
+              children: [
+                {
+                  path: ':ibId',
+                  element: <ExhibitionMainPage />,
+                },
+                { path: ':ibId/detail/:exhibitionId', element: <ExhibitionDetailPage /> },
+              ],
+            },
+            { path: 'plan/:ibId', element: <ExhibitionPlanDetailPage /> },
           ],
         },
 
@@ -266,6 +311,7 @@ export const teacherRoutes = {
 
         // 자료실
         { path: 'reference/:id', element: <IBTeacherReferenceDetailPage /> },
+        { path: 'reference', element: <IBTeacherReferencePage /> },
       ],
     },
 
@@ -274,24 +320,62 @@ export const teacherRoutes = {
 
     // 급식표
     { path: 'canteen/:date', element: <CanteenPage /> },
+    { path: 'canteen', element: <CanteenPage /> },
 
     // 공지사항
-    { path: 'notice', element: <NoticePage /> },
+    {
+      path: 'notice',
+      element: <NoticePage />,
+      children: [
+        { path: ':id', element: <NoticeDetailPage /> },
+        { path: 'add', element: <NoticeAddPage /> },
+      ],
+    },
 
     // 학급게시판
-    { path: 'board', element: <BoardsPage /> },
+    {
+      path: 'board',
+      element: <BoardsPage />,
+      children: [
+        { path: ':id', element: <BoardDetailPage /> },
+        { path: ':id/edit', element: <BoardAddPage /> },
+        { path: 'add', element: <BoardAddPage /> },
+      ],
+    },
 
     // 가정통신문
-    { path: 'newsletter', element: <NewsletterPage /> },
+    {
+      path: 'newsletter',
+      element: <NewsletterPage />,
+      children: [
+        { path: 'add', element: <NewsletterAddPage /> },
+        { path: ':id/edit', element: <NewsletterAddPage /> },
+        { path: 'submit/:id', element: <NewsletterSubmitPage /> },
+        { path: 'submit/:id/:snid', element: <NewsletterSubmitDetailPage /> },
+        { path: 'check/:id', element: <NewsletterCheckPage /> },
+        { path: 'check/:id/:snid', element: <NewsletterCheckDetailPage /> },
+        { path: 'download/:id', element: <NewsletterDownloadPage /> },
+        { path: 'unread-student-download/:id', element: <NewsletterCheckDownloadPage /> },
+        { path: ':id', element: <NewsletterDetailPage /> },
+      ],
+    },
 
     // 메시지
-    { path: 'chat', element: <ChatListPage /> },
+    {
+      path: 'chat',
+      element: <ChatListPage />,
+      children: [{ path: ':id', element: <ChatListPage /> }],
+    },
 
     // 내 정보
     { path: 'update', element: <TeacherInfoPage /> },
 
     // 슈퍼스쿨 공지사항
-    { path: 'announcement', element: <AnnouncementPage /> },
+    {
+      path: 'announcement',
+      element: <AnnouncementPage />,
+      children: [{ path: ':id', element: <AnnouncementDetailPage /> }],
+    },
 
     // 첫 로그인
     { path: 'first-login', element: <TeacherFirstLoginPage /> },

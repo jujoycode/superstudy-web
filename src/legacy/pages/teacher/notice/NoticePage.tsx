@@ -1,6 +1,6 @@
 import { range } from 'lodash'
 import { useEffect, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import { useHistory } from '@/hooks/useHistory'
 import { useUserStore } from '@/stores/user'
 import { ErrorBlank } from '@/legacy/components'
@@ -194,10 +194,7 @@ function NoticePageView() {
           isDetail ? 'block' : 'hidden'
         }`}
       >
-        <Routes>
-          <Route path="/teacher/notice/add" Component={() => <NoticeAddPage categoryData={categoryData} />} />
-          <Route path="/teacher/notice/:id" Component={() => <NoticeDetailPage categoryData={categoryData} />} />
-        </Routes>
+        <Outlet context={{ categoryData }} />
       </div>
     </>
   )

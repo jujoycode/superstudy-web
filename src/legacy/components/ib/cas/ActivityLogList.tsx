@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router'
+import { useLocation, useOutletContext } from 'react-router'
 import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -25,7 +25,8 @@ interface ActivityLogListProps {
   writerId?: number
 }
 
-export default function ActivityLogList({ id, status, writerId }: ActivityLogListProps) {
+export default function ActivityLogList() {
+  const { id, status, writerId } = useOutletContext<ActivityLogListProps>()
   const { push } = useHistory()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [alertOpen, setAlertOpen] = useState<boolean>(false)

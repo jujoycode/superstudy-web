@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import moment from 'moment'
 import { useState } from 'react'
-import { Link, Route, Routes, useLocation, useParams } from 'react-router'
+import { Link, Outlet, Route, Routes, useLocation, useParams } from 'react-router'
 
 import { twMerge } from 'tailwind-merge'
 
@@ -12,13 +12,9 @@ import Breadcrumb from '@/legacy/components/common/Breadcrumb'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'
-import AcitivityLogDetail from '@/legacy/components/ib/cas/AcitivityLogDetail'
-import ActivityLogList from '@/legacy/components/ib/cas/ActivityLogList'
-import ActivityPlan from '@/legacy/components/ib/cas/ActivityPlan'
 import { IbApprove } from '@/legacy/components/ib/cas/IbApprove'
 import { IbCASCheckList } from '@/legacy/components/ib/cas/IbCASCheckList'
 import { IbCASMentorSelect } from '@/legacy/components/ib/cas/IbCASMentorSelect'
-import ProjectActivityPlan from '@/legacy/components/ib/cas/ProjectActivityPlan'
 import Timeline from '@/legacy/components/ib/cas/Timeline'
 import IBLayout from '@/legacy/components/ib/IBLayout'
 import IBProjectList from '@/legacy/components/ib/IBProjectList'
@@ -233,28 +229,29 @@ export const CASMainPage = () => {
                   {data === undefined ? (
                     <div>계획서를 불러올 수 없습니다.</div>
                   ) : (
-                    <Routes>
-                      <Route
-                        path="/ib/student/cas/:id/plan"
-                        Component={() =>
-                          data.ibType === 'CAS_NORMAL' ? (
-                            <ActivityPlan data={data} refetch={refetch} setEdit={setEdit} />
-                          ) : data.ibType === 'CAS_PROJECT' ? (
-                            <ProjectActivityPlan data={data} refetch={refetch} setEdit={setEdit} />
-                          ) : (
-                            <div>잘못된 IB 타입입니다.</div>
-                          )
-                        }
-                      />
-                      <Route
-                        path="/ib/student/cas/:id/activitylog/:activitylogId"
-                        Component={() => <AcitivityLogDetail status={data.status} />}
-                      />
-                      <Route
-                        path="/ib/student/cas/:id/activitylog"
-                        Component={() => <ActivityLogList id={data.id} status={data.status} writerId={me.id} />}
-                      />
-                    </Routes>
+                    <Outlet context={{ data, refetch, setEdit, status: data.status, id: data.id, writerId: me.id }} />
+                    // <Routes>
+                    //   <Route
+                    //     path="/ib/student/cas/:id/plan"
+                    //     Component={() =>
+                    //       data.ibType === 'CAS_NORMAL' ? (
+                    //         <ActivityPlan data={data} refetch={refetch} setEdit={setEdit} />
+                    //       ) : data.ibType === 'CAS_PROJECT' ? (
+                    //         <ProjectActivityPlan data={data} refetch={refetch} setEdit={setEdit} />
+                    //       ) : (
+                    //         <div>잘못된 IB 타입입니다.</div>
+                    //       )
+                    //     }
+                    //   />
+                    //   <Route
+                    //     path="/ib/student/cas/:id/activitylog/:activitylogId"
+                    //     Component={() => <AcitivityLogDetail status={data.status} />}
+                    //   />
+                    //   <Route
+                    //     path="/ib/student/cas/:id/activitylog"
+                    //     Component={() => <ActivityLogList id={data.id} status={data.status} writerId={me.id} />}
+                    //   />
+                    // </Routes>
                   )}
                 </div>
               </div>

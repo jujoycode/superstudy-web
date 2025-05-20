@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router'
+import { useLocation, useOutletContext } from 'react-router'
 import NODATA from '@/assets/images/no-data.png'
 import { useHistory } from '@/hooks/useHistory'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -20,7 +20,8 @@ interface TeahcerActivityLogListProps {
   data: ResponseIBDto
 }
 
-export default function TeahcerActivityLogList({ data: IBData }: TeahcerActivityLogListProps) {
+export default function TeahcerActivityLogList() {
+  const { data: IBData } = useOutletContext<TeahcerActivityLogListProps>()
   const { push } = useHistory()
   const location = useLocation()
   const page = location.state?.page

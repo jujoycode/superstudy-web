@@ -1,5 +1,5 @@
 import { useQueryClient } from 'react-query'
-import { Routes, useParams } from 'react-router'
+import { Outlet, Routes, useParams } from 'react-router'
 import { Route } from 'react-router-dom'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
@@ -99,9 +99,7 @@ export function NewsletterCheckPage() {
         </div>
       </div>
       <div className="col-span-3">
-        <Routes>
-          <Route path={`/teacher/newsletter/check/:id/:snid`} Component={() => <NewsletterCheckDetailPage />} />
-        </Routes>
+        <Outlet />
       </div>
     </div>
   )

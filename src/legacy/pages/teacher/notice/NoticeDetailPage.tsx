@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams } from 'react-router'
+import { useOutletContext, useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { useUserStore } from '@/stores/user'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
@@ -17,7 +17,8 @@ interface NoticeAddProps {
   categoryData?: Code[]
 }
 
-export function NoticeDetailPage({ categoryData }: NoticeAddProps) {
+export function NoticeDetailPage() {
+  const { categoryData } = useOutletContext<NoticeAddProps>()
   const { id } = useParams<{ id: string }>()
   console.log('id ', id)
 

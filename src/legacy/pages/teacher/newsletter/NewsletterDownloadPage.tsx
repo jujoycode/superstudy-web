@@ -114,19 +114,23 @@ export function NewsletterDownloadPage() {
       </div>
       <Section className="mt-2">
         <div className="text-xl font-bold">미리보기</div>
-        <table>
-          <tbody>
-            {sortedRows?.map((row, i) => (
-              <tr key={i}>
-                {row?.map((cell, j) => (
-                  <Td key={j} innerClassName="min-w-max">
-                    {cell.toString()}
-                  </Td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {sortedRows && sortedRows.length > 0 ? (
+          <table>
+            <tbody>
+              {sortedRows.map((row, i) => (
+                <tr key={i}>
+                  {row?.map((cell, j) => (
+                    <Td key={j} innerClassName="min-w-max">
+                      {cell?.toString() ?? ''}
+                    </Td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div className="py-4 text-center text-gray-500">데이터가 없습니다.</div>
+        )}
       </Section>
     </div>
   )

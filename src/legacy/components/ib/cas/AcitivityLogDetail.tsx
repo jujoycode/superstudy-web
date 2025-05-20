@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
-import { useLocation, useParams } from 'react-router'
+import { useLocation, useOutletContext, useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
 import { useHistory } from '@/hooks/useHistory'
@@ -38,7 +38,8 @@ const urlDecorator = (decoratedHref: string, decoratedText: string, key: number)
   </a>
 )
 
-function AcitivityLogDetail({ type = 'student', status, hasPermission = true }: AcitivityLogDetailProps) {
+function AcitivityLogDetail() {
+  const { type, status, hasPermission } = useOutletContext<AcitivityLogDetailProps>()
   const { id: idParam, activitylogId: activitylogIdParam } = useParams<{ id: string; activitylogId: string }>()
   const id = Number(idParam)
   const history = useHistory()
