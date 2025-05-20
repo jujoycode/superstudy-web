@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { type HTMLAttributes } from 'react'
 
 const tooltipBaseClasses =
@@ -76,7 +76,7 @@ export function Tooltip({
   value,
   ...rest
 }: TooltipProps) {
-  const tooltipClassNames = clsx(
+  const tooltipClassNames = cn(
     tooltipBaseClasses,
     variantClasses[variant],
     sizeClasses[size],
@@ -90,7 +90,7 @@ export function Tooltip({
   )
 
   return (
-    <div className={clsx('group relative inline-block whitespace-nowrap', containerClassName)}>
+    <div className={cn('group relative inline-block whitespace-nowrap', containerClassName)}>
       <div className="peer">{children}</div>
       <span role="tooltip" className={tooltipClassNames} {...rest}>
         {value}

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { InputHTMLAttributes } from 'react'
 
 import { ReactComponent as FileUploadImg } from '@/assets/svg/upload-image.svg'
@@ -9,7 +9,7 @@ export interface ImageUploadProps extends InputHTMLAttributes<HTMLInputElement> 
 export function ImageUpload({ children, className, ...props }: ImageUploadProps) {
   const { t } = useLanguage()
   return (
-    <label className={clsx('image-upload', className)}>
+    <label className={cn('image-upload', className)}>
       {children || (
         <>
           <FileUploadImg />

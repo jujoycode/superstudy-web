@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import _ from 'lodash'
 import { FC, useEffect, useState } from 'react'
 
@@ -206,8 +206,8 @@ const CoordinatorTOK_Teacher: FC = () => {
             size={40}
             containerWidth="w-30"
             dropdownWidth="w-40"
-            className={clsx({ 'cursor-not-allowed': !selectedOptions.grade })}
-            priorityFontClass={clsx({ 'text-gray-900': selectedOptions.grade })}
+            className={cn({ 'cursor-not-allowed': !selectedOptions.grade })}
+            priorityFontClass={cn({ 'text-gray-900': selectedOptions.grade })}
           />
         </div>
         <div className="flex flex-row items-center gap-2">

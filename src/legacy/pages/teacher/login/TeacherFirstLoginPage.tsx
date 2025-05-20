@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -94,7 +94,7 @@ export function TeacherFirstLoginPage() {
             placeholder="비밀번호 (문자,숫자,특수문자를 포함한 8자 이상)"
             value={password1}
             onChange={(e) => setPassword1(Validator.removeSpace(String(e.target.value)))}
-            className={clsx('mb-2', !password1 || password1 !== password2 ? 'border-red-700' : 'border-gray-300')}
+            className={cn('mb-2', !password1 || password1 !== password2 ? 'border-red-700' : 'border-gray-300')}
           />
           <TextInput
             type="password"

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useUserStore } from '@/stores/user'
@@ -258,7 +258,7 @@ export function IbEeProposal({
         </div>
 
         <div
-          className={clsx(
+          className={cn(
             '.backdrop-blur-20 sticky bottom-0 flex h-[104px] gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8',
             {
               'justify-between': type === 'create',

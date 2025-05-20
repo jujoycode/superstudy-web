@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { format } from 'date-fns'
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -137,12 +137,12 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
         <Button
           children="출석부"
           onClick={() => setTab('list')}
-          className={clsx(tab === 'list' ? 'filled-gray' : 'filled-gray-light')}
+          className={cn(tab === 'list' ? 'filled-gray' : 'filled-gray-light')}
         />
         <Button
           children="출결현황"
           onClick={() => setTab('table')}
-          className={clsx(tab === 'table' ? 'filled-gray' : 'filled-gray-light')}
+          className={cn(tab === 'table' ? 'filled-gray' : 'filled-gray-light')}
         />
 
         {tab === 'table' && (
@@ -156,7 +156,7 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
         <div>
           <div className="flex flex-wrap items-center justify-between rounded-lg border bg-gray-100 p-5">
             <p
-              className={clsx(
+              className={cn(
                 'flex cursor-pointer flex-wrap',
                 traineeFilter === 'total' && 'font-extrabold text-red-500',
               )}
@@ -165,7 +165,7 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
               {t('total_students', '총원')} : {courseTrainees.length} {t('count', '명')}
             </p>
             <p
-              className={clsx(
+              className={cn(
                 'flex cursor-pointer flex-wrap',
                 traineeFilter === 'present' && 'font-extrabold text-red-500',
               )}
@@ -174,7 +174,7 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
               {t('attendance', '출석')} : {presentTrainees.length} {t('count', '명')}
             </p>
             <p
-              className={clsx(
+              className={cn(
                 'flex cursor-pointer flex-wrap',
                 traineeFilter === 'absent' && 'font-extrabold text-red-500',
               )}
@@ -334,12 +334,12 @@ function TimetableCoursePageAttendanceManagementModal({
           <Button
             children="출석"
             onClick={() => setIsAttended(true)}
-            className={clsx('w-full', isAttended ? 'filled-blue' : 'bg-gray-100 text-gray-500')}
+            className={cn('w-full', isAttended ? 'filled-blue' : 'bg-gray-100 text-gray-500')}
           />
           <Button
             children="미출석"
             onClick={() => setIsAttended(false)}
-            className={clsx('w-full', isAttended ? 'bg-gray-100 text-gray-500' : 'filled-red-light')}
+            className={cn('w-full', isAttended ? 'bg-gray-100 text-gray-500' : 'filled-red-light')}
           />
         </div>
         <Label.col>

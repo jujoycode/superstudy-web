@@ -1,8 +1,8 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { HTMLAttributes } from 'react'
 
 interface ListProps extends HTMLAttributes<HTMLUListElement> {}
 
 export function List({ className, ...props }: ListProps) {
-  return <ul className={clsx('list', className)} {...props} />
+  return <ul className={cn('list', className)} {...props} />
 }

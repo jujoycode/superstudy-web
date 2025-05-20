@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { format } from 'date-fns'
 import { PropsWithChildren, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -121,7 +121,7 @@ export function IbTKPPF({
 
         <form>
           <div className="scroll-box flex max-h-[608px] flex-col overflow-auto pt-4 pb-8">
-            <div className={clsx('flex flex-col gap-3 border-b border-b-gray-100 pb-6')}>
+            <div className={cn('flex flex-col gap-3 border-b border-b-gray-100 pb-6')}>
               <div className="flex flex-row items-center justify-between gap-2">
                 <Typography variant="title3" className="font-semibold">
                   TKPPF 1차
@@ -141,7 +141,7 @@ export function IbTKPPF({
                 {...register(`sequence1.text`)}
               />
             </div>
-            <div className={clsx('flex flex-col gap-3 border-b border-b-gray-100 py-6')}>
+            <div className={cn('flex flex-col gap-3 border-b border-b-gray-100 py-6')}>
               <div className="flex flex-row items-center justify-between gap-2">
                 <Typography variant="title3" className="font-semibold">
                   TKPPF 2차
@@ -161,7 +161,7 @@ export function IbTKPPF({
                 {...register(`sequence2.text`)}
               />
             </div>
-            <div className={clsx('flex flex-col gap-3 pt-6')}>
+            <div className={cn('flex flex-col gap-3 pt-6')}>
               <div className="flex flex-row items-center justify-between gap-2">
                 <Typography variant="title3" className="font-semibold">
                   TKPPF 3차
@@ -184,7 +184,7 @@ export function IbTKPPF({
           </div>
 
           <div
-            className={clsx(
+            className={cn(
               '.backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8',
             )}
           >

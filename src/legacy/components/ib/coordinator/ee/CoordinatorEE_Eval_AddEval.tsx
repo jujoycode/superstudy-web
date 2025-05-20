@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren } from 'react'
 
 import { Blank } from '@/legacy/components/common'
@@ -96,7 +96,7 @@ export function CoordinatorEE_Eval_AddEval({
               <div
                 key={JSON.stringify(criteria) + index}
                 onClick={() => setSelectedCriteriaIndex(index)}
-                className={clsx(
+                className={cn(
                   'flex cursor-pointer items-center justify-center rounded-lg px-4 py-[9px] whitespace-pre',
                   index === selectedCriteriaIndex
                     ? 'bg-gray-700 text-white'

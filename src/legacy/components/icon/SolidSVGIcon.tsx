@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 
 export interface SolidSVGIconProps {
   color?: 'gray700' | 'gray400' | 'orange800' | 'white'
@@ -22,7 +22,7 @@ const SVGIconBase = ({
       width={size}
       height={size}
       onClick={onClick}
-      className={clsx(className, {
+      className={cn(className, {
         'rotate-45': rotate === 45,
         'rotate-90': rotate === 90,
         'rotate-180': rotate === 180,

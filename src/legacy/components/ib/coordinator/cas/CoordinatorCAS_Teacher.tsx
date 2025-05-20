@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import _ from 'lodash'
 import { FC, useEffect, useState } from 'react'
 
@@ -322,10 +322,10 @@ const CoordinatorCAS_Teacher: FC = () => {
                 'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10'
               }
             >
-              <p className={clsx({ 'text-gray-700': mentorType === 'INSTRUCTOR' })}>지도교사</p>
+              <p className={cn({ 'text-gray-700': mentorType === 'INSTRUCTOR' })}>지도교사</p>
             </Tab>
             <Tab value="SUPERVISOR">
-              <p className={clsx({ 'text-gray-700': mentorType === 'SUPERVISOR' })}>감독교사</p>
+              <p className={cn({ 'text-gray-700': mentorType === 'SUPERVISOR' })}>감독교사</p>
             </Tab>
           </LayeredTabs.TwoDepth>
           <SelectBar
@@ -347,8 +347,8 @@ const CoordinatorCAS_Teacher: FC = () => {
             size={40}
             containerWidth="w-30"
             dropdownWidth="w-40"
-            className={clsx({ 'cursor-not-allowed': !selectedOptions.grade })}
-            priorityFontClass={clsx({ 'text-gray-900': selectedOptions.grade })}
+            className={cn({ 'cursor-not-allowed': !selectedOptions.grade })}
+            priorityFontClass={cn({ 'text-gray-900': selectedOptions.grade })}
           />
           <SearchInput
             onChange={(e) => {

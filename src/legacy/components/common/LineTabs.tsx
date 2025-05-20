@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import React, { ReactNode } from 'react'
 
 interface TabProps<T> {
@@ -27,7 +27,7 @@ export function LineTabs<T>({ children, value, onChange }: LineTabsProps<T>) {
         <div
           key={String(tab.props.value)}
           onClick={() => handleTabClick(tab.props.value)}
-          className={clsx(
+          className={cn(
             'flex min-w-[44px] cursor-pointer items-center justify-center bg-white px-2 py-2.5',
             value === tab.props.value
               ? 'border-b-2 border-[#121316] font-semibold text-[#121316]'

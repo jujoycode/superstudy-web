@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import React, { forwardRef, InputHTMLAttributes, ReactNode, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -46,7 +46,7 @@ interface RadioGroupProps<T = any> {
 const RadioIndicator = ({ size = 24, checked, disabled }: { size: number; checked?: boolean; disabled?: boolean }) => {
   return (
     <span
-      className={clsx('flex items-center justify-center rounded-full border-2 transition-colors', {
+      className={cn('flex items-center justify-center rounded-full border-2 transition-colors', {
         'border-gray-200 bg-white': !disabled,
         'border-gray-200 bg-gray-100': disabled,
         'cursor-not-allowed': disabled,
@@ -55,7 +55,7 @@ const RadioIndicator = ({ size = 24, checked, disabled }: { size: number; checke
     >
       {checked && (
         <span
-          className={clsx('rounded-full', {
+          className={cn('rounded-full', {
             'bg-primary-800': !disabled,
             'bg-gray-300': disabled,
           })}
@@ -87,14 +87,14 @@ const Basic = forwardRef<HTMLInputElement, RadioBasicProps>(function Basic(
   return (
     <label
       onClick={handleLabelClick}
-      className={clsx(`flex items-center ${props.disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`)}
+      className={cn(`flex items-center ${props.disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`)}
     >
       <input ref={ref} type="radio" value={value} className="sr-only" {...props} onChange={handleInputChange} />
       <RadioIndicator size={size} checked={props.checked} disabled={props.disabled} />
       {label && (
         <Typography
           variant={labelTypographyVariant}
-          className={twMerge(clsx({ 'cursor-not-allowed': props.disabled }, labelClassName))}
+          className={twMerge(cn({ 'cursor-not-allowed': props.disabled }, labelClassName))}
         >
           {label}
         </Typography>
@@ -124,7 +124,7 @@ const Box = forwardRef<HTMLInputElement, RadioBoxProps>(function Box(
     return (
       <label
         onClick={handleLabelClick}
-        className={clsx(
+        className={cn(
           `flex w-full flex-row items-start gap-2 overflow-hidden rounded-lg border border-gray-200 px-4 py-[14px]`,
           props.checked && 'border-primary-400',
           props.disabled || 'cursor-pointer',

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -32,7 +32,7 @@ export const Coachmark2: React.FC<CoachmarkProps> = ({
 }) => {
   const step = steps[currentStep - 1]
 
-  const positionClasses = clsx(
+  const positionClasses = cn(
     'absolute right-0 flex w-72 transform flex-col gap-3 rounded-lg border-2 border-coach_orange bg-coach_orange p-4 text-14 translate-x-full z-10 text-white',
 
     {
@@ -42,7 +42,7 @@ export const Coachmark2: React.FC<CoachmarkProps> = ({
     positionClass,
   )
 
-  const arrowClasses = clsx(
+  const arrowClasses = cn(
     'after:absolute after:left-4 after:block after:-translate-x-1/2 after:border-8 after:border-transparent',
     {
       'after:bottom-full after:border-b-coach_orange': arrowDirection === 'top',

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { ChangeEvent, useState, useRef } from 'react'
 
 import ADDFILE from '@/assets/images/addfile.png'
@@ -77,7 +77,7 @@ export default function InspectorButtonContainer({ type, onTypeSelect, onFileUpl
     if (type === 'upload') {
       return (
         <div
-          className={clsx(
+          className={cn(
             'flex h-[240px] cursor-pointer flex-col items-center justify-center rounded-xl border border-gray-200 bg-gray-50 px-6 py-11 shadow-[0px_4px_8px_0px_#F4F6F8]',
             variant === 'horizontal' ? 'w-[416px]' : 'w-[368px]',
           )}
@@ -106,7 +106,7 @@ export default function InspectorButtonContainer({ type, onTypeSelect, onFileUpl
     } else {
       return (
         <div
-          className={clsx(
+          className={cn(
             'flex h-[240px] cursor-pointer flex-col items-center justify-center rounded-xl border border-gray-200 bg-gray-50 px-6 py-11 shadow-[0px_4px_8px_0px_#F4F6F8]',
             variant === 'horizontal' ? 'w-[416px]' : 'w-[368px]',
           )}
@@ -126,7 +126,7 @@ export default function InspectorButtonContainer({ type, onTypeSelect, onFileUpl
 
   return (
     <div
-      className={clsx(
+      className={cn(
         'flex flex-col gap-6 rounded-xl bg-white',
         type === 'vertical' ? 'h-[600px] w-[416px]' : 'w-full',
         type === 'vertical' && 'p-6',
@@ -135,7 +135,7 @@ export default function InspectorButtonContainer({ type, onTypeSelect, onFileUpl
       <Typography variant="title1" className="text-gray-900">
         {type === 'vertical' ? '검사하기' : '파일 업로드 또는 직접 입력하여 표절률을 검사해보세요'}
       </Typography>
-      <div className={clsx('flex gap-4', type === 'vertical' && 'flex-col')}>
+      <div className={cn('flex gap-4', type === 'vertical' && 'flex-col')}>
         {baseUI('upload', type)}
         {baseUI('input', type, () => onTypeSelect('input'))}
       </div>

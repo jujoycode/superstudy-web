@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
@@ -106,7 +106,7 @@ export default function IBTeacherMainPage() {
                     <Link
                       to={`/teacher/project`}
                       className={twMerge(
-                        clsx(
+                        cn(
                           'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
                           pathname.startsWith('/teacher/project') &&
                             !pathname.includes('portfolio') &&
@@ -124,7 +124,7 @@ export default function IBTeacherMainPage() {
                     <Link
                       to={`/teacher/project/overview`}
                       className={twMerge(
-                        clsx(
+                        cn(
                           'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
                           pathname.startsWith('/teacher/project/overview')
                             ? 'border-b-2 border-[#121316] text-[#121316]'
@@ -139,7 +139,7 @@ export default function IBTeacherMainPage() {
                     <Link
                       to={`/teacher/project/portfolio`}
                       className={twMerge(
-                        clsx(
+                        cn(
                           'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
                           pathname.startsWith('/teacher/project/portfolio')
                             ? 'border-b-2 border-[#121316] text-[#121316]'
@@ -155,7 +155,7 @@ export default function IBTeacherMainPage() {
                       <Link
                         to={`/teacher/project/plagiarism-inspection`}
                         className={twMerge(
-                          clsx(
+                          cn(
                             'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
                             pathname.startsWith('/teacher/project/plagiarism-inspection')
                               ? 'border-b-2 border-[#121316] text-[#121316]'
@@ -202,7 +202,7 @@ export default function IBTeacherMainPage() {
                   </Routes>
                 </div>
               }
-              bottomBgColor={clsx(
+              bottomBgColor={cn(
                 pathname.includes('plagiarism-inspection') && plagiarismInspectList.items.length > 0 && 'bg-gray-50',
               )}
             />

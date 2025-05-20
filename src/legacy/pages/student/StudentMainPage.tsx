@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useMemo } from 'react'
 import { Route, Routes, useLocation, Link } from 'react-router'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
@@ -142,7 +142,7 @@ export function StudentMainPage() {
           {tabs.map((tab) => {
             const active = [tab.path, ...(tab.extra ?? [])].some((path) => pathname.startsWith(path))
             return tab.hidden ? null : (
-              <Link key={tab.path} to={tab.path} className={clsx('bottom-nav-item', active && 'text-darkgray')}>
+              <Link key={tab.path} to={tab.path} className={cn('bottom-nav-item', active && 'text-darkgray')}>
                 <tab.icon className="stroke-current" />
                 <span>{tab.name}</span>
               </Link>

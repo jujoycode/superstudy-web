@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import React, { useCallback, useEffect, useRef, useState, type HTMLAttributes } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -93,7 +93,7 @@ const TooltipButton: React.FC<TooltipProps> = React.memo(
       }
     }, [isVisible])
 
-    const tooltipClassNames = clsx(
+    const tooltipClassNames = cn(
       tooltipBaseClasses,
       variantClasses[variant],
       sizeClasses[size],
@@ -106,7 +106,7 @@ const TooltipButton: React.FC<TooltipProps> = React.memo(
     }, [isVisible])
 
     return (
-      <div className={clsx('tooltip-container relative inline-block whitespace-nowrap', containerClassName)}>
+      <div className={cn('tooltip-container relative inline-block whitespace-nowrap', containerClassName)}>
         <div className="peer cursor-pointer" onClick={handleClick} ref={childrenRef}>
           {children}
         </div>

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 
@@ -375,10 +375,7 @@ export function FieldtripResultPage() {
               <Button.xl
                 children="도장으로 승인"
                 onClick={onClickApproveByStamp}
-                className={clsx(
-                  'text-white',
-                  stampImgUrl ? 'bg-brandblue-1 border-4 border-red-500' : 'bg-brandblue-5',
-                )}
+                className={cn('text-white', stampImgUrl ? 'bg-brandblue-1 border-4 border-red-500' : 'bg-brandblue-5')}
               />
             )}
             <Button.xl
@@ -402,7 +399,7 @@ export function FieldtripResultPage() {
                     agreeAll ? approveFieldtripResults() : approveFieldtripResult()
                   }
                 }}
-                className={clsx('text-white', sigPadData ? 'bg-brand-1 border-4 border-green-500' : 'bg-brand-5')}
+                className={cn('text-white', sigPadData ? 'bg-brand-1 border-4 border-green-500' : 'bg-brand-5')}
               />
             )}
           </div>

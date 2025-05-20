@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
 
 import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
@@ -36,23 +36,23 @@ export const AllScore = ({ studentId, grade: initialGrade }: AllScoreProps) => {
           <LayeredTabs.TwoDepth onChange={(selectedType: ScoreType) => setType(selectedType)} value={type}>
             <Tab
               value="ALL"
-              childrenWrapperClassName={clsx(
+              childrenWrapperClassName={cn(
                 type === 'ALL' ||
                   type === 'TEST' ||
                   'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-gray-700': type === 'ALL' })}>종합성적</p>
+              <p className={cn({ 'text-gray-700': type === 'ALL' })}>종합성적</p>
             </Tab>
             <Tab
               value="TEST"
-              childrenWrapperClassName={clsx(
+              childrenWrapperClassName={cn(
                 type === 'ALL' ||
                   type === 'TEST' ||
                   'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-gray-700': type === 'TEST' })}>지필평가</p>
+              <p className={cn({ 'text-gray-700': type === 'TEST' })}>지필평가</p>
             </Tab>
           </LayeredTabs.TwoDepth>
           {type === 'TEST' && (

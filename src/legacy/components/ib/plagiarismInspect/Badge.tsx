@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 
 import { Typography } from '@/legacy/components/common/Typography'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
@@ -43,7 +43,7 @@ const badgeUI = (status: ResponseCopykillerResponseDtoCompleteStatus, copyRatio:
 export default function Badge({ status, copyRatio }: BadgeProps) {
   return (
     <div
-      className={clsx(
+      className={cn(
         'flex h-8 items-center gap-1 rounded-lg px-[10px] py-[6px]',
         status === 'Y' ? 'bg-primary-50' : 'bg-gray-100',
       )}

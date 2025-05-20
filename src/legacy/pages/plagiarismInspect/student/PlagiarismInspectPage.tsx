@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
 
 import { Blank } from '@/legacy/components/common'
@@ -64,7 +64,7 @@ function PlagiarismInspectPage() {
           bottomContent={
             <div className="flex flex-grow flex-col">
               <div
-                className={clsx(
+                className={cn(
                   'flex h-full gap-4',
                   plagiarismInspectList.items.length > 0 ? 'pt-10' : 'pt-20',
                   plagiarismInspectList.items.length > 0 || 'justify-center',

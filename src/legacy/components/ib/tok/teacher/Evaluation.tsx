@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
 import { useUserStore } from '@/stores/user'
 import AccordionV2 from '@/legacy/components/common/AccordionV2'
@@ -110,7 +110,7 @@ export default function Evaluation({
   return (
     <div className="flex flex-col gap-3">
       <div
-        className={clsx(
+        className={cn(
           'flex items-center justify-between gap-1 rounded-lg',
           isFinal ? 'bg-primary-50' : 'bg-white',
           accordionIsOpen ? 'pt-3' : 'py-3',
@@ -132,9 +132,9 @@ export default function Evaluation({
             rightTextClassName="text-primary-800"
             setAccordionIsOpen={setAccordionIsOpen}
             typographyVariant="title3"
-            typographyClassName={clsx('font-medium', disabled ? 'text-gray-500' : 'text-gray-900')}
+            typographyClassName={cn('font-medium', disabled ? 'text-gray-500' : 'text-gray-900')}
           >
-            <div className={clsx('mt-4 p-4', { 'bg-gray-50': !isFinal, 'border-t': !isFinal })}>
+            <div className={cn('mt-4 p-4', { 'bg-gray-50': !isFinal, 'border-t': !isFinal })}>
               <RadioV2.Group onChange={(value: number) => handleScoreChange(value, 0)} className="flex flex-col gap-2">
                 {grades.map((grade) => (
                   <div className="flex items-center justify-between" key={grade.id}>
@@ -148,7 +148,7 @@ export default function Evaluation({
                         checked={gradeScores[grade.id] !== undefined}
                         onChange={() => handleScoreChange(grade.id, grade.minScore)}
                         disabled={disabled}
-                        className={clsx({ 'cursor-not-allowed': disabled })}
+                        className={cn({ 'cursor-not-allowed': disabled })}
                         label={`${grade.name} (${grade.minScore}~${grade.maxScore})`}
                         labelClassName="text-gray-900 ml-[6px]"
                       />
@@ -165,7 +165,7 @@ export default function Evaluation({
               </RadioV2.Group>
               <TextareaV2
                 className="mt-4 h-24 w-full resize-none rounded-lg p-4"
-                wrapperClassName={clsx({ 'bg-white': !disabled && score })}
+                wrapperClassName={cn({ 'bg-white': !disabled && score })}
                 placeholder={placeholder}
                 onChange={(e) => {
                   setComment(e.target.value)

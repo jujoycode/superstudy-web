@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import _ from 'lodash'
 import { useEffect, useState } from 'react'
 
@@ -147,26 +147,26 @@ export default function TeacherIBOverview() {
           >
             <Tab
               value="CAS"
-              childrenWrapperClassName={clsx(
+              childrenWrapperClassName={cn(
                 projectType === 'CAS' ||
                   projectType === 'EE' ||
                   'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-gray-700': projectType === 'CAS' })}>CAS</p>
+              <p className={cn({ 'text-gray-700': projectType === 'CAS' })}>CAS</p>
             </Tab>
             <Tab
               value="EE"
-              childrenWrapperClassName={clsx(
+              childrenWrapperClassName={cn(
                 projectType === 'EE' ||
                   projectType === 'TOK' ||
                   'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-gray-700': projectType === 'EE' })}>EE</p>
+              <p className={cn({ 'text-gray-700': projectType === 'EE' })}>EE</p>
             </Tab>
             <Tab value="TOK">
-              <p className={clsx({ 'text-gray-700': projectType === 'TOK' })}>TOK</p>
+              <p className={cn({ 'text-gray-700': projectType === 'TOK' })}>TOK</p>
             </Tab>
           </LayeredTabs.TwoDepth>
         </div>

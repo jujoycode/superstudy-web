@@ -1,5 +1,5 @@
 import { Checkbox } from '@mui/material'
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
 
 import { SelectValues, SuperModal } from '@/legacy/components'
@@ -113,7 +113,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
           <Badge
             children="교시설정"
             onClick={() => setTimeType(AbsentTimeType.PERIOD)}
-            className={clsx(
+            className={cn(
               'py-1.5',
               timeType === AbsentTimeType.PERIOD ? 'bg-brand-1 text-white' : 'bg-white text-black',
             )}
@@ -121,10 +121,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
           <Badge
             children="시간설정"
             onClick={() => setTimeType(AbsentTimeType.TIME)}
-            className={clsx(
-              'py-1.5',
-              timeType === AbsentTimeType.TIME ? 'bg-brand-1 text-white' : 'bg-white text-black',
-            )}
+            className={cn('py-1.5', timeType === AbsentTimeType.TIME ? 'bg-brand-1 text-white' : 'bg-white text-black')}
           />
           <div className="space-y-3 pb-6">
             <div>

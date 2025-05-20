@@ -1,5 +1,5 @@
 // ProposalInputField.tsx
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren, ReactElement } from 'react'
 
 import { Typography } from '@/legacy/components/common/Typography'
@@ -18,7 +18,7 @@ export const ProposalViewField = ({ label, value, className, children }: PropsWi
       </Typography>
       <Typography
         variant="body2"
-        className={clsx('text-15 rounded-lg border border-gray-200 p-4 text-gray-700', className)}
+        className={cn('text-15 rounded-lg border border-gray-200 p-4 text-gray-700', className)}
       >
         {value || children}
       </Typography>
