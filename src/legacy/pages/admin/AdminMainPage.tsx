@@ -242,16 +242,6 @@ export function AdminMainPage() {
 
         <main ref={scrollRef} className="h-screen-4 flex-1 overflow-auto bg-white px-6">
           <Outlet />
-          {/* <Routes>
-            {adminRoutes.map((route) => (
-              <Route key={route.path} path={route.path} Component={route.component} />
-            ))}
-            <Route path={RouterConstant.admin.index}>
-              <Navigate
-                to={adminRoutesPermitted.length > 0 ? adminRoutesPermitted[0].path : RouterConstant.admin.index}
-              />
-            </Route>
-          </Routes> */}
         </main>
       </div>
 

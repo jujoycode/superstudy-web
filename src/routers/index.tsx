@@ -25,10 +25,10 @@ import { ResetPasswordPageV1 } from '@/legacy/pages/student/password/ResetPasswo
 import { PrivacyPolicy } from '@/legacy/pages/student/PrivacyPolicy'
 import { TermsOfUse } from '@/legacy/pages/student/TermsOfUse'
 import { AuthRouter } from './AuthRouter'
-import { adminRoutes } from './mainRouter/admin.router'
-import { ibRoutes } from './mainRouter/ib.router'
-import { studentRoutes } from './mainRouter/student.router'
-import { teacherRoutes } from './mainRouter/teacher.router'
+import { adminRoutes } from './domain/admin.router'
+import { ibRoutes } from './domain/ib.router'
+import { studentRoutes } from './domain/student.router'
+import { teacherRoutes } from './domain/teacher.router'
 
 /**
  * Router
