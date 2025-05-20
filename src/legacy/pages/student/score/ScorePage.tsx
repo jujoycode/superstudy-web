@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Link, Route, Routes, useParams } from 'react-router-dom'
+import { Link, Outlet, Route, Routes, useParams } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
 import { BackButton, TopNavbar } from '@/legacy/components/common'
@@ -45,10 +45,7 @@ export function ScorePage() {
         </Link>
       </div>
       <div className="scroll-box h-screen-12 overflow-y-auto">
-        <Routes>
-          <Route path="/student/score/:id/school-exam" Component={() => <SchoolExamPage studentId={Number(id)} />} />
-          <Route path="/student/score/:id/mock-exam" Component={() => <MockExamPage studentId={Number(id)} />} />
-        </Routes>
+        <Outlet context={{ studentId: Number(id) }} />
       </div>
     </>
   )

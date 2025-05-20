@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react'
 
+import { useOutletContext } from 'react-router-dom'
 import { MockBottomSheet } from '@/legacy/components/bottomSheet/MockBottomSheet'
 import { MobileBlank } from '@/legacy/components/common/MobileBlank'
 import { MockScore, useMockExamScoreByStudent, useSchoolExamScoreByParent } from '@/legacy/container/student-score'
-
-interface MockExamPageProps {
-  studentId: number
-}
 
 interface MockExamParams extends MockScore {
   studentId: number
 }
 
-export function MockExamPage({ studentId }: MockExamPageProps) {
+export function MockExamPage() {
+  const { studentId } = useOutletContext<{ studentId: number }>()
   const { data, isLoading } = useSchoolExamScoreByParent(studentId, 'MOCK')
   const [params, setParams] = useState<MockExamParams | undefined>()
 

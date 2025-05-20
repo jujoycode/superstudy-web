@@ -11,6 +11,7 @@ import './legacy/util/i18n'
 
 import './index.css'
 import './calendar.css'
+import { DialogProvider } from './legacy/container/DialogContext'
 // import 'swiper/swiper.css'
 
 export function Root() {
@@ -22,7 +23,9 @@ export function Root() {
         <ThemeProvider theme={theme} setTheme={setTheme}>
           <UserContainer.ContextProvider>
             <GroupContainer.ContextProvider>
-              <App />
+              <DialogProvider>
+                <App />
+              </DialogProvider>
             </GroupContainer.ContextProvider>
           </UserContainer.ContextProvider>
         </ThemeProvider>

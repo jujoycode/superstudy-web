@@ -12,8 +12,19 @@ interface StudyInfoCardProps {
   isForbidden?: boolean
 }
 
-export function StudyInfoCard2() {
-  const { studentId, isCard, isForbidden } = useOutletContext<StudyInfoCardProps>()
+export function StudyInfoCard2({
+  studentId: studentIdFromProps,
+  isCard: isCardFromProps,
+  isForbidden: isForbiddenFromProps,
+}: StudyInfoCardProps) {
+  const {
+    studentId: studentIdFromOutlet,
+    isCard: isCardFromOutlet,
+    isForbidden: isForbiddenFromOutlet,
+  } = useOutletContext<StudyInfoCardProps>()
+  const studentId = studentIdFromProps || studentIdFromOutlet
+  const isCard = isCardFromProps || isCardFromOutlet
+  const isForbidden = isForbiddenFromProps || isForbiddenFromOutlet
 
   const {
     isEditMode,

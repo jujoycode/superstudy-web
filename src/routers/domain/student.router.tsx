@@ -1,5 +1,5 @@
 import { StudentLayout } from '@/layouts/StudentLayout'
-import { ScorePage } from '@/legacy/pages/admin/score/ScorePage'
+import { StudyInfoCard2 } from '@/legacy/components/studentCard/StudyInfoCard2'
 import { NoticeDetailPage, MyInfoPage } from '@/legacy/pages/student'
 import { AbsentAddPage } from '@/legacy/pages/student/absent/AbsentAddPage'
 import { AbsentDetailPage } from '@/legacy/pages/student/absent/AbsentDetailPage'
@@ -8,6 +8,7 @@ import { ApplyPage } from '@/legacy/pages/student/absent/ApplyPage'
 import { ActivitySessionDetailPage } from '@/legacy/pages/student/activityv3/ActivitySessionDetailPage'
 import { ActivitySessionPage } from '@/legacy/pages/student/activityv3/ActivitySessionPage'
 import { ActivityV3Page } from '@/legacy/pages/student/activityv3/ActivityV3Page'
+import AnnouncementDetailPage from '@/legacy/pages/student/announcement/AnnouncementDetailPage'
 import AnnouncementPage from '@/legacy/pages/student/announcement/AnnouncementPage'
 import { BoardDetailPage } from '@/legacy/pages/student/board/BoardDetailPage'
 import { CanteenPage } from '@/legacy/pages/student/canteen/CanteenPage'
@@ -32,6 +33,9 @@ import { OutingAddPage } from '@/legacy/pages/student/outing/OutingAddPage'
 import { OutingDetailPage } from '@/legacy/pages/student/outing/OutingDetailPage'
 import { OutingPage } from '@/legacy/pages/student/outing/OutingPage'
 import { PointLogsPage } from '@/legacy/pages/student/point/PointLogsPage'
+import { MockExamPage } from '@/legacy/pages/student/score/MockExamPage'
+import { SchoolExamPage } from '@/legacy/pages/student/score/SchoolExamPage'
+import { ScorePage } from '@/legacy/pages/student/score/ScorePage'
 import { SelfTestPage } from '@/legacy/pages/student/self-test/SelfTestPage'
 import { TimetableDetailPage } from '@/legacy/pages/student/timetable/TimetableDetailPage'
 import { AuthRouter } from '../AuthRouter'
@@ -163,19 +167,31 @@ export const studentRoutes = {
     { path: 'info', element: <MyInfoPage /> },
 
     // 성적확인
-    { path: 'score/:id/:type', element: <ScorePage /> },
+    {
+      path: 'score/:id',
+      element: <ScorePage />,
+      children: [
+        { path: 'school-exam', element: <SchoolExamPage /> },
+        { path: 'mock-exam', element: <MockExamPage /> },
+      ],
+    },
 
     // 자기 평가
     { path: 'self-test', element: <SelfTestPage /> },
 
     // 학습/진로 목표
-    { path: 'study', element: <MyStudyPage /> },
+    {
+      path: 'study',
+      element: <MyStudyPage />,
+      children: [{ index: true, element: <StudyInfoCard2 isCard={false} /> }],
+    },
 
     // 알림 설정
     { path: 'notification-settings', element: <NotificationSettingsPage /> },
 
     // 슈퍼스쿨 공지사항
     { path: 'announcement', element: <AnnouncementPage /> },
+    { path: 'announcement/:id', element: <AnnouncementDetailPage /> },
 
     // 수강신청 진입
     { path: 'courseentrance', element: <CourseEntrancePage /> },
