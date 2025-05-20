@@ -1,4 +1,4 @@
-@layer utilities {
+@utility {
   .not-draggable {
     -webkit-user-drag: none;
     -khtml-user-drag: none;
