@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { range } from 'lodash'
 import { createContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -230,7 +230,7 @@ export function AdminMainPage() {
                   children={route.name}
                   key={route.path}
                   to={route.path}
-                  className={clsx(
+                  className={cn(
                     'text-14 flex h-10 items-center rounded-lg px-4',
                     pathname.startsWith(route.path) ? 'bg-gray-100 font-bold' : 'hover:bg-gray-50',
                   )}

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useState, useEffect, type ChangeEvent } from 'react'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { useUserStore } from '@/stores/user'
@@ -133,7 +133,7 @@ export function ChatSetting({
 
   return (
     <div
-      className={clsx(
+      className={cn(
         'fixed inset-y-0 right-0 z-100 w-80 translate-x-0 transform border border-gray-500 bg-gray-200 shadow-lg transition-all duration-500',
         !modalOpen && 'translate-x-full',
       )}

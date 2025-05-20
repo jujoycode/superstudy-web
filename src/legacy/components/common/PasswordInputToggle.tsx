@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { forwardRef, InputHTMLAttributes, useEffect, useState } from 'react'
 
 import { Icon } from './icons'
@@ -51,7 +51,7 @@ export const PasswordInputToggle = forwardRef<HTMLInputElement, PasswordInputTog
     <div className="relative w-full">
       <label
         htmlFor={htmlId}
-        className={clsx(
+        className={cn(
           'absolute left-3 cursor-pointer text-gray-400 transition-all duration-75 md:left-4',
           isFocused || inputValue ? 'top-3 text-xs' : 'top-1/2 -translate-y-1/2 transform text-base',
         )}
@@ -62,7 +62,7 @@ export const PasswordInputToggle = forwardRef<HTMLInputElement, PasswordInputTog
         id={htmlId}
         ref={ref}
         type={showPassword ? 'text' : 'password'}
-        className={clsx(
+        className={cn(
           'focus:border-brand-1 block w-full rounded-lg border border-gray-200 px-3 pt-7 pb-1 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:px-4 md:pt-7 md:pb-2',
           className,
         )}

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useMemo } from 'react'
 
 import { useUserStore } from '@/stores/user'
@@ -52,7 +52,7 @@ export function TimetableCoursesPage({ selectedCourse, onSelectCourse }: Timetab
               <tr
                 key={course.id}
                 onClick={() => onSelectCourse(course)}
-                className={clsx(
+                className={cn(
                   'cursor-pointer border-y',
                   course.id === selectedCourse?.id ? 'bg-gray-100' : 'hover:bg-gray-50',
                 )}
@@ -86,7 +86,7 @@ export function TimetableCoursesPage({ selectedCourse, onSelectCourse }: Timetab
               <tr
                 key={course.id}
                 onClick={() => onSelectCourse(course)}
-                className={clsx(
+                className={cn(
                   'cursor-pointer border-y',
                   course.id === selectedCourse?.id ? 'bg-gray-100' : 'hover:bg-gray-50',
                 )}

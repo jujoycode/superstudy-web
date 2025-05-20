@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { SelectHTMLAttributes, forwardRef } from 'react'
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
@@ -10,7 +10,7 @@ const SelectMd = forwardRef<HTMLSelectElement, SelectProps>(function SelectMd(
   ref,
 ) {
   return (
-    <select ref={ref} className={clsx('select', className)} {...props}>
+    <select ref={ref} className={cn('select', className)} {...props}>
       {placeholder && (
         <option value={undefined} selected disabled hidden>
           {placeholder}
@@ -26,7 +26,7 @@ const SelectXs = forwardRef<HTMLSelectElement, SelectProps>(function SelectXs(
   ref,
 ) {
   return (
-    <select ref={ref} className={clsx('select-xs', className)} {...props}>
+    <select ref={ref} className={cn('select-xs', className)} {...props}>
       {placeholder && (
         <option value={undefined} selected disabled hidden>
           {placeholder}
@@ -42,7 +42,7 @@ const SelectSm = forwardRef<HTMLSelectElement, SelectProps>(function SelectSm(
   ref,
 ) {
   return (
-    <select ref={ref} className={clsx('select-sm', className)} {...props}>
+    <select ref={ref} className={cn('select-sm', className)} {...props}>
       {placeholder && (
         <option value={undefined} selected disabled hidden>
           {placeholder}
@@ -58,7 +58,7 @@ const SelectLg = forwardRef<HTMLSelectElement, SelectProps>(function SelectLg(
   ref,
 ) {
   return (
-    <select ref={ref} className={clsx('select-lg', className)} {...props}>
+    <select ref={ref} className={cn('select-lg', className)} {...props}>
       {placeholder && (
         <option value={undefined} selected disabled hidden>
           {placeholder}
@@ -74,7 +74,7 @@ const SelectXl = forwardRef<HTMLSelectElement, SelectProps>(function SelectXl(
   ref,
 ) {
   return (
-    <select ref={ref} className={clsx('select-xl', className)} {...props}>
+    <select ref={ref} className={cn('select-xl', className)} {...props}>
       {placeholder && (
         <option value={undefined} selected disabled hidden>
           {placeholder}

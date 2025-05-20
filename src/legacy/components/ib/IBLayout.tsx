@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import React, { HTMLAttributes, ReactNode, useEffect, useRef, useState } from 'react'
 
 // C-IB-021: IB 기본 레이아웃
@@ -81,17 +81,17 @@ const IBLayout: React.FC<LayoutProps> = ({
   }, [])
 
   return (
-    <div className={clsx('flex min-h-screen w-full justify-center', className)} {...props}>
+    <div className={cn('flex min-h-screen w-full justify-center', className)} {...props}>
       <div className="flex w-full flex-col">
         {/* 상단 영역 */}
-        <div ref={topRef} className={clsx('scroll-box w-full overflow-x-auto', topBgColor)}>
+        <div ref={topRef} className={cn('scroll-box w-full overflow-x-auto', topBgColor)}>
           <div className="mx-auto w-[1280px]">{topContent}</div>
         </div>
         {hasContour && <div className="h-[1px] bg-gray-200"></div>}
         {/* 하단 영역 */}
         <div
           ref={bottomRef}
-          className={clsx('w-full overflow-x-auto overflow-y-auto', bottomBgColor, {
+          className={cn('w-full overflow-x-auto overflow-y-auto', bottomBgColor, {
             'pb-40': floatingButton,
             'pb-20': !floatingButton,
           })}

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { format } from 'date-fns'
 import { PropsWithChildren, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -166,7 +166,7 @@ export function IbEeRPPF({
               return (
                 <div
                   key={index}
-                  className={clsx('flex flex-col gap-3 px-8', {
+                  className={cn('flex flex-col gap-3 px-8', {
                     'border-b border-b-gray-100 pb-6': index === 0,
                     'border-b border-b-gray-100 py-6': index === 1,
                     'pt-6': index === 2,
@@ -198,7 +198,7 @@ export function IbEeRPPF({
           </div>
 
           <div
-            className={clsx(
+            className={cn(
               '.backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-between gap-4 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8',
             )}
           >

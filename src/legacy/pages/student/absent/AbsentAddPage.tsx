@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { t } from 'i18next'
 import moment from 'moment'
 import { useState } from 'react'
@@ -263,7 +263,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
               <Badge
                 children="교시설정"
                 onClick={() => setTimeType(AbsentTimeType.PERIOD)}
-                className={clsx(
+                className={cn(
                   'py-1.5',
                   timeType === AbsentTimeType.PERIOD ? 'bg-brand-1 text-white' : 'bg-white text-black',
                 )}
@@ -271,7 +271,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
               <Badge
                 children="시간설정"
                 onClick={() => setTimeType(AbsentTimeType.TIME)}
-                className={clsx(
+                className={cn(
                   'py-1.5',
                   timeType === AbsentTimeType.TIME ? 'bg-brand-1 text-white' : 'bg-white text-black',
                 )}
@@ -279,7 +279,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
               <Badge
                 children="사용안함"
                 onClick={() => setTimeType(AbsentTimeType.NONE)}
-                className={clsx(
+                className={cn(
                   'py-1.5',
                   timeType === AbsentTimeType.NONE ? 'bg-brand-1 text-white' : 'bg-white text-black',
                 )}
@@ -452,7 +452,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
             placeholder="예) 독감, 감기, 장염, 위염 등"
             value={reasonText}
             onChange={(e) => setReasonText(e.target.value)}
-            className={clsx('mt-1 border border-gray-300')}
+            className={cn('mt-1 border border-gray-300')}
           />
         </div>
         <div className="w-full"></div>
@@ -474,7 +474,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
               placeholder="서류 종류를 입력해주세요."
               value={evidenceTypeText}
               onChange={(e) => setEvidenceTypeText(e.target.value)}
-              className={clsx(evidenceTypeText ? 'border border-gray-300' : 'border-2 border-red-700')}
+              className={cn(evidenceTypeText ? 'border border-gray-300' : 'border-2 border-red-700')}
             />
           )}
           {evidenceType === '학부모 확인서' && me?.role === Role.PARENT && (
@@ -484,7 +484,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                 value={parentComment}
                 rows={3}
                 onChange={(e) => setParentComment(e.target.value)}
-                className={`focus:border-brand-1 w-full rounded-lg focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 ${clsx(
+                className={`focus:border-brand-1 w-full rounded-lg focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 ${cn(
                   parentComment ? 'border border-gray-300' : 'border-2 border-red-700',
                 )}`}
               />
@@ -549,7 +549,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                   placeholder="서류 종류를 입력해주세요."
                   value={evidenceType2Text}
                   onChange={(e) => setEvidenceType2Text(e.target.value)}
-                  className={clsx(evidenceType2Text ? 'border border-gray-300' : 'border-2 border-red-700')}
+                  className={cn(evidenceType2Text ? 'border border-gray-300' : 'border-2 border-red-700')}
                 />
               )}
               {evidenceType2 === '학부모 확인서' && me?.role === Role.PARENT && (
@@ -559,7 +559,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                     value={parentComment}
                     rows={3}
                     onChange={(e) => setParentComment(e.target.value)}
-                    className={`focus:border-brand-1 w-full rounded-lg focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 ${clsx(
+                    className={`focus:border-brand-1 w-full rounded-lg focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 ${cn(
                       parentComment ? 'border border-gray-300' : 'border-2 border-red-700',
                     )}`}
                   />

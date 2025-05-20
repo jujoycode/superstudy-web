@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import React, { useEffect, useState } from 'react'
 import SVGIcon from '../icon/SVGIcon'
 import { ButtonV2 } from './ButtonV2'
@@ -243,10 +243,10 @@ const ScheduleAndTimePicker: React.FC<ScheduleAndTimePickerProps> = ({ initialDe
             size="small"
           >
             <Tab value="AM">
-              <p className={clsx({ 'text-gray-700': selectedPeriod === 'AM' })}>오전</p>
+              <p className={cn({ 'text-gray-700': selectedPeriod === 'AM' })}>오전</p>
             </Tab>
             <Tab value="PM">
-              <p className={clsx({ 'text-gray-700': selectedPeriod === 'PM' })}>오후</p>
+              <p className={cn({ 'text-gray-700': selectedPeriod === 'PM' })}>오후</p>
             </Tab>
           </LayeredTabs.TwoDepth>
         </div>

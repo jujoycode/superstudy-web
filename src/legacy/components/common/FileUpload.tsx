@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { ChangeEvent, InputHTMLAttributes, useState } from 'react'
 
 import { useLanguage } from '@/legacy/hooks/useLanguage'
@@ -29,7 +29,7 @@ export function FileUpload({ children, className, ...props }: FileUploadProps) {
 
   return (
     <div
-      className={clsx('file-upload', className, { dragging: isDragging })}
+      className={cn('file-upload', className, { dragging: isDragging })}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}

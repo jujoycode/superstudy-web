@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
 
@@ -53,7 +53,7 @@ export function PdfCard({ fileUrl, visibleButton, onClick, cardType }: PdfCardPr
       {
         <div
           ref={divRef}
-          className={clsx(
+          className={cn(
             'h-full rounded object-cover',
             cardType ? 'absolute flex w-full items-center justify-center' : 'relative',
           )}

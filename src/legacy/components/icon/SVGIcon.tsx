@@ -1,5 +1,5 @@
 // SVGIcon.tsx
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 
 export interface SVGIconProps {
   color?: 'gray700' | 'gray400' | 'orange800' | 'white'
@@ -40,7 +40,7 @@ const SVGIconBase = ({
       onClick={onClick}
       viewBox="0 0 16 16"
       stroke={getStrokeColor()}
-      className={clsx(className, {
+      className={cn(className, {
         'rotate-90': rotate === 90,
         'rotate-180': rotate === 180,
         '-rotate-90': rotate === 270,

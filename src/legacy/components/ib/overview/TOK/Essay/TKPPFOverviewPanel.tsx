@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useMemo } from 'react'
 
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -106,7 +106,7 @@ export default function TKPPFOverviewPanel(props: OverviewPanelProps) {
   }
 
   const totalStudents = useMemo(() => studentsToDisplay.length, [studentsToDisplay])
-  const containerStyles = clsx('w-full rounded-xl border border-gray-200 p-6 flex flex-col gap-6', className)
+  const containerStyles = cn('w-full rounded-xl border border-gray-200 p-6 flex flex-col gap-6', className)
 
   return (
     <div className={containerStyles}>

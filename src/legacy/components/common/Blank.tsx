@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren } from 'react'
 import { use100vh } from 'react-div-100vh'
 
@@ -20,7 +20,7 @@ export function Blank({ text, reversed, children }: PropsWithChildren<BlankProps
         e.preventDefault()
         e.stopPropagation()
       }}
-      className={clsx('bg-littleblack fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center')}
+      className={cn('bg-littleblack fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center')}
     >
       {text || children || reversed ? (
         <div className="text-2xl">

@@ -1,5 +1,5 @@
 import { Box, LinearProgress, LinearProgressProps } from '@mui/material'
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren } from 'react'
 import { use100vh } from 'react-div-100vh'
 
@@ -44,7 +44,7 @@ export function ProgressBar({ text, progress }: PropsWithChildren<ProgressBarPro
         e.preventDefault()
         e.stopPropagation()
       }}
-      className={clsx('fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center bg-black/60 px-6')}
+      className={cn('fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center bg-black/60 px-6')}
     >
       <div className="flex w-full flex-col rounded-lg bg-white px-5 py-6">
         <p

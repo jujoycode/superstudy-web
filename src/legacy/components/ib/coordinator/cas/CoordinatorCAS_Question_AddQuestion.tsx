@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 
 import { Blank } from '@/legacy/components/common'
@@ -122,7 +122,7 @@ export function CoordinatorCAS_Question_AddQuestion({
                   <div
                     key={id}
                     onClick={() => setCategory(value)}
-                    className={clsx(
+                    className={cn(
                       'flex cursor-pointer items-center justify-center rounded-lg px-4 py-[9px] whitespace-pre',
                       category === value ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-200',
                     )}

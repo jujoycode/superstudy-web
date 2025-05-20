@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { format } from 'date-fns'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -145,7 +145,7 @@ export const Feedback: FC<FeedbackProps> = ({
       )}
       {useTextarea && (
         <div
-          className={clsx(
+          className={cn(
             'relative flex flex-col justify-between gap-4 rounded-lg border border-gray-200 p-4 focus:ring-0 focus:outline-none',
             {
               'bg-white': readonly && readonlyBackground === 'bg-white',
@@ -161,7 +161,7 @@ export const Feedback: FC<FeedbackProps> = ({
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className={clsx(
+            className={cn(
               `text-15 caret-ib-blue-800 h-16 resize-none border-none p-0 text-gray-900 placeholder-gray-400 focus:border-none focus:text-gray-700 focus:ring-0 disabled:text-gray-400`,
               {
                 'bg-white': readonly && readonlyBackground === 'bg-white',

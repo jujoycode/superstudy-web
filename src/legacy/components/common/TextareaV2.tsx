@@ -1,7 +1,5 @@
-import clsx from 'clsx'
 import { ChangeEvent, TextareaHTMLAttributes, forwardRef, useEffect, useState } from 'react'
-
-import { cn } from '@/legacy/lib/tailwind-merge'
+import { cn } from '@/utils/commonUtil'
 
 import { Typography } from './Typography'
 
@@ -88,7 +86,7 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
     <div>
       <div
         className={cn(
-          clsx(
+          cn(
             className,
             'relative flex flex-col justify-between gap-4 rounded-lg border border-gray-200 p-4 focus:ring-0 focus:outline-none',
             {
@@ -108,7 +106,7 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
         <textarea
           ref={ref}
           className={cn(
-            clsx(
+            cn(
               `text-15 caret-ib-blue-800 h-full min-h-max w-full resize-none border-none p-0 font-medium text-gray-900 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400`,
               {
                 'bg-gray-100': (readonly && readonlyBackground === 'bg-gray-100') || disabled,
@@ -142,7 +140,7 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
         )}
         {showLength && (
           <div className="text-12 flex flex-row items-center">
-            <Typography variant="caption" className={clsx('text-gray-400', { 'text--': isError })}>
+            <Typography variant="caption" className={cn('text-gray-400', { 'text--': isError })}>
               {typeof inputValue === 'string' && new Intl.NumberFormat().format(inputValue.length)}
               {typeof maxLength === 'number' && <> / {new Intl.NumberFormat().format(maxLength)}</>}
               {typeof displayMaxLength === 'number' && <> / {new Intl.NumberFormat().format(displayMaxLength)}</>}

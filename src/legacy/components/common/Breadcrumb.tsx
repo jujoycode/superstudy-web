@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import React from 'react'
 
 import { useHistory } from '@/hooks/useHistory'
@@ -20,7 +20,7 @@ export default function Breadcrumb({ className, data }: BreadcrumbProps) {
   const keys = Object.keys(data)
 
   return (
-    <div className={clsx('flex items-center justify-center gap-2', className)}>
+    <div className={cn('flex items-center justify-center gap-2', className)}>
       <SolidSVGIcon.Home weight="bold" color="gray400" onClick={() => push('/')} className="cursor-pointer" />
       {keys.map((depth, index) => {
         const isLastDepth = index === keys.length - 1
@@ -33,7 +33,7 @@ export default function Breadcrumb({ className, data }: BreadcrumbProps) {
               onClick={() => {
                 if (!isLastDepth && data[depth]) push(data[depth])
               }}
-              className={clsx('text-gray-900', isLastDepth ? lastDepthStyle : notLastDepthStyle)}
+              className={cn('text-gray-900', isLastDepth ? lastDepthStyle : notLastDepthStyle)}
             >
               {depth}
             </Typography>

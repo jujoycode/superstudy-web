@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { range } from 'lodash'
 import { ChangeEvent, useEffect, useState } from 'react'
 
@@ -123,12 +123,12 @@ export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDet
           <Badge
             children={t('by_teacher', '교사별')}
             onClick={() => setSelectedMyClass(false)}
-            className={clsx('py-1.5', !selectedMyClass ? 'bg-black text-white' : 'bg-white text-black')}
+            className={cn('py-1.5', !selectedMyClass ? 'bg-black text-white' : 'bg-white text-black')}
           />
           <Badge
             children={t('by_class', '학급별')}
             onClick={() => setSelectedMyClass(true)}
-            className={clsx('py-1.5', !selectedMyClass ? 'bg-white text-black' : 'bg-black text-white')}
+            className={cn('py-1.5', !selectedMyClass ? 'bg-white text-black' : 'bg-black text-white')}
           />
         </div>
       </div>
@@ -138,21 +138,21 @@ export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDet
           <tr>
             <th colSpan={4}></th>
             <th colSpan={1}></th>
-            <th colSpan={10} className={clsx('min-w-max rounded-l-xl py-4', day === 1 ? 'bg-gray-1/10' : 'bg-gray-9')}>
+            <th colSpan={10} className={cn('min-w-max rounded-l-xl py-4', day === 1 ? 'bg-gray-1/10' : 'bg-gray-9')}>
               {t('monday', '월')}
             </th>
-            <th colSpan={10} className={clsx('min-w-max', day === 2 ? 'bg-brand-1/20' : 'bg-gray-9')}>
+            <th colSpan={10} className={cn('min-w-max', day === 2 ? 'bg-brand-1/20' : 'bg-gray-9')}>
               {t('tuesday', '화')}
             </th>
-            <th colSpan={10} className={clsx('min-w-max', day === 3 ? 'bg-brand-1/20' : 'bg-gray-9')}>
+            <th colSpan={10} className={cn('min-w-max', day === 3 ? 'bg-brand-1/20' : 'bg-gray-9')}>
               {t('wednesday', '수')}
             </th>
-            <th colSpan={10} className={clsx('min-w-max', day === 4 ? 'bg-brand-1/20' : 'bg-gray-9')}>
+            <th colSpan={10} className={cn('min-w-max', day === 4 ? 'bg-brand-1/20' : 'bg-gray-9')}>
               {t('thursday', '목')}
             </th>
             <th
               colSpan={10}
-              className={clsx(
+              className={cn(
                 'min-w-max',
                 !hasSaturdayClass && 'rounded-r-xl',
                 day === 5 ? 'bg-brand-1/20' : 'bg-gray-9',
@@ -161,7 +161,7 @@ export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDet
               {t('friday', '금')}
             </th>
             {hasSaturdayClass && (
-              <th colSpan={10} className={clsx('min-w-max rounded-r-xl', day === 6 ? 'bg-brand-1/20' : 'bg-gray-9')}>
+              <th colSpan={10} className={cn('min-w-max rounded-r-xl', day === 6 ? 'bg-brand-1/20' : 'bg-gray-9')}>
                 {t('saturday', '토')}
               </th>
             )}
@@ -181,7 +181,7 @@ export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDet
                   <td
                     colSpan={10}
                     key={dayNum + 10}
-                    className={clsx(
+                    className={cn(
                       'min-w-9.5 cursor-pointer',
                       dayNum === 0 ? 'rounded-tl-xl rounded-bl-xl' : '',
                       dayNum === (hasSaturdayClass ? 5 : 4) ? 'rounded-tr-xl rounded-br-xl' : '',
@@ -208,7 +208,7 @@ export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDet
             <tr key={i}>
               <td
                 colSpan={4}
-                className={clsx(
+                className={cn(
                   'bg-gray-9 min-h-10.5 min-w-9.5 px-1 py-2',
                   i === 0 && 'rounded-t-xl',
                   i === maxTime - 1 && 'rounded-b-xl',
@@ -223,7 +223,7 @@ export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDet
                   <td
                     colSpan={10}
                     key={dayNum}
-                    className={clsx(
+                    className={cn(
                       'min-h-10.5 min-w-9.5 cursor-pointer border border-gray-50 px-1 py-2 text-xs md:text-base',
                       todayNum === dayNum + 1 ? 'bg-brand-1 bg-opacity-20' : 'bg-orange-0',
                       i === 0 && dayNum === 0 ? 'rounded-tl-xl border-t-0 border-l-0' : '',

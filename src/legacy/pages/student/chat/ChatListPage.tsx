@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
 
@@ -50,7 +50,7 @@ export function ChatListPage() {
               setChatRoomId('')
               setSelectedMenu(false)
             }}
-            className={clsx(selectedMenu === false ? 'bg-brand-1 text-light_orange' : 'bg-light_orange text-brand-1')}
+            className={cn(selectedMenu === false ? 'bg-brand-1 text-light_orange' : 'bg-light_orange text-brand-1')}
           />{' '}
           &nbsp;
           <Button.lg
@@ -61,7 +61,7 @@ export function ChatListPage() {
               set_studentName('')
               push(`${Routes.student.chat}`)
             }}
-            className={clsx(selectedMenu === false ? 'bg-light_orange text-brand-1' : 'bg-brand-1 text-light_orange')}
+            className={cn(selectedMenu === false ? 'bg-light_orange text-brand-1' : 'bg-brand-1 text-light_orange')}
           />
         </div>
         <Divider />

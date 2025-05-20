@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { format } from 'date-fns'
 import { range } from 'lodash'
 import { useEffect, useState } from 'react'
@@ -129,7 +129,7 @@ export function NotificationSettingPage() {
                 return (
                   <label
                     key={day}
-                    className={clsx(
+                    className={cn(
                       'grid h-10 w-10 place-items-center rounded-full border',
                       checked
                         ? 'border-brand-1 bg-brand-1 text-white active:opacity-90'

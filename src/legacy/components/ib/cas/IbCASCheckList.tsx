@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren, useState } from 'react'
 
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -111,7 +111,7 @@ export function IbCASCheckList({
           </div>
         </div>
         <div
-          className={clsx(
+          className={cn(
             '.backdrop-blur-20 sticky bottom-0 flex h-[104px] items-center justify-end gap-3 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8',
           )}
         >

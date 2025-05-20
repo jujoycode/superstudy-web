@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import React, { ReactNode } from 'react'
 
 interface TabProps<T> {
@@ -27,7 +27,7 @@ export function UnderlineTabs<T>({ children, value, onChange }: UnderlineTabsPro
         <div
           key={String(tab.props.value)}
           onClick={() => handleTabClick(tab.props.value)}
-          className={clsx(
+          className={cn(
             'flex cursor-pointer items-center justify-center px-4 py-[9px]',
             value === tab.props.value ? 'border-b-2 border-[#121316] text-[#121316]' : 'mb-[2px] text-[#898d94]',
           )}

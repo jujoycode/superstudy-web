@@ -1,6 +1,6 @@
-import { clsx } from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
+import { cn } from '@/utils/commonUtil'
 import { useUserStore } from '@/stores/user'
 import { FrontPagination } from '@/legacy/components'
 import { Blank, Label, Section, Select, Textarea } from '@/legacy/components/common'
@@ -193,7 +193,7 @@ export function ChatSMSPage({ isMobileView, selectedUsers }: SmsPageProps) {
   return (
     <div className="h-screen-10 border-l-2 px-2">
       {creditLoading && <Blank />}
-      <div className={clsx(`flex`, { 'justify-between': !isMobileView })}>
+      <div className={cn(`flex`, { 'justify-between': !isMobileView })}>
         <Tabs className="w-full">
           <Tabs.Button
             children={t('compose_new_message')}

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useModals } from '@/legacy/modals/ModalStack'
 import { StudentModal } from '@/legacy/modals/StudentModal'
@@ -47,7 +47,7 @@ export function TimetableAtdCard({ attendance, student, comment, setModalOpen }:
         <Button.lg
           children={t('attendance_management', '출결관리')}
           onClick={() => student.expired === false && student.not_attend === false && setModalOpen()}
-          className={clsx(student.expired || student.not_attend ? 'filled-gray' : 'filled-primary')}
+          className={cn(student.expired || student.not_attend ? 'filled-gray' : 'filled-primary')}
         />
       </div>
       <div className="px-4 text-sm md:text-base">{comment}</div>

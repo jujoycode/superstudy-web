@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { t } from 'i18next'
 import { useState } from 'react'
 
@@ -211,7 +211,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                     <Badge
                       children="교시설정"
                       onClick={() => setTimeType(AbsentTimeType.PERIOD)}
-                      className={clsx(
+                      className={cn(
                         'py-1.5',
                         timeType === AbsentTimeType.PERIOD ? 'bg-brand-1 text-white' : 'bg-white text-black',
                       )}
@@ -219,7 +219,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                     <Badge
                       children="시간설정"
                       onClick={() => setTimeType(AbsentTimeType.TIME)}
-                      className={clsx(
+                      className={cn(
                         'py-1.5',
                         timeType === AbsentTimeType.TIME ? 'bg-brand-1 text-white' : 'bg-white text-black',
                       )}
@@ -227,7 +227,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                     <Badge
                       children="사용안함"
                       onClick={() => setTimeType(AbsentTimeType.NONE)}
-                      className={clsx(
+                      className={cn(
                         'py-1.5',
                         timeType === AbsentTimeType.NONE ? 'bg-brand-1 text-white' : 'bg-white text-black',
                       )}
@@ -416,7 +416,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                 placeholder="서류 종류를 입력해주세요."
                 value={evidenceTypeText}
                 onChange={(e) => setEvidenceTypeText(e.target.value)}
-                className={clsx(evidenceTypeText ? 'border border-gray-300' : 'border-2 border-red-700')}
+                className={cn(evidenceTypeText ? 'border border-gray-300' : 'border-2 border-red-700')}
               />
             )}
             {evidenceType === '담임교사 확인서' && (
@@ -483,7 +483,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                     placeholder="서류 종류를 입력해주세요."
                     value={evidenceType2Text}
                     onChange={(e) => setEvidenceType2Text(e.target.value)}
-                    className={clsx(evidenceType2Text ? 'border border-gray-300' : 'border-2 border-red-700')}
+                    className={cn(evidenceType2Text ? 'border border-gray-300' : 'border-2 border-red-700')}
                   />
                 )}
               </div>

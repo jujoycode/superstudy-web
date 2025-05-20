@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { forwardRef, ReactElement, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -101,7 +101,7 @@ const ConfirmSelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
     return (
       <div
         ref={ref}
-        className={clsx(
+        className={cn(
           'relative border border-gray-200 select-none',
           containerWidth,
           {
@@ -131,7 +131,7 @@ const ConfirmSelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
         >
           <label
             className={twMerge(
-              clsx(
+              cn(
                 fontClass, // 공통 폰트 클래스
                 {
                   'text-gray-400': disabled || (!readonly && !value), // 비활성 상태이거나 선택된 값이 없는 경우
@@ -151,7 +151,7 @@ const ConfirmSelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
               color="gray700"
               rotate={90}
               size={iconClass}
-              className={clsx({
+              className={cn({
                 'cursor-not-allowed': readonly || disabled,
               })}
             />
@@ -161,14 +161,14 @@ const ConfirmSelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
         </div>
         {isShowOptions && (
           <div
-            className={clsx(
+            className={cn(
               'absolute top-full left-0 z-10 mt-2 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md',
               computedDropdownWidth,
             )}
           >
             <ul
               ref={scrollableRef}
-              className={clsx('max-h-[264px] overflow-y-auto p-1.5', {
+              className={cn('max-h-[264px] overflow-y-auto p-1.5', {
                 'max-h-[236px]': size === 32,
                 'max-h-[250px]': size === 40,
                 'max-h-[264px]': size === 48,
@@ -182,7 +182,7 @@ const ConfirmSelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
                     e.stopPropagation()
                     handleOptionClick(option.value)
                   }}
-                  className={clsx(
+                  className={cn(
                     {
                       'text-primary-800 flex items-center justify-between': option.value === tempValue,
                     },

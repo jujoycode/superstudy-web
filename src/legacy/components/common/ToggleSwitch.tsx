@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { InputHTMLAttributes, forwardRef } from 'react'
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {}
@@ -13,7 +13,7 @@ export const ToggleSwitch = forwardRef<HTMLInputElement, CheckboxProps>(function
         {/* <!— toggle —> */}
         <div className="relative">
           {/* <!— input —> */}
-          <input ref={ref} type="checkbox" className={clsx('checkbox sr-only', className)} {...props} />
+          <input ref={ref} type="checkbox" className={cn('checkbox sr-only', className)} {...props} />
           {/* <!— line —> */}
           <div className={`block ${props.checked ? 'bg-brand-1' : 'bg-gray-300'} h-8 w-14 rounded-full`}></div>
           {/* <!— dot —> */}

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import moment from 'moment'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -78,7 +78,7 @@ export function IbPage() {
         <Link
           to={`/admin/ib`}
           className={twMerge(
-            clsx(
+            cn(
               'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
               pathname.startsWith('/admin/ib') && !pathname.includes('teacher') && !pathname.includes('student')
                 ? 'border-b-2 border-[#121316] text-[#121316]'
@@ -93,7 +93,7 @@ export function IbPage() {
         <Link
           to={`/admin/ib/teacher`}
           className={twMerge(
-            clsx(
+            cn(
               'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
               pathname.startsWith('/admin/ib/teacher')
                 ? 'border-b-2 border-[#121316] text-[#121316]'
@@ -108,7 +108,7 @@ export function IbPage() {
         <Link
           to={`/admin/ib/student`}
           className={twMerge(
-            clsx(
+            cn(
               'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
               pathname.startsWith('/admin/ib/student')
                 ? 'border-b-2 border-[#121316] text-[#121316]'

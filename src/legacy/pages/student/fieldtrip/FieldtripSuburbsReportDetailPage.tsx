@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
 
 import { useUserStore } from '@/stores/user'
@@ -99,7 +99,7 @@ export function FieldtripSuburbsReportDetailPage() {
             value={parentsName}
             disabled
             onChange={(e) => setParentsName(e.target.value)}
-            className={clsx(parentsName ? 'border-gray-300' : 'border-red-700')}
+            className={cn(parentsName ? 'border-gray-300' : 'border-red-700')}
           />
         </Label.col>
         <Label.col>

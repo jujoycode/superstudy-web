@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { HTMLAttributes } from 'react'
 
 import { ResponsePaginatedIBDto } from '@/legacy/generated/model'
@@ -34,7 +34,7 @@ export default function PaginationV2({ data, onPageChange, className, ...props }
   ]
 
   return (
-    <div className={clsx('pagination', className)} {...props}>
+    <div className={cn('pagination', className)} {...props}>
       {currentPage > 1 ? (
         <PaginationLink to={{ search: `page=${page - 1}` }} onClick={() => onPageChange(currentPage + 1)}>
           <SVGIcon.Arrow weight="bold" color="gray700" />
@@ -48,12 +48,12 @@ export default function PaginationV2({ data, onPageChange, className, ...props }
         <PaginationLink
           key={p}
           to={{ search: `page=${p}` }}
-          className={clsx(p === page && 'font-bold text-current')}
+          className={cn(p === page && 'font-bold text-current')}
           onClick={() => onPageChange(Number(p))}
         >
           <Typography
             variant="body3"
-            className={clsx(
+            className={cn(
               'flex h-8 w-8 items-center justify-center rounded-md',
               p === page && 'bg-gray-700 text-white',
             )}

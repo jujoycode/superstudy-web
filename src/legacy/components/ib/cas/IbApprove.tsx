@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren, useState } from 'react'
 
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -58,7 +58,7 @@ export function IbApprove({
             </Typography>
           </div>
         </div>
-        <div className={clsx('flex items-center justify-end')}>
+        <div className={cn('flex items-center justify-end')}>
           <ButtonV2 variant="solid" color="orange800" size={48} onClick={() => setIsOpen(!isOpen)} disabled={!check}>
             활동종료 승인요청
           </ButtonV2>

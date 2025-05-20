@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import _ from 'lodash'
 import { PropsWithChildren, useState } from 'react'
 
@@ -61,7 +61,7 @@ export function IbCASMentorSelect({
             placeholder="희망 감독교사를 선택해주세요"
           />
         </div>
-        <div className={clsx('flex items-center justify-end')}>
+        <div className={cn('flex items-center justify-end')}>
           <ButtonV2
             variant="solid"
             color="orange800"
