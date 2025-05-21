@@ -15,6 +15,7 @@ export type ContainerProps = {
   paddingX?: string
   paddingY?: string
   noPadding?: boolean
+  fixed?: boolean
 }
 
 export function Container({
@@ -31,6 +32,7 @@ export function Container({
   paddingX = '4',
   paddingY,
   noPadding = false,
+  fixed = false,
 }: ContainerProps) {
   const isPxWidth = width?.endsWith('px')
   const widthClass = isPxWidth ? '' : `w-${width}`
@@ -54,8 +56,10 @@ export function Container({
         .join(' ')
     : ''
 
+  const fixedClass = fixed ? 'sticky top-0 z-50 bg-white' : ''
+
   return (
-    <div className={clsx(widthClass, paddingClass, flexClasses, className)} style={style}>
+    <div className={clsx(widthClass, paddingClass, flexClasses, fixedClass, className)} style={style}>
       {children}
     </div>
   )

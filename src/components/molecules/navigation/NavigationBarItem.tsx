@@ -152,7 +152,7 @@ export function NavigationBarItem({ data }: { data: NavigationItem[] }) {
   }
 
   return (
-    <Container flex direction="col" width="200px" gap="0.5" noPadding>
+    <Container flex direction="col" width="15%" gap="0.5" noPadding>
       {data.map((category, index) => (
         <NavigationCategory key={`category-${index}`} category={category} />
       ))}

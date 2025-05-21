@@ -12,10 +12,8 @@ export type TeacherLNBProps = {
 
 export function TeacherLNB({ HeaderProps, ItemProps }: TeacherLNBProps) {
   return (
-    <Container flex direction="col" justify="start" items="center" gap="2" width="224px" noPadding>
+    <Container flex direction="col" justify="start" items="center" width="15%" noPadding>
       <NavigationHeader ProfileProps={HeaderProps} />
-
-      <Divider />
 
       <Container flex direction="col" justify="between" items="center">
         <NavigationBarItem data={ItemProps} />
