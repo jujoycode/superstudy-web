@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
+import { useParams } from 'react-router-dom'
 import { ReactComponent as ChatSendDisabled } from '@/assets/svg/chat-send-disabled.svg'
 import { ReactComponent as ChatSendEnabled } from '@/assets/svg/chat-send-enabled.svg'
 import { useUserStore } from '@/stores/user'
@@ -20,12 +21,9 @@ import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { useSocket } from '@/legacy/lib/socket'
 import { isNowOrFuture } from '@/legacy/util/time'
 
-interface ChatDetailPageProps {
-  id: string
-}
-
-export function ChatDetailPage({ id }: ChatDetailPageProps) {
-  id = id.split('/')[0]
+export function ChatDetailPage() {
+  const { id: chatRoomId } = useParams<{ id: string }>()
+  const id = chatRoomId?.split('/')[0]
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 

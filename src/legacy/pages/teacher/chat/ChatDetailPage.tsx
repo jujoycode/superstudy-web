@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
 import { ReactComponent as ChatSendDisabled } from '@/assets/svg/chat-send-disabled.svg'
@@ -24,12 +25,10 @@ import { useFileUpload } from '@/legacy/hooks/useFileUpload'
 import { useImageAndDocument } from '@/legacy/hooks/useImageAndDocument'
 import { useSocket } from '@/legacy/lib/socket'
 import { isNowOrFuture } from '@/legacy/util/time'
-interface ChatDetailPageProps {
-  id: string
-}
 
-export function ChatDetailPage({ id }: ChatDetailPageProps) {
-  id = id.split('/')[0]
+export function ChatDetailPage() {
+  const { id: chatRoomId } = useParams<{ id: string }>()
+  const id = chatRoomId?.split('/')[0]
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
