@@ -539,7 +539,7 @@ function ProjectActivityPlan({
                       <div
                         className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border ${
                           strands.service && strands.service > 0
-                            ? 'border-ib-green-100 bg-ib-green-50'
+                            ? 'border-old-primary-green-100 bg-old-primary-green-50'
                             : 'border-gray-100'
                         } p-4`}
                       >
@@ -887,7 +887,7 @@ function ProjectActivityPlan({
                     <div
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.service && data.cas.strands.service > 0
-                          ? 'border-ib-green-100 bg-ib-green-50 border'
+                          ? 'border-old-primary-green-100 bg-old-primary-green-50 border'
                           : 'border border-gray-100'
                       } p-4`}
                     >

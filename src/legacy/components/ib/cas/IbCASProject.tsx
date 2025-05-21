@@ -416,7 +416,9 @@ export function IbCASProject({
                 </div>
                 <div
                   className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border ${
-                    strands.service && strands.service > 0 ? 'border-ib-green-100 bg-ib-green-50' : 'border-gray-100'
+                    strands.service && strands.service > 0
+                      ? 'border-old-primary-green-100 bg-old-primary-green-50'
+                      : 'border-gray-100'
                   } p-4`}
                 >
                   <SolidSVGIcon.S size={20} color="orange800" />

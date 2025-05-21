@@ -11,7 +11,7 @@ interface BadgeV2Props extends HTMLAttributes<HTMLSpanElement> {
 const BadgeStyles = {
   solid_strong: {
     orange: 'bg-primary-800 text-white',
-    green: 'bg-ib-green-800 text-white',
+    green: 'bg-old-primary-green-800 text-white',
     blue: 'bg-ib-blue-800 text-white',
     red: 'bg-old-primary-red-800 text-white',
     gray: 'bg-gray-500 text-white',
@@ -21,7 +21,7 @@ const BadgeStyles = {
   },
   solid_regular: {
     orange: 'bg-primary-100 text-primary-800',
-    green: 'bg-ib-green-100 text-ib-green-800',
+    green: 'bg-old-primary-green-100 text-old-primary-green-800',
     blue: 'bg-ib-blue-100 text-ib-blue-800',
     red: 'bg-old-primary-red-100 text-old-primary-red-800',
     gray: 'bg-gray-100 text-gray-700',
@@ -31,7 +31,7 @@ const BadgeStyles = {
   },
   line: {
     orange: 'border border-primary-400 bg-white text-primary-800',
-    green: 'border border-ib-green-400 bg-white text-ib-green-800',
+    green: 'border border-old-primary-green-400 bg-white text-old-primary-green-800',
     blue: 'border border-ib-blue-400 bg-white text-ib-blue-800',
     red: 'border border-old-primary-red-400 bg-white text-old-primary-red-800',
     gray: 'border border-gray-400 bg-white text-gray-700',
