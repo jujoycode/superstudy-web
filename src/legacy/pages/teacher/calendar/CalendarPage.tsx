@@ -202,7 +202,7 @@ export function CalendarPage() {
 
   return (
     <>
-      {isCalendarLoading || (isLoading && <Blank />)}
+      {(isCalendarLoading || isLoading) && <Blank />}
       {errorMessage && <ErrorBlank />}
       {<CoachMark {...coach} />}
       <div className="flex h-full w-full">
@@ -246,7 +246,7 @@ export function CalendarPage() {
           </div>
           <div className="text-10 absolute bottom-[12px] pl-4 text-[#999]">© NHN Corp.</div>
         </div>
-        <div className="scroll-box w-full overflow-y-scroll px-4">
+        <div className="scroll-box max-h-[100vh] w-full overflow-y-scroll">
           <div className="flex items-center space-x-6 p-4">
             <button
               children={t('today')}
@@ -282,6 +282,7 @@ export function CalendarPage() {
               date={formatDateRange(selectedData.start, selectedData.end)}
               type={selectedType?.name || ''}
               backgroundColor={selectedType?.bgColor || ''}
+              onClose={() => setDetailModalOpen(false)}
               onEdit={() => {
                 setModalOpen(true)
                 setDetailModalOpen(false)
