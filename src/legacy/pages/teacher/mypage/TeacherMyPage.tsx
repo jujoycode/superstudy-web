@@ -94,7 +94,7 @@ export function TeacherMyPage() {
         <Section className="space-y-0 px-4">
           <Link to="/teacher/update">
             <div
-              className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+              className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
               onClick={() => selectedCheck(selectedType.myinfo)}
             >
               <div className="text-gray-1 font-sfpro font-bold">내 정보</div>
@@ -103,7 +103,7 @@ export function TeacherMyPage() {
           </Link>
           <Link to="/teacher/notification-settings">
             <div
-              className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+              className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
               onClick={() => selectedCheck(selectedType.myinfo)}
             >
               <div className="text-gray-1 font-sfpro font-bold">알림 설정</div>
@@ -112,7 +112,7 @@ export function TeacherMyPage() {
           </Link>
           <a href="https://superstudy.channel.io/lounge" target="blank">
             <div
-              className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+              className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
               onClick={() => selectedCheck(selectedType.question)}
             >
               <div className="text-gray-1 font-sfpro font-bold">문의하기</div>
@@ -121,7 +121,7 @@ export function TeacherMyPage() {
           </a>
 
           <div
-            className="border-gray-6 cursor-pointer border-b-2 py-3"
+            className="cursor-pointer border-b-2 border-gray-200 py-3"
             onClick={() => selectedCheck(selectedType.manual)}
           >
             <div className="flex items-center justify-between">
@@ -130,7 +130,7 @@ export function TeacherMyPage() {
             </div>
           </div>
           {selectedItem === selectedType.manual && (
-            <div className="border-gray-6 border-b-2 bg-gray-100">
+            <div className="border-b-2 border-gray-200 bg-gray-100">
               <a
                 href={`https://superschoolofficial.notion.site/f9bae37feef94ee7b9f886b5e074fdac`}
                 target="_blank"
@@ -173,7 +173,7 @@ export function TeacherMyPage() {
             </div>
           )}
           <div
-            className="border-gray-6 cursor-pointer border-b-2 py-3"
+            className="cursor-pointer border-b-2 border-gray-200 py-3"
             onClick={() => selectedCheck(selectedType.superstudy)}
           >
             <div className="flex items-center justify-between">
@@ -182,7 +182,7 @@ export function TeacherMyPage() {
             </div>
           </div>
           {selectedItem === selectedType.superstudy && (
-            <div className="border-gray-6 border-b-2 bg-gray-100">
+            <div className="border-b-2 border-gray-200 bg-gray-100">
               <a href={`https://superstudy.kr`} target="_blank" rel="noreferrer">
                 <div className="flex cursor-pointer items-center justify-between py-1">
                   <div className="text-gray-1 font-sfpro pl-4 font-bold">홈페이지</div>
@@ -217,14 +217,14 @@ export function TeacherMyPage() {
           )}
 
           <Link to="/teacher/announcement">
-            <div className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3">
+            <div className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3">
               <div className="text-gray-1 font-sfpro font-bold">슈퍼스쿨 공지사항</div>
               <RightArrow />
             </div>
           </Link>
 
           <div
-            className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+            className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
             onClick={() => {
               logout()
             }}

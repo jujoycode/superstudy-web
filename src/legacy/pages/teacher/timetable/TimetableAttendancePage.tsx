@@ -787,7 +787,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                                   ? absentOfSelectedPeriod.get(getStudentSeat(r, c)?.id || 0)
                                     ? 'bg-red-300'
                                     : 'bg-white'
-                                  : 'bg-gray-6'
+                                  : 'bg-gray-200'
                             } h-24 min-h-24 w-16 cursor-pointer rounded-md ${seatEditMode ? '' : 'not-draggable'}`}
                             draggable
                             onClick={() => {
@@ -848,7 +848,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
 
             <br />
             <div className="mb-6 flex w-full items-center justify-center space-x-2">
-              <div className="border-gray-7 bg-gray-6 rounded-md border px-3 py-2">교탁</div>
+              <div className="border-gray-7 rounded-md border bg-gray-200 px-3 py-2">교탁</div>
             </div>
 
             {me?.name === teacherName ? (

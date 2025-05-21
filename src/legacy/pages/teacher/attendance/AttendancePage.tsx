@@ -685,7 +685,7 @@ export function AttendancePage() {
                         <tr className={'h-2'}>
                           <td
                             colSpan={3}
-                            className="border-gray-6 w-30 border bg-gray-50 py-2 text-center"
+                            className="w-30 border border-gray-200 bg-gray-50 py-2 text-center"
                           >{`${nullSafeValue(row1[2])}`}</td>
                           {createNumberArray(
                             3 + (selectedDayOfWeek - 1) * (lastPeriod + 1),
@@ -693,7 +693,7 @@ export function AttendancePage() {
                           ).map((i, index) => (
                             <td
                               key={i}
-                              className={`border-gray-6 border text-sm break-all ${
+                              className={`border border-gray-200 text-sm break-all ${
                                 selectedDayOfWeek === 1
                                   ? 'bg-orange-1'
                                   : selectedDayOfWeek === 2
@@ -719,7 +719,7 @@ export function AttendancePage() {
                         <tr className={'h-2'}>
                           <td
                             colSpan={3}
-                            className="border-gray-6 w-30 border bg-gray-50 py-2 text-center"
+                            className="w-30 border border-gray-200 bg-gray-50 py-2 text-center"
                           >{`${nullSafeValue(row2[2])}`}</td>
                           {createNumberArray(
                             3 + (selectedDayOfWeek - 1) * (lastPeriod + 1),
@@ -727,7 +727,7 @@ export function AttendancePage() {
                           ).map((i, index) => (
                             <td
                               key={i}
-                              className={`border-gray-6 border text-sm break-all ${
+                              className={`border border-gray-200 text-sm break-all ${
                                 selectedDayOfWeek === 1
                                   ? 'bg-orange-1'
                                   : selectedDayOfWeek === 2
@@ -753,7 +753,7 @@ export function AttendancePage() {
                         <tr className={'h-2'}>
                           <td
                             colSpan={3}
-                            className="border-gray-6 w-30 border bg-gray-50 py-2 text-center"
+                            className="w-30 border border-gray-200 bg-gray-50 py-2 text-center"
                           >{`${nullSafeValue(row3[2])}`}</td>
                           {createNumberArray(
                             3 + (selectedDayOfWeek - 1) * (lastPeriod + 1),
@@ -761,7 +761,7 @@ export function AttendancePage() {
                           ).map((i, index) => (
                             <td
                               key={i}
-                              className={`border-gray-6 border text-sm break-all ${
+                              className={`border border-gray-200 text-sm break-all ${
                                 selectedDayOfWeek === 1
                                   ? 'bg-orange-1'
                                   : selectedDayOfWeek === 2
@@ -793,10 +793,10 @@ export function AttendancePage() {
 
                     {/* 번호 이름 row */}
                     <tr className={'h-2'}>
-                      <td className="border-gray-6 w-15 border bg-gray-50 text-center">{`${nullSafeValue(
+                      <td className="w-15 border border-gray-200 bg-gray-50 text-center">{`${nullSafeValue(
                         row4[0],
                       )}`}</td>
-                      <td colSpan={2} className="border-gray-6 w-15 border bg-gray-50 text-center">{`${nullSafeValue(
+                      <td colSpan={2} className="w-15 border border-gray-200 bg-gray-50 text-center">{`${nullSafeValue(
                         row4[2],
                       )}`}</td>
                       {createNumberArray(
@@ -805,7 +805,7 @@ export function AttendancePage() {
                       ).map((i) => (
                         <td
                           key={i}
-                          className={`border-gray-6 border text-sm break-all ${
+                          className={`border border-gray-200 text-sm break-all ${
                             selectedDayOfWeek === 1
                               ? 'bg-orange-1'
                               : selectedDayOfWeek === 2
@@ -833,7 +833,7 @@ export function AttendancePage() {
                               <td
                                 colSpan={index + 1}
                                 key={index}
-                                className="border-gray-6 w-15 cursor-pointer border text-sm"
+                                className="w-15 cursor-pointer border border-gray-200 text-sm"
                                 onClick={() => pushModal(<StudentModal id={Number(studentId)} />)}
                               >
                                 {nullSafeValue(cell)}
@@ -849,7 +849,7 @@ export function AttendancePage() {
                             return (
                               <td
                                 key={index}
-                                className={`border-gray-6 border bg-gray-50 text-center ${
+                                className={`border border-gray-200 bg-gray-50 text-center ${
                                   selectedDayOfWeek === 1
                                     ? 'bg-orange-3'
                                     : selectedDayOfWeek === 2
@@ -891,11 +891,11 @@ export function AttendancePage() {
                     <tr className="h-2">
                       <td
                         colSpan={3}
-                        className="border-gray-6 w-20 border bg-gray-50 py-2 text-center"
+                        className="w-20 border border-gray-200 bg-gray-50 py-2 text-center"
                       >{`${nullSafeValue(last1[2])}`}</td>
                       <td
                         colSpan={lastPeriod + 1}
-                        className="border-gray-6 border text-left text-xs whitespace-pre-line"
+                        className="border border-gray-200 text-left text-xs whitespace-pre-line"
                       >{`${nullSafeValue(last1[3 + (selectedDayOfWeek - 1) * (lastPeriod + 1)])}`}</td>
                     </tr>
 
@@ -903,11 +903,11 @@ export function AttendancePage() {
                     <tr className="h-2">
                       <td
                         colSpan={3}
-                        className="border-gray-6 w-30 border bg-gray-50 py-2 text-center"
+                        className="w-30 border border-gray-200 bg-gray-50 py-2 text-center"
                       >{`${nullSafeValue(last2[2])}`}</td>
                       <td
                         colSpan={lastPeriod + 1}
-                        className="border-gray-6 border text-left text-xs whitespace-pre-line"
+                        className="border border-gray-200 text-left text-xs whitespace-pre-line"
                       >
                         {coloredComment[3 + (selectedDayOfWeek - 1) * (lastPeriod + 1)]?.map(
                           ({ isColored, comment }) => {
@@ -1114,39 +1114,39 @@ export function AttendancePage() {
               <table className="mb-16 w-full table-fixed border-collapse rounded-lg bg-white text-center">
                 <thead className="sticky top-0 bg-black">
                   <tr className="z-900 h-2 bg-black">
-                    <td colSpan={3} className="border-gray-6 w-30 border bg-gray-50 py-2 text-center"></td>
+                    <td colSpan={3} className="w-30 border border-gray-200 bg-gray-50 py-2 text-center"></td>
                     <td
                       colSpan={lastPeriod + 1}
-                      className="border-gray-6 bg-orange-2 w-1/5 border py-2"
+                      className="bg-orange-2 w-1/5 border border-gray-200 py-2"
                     >{`${nullSafeValue(row0[4])} ${nullSafeValue(row0[3])}`}</td>
                     <td
                       colSpan={lastPeriod + 1}
-                      className="border-gray-6 bg-pink-2 w-1/5 border py-2"
+                      className="bg-pink-2 w-1/5 border border-gray-200 py-2"
                     >{`${nullSafeValue(row0[4 + (lastPeriod + 1) * 1])} ${nullSafeValue(
                       row0[3 + (lastPeriod + 1) * 1],
                     )}`}</td>
                     <td
                       colSpan={lastPeriod + 1}
-                      className="border-gray-6 bg-lightblue-2 w-1/5 border py-2"
+                      className="bg-lightblue-2 w-1/5 border border-gray-200 py-2"
                     >{`${nullSafeValue(row0[4 + (lastPeriod + 1) * 2])} ${nullSafeValue(
                       row0[3 + (lastPeriod + 1) * 2],
                     )}`}</td>
                     <td
                       colSpan={lastPeriod + 1}
-                      className="border-gray-6 bg-lightgreen-2 w-1/5 border py-2"
+                      className="bg-lightgreen-2 w-1/5 border border-gray-200 py-2"
                     >{`${nullSafeValue(row0[4 + (lastPeriod + 1) * 3])} ${nullSafeValue(
                       row0[3 + (lastPeriod + 1) * 3],
                     )}`}</td>
                     <td
                       colSpan={lastPeriod + 1}
-                      className="border-gray-6 bg-lightpurple-2 w-1/5 border py-2"
+                      className="bg-lightpurple-2 w-1/5 border border-gray-200 py-2"
                     >{`${nullSafeValue(row0[4 + (lastPeriod + 1) * 4])} ${nullSafeValue(
                       row0[3 + (lastPeriod + 1) * 4],
                     )}`}</td>
                     {hasSaturdayClass && (
                       <td
                         colSpan={lastPeriod + 1}
-                        className="border-gray-6 bg-orange-2 w-1/5 border py-2"
+                        className="bg-orange-2 w-1/5 border border-gray-200 py-2"
                       >{`${nullSafeValue(row0[4 + (lastPeriod + 1) * 5])} ${nullSafeValue(
                         row0[3 + (lastPeriod + 1) * 5],
                       )}`}</td>
@@ -1157,12 +1157,12 @@ export function AttendancePage() {
                       <tr className={'h-2 bg-black'}>
                         <td
                           colSpan={3}
-                          className="border-gray-6 w-30 border bg-gray-50 py-2 text-center"
+                          className="w-30 border border-gray-200 bg-gray-50 py-2 text-center"
                         >{`${nullSafeValue(row1[2])}`}</td>
                         {createNumberArray(3, 2 + (lastPeriod + 1) * 1).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-orange-1 cursor-pointer border text-sm break-all ${isSelectedLecture(1, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-orange-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(1, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >
                             {nullSafeValue(row1[i]).substring(0, 2)}
@@ -1171,7 +1171,7 @@ export function AttendancePage() {
                         {createNumberArray(3 + (lastPeriod + 1) * 1, 2 + (lastPeriod + 1) * 2).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-pink-1 cursor-pointer border text-sm break-all ${isSelectedLecture(2, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-pink-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(2, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >
                             {nullSafeValue(row1[i]).substring(0, 2)}
@@ -1180,7 +1180,7 @@ export function AttendancePage() {
                         {createNumberArray(3 + (lastPeriod + 1) * 2, 2 + (lastPeriod + 1) * 3).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-lightblue-1 cursor-pointer border text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-lightblue-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >
                             {nullSafeValue(row1[i]).substring(0, 2)}
@@ -1189,7 +1189,7 @@ export function AttendancePage() {
                         {createNumberArray(3 + (lastPeriod + 1) * 3, 2 + (lastPeriod + 1) * 4).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-lightgreen-1 cursor-pointer border text-sm break-all ${isSelectedLecture(4, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-lightgreen-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(4, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >
                             {nullSafeValue(row1[i]).substring(0, 2)}
@@ -1198,7 +1198,7 @@ export function AttendancePage() {
                         {createNumberArray(3 + (lastPeriod + 1) * 4, 2 + (lastPeriod + 1) * 5).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-lightpurple-1 cursor-pointer border text-sm break-all ${isSelectedLecture(5, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-lightpurple-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(5, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >
                             {nullSafeValue(row1[i]).substring(0, 2)}
@@ -1209,7 +1209,7 @@ export function AttendancePage() {
                           createNumberArray(3 + (lastPeriod + 1) * 5, 2 + (lastPeriod + 1) * 6).map((i, index) => (
                             <td
                               key={i}
-                              className={`border-gray-6 bg-orange-1 cursor-pointer border text-sm break-all ${isSelectedLecture(6, index) && 'bg-red-500 text-white'} `}
+                              className={`bg-orange-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(6, index) && 'bg-red-500 text-white'} `}
                               onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                             >
                               {nullSafeValue(row1[i]).substring(0, 2)}
@@ -1219,40 +1219,40 @@ export function AttendancePage() {
                       <tr className={'h-2'}>
                         <td
                           colSpan={3}
-                          className="border-gray-6 w-30 border bg-gray-50 py-2 text-center"
+                          className="w-30 border border-gray-200 bg-gray-50 py-2 text-center"
                         >{`${nullSafeValue(row2[2])}`}</td>
                         {createNumberArray(3, 2 + (lastPeriod + 1) * 1).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-orange-1 cursor-pointer border text-sm break-all ${isSelectedLecture(1, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-orange-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(1, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >{`${nullSafeValue(row2[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 1, 2 + (lastPeriod + 1) * 2).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-pink-1 cursor-pointer border text-sm break-all ${isSelectedLecture(2, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-pink-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(2, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >{`${nullSafeValue(row2[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 2, 2 + (lastPeriod + 1) * 3).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-lightblue-1 cursor-pointer border text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-lightblue-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >{`${nullSafeValue(row2[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 3, 2 + (lastPeriod + 1) * 4).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-lightgreen-1 cursor-pointer border text-sm break-all ${isSelectedLecture(4, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-lightgreen-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(4, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >{`${nullSafeValue(row2[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 4, 2 + (lastPeriod + 1) * 5).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-lightpurple-1 cursor-pointer border text-sm break-all ${isSelectedLecture(5, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-lightpurple-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(5, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >{`${nullSafeValue(row2[i])}`}</td>
                         ))}
@@ -1261,7 +1261,7 @@ export function AttendancePage() {
                           createNumberArray(3 + (lastPeriod + 1) * 5, 2 + (lastPeriod + 1) * 6).map((i, index) => (
                             <td
                               key={i}
-                              className={`border-gray-6 bg-orange-1 cursor-pointer border text-sm break-all ${isSelectedLecture(6, index) && 'bg-red-500 text-white'} `}
+                              className={`bg-orange-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(6, index) && 'bg-red-500 text-white'} `}
                               onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                             >{`${nullSafeValue(row2[i])}`}</td>
                           ))}
@@ -1270,40 +1270,40 @@ export function AttendancePage() {
                       <tr className={'h-2'}>
                         <td
                           colSpan={3}
-                          className="border-gray-6 w-30 border bg-gray-50 py-2 text-center"
+                          className="w-30 border border-gray-200 bg-gray-50 py-2 text-center"
                         >{`${nullSafeValue(row3[2])}`}</td>
                         {createNumberArray(3, 2 + (lastPeriod + 1) * 1).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-orange-1 cursor-pointer border text-sm break-all ${isSelectedLecture(1, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-orange-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(1, index) && 'bg-red-500 text-white'} `}
                             onClick={() => attendenceCheck(nullSafeValue(rowId[i]), i, !!isSelectedLecture(1, index))}
                           >{`${nullSafeValue(row2[i]) === '' ? '' : nullSafeValue(row3[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 1, 2 + (lastPeriod + 1) * 2).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-pink-1 cursor-pointer border text-sm break-all ${isSelectedLecture(2, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-pink-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(2, index) && 'bg-red-500 text-white'} `}
                             onClick={() => attendenceCheck(nullSafeValue(rowId[i]), i, !!isSelectedLecture(2, index))}
                           >{`${nullSafeValue(row2[i]) === '' ? '' : nullSafeValue(row3[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 2, 2 + (lastPeriod + 1) * 3).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-lightblue-1 cursor-pointer border text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-lightblue-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
                             onClick={() => attendenceCheck(nullSafeValue(rowId[i]), i, !!isSelectedLecture(3, index))}
                           >{`${nullSafeValue(row2[i]) === '' ? '' : nullSafeValue(row3[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 3, 2 + (lastPeriod + 1) * 4).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-lightgreen-1 cursor-pointer border text-sm break-all ${isSelectedLecture(4, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-lightgreen-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(4, index) && 'bg-red-500 text-white'} `}
                             onClick={() => attendenceCheck(nullSafeValue(rowId[i]), i, !!isSelectedLecture(4, index))}
                           >{`${nullSafeValue(row2[i]) === '' ? '' : nullSafeValue(row3[i])}`}</td>
                         ))}
                         {createNumberArray(3 + (lastPeriod + 1) * 4, 2 + (lastPeriod + 1) * 5).map((i, index) => (
                           <td
                             key={i}
-                            className={`border-gray-6 bg-lightpurple-1 cursor-pointer border text-sm break-all ${isSelectedLecture(5, index) && 'bg-red-500 text-white'} `}
+                            className={`bg-lightpurple-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(5, index) && 'bg-red-500 text-white'} `}
                             onClick={() => attendenceCheck(nullSafeValue(rowId[i]), i, !!isSelectedLecture(5, index))}
                           >{`${nullSafeValue(row2[i]) === '' ? '' : nullSafeValue(row3[i])}`}</td>
                         ))}
@@ -1312,7 +1312,7 @@ export function AttendancePage() {
                           createNumberArray(3 + (lastPeriod + 1) * 5, 2 + (lastPeriod + 1) * 6).map((i, index) => (
                             <td
                               key={i}
-                              className={`border-gray-6 bg-orange-1 cursor-pointer border text-sm break-all ${isSelectedLecture(6, index) && 'bg-red-500 text-white'} `}
+                              className={`bg-orange-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(6, index) && 'bg-red-500 text-white'} `}
                               onClick={() => attendenceCheck(nullSafeValue(rowId[i]), i, !!isSelectedLecture(6, index))}
                             >{`${nullSafeValue(row2[i]) === '' ? '' : nullSafeValue(row3[i])}`}</td>
                           ))}
@@ -1322,38 +1322,40 @@ export function AttendancePage() {
 
                   {/* 번호 이름 row */}
                   <tr className={'z-100 h-2'}>
-                    <td className="border-gray-6 border bg-gray-50 text-center">{`${nullSafeValue(row4[0])}`}</td>
-                    <td colSpan={2} className="border-gray-6 border bg-gray-50 text-center">{`${nullSafeValue(
+                    <td className="border border-gray-200 bg-gray-50 text-center">{`${nullSafeValue(row4[0])}`}</td>
+                    <td colSpan={2} className="border border-gray-200 bg-gray-50 text-center">{`${nullSafeValue(
                       row4[2],
                     )}`}</td>
                     {createNumberArray(3, 2 + (lastPeriod + 1) * 1).map((i) => (
-                      <td key={i} className="border-gray-6 bg-orange-1 border text-sm break-all">{`${nullSafeValue(
+                      <td key={i} className="bg-orange-1 border border-gray-200 text-sm break-all">{`${nullSafeValue(
                         row4[i],
                       )}`}</td>
                     ))}
                     {createNumberArray(3 + (lastPeriod + 1) * 1, 2 + (lastPeriod + 1) * 2).map((i) => (
-                      <td key={i} className="border-gray-6 bg-pink-1 border text-sm break-all">{`${nullSafeValue(
+                      <td key={i} className="bg-pink-1 border border-gray-200 text-sm break-all">{`${nullSafeValue(
                         row4[i],
                       )}`}</td>
                     ))}
                     {createNumberArray(3 + (lastPeriod + 1) * 2, 2 + (lastPeriod + 1) * 3).map((i) => (
-                      <td key={i} className="border-gray-6 bg-lightblue-1 border text-sm break-all">{`${nullSafeValue(
+                      <td key={i} className="bg-lightblue-1 border border-gray-200 text-sm break-all">{`${nullSafeValue(
                         row4[i],
                       )}`}</td>
                     ))}
                     {createNumberArray(3 + (lastPeriod + 1) * 3, 2 + (lastPeriod + 1) * 4).map((i) => (
-                      <td key={i} className="border-gray-6 bg-lightgreen-1 border text-sm break-all">{`${nullSafeValue(
-                        row4[i],
-                      )}`}</td>
+                      <td
+                        key={i}
+                        className="bg-lightgreen-1 border border-gray-200 text-sm break-all"
+                      >{`${nullSafeValue(row4[i])}`}</td>
                     ))}
                     {createNumberArray(3 + (lastPeriod + 1) * 4, 2 + (lastPeriod + 1) * 5).map((i) => (
-                      <td key={i} className="border-gray-6 bg-lightpurple-1 border text-sm break-all">{`${nullSafeValue(
-                        row4[i],
-                      )}`}</td>
+                      <td
+                        key={i}
+                        className="bg-lightpurple-1 border border-gray-200 text-sm break-all"
+                      >{`${nullSafeValue(row4[i])}`}</td>
                     ))}
                     {hasSaturdayClass &&
                       createNumberArray(3 + (lastPeriod + 1) * 5, 2 + (lastPeriod + 1) * 6).map((i) => (
-                        <td key={i} className="border-gray-6 bg-orange-1 border text-sm break-all">{`${nullSafeValue(
+                        <td key={i} className="bg-orange-1 border border-gray-200 text-sm break-all">{`${nullSafeValue(
                           row4[i],
                         )}`}</td>
                       ))}
@@ -1368,7 +1370,7 @@ export function AttendancePage() {
                             <td
                               colSpan={index + 1}
                               key={index}
-                              className={`border-gray-6 border ${index === 1 ? 'text-left' : 'text-center'} cursor-pointer text-sm`}
+                              className={`border border-gray-200 ${index === 1 ? 'text-left' : 'text-center'} cursor-pointer text-sm`}
                               onClick={() => pushModal(<StudentModal id={Number(studentId)} />)}
                             >
                               {nullSafeValue(cell)}
@@ -1388,7 +1390,7 @@ export function AttendancePage() {
                                   if (!editMode) return
                                   setAbsentReady(studentId, selmonday, index, 'monday')
                                 }}
-                                className={`border-gray-6 bg-orange-3 border bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
+                                className={`bg-orange-3 border border-gray-200 bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                               >
                                 {nullSafeValue(cell)}
                                 {/* <Tooltip value={getAbsentInfoString(studentId, selmonday, index) || ''} placement={'bottom'}>
@@ -1408,7 +1410,7 @@ export function AttendancePage() {
                                   if (!editMode) return
                                   setAbsentReady(studentId, seltuesday, index, 'tuesday')
                                 }}
-                                className={`border-gray-6 bg-pink-3 border bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
+                                className={`bg-pink-3 border border-gray-200 bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                               >
                                 {nullSafeValue(cell)}
                               </td>
@@ -1425,7 +1427,7 @@ export function AttendancePage() {
                                   if (!editMode) return
                                   setAbsentReady(studentId, selwednesday, index, 'wednesday')
                                 }}
-                                className={`border-gray-6 bg-lightblue-3 border bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
+                                className={`bg-lightblue-3 border border-gray-200 bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                               >
                                 {nullSafeValue(cell)}
                               </td>
@@ -1442,7 +1444,7 @@ export function AttendancePage() {
                                   if (!editMode) return
                                   setAbsentReady(studentId, selthursday, index, 'thursday')
                                 }}
-                                className={`border-gray-6 bg-lightgreen-3 border bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
+                                className={`bg-lightgreen-3 border border-gray-200 bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                               >
                                 {nullSafeValue(cell)}
                               </td>
@@ -1459,7 +1461,7 @@ export function AttendancePage() {
                                   if (!editMode) return
                                   setAbsentReady(studentId, selfriday, index, 'friday')
                                 }}
-                                className={`border-gray-6 bg-lightpurple-3 border bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
+                                className={`bg-lightpurple-3 border border-gray-200 bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                               >
                                 {nullSafeValue(cell)}
                                 {/* <Tooltip value={getAbsentInfoString(studentId, selfriday, index) || ''} placement={'bottom'}>
@@ -1480,7 +1482,7 @@ export function AttendancePage() {
                                     if (!editMode) return
                                     setAbsentReady(studentId, selsaturday, index, 'saturday')
                                   }}
-                                  className={`border-gray-6 bg-orange-3 border bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
+                                  className={`bg-orange-3 border border-gray-200 bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                                 >
                                   {nullSafeValue(cell)}
                                 </td>
@@ -1495,7 +1497,7 @@ export function AttendancePage() {
                   <tr className="h-2">
                     <td
                       colSpan={3}
-                      className="border-gray-6 w-30 border bg-gray-50 py-2 text-center"
+                      className="w-30 border border-gray-200 bg-gray-50 py-2 text-center"
                     >{`${nullSafeValue(last1[2])}`}</td>
                     {Array(hasSaturdayClass ? 6 : 5)
                       .fill(1)
@@ -1503,7 +1505,7 @@ export function AttendancePage() {
                         <td
                           key={index}
                           colSpan={lastPeriod + 1}
-                          className="border-gray-6 border text-left text-xs whitespace-pre-line"
+                          className="border border-gray-200 text-left text-xs whitespace-pre-line"
                         >{`${nullSafeValue(last1[3 + index * (lastPeriod + 1)])}`}</td>
                       ))}
                   </tr>
@@ -1512,7 +1514,7 @@ export function AttendancePage() {
                   <tr className="h-2">
                     <td
                       colSpan={3}
-                      className="border-gray-6 w-30 border bg-gray-50 py-2 text-center"
+                      className="w-30 border border-gray-200 bg-gray-50 py-2 text-center"
                     >{`${nullSafeValue(last2[2])}`}</td>
                     {Array(hasSaturdayClass ? 6 : 5)
                       .fill(1)
@@ -1522,7 +1524,7 @@ export function AttendancePage() {
                             <td
                               key={index}
                               colSpan={lastPeriod + 1}
-                              className="border-gray-6 border text-left text-xs whitespace-pre-line"
+                              className="border border-gray-200 text-left text-xs whitespace-pre-line"
                             >
                               {coloredComment[3 + index * (lastPeriod + 1)].map(({ isColored, comment }, index) => {
                                 return (

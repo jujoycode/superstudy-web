@@ -239,7 +239,7 @@ export function MyPage() {
             슈퍼스쿨 사용안내
           </div>
           {selectedGuide && (
-            <div className="border-gray-6 -mx-5 border-b-2 bg-gray-100">
+            <div className="-mx-5 border-b-2 border-gray-200 bg-gray-100">
               <a
                 href={`https://superschoolofficial.notion.site/e8ebd5829e2846ab8e97417c7ab589f7`}
                 target="_blank"

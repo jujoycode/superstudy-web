@@ -86,7 +86,7 @@ export function GroupDetailPage() {
         <label className="text-sm text-gray-800">{t('supervising_teacher', '담당선생님')}</label>
         {teacherGroups && teacherGroups.length > 0 ? (
           teacherGroups.map((teacher) => (
-            <div key={teacher.id} className="border-gray-6 m-1 w-full rounded-lg border-2 px-3 py-3">
+            <div key={teacher.id} className="m-1 w-full rounded-lg border-2 border-gray-200 px-3 py-3">
               <div className="">
                 {t('supervisor', '담당')} : {teacher.user.name}
                 {getNickName(teacher.user.nickName)} {t('teacher', '선생님')}
@@ -100,7 +100,7 @@ export function GroupDetailPage() {
             </div>
           ))
         ) : (
-          <div key={selectedGroup?.id} className="border-gray-6 m-1 w-full rounded-lg border-2 px-3 py-3">
+          <div key={selectedGroup?.id} className="m-1 w-full rounded-lg border-2 border-gray-200 px-3 py-3">
             <div className="">
               {t('supervisor', '담당')} : {me?.name}
               {getNickName(me?.nickName)} {t('teacher', '선생님')}
@@ -122,7 +122,7 @@ export function GroupDetailPage() {
         </label>
         <div className="grid w-full grid-flow-row grid-cols-2 gap-2 pr-4 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {studentGroups.map((student) => (
-            <div key={student.id} className="border-gray-6 w-full rounded-lg border-2 px-3 py-1">
+            <div key={student.id} className="w-full rounded-lg border-2 border-gray-200 px-3 py-1">
               <div className="w-full">{makeStudNum5(student.klass + student.studentNumber.toString())}</div>
               <div className="w-full">
                 {student.userName}

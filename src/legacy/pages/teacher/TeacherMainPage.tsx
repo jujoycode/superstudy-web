@@ -271,7 +271,7 @@ export function TeacherMainPage() {
               {/* 출결 start */}
               <div className="flex">
                 <div className="text-darkgray w-20 self-center text-center font-bold">{t(`attendance`)}</div>
-                <div className="border-gray-6 my-2.5 mr-2 ml-3 border" />
+                <div className="my-2.5 mr-2 ml-3 border border-gray-200" />
                 <div className="w-40">
                   <TeacherMainPageLink to="/teacher/attendance">{t(`attendance_register`)}</TeacherMainPageLink>
                   <TeacherMainPageLink to="/teacher/timetable">
@@ -347,14 +347,14 @@ export function TeacherMainPage() {
                   )}
                 </div>
               </div>
-              <div className="border-gray-6 w-full border" />
+              <div className="w-full border border-gray-200" />
               {/* 출결 end */}
 
               {/* 정보 start */}
               <div className="flex">
                 <div className="text-darkgray w-20 self-center text-center font-bold">{t(`information`)}</div>
 
-                <div className="border-gray-6 my-2.5 mr-2 ml-3 border" />
+                <div className="my-2.5 mr-2 ml-3 border border-gray-200" />
 
                 <div className="w-40">
                   <TeacherMainPageLink to="/teacher/studentcard">{t(`student_information`)}</TeacherMainPageLink>
@@ -362,13 +362,13 @@ export function TeacherMainPage() {
                   <TeacherMainPageLink to="/teacher/pointlogs">{t(`상벌점관리`)}</TeacherMainPageLink>
                 </div>
               </div>
-              <div className="border-gray-6 w-full border" />
+              <div className="w-full border border-gray-200" />
               {/* 정보 end */}
 
               {/* 활동 start*/}
               <div className="flex">
                 <div className="text-darkgray w-20 self-center text-center font-bold">{t(`activity`)}</div>
-                <div className="border-gray-6 my-2.5 mr-2 ml-3 border" />
+                <div className="my-2.5 mr-2 ml-3 border border-gray-200" />
                 <div className="w-40">
                   <TeacherMainPageLink
                     to="/teacher/activityv3"
@@ -411,14 +411,14 @@ export function TeacherMainPage() {
                   )}
                 </div>
               </div>
-              <div className="border-gray-6 w-full border" />
+              <div className="w-full border border-gray-200" />
               {/* 활동 end*/}
 
               {/* 일정 start */}
               <div className="flex">
                 <div className="text-darkgray w-20 self-center text-center font-bold">{t(`schedule`)}</div>
 
-                <div className="border-gray-6 my-2.5 mr-2 ml-3 border" />
+                <div className="my-2.5 mr-2 ml-3 border border-gray-200" />
 
                 <div className="w-40">
                   <TeacherMainPageLink to="/teacher/calendar">{t(`calendar`)}</TeacherMainPageLink>
@@ -430,14 +430,14 @@ export function TeacherMainPage() {
                   </TeacherMainPageLink>
                 </div>
               </div>
-              <div className="border-gray-6 w-full border" />
+              <div className="w-full border border-gray-200" />
               {/* 일정 end */}
 
               {/* 공지 start */}
               <div className="flex">
                 <div className="text-darkgray w-20 self-center text-center font-bold">{t(`notice`)}</div>
 
-                <div className="border-gray-6 my-2.5 mr-2 ml-3 border" />
+                <div className="my-2.5 mr-2 ml-3 border border-gray-200" />
 
                 <div className="w-40">
                   <TeacherMainPageLink to="/teacher/notice">{t(`announcement`)}</TeacherMainPageLink>
@@ -457,13 +457,13 @@ export function TeacherMainPage() {
                   </TeacherMainPageLink>
                 </div>
               </div>
-              <div className="border-gray-6 w-full border" />
+              <div className="w-full border border-gray-200" />
               {/*공지 end*/}
 
               {/* 서비스 start */}
               <div className="flex">
                 <div className="text-darkgray w-20 self-center text-center font-bold">{t(`more`)}</div>
-                <div className="border-gray-6 my-2.5 mr-2 ml-3 border" />
+                <div className="my-2.5 mr-2 ml-3 border border-gray-200" />
                 <div className="w-40">
                   <TeacherMainPageLink to="/teacher/update">{t(`my_information`)}</TeacherMainPageLink>
                   <a
@@ -504,7 +504,7 @@ export function TeacherMainPage() {
                   </div>
                 </div>
               </div>
-              <div className="border-gray-6 w-full border" />
+              <div className="w-full border border-gray-200" />
               {/* 서비스 end */}
 
               {(me?.role === Role.ADMIN || adminPermission) && (

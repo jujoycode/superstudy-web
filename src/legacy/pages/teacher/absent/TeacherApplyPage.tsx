@@ -20,7 +20,7 @@ export function TeacherApplyPage() {
 
         <Section>
           <div
-            className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+            className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
             onClick={() => push('/teacher/attendance')}
           >
             <div>
@@ -30,7 +30,7 @@ export function TeacherApplyPage() {
             <RightArrow />
           </div>
           <div
-            className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+            className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
             onClick={() => push('/teacher/timetable')}
           >
             <div>
@@ -41,7 +41,7 @@ export function TeacherApplyPage() {
           </div>
           {me?.school?.isOutingActive !== OutingUse.NONE && (
             <div
-              className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+              className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
               onClick={() => push('/teacher/outing')}
             >
               <div>
@@ -52,7 +52,7 @@ export function TeacherApplyPage() {
             </div>
           )}
           <div
-            className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+            className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
             onClick={() => push('/teacher/absent')}
           >
             <div>
@@ -64,7 +64,7 @@ export function TeacherApplyPage() {
           <div
             className={`flex items-center justify-between pt-3 ${
               !selectedFieldtrip && 'border-b-2 pb-3'
-            } border-gray-6 cursor-pointer`}
+            } cursor-pointer border-gray-200`}
             onClick={() => setSelectedFieldtrip(!selectedFieldtrip)}
           >
             <div>
@@ -74,7 +74,7 @@ export function TeacherApplyPage() {
             {selectedFieldtrip ? <Icon.ChevronDown /> : <RightArrow />}
           </div>
           {selectedFieldtrip && (
-            <div className="border-gray-6 border-b-2 bg-gray-100">
+            <div className="border-b-2 border-gray-200 bg-gray-100">
               <div
                 className="flex cursor-pointer items-center justify-between py-1"
                 onClick={() => push('/teacher/fieldtrip')}
@@ -102,7 +102,7 @@ export function TeacherApplyPage() {
           )}
 
           <div
-            className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+            className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
             onClick={() => push('/teacher/studentcard')}
           >
             <div>
@@ -112,7 +112,7 @@ export function TeacherApplyPage() {
             <RightArrow />
           </div>
           <div
-            className="border-gray-6 hidden cursor-pointer items-center justify-between border-b-2 py-3 md:flex"
+            className="hidden cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3 md:flex"
             onClick={() => push('/teacher/history')}
           >
             <div>
@@ -125,7 +125,7 @@ export function TeacherApplyPage() {
             <RightArrow />
           </div>
           <div
-            className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+            className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
             onClick={() => push('/teacher/pointlogs')}
           >
             <div>
