@@ -113,13 +113,13 @@ export const ExamScoresComponent = () => {
             {MockScores.length > 0 && (
               <button
                 onClick={() => setIsUpdate((prev) => !prev)}
-                className={`min-w-[120px] rounded-lg border border-[#0066ff] bg-white px-3 py-2 text-[#0066ff]`}
+                className={`border-old-primary-blue-800 text-old-primary-blue-800 min-w-[120px] rounded-lg border bg-white px-3 py-2`}
               >
                 {isUpdate ? '파일 수정 완료' : '등록 파일 수정'}
               </button>
             )}
             <button
-              className={`min-w-[120px] rounded-lg border border-[#0066ff] bg-[#0066ff] px-3 py-2 text-white`}
+              className={`border-old-primary-blue-800 bg-old-primary-blue-800 min-w-[120px] rounded-lg border px-3 py-2 text-white`}
               onClick={() => setModalClose(true)}
             >
               파일 업로드
@@ -170,7 +170,7 @@ export const ExamScoresComponent = () => {
                       </td>
                     ) : (
                       <td
-                        className={`px-2 py-2 text-center ${score.isSubmitted ? 'text-[#0066ff]' : 'text-[#aaaaaa]'}`}
+                        className={`px-2 py-2 text-center ${score.isSubmitted ? 'text-old-primary-blue-800' : 'text-[#aaaaaa]'}`}
                       >
                         {score.isSubmitted ? '등록 완료' : '미등록'}
                       </td>

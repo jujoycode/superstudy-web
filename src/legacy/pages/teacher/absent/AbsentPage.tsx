@@ -146,7 +146,7 @@ export function AbsentPage() {
                   className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-hidden"
                 />
               </div>
-              <div className="text-gray-5 mb-5 text-sm">
+              <div className="mb-5 text-sm text-gray-500">
                 ※ {t('sick_leave_absence_report', '구,결석계 / 조퇴,외출,결과,지각,결석 후 작성 서류')}
               </div>
             </div>
@@ -525,7 +525,7 @@ export function AbsentPage() {
                   style={{ backgroundImage: `url("${stampImgUrl}")` }}
                 ></div>
               ) : (
-                <div className="bg-gray-4 absolute inset-0 z-10 overflow-hidden rounded">
+                <div className="absolute inset-0 z-10 overflow-hidden rounded bg-gray-400">
                   <div className="flex h-full w-full items-center justify-center">
                     <div className="min-w-max text-center">도장을 등록해주세요.</div>
                   </div>

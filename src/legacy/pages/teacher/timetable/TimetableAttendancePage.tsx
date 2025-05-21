@@ -780,14 +780,14 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                         .map((_: any, c: number) => (
                           <td
                             key={c}
-                            className={`border-gray-7 border ${
+                            className={`border border-gray-300 ${
                               selSeat === r.toString() + c.toString()
                                 ? 'bg-blue-300'
                                 : getStudentSeat(r, c)?.absent
                                   ? absentOfSelectedPeriod.get(getStudentSeat(r, c)?.id || 0)
                                     ? 'bg-red-300'
                                     : 'bg-white'
-                                  : 'bg-gray-6'
+                                  : 'bg-gray-200'
                             } h-24 min-h-24 w-16 cursor-pointer rounded-md ${seatEditMode ? '' : 'not-draggable'}`}
                             draggable
                             onClick={() => {
@@ -848,7 +848,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
 
             <br />
             <div className="mb-6 flex w-full items-center justify-center space-x-2">
-              <div className="border-gray-7 bg-gray-6 rounded-md border px-3 py-2">교탁</div>
+              <div className="rounded-md border border-gray-300 bg-gray-200 px-3 py-2">교탁</div>
             </div>
 
             {me?.name === teacherName ? (
@@ -1003,8 +1003,8 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
               </div>
               <div className="text-sm">{selectedUserId.role}</div>
               <div className="text-sm">{selectedUserId.job}</div>
-              <div className="text-gray-2 text-sm">희망학과 | {selectedUserId.major}</div>
-              <div className="text-gray-2 text-sm">장래희망 | {selectedUserId.hope}</div>
+              <div className="text-sm text-gray-700">희망학과 | {selectedUserId.major}</div>
+              <div className="text-sm text-gray-700">장래희망 | {selectedUserId.hope}</div>
             </div>
           </div>
           <Divider />

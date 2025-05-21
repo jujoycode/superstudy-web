@@ -165,7 +165,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
             {password2 && password !== password2 && (
               <div className="text-red-600">비밀번호 확인이 일치하지 않습니다.</div>
             )}
-            <div className="text-gray-3 text-sm">
+            <div className="text-sm text-gray-500">
               &nbsp; 안전한 개인정보의 보호를 위해 문자,숫자,특수문자가 포함된 8자 이상의 비밀번호를 입력하세요.
               <br />
               &nbsp; 사용 가능한 특수문자는 ! @ # $ % & * ? 입니다.

@@ -102,7 +102,7 @@ export function INDIExamScoreBoard({ studentId, grade }: ExamScoreBoardProps) {
             <tbody>
               {Object.entries(currentScores).length > 0 ? (
                 Object.entries(currentScores).map(([subject, details]: [string, any]) => (
-                  <tr key={subject} className="hover:bg-gray-5 border-b bg-white">
+                  <tr key={subject} className="border-b bg-white hover:bg-gray-500">
                     <td className="border-r border-gray-300 px-2 py-2 text-center">{formatSubject(subject)}</td>
                     <td className="border-r border-gray-300 px-2 py-2 text-center">{details.score}</td>
                     <td className="border-r border-gray-300 px-2 py-2 text-center">{details.class_score_mean}</td>

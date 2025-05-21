@@ -78,7 +78,7 @@ export function ActivityDetailPage() {
             {activity?.subject || ''}
           </div>
           <div className="py-2">
-            <div className="text-gray-1 text-xl font-bold">{activity?.title}</div>
+            <div className="text-xl font-bold text-gray-900">{activity?.title}</div>
             <Time date={activity.createdAt} />
           </div>
           {images?.map((image: string, i: number) => (
@@ -190,7 +190,7 @@ export function ActivityDetailPage() {
           {activity?.subject || ''}
         </div>
         <div className="py-2">
-          <div className="text-gray-1 text-xl font-bold">{activity?.title}</div>
+          <div className="text-xl font-bold text-gray-900">{activity?.title}</div>
           <Time date={activity?.createdAt} />
         </div>
         {activity?.type !== 'SURVEY' && (

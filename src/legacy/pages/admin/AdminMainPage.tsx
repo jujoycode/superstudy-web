@@ -201,8 +201,8 @@ export function AdminMainPage() {
                 download
                 className="flex items-center gap-1 pr-1"
               >
-                <div className="inline-flex h-10 items-center justify-center gap-1.5 rounded-lg border border-[#ffe7db] bg-[#fff8f5] px-4 py-2">
-                  <div className="font-semibold text-[#ff600c]">관리자모드 매뉴얼</div>
+                <div className="bg-primary-50 inline-flex h-10 items-center justify-center gap-1.5 rounded-lg border border-[#ffe7db] px-4 py-2">
+                  <div className="text-primary-800 font-semibold">관리자모드 매뉴얼</div>
                 </div>
               </a>
             )}

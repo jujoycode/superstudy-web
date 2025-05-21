@@ -1,7 +1,9 @@
 import { Button } from '@/atoms/Button'
 import { Container } from '@/atoms/Container'
 import { Divider } from '@/atoms/Divider'
-import { NavigationBarItem, type NavigationItem } from '@/molecules/navigation/NavigationBarItem'
+// import { NavigationBarItem, type NavigationItem } from '@/molecules/navigation/NavigationBarItem'
+import { NavigationItem } from '@/molecules/navigation/navigation-items/NavigationItem'
+import { NavigationSubItem } from '@/molecules/navigation/navigation-items/NavigationSubItem'
 import { NavigationHeader } from '@/molecules/navigation/NavigationHeader'
 import type { NavigationProfileProps } from '@/molecules/navigation/NavigationProfile'
 
@@ -16,7 +18,9 @@ export function TeacherLNB({ HeaderProps, ItemProps }: TeacherLNBProps) {
       <NavigationHeader ProfileProps={HeaderProps} />
 
       <Container flex direction="col" justify="between" items="center">
-        <NavigationBarItem data={ItemProps} />
+        {ItemProps.map((item) =>
+          item.items?.length === 0 ? <NavigationItem item={item} /> : <NavigationSubItem item={item} />,
+        )}
       </Container>
 
       <Container flex direction="row" items="center" justify="center" paddingX="5" paddingY="4">

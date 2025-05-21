@@ -329,7 +329,7 @@ export const ExhibitionPlanDetailPage = () => {
                         />
                         <div className="flex flex-col gap-4 border-b border-b-gray-100 pb-10">
                           <Typography variant="title2">
-                            지식영역<span className="text-primary-red-800">*</span>
+                            지식영역<span className="text-old-primary-red-800">*</span>
                           </Typography>
                           <Check.Group
                             selectedValues={selectedNames}

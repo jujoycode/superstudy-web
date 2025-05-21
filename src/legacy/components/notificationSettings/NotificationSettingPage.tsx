@@ -49,7 +49,7 @@ export function NotificationSettingPage() {
         <label className="flex items-center justify-between px-4 py-3 active:bg-gray-50">
           <div className="flex flex-col">
             <span className="text-lg font-bold text-gray-800">결재알림</span>
-            <span className="text-gray-5 text-sm">출결, 확인증, 체험학습</span>
+            <span className="text-sm text-gray-500">출결, 확인증, 체험학습</span>
           </div>
           <ToggleSwitch
             checked={notificationSetting.notifyApprovals}
@@ -61,7 +61,7 @@ export function NotificationSettingPage() {
           <label className="flex items-center justify-between px-4 py-3 active:bg-gray-50">
             <div className="flex flex-col">
               <span className="text-lg font-bold text-gray-800">출결상태</span>
-              <span className="text-gray-5 text-sm">출석, 결석</span>
+              <span className="text-sm text-gray-500">출석, 결석</span>
             </div>
             <ToggleSwitch
               checked={notificationSetting.notifyAttendances}
@@ -74,7 +74,7 @@ export function NotificationSettingPage() {
         <label className="flex items-center justify-between px-4 py-3 active:bg-gray-50">
           <div className="flex flex-col">
             <span className="text-lg font-bold text-gray-800">신규게시물</span>
-            <span className="text-gray-5 text-sm">학급, 공지, 가정통신문</span>
+            <span className="text-sm text-gray-500">학급, 공지, 가정통신문</span>
           </div>
           <ToggleSwitch
             checked={notificationSetting.notifyPosts}
@@ -84,7 +84,7 @@ export function NotificationSettingPage() {
         <label className="flex items-center justify-between px-4 py-3 active:bg-gray-50">
           <div className="flex flex-col">
             <span className="text-lg font-bold text-gray-800">채팅</span>
-            <span className="text-gray-5 text-sm">메시지</span>
+            <span className="text-sm text-gray-500">메시지</span>
           </div>
           <ToggleSwitch
             checked={notificationSetting.notifyChats}
@@ -97,7 +97,7 @@ export function NotificationSettingPage() {
         <label className="flex items-center justify-between px-4 py-3 active:bg-gray-50">
           <div className="flex flex-col">
             <span className="text-lg font-bold text-gray-800">방해금지 시간대</span>
-            <span className="text-gray-5 text-sm">알림을 받지 않을 시간 설정</span>
+            <span className="text-sm text-gray-500">알림을 받지 않을 시간 설정</span>
           </div>
           <ToggleSwitch
             checked={disturbTime}
@@ -122,7 +122,7 @@ export function NotificationSettingPage() {
         </label>
         {disturbTime && (
           <div className="mx-4 rounded-lg bg-gray-100 p-4">
-            <div className="text-gray-5 mt-2 mb-2 px-4 text-sm">방해금지 요일</div>
+            <div className="mt-2 mb-2 px-4 text-sm text-gray-500">방해금지 요일</div>
             <div className="flex justify-between px-4 py-2">
               {range(0, 7).map((day) => {
                 const checked = notificationSetting.daysOfWeek[day]
@@ -150,7 +150,7 @@ export function NotificationSettingPage() {
                 )
               })}
             </div>
-            <div className="text-gray-5 mt-2 mb-2 px-4 text-sm">방해금지 시간</div>
+            <div className="mt-2 mb-2 px-4 text-sm text-gray-500">방해금지 시간</div>
             <div className="flex items-center gap-4 px-4">
               <Select
                 value={notificationSetting.timeFrom}

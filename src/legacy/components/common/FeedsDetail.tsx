@@ -153,13 +153,13 @@ export function FeedsDetail({
                       <div className="rounded-md py-1 text-sm font-bold text-red-500">~{submitDate}</div>
                     )}
                     {submitDate && new Date(submitDate) < new Date() ? (
-                      <div className="bg-gray-7 rounded-md px-2 py-1 text-sm">{t('expired')}</div>
+                      <div className="rounded-md bg-gray-300 px-2 py-1 text-sm">{t('expired')}</div>
                     ) : (
                       <div className="filled-red rounded-md px-2 py-1 text-sm">{t('submission_required')}</div>
                     )}
                   </>
                 )}
-                {submitText && <div className="bg-gray-7 rounded-md px-2 py-1 text-sm">{submitText}</div>}
+                {submitText && <div className="rounded-md bg-gray-300 px-2 py-1 text-sm">{submitText}</div>}
               </div>
             </div>
           )}

@@ -1,4 +1,3 @@
-import { Link } from 'react-router'
 import { Container } from '@/atoms/Container'
 import { Icon } from '@/atoms/Icon'
 import type { NavigationItem } from './NavigationItem'
@@ -39,13 +38,18 @@ export function NavigationSubItem({ item }: NavigationSubItemProps) {
 
             return (
               <Container flex paddingY="1.5" paddingX="4" noPadding={false} key={`subitem-${index}`}>
-                <Link
+                <a
                   className="hover:text-primary-800 active:text-primary group flex w-full items-center text-[14px] font-medium text-gray-700"
-                  to={subItem.link || '#'}
+                  href={subItem.link || '#'}
                   aria-label={subItem.title}
+                  onClick={(e) => {
+                    if (!subItem.link || subItem.link === '#') {
+                      e.preventDefault()
+                    }
+                  }}
                 >
                   {subItem.title}
-                </Link>
+                </a>
               </Container>
             )
           })}

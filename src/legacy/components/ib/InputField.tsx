@@ -84,7 +84,7 @@ export const InputField = forwardRef<HTMLDivElement, PropsWithChildren<InputFiel
                 {subLabel}
               </Typography>
             )}
-            {required && <span className="text-primary-red-800">*</span>}
+            {required && <span className="text-old-primary-red-800">*</span>}
           </div>
         )}
         <Controller

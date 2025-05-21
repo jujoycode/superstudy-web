@@ -159,7 +159,7 @@ const ScheduleAndPeriodPicker: React.FC<ScheduleAndPeriodPickerProps> = ({
               variant="caption"
               key={day}
               className={`text-center ${
-                index === 0 ? 'text-primary-red-400' : index === 6 ? 'text-ib-blue-400' : 'text-gray-500'
+                index === 0 ? 'text-old-primary-red-400' : index === 6 ? 'text-old-primary-blue-400' : 'text-gray-500'
               }`}
             >
               {day}

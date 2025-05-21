@@ -138,7 +138,7 @@ export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDet
           <tr>
             <th colSpan={4}></th>
             <th colSpan={1}></th>
-            <th colSpan={10} className={cn('min-w-max rounded-l-xl py-4', day === 1 ? 'bg-gray-1/10' : 'bg-gray-9')}>
+            <th colSpan={10} className={cn('min-w-max rounded-l-xl py-4', day === 1 ? 'bg-gray-900/10' : 'bg-gray-9')}>
               {t('monday', '월')}
             </th>
             <th colSpan={10} className={cn('min-w-max', day === 2 ? 'bg-brand-1/20' : 'bg-gray-9')}>

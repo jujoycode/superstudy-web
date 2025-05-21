@@ -123,7 +123,7 @@ export function CanteenPage() {
         <div className="h-0.5 w-full bg-gray-50" />
         <div className="px-6 py-4">
           {/* <div className="pb-3 text-sm text-gray-5">{makeMonthDayToString(selectedDate)}</div> */}
-          <div className="text-gray-5 pb-3 text-sm">
+          <div className="pb-3 text-sm text-gray-500">
             {t('language') === 'ko' ? makeMonthDayToString(selectedDate) : makeMonthDayToStringEN(selectedDate)}
           </div>
           <div className="flex flex-col space-y-3">
@@ -236,7 +236,7 @@ export function CanteenPage() {
 
           <div className="h-0.5 w-full bg-gray-50" />
           <div className="px-6 py-4">
-            <div className="text-gray-5 pb-3 text-sm">
+            <div className="pb-3 text-sm text-gray-500">
               {t('language') === 'ko' ? makeMonthDayToString(selectedDate) : makeMonthDayToStringEN(selectedDate)}
             </div>
             <div className="flex flex-col space-y-3">

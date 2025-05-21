@@ -335,7 +335,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                   <div className="flex flex-col gap-4">
                     <Typography variant="title2" className="font-semibold">
                       활동 일정 및 주기
-                      <span className="text-primary-red-800">*</span>
+                      <span className="text-old-primary-red-800">*</span>
                     </Typography>
                     <div className="relative">
                       <div
@@ -348,7 +348,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                       >
                         <SVGIcon.Calendar size={20} color="gray700" />
                         <input
-                          className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
+                          className="text-15 caret-old-primary-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                           placeholder="활동 일정 및 주기 선택"
                           value={
                             date.startDate && date.endDate
@@ -384,7 +384,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <div className="flex flex-row items-center justify-between">
                       <Typography variant="title2" className="font-semibold">
                         Strands
-                        <span className="text-primary-red-800">*</span>
+                        <span className="text-old-primary-red-800">*</span>
                       </Typography>
                       <Typography variant="caption2" className="text-gray-500">
                         단위 : 시간
@@ -410,7 +410,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                       <div
                         className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border p-4 ${
                           strands.activity && strands.activity > 0
-                            ? 'border-ib-blue-100 bg-ib-blue-50'
+                            ? 'border-old-primary-blue-100 bg-old-primary-blue-50'
                             : 'border-gray-100'
                         }`}
                       >
@@ -426,7 +426,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                       <div
                         className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border p-4 ${
                           strands.service && strands.service > 0
-                            ? 'border-ib-green-100 bg-ib-green-50'
+                            ? 'border-old-primary-green-100 bg-old-primary-green-50'
                             : 'border-gray-100'
                         }`}
                       >
@@ -443,7 +443,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                   </div>
                   <div className="flex flex-col gap-3">
                     <Typography variant="title3" className="font-semibold">
-                      IB 학습자 상<span className="text-primary-red-800">*</span>
+                      IB 학습자 상<span className="text-old-primary-red-800">*</span>
                     </Typography>
                     <Check.Group
                       selectedValues={selectedLearnerProfile}
@@ -464,7 +464,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                   <div className="flex flex-col gap-3">
                     <Typography variant="title3" className="font-semibold">
                       ATL
-                      <span className="text-primary-red-800">*</span>
+                      <span className="text-old-primary-red-800">*</span>
                     </Typography>
                     <Check.Group
                       selectedValues={selectedATL}
@@ -485,7 +485,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                   <div className="flex flex-col gap-4">
                     <Typography variant="title2" className="font-semibold">
                       7가지 학습성과
-                      <span className="text-primary-red-800">*</span>
+                      <span className="text-old-primary-red-800">*</span>
                     </Typography>
                     <Check.Group
                       selectedValues={selectedIds}
@@ -659,7 +659,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     >
                       <SVGIcon.Calendar size={20} color="gray700" />
                       <input
-                        className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
+                        className="text-15 caret-old-primary-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                         readOnly
                         placeholder="활동 일정 및 주기 선택"
                         value={
@@ -710,7 +710,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <div
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.activity && data.cas.strands.activity > 0
-                          ? 'border-ib-blue-100 bg-ib-blue-50 border'
+                          ? 'border-old-primary-blue-100 bg-old-primary-blue-50 border'
                           : 'border border-gray-100'
                       } p-4`}
                     >
@@ -727,7 +727,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     <div
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.service && data.cas.strands.service > 0
-                          ? 'border-ib-green-100 bg-ib-green-50 border'
+                          ? 'border-old-primary-green-100 bg-old-primary-green-50 border'
                           : 'border border-gray-100'
                       } p-4`}
                     >

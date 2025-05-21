@@ -168,13 +168,13 @@ export const BatcbUploadComponent: React.FC<BatcbUploadComponentProps> = ({
     <>
       <div className="flex flex-row items-center justify-between pb-5">
         <div className="flex flex-row items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-[#0066ff]" />
+          <span className="bg-old-primary-blue-800 h-2 w-2 rounded-full" />
           <h1 className="text-[22px] font-semibold text-[#111111]">데이터 세팅</h1>
         </div>
         {documentFiles.length === 0 && (
           <label
             htmlFor="score-file"
-            className={`h-10 min-w-[120px] cursor-pointer rounded-lg border border-[#0066ff] bg-[#0066ff] px-3 py-2 text-center text-[15px] font-bold text-white`}
+            className={`border-old-primary-blue-800 bg-old-primary-blue-800 h-10 min-w-[120px] cursor-pointer rounded-lg border px-3 py-2 text-center text-[15px] font-bold text-white`}
           >
             파일 업로드
           </label>

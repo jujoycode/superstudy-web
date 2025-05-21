@@ -132,9 +132,6 @@ export default defineConfig(({ mode }) => {
           manualChunks: {
             vendor: ['react', 'react-dom', 'react-router-dom'],
           },
-          entryFileNames: 'static/[name].[hash].js',
-          chunkFileNames: 'static/[name].[hash].js',
-          assetFileNames: 'static/[name].[hash].[ext]',
         },
       },
     },
