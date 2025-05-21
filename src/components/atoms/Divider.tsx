@@ -25,14 +25,14 @@ export function Divider({
   variant = 'full',
   orientation = 'horizontal',
   color = 'bg-gray-200',
-  marginY = 'my-2',
-  marginX = 'mx-2',
+  marginY = '2',
+  marginX = '2',
   thickness = 'h-px',
   height = 'h-4',
   className = '',
 }: DividerProps) {
   const dimensionClass = orientation === 'horizontal' ? widthOptions[variant] : height ? height : heightOptions[variant]
-  const marginClass = orientation === 'horizontal' ? marginY : marginX
+  const marginClass = orientation === 'horizontal' ? `my-${marginY}` : `mx-${marginX}`
   const thicknessClass = orientation === 'horizontal' ? thickness : 'w-px'
 
   return (

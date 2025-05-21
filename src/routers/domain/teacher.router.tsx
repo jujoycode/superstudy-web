@@ -97,6 +97,11 @@ import { NewsletterDetailPage } from '@/legacy/pages/teacher/newsletter/Newslett
 import { NewsletterSubmitDetailPage } from '@/legacy/pages/teacher/newsletter/NewsletterSubmitDetailPage'
 import { NewsletterCheckDetailPage } from '@/legacy/pages/teacher/newsletter/NewsletterCheckDetailPage'
 import AnnouncementDetailPage from '@/legacy/pages/teacher/announcement/AnnouncementDetailPage'
+import { AllScore } from '@/legacy/components/score/AllScore'
+import { TargetScore } from '@/legacy/components/score/TargetScore'
+import { ScoreAnalysis } from '@/legacy/components/score/ScoreAnalysis'
+import { GroupDetailPage } from '@/legacy/pages/teacher/group/GroupDetailPage'
+import { GroupAddPage } from '@/legacy/pages/teacher/group/GroupAddPage'
 
 export const teacherRoutes = {
   path: '/teacher',
@@ -170,9 +175,17 @@ export const teacherRoutes = {
           path: ':groupId',
           element: <StudentCardDetailPage />,
           children: [
-            { path: ':id/all', element: <StudyInfoCard2 /> },
+            { path: ':id/all', element: <StudyInfoCard2 isCard={true} /> },
             { path: ':id/activityv3', element: <ActivityV3CardPage /> },
-            { path: ':id/score', element: <ScoreCardPage /> },
+            {
+              path: ':id/score',
+              element: <ScoreCardPage />,
+              children: [
+                { index: true, element: <AllScore /> },
+                { path: 'target-score', element: <TargetScore /> },
+                { path: 'analysis', element: <ScoreAnalysis /> },
+              ],
+            },
             { path: ':id/counseling', element: <Counselingv3Card /> },
             { path: ':id/general', element: <GeneralCardPage /> },
             { path: ':id/default', element: <AllCardPage /> },
@@ -186,7 +199,14 @@ export const teacherRoutes = {
     { path: 'record', element: <RecordPage /> },
 
     // 그룹정보
-    { path: 'groups', element: <GroupPage /> },
+    {
+      path: 'groups',
+      element: <GroupPage />,
+      children: [
+        { path: ':id', element: <GroupDetailPage /> },
+        { path: 'add', element: <GroupAddPage /> },
+      ],
+    },
 
     // 상벌점관리
     { path: 'pointlogs', element: <PointDashboard /> },

@@ -14,6 +14,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Chart } from 'react-chartjs-2'
 
+import { useOutletContext } from 'react-router-dom'
 import HintMessage from '@/legacy/components/common/HintMessage'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'
@@ -42,7 +43,8 @@ ChartJS.register(
 
 const chartEvents: ('mousemove' | 'mouseout' | 'click')[] = ['mousemove', 'mouseout', 'click']
 
-export const TargetScore = ({ studentId, grade }: TargetScoreProps) => {
+export const TargetScore = () => {
+  const { studentId, grade } = useOutletContext<{ studentId: string; grade: number }>()
   const thisSemester = getThisSemester()
   const { data, isLoading } = useStudentAnalysisTargetScore(Number(studentId), grade, Number(thisSemester))
   const scores = data?.analysed_target_score?.scores || []

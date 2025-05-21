@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import moment from 'moment'
 import { useEffect, useMemo, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
@@ -638,7 +638,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
         )}
         <div className="flex flex-wrap items-center justify-between rounded-lg border bg-gray-100 p-5">
           <p
-            className={clsx(
+            className={cn(
               'flex cursor-pointer flex-wrap',
               showAbsent === listType.total && 'font-extrabold text-red-500',
             )}
@@ -647,17 +647,14 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
             {t('total_students', '총원')} : {students?.length - removeStudents.size} {t('count', '명')}
           </p>
           <p
-            className={clsx(
-              'flex cursor-pointer flex-wrap',
-              showAbsent === listType.in && 'font-extrabold text-red-500',
-            )}
+            className={cn('flex cursor-pointer flex-wrap', showAbsent === listType.in && 'font-extrabold text-red-500')}
             onClick={() => setShowAbsent(listType.in)}
           >
             {t('attendance', '출석')} : {students?.length - removeStudents.size - studentsAbsent?.length}{' '}
             {t('count', '명')}
           </p>
           <p
-            className={clsx(
+            className={cn(
               'flex cursor-pointer flex-wrap',
               showAbsent === listType.out && 'font-extrabold text-red-500',
             )}
@@ -666,7 +663,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
             {t('non-attendance', '미출석')} : {studentsAbsent?.length} {t('count', '명')}
           </p>
           <p
-            className={clsx(
+            className={cn(
               'hidden cursor-pointer md:inline',
               showAbsent === listType.del && 'font-extrabold text-red-500',
             )}
@@ -1017,12 +1014,12 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
               onClick={() =>
                 setSelectedUserId((prevState) => ({ ...prevState, type1: '', type2: '', comment: '', absent: false }))
               }
-              className={clsx('w-full', selectedUserId.absent ? 'bg-gray-100 text-gray-500' : 'filled-blue')}
+              className={cn('w-full', selectedUserId.absent ? 'bg-gray-100 text-gray-500' : 'filled-blue')}
             />
             <Button
               children="미출석"
               onClick={() => setSelectedUserId((prevState) => ({ ...prevState, absent: true }))}
-              className={clsx('w-full', selectedUserId.absent ? 'filled-red-light' : 'bg-gray-100 text-gray-500')}
+              className={cn('w-full', selectedUserId.absent ? 'filled-red-light' : 'bg-gray-100 text-gray-500')}
             />
           </div>
           <Label.col>

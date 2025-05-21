@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
 import { useLocation, useParams } from 'react-router'
 import NODATA from '@/assets/images/no-data.png'
@@ -282,7 +282,7 @@ export const EssayDetailPage = () => {
                 <LayeredTabs.TwoDepth onChange={handleChange} value={type} fullWidth={true}>
                   <Tab
                     value="feedback"
-                    childrenWrapperClassName={clsx(
+                    childrenWrapperClassName={cn(
                       type === 'checklist' &&
                         'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
                     )}
@@ -291,7 +291,7 @@ export const EssayDetailPage = () => {
                   </Tab>
                   <Tab
                     value="evaluation"
-                    childrenWrapperClassName={clsx(
+                    childrenWrapperClassName={cn(
                       type === 'feedback' &&
                         'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
                     )}

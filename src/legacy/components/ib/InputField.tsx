@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { forwardRef, PropsWithChildren } from 'react'
 import { Controller } from 'react-hook-form'
 
@@ -66,7 +66,7 @@ export const InputField = forwardRef<HTMLDivElement, PropsWithChildren<InputFiel
     return (
       <section
         ref={ref}
-        className={clsx(
+        className={cn(
           'flex flex-col',
           { 'gap-3': (label || subLabel) && mode === 'modal' },
           { 'gap-4': mode === 'page' },
@@ -75,7 +75,7 @@ export const InputField = forwardRef<HTMLDivElement, PropsWithChildren<InputFiel
         {(label || subLabel) && (
           <div className="flex flex-row items-center gap-1">
             {label && (
-              <Typography variant={titleVariant} className={clsx('font-semibold', titleClassName)}>
+              <Typography variant={titleVariant} className={cn('font-semibold', titleClassName)}>
                 {label}
               </Typography>
             )}

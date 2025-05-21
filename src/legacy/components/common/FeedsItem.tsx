@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import parse from 'html-react-parser'
 import { RefObject, useEffect, useRef, useState } from 'react'
 import { ImageDecorator } from 'react-viewer/lib/ViewerProps'
@@ -102,7 +102,7 @@ export function FeedsItem({
           <div className="flex justify-between">
             <div className="flex space-x-2">
               <div
-                className={clsx(
+                className={cn(
                   'rounded-md px-2 py-1 text-sm font-bold',
                   newYN
                     ? category1Color
@@ -115,7 +115,7 @@ export function FeedsItem({
               </div>
               {category2 && (
                 <div
-                  className={clsx(
+                  className={cn(
                     'rounded-md px-2 py-1 text-sm font-bold',
                     newYN
                       ? category2Color
@@ -153,14 +153,14 @@ export function FeedsItem({
           </div>
 
           <div className="flex items-start justify-between">
-            <span className={clsx('text-18 w-[90%] font-bold', newYN ? 'text-black' : 'text-[#aaa]')}>{title}</span>
+            <span className={cn('text-18 w-[90%] font-bold', newYN ? 'text-black' : 'text-[#aaa]')}>{title}</span>
             {newYN ? <Icon.Unread className="scale-75" /> : <Icon.Read className="scale-75" />}
           </div>
 
           {contentJson && (
             <div className="h-40 overflow-hidden">
               {/* <div dangerouslySetInnerHTML={{ __html: removeStyleAttribute(contentJson.content) }}></div> */}
-              <div className={clsx(newYN ? 'text-black' : 'text-[#aaa]')}>
+              <div className={cn(newYN ? 'text-black' : 'text-[#aaa]')}>
                 {parse(removeStyleAttribute(contentJson.content))}
               </div>
             </div>
@@ -169,13 +169,9 @@ export function FeedsItem({
           {!contentJson && (
             <div className="feedback_space break-all whitespace-pre-line">
               {Pdfs?.length === 0 && images?.length === 0 ? (
-                <span className={clsx('text-15 line-clamp-5', newYN ? 'text-black' : 'text-[#aaa]')}>
-                  {contentText}
-                </span>
+                <span className={cn('text-15 line-clamp-5', newYN ? 'text-black' : 'text-[#aaa]')}>{contentText}</span>
               ) : (
-                <span className={clsx('text-15 line-clamp-3', newYN ? 'text-black' : 'text-[#aaa]')}>
-                  {contentText}
-                </span>
+                <span className={cn('text-15 line-clamp-3', newYN ? 'text-black' : 'text-[#aaa]')}>{contentText}</span>
               )}
               {/* <span className="text-15 text-gray-500 ">더보기</span> */}
             </div>

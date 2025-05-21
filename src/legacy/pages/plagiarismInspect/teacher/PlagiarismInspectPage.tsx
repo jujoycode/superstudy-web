@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 
@@ -47,7 +47,7 @@ function PlagiarismInspectPage() {
           ) : (
             <div className="flex flex-grow flex-col">
               <div
-                className={clsx(
+                className={cn(
                   'flex h-full gap-4',
                   data.length > 0 ? 'pt-10' : 'pt-20',
                   data.length > 0 || 'justify-center',

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { t } from 'i18next'
 import { concat } from 'lodash'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -409,44 +409,44 @@ export function AbsentPage() {
           <div className="grid grid-cols-4 bg-gray-100 max-md:hidden">
             <button
               onClick={() => toggleSort('period')}
-              className={clsx(
+              className={cn(
                 'flex items-center justify-center',
                 frontSortType !== 'period' && 'text-[#aaa] hover:underline hover:underline-offset-4',
               )}
             >
-              <span className={clsx(frontSortType === 'period' && 'font-bold')}>{t('by_date', '기간순')}</span>
+              <span className={cn(frontSortType === 'period' && 'font-bold')}>{t('by_date', '기간순')}</span>
               {frontSortType === 'period' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
             </button>
             <button
               onClick={() => toggleSort('request')}
-              className={clsx(
+              className={cn(
                 'flex items-center justify-center',
                 frontSortType !== 'request' && 'text-[#aaa] hover:underline hover:underline-offset-4',
               )}
             >
-              <span className={clsx(frontSortType === 'request' && 'font-bold')}>
+              <span className={cn(frontSortType === 'request' && 'font-bold')}>
                 {t('by_application_date', '신청일순')}
               </span>
               {frontSortType === 'request' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
             </button>
             <button
               onClick={() => toggleSort('name')}
-              className={clsx(
+              className={cn(
                 'flex items-center justify-center',
                 frontSortType !== 'name' && 'text-[#aaa] hover:underline hover:underline-offset-4',
               )}
             >
-              <span className={clsx(frontSortType === 'name' && 'font-bold')}>{t('by_name', '이름순')}</span>
+              <span className={cn(frontSortType === 'name' && 'font-bold')}>{t('by_name', '이름순')}</span>
               {frontSortType === 'name' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
             </button>
             <button
               onClick={() => toggleSort('num')}
-              className={clsx(
+              className={cn(
                 'flex items-center justify-center',
                 frontSortType !== 'num' && 'text-[#aaa] hover:underline hover:underline-offset-4',
               )}
             >
-              <span className={clsx(frontSortType === 'num' && 'font-bold')}>{t('by_student_id', '학번순')}</span>
+              <span className={cn(frontSortType === 'num' && 'font-bold')}>{t('by_student_id', '학번순')}</span>
               {frontSortType === 'num' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
             </button>
           </div>
@@ -575,10 +575,7 @@ export function AbsentPage() {
                     await setStampMode(false)
                   }
                 }}
-                className={clsx(
-                  'text-white',
-                  stampImgUrl ? 'bg-brandblue-1 border-4 border-red-500' : 'bg-brandblue-5',
-                )}
+                className={cn('text-white', stampImgUrl ? 'bg-brandblue-1 border-4 border-red-500' : 'bg-brandblue-5')}
               />
             )}
             <Button.xl
@@ -601,7 +598,7 @@ export function AbsentPage() {
                     agreeAll ? approveAbsents() : approveAbsent()
                   }
                 }}
-                className={clsx(sigPadData ? 'bg-brand-1 border-4 border-green-500' : 'bg-brand-5 text-brand-1')}
+                className={cn(sigPadData ? 'bg-brand-1 border-4 border-green-500' : 'bg-brand-5 text-brand-1')}
               />
             )}
           </div>

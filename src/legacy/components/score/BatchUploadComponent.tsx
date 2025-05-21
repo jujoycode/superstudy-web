@@ -1,5 +1,5 @@
 import { Box, LinearProgress, LinearProgressProps, Typography } from '@mui/material'
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import _ from 'lodash'
 import { useState } from 'react'
 
@@ -331,7 +331,7 @@ export const BatcbUploadComponent: React.FC<BatcbUploadComponentProps> = ({
           />
           <label
             htmlFor="score-file"
-            className={clsx(
+            className={cn(
               'block w-full cursor-pointer rounded-lg border-t border-t-[#dddddd] py-20 text-center hover:bg-indigo-50',
               isDragIn ? 'bg-indigo-50' : 'bg-indigo-50',
             )}

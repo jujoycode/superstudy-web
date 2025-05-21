@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import moment from 'moment'
 import { useState } from 'react'
 import { Link, Outlet, Route, Routes, useLocation, useParams } from 'react-router'
@@ -193,7 +193,7 @@ export const CASMainPage = () => {
                   <Link
                     to={`/ib/student/cas/${data.id}/plan`}
                     className={twMerge(
-                      clsx(
+                      cn(
                         'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
                         pathname.startsWith('/ib/student/cas') && !pathname.includes('activitylog')
                           ? 'border-b-2 border-[#121316] text-[#121316]'
@@ -208,7 +208,7 @@ export const CASMainPage = () => {
                   <Link
                     to={`/ib/student/cas/${data.id}/activitylog`}
                     className={twMerge(
-                      clsx(
+                      cn(
                         'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
                         pathname.startsWith('/ib/student/cas') && !pathname.includes('plan')
                           ? 'border-b-2 border-[#121316] text-[#121316]'

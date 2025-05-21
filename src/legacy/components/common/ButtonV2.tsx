@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { ButtonHTMLAttributes, forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -39,7 +39,7 @@ export const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(function Bu
 ) {
   const isOutlineGray400AndSize48 = variant === 'outline' && color === 'gray400' && size === 48
   const buttonClassNames = twMerge(
-    clsx(
+    cn(
       buttonStyles[variant][color as keyof (typeof buttonStyles)[typeof variant]],
       sizeStyles[size],
       {

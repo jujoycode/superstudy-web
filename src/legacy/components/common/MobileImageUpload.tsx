@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { InputHTMLAttributes } from 'react'
 
 import { ReactComponent as FileUploadImg } from '@/assets/svg/upload-image.svg'
@@ -7,7 +7,7 @@ export interface MobileImageUploadProps extends InputHTMLAttributes<HTMLInputEle
 
 export function MobileImageUpload({ children, className, ...props }: MobileImageUploadProps) {
   return (
-    <label className={clsx('image-upload', className)}>
+    <label className={cn('image-upload', className)}>
       {children || (
         <>
           <FileUploadImg />

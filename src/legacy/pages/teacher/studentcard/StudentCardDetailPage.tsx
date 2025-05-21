@@ -59,7 +59,7 @@ export function StudentCardDetailPage() {
       id: 5,
       type: 'default',
       name: t('comprehensive_card', '종합카드'),
-      url: `/teacher/studentcard/${groupId}/${id}/default`,
+      url: `/teacher/studentcard/${groupId}/${id}/all`,
     },
     {
       id: 6,

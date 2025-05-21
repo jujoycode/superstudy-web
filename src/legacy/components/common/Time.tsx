@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { format, formatDistanceToNowStrict } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { TimeHTMLAttributes } from 'react'
@@ -17,7 +17,7 @@ export function Time({
   ...props
 }: TimeProps) {
   return (
-    <time className={clsx('time', className)} {...props}>
+    <time className={cn('time', className)} {...props}>
       {date &&
         (formatDistanceToNow
           ? formatDistanceToNowStrict(new Date(date), { locale: ko, addSuffix: true })

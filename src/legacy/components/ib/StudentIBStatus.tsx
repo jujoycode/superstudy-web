@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import QueryString from 'qs'
 import { useEffect, useRef, useState } from 'react'
 import { useLocation, useOutletContext } from 'react-router'
@@ -204,36 +204,36 @@ export default function StudentIBStatus() {
           >
             <Tab
               value="NORMAL"
-              childrenWrapperClassName={clsx(
+              childrenWrapperClassName={cn(
                 selectedOptions.projectType === 'NORMAL' ||
                   selectedOptions.projectType === 'CAS' ||
                   'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'NORMAL' })}>전체</p>
+              <p className={cn({ 'text-gray-700': selectedOptions.projectType === 'NORMAL' })}>전체</p>
             </Tab>
             <Tab
               value="CAS"
-              childrenWrapperClassName={clsx(
+              childrenWrapperClassName={cn(
                 selectedOptions.projectType === 'CAS' ||
                   selectedOptions.projectType === 'EE' ||
                   'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'CAS' })}>CAS</p>
+              <p className={cn({ 'text-gray-700': selectedOptions.projectType === 'CAS' })}>CAS</p>
             </Tab>
             <Tab
               value="EE"
-              childrenWrapperClassName={clsx(
+              childrenWrapperClassName={cn(
                 selectedOptions.projectType === 'EE' ||
                   selectedOptions.projectType === 'TOK' ||
                   'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
               )}
             >
-              <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'EE' })}>EE</p>
+              <p className={cn({ 'text-gray-700': selectedOptions.projectType === 'EE' })}>EE</p>
             </Tab>
             <Tab value="TOK">
-              <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'TOK' })}>TOK</p>
+              <p className={cn({ 'text-gray-700': selectedOptions.projectType === 'TOK' })}>TOK</p>
             </Tab>
           </LayeredTabs.TwoDepth>
         </div>

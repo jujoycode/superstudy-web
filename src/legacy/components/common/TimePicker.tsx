@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { forwardRef, ReactElement, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -74,7 +74,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
     return (
       <div
         ref={ref}
-        className={clsx(
+        className={cn(
           'relative select-none',
           containerWidth,
           {
@@ -95,7 +95,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
         >
           <label
             className={twMerge(
-              clsx(
+              cn(
                 {
                   'text-gray-400': disabled || (!readonly && !value), // 비활성 상태이거나 선택된 값이 없는 경우
                   'text-gray-700': readonly && size === 48, // readonly이면서 size가 48일 때
@@ -112,7 +112,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
         </div>
         {isShowOptions && (
           <ul
-            className={clsx(
+            className={cn(
               'absolute top-full left-0 z-60 mt-2 overflow-hidden rounded-lg border border-gray-200 bg-white p-1.5 shadow-md',
               computedDropdownWidth,
               {
@@ -129,7 +129,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
                   e.preventDefault()
                   handleOptionClick(option.value)
                 }}
-                className={clsx(
+                className={cn(
                   {
                     'text-primary-800 flex items-center justify-between': option.value === value,
                   },

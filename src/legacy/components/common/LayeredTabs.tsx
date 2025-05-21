@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import React, { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -36,7 +36,7 @@ function OneDepth<T>({ children, value, onChange, className, inActiveClassName }
           key={String(tab.props.value)}
           onClick={() => handleTabClick(tab.props.value)}
           className={twMerge(
-            clsx(
+            cn(
               'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
               value === tab.props.value ? 'border-b-2 border-[#121316] text-[#121316]' : 'mb-[2px] text-[#898d94]',
             ),
@@ -60,7 +60,7 @@ function TwoDepth<T>({ children, value, onChange, fullWidth = false, size = 'lar
 
   return (
     <div
-      className={clsx(
+      className={cn(
         'flex items-center border border-[#e8eaec] bg-[#f4f6f8]',
         fullWidth && 'w-full',
         size === 'large' ? 'rounded-lg' : 'h-8 rounded-md',
@@ -72,7 +72,7 @@ function TwoDepth<T>({ children, value, onChange, fullWidth = false, size = 'lar
           <div
             key={String(tab.props.value)}
             onClick={() => handleTabClick(tab.props.value)}
-            className={clsx(
+            className={cn(
               'flex h-full cursor-pointer items-center justify-center',
               size === 'large' ? 'rounded-lg px-4 py-[9px]' : 'rounded-md px-3 py-1.5',
               isActive ? 'bg-white text-[#121316]' : 'bg-[#f4f6f8] text-[#898d94]',
@@ -114,7 +114,7 @@ function ThirdDepth<T>({ children, value, onChange }: LayeredTabsProps<T>) {
           <div
             key={String(tab.props.value)}
             onClick={() => handleTabClick(tab.props.value)}
-            className={clsx(
+            className={cn(
               'flex cursor-pointer items-center justify-center rounded-lg px-4 py-[9px]',
               isActive ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-200',
             )}
@@ -138,10 +138,7 @@ function Title<T>({ children, className, value, onChange }: LayeredTabsProps<T>)
         const isActive = value === tab.props.value
         return (
           <div key={String(tab.props.value)} onClick={() => handleTabClick(tab.props.value)}>
-            <Typography
-              variant="title1"
-              className={clsx('cursor-pointer', isActive ? 'text-gray-900' : 'text-gray-400')}
-            >
+            <Typography variant="title1" className={cn('cursor-pointer', isActive ? 'text-gray-900' : 'text-gray-400')}>
               {tab.props.children}
             </Typography>
           </div>

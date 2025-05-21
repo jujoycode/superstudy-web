@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import _ from 'lodash'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -73,7 +73,7 @@ export function IbCoordinatorPage() {
         <Link
           to={`/admin/ib`}
           className={twMerge(
-            clsx(
+            cn(
               'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
               pathname.startsWith('/admin/ib') && !pathname.includes('teacher') && !pathname.includes('student')
                 ? 'border-b-2 border-[#121316] text-[#121316]'
@@ -88,7 +88,7 @@ export function IbCoordinatorPage() {
         <Link
           to={`/admin/ib/teacher`}
           className={twMerge(
-            clsx(
+            cn(
               'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
               pathname.startsWith('/admin/ib/teacher')
                 ? 'border-b-2 border-[#121316] text-[#121316]'
@@ -103,7 +103,7 @@ export function IbCoordinatorPage() {
         <Link
           to={`/admin/ib/student`}
           className={twMerge(
-            clsx(
+            cn(
               'flex min-w-[44px] cursor-pointer items-center justify-center px-2 py-2.5 text-base font-semibold',
               pathname.startsWith('/admin/ib/student')
                 ? 'border-b-2 border-[#121316] text-[#121316]'

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { ButtonHTMLAttributes } from 'react'
 
 interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -6,5 +6,5 @@ interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export function Chip({ selected, className, ...props }: ChipProps) {
-  return <button className={clsx('chip', selected && 'chip-selected', className)} {...props} />
+  return <button className={cn('chip', selected && 'chip-selected', className)} {...props} />
 }

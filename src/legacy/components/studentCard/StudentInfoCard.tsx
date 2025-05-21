@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useEffect, useMemo, useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
@@ -262,7 +262,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   className="border-brand-1 h-6 w-48 py-0"
                 >
                   {studentStates?.map((item: Code) => (
-                    <option key={item.key} value={item.key} className={clsx(item?.etc1 === 'true' && 'text-red-500')}>
+                    <option key={item.key} value={item.key} className={cn(item?.etc1 === 'true' && 'text-red-500')}>
                       {item.name}
                     </option>
                   ))}

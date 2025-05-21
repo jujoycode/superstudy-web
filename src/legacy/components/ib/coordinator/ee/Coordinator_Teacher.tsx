@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import _ from 'lodash'
 import { FC, useEffect, useState } from 'react'
 
@@ -208,8 +208,8 @@ const Coordinator_Teacher: FC<Coordinator_TeacherProps> = ({ type = 'EE' }) => {
             size={40}
             containerWidth="w-30"
             dropdownWidth="w-40"
-            className={clsx({ 'cursor-not-allowed': !selectedOptions.grade })}
-            priorityFontClass={clsx({ 'text-gray-900': selectedOptions.grade })}
+            className={cn({ 'cursor-not-allowed': !selectedOptions.grade })}
+            priorityFontClass={cn({ 'text-gray-900': selectedOptions.grade })}
           />
         </div>
         <ConfirmSelectBar

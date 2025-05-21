@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { FC } from 'react'
 
 interface CustomTuiDetailModalProps {
@@ -32,7 +32,7 @@ export const CustomTuiDetailModal: FC<CustomTuiDetailModalProps> = ({
           <div className="tui-full-calendar-section-detail">
             <div className="tui-full-calendar-popup-detail-item">
               <span
-                className={clsx('tui-full-calendar-icon tui-full-calendar-calendar-dot', `bg-[${backgroundColor}]`)}
+                className={cn('tui-full-calendar-icon tui-full-calendar-calendar-dot', `bg-[${backgroundColor}]`)}
               ></span>
               <span className="tui-full-calendar-content">{type}</span>
             </div>
@@ -49,7 +49,7 @@ export const CustomTuiDetailModal: FC<CustomTuiDetailModalProps> = ({
             </button>
           </div>
         </div>
-        <div className={clsx('tui-full-calendar-popup-top-line', `bg-[${backgroundColor}]`)}></div>
+        <div className={cn('tui-full-calendar-popup-top-line', `bg-[${backgroundColor}]`)}></div>
       </div>
     </div>
   )

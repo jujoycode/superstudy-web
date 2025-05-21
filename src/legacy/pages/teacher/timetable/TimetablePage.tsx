@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
 import { useHistory } from '@/hooks/useHistory'
 import { useUserStore } from '@/stores/user'
@@ -53,7 +53,7 @@ export function TimetablePage() {
           }
         />
 
-        <div className={clsx('flex flex-col gap-8', (lectureInfo || course) && 'hidden')}>
+        <div className={cn('flex flex-col gap-8', (lectureInfo || course) && 'hidden')}>
           <TimetableDetailPage
             onSelectLecture={(info) => {
               setLectureInfo(info)

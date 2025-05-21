@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import _ from 'lodash'
 import QueryString from 'qs'
 import { useEffect, useRef, useState } from 'react'
@@ -242,8 +242,8 @@ export default function TeacherIBStatus() {
                   size={40}
                   containerWidth="w-30"
                   dropdownWidth="w-40"
-                  className={clsx({ 'cursor-not-allowed': !selectedOptions.grade })}
-                  priorityFontClass={clsx({ 'text-gray-900': selectedOptions.grade })}
+                  className={cn({ 'cursor-not-allowed': !selectedOptions.grade })}
+                  priorityFontClass={cn({ 'text-gray-900': selectedOptions.grade })}
                 />
                 <SelectBar
                   disabled={!isOptionSelected}
@@ -254,7 +254,7 @@ export default function TeacherIBStatus() {
                   size={40}
                   containerWidth="min-w-[120px]"
                   dropdownWidth="w-40"
-                  priorityFontClass={clsx({ 'text-gray-900': isOptionSelected })}
+                  priorityFontClass={cn({ 'text-gray-900': isOptionSelected })}
                 />
               </div>
               <div className="h-[40px] w-[244px]">
@@ -265,36 +265,36 @@ export default function TeacherIBStatus() {
                 >
                   <Tab
                     value="NORMAL"
-                    childrenWrapperClassName={clsx(
+                    childrenWrapperClassName={cn(
                       selectedOptions.projectType === 'NORMAL' ||
                         selectedOptions.projectType === 'CAS' ||
                         'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
                     )}
                   >
-                    <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'NORMAL' })}>전체</p>
+                    <p className={cn({ 'text-gray-700': selectedOptions.projectType === 'NORMAL' })}>전체</p>
                   </Tab>
                   <Tab
                     value="CAS"
-                    childrenWrapperClassName={clsx(
+                    childrenWrapperClassName={cn(
                       selectedOptions.projectType === 'CAS' ||
                         selectedOptions.projectType === 'EE' ||
                         'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
                     )}
                   >
-                    <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'CAS' })}>CAS</p>
+                    <p className={cn({ 'text-gray-700': selectedOptions.projectType === 'CAS' })}>CAS</p>
                   </Tab>
                   <Tab
                     value="EE"
-                    childrenWrapperClassName={clsx(
+                    childrenWrapperClassName={cn(
                       selectedOptions.projectType === 'EE' ||
                         selectedOptions.projectType === 'TOK' ||
                         'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
                     )}
                   >
-                    <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'EE' })}>EE</p>
+                    <p className={cn({ 'text-gray-700': selectedOptions.projectType === 'EE' })}>EE</p>
                   </Tab>
                   <Tab value="TOK">
-                    <p className={clsx({ 'text-gray-700': selectedOptions.projectType === 'TOK' })}>TOK</p>
+                    <p className={cn({ 'text-gray-700': selectedOptions.projectType === 'TOK' })}>TOK</p>
                   </Tab>
                 </LayeredTabs.TwoDepth>
               </div>

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { forwardRef, ReactElement, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -85,7 +85,7 @@ const SelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
     return (
       <div
         ref={ref}
-        className={clsx(
+        className={cn(
           'relative border border-gray-200 select-none',
           containerWidth,
           {
@@ -109,7 +109,7 @@ const SelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
         >
           <label
             className={twMerge(
-              clsx(
+              cn(
                 fontClass, // 공통 폰트 클래스
                 // 'truncate', // 말줄임표 처리를 위한 클래스 추가
                 {
@@ -130,7 +130,7 @@ const SelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
               color="gray700"
               rotate={90}
               size={iconClass}
-              className={clsx({
+              className={cn({
                 'cursor-not-allowed': readonly || disabled,
               })}
             />
@@ -140,7 +140,7 @@ const SelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
         </div>
         {isShowOptions && (
           <ul
-            className={clsx(
+            className={cn(
               'absolute top-full left-0 z-10 mt-2 overflow-hidden rounded-lg border border-gray-200 bg-white p-1.5 shadow-md',
               computedDropdownWidth,
               {
@@ -157,7 +157,7 @@ const SelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
                   e.preventDefault()
                   handleOptionClick(option.value)
                 }}
-                className={clsx(
+                className={cn(
                   {
                     'text-primary-800 flex items-center justify-between': option.value === value,
                   },

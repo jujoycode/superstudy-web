@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
 import { useSchoolStore } from '@/stores/school'
 import { Typography } from '@/legacy/components/common/Typography'
@@ -95,7 +95,7 @@ export const IBDetailPlagiarimInspectResultBadge: React.FC<IBDetailPlagiarimInsp
 
   return (
     <div
-      className={clsx(
+      className={cn(
         'flex h-8 items-center gap-1 rounded-lg px-[10px] py-[6px]',
         status === 'Y' ? 'bg-primary-50' : 'bg-gray-100',
         (status === 'Y' || status === 'F') && 'cursor-pointer',

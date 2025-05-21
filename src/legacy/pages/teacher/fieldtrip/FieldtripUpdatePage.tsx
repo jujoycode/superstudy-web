@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { eachDayOfInterval } from 'date-fns'
 import { chain, concat, every, flatten, get } from 'lodash'
 import { useEffect, useState } from 'react'
@@ -549,7 +549,7 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                     clearHomePlane()
                     setDayHomePlan(false)
                   }}
-                  className={clsx('py-1.5 text-lg', dayHomePlan ? 'bg-white text-black' : 'bg-brand-1 text-white')}
+                  className={cn('py-1.5 text-lg', dayHomePlan ? 'bg-white text-black' : 'bg-brand-1 text-white')}
                 />
                 <Badge
                   children="일차기준 작성"
@@ -557,7 +557,7 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                     clearHomePlane()
                     setDayHomePlan(true)
                   }}
-                  className={clsx('py-1.5 text-lg', dayHomePlan ? 'bg-brand-1 text-white' : 'bg-white text-black')}
+                  className={cn('py-1.5 text-lg', dayHomePlan ? 'bg-brand-1 text-white' : 'bg-white text-black')}
                 />
               </div>
 
@@ -581,10 +581,7 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                           newHomePlan[i]['content'] = e.target.value
                           setHomePlan(newHomePlan)
                         }}
-                        className={clsx(
-                          'h-auto border',
-                          content ? 'border border-gray-300' : 'border-2 border-red-700',
-                        )}
+                        className={cn('h-auto border', content ? 'border border-gray-300' : 'border-2 border-red-700')}
                       />
                     </Label.col>
                   ) : (

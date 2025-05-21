@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, LinkProps, Outlet, useLocation } from 'react-router-dom'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
@@ -6,6 +5,7 @@ import { ReactComponent as RightArrow } from '@/assets/svg/RightFillArrow.svg'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { useLogout } from '@/hooks/useLogout'
+import { cn } from '@/utils/commonUtil'
 import { useNotificationStore } from '@/stores/notification'
 import { useUserStore } from '@/stores/user'
 import { Blank } from '@/legacy/components/common'
@@ -20,7 +20,6 @@ import {
 } from '@/legacy/generated/endpoint'
 import { OutingUse, ResponseDashboardDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { cn } from '@/legacy/lib/tailwind-merge'
 import { DateFormat } from '@/legacy/util/date'
 import { DateUtil } from '@/legacy/util/date'
 import { globalEnv } from '@/legacy/util/global-env'
@@ -548,7 +547,7 @@ export function TeacherMainPage() {
         {tabs.map((tab) => {
           const active = [tab.path, ...(tab.extra ?? [])].some((path) => pathname.startsWith(path))
           return (
-            <Link key={tab.path} to={tab.path} className={clsx('bottom-nav-item', active && 'text-darkgray')}>
+            <Link key={tab.path} to={tab.path} className={cn('bottom-nav-item', active && 'text-darkgray')}>
               <tab.icon className="stroke-current" />
               <span>{tab.name}</span>
             </Link>

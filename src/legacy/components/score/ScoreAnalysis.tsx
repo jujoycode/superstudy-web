@@ -11,10 +11,11 @@ import {
   Title,
   Tooltip,
 } from 'chart.js'
-import clsx from 'clsx'
 import _ from 'lodash'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Chart } from 'react-chartjs-2'
+import { useOutletContext } from 'react-router-dom'
+import { cn } from '@/utils/commonUtil'
 
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
@@ -95,7 +96,8 @@ const transformData = (data: AnalysedExamScore[]) => {
   )
 }
 
-export const ScoreAnalysis = ({ studentId }: ScoreAnalysisProps) => {
+export const ScoreAnalysis = () => {
+  const { studentId } = useOutletContext<{ studentId: string }>()
   return (
     <main className="flex flex-col gap-10">
       <AcademicScore studentId={studentId} />
@@ -848,33 +850,33 @@ const ScoreAnalysisModal = ({ data, averages }: any) => {
         <LayeredTabs.TwoDepth onChange={(selectedType: string) => setScoreType(selectedType)} value={scoreType}>
           <Tab
             value="등급"
-            childrenWrapperClassName={clsx(
+            childrenWrapperClassName={cn(
               scoreType === '등급' ||
                 scoreType === 'z점' ||
                 'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
             )}
           >
-            <p className={clsx({ 'text-gray-700': scoreType === '등급' })}>등급</p>
+            <p className={cn({ 'text-gray-700': scoreType === '등급' })}>등급</p>
           </Tab>
           <Tab
             value="z점"
-            childrenWrapperClassName={clsx(
+            childrenWrapperClassName={cn(
               scoreType === '등급' ||
                 scoreType === 'z점' ||
                 'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
             )}
           >
-            <p className={clsx({ 'text-gray-700': scoreType === 'z점' })}>Z점수</p>
+            <p className={cn({ 'text-gray-700': scoreType === 'z점' })}>Z점수</p>
           </Tab>
           <Tab
             value="원점"
-            childrenWrapperClassName={clsx(
+            childrenWrapperClassName={cn(
               scoreType === '등급' ||
                 scoreType === 'z점' ||
                 'relative after:absolute after:right-0 after:h-[14px] after:w-[1px] after:bg-gray-200 after:content-[""] after:z-10',
             )}
           >
-            <p className={clsx({ 'text-gray-700': scoreType === '원점' })}>원점수</p>
+            <p className={cn({ 'text-gray-700': scoreType === '원점' })}>원점수</p>
           </Tab>
         </LayeredTabs.TwoDepth>
       </nav>

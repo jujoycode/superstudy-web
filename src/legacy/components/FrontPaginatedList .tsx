@@ -1,7 +1,6 @@
-import clsx from 'clsx'
 import React, { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-
+import { cn } from '@/utils/commonUtil'
 import SVGIcon from './icon/SVGIcon'
 
 interface ListProps<T> {
@@ -103,7 +102,7 @@ const FrontPaginatedList = <T,>({
               <button
                 key={page}
                 onClick={() => handlePageChange(page)}
-                className={clsx(
+                className={cn(
                   'h-8 w-8 rounded-md',
                   currentPage === page
                     ? 'rounded-md bg-gray-700 text-white'

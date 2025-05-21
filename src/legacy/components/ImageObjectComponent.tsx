@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
@@ -25,7 +25,7 @@ export function ImageObjectComponent({ id, imageObjet, onDeleteClick, cardType }
 
   return (
     <div
-      className={clsx(
+      className={cn(
         'relative',
         cardType ? 'border-gray-5 aspect-5/3 rounded border-2 border-dashed' : 'aspect-square',
         imageObjet.isDelete && 'opacity-50',

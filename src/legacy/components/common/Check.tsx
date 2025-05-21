@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/commonUtil'
 import React, { forwardRef, InputHTMLAttributes, ReactElement, ReactNode } from 'react'
 
 import { Typography } from './Typography'
@@ -261,7 +261,7 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
       {renderIcon()}
       <Typography
         variant="body3"
-        className={clsx('font-medium break-words', checked && 'text-gray-900', !checked && disabled && 'text-gray-400')}
+        className={cn('font-medium break-words', checked && 'text-gray-900', !checked && disabled && 'text-gray-400')}
       >
         {label}
       </Typography>
@@ -376,7 +376,7 @@ const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
   return (
     <label
       onClick={handleLabelClick}
-      className={clsx(
+      className={cn(
         'flex gap-1.5',
         disabled ? 'cursor-not-allowed' : 'cursor-pointer',
         label && label.length > 20 ? 'items-start' : 'items-center',
@@ -394,7 +394,7 @@ const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
       {renderIcon()}
       <Typography
         variant="body3"
-        className={clsx('font-medium break-words', checked && 'text-gray-900', !checked && disabled && 'text-gray-400')}
+        className={cn('font-medium break-words', checked && 'text-gray-900', !checked && disabled && 'text-gray-400')}
       >
         {label}
       </Typography>
