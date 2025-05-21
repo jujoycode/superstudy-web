@@ -60,3 +60,29 @@
 .tui-full-calendar-button {
   display: flex !important;
 }
+
+/* FullCalendar styles */
+.sunday-red .fc-day-sun {
+  color: var(--color-red-500);
+}
+
+.sunday-red .fc-col-header-cell.fc-day-sun {
+  color: var(--color-red-500);
+}
+
+.fc .fc-daygrid-day-top {
+  flex-direction: row;
+}
+
+.fc .fc-col-header-cell-cushion {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.fc .fc-daygrid-day {
+  height: 100px !important;
+}
+
+.fc .fc-daygrid-day-frame {
+  height: 100% !important;
+}
