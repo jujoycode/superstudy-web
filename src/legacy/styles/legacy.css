@@ -698,10 +698,6 @@
   --text-15--line-height: 1.375rem;
   --text-17: 1.0625rem;
   --text-17--line-height: 1.625rem;
-  --text-19: 1.1875rem;
-  --text-19--line-height: 1.75rem;
-  --text-28: 1.75rem;
-  --text-28--line-height: 2.1rem;
 
   /* Height */
   --height-screen-2: calc(100vh - 2rem);

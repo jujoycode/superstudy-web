@@ -4,6 +4,7 @@ import Viewer from 'react-viewer'
 import { ReactComponent as ChatIcon } from '@/assets/svg/chat.svg'
 import { ReactComponent as ClockIcon } from '@/assets/svg/clock.svg'
 import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
+import { Icon } from '@/atoms/Icon'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
 import { useUserStore } from '@/stores/user'
@@ -12,7 +13,6 @@ import AnnouncementPopup from '@/legacy/components/announcement/Announcement'
 import { CanteenCalendar } from '@/legacy/components/CanteenCalendar'
 import { Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
-import { Icon } from '@/legacy/components/common/icons'
 import { Dashboard } from '@/legacy/components/Dashboard'
 import { Constants } from '@/legacy/constants'
 import { useStudentCanteen } from '@/legacy/container/student-canteen'
@@ -84,8 +84,8 @@ export function CanteenPage() {
         }
         left={
           <div className="relative h-6 w-6" onClick={() => push('/student/notification')}>
-            <Icon.Bell />
-            {!hasConfirmedAll && <div className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500" />}{' '}
+            <Icon name="bell" size="md" />
+            {!hasConfirmedAll && <div className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500" />}
           </div>
         }
         leftFlex="flex-none"
@@ -204,7 +204,7 @@ export function CanteenPage() {
               </small>
             )}
           </div>
-          <div className="bg-gray-8 h-16 w-16 rounded-full">
+          <div className="h-16 w-16 rounded-full bg-gray-600">
             <Link className="flex h-full w-full flex-col items-center justify-center" to={'/student/timetable'}>
               <ClockIcon />
               <div className="text-sm text-white">시간표</div>
