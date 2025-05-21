@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
 
 import AnnouncementBadge from '@/legacy/components/announcement/AnnouncementBadge'
@@ -9,7 +9,6 @@ import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { useAnnouncementByCategory } from '@/legacy/container/announcement-category'
 import { Announcement } from '@/legacy/generated/model/announcement'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import AnnouncementDetailPage from './AnnouncementDetailPage'
 import AnnouncementMobilePage from './AnnouncementMobilePage'
 
 export default function AnnouncementPage() {

@@ -1,9 +1,9 @@
-import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
 
 import { ReactComponent as Close } from '@/assets/svg/close.svg'
 import { useHistory } from '@/hooks/useHistory'
+import { cn } from '@/utils/commonUtil'
 import { ChatRoomList } from '@/legacy/components/chat/ChatRoomList'
 import { BackButton, Divider, Label, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -156,7 +156,7 @@ export function ChatListPage() {
 
       {chatRoomId && chatRoomId !== '' && (
         <div className="scroll-box h-screen-4 col-span-3 overflow-hidden overflow-y-scroll bg-gray-50 p-0">
-          <ChatDetailPage id={chatRoomId} />
+          <ChatDetailPage />
         </div>
       )}
     </>

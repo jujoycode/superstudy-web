@@ -608,7 +608,7 @@ export function ChatListPage() {
         <>
           {chatRoomId && chatRoomId !== '' ? (
             <div className="scroll-box col-span-3 h-screen overflow-y-scroll bg-gray-200 p-0 md:p-6">
-              <ChatDetailPage id={chatRoomId} />
+              <ChatDetailPage />
             </div>
           ) : (
             <div className="col-span-3 hidden h-full w-full flex-col items-center justify-center space-y-4 md:flex">

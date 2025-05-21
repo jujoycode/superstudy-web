@@ -1,8 +1,8 @@
-import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
-import { Link, Outlet, Route, Routes, useLocation } from 'react-router'
+import { Link, Outlet, useLocation } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
+import { cn } from '@/utils/commonUtil'
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -18,9 +18,6 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { compareOutings } from '@/legacy/util/document'
 import { PermissionUtil } from '@/legacy/util/permission'
 import { getCurrentSchoolYear, isValidDate, makeDateToString } from '@/legacy/util/time'
-
-import { OutingAddPage } from './OutingAddPage'
-import { OutingDetailPage } from './OutingDetailPage'
 
 export function OutingPage() {
   const { replace } = useHistory()

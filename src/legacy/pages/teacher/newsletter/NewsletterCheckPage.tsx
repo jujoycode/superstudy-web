@@ -1,12 +1,10 @@
 import { useQueryClient } from 'react-query'
-import { Outlet, Routes, useParams } from 'react-router'
-import { Route } from 'react-router-dom'
+import { Outlet, useParams } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
 import { NewsletterCheckerItem } from '@/legacy/components/newsletter/NewsletterCheckerItem'
 import { useTeacherNewsletterCheck } from '@/legacy/container/teacher-newsletter-check'
 import { ResponseChatAttendeeDto, ResponseGroupDto, StudentGroup } from '@/legacy/generated/model'
-import { NewsletterCheckDetailPage } from './NewsletterCheckDetailPage'
 
 export function NewsletterCheckPage() {
   const { push } = useHistory()
