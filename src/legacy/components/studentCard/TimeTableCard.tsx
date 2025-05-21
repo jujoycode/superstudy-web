@@ -91,19 +91,19 @@ export function TimeTableCard({ studentId }: TimeTableCardProps) {
 
             <table className="mb-2 w-full table-fixed">
               <tr>
-                <td colSpan={2} className="bg-gray-7 rounded-l-lg text-center">
+                <td colSpan={2} className="rounded-l-lg bg-gray-300 text-center">
                   과목
                 </td>
                 <td colSpan={3} className="bg-gray-9 pl-2 font-bold">
                   {selectedLectureInfo?.subject}
                 </td>
-                <td colSpan={2} className="bg-gray-7 text-center">
+                <td colSpan={2} className="bg-gray-300 text-center">
                   선생님
                 </td>
                 <td colSpan={3} className="bg-gray-9 pl-2 font-bold">
                   {selectedLectureInfo.teacherName}
                 </td>
-                <td colSpan={2} className="bg-gray-7 text-center">
+                <td colSpan={2} className="bg-gray-300 text-center">
                   장소
                 </td>
                 <td colSpan={3} className="bg-gray-9 rounded-r-lg pl-2 font-bold">

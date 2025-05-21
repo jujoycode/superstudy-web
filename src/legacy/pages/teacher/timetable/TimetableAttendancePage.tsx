@@ -780,7 +780,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                         .map((_: any, c: number) => (
                           <td
                             key={c}
-                            className={`border-gray-7 border ${
+                            className={`border border-gray-300 ${
                               selSeat === r.toString() + c.toString()
                                 ? 'bg-blue-300'
                                 : getStudentSeat(r, c)?.absent
@@ -848,7 +848,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
 
             <br />
             <div className="mb-6 flex w-full items-center justify-center space-x-2">
-              <div className="border-gray-7 rounded-md border bg-gray-200 px-3 py-2">교탁</div>
+              <div className="rounded-md border border-gray-300 bg-gray-200 px-3 py-2">교탁</div>
             </div>
 
             {me?.name === teacherName ? (
