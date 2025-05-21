@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router'
 
 import { ErrorBlank, FrontPagination } from '@/legacy/components'
 import { BackButton, TopNavbar } from '@/legacy/components/common'

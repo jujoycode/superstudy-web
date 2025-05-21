@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useState } from 'react'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router'
 
 import { SelectMenus } from '@/legacy/components'
 import { BoardCard } from '@/legacy/components/board/BoardCard'

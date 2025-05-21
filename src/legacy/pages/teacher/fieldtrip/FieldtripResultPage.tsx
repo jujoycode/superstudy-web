@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
 import { cn } from '@/utils/commonUtil'

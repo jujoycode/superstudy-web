@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router'
 import { cn } from '@/utils/commonUtil'
 
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
