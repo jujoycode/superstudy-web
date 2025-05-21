@@ -1,6 +1,6 @@
 import { range } from 'lodash'
 import { useEffect, useState } from 'react'
-import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
 import { useUserStore } from '@/stores/user'
 import { ErrorBlank } from '@/legacy/components'
@@ -18,8 +18,6 @@ import { TabType } from '@/legacy/types'
 import { getThisYear } from '@/legacy/util/time'
 import { BoardMobilePage } from '../board/BoardMobilePage'
 import { NewsletterMobilePage } from '../newsletter/NewsletterMobilePage'
-import { NoticeAddPage } from './NoticeAddPage'
-import { NoticeDetailPage } from './NoticeDetailPage'
 import { NoticeMobilePage } from './NoticeMobilePage'
 
 function NoticePageView() {

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router'
 
 import { ErrorBlank, FrontPagination } from '@/legacy/components'
 import { BackButton, TopNavbar } from '@/legacy/components/common'
@@ -12,8 +12,6 @@ import { UserContainer } from '@/legacy/container/user'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useQueryParams } from '@/legacy/hooks/useQueryParams'
 import { getCurrentSchoolYear, isValidDate, makeDateToString } from '@/legacy/util/time'
-
-import { FieldtripNoticeDetailPage } from './FieldtripNoticeDetailPage'
 
 export function FieldtripNoticePage() {
   const { pathname } = useLocation()

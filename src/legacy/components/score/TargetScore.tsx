@@ -24,11 +24,6 @@ import { getThisSemester } from '@/legacy/util/time'
 
 import SolidSVGIcon from '../icon/SolidSVGIcon'
 
-interface TargetScoreProps {
-  studentId: string
-  grade: number
-}
-
 ChartJS.register(
   CategoryScale,
   LinearScale,

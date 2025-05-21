@@ -9,11 +9,6 @@ import ExamChart from '../studentCard/ExamChart'
 import { ExamScoreBoard } from '../studentCard/ExamScoreBoard'
 import { INDIExamScoreBoard } from '../studentCard/INDIExamScoreBoard'
 
-interface AllScoreProps {
-  studentId: string
-  grade: number
-}
-
 type ScoreType = 'ALL' | 'TEST'
 
 const grades = [

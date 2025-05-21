@@ -1,9 +1,9 @@
-import { cn } from '@/utils/commonUtil'
 import moment from 'moment'
 import { useState } from 'react'
-import { Link, Outlet, Route, Routes, useLocation, useParams } from 'react-router'
+import { Link, Outlet, useLocation, useParams } from 'react-router'
 
 import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils/commonUtil'
 
 import { useUserStore } from '@/stores/user'
 import AlertV2 from '@/legacy/components/common/AlertV2'
