@@ -209,7 +209,7 @@ export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDet
               <td
                 colSpan={4}
                 className={cn(
-                  'bg-gray-9 min-h-10.5 min-w-9.5 px-1 py-2',
+                  'min-h-10.5 min-w-9.5 bg-gray-50 px-1 py-2',
                   i === 0 && 'rounded-t-xl',
                   i === maxTime - 1 && 'rounded-b-xl',
                 )}

@@ -53,12 +53,12 @@ export function TimetableDetailPage() {
             <tr>
               <th className="" />
               <th className="" />
-              <th className="bg-gray-9 min-w-max rounded-l-xl py-4">월</th>
-              <th className="bg-gray-9 min-w-max">화</th>
-              <th className="bg-gray-9 min-w-max">수</th>
-              <th className="bg-gray-9 min-w-max">목</th>
+              <th className="min-w-max rounded-l-xl bg-gray-50 py-4">월</th>
+              <th className="min-w-max bg-gray-50">화</th>
+              <th className="min-w-max bg-gray-50">수</th>
+              <th className="min-w-max bg-gray-50">목</th>
               <th className={`min-w-max ${hasSaturdayClass ? '' : 'rounded-r-xl'} bg-gray-9`}>금</th>
-              {hasSaturdayClass && <th className="bg-gray-9 min-w-max rounded-r-xl">토</th>}
+              {hasSaturdayClass && <th className="min-w-max rounded-r-xl bg-gray-50">토</th>}
             </tr>
             <tr>
               <th className="pb-4"></th>
@@ -68,7 +68,7 @@ export function TimetableDetailPage() {
             {Array.from({ length: maxTime }, (_, i) => (
               <tr key={i}>
                 <td
-                  className={`bg-gray-9 min-h-10.5 w-10 px-1 py-2 ${i === 0 ? 'rounded-t-xl' : ''} ${i === maxTime - 1 ? 'rounded-b-xl' : ''}`}
+                  className={`min-h-10.5 w-10 bg-gray-50 px-1 py-2 ${i === 0 ? 'rounded-t-xl' : ''} ${i === maxTime - 1 ? 'rounded-b-xl' : ''}`}
                 >
                   {i + 1}
                 </td>

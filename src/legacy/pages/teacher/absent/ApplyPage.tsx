@@ -20,7 +20,7 @@ export function ApplyPage() {
         {me?.school.isOutingActive !== OutingUse.NONE && (
           <div
             onClick={() => push('/student/outing')}
-            className="border-gray-9 flex cursor-pointer items-center justify-between border-b pb-4"
+            className="flex cursor-pointer items-center justify-between border-b border-gray-50 pb-4"
           >
             <div>
               <div className="font-sfpro font-bold text-gray-800">확인증</div>
@@ -31,7 +31,7 @@ export function ApplyPage() {
         )}
         <div
           onClick={() => push('/student/absent')}
-          className="border-gray-9 flex cursor-pointer items-center justify-between border-b pb-4"
+          className="flex cursor-pointer items-center justify-between border-b border-gray-50 pb-4"
         >
           <div>
             <div className="font-sfpro font-bold text-gray-800">{t(`absentTitle`, '결석신고서')}</div>
@@ -41,7 +41,7 @@ export function ApplyPage() {
         </div>
         <div
           onClick={() => push('/student/fieldtrip')}
-          className="border-gray-9 flex cursor-pointer items-center justify-between border-b pb-4"
+          className="flex cursor-pointer items-center justify-between border-b border-gray-50 pb-4"
         >
           <div>
             <div className="font-sfpro font-bold text-gray-800">체험학습</div>
@@ -51,7 +51,7 @@ export function ApplyPage() {
         </div>
         <div
           onClick={() => push('/student/pointlogs')}
-          className="border-gray-9 flex cursor-pointer items-center justify-between border-b pb-4"
+          className="flex cursor-pointer items-center justify-between border-b border-gray-50 pb-4"
         >
           <div>
             <div className="font-sfpro font-bold text-gray-800">상벌점기록</div>

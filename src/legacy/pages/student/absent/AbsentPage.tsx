@@ -69,7 +69,7 @@ export function AbsentPage() {
               return (
                 <div
                   key={absent.id}
-                  className="border-gray-9 flex cursor-pointer items-center justify-between border-b pb-4"
+                  className="flex cursor-pointer items-center justify-between border-b border-gray-50 pb-4"
                   onClick={() => push(`/student/absent/${absent.id}`)}
                 >
                   <div>
