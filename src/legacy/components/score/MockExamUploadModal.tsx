@@ -140,7 +140,7 @@ export function MockExamUploadModal({
                   슈퍼스쿨 모의고사 양식 다운로드
                 </Typography>
               </a>
-              <nav className="flex flex-grow flex-col gap-3 overflow-y-auto">
+              <nav className="flex grow flex-col gap-3 overflow-y-auto">
                 {MONTHS.map((month) => (
                   <button
                     key={month}
@@ -164,7 +164,7 @@ export function MockExamUploadModal({
                   <Icon.CloseFillGray onClick={() => setModalClose()} className="scale-110 cursor-pointer" />
                 </div>
               </div>
-              <div className="flex-grow overflow-y-auto px-6 pb-3">
+              <div className="grow overflow-y-auto px-6 pb-3">
                 {documentFiles.length > 0 ? (
                   <div className="scroll-box flex w-full flex-col gap-4 overflow-y-auto rounded-lg bg-white">
                     <Select.lg

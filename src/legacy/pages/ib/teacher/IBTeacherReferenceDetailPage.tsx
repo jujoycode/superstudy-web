@@ -77,7 +77,7 @@ export const IBTeacherReferenceDetailPage = () => {
           }
           hasContour={false}
           bottomContent={
-            <div className="flex flex-grow flex-col py-6">
+            <div className="flex grow flex-col py-6">
               <div className="flex min-h-[720px] flex-col justify-between rounded-xl bg-white p-6">
                 <div className="flex flex-col">
                   <div className="flex flex-col items-start gap-1 border-b border-b-gray-100 pb-6">
@@ -95,7 +95,7 @@ export const IBTeacherReferenceDetailPage = () => {
                     <div className="flex flex-col gap-4 py-10">
                       {/* 이미지 컨테이너 */}
                       {!!data.images?.length && (
-                        <div className="grid w-full flex-grow grid-flow-row grid-cols-6 gap-3">
+                        <div className="grid w-full grow grid-flow-row grid-cols-6 gap-3">
                           {data.images.map((image: string, i: number) => (
                             <div
                               key={i}

@@ -668,7 +668,7 @@ export function TimetablePage() {
                                 ? '학생시간표'
                                 : item.timeTableType}
                           </div>
-                          <div className="flex-grow truncate">
+                          <div className="grow truncate">
                             <div className="text-13 flex items-center space-x-2">
                               <div className="text-lightpurple-4 w-full px-2 whitespace-pre-wrap">
                                 <a

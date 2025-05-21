@@ -149,7 +149,7 @@ export function ExamUpdateModal({
             {uploading ? (
               <>
                 <div className="flex w-full items-center gap-4">
-                  <div className="flex-grow flex-row"></div>
+                  <div className="grow flex-row"></div>
                   <button className="box-border rounded-lg border border-blue-600 px-10 py-3 text-lg font-bold text-blue-600">
                     업로드 취소
                   </button>

@@ -239,7 +239,7 @@ export function ExamUploadModal({
                   )}
                 </div>
               </div>
-              <div className="flex-grow overflow-y-auto px-6 pb-3">
+              <div className="grow overflow-y-auto px-6 pb-3">
                 {documentFiles.length > 0 ? (
                   <div className="scroll-box flex w-full flex-col overflow-y-auto rounded-lg bg-white">
                     <div className="flex flex-wrap gap-2">

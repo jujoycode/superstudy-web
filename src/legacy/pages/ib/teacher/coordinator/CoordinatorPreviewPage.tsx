@@ -76,7 +76,7 @@ export const CoordinatorPreviewPage = () => {
                   학생/교사에게 보여지는 화면의 예시입니다.
                 </Typography>
               </div>
-              <div className="flex flex-grow flex-col rounded-xl bg-white p-6">
+              <div className="flex grow flex-col rounded-xl bg-white p-6">
                 {type === 'FAQ' ? (
                   <div className="flex flex-col">
                     <div className="flex flex-col items-start gap-1 border-b border-b-gray-100 pb-6">

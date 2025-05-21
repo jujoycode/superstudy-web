@@ -187,7 +187,7 @@ export function TeacherMainPage() {
       {blankOpen && <Blank />}
 
       <div className="hidden w-[270px] shrink-0 md:block">
-        <div className="flex flex-grow flex-col border-r border-gray-200 bg-gray-50 pt-1 pb-4">
+        <div className="flex grow flex-col border-r border-gray-200 bg-gray-50 pt-1 pb-4">
           <div className="flex items-center justify-between px-4">
             <Link to={`/teacher/canteen/${DateUtil.formatDate(new Date().toISOString(), DateFormat['YYYY-MM-DD'])}`}>
               <Logo className="w-20" />
@@ -263,7 +263,7 @@ export function TeacherMainPage() {
           </div>
 
           {/* 메뉴바 */}
-          <div className="scroll-box h-screen-13 mt-5 flex flex-grow flex-col overflow-y-auto tracking-tighter">
+          <div className="scroll-box h-screen-13 mt-5 flex grow flex-col overflow-y-auto tracking-tighter">
             <nav
               className={`flex-1 space-y-1 px-4 ${currentLang === 'en' ? 'text-14' : 'text-16'}`}
               aria-label="Sidebar"

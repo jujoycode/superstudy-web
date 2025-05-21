@@ -16,7 +16,7 @@ export function SmsCard({ receiverName, sendAt, content, result, retryCount }: S
           <div className="text-lg font-semibold">수신 : {receiverName}</div>
           <Time date={sendAt} format="전송일 : yyyy-MM-dd HH:mm:ss" className="text-xs font-normal text-gray-500" />
         </div>
-        <div className="flex-grow">{content}</div>
+        <div className="grow">{content}</div>
         <div className="min-w-max">
           <div
             className={`${

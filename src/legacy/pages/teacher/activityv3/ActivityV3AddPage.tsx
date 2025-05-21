@@ -481,7 +481,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
                       </div>
                     </div>
-                    <div className="flex-grow py-3">
+                    <div className="grow py-3">
                       <TextInput
                         id="title"
                         placeholder="예) 통계포스터 만들기"
@@ -494,7 +494,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
 
                   <div className="border-gray-[#444] flex w-full flex-1 items-center border-b">
                     <div className="w-30 shrink-0 py-3 font-bold whitespace-pre text-[#333333]">활동 설명</div>
-                    <div className="flex-grow py-3">
+                    <div className="grow py-3">
                       <Textarea
                         id="description"
                         className="h-20 resize-none rounded-lg border border-[#CCCCCC]"
@@ -518,7 +518,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         )}
                       </div>
                     </div>
-                    <div className="flex-grow py-3">
+                    <div className="grow py-3">
                       <Textarea
                         id="commonText"
                         className="h-20 resize-none rounded-lg border border-[#CCCCCC]"
@@ -536,7 +536,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                           <p>성취기준</p>
                         </div>
                       </div>
-                      <div className="flex w-full flex-grow flex-col gap-2 py-3">
+                      <div className="flex w-full grow flex-col gap-2 py-3">
                         <div
                           className="flex h-10 w-28 cursor-pointer items-center justify-center rounded-lg border border-dashed border-[#CCCCCC] bg-gray-50 px-6 py-2"
                           onClick={() => {
@@ -552,7 +552,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                                 className="flex w-max max-w-full items-center rounded-lg border border-[#333333] px-2 py-1"
                                 key={criteriaId}
                               >
-                                <div className="flex h-8 flex-grow items-center overflow-x-hidden">
+                                <div className="flex h-8 grow items-center overflow-x-hidden">
                                   <div className="w-full truncate text-neutral-500">
                                     {getCriteriaTitle(allCriterias?.find((el) => el.id === criteriaId))}
                                   </div>
@@ -581,7 +581,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
                       </div>
                     </div>
-                    <div className="flex-grow py-3">
+                    <div className="grow py-3">
                       <div className="flex items-center space-x-2 placeholder:w-full">
                         {!!selectedGroupIds?.length ? (
                           <div className="flex w-full flex-wrap gap-2 space-x-2">
@@ -635,7 +635,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                     <div className="py-3">
                       {/* 이미지 */}
                       {[...imageObjectMap].length > 0 && (
-                        <div className="grid w-full flex-grow grid-flow-row grid-cols-6 gap-2 pb-2">
+                        <div className="grid w-full grow grid-flow-row grid-cols-6 gap-2 pb-2">
                           {[...imageObjectMap].map(([key, value]) => (
                             <ImageObjectComponentDel
                               key={key}

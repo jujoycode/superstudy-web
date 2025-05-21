@@ -291,7 +291,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
   }
 
   return (
-    <div className="flex flex-grow flex-col">
+    <div className="flex grow flex-col">
       {isLoading && <IBBlank />}
       <div className="flex h-full flex-row gap-4">
         <div className="flex w-[848px] flex-col rounded-xl bg-white p-6">

@@ -259,7 +259,7 @@ export const BatcbUploadComponent: React.FC<BatcbUploadComponentProps> = ({
             {uploading ? (
               <>
                 <div className="flex w-full items-center gap-4">
-                  <div className="flex-grow flex-row">
+                  <div className="grow flex-row">
                     <LinearProgressWithLabel
                       value={progress}
                       uploadedCount={uploadedCount}

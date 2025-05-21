@@ -63,7 +63,7 @@ export const Feedback: FC<FeedbackProps> = ({
       {isFetching ? (
         <IBBlank type="section" />
       ) : (
-        <div className="scroll-box flex h-[448px] flex-grow flex-col gap-3 overflow-y-auto" ref={scrollRef}>
+        <div className="scroll-box flex h-[448px] grow flex-col gap-3 overflow-y-auto" ref={scrollRef}>
           {feedback && feedback?.length > 0 ? (
             [...feedback].reverse().map((item) => {
               const date = item.createdAt ? new Date(item.createdAt) : new Date()

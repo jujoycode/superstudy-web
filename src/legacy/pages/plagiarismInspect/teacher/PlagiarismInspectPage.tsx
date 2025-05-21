@@ -50,7 +50,7 @@ function PlagiarismInspectPage({
               )}
             </div>
           ) : (
-            <div className="flex flex-grow flex-col">
+            <div className="flex grow flex-col">
               <div
                 className={cn(
                   'flex h-full gap-4',

@@ -87,7 +87,7 @@ function TwoDepth<T>({ children, value, onChange, fullWidth = false, size = 'lar
                   : isActive
                     ? 'border-r border-l border-gray-200'
                     : '',
-              fullWidth && 'flex-grow basis-0 text-center',
+              fullWidth && 'grow basis-0 text-center',
               tab.props.childrenWrapperClassName,
             )}
           >

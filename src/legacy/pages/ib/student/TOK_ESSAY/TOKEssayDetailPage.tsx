@@ -99,7 +99,7 @@ export const TOKEssayDetailPage = () => {
           </div>
         }
         bottomContent={
-          <div className="flex flex-grow flex-col">
+          <div className="flex grow flex-col">
             <div className="flex h-full flex-row gap-4 py-6">
               <div className="relative flex h-[812px] w-[848px] flex-col justify-between gap-6 rounded-xl bg-white p-6">
                 {isEssayLoading && <IBBlank type="section-opacity" />}
