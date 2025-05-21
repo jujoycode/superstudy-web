@@ -1,7 +1,7 @@
 import { EventClickArg } from '@fullcalendar/core/index.js'
 import { addMonths, endOfMonth, format, startOfMonth, subMonths } from 'date-fns'
 import { t } from 'i18next'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
 import { Button } from '@/atoms/Button'
 import { Calendar, type CalendarData } from '@/atoms/Calendar'
@@ -27,7 +27,9 @@ export function CalendarPage() {
   const [detailModalOpen, setDetailModalOpen] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [selectedData, setSelectedData] = useState<CalendarData>()
-  const [selectedDate, _setSelectedDate] = useState<Date>(new Date())
+  const [_selectedDate, _setSelectedDate] = useState<Date>()
+
+  const selectedDate = _selectedDate || new Date()
 
   const setSelectedDate = (date: Date) => {
     _setSelectedDate(date)
@@ -51,6 +53,12 @@ export function CalendarPage() {
   } = useTeacherCalendarDetail()
 
   const groupProps = useTeacherChatUserList(MenuType.List)
+
+  useEffect(() => {
+    if (!_selectedDate) {
+      setSelectedDate(new Date())
+    }
+  }, [])
 
   // 코치마크
   const coachList: Array<Guide> = [
@@ -103,11 +111,16 @@ export function CalendarPage() {
   const data: CalendarData[] =
     calendarData?.map((el) => ({
       id: String(el.id),
-      title: el.title + (el.attendee && el.attendee !== '일반' ? `(${el.attendee})` : ''),
+      title:
+        (el.group ? `[${el.group.name}]` : '') +
+        el.title +
+        (el.attendee && el.attendee !== '일반' ? `(${el.attendee})` : ''),
       start: el.start,
       end: el.end,
       backgroundColor: CALENDAR_TYPES.find((TYPE) => TYPE.id === el.calendarId)?.bgColor || '',
     })) || []
+
+  const selectedCalendarData = calendarData?.find((el) => String(el.id) === selectedData?.id)
 
   const formatCalendarData = (calendarData: CalendarData) => ({
     title: calendarData.title,
@@ -193,7 +206,7 @@ export function CalendarPage() {
       {errorMessage && <ErrorBlank />}
       {<CoachMark {...coach} />}
       <div className="flex h-full w-full">
-        <div className="w-[30%] border-r border-gray-500 px-3 py-2">
+        <div className="w-[25%] border-r border-gray-500 px-3 py-2">
           <div className="flex items-center space-x-2 border-b border-[#E5E5E5] pb-3">
             <Button
               children={t('add_new_event')}
@@ -213,29 +226,25 @@ export function CalendarPage() {
               ?
             </div>
           </div>
-          <div className="lnb-calendars">
-            <div>
-              <div className="lnb-calendars-item">
-                <Label.row>
-                  <Checkbox checked={!filterId} onChange={() => filterId && setFilterId(undefined)} />
-                  <strong>{t('view_all')}</strong>
-                </Label.row>
-              </div>
-            </div>
-            <div id="calendarList" className="lnb-calendars-d1" ref={refs[0]}>
-              {CALENDAR_TYPES.map(({ id, name, bgColor }) => (
-                <LnbCalendarsItem
-                  key={id}
-                  value={id}
-                  checked={false}
-                  color={bgColor}
-                  text={name}
-                  onClick={() => setFilterId(id)}
-                />
-              ))}
-            </div>
+          <div className="border-b border-[#e5e5e5] px-3 py-4">
+            <Label.row>
+              <Checkbox checked={!filterId} onChange={() => filterId && setFilterId(undefined)} />
+              <strong>{t('view_all')}</strong>
+            </Label.row>
           </div>
-          <div className="lnb-footer">© NHN Corp.</div>
+          <div className="space-y-2 border-b border-[#e5e5e5] px-3 py-4" ref={refs[0]}>
+            {CALENDAR_TYPES.map(({ id, name, bgColor }) => (
+              <LnbCalendarsItem
+                key={id}
+                value={id}
+                checked={false}
+                color={bgColor}
+                text={name}
+                onClick={() => setFilterId(id)}
+              />
+            ))}
+          </div>
+          <div className="text-10 absolute bottom-[12px] pl-4 text-[#999]">© NHN Corp.</div>
         </div>
         <div className="scroll-box w-full overflow-y-scroll px-4">
           <div className="flex items-center space-x-6 p-4">
@@ -262,6 +271,7 @@ export function CalendarPage() {
           </div>
           <Calendar
             data={data}
+            full
             now={selectedDate}
             handleEventClick={handleEventClick}
             handleDayClick={handleDayClick}
@@ -286,8 +296,8 @@ export function CalendarPage() {
               setSelectedData(undefined)
             }}
             onSubmit={!selectedData?.id ? createCalendar : updateCalendar}
-            calendars={data}
-            schedule={selectedData}
+            calendars={CALENDAR_TYPES}
+            schedule={selectedCalendarData}
             startDate={selectedData?.start ? new Date(selectedData.start) : new Date()}
             endDate={selectedData?.end ? new Date(selectedData.end) : new Date()}
             schoolType={schoolType}

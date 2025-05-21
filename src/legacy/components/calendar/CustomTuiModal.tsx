@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
+import { Button } from '@/atoms/Button'
+import { cn } from '@/utils/commonUtil'
 import { MergedGroupType } from '@/legacy/container/teacher-chat-user-list'
 import { GroupType } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
@@ -128,12 +130,14 @@ export function CustomTuiModal({
   }, [startDate, endDate])
 
   useEffect(() => {
-    setTitle('')
-    setCalendarId('0')
-    setAttendee(attendees[0].name)
-    setSelectedGrade('')
-    setSelectedGroupType(GroupType.KLASS)
-    setSelectedGroup(null)
+    if (!isOpen) {
+      setTitle('')
+      setCalendarId('0')
+      setAttendee(attendees[0].name)
+      setSelectedGrade('')
+      setSelectedGroupType(GroupType.KLASS)
+      setSelectedGroup(null)
+    }
   }, [isOpen])
 
   return (
@@ -158,7 +162,7 @@ export function CustomTuiModal({
               stroke="currentColor"
               aria-hidden="true"
             >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
@@ -182,7 +186,10 @@ export function CustomTuiModal({
               </span>
               <span className="tui-full-calendar-icon tui-full-calendar-dropdown-arrow" />
             </button>
-            <ul className="tui-full-calendar-dropdown-menu" style={{ zIndex: 1004 }}>
+            <ul
+              className="tui-full-calendar-dropdown-menu"
+              style={{ borderTopWidth: '1px', borderTopStyle: 'solid', borderColor: '#d5d5d5', zIndex: 1004 }}
+            >
               {calendars.map((element, i) => (
                 <li
                   onClick={() => {
@@ -204,19 +211,21 @@ export function CustomTuiModal({
           </div>
           <div
             ref={wrapperSelectAttendeesRef}
-            className={`tui-full-calendar-popup-section tui-full-calendar-dropdown tui-full-calendar-close tui-full-calendar-section-state ml-3 w-56 ${
-              openSelectAttendees && 'tui-full-calendar-open'
-            }`}
+            className={cn(
+              'tui-full-calendar-popup-section tui-full-calendar-dropdown tui-full-calendar-close tui-full-calendar-section-state ml-3',
+              openSelectAttendees && 'tui-full-calendar-open',
+            )}
+            style={{ width: 'auto' }}
           >
             <button
               onClick={() => setOpenSelectAttendees(!openSelectAttendees)}
-              className="tui-full-calendar-button tui-full-calendar-dropdown-button tui-full-calendar-popup-section-item flex w-56 items-center justify-between text-left"
+              className="tui-full-calendar-button tui-full-calendar-dropdown-button tui-full-calendar-popup-section-item flex items-center justify-between text-left"
             >
               <span className="tui-full-calendar-icon tui-full-calendar-ic-state" />
               <span
                 id="tui-full-calendar-schedule-state"
                 className="tui-full-calendar-content"
-                style={{ width: '150px' }}
+                style={{ width: '100px' }}
               >
                 {attendees?.find((element) => element.name === attendee)?.name}
               </span>
@@ -233,7 +242,7 @@ export function CustomTuiModal({
                   className="tui-full-calendar-popup-section-item tui-full-calendar-dropdown-menu-item"
                 >
                   <span className="tui-full-calendar-icon tui-full-calendar-none" />
-                  <span className="tui-full-calendar-content" style={{ width: '150px' }}>
+                  <span className="tui-full-calendar-content" style={{ width: '100px' }}>
                     {element?.name}
                   </span>
                 </li>
@@ -243,13 +252,14 @@ export function CustomTuiModal({
           {calendarId === calendars[0]?.id && attendee === attendees[1]?.name && (
             <div
               ref={wrapperSelectGradeRef}
-              className={`tui-full-calendar-popup-section tui-full-calendar-dropdown tui-full-calendar-close tui-full-calendar-section-state ml-3 w-40 ${
-                openSelectGrade && 'tui-full-calendar-open'
-              }`}
+              className={cn(
+                'tui-full-calendar-popup-section tui-full-calendar-dropdown tui-full-calendar-close tui-full-calendar-section-state ml-3',
+                openSelectGrade && 'tui-full-calendar-open',
+              )}
             >
               <button
                 onClick={() => setOpenSelectGrade(!openSelectGrade)}
-                className="tui-full-calendar-button tui-full-calendar-dropdown-button tui-full-calendar-popup-section-item flex w-40 items-center justify-between text-left"
+                className="tui-full-calendar-button tui-full-calendar-dropdown-button tui-full-calendar-popup-section-item flex items-center justify-between text-left"
               >
                 <div className="flex items-center gap-1">
                   <span className="tui-full-calendar-icon tui-full-calendar-ic-user-b" />
@@ -291,9 +301,11 @@ export function CustomTuiModal({
             <div className="flex">
               <div
                 ref={wrapperSelectGroupTypeRef}
-                className={`tui-full-calendar-popup-section tui-full-calendar-dropdown tui-full-calendar-close tui-full-calendar-section-state ml-3 w-40 ${
-                  openSelectGroupType && 'tui-full-calendar-open'
-                }`}
+                className={cn(
+                  'tui-full-calendar-popup-section tui-full-calendar-dropdown tui-full-calendar-close tui-full-calendar-section-state ml-3',
+                  openSelectGroupType && 'tui-full-calendar-open',
+                )}
+                style={{ width: 'auto' }}
               >
                 <button
                   onClick={() => setOpenSelectGroupType(!openSelectGroupType)}
@@ -336,17 +348,19 @@ export function CustomTuiModal({
               {selectedGroupType && (
                 <div
                   ref={wrapperSelectGroupRef}
-                  className={`tui-full-calendar-popup-section tui-full-calendar-dropdown tui-full-calendar-close tui-full-calendar-section-state ml-3 w-48 ${
-                    openSelectGroup && 'tui-full-calendar-open'
-                  }`}
+                  className={cn(
+                    'tui-full-calendar-popup-section tui-full-calendar-dropdown tui-full-calendar-close tui-full-calendar-section-state ml-3',
+                    openSelectGroup && 'tui-full-calendar-open',
+                  )}
+                  style={{ width: 'auto' }}
                 >
                   <button
                     onClick={() => setOpenSelectGroup(!openSelectGroup)}
-                    className="tui-full-calendar-button tui-full-calendar-dropdown-button tui-full-calendar-popup-section-item flex w-48 items-center justify-between text-left"
+                    className="tui-full-calendar-button tui-full-calendar-dropdown-button tui-full-calendar-popup-section-item flex items-center justify-between text-left"
                   >
                     <div className="flex items-center gap-1">
                       <span className="tui-full-calendar-icon tui-full-calendar-ic-user-b" />
-                      <span className="tui-full-calendar-content" style={{ width: '150px' }}>
+                      <span className="tui-full-calendar-content" style={{ width: '100px' }}>
                         {selectedGroup?.name || '그룹 선택'}
                       </span>
                     </div>
@@ -365,11 +379,7 @@ export function CustomTuiModal({
                           className="tui-full-calendar-popup-section-item tui-full-calendar-dropdown-menu-item"
                         >
                           <span className="tui-full-calendar-icon tui-full-calendar-ic-user-b" />
-                          <span
-                            className="tui-full-calendar-content block truncate"
-                            style={{ width: '130px', minHeight: '20px' }}
-                            title={group.name}
-                          >
+                          <span className="tui-full-calendar-content block truncate" title={group.name}>
                             {group.name}
                           </span>
                         </li>
@@ -408,8 +418,8 @@ export function CustomTuiModal({
             onChange={(e) => setEndAt(e.target.value)}
           />
         </div>
-        <div className="tui-full-calendar-section-button-save">
-          <button
+        <div className="flex justify-end">
+          <Button
             children="저장"
             onClick={() => {
               if (!title) {
@@ -450,7 +460,6 @@ export function CustomTuiModal({
                 onSubmit(event)
               }
             }}
-            className="tui-full-calendar-button tui-full-calendar-confirm tui-full-calendar-popup-save"
           />
         </div>
       </div>

@@ -8,7 +8,7 @@ interface LnbCalendarsItemProps {
 
 export function LnbCalendarsItem({ value, checked, color, text, onClick }: LnbCalendarsItemProps) {
   return (
-    <div className="lnb-calendars-item" onClick={onClick}>
+    <div onClick={onClick}>
       <label>
         <input type="checkbox" className="tui-full-calendar-checkbox-round" value={value} checked={checked} />
         <span style={{ borderColor: color, backgroundColor: color }}></span>

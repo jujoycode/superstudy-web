@@ -1,5 +1,5 @@
-import { cn } from '@/utils/commonUtil'
 import { FC } from 'react'
+import { cn } from '@/utils/commonUtil'
 
 interface CustomTuiDetailModalProps {
   title: string
@@ -19,7 +19,7 @@ export const CustomTuiDetailModal: FC<CustomTuiDetailModalProps> = ({
   onDelete,
 }) => {
   return (
-    <div className="tui-full-calendar-floating-layer tui-view-13 inset-[50%]">
+    <div className="tui-full-calendar-floating-layer tui-view-13 absolute inset-[50%] z-20">
       <div className="tui-full-calendar-popup tui-full-calendar-popup-detail translate-[-50%]">
         <div className="tui-full-calendar-popup-container">
           <div className="tui-full-calendar-popup-section tui-full-calendar-section-header">

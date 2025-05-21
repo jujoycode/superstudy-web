@@ -1,4 +1,4 @@
-import { EventClickArg, EventInput } from '@fullcalendar/core/index.js'
+import { EventClickArg, EventContentArg, EventInput } from '@fullcalendar/core/index.js'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import FullCalendar from '@fullcalendar/react'
@@ -37,7 +37,7 @@ interface CalendarProps {
 export function Calendar({
   data,
   className = '',
-  full = false,
+  full = true,
   width = 500,
   aspectRatio = 1,
   now = new Date(),
@@ -59,21 +59,35 @@ export function Calendar({
   }
   const widthClass = full ? 'w-full' : `w-[${width}px]`
 
+  function renderEventContent(eventInfo: EventContentArg) {
+    return (
+      <span
+        className="w-full cursor-pointer truncate px-1 text-[12px] text-white"
+        style={{ backgroundColor: eventInfo.backgroundColor, borderColor: eventInfo.backgroundColor }}
+      >
+        {eventInfo.event.title}
+      </span>
+    )
+  }
+
   return (
-    <div className={clsx(widthClass, className)}>
+    <div className={clsx('sunday-red', widthClass, className)}>
       <FullCalendar
         aspectRatio={aspectRatio}
         plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         headerToolbar={false}
         ref={calendarRef}
+        expandRows
         events={data}
         locale="ko"
         navLinks={true}
         nowIndicator={true}
         eventClick={handleEventClick}
         navLinkDayClick={handleDayClick}
-        eventContent={(eventInfo) => <>{eventInfo.event.title}</>}
+        eventContent={renderEventContent}
+        dayMaxEvents={2}
+        moreLinkContent={(args) => `+${args.num} more`}
       />
     </div>
   )
