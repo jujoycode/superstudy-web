@@ -204,7 +204,7 @@ export function CanteenPage() {
               </small>
             )}
           </div>
-          <div className="bg-gray-8 h-16 w-16 rounded-full">
+          <div className="h-16 w-16 rounded-full bg-gray-700">
             <Link className="flex h-full w-full flex-col items-center justify-center" to={'/student/timetable'}>
               <ClockIcon />
               <div className="text-sm text-white">시간표</div>
