@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useUserStore } from '@/stores/user'
 import { Role } from '@/legacy/generated/model'
 
@@ -54,24 +54,31 @@ const PERMISSION_MAP: Record<PathKey, (permission?: TeacherPermission, user?: Us
 export function AdminGuard({ children }: Props) {
   const { me } = useUserStore()
   const location = useLocation()
+  const navigate = useNavigate()
   const path = Object.keys(PERMISSION_MAP).find((p) => location.pathname.startsWith(p)) as PathKey | undefined
-  const hasPermission = !path || PERMISSION_MAP[path](me?.teacherPermission, me)
 
-  if (me?.role === Role.ADMIN) {
-    return children
+  // Role.ADMIN인 경우 /admin/school으로 리다이렉트
+  if (me?.role === Role.ADMIN && location.pathname === '/admin') {
+    navigate('/admin/school', { replace: true })
   }
 
-  if (!hasPermission && location.pathname !== '/admin') {
-    return <Navigate to="/admin" replace />
-  }
+  // Role.ADMIN이 아닌 경우 권한 체크
+  if (me?.role !== Role.ADMIN) {
+    // /admin 경로에서 권한이 있는 첫 번째 페이지로 리다이렉트
+    if (location.pathname === '/admin') {
+      const redirectPath = (Object.keys(PERMISSION_MAP) as PathKey[]).find((key) =>
+        PERMISSION_MAP[key](me?.teacherPermission, me),
+      )
 
-  if (location.pathname === '/admin') {
-    const redirectPath = (Object.keys(PERMISSION_MAP) as PathKey[]).find((key) =>
-      PERMISSION_MAP[key](me?.teacherPermission, me),
-    )
+      if (redirectPath) {
+        navigate(redirectPath, { replace: true })
+      }
+      navigate('/', { replace: true })
+    }
 
-    if (redirectPath) {
-      return <Navigate to={redirectPath} replace />
+    // 특정 관리자 페이지 접근 시 권한 체크
+    if (path && !PERMISSION_MAP[path](me?.teacherPermission, me)) {
+      navigate('/admin', { replace: true })
     }
   }
 

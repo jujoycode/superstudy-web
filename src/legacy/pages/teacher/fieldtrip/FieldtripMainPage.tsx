@@ -1,6 +1,6 @@
 import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
 
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
@@ -366,10 +366,7 @@ export function FieldtripMainPage() {
           <div className="h-screen-18 overflow-y-auto pb-10 md:pb-0">
             {data?.items
               ?.sort((a, b) => compareFieldTrips(a, b, frontSortType, sortOrder))
-              .map(
-                (fieldtrip) =>
-                  me?.role && <FieldtripCard key={fieldtrip.id} fieldtrip={fieldtrip} type={'fieldtrip'} />,
-              )}
+              .map((fieldtrip) => <FieldtripCard key={fieldtrip.id} fieldtrip={fieldtrip} type={'fieldtrip'} />)}
           </div>
         )}
         {data && data.total > limit && (
@@ -386,7 +383,8 @@ export function FieldtripMainPage() {
       </div>
       {me?.school && (
         <div className="col-span-3 bg-gray-50 md:p-6">
-          <Routes>
+          <Outlet context={{ setOpen, setFieldtripId, setAgreeAll, me }} />
+          {/* <Routes>
             <Route
               path="/teacher/fieldtrip/:id"
               Component={() => (
@@ -408,7 +406,7 @@ export function FieldtripMainPage() {
                 // />
               )}
             />
-          </Routes>
+          </Routes> */}
         </div>
       )}
       <SuperModal

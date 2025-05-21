@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useOutletContext, useParams } from 'react-router'
 
 import { useUserStore } from '@/stores/user'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
@@ -24,13 +24,14 @@ interface OutingDetailPageProps {
   isLoading: boolean
 }
 
-export function OutingDetailPage({
-  userRole,
-  setOpen,
-  setOutingId,
-  setAgreeAll,
-  isLoading: isLoadingProps,
-}: OutingDetailPageProps) {
+export function OutingDetailPage() {
+  const {
+    isLoading: isLoadingProps,
+    setOutingId,
+    setOpen,
+    setAgreeAll,
+    userRole,
+  } = useOutletContext<OutingDetailPageProps>()
   const { id } = useParams<{ id: string }>()
   const { me } = useUserStore()
   const [changeMode, setChangeMode] = useState(false)

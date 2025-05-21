@@ -1,6 +1,6 @@
 import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
-import { Link, Route, Routes, useLocation } from 'react-router'
+import { Link, Outlet, Route, Routes, useLocation } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
@@ -322,7 +322,8 @@ export function OutingPage() {
         </div>
       </div>
       <div className="col-span-3 bg-gray-50 md:h-screen md:overflow-y-auto">
-        <Routes>
+        <Outlet context={{ isLoading, setOutingId, setOpen, setAgreeAll, userRole }} />
+        {/* <Routes>
           <Route path="/teacher/outing/add" Component={() => <OutingAddPage />} />
           <Route
             path="/teacher/outing/:id"
@@ -337,7 +338,7 @@ export function OutingPage() {
               />
             )}
           />
-        </Routes>
+        </Routes> */}
       </div>
       <SuperModal
         modalOpen={open}

@@ -2,7 +2,7 @@ import { cn } from '@/utils/commonUtil'
 import { t } from 'i18next'
 import { concat } from 'lodash'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router'
+import { Outlet, Route, Routes, useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
@@ -481,7 +481,8 @@ export function AbsentPage() {
       </div>
 
       <div className="col-span-3 bg-gray-50 md:overflow-y-auto">
-        <Routes>
+        <Outlet context={{ setOpen, setAbsentId, setAgreeAll, me, userId: me?.id }} />
+        {/* <Routes>
           <Route path="/teacher/absent/add" element={<AbsentAddPage />} />
           <Route
             path={`/teacher/absent/:id`}
@@ -495,7 +496,7 @@ export function AbsentPage() {
               />
             }
           />
-        </Routes>
+        </Routes> */}
       </div>
       <SuperModal
         modalOpen={open}

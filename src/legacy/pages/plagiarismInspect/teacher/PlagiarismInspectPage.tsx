@@ -1,5 +1,6 @@
 import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
 
 import { Blank } from '@/legacy/components/common'
 import FileUploadInspector from '@/legacy/components/ib/plagiarismInspect/FileUploadInspector'
@@ -17,15 +18,9 @@ interface PlagiarismInspectPageProps {
   isLoading: boolean
 }
 
-function PlagiarismInspectPage({
-  showInspector,
-  selectedType,
-  data,
-  onShowInspector,
-  onBack,
-  onFileUpload,
-  isLoading,
-}: PlagiarismInspectPageProps) {
+function PlagiarismInspectPage() {
+  const { showInspector, selectedType, data, onShowInspector, onBack, onFileUpload, isLoading } =
+    useOutletContext<PlagiarismInspectPageProps>()
   // 파일 데이터 상태 관리
   const [fileData, setFileData] = useState<File[]>([])
 

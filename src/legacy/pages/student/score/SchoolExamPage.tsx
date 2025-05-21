@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import { useOutletContext } from 'react-router-dom'
 import { ScoreBottomSheet } from '@/legacy/components/bottomSheet/ScoreBottomSheet'
 import { MobileBlank } from '@/legacy/components/common/MobileBlank'
 import { FinalScoreTable } from '@/legacy/components/score/mobile/FinalScoreTable'
@@ -18,7 +19,8 @@ export interface SchoolExamParams {
   step: string | number
 }
 
-export function SchoolExamPage({ studentId }: SchoolExamPageProps) {
+export function SchoolExamPage() {
+  const { studentId } = useOutletContext<{ studentId: number }>()
   const { data, isLoading } = useSchoolExamScoreByParent(studentId, 'SCHOOL')
   const [params, setParams] = useState<SchoolExamParams | undefined>()
 

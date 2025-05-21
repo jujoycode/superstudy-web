@@ -1,6 +1,6 @@
+import { Outlet } from 'react-router-dom'
 import { useUserStore } from '@/stores/user'
 import { BackButton, TopNavbar } from '@/legacy/components/common'
-import { StudyInfoCard2 } from '@/legacy/components/studentCard/StudyInfoCard2'
 import { Role } from '@/legacy/generated/model'
 
 export function MyStudyPage() {
@@ -18,8 +18,7 @@ export function MyStudyPage() {
         }
       />
 
-      {/* <StudyInfoCard studentId={me.role === Role.PARENT ? child?.id : me.id} isCard={false} /> */}
-      <StudyInfoCard2 studentId={me.role === Role.PARENT ? child?.id : me.id} isCard={false} />
+      <Outlet context={{ studentId: me.role === Role.PARENT ? child?.id : me.id }} />
     </div>
   )
 }

@@ -28,10 +28,15 @@ import { TeacherDetailsPage } from '@/legacy/pages/admin/teacher/TeacherDetailsP
 import { TeacherEditPage } from '@/legacy/pages/admin/teacher/TeacherEditPage'
 import { TeacherPage } from '@/legacy/pages/admin/teacher/TeacherPage'
 import { TimetablePage } from '@/legacy/pages/admin/timetable/TimetablePage'
+import { AdminGuard } from '../guard/AdminGuard'
 
 export const adminRoutes = {
   path: '/admin',
-  element: <AdminMainPage />,
+  element: (
+    <AdminGuard>
+      <AdminMainPage />
+    </AdminGuard>
+  ),
   children: [
     { path: 'school', element: <SchoolPage /> },
 

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams } from 'react-router'
+import { useOutletContext, useParams } from 'react-router'
 import { useUserStore } from '@/stores/user'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Divider, Section } from '@/legacy/components/common'
@@ -14,7 +14,8 @@ interface GroupDetailPageProps {
   selectedGroup?: TeacharAllGroup
 }
 
-export function GroupDetailPage({ selectedGroup }: GroupDetailPageProps) {
+export function GroupDetailPage() {
+  const { selectedGroup } = useOutletContext<GroupDetailPageProps>()
   const { id } = useParams<{ id: string }>()
   const { t, currentLang } = useLanguage()
   const { me } = useUserStore()

@@ -1,6 +1,6 @@
 import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
-import { Link, Route, Routes, useLocation, useParams } from 'react-router'
+import { Link, Outlet, Route, Routes, useLocation, useParams } from 'react-router'
 
 import { twMerge } from 'tailwind-merge'
 
@@ -330,33 +330,42 @@ export const CASMainPage = () => {
                   {data === undefined ? (
                     <div>계획서를 불러올 수 없습니다.</div>
                   ) : (
-                    <Routes>
-                      <Route
-                        path="/teacher/ib/cas/:id/plan"
-                        element={
-                          data.ibType === 'CAS_NORMAL' ? (
-                            <TeacherActivityPlan data={data} refetch={refetch} hasPermission={hasPermission} />
-                          ) : data.ibType === 'CAS_PROJECT' ? (
-                            <ProjectActivityPlan
-                              data={data}
-                              refetch={refetch}
-                              type="teacher"
-                              setEdit={() => {}}
-                              hasPermission={hasPermission}
-                            />
-                          ) : (
-                            <div>잘못된 IB 타입입니다.</div>
-                          )
-                        }
-                      />
-                      <Route
-                        path="/teacher/ib/cas/:id/activitylog/:activitylogId"
-                        element={
-                          <AcitivityLogDetail type="teacher" status={data.status} hasPermission={hasPermission} />
-                        }
-                      />
-                      <Route path="/teacher/ib/cas/:id/activitylog" element={<TeahcerActivityLogList data={data} />} />
-                    </Routes>
+                    <Outlet
+                      context={{
+                        data,
+                        refetch,
+                        hasPermission,
+                        setEdit: () => {},
+                        type: 'teacher',
+                      }}
+                    />
+                    // <Routes>
+                    //   <Route
+                    //     path="/teacher/ib/cas/:id/plan"
+                    //     element={
+                    //       data.ibType === 'CAS_NORMAL' ? (
+                    //         <TeacherActivityPlan data={data} refetch={refetch} hasPermission={hasPermission} />
+                    //       ) : data.ibType === 'CAS_PROJECT' ? (
+                    //         <ProjectActivityPlan
+                    //           data={data}
+                    //           refetch={refetch}
+                    //           type="teacher"
+                    //           setEdit={() => {}}
+                    //           hasPermission={hasPermission}
+                    //         />
+                    //       ) : (
+                    //         <div>잘못된 IB 타입입니다.</div>
+                    //       )
+                    //     }
+                    //   />
+                    //   <Route
+                    //     path="/teacher/ib/cas/:id/activitylog/:activitylogId"
+                    //     element={
+                    //       <AcitivityLogDetail type="teacher" status={data.status} hasPermission={hasPermission} />
+                    //     }
+                    //   />
+                    //   <Route path="/teacher/ib/cas/:id/activitylog" element={<TeahcerActivityLogList data={data} />} />
+                    // </Routes>
                   )}
                 </div>
               </div>

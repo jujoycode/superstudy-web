@@ -1,6 +1,6 @@
 import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
-import { Link, Route, Routes, useLocation } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 import { useHistory } from '@/hooks/useHistory'
 import { useSchoolStore } from '@/stores/school'
@@ -9,13 +9,9 @@ import { Typography } from '@/legacy/components/common/Typography'
 import IBLayout from '@/legacy/components/ib/IBLayout'
 import FileUploadInspector from '@/legacy/components/ib/plagiarismInspect/FileUploadInspector'
 import InputInspector from '@/legacy/components/ib/plagiarismInspect/InputInspector'
-import TeacherIBOverview from '@/legacy/components/ib/TeacherIBOverview'
-import TeacherIBPortfolioList from '@/legacy/components/ib/TeacherIBPortfolioList'
-import TeacherIBStatus from '@/legacy/components/ib/TeacherIBStatus'
 import { useCoordinatorCheck } from '@/legacy/container/ib-coordinator'
 import { useGetPlagiarismInspectList } from '@/legacy/container/plagiarism-inspector'
 import type { ResponseCopykillerResponseDto } from '@/legacy/generated/model'
-import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/teacher/PlagiarismInspectPage'
 
 export default function IBTeacherMainPage() {
   const { push } = useHistory()
@@ -181,7 +177,18 @@ export default function IBTeacherMainPage() {
               }
               bottomContent={
                 <div className="flex h-full items-center">
-                  <Routes>
+                  <Outlet
+                    context={{
+                      showInspector,
+                      selectedType,
+                      data: plagiarismInspectList.items,
+                      onShowInspector: handleShowInspector,
+                      onBack: handleBack,
+                      onFileUpload: handleFileUpload,
+                      isLoading,
+                    }}
+                  />
+                  {/* <Routes>
                     <Route path="/teacher/project" element={<TeacherIBStatus />} />
                     <Route path="/teacher/project/overview" element={<TeacherIBOverview />} />
                     <Route path="/teacher/project/portfolio" element={<TeacherIBPortfolioList />} />
@@ -199,7 +206,7 @@ export default function IBTeacherMainPage() {
                         />
                       }
                     />
-                  </Routes>
+                  </Routes> */}
                 </div>
               }
               bottomBgColor={cn(

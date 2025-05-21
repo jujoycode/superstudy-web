@@ -1,4 +1,4 @@
-import { useParams } from 'react-router'
+import { useOutletContext, useParams } from 'react-router'
 
 import { useUserStore } from '@/stores/user'
 import { ErrorBlank } from '@/legacy/components'
@@ -23,7 +23,8 @@ interface BoardAddProps {
   groups?: Group[]
 }
 
-export function BoardAddPage({ homeKlass, groups }: BoardAddProps) {
+export function BoardAddPage() {
+  const { homeKlass, groups } = useOutletContext<BoardAddProps>()
   const { id } = useParams<{ id: string }>()
   const { me: meRecoil } = useUserStore()
   const { t } = useLanguage()

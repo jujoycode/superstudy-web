@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams } from 'react-router'
+import { useOutletContext, useParams } from 'react-router'
 import Viewer from 'react-viewer'
 import { useHistory } from '@/hooks/useHistory'
 import { useUserStore } from '@/stores/user'
@@ -18,7 +18,8 @@ interface BoardDetailPageProps {
   limit: number
 }
 
-export function BoardDetailPage({ page, limit }: BoardDetailPageProps) {
+export function BoardDetailPage() {
+  const { page, limit } = useOutletContext<BoardDetailPageProps>()
   const { push } = useHistory()
   const { id } = useParams<{ id: string }>()
   const { me } = useUserStore()

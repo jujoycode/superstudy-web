@@ -1,4 +1,8 @@
+import AcitivityLogDetail from '@/legacy/components/ib/cas/AcitivityLogDetail'
+import ActivityLogList from '@/legacy/components/ib/cas/ActivityLogList'
 import CASPortfolio from '@/legacy/components/ib/cas/CASPortfolio'
+import StudentIBStatus from '@/legacy/components/ib/StudentIBStatus'
+import { CASDetailPage } from '@/legacy/pages/ib/student/CAS/CASDetailPage'
 import CASInterviewDetailPage from '@/legacy/pages/ib/student/CAS/CASInterviewDetailPage'
 import { CASMainPage } from '@/legacy/pages/ib/student/CAS/CASMainPage'
 import { CASReflectionDiaryDetailPage } from '@/legacy/pages/ib/student/CAS/CASReflectionDiaryDetailPage'
@@ -27,31 +31,46 @@ export const ibRoutes = {
   element: <IBStudentPage />,
   children: [
     // IB 메인
-    { index: true, element: <IBStudentMainPage /> },
-
-    // CAS 포트폴리오
     {
-      path: 'portfolio',
+      path: '',
+      element: <IBStudentMainPage />,
       children: [
-        { index: true, element: <CASPortfolio /> },
-        { path: 'interview/:id/:qnaId', element: <CASInterviewDetailPage /> },
-        { path: 'reflection-diary/:id', element: <CASReflectionDiaryDetailPage /> },
+        { index: true, element: <StudentIBStatus /> },
+        {
+          path: 'portfolio',
+          element: <CASPortfolio />,
+        },
+      ],
+    },
+    {
+      path: 'portfolio/interview/:id/:qnaId',
+      element: <CASInterviewDetailPage />,
+    },
+    {
+      path: 'portfolio/reflection-diary/:id',
+      element: <CASReflectionDiaryDetailPage />,
+    },
+    // CAS 상세
+    {
+      path: 'cas/:id',
+      element: <CASMainPage />,
+      children: [
+        { path: 'plan', element: <CASDetailPage /> },
+        { path: 'activitylog/:activitylogId', element: <AcitivityLogDetail /> },
+        { path: 'activitylog', element: <ActivityLogList /> },
       ],
     },
 
-    // CAS 상세
-    { path: 'cas/:id', element: <CASMainPage /> },
-
     // EE
     {
-      path: 'ee/:id',
+      path: 'ee',
       children: [
-        { index: true, element: <EEMainPage /> },
-        { path: 'essay/:essayId', element: <EeEssayDetailPage /> },
-        { path: 'interview/:qnaId', element: <InterviewDetailPage /> },
-        { path: 'proposal/:proposalId', element: <ProposalDetailPage /> },
-        { path: 'rppf/:rppfId', element: <RPPFDetailPage /> },
-        { path: 'rrs/:rrsId', element: <RRSDetailPage /> },
+        { path: ':id', element: <EEMainPage /> },
+        { path: ':id/essay/:essayId', element: <EeEssayDetailPage /> },
+        { path: ':id/interview/:qnaId', element: <InterviewDetailPage /> },
+        { path: ':id/proposal/:proposalId', element: <ProposalDetailPage /> },
+        { path: ':id/rppf/:rppfId', element: <RPPFDetailPage /> },
+        { path: ':id/rrs/:rrsId', element: <RRSDetailPage /> },
       ],
     },
 

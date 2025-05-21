@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { useParams } from 'react-router'
+import { useOutletContext, useParams } from 'react-router'
 
 import { SuperModal } from '@/legacy/components'
 import { Blank } from '@/legacy/components/common'
@@ -15,7 +15,8 @@ interface FieldtripNoticeDetailPageProps {
   school?: School
 }
 
-export function FieldtripNoticeDetailPage({ school }: FieldtripNoticeDetailPageProps) {
+export function FieldtripNoticeDetailPage() {
+  const { school } = useOutletContext<FieldtripNoticeDetailPageProps>()
   const { id = '' } = useParams<{ id: string }>()
   const { pushWithQueryParams } = useQueryParams()
   const ref = useRef(null)

@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useState } from 'react'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Outlet, Route, Routes, useLocation } from 'react-router-dom'
 
 import { SelectMenus } from '@/legacy/components'
 import { BoardCard } from '@/legacy/components/board/BoardCard'
@@ -16,6 +16,7 @@ import { BoardDetailPage } from './BoardDetailPage'
 
 export function BoardsPage() {
   const { t } = useLanguage()
+  const location = useLocation()
   const filters = [t('title'), t('author')]
   const { groups, selectedGroup, homeKlass, setSelectedGroup } = useTeacherKlassGroup()
   const { boards, selectedCategory, isLoading, setSelectedCategory, unReadBoardList } = useTeacherBoard(
@@ -28,6 +29,12 @@ export function BoardsPage() {
     setSearchWriter('')
     setSearchTitle('')
     setFilter(e.target.value)
+  }
+
+  const getKeyFromPath = () => {
+    if (location.pathname.includes('/add')) return 'add'
+    if (location.pathname.includes('/edit')) return 'edit'
+    return 'view'
   }
 
   return (
@@ -103,17 +110,7 @@ export function BoardsPage() {
       </div>
 
       <div className="scroll-box col-span-4 h-screen bg-gray-50 p-0 md:overflow-y-scroll md:p-6">
-        <Routes>
-          <Route
-            path="/teacher/board/add"
-            Component={() => <BoardAddPage key={'add'} homeKlass={homeKlass} groups={groups} />}
-          />
-          <Route
-            path="/teacher/board/:id/edit"
-            Component={() => <BoardAddPage key={'edit'} homeKlass={homeKlass} groups={groups} />}
-          />
-          <Route path="/teacher/board/:id" Component={() => <BoardDetailPage page={1} limit={1} />} />
-        </Routes>
+        <Outlet context={{ homeKlass, groups, key: getKeyFromPath(), page: 1, limit: 1 }} />
       </div>
     </>
   )

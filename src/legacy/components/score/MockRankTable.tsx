@@ -72,7 +72,7 @@ const MockRankTable: React.FC<{ scores: any[]; isLoading: boolean }> = ({ scores
   const SubjectScore = useMemo(() => _.groupBy(rawScores, getSubjectName), [rawScores, getSubjectName])
 
   const calculateRankSummary = useCallback((scores: any[]) => {
-    const ranks = scores.map((score) => score.rank).filter((rank) => rank !== undefined)
+    const ranks = scores.map((score) => score.rank).filter((rank) => rank !== undefined && !isNaN(Number(rank)))
     if (ranks.length === 0) {
       return { maxRank: '-', minRank: '-', avgRank: '-' }
     }
@@ -214,7 +214,7 @@ const MockRankTable: React.FC<{ scores: any[]; isLoading: boolean }> = ({ scores
                       index === Object.keys(SubjectScore).length - 1 ? 'border-y border-l' : 'border'
                     }`}
                   >
-                    {SubjectScore[subject]?.[0]?.minRank !== undefined && SubjectScore[subject][0].minRank !== null
+                    {typeof SubjectScore[subject]?.[0]?.minRank === 'number'
                       ? SubjectScore[subject][0].minRank.toFixed(1)
                       : '-'}
                   </td>
@@ -242,7 +242,7 @@ const MockRankTable: React.FC<{ scores: any[]; isLoading: boolean }> = ({ scores
                       index === Object.keys(SubjectScore).length - 1 ? 'border-y border-l' : 'border'
                     }`}
                   >
-                    {SubjectScore[subject]?.[0]?.avgRank !== undefined && SubjectScore[subject][0].avgRank !== null
+                    {typeof SubjectScore[subject]?.[0]?.avgRank === 'number'
                       ? SubjectScore[subject][0].avgRank.toFixed(1)
                       : '-'}
                   </td>
@@ -270,7 +270,7 @@ const MockRankTable: React.FC<{ scores: any[]; isLoading: boolean }> = ({ scores
                       index === Object.keys(SubjectScore).length - 1 ? 'border-y border-l' : 'border'
                     }`}
                   >
-                    {SubjectScore[subject]?.[0]?.maxRank !== undefined && SubjectScore[subject][0].maxRank !== null
+                    {typeof SubjectScore[subject]?.[0]?.maxRank === 'number'
                       ? SubjectScore[subject][0].maxRank.toFixed(1)
                       : '-'}
                   </td>

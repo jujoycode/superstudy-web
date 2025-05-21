@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 
+import { useOutletContext } from 'react-router-dom'
 import { ReactComponent as DownArrow } from '@/assets/icons/chevron-down.svg'
 import { ReactComponent as Plus } from '@/assets/svg/plus.svg'
 import { Blank, Select } from '@/legacy/components/common'
@@ -19,7 +20,9 @@ interface CounselingCardProps {
   groupId: number
 }
 
-export default function Counselingv3Card({ studentId }: CounselingCardProps) {
+export default function Counselingv3Card() {
+  const { studentId } = useOutletContext<CounselingCardProps>()
+
   const { me } = UserContainer.useContext()
   const [page, setPage] = useState(1)
   const [uploading, setUploading] = useState(false)

@@ -28,7 +28,7 @@ const ROLE_ACCESS_PATTERNS: Record<Role, RegExp[]> = {
 export function getDefaultPath(role: Role) {
   switch (role) {
     case Role.ADMIN: {
-      return '/admin'
+      return '/teacher'
     }
 
     case Role.USER:

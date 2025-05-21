@@ -11,10 +11,11 @@ import {
   Title,
   Tooltip,
 } from 'chart.js'
-import { cn } from '@/utils/commonUtil'
 import _ from 'lodash'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Chart } from 'react-chartjs-2'
+import { useOutletContext } from 'react-router-dom'
+import { cn } from '@/utils/commonUtil'
 
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
@@ -95,7 +96,8 @@ const transformData = (data: AnalysedExamScore[]) => {
   )
 }
 
-export const ScoreAnalysis = ({ studentId }: ScoreAnalysisProps) => {
+export const ScoreAnalysis = () => {
+  const { studentId } = useOutletContext<{ studentId: string }>()
   return (
     <main className="flex flex-col gap-10">
       <AcademicScore studentId={studentId} />

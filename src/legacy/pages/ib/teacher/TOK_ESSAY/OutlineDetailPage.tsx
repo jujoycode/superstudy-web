@@ -524,7 +524,7 @@ export const OutlineDetailPage = () => {
                         size={40}
                         variant="solid"
                         color="gray100"
-                        onClick={() => history.push(`/ib/student/tok/essay/${id}`, { type: 'OUTLINE' })}
+                        onClick={() => history.push(`/teacher/ib/tok/essay/${id}`, { type: 'OUTLINE' })}
                       >
                         목록 돌아가기
                       </ButtonV2>

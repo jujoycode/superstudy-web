@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Outlet, Route, Routes } from 'react-router-dom'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
 import { useUserStore } from '@/stores/user'
@@ -125,15 +125,7 @@ export function NewsletterPage() {
 
       {/* Desktop V */}
       <div className="bg-gray-50 md:col-span-4 md:overflow-y-auto md:p-6">
-        <Routes>
-          <Route path="/teacher/newsletter/add" Component={NewsletterAddPage} />
-          <Route path="/teacher/newsletter/:id/edit" Component={NewsletterAddPage} />
-          <Route path="/teacher/newsletter/submit/:id" Component={NewsletterSubmitPage} />
-          <Route path="/teacher/newsletter/check/:id" Component={NewsletterCheckPage} />
-          <Route path="/teacher/newsletter/download/:id" Component={NewsletterDownloadPage} />
-          <Route path="/teacher/newsletter/unread-student-download/:id" Component={NewsletterCheckDownloadPage} />
-          <Route path="/teacher/newsletter/:id" Component={() => <NewsletterDetailPage />} />
-        </Routes>
+        <Outlet />
       </div>
     </>
   )

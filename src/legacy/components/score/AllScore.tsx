@@ -1,5 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
+import { cn } from '@/utils/commonUtil'
 
 import { LayeredTabs, Tab } from '@/legacy/components/common/LayeredTabs'
 import SelectBar from '@/legacy/components/common/SelectBar'
@@ -21,7 +22,8 @@ const grades = [
   { id: 2, value: 3, text: '3학년' },
 ]
 
-export const AllScore = ({ studentId, grade: initialGrade }: AllScoreProps) => {
+export const AllScore = () => {
+  const { studentId, grade: initialGrade } = useOutletContext<{ studentId: string; grade: number }>()
   const [type, setType] = useState<ScoreType>('ALL')
   const [grade, setGrade] = useState(initialGrade)
 
