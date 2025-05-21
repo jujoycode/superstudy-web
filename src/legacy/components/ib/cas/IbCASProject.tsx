@@ -245,7 +245,7 @@ export function IbCASProject({
             </div>
             <div className="flex flex-col gap-3">
               <Typography variant="title3" className="font-semibold">
-                활동 일정 및 주기<span className="text-primary-red-800"> *</span>
+                활동 일정 및 주기<span className="text-old-primary-red-800"> *</span>
               </Typography>
               <div className="relative">
                 <div
@@ -293,7 +293,7 @@ export function IbCASProject({
             <div className="flex flex-col gap-3">
               <div className="flex flex-row items-center justify-between">
                 <Typography variant="title3" className="font-semibold">
-                  프로젝트 멤버<span className="text-primary-red-800"> *</span>
+                  프로젝트 멤버<span className="text-old-primary-red-800"> *</span>
                 </Typography>
                 <Typography variant="caption2" className="text-gray-500">
                   프로젝트 멤버를 추가하고 리더를 변경할 수 있습니다.
@@ -377,7 +377,7 @@ export function IbCASProject({
               <div className="flex flex-row items-center justify-between">
                 <Typography variant="title3" className="font-semibold">
                   Strands
-                  <span className="text-primary-red-800"> *</span>
+                  <span className="text-old-primary-red-800"> *</span>
                 </Typography>
                 <Typography variant="caption2" className="text-gray-500">
                   단위 : 시간
@@ -432,7 +432,7 @@ export function IbCASProject({
             </div>
             <div className="flex flex-col gap-3">
               <Typography variant="title3" className="font-semibold">
-                IB 학습자 상<span className="text-primary-red-800">*</span>
+                IB 학습자 상<span className="text-old-primary-red-800">*</span>
               </Typography>
               <Check.Group
                 selectedValues={selectedLearnerProfile}
@@ -453,7 +453,7 @@ export function IbCASProject({
             <div className="flex flex-col gap-3">
               <Typography variant="title3" className="font-semibold">
                 ATL
-                <span className="text-primary-red-800">*</span>
+                <span className="text-old-primary-red-800">*</span>
               </Typography>
               <Check.Group selectedValues={selectedATL} onChange={handleATLChange} className="flex flex-wrap gap-2">
                 {CAS_ATL?.map((item) => (
@@ -470,7 +470,7 @@ export function IbCASProject({
             <div className="flex flex-col gap-3">
               <Typography variant="title3" className="font-semibold">
                 7가지 학습성과
-                <span className="text-primary-red-800">*</span>
+                <span className="text-old-primary-red-800">*</span>
               </Typography>
               <Check.Group selectedValues={selectedIds} onChange={handleGroupChange} className="grid grid-cols-2 gap-3">
                 {CAS_LEARNINGOUTCOME?.map((item) => (
@@ -546,7 +546,7 @@ export function IbCASProject({
             <div className="flex flex-row items-center justify-between">
               <Typography variant="title3" className="font-semibold">
                 단체명(강사명) 및 연락처
-                <span className="text-primary-red-800"> *</span>
+                <span className="text-old-primary-red-800"> *</span>
               </Typography>
               <Typography variant="caption2" className="text-gray-500">
                 외부 단체, 강사와 협력하는 경우 기입해주세요.

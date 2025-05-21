@@ -272,7 +272,7 @@ export const EEProposalDetailPage = () => {
                             {(selectedSubject === '언어와문학' || selectedSubject === '영어B') && (
                               <div className="flex flex-col gap-4">
                                 <Typography variant="title2" className="font-semibold">
-                                  세부 카테고리<span className="text-primary-red-800">*</span>
+                                  세부 카테고리<span className="text-old-primary-red-800">*</span>
                                 </Typography>
                                 <RadioV2.Group className="flex flex-col gap-3">
                                   {selectedSubject === '언어와문학' &&

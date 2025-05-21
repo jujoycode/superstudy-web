@@ -311,7 +311,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                   <div className="flex flex-col gap-4">
                     <Typography variant="title2" className="font-semibold">
                       활동 일정 및 주기
-                      <span className="text-primary-red-800">*</span>
+                      <span className="text-old-primary-red-800">*</span>
                     </Typography>
                     <div className="relative">
                       <div
@@ -360,7 +360,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <div className="flex flex-row items-center justify-between">
                       <Typography variant="title2" className="font-semibold">
                         Strands
-                        <span className="text-primary-red-800">*</span>
+                        <span className="text-old-primary-red-800">*</span>
                       </Typography>
                       <Typography variant="caption2" className="text-gray-500">
                         단위 : 시간
@@ -419,7 +419,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                   </div>
                   <div className="flex flex-col gap-3">
                     <Typography variant="title3" className="font-semibold">
-                      IB 학습자 상<span className="text-primary-red-800">*</span>
+                      IB 학습자 상<span className="text-old-primary-red-800">*</span>
                     </Typography>
                     <Check.Group
                       selectedValues={selectedLearnerProfile}
@@ -440,7 +440,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                   <div className="flex flex-col gap-3">
                     <Typography variant="title3" className="font-semibold">
                       ATL
-                      <span className="text-primary-red-800">*</span>
+                      <span className="text-old-primary-red-800">*</span>
                     </Typography>
                     <Check.Group
                       selectedValues={selectedATL}
@@ -461,7 +461,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                   <div className="flex flex-col gap-4">
                     <Typography variant="title2" className="font-semibold">
                       7가지 학습성과
-                      <span className="text-primary-red-800">*</span>
+                      <span className="text-old-primary-red-800">*</span>
                     </Typography>
                     <Check.Group
                       selectedValues={selectedIds}

@@ -186,7 +186,7 @@ export function IbEeProposal({
           {(selectedSubject === '언어와문학' || selectedSubject === '영어B') && (
             <div className="flex flex-col gap-2 px-[1px]">
               <Typography variant="title3" className="font-semibold text-gray-900">
-                세부 카테고리<span className="text-primary-red-800">*</span>
+                세부 카테고리<span className="text-old-primary-red-800">*</span>
               </Typography>
               <RadioV2.Group
                 selectedValue={watch('category')}

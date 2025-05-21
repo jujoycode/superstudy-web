@@ -73,7 +73,7 @@ const Stepper: React.FC<StepperProps> = ({
           'bg-gray-100': disabled || readonly,
           'cursor-not-allowed': readonly || disabled,
           'cursor-pointer': !readonly && !disabled,
-          'border-primary-red-800': isError,
+          'border-old-primary-red-800': isError,
         })}
         onFocus={!readonly && !disabled ? handleFocus : undefined}
         onBlur={!readonly && !disabled ? handleBlur : undefined}
@@ -128,7 +128,7 @@ const Stepper: React.FC<StepperProps> = ({
         </div>
       </div>
       {isError && (
-        <Typography variant="body3" className="text-primary-red-800">
+        <Typography variant="body3" className="text-old-primary-red-800">
           {errorMessage}
         </Typography>
       )}
