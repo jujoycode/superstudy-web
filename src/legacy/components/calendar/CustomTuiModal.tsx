@@ -103,7 +103,13 @@ export function CustomTuiModal({
   })
 
   useEffect(() => {
-    if (schedule) {
+    if (startAt && endAt) {
+      if (startAt > endAt) setEndAt(startAt)
+    }
+  }, [startAt, endAt])
+
+  useEffect(() => {
+    if (schedule && isOpen) {
       setCalendarId(schedule.calendarId)
       setAttendee(schedule?.attendee)
       setTitle(schedule.title)
@@ -115,12 +121,6 @@ export function CustomTuiModal({
     }
     return () => {}
   }, [schedule, startDate, endDate])
-
-  useEffect(() => {
-    if (startAt && endAt) {
-      if (startAt > endAt) setEndAt(startAt)
-    }
-  }, [startAt, endAt])
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -142,7 +142,7 @@ export function CustomTuiModal({
 
   return (
     <div
-      className={`bg-littleblack fixed inset-0 z-60 flex h-screen w-full items-center justify-center ${
+      className={`bg-littleblack fixed inset-0 z-[10000] flex h-screen w-full items-center justify-center ${
         !isOpen && 'hidden'
       }`}
     >

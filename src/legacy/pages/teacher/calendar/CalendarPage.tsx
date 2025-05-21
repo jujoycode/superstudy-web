@@ -111,10 +111,9 @@ export function CalendarPage() {
   const data: CalendarData[] =
     calendarData?.map((el) => ({
       id: String(el.id),
-      title:
-        (el.group ? `[${el.group.name}]` : '') +
-        el.title +
-        (el.attendee && el.attendee !== '일반' ? `(${el.attendee})` : ''),
+      title: [el.group && `[${el.group.name}] `, el.title, el.attendee && el.attendee !== '일반' && `(${el.attendee})`]
+        .filter((el) => !!el)
+        .join(' '),
       start: el.start,
       end: el.end,
       backgroundColor: CALENDAR_TYPES.find((TYPE) => TYPE.id === el.calendarId)?.bgColor || '',

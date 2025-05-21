@@ -21,7 +21,7 @@ export const CustomTuiDetailModal: FC<CustomTuiDetailModalProps> = ({
   onDelete,
 }) => {
   return (
-    <div className="bg-littleblack fixed inset-0 z-60 flex h-screen w-full items-center justify-center">
+    <div className="bg-littleblack fixed inset-0 z-[10000] flex h-screen w-full items-center justify-center">
       <div className="tui-full-calendar-popup tui-full-calendar-popup-detail">
         <div className="tui-full-calendar-popup-container">
           <div className="flex items-start justify-between">

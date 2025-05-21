@@ -62,7 +62,7 @@ export function Calendar({
   function renderEventContent(eventInfo: EventContentArg) {
     return (
       <span
-        className="w-full cursor-pointer truncate px-1 text-[12px] text-white"
+        className="w-full cursor-pointer truncate px-1 text-[12px] font-bold text-white"
         style={{ backgroundColor: eventInfo.backgroundColor, borderColor: eventInfo.backgroundColor }}
       >
         {eventInfo.event.title}
