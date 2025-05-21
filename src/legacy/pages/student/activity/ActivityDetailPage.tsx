@@ -90,12 +90,12 @@ export function ActivityDetailPage() {
               }}
               className="w-full"
             >
-              <div className="aspect-5/3 rounded bg-gray-50">
+              <div className="aspect-5/3 rounded-sm bg-gray-50">
                 <LazyLoadImage
                   src={`${Constants.imageUrl}${image}`}
                   alt=""
                   loading="lazy"
-                  className="h-full w-full rounded object-cover"
+                  className="h-full w-full rounded-sm object-cover"
                 />
               </div>
             </div>
@@ -105,7 +105,7 @@ export function ActivityDetailPage() {
               <>
                 <div key={pdfFile}>
                   <div className="w-full">
-                    <div className="relative aspect-5/3 rounded bg-gray-50">
+                    <div className="relative aspect-5/3 rounded-sm bg-gray-50">
                       <PdfCard
                         fileUrl={`${Constants.imageUrl}${pdfFile}`}
                         visibleButton
@@ -205,12 +205,12 @@ export function ActivityDetailPage() {
                   }}
                   className="w-full"
                 >
-                  <div className="aspect-5/3 rounded bg-gray-50">
+                  <div className="aspect-5/3 rounded-sm bg-gray-50">
                     <LazyLoadImage
                       src={`${Constants.imageUrl}${image}`}
                       alt=""
                       loading="lazy"
-                      className="h-full w-full rounded object-cover"
+                      className="h-full w-full rounded-sm object-cover"
                     />
                   </div>
                 </div>
@@ -220,7 +220,7 @@ export function ActivityDetailPage() {
                   <>
                     <div key={pdfFile}>
                       <div className="w-full">
-                        <div className="relative aspect-5/3 rounded bg-gray-50">
+                        <div className="relative aspect-5/3 rounded-sm bg-gray-50">
                           <PdfCard
                             fileUrl={`${Constants.imageUrl}${pdfFile}`}
                             visibleButton

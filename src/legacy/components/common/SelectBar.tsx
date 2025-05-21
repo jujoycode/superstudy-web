@@ -103,7 +103,7 @@ const SelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
           onClick={!readonly && !disabled ? () => setShowOptions(!isShowOptions) : undefined}
           onFocus={!readonly && !disabled ? handleFocus : undefined}
           onBlur={!readonly && !disabled ? handleBlur : undefined}
-          className={`flex w-full items-center justify-between gap-2 focus:outline-none ${
+          className={`flex w-full items-center justify-between gap-2 focus:outline-hidden ${
             readonly || disabled ? 'cursor-not-allowed' : 'cursor-pointer'
           }`}
         >

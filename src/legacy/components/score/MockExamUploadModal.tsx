@@ -112,7 +112,7 @@ export function MockExamUploadModal({
   return (
     <div
       className={`bg-littlegray fixed inset-0 z-60 flex h-screen w-full items-center justify-center ${
-        modalOpen ? 'backdrop-blur-sm' : 'hidden'
+        modalOpen ? 'backdrop-blur-xs' : 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
@@ -140,7 +140,7 @@ export function MockExamUploadModal({
                   슈퍼스쿨 모의고사 양식 다운로드
                 </Typography>
               </a>
-              <nav className="flex flex-grow flex-col gap-3 overflow-y-auto">
+              <nav className="flex grow flex-col gap-3 overflow-y-auto">
                 {MONTHS.map((month) => (
                   <button
                     key={month}
@@ -164,7 +164,7 @@ export function MockExamUploadModal({
                   <Icon.CloseFillGray onClick={() => setModalClose()} className="scale-110 cursor-pointer" />
                 </div>
               </div>
-              <div className="flex-grow overflow-y-auto px-6 pb-3">
+              <div className="grow overflow-y-auto px-6 pb-3">
                 {documentFiles.length > 0 ? (
                   <div className="scroll-box flex w-full flex-col gap-4 overflow-y-auto rounded-lg bg-white">
                     <Select.lg
@@ -186,7 +186,7 @@ export function MockExamUploadModal({
                             <div
                               className={`flex h-12 w-full items-center justify-between rounded-lg border bg-white px-4 py-3`}
                             >
-                              <div className={`flex h-8 items-center space-x-2 rounded px-3 py-1`}>
+                              <div className={`flex h-8 items-center space-x-2 rounded-sm px-3 py-1`}>
                                 <div className={`text-15 w-full break-words whitespace-pre-wrap`}>{value.name}</div>
                               </div>
                               <div className="text-lightpurple-4 flex min-w-max items-center justify-center bg-white px-2">

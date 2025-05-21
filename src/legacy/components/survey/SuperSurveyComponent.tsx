@@ -106,7 +106,7 @@ export function SuperSurveyComponent({
             return (
               <div className="flex w-full flex-col space-y-2" key={question.id}>
                 <div>
-                  <span className="w-10 flex-shrink-0 text-sm text-red-400">{question.required ? '[필수]' : ''}</span>
+                  <span className="w-10 shrink-0 text-sm text-red-400">{question.required ? '[필수]' : ''}</span>
                   <div className="w-full text-lg font-bold break-words whitespace-normal">{question.title}</div>
                 </div>
                 {value && (
@@ -123,7 +123,7 @@ export function SuperSurveyComponent({
             return (
               <div className="flex w-full flex-col space-y-2" key={question.id}>
                 <div>
-                  <span className="w-10 flex-shrink-0 text-sm text-red-400">{question.required ? '[필수]' : ''}</span>
+                  <span className="w-10 shrink-0 text-sm text-red-400">{question.required ? '[필수]' : ''}</span>
                   <div className="w-full text-lg font-bold break-words whitespace-normal">{question.title}</div>
                 </div>
                 {value &&
@@ -159,7 +159,7 @@ export function SuperSurveyComponent({
             return (
               <div className="flex w-full flex-col space-y-2" key={question.id}>
                 <div>
-                  <span className="w-10 flex-shrink-0 text-sm text-red-400">{question.required ? '[필수]' : ''}</span>
+                  <span className="w-10 shrink-0 text-sm text-red-400">{question.required ? '[필수]' : ''}</span>
                   <div className="w-full text-lg font-bold break-words whitespace-normal">{question.title}</div>
                 </div>
                 <TextInput
@@ -173,7 +173,7 @@ export function SuperSurveyComponent({
             return (
               <div className="flex w-full flex-col space-y-2" key={question.id}>
                 <div>
-                  <span className="w-10 flex-shrink-0 text-sm text-red-400">{question.required ? '[필수]' : ''}</span>
+                  <span className="w-10 shrink-0 text-sm text-red-400">{question.required ? '[필수]' : ''}</span>
                   <div className="w-full text-lg font-bold break-words whitespace-normal">{question.title}</div>
                 </div>
                 <Textarea
@@ -188,7 +188,7 @@ export function SuperSurveyComponent({
             return (
               <div className="flex flex-col space-y-2" key={question.id}>
                 <div>
-                  <span className="w-10 flex-shrink-0 text-sm text-red-400">{question.required ? '[필수]' : ''}</span>
+                  <span className="w-10 shrink-0 text-sm text-red-400">{question.required ? '[필수]' : ''}</span>
                   <div className="w-full text-lg font-bold break-words whitespace-normal">{question.title}</div>
                 </div>
                 {question?.choices?.map((c: any, index: number) => (
@@ -216,7 +216,7 @@ export function SuperSurveyComponent({
             return (
               <div className="flex flex-col space-y-2" key={question.id}>
                 <div>
-                  <span className="w-10 flex-shrink-0 text-sm text-red-400">{question.required ? '[필수]' : ''}</span>
+                  <span className="w-10 shrink-0 text-sm text-red-400">{question.required ? '[필수]' : ''}</span>
                   <div className="w-full text-lg font-bold break-words whitespace-normal">{question.title}</div>
                 </div>
                 <RadioGroup className="space-y-2" onChange={(e) => onChangeValue(e.target.value)}>

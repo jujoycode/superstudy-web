@@ -296,7 +296,7 @@ export const ExhibitionPlanDetailPage = () => {
           </div>
         }
         bottomContent={
-          <div className="flex flex-grow flex-col">
+          <div className="flex grow flex-col">
             <div className="flex h-full flex-row gap-4 py-6">
               <div className="flex w-[848px] flex-col rounded-xl bg-white p-6">
                 {editMode ? (

@@ -26,7 +26,7 @@ export function AboutSuperSchoolPage() {
 
         <div className="mx-2 mt-5 flex flex-col gap-2 sm:flex-row">
           <div className="flex w-full items-center gap-2">
-            <a href="https://superstudy.kr" target="blank" className="w-1/2 flex-grow">
+            <a href="https://superstudy.kr" target="blank" className="w-1/2 grow">
               <Button className="filled-gray-light w-full overflow-hidden rounded-full py-1 text-ellipsis whitespace-normal">
                 {t('go_to_homepage')}
               </Button>
@@ -36,7 +36,7 @@ export function AboutSuperSchoolPage() {
               target="_blank"
               rel="noreferrer"
               download
-              className="w-1/2 flex-grow"
+              className="w-1/2 grow"
             >
               <Button className="filled-gray-light w-full overflow-hidden rounded-full py-1 text-ellipsis whitespace-normal">
                 {t('download_brochure')}
@@ -44,7 +44,7 @@ export function AboutSuperSchoolPage() {
             </a>
           </div>
           <div className="flex w-full items-center gap-2">
-            <a href="https://superstudy.kr/Contact" target="blank" className="w-1/2 flex-grow">
+            <a href="https://superstudy.kr/Contact" target="blank" className="w-1/2 grow">
               <Button
                 //children="설명회 신청하기"
                 className="filled-gray-light w-full overflow-hidden rounded-full py-1 text-ellipsis whitespace-normal"
@@ -52,7 +52,7 @@ export function AboutSuperSchoolPage() {
                 {t('inquiry_about_introduction')}
               </Button>
             </a>
-            <a href="https://superstudy.kr/46" target="blank" className="w-1/2 flex-grow">
+            <a href="https://superstudy.kr/46" target="blank" className="w-1/2 grow">
               <Button
                 children={t('apply_for_info_session')}
                 className="filled-gray-light w-full overflow-hidden rounded-full py-1 text-ellipsis whitespace-normal"

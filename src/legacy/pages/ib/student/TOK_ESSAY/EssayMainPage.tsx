@@ -157,11 +157,11 @@ export const EssayMainPage = () => {
                         <div className="flex w-full max-w-[692px] items-center gap-4">
                           <Typography
                             variant="heading"
-                            className="flex-grow overflow-hidden text-ellipsis whitespace-nowrap"
+                            className="grow overflow-hidden text-ellipsis whitespace-nowrap"
                           >
                             {data?.status === 'PENDING' ? data?.title : data?.tokOutline?.themeQuestion}
                           </Typography>
-                          <div className="flex-shrink-0">
+                          <div className="shrink-0">
                             <SVGIcon.Arrow
                               color="gray700"
                               weight="bold"

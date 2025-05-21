@@ -17,7 +17,7 @@ const HintMessage = ({ message, direction = 'right' }: HintMessageProps) => {
         <span
           className={`absolute ${
             direction === 'right' ? 'right-7 translate-x-full' : 'left-2 -translate-x-full'
-          } text-13 top-full z-10 mt-4 flex w-[340px] transform rounded-sm border border-black bg-white p-2.5 text-black ${direction === 'right' ? 'after:left-1' : 'after:right-0'} after:absolute after:bottom-full after:block after:-translate-x-1/2 after:border-8 after:border-transparent after:border-b-black`}
+          } text-13 top-full z-10 mt-4 flex w-[340px] transform rounded-xs border border-black bg-white p-2.5 text-black ${direction === 'right' ? 'after:left-1' : 'after:right-0'} after:absolute after:bottom-full after:block after:-translate-x-1/2 after:border-8 after:border-transparent after:border-b-black`}
         >
           <p
             className="text-12 text-left leading-5 font-normal whitespace-pre-wrap text-[#121417]"

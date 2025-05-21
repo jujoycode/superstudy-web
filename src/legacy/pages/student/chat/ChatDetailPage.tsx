@@ -254,7 +254,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) OnSendMessage()
               }}
-              className="block h-auto w-full resize-none border-none bg-transparent px-3 py-2 outline-none"
+              className="block h-auto w-full resize-none border-none bg-transparent px-3 py-2 outline-hidden"
               style={{ height: textareaRef?.current ? `${textareaRef.current.scrollHeight}px` : 'auto' }}
             />
             <div className="px-3">

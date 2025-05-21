@@ -196,7 +196,7 @@ export default function RRSDetailPage() {
           </div>
         }
         bottomContent={
-          <div className="flex flex-grow flex-col">
+          <div className="flex grow flex-col">
             <div className="flex h-full flex-row gap-4 py-6">
               <div className="flex w-[848px] flex-col justify-between rounded-xl bg-white p-6">
                 {editMode ? (
@@ -249,7 +249,7 @@ export default function RRSDetailPage() {
                       <div className="flex flex-col gap-4 py-10">
                         {/* 이미지 컨테이너 */}
                         {!!data.images?.length && (
-                          <div className="grid w-full flex-grow grid-flow-row grid-cols-6 gap-3">
+                          <div className="grid w-full grow grid-flow-row grid-cols-6 gap-3">
                             {data.images.map((image: string, i: number) => (
                               <div
                                 key={i}

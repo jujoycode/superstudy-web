@@ -88,7 +88,7 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
         className={cn(
           cn(
             className,
-            'relative flex flex-col justify-between gap-4 rounded-lg border border-gray-200 p-4 focus:ring-0 focus:outline-none',
+            'relative flex flex-col justify-between gap-4 rounded-lg border border-gray-200 p-4 focus:ring-0 focus:outline-hidden',
             {
               'bg-gray-100': (readonly && readonlyBackground === 'bg-gray-100') || disabled,
               'cursor-not-allowed': readonly || disabled,
@@ -107,7 +107,7 @@ export const TextareaV2 = forwardRef<HTMLTextAreaElement, TextareaProps>(functio
           ref={ref}
           className={cn(
             cn(
-              `text-15 caret-ib-blue-800 h-full min-h-max w-full resize-none border-none p-0 font-medium text-gray-900 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400`,
+              `text-15 caret-ib-blue-800 h-full min-h-max w-full resize-none border-none p-0 font-medium text-gray-900 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-hidden disabled:bg-gray-100 disabled:text-gray-400`,
               {
                 'bg-gray-100': (readonly && readonlyBackground === 'bg-gray-100') || disabled,
                 'cursor-not-allowed': readonly || disabled,

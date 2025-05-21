@@ -658,7 +658,7 @@ export function TimetablePage() {
                         <div key={item.id} className="my-1 flex items-center space-x-3">
                           <div
                             className={cn(
-                              'w-24 flex-shrink-0 rounded-md border px-2 py-1 text-center text-sm',
+                              'w-24 shrink-0 rounded-md border px-2 py-1 text-center text-sm',
                               item.timeTableType === 'neis-total' ? `text-blue-500` : 'text-orange-400',
                             )}
                           >
@@ -668,7 +668,7 @@ export function TimetablePage() {
                                 ? '학생시간표'
                                 : item.timeTableType}
                           </div>
-                          <div className="flex-grow truncate">
+                          <div className="grow truncate">
                             <div className="text-13 flex items-center space-x-2">
                               <div className="text-lightpurple-4 w-full px-2 whitespace-pre-wrap">
                                 <a
@@ -683,7 +683,7 @@ export function TimetablePage() {
                               </div>
                             </div>
                           </div>
-                          <div className="w-40 flex-shrink-0">
+                          <div className="w-40 shrink-0">
                             <div className="flex flex-row-reverse items-center">
                               <div
                                 className={cn(

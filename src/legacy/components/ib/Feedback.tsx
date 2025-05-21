@@ -63,7 +63,7 @@ export const Feedback: FC<FeedbackProps> = ({
       {isFetching ? (
         <IBBlank type="section" />
       ) : (
-        <div className="scroll-box flex h-[448px] flex-grow flex-col gap-3 overflow-y-auto" ref={scrollRef}>
+        <div className="scroll-box flex h-[448px] grow flex-col gap-3 overflow-y-auto" ref={scrollRef}>
           {feedback && feedback?.length > 0 ? (
             [...feedback].reverse().map((item) => {
               const date = item.createdAt ? new Date(item.createdAt) : new Date()
@@ -146,7 +146,7 @@ export const Feedback: FC<FeedbackProps> = ({
       {useTextarea && (
         <div
           className={cn(
-            'relative flex flex-col justify-between gap-4 rounded-lg border border-gray-200 p-4 focus:ring-0 focus:outline-none',
+            'relative flex flex-col justify-between gap-4 rounded-lg border border-gray-200 p-4 focus:ring-0 focus:outline-hidden',
             {
               'bg-white': readonly && readonlyBackground === 'bg-white',
               'bg-gray-100': (readonly && readonlyBackground === 'bg-gray-100') || disabled || isFetching,

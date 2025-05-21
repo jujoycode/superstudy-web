@@ -74,7 +74,7 @@ export function CanteenSubmitPage({ selectedDate, canteenData, refetch }: Cantee
               ? `${selectedDate?.getFullYear()}년 ${selectedDate?.getMonth() + 1}월 ${selectedDate?.getDate()}일`
               : format(selectedDate, 'MMM d, yyyy')}
           </div>
-          <div className="border-gray-6 invisible cursor-pointer rounded border px-4 py-2 text-gray-700">수정</div>
+          <div className="border-gray-6 invisible cursor-pointer rounded-sm border px-4 py-2 text-gray-700">수정</div>
         </div>
         <Section>
           {image && (
@@ -91,7 +91,9 @@ export function CanteenSubmitPage({ selectedDate, canteenData, refetch }: Cantee
             </span>
           )}
           <ImageUpload accept=".pdf, .png, .jpeg, .jpg" onChange={handleChangeImage}>
-            {image && <img src={`${Constants.imageUrl}${image}`} className="aspect-5/3 rounded object-cover" alt="" />}
+            {image && (
+              <img src={`${Constants.imageUrl}${image}`} className="aspect-5/3 rounded-sm object-cover" alt="" />
+            )}
           </ImageUpload>
 
           <div className="flex gap-2">

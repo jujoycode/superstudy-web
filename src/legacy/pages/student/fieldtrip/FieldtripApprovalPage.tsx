@@ -110,33 +110,33 @@ export function FieldtripApprovalPage() {
             </>
           )}
           <div className="flex">
-            <div className="w-1/3 flex-shrink-0 text-gray-800">학생 이름</div>
-            <div className="w-2/3 flex-shrink-0 text-gray-800">{student?.name}</div>
+            <div className="w-1/3 shrink-0 text-gray-800">학생 이름</div>
+            <div className="w-2/3 shrink-0 text-gray-800">{student?.name}</div>
           </div>
           <div className="flex">
-            <div className="w-1/3 flex-shrink-0 text-gray-800">학번</div>
-            <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.studentGradeKlass}</div>
+            <div className="w-1/3 shrink-0 text-gray-800">학번</div>
+            <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.studentGradeKlass}</div>
           </div>
           <div className="flex">
-            <div className="w-1/3 flex-shrink-0 text-gray-800">신고종류</div>
-            <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.type === 'HOME' ? '가정' : '교외'}</div>
+            <div className="w-1/3 shrink-0 text-gray-800">신고종류</div>
+            <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.type === 'HOME' ? '가정' : '교외'}</div>
           </div>
           {type === 'SUBURBS' && (
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">체험학습 종류</div>
-              <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.form}</div>
+              <div className="w-1/3 shrink-0 text-gray-800">체험학습 종류</div>
+              <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.form}</div>
             </div>
           )}
           <div className="flex">
-            <div className="w-1/3 flex-shrink-0 text-gray-800">기간</div>
-            <div className="w-2/3 flex-shrink-0 text-gray-800">
+            <div className="w-1/3 shrink-0 text-gray-800">기간</div>
+            <div className="w-2/3 shrink-0 text-gray-800">
               {fieldtrip && makeStartEndToString(fieldtrip.startAt, fieldtrip.endAt)}
             </div>
           </div>
           <div>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">총 기간</div>
-              <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.usedDays}일</div>
+              <div className="w-1/3 shrink-0 text-gray-800">총 기간</div>
+              <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.usedDays}일</div>
             </div>
             <div className="border border-black p-3">
               {sHalfUsedDayCnt > 0 && (
@@ -187,26 +187,26 @@ export function FieldtripApprovalPage() {
             </div>
           </div>
           <div className="flex">
-            <div className="w-1/3 flex-shrink-0 text-gray-800">목적지</div>
-            <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.destination}</div>
+            <div className="w-1/3 shrink-0 text-gray-800">목적지</div>
+            <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.destination}</div>
           </div>
           <div className="flex">
-            <div className="w-1/3 flex-shrink-0 text-gray-800">목적</div>
-            <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.purpose}</div>
+            <div className="w-1/3 shrink-0 text-gray-800">목적</div>
+            <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.purpose}</div>
           </div>
           {type === 'SUBURBS' && (
             <>
               <div className="flex">
-                <div className="w-1/3 flex-shrink-0 text-gray-800">인솔자명</div>
-                <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.guideName}</div>
+                <div className="w-1/3 shrink-0 text-gray-800">인솔자명</div>
+                <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.guideName}</div>
               </div>
               <div className="flex">
-                <div className="w-1/3 flex-shrink-0 text-gray-800">관계</div>
-                <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.relationship}</div>
+                <div className="w-1/3 shrink-0 text-gray-800">관계</div>
+                <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.relationship}</div>
               </div>
               <div className="flex">
-                <div className="w-1/3 flex-shrink-0 text-gray-800">인솔자 연락처</div>
-                <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.guidePhone}</div>
+                <div className="w-1/3 shrink-0 text-gray-800">인솔자 연락처</div>
+                <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.guidePhone}</div>
               </div>
               <div>
                 <div className="text-base">*현장학습계획</div>
@@ -215,12 +215,12 @@ export function FieldtripApprovalPage() {
               <Section className="bg-gray-50">
                 {images?.map((image: string, i: number) => (
                   <div key={i} className="w-full">
-                    <div className="rounded bg-gray-50">
+                    <div className="rounded-sm bg-gray-50">
                       <LazyLoadImage
                         src={`${Constants.imageUrl}${image}`}
                         alt=""
                         loading="lazy"
-                        className="h-full w-full rounded object-cover"
+                        className="h-full w-full rounded-sm object-cover"
                       />
                     </div>
                   </div>
@@ -230,7 +230,7 @@ export function FieldtripApprovalPage() {
                     <>
                       <div key={pdfFile}>
                         <div className="w-full">
-                          <div className="rounded bg-gray-50">
+                          <div className="rounded-sm bg-gray-50">
                             <PdfCard fileUrl={`${Constants.imageUrl}${pdfFile}`} visibleButton={false} />
                           </div>
                         </div>
@@ -283,12 +283,12 @@ export function FieldtripApprovalPage() {
             </div>
           )}
           <div className="flex">
-            <div className="w-1/3 flex-shrink-0 text-gray-800">보호자명</div>
-            <div className="w-2/3 flex-shrink-0 text-gray-800">{student?.nokName}</div>
+            <div className="w-1/3 shrink-0 text-gray-800">보호자명</div>
+            <div className="w-2/3 shrink-0 text-gray-800">{student?.nokName}</div>
           </div>
           <div className="flex">
-            <div className="w-1/3 flex-shrink-0 text-gray-800">보호자 연락처</div>
-            <div className="w-2/3 flex-shrink-0 text-gray-800">{student?.nokPhone}</div>
+            <div className="w-1/3 shrink-0 text-gray-800">보호자 연락처</div>
+            <div className="w-2/3 shrink-0 text-gray-800">{student?.nokPhone}</div>
           </div>
           <Label.row>
             <Checkbox id="agree" checked={agree} onChange={() => setAgree((prev) => !prev)} />

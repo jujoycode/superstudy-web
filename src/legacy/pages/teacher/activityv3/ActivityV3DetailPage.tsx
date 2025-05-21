@@ -191,14 +191,14 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
 
           <div className="3xl:px-30 3xl:py-20 h-full overflow-y-auto bg-white p-2 md:px-10 md:py-5">
             {/* 활동 정보 */}
-            <div className="flex flex-col rounded border-2 border-zinc-800">
+            <div className="flex flex-col rounded-sm border-2 border-zinc-800">
               <div className="border-b border-neutral-200 px-10 pt-8 pb-8">
                 <div className="flex items-baseline justify-between pb-4">
                   <h1 className="flex-1 text-2xl font-bold break-words whitespace-pre-line">
                     [{ACTIVITYV3_TYPE_KOR[activityv3.type]}] {activityv3.subject}: {activityv3.title}
                   </h1>
                   {(me?.role === Role.ADMIN || activityv3.writerId === me?.id) && (
-                    <div className="ml-4 flex flex-shrink-0 items-center space-x-2">
+                    <div className="ml-4 flex shrink-0 items-center space-x-2">
                       <Button
                         className="h-8 w-16 rounded-lg border border-neutral-500 bg-white font-semibold text-neutral-500"
                         onClick={() => push(`/teacher/activityv3/${activityv3.id}/update`)}
@@ -245,7 +245,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                                 }}
                                 className="w-full"
                               >
-                                <div className="aspect-square cursor-pointer rounded border border-neutral-200">
+                                <div className="aspect-square cursor-pointer rounded-sm border border-neutral-200">
                                   <LazyLoadImage
                                     src={`${Constants.imageUrl}${image}`}
                                     alt=""
@@ -262,7 +262,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                             {activityv3.files?.map((fileUrl: string, index) => (
                               <div
                                 key={index}
-                                className="flex h-8 w-max items-center space-x-2 rounded bg-stone-50 px-3 py-1"
+                                className="flex h-8 w-max items-center space-x-2 rounded-sm bg-stone-50 px-3 py-1"
                               >
                                 <FileItemIcon />
                                 <a
@@ -288,7 +288,9 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                   <div className="text-sm font-semibold whitespace-pre md:w-40">성취 기준</div>
                   <div className="flex w-full flex-wrap gap-1">
                     {achievementCriterias == undefined ? (
-                      <div className="flex w-full justify-center rounded px-4 py-2">성취기준이 존재하지 않습니다.</div>
+                      <div className="flex w-full justify-center rounded-sm px-4 py-2">
+                        성취기준이 존재하지 않습니다.
+                      </div>
                     ) : (
                       <div className="text-14 whitespace-pre-line">
                         {achievementCriterias?.map((ac) => (
@@ -405,7 +407,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                   </div>
 
                   {/* 제출자 목록 화면 */}
-                  <div className="mt-4 flex rounded border border-zinc-800 text-[#333333]">
+                  <div className="mt-4 flex rounded-sm border border-zinc-800 text-[#333333]">
                     <div className="text-16 flex w-full items-center justify-between border-r border-zinc-800 p-4 font-bold">
                       <div>제출</div>
                       <div className="flex items-center">

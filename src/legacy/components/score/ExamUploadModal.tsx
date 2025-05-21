@@ -178,7 +178,7 @@ export function ExamUploadModal({
   return (
     <div
       className={`bg-littlegray fixed inset-0 z-60 flex h-screen w-full items-center justify-center ${
-        modalOpen ? 'backdrop-blur-sm' : 'hidden'
+        modalOpen ? 'backdrop-blur-xs' : 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
@@ -239,7 +239,7 @@ export function ExamUploadModal({
                   )}
                 </div>
               </div>
-              <div className="flex-grow overflow-y-auto px-6 pb-3">
+              <div className="grow overflow-y-auto px-6 pb-3">
                 {documentFiles.length > 0 ? (
                   <div className="scroll-box flex w-full flex-col overflow-y-auto rounded-lg bg-white">
                     <div className="flex flex-wrap gap-2">
@@ -252,7 +252,7 @@ export function ExamUploadModal({
                                 isUploaded ? 'bg-neutral-100 text-[#aaaaaa]' : 'bg-white'
                               } px-4 py-3`}
                             >
-                              <div className={`flex h-8 items-center space-x-2 rounded px-3 py-1`}>
+                              <div className={`flex h-8 items-center space-x-2 rounded-sm px-3 py-1`}>
                                 <div className={`text-15 w-full break-words whitespace-pre-wrap`}>{value.name}</div>
                               </div>
                               <div className="text-lightpurple-4 flex min-w-max items-center justify-center bg-white px-2">

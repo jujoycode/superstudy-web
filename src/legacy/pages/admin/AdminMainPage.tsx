@@ -211,7 +211,7 @@ export function AdminMainPage() {
       </header>
 
       <div className="max-w-screen-3xl relative mx-auto flex">
-        <aside className="sticky top-16 h-[calc(100vh-4rem)] flex-shrink-0 overflow-y-auto">
+        <aside className="sticky top-16 h-[calc(100vh-4rem)] shrink-0 overflow-y-auto">
           <nav className="flex w-60 flex-col p-4">
             <div className="mb-4 flex h-14 w-full items-center justify-center rounded-lg bg-blue-600">
               <p className="text-lg font-bold text-white">관리자모드 입니다.</p>

@@ -34,15 +34,15 @@ export function CanteenDetailPage({ selectedDate, canteen, setSubmitState }: Can
         </div>
         <Section className="mb-6">
           <div className="w-full" onClick={() => setImageModalOpen(true)}>
-            <div className="aspect-5/3 rounded bg-gray-50">
+            <div className="aspect-5/3 rounded-sm bg-gray-50">
               {canteen?.image ? (
                 <img
                   src={`${Constants.imageUrl}${canteen.image}`}
                   alt=""
-                  className="h-full w-full rounded object-cover"
+                  className="h-full w-full rounded-sm object-cover"
                 />
               ) : (
-                <div className="h-full w-full rounded bg-white object-cover">
+                <div className="h-full w-full rounded-sm bg-white object-cover">
                   <div className="flex h-full w-full flex-col items-center justify-center space-y-1">
                     <div className="text-brand-1">{t('no_image')}</div>
                   </div>

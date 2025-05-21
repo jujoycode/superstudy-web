@@ -63,7 +63,7 @@ export function TooltipV2({ content }: TooltipV2Props) {
         <Typography variant="caption2">{content}</Typography>
       </div>
       {/* Icon Section */}
-      <div className="flex h-4 w-4 flex-shrink-0 items-center justify-center">
+      <div className="flex h-4 w-4 shrink-0 items-center justify-center">
         <SVGIcon.Close color="gray400" size={16} onClick={() => setOpen(!open)} className="cursor-pointer" />
       </div>
     </div>

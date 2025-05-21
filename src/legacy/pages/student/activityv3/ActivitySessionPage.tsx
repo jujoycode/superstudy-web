@@ -121,7 +121,7 @@ export function ActivitySessionPage() {
             {activityv3.images?.map((image: string, i: number) => (
               <div
                 key={image}
-                className="aspect-square cursor-pointer rounded border border-neutral-200"
+                className="aspect-square cursor-pointer rounded-sm border border-neutral-200"
                 onClick={() => {
                   setActiveIndex(i)
                   setImagesModalOpen(true)
@@ -141,7 +141,7 @@ export function ActivitySessionPage() {
         {!!activityv3.files.length && (
           <div className="flex flex-col gap-1 px-4 pb-2">
             {activityv3.files?.map((fileUrl: string, index) => (
-              <div key={index} className="flex h-8 items-center space-x-2 rounded bg-stone-50 py-1">
+              <div key={index} className="flex h-8 items-center space-x-2 rounded-sm bg-stone-50 py-1">
                 <FileItemIcon />
                 <a
                   className="ml-2 max-w-xs truncate text-xs text-neutral-500"

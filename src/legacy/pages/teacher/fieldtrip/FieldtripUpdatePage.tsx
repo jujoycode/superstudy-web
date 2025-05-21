@@ -562,7 +562,7 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
               </div>
 
               {homePlan.map((plan: any, i: number) => (
-                <div key={i} className="space-y-4 rounded-md border border-gray-100 bg-white p-4 shadow-sm">
+                <div key={i} className="space-y-4 rounded-md border border-gray-100 bg-white p-4 shadow-xs">
                   <div className="pb-4 text-center text-lg font-bold text-gray-800">{i + 1}일차</div>
                   {dayHomePlan ? (
                     <Label.col>

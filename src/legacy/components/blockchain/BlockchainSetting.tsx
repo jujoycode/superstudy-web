@@ -73,7 +73,7 @@ export default function BlockchainSetting({
             >
               {coachMark1 && (
                 <span
-                  className={`text-13 absolute right-4 bottom-full z-10 mb-4 flex w-80 translate-x-full transform rounded-sm border border-black bg-white p-2.5 text-black after:absolute after:top-full after:left-4 after:block after:-translate-x-1/2 after:border-8 after:border-transparent after:border-t-black`}
+                  className={`text-13 absolute right-4 bottom-full z-10 mb-4 flex w-80 translate-x-full transform rounded-xs border border-black bg-white p-2.5 text-black after:absolute after:top-full after:left-4 after:block after:-translate-x-1/2 after:border-8 after:border-transparent after:border-t-black`}
                 >
                   <p className="text-14 flex leading-6 font-normal whitespace-normal">
                     슈퍼스쿨의 블록체인 인증을 통해 학교 구성원들의 개인 정보를 더욱 안전하게 보호할 수 있습니다.
@@ -112,7 +112,7 @@ export default function BlockchainSetting({
             >
               {coachMark2 && (
                 <span
-                  className={`text-13 absolute right-4 bottom-full z-10 mb-4 flex w-80 translate-x-full transform rounded-sm border border-black bg-white p-2.5 text-black after:absolute after:top-full after:left-4 after:block after:-translate-x-1/2 after:border-8 after:border-transparent after:border-t-black`}
+                  className={`text-13 absolute right-4 bottom-full z-10 mb-4 flex w-80 translate-x-full transform rounded-xs border border-black bg-white p-2.5 text-black after:absolute after:top-full after:left-4 after:block after:-translate-x-1/2 after:border-8 after:border-transparent after:border-t-black`}
                 >
                   <p className="text-14 flex leading-6 font-normal whitespace-normal">
                     확인증 및 결석신고서 문서를 더욱 안전하게 보호 및 보관하실 수 있습니다.

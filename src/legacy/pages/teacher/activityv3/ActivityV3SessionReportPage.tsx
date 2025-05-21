@@ -180,7 +180,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
             </p>
           </div>
           <div className="3xl:px-30 3xl:py-20 h-full overflow-y-auto bg-white p-2 md:px-10 md:py-5">
-            <div className="flex flex-col rounded border border-neutral-200">
+            <div className="flex flex-col rounded-sm border border-neutral-200">
               <div className="border-b border-neutral-200 px-10 pt-8 pb-8">
                 <div className="flex pb-4">
                   <h1 className="flex-1 text-2xl font-bold break-words whitespace-pre-line">
@@ -217,7 +217,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                                 }}
                                 className="w-full"
                               >
-                                <div className="aspect-square rounded border border-neutral-200">
+                                <div className="aspect-square rounded-sm border border-neutral-200">
                                   <LazyLoadImage
                                     src={`${Constants.imageUrl}${image}`}
                                     alt=""
@@ -234,7 +234,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                             {activityv3.files?.map((fileUrl: string, index) => (
                               <div
                                 key={index}
-                                className="flex h-8 w-max items-center space-x-2 rounded bg-stone-50 px-3 py-1"
+                                className="flex h-8 w-max items-center space-x-2 rounded-sm bg-stone-50 px-3 py-1"
                               >
                                 <FileItemIcon />
                                 <a
@@ -275,7 +275,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
             </div>
 
             {/* 차시 설명 영역 */}
-            <div className="mt-4 mb-16 flex flex-col rounded border-2 border-zinc-800">
+            <div className="mt-4 mb-16 flex flex-col rounded-sm border-2 border-zinc-800">
               <div className="border-b border-neutral-200 px-10 pt-8 pb-8">
                 <div className="flex items-baseline justify-between pb-4">
                   <h1 className="flex-1 text-2xl font-bold break-words whitespace-pre-line">{activitySession.title}</h1>
@@ -308,7 +308,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                           <div className="grid w-full grid-flow-row grid-cols-6 gap-2 pb-2">
                             {activitySession.images?.map((image: string, i: number) => (
                               <div key={i} className="w-full">
-                                <div className="aspect-square cursor-pointer rounded border border-neutral-200">
+                                <div className="aspect-square cursor-pointer rounded-sm border border-neutral-200">
                                   <LazyLoadImage
                                     src={`${Constants.imageUrl}${image}`}
                                     alt=""
@@ -325,7 +325,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                             {activitySession.files?.map((fileUrl: string, index) => (
                               <div
                                 key={index}
-                                className="flex h-8 w-max items-center space-x-2 rounded bg-stone-50 px-3 py-1"
+                                className="flex h-8 w-max items-center space-x-2 rounded-sm bg-stone-50 px-3 py-1"
                               >
                                 <FileItemIcon />
                                 <a
@@ -370,7 +370,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
               {/* 내용 영역 */}
               <div className="flex h-[661px] w-full items-stretch space-x-2">
                 {/* 차시 제출물 영역 */}
-                <div className="flex h-full w-2/3 flex-col rounded border border-neutral-400 bg-white">
+                <div className="flex h-full w-2/3 flex-col rounded-sm border border-neutral-400 bg-white">
                   {/* 학생 리스트 영역 */}
                   <div className="flex w-full items-center justify-center space-x-4 pt-5">
                     <Icon.ChevronLeft
@@ -389,7 +389,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                                 src={`${Constants.imageUrl}${selectedUser?.profile}`}
                                 alt=""
                                 loading="lazy"
-                                className="h-8 w-8 rounded object-cover"
+                                className="h-8 w-8 rounded-sm object-cover"
                               />
                             ) : (
                               <Avatar />
@@ -430,7 +430,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                                     src={`${Constants.imageUrl}${sg.user?.profile}`}
                                     alt=""
                                     loading="lazy"
-                                    className="h-8 w-8 rounded object-cover"
+                                    className="h-8 w-8 rounded-sm object-cover"
                                   />
                                 ) : (
                                   <Avatar />
@@ -477,7 +477,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                               {images?.map((image: string, i: number) => (
                                 <div
                                   key={image}
-                                  className="aspect-square cursor-pointer rounded border border-neutral-200"
+                                  className="aspect-square cursor-pointer rounded-sm border border-neutral-200"
                                   onClick={() => {
                                     setActiveIndex(i)
                                     setImagesModalOpen(true)
@@ -498,7 +498,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                             {images?.map((fileUrl: string, index) => (
                               <div
                                 key={index}
-                                className="flex h-8 w-max cursor-pointer items-center justify-between rounded bg-zinc-100 px-2 py-1"
+                                className="flex h-8 w-max cursor-pointer items-center justify-between rounded-sm bg-zinc-100 px-2 py-1"
                               >
                                 <button
                                   className="flex items-center gap-1 text-xs font-semibold text-zinc-800"
@@ -513,7 +513,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                             {files?.map((fileUrl: string, index) => (
                               <div
                                 key={index}
-                                className="flex h-8 w-max cursor-pointer items-center justify-between rounded bg-zinc-100 px-2 py-1"
+                                className="flex h-8 w-max cursor-pointer items-center justify-between rounded-sm bg-zinc-100 px-2 py-1"
                               >
                                 {isMobile() ? (
                                   <a
@@ -584,7 +584,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                                 onClick={() =>
                                   handleBulkDownload(batchData, `${activitySession.title}_${selectedUser.name}`)
                                 }
-                                className="flex h-8 w-max items-center justify-center gap-1 rounded border border-zinc-300 bg-white px-3 py-1 text-center text-xs text-zinc-800"
+                                className="flex h-8 w-max items-center justify-center gap-1 rounded-sm border border-zinc-300 bg-white px-3 py-1 text-center text-xs text-zinc-800"
                               >
                                 <Icon.Download /> 모든 파일 저장
                               </button>
@@ -599,7 +599,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                 </div>
 
                 {/* 1:1 피드백 영역 */}
-                <div className="flex h-full w-1/3 flex-col overflow-hidden rounded border border-neutral-400">
+                <div className="flex h-full w-1/3 flex-col overflow-hidden rounded-sm border border-neutral-400">
                   <div className="relative h-full w-full flex-col space-y-4 overflow-y-auto bg-white p-5">
                     {isSessionCommentLoading && <div className="bg-littleblack absolute inset-0">로딩 중...</div>}
                     {studentActivitySession?.sessionComments

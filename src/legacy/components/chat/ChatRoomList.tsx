@@ -78,12 +78,12 @@ export function ChatRoomList({}: ChatRoomListProps) {
             }
           >
             <div>
-              <button className="w-full focus:outline-none focus-visible:bg-indigo-50">
+              <button className="w-full focus:outline-hidden focus-visible:bg-indigo-50">
                 <Link to={`/${userType}/chat/${cr.chatroomId}`}>
                   <div className="flex cursor-pointer items-center">
                     <div className="relative">
                       <img
-                        className="mx-auto mr-6 h-15 w-15 flex-2 flex-shrink-0 items-start rounded-xl bg-gray-100"
+                        className="mx-auto mr-6 h-15 w-15 flex-2 shrink-0 items-start rounded-xl bg-gray-100"
                         src={`${Constants.imageUrl}${cr.roomImage}`}
                         alt=""
                         onError={({ currentTarget }) => {

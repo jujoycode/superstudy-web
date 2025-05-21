@@ -48,7 +48,7 @@ export const CreateDeadlineField: FC<CreateDeadlineFieldProps> = ({
           </Typography>
           <div className="relative">
             <div
-              className={`flex h-10 w-full items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-[9px] focus:ring-0 focus:outline-none ${
+              className={`flex h-10 w-full items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-[9px] focus:ring-0 focus:outline-hidden ${
                 isFocused && 'border-gray-700'
               }`}
               onFocus={handleFocus}
@@ -57,7 +57,7 @@ export const CreateDeadlineField: FC<CreateDeadlineFieldProps> = ({
             >
               <SVGIcon.Calendar size={20} color="gray700" />
               <input
-                className="text-15 caret-ib-blue-800 w-full flex-1 border-none bg-white p-0 font-medium text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-none"
+                className="text-15 caret-ib-blue-800 w-full flex-1 border-none bg-white p-0 font-medium text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                 placeholder="마감기한 선택"
                 value={
                   deadline.deadlineTime

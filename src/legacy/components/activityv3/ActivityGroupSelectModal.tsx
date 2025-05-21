@@ -42,12 +42,12 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
         {/* 전달대상 박스 */}
         <div className="flex h-full w-full gap-2 overflow-hidden">
           {/* 그룹 선택 박스 + 소속 그룹 선택 박스  */}
-          <div className="flex w-full flex-row rounded border border-[#CCCCCC]">
+          <div className="flex w-full flex-row rounded-sm border border-[#CCCCCC]">
             {/* 그룹 선택 박스 */}
             <div className="w-[300px] border-r border-[#CCCCCC] p-1">
               <div
                 className={twMerge(
-                  'flex cursor-pointer items-center justify-between space-x-4 rounded p-2',
+                  'flex cursor-pointer items-center justify-between space-x-4 rounded-sm p-2',
                   modalGroupType === 'KLASS' && 'bg-orange-500 font-bold text-white',
                 )}
                 onClick={() => setModalGroupType('KLASS')}
@@ -57,7 +57,7 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
               </div>
               <div
                 className={twMerge(
-                  'flex cursor-pointer items-center justify-between space-x-4 rounded p-2',
+                  'flex cursor-pointer items-center justify-between space-x-4 rounded-sm p-2',
                   modalGroupType === 'LECTURE' && 'bg-orange-500 font-bold text-white',
                 )}
                 onClick={() => setModalGroupType('LECTURE')}
@@ -67,7 +67,7 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
               </div>
               <div
                 className={twMerge(
-                  'flex cursor-pointer items-center justify-between space-x-4 rounded p-2',
+                  'flex cursor-pointer items-center justify-between space-x-4 rounded-sm p-2',
                   modalGroupType === 'KLUB' && 'bg-orange-500 font-bold text-white',
                 )}
                 onClick={() => setModalGroupType('KLUB')}
@@ -95,7 +95,7 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
                         {groupData.length > 1 && (
                           <label
                             htmlFor={`check-all-${grade}`}
-                            className="col-span-2 flex w-full items-center justify-start space-x-2 rounded border border-[#DDDDDD] p-2 text-sm"
+                            className="col-span-2 flex w-full items-center justify-start space-x-2 rounded-sm border border-[#DDDDDD] p-2 text-sm"
                             onClick={() =>
                               groupData.filter((g) => selectedGroupIds.includes(g.group.id)).length === groupData.length
                                 ? setSelectedGroupIds(
@@ -144,7 +144,7 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
                         {groupData?.map((el) => (
                           <label
                             htmlFor={'check-' + el.group?.id}
-                            className="flex items-center justify-start space-x-2 rounded border border-[#DDDDDD] p-2 text-sm"
+                            className="flex items-center justify-start space-x-2 rounded-sm border border-[#DDDDDD] p-2 text-sm"
                             key={el.group?.id}
                             onClick={() =>
                               selectedGroupIds.includes(el.group?.id)
@@ -176,7 +176,7 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
                   {groups?.map(({ group: el }) => (
                     <label
                       htmlFor={'check-' + el.id}
-                      className="flex items-center justify-start space-x-2 rounded border border-[#DDDDDD] p-2 text-sm"
+                      className="flex items-center justify-start space-x-2 rounded-sm border border-[#DDDDDD] p-2 text-sm"
                       key={el.id}
                       onClick={() =>
                         selectedGroupIds.includes(el.id)
@@ -206,7 +206,7 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
                     ?.map((el) => (
                       <label
                         htmlFor={'check-' + el.group?.id}
-                        className="flex items-center justify-start space-x-2 rounded border border-[#DDDDDD] p-2 text-sm"
+                        className="flex items-center justify-start space-x-2 rounded-sm border border-[#DDDDDD] p-2 text-sm"
                         key={el.group?.id}
                         onClick={() =>
                           selectedGroupIds.includes(el.group?.id)
@@ -233,7 +233,7 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
           </div>
 
           {/* 내가 선택한 그룹 박스 */}
-          <div className="flex w-full max-w-[20%] min-w-[210px] flex-col rounded border border-[#777777] p-4">
+          <div className="flex w-full max-w-[20%] min-w-[210px] flex-col rounded-sm border border-[#777777] p-4">
             <div className="mb-2 font-bold">선택한 그룹</div>
             <div className="flex h-full w-full flex-col space-y-2 overflow-y-auto">
               {selectedGroupIds
@@ -241,7 +241,7 @@ export const ActivityGroupSelectModal: FC<ActivityGroupSelectModalProps> = ({
                 .sort((a, b) => a - b)
                 .map((groupId) => (
                   <div
-                    className="text-14 flex w-full items-center justify-between space-x-2 rounded border border-stone-300 p-2"
+                    className="text-14 flex w-full items-center justify-between space-x-2 rounded-sm border border-stone-300 p-2"
                     key={groupId}
                   >
                     {groups?.find((el) => el.group?.id === groupId)?.group?.name}

@@ -54,7 +54,7 @@ export function PdfCard({ fileUrl, visibleButton, onClick, cardType }: PdfCardPr
         <div
           ref={divRef}
           className={cn(
-            'h-full rounded object-cover',
+            'h-full rounded-sm object-cover',
             cardType ? 'absolute flex w-full items-center justify-center' : 'relative',
           )}
         >
@@ -63,7 +63,7 @@ export function PdfCard({ fileUrl, visibleButton, onClick, cardType }: PdfCardPr
             children={t('view_details')}
             hidden={!visibleButton}
             onClick={onClick}
-            className="bg-light_orange text-brand-1 absolute z-2 w-full items-center rounded-md px-4 py-2 text-sm focus:outline-none"
+            className="bg-light_orange text-brand-1 absolute z-2 w-full items-center rounded-md px-4 py-2 text-sm focus:outline-hidden"
           />
         </div>
       }

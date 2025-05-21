@@ -255,7 +255,7 @@ export function TeacherInfoPage() {
               </div>
 
               <div className="mt-4 border border-zinc-300">
-                <div className="flex flex-col rounded-sm xl:grid xl:grid-cols-2">
+                <div className="flex flex-col rounded-xs xl:grid xl:grid-cols-2">
                   <div className="flex">
                     <label className="w-24 border border-zinc-300 bg-stone-50 p-4 font-semibold md:w-32">
                       {t('name')}
@@ -377,7 +377,7 @@ export function TeacherInfoPage() {
                                 value={startH}
                                 onChange={(e) => setStartH(Number(e.target.value))}
                                 disabled={!enableChatTime}
-                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-hidden disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               >
                                 {new Array(24).fill(null).map((_, num: number) => (
                                   <option key={num} value={num}>
@@ -390,7 +390,7 @@ export function TeacherInfoPage() {
                                 value={startM}
                                 onChange={(e) => setStartM(Number(e.target.value))}
                                 disabled={!enableChatTime}
-                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-hidden disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               >
                                 <option value={0}>00</option>
                                 <option value={10}>10</option>
@@ -406,7 +406,7 @@ export function TeacherInfoPage() {
                                 value={endH}
                                 onChange={(e) => setEndH(Number(e.target.value))}
                                 disabled={!enableChatTime}
-                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-hidden disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               >
                                 {new Array(24).fill(null).map((_, num: number) => (
                                   <option key={num} value={num}>
@@ -416,7 +416,7 @@ export function TeacherInfoPage() {
                               </select>
                               <span>:</span>
                               <select
-                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-hidden disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                                 onChange={(e) => setEndM(Number(e.target.value))}
                                 disabled={!enableChatTime}
                                 value={endM}
@@ -471,7 +471,7 @@ export function TeacherInfoPage() {
                   </label>
                   <div className="flex flex-1 flex-wrap gap-2 border-y border-r border-y-zinc-300 border-r-zinc-300 p-4">
                     {allTeacherGroups?.map((tg) => (
-                      <div key={tg.id} className="w-full rounded bg-orange-100 px-2 py-1 md:w-[calc(50%-0.5rem)]">
+                      <div key={tg.id} className="w-full rounded-sm bg-orange-100 px-2 py-1 md:w-[calc(50%-0.5rem)]">
                         {tg.name}
                       </div>
                     ))}
@@ -483,7 +483,7 @@ export function TeacherInfoPage() {
 
           {isUpdateMe && (
             <>
-              <div className="mt-4 flex flex-col rounded-sm px-4 py-2 md:grid md:grid-cols-2 md:px-10 md:py-5">
+              <div className="mt-4 flex flex-col rounded-xs px-4 py-2 md:grid md:grid-cols-2 md:px-10 md:py-5">
                 <div className="flex flex-1">
                   <label className="w-24 border border-zinc-300 bg-stone-50 p-4 font-semibold md:w-32">
                     {t('password')}
@@ -548,7 +548,7 @@ export function TeacherInfoPage() {
 
           {isDeleteMe && (
             <>
-              <div className="mt-4 flex flex-col rounded-sm px-4 py-2 md:grid md:grid-cols-2 md:px-10 md:py-5">
+              <div className="mt-4 flex flex-col rounded-xs px-4 py-2 md:grid md:grid-cols-2 md:px-10 md:py-5">
                 <div className="flex flex-1">
                   <label className="w-24 border border-zinc-300 bg-stone-50 p-4 font-semibold md:w-32">
                     {t('password')}

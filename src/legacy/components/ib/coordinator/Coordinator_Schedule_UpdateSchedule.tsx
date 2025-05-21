@@ -58,7 +58,7 @@ export function Coordinator_Schedule_UpdateSchedule({
       }`}
     >
       <div className={`relative w-[632px] overflow-hidden rounded-xl bg-white px-8`}>
-        <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6">
+        <div className="backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6">
           <Typography variant="title1">마감기한 설정</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} />
         </div>
@@ -76,7 +76,7 @@ export function Coordinator_Schedule_UpdateSchedule({
                   </Typography>
                   <div className="relative">
                     <div
-                      className={`flex h-10 w-full items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-[9px] focus:ring-0 focus:outline-none ${
+                      className={`flex h-10 w-full items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-[9px] focus:ring-0 focus:outline-hidden ${
                         isFocused && 'border-gray-700'
                       }`}
                       onFocus={handleFocus}
@@ -85,7 +85,7 @@ export function Coordinator_Schedule_UpdateSchedule({
                     >
                       <SVGIcon.Calendar size={20} color="gray700" />
                       <input
-                        className="text-15 caret-ib-blue-800 w-full flex-1 border-none bg-white p-0 font-medium text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-none"
+                        className="text-15 caret-ib-blue-800 w-full flex-1 border-none bg-white p-0 font-medium text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                         placeholder="마감기한 선택"
                         value={
                           deadline.deadlineTime
@@ -144,7 +144,7 @@ export function Coordinator_Schedule_UpdateSchedule({
 
         <div
           className={
-            '.backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8'
+            'backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8'
           }
         >
           <div className="flex justify-end gap-3">

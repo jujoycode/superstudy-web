@@ -181,7 +181,7 @@ export function FeedsItem({
             <>
               {Pdfs?.length > 0 ? (
                 <div className="my-2 aspect-1/1 w-full grid-flow-row grid-cols-1 gap-2">
-                  <div className="relative aspect-auto rounded border-2">
+                  <div className="relative aspect-auto rounded-sm border-2">
                     <PdfCard fileUrl={`${Constants.imageUrl}${Pdfs[0]}`} visibleButton={false} />
                   </div>
                 </div>

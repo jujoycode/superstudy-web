@@ -66,7 +66,7 @@ export function CoordinatorTOK_Question_AddQuestion({
         }`}
       >
         <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white px-8`}>
-          <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6">
+          <div className="backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6">
             <Typography variant="title1">{THEME_QUESTION_TYPE_KOR[type]} 프롬프트</Typography>
             <ColorSVGIcon.Close
               color="gray700"
@@ -119,7 +119,7 @@ export function CoordinatorTOK_Question_AddQuestion({
 
           <div
             className={
-              '.backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8'
+              'backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-end gap-4 border-t border-t-gray-100 bg-white/70 pt-6 pb-8'
             }
           >
             <div className="flex justify-end gap-3">

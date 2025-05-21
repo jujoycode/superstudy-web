@@ -124,7 +124,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   )}
                   <label htmlFor="imageupload">
                     <div className=" ">
-                      <div className="h-full w-full rounded bg-white object-cover">
+                      <div className="h-full w-full rounded-sm bg-white object-cover">
                         <div className="flex h-full w-full cursor-pointer flex-col items-center justify-center">
                           <img
                             src={`${Constants.imageUrl}${profile}`}
@@ -318,7 +318,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                           alert('보호자 정보를 확인해 주세요.')
                         }
                       }}
-                      className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 text-sm focus:outline-none"
+                      className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 text-sm focus:outline-hidden"
                     />
                   )}
                 </div>
@@ -331,7 +331,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
             <>
               <button
                 children="취소"
-                className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-none"
+                className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
                 onClick={() => {
                   queryClient.refetchQueries({ active: true })
                   setIsEditMode(false)
@@ -341,7 +341,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
           )}
           <button
             children={isEditMode ? '저장하기' : '수정하기'}
-            className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-none"
+            className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-hidden"
             onClick={() => {
               if (isEditMode) {
                 if (phone && !Validator.phoneNumberRule(phone)) {

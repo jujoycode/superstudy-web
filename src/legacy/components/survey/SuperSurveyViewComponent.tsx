@@ -77,7 +77,7 @@ export function SuperSurveyViewComponent({
                 <div className="flex w-full items-center justify-between">
                   <div className="text-lg font-bold">{question.title}</div>
                   <button
-                    className="hidden h-8 w-max items-center justify-center gap-1 rounded border border-zinc-300 bg-white px-3 py-1 text-center text-xs text-zinc-800 md:flex"
+                    className="hidden h-8 w-max items-center justify-center gap-1 rounded-sm border border-zinc-300 bg-white px-3 py-1 text-center text-xs text-zinc-800 md:flex"
                     onClick={() => downloadFile(Constants.imageUrl + value, getFileNameFromUrl(value))}
                   >
                     <Icon.Download /> 첨부파일 다운로드

@@ -115,7 +115,7 @@ export function StudyInfoCard2({ studentId, isCard, isForbidden }: StudyInfoCard
             {isEditMode && (
               <>
                 <button
-                  className="h-8 rounded-md bg-[#ebebeb] px-2 py-1 text-sm focus:outline-none"
+                  className="h-8 rounded-md bg-[#ebebeb] px-2 py-1 text-sm focus:outline-hidden"
                   onClick={() => {
                     setIsEditMode(false)
                     refetch()
@@ -130,7 +130,7 @@ export function StudyInfoCard2({ studentId, isCard, isForbidden }: StudyInfoCard
             )}
             {!isForbidden ? (
               <button
-                className="text-brand-1 hover:bg-brand-1 hover:text-light_orange h-8 rounded-md bg-[#ffe4cb] px-2 py-1 text-sm focus:outline-none"
+                className="text-brand-1 hover:bg-brand-1 hover:text-light_orange h-8 rounded-md bg-[#ffe4cb] px-2 py-1 text-sm focus:outline-hidden"
                 onClick={() => {
                   if (isEditMode) {
                     handleUpdate()

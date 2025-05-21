@@ -45,8 +45,8 @@ export const IBStudentPage = () => {
 
   return (
     <div className="flex">
-      <div className="w-[224px] flex-shrink-0">
-        <div className="flex h-screen flex-grow flex-col gap-6 border-r border-gray-200 bg-white py-10">
+      <div className="w-[224px] shrink-0">
+        <div className="flex h-screen grow flex-col gap-6 border-r border-gray-200 bg-white py-10">
           {/* 로고 영역 */}
           <div className="h-10 w-full px-5">
             <img src={Logo} className="h-10 w-[70px] object-cover" />
@@ -83,7 +83,7 @@ export const IBStudentPage = () => {
             </div>
           </div>
           {/* 메뉴바 */}
-          <div className="scroll-box h-screen-13 flex flex-grow flex-col overflow-y-auto px-3 tracking-tighter">
+          <div className="scroll-box h-screen-13 flex grow flex-col overflow-y-auto px-3 tracking-tighter">
             <nav className={`flex-1`} aria-label="Sidebar">
               <Link
                 className="flex flex-row items-center gap-2 px-2 py-4 hover:rounded-lg hover:bg-gray-50"

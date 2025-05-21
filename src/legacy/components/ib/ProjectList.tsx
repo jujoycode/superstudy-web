@@ -166,25 +166,25 @@ const DummyCard = () => (
       className={`box-border flex h-[223px] w-[308px] animate-pulse cursor-pointer flex-col rounded-xl border border-gray-200 bg-white shadow`}
     >
       <div className="box-border flex flex-row items-center border-b border-b-gray-100 px-5 py-3">
-        <div className="h-4 flex-1 rounded bg-slate-200"></div>
+        <div className="h-4 flex-1 rounded-sm bg-slate-200"></div>
       </div>
       <div className="flex w-[308px] flex-1 flex-col justify-between px-5 pt-5">
         <div>
           <nav className="box-border flex w-full flex-row items-center justify-between">
-            <span className="h-6 w-10 rounded bg-gray-100"></span>
-            <span className="h-6 w-20 rounded bg-gray-100"></span>
+            <span className="h-6 w-10 rounded-sm bg-gray-100"></span>
+            <span className="h-6 w-20 rounded-sm bg-gray-100"></span>
           </nav>
           <main className="box-border flex flex-col gap-3 py-6">
-            <span className="h-6 w-40 rounded bg-gray-100"></span>
+            <span className="h-6 w-40 rounded-sm bg-gray-100"></span>
             <div className="flex w-full flex-col gap-2">
               <span className="flex flex-row gap-2">
-                <span className="h-6 w-14 rounded bg-gray-100"></span>
-                <span className="h-6 w-30 rounded bg-gray-100"></span>
+                <span className="h-6 w-14 rounded-sm bg-gray-100"></span>
+                <span className="h-6 w-30 rounded-sm bg-gray-100"></span>
               </span>
 
               <span className="flex flex-row gap-2">
-                <span className="h-6 w-14 rounded bg-gray-100"></span>
-                <span className="h-6 w-30 rounded bg-gray-100"></span>
+                <span className="h-6 w-14 rounded-sm bg-gray-100"></span>
+                <span className="h-6 w-30 rounded-sm bg-gray-100"></span>
               </span>
             </div>
           </main>
@@ -195,25 +195,25 @@ const DummyCard = () => (
       className={`box-border flex h-[223px] w-[308px] animate-pulse cursor-pointer flex-col rounded-xl border border-gray-200 bg-white shadow`}
     >
       <div className="box-border flex flex-row items-center border-b border-b-gray-100 px-5 py-3">
-        <div className="h-4 flex-1 rounded bg-slate-200"></div>
+        <div className="h-4 flex-1 rounded-sm bg-slate-200"></div>
       </div>
       <div className="flex w-[308px] flex-1 flex-col justify-between px-5 pt-5">
         <div>
           <nav className="box-border flex w-full flex-row items-center justify-between">
-            <span className="h-6 w-10 rounded bg-gray-100"></span>
-            <span className="h-6 w-20 rounded bg-gray-100"></span>
+            <span className="h-6 w-10 rounded-sm bg-gray-100"></span>
+            <span className="h-6 w-20 rounded-sm bg-gray-100"></span>
           </nav>
           <main className="box-border flex flex-col gap-3 py-6">
-            <span className="h-6 w-40 rounded bg-gray-100"></span>
+            <span className="h-6 w-40 rounded-sm bg-gray-100"></span>
             <div className="flex w-full flex-col gap-2">
               <span className="flex flex-row gap-2">
-                <span className="h-6 w-14 rounded bg-gray-100"></span>
-                <span className="h-6 w-30 rounded bg-gray-100"></span>
+                <span className="h-6 w-14 rounded-sm bg-gray-100"></span>
+                <span className="h-6 w-30 rounded-sm bg-gray-100"></span>
               </span>
 
               <span className="flex flex-row gap-2">
-                <span className="h-6 w-14 rounded bg-gray-100"></span>
-                <span className="h-6 w-30 rounded bg-gray-100"></span>
+                <span className="h-6 w-14 rounded-sm bg-gray-100"></span>
+                <span className="h-6 w-30 rounded-sm bg-gray-100"></span>
               </span>
             </div>
           </main>

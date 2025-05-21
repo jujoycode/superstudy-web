@@ -50,7 +50,7 @@ export const RecordItem: FC<RecordItemProps> = ({ record, refetch }) => {
       <div>
         {updateView ? (
           <>
-            <div className="bg-light_orange rounded p-2 whitespace-pre-line">
+            <div className="bg-light_orange rounded-sm p-2 whitespace-pre-line">
               <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
@@ -80,7 +80,7 @@ export const RecordItem: FC<RecordItemProps> = ({ record, refetch }) => {
           </>
         ) : (
           <>
-            <div className="bg-light_orange rounded p-4 text-sm whitespace-pre-line">{record.content}</div>
+            <div className="bg-light_orange rounded-sm p-4 text-sm whitespace-pre-line">{record.content}</div>
             <div className="flex items-center justify-end">
               <div className="text-13 text-[#777]">{format(new Date(record.createdAt), 'yyyy.MM.dd HH:mm')}</div>
               <Button

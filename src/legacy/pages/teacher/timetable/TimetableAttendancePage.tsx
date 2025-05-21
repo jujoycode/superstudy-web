@@ -608,7 +608,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                   <>
                     <div className="ml-2">분반</div>
                     <div
-                      className="mx-2 rounded bg-blue-100 px-2.5 text-sm text-blue-600 md:text-base"
+                      className="mx-2 rounded-sm bg-blue-100 px-2.5 text-sm text-blue-600 md:text-base"
                       onClick={() => setShowSubject(!showSubject)}
                     >
                       과목보기
@@ -625,7 +625,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
               </>
             )}
           </p>
-          <p className="flex-shrink-0">
+          <p className="shrink-0">
             {teacherName
               ? `${t('supervisor', '담당')} : ${teacherName}${teacherNickName} ${t('teacher', '선생님')}`
               : ''}
@@ -827,7 +827,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                                     src={`${Constants.imageUrl}${getStudentSeat(r, c)?.profile}`}
                                     alt=""
                                     loading="lazy"
-                                    className="h-full w-full rounded object-cover"
+                                    className="h-full w-full rounded-sm object-cover"
                                     onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => {
                                       const target = event.currentTarget
                                       target.onerror = null // prevents looping
@@ -983,7 +983,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                 src={`${Constants.imageUrl}${selectedUserId.profile}`}
                 alt=""
                 loading="lazy"
-                className="h-full w-full rounded object-cover"
+                className="h-full w-full rounded-sm object-cover"
                 onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => {
                   const target = event.currentTarget
                   target.onerror = null // prevents looping

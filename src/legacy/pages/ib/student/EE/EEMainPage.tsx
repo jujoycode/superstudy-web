@@ -153,11 +153,11 @@ export const EEMainPage = () => {
                         <div className="flex w-full max-w-[692px] items-center gap-4">
                           <Typography
                             variant="heading"
-                            className="flex-grow overflow-hidden text-ellipsis whitespace-nowrap"
+                            className="grow overflow-hidden text-ellipsis whitespace-nowrap"
                           >
                             {approvedProposalTopic ? approvedProposalTopic : `${me?.name}의 EE 제안서`}
                           </Typography>
-                          <div className="flex-shrink-0">
+                          <div className="shrink-0">
                             <SVGIcon.Arrow
                               color="gray700"
                               weight="bold"

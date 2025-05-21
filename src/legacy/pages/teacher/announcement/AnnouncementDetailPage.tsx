@@ -71,7 +71,7 @@ export default function AnnouncementDetailPage() {
                   {recipients
                     .filter((recipient) => recipient.isActive)
                     .map((recipient, index) => (
-                      <span key={index} className={`text-sm text-white ${recipient.color} rounded px-1 py-0.5`}>
+                      <span key={index} className={`text-sm text-white ${recipient.color} rounded-sm px-1 py-0.5`}>
                         {recipient.label}
                       </span>
                     ))}
@@ -109,12 +109,12 @@ export default function AnnouncementDetailPage() {
               {/* 이미지 영역 */}
               {announcement?.images &&
                 announcement.images.map((image, index) => (
-                  <div className="relative mb-4 rounded bg-gray-50" key={index}>
+                  <div className="relative mb-4 rounded-sm bg-gray-50" key={index}>
                     <LazyLoadImage
                       src={`${Constants.imageUrl}${image}`}
                       alt=""
                       loading="lazy"
-                      className="h-full w-full rounded object-cover"
+                      className="h-full w-full rounded-sm object-cover"
                     />
                   </div>
                 ))}
@@ -142,7 +142,7 @@ export default function AnnouncementDetailPage() {
               })}
 
               {announcement?.files?.map((pdfFile: string, index) => (
-                <div key={index} className="flex h-8 items-center space-x-2 rounded bg-stone-50 px-3 py-1">
+                <div key={index} className="flex h-8 items-center space-x-2 rounded-sm bg-stone-50 px-3 py-1">
                   <FileItemIcon />
                   <a
                     className="ml-2 text-xs text-neutral-500"

@@ -31,7 +31,7 @@ Button.xs = function ButtonXs<T extends ElementType = typeof defaultButtonElemen
   return (
     <Component
       className={cn(
-        'text-12 flex h-5 items-center justify-center rounded-sm px-1 font-light whitespace-nowrap',
+        'text-12 flex h-5 items-center justify-center rounded-xs px-1 font-light whitespace-nowrap',
         className,
       )}
       {...props}
@@ -47,7 +47,7 @@ Button.sm = function ButtonSm<T extends ElementType = typeof defaultButtonElemen
   const Component = as || defaultButtonElement
   return (
     <Component
-      className={cn('text-13 flex h-7 items-center justify-center rounded px-2 whitespace-nowrap', className)}
+      className={cn('text-13 flex h-7 items-center justify-center rounded-sm px-2 whitespace-nowrap', className)}
       {...props}
     />
   )

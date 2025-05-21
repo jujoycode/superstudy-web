@@ -227,7 +227,7 @@ export function ParentInfoCard({ me, isNotParent }: ParentInfoCardProps) {
                 <tr>{reqParentName} 보호자님, 가입요청 대기중입니다.</tr>
                 <button
                   children="취소하기"
-                  className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-none"
+                  className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
                   onClick={() => {
                     alert('가입 요청을 취소합니다.')
                     localStorage.removeItem('reqParent_userInfo')
@@ -335,7 +335,7 @@ export function ParentInfoCard({ me, isNotParent }: ParentInfoCardProps) {
             <div className="flex justify-end py-2">
               <button
                 children="취소"
-                className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-none"
+                className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
                 onClick={() => {
                   setAddBtnParent(false)
                   setNokName('')

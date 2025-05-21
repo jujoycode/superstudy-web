@@ -116,7 +116,7 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
               }}
               className="w-full"
             >
-              <div className="aspect-square cursor-pointer rounded border border-neutral-200">
+              <div className="aspect-square cursor-pointer rounded-sm border border-neutral-200">
                 <LazyLoadImage
                   src={`${Constants.imageUrl}${image}`}
                   alt=""
@@ -148,7 +148,7 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
           )
         })}
         {files?.map((fileUrl: string, index) => (
-          <div key={index} className="flex h-8 items-center space-x-2 rounded bg-stone-50 px-3 py-1">
+          <div key={index} className="flex h-8 items-center space-x-2 rounded-sm bg-stone-50 px-3 py-1">
             <FileItemIcon />
             <a
               className="ml-2 text-xs text-neutral-500"

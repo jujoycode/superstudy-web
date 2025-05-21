@@ -149,7 +149,7 @@ export function StudentCardPage() {
                     replace(`/teacher/studentcard/${e.target.value}`)
                   }
                 }}
-                className="w-30 flex-shrink-0"
+                className="w-30 shrink-0"
               >
                 <option defaultChecked value="" className="text-gray-600">
                   {t('all', '전체')}

@@ -89,7 +89,7 @@ export const ActivityV3ReportPage: React.FC = () => {
             <p>활동 보고서</p>
           </div>
           <div className="3xl:px-30 3xl:py-20 h-full overflow-y-auto bg-white p-2 md:px-10 md:py-5">
-            <div className="flex flex-col rounded border-2 border-zinc-800">
+            <div className="flex flex-col rounded-sm border-2 border-zinc-800">
               <div className="border-b border-neutral-200 px-10 pt-8 pb-8">
                 <div className="flex items-baseline justify-between pb-4">
                   <h1 className="flex-1 text-2xl font-bold break-words whitespace-pre-line">
@@ -127,7 +127,7 @@ export const ActivityV3ReportPage: React.FC = () => {
                                 }}
                                 className="w-full"
                               >
-                                <div className="aspect-square rounded border border-neutral-200">
+                                <div className="aspect-square rounded-sm border border-neutral-200">
                                   <LazyLoadImage
                                     src={`${Constants.imageUrl}${image}`}
                                     alt=""
@@ -144,7 +144,7 @@ export const ActivityV3ReportPage: React.FC = () => {
                             {activityv3.files?.map((fileUrl: string, index) => (
                               <div
                                 key={index}
-                                className="flex h-8 items-center space-x-2 rounded bg-stone-50 px-3 py-1"
+                                className="flex h-8 items-center space-x-2 rounded-sm bg-stone-50 px-3 py-1"
                               >
                                 <FileItemIcon />
                                 <a

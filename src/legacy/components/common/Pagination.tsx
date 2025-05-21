@@ -55,7 +55,7 @@ export interface PaginationLinkProps extends LinkProps {}
 export function PaginationLink({ className, ...props }: PaginationLinkProps) {
   return (
     <Link
-      className={cn('text-14 grid h-10 w-10 place-items-center rounded-sm text-gray-500 hover:bg-gray-50', className)}
+      className={cn('text-14 grid h-10 w-10 place-items-center rounded-xs text-gray-500 hover:bg-gray-50', className)}
       {...props}
     />
   )

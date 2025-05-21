@@ -96,7 +96,7 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
     <div className={cn('flex flex-col justify-start gap-1', className)}>
       <div
         className={cn(
-          'relative flex items-center justify-between gap-2 border border-gray-200 focus:ring-0 focus:outline-none',
+          'relative flex items-center justify-between gap-2 border border-gray-200 focus:ring-0 focus:outline-hidden',
           {
             'bg-white': (!disabled && !readonly) || (readonly && size === 48),
             'bg-gray-100': disabled || readonly,
@@ -111,7 +111,7 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
         onBlur={!readonly && !disabled ? handleBlur : undefined}
       >
         {isSearch && (
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <SVGIcon.Search color="gray700" weight="bold" size={20} onClick={onSearch} />
           </div>
         )}
@@ -122,7 +122,7 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
               isSearch ? 'w-full flex-1' : 'w-full',
               `border-none p-0 ${readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'} ${
                 (disabled || readonly) && 'bg-gray-100'
-              } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-none disabled:text-gray-400`,
+              } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-hidden disabled:text-gray-400`,
               fontClass,
             ),
             inputClassName,
@@ -141,7 +141,7 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
             type="button"
             tabIndex={-1}
             className={cn(
-              'flex-shrink-0 transition-opacity duration-150',
+              'shrink-0 transition-opacity duration-150',
               { 'invisible opacity-0': !isFocused || !inputValue },
               { 'visible opacity-100': isFocused && inputValue },
             )}
@@ -223,7 +223,7 @@ export const InputSelect = forwardRef<HTMLInputElement, TextInputProps>(function
     <div className={cn('flex flex-col justify-start gap-1', className)}>
       <div
         className={cn(
-          'relative flex items-center justify-between gap-2 border border-gray-200 focus:ring-0 focus:outline-none',
+          'relative flex items-center justify-between gap-2 border border-gray-200 focus:ring-0 focus:outline-hidden',
           {
             'bg-white': (!disabled && !readonly) || (readonly && size === 48),
             'bg-gray-100': disabled || readonly,
@@ -250,7 +250,7 @@ export const InputSelect = forwardRef<HTMLInputElement, TextInputProps>(function
                 isSearch ? 'w-full flex-1' : 'w-full',
                 `border-none p-0 ${readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'} ${
                   (disabled || readonly) && 'bg-gray-100'
-                } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-none disabled:text-gray-400`,
+                } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-hidden disabled:text-gray-400`,
                 fontClass,
               ),
               inputClassName,
@@ -343,7 +343,7 @@ export const InputLabel = forwardRef<HTMLInputElement, TextInputProps>(function 
     <div className={cn('flex flex-col justify-start gap-1', className)}>
       <div
         className={cn(
-          'relative flex items-center justify-between gap-2 border border-gray-200 focus:ring-0 focus:outline-none',
+          'relative flex items-center justify-between gap-2 border border-gray-200 focus:ring-0 focus:outline-hidden',
           {
             'bg-white': (!disabled && !readonly) || (readonly && size === 48),
             'bg-gray-100': disabled || readonly,
@@ -366,7 +366,7 @@ export const InputLabel = forwardRef<HTMLInputElement, TextInputProps>(function 
             cn(
               `w-full border-none p-0 ${readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'} ${
                 (disabled || readonly) && 'bg-gray-100'
-              } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-none disabled:text-gray-400`,
+              } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-hidden disabled:text-gray-400`,
               fontClass,
             ),
           )}
@@ -381,7 +381,7 @@ export const InputLabel = forwardRef<HTMLInputElement, TextInputProps>(function 
           type="button"
           tabIndex={-1}
           className={cn(
-            'flex-shrink-0 transition-opacity duration-150',
+            'shrink-0 transition-opacity duration-150',
             { 'invisible opacity-0': !isFocused || !inputValue },
             { 'visible opacity-100': isFocused && inputValue },
           )}
@@ -443,7 +443,7 @@ export const InputScale = forwardRef<HTMLInputElement, TextInputProps>(function 
     <div className={cn('flex flex-col justify-start gap-1', className)}>
       <div
         className={cn(
-          'relative flex items-center justify-end gap-2 border border-gray-200 focus:ring-0 focus:outline-none',
+          'relative flex items-center justify-end gap-2 border border-gray-200 focus:ring-0 focus:outline-hidden',
           {
             'bg-white': (!disabled && !readonly) || (readonly && size === 48),
             'bg-gray-100': disabled || readonly,
@@ -465,7 +465,7 @@ export const InputScale = forwardRef<HTMLInputElement, TextInputProps>(function 
                 readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'
               } ${
                 (disabled || readonly) && 'bg-gray-100'
-              } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-none disabled:text-gray-400`,
+              } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-hidden disabled:text-gray-400`,
               fontClass,
             ),
           )}

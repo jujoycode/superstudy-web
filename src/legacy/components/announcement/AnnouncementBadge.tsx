@@ -40,7 +40,7 @@ export default function AnnouncementBadge({ news, type }: AnnouncementBadgeProps
               {recipients
                 .filter((recipient) => recipient.isActive)
                 .map((recipient, index) => (
-                  <span key={index} className={`text-sm text-white ${recipient.color} rounded px-2 py-1`}>
+                  <span key={index} className={`text-sm text-white ${recipient.color} rounded-sm px-2 py-1`}>
                     {recipient.label}
                   </span>
                 ))}

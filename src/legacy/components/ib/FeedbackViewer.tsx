@@ -36,7 +36,7 @@ export default function FeedbackViewer({ referenceId, referenceTable, modalOpen,
           </div>
         ) : (
           <>
-            <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pb-6">
+            <div className="backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pb-6">
               <Typography variant="title1">
                 {sender
                   ? sender.role === 'USER'

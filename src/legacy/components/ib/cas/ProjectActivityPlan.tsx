@@ -332,7 +332,7 @@ function ProjectActivityPlan({
   }
 
   return (
-    <div className="flex flex-grow flex-col">
+    <div className="flex grow flex-col">
       {isLoading && <IBBlank />}
       <div className="flex h-full flex-row gap-4">
         <div className="flex w-[848px] flex-col rounded-xl bg-white p-6">
@@ -356,7 +356,7 @@ function ProjectActivityPlan({
 
                     <div className="relative">
                       <div
-                        className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-4 py-[9px] focus:ring-0 focus:outline-none ${
+                        className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-4 py-[9px] focus:ring-0 focus:outline-hidden ${
                           isFocused && 'border-gray-700'
                         }`}
                         onFocus={handleFocus}
@@ -365,7 +365,7 @@ function ProjectActivityPlan({
                       >
                         <SVGIcon.Calendar size={20} color="gray700" />
                         <input
-                          className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-none"
+                          className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                           placeholder="활동 일정 및 주기 선택"
                           value={
                             date.startDate && date.endDate
@@ -421,7 +421,7 @@ function ProjectActivityPlan({
                     </div>
                     <div className="relative">
                       <div
-                        className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-3 py-[9px] focus:ring-0 focus:outline-none ${
+                        className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-3 py-[9px] focus:ring-0 focus:outline-hidden ${
                           isFocused2 && 'border-gray-700'
                         }`}
                         onFocus={handleFocus2}
@@ -430,7 +430,7 @@ function ProjectActivityPlan({
                       >
                         <SVGIcon.Profile size={20} color="gray700" />
                         <input
-                          className="caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-none"
+                          className="caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                           placeholder="멤버 선택"
                           readOnly
                         />
@@ -767,11 +767,11 @@ function ProjectActivityPlan({
                   </Typography>
                   <div className="relative">
                     <div
-                      className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-4 py-[9px] focus:ring-0 focus:outline-none`}
+                      className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-4 py-[9px] focus:ring-0 focus:outline-hidden`}
                     >
                       <SVGIcon.Calendar size={20} color="gray700" />
                       <input
-                        className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-none"
+                        className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                         readOnly
                         placeholder="활동 일정 및 주기 선택"
                         value={

@@ -155,12 +155,12 @@ export function NewsletterAddPage({ studentNewsletterData, newsletterData, setUp
               setImagesModalOpen(true)
             }}
           >
-            <div className="aspect-5/3 rounded bg-gray-50">
+            <div className="aspect-5/3 rounded-sm bg-gray-50">
               <LazyLoadImage
                 src={`${Constants.imageUrl}${image}`}
                 alt=""
                 loading="lazy"
-                className="h-full w-full rounded object-cover"
+                className="h-full w-full rounded-sm object-cover"
               />
             </div>
           </div>

@@ -18,7 +18,7 @@ export function Alert({ children, severity = 'success', text, onClose }: PropsWi
 
   return (
     <div className={`flex rounded-md bg-${color}-50 p-4`}>
-      <div className="flex-shrink-0">
+      <div className="shrink-0">
         <svg
           className={`h-5 w-5 text-${color}-800`}
           xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@ export function Alert({ children, severity = 'success', text, onClose }: PropsWi
         <div className="-mx-1.5 -my-1.5">
           <button
             type="button"
-            className={`inline-flex bg-${color}-50 rounded-md p-1.5 text-${color}-800 hover:bg-${color}-100 focus:ring-2 focus:ring-offset-2 focus:outline-none focus:ring-offset-${color}-50 focus:ring-${color}-600`}
+            className={`inline-flex bg-${color}-50 rounded-md p-1.5 text-${color}-800 hover:bg-${color}-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden focus:ring-offset-${color}-50 focus:ring-${color}-600`}
             onClick={() => onClose()}
           >
             <span className="sr-only">Dismiss</span>

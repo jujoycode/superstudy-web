@@ -27,7 +27,7 @@ export function ImageObjectComponent({ id, imageObjet, onDeleteClick, cardType }
     <div
       className={cn(
         'relative',
-        cardType ? 'border-gray-5 aspect-5/3 rounded border-2 border-dashed' : 'aspect-square',
+        cardType ? 'border-gray-5 aspect-5/3 rounded-sm border-2 border-dashed' : 'aspect-square',
         imageObjet.isDelete && 'opacity-50',
       )}
     >

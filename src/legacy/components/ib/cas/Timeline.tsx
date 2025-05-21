@@ -86,7 +86,7 @@ const Timeline = ({ data }: TimelineProps) => {
           {/* 막대 영역 */}
           <div className="relative h-2 w-full">
             <div
-              className={`absolute h-full rounded-sm ${
+              className={`absolute h-full rounded-xs ${
                 data.startAt && data.endAt ? 'border-dim-8 bg-gradient-navy-400' : 'bg-gray-200'
               }`}
               style={{

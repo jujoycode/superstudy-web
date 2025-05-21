@@ -224,7 +224,7 @@ export function IbCASProject({
     >
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white`}>
         {isLoading && <IBBlank type="section-opacity" />}
-        <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6">
+        <div className="backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 px-8 pt-8 pb-6">
           <Typography variant="title1">프로젝트 계획서 작성</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
         </div>
@@ -249,7 +249,7 @@ export function IbCASProject({
               </Typography>
               <div className="relative">
                 <div
-                  className={`flex h-10 items-center gap-2 rounded-lg border border-gray-200 px-3 py-[9px] focus:ring-0 focus:outline-none ${
+                  className={`flex h-10 items-center gap-2 rounded-lg border border-gray-200 px-3 py-[9px] focus:ring-0 focus:outline-hidden ${
                     isFocused && 'border-gray-700'
                   }`}
                   onFocus={handleFocus}
@@ -258,7 +258,7 @@ export function IbCASProject({
                 >
                   <SVGIcon.Calendar size={20} color="gray700" />
                   <input
-                    className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-none"
+                    className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                     value={
                       date.startDate && date.endDate
                         ? `${date.startDate.getFullYear()}.${(date.startDate.getMonth() + 1)
@@ -301,7 +301,7 @@ export function IbCASProject({
               </div>
               <div className="relative">
                 <div
-                  className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-3 py-[9px] focus:ring-0 focus:outline-none ${
+                  className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-3 py-[9px] focus:ring-0 focus:outline-hidden ${
                     isFocused2 && 'border-gray-700'
                   }`}
                   onFocus={handleFocus2}
@@ -310,7 +310,7 @@ export function IbCASProject({
                 >
                   <SVGIcon.Profile size={20} color="gray700" />
                   <input
-                    className="caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-none"
+                    className="caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                     placeholder="멤버 선택"
                     readOnly
                   />
@@ -617,7 +617,7 @@ export function IbCASProject({
 
         <div
           className={
-            '.backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-between gap-4 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8'
+            'backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-between gap-4 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8'
           }
         >
           <ButtonV2 variant="solid" color="gray100" size={48} onClick={handleBack}>

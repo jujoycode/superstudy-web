@@ -146,7 +146,7 @@ export function CustomTuiModal({
         <div className="flex flex-row-reverse">
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none focus:ring-inset"
+            className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-hidden focus:ring-inset"
             onClick={() => onClose()}
           >
             <span className="sr-only">Close menu</span>
@@ -174,7 +174,7 @@ export function CustomTuiModal({
               className="tui-full-calendar-button tui-full-calendar-dropdown-button tui-full-calendar-popup-section-item flex w-36 items-center justify-between text-left"
             >
               <span
-                className="tui-full-calendar-icon tui-full-calendar-calendar-dot h-4 w-4 flex-shrink-0"
+                className="tui-full-calendar-icon tui-full-calendar-calendar-dot h-4 w-4 shrink-0"
                 style={{ backgroundColor: calendars?.find((element: any) => element.id === calendarId)?.bgColor }}
               />
               <span id="tui-full-calendar-schedule-calendar" className="tui-full-calendar-content truncate">

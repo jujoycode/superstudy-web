@@ -321,7 +321,7 @@ export function AbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, userId, me
                         <li className="flex items-center justify-between px-4 py-3 text-sm">
                           <div className="flex w-0 flex-1 items-center">
                             <svg
-                              className="h-5 w-5 flex-shrink-0 text-gray-400"
+                              className="h-5 w-5 shrink-0 text-gray-400"
                               xmlns="http://www.w3.org/2000/svg"
                               fill="currentColor"
                             >
@@ -331,7 +331,7 @@ export function AbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, userId, me
                               {absent?.evidenceType + (index + 1).toString()}
                             </span>
                           </div>
-                          <div className="ml-4 flex-shrink-0">
+                          <div className="ml-4 shrink-0">
                             <span className="font-medium text-indigo-600 hover:text-indigo-500">Download</span>
                           </div>
                         </li>
@@ -352,7 +352,7 @@ export function AbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, userId, me
                         <li className="flex items-center justify-between px-4 py-3 text-sm">
                           <div className="flex w-0 flex-1 items-center">
                             <svg
-                              className="h-5 w-5 flex-shrink-0 text-gray-400"
+                              className="h-5 w-5 shrink-0 text-gray-400"
                               xmlns="http://www.w3.org/2000/svg"
                               fill="currentColor"
                             >
@@ -362,7 +362,7 @@ export function AbsentDetailPage({ setOpen, setAbsentId, setAgreeAll, userId, me
                               {absent?.evidenceType + (index + 1).toString()}
                             </span>
                           </div>
-                          <div className="ml-4 flex-shrink-0">
+                          <div className="ml-4 shrink-0">
                             <span className="font-medium text-indigo-600 hover:text-indigo-500">Download</span>
                           </div>
                         </li>

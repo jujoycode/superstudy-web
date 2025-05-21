@@ -57,7 +57,7 @@ export function FieldtripSuburbsSeparatePaper({
                 {resultFile1 && (
                   <img
                     src={`${Constants.imageUrl}${resultFile1}`}
-                    className="h-full w-full rounded object-contain"
+                    className="h-full w-full rounded-sm object-contain"
                     alt=""
                   />
                 )}
@@ -68,7 +68,7 @@ export function FieldtripSuburbsSeparatePaper({
                 {resultFile2 && (
                   <img
                     src={`${Constants.imageUrl}${resultFile2}`}
-                    className="h-full w-full rounded object-contain"
+                    className="h-full w-full rounded-sm object-contain"
                     alt=""
                   />
                 )}

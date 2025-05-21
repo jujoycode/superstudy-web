@@ -111,7 +111,7 @@ export function OutingPage() {
               <Link
                 children={t('write', '작성하기')}
                 to="/teacher/outing/add"
-                className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-none"
+                className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-hidden"
               />
             </div>
             <div className="text-gray-5 mb-5 text-sm">
@@ -364,7 +364,7 @@ export function OutingPage() {
             {stampMode ? (
               stampImgUrl ? (
                 <div
-                  className="absolute inset-0 z-10 overflow-hidden rounded bg-contain bg-center bg-no-repeat"
+                  className="absolute inset-0 z-10 overflow-hidden rounded-sm bg-contain bg-center bg-no-repeat"
                   style={{ backgroundImage: `url("${stampImgUrl}")` }}
                 ></div>
               ) : (

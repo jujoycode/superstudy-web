@@ -144,7 +144,7 @@ export function ParentSignupPage() {
           style={{ height }}
         >
           {/* TODO 수정 필요 */}
-          <div className="relative rounded-lg bg-white opacity-100 shadow-sm">
+          <div className="relative rounded-lg bg-white opacity-100 shadow-xs">
             {isLogined ? (
               <Section>
                 {meRecoil?.role === 'PARENT' ? (
