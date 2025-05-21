@@ -118,7 +118,7 @@ export function CanteenPage() {
       </div>
       <div className="h-0.5 w-full bg-gray-50" />
       <div className="px-6 py-4">
-        <div className="text-gray-5 pb-3 text-sm">{makeMonthDayToString(selectedDate)}</div>
+        <div className="pb-3 text-sm text-gray-500">{makeMonthDayToString(selectedDate)}</div>
         <div className="flex flex-col space-y-3" ref={conteenRef}>
           {selectedSchedules?.map((schedule: Schedule) => (
             <div key={schedule.id} className="flex w-full items-center space-x-2">

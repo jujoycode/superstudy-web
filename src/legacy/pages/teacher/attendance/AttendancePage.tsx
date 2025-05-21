@@ -985,7 +985,7 @@ export function AttendancePage() {
                     klassName &&
                     '(' + klassName + ` - ${t('homeroom_teacher', '담임선생님')} : ` + teacher + teacherNickName + ')'}
                 </h1>
-                <div className="text-gray-5 mb-5 text-sm">*{t('attendance_check_and_document_comparison')}</div>
+                <div className="mb-5 text-sm text-gray-500">*{t('attendance_check_and_document_comparison')}</div>
               </div>
               <div className="flex space-x-2">
                 <Select.lg

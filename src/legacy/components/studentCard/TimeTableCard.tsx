@@ -84,7 +84,7 @@ export function TimeTableCard({ studentId }: TimeTableCardProps) {
 
       {selectedLectureInfo && (
         <div className="mt-2 flex w-full items-center justify-center">
-          <div className="border-gray-5 w-full rounded-xl border bg-white px-4">
+          <div className="w-full rounded-xl border border-gray-500 bg-white px-4">
             <div className="text-base text-gray-500">
               {dayOfKorWeek(selectedLectureInfo.day)}요일 {selectedLectureInfo.time + '교시'}
             </div>
