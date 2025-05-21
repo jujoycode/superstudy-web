@@ -79,7 +79,7 @@ export function TeacherApplyPage() {
                 className="flex cursor-pointer items-center justify-between py-1"
                 onClick={() => push('/teacher/fieldtrip')}
               >
-                <div className="text-gray-1 font-sfpro pl-4 font-bold">신청서</div>
+                <div className="font-sfpro pl-4 font-bold text-gray-900">신청서</div>
                 <RightArrow />
               </div>
 
@@ -87,7 +87,7 @@ export function TeacherApplyPage() {
                 className="flex cursor-pointer items-center justify-between py-1"
                 onClick={() => push('/teacher/fieldtrip/notice')}
               >
-                <div className="text-gray-1 font-sfpro pl-4 font-bold">통보서</div>
+                <div className="font-sfpro pl-4 font-bold text-gray-900">통보서</div>
                 <RightArrow />
               </div>
 
@@ -95,7 +95,7 @@ export function TeacherApplyPage() {
                 className="flex cursor-pointer items-center justify-between py-1"
                 onClick={() => push('/teacher/fieldtrip/result')}
               >
-                <div className="text-gray-1 font-sfpro pl-4 font-bold">결과보고서</div>
+                <div className="font-sfpro pl-4 font-bold text-gray-900">결과보고서</div>
                 <RightArrow />
               </div>
             </div>

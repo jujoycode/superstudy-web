@@ -55,7 +55,7 @@ export function NewsletterPreview({ title, images, klasses, endAt }: NewsletterP
                   </span>
                 ))}
             </div>
-            <div className="text-gray-1 flex text-lg font-bold">{title}</div>
+            <div className="flex text-lg font-bold text-gray-900">{title}</div>
             <div className="text-gray-3 flex text-sm">{now}</div>
             <Time date={endAt} />
             <div className="grid w-full grid-flow-row grid-cols-3 gap-2">

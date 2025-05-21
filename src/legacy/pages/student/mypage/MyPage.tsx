@@ -247,7 +247,7 @@ export function MyPage() {
                 download
               >
                 <div className="ml-10 flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-bold">학생 사용안내</div>
+                  <div className="font-bold text-gray-900">학생 사용안내</div>
                   <RightArrow />
                 </div>
               </a>
@@ -258,13 +258,13 @@ export function MyPage() {
                 download
               >
                 <div className="ml-10 flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-bold">학부모 사용안내</div>
+                  <div className="font-bold text-gray-900">학부모 사용안내</div>
                   <RightArrow />
                 </div>
               </a>
               <a href={`https://web.superschool.link/AboutSuperSchool`} target="_blank" rel="noreferrer">
                 <div className="ml-10 flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-bold">사용안내 동영상</div>
+                  <div className="font-bold text-gray-900">사용안내 동영상</div>
                   <RightArrow />
                 </div>
               </a>
