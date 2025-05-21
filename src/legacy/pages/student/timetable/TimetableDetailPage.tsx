@@ -79,7 +79,7 @@ export function TimetableDetailPage() {
                     <td
                       key={dayNum}
                       className={`min-h-10.5 min-w-9.5 cursor-pointer border border-gray-50 px-1 py-2 text-xs md:text-sm ${
-                        todayNum === dayNum + 1 ? 'bg-brand-1 bg-opacity-20' : 'bg-orange-0'
+                        todayNum === dayNum + 1 ? 'bg-brand-1 bg-opacity-20' : 'bg-orange-100'
                       } ${i === 0 && dayNum === 0 ? 'rounded-tl-xl border-t-0 border-l-0' : ''} ${
                         i === 0 && dayNum === (hasSaturdayClass ? 5 : 4) ? 'rounded-tr-xl border-t-0 border-r-0' : ''
                       } ${i === maxTime - 1 && dayNum === 0 ? 'rounded-bl-xl border-b-0 border-l-0' : ''} ${
