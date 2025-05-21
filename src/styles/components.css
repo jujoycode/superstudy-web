@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-
 @import '../legacy/styles/legacy.css' layer(components);
 
 @layer components {
