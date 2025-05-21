@@ -984,16 +984,6 @@
   z-index: var(--z-index-150);
 }
 
-.bg-pink-1 {
-  background-color: var(--color-pink-1);
-}
-.bg-pink-2 {
-  background-color: var(--color-pink-2);
-}
-.bg-pink-3 {
-  background-color: var(--color-pink-3);
-}
-
 .bg-orange-0 {
   background-color: var(--color-orange-0);
 }
