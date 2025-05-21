@@ -38,7 +38,7 @@ export function GroupPage() {
             <Link
               children={t('add', '추가하기')}
               to="/teacher/groups/add"
-              className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-hidden"
+              className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-4 py-2 text-sm focus:outline-hidden"
             />
           </div>
         </div>

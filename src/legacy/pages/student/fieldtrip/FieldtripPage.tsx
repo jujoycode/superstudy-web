@@ -114,7 +114,7 @@ export function FieldtripPage() {
                   <div className="text-md text-bold my-3 mb-3 flex">
                     <Badge
                       children={fieldtrip.type === 'HOME' ? '가정' : '교외'}
-                      className="bg-light_orange text-primary-800"
+                      className="bg-primary-50 text-primary-800"
                     />
                     {fieldtrip.type === 'HOME' ? '가정학습' : '교외 체험학습'}
                   </div>

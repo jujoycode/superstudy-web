@@ -73,7 +73,7 @@ export function AbsentApprovalPage() {
         <>
           <Section className="scroll-box h-screen-4 overflow-auto">
             {!isSigned ? (
-              <div className="bg-light_orange mb-4 rounded-lg p-4 whitespace-pre-line">
+              <div className="bg-primary-50 mb-4 rounded-lg p-4 whitespace-pre-line">
                 {`[${school?.name || ''} 슈퍼스쿨의 서명 요청]
       ${student?.nokName || ''}님, 귀하의 자녀 ${student?.name || ''} 학생이
       ${t(`Custom.SID${student?.schoolId}.absentTitle`, '결석신고서')}를 신청하였습니다.
@@ -89,7 +89,7 @@ export function AbsentApprovalPage() {
             ) : (
               <>
                 <div>
-                  <div className="bg-light_orange mb-4 rounded-lg p-4 whitespace-pre-line">
+                  <div className="bg-primary-50 mb-4 rounded-lg p-4 whitespace-pre-line">
                     {`${student?.name || ''} 학생의 ${t(`Custom.SID${student?.schoolId}.absentTitle`, '결석신고서')}가 ${
                       student?.nokName || ''
                     }님의 서명을 받았습니다.`}

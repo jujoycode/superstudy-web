@@ -241,9 +241,7 @@ export function ChatListPage() {
                 setSelectedMenu(MenuType.List)
               }}
               className={cn(
-                selectedMenu === MenuType.List
-                  ? 'bg-primary-800 text-light_orange'
-                  : 'bg-light_orange text-primary-800',
+                selectedMenu === MenuType.List ? 'bg-primary-800 text-primary-50' : 'bg-primary-50 text-primary-800',
               )}
             />
             <Button.xl
@@ -259,9 +257,7 @@ export function ChatListPage() {
                 push(`${Routes.teacher.chat}`)
               }}
               className={cn(
-                selectedMenu === MenuType.Chat
-                  ? 'bg-primary-800 text-light_orange'
-                  : 'bg-light_orange text-primary-800',
+                selectedMenu === MenuType.Chat ? 'bg-primary-800 text-primary-50' : 'bg-primary-50 text-primary-800',
               )}
             />
             <Button.xl
@@ -277,7 +273,7 @@ export function ChatListPage() {
                 push(`${Routes.teacher.chat}`)
               }}
               className={cn(
-                selectedMenu === MenuType.SMS ? 'bg-primary-800 text-light_orange' : 'bg-light_orange text-primary-800',
+                selectedMenu === MenuType.SMS ? 'bg-primary-800 text-primary-50' : 'bg-primary-50 text-primary-800',
               )}
             />
           </div>
@@ -513,7 +509,7 @@ export function ChatListPage() {
                               key={item.id}
                               title={getTitle(item)}
                               className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-1 ${
-                                userIds.includes(item.id) ? 'border-primary-800 bg-light_orange' : 'border-gray-200'
+                                userIds.includes(item.id) ? 'border-primary-800 bg-primary-50' : 'border-gray-200'
                               }`}
                               onClick={() => {
                                 if (userIds.includes(item.id)) {

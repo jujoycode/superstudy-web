@@ -37,7 +37,7 @@ export function NewsletterSubmitterItem({
         className={
           studentNewsletter?.id
             ? pathname.includes(`/teacher/activity/submit/${id}/${studentNewsletter?.id}`)
-              ? 'border-primary-800 bg-light_orange flex items-center justify-between space-x-2 rounded-md border p-2'
+              ? 'border-primary-800 bg-primary-50 flex items-center justify-between space-x-2 rounded-md border p-2'
               : 'flex items-center justify-between space-x-2 rounded-md border p-2'
             : 'flex items-center justify-between space-x-2 rounded-md border p-2'
         }

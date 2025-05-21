@@ -243,7 +243,7 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
               <div
                 key={el.id}
                 className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-3 ${
-                  userIds.includes(el.user?.id) ? 'border-primary-800 bg-light_orange' : 'border-gray-200'
+                  userIds.includes(el.user?.id) ? 'border-primary-800 bg-primary-50' : 'border-gray-200'
                 }`}
                 onClick={() => {
                   if (el?.user) {

@@ -143,7 +143,7 @@ export function AbsentPage() {
                 <Link
                   children={t('write', '작성하기')}
                   to="/teacher/absent/add"
-                  className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-hidden"
+                  className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-4 py-2 text-sm focus:outline-hidden"
                 />
               </div>
               <div className="mb-5 text-sm text-gray-500">

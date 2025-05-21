@@ -256,7 +256,7 @@ export const ActivityCriteriaSelectModal: FC<ActivityCriteriaSelectModalProps> =
                     htmlFor={String(criteria.id)}
                     className={twMerge(
                       'col-span-2 flex w-full items-start justify-start space-x-2 rounded-sm border border-[#DDDDDD] p-2 text-sm',
-                      tempSelectedCriteriaIds.includes(criteria.id) && 'border-primary-800 bg-light_orange',
+                      tempSelectedCriteriaIds.includes(criteria.id) && 'border-primary-800 bg-primary-50',
                     )}
                     onClick={() =>
                       tempSelectedCriteriaIds.includes(criteria.id)

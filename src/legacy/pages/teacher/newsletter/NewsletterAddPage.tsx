@@ -418,7 +418,7 @@ export function NewsletterAddPage() {
                             key={item.id}
                             title={getTitle(item)}
                             className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-1 ${
-                              recvuserIds.includes(item.id) ? 'border-primary-800 bg-light_orange' : 'border-gray-200'
+                              recvuserIds.includes(item.id) ? 'border-primary-800 bg-primary-50' : 'border-gray-200'
                             }`}
                             onClick={() => {
                               if (recvuserIds.includes(item.id)) {

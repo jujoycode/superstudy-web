@@ -142,7 +142,7 @@ export const StudentSelfAssessmentUpdate: FC<StudentSelfAssessmentUpdateProps> =
                 <div
                   className={twMerge(
                     'mr-2 mb-2 inline-block cursor-pointer rounded-full border border-gray-600 px-4 py-2',
-                    selected && 'border-primary-800 bg-light_orange text-primary-800',
+                    selected && 'border-primary-800 bg-primary-50 text-primary-800',
                   )}
                   onClick={() => {
                     if (Object.keys(keywords).length >= 5) {

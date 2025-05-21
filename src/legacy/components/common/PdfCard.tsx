@@ -63,7 +63,7 @@ export function PdfCard({ fileUrl, visibleButton, onClick, cardType }: PdfCardPr
             children={t('view_details')}
             hidden={!visibleButton}
             onClick={onClick}
-            className="bg-light_orange text-primary-800 absolute z-2 w-full items-center rounded-md px-4 py-2 text-sm focus:outline-hidden"
+            className="bg-primary-50 text-primary-800 absolute z-2 w-full items-center rounded-md px-4 py-2 text-sm focus:outline-hidden"
           />
         </div>
       }

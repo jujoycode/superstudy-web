@@ -55,7 +55,7 @@ export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionCom
             <div
               className={twMerge(
                 'rounded-sm bg-blue-100 p-2 whitespace-pre-line',
-                me?.id === sessionComment.userId && 'bg-light_orange',
+                me?.id === sessionComment.userId && 'bg-primary-50',
               )}
             >
               <textarea
@@ -86,7 +86,7 @@ export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionCom
               </Button>
               <Button
                 disabled={isSessionCommentLoading}
-                className="text-primary-800 hover:bg-light_orange px-2 py-1 disabled:bg-gray-50 disabled:text-gray-500"
+                className="text-primary-800 hover:bg-primary-50 px-2 py-1 disabled:bg-gray-50 disabled:text-gray-500"
                 onClick={() => updateSessionComment({ id: sessionComment.id, data: { content } })}
               >
                 저장
@@ -98,7 +98,7 @@ export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionCom
             <div
               className={twMerge(
                 'rounded-sm bg-blue-100 p-4 text-sm whitespace-pre-line',
-                me?.id === sessionComment.userId && 'bg-light_orange',
+                me?.id === sessionComment.userId && 'bg-primary-50',
               )}
             >
               {sessionComment.content}

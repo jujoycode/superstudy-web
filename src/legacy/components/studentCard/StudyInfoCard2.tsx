@@ -144,7 +144,7 @@ export function StudyInfoCard2({
             )}
             {!isForbidden ? (
               <button
-                className="text-primary-800 hover:bg-primary-800 hover:text-light_orange h-8 rounded-md bg-[#ffe4cb] px-2 py-1 text-sm focus:outline-hidden"
+                className="text-primary-800 hover:bg-primary-800 hover:text-primary-50 h-8 rounded-md bg-[#ffe4cb] px-2 py-1 text-sm focus:outline-hidden"
                 onClick={() => {
                   if (isEditMode) {
                     handleUpdate()

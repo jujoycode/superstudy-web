@@ -28,7 +28,7 @@ export const GenerateGPTPage3: FC<GenerateGPTPage3Props> = ({ goPrevPage, goNext
             <label className="flex items-start space-x-2" htmlFor="radio-1">
               <Radio id="radio-1" name="radio-1" />
 
-              <div className="bg-light_orange rounded-xl rounded-tl-none border border-gray-500 px-5 py-3 leading-6 whitespace-pre-line">
+              <div className="bg-primary-50 rounded-xl rounded-tl-none border border-gray-500 px-5 py-3 leading-6 whitespace-pre-line">
                 {`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                 industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
                 scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
@@ -40,7 +40,7 @@ export const GenerateGPTPage3: FC<GenerateGPTPage3Props> = ({ goPrevPage, goNext
             <label className="flex items-start space-x-2" htmlFor="radio-1">
               <Radio id="radio-1" name="radio-1" />
 
-              <div className="bg-light_orange rounded-xl rounded-tl-none border border-gray-500 px-5 py-3 leading-6 whitespace-pre-line">
+              <div className="bg-primary-50 rounded-xl rounded-tl-none border border-gray-500 px-5 py-3 leading-6 whitespace-pre-line">
                 {`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                 industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
                 scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
@@ -52,7 +52,7 @@ export const GenerateGPTPage3: FC<GenerateGPTPage3Props> = ({ goPrevPage, goNext
             <label className="flex items-start space-x-2" htmlFor="radio-1">
               <Radio id="radio-1" name="radio-1" />
 
-              <div className="bg-light_orange rounded-xl rounded-tl-none border border-gray-500 px-5 py-3 leading-6 whitespace-pre-line">
+              <div className="bg-primary-50 rounded-xl rounded-tl-none border border-gray-500 px-5 py-3 leading-6 whitespace-pre-line">
                 {`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                 industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
                 scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap

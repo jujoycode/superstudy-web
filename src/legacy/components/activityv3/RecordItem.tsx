@@ -50,7 +50,7 @@ export const RecordItem: FC<RecordItemProps> = ({ record, refetch }) => {
       <div>
         {updateView ? (
           <>
-            <div className="bg-light_orange rounded-sm p-2 whitespace-pre-line">
+            <div className="bg-primary-50 rounded-sm p-2 whitespace-pre-line">
               <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
@@ -71,7 +71,7 @@ export const RecordItem: FC<RecordItemProps> = ({ record, refetch }) => {
               </Button>
               <Button
                 disabled={isRecordLoading}
-                className="text-primary-800 hover:bg-light_orange px-2 py-1 disabled:bg-gray-50 disabled:text-gray-500"
+                className="text-primary-800 hover:bg-primary-50 px-2 py-1 disabled:bg-gray-50 disabled:text-gray-500"
                 onClick={() => updateRecord({ id: record.id, data: { content } })}
               >
                 저장
@@ -80,7 +80,7 @@ export const RecordItem: FC<RecordItemProps> = ({ record, refetch }) => {
           </>
         ) : (
           <>
-            <div className="bg-light_orange rounded-sm p-4 text-sm whitespace-pre-line">{record.content}</div>
+            <div className="bg-primary-50 rounded-sm p-4 text-sm whitespace-pre-line">{record.content}</div>
             <div className="flex items-center justify-end">
               <div className="text-13 text-[#777]">{format(new Date(record.createdAt), 'yyyy.MM.dd HH:mm')}</div>
               <Button

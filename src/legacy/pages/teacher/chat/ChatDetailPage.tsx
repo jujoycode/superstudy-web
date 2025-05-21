@@ -249,7 +249,7 @@ export function ChatDetailPage() {
             <button
               children="나가기"
               onClick={() => setExitModalOpen(true)}
-              className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange rounded-md px-2 py-2 text-sm focus:outline-hidden"
+              className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-2 py-2 text-sm focus:outline-hidden"
             />
           </div>
           <div className="float-right mt-1 mr-2">
@@ -271,7 +271,7 @@ export function ChatDetailPage() {
                 setSettingAttendee(false)
                 setSettingOpen(true)
               }}
-              className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange rounded-md px-2 py-2 text-sm focus:outline-hidden"
+              className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-2 py-2 text-sm focus:outline-hidden"
             />
           </div>
         </div>

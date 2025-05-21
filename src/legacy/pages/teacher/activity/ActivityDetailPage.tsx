@@ -58,7 +58,7 @@ export function ActivityDetailPage({ isUpdateState = false, setUpdateState, refe
         </Section>
       </SuperModal>
       <div className="flex justify-between">
-        <Badge children={activity?.subject} className="bg-light_orange text-primary-800" />
+        <Badge children={activity?.subject} className="bg-primary-50 text-primary-800" />
         <div className="font-base flex cursor-pointer space-x-4 text-gray-500">
           <div
             className="text-gray-700"
@@ -97,7 +97,7 @@ export function ActivityDetailPage({ isUpdateState = false, setUpdateState, refe
       </div>
 
       {activity?.isRecord && (
-        <div className="bg-light_orange m-2 rounded-lg px-2 py-1 text-sm text-gray-500">
+        <div className="bg-primary-50 m-2 rounded-lg px-2 py-1 text-sm text-gray-500">
           <div className="text-sm">공통문구 : {activity.commonText} </div>
           <div className="text-sm">활동요약 : {activity.explainText} </div>
         </div>

@@ -126,7 +126,7 @@ export function ActivityPage() {
         {/* <Link to="/teacher/activity/add">
           <button
             children="추가하기"
-            className="rounded-md bg-light_orange px-4 py-4 text-sm text-primary-800 hover:bg-primary-800 hover:text-light_orange focus:outline-hidden md:hidden"
+            className="rounded-md bg-primary-50 px-4 py-4 text-sm text-primary-800 hover:bg-primary-800 hover:text-primary-50 focus:outline-hidden md:hidden"
           />
         </Link> */}
         {subjectArray.length === 0 ? (

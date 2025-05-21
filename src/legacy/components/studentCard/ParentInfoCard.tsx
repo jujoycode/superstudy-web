@@ -79,7 +79,7 @@ export function ParentInfoCard({ studentId, parentInfo }: ParentInfoCard) {
                   <div className="flex justify-end">
                     <button
                       children="주 보호자 지정"
-                      className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-hidden"
+                      className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-2 py-1 text-sm focus:outline-hidden"
                       onClick={() => {
                         alert(
                           `학생정보의 보호자 전화번호가 ${item?.name} 님의 전화번호로 변경되며, 학생의 결재요청도 ${item?.name}님 에게 보내집니다.`,
@@ -112,7 +112,7 @@ export function ParentInfoCard({ studentId, parentInfo }: ParentInfoCard) {
                 <tr>{reqParentName} 보호자님, 가입요청 대기중입니다.</tr>
                 <button
                   children="취소하기"
-                  className="bg-light_orange text-primary-800 hover:text-light_orange my-1 rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
+                  className="bg-primary-50 text-primary-800 hover:text-primary-50 my-1 rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
                   onClick={() => {
                     alert('가입 요청을 취소합니다.')
                     localStorage.removeItem(studentId.toString())
@@ -130,7 +130,7 @@ export function ParentInfoCard({ studentId, parentInfo }: ParentInfoCard) {
                       setNokPhone('')
                       setAddBtnParent(true)
                     }}
-                    className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange mb-2 rounded-md px-2 py-1 text-sm focus:outline-hidden"
+                    className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 mb-2 rounded-md px-2 py-1 text-sm focus:outline-hidden"
                   />
                 )}
               </div>
@@ -175,7 +175,7 @@ export function ParentInfoCard({ studentId, parentInfo }: ParentInfoCard) {
                   {addBtnParent && (
                     <button
                       children="취소"
-                      className="bg-light_orange text-primary-800 hover:text-light_orange mr-1 mb-2 rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
+                      className="bg-primary-50 text-primary-800 hover:text-primary-50 mr-1 mb-2 rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
                       onClick={() => {
                         setAddBtnParent(false)
                         setNokName('')
@@ -218,7 +218,7 @@ export function ParentInfoCard({ studentId, parentInfo }: ParentInfoCard) {
                 <div className="flex justify-end">
                   <button
                     children="주 보호자 지정"
-                    className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-hidden"
+                    className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-2 py-1 text-sm focus:outline-hidden"
                     onClick={() => {
                       alert(
                         `학생정보의 보호자 전화번호가 ${item?.name} 님의 전화번호로 변경되며, 학생의 결재요청도 ${item?.name}님 에게 보내집니다.`,

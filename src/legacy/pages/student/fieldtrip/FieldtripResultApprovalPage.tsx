@@ -75,7 +75,7 @@ export function FieldtripResultApprovalPage() {
       />
       <Section className="scroll-box h-screen-4 overflow-auto">
         {!isSigned ? (
-          <div className="bg-light_orange mb-4 rounded-lg p-4 whitespace-pre-line">
+          <div className="bg-primary-50 mb-4 rounded-lg p-4 whitespace-pre-line">
             {`[${school?.name || ''} 슈퍼스쿨의 서명 요청]
       ${student?.nokName || ''}님, 귀하의 자녀 ${student?.name || ''} 학생이
       체험학습 결과보고서를 신청하였습니다.
@@ -91,7 +91,7 @@ export function FieldtripResultApprovalPage() {
         ) : (
           <>
             <div>
-              <div className="bg-light_orange mb-4 rounded-lg p-4 whitespace-pre-line">
+              <div className="bg-primary-50 mb-4 rounded-lg p-4 whitespace-pre-line">
                 {`${student?.name || ''} 학생의 체험학습 결과보고서가 ${student?.nokName || ''}님의 서명을 받았습니다.
               체험학습 결과보고서의 처리 상태를 밑에서 확인 가능합니다.`}
               </div>
