@@ -1,5 +1,4 @@
-@import 'tailwindcss';
-@theme {
+@layer theme {
   /* SuperSchool Default Brand Color */
   /* This colors change in ThemeProvider */
   --color-primary-50: #fff8f5;
