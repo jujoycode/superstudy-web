@@ -153,7 +153,7 @@ export function FieldtripResultDetailPage() {
       />
 
       {fieldtrip?.fieldtripResultStatus === 'RETURNED' && (
-        <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
+        <div className="bg-primary-100 flex items-center justify-between rounded-lg px-5 py-2">
           <div className="text-primary-800 text-sm">{fieldtrip?.notApprovedReason}</div>
           <div className="text-red-500">반려 이유</div>
         </div>

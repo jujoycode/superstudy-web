@@ -24,7 +24,7 @@ export function NewsletterCard({ newsletter, isNew, onClick }: NewsletterCardPro
           <div className="space-x-2">
             <Badge
               children={t(`${newsletter.category}`) || t('parent_letters')}
-              className="bg-primary-800 text-brand-5 rounded-md"
+              className="bg-primary-800 text-primary-100 rounded-md"
             />
             <Badge className="rounded-md bg-purple-100 text-purple-700">
               {newsletter.toPerson && t('individual')} {newsletter.toStudent && t('student')}{' '}

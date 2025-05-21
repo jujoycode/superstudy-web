@@ -84,13 +84,13 @@ export function FieldtripDetailPage() {
       <TopNavbar title="체험학습 신청서 상세" left={<BackButton />} />
       <Section>
         {fieldtrip?.fieldtripStatus === 'RETURNED' && (
-          <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
+          <div className="bg-primary-100 flex items-center justify-between rounded-lg px-5 py-2">
             <div className="text-primary-800 text-sm">{fieldtrip?.notApprovedReason}</div>
             <div className="text-red-500">반려 이유</div>
           </div>
         )}
         {fieldtrip?.fieldtripStatus === 'DELETE_APPEAL' && (
-          <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
+          <div className="bg-primary-100 flex items-center justify-between rounded-lg px-5 py-2">
             <div className="text-primary-800 text-sm">{fieldtrip?.deleteReason}</div>
             <div className="text-red-500">삭제 이유</div>
           </div>

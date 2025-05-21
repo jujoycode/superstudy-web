@@ -600,7 +600,9 @@ export function AbsentPage() {
                     agreeAll ? approveAbsents() : approveAbsent()
                   }
                 }}
-                className={cn(sigPadData ? 'bg-primary-800 border-4 border-green-500' : 'bg-brand-5 text-primary-800')}
+                className={cn(
+                  sigPadData ? 'bg-primary-800 border-4 border-green-500' : 'bg-primary-100 text-primary-800',
+                )}
               />
             )}
           </div>

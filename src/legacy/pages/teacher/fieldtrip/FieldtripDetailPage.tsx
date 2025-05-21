@@ -188,7 +188,7 @@ export function FieldtripDetailPage() {
         </div>
 
         {fieldtrip?.fieldtripStatus === 'RETURNED' && fieldtrip?.notApprovedReason && fieldtrip?.updatedAt && (
-          <div className="bg-brand-5 mx-5 flex items-center justify-between rounded-lg px-5 py-2">
+          <div className="bg-primary-100 mx-5 flex items-center justify-between rounded-lg px-5 py-2">
             <div className="text-primary-800">{fieldtrip?.notApprovedReason}</div>
             <div className="text-sm text-gray-500">
               {makeDateToString(fieldtrip?.updatedAt)} {makeTimeToString(fieldtrip?.updatedAt)}에 마지막으로 수정
@@ -196,7 +196,7 @@ export function FieldtripDetailPage() {
           </div>
         )}
         {fieldtrip?.updateReason && fieldtrip?.updatedAt && (
-          <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
+          <div className="bg-primary-100 flex items-center justify-between rounded-lg px-5 py-2">
             <div className="text-primary-800">{fieldtrip?.updateReason}</div>
             <div className="text-sm text-gray-500">
               {makeDateToString(fieldtrip?.updatedAt)} {makeTimeToString(fieldtrip?.updatedAt)}에 마지막으로 수정
@@ -205,7 +205,7 @@ export function FieldtripDetailPage() {
         )}
 
         {fieldtrip?.fieldtripStatus === FieldtripStatus.BEFORE_PARENT_CONFIRM && (
-          <div className="bg-brand-5 m-2 flex items-center justify-between rounded-lg px-5 py-2">
+          <div className="bg-primary-100 m-2 flex items-center justify-between rounded-lg px-5 py-2">
             <div className="text-primary-800 text-sm">학부모 승인 전</div>
             <Button.sm
               children="학부모 승인 요청 다시하기"

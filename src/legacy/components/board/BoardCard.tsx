@@ -31,7 +31,7 @@ export function BoardCard({ board, isNew }: BoardCardProps) {
             <div className="space-x-2">
               <Badge
                 children={t(`${board.category}`) || t('class_bulletin_board')}
-                className="bg-primary-800 text-brand-5 rounded-md"
+                className="bg-primary-800 text-primary-100 rounded-md"
               />
               {(board.toStudent || board.toParent) && (
                 <Badge className="rounded-md bg-purple-100 text-purple-700">
@@ -58,7 +58,7 @@ export function BoardCard({ board, isNew }: BoardCardProps) {
               <div className="flex space-x-2">
                 <Badge
                   children={t(`${board.category}`) || t('class_bulletin_board')}
-                  className="bg-primary-800 text-brand-5 rounded-md"
+                  className="bg-primary-800 text-primary-100 rounded-md"
                 />
                 {(board.toStudent || board.toParent) && (
                   <Badge className="rounded-md bg-purple-100 text-purple-700">

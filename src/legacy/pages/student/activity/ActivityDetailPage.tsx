@@ -74,7 +74,7 @@ export function ActivityDetailPage() {
         />
 
         <Section className="space-y-2 bg-white">
-          <div className="bg-brand-5 text-primary-800 w-max rounded-3xl px-3 py-1 text-sm font-bold">
+          <div className="bg-primary-100 text-primary-800 w-max rounded-3xl px-3 py-1 text-sm font-bold">
             {activity?.subject || ''}
           </div>
           <div className="py-2">
@@ -186,7 +186,7 @@ export function ActivityDetailPage() {
       />
 
       <Section className="space-y-2 bg-white">
-        <div className="bg-brand-5 text-primary-800 w-max rounded-3xl px-3 py-1 text-sm font-bold">
+        <div className="bg-primary-100 text-primary-800 w-max rounded-3xl px-3 py-1 text-sm font-bold">
           {activity?.subject || ''}
         </div>
         <div className="py-2">

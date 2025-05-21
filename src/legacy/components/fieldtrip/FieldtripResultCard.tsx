@@ -54,9 +54,9 @@ export function FieldtripResultCard({ fieldtrip }: FieldtripResultCardProps) {
             </h3>
             <div className="my-1 flex space-x-2 text-sm font-semibold">
               {fieldtrip?.type === 'HOME' ? (
-                <Badge children={t('home', '가정')} className="bg-brand-5 text-primary-800" />
+                <Badge children={t('home', '가정')} className="bg-primary-100 text-primary-800" />
               ) : (
-                <Badge children={t('off_campus', '교외')} className="bg-brand-5 text-primary-800" />
+                <Badge children={t('off_campus', '교외')} className="bg-primary-100 text-primary-800" />
               )}
 
               <div>{fieldtrip.type === 'SUBURBS' ? fieldtrip?.form || '교외체험학습' : '가정학습'}</div>

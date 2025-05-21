@@ -398,7 +398,7 @@ export function FieldtripResultPage() {
                     agreeAll ? approveFieldtripResults() : approveFieldtripResult()
                   }
                 }}
-                className={cn('text-white', sigPadData ? 'bg-primary-800 border-4 border-green-500' : 'bg-brand-5')}
+                className={cn('text-white', sigPadData ? 'bg-primary-800 border-4 border-green-500' : 'bg-primary-100')}
               />
             )}
           </div>

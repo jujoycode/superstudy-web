@@ -132,13 +132,13 @@ export function AbsentDetailPage() {
           )}
 
           {isReturned && (
-            <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
+            <div className="bg-primary-100 flex items-center justify-between rounded-lg px-5 py-2">
               <div className="text-primary-800 text-sm">{absent?.notApprovedReason}</div>
               <div className="text-red-500">반려 이유</div>
             </div>
           )}
           {absent?.absentStatus === AbsentStatus.DELETE_APPEAL && (
-            <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
+            <div className="bg-primary-100 flex items-center justify-between rounded-lg px-5 py-2">
               <div className="text-primary-800 text-sm">{absent?.deleteReason}</div>
               <div className="text-red-500">삭제 이유</div>
             </div>

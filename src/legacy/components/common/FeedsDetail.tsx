@@ -119,7 +119,7 @@ export function FeedsDetail({
           <div className="flex space-x-2">
             <div
               className={` ${
-                category1Color ? 'bg-' + category1Color : 'bg-brand-5'
+                category1Color ? 'bg-' + category1Color : 'bg-primary-100'
               } text-text_black rounded-md px-2 py-1 text-sm font-bold`}
             >
               {t(`${category1}`)}
@@ -127,7 +127,7 @@ export function FeedsDetail({
             {category2 && (
               <div
                 className={` ${
-                  category2Color ? 'bg-' + category2Color : 'bg-brand-5'
+                  category2Color ? 'bg-' + category2Color : 'bg-primary-100'
                 } text-text_black rounded-md px-2 py-1 text-sm font-bold`}
               >
                 {t(`${category2}`)}
@@ -136,7 +136,7 @@ export function FeedsDetail({
             {sendTo && (
               <div
                 className={` ${
-                  sendToColor ? 'bg-' + sendToColor : 'bg-brand-5'
+                  sendToColor ? 'bg-' + sendToColor : 'bg-primary-100'
                 } text-text_black rounded-md px-2 py-1 text-sm font-bold`}
               >
                 {t(`${sendTo}`)}

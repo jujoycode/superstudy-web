@@ -268,7 +268,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
             </div>
           ))}
           <div
-            className="hover:bg-brand-5 flex cursor-pointer items-center justify-center space-x-2 rounded-lg bg-gray-100 py-2"
+            className="hover:bg-primary-100 flex cursor-pointer items-center justify-center space-x-2 rounded-lg bg-gray-100 py-2"
             onClick={addChoice}
           >
             <div className="border-primary-800 text-primary-800 flex h-6 w-6 items-center justify-center rounded-full border-2 pb-0.5 text-2xl">
@@ -324,7 +324,7 @@ export const SuperSurveyQuestion: FC<SuperSurveyQuestionProps> = ({ question, se
             </div>
           ))}
           <div
-            className="hover:bg-brand-5 flex cursor-pointer items-center justify-center space-x-2 rounded-lg bg-gray-100 py-2"
+            className="hover:bg-primary-100 flex cursor-pointer items-center justify-center space-x-2 rounded-lg bg-gray-100 py-2"
             onClick={addChoice}
           >
             <div className="border-primary-800 text-primary-800 flex h-6 w-6 items-center justify-center rounded-full border-2 pb-0.5 text-2xl">

@@ -107,7 +107,7 @@ export function FeedsItem({
                   newYN
                     ? category1Color
                       ? `bg-${category1Color} text-text_black`
-                      : 'bg-brand-5 text-text_black'
+                      : 'bg-primary-100 text-text_black'
                     : 'bg-[#ccc] text-[#aaa]',
                 )}
               >
@@ -120,7 +120,7 @@ export function FeedsItem({
                     newYN
                       ? category2Color
                         ? `bg-${category2Color} text-text_black`
-                        : 'bg-brand-5 text-text_black'
+                        : 'bg-primary-100 text-text_black'
                       : 'bg-[#ccc] text-[#aaa]',
                   )}
                 >

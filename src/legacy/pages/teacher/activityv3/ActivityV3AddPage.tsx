@@ -885,7 +885,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                       ?.map((el) => (
                         <div
                           key={el.group?.id}
-                          className="bg-brand-5 rounded-md px-2 py-1 text-sm font-bold whitespace-pre text-gray-800"
+                          className="bg-primary-100 rounded-md px-2 py-1 text-sm font-bold whitespace-pre text-gray-800"
                         >
                           {el.group?.name}
                         </div>
