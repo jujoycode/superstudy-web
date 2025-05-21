@@ -255,7 +255,7 @@ export function TeacherInfoPage() {
               </div>
 
               <div className="mt-4 border border-zinc-300">
-                <div className="flex flex-col rounded-sm xl:grid xl:grid-cols-2">
+                <div className="flex flex-col rounded-xs xl:grid xl:grid-cols-2">
                   <div className="flex">
                     <label className="w-24 border border-zinc-300 bg-stone-50 p-4 font-semibold md:w-32">
                       {t('name')}
@@ -483,7 +483,7 @@ export function TeacherInfoPage() {
 
           {isUpdateMe && (
             <>
-              <div className="mt-4 flex flex-col rounded-sm px-4 py-2 md:grid md:grid-cols-2 md:px-10 md:py-5">
+              <div className="mt-4 flex flex-col rounded-xs px-4 py-2 md:grid md:grid-cols-2 md:px-10 md:py-5">
                 <div className="flex flex-1">
                   <label className="w-24 border border-zinc-300 bg-stone-50 p-4 font-semibold md:w-32">
                     {t('password')}
@@ -548,7 +548,7 @@ export function TeacherInfoPage() {
 
           {isDeleteMe && (
             <>
-              <div className="mt-4 flex flex-col rounded-sm px-4 py-2 md:grid md:grid-cols-2 md:px-10 md:py-5">
+              <div className="mt-4 flex flex-col rounded-xs px-4 py-2 md:grid md:grid-cols-2 md:px-10 md:py-5">
                 <div className="flex flex-1">
                   <label className="w-24 border border-zinc-300 bg-stone-50 p-4 font-semibold md:w-32">
                     {t('password')}
