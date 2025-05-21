@@ -309,7 +309,7 @@ export function MyPage() {
           }}
           className="bg-littleblack fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center"
         >
-          <div className="relative rounded-lg bg-white opacity-100 shadow-sm">
+          <div className="relative rounded-lg bg-white opacity-100 shadow-xs">
             <Section>
               <div className="text-center text-2xl font-bold">자녀 정보 삭제 안내</div>
               <div className="text-lg">

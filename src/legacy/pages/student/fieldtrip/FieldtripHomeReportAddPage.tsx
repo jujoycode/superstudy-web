@@ -170,9 +170,9 @@ export function FieldtripHomeReportAddPage() {
           <div className="text-lg font-bold text-gray-800">*가정학습 결과 보고서 작성</div>
           <Button.lg children="예시보기" onClick={() => setModalopen(true)} className="filled-primary w-24" />
         </div>
-        <div className="space-y-4 rounded-md border border-gray-100 bg-white p-4 shadow-sm">
+        <div className="space-y-4 rounded-md border border-gray-100 bg-white p-4 shadow-xs">
           {homePlan?.map((plan, i) => (
-            <div key={i} className="space-y-4 rounded-md border border-gray-100 bg-white p-4 shadow-sm">
+            <div key={i} className="space-y-4 rounded-md border border-gray-100 bg-white p-4 shadow-xs">
               <div className="pt-10 pb-4 text-center text-lg font-bold text-gray-800">{i + 1}일차</div>
               {dayHomePlan ? (
                 <Label.col>
