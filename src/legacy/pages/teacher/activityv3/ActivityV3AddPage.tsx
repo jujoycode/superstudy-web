@@ -910,7 +910,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                   {[...documentObjectMap].length > 0 && (
                     <div className="flex flex-col gap-1 pb-2">
                       {[...documentObjectMap].map(([key, value]) => (
-                        <div key={key} className="flex h-8 items-center space-x-2 rounded bg-stone-50 px-3 py-1">
+                        <div key={key} className="flex h-8 items-center space-x-2 rounded-sm bg-stone-50 px-3 py-1">
                           <img src={FileItemIcon as unknown as string} alt="file-icon" />
                           {typeof value.document === 'string' ? (
                             <a

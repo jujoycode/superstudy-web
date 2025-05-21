@@ -471,7 +471,7 @@ export function TeacherInfoPage() {
                   </label>
                   <div className="flex flex-1 flex-wrap gap-2 border-y border-r border-y-zinc-300 border-r-zinc-300 p-4">
                     {allTeacherGroups?.map((tg) => (
-                      <div key={tg.id} className="w-full rounded bg-orange-100 px-2 py-1 md:w-[calc(50%-0.5rem)]">
+                      <div key={tg.id} className="w-full rounded-sm bg-orange-100 px-2 py-1 md:w-[calc(50%-0.5rem)]">
                         {tg.name}
                       </div>
                     ))}

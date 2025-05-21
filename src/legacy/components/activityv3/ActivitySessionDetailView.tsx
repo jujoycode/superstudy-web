@@ -82,12 +82,12 @@ export const ActivitySessionDetailView: React.FC<ActivitySessionDetailViewProps>
               }}
               className="w-full"
             >
-              <div className="aspect-5/3 rounded bg-gray-50">
+              <div className="aspect-5/3 rounded-sm bg-gray-50">
                 <LazyLoadImage
                   src={`${Constants.imageUrl}${image}`}
                   alt=""
                   loading="lazy"
-                  className="h-full w-full rounded object-cover"
+                  className="h-full w-full rounded-sm object-cover"
                 />
               </div>
             </div>
@@ -99,7 +99,7 @@ export const ActivitySessionDetailView: React.FC<ActivitySessionDetailViewProps>
                 <DocumentObjectComponent key={key} id={key} documentObjet={value} />
               ))}
             {activity?.files?.map((fileUrl: string, index) => (
-              <div key={index} className="flex h-8 items-center space-x-2 rounded bg-stone-50 px-3 py-1">
+              <div key={index} className="flex h-8 items-center space-x-2 rounded-sm bg-stone-50 px-3 py-1">
                 <FileItemIcon />
                 <a
                   className="ml-2 max-w-xs truncate text-xs text-neutral-500"

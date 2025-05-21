@@ -177,7 +177,7 @@ export function ChatSetting({
               {editable ? (
                 <>
                   <label htmlFor="imageupload">
-                    <div className="w-full rounded bg-white">
+                    <div className="w-full rounded-sm bg-white">
                       <div className="flex h-full w-full cursor-pointer flex-col items-center justify-center">
                         <img
                           src={`${Constants.imageUrl}${profile}`}

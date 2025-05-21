@@ -89,7 +89,7 @@ function PortfolioCard({ data }: PortfolioCardProps) {
                   </Typography>
                   <div className="mx-2 h-[1px] flex-1 border-t border-dashed border-gray-300"></div>
                   <span
-                    className={`flex h-4 w-4 items-center justify-center rounded ${
+                    className={`flex h-4 w-4 items-center justify-center rounded-sm ${
                       data.reflectionDiaryCount === 0 ? 'bg-gray-500' : 'bg-primary-800'
                     } text-11 px-1 py-px font-medium text-white`}
                   >
@@ -102,7 +102,7 @@ function PortfolioCard({ data }: PortfolioCardProps) {
                   </Typography>
                   <div className="mx-2 h-[1px] flex-1 border-t border-dashed border-gray-300"></div>
                   <span
-                    className={`flex h-4 w-4 items-center justify-center rounded ${
+                    className={`flex h-4 w-4 items-center justify-center rounded-sm ${
                       data.interviewCount === 0 ? 'bg-gray-500' : 'bg-primary-800'
                     } text-11 px-1 py-px font-medium text-white`}
                   >

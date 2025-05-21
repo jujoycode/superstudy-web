@@ -31,7 +31,7 @@ export function SuperSurveyAddComponent({ setContent, content, className }: Supe
   }
 
   return (
-    <Section className={twMerge('min-h-screen-48 rounded border border-neutral-400 bg-white', className)}>
+    <Section className={twMerge('min-h-screen-48 rounded-sm border border-neutral-400 bg-white', className)}>
       <div className="flex items-center justify-between">
         <div className="text-lg font-bold">설문 등록</div>
       </div>

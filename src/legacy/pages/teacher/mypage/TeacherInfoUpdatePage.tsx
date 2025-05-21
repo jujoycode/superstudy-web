@@ -107,7 +107,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
           <label className="text-sm text-gray-800">사진</label>
           <div className="mx-auto h-60 w-60 flex-1 shrink-0 items-start rounded-full">
             <label htmlFor="imageupload">
-              <div className="w-full rounded bg-white">
+              <div className="w-full rounded-sm bg-white">
                 <div className="flex h-full w-full cursor-pointer flex-col items-center justify-center">
                   <img
                     className="mx-auto mr-1 rounded-xl"

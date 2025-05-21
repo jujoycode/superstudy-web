@@ -128,7 +128,7 @@ export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ ac
       <div className="max-h-screen-12 mt-16 flex h-full items-stretch space-x-2 overflow-hidden">
         <div className="flex w-2/3 flex-col pb-4">
           <div className="text-24 mb-4 font-bold">학생 활동 보고서</div>
-          <div className="flex h-full w-full flex-col overflow-hidden rounded border border-neutral-400">
+          <div className="flex h-full w-full flex-col overflow-hidden rounded-sm border border-neutral-400">
             <div className="flex h-full w-full flex-col space-y-5 overflow-hidden bg-white px-8 py-5">
               <div className="flex w-full items-center justify-center space-x-4">
                 <Icon.ChevronLeft
@@ -144,7 +144,7 @@ export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ ac
                           src={`${Constants.imageUrl}${selectedUser?.profile}`}
                           alt=""
                           loading="lazy"
-                          className="h-8 w-8 rounded object-cover"
+                          className="h-8 w-8 rounded-sm object-cover"
                         />
                       ) : (
                         <Avatar />
@@ -178,7 +178,7 @@ export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ ac
                                 src={`${Constants.imageUrl}${sg.user?.profile}`}
                                 alt=""
                                 loading="lazy"
-                                className="h-8 w-8 rounded object-cover"
+                                className="h-8 w-8 rounded-sm object-cover"
                               />
                             ) : (
                               <Avatar />
@@ -239,7 +239,7 @@ export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ ac
         {/* 관찰기록 영역 */}
         <div className="flex w-1/3 min-w-40 flex-col pb-4">
           <div className="text-24 mb-4 font-bold">관찰기록</div>
-          <div className="flex h-full w-full flex-col overflow-hidden rounded border border-neutral-400">
+          <div className="flex h-full w-full flex-col overflow-hidden rounded-sm border border-neutral-400">
             <div className="relative h-full w-full flex-col space-y-4 overflow-y-auto bg-white p-5">
               {isRecordLoading && <div className="bg-littleblack absolute inset-0">로딩 중...</div>}
               {studentActivityV3.records

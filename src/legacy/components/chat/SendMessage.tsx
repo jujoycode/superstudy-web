@@ -121,7 +121,7 @@ export function SendMessage({
                       setImagesModalOpen(true)
                     }}
                   >
-                    <div className="aspect-square rounded border border-neutral-200">
+                    <div className="aspect-square rounded-sm border border-neutral-200">
                       <LazyLoadImage
                         src={`${Constants.imageUrl}${image}`}
                         alt=""
@@ -138,7 +138,7 @@ export function SendMessage({
                 {MessageData.files.map((fileUrl: string) => (
                   <div
                     key={fileUrl}
-                    className="flex h-8 w-full items-center space-x-2 overflow-hidden rounded bg-stone-50 px-3 py-1"
+                    className="flex h-8 w-full items-center space-x-2 overflow-hidden rounded-sm bg-stone-50 px-3 py-1"
                   >
                     <FileItemIcon className="min-w-[14px]" />
                     <a

@@ -211,12 +211,12 @@ export function FeedsDetail({
                   setImagesModalOpen(true)
                 }}
               >
-                <div className="relative rounded bg-gray-50">
+                <div className="relative rounded-sm bg-gray-50">
                   <LazyLoadImage
                     src={getUrl(image)}
                     alt=""
                     loading="lazy"
-                    className="h-full w-full rounded object-cover"
+                    className="h-full w-full rounded-sm object-cover"
                   />
                 </div>
               </div>

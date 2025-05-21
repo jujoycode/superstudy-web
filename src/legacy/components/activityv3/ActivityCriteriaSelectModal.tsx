@@ -203,7 +203,7 @@ export const ActivityCriteriaSelectModal: FC<ActivityCriteriaSelectModalProps> =
 
         {/* 성취기준 박스 */}
         <div className="flex h-full w-full gap-2 overflow-hidden pt-4">
-          <div className="flex w-full flex-row rounded border border-[#CCCCCC]">
+          <div className="flex w-full flex-row rounded-sm border border-[#CCCCCC]">
             {/* 과목 선택 박스 */}
             <div className="w-[300px] overflow-y-auto border-r border-[#CCCCCC] p-1">
               {map(
@@ -211,7 +211,7 @@ export const ActivityCriteriaSelectModal: FC<ActivityCriteriaSelectModalProps> =
                 (ac) => (
                   <div
                     className={twMerge(
-                      'text-14 flex cursor-pointer items-center justify-between space-x-4 rounded p-2',
+                      'text-14 flex cursor-pointer items-center justify-between space-x-4 rounded-sm p-2',
                       selectedSubjectId === ac.id && 'bg-orange-500 font-bold text-white',
                     )}
                     onClick={() => {
@@ -233,7 +233,7 @@ export const ActivityCriteriaSelectModal: FC<ActivityCriteriaSelectModalProps> =
                 <div
                   key={subsubject}
                   className={twMerge(
-                    'text-14 flex cursor-pointer items-center justify-between space-x-4 rounded p-2',
+                    'text-14 flex cursor-pointer items-center justify-between space-x-4 rounded-sm p-2',
                     selectedSubsubject === subsubject && 'bg-orange-500 font-bold text-white',
                   )}
                   onClick={() => setSelectedSubsubject(subsubject)}
@@ -255,7 +255,7 @@ export const ActivityCriteriaSelectModal: FC<ActivityCriteriaSelectModalProps> =
                     key={criteria.id}
                     htmlFor={String(criteria.id)}
                     className={twMerge(
-                      'col-span-2 flex w-full items-start justify-start space-x-2 rounded border border-[#DDDDDD] p-2 text-sm',
+                      'col-span-2 flex w-full items-start justify-start space-x-2 rounded-sm border border-[#DDDDDD] p-2 text-sm',
                       tempSelectedCriteriaIds.includes(criteria.id) && 'border-brand-1 bg-light_orange',
                     )}
                     onClick={() =>

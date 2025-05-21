@@ -364,7 +364,7 @@ export function OutingPage() {
             {stampMode ? (
               stampImgUrl ? (
                 <div
-                  className="absolute inset-0 z-10 overflow-hidden rounded bg-contain bg-center bg-no-repeat"
+                  className="absolute inset-0 z-10 overflow-hidden rounded-sm bg-contain bg-center bg-no-repeat"
                   style={{ backgroundImage: `url("${stampImgUrl}")` }}
                 ></div>
               ) : (

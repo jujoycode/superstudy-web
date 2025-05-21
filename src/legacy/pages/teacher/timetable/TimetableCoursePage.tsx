@@ -200,11 +200,11 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
                       {courseLecture?.lectureAttendances.some(
                         (la) => la.userId === trainee.userId && !la.isAttended,
                       ) ? (
-                        <div className="rounded bg-red-100 px-2.5 py-1.5 text-sm font-extrabold text-red-500 md:text-base">
+                        <div className="rounded-sm bg-red-100 px-2.5 py-1.5 text-sm font-extrabold text-red-500 md:text-base">
                           {t('non-attendance')}
                         </div>
                       ) : (
-                        <div className="rounded bg-blue-100 px-2.5 py-1.5 text-sm text-blue-600 md:text-base">
+                        <div className="rounded-sm bg-blue-100 px-2.5 py-1.5 text-sm text-blue-600 md:text-base">
                           {t('attendance')}
                         </div>
                       )}
@@ -314,7 +314,7 @@ function TimetableCoursePageAttendanceManagementModal({
               src={`${Constants.imageUrl}${user.profile}`}
               alt=""
               loading="lazy"
-              className="h-full w-full rounded object-cover"
+              className="h-full w-full rounded-sm object-cover"
               onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => {
                 const target = event.currentTarget
                 target.onerror = null // prevents looping

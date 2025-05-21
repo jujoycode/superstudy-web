@@ -371,7 +371,7 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
                 <div className="relative mx-auto h-24 w-24 cursor-pointer overflow-hidden rounded-full">
                   {customProfile ? (
                     <img
-                      className="absolute h-full w-full rounded object-cover"
+                      className="absolute h-full w-full rounded-sm object-cover"
                       src={
                         typeof customProfile === 'string'
                           ? `${Constants.imageUrl}${customProfile}`

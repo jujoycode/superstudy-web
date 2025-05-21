@@ -145,7 +145,7 @@ export function CanteenPage() {
         </div>
         {selectedCanteen?.image && (
           <div onClick={() => setImageModalOpen(true)} ref={conteenRef}>
-            <div className="aspect-5/3 rounded bg-gray-50">
+            <div className="aspect-5/3 rounded-sm bg-gray-50">
               <img
                 src={Constants.imageUrl + selectedCanteen.image}
                 alt=""

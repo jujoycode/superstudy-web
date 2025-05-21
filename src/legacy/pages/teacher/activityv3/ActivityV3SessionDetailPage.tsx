@@ -287,7 +287,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
             </p>
           </div>
           <div className="3xl:px-30 3xl:py-20 h-full overflow-y-auto bg-white p-2 md:px-10 md:py-5">
-            <div className="flex flex-col rounded border border-neutral-200">
+            <div className="flex flex-col rounded-sm border border-neutral-200">
               <div className="border-b border-neutral-200 px-10 pt-8 pb-8">
                 <div className="flex pb-4">
                   <h1 className="flex-1 text-2xl font-bold break-words whitespace-pre-line">
@@ -324,7 +324,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                                 }}
                                 className="w-full"
                               >
-                                <div className="aspect-square rounded border border-neutral-200">
+                                <div className="aspect-square rounded-sm border border-neutral-200">
                                   <LazyLoadImage
                                     src={`${Constants.imageUrl}${image}`}
                                     alt=""
@@ -341,7 +341,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                             {activityv3.files?.map((fileUrl: string, index) => (
                               <div
                                 key={index}
-                                className="flex h-8 w-max items-center space-x-2 rounded bg-stone-50 px-3 py-1"
+                                className="flex h-8 w-max items-center space-x-2 rounded-sm bg-stone-50 px-3 py-1"
                               >
                                 <FileItemIcon />
                                 <a
@@ -382,7 +382,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
             </div>
 
             {/* 차시 설명 영역 */}
-            <div className="mt-4 flex flex-col rounded border-2 border-zinc-800">
+            <div className="mt-4 flex flex-col rounded-sm border-2 border-zinc-800">
               <div className="border-b border-neutral-200 px-10 pt-8 pb-8">
                 <div className="flex items-baseline justify-between pb-4">
                   <h1 className="flex-1 text-2xl font-bold break-words whitespace-pre-line">{activitySession.title}</h1>
@@ -440,7 +440,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                                 }}
                                 className="w-full"
                               >
-                                <div className="aspect-square cursor-pointer rounded border border-neutral-200">
+                                <div className="aspect-square cursor-pointer rounded-sm border border-neutral-200">
                                   <LazyLoadImage
                                     src={`${Constants.imageUrl}${image}`}
                                     alt=""
@@ -457,7 +457,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                             {activitySession.files?.map((fileUrl: string, index) => (
                               <div
                                 key={index}
-                                className="flex h-8 items-center space-x-2 rounded bg-stone-50 px-3 py-1"
+                                className="flex h-8 items-center space-x-2 rounded-sm bg-stone-50 px-3 py-1"
                               >
                                 <FileItemIcon />
                                 <a
@@ -507,7 +507,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                       제출현황 다운로드
                     </Button>
                   </div>
-                  <div className="mt-4 flex rounded border border-zinc-800 text-[#333333]">
+                  <div className="mt-4 flex rounded-sm border border-zinc-800 text-[#333333]">
                     <div className="text-16 flex w-full items-center justify-between border-r border-zinc-800 p-4 font-bold">
                       <div>제출</div>
                       <div className="flex items-center">

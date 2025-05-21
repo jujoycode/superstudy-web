@@ -377,7 +377,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                   선택한 활동(들)을 기반으로 활동기록부 초안을 작성합니다.
                 </div>
 
-                <div className="mt-6 flex flex-grow flex-col gap-2">
+                <div className="mt-6 flex grow flex-col gap-2">
                   <div className="flex w-full gap-x-0.5">
                     <div className="text-lg font-semibold">종류</div>
                     {currentStep === 2 && coachmarkVisible && (
@@ -456,7 +456,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                   )}
                 </div>
                 {type === '교과' && (
-                  <div className="mt-6 flex flex-grow flex-col gap-2">
+                  <div className="mt-6 flex grow flex-col gap-2">
                     <div className="text-lg font-semibold">과목</div>
                     <Select.lg value={subject} onChange={(e) => setSubject(e.target.value)}>
                       {_.chain(activityV3s)
@@ -472,7 +472,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                   </div>
                 )}
                 {type === '창의적체험활동' && (
-                  <div className="mt-6 flex flex-grow flex-col gap-2">
+                  <div className="mt-6 flex grow flex-col gap-2">
                     <div className="text-lg font-semibold">타입</div>
                     <Select.lg value={creativeType} onChange={(e) => setCreativeType(e.target.value)}>
                       <option value="자율">자율</option>
@@ -482,7 +482,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                     </Select.lg>
                   </div>
                 )}
-                <div className="mt-6 flex flex-grow flex-col gap-2">
+                <div className="mt-6 flex grow flex-col gap-2">
                   <div className="flex w-full gap-x-0.5">
                     <div className="text-lg font-semibold">성취수준</div>
                     {currentStep === 4 && coachmarkVisible && (
@@ -539,11 +539,11 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                 </div>
 
                 {achievementCriterias == undefined ? (
-                  <div className="mt-2 flex w-full justify-center rounded bg-gray-500 px-4 py-2 text-white">
+                  <div className="mt-2 flex w-full justify-center rounded-sm bg-gray-500 px-4 py-2 text-white">
                     성취기준이 존재하지 않습니다.
                   </div>
                 ) : (
-                  <div className="text-14 mt-2 rounded bg-[#F5F5F5] p-2 whitespace-pre-line text-[#666]">
+                  <div className="text-14 mt-2 rounded-sm bg-[#F5F5F5] p-2 whitespace-pre-line text-[#666]">
                     {achievementCriterias?.map((ac) => `[${ac.criteriaId}]\n ${ac.criteria}`).join('\n')}
                   </div>
                 )}
@@ -628,7 +628,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                               )}
                             </div>
                             {isEvidenceOpen && i === 0 && (
-                              <div className="text-14 mt-2 rounded bg-[#F5F5F5] p-2 whitespace-pre-line text-[#666]">
+                              <div className="text-14 mt-2 rounded-sm bg-[#F5F5F5] p-2 whitespace-pre-line text-[#666]">
                                 {data.report?.map((el: any) => el.evidence).join('\n')}
                               </div>
                             )}

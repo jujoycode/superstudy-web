@@ -41,9 +41,9 @@ const BadgeStyles = {
   },
 }
 const sizeStyles = {
-  16: 'text-11 font-medium px-1 py-px rounded flex items-center h-4 w-max',
-  20: 'text-xs font-medium px-1.5 py-0.5 rounded flex items-center h-5 w-max',
-  24: 'text-13 font-medium px-2 py-[3px] rounded flex items-center h-6 w-max',
+  16: 'text-11 font-medium px-1 py-px rounded-sm flex items-center h-4 w-max',
+  20: 'text-xs font-medium px-1.5 py-0.5 rounded-sm flex items-center h-5 w-max',
+  24: 'text-13 font-medium px-2 py-[3px] rounded-sm flex items-center h-6 w-max',
 }
 
 export function BadgeV2({ className, size = 24, type = 'solid_regular', color = 'gray', ...props }: BadgeV2Props) {

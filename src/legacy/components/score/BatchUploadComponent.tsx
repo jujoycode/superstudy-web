@@ -220,7 +220,7 @@ export const BatcbUploadComponent: React.FC<BatcbUploadComponentProps> = ({
                                 isUploaded ? 'bg-neutral-100 text-[#aaaaaa]' : 'bg-white'
                               } px-4 py-3`}
                             >
-                              <div className={`flex h-8 items-center space-x-2 rounded px-3 py-1`}>
+                              <div className={`flex h-8 items-center space-x-2 rounded-sm px-3 py-1`}>
                                 {typeof value.document === 'string' ? (
                                   <></>
                                 ) : (

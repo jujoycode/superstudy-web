@@ -71,7 +71,7 @@ export function TimetableStudentRole({ editmode, student, order, setOrder }: Tim
         <div>
           <div className="flex w-full items-center justify-between px-4 py-2">
             <div className="flex items-center space-x-2">
-              <div className="w-40 truncate rounded bg-blue-100 px-2.5 py-1.5 text-sm text-blue-600 md:text-base">
+              <div className="w-40 truncate rounded-sm bg-blue-100 px-2.5 py-1.5 text-sm text-blue-600 md:text-base">
                 {student.role ? student.role : '미지정'}
               </div>
               <div className="text-sm md:text-lg">{makeStudNum5(student.klassname + student.student_number)}</div>

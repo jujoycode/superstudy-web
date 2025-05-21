@@ -124,7 +124,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   )}
                   <label htmlFor="imageupload">
                     <div className=" ">
-                      <div className="h-full w-full rounded bg-white object-cover">
+                      <div className="h-full w-full rounded-sm bg-white object-cover">
                         <div className="flex h-full w-full cursor-pointer flex-col items-center justify-center">
                           <img
                             src={`${Constants.imageUrl}${profile}`}

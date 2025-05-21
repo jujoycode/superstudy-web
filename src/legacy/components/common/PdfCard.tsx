@@ -54,7 +54,7 @@ export function PdfCard({ fileUrl, visibleButton, onClick, cardType }: PdfCardPr
         <div
           ref={divRef}
           className={cn(
-            'h-full rounded object-cover',
+            'h-full rounded-sm object-cover',
             cardType ? 'absolute flex w-full items-center justify-center' : 'relative',
           )}
         >

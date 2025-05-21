@@ -160,12 +160,12 @@ export function FieldtripResultApprovalPage() {
             <Section className="bg-gray-50">
               {images?.map((image: string, i: number) => (
                 <div key={i} className="w-full">
-                  <div className="rounded bg-gray-50">
+                  <div className="rounded-sm bg-gray-50">
                     <LazyLoadImage
                       src={`${Constants.imageUrl}${image}`}
                       alt=""
                       loading="lazy"
-                      className="h-full w-full rounded object-cover"
+                      className="h-full w-full rounded-sm object-cover"
                     />
                   </div>
                 </div>
@@ -175,7 +175,7 @@ export function FieldtripResultApprovalPage() {
                   <>
                     <div key={pdfFile}>
                       <div className="w-full">
-                        <div className="rounded bg-gray-50">
+                        <div className="rounded-sm bg-gray-50">
                           <PdfCard fileUrl={`${Constants.imageUrl}${pdfFile}`} visibleButton={false} />
                         </div>
                       </div>

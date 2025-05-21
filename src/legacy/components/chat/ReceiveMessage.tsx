@@ -173,7 +173,7 @@ export function ReceiveMessage({
                         setImagesModalOpen(true)
                       }}
                     >
-                      <div className="aspect-square rounded border border-neutral-200">
+                      <div className="aspect-square rounded-sm border border-neutral-200">
                         <LazyLoadImage
                           src={`${Constants.imageUrl}${image}`}
                           alt=""
@@ -188,7 +188,10 @@ export function ReceiveMessage({
               {!!MessageData?.files?.length && (
                 <div className="flex flex-col gap-1">
                   {MessageData.files.map((fileUrl: string) => (
-                    <div key={fileUrl} className="flex h-8 w-max items-center space-x-2 rounded bg-stone-50 px-3 py-1">
+                    <div
+                      key={fileUrl}
+                      className="flex h-8 w-max items-center space-x-2 rounded-sm bg-stone-50 px-3 py-1"
+                    >
                       <FileItemIcon />
                       <a
                         className="ml-2 line-clamp-2 max-w-[140px] text-xs break-words text-neutral-500"

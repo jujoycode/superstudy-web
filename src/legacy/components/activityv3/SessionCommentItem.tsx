@@ -54,7 +54,7 @@ export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionCom
           <>
             <div
               className={twMerge(
-                'rounded bg-blue-100 p-2 whitespace-pre-line',
+                'rounded-sm bg-blue-100 p-2 whitespace-pre-line',
                 me?.id === sessionComment.userId && 'bg-light_orange',
               )}
             >
@@ -97,7 +97,7 @@ export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionCom
           <>
             <div
               className={twMerge(
-                'rounded bg-blue-100 p-4 text-sm whitespace-pre-line',
+                'rounded-sm bg-blue-100 p-4 text-sm whitespace-pre-line',
                 me?.id === sessionComment.userId && 'bg-light_orange',
               )}
             >

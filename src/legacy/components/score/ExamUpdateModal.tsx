@@ -97,7 +97,7 @@ export function ExamUpdateModal({
                           <div
                             className={`flex h-12 w-full items-center justify-between rounded-lg border bg-white px-4 py-3`}
                           >
-                            <div className={`flex h-8 items-center space-x-2 rounded px-3 py-1`}>
+                            <div className={`flex h-8 items-center space-x-2 rounded-sm px-3 py-1`}>
                               <div className={`text-15 w-full break-words whitespace-pre-wrap`}>{value.name}</div>
                             </div>
                             <div className="text-lightpurple-4 flex min-w-max items-center justify-center bg-white px-2">

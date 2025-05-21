@@ -20,17 +20,17 @@ export function TimetableAtdCard({ attendance, student, comment, setModalOpen }:
       <div className="flex w-full items-center justify-between px-0 py-2 md:px-4">
         <div className="flex items-center space-x-2">
           {student.expired ? (
-            <div className="rounded bg-red-50 px-2.5 py-1.5 text-sm text-red-600 md:text-base">
+            <div className="rounded-sm bg-red-50 px-2.5 py-1.5 text-sm text-red-600 md:text-base">
               {student.expired_reason}
             </div>
           ) : student.not_attend ? (
-            <div className="rounded bg-red-50 px-2.5 py-1.5 text-sm text-red-600 md:text-base">{'출석제외'}</div>
+            <div className="rounded-sm bg-red-50 px-2.5 py-1.5 text-sm text-red-600 md:text-base">{'출석제외'}</div>
           ) : attendance ? (
-            <div className="rounded bg-blue-100 px-2.5 py-1.5 text-sm text-blue-600 md:text-base">
+            <div className="rounded-sm bg-blue-100 px-2.5 py-1.5 text-sm text-blue-600 md:text-base">
               {t('attendance', '출석')}
             </div>
           ) : (
-            <div className="rounded bg-red-100 px-2.5 py-1.5 text-sm text-red-600 md:text-base">
+            <div className="rounded-sm bg-red-100 px-2.5 py-1.5 text-sm text-red-600 md:text-base">
               {t(`Student_Status.${student.type1}`, `${student.type1}`)}
             </div>
           )}

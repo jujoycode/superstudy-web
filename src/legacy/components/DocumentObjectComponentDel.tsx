@@ -18,7 +18,7 @@ export function DocumentObjectComponentDel({ id, documentObjet, onDeleteClick }:
   return (
     <div className={`relative flex items-center justify-between bg-white`}>
       <div className="flex w-full items-center">
-        <div className="flex h-8 items-center space-x-2 rounded bg-stone-50 px-3 py-1">
+        <div className="flex h-8 items-center space-x-2 rounded-sm bg-stone-50 px-3 py-1">
           <FileItemIcon />
           {typeof documentObjet.document === 'string' ? (
             <a
