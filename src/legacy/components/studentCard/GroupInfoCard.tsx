@@ -41,7 +41,7 @@ export function GroupInfoCard({ groupNames }: GroupInfoCard) {
                           className={`m-1s mt-1 mr-2 flex w-max items-center space-x-2 rounded-full px-2.5 py-0.5 ${
                             gr.type === 'KLASS'
                               ? 'border-primary-800 text-primary-800 bg-white'
-                              : 'border-brandblue-1 text-brandblue-1 bg-white'
+                              : 'border-blue-500 bg-white text-blue-500'
                           } text-2sm border-2 font-bold whitespace-nowrap`}
                         >
                           <div className="whitespace-pre">{gr.name}</div>

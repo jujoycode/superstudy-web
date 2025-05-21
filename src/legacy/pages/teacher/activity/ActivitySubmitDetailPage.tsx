@@ -183,7 +183,7 @@ export function ActivitySubmitDetailPage({ activityId }: ActivitySubmitDetailPag
             studentActivity?.updatedAt &&
             studentActivity?.isSubmitted &&
             studentActivity.updatedAt !== activity?.updatedAt && (
-              <div className="text-brandblue-1 mt-3">
+              <div className="mt-3 text-blue-500">
                 제출 완료 일시 :<Time date={studentActivity.updatedAt} className="text-16 text-inherit" /> (
                 <Time date={studentActivity.updatedAt} formatDistanceToNow className="text-16 text-inherit" />)
               </div>

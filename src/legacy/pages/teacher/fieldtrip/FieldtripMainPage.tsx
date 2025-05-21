@@ -448,7 +448,7 @@ export function FieldtripMainPage() {
           </div>
           <div className="grid grid-cols-2 gap-2">
             <label>
-              <Button.xl as="p" className="border-brandblue-1 cursor-pointer border bg-white text-current">
+              <Button.xl as="p" className="cursor-pointer border border-blue-500 bg-white text-current">
                 도장등록
               </Button.xl>
               <input
@@ -475,7 +475,7 @@ export function FieldtripMainPage() {
               <Button.xl
                 children="도장으로 승인"
                 onClick={onClickApproveByStamp}
-                className={cn('text-white', stampImgUrl ? 'bg-brandblue-1 border-4 border-red-500' : 'bg-brandblue-5')}
+                className={cn('text-white', stampImgUrl ? 'border-4 border-red-500 bg-blue-500' : 'bg-brandblue-5')}
               />
             )}
             <Button.xl

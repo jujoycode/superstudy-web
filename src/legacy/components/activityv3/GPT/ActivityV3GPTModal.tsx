@@ -297,8 +297,8 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
             <p className="pt-2 font-bold">참여 활동</p>
             {currentStep === 1 && coachmarkVisible && (
               <span className="relative flex h-1.5 w-1.5">
-                <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
-                <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full"></span>
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75"></span>
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-500"></span>
                 <Coachmark2 steps={steps} currentStep={currentStep} position="top" arrowDirection="bottom" />
               </span>
             )}
@@ -307,7 +307,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
           <div className="mt-1 flex h-full flex-col space-y-2 overflow-y-auto px-1">
             {activitiesViews.map((el) => (
               <>
-                <div className="text-brandblue-1 -mx-1 font-bold">{el.name}</div>
+                <div className="-mx-1 font-bold text-blue-500">{el.name}</div>
                 <div className="flex flex-col space-y-3">
                   {_.chain(activityV3s || [])
                     .filter(['type', el.type])
@@ -364,7 +364,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
               <div className="mb-2 h-full w-full overflow-y-scroll px-5 pb-4">
                 <div className="flex items-center gap-2">
                   <div className="text-xl font-bold">
-                    활동기록부 초안 작성<span className="text-brandblue-1 ml-1 align-top text-sm">AI</span>
+                    활동기록부 초안 작성<span className="ml-1 align-top text-sm text-blue-500">AI</span>
                   </div>
                   <div
                     className="text-md flex h-4 w-4 cursor-pointer items-center justify-center rounded-full border border-gray-500 text-sm"
@@ -382,8 +382,8 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                     <div className="text-lg font-semibold">종류</div>
                     {currentStep === 2 && coachmarkVisible && (
                       <span className="relative flex h-1.5 w-1.5">
-                        <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
-                        <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full"></span>
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75"></span>
+                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-500"></span>
                         <Coachmark2 steps={steps} currentStep={currentStep} position="bottom" arrowDirection="top" />
                       </span>
                     )}
@@ -396,7 +396,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                         name="교과활동"
                         checked={type === '교과'}
                         onChange={() => setType('교과')}
-                        className="text-brandblue-1 h-6 w-6 checked:ring-0"
+                        className="h-6 w-6 text-blue-500 checked:ring-0"
                       />
                       <Label htmlFor="교과활동" children="교과활동" className="text-14 cursor-pointer whitespace-pre" />
                     </div>
@@ -406,7 +406,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                         name="창의적체험활동"
                         checked={type === '창의적체험활동'}
                         onChange={() => setType('창의적체험활동')}
-                        className="text-brandblue-1 h-6 w-6 checked:ring-0"
+                        className="h-6 w-6 text-blue-500 checked:ring-0"
                       />
                       <Label
                         htmlFor="창의적체험활동"
@@ -428,8 +428,8 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                   <div className="text-lg font-semibold">선택한 활동</div>
                   {currentStep === 3 && coachmarkVisible && (
                     <span className="relative flex h-1.5 w-1.5">
-                      <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
-                      <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full"></span>
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75"></span>
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-500"></span>
                       <Coachmark2 steps={steps} currentStep={currentStep} position="bottom" arrowDirection="top" />
                     </span>
                   )}
@@ -487,8 +487,8 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                     <div className="text-lg font-semibold">성취수준</div>
                     {currentStep === 4 && coachmarkVisible && (
                       <span className="relative flex h-1.5 w-1.5">
-                        <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
-                        <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full"></span>
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75"></span>
+                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-500"></span>
                         <Coachmark2 steps={steps} currentStep={currentStep} position="top" arrowDirection="bottom" />
                       </span>
                     )}
@@ -501,7 +501,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                         name="상"
                         checked={achievement === '상'}
                         onChange={() => setAchievement('상')}
-                        className="text-brandblue-1 h-6 w-6 checked:ring-0"
+                        className="h-6 w-6 text-blue-500 checked:ring-0"
                       />
                       <Label htmlFor="상" children="상" className="text-14 cursor-pointer whitespace-pre" />
                     </div>
@@ -511,7 +511,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                         name="중"
                         checked={achievement === '중'}
                         onChange={() => setAchievement('중')}
-                        className="text-brandblue-1 h-6 w-6 checked:ring-0"
+                        className="h-6 w-6 text-blue-500 checked:ring-0"
                       />
                       <Label htmlFor="중" children="중" className="text-14 cursor-pointer whitespace-pre" />
                     </div>
@@ -521,7 +521,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                         name="하"
                         checked={achievement === '하'}
                         onChange={() => setAchievement('하')}
-                        className="text-brandblue-1 h-6 w-6 checked:ring-0"
+                        className="h-6 w-6 text-blue-500 checked:ring-0"
                       />
                       <Label htmlFor="하" children="하" className="text-14 cursor-pointer whitespace-pre" />
                     </div>
@@ -531,8 +531,8 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                   <div className="text-lg font-semibold">성취기준</div>
                   {currentStep === 5 && coachmarkVisible && (
                     <span className="relative flex h-1.5 w-1.5">
-                      <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
-                      <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full"></span>
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75"></span>
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-500"></span>
                       <Coachmark2 steps={steps} currentStep={currentStep} position="top" arrowDirection="bottom" />
                     </span>
                   )}

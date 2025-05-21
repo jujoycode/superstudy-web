@@ -224,13 +224,13 @@ export const StudentActivitySessionSubmitView: React.FC<StudentActivitySessionSu
             {(!isSubmitDate || !calculateIsSubmitHour()) && (
               <div>
                 {activity.startDate && (
-                  <div className="text-brandblue-1 mt-3">
+                  <div className="mt-3 text-blue-500">
                     활동 시작 시간 : <Time date={activity.startDate} className="text-16 text-inherit" /> (
                     <Time date={activity.startDate} formatDistanceToNow className="text-16 text-inherit" />)
                   </div>
                 )}
                 {activity.submitStartHour !== -1 && (
-                  <div className="text-brandblue-1 mt-3">
+                  <div className="mt-3 text-blue-500">
                     활동 시간대 : {activity.submitStartHour}시{' '}
                     {activity.submitStartMinute < 0 ? 0 : activity.submitStartMinute}분부터 {activity.submitEndHour}시{' '}
                     {activity.submitEndMinute < 0 ? 0 : activity.submitEndMinute}분까지

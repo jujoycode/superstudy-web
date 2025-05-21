@@ -637,8 +637,6 @@
   --color-old-primary-blue-800: #0066ff;
 
   /* Colors */
-  --color-light_orange: #fdf3eb;
-  --color-brandblue-1: #2f80ed;
   --color-brandblue-5: #eaf2fd;
 
   --color-lightpurple-1: #e5dbff;
@@ -969,15 +967,6 @@
   color: var(--color-light_orange);
 }
 
-.bg-brandblue-1 {
-  background-color: var(--color-brandblue-1);
-}
-.text-brandblue-1 {
-  color: var(--color-brandblue-1);
-}
-.border-brandblue-1 {
-  border-color: var(--color-brandblue-1);
-}
 .text-brandblue-5 {
   color: var(--color-brandblue-5);
 }

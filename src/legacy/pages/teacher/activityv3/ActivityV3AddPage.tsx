@@ -378,8 +378,8 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                   <div className="text-xl font-bold">활동</div>
                   {currentStep === 1 && coachmarkVisible && (
                     <span className="relative flex h-1.5 w-1.5">
-                      <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
-                      <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full"></span>
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75"></span>
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-500"></span>
                       <Coachmark2 steps={steps} currentStep={currentStep} position="bottom" arrowDirection="top" />
                     </span>
                   )}
@@ -511,8 +511,8 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         <p>공통문구</p>
                         {currentStep === 2 && coachmarkVisible && (
                           <span className="relative flex h-1.5 w-1.5">
-                            <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" />
-                            <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full" />
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75" />
+                            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-500" />
                             <Coachmark2 steps={steps} currentStep={currentStep} />
                           </span>
                         )}
@@ -693,8 +693,8 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         <span className="relative flex h-1.5 w-1.5">
                           {currentStep === 3 && coachmarkVisible ? (
                             <>
-                              <span className="bg-brandblue-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" />
-                              <span className="bg-brandblue-1 relative inline-flex h-1.5 w-1.5 rounded-full" />
+                              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75" />
+                              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-500" />
                               <Coachmark2 steps={steps} currentStep={currentStep} />
                             </>
                           ) : (

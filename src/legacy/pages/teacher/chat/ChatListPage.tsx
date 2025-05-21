@@ -562,7 +562,7 @@ export function ChatListPage() {
                                   : el.role === Role.USER
                                     ? 'border-primary-800 text-primary-800'
                                     : el.role === Role.PARENT
-                                      ? 'border-brandblue-1 text-brandblue-1'
+                                      ? 'border-blue-500 text-blue-500'
                                       : 'border-black text-black',
                               )}
                             >

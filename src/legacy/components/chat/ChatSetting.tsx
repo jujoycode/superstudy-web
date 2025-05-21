@@ -367,7 +367,7 @@ export function ChatSetting({
                                 {AttendeeInfo?.name} {AttendeeInfo?.studentNumber}
                               </div>
                             ) : AttendeeInfo?.role === Role.PARENT ? (
-                              <div className="text-brandblue-1 text-sm">
+                              <div className="text-sm text-blue-500">
                                 {AttendeeInfo?.name} {'보호자 '}
                                 {AttendeeInfo?.children &&
                                   '(' +
@@ -433,7 +433,7 @@ export function ChatSetting({
                               {getNickName(AttendeeInfo?.nickName)} {AttendeeInfo?.studentNumber}
                             </div>
                           ) : AttendeeInfo?.role === Role.PARENT ? (
-                            <div className="text-brandblue-1 text-sm">
+                            <div className="text-sm text-blue-500">
                               {AttendeeInfo?.name}{' '}
                               {AttendeeInfo?.children &&
                                 '[' +

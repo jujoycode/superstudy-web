@@ -232,7 +232,7 @@ export function FieldtripPage() {
           <button
             children="🏠 가정학습"
             onClick={() => push('/student/fieldtrip/add/home')}
-            className="border-brandblue-1 text-brandblue-1 w-4/5 rounded-lg border bg-white py-5 font-bold"
+            className="w-4/5 rounded-lg border border-blue-500 bg-white py-5 font-bold text-blue-500"
           />
         </div>
         <div className="my-2 mb-5 flex w-full items-center justify-center">

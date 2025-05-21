@@ -50,11 +50,11 @@
 
 .react-calendar__tile--now {
   font-weight: 700;
-  color: var(--color-brandblue-1);
+  color: var(--color-blue-500);
 }
 
 .react-calendar__tile--active.react-calendar__tile--now {
-  color: var(--color-brandblue-1);
+  color: var(--color-blue-500);
 }
 
 .tui-full-calendar-button {

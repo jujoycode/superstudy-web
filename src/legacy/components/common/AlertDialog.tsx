@@ -40,7 +40,7 @@ const AlertDialog: React.FC<AlertDialogProps> = ({
         <div className="flex items-center justify-center space-x-2">
           <button
             className={`box-border h-12 w-28 rounded-md ${
-              theme === 'primary' ? 'bg-primary-800' : 'bg-brandblue-1'
+              theme === 'primary' ? 'bg-primary-800' : 'bg-blue-500'
             } px-5 text-lg text-white transition-all`}
             onClick={onConfirm}
           >

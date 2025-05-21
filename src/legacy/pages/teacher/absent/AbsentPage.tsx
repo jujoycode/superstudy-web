@@ -541,7 +541,7 @@ export function AbsentPage() {
           </div>
           <div className="grid grid-cols-2 gap-2">
             <label htmlFor="stamp-upload">
-              <div className="border-brandblue-1 flex h-13 w-full cursor-pointer items-center justify-center rounded-lg border bg-white px-6 font-bold text-current">
+              <div className="flex h-13 w-full cursor-pointer items-center justify-center rounded-lg border border-blue-500 bg-white px-6 font-bold text-current">
                 도장등록
               </div>
             </label>
@@ -577,7 +577,7 @@ export function AbsentPage() {
                     await setStampMode(false)
                   }
                 }}
-                className={cn('text-white', stampImgUrl ? 'bg-brandblue-1 border-4 border-red-500' : 'bg-brandblue-5')}
+                className={cn('text-white', stampImgUrl ? 'border-4 border-red-500 bg-blue-500' : 'bg-brandblue-5')}
               />
             )}
             <Button.xl

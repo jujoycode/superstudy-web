@@ -94,7 +94,7 @@ export function CommentItem({ comment, userId, userRole, updateComment, deleteCo
                 >
                   취소
                 </div>
-                <div onClick={handleUpdate} className="text-brandblue-1 min-w-max">
+                <div onClick={handleUpdate} className="min-w-max text-blue-500">
                   수정 완료
                 </div>
               </div>

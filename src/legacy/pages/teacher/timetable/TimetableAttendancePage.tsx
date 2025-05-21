@@ -743,7 +743,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
               <div className="flex w-full flex-col items-center justify-center">
                 <div className="mt-6 cursor-pointer">
                   {AttendanceCheckInfo ? (
-                    <div className="text-brandblue-1 mt-3">
+                    <div className="mt-3 text-blue-500">
                       출석체크 완료 : {AttendanceCheckInfo.teacherName} (
                       <Time date={AttendanceCheckInfo.updatedAt} className="text-16 text-inherit" />)
                     </div>

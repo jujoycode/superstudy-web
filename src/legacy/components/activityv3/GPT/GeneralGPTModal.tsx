@@ -145,7 +145,7 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
               <div className="mb-2 h-full w-full overflow-hidden px-5 pb-4">
                 <div className="flex items-center gap-2">
                   <div className="text-xl font-bold">
-                    행동특성 및 종합의견 초안 작성<span className="text-brandblue-1 ml-1 align-top text-sm">AI</span>
+                    행동특성 및 종합의견 초안 작성<span className="ml-1 align-top text-sm text-blue-500">AI</span>
                   </div>
                 </div>
                 <div className="text-xs font-semibold text-[#666]">

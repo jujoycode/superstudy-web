@@ -121,7 +121,7 @@ export function ReceiveMessage({
                   {getNickName(AttendeeInfo?.nickName)} {AttendeeInfo?.studentNumber}
                 </h4>
               ) : AttendeeInfo?.role === Role.PARENT ? (
-                <h4 className="text-brandblue-1 text-sm">
+                <h4 className="text-sm text-blue-500">
                   {AttendeeInfo?.name}{' '}
                   {AttendeeInfo?.children &&
                     '[' +
