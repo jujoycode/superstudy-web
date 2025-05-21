@@ -79,8 +79,8 @@ export function CalendarPage() {
     {
       id: CalendarIdEnum.NUMBER_0,
       name: t('academic_schedule'),
-      bgColor: '#9e5fff',
-      borderColor: '#9e5fff',
+      bgColor: '#9E5FFF',
+      borderColor: '#9E5FFF',
     },
     {
       id: CalendarIdEnum.NUMBER_1,
@@ -103,7 +103,7 @@ export function CalendarPage() {
   const data: CalendarData[] =
     calendarData?.map((el) => ({
       id: String(el.id),
-      title: el.title + el.attendee && el.attendee !== '일반' ? `(${el.attendee})` : '',
+      title: el.title + (el.attendee && el.attendee !== '일반' ? `(${el.attendee})` : ''),
       start: el.start,
       end: el.end,
       backgroundColor: CALENDAR_TYPES.find((TYPE) => TYPE.id === el.calendarId)?.bgColor || '',
