@@ -42,7 +42,7 @@ export function AbsentPage() {
         }
         right={
           <div
-            className="text-brand-1"
+            className="text-primary-800"
             onClick={() => {
               setBlankOpen(true)
               window?.location?.reload()
@@ -103,11 +103,11 @@ export function AbsentPage() {
                     <div className="text-sm text-gray-600">
                       {absent.reportedAt}{' '}
                       {isReturned ? (
-                        <span className="text-brand-1 font-bold">반려됨</span>
+                        <span className="text-primary-800 font-bold">반려됨</span>
                       ) : isNotApprovedByParent ? (
                         <span
                           className={` ${
-                            me?.role === Role.PARENT ? 'text-brand-1 font-bold' : 'font-bold text-blue-600'
+                            me?.role === Role.PARENT ? 'text-primary-800 font-bold' : 'font-bold text-blue-600'
                           } `}
                         >
                           보호자 승인 대기
@@ -125,7 +125,7 @@ export function AbsentPage() {
                   </div>
                   <div className="flex">
                     {isNotApprovedByParent && me?.role === Role.PARENT && (
-                      <span className="text-brand-1 pt-1 text-sm font-bold">승인해주세요.</span>
+                      <span className="text-primary-800 pt-1 text-sm font-bold">승인해주세요.</span>
                     )}
                     <RightArrow />
                   </div>
@@ -156,7 +156,7 @@ export function AbsentPage() {
             }
             push('/student/absent/add')
           }}
-          className="bg-brand-1 h-14 w-full rounded-lg px-4 text-white"
+          className="bg-primary-800 h-14 w-full rounded-lg px-4 text-white"
         />
       </div>
     </>

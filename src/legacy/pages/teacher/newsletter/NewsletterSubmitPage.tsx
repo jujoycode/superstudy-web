@@ -79,7 +79,7 @@ export function NewsletterSubmitPage() {
               / 총{newsletter?.toPerson ? studentPerson.length : studentsCount}명
             </div>
           </div>
-          <div className="text-brand-1 cursor-pointer" onClick={() => queryClient.refetchQueries({ active: true })}>
+          <div className="text-primary-800 cursor-pointer" onClick={() => queryClient.refetchQueries({ active: true })}>
             새로고침
           </div>
         </div>

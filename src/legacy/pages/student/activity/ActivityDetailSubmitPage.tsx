@@ -75,7 +75,7 @@ export function ActivityDetailSubmitPage({
               id="textarea1"
               value={summary}
               onChange={(e) => setSummary(e.target.value)}
-              className="focus:border-brand-1 block h-48 w-full rounded-md border border-gray-200 px-4 py-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
+              className="focus:border-primary-800 block h-48 w-full rounded-md border border-gray-200 px-4 py-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
             />
           </div>
         )}
@@ -107,7 +107,7 @@ export function ActivityDetailSubmitPage({
               id="textarea1"
               value={summary}
               onChange={(e) => setSummary(e.target.value)}
-              className="focus:border-brand-1 block h-48 w-full rounded-md border border-gray-200 px-4 py-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
+              className="focus:border-primary-800 block h-48 w-full rounded-md border border-gray-200 px-4 py-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
             />
           </div>
         )}

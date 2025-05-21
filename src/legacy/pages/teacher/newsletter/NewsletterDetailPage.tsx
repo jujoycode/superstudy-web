@@ -115,7 +115,7 @@ export function NewsletterDetailPage() {
           <div className="mb-6 w-full text-center text-lg font-bold text-gray-900">마감기한 수정</div>
           <label
             htmlFor="end_date"
-            className="focus:border-brand-1 my-4 flex h-12 w-full cursor-pointer appearance-none items-center rounded-none border border-gray-200 bg-white px-4 placeholder-gray-400 outline-hidden focus:appearance-none focus:no-underline focus:ring-0 focus:outline-hidden sm:text-sm"
+            className="focus:border-primary-800 my-4 flex h-12 w-full cursor-pointer appearance-none items-center rounded-none border border-gray-200 bg-white px-4 placeholder-gray-400 outline-hidden focus:appearance-none focus:no-underline focus:ring-0 focus:outline-hidden sm:text-sm"
           >
             <input
               id="end_date"

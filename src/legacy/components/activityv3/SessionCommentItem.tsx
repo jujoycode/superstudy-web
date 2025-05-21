@@ -86,7 +86,7 @@ export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionCom
               </Button>
               <Button
                 disabled={isSessionCommentLoading}
-                className="text-brand-1 hover:bg-light_orange px-2 py-1 disabled:bg-gray-50 disabled:text-gray-500"
+                className="text-primary-800 hover:bg-light_orange px-2 py-1 disabled:bg-gray-50 disabled:text-gray-500"
                 onClick={() => updateSessionComment({ id: sessionComment.id, data: { content } })}
               >
                 저장

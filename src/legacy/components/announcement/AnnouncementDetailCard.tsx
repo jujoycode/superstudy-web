@@ -78,7 +78,7 @@ export default function AnnouncementDetailCard({ announcement }: AnnouncementPro
       {announcement?.content && (
         <div className="my-4">
           <h1 className="mb-4">
-            안녕하세요. <b className="text-brand-1">슈퍼스쿨</b>입니다.
+            안녕하세요. <b className="text-primary-800">슈퍼스쿨</b>입니다.
           </h1>
           {isHTML(announcement.content) ? (
             <div className="text-xl" dangerouslySetInnerHTML={{ __html: announcement.content }}></div>

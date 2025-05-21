@@ -86,7 +86,7 @@ export function ActivitySessionPage() {
             onClick={() => {
               window?.location?.reload()
             }}
-            className="text-brand-1"
+            className="text-primary-800"
           >
             새로고침
           </div>
@@ -229,12 +229,12 @@ export function ActivitySessionPage() {
                 value={studentText}
               />
               <div className="flex items-center justify-end pb-1">
-                공백제외&nbsp;<span className="text-brand-1">{studentText.replace(/ /g, '').length}</span>
+                공백제외&nbsp;<span className="text-primary-800">{studentText.replace(/ /g, '').length}</span>
                 &nbsp;자&nbsp; 공백포함&nbsp;
-                <span className="text-brand-1">{studentText.length}</span>&nbsp;자
+                <span className="text-primary-800">{studentText.length}</span>&nbsp;자
               </div>
               <Button.lg
-                className="bg-brand-1 w-full text-white"
+                className="bg-primary-800 w-full text-white"
                 children="제출하기"
                 onClick={() => updateStudentText({ params: { activityv3Id: activityv3.id }, data: { studentText } })}
               />
@@ -243,7 +243,7 @@ export function ActivitySessionPage() {
             <>
               <div className="my-2 w-full rounded-lg border border-gray-600 p-2">{studentActivityV3?.studentText}</div>
               <Button.lg
-                className="bg-brand-1 w-full text-white"
+                className="bg-primary-800 w-full text-white"
                 children="수정하기"
                 onClick={() => setUpdateView(true)}
               />

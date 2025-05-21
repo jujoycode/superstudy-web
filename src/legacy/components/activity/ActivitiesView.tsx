@@ -68,7 +68,7 @@ export function ActivitiesView({
               }
             >
               <div className="flex justify-between">
-                <Badge children={activity.subject} className="bg-light_orange text-brand-1" />
+                <Badge children={activity.subject} className="bg-light_orange text-primary-800" />
                 <Time date={activity.createdAt} />
               </div>
               <div className="flex items-center justify-between space-x-2">

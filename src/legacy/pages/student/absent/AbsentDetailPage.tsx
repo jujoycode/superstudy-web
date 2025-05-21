@@ -91,7 +91,7 @@ export function AbsentDetailPage() {
           )}
           {absent?.absentStatus === AbsentStatus.BEFORE_PARENT_CONFIRM && (
             <>
-              <div className={'bg-brand-1 my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm text-white'}>
+              <div className={'bg-primary-800 my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm text-white'}>
                 보호자 승인 중
               </div>
               <div className={'my-1 mr-2 inline-block rounded-md bg-gray-500 px-4 py-2 text-sm text-white'}>
@@ -105,10 +105,10 @@ export function AbsentDetailPage() {
 
           {absent?.absentStatus === AbsentStatus.PROCESSING && (
             <>
-              <div className={'bg-brand-1 text-darkgray my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm'}>
+              <div className={'bg-primary-800 text-darkgray my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm'}>
                 보호자 승인 완료
               </div>
-              <div className={'bg-brand-1 my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm text-white'}>
+              <div className={'bg-primary-800 my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm text-white'}>
                 학교 승인 중
               </div>
               <div className={'my-1 mr-2 inline-block rounded-md bg-gray-500 px-4 py-2 text-sm text-white'}>
@@ -119,13 +119,13 @@ export function AbsentDetailPage() {
 
           {absent?.absentStatus === AbsentStatus.PROCESSED && (
             <>
-              <div className={'bg-brand-1 text-darkgray my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm'}>
+              <div className={'bg-primary-800 text-darkgray my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm'}>
                 보호자 승인 완료
               </div>
-              <div className={'bg-brand-1 text-darkgray my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm'}>
+              <div className={'bg-primary-800 text-darkgray my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm'}>
                 학교 승인 완료
               </div>
-              <div className={'bg-brand-1 my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm text-white'}>
+              <div className={'bg-primary-800 my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm text-white'}>
                 승인 완료
               </div>
             </>
@@ -133,13 +133,13 @@ export function AbsentDetailPage() {
 
           {isReturned && (
             <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
-              <div className="text-brand-1 text-sm">{absent?.notApprovedReason}</div>
+              <div className="text-primary-800 text-sm">{absent?.notApprovedReason}</div>
               <div className="text-red-500">반려 이유</div>
             </div>
           )}
           {absent?.absentStatus === AbsentStatus.DELETE_APPEAL && (
             <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
-              <div className="text-brand-1 text-sm">{absent?.deleteReason}</div>
+              <div className="text-primary-800 text-sm">{absent?.deleteReason}</div>
               <div className="text-red-500">삭제 이유</div>
             </div>
           )}
@@ -289,7 +289,7 @@ export function AbsentDetailPage() {
           <Button.lg
             children="승인하기"
             onClick={() => push(`/absent/approve/${absent?.id}`)}
-            className={'bg-brand-1 text-white'}
+            className={'bg-primary-800 text-white'}
           />
         )}
 

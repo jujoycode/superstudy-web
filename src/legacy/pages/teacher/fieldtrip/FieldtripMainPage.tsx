@@ -141,7 +141,7 @@ export function FieldtripMainPage() {
             <div className="flex items-center justify-center md:justify-start md:space-x-3">
               <input
                 type="date"
-                className="focus:border-brand-1 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
+                className="focus:border-primary-800 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
                 value={makeDateToString(new Date(startDate))}
                 min={schoolYear.start}
                 max={schoolYear.end}
@@ -160,7 +160,7 @@ export function FieldtripMainPage() {
               <div className="px-4 text-xl font-bold">~</div>
               <input
                 type="date"
-                className="focus:border-brand-1 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
+                className="focus:border-primary-800 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
                 value={makeDateToString(new Date(endDate))}
                 min={schoolYear.start}
                 max={schoolYear.end}
@@ -499,7 +499,7 @@ export function FieldtripMainPage() {
                     agreeAll ? approveFieldtrips() : approveFieldtrip()
                   }
                 }}
-                className={cn('text-white', sigPadData ? 'bg-brand-1 border-4 border-green-500' : 'bg-brand-5')}
+                className={cn('text-white', sigPadData ? 'bg-primary-800 border-4 border-green-500' : 'bg-brand-5')}
               />
             )}
           </div>

@@ -44,7 +44,7 @@ export function CanteenDetailPage({ selectedDate, canteen, setSubmitState }: Can
               ) : (
                 <div className="h-full w-full rounded-sm bg-white object-cover">
                   <div className="flex h-full w-full flex-col items-center justify-center space-y-1">
-                    <div className="text-brand-1">{t('no_image')}</div>
+                    <div className="text-primary-800">{t('no_image')}</div>
                   </div>
                 </div>
               )}

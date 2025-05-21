@@ -86,7 +86,7 @@ export function ActivityV3Page() {
           title="활동기록"
           left={<BackButton />}
           right={
-            <Link to="/teacher/activityv3/add" className="text-brand-1">
+            <Link to="/teacher/activityv3/add" className="text-primary-800">
               활동 추가
             </Link>
           }
@@ -260,7 +260,7 @@ export function ActivityV3Page() {
                                 : '-'}
                             </td>
                             <td className="border-b border-[#EEEEEE] px-2 py-2 text-[#333333]">
-                              <span className="text-brand-1">{el.submittedCount}</span> / {el.allCount}
+                              <span className="text-primary-800">{el.submittedCount}</span> / {el.allCount}
                             </td>
                             <td
                               className="cursor-pointer border-b border-[#EEEEEE] px-2 py-2 text-[#333333]"
@@ -312,7 +312,7 @@ export function ActivityV3Page() {
                                         : '-'}
                                     </td>
                                     <td className="w-28 border-b border-[#EEEEEE] px-2 py-2 text-[#333333]">
-                                      <span className="text-brand-1">
+                                      <span className="text-primary-800">
                                         {(session as ActivitySessionWithOrder).submittedCount}&nbsp;
                                       </span>
                                       /&nbsp;

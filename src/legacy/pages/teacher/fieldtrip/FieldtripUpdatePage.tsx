@@ -247,7 +247,7 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
         <div className="space-y-3 pb-6">
           <div className="mb-2 text-lg whitespace-pre-line">
             남은 일수&nbsp;
-            <span className="text-brand-1 underline">
+            <span className="text-primary-800 underline">
               {fieldtrip ? fieldtrip.currentRemainDays : me?.remainDaysOfFieldtrip}일 중 {usedDays}일을 신청
             </span>
             합니다.
@@ -279,7 +279,7 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                 id="startAt"
                 type="date"
                 value={reportedAt}
-                className="focus:border-brand-1 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                className="focus:border-primary-800 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 onChange={(e) => {
                   setReportedAt(e.target.value)
                 }}
@@ -549,7 +549,7 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                     clearHomePlane()
                     setDayHomePlan(false)
                   }}
-                  className={cn('py-1.5 text-lg', dayHomePlan ? 'bg-white text-black' : 'bg-brand-1 text-white')}
+                  className={cn('py-1.5 text-lg', dayHomePlan ? 'bg-white text-black' : 'bg-primary-800 text-white')}
                 />
                 <Badge
                   children="일차기준 작성"
@@ -557,7 +557,7 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
                     clearHomePlane()
                     setDayHomePlan(true)
                   }}
-                  className={cn('py-1.5 text-lg', dayHomePlan ? 'bg-brand-1 text-white' : 'bg-white text-black')}
+                  className={cn('py-1.5 text-lg', dayHomePlan ? 'bg-primary-800 text-white' : 'bg-white text-black')}
                 />
               </div>
 
@@ -826,7 +826,7 @@ export function FieldtripUpdatePage({ fieldtrip, me, setReadState, isConfirmed }
         </Section>
       </SuperModal>
       <SuperModal modalOpen={infoHalfDayModalopen} setModalClose={() => setInfoHalfDayModalopen(false)}>
-        <div className="font-smibold text-brand-1 mt-5 text-center text-lg">체험학습 반일 신청 안내</div>
+        <div className="font-smibold text-primary-800 mt-5 text-center text-lg">체험학습 반일 신청 안내</div>
         <div className="mt-6 mr-6 mb-6 ml-6 text-xs whitespace-pre-line">
           {`* 교외체험학습 신청시, 수업중 일부만 출석하고 일부는 결석하는 경우에 반일 신청을 합니다. 
             ex1) 아침에 등교했다가 조퇴하고 할머니댁에 가는 경우

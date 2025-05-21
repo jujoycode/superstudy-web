@@ -368,7 +368,7 @@ export function FieldtripResultPage() {
                   setStampMode(true)
                   clearSignature()
                 }}
-                className="border-brandblue-1 text-brand-1 min-w-max border bg-white"
+                className="border-brandblue-1 text-primary-800 min-w-max border bg-white"
               />
             ) : (
               <Button.xl
@@ -398,7 +398,7 @@ export function FieldtripResultPage() {
                     agreeAll ? approveFieldtripResults() : approveFieldtripResult()
                   }
                 }}
-                className={cn('text-white', sigPadData ? 'bg-brand-1 border-4 border-green-500' : 'bg-brand-5')}
+                className={cn('text-white', sigPadData ? 'bg-primary-800 border-4 border-green-500' : 'bg-brand-5')}
               />
             )}
           </div>

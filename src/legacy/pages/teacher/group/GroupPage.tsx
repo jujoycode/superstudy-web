@@ -18,11 +18,15 @@ export function GroupPage() {
   const { allGroups } = useTeacherAllGroup()
 
   const getTextColor = (origin: string) => {
-    return origin === 'TIMETABLE' ? 'text-lavender_blue' : origin === 'KLASS' ? 'text-mint_green' : 'text-brand-1'
+    return origin === 'TIMETABLE' ? 'text-lavender_blue' : origin === 'KLASS' ? 'text-mint_green' : 'text-primary-800'
   }
 
   const getBorderColor = (origin: string) => {
-    return origin === 'TIMETABLE' ? 'border-lavender_blue' : origin === 'KLASS' ? 'border-mint_green' : 'border-brand-1'
+    return origin === 'TIMETABLE'
+      ? 'border-lavender_blue'
+      : origin === 'KLASS'
+        ? 'border-mint_green'
+        : 'border-primary-800'
   }
 
   return (
@@ -34,7 +38,7 @@ export function GroupPage() {
             <Link
               children={t('add', '추가하기')}
               to="/teacher/groups/add"
-              className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-hidden"
+              className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-hidden"
             />
           </div>
         </div>

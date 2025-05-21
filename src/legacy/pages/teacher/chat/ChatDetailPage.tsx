@@ -237,7 +237,7 @@ export function ChatDetailPage() {
             {/* <span className="absolute w-4 h-4 bg-green-400 rounded-full right-0 bottom-0 border-2 border-white"></span> */}
           </div>
           <div
-            className="text-brand-1 float-left m-1 mt-1 mr-2 cursor-pointer truncate px-1 py-0.5 text-sm font-bold"
+            className="text-primary-800 float-left m-1 mt-1 mr-2 cursor-pointer truncate px-1 py-0.5 text-sm font-bold"
             onClick={() => {
               setSettingAttendee(true)
               setSettingOpen(true)
@@ -249,7 +249,7 @@ export function ChatDetailPage() {
             <button
               children="나가기"
               onClick={() => setExitModalOpen(true)}
-              className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-2 text-sm focus:outline-hidden"
+              className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange rounded-md px-2 py-2 text-sm focus:outline-hidden"
             />
           </div>
           <div className="float-right mt-1 mr-2">
@@ -259,7 +259,7 @@ export function ChatDetailPage() {
                 setDeleteMode(!isDeleteMode)
               }}
               className={twMerge(
-                'text-brand-1 rounded-md bg-red-50 px-2 py-2 text-sm hover:bg-red-300 hover:text-white focus:outline-hidden',
+                'text-primary-800 rounded-md bg-red-50 px-2 py-2 text-sm hover:bg-red-300 hover:text-white focus:outline-hidden',
                 isDeleteMode && 'bg-red-500 text-white hover:bg-red-500',
               )}
             />
@@ -271,7 +271,7 @@ export function ChatDetailPage() {
                 setSettingAttendee(false)
                 setSettingOpen(true)
               }}
-              className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-2 text-sm focus:outline-hidden"
+              className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange rounded-md px-2 py-2 text-sm focus:outline-hidden"
             />
           </div>
         </div>

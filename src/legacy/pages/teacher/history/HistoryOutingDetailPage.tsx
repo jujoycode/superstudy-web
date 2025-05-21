@@ -48,13 +48,13 @@ export function HistoryOutingDetailPage({ outings, setOutingId }: HistoryOutingD
           <Section>
             {outing?.updateReason && (
               <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
-                <div className="text-brand-1">{outing?.updateReason}</div>
+                <div className="text-primary-800">{outing?.updateReason}</div>
                 <div className="text-sm text-gray-500">{updatedAt}에 마지막으로 수정</div>
               </div>
             )}
             {outing?.outingStatus === 'RETURNED' && (
               <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
-                <div className="text-brand-1 text-sm">{outing?.notApprovedReason}</div>
+                <div className="text-primary-800 text-sm">{outing?.notApprovedReason}</div>
                 <div className="text-red-500">반려 이유</div>
               </div>
             )}

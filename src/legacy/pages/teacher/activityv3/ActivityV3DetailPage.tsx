@@ -330,7 +330,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                   <div className="relative">
                     <button
                       className={twMerge(
-                        'bg-brand-1 rounded-lg px-8 py-3 font-semibold text-white',
+                        'bg-primary-800 rounded-lg px-8 py-3 font-semibold text-white',
                         activityv3.writerId !== me?.id && 'bg-gray-500',
                       )}
                       onClick={() =>
@@ -368,7 +368,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                   >
                     <div className="flex flex-col items-center justify-center gap-4 rounded-lg">
                       <button
-                        className="bg-brand-1 rounded-lg px-6 py-4 text-lg font-semibold text-white"
+                        className="bg-primary-800 rounded-lg px-6 py-4 text-lg font-semibold text-white"
                         onClick={() => push(`/teacher/activityv3/${activityv3.id}/session/add`)}
                       >
                         차시 추가하기
@@ -565,7 +565,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                           <div className="text-xl font-bold">전체 학급</div>
                           <div className="text-lg">
                             제출&nbsp;
-                            <span className="text-brand-1">{submittedStudentAmount || 0}</span>/
+                            <span className="text-primary-800">{submittedStudentAmount || 0}</span>/
                             {studentGroups?.length || 0}명
                           </div>
                         </div>
@@ -628,7 +628,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                                 <div className="text-xl font-bold">{ga.group?.name}</div>
                                 <div className="text-lg">
                                   제출&nbsp;
-                                  <span className="text-brand-1">{submittedStudentGroups.length || 0}</span>/
+                                  <span className="text-primary-800">{submittedStudentGroups.length || 0}</span>/
                                   {studentGroups?.length || 0}명
                                 </div>
                               </div>

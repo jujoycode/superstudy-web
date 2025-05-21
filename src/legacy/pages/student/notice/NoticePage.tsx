@@ -74,7 +74,7 @@ export function NoticePage() {
               setBlankOpen(true)
               window?.location?.reload()
             }}
-            className="text-brand-1"
+            className="text-primary-800"
           />
         }
       />

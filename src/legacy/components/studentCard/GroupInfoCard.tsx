@@ -40,7 +40,7 @@ export function GroupInfoCard({ groupNames }: GroupInfoCard) {
                           key={gr.id}
                           className={`m-1s mt-1 mr-2 flex w-max items-center space-x-2 rounded-full px-2.5 py-0.5 ${
                             gr.type === 'KLASS'
-                              ? 'border-brand-1 text-brand-1 bg-white'
+                              ? 'border-primary-800 text-primary-800 bg-white'
                               : 'border-brandblue-1 text-brandblue-1 bg-white'
                           } text-2sm border-2 font-bold whitespace-nowrap`}
                         >

@@ -77,7 +77,7 @@ export function FieldtripApprovalPage() {
         title="체험학습 신청서"
         left={<div className="h-15 w-10" />}
         right={
-          <div className="text-brand-1" onClick={() => push('/')}>
+          <div className="text-primary-800" onClick={() => push('/')}>
             취소
           </div>
         }

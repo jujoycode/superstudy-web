@@ -35,14 +35,14 @@ export function FieldtripNoticeDetailPage() {
         <div className="absolute top-5 left-0">
           <div className="flex w-full items-center justify-start space-x-2 px-5">
             <div
-              className="text-brand-1 cursor-pointer underline"
+              className="text-primary-800 cursor-pointer underline"
               onClick={() => pushWithQueryParams(`/teacher/fieldtrip/${fieldtrip.id}`)}
             >
               신청서
             </div>
-            <div className="text-brand-1 cursor-pointer underline">통보서</div>
+            <div className="text-primary-800 cursor-pointer underline">통보서</div>
             <div
-              className="text-brand-1 cursor-pointer underline"
+              className="text-primary-800 cursor-pointer underline"
               onClick={() => pushWithQueryParams(`/teacher/fieldtrip/result/${fieldtrip.id}`)}
             >
               결과보고서
@@ -63,14 +63,14 @@ export function FieldtripNoticeDetailPage() {
       <div className="relative h-full w-auto overflow-scroll">
         <div className="flex w-full items-center justify-start space-x-2 px-5">
           <div
-            className="text-brand-1 cursor-pointer underline"
+            className="text-primary-800 cursor-pointer underline"
             onClick={() => pushWithQueryParams(`/teacher/fieldtrip/${fieldtrip.id}`)}
           >
             신청서
           </div>
-          <div className="text-brand-1 cursor-pointer underline">통보서</div>
+          <div className="text-primary-800 cursor-pointer underline">통보서</div>
           <div
-            className="text-brand-1 cursor-pointer underline"
+            className="text-primary-800 cursor-pointer underline"
             onClick={() => pushWithQueryParams(`/teacher/fieldtrip/result/${fieldtrip.id}`)}
           >
             결과보고서

@@ -227,7 +227,7 @@ export function ParentInfoCard({ me, isNotParent }: ParentInfoCardProps) {
                 <tr>{reqParentName} 보호자님, 가입요청 대기중입니다.</tr>
                 <button
                   children="취소하기"
-                  className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
+                  className="bg-light_orange text-primary-800 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
                   onClick={() => {
                     alert('가입 요청을 취소합니다.')
                     localStorage.removeItem('reqParent_userInfo')
@@ -313,7 +313,7 @@ export function ParentInfoCard({ me, isNotParent }: ParentInfoCardProps) {
                     //     e.preventDefault();
                     //   }
                     // }}
-                    className="border-brand-1 h-5 w-48"
+                    className="border-primary-800 h-5 w-48"
                   />
                 </td>
               </tr>
@@ -324,7 +324,7 @@ export function ParentInfoCard({ me, isNotParent }: ParentInfoCardProps) {
                     placeholder="연락처 입력"
                     value={nokPhone}
                     onChange={(e) => setNokPhone(e.target.value)}
-                    className="border-brand-1 h-5 w-48"
+                    className="border-primary-800 h-5 w-48"
                   />
                 </td>
               </tr>
@@ -335,7 +335,7 @@ export function ParentInfoCard({ me, isNotParent }: ParentInfoCardProps) {
             <div className="flex justify-end py-2">
               <button
                 children="취소"
-                className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
+                className="bg-light_orange text-primary-800 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
                 onClick={() => {
                   setAddBtnParent(false)
                   setNokName('')

@@ -104,7 +104,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
               type="date"
               value={reportedAt}
               onChange={(e) => setReportedAt(e.target.value)}
-              className="focus:border-brand-1 h-12 w-full rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+              className="focus:border-primary-800 h-12 w-full rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
             />
           </div>
         </div>
@@ -115,13 +115,16 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
             onClick={() => setTimeType(AbsentTimeType.PERIOD)}
             className={cn(
               'py-1.5',
-              timeType === AbsentTimeType.PERIOD ? 'bg-brand-1 text-white' : 'bg-white text-black',
+              timeType === AbsentTimeType.PERIOD ? 'bg-primary-800 text-white' : 'bg-white text-black',
             )}
           />
           <Badge
             children="시간설정"
             onClick={() => setTimeType(AbsentTimeType.TIME)}
-            className={cn('py-1.5', timeType === AbsentTimeType.TIME ? 'bg-brand-1 text-white' : 'bg-white text-black')}
+            className={cn(
+              'py-1.5',
+              timeType === AbsentTimeType.TIME ? 'bg-primary-800 text-white' : 'bg-white text-black',
+            )}
           />
           <div className="space-y-3 pb-6">
             <div>
@@ -129,7 +132,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                 type="date"
                 value={startAt}
                 onChange={(e) => setStartAt(e.target.value)}
-                className="focus:border-brand-1 h-12 w-full rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                className="focus:border-primary-800 h-12 w-full rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
               />
             </div>
             {timeType === AbsentTimeType.TIME && (
@@ -137,7 +140,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                 <select
                   value={startHour}
                   onChange={(e) => setStartHour(Number(e.target.value))}
-                  className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 >
                   {new Array(24).fill(null).map((_, num: number) => (
                     <option key={num} value={num}>
@@ -149,7 +152,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                 <select
                   value={startMinute}
                   onChange={(e) => setStartMinute(Number(e.target.value))}
-                  className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 >
                   <option value={0}>0</option>
                   <option value={5}>5</option>
@@ -191,7 +194,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                   lang="ko-KR"
                   value={endAt}
                   onChange={(e) => setEndAt(e.target.value)}
-                  className="focus:border-brand-1 h-12 w-full rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-primary-800 h-12 w-full rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 />
               </div>
             )}
@@ -200,7 +203,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                 <select
                   value={endHour}
                   onChange={(e) => setEndHour(Number(e.target.value))}
-                  className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 >
                   {new Array(24).fill(null).map((_, num: number) => (
                     <option key={num} value={num}>
@@ -212,7 +215,7 @@ export function OutingUpdatePage({ outingData, setChangeMode }: OutingUpdatePage
                 <select
                   value={endMinute}
                   onChange={(e) => setEndMinute(Number(e.target.value))}
-                  className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 >
                   <option value={0}>0</option>
                   <option value={5}>5</option>

@@ -52,7 +52,7 @@ export function OutingApprovalPage() {
         title={'확인증'}
         left={<div className="h-15 w-10" />}
         right={
-          <div className="text-brand-1" onClick={() => push('/')}>
+          <div className="text-primary-800" onClick={() => push('/')}>
             취소
           </div>
         }

@@ -15,7 +15,7 @@ export default function AnnouncementMobilePage() {
   return (
     <>
       <div className="w-full flex-col">
-        <div className="bg-brand-1 flex h-20 flex-col items-center justify-center text-white">
+        <div className="bg-primary-800 flex h-20 flex-col items-center justify-center text-white">
           <p>
             <b>슈퍼스쿨</b>의 업데이트 정보 등 다양한 소식을 알려드립니다.
           </p>

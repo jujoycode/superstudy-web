@@ -314,13 +314,13 @@ export default function Counselingv3Card() {
                 >
                   취소
                 </button>
-                <button onClick={handleSave} className="bg-brand-1 w-1/2 rounded-br-lg text-white">
+                <button onClick={handleSave} className="bg-primary-800 w-1/2 rounded-br-lg text-white">
                   저장하기
                 </button>
               </nav>
               <button
                 onClick={handleSave}
-                className="bg-brand-1 my-4 hidden h-10 w-full rounded-lg text-xl font-bold text-white md:block"
+                className="bg-primary-800 my-4 hidden h-10 w-full rounded-lg text-xl font-bold text-white md:block"
               >
                 저장하기
               </button>

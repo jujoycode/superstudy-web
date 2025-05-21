@@ -216,12 +216,12 @@ export function FieldtripsDownloadView({
                       </div>
 
                       {isExtractData && (
-                        <div className="text-brand-1 py-2 text-center font-bold">
+                        <div className="text-primary-800 py-2 text-center font-bold">
                           {`${extractDataCount < 0 ? 0 : extractDataCount} / ${fieldtrips.length} 데이터 추출중입니다.`}
                         </div>
                       )}
                       {isProcessPdf && (
-                        <div className="text-brand-1 py-2 text-center font-bold">
+                        <div className="text-primary-800 py-2 text-center font-bold">
                           {`${prodcessPdfCount < 0 ? 0 : reactPdfDatas.current.length} / ${
                             fieldtrips.length
                           } 데이터 처리중입니다.`}

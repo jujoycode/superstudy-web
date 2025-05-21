@@ -95,7 +95,7 @@ export function SendMessage({
         <div className="flex w-full flex-row-reverse items-end space-x-0 px-2">
           <div className="overflow-hidden">
             {content && (
-              <div className="bg-brand-1 rounded-md p-1 px-6 text-white">
+              <div className="bg-primary-800 rounded-md p-1 px-6 text-white">
                 <p className="feedback_space text-left text-sm break-all whitespace-pre-wrap">
                   <Linkify>{content}</Linkify>
                 </p>

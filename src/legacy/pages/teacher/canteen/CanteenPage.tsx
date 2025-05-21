@@ -84,7 +84,7 @@ export function CanteenPage() {
                 setBlankOpen(true)
                 window?.location?.reload()
               }}
-              className="text-brand-1 text-sm"
+              className="text-primary-800 text-sm"
             >
               <Refresh />
             </div>
@@ -185,7 +185,7 @@ export function CanteenPage() {
         )}
 
         <div className="fixed right-4 bottom-16">
-          <div className="bg-brand-1 bg-opacity-50 relative mb-2 h-16 w-16 rounded-full">
+          <div className="bg-primary-800 bg-opacity-50 relative mb-2 h-16 w-16 rounded-full">
             <Link className="flex h-full w-full flex-col items-center justify-center" to={'/teacher/chat'}>
               <ChatIcon />
               <div className="text-sm text-white">메시지</div>

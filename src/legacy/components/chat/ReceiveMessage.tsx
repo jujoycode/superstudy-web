@@ -116,7 +116,7 @@ export function ReceiveMessage({
           {isFirst &&
             (AttendeeInfo ? (
               AttendeeInfo?.role === Role.USER ? (
-                <h4 className="text-brand-1 text-sm">
+                <h4 className="text-primary-800 text-sm">
                   {AttendeeInfo?.name}
                   {getNickName(AttendeeInfo?.nickName)} {AttendeeInfo?.studentNumber}
                 </h4>

@@ -58,7 +58,7 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
             setCoulselorName(me?.name || '')
             setIsAddMode(true)
           }}
-          className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-hidden"
+          className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-hidden"
         />
       </div>
       <div className="relative flex h-full flex-col gap-4 rounded-lg border bg-white p-3">
@@ -74,7 +74,7 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
                       const selItem = counselingType?.filter((item: Code) => item.key === Number(e.target.value))
                       selItem && categoryChanged(selItem[0])
                     }}
-                    className="border-brand-1 h-6 py-0"
+                    className="border-primary-800 h-6 py-0"
                   >
                     {counselingType?.map((item: Code) => (
                       <option key={item.key} value={item.key}>
@@ -97,7 +97,7 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
                       }
                       setCounselingAt(e.target.value)
                     }}
-                    className="border-brand-1 h-6"
+                    className="border-primary-800 h-6"
                   />
                 </div>
               </div>
@@ -108,7 +108,7 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
                     placeholder="이름 입력"
                     value={counselorName}
                     onChange={(e) => setCoulselorName(e.target.value)}
-                    className="border-brand-1 h-6"
+                    className="border-primary-800 h-6"
                   />
                 </div>
               </div>
@@ -117,13 +117,13 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
               placeholder="내용 입력"
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              className="border-brand-1 h-30"
+              className="border-primary-800 h-30"
             />
             <div className="flex flex-row-reverse gap-1 text-right">
               {setIsAddMode && (
                 <button
                   children="취소"
-                  className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-50 focus:outline-hidden"
+                  className="bg-light_orange text-primary-800 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-50 focus:outline-hidden"
                   onClick={() => {
                     setIsAddMode(false)
                     setWarnMsg('')
@@ -132,7 +132,7 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
               )}
               <button
                 children="저장"
-                className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-hidden"
+                className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-hidden"
                 onClick={() => {
                   if (categoryObj && categoryObj?.key >= 0) {
                     if (isAddMode) {
@@ -167,14 +167,14 @@ export function CounselingCard({ studentId }: CounselingCardProps) {
                     <button
                       children="수정"
                       onClick={() => setIsEditMode(true)}
-                      className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-hidden"
+                      className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-hidden"
                     />
                   </div>
                 )}
                 {item?.writerId === me?.id && !isAddMode && (
                   <button
                     children="삭제"
-                    className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange self-end rounded-md px-2 py-1 text-sm focus:outline-hidden"
+                    className="bg-light_orange text-primary-800 hover:bg-primary-800 hover:text-light_orange self-end rounded-md px-2 py-1 text-sm focus:outline-hidden"
                     onClick={() => {
                       setDeleteItem(item?.id)
                       setAlertDelete(true)

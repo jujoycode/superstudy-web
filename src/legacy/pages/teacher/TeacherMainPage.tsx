@@ -194,7 +194,7 @@ export function TeacherMainPage() {
             </Link>
             <div className="flex items-center space-x-4">
               {me?.schoolId === 2 || me?.schoolId === 171 || me?.schoolId === 183 ? (
-                <div onClick={() => changeLanguage()} className="text-brand-1 cursor-pointer text-sm">
+                <div onClick={() => changeLanguage()} className="text-primary-800 cursor-pointer text-sm">
                   {t('select_language')}
                 </div>
               ) : (
@@ -203,7 +203,7 @@ export function TeacherMainPage() {
                     setBlankOpen(true)
                     window?.location?.reload()
                   }}
-                  className="text-brand-1 cursor-pointer text-sm"
+                  className="text-primary-800 cursor-pointer text-sm"
                 >
                   새로고침
                 </div>

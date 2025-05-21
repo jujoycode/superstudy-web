@@ -85,13 +85,13 @@ export function FieldtripDetailPage() {
       <Section>
         {fieldtrip?.fieldtripStatus === 'RETURNED' && (
           <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
-            <div className="text-brand-1 text-sm">{fieldtrip?.notApprovedReason}</div>
+            <div className="text-primary-800 text-sm">{fieldtrip?.notApprovedReason}</div>
             <div className="text-red-500">반려 이유</div>
           </div>
         )}
         {fieldtrip?.fieldtripStatus === 'DELETE_APPEAL' && (
           <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
-            <div className="text-brand-1 text-sm">{fieldtrip?.deleteReason}</div>
+            <div className="text-primary-800 text-sm">{fieldtrip?.deleteReason}</div>
             <div className="text-red-500">삭제 이유</div>
           </div>
         )}
@@ -151,7 +151,7 @@ export function FieldtripDetailPage() {
             <Button.lg
               children="승인하기"
               onClick={() => push(`/fieldtrip/approve/${fieldtrip?.id}`)}
-              className={'bg-brand-1 text-white'}
+              className={'bg-primary-800 text-white'}
             />
           )}
 

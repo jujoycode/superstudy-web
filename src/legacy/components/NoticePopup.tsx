@@ -71,7 +71,7 @@ export function NoticePopup({
           className="absolute bottom-[110px] left-1/2 h-[30px] w-[150px] -translate-x-1/2"
           onClick={() => window.open('https://superstudy.channel.io/home', '_blank')}
         ></button>
-        <div className="bg-brand-1 my-3 h-0.5"></div>
+        <div className="bg-primary-800 my-3 h-0.5"></div>
         <div className="flex items-center justify-between">
           <div className="flex space-x-3">
             <Checkbox checked={showNever} onChange={() => setShowNever(!showNever)} />

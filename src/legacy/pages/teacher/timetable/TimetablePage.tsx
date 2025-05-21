@@ -48,7 +48,7 @@ export function TimetablePage() {
                 setBlankOpen(true)
                 window?.location?.reload()
               }}
-              className="text-brand-1 text-sm"
+              className="text-primary-800 text-sm"
             />
           }
         />

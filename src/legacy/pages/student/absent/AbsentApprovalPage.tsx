@@ -62,7 +62,7 @@ export function AbsentApprovalPage() {
         title={`${isConfirmType ? '학부모 확인서' : t(`Custom.SID${school?.id}.absentTitle`, '결석신고서')}`}
         left={<div className="h-15 w-10" />}
         right={
-          <div className="text-brand-1" onClick={() => push('/')}>
+          <div className="text-primary-800" onClick={() => push('/')}>
             취소
           </div>
         }
@@ -331,7 +331,7 @@ export function AbsentApprovalPage() {
                   rows={3}
                   disabled={!!isSigned}
                   onChange={(e) => setComment(e.target.value)}
-                  className="focus:border-brand-1 rounded-lg focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
+                  className="focus:border-primary-800 rounded-lg focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
                 />
               </Label.col>
             )}

@@ -344,7 +344,7 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                             className="block cursor-pointer font-semibold"
                             htmlFor={`checkbox-${el.id}-${activityv3.id}`}
                           >
-                            <span className="text-brand-1">[{activityv3.subject}]</span>&nbsp;
+                            <span className="text-primary-800">[{activityv3.subject}]</span>&nbsp;
                             {activityv3.title}
                           </label>
                         </div>

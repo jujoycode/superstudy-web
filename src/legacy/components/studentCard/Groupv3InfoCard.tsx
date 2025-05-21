@@ -44,7 +44,7 @@ export default function Groupv3InfoCard({ groupNames }: GroupInfoCard) {
                         key={gr.id}
                         className={`flex w-max items-center rounded-full px-4 py-1 ${
                           gr.type === 'KLASS'
-                            ? 'border-brand-1 text-brand-1 border-2 bg-white font-bold'
+                            ? 'border-primary-800 text-primary-800 border-2 bg-white font-bold'
                             : 'bg-gray-100'
                         } text-sm whitespace-nowrap`}
                       >

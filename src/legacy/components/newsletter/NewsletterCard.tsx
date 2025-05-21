@@ -24,7 +24,7 @@ export function NewsletterCard({ newsletter, isNew, onClick }: NewsletterCardPro
           <div className="space-x-2">
             <Badge
               children={t(`${newsletter.category}`) || t('parent_letters')}
-              className="bg-brand-1 text-brand-5 rounded-md"
+              className="bg-primary-800 text-brand-5 rounded-md"
             />
             <Badge className="rounded-md bg-purple-100 text-purple-700">
               {newsletter.toPerson && t('individual')} {newsletter.toStudent && t('student')}{' '}
@@ -32,7 +32,7 @@ export function NewsletterCard({ newsletter, isNew, onClick }: NewsletterCardPro
               {newsletter.type === NewsletterType.NOTICE ? `- ${t('notice')}` : `- ${t('survey')}`}
             </Badge>
 
-            {newsletter.isTemp && <Badge className="text-brand-1 px-4 py-1 text-sm">{t('save_draft')}</Badge>}
+            {newsletter.isTemp && <Badge className="text-primary-800 px-4 py-1 text-sm">{t('save_draft')}</Badge>}
           </div>
 
           <div className="text-sm font-light">

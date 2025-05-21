@@ -62,7 +62,7 @@ export function RecordPage() {
               <div
                 key={sg.id}
                 className={`cursor-pointer rounded-lg border-2 py-2 text-center ${
-                  sg.id === selectedSGId && 'border-brand-1 bg-light_orange'
+                  sg.id === selectedSGId && 'border-primary-800 bg-light_orange'
                 }`}
                 onClick={() => {
                   localStorage.setItem('recordSummary', ' ')

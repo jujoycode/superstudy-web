@@ -127,7 +127,7 @@ export function FieldtripSuburbsReportAddPage() {
           </div>
           <div className="mb-2 text-lg whitespace-pre-line">
             남은 일수
-            <span className="text-brand-1 underline">
+            <span className="text-primary-800 underline">
               {fieldtrip?.currentRemainDays}일 중 {fieldtrip?.usedDays}일 신청
             </span>
             합니다.
@@ -178,8 +178,8 @@ export function FieldtripSuburbsReportAddPage() {
             className="h-auto border"
           />
           <div className="flex items-center justify-end">
-            공백제외&nbsp;<span className="text-brand-1">{trimmedContent.length}</span>&nbsp;자&nbsp; 공백포함&nbsp;
-            <span className="text-brand-1">{resultText.length}</span>&nbsp;자
+            공백제외&nbsp;<span className="text-primary-800">{trimmedContent.length}</span>&nbsp;자&nbsp; 공백포함&nbsp;
+            <span className="text-primary-800">{resultText.length}</span>&nbsp;자
           </div>
         </div>
 

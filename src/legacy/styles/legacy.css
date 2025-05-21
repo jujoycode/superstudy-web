@@ -637,7 +637,6 @@
   --color-old-primary-blue-800: #0066ff;
 
   /* Colors */
-  --color-brand-1: #ee853a;
   --color-brand-5: #f8efe4;
 
   --color-schedule-teacher: #00a9ff;
@@ -970,15 +969,6 @@
   z-index: var(--z-index-150);
 }
 
-.bg-brand-1 {
-  background-color: var(--color-brand-1);
-}
-.text-brand-1 {
-  color: var(--color-brand-1);
-}
-.border-brand-1 {
-  border-color: var(--color-brand-1);
-}
 .bg-brand-5 {
   background-color: var(--color-brand-5);
 }

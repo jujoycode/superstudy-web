@@ -42,7 +42,7 @@ export function FieldtripSuburbsReportDetailPage() {
                 lang="ko-KR"
                 value={startAt}
                 onChange={(e) => setStartAt(e.target.value)}
-                className="focus:border-brand-1 mb-5 h-12 w-80 flex-1 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                className="focus:border-primary-800 mb-5 h-12 w-80 flex-1 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
               />
               <span className="pt-2">부터</span>
             </div>
@@ -52,14 +52,14 @@ export function FieldtripSuburbsReportDetailPage() {
                 lang="ko-KR"
                 value={endAt}
                 onChange={(e) => setEndAt(e.target.value)}
-                className="focus:border-brand-1 h-12 w-80 flex-1 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                className="focus:border-primary-800 h-12 w-80 flex-1 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
               />
               <span className="pt-2">까지</span>
             </div>
           </div>
           <div className="mb-2 text-lg whitespace-pre-line">
             남은 일수
-            <span className="text-brand-1 underline">50일 중 OO일을 신청</span>
+            <span className="text-primary-800 underline">50일 중 OO일을 신청</span>
             합니다.
           </div>
           <div className="mb-2 text-xs whitespace-pre-line text-gray-600">
@@ -113,7 +113,7 @@ export function FieldtripSuburbsReportDetailPage() {
         </Label.col>
       </Section>
       <SuperModal modalOpen={modalopen} setModalClose={() => setModalopen(false)}>
-        <div className="font-smibold text-brand-1 mt-5 text-center text-lg">현장 학습 계획 예시</div>
+        <div className="font-smibold text-primary-800 mt-5 text-center text-lg">현장 학습 계획 예시</div>
         <div className="mt-6 mr-6 mb-6 ml-6 text-sm">
           1.할머니 칠순맞이 가족과 국내 장거리 여행
           <br />

@@ -957,7 +957,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                     </div>
                     <Textarea className="my-2 resize-none" placeholder={watch('explainText') || DEFAULT_EXPLAIN_TEXT} />
                     <Button.lg
-                      className="bg-brand-1 w-full text-white disabled:bg-gray-500"
+                      className="bg-primary-800 w-full text-white disabled:bg-gray-500"
                       disabled
                       children="제출하기"
                     />

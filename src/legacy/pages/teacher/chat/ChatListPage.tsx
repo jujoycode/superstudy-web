@@ -241,7 +241,9 @@ export function ChatListPage() {
                 setSelectedMenu(MenuType.List)
               }}
               className={cn(
-                selectedMenu === MenuType.List ? 'bg-brand-1 text-light_orange' : 'bg-light_orange text-brand-1',
+                selectedMenu === MenuType.List
+                  ? 'bg-primary-800 text-light_orange'
+                  : 'bg-light_orange text-primary-800',
               )}
             />
             <Button.xl
@@ -257,7 +259,9 @@ export function ChatListPage() {
                 push(`${Routes.teacher.chat}`)
               }}
               className={cn(
-                selectedMenu === MenuType.Chat ? 'bg-brand-1 text-light_orange' : 'bg-light_orange text-brand-1',
+                selectedMenu === MenuType.Chat
+                  ? 'bg-primary-800 text-light_orange'
+                  : 'bg-light_orange text-primary-800',
               )}
             />
             <Button.xl
@@ -273,7 +277,7 @@ export function ChatListPage() {
                 push(`${Routes.teacher.chat}`)
               }}
               className={cn(
-                selectedMenu === MenuType.SMS ? 'bg-brand-1 text-light_orange' : 'bg-light_orange text-brand-1',
+                selectedMenu === MenuType.SMS ? 'bg-primary-800 text-light_orange' : 'bg-light_orange text-primary-800',
               )}
             />
           </div>
@@ -509,7 +513,7 @@ export function ChatListPage() {
                               key={item.id}
                               title={getTitle(item)}
                               className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-1 ${
-                                userIds.includes(item.id) ? 'border-brand-1 bg-light_orange' : 'border-gray-200'
+                                userIds.includes(item.id) ? 'border-primary-800 bg-light_orange' : 'border-gray-200'
                               }`}
                               onClick={() => {
                                 if (userIds.includes(item.id)) {
@@ -560,7 +564,7 @@ export function ChatListPage() {
                                 el.role === ''
                                   ? 'border-green-400 text-green-400'
                                   : el.role === Role.USER
-                                    ? 'border-brand-1 text-brand-1'
+                                    ? 'border-primary-800 text-primary-800'
                                     : el.role === Role.PARENT
                                       ? 'border-brandblue-1 text-brandblue-1'
                                       : 'border-black text-black',

@@ -44,7 +44,7 @@
 
 .react-calendar__tile--active {
   border-radius: 9999px;
-  background-color: var(--color-brand-1);
+  background-color: var(--color-primary-800);
   color: #fff;
 }
 

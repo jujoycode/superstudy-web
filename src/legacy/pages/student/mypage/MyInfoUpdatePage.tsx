@@ -169,7 +169,7 @@ export function MyInfoUpdatePage({ me, setIsUpdateMe }: MyInfoUpdatePageProps) {
                   id="startAt"
                   type="date"
                   value={birthDate}
-                  className="focus:border-brand-1 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-primary-800 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   onChange={(e) => {
                     setBirthDate(e.target.value)
                   }}

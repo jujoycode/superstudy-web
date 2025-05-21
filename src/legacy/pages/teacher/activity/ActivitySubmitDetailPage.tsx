@@ -83,7 +83,7 @@ export function ActivitySubmitDetailPage({ activityId }: ActivitySubmitDetailPag
       <div className="h-screen-12 md:h-screen-4.5 relative overflow-x-hidden overflow-y-scroll border border-gray-100">
         <div className="bg-gray-50 p-4">
           <div className="flex justify-between">
-            <Badge children={activity?.subject} className="bg-light_orange text-brand-1" />
+            <Badge children={activity?.subject} className="bg-light_orange text-primary-800" />
             <div className="font-base space-x-5 text-gray-500"></div>
           </div>
           <div className="space-y-0.5">

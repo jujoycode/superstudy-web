@@ -194,7 +194,7 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
                 <div
                   key={el.id}
                   onClick={() => setSelectedTeachers(selectedTeachers.filter((u) => u.id !== el.id))}
-                  className="m-1s text-2sm border-brand-1 text-brand-1 mt-2 mr-2 flex w-max cursor-pointer items-center space-x-2 rounded-full border-2 bg-white px-2.5 py-1.5 font-bold whitespace-nowrap"
+                  className="m-1s text-2sm border-primary-800 text-primary-800 mt-2 mr-2 flex w-max cursor-pointer items-center space-x-2 rounded-full border-2 bg-white px-2.5 py-1.5 font-bold whitespace-nowrap"
                 >
                   <div className="whitespace-pre">{el.name}</div>
                   <Close />
@@ -243,7 +243,7 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
               <div
                 key={el.id}
                 className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-3 ${
-                  userIds.includes(el.user?.id) ? 'border-brand-1 bg-light_orange' : 'border-gray-200'
+                  userIds.includes(el.user?.id) ? 'border-primary-800 bg-light_orange' : 'border-gray-200'
                 }`}
                 onClick={() => {
                   if (el?.user) {
@@ -270,7 +270,7 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
               <div
                 key={el.id}
                 onClick={() => setSelectedUsers(selectedUsers.filter((u) => u.id !== el.id))}
-                className="m-1s text-2sm border-brand-1 text-brand-1 mt-2 mr-2 flex w-max cursor-pointer items-center space-x-2 rounded-full border-2 bg-white px-2.5 py-1.5 font-bold whitespace-nowrap"
+                className="m-1s text-2sm border-primary-800 text-primary-800 mt-2 mr-2 flex w-max cursor-pointer items-center space-x-2 rounded-full border-2 bg-white px-2.5 py-1.5 font-bold whitespace-nowrap"
               >
                 <div className="whitespace-pre">{el.name}</div>
                 <Close />

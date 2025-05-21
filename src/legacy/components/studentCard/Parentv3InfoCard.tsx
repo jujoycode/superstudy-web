@@ -107,7 +107,7 @@ export default function Parentv3InfoCard({
             )}
           </section>
 
-          <p className="text-13 text-brand-1 font-semibold">
+          <p className="text-13 text-primary-800 font-semibold">
             {t('parent_info_edit_my_page', '보호자 정보 수정은 보호자의 MY페이지에서만 가능합니다.')}
           </p>
         </div>

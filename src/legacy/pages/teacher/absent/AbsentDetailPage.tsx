@@ -198,7 +198,7 @@ export function AbsentDetailPage() {
         <div className="h-screen-10 md:h-screen-6 relative w-auto overflow-scroll md:mb-0">
           {absent?.updateReason && (
             <div className="bg-brand-5 m-2 flex items-center justify-between rounded-lg px-5 py-2">
-              <div className="text-brand-1">{absent?.updateReason}</div>
+              <div className="text-primary-800">{absent?.updateReason}</div>
               <div className="text-sm text-gray-500">
                 {DateUtil.formatDate(absent?.updatedAt, DateFormat['YYYY-MM-DD HH:mm'])}에 마지막으로 수정
               </div>
@@ -206,13 +206,13 @@ export function AbsentDetailPage() {
           )}
           {absent?.absentStatus === AbsentStatus.RETURNED && (
             <div className="bg-brand-5 m-2 flex items-center justify-between rounded-lg px-5 py-2">
-              <div className="text-brand-1 text-sm">{absent?.notApprovedReason}</div>
+              <div className="text-primary-800 text-sm">{absent?.notApprovedReason}</div>
               <div className="text-red-500">반려 이유</div>
             </div>
           )}
           {absent?.absentStatus === AbsentStatus.BEFORE_PARENT_CONFIRM && (
             <div className="bg-brand-5 m-2 flex items-center justify-between rounded-lg px-5 py-2">
-              <div className="text-brand-1 text-sm">학부모 승인 전</div>
+              <div className="text-primary-800 text-sm">학부모 승인 전</div>
               <Button.sm
                 children="학부모 승인 요청 다시하기"
                 onClick={() => resendAlimtalk()}

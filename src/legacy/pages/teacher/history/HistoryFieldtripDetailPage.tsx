@@ -110,15 +110,15 @@ export function HistoryFieldtripDetailPage({
 
       <div className="relative h-full w-auto overflow-scroll">
         <div className="flex w-full items-center justify-start space-x-2 px-5">
-          <div className="text-brand-1 cursor-pointer underline">신청서</div>
+          <div className="text-primary-800 cursor-pointer underline">신청서</div>
           <div
-            className="text-brand-1 cursor-pointer underline"
+            className="text-primary-800 cursor-pointer underline"
             onClick={() => fieldtrip && push(`/teacher/fieldtrip/notice/${fieldtrip.id}`)}
           >
             통보서
           </div>
           <div
-            className="text-brand-1 cursor-pointer underline"
+            className="text-primary-800 cursor-pointer underline"
             onClick={() => fieldtrip && push(`/teacher/fieldtrip/result/${fieldtrip.id}`)}
           >
             결과보고서
@@ -127,7 +127,7 @@ export function HistoryFieldtripDetailPage({
 
         {fieldtrip?.fieldtripStatus === 'RETURNED' && fieldtrip?.notApprovedReason && fieldtrip?.updatedAt && (
           <div className="bg-brand-5 mx-5 flex items-center justify-between rounded-lg px-5 py-2">
-            <div className="text-brand-1">{fieldtrip?.notApprovedReason}</div>
+            <div className="text-primary-800">{fieldtrip?.notApprovedReason}</div>
             <div className="text-sm text-gray-500">
               {makeDateToString(fieldtrip?.updatedAt)} {makeTimeToString(fieldtrip?.updatedAt)}에 마지막으로 수정
             </div>
@@ -135,7 +135,7 @@ export function HistoryFieldtripDetailPage({
         )}
         {fieldtrip?.updateReason && fieldtrip?.updatedAt && (
           <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
-            <div className="text-brand-1">{fieldtrip?.updateReason}</div>
+            <div className="text-primary-800">{fieldtrip?.updateReason}</div>
             <div className="text-sm text-gray-500">
               {makeDateToString(fieldtrip?.updatedAt)} {makeTimeToString(fieldtrip?.updatedAt)}에 마지막으로 수정
             </div>

@@ -706,7 +706,7 @@ export function AttendancePage() {
                                           ? 'bg-lightpurple-1'
                                           : selectedDayOfWeek === 6
                                             ? 'bg-orange-200'
-                                            : 'bg-brand-1'
+                                            : 'bg-primary-800'
                               } ${isSelectedLecture(selectedDayOfWeek, index) && 'bg-red-500 text-white'} `}
                               onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                             >
@@ -740,7 +740,7 @@ export function AttendancePage() {
                                           ? 'bg-lightpurple-1'
                                           : selectedDayOfWeek === 6
                                             ? 'bg-orange-200'
-                                            : 'bg-brand-1'
+                                            : 'bg-primary-800'
                               } ${isSelectedLecture(selectedDayOfWeek, index) && 'bg-red-500 text-white'} `}
                               onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                             >
@@ -774,7 +774,7 @@ export function AttendancePage() {
                                           ? 'bg-lightpurple-1'
                                           : selectedDayOfWeek === 6
                                             ? 'bg-orange-200'
-                                            : 'bg-brand-1'
+                                            : 'bg-primary-800'
                               } ${isSelectedLecture(selectedDayOfWeek, index) && 'bg-red-500 text-white'} `}
                               onClick={() =>
                                 attendenceCheck(
@@ -818,7 +818,7 @@ export function AttendancePage() {
                                       ? 'bg-lightpurple-1'
                                       : selectedDayOfWeek === 6
                                         ? 'bg-orange-200'
-                                        : 'bg-brand-1'
+                                        : 'bg-primary-800'
                           } `}
                         >{`${nullSafeValue(row4[i])}`}</td>
                       ))}
@@ -862,7 +862,7 @@ export function AttendancePage() {
                                             ? 'bg-lightpurple-3'
                                             : selectedDayOfWeek === 6
                                               ? 'bg-orange-100'
-                                              : 'bg-brand-1'
+                                              : 'bg-primary-800'
                                 } ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                                 onClick={() => {
                                   if (!editMode) return
@@ -1687,7 +1687,7 @@ export function AttendancePage() {
                 </div>
                 <div
                   onClick={() => setEditMode(false)}
-                  className="bg-brand-1 mt-2 grid w-30 cursor-pointer place-items-center rounded-lg text-center align-middle text-white"
+                  className="bg-primary-800 mt-2 grid w-30 cursor-pointer place-items-center rounded-lg text-center align-middle text-white"
                 >
                   닫기
                 </div>

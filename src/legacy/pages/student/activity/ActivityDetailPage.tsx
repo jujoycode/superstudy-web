@@ -74,7 +74,7 @@ export function ActivityDetailPage() {
         />
 
         <Section className="space-y-2 bg-white">
-          <div className="bg-brand-5 text-brand-1 w-max rounded-3xl px-3 py-1 text-sm font-bold">
+          <div className="bg-brand-5 text-primary-800 w-max rounded-3xl px-3 py-1 text-sm font-bold">
             {activity?.subject || ''}
           </div>
           <div className="py-2">
@@ -175,7 +175,7 @@ export function ActivityDetailPage() {
             activity?.endDate && new Date(activity?.endDate).getTime() - new Date().getTime() < 0 ? (
               <span className="text-red-600">마감</span>
             ) : (
-              <span onClick={() => setReadState(false)} className="text-brand-1 cursor-pointer">
+              <span onClick={() => setReadState(false)} className="text-primary-800 cursor-pointer">
                 수정
               </span>
             )
@@ -186,7 +186,7 @@ export function ActivityDetailPage() {
       />
 
       <Section className="space-y-2 bg-white">
-        <div className="bg-brand-5 text-brand-1 w-max rounded-3xl px-3 py-1 text-sm font-bold">
+        <div className="bg-brand-5 text-primary-800 w-max rounded-3xl px-3 py-1 text-sm font-bold">
           {activity?.subject || ''}
         </div>
         <div className="py-2">

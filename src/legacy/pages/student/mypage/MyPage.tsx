@@ -50,7 +50,7 @@ export function MyPage() {
         left={<div className="h-15 w-10"></div>}
         right={
           <div
-            className="text-brand-1"
+            className="text-primary-800"
             onClick={() => {
               setLoading(true)
               window?.location?.reload()

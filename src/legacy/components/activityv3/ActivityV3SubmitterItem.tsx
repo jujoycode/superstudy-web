@@ -56,7 +56,7 @@ export const Activityv3SubmitterItem: React.FC<Activityv3SubmitterItemProps> = (
         {submitted ? (
           <>
             {isLateSubmission && <span className="mr-2 text-orange-500">추후제출</span>}
-            <div className="bg-brand-1 w-16 rounded-md px-2 py-2 text-center text-white">제출</div>
+            <div className="bg-primary-800 w-16 rounded-md px-2 py-2 text-center text-white">제출</div>
           </>
         ) : (
           <div className="w-16 rounded-md bg-[#CCC] px-2 py-2 text-center text-white">미제출</div>

@@ -58,7 +58,7 @@ export function ActivityDetailPage({ isUpdateState = false, setUpdateState, refe
         </Section>
       </SuperModal>
       <div className="flex justify-between">
-        <Badge children={activity?.subject} className="bg-light_orange text-brand-1" />
+        <Badge children={activity?.subject} className="bg-light_orange text-primary-800" />
         <div className="font-base flex cursor-pointer space-x-4 text-gray-500">
           <div
             className="text-gray-700"

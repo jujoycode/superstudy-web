@@ -191,13 +191,16 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
             onClick={() => setTimeType(AbsentTimeType.PERIOD)}
             className={cn(
               'py-1.5',
-              timeType === AbsentTimeType.PERIOD ? 'bg-brand-1 text-white' : 'bg-white text-black',
+              timeType === AbsentTimeType.PERIOD ? 'bg-primary-800 text-white' : 'bg-white text-black',
             )}
           />
           <Badge
             children="시간설정"
             onClick={() => setTimeType(AbsentTimeType.TIME)}
-            className={cn('py-1.5', timeType === AbsentTimeType.TIME ? 'bg-brand-1 text-white' : 'bg-white text-black')}
+            className={cn(
+              'py-1.5',
+              timeType === AbsentTimeType.TIME ? 'bg-primary-800 text-white' : 'bg-white text-black',
+            )}
           />
           <div className="space-y-3 pb-6">
             <FieldtripDatePicker
@@ -240,7 +243,7 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                     }
                     setStartHour(_startHour)
                   }}
-                  className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 >
                   {new Array(24).fill(null).map((_, index) => (
                     <option key={index} value={index}>
@@ -250,7 +253,7 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                 </select>
                 <span>시</span>
                 <select
-                  className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   onChange={(e) => {
                     const _startMinute = Number(e.target.value)
                     if (startHour === endHour && _startMinute > endMinute) {
@@ -334,7 +337,7 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                     }
                     setEndHour(_endHour)
                   }}
-                  className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 >
                   {new Array(24).fill(null).map((_, index) => (
                     <option key={index} value={index}>
@@ -344,7 +347,7 @@ export function OutingAddPage({ outingData, goDetail }: OutingAddPageProps) {
                 </select>
                 <span>시</span>
                 <select
-                  className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   onChange={(e) => {
                     const _endMinute = Number(e.target.value)
                     if (startHour === endHour && startMinute > _endMinute) {

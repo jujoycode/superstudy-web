@@ -13,7 +13,7 @@ export const EvalInputField = ({ label, afterLabel, className, disabled = false,
   return (
     <div
       className={twMerge(
-        'focus:border-brand-1 flex h-12 w-full items-center space-x-2 rounded-md border border-gray-200 bg-white px-4 placeholder-gray-400 focus:ring-0',
+        'focus:border-primary-800 flex h-12 w-full items-center space-x-2 rounded-md border border-gray-200 bg-white px-4 placeholder-gray-400 focus:ring-0',
         disabled && 'bg-gray-100 text-gray-400',
         className,
       )}
@@ -47,7 +47,7 @@ EvalInputField.Score = ({
   return (
     <div
       className={twMerge(
-        'focus:border-brand-1 flex h-12 w-full items-center justify-between space-x-2 rounded-md border border-gray-200 bg-white px-4 placeholder-gray-400 focus:ring-0',
+        'focus:border-primary-800 flex h-12 w-full items-center justify-between space-x-2 rounded-md border border-gray-200 bg-white px-4 placeholder-gray-400 focus:ring-0',
         className,
       )}
     >

@@ -215,9 +215,9 @@ export const StudentActivitySessionSubmitView: React.FC<StudentActivitySessionSu
                   className="h-auto border"
                 />
                 <div className="flex items-center justify-end">
-                  공백제외&nbsp;<span className="text-brand-1">{content.replace(/ /g, '').length}</span>&nbsp;자&nbsp;
-                  공백포함&nbsp;
-                  <span className="text-brand-1">{content.length}</span>&nbsp;자
+                  공백제외&nbsp;<span className="text-primary-800">{content.replace(/ /g, '').length}</span>
+                  &nbsp;자&nbsp; 공백포함&nbsp;
+                  <span className="text-primary-800">{content.length}</span>&nbsp;자
                 </div>
               </>
             )}

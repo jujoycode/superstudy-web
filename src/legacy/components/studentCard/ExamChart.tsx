@@ -210,10 +210,10 @@ export default function ExamChart({ studentId }: ExamChartProps) {
   const customStyles = {
     control: (base: any, state: any) => ({
       ...base,
-      borderColor: state.isFocused ? '#EE853A' : base.borderColor, // 포커스 시 테두리 색상
-      boxShadow: state.isFocused ? '0 0 0 1px #EE853A' : base.boxShadow, // 포커스 시 그림자
+      borderColor: state.isFocused ? 'var(--color-primary-800)' : base.borderColor, // 포커스 시 테두리 색상
+      boxShadow: state.isFocused ? '0 0 0 1px var(--color-primary-800)' : base.boxShadow, // 포커스 시 그림자
       '&:hover': {
-        borderColor: state.isFocused ? '#EE853A' : base.borderColor,
+        borderColor: state.isFocused ? 'var(--color-primary-800)' : base.borderColor,
       },
     }),
     input: (base: any) => ({

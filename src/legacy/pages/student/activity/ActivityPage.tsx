@@ -38,7 +38,7 @@ export function ActivityPage() {
               setBlankOpen(true)
               window?.location?.reload()
             }}
-            className="text-brand-1"
+            className="text-primary-800"
           >
             새로고침
           </div>

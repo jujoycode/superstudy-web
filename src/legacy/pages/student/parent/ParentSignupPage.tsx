@@ -236,7 +236,7 @@ export function ParentSignupPage() {
                     setBlankOpen(true)
                     window?.location?.reload()
                   }}
-                  className="text-brand-1 text-sm"
+                  className="text-primary-800 text-sm"
                 >
                   새로고침
                 </div>

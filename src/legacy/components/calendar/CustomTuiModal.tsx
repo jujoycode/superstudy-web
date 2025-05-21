@@ -397,14 +397,14 @@ export function CustomTuiModal({
           <input
             type="date"
             value={startAt}
-            className="focus:border-brand-1 mb-5 h-10 w-60 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+            className="focus:border-primary-800 mb-5 h-10 w-60 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
             onChange={(e) => setStartAt(e.target.value)}
           />
           <span className="tui-full-calendar-section-date-dash">-</span>
           <input
             type="date"
             value={endAt}
-            className="focus:border-brand-1 mb-5 h-10 w-60 rounded-md border border-gray-200 px-3 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+            className="focus:border-primary-800 mb-5 h-10 w-60 rounded-md border border-gray-200 px-3 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
             onChange={(e) => setEndAt(e.target.value)}
           />
         </div>

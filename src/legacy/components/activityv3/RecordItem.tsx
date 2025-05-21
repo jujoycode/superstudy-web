@@ -71,7 +71,7 @@ export const RecordItem: FC<RecordItemProps> = ({ record, refetch }) => {
               </Button>
               <Button
                 disabled={isRecordLoading}
-                className="text-brand-1 hover:bg-light_orange px-2 py-1 disabled:bg-gray-50 disabled:text-gray-500"
+                className="text-primary-800 hover:bg-light_orange px-2 py-1 disabled:bg-gray-50 disabled:text-gray-500"
                 onClick={() => updateRecord({ id: record.id, data: { content } })}
               >
                 저장

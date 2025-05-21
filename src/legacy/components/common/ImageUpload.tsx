@@ -13,7 +13,7 @@ export function ImageUpload({ children, className, ...props }: ImageUploadProps)
       {children || (
         <>
           <FileUploadImg />
-          <p className="text-brand-1 text-sm">{t('select_image_or_pdf')}</p>
+          <p className="text-primary-800 text-sm">{t('select_image_or_pdf')}</p>
         </>
       )}
       <input type="file" accept=".png, .jpeg, .jpg" className="hidden" {...props} />

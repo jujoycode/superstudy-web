@@ -65,7 +65,7 @@ export function ApplyPage() {
         <div className="mt-14 flex w-full items-center justify-center">
           <button
             children="🏔 교외 체험학습"
-            className="border-brand-1 text-brand-1 w-4/5 rounded-lg border bg-white py-5 font-bold"
+            className="border-primary-800 text-primary-800 w-4/5 rounded-lg border bg-white py-5 font-bold"
           />
         </div>
         <div className="my-5 mb-10 flex w-full items-center justify-center">

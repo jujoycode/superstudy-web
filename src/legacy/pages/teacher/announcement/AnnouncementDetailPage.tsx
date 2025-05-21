@@ -90,7 +90,7 @@ export default function AnnouncementDetailPage() {
                   <h1 className="mb-4">
                     {language === 'ko' ? (
                       <>
-                        안녕하세요. <b className="text-brand-1">슈퍼스쿨</b> 입니다.
+                        안녕하세요. <b className="text-primary-800">슈퍼스쿨</b> 입니다.
                       </>
                     ) : (
                       <>Hello. this is Super School.</>

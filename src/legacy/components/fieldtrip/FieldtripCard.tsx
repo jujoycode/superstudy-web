@@ -32,7 +32,7 @@ export function FieldtripCard({ fieldtrip, type }: FieldtripCardProps) {
       text = <div className="text-sm text-gray-600">{t('approved', '승인 완료')}</div>
       break
     case FieldtripStatus.RETURNED:
-      text = <div className="text-brand-1 text-sm">{t('rejected', '반려됨')}</div>
+      text = <div className="text-primary-800 text-sm">{t('rejected', '반려됨')}</div>
       break
     case FieldtripStatus.DELETE_APPEAL:
       text = <div className="text-sm text-red-800">{t('delete_request', '삭제 요청')}</div>
@@ -69,7 +69,7 @@ export function FieldtripCard({ fieldtrip, type }: FieldtripCardProps) {
         break
       case FieldtripStatus.RETURNED:
         textResult = (
-          <div className="text-brand-1 text-xs">
+          <div className="text-primary-800 text-xs">
             {t('report_form', '결과보고서')} : {t('rejected', '반려됨')}
           </div>
         )
@@ -108,9 +108,9 @@ export function FieldtripCard({ fieldtrip, type }: FieldtripCardProps) {
             </h3>
             <div className="my-1 flex space-x-2 text-sm font-semibold">
               {fieldtrip?.type === 'HOME' ? (
-                <Badge children={t('home', '가정')} className="bg-brand-5 text-brand-1" />
+                <Badge children={t('home', '가정')} className="bg-brand-5 text-primary-800" />
               ) : (
-                <Badge children={t('off_campus', '교외')} className="bg-brand-5 text-brand-1" />
+                <Badge children={t('off_campus', '교외')} className="bg-brand-5 text-primary-800" />
               )}
 
               <div>{fieldtrip.type === 'SUBURBS' ? fieldtrip?.form || '교외체험학습' : '가정학습'}</div>

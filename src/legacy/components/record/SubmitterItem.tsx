@@ -19,7 +19,7 @@ export function SubmitterItem({ user, onClick, id }: SubmitterItemProps) {
             ? pathname.includes(
                 `/teacher/activity/submit/${id}/${user.studentActivityId}`, // id도 response에 있어서 필요없음
               )
-              ? 'border-brand-1 bg-light_orange flex items-center justify-between space-x-2 rounded-md border p-2'
+              ? 'border-primary-800 bg-light_orange flex items-center justify-between space-x-2 rounded-md border p-2'
               : 'flex items-center justify-between space-x-2 rounded-md border p-2'
             : 'flex items-center justify-between space-x-2 rounded-md border p-2'
         }
@@ -27,7 +27,7 @@ export function SubmitterItem({ user, onClick, id }: SubmitterItemProps) {
         {user?.studentActivitySubmitted ? (
           <>
             <div className="flex items-center">
-              <span className="bg-brand-1 rounded-md px-2 py-1 text-sm text-white">제출</span>
+              <span className="bg-primary-800 rounded-md px-2 py-1 text-sm text-white">제출</span>
               <div className="ml-2 flex space-x-2">
                 <span className="font-semibold">{user.studentGradeKlassNumber}</span>
                 <span>{user.studentName}</span>

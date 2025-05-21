@@ -39,7 +39,7 @@ export function AbsentCard({ absent, submitAbsent, submitNiceAbsent, page, limit
       text = <div className="text-xs text-gray-600 md:text-sm">{t('approved', '승인 완료')}</div>
       break
     case AbsentStatus.RETURNED:
-      text = <div className="text-brand-1 text-xs md:text-sm">{t('rejected', '반려됨')}</div>
+      text = <div className="text-primary-800 text-xs md:text-sm">{t('rejected', '반려됨')}</div>
       break
     case AbsentStatus.DELETE_APPEAL:
       text = <div className="text-xs text-red-800 md:text-sm">{t('delete_request', '삭제 요청')}</div>

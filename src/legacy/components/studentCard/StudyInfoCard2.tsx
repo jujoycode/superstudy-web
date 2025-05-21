@@ -144,7 +144,7 @@ export function StudyInfoCard2({
             )}
             {!isForbidden ? (
               <button
-                className="text-brand-1 hover:bg-brand-1 hover:text-light_orange h-8 rounded-md bg-[#ffe4cb] px-2 py-1 text-sm focus:outline-hidden"
+                className="text-primary-800 hover:bg-primary-800 hover:text-light_orange h-8 rounded-md bg-[#ffe4cb] px-2 py-1 text-sm focus:outline-hidden"
                 onClick={() => {
                   if (isEditMode) {
                     handleUpdate()
@@ -191,7 +191,7 @@ export function StudyInfoCard2({
                     <input
                       value={motto}
                       onChange={(e) => setMotto(e.target.value)}
-                      className="disabled:text-gray-400; focus:border-brand-1 block w-full border border-gray-200 text-sm placeholder-gray-400 focus:ring-0 disabled:bg-gray-100"
+                      className="disabled:text-gray-400; focus:border-primary-800 block w-full border border-gray-200 text-sm placeholder-gray-400 focus:ring-0 disabled:bg-gray-100"
                     />
                   ) : (
                     motto
@@ -205,7 +205,7 @@ export function StudyInfoCard2({
                     <input
                       value={hopeCareerPath}
                       onChange={(e) => setHopeCareerPath(e.target.value)}
-                      className="disabled:text-gray-400; focus:border-brand-1 block w-full border border-gray-200 text-sm placeholder-gray-400 focus:ring-0 disabled:bg-gray-100"
+                      className="disabled:text-gray-400; focus:border-primary-800 block w-full border border-gray-200 text-sm placeholder-gray-400 focus:ring-0 disabled:bg-gray-100"
                     />
                   ) : (
                     hopeCareerPath

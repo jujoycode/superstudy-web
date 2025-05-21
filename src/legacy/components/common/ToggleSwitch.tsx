@@ -15,7 +15,7 @@ export const ToggleSwitch = forwardRef<HTMLInputElement, CheckboxProps>(function
           {/* <!— input —> */}
           <input ref={ref} type="checkbox" className={cn('checkbox sr-only', className)} {...props} />
           {/* <!— line —> */}
-          <div className={`block ${props.checked ? 'bg-brand-1' : 'bg-gray-300'} h-8 w-14 rounded-full`}></div>
+          <div className={`block ${props.checked ? 'bg-primary-800' : 'bg-gray-300'} h-8 w-14 rounded-full`}></div>
           {/* <!— dot —> */}
           <div
             className={`dot absolute ${

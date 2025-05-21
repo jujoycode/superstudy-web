@@ -61,7 +61,7 @@ export function OutingPage() {
                       ) : outing?.outingStatus === OutingStatus.BEFORE_PARENT_APPROVAL ? (
                         <span
                           className={` ${
-                            me?.role === Role.PARENT ? 'text-brand-1 font-bold' : 'font-bold text-blue-600'
+                            me?.role === Role.PARENT ? 'text-primary-800 font-bold' : 'font-bold text-blue-600'
                           } `}
                         >
                           보호자 승인 대기
@@ -72,7 +72,7 @@ export function OutingPage() {
                       ) : outing?.outingStatus === OutingStatus.DELETE_APPEAL ? (
                         <span className="font-bold text-red-500">삭제 요청</span>
                       ) : outing?.outingStatus === OutingStatus.RETURNED ? (
-                        <span className="text-brand-1 font-bold">반려됨</span>
+                        <span className="text-primary-800 font-bold">반려됨</span>
                       ) : (
                         ''
                       )}
@@ -80,7 +80,7 @@ export function OutingPage() {
                   </div>
                   <div className="flex">
                     {outing?.outingStatus === OutingStatus.BEFORE_PARENT_APPROVAL && me?.role === Role.PARENT && (
-                      <span className="text-brand-1 pt-1 text-sm font-bold">승인해주세요.</span>
+                      <span className="text-primary-800 pt-1 text-sm font-bold">승인해주세요.</span>
                     )}
                     <RightArrow />
                   </div>
@@ -102,7 +102,7 @@ export function OutingPage() {
           <button
             children="확인증 신청하기"
             onClick={() => push('/student/outing/add')}
-            className="bg-brand-1 h-14 w-full rounded-lg px-4 text-white"
+            className="bg-primary-800 h-14 w-full rounded-lg px-4 text-white"
           />
         </div>
       )}

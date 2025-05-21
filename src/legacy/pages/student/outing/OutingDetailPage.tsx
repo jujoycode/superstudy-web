@@ -71,13 +71,13 @@ export function OutingDetailPage() {
       <div className="px-3 pt-5">
         {outing?.outingStatus === 'RETURNED' && (
           <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
-            <div className="text-brand-1 text-sm">{outing?.notApprovedReason}</div>
+            <div className="text-primary-800 text-sm">{outing?.notApprovedReason}</div>
             <div className="text-red-500">반려 이유</div>
           </div>
         )}
         {outing?.outingStatus === 'DELETE_APPEAL' && (
           <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
-            <div className="text-brand-1 text-sm">{outing?.deleteReason}</div>
+            <div className="text-primary-800 text-sm">{outing?.deleteReason}</div>
             <div className="text-red-500">삭제 이유</div>
           </div>
         )}
