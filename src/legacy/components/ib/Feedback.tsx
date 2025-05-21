@@ -162,7 +162,7 @@ export const Feedback: FC<FeedbackProps> = ({
             value={content}
             onChange={(e) => setContent(e.target.value)}
             className={cn(
-              `text-15 caret-ib-blue-800 h-16 resize-none border-none p-0 text-gray-900 placeholder-gray-400 focus:border-none focus:text-gray-700 focus:ring-0 disabled:text-gray-400`,
+              `text-15 caret-old-primary-blue-800 h-16 resize-none border-none p-0 text-gray-900 placeholder-gray-400 focus:border-none focus:text-gray-700 focus:ring-0 disabled:text-gray-400`,
               {
                 'bg-white': readonly && readonlyBackground === 'bg-white',
                 'bg-gray-100': (readonly && readonlyBackground === 'bg-gray-100') || disabled || isFetching,

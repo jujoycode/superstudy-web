@@ -122,7 +122,7 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
               isSearch ? 'w-full flex-1' : 'w-full',
               `border-none p-0 ${readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'} ${
                 (disabled || readonly) && 'bg-gray-100'
-              } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-hidden disabled:text-gray-400`,
+              } caret-old-primary-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-hidden disabled:text-gray-400`,
               fontClass,
             ),
             inputClassName,
@@ -250,7 +250,7 @@ export const InputSelect = forwardRef<HTMLInputElement, TextInputProps>(function
                 isSearch ? 'w-full flex-1' : 'w-full',
                 `border-none p-0 ${readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'} ${
                   (disabled || readonly) && 'bg-gray-100'
-                } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-hidden disabled:text-gray-400`,
+                } caret-old-primary-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-hidden disabled:text-gray-400`,
                 fontClass,
               ),
               inputClassName,
@@ -366,7 +366,7 @@ export const InputLabel = forwardRef<HTMLInputElement, TextInputProps>(function 
             cn(
               `w-full border-none p-0 ${readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'} ${
                 (disabled || readonly) && 'bg-gray-100'
-              } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-hidden disabled:text-gray-400`,
+              } caret-old-primary-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-hidden disabled:text-gray-400`,
               fontClass,
             ),
           )}
@@ -465,7 +465,7 @@ export const InputScale = forwardRef<HTMLInputElement, TextInputProps>(function 
                 readonly && size === 48 ? 'bg-white text-gray-700' : 'text-gray-900'
               } ${
                 (disabled || readonly) && 'bg-gray-100'
-              } caret-ib-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-hidden disabled:text-gray-400`,
+              } caret-old-primary-blue-800 placeholder-gray-400 read-only:pointer-events-none focus:text-gray-700 focus:ring-0 focus:outline-hidden disabled:text-gray-400`,
               fontClass,
             ),
           )}

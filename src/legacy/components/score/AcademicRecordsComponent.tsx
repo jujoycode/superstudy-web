@@ -315,7 +315,7 @@ export const AcademicRecordsComponent = () => {
                     <button
                       onClick={() => checkStatus()}
                       disabled={isLoadingPatchTargetScoreAnalysis}
-                      className={`border-ib-blue-400 bg-ib-blue-400 min-w-[120px] rounded-lg border px-3 py-2 text-white disabled:opacity-50`}
+                      className={`border-old-primary-blue-400 bg-old-primary-blue-400 min-w-[120px] rounded-lg border px-3 py-2 text-white disabled:opacity-50`}
                     >
                       {isLoadingPatchTargetScoreAnalysis ? '분석중' : '목표성적분석'}
                     </button>

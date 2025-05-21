@@ -324,7 +324,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                       >
                         <SVGIcon.Calendar size={20} color="gray700" />
                         <input
-                          className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
+                          className="text-15 caret-old-primary-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                           placeholder="활동 일정 및 주기 선택"
                           value={
                             date.startDate && date.endDate
@@ -386,7 +386,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                       <div
                         className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border ${
                           strands.activity && strands.activity > 0
-                            ? 'border-ib-blue-100 bg-ib-blue-50'
+                            ? 'border-old-primary-blue-100 bg-old-primary-blue-50'
                             : 'border-gray-100'
                         } p-4`}
                       >
@@ -635,7 +635,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     >
                       <SVGIcon.Calendar size={20} color="gray700" />
                       <input
-                        className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
+                        className="text-15 caret-old-primary-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                         readOnly
                         placeholder="활동 일정 및 주기 선택"
                         value={
@@ -686,7 +686,7 @@ function ActivityPlan({ data, refetch, setEdit }: ActivityPlanProps) {
                     <div
                       className={`flex w-[254px] flex-row items-center gap-2 rounded-lg ${
                         data.cas?.strands.activity && data.cas.strands.activity > 0
-                          ? 'border-ib-blue-100 bg-ib-blue-50 border'
+                          ? 'border-old-primary-blue-100 bg-old-primary-blue-50 border'
                           : 'border border-gray-100'
                       } p-4`}
                     >

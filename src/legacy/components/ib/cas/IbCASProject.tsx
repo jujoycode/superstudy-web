@@ -258,7 +258,7 @@ export function IbCASProject({
                 >
                   <SVGIcon.Calendar size={20} color="gray700" />
                   <input
-                    className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
+                    className="text-15 caret-old-primary-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                     value={
                       date.startDate && date.endDate
                         ? `${date.startDate.getFullYear()}.${(date.startDate.getMonth() + 1)
@@ -310,7 +310,7 @@ export function IbCASProject({
                 >
                   <SVGIcon.Profile size={20} color="gray700" />
                   <input
-                    className="caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
+                    className="caret-old-primary-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                     placeholder="멤버 선택"
                     readOnly
                   />
@@ -402,7 +402,9 @@ export function IbCASProject({
                 </div>
                 <div
                   className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border ${
-                    strands.activity && strands.activity > 0 ? 'border-ib-blue-100 bg-ib-blue-50' : 'border-gray-100'
+                    strands.activity && strands.activity > 0
+                      ? 'border-old-primary-blue-100 bg-old-primary-blue-50'
+                      : 'border-gray-100'
                   } p-4`}
                 >
                   <SolidSVGIcon.A size={20} color="orange800" />
