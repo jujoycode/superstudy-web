@@ -107,13 +107,13 @@ export function CanteenPage() {
               return (
                 <div className="absolute inset-x-0 flex justify-center space-x-0.5">
                   {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_0) && (
-                    <div className="bg-schedule-school h-1 w-1 rounded-full" />
+                    <div className="h-1 w-1 rounded-full bg-violet-500" />
                   )}
                   {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_1) && (
-                    <div className="bg-schedule-teacher h-1 w-1 rounded-full" />
+                    <div className="h-1 w-1 rounded-full bg-blue-500" />
                   )}
                   {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_2) && (
-                    <div className="bg-schedule-group h-1 w-1 rounded-full" />
+                    <div className="h-1 w-1 rounded-full bg-lime-500" />
                   )}
                 </div>
               )
@@ -132,10 +132,10 @@ export function CanteenPage() {
                 <div
                   className={`h-2 w-2 rounded-full ${
                     schedule.calendarId === CalendarIdEnum.NUMBER_0
-                      ? 'bg-schedule-teacher'
+                      ? 'bg-blue-500'
                       : schedule.calendarId === CalendarIdEnum.NUMBER_2
-                        ? 'bg-schedule-group'
-                        : 'bg-schedule-school'
+                        ? 'bg-lime-500'
+                        : 'bg-violet-500'
                   }`}
                 />
                 <div className="font-bold">{schedule.title}</div>
@@ -220,13 +220,13 @@ export function CanteenPage() {
                 return (
                   <div className="absolute inset-x-0 flex justify-center space-x-0.5">
                     {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_0) && (
-                      <div className="bg-schedule-school h-1 w-1 rounded-full" />
+                      <div className="h-1 w-1 rounded-full bg-violet-500" />
                     )}
                     {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_1) && (
-                      <div className="bg-schedule-teacher h-1 w-1 rounded-full" />
+                      <div className="h-1 w-1 rounded-full bg-blue-500" />
                     )}
                     {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_2) && (
-                      <div className="bg-schedule-group h-1 w-1 rounded-full" />
+                      <div className="h-1 w-1 rounded-full bg-lime-500" />
                     )}
                   </div>
                 )
@@ -245,10 +245,10 @@ export function CanteenPage() {
                   <div
                     className={`h-2 w-2 rounded-full ${
                       schedule.calendarId === CalendarIdEnum.NUMBER_1
-                        ? 'bg-schedule-teacher'
+                        ? 'bg-blue-500'
                         : schedule.calendarId === CalendarIdEnum.NUMBER_2
-                          ? 'bg-schedule-group'
-                          : 'bg-schedule-school'
+                          ? 'bg-lime-500'
+                          : 'bg-violet-500'
                     }`}
                   />
                   <div className="font-bold">{schedule.title}</div>

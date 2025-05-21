@@ -637,10 +637,6 @@
   --color-old-primary-blue-800: #0066ff;
 
   /* Colors */
-  --color-schedule-teacher: #00a9ff;
-  --color-schedule-school: #9e5fff;
-  --color-schedule-group: #8cd23c;
-
   --color-darkgray: #4d5562;
   --color-light_orange: #fdf3eb;
   --color-brandblue-1: #2f80ed;
@@ -965,16 +961,6 @@
 }
 .z-150 {
   z-index: var(--z-index-150);
-}
-
-.bg-schedule-teacher {
-  background-color: var(--color-schedule-teacher);
-}
-.bg-schedule-group {
-  background-color: var(--color-schedule-group);
-}
-.bg-schedule-school {
-  background-color: var(--color-schedule-school);
 }
 
 .bg-darkgray {
