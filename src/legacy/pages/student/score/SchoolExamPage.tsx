@@ -7,10 +7,6 @@ import { FinalScoreTable } from '@/legacy/components/score/mobile/FinalScoreTabl
 import { MiddleScoreTable } from '@/legacy/components/score/mobile/MiddleScoreTable'
 import { SchoolScore, useSchoolExamScoreByParent, useSchoolExamScoreByStudent } from '@/legacy/container/student-score'
 
-interface SchoolExamPageProps {
-  studentId: number
-}
-
 export interface SchoolExamParams {
   studentId: number
   year: number

@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useState } from 'react'
-import { Outlet, Route, Routes } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
 import { useUserStore } from '@/stores/user'
@@ -11,12 +11,6 @@ import { NewsletterCard } from '@/legacy/components/newsletter/NewsletterCard'
 import { useTeacherNewsletter } from '@/legacy/container/teacher-newsletter'
 import { Newsletter, NewsletterCategoryEnum } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-import { NewsletterAddPage } from './NewsletterAddPage'
-import { NewsletterCheckDownloadPage } from './NewsletterCheckDownloadPage'
-import { NewsletterCheckPage } from './NewsletterCheckPage'
-import { NewsletterDetailPage } from './NewsletterDetailPage'
-import { NewsletterDownloadPage } from './NewsletterDownloadPage'
-import { NewsletterSubmitPage } from './NewsletterSubmitPage'
 
 export function NewsletterPage() {
   const { me } = useUserStore()

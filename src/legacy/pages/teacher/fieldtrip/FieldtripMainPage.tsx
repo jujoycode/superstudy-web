@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
-import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
+import { cn } from '@/utils/commonUtil'
 
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
@@ -19,8 +19,6 @@ import { useSignature } from '@/legacy/hooks/useSignature'
 import { useStamp } from '@/legacy/hooks/useStamp'
 import { compareFieldTrips } from '@/legacy/util/document'
 import { getCurrentSchoolYear, isValidDate, makeDateToString, makeStartEndToString } from '@/legacy/util/time'
-
-import { FieldtripDetailPage } from './FieldtripDetailPage'
 
 export function FieldtripMainPage() {
   const { replaceWithQueryParams } = useQueryParams()

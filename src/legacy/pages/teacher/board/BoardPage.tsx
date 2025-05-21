@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useState } from 'react'
-import { Link, Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 
 import { SelectMenus } from '@/legacy/components'
 import { BoardCard } from '@/legacy/components/board/BoardCard'
@@ -10,9 +10,6 @@ import { useTeacherBoard } from '@/legacy/container/teacher-board'
 import { useTeacherKlassGroup } from '@/legacy/container/teacher-klass-groups'
 import { Board, BoardCategoryEnum, Group } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
-
-import { BoardAddPage } from './BoardAddPage'
-import { BoardDetailPage } from './BoardDetailPage'
 
 export function BoardsPage() {
   const { t } = useLanguage()

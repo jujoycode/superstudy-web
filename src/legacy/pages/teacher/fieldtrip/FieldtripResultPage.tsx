@@ -1,8 +1,8 @@
-import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
-import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 
 import { useHistory } from '@/hooks/useHistory'
+import { cn } from '@/utils/commonUtil'
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -17,8 +17,6 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useSignature } from '@/legacy/hooks/useSignature'
 import { useStamp } from '@/legacy/hooks/useStamp'
 import { getCurrentSchoolYear, isValidDate, makeDateToString } from '@/legacy/util/time'
-
-import { FieldtripResultDetailPage } from './FieldtripResultDetailPage'
 
 export function FieldtripResultPage() {
   const { replace } = useHistory()
