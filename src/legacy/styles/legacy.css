@@ -637,7 +637,6 @@
   --color-old-primary-blue-800: #0066ff;
 
   /* Colors */
-  --color-darkgray: #4d5562;
   --color-light_orange: #fdf3eb;
   --color-brandblue-1: #2f80ed;
   --color-brandblue-5: #eaf2fd;
@@ -961,16 +960,6 @@
 }
 .z-150 {
   z-index: var(--z-index-150);
-}
-
-.bg-darkgray {
-  background-color: var(--color-darkgray);
-}
-.text-darkgray {
-  color: var(--color-darkgray);
-}
-.border-darkgray {
-  border-color: var(--color-darkgray);
 }
 
 .bg-light_orange {

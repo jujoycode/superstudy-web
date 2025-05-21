@@ -34,7 +34,7 @@ export function DropdownMenu({ icon, studentId, parent, updateStudentParent }: D
         } absolute right-2 -bottom-10 rounded-md border bg-white px-1 py-0.5`}
       >
         <button
-          className="hover:bg-darkgray w-30 rounded-md px-0.5 py-1 transition-all hover:text-white"
+          className="w-30 rounded-md px-0.5 py-1 transition-all hover:bg-slate-600 hover:text-white"
           onClick={(e) => {
             e.stopPropagation()
             alert(

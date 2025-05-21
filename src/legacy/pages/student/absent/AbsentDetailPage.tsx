@@ -105,7 +105,7 @@ export function AbsentDetailPage() {
 
           {absent?.absentStatus === AbsentStatus.PROCESSING && (
             <>
-              <div className={'bg-primary-800 text-darkgray my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm'}>
+              <div className={'bg-primary-800 my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm text-slate-600'}>
                 보호자 승인 완료
               </div>
               <div className={'bg-primary-800 my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm text-white'}>
@@ -119,10 +119,10 @@ export function AbsentDetailPage() {
 
           {absent?.absentStatus === AbsentStatus.PROCESSED && (
             <>
-              <div className={'bg-primary-800 text-darkgray my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm'}>
+              <div className={'bg-primary-800 my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm text-slate-600'}>
                 보호자 승인 완료
               </div>
-              <div className={'bg-primary-800 text-darkgray my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm'}>
+              <div className={'bg-primary-800 my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm text-slate-600'}>
                 학교 승인 완료
               </div>
               <div className={'bg-primary-800 my-1 mr-2 inline-block rounded-md px-4 py-2 text-sm text-white'}>

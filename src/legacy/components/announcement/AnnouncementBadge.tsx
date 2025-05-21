@@ -49,7 +49,7 @@ export default function AnnouncementBadge({ news, type }: AnnouncementBadgeProps
           <div className="flex flex-row items-center justify-between">
             <div className="flex items-center space-x-2">
               {news.isPinned && <h1 className="w-60 truncate text-lg font-bold">{news.title}</h1>}
-              {!news.isPinned && <h1 className="text-darkgray w-60 truncate text-lg">{news.title}</h1>}
+              {!news.isPinned && <h1 className="w-60 truncate text-lg text-slate-600">{news.title}</h1>}
             </div>
             <Time date={news.createdAt} format={'yyyy.MM.dd'} />
           </div>

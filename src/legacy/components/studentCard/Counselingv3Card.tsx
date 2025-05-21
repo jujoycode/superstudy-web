@@ -151,7 +151,7 @@ export default function Counselingv3Card() {
                 setContent('')
                 setCoulselorName(me?.name || '')
               }}
-              className="border-darkgray hover:bg-darkgray flex h-8 w-24 items-center justify-center gap-1 rounded-lg border bg-white font-semibold transition-all hover:text-white"
+              className="flex h-8 w-24 items-center justify-center gap-1 rounded-lg border border-slate-600 bg-white font-semibold transition-all hover:bg-slate-600 hover:text-white"
             >
               <Plus />
               <p>상담 추가</p>
@@ -166,7 +166,7 @@ export default function Counselingv3Card() {
                 setContent('')
                 setCoulselorName(me?.name || '')
               }}
-              className="border-darkgray hover:bg-darkgray flex h-8 w-24 items-center justify-center gap-1 rounded-lg border bg-white font-semibold transition-all hover:text-white"
+              className="flex h-8 w-24 items-center justify-center gap-1 rounded-lg border border-slate-600 bg-white font-semibold transition-all hover:bg-slate-600 hover:text-white"
             >
               <Plus />
               <p>상담 추가</p>
@@ -201,7 +201,7 @@ export default function Counselingv3Card() {
             {page < MAXPAGE ? (
               <button
                 onClick={() => setPage((page) => page + 1)}
-                className="border-darkgray hover:bg-darkgray mt-4 flex w-full items-center justify-center gap-2 rounded-md py-2 text-[#666666] transition-all hover:text-white md:border"
+                className="mt-4 flex w-full items-center justify-center gap-2 rounded-md border-slate-600 py-2 text-[#666666] transition-all hover:bg-slate-600 hover:text-white md:border"
               >
                 <DownArrow />
                 <p>더 보기 ({`${page}/${MAXPAGE}`})</p>
@@ -212,7 +212,7 @@ export default function Counselingv3Card() {
                   setPage(1)
                   scrollToTop()
                 }}
-                className="border-darkgray hover:bg-darkgray mt-4 flex w-full items-center justify-center gap-2 rounded-md border py-2 text-[#666666] transition-all hover:text-white"
+                className="mt-4 flex w-full items-center justify-center gap-2 rounded-md border border-slate-600 py-2 text-[#666666] transition-all hover:bg-slate-600 hover:text-white"
               >
                 <p>접기</p>
               </button>
@@ -225,7 +225,7 @@ export default function Counselingv3Card() {
               <div className="flex items-center justify-between md:pb-4">
                 <h1 className="text-xl font-bold">상담카드 작성</h1>
                 <button
-                  className="border-darkgray hover:bg-darkgray hidden h-8 w-12 rounded-md border font-semibold transition-all hover:text-white md:block"
+                  className="hidden h-8 w-12 rounded-md border border-slate-600 font-semibold transition-all hover:bg-slate-600 hover:text-white md:block"
                   onClick={() => {
                     if (recorderRef.current) {
                       recorderRef.current.uploadAndDestroy(false)
@@ -236,7 +236,7 @@ export default function Counselingv3Card() {
                 >
                   취소
                 </button>
-                {/* <p className="block md:hidden text-darkgray text-sm">상담 학생 : </p> */}
+                {/* <p className="block md:hidden text-slate-600 text-sm">상담 학생 : </p> */}
               </div>
               <nav className="mt-2 flex w-full flex-col justify-between space-y-2 xl:mt-0 xl:flex-row">
                 <span className="flex gap-2 md:flex-row md:items-center md:gap-4">

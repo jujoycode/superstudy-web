@@ -98,7 +98,7 @@ export default function Parentv3InfoCard({
             {canAddParent && (
               <button
                 onClick={() => setAddBtnParent(!addBtnParent)}
-                className={`border-darkgray hover:bg-darkgray block h-8 rounded-md border px-4 font-semibold transition-all hover:text-white ${
+                className={`block h-8 rounded-md border border-slate-600 px-4 font-semibold transition-all hover:bg-slate-600 hover:text-white ${
                   addBtnParent && 'hidden'
                 }`}
               >
@@ -158,7 +158,7 @@ export default function Parentv3InfoCard({
               <nav className="flex items-center justify-between space-x-2">
                 <button
                   onClick={() => cancel()}
-                  className="border-darkgray hover:bg-darkgray flex w-16 items-center rounded-md border font-semibold transition-all hover:text-white"
+                  className="flex w-16 items-center rounded-md border border-slate-600 font-semibold transition-all hover:bg-slate-600 hover:text-white"
                 >
                   <Icon.Close />
                   {t('cancel', '취소')}
@@ -176,7 +176,7 @@ export default function Parentv3InfoCard({
                     })
                     cancel()
                   }}
-                  className="border-darkgray hover:bg-darkgray w-12 rounded-md border font-semibold transition-all hover:text-white"
+                  className="w-12 rounded-md border border-slate-600 font-semibold transition-all hover:bg-slate-600 hover:text-white"
                 >
                   {t('add', '추가')}
                 </button>
@@ -220,7 +220,7 @@ export default function Parentv3InfoCard({
                 localStorage.removeItem(studentId.toString())
                 queryClient.refetchQueries({ active: true })
               }}
-              className="border-darkgray hover:bg-darkgray h-6 rounded-md border px-2 py-px text-sm font-semibold transition-all hover:text-white"
+              className="h-6 rounded-md border border-slate-600 px-2 py-px text-sm font-semibold transition-all hover:bg-slate-600 hover:text-white"
             >
               {t('cancel', '취소')}
             </button>

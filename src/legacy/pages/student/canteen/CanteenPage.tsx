@@ -185,7 +185,7 @@ export function CanteenPage() {
             onClick={() => {
               push('/student/courseentrance?enter=true')
             }}
-            className="border-darkgray flex cursor-pointer items-center justify-between rounded-md border-2 py-3 text-sm font-semibold"
+            className="flex cursor-pointer items-center justify-between rounded-md border-2 border-slate-600 py-3 text-sm font-semibold"
           >
             <div className="flex w-full justify-center">수강신청</div>
           </div>
