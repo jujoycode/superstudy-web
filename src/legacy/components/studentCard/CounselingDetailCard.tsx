@@ -35,7 +35,7 @@ export default function CounselingDetailCard({ data, deleteCounseling, editCouns
       categoryColorClass = 'bg-counselingCategory-3'
       break
     default:
-      categoryColorClass = 'bg-lightgreen-2'
+      categoryColorClass = 'bg-green-300'
   }
   return (
     <div className={`p-4 ${categoryColorClass} relative flex h-[308px] flex-col rounded-md md:h-64`}>

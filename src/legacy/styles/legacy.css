@@ -637,10 +637,6 @@
   --color-old-primary-blue-800: #0066ff;
 
   /* Colors */
-  --color-lightgreen-1: #d3f9d8;
-  --color-lightgreen-2: #b2f2bb;
-  --color-lightgreen-3: #e5fbe0;
-
   --color-brand-1: #ee853a;
   --color-brand-5: #f8efe4;
 
@@ -972,16 +968,6 @@
 }
 .z-150 {
   z-index: var(--z-index-150);
-}
-
-.bg-lightgreen-1 {
-  background-color: var(--color-lightgreen-1);
-}
-.bg-lightgreen-2 {
-  background-color: var(--color-lightgreen-2);
-}
-.bg-lightgreen-3 {
-  background-color: var(--color-lightgreen-3);
 }
 
 .bg-brand-1 {
