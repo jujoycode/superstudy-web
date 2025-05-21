@@ -38,6 +38,23 @@
   --color-ib-green-800: #00a876;
   --color-ib-green-850: #007d58;
 
+  /* Old Primary Colors */
+  --color-old-primary-red-100: #ffebeb;
+  --color-old-primary-red-400: #ffadad;
+  --color-old-primary-red-800: #ff2626;
+  --color-old-primary-green-50: #f3fbf9;
+  --color-old-primary-green-100: #ddf4ed;
+  --color-old-primary-green-400: #78ceb9;
+  --color-old-primary-green-800: #00a876;
+  --color-old-primary-blue-50: #f2f9ff;
+  --color-old-primary-blue-100: #dbeeff;
+  --color-old-primary-blue-400: #66b2ff;
+  --color-old-primary-blue-800: #0066ff;
+  --color-old-primary-orange-50: #fff8f5;
+  --color-old-primary-orange-100: #ffe8db;
+  --color-old-primary-orange-400: #ffbc99;
+  --color-old-primary-orange-800: #ff600c;
+
   /* System Colors */
   --color-system-error: #ff2626;
 
