@@ -226,7 +226,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
         <div className="hidden h-18 overflow-hidden rounded-lg border bg-gray-50 p-2 md:block">
           <div className="float-left">
             <img
-              className="mx-auto mr-1 h-12 w-12 flex-2 flex-shrink-0 rounded-full"
+              className="mx-auto mr-1 h-12 w-12 flex-2 shrink-0 rounded-full"
               src={`${Constants.imageUrl}${chatRoomInfo?.roomData?.roomImage}`}
               alt=""
               onError={({ currentTarget }) => {

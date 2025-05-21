@@ -157,7 +157,7 @@ export const EEMainPage = () => {
                           >
                             {approvedProposalTopic ? approvedProposalTopic : `${me?.name}의 EE 제안서`}
                           </Typography>
-                          <div className="flex-shrink-0">
+                          <div className="shrink-0">
                             <SVGIcon.Arrow
                               color="gray700"
                               weight="bold"

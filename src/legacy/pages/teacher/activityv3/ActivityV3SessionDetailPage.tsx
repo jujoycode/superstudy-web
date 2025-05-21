@@ -387,7 +387,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                 <div className="flex items-baseline justify-between pb-4">
                   <h1 className="flex-1 text-2xl font-bold break-words whitespace-pre-line">{activitySession.title}</h1>
                   {(me?.role === Role.ADMIN || activityv3?.writerId === me?.id) && (
-                    <div className="ml-4 flex flex-shrink-0 items-center space-x-2">
+                    <div className="ml-4 flex shrink-0 items-center space-x-2">
                       <Button
                         className="h-8 w-16 rounded-lg border border-neutral-500 bg-white font-semibold text-neutral-500"
                         onClick={() => {

@@ -174,7 +174,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                       setStartAt(e.target.value)
                     }}
                   />
-                  <span className="ml-3 flex-shrink-0">일 부터</span>
+                  <span className="ml-3 shrink-0">일 부터</span>
                 </div>
                 <div className="flex items-center">
                   <input
@@ -188,7 +188,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                       setEndAt(e.target.value)
                     }}
                   />
-                  <span className="ml-3 flex-shrink-0">일 까지</span>
+                  <span className="ml-3 shrink-0">일 까지</span>
                 </div>
               </div>
             )}

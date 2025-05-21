@@ -111,7 +111,7 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
         onBlur={!readonly && !disabled ? handleBlur : undefined}
       >
         {isSearch && (
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <SVGIcon.Search color="gray700" weight="bold" size={20} onClick={onSearch} />
           </div>
         )}
@@ -141,7 +141,7 @@ export const InputBasic = forwardRef<HTMLInputElement, TextInputProps>(function 
             type="button"
             tabIndex={-1}
             className={cn(
-              'flex-shrink-0 transition-opacity duration-150',
+              'shrink-0 transition-opacity duration-150',
               { 'invisible opacity-0': !isFocused || !inputValue },
               { 'visible opacity-100': isFocused && inputValue },
             )}
@@ -381,7 +381,7 @@ export const InputLabel = forwardRef<HTMLInputElement, TextInputProps>(function 
           type="button"
           tabIndex={-1}
           className={cn(
-            'flex-shrink-0 transition-opacity duration-150',
+            'shrink-0 transition-opacity duration-150',
             { 'invisible opacity-0': !isFocused || !inputValue },
             { 'visible opacity-100': isFocused && inputValue },
           )}

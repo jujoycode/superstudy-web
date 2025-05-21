@@ -45,7 +45,7 @@ export const IBStudentPage = () => {
 
   return (
     <div className="flex">
-      <div className="w-[224px] flex-shrink-0">
+      <div className="w-[224px] shrink-0">
         <div className="flex h-screen flex-grow flex-col gap-6 border-r border-gray-200 bg-white py-10">
           {/* 로고 영역 */}
           <div className="h-10 w-full px-5">

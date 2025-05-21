@@ -173,7 +173,7 @@ export function ChatSetting({
         <div className="w-full flex-col">
           <Section>
             <label className="text-sm text-gray-800">대화방 대표이미지</label>
-            <div className="mx-auto h-40 w-40 flex-1 flex-shrink-0 items-start rounded-full">
+            <div className="mx-auto h-40 w-40 flex-1 shrink-0 items-start rounded-full">
               {editable ? (
                 <>
                   <label htmlFor="imageupload">
@@ -350,7 +350,7 @@ export function ChatSetting({
                         >
                           <div className="relative">
                             <img
-                              className="mx-auto mr-1 h-10 w-10 flex-2 flex-shrink-0 items-start rounded-full"
+                              className="mx-auto mr-1 h-10 w-10 flex-2 shrink-0 items-start rounded-full"
                               src={`${Constants.imageUrl}${AttendeeInfo?.customProfile || AttendeeInfo.profile}`}
                               alt=""
                               onError={({ currentTarget }) => {
@@ -415,7 +415,7 @@ export function ChatSetting({
                       <div key={AttendeeInfo.id} className="my-1 flex cursor-pointer items-center">
                         <div className="relative">
                           <img
-                            className="mx-auto mr-1 h-10 w-10 flex-2 flex-shrink-0 items-start rounded-full"
+                            className="mx-auto mr-1 h-10 w-10 flex-2 shrink-0 items-start rounded-full"
                             src={`${Constants.imageUrl}${AttendeeInfo.customProfile}`}
                             alt=""
                             onError={({ currentTarget }) => {

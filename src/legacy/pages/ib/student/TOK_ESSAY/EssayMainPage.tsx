@@ -161,7 +161,7 @@ export const EssayMainPage = () => {
                           >
                             {data?.status === 'PENDING' ? data?.title : data?.tokOutline?.themeQuestion}
                           </Typography>
-                          <div className="flex-shrink-0">
+                          <div className="shrink-0">
                             <SVGIcon.Arrow
                               color="gray700"
                               weight="bold"

@@ -88,27 +88,27 @@ export function OutingApprovalPage() {
             )}
 
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">학생 이름</div>
+              <div className="w-1/3 shrink-0 text-gray-800">학생 이름</div>
               <div className="w-2/3 text-gray-500">{student?.name}</div>
             </div>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">학번</div>
+              <div className="w-1/3 shrink-0 text-gray-800">학번</div>
               <div className="w-2/3 text-gray-500">
                 {outing?.studentGradeKlass} {outing?.studentNumber}번
               </div>
             </div>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">유형</div>
+              <div className="w-1/3 shrink-0 text-gray-800">유형</div>
               <div className="w-2/3 text-gray-500">
                 {outing?.type === OutingTypeEnum.확인 && outing?.type2} {outing?.type}
               </div>
             </div>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">사유</div>
+              <div className="w-1/3 shrink-0 text-gray-800">사유</div>
               <div className="w-2/3 text-gray-500">{outing?.reason}</div>
             </div>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">기간</div>
+              <div className="w-1/3 shrink-0 text-gray-800">기간</div>
               <div className="w-2/3 text-gray-500">
                 {outing?.startPeriod !== 0 && outing?.endPeriod !== 0
                   ? makeDateToString(startAt) +
@@ -122,7 +122,7 @@ export function OutingApprovalPage() {
               </div>
             </div>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">신청일</div>
+              <div className="w-1/3 shrink-0 text-gray-800">신청일</div>
               <div className="w-2/3 text-gray-500">
                 {outing?.reportedAt && makeDateToStringByFormat(new Date(outing.reportedAt))}
               </div>

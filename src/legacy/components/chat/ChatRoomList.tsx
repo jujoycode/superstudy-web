@@ -83,7 +83,7 @@ export function ChatRoomList({}: ChatRoomListProps) {
                   <div className="flex cursor-pointer items-center">
                     <div className="relative">
                       <img
-                        className="mx-auto mr-6 h-15 w-15 flex-2 flex-shrink-0 items-start rounded-xl bg-gray-100"
+                        className="mx-auto mr-6 h-15 w-15 flex-2 shrink-0 items-start rounded-xl bg-gray-100"
                         src={`${Constants.imageUrl}${cr.roomImage}`}
                         alt=""
                         onError={({ currentTarget }) => {

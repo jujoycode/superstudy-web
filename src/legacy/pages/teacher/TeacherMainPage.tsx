@@ -186,7 +186,7 @@ export function TeacherMainPage() {
     <div className="flex">
       {blankOpen && <Blank />}
 
-      <div className="hidden w-[270px] flex-shrink-0 md:block">
+      <div className="hidden w-[270px] shrink-0 md:block">
         <div className="flex flex-grow flex-col border-r border-gray-200 bg-gray-50 pt-1 pb-4">
           <div className="flex items-center justify-between px-4">
             <Link to={`/teacher/canteen/${DateUtil.formatDate(new Date().toISOString(), DateFormat['YYYY-MM-DD'])}`}>

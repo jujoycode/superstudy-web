@@ -174,7 +174,7 @@ export function CustomTuiModal({
               className="tui-full-calendar-button tui-full-calendar-dropdown-button tui-full-calendar-popup-section-item flex w-36 items-center justify-between text-left"
             >
               <span
-                className="tui-full-calendar-icon tui-full-calendar-calendar-dot h-4 w-4 flex-shrink-0"
+                className="tui-full-calendar-icon tui-full-calendar-calendar-dot h-4 w-4 shrink-0"
                 style={{ backgroundColor: calendars?.find((element: any) => element.id === calendarId)?.bgColor }}
               />
               <span id="tui-full-calendar-schedule-calendar" className="tui-full-calendar-content truncate">

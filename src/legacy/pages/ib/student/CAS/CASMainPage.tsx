@@ -177,7 +177,7 @@ export const CASMainPage = () => {
                           >
                             {data?.ibType === 'CAS_NORMAL' ? '[일반]' : '[프로젝트]'}&nbsp;{data?.title}
                           </Typography>
-                          <div className="flex-shrink-0">
+                          <div className="shrink-0">
                             <SVGIcon.Arrow
                               color="gray700"
                               weight="bold"

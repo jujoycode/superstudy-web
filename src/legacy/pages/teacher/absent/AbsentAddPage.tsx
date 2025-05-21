@@ -256,7 +256,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                   setStartAt(makeDateToString(selectedDate))
                 }}
               />
-              <span className="ml-3 flex-shrink-0">일 부터</span>
+              <span className="ml-3 shrink-0">일 부터</span>
             </div>
             <div className="flex items-center">
               <FieldtripDatePicker
@@ -275,7 +275,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                   setEndAt(makeDateToString(selectedDate))
                 }}
               />
-              <span className="ml-3 flex-shrink-0">일 까지</span>
+              <span className="ml-3 shrink-0">일 까지</span>
             </div>
           </div>
         )}

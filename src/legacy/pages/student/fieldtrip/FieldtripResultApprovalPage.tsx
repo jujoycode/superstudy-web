@@ -100,54 +100,54 @@ export function FieldtripResultApprovalPage() {
           </>
         )}
         <div className="flex">
-          <div className="w-1/3 flex-shrink-0 text-gray-800">학생 이름</div>
-          <div className="w-2/3 flex-shrink-0 text-gray-800">{student?.name}</div>
+          <div className="w-1/3 shrink-0 text-gray-800">학생 이름</div>
+          <div className="w-2/3 shrink-0 text-gray-800">{student?.name}</div>
         </div>
         <div className="flex">
-          <div className="w-1/3 flex-shrink-0 text-gray-800">학번</div>
-          <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.studentGradeKlass}</div>
+          <div className="w-1/3 shrink-0 text-gray-800">학번</div>
+          <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.studentGradeKlass}</div>
         </div>
         <div className="flex">
-          <div className="w-1/3 flex-shrink-0 text-gray-800">신고종류</div>
-          <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.type === 'HOME' ? '가정' : '교외'}</div>
+          <div className="w-1/3 shrink-0 text-gray-800">신고종류</div>
+          <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.type === 'HOME' ? '가정' : '교외'}</div>
         </div>
         <div className="flex">
-          <div className="w-1/3 flex-shrink-0 text-gray-800">학습 종류</div>
-          <div className="w-2/3 flex-shrink-0 text-gray-800">
+          <div className="w-1/3 shrink-0 text-gray-800">학습 종류</div>
+          <div className="w-2/3 shrink-0 text-gray-800">
             {fieldtrip?.type === 'HOME' ? '가정학습' : fieldtrip?.form}
           </div>
         </div>
         <div className="flex">
-          <div className="w-1/3 flex-shrink-0 text-gray-800">기간</div>
-          <div className="w-2/3 flex-shrink-0 text-gray-800">
+          <div className="w-1/3 shrink-0 text-gray-800">기간</div>
+          <div className="w-2/3 shrink-0 text-gray-800">
             {fieldtrip && makeStartEndToString(fieldtrip?.startAt, fieldtrip?.endAt)}
           </div>
         </div>
         <div className="flex">
-          <div className="w-1/3 flex-shrink-0 text-gray-800">총 기간</div>
-          <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.usedDays}일</div>
+          <div className="w-1/3 shrink-0 text-gray-800">총 기간</div>
+          <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.usedDays}일</div>
         </div>
         <div className="flex">
-          <div className="w-1/3 flex-shrink-0 text-gray-800">목적지</div>
-          <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.destination}</div>
+          <div className="w-1/3 shrink-0 text-gray-800">목적지</div>
+          <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.destination}</div>
         </div>
         <div className="flex">
-          <div className="w-1/3 flex-shrink-0 text-gray-800">목적</div>
-          <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.purpose}</div>
+          <div className="w-1/3 shrink-0 text-gray-800">목적</div>
+          <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.purpose}</div>
         </div>
         {type === 'SUBURBS' && (
           <>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">인솔자명</div>
-              <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.guideName}</div>
+              <div className="w-1/3 shrink-0 text-gray-800">인솔자명</div>
+              <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.guideName}</div>
             </div>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">관계</div>
-              <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.relationship}</div>
+              <div className="w-1/3 shrink-0 text-gray-800">관계</div>
+              <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.relationship}</div>
             </div>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">인솔자 연락처</div>
-              <div className="w-2/3 flex-shrink-0 text-gray-800">{fieldtrip?.guidePhone}</div>
+              <div className="w-1/3 shrink-0 text-gray-800">인솔자 연락처</div>
+              <div className="w-2/3 shrink-0 text-gray-800">{fieldtrip?.guidePhone}</div>
             </div>
             <div>
               <div className="text-base">*결과보고서 제목</div>
@@ -186,7 +186,7 @@ export function FieldtripResultApprovalPage() {
             </Section>
             {fieldtrip?.resultFile && (
               <div>
-                <div className="flex-shrink-0 text-gray-800">증빙서류 파일</div>
+                <div className="shrink-0 text-gray-800">증빙서류 파일</div>
                 <div className="relative m-2 flex items-center justify-between overflow-x-hidden bg-white p-2">
                   <div className="flex items-center space-x-2">
                     <FileItemIcon />
@@ -243,12 +243,12 @@ export function FieldtripResultApprovalPage() {
           </>
         )}
         <div className="flex">
-          <div className="w-1/3 flex-shrink-0 text-gray-800">보호자명</div>
-          <div className="w-2/3 flex-shrink-0 text-gray-800">{student?.nokName}</div>
+          <div className="w-1/3 shrink-0 text-gray-800">보호자명</div>
+          <div className="w-2/3 shrink-0 text-gray-800">{student?.nokName}</div>
         </div>
         <div className="flex">
-          <div className="w-1/3 flex-shrink-0 text-gray-800">보호자 연락처</div>
-          <div className="w-2/3 flex-shrink-0 text-gray-800">{student?.nokPhone}</div>
+          <div className="w-1/3 shrink-0 text-gray-800">보호자 연락처</div>
+          <div className="w-2/3 shrink-0 text-gray-800">{student?.nokPhone}</div>
         </div>
         <Label.row>
           <Checkbox checked={agree} onChange={() => setAgree(!agree)} />

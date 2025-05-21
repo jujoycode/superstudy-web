@@ -198,7 +198,7 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                     [{ACTIVITYV3_TYPE_KOR[activityv3.type]}] {activityv3.subject}: {activityv3.title}
                   </h1>
                   {(me?.role === Role.ADMIN || activityv3.writerId === me?.id) && (
-                    <div className="ml-4 flex flex-shrink-0 items-center space-x-2">
+                    <div className="ml-4 flex shrink-0 items-center space-x-2">
                       <Button
                         className="h-8 w-16 rounded-lg border border-neutral-500 bg-white font-semibold text-neutral-500"
                         onClick={() => push(`/teacher/activityv3/${activityv3.id}/update`)}

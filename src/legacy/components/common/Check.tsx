@@ -157,7 +157,7 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
           height={size}
           viewBox="0 0 24 24"
           fill="none"
-          className="flex-shrink-0"
+          className="shrink-0"
         >
           <path
             d="M7 1C3.68629 1 1 3.68629 1 7V17C1 20.3137 3.68629 23 7 23H17C20.3137 23 23 20.3137 23 17V7C23 3.68629 20.3137 1 17 1H7Z"
@@ -178,7 +178,7 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
           height={size}
           viewBox="0 0 24 24"
           fill="none"
-          className="flex-shrink-0"
+          className="shrink-0"
         >
           <path
             d="M7 1C3.68629 1 1 3.68629 1 7V17C1 20.3137 3.68629 23 7 23H17C20.3137 23 23 20.3137 23 17V7C23 3.68629 20.3137 1 17 1H7Z"
@@ -201,7 +201,7 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
           height={size}
           viewBox="0 0 24 24"
           fill="none"
-          className="flex-shrink-0"
+          className="shrink-0"
         >
           <path
             d="M7 1C3.68629 1 1 3.68629 1 7V17C1 20.3137 3.68629 23 7 23H17C20.3137 23 23 20.3137 23 17V7C23 3.68629 20.3137 1 17 1H7Z"
@@ -222,7 +222,7 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
           height={size}
           viewBox="0 0 24 24"
           fill="none"
-          className="flex-shrink-0"
+          className="shrink-0"
         >
           <path
             fillRule="evenodd"
@@ -288,7 +288,7 @@ const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
           height={size}
           viewBox="0 0 24 24"
           fill="none"
-          className="flex-shrink-0"
+          className="shrink-0"
         >
           <path
             d="M7 1C3.68629 1 1 3.68629 1 7V17C1 20.3137 3.68629 23 7 23H17C20.3137 23 23 20.3137 23 17V7C23 3.68629 20.3137 1 17 1H7Z"
@@ -309,7 +309,7 @@ const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
           height={size}
           viewBox="0 0 24 24"
           fill="none"
-          className="flex-shrink-0"
+          className="shrink-0"
         >
           <path
             d="M7 1C3.68629 1 1 3.68629 1 7V17C1 20.3137 3.68629 23 7 23H17C20.3137 23 23 20.3137 23 17V7C23 3.68629 20.3137 1 17 1H7Z"
@@ -332,7 +332,7 @@ const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
           height={size}
           viewBox="0 0 24 24"
           fill="none"
-          className="flex-shrink-0"
+          className="shrink-0"
         >
           <path
             d="M7 1C3.68629 1 1 3.68629 1 7V17C1 20.3137 3.68629 23 7 23H17C20.3137 23 23 20.3137 23 17V7C23 3.68629 20.3137 1 17 1H7Z"
@@ -353,7 +353,7 @@ const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
           height={size}
           viewBox="0 0 24 24"
           fill="none"
-          className="flex-shrink-0"
+          className="shrink-0"
         >
           <path
             fillRule="evenodd"

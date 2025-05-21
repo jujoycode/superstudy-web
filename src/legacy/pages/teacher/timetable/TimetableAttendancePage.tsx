@@ -625,7 +625,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
               </>
             )}
           </p>
-          <p className="flex-shrink-0">
+          <p className="shrink-0">
             {teacherName
               ? `${t('supervisor', '담당')} : ${teacherName}${teacherNickName} ${t('teacher', '선생님')}`
               : ''}

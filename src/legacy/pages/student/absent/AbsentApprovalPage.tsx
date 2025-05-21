@@ -172,29 +172,29 @@ export function AbsentApprovalPage() {
               </>
             )}
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">학생 이름</div>
+              <div className="w-1/3 shrink-0 text-gray-800">학생 이름</div>
               <div className="w-2/3 text-gray-500">{student?.name}</div>
             </div>
             <div className="h-0.5 bg-gray-200" />
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">학생 이름</div>
+              <div className="w-1/3 shrink-0 text-gray-800">학생 이름</div>
               <div className="w-2/3 text-gray-500">{student?.name}</div>
             </div>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">학번</div>
+              <div className="w-1/3 shrink-0 text-gray-800">학번</div>
               <div className="w-2/3 text-gray-500">
                 {absent?.studentGradeKlass} {absent?.studentNumber}번
               </div>
             </div>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">신고유형</div>
+              <div className="w-1/3 shrink-0 text-gray-800">신고유형</div>
               <div className="w-2/3 text-gray-500">
                 {absent?.description}
                 {absent?.reportType}
               </div>
             </div>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">기간</div>
+              <div className="w-1/3 shrink-0 text-gray-800">기간</div>
               <div className="w-2/3 text-gray-500">
                 {absent?.startAt &&
                   absent?.endAt &&
@@ -209,17 +209,17 @@ export function AbsentApprovalPage() {
               </div>
             </div>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">신고사유</div>
+              <div className="w-1/3 shrink-0 text-gray-800">신고사유</div>
               <div className="w-2/3 text-gray-500">{absent?.reason}</div>
             </div>
             {!!absent?.studentComment && (
               <div className="flex">
-                <div className="w-1/3 flex-shrink-0 text-gray-800">신고사유상세</div>
+                <div className="w-1/3 shrink-0 text-gray-800">신고사유상세</div>
                 <div className="w-2/3 text-gray-500">{absent?.studentComment}</div>
               </div>
             )}
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">증빙서류</div>
+              <div className="w-1/3 shrink-0 text-gray-800">증빙서류</div>
               <div className="w-2/3 text-gray-500">
                 {absent?.evidenceType}
                 {!!absent?.evidenceType2 && ', ' + absent.evidenceType2}
@@ -231,7 +231,7 @@ export function AbsentApprovalPage() {
 
             {!isConfirmType && absent?.evidenceFiles?.length !== undefined && absent?.evidenceFiles?.length > 0 && (
               <div>
-                <div className="flex-shrink-0 text-gray-800">증빙서류 파일</div>
+                <div className="shrink-0 text-gray-800">증빙서류 파일</div>
                 {absent.evidenceFiles.map((evidenceFile: string) => (
                   <div
                     key={evidenceFile}
@@ -250,7 +250,7 @@ export function AbsentApprovalPage() {
               </div>
             )}
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">증빙서류 2</div>
+              <div className="w-1/3 shrink-0 text-gray-800">증빙서류 2</div>
               <div className="w-2/3 text-gray-500">{absent?.evidenceType2}</div>
             </div>
             {absent?.evidenceType === '담임교사 확인서' && (
@@ -259,7 +259,7 @@ export function AbsentApprovalPage() {
 
             {!isConfirmType && absent?.evidenceFiles2?.length !== undefined && absent?.evidenceFiles2?.length > 0 && (
               <div>
-                <div className="flex-shrink-0 text-gray-800">증빙서류 파일</div>
+                <div className="shrink-0 text-gray-800">증빙서류 파일</div>
                 {absent.evidenceFiles2.map((evidenceFile: string) => (
                   <div
                     key={evidenceFile}
@@ -279,11 +279,11 @@ export function AbsentApprovalPage() {
             )}
 
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">보호자 이름</div>
+              <div className="w-1/3 shrink-0 text-gray-800">보호자 이름</div>
               <div className="w-2/3 text-gray-500">{student?.nokName}</div>
             </div>
             <div className="flex">
-              <div className="w-1/3 flex-shrink-0 text-gray-800">보호자 연락처</div>
+              <div className="w-1/3 shrink-0 text-gray-800">보호자 연락처</div>
               <div className="w-2/3 text-gray-500">{student?.nokPhone}</div>
             </div>
 
