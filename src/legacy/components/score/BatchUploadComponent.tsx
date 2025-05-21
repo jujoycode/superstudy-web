@@ -229,7 +229,7 @@ export const BatcbUploadComponent: React.FC<BatcbUploadComponentProps> = ({
                                   </div>
                                 )}
                               </div>
-                              <div className="text-lightpurple-4 flex min-w-max items-center justify-center bg-white px-2">
+                              <div className="flex min-w-max items-center justify-center bg-white px-2 text-indigo-500">
                                 {!uploading && (
                                   <div className="z-40 ml-2 block rounded-full text-center text-sm">
                                     <div

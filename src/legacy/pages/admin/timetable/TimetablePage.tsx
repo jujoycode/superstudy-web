@@ -670,7 +670,7 @@ export function TimetablePage() {
                           </div>
                           <div className="grow truncate">
                             <div className="text-13 flex items-center space-x-2">
-                              <div className="text-lightpurple-4 w-full px-2 whitespace-pre-wrap">
+                              <div className="w-full px-2 whitespace-pre-wrap text-indigo-500">
                                 <a
                                   href={`${Constants.imageUrl}${item.filePath}`}
                                   target="_blank"

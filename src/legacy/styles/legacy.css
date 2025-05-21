@@ -637,11 +637,6 @@
   --color-old-primary-blue-800: #0066ff;
 
   /* Colors */
-  --color-lightpurple-1: #e5dbff;
-  --color-lightpurple-2: #d0bfff;
-  --color-lightpurple-3: #f0dfff;
-  --color-lightpurple-4: #5b5ae3;
-
   --color-littlegray: rgba(0, 0, 0, 0.2);
   --color-littleblack: rgba(0, 0, 0, 0.5);
   --color-transblack: rgba(0, 0, 0, 0.8);
@@ -963,19 +958,6 @@
 }
 .text-light_orange {
   color: var(--color-light_orange);
-}
-
-.bg-lightpurple-1 {
-  background-color: var(--color-lightpurple-1);
-}
-.bg-lightpurple-2 {
-  background-color: var(--color-lightpurple-2);
-}
-.bg-lightpurple-3 {
-  background-color: var(--color-lightpurple-3);
-}
-.text-lightpurple-4 {
-  color: var(--color-lightpurple-4);
 }
 
 .bg-littlegray {

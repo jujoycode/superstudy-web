@@ -190,7 +190,7 @@ export function FieldtripResultApprovalPage() {
                 <div className="relative m-2 flex items-center justify-between overflow-x-hidden bg-white p-2">
                   <div className="flex items-center space-x-2">
                     <FileItemIcon />
-                    <div className="text-lightpurple-4 min-w-max bg-white px-2">
+                    <div className="min-w-max bg-white px-2 text-indigo-500">
                       <a href={fieldtrip?.resultFile} target="_blank" rel="noreferrer" download>
                         Download
                       </a>

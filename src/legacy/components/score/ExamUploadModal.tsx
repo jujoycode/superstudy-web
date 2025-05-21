@@ -255,7 +255,7 @@ export function ExamUploadModal({
                               <div className={`flex h-8 items-center space-x-2 rounded-sm px-3 py-1`}>
                                 <div className={`text-15 w-full break-words whitespace-pre-wrap`}>{value.name}</div>
                               </div>
-                              <div className="text-lightpurple-4 flex min-w-max items-center justify-center bg-white px-2">
+                              <div className="flex min-w-max items-center justify-center bg-white px-2 text-indigo-500">
                                 {!uploading && (
                                   <div className="z-40 ml-2 block rounded-full text-center text-sm">
                                     <div

@@ -112,7 +112,7 @@ export function ActivityDetailReadPage({
         {files?.map((fileUrl: string, index) => (
           <div key={index} className="relative m-2 flex items-center justify-between overflow-x-hidden bg-white p-2">
             <span>{getFileNameFromUrl(fileUrl)}</span>
-            <div className="text-lightpurple-4 min-w-max bg-white px-2">
+            <div className="min-w-max bg-white px-2 text-indigo-500">
               <a
                 href={`${Constants.imageUrl}${fileUrl}`}
                 target="_blank"

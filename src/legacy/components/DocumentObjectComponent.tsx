@@ -23,7 +23,7 @@ export function DocumentObjectComponent({ id, documentObjet, onDeleteClick }: Do
             <FileItemIcon />
             <div className="ml-2">{getFileNameFromUrl(documentObjet.document)}</div>
           </div>
-          <div className="text-lightpurple-4 flex min-w-max items-center justify-center bg-white px-2">
+          <div className="flex min-w-max items-center justify-center bg-white px-2 text-indigo-500">
             <a
               href={`${Constants.imageUrl}${documentObjet.document}`}
               target="_blank"

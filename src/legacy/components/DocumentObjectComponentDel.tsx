@@ -36,7 +36,7 @@ export function DocumentObjectComponentDel({ id, documentObjet, onDeleteClick }:
             </div>
           )}
         </div>
-        <div className="text-lightpurple-4 flex min-w-max items-center justify-center bg-white px-2">
+        <div className="flex min-w-max items-center justify-center bg-white px-2 text-indigo-500">
           {onDeleteClick && (
             <div className="z-10 ml-2 block rounded-full text-center text-sm">
               <div

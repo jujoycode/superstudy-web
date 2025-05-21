@@ -195,7 +195,7 @@ export function NewsletterAddPage({ studentNewsletterData, newsletterData, setUp
               >
                 <div className="flex items-center space-x-2">
                   <FileItemIcon /> &nbsp; <span>{getFileNameFromUrl(fileUrl)}</span>
-                  <div className="text-lightpurple-4 min-w-max bg-white px-2">
+                  <div className="min-w-max bg-white px-2 text-indigo-500">
                     <a
                       href={`${Constants.imageUrl}${fileUrl}`}
                       target="_blank"

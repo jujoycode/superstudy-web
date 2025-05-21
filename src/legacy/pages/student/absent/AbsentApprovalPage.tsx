@@ -239,7 +239,7 @@ export function AbsentApprovalPage() {
                   >
                     <div className="flex items-center space-x-2">
                       <FileItemIcon />
-                      <div className="text-lightpurple-4 min-w-max bg-white px-2">
+                      <div className="min-w-max bg-white px-2 text-indigo-500">
                         <a href={`${Constants.imageUrl}${evidenceFile}`} target="_blank" rel="noreferrer" download>
                           Download
                         </a>
@@ -267,7 +267,7 @@ export function AbsentApprovalPage() {
                   >
                     <div className="flex items-center space-x-2">
                       <FileItemIcon />
-                      <div className="text-lightpurple-4 min-w-max bg-white px-2">
+                      <div className="min-w-max bg-white px-2 text-indigo-500">
                         <a href={`${Constants.imageUrl}${evidenceFile}`} target="_blank" rel="noreferrer" download>
                           Download
                         </a>

@@ -259,7 +259,7 @@ export function FeedsDetail({
           <div key={index} className="filled-gray-light rounded-lg px-3 py-2">
             <div className="text-13 flex items-center space-x-2">
               <FileItemIcon />
-              <div className="text-lightpurple-4 w-full px-2 whitespace-pre-wrap">
+              <div className="w-full px-2 whitespace-pre-wrap text-indigo-500">
                 <a
                   href={`${Constants.imageUrl}${fileUrl}`}
                   target="_blank"
@@ -279,7 +279,7 @@ export function FeedsDetail({
             <div className="flex items-center space-x-2 text-13">
               <FileItemIcon />
               <div
-                className="w-full  whitespace-pre-wrap px-2 text-lightpurple-4"
+                className="w-full  whitespace-pre-wrap px-2 text-indigo-500"
                 onClick={() => handleDownload(Constants.imageUrl + fileUrl)}
               >
                 {getFileNameFromUrl(fileUrl)}
