@@ -151,7 +151,7 @@ export function IbEeRPPF({
     >
       <div className={`relative w-[848px] overflow-hidden rounded-xl bg-white px-8`}>
         {(isLoading || isFetching || isRppfLoading) && <IBBlank type="section-opacity" />}
-        <div className=".backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6">
+        <div className="backdrop-blur-20 sticky top-0 z-10 flex h-[88px] items-center justify-between bg-white/70 pt-8 pb-6">
           <Typography variant="title1">RPPF 작성</Typography>
           <ColorSVGIcon.Close color="gray700" size={32} onClick={setModalClose} className="cursor-pointer" />
         </div>
@@ -199,7 +199,7 @@ export function IbEeRPPF({
 
           <div
             className={cn(
-              '.backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-between gap-4 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8',
+              'backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-between gap-4 border-t border-t-gray-100 bg-white/70 px-8 pt-6 pb-8',
             )}
           >
             <div className="text-12 flex flex-row items-center">
