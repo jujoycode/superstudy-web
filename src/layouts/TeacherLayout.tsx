@@ -26,11 +26,17 @@ export function TeacherLayout() {
 
   return (
     <Container flex height="full" direction="row" justify="start" items="start" gap="2">
-      <TeacherLNB
-        HeaderProps={{ name: me.name, email: me.email || '', school: me.school.name }}
-        ItemProps={MenuConstant.MENU_ITEMS}
-      />
-      <Outlet />
+      <Container noPadding className="w-[15%]">
+        <TeacherLNB
+          HeaderProps={{ name: me.name, email: me.email || '', school: me.school.name }}
+          ItemProps={MenuConstant.MENU_ITEMS}
+        />
+      </Container>
+
+      <Container noPadding className="w-[85%]">
+        <Outlet />
+      </Container>
+
       <Toast />
     </Container>
   )

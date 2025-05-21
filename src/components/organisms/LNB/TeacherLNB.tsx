@@ -3,7 +3,7 @@ import { Container } from '@/atoms/Container'
 import { Divider } from '@/atoms/Divider'
 // import { NavigationBarItem, type NavigationItem } from '@/molecules/navigation/NavigationBarItem'
 import { NavigationItem } from '@/molecules/navigation/navigation-items/NavigationItem'
-import { NavigationSubItem } from '@/molecules/navigation/navigation-items/NavigationSubItem'
+// import { NavigationSubItem } from '@/molecules/navigation/navigation-items/NavigationSubItem'
 import { NavigationHeader } from '@/molecules/navigation/NavigationHeader'
 import type { NavigationProfileProps } from '@/molecules/navigation/NavigationProfile'
 
@@ -12,16 +12,20 @@ export type TeacherLNBProps = {
   ItemProps: NavigationItem[]
 }
 
-export function TeacherLNB({ HeaderProps, ItemProps }: TeacherLNBProps) {
+export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
   return (
-    <Container flex direction="col" justify="start" items="center" width="15%" noPadding>
+    <Container
+      noPadding
+      flex
+      direction="col"
+      justify="start"
+      items="center"
+      height="screen"
+      className="border-r-1 border-gray-200"
+    >
       <NavigationHeader ProfileProps={HeaderProps} />
 
-      <Container flex direction="col" justify="between" items="center">
-        {ItemProps.map((item) =>
-          item.items?.length === 0 ? <NavigationItem item={item} /> : <NavigationSubItem item={item} />,
-        )}
-      </Container>
+      <></>
 
       <Container flex direction="row" items="center" justify="center" paddingX="5" paddingY="4">
         <Button variant="link" size="sm" className="text-gray-600">
