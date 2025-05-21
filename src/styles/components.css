@@ -1,7 +1,22 @@
+@import 'tailwindcss';
+
 @import '../legacy/styles/legacy.css' layer(components);
 
 @layer components {
-  input,
+  [multiple],
+  [type='date'],
+  [type='datetime-local'],
+  [type='email'],
+  [type='month'],
+  [type='number'],
+  [type='password'],
+  [type='search'],
+  [type='tel'],
+  [type='text'],
+  [type='time'],
+  [type='url'],
+  [type='week'],
+  input:where(:not([type])),
   select,
   textarea {
     --tw-shadow: 0 0 #0000;
