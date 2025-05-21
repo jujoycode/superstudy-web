@@ -94,43 +94,43 @@ export function TeacherMyPage() {
         <Section className="space-y-0 px-4">
           <Link to="/teacher/update">
             <div
-              className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+              className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
               onClick={() => selectedCheck(selectedType.myinfo)}
             >
-              <div className="text-gray-1 font-sfpro font-bold">내 정보</div>
+              <div className="font-sfpro font-bold text-gray-900">내 정보</div>
               <RightArrow />
             </div>
           </Link>
           <Link to="/teacher/notification-settings">
             <div
-              className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+              className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
               onClick={() => selectedCheck(selectedType.myinfo)}
             >
-              <div className="text-gray-1 font-sfpro font-bold">알림 설정</div>
+              <div className="font-sfpro font-bold text-gray-900">알림 설정</div>
               <RightArrow />
             </div>
           </Link>
           <a href="https://superstudy.channel.io/lounge" target="blank">
             <div
-              className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+              className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
               onClick={() => selectedCheck(selectedType.question)}
             >
-              <div className="text-gray-1 font-sfpro font-bold">문의하기</div>
+              <div className="font-sfpro font-bold text-gray-900">문의하기</div>
               <RightArrow />
             </div>
           </a>
 
           <div
-            className="border-gray-6 cursor-pointer border-b-2 py-3"
+            className="cursor-pointer border-b-2 border-gray-200 py-3"
             onClick={() => selectedCheck(selectedType.manual)}
           >
             <div className="flex items-center justify-between">
-              <div className="text-gray-1 font-sfpro font-bold">슈퍼스쿨 사용안내</div>
+              <div className="font-sfpro font-bold text-gray-900">슈퍼스쿨 사용안내</div>
               {selectedItem === selectedType.manual ? <Icon.ChevronDown /> : <RightArrow />}
             </div>
           </div>
           {selectedItem === selectedType.manual && (
-            <div className="border-gray-6 border-b-2 bg-gray-100">
+            <div className="border-b-2 border-gray-200 bg-gray-100">
               <a
                 href={`https://superschoolofficial.notion.site/f9bae37feef94ee7b9f886b5e074fdac`}
                 target="_blank"
@@ -138,7 +138,7 @@ export function TeacherMyPage() {
                 download
               >
                 <div className="flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-sfpro pl-4 font-bold">교사 사용안내</div>
+                  <div className="font-sfpro pl-4 font-bold text-gray-900">교사 사용안내</div>
                   <RightArrow />
                 </div>
               </a>
@@ -149,7 +149,7 @@ export function TeacherMyPage() {
                 download
               >
                 <div className="flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-sfpro pl-4 font-bold">학생 사용안내</div>
+                  <div className="font-sfpro pl-4 font-bold text-gray-900">학생 사용안내</div>
                   <RightArrow />
                 </div>
               </a>
@@ -160,56 +160,56 @@ export function TeacherMyPage() {
                 download
               >
                 <div className="flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-sfpro pl-4 font-bold">학부모 사용안내</div>
+                  <div className="font-sfpro pl-4 font-bold text-gray-900">학부모 사용안내</div>
                   <RightArrow />
                 </div>
               </a>
               <a href={`https://web.superschool.link/AboutSuperSchool`} target="_blank" rel="noreferrer">
                 <div className="flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-sfpro pl-4 font-bold">사용안내 동영상</div>
+                  <div className="font-sfpro pl-4 font-bold text-gray-900">사용안내 동영상</div>
                   <RightArrow />
                 </div>
               </a>
             </div>
           )}
           <div
-            className="border-gray-6 cursor-pointer border-b-2 py-3"
+            className="cursor-pointer border-b-2 border-gray-200 py-3"
             onClick={() => selectedCheck(selectedType.superstudy)}
           >
             <div className="flex items-center justify-between">
-              <div className="text-gray-1 font-sfpro font-bold">슈퍼스쿨 소개자료</div>
+              <div className="font-sfpro font-bold text-gray-900">슈퍼스쿨 소개자료</div>
               {selectedItem === selectedType.superstudy ? <Icon.ChevronDown /> : <RightArrow />}
             </div>
           </div>
           {selectedItem === selectedType.superstudy && (
-            <div className="border-gray-6 border-b-2 bg-gray-100">
+            <div className="border-b-2 border-gray-200 bg-gray-100">
               <a href={`https://superstudy.kr`} target="_blank" rel="noreferrer">
                 <div className="flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-sfpro pl-4 font-bold">홈페이지</div>
+                  <div className="font-sfpro pl-4 font-bold text-gray-900">홈페이지</div>
                   <RightArrow />
                 </div>
               </a>
               <a href={`https://www.youtube.com/channel/UCuUvswD4AMOlBnRE1jTkznA`} target="_blank" rel="noreferrer">
                 <div className="flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-sfpro pl-4 font-bold">유투브</div>
+                  <div className="font-sfpro pl-4 font-bold text-gray-900">유투브</div>
                   <RightArrow />
                 </div>
               </a>
               <a href={`https://www.instagram.com/superstudy_official_/`} target="_blank" rel="noreferrer">
                 <div className="flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-sfpro pl-4 font-bold">인스타그램</div>
+                  <div className="font-sfpro pl-4 font-bold text-gray-900">인스타그램</div>
                   <RightArrow />
                 </div>
               </a>
               <a href={`https://m.facebook.com/profile.php?id=100083550129006&_rdr`} target="_blank" rel="noreferrer">
                 <div className="flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-sfpro pl-4 font-bold">페이스북</div>
+                  <div className="font-sfpro pl-4 font-bold text-gray-900">페이스북</div>
                   <RightArrow />
                 </div>
               </a>
               <a href={`https://blog.naver.com/superschool-do`} target="_blank" rel="noreferrer">
                 <div className="flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-sfpro pl-4 font-bold">블로그</div>
+                  <div className="font-sfpro pl-4 font-bold text-gray-900">블로그</div>
                   <RightArrow />
                 </div>
               </a>
@@ -217,19 +217,19 @@ export function TeacherMyPage() {
           )}
 
           <Link to="/teacher/announcement">
-            <div className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3">
-              <div className="text-gray-1 font-sfpro font-bold">슈퍼스쿨 공지사항</div>
+            <div className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3">
+              <div className="font-sfpro font-bold text-gray-900">슈퍼스쿨 공지사항</div>
               <RightArrow />
             </div>
           </Link>
 
           <div
-            className="border-gray-6 flex cursor-pointer items-center justify-between border-b-2 py-3"
+            className="flex cursor-pointer items-center justify-between border-b-2 border-gray-200 py-3"
             onClick={() => {
               logout()
             }}
           >
-            <div className="text-gray-1 font-sfpro font-bold">로그아웃</div>
+            <div className="font-sfpro font-bold text-gray-900">로그아웃</div>
             <RightArrow />
           </div>
         </Section>

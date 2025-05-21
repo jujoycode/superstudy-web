@@ -41,32 +41,32 @@ export function MyInfoPage() {
         <Section>
           <div>
             <div className="text-lg font-bold text-gray-800">이름</div>
-            <div className="text-gray-2">{me?.name}</div>
+            <div className="text-gray-700">{me?.name}</div>
           </div>
           {me?.role === Role.USER && (
             <div>
               <div className="text-lg font-bold text-gray-800">{t(`nickName`, '별명')}</div>
-              <div className="text-gray-2">{me?.nickName}</div>
+              <div className="text-gray-700">{me?.nickName}</div>
             </div>
           )}
           <div>
             <div className="text-lg font-bold text-gray-800">이메일</div>
-            <div className="text-gray-2">{me?.email}</div>
+            <div className="text-gray-700">{me?.email}</div>
           </div>
           <div>
             <div className="text-lg font-bold text-gray-800">전화번호</div>
-            <div className="text-gray-2">{me?.phone}</div>
+            <div className="text-gray-700">{me?.phone}</div>
           </div>
 
           {isNotParent && (
             <>
               <div>
                 <div className="text-lg font-bold text-gray-800">학교</div>
-                <div className="text-gray-2">{me?.school?.name}</div>
+                <div className="text-gray-700">{me?.school?.name}</div>
               </div>
               <div>
                 <div className="text-lg font-bold text-gray-800">반/번호</div>
-                <div className="text-gray-2">
+                <div className="text-gray-700">
                   {klassHistoryList
                     ?.sort((a, b) => +(a?.group?.year || 0) - +(b?.group?.year || 0))
                     .map((klass) => (
@@ -83,15 +83,15 @@ export function MyInfoPage() {
             <>
               <div>
                 <div className="text-lg font-bold text-gray-800">생년월일</div>
-                <div className="text-gray-2">{me?.birthDate}</div>
+                <div className="text-gray-700">{me?.birthDate}</div>
               </div>
               {/* <div>
               <div className="text-lg font-bold text-gray-800">희망진로</div>
-              <div className="text-gray-2">{me?.hopePath}</div>
+              <div className="text-gray-700">{me?.hopePath}</div>
             </div>
             <div>
               <div className="text-lg font-bold text-gray-800">희망학과</div>
-              <div className="text-gray-2">{me?.hopeMajor}</div>
+              <div className="text-gray-700">{me?.hopeMajor}</div>
             </div> */}
             </>
           )}

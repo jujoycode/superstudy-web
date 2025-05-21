@@ -8,7 +8,7 @@ export const ExamScoresBatcbUploadComponent = () => {
       <section className="flex w-full flex-row gap-5">
         <article className="flex flex-col gap-2">
           <div className="flex items-center gap-1">
-            <div className="flex h-4 w-4 items-center justify-center rounded-full bg-[#0066ff] font-bold text-white">
+            <div className="bg-old-primary-blue-800 flex h-4 w-4 items-center justify-center rounded-full font-bold text-white">
               1
             </div>
             <p>오른쪽 상단에 있는 &apos;파일 업로드&apos; 버튼을 클릭합니다.</p>
@@ -17,7 +17,7 @@ export const ExamScoresBatcbUploadComponent = () => {
             <Icon.FillArrow />
           </div>
           <div className="flex items-center gap-1">
-            <div className="flex h-4 w-4 items-center justify-center rounded-full bg-[#0066ff] font-bold text-white">
+            <div className="bg-old-primary-blue-800 flex h-4 w-4 items-center justify-center rounded-full font-bold text-white">
               2
             </div>
             <p>업로드 할 파일의 모의고사 시행 월을 선택해 주세요.</p>
@@ -32,14 +32,14 @@ export const ExamScoresBatcbUploadComponent = () => {
         </div>
         <article className="flex flex-col gap-2">
           <div className="flex items-center gap-1" style={{ visibility: 'hidden' }}>
-            <div className="flex h-4 w-4 items-center justify-center rounded-full bg-[#0066ff] font-bold text-white"></div>
+            <div className="bg-old-primary-blue-800 flex h-4 w-4 items-center justify-center rounded-full font-bold text-white"></div>
             <p></p>
           </div>
           <div className="flex justify-center" style={{ visibility: 'hidden' }}>
             <Icon.FillArrow />
           </div>
           <div className="flex items-center gap-1">
-            <div className="flex h-4 w-4 items-center justify-center rounded-full bg-[#0066ff] font-bold text-white">
+            <div className="bg-old-primary-blue-800 flex h-4 w-4 items-center justify-center rounded-full font-bold text-white">
               3
             </div>
             <p>파일을 선택해 주세요.</p>
@@ -54,14 +54,14 @@ export const ExamScoresBatcbUploadComponent = () => {
         </div>
         <article className="flex flex-col gap-2">
           <div className="flex items-center gap-1" style={{ visibility: 'hidden' }}>
-            <div className="flex h-4 w-4 items-center justify-center rounded-full bg-[#0066ff] font-bold text-white"></div>
+            <div className="bg-old-primary-blue-800 flex h-4 w-4 items-center justify-center rounded-full font-bold text-white"></div>
             <p></p>
           </div>
           <div className="flex justify-center" style={{ visibility: 'hidden' }}>
             <Icon.FillArrow />
           </div>
           <div className="flex items-center gap-1">
-            <div className="flex h-4 w-4 items-center justify-center rounded-full bg-[#0066ff] font-bold text-white">
+            <div className="bg-old-primary-blue-800 flex h-4 w-4 items-center justify-center rounded-full font-bold text-white">
               4
             </div>
             <p>파일 선택 후 &apos;파일 업로드&apos; 버튼을 클릭합니다.</p>
@@ -76,14 +76,14 @@ export const ExamScoresBatcbUploadComponent = () => {
         </div>
         <article className="flex flex-col gap-2">
           <div className="flex items-center gap-1" style={{ visibility: 'hidden' }}>
-            <div className="flex h-4 w-4 items-center justify-center rounded-full bg-[#0066ff] font-bold text-white"></div>
+            <div className="bg-old-primary-blue-800 flex h-4 w-4 items-center justify-center rounded-full font-bold text-white"></div>
             <p></p>
           </div>
           <div className="flex justify-center" style={{ visibility: 'hidden' }}>
             <Icon.FillArrow />
           </div>
           <div className="flex items-center gap-1" style={{ visibility: 'hidden' }}>
-            <div className="flex h-4 w-4 items-center justify-center rounded-full bg-[#0066ff] font-bold text-white">
+            <div className="bg-old-primary-blue-800 flex h-4 w-4 items-center justify-center rounded-full font-bold text-white">
               3
             </div>
             <p>업로드 할 파일의 모의고사 시행 월을 선택해 주세요.</p>

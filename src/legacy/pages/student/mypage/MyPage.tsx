@@ -84,14 +84,14 @@ export function MyPage() {
                       <table>
                         <tbody>
                           <tr>
-                            <td className="text-gray-4 flex justify-between py-1 pr-3 text-xs">
+                            <td className="flex justify-between py-1 pr-3 text-xs text-gray-400">
                               <p>성</p>
                               <p>명</p>
                             </td>
                             <td className="text-sm font-bold tracking-widest text-black">{child?.name}</td>
                           </tr>
                           <tr>
-                            <td className="text-gray-4 flex justify-between py-1 pr-3 text-xs">
+                            <td className="flex justify-between py-1 pr-3 text-xs text-gray-400">
                               <p>학</p>
                               <p>번</p>
                             </td>
@@ -101,7 +101,7 @@ export function MyPage() {
                             </td>
                           </tr>
                           {/* <tr>
-                          <td className="text-xs text-gray-4 pr-3">생년월일</td>
+                          <td className="text-xs text-gray-400 pr-3">생년월일</td>
                           <td className="text-black text-sm">
                             {child?.birthDate && makeDateToString(child.birthDate, '.')}
                           </td>
@@ -239,7 +239,7 @@ export function MyPage() {
             슈퍼스쿨 사용안내
           </div>
           {selectedGuide && (
-            <div className="border-gray-6 -mx-5 border-b-2 bg-gray-100">
+            <div className="-mx-5 border-b-2 border-gray-200 bg-gray-100">
               <a
                 href={`https://superschoolofficial.notion.site/e8ebd5829e2846ab8e97417c7ab589f7`}
                 target="_blank"
@@ -247,7 +247,7 @@ export function MyPage() {
                 download
               >
                 <div className="ml-10 flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-bold">학생 사용안내</div>
+                  <div className="font-bold text-gray-900">학생 사용안내</div>
                   <RightArrow />
                 </div>
               </a>
@@ -258,13 +258,13 @@ export function MyPage() {
                 download
               >
                 <div className="ml-10 flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-bold">학부모 사용안내</div>
+                  <div className="font-bold text-gray-900">학부모 사용안내</div>
                   <RightArrow />
                 </div>
               </a>
               <a href={`https://web.superschool.link/AboutSuperSchool`} target="_blank" rel="noreferrer">
                 <div className="ml-10 flex cursor-pointer items-center justify-between py-1">
-                  <div className="text-gray-1 font-bold">사용안내 동영상</div>
+                  <div className="font-bold text-gray-900">사용안내 동영상</div>
                   <RightArrow />
                 </div>
               </a>

@@ -623,6 +623,19 @@
   --background-image-gradient-orange-400: linear-gradient(90deg, #ff803d 0%, #ffbc99 100%);
   --background-image-gradient-white: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
 
+  /* Old Primary Colors */
+  --color-old-primary-red-100: #ffebeb;
+  --color-old-primary-red-400: #ffadad;
+  --color-old-primary-red-800: #ff2626;
+  --color-old-primary-green-50: #f3fbf9;
+  --color-old-primary-green-100: #ddf4ed;
+  --color-old-primary-green-400: #78ceb9;
+  --color-old-primary-green-800: #00a876;
+  --color-old-primary-blue-50: #f2f9ff;
+  --color-old-primary-blue-100: #dbeeff;
+  --color-old-primary-blue-400: #66b2ff;
+  --color-old-primary-blue-800: #0066ff;
+
   /* Colors */
   --color-pink-1: #ffdeeb;
   --color-pink-2: #fcc2d7;

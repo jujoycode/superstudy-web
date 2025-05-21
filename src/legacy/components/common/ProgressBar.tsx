@@ -53,7 +53,7 @@ export function ProgressBar({ text, progress }: PropsWithChildren<ProgressBarPro
         ></p>
         <LinearProgressWithLabel value={progress} />
         <p className="flex flex-row justify-end pt-1 text-xs">
-          <p className="text-[#ff600c]">{progress}</p>&nbsp;/&nbsp;100%
+          <p className="text-primary-800">{progress}</p>&nbsp;/&nbsp;100%
         </p>
       </div>
     </div>

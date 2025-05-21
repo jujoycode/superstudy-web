@@ -31,7 +31,7 @@ export function ImageObjectComponentDel({ id, imageObjet, onDeleteClick, cardTyp
       className={cn(
         'relative',
         cardType
-          ? 'border-gray-5 aspect-5/3 rounded-sm border-2 border-dashed'
+          ? 'aspect-5/3 rounded-sm border-2 border-dashed border-gray-500'
           : 'aspect-square min-h-[48px] rounded-sm border border-neutral-200 md:min-h-[120px]',
       )}
     >

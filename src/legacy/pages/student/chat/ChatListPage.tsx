@@ -103,7 +103,7 @@ export function ChatListPage() {
                       <div
                         key={item.id}
                         className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-1 ${
-                          userIds.includes(item.id) ? 'border-brand-1 bg-light_orange' : 'border-gray-6'
+                          userIds.includes(item.id) ? 'border-brand-1 bg-light_orange' : 'border-gray-200'
                         }`}
                         onClick={() => {
                           // 학생은 선생님 한명에게만 대화할 수 있음

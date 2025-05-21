@@ -245,7 +245,7 @@ export function IbCASProject({
             </div>
             <div className="flex flex-col gap-3">
               <Typography variant="title3" className="font-semibold">
-                활동 일정 및 주기<span className="text-primary-red-800"> *</span>
+                활동 일정 및 주기<span className="text-old-primary-red-800"> *</span>
               </Typography>
               <div className="relative">
                 <div
@@ -258,7 +258,7 @@ export function IbCASProject({
                 >
                   <SVGIcon.Calendar size={20} color="gray700" />
                   <input
-                    className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
+                    className="text-15 caret-old-primary-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                     value={
                       date.startDate && date.endDate
                         ? `${date.startDate.getFullYear()}.${(date.startDate.getMonth() + 1)
@@ -293,7 +293,7 @@ export function IbCASProject({
             <div className="flex flex-col gap-3">
               <div className="flex flex-row items-center justify-between">
                 <Typography variant="title3" className="font-semibold">
-                  프로젝트 멤버<span className="text-primary-red-800"> *</span>
+                  프로젝트 멤버<span className="text-old-primary-red-800"> *</span>
                 </Typography>
                 <Typography variant="caption2" className="text-gray-500">
                   프로젝트 멤버를 추가하고 리더를 변경할 수 있습니다.
@@ -310,7 +310,7 @@ export function IbCASProject({
                 >
                   <SVGIcon.Profile size={20} color="gray700" />
                   <input
-                    className="caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
+                    className="caret-old-primary-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                     placeholder="멤버 선택"
                     readOnly
                   />
@@ -377,7 +377,7 @@ export function IbCASProject({
               <div className="flex flex-row items-center justify-between">
                 <Typography variant="title3" className="font-semibold">
                   Strands
-                  <span className="text-primary-red-800"> *</span>
+                  <span className="text-old-primary-red-800"> *</span>
                 </Typography>
                 <Typography variant="caption2" className="text-gray-500">
                   단위 : 시간
@@ -402,7 +402,9 @@ export function IbCASProject({
                 </div>
                 <div
                   className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border ${
-                    strands.activity && strands.activity > 0 ? 'border-ib-blue-100 bg-ib-blue-50' : 'border-gray-100'
+                    strands.activity && strands.activity > 0
+                      ? 'border-old-primary-blue-100 bg-old-primary-blue-50'
+                      : 'border-gray-100'
                   } p-4`}
                 >
                   <SolidSVGIcon.A size={20} color="orange800" />
@@ -416,7 +418,9 @@ export function IbCASProject({
                 </div>
                 <div
                   className={`flex w-[254px] flex-row items-center gap-2 rounded-lg border ${
-                    strands.service && strands.service > 0 ? 'border-ib-green-100 bg-ib-green-50' : 'border-gray-100'
+                    strands.service && strands.service > 0
+                      ? 'border-old-primary-green-100 bg-old-primary-green-50'
+                      : 'border-gray-100'
                   } p-4`}
                 >
                   <SolidSVGIcon.S size={20} color="orange800" />
@@ -432,7 +436,7 @@ export function IbCASProject({
             </div>
             <div className="flex flex-col gap-3">
               <Typography variant="title3" className="font-semibold">
-                IB 학습자 상<span className="text-primary-red-800">*</span>
+                IB 학습자 상<span className="text-old-primary-red-800">*</span>
               </Typography>
               <Check.Group
                 selectedValues={selectedLearnerProfile}
@@ -453,7 +457,7 @@ export function IbCASProject({
             <div className="flex flex-col gap-3">
               <Typography variant="title3" className="font-semibold">
                 ATL
-                <span className="text-primary-red-800">*</span>
+                <span className="text-old-primary-red-800">*</span>
               </Typography>
               <Check.Group selectedValues={selectedATL} onChange={handleATLChange} className="flex flex-wrap gap-2">
                 {CAS_ATL?.map((item) => (
@@ -470,7 +474,7 @@ export function IbCASProject({
             <div className="flex flex-col gap-3">
               <Typography variant="title3" className="font-semibold">
                 7가지 학습성과
-                <span className="text-primary-red-800">*</span>
+                <span className="text-old-primary-red-800">*</span>
               </Typography>
               <Check.Group selectedValues={selectedIds} onChange={handleGroupChange} className="grid grid-cols-2 gap-3">
                 {CAS_LEARNINGOUTCOME?.map((item) => (
@@ -546,7 +550,7 @@ export function IbCASProject({
             <div className="flex flex-row items-center justify-between">
               <Typography variant="title3" className="font-semibold">
                 단체명(강사명) 및 연락처
-                <span className="text-primary-red-800"> *</span>
+                <span className="text-old-primary-red-800"> *</span>
               </Typography>
               <Typography variant="caption2" className="text-gray-500">
                 외부 단체, 강사와 협력하는 경우 기입해주세요.

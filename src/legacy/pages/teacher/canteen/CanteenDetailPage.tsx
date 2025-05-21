@@ -21,8 +21,8 @@ export function CanteenDetailPage({ selectedDate, canteen, setSubmitState }: Can
 
   return (
     <>
-      <div className="scroll-box h-screen-4.5 border-gray-6 relative w-full overflow-y-scroll border-l bg-white">
-        <div className="border-gray-6 relative flex w-full items-center justify-between border-b px-6 py-4">
+      <div className="scroll-box h-screen-4.5 relative w-full overflow-y-scroll border-l border-gray-200 bg-white">
+        <div className="relative flex w-full items-center justify-between border-b border-gray-200 px-6 py-4">
           <div className="text-xl font-bold">
             {t('language') === 'ko'
               ? `${selectedDate?.getFullYear()}년 ${selectedDate?.getMonth() + 1}월 ${selectedDate?.getDate()}일`

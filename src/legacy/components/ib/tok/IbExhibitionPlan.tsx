@@ -181,7 +181,7 @@ export function IbExhibitionPlan({
               />
               <div className="flex flex-col gap-3">
                 <Typography variant="title3" className="font-semibold">
-                  지식영역<span className="text-primary-red-800">*</span>
+                  지식영역<span className="text-old-primary-red-800">*</span>
                 </Typography>
                 <Check.Group
                   selectedValues={selectedIds}

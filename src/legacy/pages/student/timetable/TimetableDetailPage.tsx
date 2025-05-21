@@ -114,7 +114,7 @@ export function TimetableDetailPage() {
 
         {selectedLectureInfo && (
           <div className="mt-8 w-full">
-            <div className="border-gray-5 rounded-xl border bg-white px-4">
+            <div className="rounded-xl border border-gray-500 bg-white px-4">
               <Section>
                 {/* <div className="absolute top-5 right-5 cursor-pointer p-3 text-red-500">
                 X

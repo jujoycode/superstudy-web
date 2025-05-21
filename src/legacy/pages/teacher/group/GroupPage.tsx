@@ -91,10 +91,10 @@ export function GroupPage() {
                   onClick={() => push(`/teacher/groups/${group.id}`)}
                 >
                   <div className="w-full overflow-hidden font-semibold whitespace-pre"> {group.name}</div>
-                  <div className="text-gray-3 w-full overflow-hidden pl-3 text-sm whitespace-pre">
+                  <div className="w-full overflow-hidden pl-3 text-sm whitespace-pre text-gray-500">
                     {t('subject', '과목')} : {group.subject}
                   </div>
-                  <div className="text-gray-3 w-full overflow-hidden pl-3 text-sm whitespace-pre">
+                  <div className="w-full overflow-hidden pl-3 text-sm whitespace-pre text-gray-500">
                     {t('classroom', '교실')} : {group.room}
                   </div>
 

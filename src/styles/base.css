@@ -27,7 +27,7 @@
   input,
   textarea,
   select {
-    @apply focus:ring-0 focus:outline-none;
+    @apply focus:ring-0 focus:outline-hidden;
   }
 
   /* Number Input remove default updown button */
