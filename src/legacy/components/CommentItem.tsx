@@ -100,7 +100,7 @@ export function CommentItem({ comment, userId, userRole, updateComment, deleteCo
               </div>
             </>
           ) : (
-            <div className="text-gray-2 mt-1 text-left whitespace-normal">{comment.content}</div>
+            <div className="mt-1 text-left whitespace-normal text-gray-700">{comment.content}</div>
           )}
         </div>
       </div>

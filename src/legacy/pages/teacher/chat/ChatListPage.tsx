@@ -612,7 +612,7 @@ export function ChatListPage() {
             </div>
           ) : (
             <div className="col-span-3 hidden h-full w-full flex-col items-center justify-center space-y-4 md:flex">
-              <div className="text-gray-2">
+              <div className="text-gray-700">
                 {meRecoil?.teacherProperty?.chatStartTime &&
                 meRecoil?.teacherProperty?.chatEndTime &&
                 meRecoil?.teacherProperty?.chatStartTime !== meRecoil?.teacherProperty?.chatEndTime ? (

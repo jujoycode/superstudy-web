@@ -1003,8 +1003,8 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
               </div>
               <div className="text-sm">{selectedUserId.role}</div>
               <div className="text-sm">{selectedUserId.job}</div>
-              <div className="text-gray-2 text-sm">희망학과 | {selectedUserId.major}</div>
-              <div className="text-gray-2 text-sm">장래희망 | {selectedUserId.hope}</div>
+              <div className="text-sm text-gray-700">희망학과 | {selectedUserId.major}</div>
+              <div className="text-sm text-gray-700">장래희망 | {selectedUserId.hope}</div>
             </div>
           </div>
           <Divider />
