@@ -308,7 +308,7 @@ export const AcademicRecordsComponent = () => {
                   <>
                     <button
                       onClick={() => setIsUpdate((prev) => !prev)}
-                      className={`min-w-[120px] rounded-lg border border-[#0066ff] bg-white px-3 py-2 text-[#0066ff]`}
+                      className={`border-old-primary-blue-800 text-old-primary-blue-800 min-w-[120px] rounded-lg border bg-white px-3 py-2`}
                     >
                       {isUpdate ? '파일 수정 완료' : '등록 파일 수정'}
                     </button>
@@ -323,7 +323,7 @@ export const AcademicRecordsComponent = () => {
                 )}
                 <button
                   onClick={() => setModalClose(!modalOpen)}
-                  className={`min-w-[120px] rounded-lg border border-[#0066ff] bg-[#0066ff] px-3 py-2 text-white`}
+                  className={`border-old-primary-blue-800 bg-old-primary-blue-800 min-w-[120px] rounded-lg border px-3 py-2 text-white`}
                 >
                   파일 업로드
                 </button>

@@ -44,7 +44,7 @@ const Basic = forwardRef<HTMLInputElement, CheckProps>(function Basic(
         <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none">
           <path
             d="M7 1C3.68629 1 1 3.68629 1 7V17C1 20.3137 3.68629 23 7 23H17C20.3137 23 23 20.3137 23 17V7C23 3.68629 20.3137 1 17 1H7Z"
-            fill="#FFBC99"
+            className="fill-primary-400"
           />
           <path
             d="M7 11.75L10.1464 14.8964C10.3417 15.0917 10.6583 15.0917 10.8536 14.8964L17 8.75"
@@ -58,7 +58,7 @@ const Basic = forwardRef<HTMLInputElement, CheckProps>(function Basic(
         <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none">
           <path
             d="M7 1C3.68629 1 1 3.68629 1 7V17C1 20.3137 3.68629 23 7 23H17C20.3137 23 23 20.3137 23 17V7C23 3.68629 20.3137 1 17 1H7Z"
-            fill="#FF600C"
+            className="fill-primary-800"
           />
           <path
             d="M7 11.75L10.1464 14.8964C10.3417 15.0917 10.6583 15.0917 10.8536 14.8964L17 8.75"
@@ -161,7 +161,7 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
         >
           <path
             d="M7 1C3.68629 1 1 3.68629 1 7V17C1 20.3137 3.68629 23 7 23H17C20.3137 23 23 20.3137 23 17V7C23 3.68629 20.3137 1 17 1H7Z"
-            fill="#FFBC99"
+            className="fill-primary-400"
           />
           <path
             d="M7 11.75L10.1464 14.8964C10.3417 15.0917 10.6583 15.0917 10.8536 14.8964L17 8.75"
@@ -182,7 +182,7 @@ const Box = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
         >
           <path
             d="M7 1C3.68629 1 1 3.68629 1 7V17C1 20.3137 3.68629 23 7 23H17C20.3137 23 23 20.3137 23 17V7C23 3.68629 20.3137 1 17 1H7Z"
-            fill="#FF600C"
+            className="fill-primary-800"
           />
           <path
             d="M7 11.75L10.1464 14.8964C10.3417 15.0917 10.6583 15.0917 10.8536 14.8964L17 8.75"
@@ -292,7 +292,7 @@ const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
         >
           <path
             d="M7 1C3.68629 1 1 3.68629 1 7V17C1 20.3137 3.68629 23 7 23H17C20.3137 23 23 20.3137 23 17V7C23 3.68629 20.3137 1 17 1H7Z"
-            fill="#FFBC99"
+            className="fill-primary-400"
           />
           <path
             d="M7 11.75L10.1464 14.8964C10.3417 15.0917 10.6583 15.0917 10.8536 14.8964L17 8.75"
@@ -313,7 +313,7 @@ const BoxNB = forwardRef<HTMLInputElement, CheckBoxProps>(function Box(
         >
           <path
             d="M7 1C3.68629 1 1 3.68629 1 7V17C1 20.3137 3.68629 23 7 23H17C20.3137 23 23 20.3137 23 17V7C23 3.68629 20.3137 1 17 1H7Z"
-            fill="#FF600C"
+            className="fill-primary-800"
           />
           <path
             d="M7 11.75L10.1464 14.8964C10.3417 15.0917 10.6583 15.0917 10.8536 14.8964L17 8.75"
@@ -421,8 +421,8 @@ const Chip = forwardRef<HTMLInputElement, CheckBoxProps>(function Check(
       } ${
         checked
           ? disabled
-            ? 'border-[#ffd7c1] bg-[#ffe7db] text-[#FFBC99]'
-            : 'border-[#ffbc99] bg-[#ffe7db] text-[#FF600C]'
+            ? 'text-primary-400 border-[#ffd7c1] bg-[#ffe7db]'
+            : 'border-primary-400 text-primary-800 bg-[#ffe7db]'
           : disabled
             ? 'border-[#e8eaec] bg-[#f4f6f8] text-[#c6cad1]'
             : 'border-[#e8eaec] bg-white text-[#4c5057]'
