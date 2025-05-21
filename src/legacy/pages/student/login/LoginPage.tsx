@@ -94,10 +94,10 @@ export function Login() {
             </div>
             <div className="flex space-x-3 text-xs">
               <Link to="/find-id">
-                <div className="text-gray-4 border-brand-1 rounded-full border px-4 py-2">{t('find_id')}</div>
+                <div className="border-brand-1 rounded-full border px-4 py-2 text-gray-400">{t('find_id')}</div>
               </Link>
               <Link to="/find-password">
-                <div className="text-gray-4 border-brand-1 rounded-full border px-4 py-2">{t('find_password')}</div>
+                <div className="border-brand-1 rounded-full border px-4 py-2 text-gray-400">{t('find_password')}</div>
               </Link>
             </div>
           </div>
