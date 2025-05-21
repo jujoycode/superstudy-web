@@ -329,7 +329,7 @@ export function ParentInfoCard({ me, isNotParent }: ParentInfoCardProps) {
                 </td>
               </tr>
             </table>
-            <div className="text-gray-3 text-sm">
+            <div className="text-sm text-gray-500">
               &nbsp; * 보호자가 이미 회원가입한 상태라면 위 보호자 정보로 자녀추가완료 알림톡이 발송됩니다.{' '}
             </div>
             <div className="flex justify-end py-2">

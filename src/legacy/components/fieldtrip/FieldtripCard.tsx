@@ -47,7 +47,7 @@ export function FieldtripCard({ fieldtrip, type }: FieldtripCardProps) {
             {t('report_form', '결과보고서')} : {t('before_parent_approval', '학부모 승인 전')}
           </div>
         ) : (
-          <div className="text-gray-3 text-xs">
+          <div className="text-xs text-gray-500">
             {t('report_form', '결과보고서')} : {t('before_writing', '작성 전')}
           </div>
         )
@@ -83,7 +83,7 @@ export function FieldtripCard({ fieldtrip, type }: FieldtripCardProps) {
         break
       default:
         textResult = (
-          <div className="text-gray-3 text-xs">
+          <div className="text-xs text-gray-500">
             {t('report_form', '결과보고서')} : {t('before_writing', '작성 전')}
           </div>
         )
