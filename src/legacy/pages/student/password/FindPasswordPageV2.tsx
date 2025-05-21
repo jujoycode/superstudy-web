@@ -105,7 +105,7 @@ export function FindPasswordPageV2() {
                 children={t('find_password')}
                 disabled={buttonDisabled}
                 onClick={() => findPassword({ email, name, phone })}
-                className="filled-primary text-19 w-full rounded-lg py-4 font-bold text-white"
+                className="filled-primary text-18 w-full rounded-lg py-4 font-bold text-white"
               />
             </div>
             {/* <p className="text-gray-400">* {t('contact_us_if_phone_number_changed')}</p> */}
