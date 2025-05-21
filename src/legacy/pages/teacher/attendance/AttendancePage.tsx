@@ -639,7 +639,7 @@ export function AttendancePage() {
             <div
               onClick={() => setSelectedDayOfWeek(3)}
               className={`w-full cursor-pointer border border-white px-1 ${
-                selectedDayOfWeek === 3 ? 'bg-lightblue-1 text-red-500' : 'bg-gray-300'
+                selectedDayOfWeek === 3 ? 'bg-sky-300 text-red-500' : 'bg-gray-300'
               } `}
             >
               수
@@ -699,7 +699,7 @@ export function AttendancePage() {
                                   : selectedDayOfWeek === 2
                                     ? 'bg-pink-100'
                                     : selectedDayOfWeek === 3
-                                      ? 'bg-lightblue-1'
+                                      ? 'bg-sky-300'
                                       : selectedDayOfWeek === 4
                                         ? 'bg-lightgreen-1'
                                         : selectedDayOfWeek === 5
@@ -733,7 +733,7 @@ export function AttendancePage() {
                                   : selectedDayOfWeek === 2
                                     ? 'bg-pink-100'
                                     : selectedDayOfWeek === 3
-                                      ? 'bg-lightblue-1'
+                                      ? 'bg-sky-300'
                                       : selectedDayOfWeek === 4
                                         ? 'bg-lightgreen-1'
                                         : selectedDayOfWeek === 5
@@ -767,7 +767,7 @@ export function AttendancePage() {
                                   : selectedDayOfWeek === 2
                                     ? 'bg-pink-100'
                                     : selectedDayOfWeek === 3
-                                      ? 'bg-lightblue-1'
+                                      ? 'bg-sky-300'
                                       : selectedDayOfWeek === 4
                                         ? 'bg-lightgreen-1'
                                         : selectedDayOfWeek === 5
@@ -811,7 +811,7 @@ export function AttendancePage() {
                               : selectedDayOfWeek === 2
                                 ? 'bg-pink-100'
                                 : selectedDayOfWeek === 3
-                                  ? 'bg-lightblue-1'
+                                  ? 'bg-sky-300'
                                   : selectedDayOfWeek === 4
                                     ? 'bg-lightgreen-1'
                                     : selectedDayOfWeek === 5
@@ -855,7 +855,7 @@ export function AttendancePage() {
                                     : selectedDayOfWeek === 2
                                       ? 'bg-pink-50'
                                       : selectedDayOfWeek === 3
-                                        ? 'bg-lightblue-3'
+                                        ? 'bg-sky-200'
                                         : selectedDayOfWeek === 4
                                           ? 'bg-lightgreen-3'
                                           : selectedDayOfWeek === 5
@@ -1127,7 +1127,7 @@ export function AttendancePage() {
                     )}`}</td>
                     <td
                       colSpan={lastPeriod + 1}
-                      className="bg-lightblue-2 w-1/5 border border-gray-200 py-2"
+                      className="w-1/5 border border-gray-200 bg-sky-400 py-2"
                     >{`${nullSafeValue(row0[4 + (lastPeriod + 1) * 2])} ${nullSafeValue(
                       row0[3 + (lastPeriod + 1) * 2],
                     )}`}</td>
@@ -1180,7 +1180,7 @@ export function AttendancePage() {
                         {createNumberArray(3 + (lastPeriod + 1) * 2, 2 + (lastPeriod + 1) * 3).map((i, index) => (
                           <td
                             key={i}
-                            className={`bg-lightblue-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
+                            className={`cursor-pointer border border-gray-200 bg-sky-300 text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >
                             {nullSafeValue(row1[i]).substring(0, 2)}
@@ -1238,7 +1238,7 @@ export function AttendancePage() {
                         {createNumberArray(3 + (lastPeriod + 1) * 2, 2 + (lastPeriod + 1) * 3).map((i, index) => (
                           <td
                             key={i}
-                            className={`bg-lightblue-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
+                            className={`cursor-pointer border border-gray-200 bg-sky-300 text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
                             onClick={() => subjectAndTeacher[i] && alert(subjectAndTeacher[i])}
                           >{`${nullSafeValue(row2[i])}`}</td>
                         ))}
@@ -1289,7 +1289,7 @@ export function AttendancePage() {
                         {createNumberArray(3 + (lastPeriod + 1) * 2, 2 + (lastPeriod + 1) * 3).map((i, index) => (
                           <td
                             key={i}
-                            className={`bg-lightblue-1 cursor-pointer border border-gray-200 text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
+                            className={`cursor-pointer border border-gray-200 bg-sky-300 text-sm break-all ${isSelectedLecture(3, index) && 'bg-red-500 text-white'} `}
                             onClick={() => attendenceCheck(nullSafeValue(rowId[i]), i, !!isSelectedLecture(3, index))}
                           >{`${nullSafeValue(row2[i]) === '' ? '' : nullSafeValue(row3[i])}`}</td>
                         ))}
@@ -1337,7 +1337,7 @@ export function AttendancePage() {
                       )}`}</td>
                     ))}
                     {createNumberArray(3 + (lastPeriod + 1) * 2, 2 + (lastPeriod + 1) * 3).map((i) => (
-                      <td key={i} className="bg-lightblue-1 border border-gray-200 text-sm break-all">{`${nullSafeValue(
+                      <td key={i} className="border border-gray-200 bg-sky-300 text-sm break-all">{`${nullSafeValue(
                         row4[i],
                       )}`}</td>
                     ))}
@@ -1428,7 +1428,7 @@ export function AttendancePage() {
                                   if (!editMode) return
                                   setAbsentReady(studentId, selwednesday, index, 'wednesday')
                                 }}
-                                className={`bg-lightblue-3 border border-gray-200 bg-gray-50 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
+                                className={`border border-gray-200 bg-gray-50 bg-sky-200 text-center ${editMode ? 'cursor-pointer' : ''} ${nullSafeValue(cell) === '.' ? '' : 'text-red-500'}`}
                               >
                                 {nullSafeValue(cell)}
                               </td>
