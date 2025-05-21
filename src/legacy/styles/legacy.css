@@ -637,8 +637,6 @@
   --color-old-primary-blue-800: #0066ff;
 
   /* Colors */
-  --color-brandblue-5: #eaf2fd;
-
   --color-lightpurple-1: #e5dbff;
   --color-lightpurple-2: #d0bfff;
   --color-lightpurple-3: #f0dfff;
@@ -967,10 +965,6 @@
   color: var(--color-light_orange);
 }
 
-.text-brandblue-5 {
-  color: var(--color-brandblue-5);
-}
-
 .bg-lightpurple-1 {
   background-color: var(--color-lightpurple-1);
 }
@@ -1100,7 +1094,7 @@
 }
 
 .filled-blue {
-  background-color: var(--color-brandblue-1);
+  background-color: var(--color-blue-500);
   border: 1px solid transparent;
   color: #ffffff;
 }
@@ -1109,7 +1103,7 @@
 }
 
 .filled-green {
-  background-color: theme('colors.green.500');
+  background-color: var(--color-green-500);
   border: 1px solid transparent;
   color: #ffffff;
 }
@@ -1118,7 +1112,7 @@
 }
 
 .filled-red {
-  background-color: theme('colors.red.500');
+  background-color: var(--color-red-500);
   border: 1px solid transparent;
   color: #ffffff;
 }
@@ -1127,16 +1121,16 @@
 }
 
 .filled-red-light {
-  background-color: theme('colors.red.50');
+  background-color: var(--color-red-50);
   border: 1px solid transparent;
-  color: theme('colors.red.500');
+  color: var(--color-red-500);
 }
 .filled-red-light:disabled {
   color: #ffffff;
 }
 
 .filled-yellow {
-  background-color: theme('colors.yellow.500');
+  background-color: var(--color-yellow-500);
   border: 1px solid transparent;
   color: #ffffff;
 }
@@ -1174,8 +1168,8 @@
 
 .outlined-blue {
   background-color: #ffffff;
-  border: 1px solid theme('colors.blue.500');
-  color: theme('colors.blue.500');
+  border: 1px solid var(--color-blue-500);
+  color: var(--color-blue-500);
 }
 .outlined-blue:hover {
   background-color: var(--color-gray-50);

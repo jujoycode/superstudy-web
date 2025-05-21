@@ -475,7 +475,7 @@ export function FieldtripMainPage() {
               <Button.xl
                 children="도장으로 승인"
                 onClick={onClickApproveByStamp}
-                className={cn('text-white', stampImgUrl ? 'border-4 border-red-500 bg-blue-500' : 'bg-brandblue-5')}
+                className={cn('text-white', stampImgUrl ? 'border-4 border-red-500 bg-blue-500' : 'bg-blue-100')}
               />
             )}
             <Button.xl
