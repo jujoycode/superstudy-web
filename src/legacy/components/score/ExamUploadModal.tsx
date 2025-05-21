@@ -178,7 +178,7 @@ export function ExamUploadModal({
   return (
     <div
       className={`bg-littlegray fixed inset-0 z-60 flex h-screen w-full items-center justify-center ${
-        modalOpen ? 'backdrop-blur-sm' : 'hidden'
+        modalOpen ? 'backdrop-blur-xs' : 'hidden'
       }`}
       onClick={(e) => {
         if (!ablePropragation) {
