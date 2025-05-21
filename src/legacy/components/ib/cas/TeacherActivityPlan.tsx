@@ -339,7 +339,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                     </Typography>
                     <div className="relative">
                       <div
-                        className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-4 py-[9px] focus:ring-0 focus:outline-none ${
+                        className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-4 py-[9px] focus:ring-0 focus:outline-hidden ${
                           isFocused && 'border-gray-700'
                         }`}
                         onFocus={handleFocus}
@@ -348,7 +348,7 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                       >
                         <SVGIcon.Calendar size={20} color="gray700" />
                         <input
-                          className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-none"
+                          className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                           placeholder="활동 일정 및 주기 선택"
                           value={
                             date.startDate && date.endDate
@@ -655,11 +655,11 @@ function TeacherActivityPlan({ data, refetch, hasPermission }: TeacherActivityPl
                   </Typography>
                   <div className="relative">
                     <div
-                      className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-4 py-[9px] focus:ring-0 focus:outline-none`}
+                      className={`flex h-12 items-center gap-2 rounded-lg border border-gray-200 px-4 py-[9px] focus:ring-0 focus:outline-hidden`}
                     >
                       <SVGIcon.Calendar size={20} color="gray700" />
                       <input
-                        className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-none"
+                        className="text-15 caret-ib-blue-800 w-full flex-1 border-none p-0 text-gray-900 placeholder-gray-400 focus:border-gray-700 focus:text-gray-700 focus:ring-0 focus:outline-hidden"
                         readOnly
                         placeholder="활동 일정 및 주기 선택"
                         value={

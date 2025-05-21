@@ -198,13 +198,13 @@ export function NewsletterAddPage() {
                 />
                 <label
                   htmlFor="end_date"
-                  className="focus:border-brand-1 flex h-12 w-full appearance-none items-center rounded-none border border-gray-200 bg-white px-4 placeholder-gray-400 outline-none focus:appearance-none focus:no-underline focus:ring-0 focus:outline-none sm:text-sm"
+                  className="focus:border-brand-1 flex h-12 w-full appearance-none items-center rounded-none border border-gray-200 bg-white px-4 placeholder-gray-400 outline-hidden focus:appearance-none focus:no-underline focus:ring-0 focus:outline-hidden sm:text-sm"
                 >
                   <input
                     id="end_date"
                     name="end_date"
                     type="datetime-local"
-                    className="border-0 ring-0 outline-none focus:ring-0 focus:outline-none"
+                    className="border-0 ring-0 outline-hidden focus:ring-0 focus:outline-hidden"
                     value={endAt as string}
                     onChange={(e) => {
                       if (e.target.value > new Date().toISOString()) {

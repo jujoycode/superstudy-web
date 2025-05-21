@@ -70,7 +70,7 @@ const SearchSelect = forwardRef<HTMLDivElement, SearchSelectProps>(
           ref={dropdownRef}
           tabIndex={readonly || disabled ? -1 : 0}
           onClick={!readonly && !disabled && !value ? () => setShowOptions(!isShowOptions) : undefined}
-          className={`flex w-full items-center justify-between gap-2 focus:outline-none ${
+          className={`flex w-full items-center justify-between gap-2 focus:outline-hidden ${
             readonly || disabled || value ? '' : 'cursor-pointer'
           }`}
         >

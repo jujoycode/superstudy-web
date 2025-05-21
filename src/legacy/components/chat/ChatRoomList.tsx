@@ -78,7 +78,7 @@ export function ChatRoomList({}: ChatRoomListProps) {
             }
           >
             <div>
-              <button className="w-full focus:outline-none focus-visible:bg-indigo-50">
+              <button className="w-full focus:outline-hidden focus-visible:bg-indigo-50">
                 <Link to={`/${userType}/chat/${cr.chatroomId}`}>
                   <div className="flex cursor-pointer items-center">
                     <div className="relative">

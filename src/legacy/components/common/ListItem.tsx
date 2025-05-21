@@ -13,7 +13,7 @@ export function ListItem({ children, to, fullBorder = false, onClick, ...props }
   const borderInner = fullBorder ? 'border-0' : 'border-b'
 
   return (
-    <li className={`bg-white ${borderOuter} focus:ring-0 focus:outline-none`}>
+    <li className={`bg-white ${borderOuter} focus:ring-0 focus:outline-hidden`}>
       <button className="w-full px-5" onClick={to ? () => push(to) : onClick} {...props}>
         <div className={`py-4 ${borderInner}`}>{children}</div>
       </button>

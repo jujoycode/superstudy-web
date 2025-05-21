@@ -377,7 +377,7 @@ export function TeacherInfoPage() {
                                 value={startH}
                                 onChange={(e) => setStartH(Number(e.target.value))}
                                 disabled={!enableChatTime}
-                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-hidden disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               >
                                 {new Array(24).fill(null).map((_, num: number) => (
                                   <option key={num} value={num}>
@@ -390,7 +390,7 @@ export function TeacherInfoPage() {
                                 value={startM}
                                 onChange={(e) => setStartM(Number(e.target.value))}
                                 disabled={!enableChatTime}
-                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-hidden disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               >
                                 <option value={0}>00</option>
                                 <option value={10}>10</option>
@@ -406,7 +406,7 @@ export function TeacherInfoPage() {
                                 value={endH}
                                 onChange={(e) => setEndH(Number(e.target.value))}
                                 disabled={!enableChatTime}
-                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-hidden disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               >
                                 {new Array(24).fill(null).map((_, num: number) => (
                                   <option key={num} value={num}>
@@ -416,7 +416,7 @@ export function TeacherInfoPage() {
                               </select>
                               <span>:</span>
                               <select
-                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                                className="w-14 min-w-max appearance-none border-0 border-b-2 border-gray-200 px-0 py-1 placeholder-gray-400 focus:border-gray-200 focus:ring-0 focus:outline-hidden disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                                 onChange={(e) => setEndM(Number(e.target.value))}
                                 disabled={!enableChatTime}
                                 value={endM}

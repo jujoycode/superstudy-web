@@ -39,7 +39,7 @@ export function BoardsPage() {
           <Link
             children={t('add')}
             to="/teacher/board/add"
-            className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-none"
+            className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-hidden"
           />
         </div>
 

@@ -38,7 +38,7 @@ export function BoardMobilePage() {
           <Link
             children="추가"
             to="/teacher/board/add"
-            className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-none"
+            className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-hidden"
           />
         </div>
         <div className="flex w-full items-center space-x-2 px-6 pb-6">

@@ -250,7 +250,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
             <button
               children="나가기"
               onClick={() => setExitModalOpen(true)}
-              className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-2 text-sm focus:outline-none"
+              className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-2 text-sm focus:outline-hidden"
             />
           </div>
           <div className="float-right mt-1 mr-2">
@@ -260,7 +260,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
                 setDeleteMode(!isDeleteMode)
               }}
               className={twMerge(
-                'text-brand-1 rounded-md bg-red-50 px-2 py-2 text-sm hover:bg-red-300 hover:text-white focus:outline-none',
+                'text-brand-1 rounded-md bg-red-50 px-2 py-2 text-sm hover:bg-red-300 hover:text-white focus:outline-hidden',
                 isDeleteMode && 'bg-red-500 text-white hover:bg-red-500',
               )}
             />
@@ -272,7 +272,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
                 setSettingAttendee(false)
                 setSettingOpen(true)
               }}
-              className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-2 text-sm focus:outline-none"
+              className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-2 text-sm focus:outline-hidden"
             />
           </div>
         </div>
@@ -337,7 +337,7 @@ export function ChatDetailPage({ id }: ChatDetailPageProps) {
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) OnSendMessage()
               }}
-              className="block h-auto w-full resize-none border-none bg-transparent px-3 py-2 outline-none"
+              className="block h-auto w-full resize-none border-none bg-transparent px-3 py-2 outline-hidden"
               style={{ height: textareaRef?.current ? `${textareaRef.current.scrollHeight}px` : 'auto' }}
             />
             <div className="px-3">

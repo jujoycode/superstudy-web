@@ -28,7 +28,7 @@ export function SelectValues({ label, selectValues, placeholder, value, onChange
         value={value}
         onChange={(e) => onChange && onChange(e.target.value)}
         className={twMerge(
-          'mt-1 block w-full rounded-md border border-gray-300 px-1 py-3 text-base focus:border-black focus:ring-indigo-500 focus:outline-none sm:text-sm',
+          'mt-1 block w-full rounded-md border border-gray-300 px-1 py-3 text-base focus:border-black focus:ring-indigo-500 focus:outline-hidden sm:text-sm',
           className,
         )}
       >

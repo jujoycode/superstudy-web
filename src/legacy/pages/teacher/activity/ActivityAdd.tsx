@@ -317,10 +317,10 @@ export function ActivityAddPage({ refetch, activityId }: ActivityAddProps) {
                     }
                   }}
                 />
-                <div className="focus:border-brand-1 flex h-12 w-full appearance-none items-center rounded-none border border-gray-200 px-4 placeholder-gray-400 outline-none focus:appearance-none focus:no-underline focus:ring-0 focus:outline-none sm:text-sm">
+                <div className="focus:border-brand-1 flex h-12 w-full appearance-none items-center rounded-none border border-gray-200 px-4 placeholder-gray-400 outline-hidden focus:appearance-none focus:no-underline focus:ring-0 focus:outline-hidden sm:text-sm">
                   <input
                     type="datetime-local"
-                    className="ring-0 outline-none focus:ring-0 focus:outline-none"
+                    className="ring-0 outline-hidden focus:ring-0 focus:outline-hidden"
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
                     pattern="\d{4}-\d{2}-\d{2}"
