@@ -12,6 +12,7 @@ import AnnouncementDetailPage from '@/legacy/pages/student/announcement/Announce
 import AnnouncementPage from '@/legacy/pages/student/announcement/AnnouncementPage'
 import { BoardDetailPage } from '@/legacy/pages/student/board/BoardDetailPage'
 import { CanteenPage } from '@/legacy/pages/student/canteen/CanteenPage'
+import { ChatDetailPage } from '@/legacy/pages/student/chat/ChatDetailPage'
 import { ChatListPage } from '@/legacy/pages/student/chat/ChatListPage'
 import { CourseEntrancePage } from '@/legacy/pages/student/courseEntrance/CourseEntrancePage'
 import { FieldtripAddPage } from '@/legacy/pages/student/fieldtrip/FieldtripAddPage'
@@ -124,6 +125,7 @@ export const studentRoutes = {
 
     // 채팅
     { path: 'chat', element: <ChatListPage /> },
+    { path: 'chat/:id', element: <ChatDetailPage /> },
 
     // 시간표
     { path: 'timetable', element: <TimetableDetailPage /> },
