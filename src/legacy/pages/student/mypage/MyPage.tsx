@@ -307,7 +307,7 @@ export function MyPage() {
             e.preventDefault()
             e.stopPropagation()
           }}
-          className="fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center bg-neutral-500"
+          className="fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center bg-neutral-500/50"
         >
           <div className="relative rounded-lg bg-white opacity-100 shadow-xs">
             <Section>

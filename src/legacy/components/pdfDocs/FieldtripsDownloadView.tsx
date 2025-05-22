@@ -192,7 +192,7 @@ export function FieldtripsDownloadView({
   return (
     <>
       {open && (
-        <div className="fixed inset-0 z-100 m-0 h-screen w-full overflow-y-scroll bg-neutral-500">
+        <div className="fixed inset-0 z-100 m-0 h-screen w-full overflow-y-scroll bg-neutral-500/50">
           <div className="flex h-full w-full items-start">
             <div className="py-6">
               <div className="mb-2 flex w-screen items-center justify-center">

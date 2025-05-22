@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { TeacherLNB } from '@/organisms/LNB/TeacherLNB'
-import { MenuConstant } from '@/constants/menuConstant'
 
 const meta = {
   title: 'Organisms/TeacherLNB',
@@ -21,6 +20,5 @@ export const Default: Story = {
       email: 'team@super.kr',
       school: '슈퍼고등학교',
     },
-    ItemProps: MenuConstant.MENU_ITEMS,
   },
 }

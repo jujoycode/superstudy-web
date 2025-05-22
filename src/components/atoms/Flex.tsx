@@ -3,6 +3,7 @@ import { cn } from '@/utils/commonUtil'
 interface FlexProps {
   children: React.ReactNode
   className?: string
+  width?: 'full' | 'fit-content'
   direction?: 'row' | 'col'
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'
   items?: 'start' | 'center' | 'end' | 'stretch' | 'baseline'
@@ -13,12 +14,14 @@ interface FlexProps {
 export function Flex({
   children,
   className,
+  width = 'full',
   direction = 'row',
   justify = 'start',
   items = 'start',
   gap,
   wrap,
 }: FlexProps) {
+  const flexWidth = width ? `w-${width}` : ''
   const flexDirection = { row: 'flex-row', col: 'flex-col' }[direction]
 
   const flexJustify = {
@@ -42,6 +45,8 @@ export function Flex({
   const flexWrap = wrap ? 'flex-wrap' : ''
 
   return (
-    <div className={cn('flex', flexDirection, flexJustify, flexItems, flexGap, flexWrap, className)}>{children}</div>
+    <div className={cn('flex', flexDirection, flexJustify, flexItems, flexGap, flexWrap, flexWidth, className)}>
+      {children}
+    </div>
   )
 }

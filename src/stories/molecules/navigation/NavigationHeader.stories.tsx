@@ -5,7 +5,7 @@ const meta: Meta<typeof NavigationHeader> = {
   title: 'Molecules/Navigation/NavigationHeader',
   component: NavigationHeader,
   parameters: {
-    layout: 'padded',
+    layout: 'fullscreen',
   },
 }
 

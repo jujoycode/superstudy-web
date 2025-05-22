@@ -48,7 +48,7 @@ export const SessionCommentItem: FC<SessionCommentItemProps> = ({ me, sessionCom
 
   return (
     <>
-      {isSessionCommentLoading && <div className="absolute inset-0 bg-neutral-500">로딩 중...</div>}
+      {isSessionCommentLoading && <div className="absolute inset-0 bg-neutral-500/50">로딩 중...</div>}
       <div>
         {updateView ? (
           <>

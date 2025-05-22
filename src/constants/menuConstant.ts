@@ -1,7 +1,5 @@
-import type { NavigationItem } from '@/molecules/navigation/navigation-items/NavigationItem'
-
 export class MenuConstant {
-  public static readonly MENU_ITEMS: NavigationItem[] = [
+  public static readonly MENU_ITEMS = [
     {
       title: '출석',
       items: [

@@ -234,13 +234,13 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
                   {editMode ? (
                     <>
                       <label htmlFor="bg-upload">
-                        <div className="cursor-pointer rounded-xl bg-neutral-500 p-2 text-sm text-white">
+                        <div className="cursor-pointer rounded-xl bg-neutral-500/50 p-2 text-sm text-white">
                           배경 업로드
                         </div>
                       </label>
 
                       <div
-                        className="cursor-pointer rounded-xl bg-neutral-500 p-2 text-sm text-white"
+                        className="cursor-pointer rounded-xl bg-neutral-500/50 p-2 text-sm text-white"
                         onClick={handleUpdateBackgroundImage}
                       >
                         완료
@@ -359,7 +359,7 @@ export function StudentIDCard({ meRecoil }: StudentIDCardProps) {
       </Swiper>
 
       {modalOpen && (
-        <div className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-neutral-500`}>
+        <div className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-neutral-500/50`}>
           <div className={`relative w-80 rounded-lg bg-white opacity-100`}>
             <div className="absolute top-3 right-3">
               <CloseButton onClick={() => setModalOpen(false)} />

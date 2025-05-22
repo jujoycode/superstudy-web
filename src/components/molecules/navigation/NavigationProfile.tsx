@@ -1,5 +1,6 @@
 import { Avatar } from '@/atoms/Avatar'
-import { Container } from '@/atoms/Container'
+import { Box } from '@/atoms/Box'
+import { Flex } from '@/atoms/Flex'
 import { Icon } from '@/atoms/Icon'
 import { Text } from '@/atoms/Text'
 
@@ -12,31 +13,31 @@ export type NavigationProfileProps = {
 
 export function NavigationProfile({ name, email, school, src }: NavigationProfileProps) {
   return (
-    <Container flex direction="row" justify="between" items="start" gap="3" noPadding>
+    <Flex direction="row" justify="start" items="start" gap="3">
       {/* Avatar */}
-      <Container noPadding>
+      <Box width="fit-content">
         <Avatar rounded="md" src={src} />
-      </Container>
+      </Box>
 
-      <Container flex direction="col" items="start" gap="1" noPadding>
-        {/* Name */}
-        <Container flex direction="row" items="center" justify="between" gap="1" noPadding>
-          <Text size="lg" weight="lg">
-            {name}
-          </Text>
-          <Icon name="rightFillArrow" size="sm" />
-        </Container>
+      <Box width="full">
+        <Flex direction="col" items="start" gap="1">
+          <Flex direction="row" justify="between" items="center">
+            <Text size="lg" weight="lg">
+              {name}
+            </Text>
+            <Icon name="rightFillArrow" size="sm" />
+          </Flex>
 
-        {/* Email & School */}
-        <Container flex direction="col" items="start" noPadding>
-          <Text size="sm" weight="sm" variant="dim">
-            {email}
-          </Text>
-          <Text size="sm" weight="sm" variant="dim">
-            {school}
-          </Text>
-        </Container>
-      </Container>
-    </Container>
+          <Box>
+            <Text size="sm" weight="sm" variant="dim">
+              {email}
+            </Text>
+            <Text size="sm" weight="sm" variant="dim">
+              {school}
+            </Text>
+          </Box>
+        </Flex>
+      </Box>
+    </Flex>
   )
 }

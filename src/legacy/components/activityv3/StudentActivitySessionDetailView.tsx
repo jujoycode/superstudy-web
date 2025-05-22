@@ -218,7 +218,7 @@ export const StudentActivitySessionDetailView: React.FC<StudentActivitySessionDe
 
       {/* 1:1 피드백 영역 */}
       <Section className="pb-16">
-        {isLoading && <div className="absolute inset-0 bg-neutral-500">로딩 중...</div>}
+        {isLoading && <div className="absolute inset-0 bg-neutral-500/50">로딩 중...</div>}
         {studentActivity?.sessionComments
           ?.sort((a, b) => (new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1))
           ?.map((sessionComment) => (

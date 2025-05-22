@@ -9,7 +9,7 @@ interface ContainerProps {
   className?: string
 }
 
-export function Container({ children, className, col, row, gap = 0 }: ContainerProps) {
+export function Grid({ children, className, col = 12, row, gap = 0 }: ContainerProps) {
   // 그리드 컬럼 템플릿 클래스 매핑
   const gridTemplateColumns = {
     1: 'grid-cols-1',
