@@ -23,16 +23,16 @@ export default function CounselingDetailCard({ data, deleteCounseling, editCouns
   let categoryColorClass = ''
   switch (data.category) {
     case '진로':
-      categoryColorClass = 'bg-counselingCategory-0'
+      categoryColorClass = 'bg-green-100'
       break
     case '교우관계':
-      categoryColorClass = 'bg-counselingCategory-1'
+      categoryColorClass = 'bg-amber-100'
       break
     case '기타':
-      categoryColorClass = 'bg-counselingCategory-2'
+      categoryColorClass = 'bg-indigo-100'
       break
     case '학교폭력':
-      categoryColorClass = 'bg-counselingCategory-3'
+      categoryColorClass = 'bg-rose-100'
       break
     default:
       categoryColorClass = 'bg-green-300'
