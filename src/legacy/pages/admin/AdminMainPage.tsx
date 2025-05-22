@@ -1,4 +1,3 @@
-import { cn } from '@/utils/commonUtil'
 import { range } from 'lodash'
 import { createContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -6,6 +5,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom'
 
 import { ReactComponent as ExitAdmin } from '@/assets/svg/exit-admin.svg'
 import { ReactComponent as LogoAdmin } from '@/assets/svg/logo-admin.svg'
+import { cn } from '@/utils/commonUtil'
 import { useUserStore } from '@/stores/user'
 import { Select } from '@/legacy/components/common'
 import { Toast } from '@/legacy/components/Toast'
