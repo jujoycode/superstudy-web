@@ -670,7 +670,7 @@ export function TimetablePage() {
                           </div>
                           <div className="grow truncate">
                             <div className="text-13 flex items-center space-x-2">
-                              <div className="text-lightpurple-4 w-full px-2 whitespace-pre-wrap">
+                              <div className="w-full px-2 whitespace-pre-wrap text-indigo-500">
                                 <a
                                   href={`${Constants.imageUrl}${item.filePath}`}
                                   target="_blank"
@@ -688,7 +688,7 @@ export function TimetablePage() {
                               <div
                                 className={cn(
                                   'w-14 rounded-md px-2 py-1 text-center text-sm font-bold',
-                                  item.status === 'FAILED' ? `bg-red-400 text-white` : 'text-text_black bg-green-300',
+                                  item.status === 'FAILED' ? `bg-red-400 text-white` : 'bg-green-300 text-gray-900',
                                 )}
                               >
                                 {item.status === 'READY'

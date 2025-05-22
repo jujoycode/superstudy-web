@@ -112,7 +112,7 @@ export function ActivityDetailReadPage({
         {files?.map((fileUrl: string, index) => (
           <div key={index} className="relative m-2 flex items-center justify-between overflow-x-hidden bg-white p-2">
             <span>{getFileNameFromUrl(fileUrl)}</span>
-            <div className="text-lightpurple-4 min-w-max bg-white px-2">
+            <div className="min-w-max bg-white px-2 text-indigo-500">
               <a
                 href={`${Constants.imageUrl}${fileUrl}`}
                 target="_blank"
@@ -161,7 +161,7 @@ export function ActivityDetailReadPage({
         )}
         <Divider />
         {studentActivity?.updatedAt && activity?.updatedAt && studentActivity.updatedAt !== activity.updatedAt && (
-          <div className="text-brandblue-1 mt-3">
+          <div className="mt-3 text-blue-500">
             제출 완료 일시 : <Time date={studentActivity.updatedAt} className="text-16 text-inherit" /> (
             <Time date={studentActivity.updatedAt} formatDistanceToNow className="text-16 text-inherit" />)
           </div>

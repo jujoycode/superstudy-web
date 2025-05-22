@@ -108,7 +108,7 @@ export function OutingPage() {
               <Link
                 children={t('write', '작성하기')}
                 to="/teacher/outing/add"
-                className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-hidden"
+                className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-4 py-2 text-sm focus:outline-hidden"
               />
             </div>
             <div className="mb-5 text-sm text-gray-500">
@@ -125,7 +125,7 @@ export function OutingPage() {
                 value={makeDateToString(new Date(startDate))}
                 min={schoolYear.start}
                 max={schoolYear.end}
-                className="focus:border-brand-1 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
+                className="focus:border-primary-800 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
                 onChange={(e) => {
                   const selectedDate = new Date(e.target.value)
                   if (!isValidDate(selectedDate)) {
@@ -140,7 +140,7 @@ export function OutingPage() {
               />
               <div className="px-4 text-xl font-bold">~</div>
               <input
-                className="focus:border-brand-1 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
+                className="focus:border-primary-800 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
                 type="date"
                 value={makeDateToString(new Date(endDate))}
                 min={schoolYear.start}
@@ -378,7 +378,7 @@ export function OutingPage() {
           </div>
           <div className="grid grid-cols-2 gap-2">
             <label>
-              <div className="border-brandblue-1 flex h-13 w-full cursor-pointer items-center justify-center rounded-lg border bg-white px-6 font-bold text-current">
+              <div className="flex h-13 w-full cursor-pointer items-center justify-center rounded-lg border border-blue-500 bg-white px-6 font-bold text-current">
                 도장등록
               </div>
               <input
@@ -417,7 +417,7 @@ export function OutingPage() {
                     setStampMode(false)
                   }
                 }}
-                className={cn('text-white', stampImgUrl ? 'bg-brandblue-1 border-4 border-red-500' : 'bg-brandblue-5')}
+                className={cn('text-white', stampImgUrl ? 'border-4 border-red-500 bg-blue-500' : 'bg-blue-100')}
               />
             )}
             <Button.xl
@@ -440,7 +440,7 @@ export function OutingPage() {
                     agreeAll ? approveOutings() : approveOuting()
                   }
                 }}
-                className={cn('text-white', sigPadData ? 'bg-brand-1 border-4 border-green-500' : 'bg-brand-5')}
+                className={cn('text-white', sigPadData ? 'bg-primary-800 border-4 border-green-500' : 'bg-primary-100')}
               />
             )}
           </div>

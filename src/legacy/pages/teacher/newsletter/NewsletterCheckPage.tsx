@@ -55,7 +55,7 @@ export function NewsletterCheckPage() {
               미확인 {unCheckCount}명 / 총 {newsletter?.toPerson ? totalPerson.length : studentsCount}명
             </div>
           </div>
-          <div className="text-brand-1 cursor-pointer" onClick={() => queryClient.refetchQueries({ active: true })}>
+          <div className="text-primary-800 cursor-pointer" onClick={() => queryClient.refetchQueries({ active: true })}>
             새로고침
           </div>
         </div>

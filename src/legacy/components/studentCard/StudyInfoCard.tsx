@@ -115,7 +115,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
               <>
                 <button
                   children="취소"
-                  className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
+                  className="bg-primary-50 text-primary-800 hover:text-primary-50 rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
                   onClick={() => {
                     setIsEditMode(false)
                     refetch()
@@ -126,7 +126,7 @@ export function StudyInfoCard({ studentId, isCard, isForbidden }: StudyInfoCard)
             {!isForbidden ? (
               <button
                 children={isEditMode ? '저장하기' : '수정하기'}
-                className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-hidden"
+                className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-2 py-1 text-sm focus:outline-hidden"
                 onClick={() => {
                   if (isEditMode) {
                     handleUpdate()

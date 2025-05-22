@@ -29,7 +29,7 @@ export function ActivityV3Page() {
             onClick={() => {
               window?.location?.reload()
             }}
-            className="text-brand-1"
+            className="text-primary-800"
           >
             새로고침
           </div>
@@ -79,7 +79,7 @@ export function ActivityV3Page() {
               <div className="flex flex-col space-y-2 text-left">
                 <div className="flex items-center space-x-2">
                   {activityv3.groupActivityV3s?.map((el) => (
-                    <div className="bg-brand-5 rounded-md px-2 py-1 text-sm font-bold text-gray-800">
+                    <div className="bg-primary-100 rounded-md px-2 py-1 text-sm font-bold text-gray-800">
                       {el.group?.name}
                     </div>
                   ))}

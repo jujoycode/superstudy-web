@@ -47,7 +47,7 @@ export const AnnualReviewRecordItem: FC<AnnualReviewRecordItemProps> = ({ record
       {updateView ? (
         <div className="mt-2 flex flex-col space-y-2 rounded-lg border border-gray-300 p-4" key={record.id}>
           <div className="flex items-center justify-between">
-            <div className="border-brand-1 text-15 text-brand-1 w-min rounded-xl border px-3 py-1.5 whitespace-pre">
+            <div className="border-primary-800 text-15 text-primary-800 w-min rounded-xl border px-3 py-1.5 whitespace-pre">
               {record.type}
             </div>
             <div className="text-sm">작성자 : {record?.writer?.name} 선생님</div>
@@ -71,7 +71,7 @@ export const AnnualReviewRecordItem: FC<AnnualReviewRecordItemProps> = ({ record
               취소
             </Button>
             <Button
-              className="bg-brand-1 text-white"
+              className="bg-primary-800 text-white"
               onClick={() =>
                 updateStudentRecord({
                   id: record.id,
@@ -86,7 +86,7 @@ export const AnnualReviewRecordItem: FC<AnnualReviewRecordItemProps> = ({ record
       ) : (
         <div className="mt-2 flex flex-col space-y-2 rounded-lg border border-gray-300 p-4" key={record.id}>
           <div className="flex items-center justify-between">
-            <div className="border-brand-1 text-15 text-brand-1 w-min rounded-xl border px-3 py-1.5 whitespace-pre">
+            <div className="border-primary-800 text-15 text-primary-800 w-min rounded-xl border px-3 py-1.5 whitespace-pre">
               {record.type}
             </div>
             <div className="text-sm">작성자 : {record?.writer?.name} 선생님</div>
@@ -106,7 +106,7 @@ export const AnnualReviewRecordItem: FC<AnnualReviewRecordItemProps> = ({ record
             </div>
           </div>
           <div className="flex w-full items-center space-x-2">
-            <Button className="bg-brand-1 text-white" onClick={() => setUpdateView(true)}>
+            <Button className="bg-primary-800 text-white" onClick={() => setUpdateView(true)}>
               수정
             </Button>
             <Button className="bg-red-500 text-white" onClick={() => setModalOpen(true)}>

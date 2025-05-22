@@ -68,7 +68,7 @@ export const TeacherConfirmPaper = forwardRef((props: TeacherConfirmPaperProps, 
               <Td innerClassName="text-left"> {absent?.teacherComment}</Td>
             </tr>
           </table>
-          <div className="text-brand-1 pt-1 whitespace-pre-line">
+          <div className="text-primary-800 pt-1 whitespace-pre-line">
             *{absent?.student?.name} 학생이{' '}
             {absent?.startAt &&
               absent?.endAt &&

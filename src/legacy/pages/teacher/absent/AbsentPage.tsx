@@ -129,7 +129,7 @@ export function AbsentPage() {
             title={`${t(`absentTitle`, '결석신고서')}`}
             left={<BackButton />}
             right={
-              <div onClick={() => refetch()} className="text-brand-1 text-sm">
+              <div onClick={() => refetch()} className="text-primary-800 text-sm">
                 <Refresh />
               </div>
             }
@@ -143,7 +143,7 @@ export function AbsentPage() {
                 <Link
                   children={t('write', '작성하기')}
                   to="/teacher/absent/add"
-                  className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-hidden"
+                  className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-4 py-2 text-sm focus:outline-hidden"
                 />
               </div>
               <div className="mb-5 text-sm text-gray-500">
@@ -157,7 +157,7 @@ export function AbsentPage() {
                   value={startDate}
                   min={schoolYear.start}
                   max={schoolYear.end}
-                  className="focus:border-brand-1 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
+                  className="focus:border-primary-800 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
                   onChange={(e) => {
                     const selectedDate = new Date(e.target.value)
                     if (!isValidDate(selectedDate)) {
@@ -176,7 +176,7 @@ export function AbsentPage() {
                   value={endDate}
                   min={schoolYear.start}
                   max={schoolYear.end}
-                  className="focus:border-brand-1 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
+                  className="focus:border-primary-800 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
                   onChange={(e) => {
                     const selectedDate = new Date(e.target.value)
                     if (!isValidDate(selectedDate)) {
@@ -194,8 +194,12 @@ export function AbsentPage() {
                 className="mb-2 flex cursor-pointer items-center space-x-2 md:hidden"
                 onClick={() => setFilterOpen(!isFilterOpen)}
               >
-                <div className="text-brand-1">상세 검색</div>
-                {isFilterOpen ? <Icon.ChevronDown stroke="#ee853a" /> : <Icon.ChevronUp stroke="#ee853a" />}
+                <div className="text-primary-800">상세 검색</div>
+                {isFilterOpen ? (
+                  <Icon.ChevronDown stroke="var(--color-primary-800)" />
+                ) : (
+                  <Icon.ChevronUp stroke="var(--color-primary-800)" />
+                )}
               </div>
               <div
                 className={twMerge(
@@ -537,7 +541,7 @@ export function AbsentPage() {
           </div>
           <div className="grid grid-cols-2 gap-2">
             <label htmlFor="stamp-upload">
-              <div className="border-brandblue-1 flex h-13 w-full cursor-pointer items-center justify-center rounded-lg border bg-white px-6 font-bold text-current">
+              <div className="flex h-13 w-full cursor-pointer items-center justify-center rounded-lg border border-blue-500 bg-white px-6 font-bold text-current">
                 도장등록
               </div>
             </label>
@@ -573,7 +577,7 @@ export function AbsentPage() {
                     await setStampMode(false)
                   }
                 }}
-                className={cn('text-white', stampImgUrl ? 'bg-brandblue-1 border-4 border-red-500' : 'bg-brandblue-5')}
+                className={cn('text-white', stampImgUrl ? 'border-4 border-red-500 bg-blue-500' : 'bg-blue-100')}
               />
             )}
             <Button.xl
@@ -582,7 +586,7 @@ export function AbsentPage() {
                 setStampMode(false)
                 clearSignature()
               }}
-              className="border-brand-1 border bg-white text-current"
+              className="border-primary-800 border bg-white text-current"
             />
             {stampMode ? (
               <Button.xl children="서명 사용하기" onClick={() => setStampMode(false)} className="outlined-primary" />
@@ -596,7 +600,9 @@ export function AbsentPage() {
                     agreeAll ? approveAbsents() : approveAbsent()
                   }
                 }}
-                className={cn(sigPadData ? 'bg-brand-1 border-4 border-green-500' : 'bg-brand-5 text-brand-1')}
+                className={cn(
+                  sigPadData ? 'bg-primary-800 border-4 border-green-500' : 'bg-primary-100 text-primary-800',
+                )}
               />
             )}
           </div>

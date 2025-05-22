@@ -339,7 +339,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                             <TextInput
                               type="text"
                               maxLength={2}
-                              className="focus:border-brand-1 my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                              className="focus:border-primary-800 my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               disabled={disableSubmitDate}
                               value={startHour < 0 ? 0 : startHour}
                               onChange={(e) => {
@@ -367,7 +367,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                               type="text"
                               maxLength={2}
                               disabled={disableSubmitDate}
-                              className="focus:border-brand-1 my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                              className="focus:border-primary-800 my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               value={startMinute < 0 ? 0 : startMinute}
                               onChange={(e) => {
                                 if (/^\d*$/.test(e.target.value)) {
@@ -391,7 +391,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                             <TextInput
                               type="text"
                               maxLength={2}
-                              className="focus:border-brand-1 my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                              className="focus:border-primary-800 my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               disabled={disableSubmitDate}
                               value={endHour < 0 ? 0 : endHour}
                               onChange={(e) => {
@@ -419,7 +419,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                               type="text"
                               maxLength={2}
                               disabled={disableSubmitDate}
-                              className="focus:border-brand-1 my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                              className="focus:border-primary-800 my-1 inline h-8 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                               value={endMinute < 0 ? 0 : endMinute}
                               onChange={(e) => {
                                 if (/^\d*$/.test(e.target.value)) {

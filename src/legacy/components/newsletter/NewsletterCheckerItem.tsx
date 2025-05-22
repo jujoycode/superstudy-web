@@ -34,7 +34,7 @@ export function NewsletterCheckerItem({
         className={
           studentNewsletter?.id
             ? pathname.includes(`/teacher/activity/read/${id}/${studentNewsletter.id}`)
-              ? 'border-brand-1 bg-light_orange flex items-center justify-between space-x-2 rounded-md border p-2'
+              ? 'border-primary-800 bg-primary-50 flex items-center justify-between space-x-2 rounded-md border p-2'
               : 'flex items-center justify-between space-x-2 rounded-md border p-2'
             : 'flex items-center justify-between space-x-2 rounded-md border p-2'
         }
@@ -42,7 +42,7 @@ export function NewsletterCheckerItem({
         {/* {studentNewsletter?.isRead ? ( */}
         {!studentNewsletter ? (
           <div className="flex items-center">
-            <span onClick={onClick} className="bg-brand-1 cursor-pointer rounded-md px-2 py-1 text-sm text-white">
+            <span onClick={onClick} className="bg-primary-800 cursor-pointer rounded-md px-2 py-1 text-sm text-white">
               확인
             </span>
             <div className="ml-2 flex space-x-2">

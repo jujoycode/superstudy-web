@@ -101,7 +101,7 @@ export function AssignPointModal({ studentId, groupId: defaultGroupId }: AssignP
                     ? setStudentIds((prev) => prev.filter((id) => id !== user.id))
                     : setStudentIds((prev) => [...prev, user.id])
                 }}
-                className={cn('rounded p-1', selected ? 'filled-gray' : 'outlined-gray')}
+                className={cn('rounded-sm p-1', selected ? 'filled-gray' : 'outlined-gray')}
               >
                 {user.name}
               </button>
@@ -116,7 +116,7 @@ export function AssignPointModal({ studentId, groupId: defaultGroupId }: AssignP
               <button
                 key={student.id}
                 onClick={() => setStudentIds((prev) => prev.filter((id) => id !== student.id))}
-                className="filled-gray rounded p-1"
+                className="filled-gray rounded-sm p-1"
               >
                 {student.name} {getNickName(student.nickName)}
               </button>

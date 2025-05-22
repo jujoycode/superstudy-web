@@ -50,7 +50,7 @@ export default function AnnouncementCard({
                 onClick={() => push(`/${type}/announcement/${ann.id}`)}
               >
                 <h1 className="mb-4">
-                  안녕하세요. <b className="text-brand-1">슈퍼스쿨</b>입니다.
+                  안녕하세요. <b className="text-primary-800">슈퍼스쿨</b>입니다.
                 </h1>
                 {isHTML(ann.content) ? (
                   <div className="text-xs" dangerouslySetInnerHTML={{ __html: ann.content }}></div>
@@ -72,7 +72,7 @@ export default function AnnouncementCard({
               </button>
               <button
                 onClick={() => dismissAnnouncement(999, ann.id)}
-                className="bg-brand-1 w-full rounded-md py-2 font-semibold text-white"
+                className="bg-primary-800 w-full rounded-md py-2 font-semibold text-white"
               >
                 다시보지 않기
               </button>
@@ -92,7 +92,7 @@ export default function AnnouncementCard({
           }`}
         >
           <div className="h-[500px] w-[500px]">
-            <h1 className="bg-brand-1 mb-2 h-[30px] px-1 text-xl font-bold text-white">{ann.title}</h1>
+            <h1 className="bg-primary-800 mb-2 h-[30px] px-1 text-xl font-bold text-white">{ann.title}</h1>
             <div
               className="scroll-box h-[440px] cursor-pointer overflow-y-scroll"
               onClick={() => push(`/${type}/announcement/${ann.id}`)}
@@ -100,7 +100,7 @@ export default function AnnouncementCard({
               {ann?.content && (
                 <>
                   <h1 className="mb-4">
-                    안녕하세요. <b className="text-brand-1">슈퍼스쿨</b>입니다.
+                    안녕하세요. <b className="text-primary-800">슈퍼스쿨</b>입니다.
                   </h1>
 
                   {isHTML(ann.content) ? (
@@ -130,7 +130,10 @@ export default function AnnouncementCard({
                   <Label.Text children="7일간 보지 않기" />
                 </button>
               </div>
-              <button onClick={() => setShow(false)} className="bg-brand-1 rounded-md px-2 font-semibold text-white">
+              <button
+                onClick={() => setShow(false)}
+                className="bg-primary-800 rounded-md px-2 font-semibold text-white"
+              >
                 닫기
               </button>
             </div>

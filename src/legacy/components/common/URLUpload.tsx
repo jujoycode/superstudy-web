@@ -19,7 +19,7 @@ export function URLUpload({ addURL, ...props }: URLUploadProps) {
   return (
     <label className="flex w-max items-center border border-gray-200">
       <input
-        className="focus:border-brand-1 border-none placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
+        className="focus:border-primary-800 border-none placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
         type="url"
         pattern="https://.*"
         placeholder="URL을 입력해주세요."

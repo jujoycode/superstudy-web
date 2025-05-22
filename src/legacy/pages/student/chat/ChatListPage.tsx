@@ -50,7 +50,7 @@ export function ChatListPage() {
               setChatRoomId('')
               setSelectedMenu(false)
             }}
-            className={cn(selectedMenu === false ? 'bg-brand-1 text-light_orange' : 'bg-light_orange text-brand-1')}
+            className={cn(selectedMenu === false ? 'bg-primary-800 text-primary-50' : 'bg-primary-50 text-primary-800')}
           />{' '}
           &nbsp;
           <Button.lg
@@ -61,7 +61,7 @@ export function ChatListPage() {
               set_studentName('')
               push(`${Routes.student.chat}`)
             }}
-            className={cn(selectedMenu === false ? 'bg-light_orange text-brand-1' : 'bg-brand-1 text-light_orange')}
+            className={cn(selectedMenu === false ? 'bg-primary-50 text-primary-800' : 'bg-primary-800 text-primary-50')}
           />
         </div>
         <Divider />
@@ -103,7 +103,7 @@ export function ChatListPage() {
                       <div
                         key={item.id}
                         className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-1 ${
-                          userIds.includes(item.id) ? 'border-brand-1 bg-light_orange' : 'border-gray-200'
+                          userIds.includes(item.id) ? 'border-primary-800 bg-primary-50' : 'border-gray-200'
                         }`}
                         onClick={() => {
                           // 학생은 선생님 한명에게만 대화할 수 있음

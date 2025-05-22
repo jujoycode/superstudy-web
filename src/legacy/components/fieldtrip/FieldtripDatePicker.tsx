@@ -54,7 +54,7 @@ export function FieldtripDatePicker({
   const CustomInput = (props: any) => {
     return (
       <input
-        className="focus:border-brand-1 flex w-full flex-1 rounded-md border border-gray-200 px-4 py-3 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+        className="focus:border-primary-800 flex w-full flex-1 rounded-md border border-gray-200 px-4 py-3 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
         disabled={props.disabled}
         placeholder={props.placeholder}
         onClick={props.onClick}

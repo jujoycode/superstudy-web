@@ -143,7 +143,7 @@ export function HistoryPage() {
             title={t('attendance_documents_management', '출결서류관리')}
             left={<BackButton />}
             right={
-              <div onClick={() => queryClient.refetchQueries({ active: true })} className="text-brand-1 text-sm">
+              <div onClick={() => queryClient.refetchQueries({ active: true })} className="text-primary-800 text-sm">
                 <Refresh />
               </div>
             }
@@ -155,7 +155,7 @@ export function HistoryPage() {
               <div className="flex items-center justify-between">
                 <h1 className="text-2xl font-semibold">{t('attendance_documents_management', '출결서류관리')}</h1>
                 <div
-                  className="text-brand-1 cursor-pointer text-lg"
+                  className="text-primary-800 cursor-pointer text-lg"
                   onClick={() => queryClient.refetchQueries({ active: true })}
                 >
                   {t('refresh', '새로고침')}

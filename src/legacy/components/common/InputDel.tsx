@@ -58,7 +58,7 @@ export const InputDel = forwardRef<HTMLInputElement, TextInputProps>(function Te
         ref={ref}
         type="text"
         className={cn(
-          'focus:border-brand-1 block w-full rounded-lg border border-gray-200 px-3 pt-7 pb-1 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:px-4 md:pt-7 md:pb-2',
+          'focus:border-primary-800 block w-full rounded-lg border border-gray-200 px-3 pt-7 pb-1 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:px-4 md:pt-7 md:pb-2',
           className,
         )}
         value={inputValue}

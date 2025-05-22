@@ -80,11 +80,11 @@ export function SignPad({ ToSigns, onClose, onComplete }: SignPadProp) {
           <Button.xl
             children="다시하기"
             onClick={() => clearSignature()}
-            className="border-brand-1 w-full border bg-white text-current"
+            className="border-primary-800 w-full border bg-white text-current"
           />
           <Button.xl
             children="서명 제출하기"
-            className="bg-brand-1 w-full text-white"
+            className="bg-primary-800 w-full text-white"
             onClick={() => {
               if (!sigPadData) {
                 alert('서명이 없습니다. 아래 네모칸에 다시 서명을 해주세요.')

@@ -167,7 +167,7 @@ export function TeacherInfoPage() {
                         alt=""
                         loading="lazy"
                       />
-                      <div className="bg-brand-1 absolute top-1/2 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full">
+                      <div className="bg-primary-800 absolute top-1/2 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full">
                         <p className="text-2xl text-white">+</p>
                       </div>
                       <input

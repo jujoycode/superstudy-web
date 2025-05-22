@@ -16,10 +16,10 @@ export default function AnnouncementBadge({ news, type }: AnnouncementBadgeProps
   const { t } = useLanguage()
 
   const recipients = [
-    { label: t('administrator'), isActive: news.toAdmin, color: 'bg-users-admin' },
-    { label: t('teacher'), isActive: news.toTeacher, color: 'bg-users-teacher' },
-    { label: t('student'), isActive: news.toStudent, color: 'bg-users-user' },
-    { label: t('parent'), isActive: news.toParent, color: 'bg-users-user' },
+    { label: t('administrator'), isActive: news.toAdmin, color: 'bg-blue-600' },
+    { label: t('teacher'), isActive: news.toTeacher, color: 'bg-emerald-600' },
+    { label: t('student'), isActive: news.toStudent, color: 'bg-amber-400' },
+    { label: t('parent'), isActive: news.toParent, color: 'bg-amber-400' },
   ]
 
   return (
@@ -49,7 +49,7 @@ export default function AnnouncementBadge({ news, type }: AnnouncementBadgeProps
           <div className="flex flex-row items-center justify-between">
             <div className="flex items-center space-x-2">
               {news.isPinned && <h1 className="w-60 truncate text-lg font-bold">{news.title}</h1>}
-              {!news.isPinned && <h1 className="text-darkgray w-60 truncate text-lg">{news.title}</h1>}
+              {!news.isPinned && <h1 className="w-60 truncate text-lg text-slate-600">{news.title}</h1>}
             </div>
             <Time date={news.createdAt} format={'yyyy.MM.dd'} />
           </div>

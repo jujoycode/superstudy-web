@@ -50,7 +50,7 @@ export function MyPage() {
         left={<div className="h-15 w-10"></div>}
         right={
           <div
-            className="text-brand-1"
+            className="text-primary-800"
             onClick={() => {
               setLoading(true)
               window?.location?.reload()
@@ -307,7 +307,7 @@ export function MyPage() {
             e.preventDefault()
             e.stopPropagation()
           }}
-          className="bg-littleblack fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center"
+          className="fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center bg-neutral-500"
         >
           <div className="relative rounded-lg bg-white opacity-100 shadow-xs">
             <Section>

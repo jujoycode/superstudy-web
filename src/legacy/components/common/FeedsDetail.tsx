@@ -119,16 +119,16 @@ export function FeedsDetail({
           <div className="flex space-x-2">
             <div
               className={` ${
-                category1Color ? 'bg-' + category1Color : 'bg-brand-5'
-              } text-text_black rounded-md px-2 py-1 text-sm font-bold`}
+                category1Color ? 'bg-' + category1Color : 'bg-primary-100'
+              } rounded-md px-2 py-1 text-sm font-bold text-gray-900`}
             >
               {t(`${category1}`)}
             </div>
             {category2 && (
               <div
                 className={` ${
-                  category2Color ? 'bg-' + category2Color : 'bg-brand-5'
-                } text-text_black rounded-md px-2 py-1 text-sm font-bold`}
+                  category2Color ? 'bg-' + category2Color : 'bg-primary-100'
+                } rounded-md px-2 py-1 text-sm font-bold text-gray-900`}
               >
                 {t(`${category2}`)}
               </div>
@@ -136,8 +136,8 @@ export function FeedsDetail({
             {sendTo && (
               <div
                 className={` ${
-                  sendToColor ? 'bg-' + sendToColor : 'bg-brand-5'
-                } text-text_black rounded-md px-2 py-1 text-sm font-bold`}
+                  sendToColor ? 'bg-' + sendToColor : 'bg-primary-100'
+                } rounded-md px-2 py-1 text-sm font-bold text-gray-900`}
               >
                 {t(`${sendTo}`)}
               </div>
@@ -259,7 +259,7 @@ export function FeedsDetail({
           <div key={index} className="filled-gray-light rounded-lg px-3 py-2">
             <div className="text-13 flex items-center space-x-2">
               <FileItemIcon />
-              <div className="text-lightpurple-4 w-full px-2 whitespace-pre-wrap">
+              <div className="w-full px-2 whitespace-pre-wrap text-indigo-500">
                 <a
                   href={`${Constants.imageUrl}${fileUrl}`}
                   target="_blank"
@@ -279,7 +279,7 @@ export function FeedsDetail({
             <div className="flex items-center space-x-2 text-13">
               <FileItemIcon />
               <div
-                className="w-full  whitespace-pre-wrap px-2 text-lightpurple-4"
+                className="w-full  whitespace-pre-wrap px-2 text-indigo-500"
                 onClick={() => handleDownload(Constants.imageUrl + fileUrl)}
               >
                 {getFileNameFromUrl(fileUrl)}

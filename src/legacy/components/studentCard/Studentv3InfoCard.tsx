@@ -131,7 +131,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
           {isEditMode && (
             <button
               onClick={() => setIsEditMode(!isEditMode)}
-              className="border-darkgray hover:bg-darkgray h-8 w-16 rounded-md border font-semibold transition-all hover:text-white"
+              className="h-8 w-16 rounded-md border border-slate-600 font-semibold transition-all hover:bg-slate-600 hover:text-white"
             >
               {t('cancel', '취소')}
             </button>
@@ -154,7 +154,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
                   alert('보호자 정보를 확인해 주세요.')
                 }
               }}
-              className="border-darkgray hover:bg-darkgray md:text-16 h-8 rounded-md border px-2 text-sm font-semibold transition-all hover:text-white md:px-4"
+              className="md:text-16 h-8 rounded-md border border-slate-600 px-2 text-sm font-semibold transition-all hover:bg-slate-600 hover:text-white md:px-4"
             />
           )}
           <button
@@ -173,7 +173,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
               }
               setIsEditMode(!isEditMode)
             }}
-            className={`border-darkgray hover:bg-darkgray h-8 rounded-md border font-semibold transition-all hover:text-white md:w-16 ${
+            className={`h-8 rounded-md border border-slate-600 font-semibold transition-all hover:bg-slate-600 hover:text-white md:w-16 ${
               isEditMode ? 'w-16' : 'md:text-16 w-8 text-sm'
             }`}
           >
@@ -209,7 +209,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
                     </div>
                   </span>
                 ) : (
-                  <div className="bg-brand-1 absolute top-1/2 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full">
+                  <div className="bg-primary-800 absolute top-1/2 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full">
                     <p className="text-2xl text-white">+</p>
                   </div>
                 )}

@@ -74,7 +74,7 @@ export function NoticePage() {
               setBlankOpen(true)
               window?.location?.reload()
             }}
-            className="text-brand-1"
+            className="text-primary-800"
           />
         }
       />
@@ -144,7 +144,7 @@ export function NoticePage() {
                       to={'student'}
                       pageType={'notice'}
                       category1={notice.category}
-                      category1Color="peach_orange"
+                      category1Color="orange-200"
                       title={notice.title}
                       //newYN={meRecoil?.role === Role.USER && noticeList?.unreadIdList?.includes(notice.id)}
                       newYN={noticeList?.unreadIdList?.includes(notice.id)}
@@ -190,9 +190,9 @@ export function NoticePage() {
                       to={'student'}
                       pageType={'newsletter'}
                       category1={newsletter.category || '가정통신문'}
-                      category1Color="light_golden"
+                      category1Color="amber-200"
                       category2={newsletter.type === NewsletterType.NOTICE ? '공지' : '설문'}
-                      category2Color="lavender_blue"
+                      category2Color="indigo-300"
                       useSubmit={newsletter?.type !== NewsletterType.NOTICE}
                       submitDate={DateUtil.formatDate(newsletter.endAt || '', DateFormat['YYYY.MM.DD HH:mm'])}
                       submitYN={
@@ -242,7 +242,7 @@ export function NoticePage() {
                       to={'student'}
                       pageType={'board'}
                       category1={board.category}
-                      category1Color="mint_green"
+                      category1Color="emerald-200"
                       title={board.title}
                       //newYN={meRecoil?.role === Role.USER && boardList?.unreadIdList?.includes(board.id)}
                       newYN={boardList?.unreadIdList?.includes(board.id)}

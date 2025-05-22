@@ -143,7 +143,7 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
                 <div
                   className={twMerge(
                     'mr-2 mb-2 inline-block cursor-pointer rounded-full border border-gray-600 px-4 py-2',
-                    selected && 'border-brand-1 bg-light_orange text-brand-1',
+                    selected && 'border-primary-800 bg-primary-50 text-primary-800',
                   )}
                   onClick={() => {
                     if (Object.keys(keywords).length >= 5) {
@@ -242,14 +242,14 @@ export const TeacherStudentAssessmentUpdate: FC<TeacherStudentAssessmentUpdatePr
       <div className="flex w-full space-x-2">
         <Button.lg
           children="취소하기"
-          className="bg-brand-1 text-white disabled:bg-gray-300 disabled:text-gray-600"
+          className="bg-primary-800 text-white disabled:bg-gray-300 disabled:text-gray-600"
           onClick={() => {
             goToView()
           }}
         />
         <Button.lg
           children="저장하기"
-          className="bg-brand-1 text-white disabled:bg-gray-300 disabled:text-gray-600"
+          className="bg-primary-800 text-white disabled:bg-gray-300 disabled:text-gray-600"
           onClick={() => {
             createTeacherStudentAssessment({
               data: {

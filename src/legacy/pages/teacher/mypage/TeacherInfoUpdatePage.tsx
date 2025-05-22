@@ -120,7 +120,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
                       currentTarget.className = 'w-full'
                     }}
                   />
-                  <div className="text-brand-1">사진을 선택해주세요.</div>
+                  <div className="text-primary-800">사진을 선택해주세요.</div>
                 </div>
               </div>
             </label>
@@ -211,7 +211,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
                   <select
                     value={startH}
                     onChange={(e) => setStartH(Number(e.target.value))}
-                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     {new Array(24).fill(null).map((_, num: number) => (
                       <option key={num} value={num}>
@@ -223,7 +223,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
                   <select
                     value={startM}
                     onChange={(e) => setStartM(Number(e.target.value))}
-                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     <option value={0}>0</option>
                     <option value={10}>10</option>
@@ -237,7 +237,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
                   <select
                     value={endH}
                     onChange={(e) => setEndH(Number(e.target.value))}
-                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     {new Array(24).fill(null).map((_, num: number) => (
                       <option key={num} value={num}>
@@ -247,7 +247,7 @@ export function TeacherInfoUpdatePage({ me, setIsUpdateMe }: TeacherInfoUpdatePa
                   </select>
                   <span>:</span>
                   <select
-                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                     onChange={(e) => setEndM(Number(e.target.value))}
                     value={endM}
                   >

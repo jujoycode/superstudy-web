@@ -190,7 +190,7 @@ export function NoticeAddPage({ noticeData: noticeProps, categoryData: categoryP
           <div className="w-full rounded-lg border p-3">
             <FeedsDetail
               category1={notice?.category}
-              category1Color="peach_orange"
+              category1Color="orange-200"
               sendTo={
                 (toStudent ? t('student') : '') + (toStudent && toParent ? '/' : '') + (toParent ? t('parent') : '')
               }

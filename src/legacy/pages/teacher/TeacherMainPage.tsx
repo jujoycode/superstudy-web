@@ -194,7 +194,7 @@ export function TeacherMainPage() {
             </Link>
             <div className="flex items-center space-x-4">
               {me?.schoolId === 2 || me?.schoolId === 171 || me?.schoolId === 183 ? (
-                <div onClick={() => changeLanguage()} className="text-brand-1 cursor-pointer text-sm">
+                <div onClick={() => changeLanguage()} className="text-primary-800 cursor-pointer text-sm">
                   {t('select_language')}
                 </div>
               ) : (
@@ -203,7 +203,7 @@ export function TeacherMainPage() {
                     setBlankOpen(true)
                     window?.location?.reload()
                   }}
-                  className="text-brand-1 cursor-pointer text-sm"
+                  className="text-primary-800 cursor-pointer text-sm"
                 >
                   새로고침
                 </div>
@@ -270,7 +270,7 @@ export function TeacherMainPage() {
             >
               {/* 출결 start */}
               <div className="flex">
-                <div className="text-darkgray w-20 self-center text-center font-bold">{t(`attendance`)}</div>
+                <div className="text-slate-600 w-20 self-center text-center font-bold">{t(`attendance`)}</div>
                 <div className="my-2.5 mr-2 ml-3 border border-gray-200" />
                 <div className="w-40">
                   <TeacherMainPageLink to="/teacher/attendance">{t(`attendance_register`)}</TeacherMainPageLink>
@@ -306,8 +306,8 @@ export function TeacherMainPage() {
                     onClick={() => setOpenFieldTrip(!openFieldTrip)}
                     className={
                       openFieldTrip
-                        ? 'font-base group text-darkgray flex cursor-pointer items-center rounded-t-md bg-gray-200 px-3 pt-3 pb-1 text-sm select-none'
-                        : 'font-base group text-darkgray flex cursor-pointer items-center rounded-t-md px-3 py-3 text-sm select-none hover:bg-gray-100 hover:text-gray-900'
+                        ? 'font-base group text-slate-600 flex cursor-pointer items-center rounded-t-md bg-gray-200 px-3 pt-3 pb-1 text-sm select-none'
+                        : 'font-base group text-slate-600 flex cursor-pointer items-center rounded-t-md px-3 py-3 text-sm select-none hover:bg-gray-100 hover:text-gray-900'
                     }
                   >
                     {t(`experiential_learning_activity`)}
@@ -352,7 +352,7 @@ export function TeacherMainPage() {
 
               {/* 정보 start */}
               <div className="flex">
-                <div className="text-darkgray w-20 self-center text-center font-bold">{t(`information`)}</div>
+                <div className="text-slate-600 w-20 self-center text-center font-bold">{t(`information`)}</div>
 
                 <div className="my-2.5 mr-2 ml-3 border border-gray-200" />
 
@@ -367,7 +367,7 @@ export function TeacherMainPage() {
 
               {/* 활동 start*/}
               <div className="flex">
-                <div className="text-darkgray w-20 self-center text-center font-bold">{t(`activity`)}</div>
+                <div className="text-slate-600 w-20 self-center text-center font-bold">{t(`activity`)}</div>
                 <div className="my-2.5 mr-2 ml-3 border border-gray-200" />
                 <div className="w-40">
                   <TeacherMainPageLink
@@ -381,8 +381,8 @@ export function TeacherMainPage() {
                       to="/teacher/activity"
                       className={
                         pathname.startsWith('/teacher/groups')
-                          ? 'group bg-darkgray flex items-center rounded-md px-3 py-3 text-sm font-bold text-white'
-                          : 'font-base group text-darkgray flex cursor-pointer items-center rounded-md px-3 py-3 text-sm hover:bg-gray-100 hover:text-gray-900'
+                          ? 'group bg-slate-600 flex items-center rounded-md px-3 py-3 text-sm font-bold text-white'
+                          : 'font-base group text-slate-600 flex cursor-pointer items-center rounded-md px-3 py-3 text-sm hover:bg-gray-100 hover:text-gray-900'
                       }
                     >
                       활동 기록부(old)
@@ -402,8 +402,8 @@ export function TeacherMainPage() {
                       to="/teacher/record"
                       className={
                         pathname.startsWith('/teacher/record')
-                          ? 'group bg-darkgray flex items-center rounded-md px-3 py-3 text-sm font-bold text-white'
-                          : 'font-base group text-darkgray flex cursor-pointer items-center rounded-md px-3 py-3 text-sm hover:bg-gray-100 hover:text-gray-900'
+                          ? 'group bg-slate-600 flex items-center rounded-md px-3 py-3 text-sm font-bold text-white'
+                          : 'font-base group text-slate-600 flex cursor-pointer items-center rounded-md px-3 py-3 text-sm hover:bg-gray-100 hover:text-gray-900'
                       }
                     >
                       생활 기록부(old)
@@ -416,7 +416,7 @@ export function TeacherMainPage() {
 
               {/* 일정 start */}
               <div className="flex">
-                <div className="text-darkgray w-20 self-center text-center font-bold">{t(`schedule`)}</div>
+                <div className="text-slate-600 w-20 self-center text-center font-bold">{t(`schedule`)}</div>
 
                 <div className="my-2.5 mr-2 ml-3 border border-gray-200" />
 
@@ -435,7 +435,7 @@ export function TeacherMainPage() {
 
               {/* 공지 start */}
               <div className="flex">
-                <div className="text-darkgray w-20 self-center text-center font-bold">{t(`notice`)}</div>
+                <div className="text-slate-600 w-20 self-center text-center font-bold">{t(`notice`)}</div>
 
                 <div className="my-2.5 mr-2 ml-3 border border-gray-200" />
 
@@ -462,14 +462,14 @@ export function TeacherMainPage() {
 
               {/* 서비스 start */}
               <div className="flex">
-                <div className="text-darkgray w-20 self-center text-center font-bold">{t(`more`)}</div>
+                <div className="text-slate-600 w-20 self-center text-center font-bold">{t(`more`)}</div>
                 <div className="my-2.5 mr-2 ml-3 border border-gray-200" />
                 <div className="w-40">
                   <TeacherMainPageLink to="/teacher/update">{t(`my_information`)}</TeacherMainPageLink>
                   <a
                     href="http://superstudy.channel.io/"
                     target="blank"
-                    className="font-base group text-darkgray flex cursor-pointer items-center rounded-md px-3 py-3 text-sm hover:bg-gray-100 hover:text-gray-900"
+                    className="font-base group text-slate-600 flex cursor-pointer items-center rounded-md px-3 py-3 text-sm hover:bg-gray-100 hover:text-gray-900"
                   >
                     {t(`contact_us`)}
                   </a>
@@ -477,8 +477,8 @@ export function TeacherMainPage() {
                     onClick={() => setOpenGuide(!openGuide)}
                     className={
                       openGuide
-                        ? 'font-base group text-darkgray flex cursor-pointer items-center rounded-t-md bg-gray-200 px-3 py-3 text-sm select-none'
-                        : 'font-base group text-darkgray flex cursor-pointer items-center rounded-t-md px-3 py-3 text-sm select-none hover:bg-gray-100 hover:text-gray-900'
+                        ? 'font-base group text-slate-600 flex cursor-pointer items-center rounded-t-md bg-gray-200 px-3 py-3 text-sm select-none'
+                        : 'font-base group text-slate-600 flex cursor-pointer items-center rounded-t-md px-3 py-3 text-sm select-none hover:bg-gray-100 hover:text-gray-900'
                     }
                   >
                     {t(`usage_guide`)}
@@ -487,7 +487,7 @@ export function TeacherMainPage() {
                     <div className="rounded-b-md bg-gray-200">
                       {manuals.map(({ id, url, title }) => (
                         <a key={id} href={url} target="_blank" rel="noreferrer">
-                          <div className="font-base group text-darkgray flex cursor-pointer items-center px-3 py-3 text-sm select-none hover:bg-gray-100 hover:text-gray-900">
+                          <div className="font-base group text-slate-600 flex cursor-pointer items-center px-3 py-3 text-sm select-none hover:bg-gray-100 hover:text-gray-900">
                             {title}
                           </div>
                         </a>
@@ -497,7 +497,7 @@ export function TeacherMainPage() {
 
                   <TeacherMainPageLink to="/teacher/announcement">{t(`superschool_announcement`)}</TeacherMainPageLink>
                   <div
-                    className="font-base group text-darkgray flex cursor-pointer items-center rounded-md px-3 py-3 text-sm hover:bg-gray-100 hover:text-gray-900"
+                    className="font-base group text-slate-600 flex cursor-pointer items-center rounded-md px-3 py-3 text-sm hover:bg-gray-100 hover:text-gray-900"
                     onClick={() => logout()}
                   >
                     {t(`logout`)}
@@ -510,7 +510,7 @@ export function TeacherMainPage() {
               {(me?.role === Role.ADMIN || adminPermission) && (
                 <Link
                   to="/admin"
-                  className="border-darkgray flex items-center justify-between rounded-md border-2 py-3 text-sm font-semibold"
+                  className="border-slate-600 flex items-center justify-between rounded-md border-2 py-3 text-sm font-semibold"
                 >
                   <div className="flex w-full justify-center">{t('admin_mode')}</div>
                   <Icon.ChevronRight />
@@ -522,7 +522,7 @@ export function TeacherMainPage() {
                   onClick={() => {
                     openSugang()
                   }}
-                  className="border-darkgray flex cursor-pointer items-center justify-between rounded-md border-2 py-3 text-sm font-semibold"
+                  className="border-slate-600 flex cursor-pointer items-center justify-between rounded-md border-2 py-3 text-sm font-semibold"
                 >
                   <div className="flex w-full justify-center">신청관리모드</div>
                   <Icon.ChevronRight />
@@ -547,7 +547,7 @@ export function TeacherMainPage() {
         {tabs.map((tab) => {
           const active = [tab.path, ...(tab.extra ?? [])].some((path) => pathname.startsWith(path))
           return (
-            <Link key={tab.path} to={tab.path} className={cn('bottom-nav-item', active && 'text-darkgray')}>
+            <Link key={tab.path} to={tab.path} className={cn('bottom-nav-item', active && 'text-slate-600')}>
               <tab.icon className="stroke-current" />
               <span>{tab.name}</span>
             </Link>
@@ -578,7 +578,7 @@ function TeacherMainPageLink({ selected, to, className, ...props }: TeacherMainP
       to={to}
       className={cn(
         'group flex items-center rounded-md px-3 py-3 text-sm',
-        active ? 'bg-darkgray font-bold text-white' : 'text-darkgray hover:bg-gray-100 hover:text-gray-900',
+        active ? 'bg-slate-600 font-bold text-white' : 'text-slate-600 hover:bg-gray-100 hover:text-gray-900',
         className,
       )}
       {...props}

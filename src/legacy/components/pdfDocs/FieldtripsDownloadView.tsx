@@ -192,7 +192,7 @@ export function FieldtripsDownloadView({
   return (
     <>
       {open && (
-        <div className="bg-littleblack fixed inset-0 z-100 m-0 h-screen w-full overflow-y-scroll">
+        <div className="fixed inset-0 z-100 m-0 h-screen w-full overflow-y-scroll bg-neutral-500">
           <div className="flex h-full w-full items-start">
             <div className="py-6">
               <div className="mb-2 flex w-screen items-center justify-center">
@@ -216,12 +216,12 @@ export function FieldtripsDownloadView({
                       </div>
 
                       {isExtractData && (
-                        <div className="text-brand-1 py-2 text-center font-bold">
+                        <div className="text-primary-800 py-2 text-center font-bold">
                           {`${extractDataCount < 0 ? 0 : extractDataCount} / ${fieldtrips.length} 데이터 추출중입니다.`}
                         </div>
                       )}
                       {isProcessPdf && (
-                        <div className="text-brand-1 py-2 text-center font-bold">
+                        <div className="text-primary-800 py-2 text-center font-bold">
                           {`${prodcessPdfCount < 0 ? 0 : reactPdfDatas.current.length} / ${
                             fieldtrips.length
                           } 데이터 처리중입니다.`}

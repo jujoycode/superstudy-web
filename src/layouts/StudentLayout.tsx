@@ -52,7 +52,7 @@ export function StudentLayout() {
           {tabs.map((tab) => {
             const active = [tab.path, ...(tab.extra ?? [])].some((path) => pathname.startsWith(path))
             return tab.hidden ? null : (
-              <Link key={tab.path} to={tab.path} className={clsx('bottom-nav-item', active && 'text-darkgray')}>
+              <Link key={tab.path} to={tab.path} className={clsx('bottom-nav-item', active && 'text-slate-600')}>
                 <tab.icon className="stroke-current" />
                 <span>{tab.name}</span>
               </Link>

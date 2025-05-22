@@ -137,7 +137,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                             }}
                           />
                           {!profile && (
-                            <div className="text-brand-1 h-full w-full text-center">학생사진을 선택해주세요.</div>
+                            <div className="text-primary-800 h-full w-full text-center">학생사진을 선택해주세요.</div>
                           )}
                         </div>
                       </div>
@@ -181,7 +181,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   placeholder="전화번호 입력"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="border-brand-1 h-5 w-48"
+                  className="border-primary-800 h-5 w-48"
                 />
               ) : (
                 phone
@@ -196,7 +196,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   type="date"
                   value={birthDate}
                   onChange={(e) => setBirthDate(e.target.value)}
-                  className="border-brand-1 h-5 w-48"
+                  className="border-primary-800 h-5 w-48"
                 />
               ) : (
                 birthDate
@@ -211,7 +211,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   placeholder="바코드 입력"
                   value={barcode}
                   onChange={(e) => setBarcode(e.target.value)}
-                  className="border-brand-1 h-5 w-48"
+                  className="border-primary-800 h-5 w-48"
                 />
               ) : (
                 barcode
@@ -226,7 +226,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   placeholder="희망진로 입력"
                   value={hopePath}
                   onChange={(e) => setHopePath(e.target.value)}
-                  className="h-5 w-48 border-brand-1"
+                  className="h-5 w-48 border-primary-800"
                 />
               ) : (
                 hopePath
@@ -241,7 +241,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   placeholder="희망학과 입력"
                   value={hopeMajor}
                   onChange={(e) => setHopeMajor(e.target.value)}
-                  className="h-5 w-48 border-brand-1"
+                  className="h-5 w-48 border-primary-800"
                 />
               ) : (
                 hopeMajor
@@ -259,7 +259,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                     const selItem = studentStates?.filter((item: Code) => item.key === Number(e.target.value))
                     selItem && setStudExpiredObj(selItem[0])
                   }}
-                  className="border-brand-1 h-6 w-48 py-0"
+                  className="border-primary-800 h-6 w-48 py-0"
                 >
                   {studentStates?.map((item: Code) => (
                     <option key={item.key} value={item.key} className={cn(item?.etc1 === 'true' && 'text-red-500')}>
@@ -285,7 +285,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                       e.preventDefault()
                     }
                   }}
-                  className="border-brand-1 h-5 w-48"
+                  className="border-primary-800 h-5 w-48"
                 />
               ) : (
                 nokName
@@ -300,7 +300,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                   placeholder="전화번호 입력"
                   value={nokPhone}
                   onChange={(e) => setNokPhone(e.target.value)}
-                  className="border-brand-1 h-5 w-48"
+                  className="border-primary-800 h-5 w-48"
                 />
               ) : (
                 <div className="flex">
@@ -318,7 +318,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
                           alert('보호자 정보를 확인해 주세요.')
                         }
                       }}
-                      className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 text-sm focus:outline-hidden"
+                      className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-2 text-sm focus:outline-hidden"
                     />
                   )}
                 </div>
@@ -331,7 +331,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
             <>
               <button
                 children="취소"
-                className="bg-light_orange text-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
+                className="bg-primary-50 text-primary-800 hover:text-primary-50 rounded-md px-2 py-1 text-sm hover:bg-red-500 focus:outline-hidden"
                 onClick={() => {
                   queryClient.refetchQueries({ active: true })
                   setIsEditMode(false)
@@ -341,7 +341,7 @@ export function StudentInfoCard({ id }: StudentInfoCardProps) {
           )}
           <button
             children={isEditMode ? '저장하기' : '수정하기'}
-            className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-2 py-1 text-sm focus:outline-hidden"
+            className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-2 py-1 text-sm focus:outline-hidden"
             onClick={() => {
               if (isEditMode) {
                 if (phone && !Validator.phoneNumberRule(phone)) {

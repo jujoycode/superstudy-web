@@ -53,12 +53,12 @@ export function TimetableDetailPage() {
             <tr>
               <th className="" />
               <th className="" />
-              <th className="bg-gray-9 min-w-max rounded-l-xl py-4">월</th>
-              <th className="bg-gray-9 min-w-max">화</th>
-              <th className="bg-gray-9 min-w-max">수</th>
-              <th className="bg-gray-9 min-w-max">목</th>
+              <th className="min-w-max rounded-l-xl bg-gray-50 py-4">월</th>
+              <th className="min-w-max bg-gray-50">화</th>
+              <th className="min-w-max bg-gray-50">수</th>
+              <th className="min-w-max bg-gray-50">목</th>
               <th className={`min-w-max ${hasSaturdayClass ? '' : 'rounded-r-xl'} bg-gray-9`}>금</th>
-              {hasSaturdayClass && <th className="bg-gray-9 min-w-max rounded-r-xl">토</th>}
+              {hasSaturdayClass && <th className="min-w-max rounded-r-xl bg-gray-50">토</th>}
             </tr>
             <tr>
               <th className="pb-4"></th>
@@ -68,7 +68,7 @@ export function TimetableDetailPage() {
             {Array.from({ length: maxTime }, (_, i) => (
               <tr key={i}>
                 <td
-                  className={`bg-gray-9 min-h-10.5 w-10 px-1 py-2 ${i === 0 ? 'rounded-t-xl' : ''} ${i === maxTime - 1 ? 'rounded-b-xl' : ''}`}
+                  className={`min-h-10.5 w-10 bg-gray-50 px-1 py-2 ${i === 0 ? 'rounded-t-xl' : ''} ${i === maxTime - 1 ? 'rounded-b-xl' : ''}`}
                 >
                   {i + 1}
                 </td>
@@ -79,7 +79,7 @@ export function TimetableDetailPage() {
                     <td
                       key={dayNum}
                       className={`min-h-10.5 min-w-9.5 cursor-pointer border border-gray-50 px-1 py-2 text-xs md:text-sm ${
-                        todayNum === dayNum + 1 ? 'bg-brand-1 bg-opacity-20' : 'bg-orange-0'
+                        todayNum === dayNum + 1 ? 'bg-primary-800 bg-opacity-20' : 'bg-orange-100'
                       } ${i === 0 && dayNum === 0 ? 'rounded-tl-xl border-t-0 border-l-0' : ''} ${
                         i === 0 && dayNum === (hasSaturdayClass ? 5 : 4) ? 'rounded-tr-xl border-t-0 border-r-0' : ''
                       } ${i === maxTime - 1 && dayNum === 0 ? 'rounded-bl-xl border-b-0 border-l-0' : ''} ${

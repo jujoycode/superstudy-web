@@ -82,7 +82,7 @@ export function FieldtripResultUpdatePage({ fieldtrip, setReadState, isConfirmed
             </div>
             <div className="mb-2 text-lg whitespace-pre-line">
               남은 일수
-              <span className="text-brand-1 underline">
+              <span className="text-primary-800 underline">
                 {fieldtrip?.currentRemainDays}일 중 {fieldtrip?.usedDays}일 신청
               </span>
               합니다.
@@ -97,7 +97,7 @@ export function FieldtripResultUpdatePage({ fieldtrip, setReadState, isConfirmed
                   id="startAt"
                   type="date"
                   value={resultReportedAt}
-                  className="focus:border-brand-1 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                  className="focus:border-primary-800 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   onChange={(e) => {
                     setResultReportedAt(e.target.value)
                   }}

@@ -39,7 +39,7 @@ export function FieldtripPage() {
             <div>
               <h1 className="text-sm font-bold">체험학습 잔여일</h1>
               {school?.fieldtripDays}일 중
-              <span className="text-brand-1">
+              <span className="text-primary-800">
                 {' '}
                 {me?.role === Role.PARENT ? child?.remainDaysOfFieldtrip : me?.remainDaysOfFieldtrip || 0}일{' '}
               </span>
@@ -52,7 +52,7 @@ export function FieldtripPage() {
               className="outlined-gray flex h-10 w-25 items-center"
             >
               <Icon.Refresh />
-              <span className="text-bold text-brand-1 pl-2 text-sm">
+              <span className="text-bold text-primary-800 pl-2 text-sm">
                 잔여일
                 <br />
                 재확인
@@ -67,14 +67,14 @@ export function FieldtripPage() {
               case FieldtripStatus.DELETE_APPEAL:
                 state = (
                   <div className="text-sm text-gray-600">
-                    <span className="text-brand-1 font-bold">삭제 요청</span>
+                    <span className="text-primary-800 font-bold">삭제 요청</span>
                   </div>
                 )
                 break
               case FieldtripStatus.RETURNED:
                 state = (
                   <div className="text-sm text-gray-600">
-                    <span className="text-brand-1 font-bold">반려됨</span>
+                    <span className="text-primary-800 font-bold">반려됨</span>
                   </div>
                 )
                 break
@@ -90,14 +90,14 @@ export function FieldtripPage() {
               case FieldtripStatus.DELETE_APPEAL:
                 resultState = (
                   <div className="text-sm text-gray-600">
-                    <span className="text-brand-1 font-bold">삭제 요청</span>
+                    <span className="text-primary-800 font-bold">삭제 요청</span>
                   </div>
                 )
                 break
               case FieldtripStatus.RETURNED:
                 resultState = (
                   <div className="text-sm text-gray-600">
-                    <span className="text-brand-1 font-bold">반려됨</span>
+                    <span className="text-primary-800 font-bold">반려됨</span>
                   </div>
                 )
                 break
@@ -114,7 +114,7 @@ export function FieldtripPage() {
                   <div className="text-md text-bold my-3 mb-3 flex">
                     <Badge
                       children={fieldtrip.type === 'HOME' ? '가정' : '교외'}
-                      className="bg-light_orange text-brand-1"
+                      className="bg-primary-50 text-primary-800"
                     />
                     {fieldtrip.type === 'HOME' ? '가정학습' : '교외 체험학습'}
                   </div>
@@ -136,7 +136,7 @@ export function FieldtripPage() {
                     <div className="flex">
                       {fieldtrip?.fieldtripStatus === FieldtripStatus.BEFORE_PARENT_CONFIRM &&
                         me?.role === Role.PARENT && (
-                          <span className="text-brand-1 pt-1 text-sm font-bold">승인해주세요.</span>
+                          <span className="text-primary-800 pt-1 text-sm font-bold">승인해주세요.</span>
                         )}
                       <RightArrow />
                     </div>
@@ -165,7 +165,7 @@ export function FieldtripPage() {
                           <div className="flex">
                             {fieldtrip?.fieldtripResultStatus === FieldtripStatus.BEFORE_PARENT_CONFIRM &&
                               me?.role === Role.PARENT && (
-                                <span className="text-brand-1 pt-1 text-sm font-bold">승인해주세요.</span>
+                                <span className="text-primary-800 pt-1 text-sm font-bold">승인해주세요.</span>
                               )}
                             <RightArrow />
                           </div>
@@ -196,7 +196,7 @@ export function FieldtripPage() {
       <div className="w-full px-4">
         <button
           children="체험학습 신청하기"
-          className="bg-brand-1 h-14 w-full rounded-lg px-4 text-white"
+          className="bg-primary-800 h-14 w-full rounded-lg px-4 text-white"
           onClick={() => {
             //if (isPrimaryGuardian === -1) {
             if (me?.role === Role.USER && (!me?.nokName || !me?.nokPhone)) {
@@ -225,21 +225,21 @@ export function FieldtripPage() {
           <button
             children="🏔 교외 체험학습"
             onClick={() => push('/student/fieldtrip/add/suburbs')}
-            className="border-brand-1 text-brand-1 w-4/5 rounded-lg border bg-white py-5 font-bold"
+            className="border-primary-800 text-primary-800 w-4/5 rounded-lg border bg-white py-5 font-bold"
           />
         </div>
         <div className="my-5 mb-10 flex w-full items-center justify-center">
           <button
             children="🏠 가정학습"
             onClick={() => push('/student/fieldtrip/add/home')}
-            className="border-brandblue-1 text-brandblue-1 w-4/5 rounded-lg border bg-white py-5 font-bold"
+            className="w-4/5 rounded-lg border border-blue-500 bg-white py-5 font-bold text-blue-500"
           />
         </div>
         <div className="my-2 mb-5 flex w-full items-center justify-center">
           <button
             children="닫기"
             onClick={() => setModalopen(false)}
-            className="text-littleblack w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold"
+            className="w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold text-neutral-500"
           />
         </div>
       </SuperModal>

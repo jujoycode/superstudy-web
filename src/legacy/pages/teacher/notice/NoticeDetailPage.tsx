@@ -39,7 +39,7 @@ export function NoticeDetailPage() {
     return (
       <FeedsDetail
         category1={notice?.category}
-        category1Color="peach_orange"
+        category1Color="orange-200"
         sendTo={
           (notice?.toStudent ? t('student') : '') +
           (notice?.toStudent && notice?.toParent ? '/' : '') +

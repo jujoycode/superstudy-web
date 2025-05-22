@@ -23,7 +23,7 @@ export function SuperModal({
   return (
     <div
       className={cn(
-        'bg-littleblack fixed inset-0 z-60 flex h-screen w-full items-center justify-center',
+        'fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-neutral-500',
         !modalOpen && 'hidden',
       )}
       onClick={(e) => {

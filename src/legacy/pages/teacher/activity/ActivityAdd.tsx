@@ -261,7 +261,7 @@ export function ActivityAddPage({ refetch, activityId }: ActivityAddProps) {
               .map((group: Group) => (
                 <div
                   key={group.id}
-                  className="m-1s border-brand-1 text-brand-1 mt-2 mr-2 flex w-max cursor-pointer items-center rounded-full border px-2.5 py-1.5"
+                  className="m-1s border-primary-800 text-primary-800 mt-2 mr-2 flex w-max cursor-pointer items-center rounded-full border px-2.5 py-1.5"
                   onClick={() => setSelectedGroups(selectedGroups.filter((el) => el.id !== group.id))}
                 >
                   {group.name}
@@ -317,7 +317,7 @@ export function ActivityAddPage({ refetch, activityId }: ActivityAddProps) {
                     }
                   }}
                 />
-                <div className="focus:border-brand-1 flex h-12 w-full appearance-none items-center rounded-none border border-gray-200 px-4 placeholder-gray-400 outline-hidden focus:appearance-none focus:no-underline focus:ring-0 focus:outline-hidden sm:text-sm">
+                <div className="focus:border-primary-800 flex h-12 w-full appearance-none items-center rounded-none border border-gray-200 px-4 placeholder-gray-400 outline-hidden focus:appearance-none focus:no-underline focus:ring-0 focus:outline-hidden sm:text-sm">
                   <input
                     type="datetime-local"
                     className="ring-0 outline-hidden focus:ring-0 focus:outline-hidden"

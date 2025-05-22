@@ -83,7 +83,7 @@ export function ActivitySubmitDetailPage({ activityId }: ActivitySubmitDetailPag
       <div className="h-screen-12 md:h-screen-4.5 relative overflow-x-hidden overflow-y-scroll border border-gray-100">
         <div className="bg-gray-50 p-4">
           <div className="flex justify-between">
-            <Badge children={activity?.subject} className="bg-light_orange text-brand-1" />
+            <Badge children={activity?.subject} className="bg-primary-50 text-primary-800" />
             <div className="font-base space-x-5 text-gray-500"></div>
           </div>
           <div className="space-y-0.5">
@@ -162,7 +162,7 @@ export function ActivitySubmitDetailPage({ activityId }: ActivitySubmitDetailPag
                     className="relative m-2 flex items-center justify-between overflow-x-hidden bg-white p-2"
                   >
                     <span>{getFileNameFromUrl(fileUrl)}</span>
-                    <div className="text-lightpurple-4 min-w-max bg-white px-2">
+                    <div className="min-w-max bg-white px-2 text-indigo-500">
                       <a
                         href={`${Constants.imageUrl}${fileUrl}`}
                         target="_blank"
@@ -183,7 +183,7 @@ export function ActivitySubmitDetailPage({ activityId }: ActivitySubmitDetailPag
             studentActivity?.updatedAt &&
             studentActivity?.isSubmitted &&
             studentActivity.updatedAt !== activity?.updatedAt && (
-              <div className="text-brandblue-1 mt-3">
+              <div className="mt-3 text-blue-500">
                 제출 완료 일시 :<Time date={studentActivity.updatedAt} className="text-16 text-inherit" /> (
                 <Time date={studentActivity.updatedAt} formatDistanceToNow className="text-16 text-inherit" />)
               </div>

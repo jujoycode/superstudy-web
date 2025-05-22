@@ -43,10 +43,10 @@ export default function AnnouncementDetailPage() {
   }
 
   const recipients = [
-    { label: t('administrator'), isActive: announcement?.toAdmin, color: 'bg-users-admin' },
-    { label: t('teacher'), isActive: announcement?.toTeacher, color: 'bg-users-teacher' },
-    { label: t('student'), isActive: announcement?.toStudent, color: 'bg-users-user' },
-    { label: t('parent'), isActive: announcement?.toParent, color: 'bg-users-user' },
+    { label: t('administrator'), isActive: announcement?.toAdmin, color: 'bg-blue-600' },
+    { label: t('teacher'), isActive: announcement?.toTeacher, color: 'bg-emerald-600' },
+    { label: t('student'), isActive: announcement?.toStudent, color: 'bg-amber-400' },
+    { label: t('parent'), isActive: announcement?.toParent, color: 'bg-amber-400' },
   ]
 
   return (
@@ -90,7 +90,7 @@ export default function AnnouncementDetailPage() {
                   <h1 className="mb-4">
                     {language === 'ko' ? (
                       <>
-                        안녕하세요. <b className="text-brand-1">슈퍼스쿨</b> 입니다.
+                        안녕하세요. <b className="text-primary-800">슈퍼스쿨</b> 입니다.
                       </>
                     ) : (
                       <>Hello. this is Super School.</>

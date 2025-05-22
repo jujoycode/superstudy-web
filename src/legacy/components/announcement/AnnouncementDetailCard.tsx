@@ -48,10 +48,10 @@ export default function AnnouncementDetailCard({ announcement }: AnnouncementPro
   }
 
   const recipients = [
-    { label: '관리자', isActive: announcement?.toAdmin, color: 'bg-users-admin' },
-    { label: '선생님', isActive: announcement?.toTeacher, color: 'bg-users-teacher' },
-    { label: '학생', isActive: announcement?.toStudent, color: 'bg-users-user' },
-    { label: '보호자', isActive: announcement?.toParent, color: 'bg-users-user' },
+    { label: '관리자', isActive: announcement?.toAdmin, color: 'bg-blue-600' },
+    { label: '선생님', isActive: announcement?.toTeacher, color: 'bg-emerald-600' },
+    { label: '학생', isActive: announcement?.toStudent, color: 'bg-amber-400' },
+    { label: '보호자', isActive: announcement?.toParent, color: 'bg-amber-400' },
   ]
 
   return (
@@ -78,7 +78,7 @@ export default function AnnouncementDetailCard({ announcement }: AnnouncementPro
       {announcement?.content && (
         <div className="my-4">
           <h1 className="mb-4">
-            안녕하세요. <b className="text-brand-1">슈퍼스쿨</b>입니다.
+            안녕하세요. <b className="text-primary-800">슈퍼스쿨</b>입니다.
           </h1>
           {isHTML(announcement.content) ? (
             <div className="text-xl" dangerouslySetInnerHTML={{ __html: announcement.content }}></div>

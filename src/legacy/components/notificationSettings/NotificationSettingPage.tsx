@@ -132,8 +132,8 @@ export function NotificationSettingPage() {
                     className={cn(
                       'grid h-10 w-10 place-items-center rounded-full border',
                       checked
-                        ? 'border-brand-1 bg-brand-1 text-white active:opacity-90'
-                        : 'text-brand-1 active:bg-gray-50',
+                        ? 'border-primary-800 bg-primary-800 text-white active:opacity-90'
+                        : 'text-primary-800 active:bg-gray-50',
                     )}
                   >
                     <span className="text-14">{daysOfWeekString[day]}</span>

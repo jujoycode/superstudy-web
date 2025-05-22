@@ -198,7 +198,7 @@ export function NewsletterAddPage() {
                 />
                 <label
                   htmlFor="end_date"
-                  className="focus:border-brand-1 flex h-12 w-full appearance-none items-center rounded-none border border-gray-200 bg-white px-4 placeholder-gray-400 outline-hidden focus:appearance-none focus:no-underline focus:ring-0 focus:outline-hidden sm:text-sm"
+                  className="focus:border-primary-800 flex h-12 w-full appearance-none items-center rounded-none border border-gray-200 bg-white px-4 placeholder-gray-400 outline-hidden focus:appearance-none focus:no-underline focus:ring-0 focus:outline-hidden sm:text-sm"
                 >
                   <input
                     id="end_date"
@@ -418,7 +418,7 @@ export function NewsletterAddPage() {
                             key={item.id}
                             title={getTitle(item)}
                             className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-1 ${
-                              recvuserIds.includes(item.id) ? 'border-brand-1 bg-light_orange' : 'border-gray-200'
+                              recvuserIds.includes(item.id) ? 'border-primary-800 bg-primary-50' : 'border-gray-200'
                             }`}
                             onClick={() => {
                               if (recvuserIds.includes(item.id)) {
@@ -511,9 +511,9 @@ export function NewsletterAddPage() {
           <div className="w-full rounded-lg border p-3">
             <FeedsDetail
               category1={newsletter?.category || '가정통신문'}
-              category1Color="light_golden"
+              category1Color="amber-200"
               category2={newsletter?.type === NewsletterType.NOTICE ? '공지' : '설문'}
-              category2Color="lavender_blue"
+              category2Color="indigo-300"
               sendTo={
                 (toPerson ? t('individual') : '') +
                 (toStudent ? t('student') : '') +

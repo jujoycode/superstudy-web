@@ -640,7 +640,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                           <div className="text-xl font-bold">전체 학급</div>
                           <div className="text-lg">
                             제출&nbsp;
-                            <span className="text-brand-1">{submittedStudentAmount || 0}</span>/
+                            <span className="text-primary-800">{submittedStudentAmount || 0}</span>/
                             {studentGroups?.length || 0}명
                           </div>
                         </div>
@@ -715,7 +715,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
 
                                   <div className="text-lg">
                                     제출&nbsp;
-                                    <span className="text-brand-1">{submittedStudentGroups.length || 0}</span>/
+                                    <span className="text-primary-800">{submittedStudentGroups.length || 0}</span>/
                                     {studentGroups?.length || 0}명
                                   </div>
                                 </div>

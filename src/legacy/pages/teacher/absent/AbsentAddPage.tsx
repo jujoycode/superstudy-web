@@ -171,7 +171,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                 <div
                   key={el.id}
                   className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-1 text-sm ${
-                    userIdsRef.current.includes(el.user?.id) ? 'border-brand-1 bg-light_orange' : 'border-gray-200'
+                    userIdsRef.current.includes(el.user?.id) ? 'border-primary-800 bg-primary-50' : 'border-gray-200'
                   }`}
                   onClick={() => {
                     if (el?.user) {
@@ -201,7 +201,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                 <div
                   key={el.id}
                   onClick={() => setSelectedUsers(selectedUsers.filter((u) => u.id !== el.id))}
-                  className="m-1s text-2sm border-brand-1 text-brand-1 mt-1 mr-1 flex w-max cursor-pointer items-center space-x-2 rounded-full border-1 bg-white px-2.5 py-1 whitespace-nowrap"
+                  className="m-1s text-2sm border-primary-800 text-primary-800 mt-1 mr-1 flex w-max cursor-pointer items-center space-x-2 rounded-full border-1 bg-white px-2.5 py-1 whitespace-nowrap"
                 >
                   <div className="text-sm whitespace-pre">{el.name}</div>
                   <Close />
@@ -305,7 +305,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                 onClick={() => setTimeType(AbsentTimeType.PERIOD)}
                 className={cn(
                   'py-1.5',
-                  timeType === AbsentTimeType.PERIOD ? 'bg-brand-1 text-white' : 'bg-white text-black',
+                  timeType === AbsentTimeType.PERIOD ? 'bg-primary-800 text-white' : 'bg-white text-black',
                 )}
               />
               <Badge
@@ -313,7 +313,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                 onClick={() => setTimeType(AbsentTimeType.TIME)}
                 className={cn(
                   'py-1.5',
-                  timeType === AbsentTimeType.TIME ? 'bg-brand-1 text-white' : 'bg-white text-black',
+                  timeType === AbsentTimeType.TIME ? 'bg-primary-800 text-white' : 'bg-white text-black',
                 )}
               />
               <Badge
@@ -321,7 +321,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                 onClick={() => setTimeType(AbsentTimeType.NONE)}
                 className={cn(
                   'py-1.5',
-                  timeType === AbsentTimeType.NONE ? 'bg-brand-1 text-white' : 'bg-white text-black',
+                  timeType === AbsentTimeType.NONE ? 'bg-primary-800 text-white' : 'bg-white text-black',
                 )}
               />
             </div>
@@ -333,7 +333,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                     min="0"
                     max="24"
                     maxLength={2}
-                    className="focus:border-brand-1 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                     value={startHour}
                     onChange={(e) => {
                       if (/^\d*$/.test(e.target.value)) {
@@ -361,7 +361,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                     min="0"
                     max="59"
                     maxLength={2}
-                    className="focus:border-brand-1 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                     value={startMinute}
                     onChange={(e) => {
                       if (/^\d*$/.test(e.target.value)) {
@@ -390,7 +390,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                     min="0"
                     max="24"
                     maxLength={2}
-                    className="focus:border-brand-1 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                     value={endHour}
                     onChange={(e) => {
                       if (/^\d*$/.test(e.target.value)) {
@@ -418,7 +418,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                     min="0"
                     max="59"
                     maxLength={2}
-                    className="focus:border-brand-1 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                     value={endMinute}
                     onChange={(e) => {
                       if (/^\d*$/.test(e.target.value)) {

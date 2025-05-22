@@ -120,7 +120,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
               <input
                 type="date"
                 value={reportedAt}
-                className="focus:border-brand-1 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                className="focus:border-primary-800 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                 onChange={(e) => {
                   setReportedAt(e.target.value)
                 }}
@@ -166,7 +166,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                   <input
                     type="date"
                     value={startAt.substring(0, 10)}
-                    className="focus:border-brand-1 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                     onChange={(e) => {
                       if (endAt && e.target.value > endAt) {
                         setEndAt(e.target.value)
@@ -180,7 +180,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                   <input
                     type="date"
                     value={endAt.substring(0, 10)}
-                    className="focus:border-brand-1 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 h-12 w-full min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                     onChange={(e) => {
                       if (startAt && e.target.value < startAt) {
                         setStartAt(e.target.value)
@@ -202,7 +202,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                     defaultValue={absentData?.startAt}
                     className={`${
                       startAt ? 'border-gray-300' : 'border-red-700'
-                    } focus:border-brand-1 h-12 w-full min-w-max rounded-md border px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm`}
+                    } focus:border-primary-800 h-12 w-full min-w-max rounded-md border px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm`}
                     onChange={(e) => setStartAt(e.target.value)}
                   />
 
@@ -213,7 +213,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                       onClick={() => setTimeType(AbsentTimeType.PERIOD)}
                       className={cn(
                         'py-1.5',
-                        timeType === AbsentTimeType.PERIOD ? 'bg-brand-1 text-white' : 'bg-white text-black',
+                        timeType === AbsentTimeType.PERIOD ? 'bg-primary-800 text-white' : 'bg-white text-black',
                       )}
                     />
                     <Badge
@@ -221,7 +221,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                       onClick={() => setTimeType(AbsentTimeType.TIME)}
                       className={cn(
                         'py-1.5',
-                        timeType === AbsentTimeType.TIME ? 'bg-brand-1 text-white' : 'bg-white text-black',
+                        timeType === AbsentTimeType.TIME ? 'bg-primary-800 text-white' : 'bg-white text-black',
                       )}
                     />
                     <Badge
@@ -229,7 +229,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                       onClick={() => setTimeType(AbsentTimeType.NONE)}
                       className={cn(
                         'py-1.5',
-                        timeType === AbsentTimeType.NONE ? 'bg-brand-1 text-white' : 'bg-white text-black',
+                        timeType === AbsentTimeType.NONE ? 'bg-primary-800 text-white' : 'bg-white text-black',
                       )}
                     />
                   </div>
@@ -241,7 +241,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                           min="0"
                           max="24"
                           maxLength={2}
-                          className="focus:border-brand-1 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                          className="focus:border-primary-800 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                           value={startHour}
                           onChange={(e) => {
                             if (/^\d*$/.test(e.target.value)) {
@@ -269,7 +269,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                           min="0"
                           max="59"
                           maxLength={2}
-                          className="focus:border-brand-1 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                          className="focus:border-primary-800 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                           value={startMinute}
                           onChange={(e) => {
                             if (/^\d*$/.test(e.target.value)) {
@@ -298,7 +298,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                           min="0"
                           max="24"
                           maxLength={2}
-                          className="focus:border-brand-1 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                          className="focus:border-primary-800 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                           value={endHour}
                           onChange={(e) => {
                             if (/^\d*$/.test(e.target.value)) {
@@ -326,7 +326,7 @@ export function AbsentUpdatePage({ absentData, setChangeMode }: AbsentUpdatePage
                           min="0"
                           max="59"
                           maxLength={2}
-                          className="focus:border-brand-1 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                          className="focus:border-primary-800 inline h-12 w-14 rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                           value={endMinute}
                           onChange={(e) => {
                             if (/^\d*$/.test(e.target.value)) {

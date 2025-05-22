@@ -316,7 +316,7 @@ export const ActivityV3Page = () => {
 
       {open && studentInfo && (
         <>
-          <div className="bg-littleblack fixed inset-0 z-10"></div>
+          <div className="fixed inset-0 z-10 bg-neutral-500"></div>
           <div className="scroll-box fixed inset-x-0 inset-y-12 z-20 flex flex-col overflow-y-scroll rounded-3xl border border-gray-300 md:inset-x-6 md:inset-y-10 md:flex-row">
             <ActivityV3GPTModal
               activityV3s={_activityV3s}
@@ -334,7 +334,7 @@ export const ActivityV3Page = () => {
       )}
       {coachmarkVisible && (
         <>
-          <div className="bg-littleblack fixed inset-0 z-10"></div>
+          <div className="fixed inset-0 z-10 bg-neutral-500"></div>
           <div className="scroll-box fixed inset-x-0 inset-y-12 z-20 flex flex-col overflow-y-scroll rounded-3xl border border-gray-300 md:inset-x-10 md:inset-y-10 md:flex-row">
             <div className="relative flex h-full w-full flex-row bg-white">
               <Icon.Close
@@ -350,7 +350,7 @@ export const ActivityV3Page = () => {
               <section className="text-14 flex h-full max-w-[400px] min-w-[35%] flex-col gap-10 overflow-y-scroll rounded-r-lg px-4 pt-12 pb-6">
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
+                    <div className="bg-primary-800 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       1
                     </div>
                     <p className="font-bold">진로/진학 정보</p>
@@ -364,7 +364,7 @@ export const ActivityV3Page = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
+                    <div className="bg-primary-800 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       2
                     </div>
                     <p className="font-bold">과목 정보</p>
@@ -378,7 +378,7 @@ export const ActivityV3Page = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
+                    <div className="bg-primary-800 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       3
                     </div>
                     <p className="font-bold">성취 기준</p>
@@ -392,7 +392,7 @@ export const ActivityV3Page = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
+                    <div className="bg-primary-800 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       4
                     </div>
                     <p className="font-bold">활동기록 정보</p>
@@ -455,7 +455,7 @@ export const ActivityV3Page = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
+                    <div className="bg-primary-800 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       5
                     </div>
                     <p className="font-bold">작성 유형</p>
@@ -469,7 +469,7 @@ export const ActivityV3Page = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
+                    <div className="bg-primary-800 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       6
                     </div>
                     <p className="font-bold">활동</p>
@@ -483,7 +483,7 @@ export const ActivityV3Page = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-row items-center gap-2">
-                    <div className="bg-brand-1 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
+                    <div className="bg-primary-800 flex h-5 w-5 items-center justify-center rounded-md font-extrabold text-white">
                       7
                     </div>
                     <p className="font-bold">성취 수준</p>

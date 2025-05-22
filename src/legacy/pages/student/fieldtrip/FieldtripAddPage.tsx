@@ -539,7 +539,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
           <div>
             <div className="text-lg whitespace-pre-line">
               남은 일수&nbsp;
-              <span className="text-brand-1 underline">
+              <span className="text-primary-800 underline">
                 {fieldtripData
                   ? fieldtripData.currentRemainDays
                   : me?.role === Role.USER
@@ -737,7 +737,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
                     clearHomePlane()
                     setDayHomePlan(false)
                   }}
-                  className={cn('py-1.5 text-lg', dayHomePlan ? 'bg-white text-black' : 'bg-brand-1 text-white')}
+                  className={cn('py-1.5 text-lg', dayHomePlan ? 'bg-white text-black' : 'bg-primary-800 text-white')}
                 />
                 <Badge
                   children="일차기준 작성"
@@ -745,7 +745,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
                     clearHomePlane()
                     setDayHomePlan(true)
                   }}
-                  className={cn('py-1.5 text-lg', dayHomePlan ? 'bg-brand-1 text-white' : 'bg-white text-black')}
+                  className={cn('py-1.5 text-lg', dayHomePlan ? 'bg-primary-800 text-white' : 'bg-white text-black')}
                 />
               </div>
               {dayHomePlan && (
@@ -1107,7 +1107,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
         {errorMessage && <div className="text-red-600">{errorMessage}</div>}
       </Section>
       <SuperModal modalOpen={suburbsModalopen} setModalClose={() => setSuburbsModalopen(false)}>
-        <div className="font-smibold text-brand-1 mt-5 text-center text-lg">현장 학습 계획 예시</div>
+        <div className="font-smibold text-primary-800 mt-5 text-center text-lg">현장 학습 계획 예시</div>
         <div className="mt-6 mr-6 mb-6 ml-6 text-sm whitespace-pre-line">
           {`1.할머니 칠순맞이 가족과 국내 장거리 여행
             숙박, 식사 등 활동으로 친척과의 관계를 배울 수 있다.
@@ -1124,12 +1124,12 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
           <button
             children="닫기"
             onClick={() => setSuburbsModalopen(false)}
-            className="text-littleblack w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold"
+            className="w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold text-neutral-500"
           />
         </div>
       </SuperModal>
       <SuperModal modalOpen={homeModalopen} setModalClose={() => setHomeModalopen(false)}>
-        <div className="font-smibold text-brand-1 mt-5 text-center text-lg">가정 학습 계획 예시</div>
+        <div className="font-smibold text-primary-800 mt-5 text-center text-lg">가정 학습 계획 예시</div>
         {dayHomePlan ? (
           <>
             <div className="mt-6 mr-6 mb-6 ml-6 text-sm">
@@ -1174,12 +1174,12 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
           <button
             children="닫기"
             onClick={() => setHomeModalopen(false)}
-            className="text-littleblack w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold"
+            className="w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold text-neutral-500"
           />
         </div>
       </SuperModal>
       <SuperModal modalOpen={infoHalfDayModalopen} setModalClose={() => setInfoHalfDayModalopen(false)}>
-        <div className="font-smibold text-brand-1 mt-5 text-center text-lg">체험학습 반일 신청 안내</div>
+        <div className="font-smibold text-primary-800 mt-5 text-center text-lg">체험학습 반일 신청 안내</div>
         <div className="mt-6 mr-6 mb-6 ml-6 text-xs whitespace-pre-line">
           {`* 교외체험학습 신청시, 수업중 일부만 출석하고 일부는 결석하는 경우에 반일 신청을 합니다. 
             ex1) 아침에 등교했다가 조퇴하고 할머니댁에 가는 경우
@@ -1198,7 +1198,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
           <button
             children="닫기"
             onClick={() => setInfoHalfDayModalopen(false)}
-            className="text-littleblack w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold"
+            className="w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold text-neutral-500"
           />
         </div>
       </SuperModal>

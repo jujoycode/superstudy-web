@@ -33,7 +33,7 @@ export function NewsletterSubmitDetailPage() {
           studentNewsletter?.updatedAt &&
           studentNewsletter?.isSubmitted &&
           studentNewsletter.updatedAt !== newsletter?.updatedAt && (
-            <div className="text-brandblue-1 mt-3 pl-4">
+            <div className="mt-3 pl-4 text-blue-500">
               제출 완료 일시 : <Time date={studentNewsletter.updatedAt} className="text-16 text-inherit" /> (
               <Time date={studentNewsletter.updatedAt} formatDistanceToNow className="text-16 text-inherit" />)
             </div>

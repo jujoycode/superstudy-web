@@ -194,7 +194,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
           />
 
           <div className="text-15 font-bold">
-            <span className="text-brand-1 text-sm">[{activityv3.subject}]</span> {activityv3.title}
+            <span className="text-primary-800 text-sm">[{activityv3.subject}]</span> {activityv3.title}
           </div>
         </div>
         {openedCardIds.includes(activityv3.id) ? <Icon.ChevronDown /> : <Icon.ChevronUp />}
@@ -260,7 +260,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
                 <p>{session?.title}</p>
                 <p>
                   {session?.studentActivitySessions?.[0]?.isSubmitted ? (
-                    <span className="text-brand-1">제출</span>
+                    <span className="text-primary-800">제출</span>
                   ) : (
                     <span className="text-gray-500">미제출</span>
                   )}
@@ -279,7 +279,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
               <h1 className="font-semibold">학생 활동 보고서</h1>
               <p className="text-14">
                 {sav?.studentText ? (
-                  <span className="text-brand-1">제출</span>
+                  <span className="text-primary-800">제출</span>
                 ) : (
                   <span className="text-gray-500">미제출</span>
                 )}
@@ -329,7 +329,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
                     불러오기
                   </Button>
                   <Button
-                    className="border-brand-1 text-brand-1 w-full border"
+                    className="border-primary-800 text-primary-800 w-full border"
                     onClick={() =>
                       saveStudentActivityV3({
                         params: { activityv3Id: activityv3.id, userId: studentId },
@@ -368,7 +368,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
                   </Button>
                 )}
                 <Button
-                  className="border-brand-1 text-brand-1 mt-1 w-full border"
+                  className="border-primary-800 text-primary-800 mt-1 w-full border"
                   onClick={() => setSubmitSummary(true)}
                 >
                   {sav?.summary ? '수정하기' : '작성하기'}

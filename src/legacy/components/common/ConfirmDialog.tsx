@@ -48,7 +48,7 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
           </button>
           <button
             className={`box-border h-12 w-28 rounded-md ${
-              theme === 'primary' ? 'bg-brand-1' : theme === 'secondary' ? 'bg-brandblue-1' : 'bg-[#ff2525]'
+              theme === 'primary' ? 'bg-primary-800' : theme === 'secondary' ? 'bg-blue-500' : 'bg-[#ff2525]'
             } px-2 text-lg text-white transition-all`}
             onClick={onConfirm}
           >

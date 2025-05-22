@@ -21,7 +21,7 @@ export function ApplyPage() {
         {me?.school.isOutingActive !== OutingUse.NONE && (
           <div
             onClick={() => push('/student/outing')}
-            className="border-gray-9 flex cursor-pointer items-center justify-between border-b pb-4"
+            className="flex cursor-pointer items-center justify-between border-b border-gray-50 pb-4"
           >
             <div>
               <div className="font-sfpro font-bold text-gray-800">확인증</div>
@@ -32,7 +32,7 @@ export function ApplyPage() {
         )}
         <div
           onClick={() => push('/student/absent')}
-          className="border-gray-9 flex cursor-pointer items-center justify-between border-b pb-4"
+          className="flex cursor-pointer items-center justify-between border-b border-gray-50 pb-4"
         >
           <div>
             <div className="font-sfpro font-bold text-gray-800">{t(`absentTitle`, '결석신고서')}</div>
@@ -42,7 +42,7 @@ export function ApplyPage() {
         </div>
         <div
           onClick={() => push('/student/fieldtrip')}
-          className="border-gray-9 flex cursor-pointer items-center justify-between border-b pb-4"
+          className="flex cursor-pointer items-center justify-between border-b border-gray-50 pb-4"
         >
           <div>
             <div className="font-sfpro font-bold text-gray-800">체험학습</div>
@@ -52,7 +52,7 @@ export function ApplyPage() {
         </div>
         <div
           onClick={() => push('/student/pointlogs')}
-          className="border-gray-9 flex cursor-pointer items-center justify-between border-b pb-4"
+          className="flex cursor-pointer items-center justify-between border-b border-gray-50 pb-4"
         >
           <div>
             <div className="font-sfpro font-bold text-gray-800">상벌점기록</div>
@@ -65,19 +65,19 @@ export function ApplyPage() {
         <div className="mt-14 flex w-full items-center justify-center">
           <button
             children="🏔 교외 체험학습"
-            className="border-brand-1 text-brand-1 w-4/5 rounded-lg border bg-white py-5 font-bold"
+            className="border-primary-800 text-primary-800 w-4/5 rounded-lg border bg-white py-5 font-bold"
           />
         </div>
         <div className="my-5 mb-10 flex w-full items-center justify-center">
           <button
             children="🏠 가정학습"
-            className="border-brandblue-1 text-brandblue-1 w-4/5 rounded-lg border bg-white py-5 font-bold"
+            className="w-4/5 rounded-lg border border-blue-500 bg-white py-5 font-bold text-blue-500"
           />
         </div>
         <div className="my-2 mb-5 flex w-full items-center justify-center">
           <button
             children="닫기"
-            className="text-littleblack w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold"
+            className="w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold text-neutral-500"
           />
         </div>
       </SuperModal>

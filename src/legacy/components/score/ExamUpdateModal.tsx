@@ -63,7 +63,7 @@ export function ExamUpdateModal({
 
   return (
     <div
-      className={`bg-littlegray fixed inset-0 z-60 flex h-screen w-full items-center justify-center ${
+      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-neutral-300 ${
         modalOpen ? 'backdrop-blur-xs' : 'hidden'
       }`}
       onClick={(e) => {
@@ -100,7 +100,7 @@ export function ExamUpdateModal({
                             <div className={`flex h-8 items-center space-x-2 rounded-sm px-3 py-1`}>
                               <div className={`text-15 w-full break-words whitespace-pre-wrap`}>{value.name}</div>
                             </div>
-                            <div className="text-lightpurple-4 flex min-w-max items-center justify-center bg-white px-2">
+                            <div className="flex min-w-max items-center justify-center bg-white px-2 text-indigo-500">
                               {!uploading && (
                                 <div className="z-40 ml-2 block rounded-full text-center text-sm">
                                   <div

@@ -95,7 +95,7 @@ export function SendMessage({
         <div className="flex w-full flex-row-reverse items-end space-x-0 px-2">
           <div className="overflow-hidden">
             {content && (
-              <div className="bg-brand-1 rounded-md p-1 px-6 text-white">
+              <div className="bg-primary-800 rounded-md p-1 px-6 text-white">
                 <p className="feedback_space text-left text-sm break-all whitespace-pre-wrap">
                   <Linkify>{content}</Linkify>
                 </p>
@@ -240,7 +240,7 @@ export function SendMessage({
         {hasImagesModalOpen &&
           (isMobile() ? (
             <a
-              className="bg-littleblack fixed top-0 left-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full"
+              className="fixed top-0 left-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full bg-neutral-500"
               href={viewerImages[activeIndex].src}
               target="_blank"
               rel="noreferrer"
@@ -250,7 +250,7 @@ export function SendMessage({
             </a>
           ) : (
             <div
-              className="bg-littleblack fixed top-0 left-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full"
+              className="fixed top-0 left-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full bg-neutral-500"
               onClick={() => downloadFile(viewerImages[activeIndex].src)}
             >
               <Icon.Download className="mt-1 ml-1" stroke="#FFF" />

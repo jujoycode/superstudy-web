@@ -75,7 +75,7 @@ export const ParentConfirmPaper = forwardRef((props: ParentConfirmPaperProps, re
               <Td>{absent?.parentComment}</Td>
             </tr>
           </table>
-          <div className="text-brand-1 pt-1 whitespace-pre-line">
+          <div className="text-primary-800 pt-1 whitespace-pre-line">
             *{absent?.student?.name} 학생이 해당 기간동안&nbsp;
             {absent?.reportType === '지각' || absent?.reportType === '결과' || absent?.reportType === '조퇴'
               ? absent?.reportType

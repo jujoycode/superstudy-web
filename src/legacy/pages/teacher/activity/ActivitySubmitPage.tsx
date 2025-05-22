@@ -39,7 +39,7 @@ export function ActivitySubmitPage({ group }: ActivitySubmitPageProps) {
             <h3 className="text-lg">제출자 리스트</h3>
             <div className="text-sm text-gray-500">총 {filteredUser?.length}명</div>
           </div>
-          <div className="text-brand-1 cursor-pointer" onClick={() => queryClient.refetchQueries({ active: true })}>
+          <div className="text-primary-800 cursor-pointer" onClick={() => queryClient.refetchQueries({ active: true })}>
             새로고침
           </div>
         </div>

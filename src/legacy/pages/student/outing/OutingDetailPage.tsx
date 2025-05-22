@@ -70,29 +70,29 @@ export function OutingDetailPage() {
 
       <div className="px-3 pt-5">
         {outing?.outingStatus === 'RETURNED' && (
-          <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
-            <div className="text-brand-1 text-sm">{outing?.notApprovedReason}</div>
+          <div className="bg-primary-100 flex items-center justify-between rounded-lg px-5 py-2">
+            <div className="text-primary-800 text-sm">{outing?.notApprovedReason}</div>
             <div className="text-red-500">반려 이유</div>
           </div>
         )}
         {outing?.outingStatus === 'DELETE_APPEAL' && (
-          <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
-            <div className="text-brand-1 text-sm">{outing?.deleteReason}</div>
+          <div className="bg-primary-100 flex items-center justify-between rounded-lg px-5 py-2">
+            <div className="text-primary-800 text-sm">{outing?.deleteReason}</div>
             <div className="text-red-500">삭제 이유</div>
           </div>
         )}
         {outing?.outingStatus === 'PROCESSED' && (
-          <div className="bg-brand-5 rounded-lg px-5 py-2">
+          <div className="bg-primary-100 rounded-lg px-5 py-2">
             <div className="text-red-500">승인완료</div>
           </div>
         )}
         {outing?.outingStatus === 'BEFORE_TEACHER_APPROVAL' && (
-          <div className="bg-brand-5 rounded-lg px-5 py-2">
+          <div className="bg-primary-100 rounded-lg px-5 py-2">
             <div className="text-gray-900">학교 승인 대기</div>
           </div>
         )}
         {outing?.outingStatus === OutingStatus.PROCESSING && (
-          <div className="bg-brand-5 rounded-lg px-5 py-2">
+          <div className="bg-primary-100 rounded-lg px-5 py-2">
             <div className="text-gray-900">학교 승인 중</div>
           </div>
         )}

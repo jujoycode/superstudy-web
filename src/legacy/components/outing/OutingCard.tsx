@@ -80,11 +80,11 @@ export function OutingCard({ outing, type }: OutingCardProps) {
                 {t('approved', '승인 완료')}
               </span>
             ) : outing?.outingStatus === 'RETURNED' ? (
-              <span className="text-brand-1 my-1 mr-1 inline-block rounded-md px-1 py-2 text-xs md:mr-2 md:px-3 md:text-sm">
+              <span className="text-primary-800 my-1 mr-1 inline-block rounded-md px-1 py-2 text-xs md:mr-2 md:px-3 md:text-sm">
                 {t('rejected', '반려됨')}
               </span>
             ) : outing?.outingStatus === 'DELETE_APPEAL' ? (
-              <span className="text-brand-1 my-1 mr-1 inline-block rounded-md px-1 py-2 text-xs md:mr-2 md:px-3 md:text-sm">
+              <span className="text-primary-800 my-1 mr-1 inline-block rounded-md px-1 py-2 text-xs md:mr-2 md:px-3 md:text-sm">
                 {t('delete_request', '삭제 요청')}
               </span>
             ) : (

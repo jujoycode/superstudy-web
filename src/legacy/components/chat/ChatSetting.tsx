@@ -159,7 +159,7 @@ export function ChatSetting({
             ))}
           </Tabs>
         </div>
-        <div className="bg-brand-1 float-right">
+        <div className="bg-primary-800 float-right">
           <CloseButton
             onClick={() => {
               setShowSearchList(false)
@@ -237,7 +237,7 @@ export function ChatSetting({
                     value={startH}
                     disabled={!editable}
                     onChange={(e) => setStartH(Number(e.target.value))}
-                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     {new Array(24).fill(null).map((_, num: number) => (
                       <option key={num} value={num}>
@@ -250,7 +250,7 @@ export function ChatSetting({
                     value={startM}
                     disabled={!editable}
                     onChange={(e) => setStartM(Number(e.target.value))}
-                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     <option value={0}>0</option>
                     <option value={10}>10</option>
@@ -266,7 +266,7 @@ export function ChatSetting({
                     disabled={!editable}
                     value={endH}
                     onChange={(e) => setEndH(Number(e.target.value))}
-                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                   >
                     {new Array(24).fill(null).map((_, num: number) => (
                       <option key={num} value={num}>
@@ -277,7 +277,7 @@ export function ChatSetting({
                   <span>시</span>
                   <select
                     disabled={!editable}
-                    className="focus:border-brand-1 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
+                    className="focus:border-primary-800 h-12 w-16 min-w-max rounded-md border border-gray-200 px-4 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 sm:text-sm"
                     onChange={(e) => setEndM(Number(e.target.value))}
                     value={endM}
                   >
@@ -363,11 +363,11 @@ export function ChatSetting({
 
                           <div>
                             {AttendeeInfo?.role === Role.USER ? (
-                              <div className="text-brand-1 text-sm">
+                              <div className="text-primary-800 text-sm">
                                 {AttendeeInfo?.name} {AttendeeInfo?.studentNumber}
                               </div>
                             ) : AttendeeInfo?.role === Role.PARENT ? (
-                              <div className="text-brandblue-1 text-sm">
+                              <div className="text-sm text-blue-500">
                                 {AttendeeInfo?.name} {'보호자 '}
                                 {AttendeeInfo?.children &&
                                   '(' +
@@ -385,7 +385,7 @@ export function ChatSetting({
                             )}
                           </div>
 
-                          <div className="bg-brand-1 float-right ml-3 rounded-md text-white">추가</div>
+                          <div className="bg-primary-800 float-right ml-3 rounded-md text-white">추가</div>
                         </div>
                       ))
                   ) : (
@@ -428,12 +428,12 @@ export function ChatSetting({
 
                         <div>
                           {AttendeeInfo?.role === Role.USER ? (
-                            <div className="text-brand-1 text-sm">
+                            <div className="text-primary-800 text-sm">
                               {AttendeeInfo?.name}
                               {getNickName(AttendeeInfo?.nickName)} {AttendeeInfo?.studentNumber}
                             </div>
                           ) : AttendeeInfo?.role === Role.PARENT ? (
-                            <div className="text-brandblue-1 text-sm">
+                            <div className="text-sm text-blue-500">
                               {AttendeeInfo?.name}{' '}
                               {AttendeeInfo?.children &&
                                 '[' +
@@ -454,7 +454,7 @@ export function ChatSetting({
                         </div>
 
                         {info?.roomData?.createdUserId === AttendeeInfo.id ? (
-                          <div className="bg-brand-1 float-right ml-3 rounded-md text-white">{'방장'}</div>
+                          <div className="bg-primary-800 float-right ml-3 rounded-md text-white">{'방장'}</div>
                         ) : (
                           editable && (
                             <div className="float-right">

@@ -68,7 +68,7 @@ export function ActivitiesView({
               }
             >
               <div className="flex justify-between">
-                <Badge children={activity.subject} className="bg-light_orange text-brand-1" />
+                <Badge children={activity.subject} className="bg-primary-50 text-primary-800" />
                 <Time date={activity.createdAt} />
               </div>
               <div className="flex items-center justify-between space-x-2">
@@ -90,8 +90,8 @@ export function ActivitiesView({
                     onClick={() => setUpdateState()}
                     className={
                       pathname.startsWith(`/teacher/activity/${activity.id}`)
-                        ? 'border-darkgray bg-darkgray rounded-md border px-4 py-2 text-sm text-white focus:outline-hidden'
-                        : 'border-darkgray text-darkgray hover:bg-darkgray rounded-md border bg-white px-4 py-2 text-sm hover:text-white focus:outline-hidden'
+                        ? 'rounded-md border border-slate-600 bg-slate-600 px-4 py-2 text-sm text-white focus:outline-hidden'
+                        : 'rounded-md border border-slate-600 bg-white px-4 py-2 text-sm text-slate-600 hover:bg-slate-600 hover:text-white focus:outline-hidden'
                     }
                   />
                 </Link>
@@ -101,8 +101,8 @@ export function ActivitiesView({
                       children="제출자 보기"
                       className={
                         pathname.startsWith(`/teacher/activity/submit/${activity.id}`)
-                          ? 'border-darkgray bg-darkgray rounded-md border px-4 py-2 text-sm text-white focus:outline-hidden'
-                          : 'border-darkgray text-darkgray hover:bg-darkgray rounded-md border bg-white px-4 py-2 text-sm hover:text-white focus:outline-hidden'
+                          ? 'rounded-md border border-slate-600 bg-slate-600 px-4 py-2 text-sm text-white focus:outline-hidden'
+                          : 'rounded-md border border-slate-600 bg-white px-4 py-2 text-sm text-slate-600 hover:bg-slate-600 hover:text-white focus:outline-hidden'
                       }
                     />
                   </Link>
@@ -114,8 +114,8 @@ export function ActivitiesView({
                       children="다운로드"
                       className={
                         pathname.startsWith(`/teacher/activity/download/${activity.id}`)
-                          ? 'border-darkgray bg-darkgray rounded-md border px-4 py-2 text-sm text-white focus:outline-hidden'
-                          : 'border-darkgray text-darkgray hover:bg-darkgray rounded-md border bg-white px-4 py-2 text-sm hover:text-white focus:outline-hidden'
+                          ? 'rounded-md border border-slate-600 bg-slate-600 px-4 py-2 text-sm text-white focus:outline-hidden'
+                          : 'rounded-md border border-slate-600 bg-white px-4 py-2 text-sm text-slate-600 hover:bg-slate-600 hover:text-white focus:outline-hidden'
                       }
                     />
                   </Link>

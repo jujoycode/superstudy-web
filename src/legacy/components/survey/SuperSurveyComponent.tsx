@@ -143,7 +143,7 @@ export function SuperSurveyComponent({
                 {!value && (
                   <div className="file-upload">
                     <label
-                      className={`text-brand-1 flex h-12 items-center justify-center space-x-1 ${
+                      className={`text-primary-800 flex h-12 items-center justify-center space-x-1 ${
                         readOnly ? 'cursor-default' : 'cursor-pointer'
                       }`}
                     >

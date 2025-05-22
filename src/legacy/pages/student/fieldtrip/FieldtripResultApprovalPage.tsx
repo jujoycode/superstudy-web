@@ -68,14 +68,14 @@ export function FieldtripResultApprovalPage() {
         title="체험학습 결과보고서"
         left={<div className="h-15 w-10" />}
         right={
-          <div className="text-brand-1" onClick={() => push('/')}>
+          <div className="text-primary-800" onClick={() => push('/')}>
             취소
           </div>
         }
       />
       <Section className="scroll-box h-screen-4 overflow-auto">
         {!isSigned ? (
-          <div className="bg-light_orange mb-4 rounded-lg p-4 whitespace-pre-line">
+          <div className="bg-primary-50 mb-4 rounded-lg p-4 whitespace-pre-line">
             {`[${school?.name || ''} 슈퍼스쿨의 서명 요청]
       ${student?.nokName || ''}님, 귀하의 자녀 ${student?.name || ''} 학생이
       체험학습 결과보고서를 신청하였습니다.
@@ -91,7 +91,7 @@ export function FieldtripResultApprovalPage() {
         ) : (
           <>
             <div>
-              <div className="bg-light_orange mb-4 rounded-lg p-4 whitespace-pre-line">
+              <div className="bg-primary-50 mb-4 rounded-lg p-4 whitespace-pre-line">
                 {`${student?.name || ''} 학생의 체험학습 결과보고서가 ${student?.nokName || ''}님의 서명을 받았습니다.
               체험학습 결과보고서의 처리 상태를 밑에서 확인 가능합니다.`}
               </div>
@@ -190,7 +190,7 @@ export function FieldtripResultApprovalPage() {
                 <div className="relative m-2 flex items-center justify-between overflow-x-hidden bg-white p-2">
                   <div className="flex items-center space-x-2">
                     <FileItemIcon />
-                    <div className="text-lightpurple-4 min-w-max bg-white px-2">
+                    <div className="min-w-max bg-white px-2 text-indigo-500">
                       <a href={fieldtrip?.resultFile} target="_blank" rel="noreferrer" download>
                         Download
                       </a>

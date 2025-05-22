@@ -215,22 +215,22 @@ export const StudentActivitySessionSubmitView: React.FC<StudentActivitySessionSu
                   className="h-auto border"
                 />
                 <div className="flex items-center justify-end">
-                  공백제외&nbsp;<span className="text-brand-1">{content.replace(/ /g, '').length}</span>&nbsp;자&nbsp;
-                  공백포함&nbsp;
-                  <span className="text-brand-1">{content.length}</span>&nbsp;자
+                  공백제외&nbsp;<span className="text-primary-800">{content.replace(/ /g, '').length}</span>
+                  &nbsp;자&nbsp; 공백포함&nbsp;
+                  <span className="text-primary-800">{content.length}</span>&nbsp;자
                 </div>
               </>
             )}
             {(!isSubmitDate || !calculateIsSubmitHour()) && (
               <div>
                 {activity.startDate && (
-                  <div className="text-brandblue-1 mt-3">
+                  <div className="mt-3 text-blue-500">
                     활동 시작 시간 : <Time date={activity.startDate} className="text-16 text-inherit" /> (
                     <Time date={activity.startDate} formatDistanceToNow className="text-16 text-inherit" />)
                   </div>
                 )}
                 {activity.submitStartHour !== -1 && (
-                  <div className="text-brandblue-1 mt-3">
+                  <div className="mt-3 text-blue-500">
                     활동 시간대 : {activity.submitStartHour}시{' '}
                     {activity.submitStartMinute < 0 ? 0 : activity.submitStartMinute}분부터 {activity.submitEndHour}시{' '}
                     {activity.submitEndMinute < 0 ? 0 : activity.submitEndMinute}분까지

@@ -171,15 +171,15 @@ export function FieldtripDetailPage() {
 
       <div className="relative h-full w-auto overflow-y-scroll">
         <div className="flex w-full items-center justify-start space-x-2 px-5">
-          <div className="text-brand-1 cursor-pointer underline">신청서</div>
+          <div className="text-primary-800 cursor-pointer underline">신청서</div>
           <div
-            className="text-brand-1 cursor-pointer underline"
+            className="text-primary-800 cursor-pointer underline"
             onClick={() => fieldtrip && pushWithQueryParams(`/teacher/fieldtrip/notice/${fieldtrip.id}`)}
           >
             통보서
           </div>
           <div
-            className="text-brand-1 cursor-pointer underline"
+            className="text-primary-800 cursor-pointer underline"
             //onClick={() => fieldtrip && push(`/teacher/fieldtrip/result/${fieldtrip.id}`)}
             onClick={() => fieldtrip && pushWithQueryParams(`/teacher/fieldtrip/result/${fieldtrip.id}`)}
           >
@@ -188,16 +188,16 @@ export function FieldtripDetailPage() {
         </div>
 
         {fieldtrip?.fieldtripStatus === 'RETURNED' && fieldtrip?.notApprovedReason && fieldtrip?.updatedAt && (
-          <div className="bg-brand-5 mx-5 flex items-center justify-between rounded-lg px-5 py-2">
-            <div className="text-brand-1">{fieldtrip?.notApprovedReason}</div>
+          <div className="bg-primary-100 mx-5 flex items-center justify-between rounded-lg px-5 py-2">
+            <div className="text-primary-800">{fieldtrip?.notApprovedReason}</div>
             <div className="text-sm text-gray-500">
               {makeDateToString(fieldtrip?.updatedAt)} {makeTimeToString(fieldtrip?.updatedAt)}에 마지막으로 수정
             </div>
           </div>
         )}
         {fieldtrip?.updateReason && fieldtrip?.updatedAt && (
-          <div className="bg-brand-5 flex items-center justify-between rounded-lg px-5 py-2">
-            <div className="text-brand-1">{fieldtrip?.updateReason}</div>
+          <div className="bg-primary-100 flex items-center justify-between rounded-lg px-5 py-2">
+            <div className="text-primary-800">{fieldtrip?.updateReason}</div>
             <div className="text-sm text-gray-500">
               {makeDateToString(fieldtrip?.updatedAt)} {makeTimeToString(fieldtrip?.updatedAt)}에 마지막으로 수정
             </div>
@@ -205,8 +205,8 @@ export function FieldtripDetailPage() {
         )}
 
         {fieldtrip?.fieldtripStatus === FieldtripStatus.BEFORE_PARENT_CONFIRM && (
-          <div className="bg-brand-5 m-2 flex items-center justify-between rounded-lg px-5 py-2">
-            <div className="text-brand-1 text-sm">학부모 승인 전</div>
+          <div className="bg-primary-100 m-2 flex items-center justify-between rounded-lg px-5 py-2">
+            <div className="text-primary-800 text-sm">학부모 승인 전</div>
             <Button.sm
               children="학부모 승인 요청 다시하기"
               onClick={() => resendAlimtalk()}
@@ -233,7 +233,7 @@ export function FieldtripDetailPage() {
             className="outlined-gray flex h-10 w-25 items-center"
           >
             <Icon.Refresh />
-            <span className="text-bold text-brand-1 pl-2 text-sm">
+            <span className="text-bold text-primary-800 pl-2 text-sm">
               잔여일
               <br />
               재확인

@@ -418,7 +418,7 @@ export function ChatSMSPage({ isMobileView, selectedUsers }: SmsPageProps) {
                 onClick={() => {
                   refetchHistory()
                 }}
-                className="text-brand-1 text-sm"
+                className="text-primary-800 text-sm"
               >
                 <Refresh />
               </div>

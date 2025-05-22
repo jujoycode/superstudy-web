@@ -52,7 +52,7 @@ export function Login() {
                 setBlankOpen(true)
                 window?.location?.reload()
               }}
-              className="text-brand-1 text-sm"
+              className="text-primary-800 text-sm"
             >
               <Refresh />
             </div>
@@ -85,7 +85,7 @@ export function Login() {
 
           <div className="flex justify-between">
             <div>
-              <button onClick={handleStayLoggedIn} className="border-brand-1 rounded-full border px-4 py-2">
+              <button onClick={handleStayLoggedIn} className="border-primary-800 rounded-full border px-4 py-2">
                 <div className="flex space-x-3">
                   <Checkbox checked={isStayLoggedIn} onChange={handleStayLoggedIn} />
                   <Label.Text children={t('auto_login')} />
@@ -94,10 +94,12 @@ export function Login() {
             </div>
             <div className="flex space-x-3 text-xs">
               <Link to="/find-id">
-                <div className="border-brand-1 rounded-full border px-4 py-2 text-gray-400">{t('find_id')}</div>
+                <div className="border-primary-800 rounded-full border px-4 py-2 text-gray-400">{t('find_id')}</div>
               </Link>
               <Link to="/find-password">
-                <div className="border-brand-1 rounded-full border px-4 py-2 text-gray-400">{t('find_password')}</div>
+                <div className="border-primary-800 rounded-full border px-4 py-2 text-gray-400">
+                  {t('find_password')}
+                </div>
               </Link>
             </div>
           </div>
@@ -105,7 +107,7 @@ export function Login() {
 
           {errorCode === '1001102' && (
             <Link to="/find-password">
-              <div className="filled-primary border-brand-1 rounded-lg border px-4 py-2 text-center">
+              <div className="filled-primary border-primary-800 rounded-lg border px-4 py-2 text-center">
                 {t('unlock_password')}
               </div>
             </Link>
@@ -124,7 +126,7 @@ export function Login() {
 
           <div className="flex justify-center">
             <a href="https://superstudy.channel.io/lounge" target="blank">
-              <div className="border-brand-1 mt-5 rounded-full border px-4 py-2 text-center">{t('contact_us')}</div>
+              <div className="border-primary-800 mt-5 rounded-full border px-4 py-2 text-center">{t('contact_us')}</div>
             </a>
           </div>
         </Section>

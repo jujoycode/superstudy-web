@@ -84,7 +84,7 @@ export function CanteenPage() {
                 setBlankOpen(true)
                 window?.location?.reload()
               }}
-              className="text-brand-1 text-sm"
+              className="text-primary-800 text-sm"
             >
               <Refresh />
             </div>
@@ -107,13 +107,13 @@ export function CanteenPage() {
               return (
                 <div className="absolute inset-x-0 flex justify-center space-x-0.5">
                   {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_0) && (
-                    <div className="bg-schedule-school h-1 w-1 rounded-full" />
+                    <div className="h-1 w-1 rounded-full bg-violet-500" />
                   )}
                   {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_1) && (
-                    <div className="bg-schedule-teacher h-1 w-1 rounded-full" />
+                    <div className="h-1 w-1 rounded-full bg-blue-500" />
                   )}
                   {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_2) && (
-                    <div className="bg-schedule-group h-1 w-1 rounded-full" />
+                    <div className="h-1 w-1 rounded-full bg-lime-500" />
                   )}
                 </div>
               )
@@ -132,10 +132,10 @@ export function CanteenPage() {
                 <div
                   className={`h-2 w-2 rounded-full ${
                     schedule.calendarId === CalendarIdEnum.NUMBER_0
-                      ? 'bg-schedule-teacher'
+                      ? 'bg-blue-500'
                       : schedule.calendarId === CalendarIdEnum.NUMBER_2
-                        ? 'bg-schedule-group'
-                        : 'bg-schedule-school'
+                        ? 'bg-lime-500'
+                        : 'bg-violet-500'
                   }`}
                 />
                 <div className="font-bold">{schedule.title}</div>
@@ -185,7 +185,7 @@ export function CanteenPage() {
         )}
 
         <div className="fixed right-4 bottom-16">
-          <div className="bg-brand-1 bg-opacity-50 relative mb-2 h-16 w-16 rounded-full">
+          <div className="bg-primary-800 bg-opacity-50 relative mb-2 h-16 w-16 rounded-full">
             <Link className="flex h-full w-full flex-col items-center justify-center" to={'/teacher/chat'}>
               <ChatIcon />
               <div className="text-sm text-white">메시지</div>
@@ -196,7 +196,7 @@ export function CanteenPage() {
               </small>
             )}
           </div>
-          <div className="bg-gray-8 h-16 w-16 rounded-full">
+          <div className="h-16 w-16 rounded-full bg-gray-700">
             <Link className="flex h-full w-full flex-col items-center justify-center" to={'/teacher/timetable'}>
               <ClockIcon />
               <div className="text-sm text-white">시간표</div>
@@ -220,13 +220,13 @@ export function CanteenPage() {
                 return (
                   <div className="absolute inset-x-0 flex justify-center space-x-0.5">
                     {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_0) && (
-                      <div className="bg-schedule-school h-1 w-1 rounded-full" />
+                      <div className="h-1 w-1 rounded-full bg-violet-500" />
                     )}
                     {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_1) && (
-                      <div className="bg-schedule-teacher h-1 w-1 rounded-full" />
+                      <div className="h-1 w-1 rounded-full bg-blue-500" />
                     )}
                     {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_2) && (
-                      <div className="bg-schedule-group h-1 w-1 rounded-full" />
+                      <div className="h-1 w-1 rounded-full bg-lime-500" />
                     )}
                   </div>
                 )
@@ -245,10 +245,10 @@ export function CanteenPage() {
                   <div
                     className={`h-2 w-2 rounded-full ${
                       schedule.calendarId === CalendarIdEnum.NUMBER_1
-                        ? 'bg-schedule-teacher'
+                        ? 'bg-blue-500'
                         : schedule.calendarId === CalendarIdEnum.NUMBER_2
-                          ? 'bg-schedule-group'
-                          : 'bg-schedule-school'
+                          ? 'bg-lime-500'
+                          : 'bg-violet-500'
                     }`}
                   />
                   <div className="font-bold">{schedule.title}</div>

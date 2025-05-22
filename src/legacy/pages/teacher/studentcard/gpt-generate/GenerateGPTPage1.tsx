@@ -37,7 +37,7 @@ export const GenerateGPTPage1: FC<GenerateGPTPage1Props> = ({
                 {selectedStudentActivityV3s.map((sav) => (
                   <div
                     key={sav.id}
-                    className="border-brand-1 text-15 text-brand-1 relative mr-2 mb-2 inline-block rounded-lg border px-3 py-1.5 whitespace-pre"
+                    className="border-primary-800 text-15 text-primary-800 relative mr-2 mb-2 inline-block rounded-lg border px-3 py-1.5 whitespace-pre"
                   >
                     {sav.activityv3.title}
                     <div

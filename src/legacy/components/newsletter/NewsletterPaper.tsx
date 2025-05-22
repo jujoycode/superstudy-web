@@ -44,11 +44,11 @@ export const NewsletterPaper = forwardRef(({ newsletter, studentNewsletter }: Ne
               </div>
             )}
 
-            {/* <div className="mt-3 pl-4 text-brandblue-1">
+            {/* <div className="mt-3 pl-4 text-blue-500">
               제출 완료 일시 : <Time date={studentNewsletter?.updatedAt} className="text-16 text-inherit" />
             </div>
             {newsletter?.updatedAt && newsletter?.isSubmitted && (
-              <div className="mt-3 pl-4 text-brandblue-1">
+              <div className="mt-3 pl-4 text-blue-500">
                 제출 완료 일시 : <Time date={newsletter.updatedAt} className="text-16 text-inherit" />
               </div>
             )} */}

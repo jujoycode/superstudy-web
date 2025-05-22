@@ -38,7 +38,7 @@ export function BoardMobilePage() {
           <Link
             children="추가"
             to="/teacher/board/add"
-            className="bg-light_orange text-brand-1 hover:bg-brand-1 hover:text-light_orange rounded-md px-4 py-2 text-sm focus:outline-hidden"
+            className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-4 py-2 text-sm focus:outline-hidden"
           />
         </div>
         <div className="flex w-full items-center space-x-2 px-6 pb-6">
@@ -87,7 +87,7 @@ export function BoardMobilePage() {
                     key={board.id}
                     id={board.id}
                     category1={board.category}
-                    category1Color="mint_green"
+                    category1Color="emerald-200"
                     title={board.title}
                     contentText={board.content}
                     contentImages={board.images}

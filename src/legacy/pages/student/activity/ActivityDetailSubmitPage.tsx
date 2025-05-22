@@ -75,7 +75,7 @@ export function ActivityDetailSubmitPage({
               id="textarea1"
               value={summary}
               onChange={(e) => setSummary(e.target.value)}
-              className="focus:border-brand-1 block h-48 w-full rounded-md border border-gray-200 px-4 py-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
+              className="focus:border-primary-800 block h-48 w-full rounded-md border border-gray-200 px-4 py-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
             />
           </div>
         )}
@@ -107,7 +107,7 @@ export function ActivityDetailSubmitPage({
               id="textarea1"
               value={summary}
               onChange={(e) => setSummary(e.target.value)}
-              className="focus:border-brand-1 block h-48 w-full rounded-md border border-gray-200 px-4 py-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
+              className="focus:border-primary-800 block h-48 w-full rounded-md border border-gray-200 px-4 py-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
             />
           </div>
         )}
@@ -151,7 +151,7 @@ export function ActivityDetailSubmitPage({
         )}
         <Divider />
         {studentActivity?.isSubmitted && (
-          <div className="text-brandblue-1 mt-3">
+          <div className="mt-3 text-blue-500">
             제출 완료 일시 : <Time date={studentActivity.updatedAt} className="text-16 text-inherit" /> (
             <Time date={studentActivity.updatedAt} formatDistanceToNow className="text-16 text-inherit" />)
           </div>

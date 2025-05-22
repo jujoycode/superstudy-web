@@ -49,16 +49,8 @@ export function HomePage() {
         <BottomFixed>
           <div className="mx-auto w-full text-center">
             <Section>
-              <div className="hidden">
-                <div className="bg-peach_orange" />
-                <div className="bg-mint_green" />
-                <div className="bg-light_golden" />
-                <div className="bg-lavender_blue" />
-                <div className="text-text_black" />
-              </div>
-
               <div>
-                <button onClick={redirectToStore} className="border-brand-1 rounded-lg border-2 px-4 py-2">
+                <button onClick={redirectToStore} className="border-primary-800 rounded-lg border-2 px-4 py-2">
                   {t('app_download')}
                 </button>
               </div>

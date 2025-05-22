@@ -62,7 +62,7 @@ export function AbsentApprovalPage() {
         title={`${isConfirmType ? '학부모 확인서' : t(`Custom.SID${school?.id}.absentTitle`, '결석신고서')}`}
         left={<div className="h-15 w-10" />}
         right={
-          <div className="text-brand-1" onClick={() => push('/')}>
+          <div className="text-primary-800" onClick={() => push('/')}>
             취소
           </div>
         }
@@ -73,7 +73,7 @@ export function AbsentApprovalPage() {
         <>
           <Section className="scroll-box h-screen-4 overflow-auto">
             {!isSigned ? (
-              <div className="bg-light_orange mb-4 rounded-lg p-4 whitespace-pre-line">
+              <div className="bg-primary-50 mb-4 rounded-lg p-4 whitespace-pre-line">
                 {`[${school?.name || ''} 슈퍼스쿨의 서명 요청]
       ${student?.nokName || ''}님, 귀하의 자녀 ${student?.name || ''} 학생이
       ${t(`Custom.SID${student?.schoolId}.absentTitle`, '결석신고서')}를 신청하였습니다.
@@ -89,7 +89,7 @@ export function AbsentApprovalPage() {
             ) : (
               <>
                 <div>
-                  <div className="bg-light_orange mb-4 rounded-lg p-4 whitespace-pre-line">
+                  <div className="bg-primary-50 mb-4 rounded-lg p-4 whitespace-pre-line">
                     {`${student?.name || ''} 학생의 ${t(`Custom.SID${student?.schoolId}.absentTitle`, '결석신고서')}가 ${
                       student?.nokName || ''
                     }님의 서명을 받았습니다.`}
@@ -239,7 +239,7 @@ export function AbsentApprovalPage() {
                   >
                     <div className="flex items-center space-x-2">
                       <FileItemIcon />
-                      <div className="text-lightpurple-4 min-w-max bg-white px-2">
+                      <div className="min-w-max bg-white px-2 text-indigo-500">
                         <a href={`${Constants.imageUrl}${evidenceFile}`} target="_blank" rel="noreferrer" download>
                           Download
                         </a>
@@ -267,7 +267,7 @@ export function AbsentApprovalPage() {
                   >
                     <div className="flex items-center space-x-2">
                       <FileItemIcon />
-                      <div className="text-lightpurple-4 min-w-max bg-white px-2">
+                      <div className="min-w-max bg-white px-2 text-indigo-500">
                         <a href={`${Constants.imageUrl}${evidenceFile}`} target="_blank" rel="noreferrer" download>
                           Download
                         </a>
@@ -331,7 +331,7 @@ export function AbsentApprovalPage() {
                   rows={3}
                   disabled={!!isSigned}
                   onChange={(e) => setComment(e.target.value)}
-                  className="focus:border-brand-1 rounded-lg focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
+                  className="focus:border-primary-800 rounded-lg focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400"
                 />
               </Label.col>
             )}

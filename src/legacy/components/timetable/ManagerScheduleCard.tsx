@@ -37,7 +37,7 @@ export function ManagerScheduleCard({ manager, userRole }: ManagerScheduleCardPr
       text = <div className="text-sm text-gray-600">승인 완료</div>
       break
     case 'RETURNED':
-      text = <div className="text-brand-1 text-sm">반려됨</div>
+      text = <div className="text-primary-800 text-sm">반려됨</div>
       break
     case 'DELETE_APPEAL':
       text = <div className="text-sm text-red-800">삭제 요청</div>

@@ -35,7 +35,7 @@ export function FileUpload({ children, className, ...props }: FileUploadProps) {
       onDrop={handleDrop}
     >
       {children}
-      <label className="text-brand-1 flex h-12 cursor-pointer items-center justify-center space-x-1">
+      <label className="text-primary-800 flex h-12 cursor-pointer items-center justify-center space-x-1">
         <span className="mb-1 text-2xl text-gray-500">+</span>
         <span className="text-sm">{t('select_file')}</span>
         <input type="file" multiple className="sr-only" {...props} />

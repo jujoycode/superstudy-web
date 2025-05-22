@@ -73,7 +73,7 @@ export function StudentNewsletterApprovalPage() {
         <>
           <Section>
             {!studentNewsletter?.parentSignature ? (
-              <div className="bg-light_orange mb-4 rounded-lg p-4 whitespace-pre-line">
+              <div className="bg-primary-50 mb-4 rounded-lg p-4 whitespace-pre-line">
                 {`해당 가정통신문의 설문 내용에 귀하의 자녀 ${student?.name || ''} 학생이 답변하였습니다.
       내용확인 후 서명을 부탁드립니다.
 
@@ -87,7 +87,7 @@ export function StudentNewsletterApprovalPage() {
             ) : (
               <>
                 <div>
-                  <div className="bg-light_orange mb-4 rounded-lg p-4 whitespace-pre-line">
+                  <div className="bg-primary-50 mb-4 rounded-lg p-4 whitespace-pre-line">
                     {`이 가정통신문의 답변 내용이 ${student?.nokName || ''}님의 서명을 받았습니다.`}
                   </div>
                 </div>

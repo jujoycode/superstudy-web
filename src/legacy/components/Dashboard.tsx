@@ -19,7 +19,7 @@ export function Dashboard() {
   return (
     <>
       {((dashboardItem && dashboardItem?.length > 0) || showParentInfo) && (
-        <div className="bg-orange-3 pb-5 shadow-lg">
+        <div className="bg-orange-100 pb-5 shadow-lg">
           <div className="flex justify-between px-5 pt-3">
             <div className="flex items-center space-x-2 pt-5">
               <div className="text-lg font-bold"> 주요 알림을 확인하세요.</div>
@@ -65,7 +65,7 @@ export function Dashboard() {
 
           {!showAll && dashboardItem && dashboardItem?.length > 3 && (
             <div
-              className="bg-orange-1 mx-5 mt-2 flex h-12 cursor-pointer items-center justify-center rounded-lg font-bold text-gray-500"
+              className="mx-5 mt-2 flex h-12 cursor-pointer items-center justify-center rounded-lg bg-orange-200 font-bold text-gray-500"
               onClick={() => setShowAll(true)}
             >
               더보기 +
