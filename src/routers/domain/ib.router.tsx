@@ -25,10 +25,18 @@ import { ExhibitionDetailPage } from '@/legacy/pages/ib/student/TOK_EXHIBITION/E
 import { ExhibitionMainPage } from '@/legacy/pages/ib/student/TOK_EXHIBITION/ExhibitionMainPage'
 import { ExhibitionPlanDetailPage } from '@/legacy/pages/ib/student/TOK_EXHIBITION/ExhibitionPlanDetailPage'
 import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/student/PlagiarismInspectPage'
+import { AuthRouter } from '../AuthRouter'
+import { AuthGuard } from '../guard/AuthGuard'
 
 export const ibRoutes = {
   path: '/ib/student',
-  element: <IBStudentPage />,
+  element: (
+    <AuthRouter>
+      <AuthGuard>
+        <IBStudentPage />
+      </AuthGuard>
+    </AuthRouter>
+  ),
   children: [
     // IB 메인
     {

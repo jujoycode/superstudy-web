@@ -6,7 +6,7 @@ import { Role } from '@/legacy/generated/model'
 // role별 접근 가능한 URL 패턴 정의
 const ROLE_ACCESS_PATTERNS: Record<Role, RegExp[]> = {
   [Role.ADMIN]: [/^\/admin/, /^\/teacher/],
-  [Role.USER]: [/^\/student/],
+  [Role.USER]: [/^\/student/, /^\/ib/],
   [Role.PARENT]: [/^\/student/],
   [Role.TEACHER]: [/^\/teacher/],
   [Role.PRE_HEAD]: [/^\/teacher/],
