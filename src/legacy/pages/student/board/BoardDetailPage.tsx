@@ -26,7 +26,7 @@ export function BoardDetailPage() {
       {board && (
         <FeedsDetail
           category1={board?.category}
-          category1Color="mint_green"
+          category1Color="emerald-200"
           sendTo={
             (board?.toStudent ? '학생' : '') +
             (board?.toStudent && board?.toParent ? '/' : '') +

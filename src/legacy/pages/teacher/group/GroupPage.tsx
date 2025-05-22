@@ -18,14 +18,14 @@ export function GroupPage() {
   const { allGroups } = useTeacherAllGroup()
 
   const getTextColor = (origin: string) => {
-    return origin === 'TIMETABLE' ? 'text-lavender_blue' : origin === 'KLASS' ? 'text-mint_green' : 'text-primary-800'
+    return origin === 'TIMETABLE' ? 'text-indigo-300' : origin === 'KLASS' ? 'text-emerald-200' : 'text-primary-800'
   }
 
   const getBorderColor = (origin: string) => {
     return origin === 'TIMETABLE'
-      ? 'border-lavender_blue'
+      ? 'border-indigo-300'
       : origin === 'KLASS'
-        ? 'border-mint_green'
+        ? 'border-emerald-200'
         : 'border-primary-800'
   }
 

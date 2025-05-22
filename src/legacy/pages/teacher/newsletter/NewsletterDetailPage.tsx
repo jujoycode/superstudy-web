@@ -50,9 +50,9 @@ export function NewsletterDetailPage() {
     return (
       <FeedsDetail
         category1={newsletter?.category || '가정통신문'}
-        category1Color="light_golden"
+        category1Color="amber-200"
         category2={newsletter?.type === NewsletterType.NOTICE ? '공지' : '설문'}
-        category2Color="lavender_blue"
+        category2Color="indigo-300"
         sendTo={
           (newsletter?.toStudent ? '학생' : '') +
           (newsletter?.toStudent && newsletter?.toParent ? '/' : '') +

@@ -74,7 +74,7 @@ export function NoticeMobilePage() {
                     key={notice.id}
                     id={notice.id}
                     category1={notice.category}
-                    category1Color="peach_orange"
+                    category1Color="orange-200"
                     title={notice.title}
                     contentText={notice.content}
                     contentImages={notice.images}

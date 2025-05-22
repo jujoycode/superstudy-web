@@ -640,12 +640,6 @@
   --color-littlegray: rgba(0, 0, 0, 0.2);
   --color-littleblack: rgba(0, 0, 0, 0.5);
   --color-transblack: rgba(0, 0, 0, 0.8);
-  --color-peach_orange: #fec999;
-  --color-mint_green: #99dcbf;
-  --color-light_golden: #fee799;
-  --color-lavender_blue: #adc1f4;
-  --color-text_black: #222222;
-  --color-coach_orange: #f19b5a;
 
   --color-counselingCategory-0: rgba(0, 168, 95, 0.12);
   --color-counselingCategory-1: rgba(253, 196, 0, 0.12);
@@ -969,39 +963,6 @@
 }
 .text-littleblack {
   color: var(--color-littleblack);
-}
-
-.bg-peach_orange {
-  background-color: var(--color-peach_orange);
-}
-.bg-mint_green {
-  background-color: var(--color-mint_green);
-}
-.bg-light_golden {
-  background-color: var(--color-light_golden);
-}
-.bg-lavender_blue {
-  background-color: var(--color-lavender_blue);
-}
-
-.text-text_black {
-  color: var(--color-text_black);
-}
-
-.bg-coach_orange {
-  background-color: var(--color-coach_orange);
-}
-.text-coach_orange {
-  color: var(--color-coach_orange);
-}
-.border-coach_orange {
-  border-color: var(--color-coach_orange);
-}
-.border-b-coach_orange {
-  border-bottom-color: var(--color-coach_orange);
-}
-.border-t-coach_orange {
-  border-top-color: var(--color-coach_orange);
 }
 
 .bg-counselingCategory-0 {

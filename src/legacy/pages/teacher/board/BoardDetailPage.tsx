@@ -36,7 +36,7 @@ export function BoardDetailPage() {
     return (
       <FeedsDetail
         category1={board?.category || '학급게시판'}
-        category1Color="mint_green"
+        category1Color="emerald-200"
         sendTo={
           (board?.toStudent ? t('student') : '') +
           (board?.toStudent && board?.toParent ? '/' : '') +

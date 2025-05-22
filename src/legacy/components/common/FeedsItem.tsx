@@ -106,8 +106,8 @@ export function FeedsItem({
                   'rounded-md px-2 py-1 text-sm font-bold',
                   newYN
                     ? category1Color
-                      ? `bg-${category1Color} text-text_black`
-                      : 'bg-primary-100 text-text_black'
+                      ? `bg-${category1Color} text-gray-900`
+                      : 'bg-primary-100 text-gray-900'
                     : 'bg-[#ccc] text-[#aaa]',
                 )}
               >
@@ -119,8 +119,8 @@ export function FeedsItem({
                     'rounded-md px-2 py-1 text-sm font-bold',
                     newYN
                       ? category2Color
-                        ? `bg-${category2Color} text-text_black`
-                        : 'bg-primary-100 text-text_black'
+                        ? `bg-${category2Color} text-gray-900`
+                        : 'bg-primary-100 text-gray-900'
                       : 'bg-[#ccc] text-[#aaa]',
                   )}
                 >

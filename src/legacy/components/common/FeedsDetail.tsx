@@ -120,7 +120,7 @@ export function FeedsDetail({
             <div
               className={` ${
                 category1Color ? 'bg-' + category1Color : 'bg-primary-100'
-              } text-text_black rounded-md px-2 py-1 text-sm font-bold`}
+              } rounded-md px-2 py-1 text-sm font-bold text-gray-900`}
             >
               {t(`${category1}`)}
             </div>
@@ -128,7 +128,7 @@ export function FeedsDetail({
               <div
                 className={` ${
                   category2Color ? 'bg-' + category2Color : 'bg-primary-100'
-                } text-text_black rounded-md px-2 py-1 text-sm font-bold`}
+                } rounded-md px-2 py-1 text-sm font-bold text-gray-900`}
               >
                 {t(`${category2}`)}
               </div>
@@ -137,7 +137,7 @@ export function FeedsDetail({
               <div
                 className={` ${
                   sendToColor ? 'bg-' + sendToColor : 'bg-primary-100'
-                } text-text_black rounded-md px-2 py-1 text-sm font-bold`}
+                } rounded-md px-2 py-1 text-sm font-bold text-gray-900`}
               >
                 {t(`${sendTo}`)}
               </div>

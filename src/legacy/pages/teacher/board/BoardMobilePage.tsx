@@ -87,7 +87,7 @@ export function BoardMobilePage() {
                     key={board.id}
                     id={board.id}
                     category1={board.category}
-                    category1Color="mint_green"
+                    category1Color="emerald-200"
                     title={board.title}
                     contentText={board.content}
                     contentImages={board.images}

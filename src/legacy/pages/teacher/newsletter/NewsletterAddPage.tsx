@@ -511,9 +511,9 @@ export function NewsletterAddPage() {
           <div className="w-full rounded-lg border p-3">
             <FeedsDetail
               category1={newsletter?.category || '가정통신문'}
-              category1Color="light_golden"
+              category1Color="amber-200"
               category2={newsletter?.type === NewsletterType.NOTICE ? '공지' : '설문'}
-              category2Color="lavender_blue"
+              category2Color="indigo-300"
               sendTo={
                 (toPerson ? t('individual') : '') +
                 (toStudent ? t('student') : '') +

@@ -407,7 +407,7 @@ export function BoardAddPage() {
           <div className="w-full rounded-lg border p-3">
             <FeedsDetail
               category1={selectedCategory || '학급게시판'}
-              category1Color="mint_green"
+              category1Color="emerald-200"
               title={title}
               sendTo={
                 (toStudent ? t('student') : '') + (toStudent && toParent ? '/' : '') + (toParent ? t('parent') : '')
