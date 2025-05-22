@@ -9,13 +9,13 @@ export type NavigationHeaderProps = {
 
 export function NavigationHeader({ ProfileProps }: NavigationHeaderProps) {
   return (
-    <Container noPadding fixed>
-      <Container flex paddingX="5" gap="4" className="mt-8">
+    <Container noPadding>
+      <Container flex paddingX="5" gap="4">
         {/* Logo & Language Icon & Notification Icon */}
-        <Container flex direction="row" items="center" justify="end" width="15%" noPadding>
+        <Container flex direction="row" items="center" justify="end" noPadding>
           <Icon name="logo" customSize={{ width: '70px', height: '40px' }} />
 
-          <Container flex direction="row" justify="end" items="end" gap="3" noPadding>
+          <Container flex direction="row" justify="end" items="center" gap="3" noPadding>
             <Icon name="world" customSize={{ width: '20px', height: '20px' }} />
             <Icon name="bell" customSize={{ width: '20px', height: '20px' }} />
           </Container>

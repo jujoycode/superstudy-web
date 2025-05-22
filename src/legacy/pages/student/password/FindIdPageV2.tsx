@@ -94,7 +94,7 @@ export function FindIdPageV2() {
                 children={t('find_id')}
                 disabled={buttonDisabled}
                 onClick={() => findId({ name, phone })}
-                className="filled-primary text-19 w-full rounded-lg py-4 font-bold text-white"
+                className="filled-primary text-18 w-full rounded-lg py-4 font-bold text-white"
               />
             </div>
           </section>

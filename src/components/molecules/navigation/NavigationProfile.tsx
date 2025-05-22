@@ -12,9 +12,9 @@ export type NavigationProfileProps = {
 
 export function NavigationProfile({ name, email, school, src }: NavigationProfileProps) {
   return (
-    <Container flex direction="row" justify="between" items="start" gap="3" width="184px" noPadding>
+    <Container flex direction="row" justify="between" items="start" gap="3" noPadding>
       {/* Avatar */}
-      <Container noPadding width="fit">
+      <Container noPadding>
         <Avatar rounded="md" src={src} />
       </Container>
 

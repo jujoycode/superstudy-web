@@ -107,7 +107,7 @@ export function LoginV2() {
               children={t('login')}
               disabled={!email || !password}
               onClick={() => handleLoginClick()}
-              className="filled-primary text-19 w-full rounded-lg py-4 font-bold text-white"
+              className="filled-primary text-18 w-full rounded-lg py-4 font-bold text-white"
               tabIndex={4}
             />
           </div>
