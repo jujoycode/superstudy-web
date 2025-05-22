@@ -1,9 +1,9 @@
-import fs from 'fs'
-import path from 'path'
 import { execSync } from 'child_process'
-import svgr from 'vite-plugin-svgr'
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv, type PluginOption } from 'vite'
+import { visualizer } from 'rollup-plugin-visualizer'
+import { compression } from 'vite-plugin-compression2'
 import react from '@vitejs/plugin-react-swc'
+import svgr from 'vite-plugin-svgr'
 import tailwindcss from '@tailwindcss/vite'
 
 // 메타 태그 생성 함수
@@ -28,21 +28,6 @@ const setupEnvironment = (mode: string) => {
       `❌ ${mode === 'production' ? 'Production' : 'Development'} environment variable setting error:`,
       error,
     )
-  }
-}
-
-// meta.json 파일 복사 함수
-const copyMetaJson = () => {
-  try {
-    const metaFile = path.resolve(__dirname, 'meta.json')
-    const destDir = path.resolve(__dirname, 'build')
-
-    if (fs.existsSync(metaFile)) {
-      fs.copyFileSync(metaFile, path.join(destDir, 'meta.json'))
-      console.log('✅ Copy meta.json file to build folder.')
-    }
-  } catch (err) {
-    console.error('Copy meta.json file error:', err)
   }
 }
 
@@ -97,15 +82,9 @@ export default defineConfig(({ mode }) => {
         tsDecorators: true,
         plugins: [],
       }),
-      {
-        name: 'copy-meta-json',
-        closeBundle() {
-          if (mode === 'production') {
-            copyMetaJson()
-          }
-        },
-      },
       tailwindcss(),
+      compression(),
+      visualizer() as PluginOption,
     ],
     // 환경 변수 정의
     define: {
