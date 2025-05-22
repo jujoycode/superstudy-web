@@ -51,6 +51,14 @@ export function getDefaultPath(role: Role) {
   }
 }
 
+export function getFirstVisitPath(role: Role) {
+  if (role === Role.USER || role === Role.PARENT) {
+    return '/first-login'
+  } else {
+    return '/teacher/first-login'
+  }
+}
+
 export function AuthGuard({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate()
   const location = useLocation()
@@ -63,13 +71,16 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
         return
       }
 
-      const { role } = me
+      const { role, firstVisit } = me
       const currentPath = location.pathname
-
       // 현재 URL이 role의 접근 가능한 URL 패턴과 일치하는지 확인
       const hasAccess = ROLE_ACCESS_PATTERNS[role].some((pattern) => {
         return pattern.test(currentPath)
       })
+
+      if (firstVisit) {
+        navigate(getFirstVisitPath(role), { replace: true })
+      }
 
       if (!hasAccess) {
         navigate(getDefaultPath(role), { replace: true })
