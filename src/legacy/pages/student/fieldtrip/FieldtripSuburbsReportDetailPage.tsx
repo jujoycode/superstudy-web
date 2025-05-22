@@ -144,7 +144,7 @@ export function FieldtripSuburbsReportDetailPage() {
                 return
               }
             }}
-            className="text-littleblack w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold"
+            className="w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold text-neutral-500"
           />
         </div>
       </SuperModal>

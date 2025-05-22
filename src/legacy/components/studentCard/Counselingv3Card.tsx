@@ -220,7 +220,7 @@ export default function Counselingv3Card() {
           </>
         )}
         {(isAddMode || isEditMode) && (
-          <div className="bg-littleblack fixed inset-0 z-60 flex h-screen w-full items-center justify-center">
+          <div className="fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-neutral-500">
             <section className="relative mx-4 flex h-2/3 w-full flex-col rounded-lg bg-white p-6 pb-20 md:mx-0 md:h-1/2 md:w-1/2 md:pb-0">
               <div className="flex items-center justify-between md:pb-4">
                 <h1 className="text-xl font-bold">상담카드 작성</h1>

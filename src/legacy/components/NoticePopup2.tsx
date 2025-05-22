@@ -38,7 +38,7 @@ export function NoticePopup2({
   const imageSrc = 'https://kr.object.gov-ncloudstorage.com/superschool/storage/notice/loginpopup3.jpg'
   return (
     <div
-      className={`bg-littleblack fixed inset-0 z-60 flex h-screen w-full items-center justify-center ${
+      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-neutral-500 ${
         !noticeOpen && 'hidden'
       }`}
       onClick={(e) => {

@@ -46,7 +46,7 @@ export const RecordItem: FC<RecordItemProps> = ({ record, refetch }) => {
 
   return (
     <>
-      {isRecordLoading && <div className="bg-littleblack absolute inset-0">로딩 중...</div>}
+      {isRecordLoading && <div className="absolute inset-0 bg-neutral-500">로딩 중...</div>}
       <div>
         {updateView ? (
           <>

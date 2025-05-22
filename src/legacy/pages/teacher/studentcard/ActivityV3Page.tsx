@@ -316,7 +316,7 @@ export const ActivityV3Page = () => {
 
       {open && studentInfo && (
         <>
-          <div className="bg-littleblack fixed inset-0 z-10"></div>
+          <div className="fixed inset-0 z-10 bg-neutral-500"></div>
           <div className="scroll-box fixed inset-x-0 inset-y-12 z-20 flex flex-col overflow-y-scroll rounded-3xl border border-gray-300 md:inset-x-6 md:inset-y-10 md:flex-row">
             <ActivityV3GPTModal
               activityV3s={_activityV3s}
@@ -334,7 +334,7 @@ export const ActivityV3Page = () => {
       )}
       {coachmarkVisible && (
         <>
-          <div className="bg-littleblack fixed inset-0 z-10"></div>
+          <div className="fixed inset-0 z-10 bg-neutral-500"></div>
           <div className="scroll-box fixed inset-x-0 inset-y-12 z-20 flex flex-col overflow-y-scroll rounded-3xl border border-gray-300 md:inset-x-10 md:inset-y-10 md:flex-row">
             <div className="relative flex h-full w-full flex-row bg-white">
               <Icon.Close

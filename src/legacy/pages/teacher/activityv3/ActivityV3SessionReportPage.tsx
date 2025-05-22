@@ -601,7 +601,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                 {/* 1:1 피드백 영역 */}
                 <div className="flex h-full w-1/3 flex-col overflow-hidden rounded-sm border border-neutral-400">
                   <div className="relative h-full w-full flex-col space-y-4 overflow-y-auto bg-white p-5">
-                    {isSessionCommentLoading && <div className="bg-littleblack absolute inset-0">로딩 중...</div>}
+                    {isSessionCommentLoading && <div className="absolute inset-0 bg-neutral-500">로딩 중...</div>}
                     {studentActivitySession?.sessionComments
                       ?.sort((a, b) => (new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1))
                       ?.map((sessionComment) => (

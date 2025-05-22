@@ -138,7 +138,7 @@ export function CustomTuiModal({
 
   return (
     <div
-      className={`bg-littleblack fixed inset-0 z-60 flex h-screen w-full items-center justify-center ${
+      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-neutral-500 ${
         !isOpen && 'hidden'
       }`}
     >

@@ -196,7 +196,7 @@ export const GeneralCardPage: FC = () => {
       </div>
       {open && (
         <>
-          <div className="bg-littleblack fixed inset-0 z-10"></div>
+          <div className="fixed inset-0 z-10 bg-neutral-500"></div>
           <div className="scroll-box fixed inset-x-0 inset-y-12 z-20 flex flex-col overflow-y-scroll rounded-3xl border border-gray-300 md:inset-x-10 md:inset-y-10 md:flex-row">
             <GeneralGPTModal
               studentId={Number(id)}
@@ -223,7 +223,7 @@ export const GeneralCardPage: FC = () => {
       )}
       {coachmarkVisible && (
         <>
-          <div className="bg-littleblack fixed inset-0 z-10"></div>
+          <div className="fixed inset-0 z-10 bg-neutral-500"></div>
           <div className="scroll-box fixed inset-0 z-20 flex items-center justify-center">
             <div className="h-screen-6 relative my-12 w-full max-w-[400px] min-w-[35%] overflow-hidden rounded-3xl">
               <Icon.Close

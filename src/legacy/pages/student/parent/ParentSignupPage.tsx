@@ -140,7 +140,7 @@ export function ParentSignupPage() {
             e.preventDefault()
             e.stopPropagation()
           }}
-          className="bg-littleblack fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center"
+          className="fixed inset-0 z-100 m-0 flex h-screen w-full items-center justify-center bg-neutral-500"
           style={{ height }}
         >
           {/* TODO 수정 필요 */}

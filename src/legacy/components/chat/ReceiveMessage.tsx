@@ -285,7 +285,7 @@ export function ReceiveMessage({
         {hasImagesModalOpen &&
           (isMobile() ? (
             <a
-              className="bg-littleblack fixed top-0 left-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full"
+              className="fixed top-0 left-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full bg-neutral-500"
               href={viewerImages[activeIndex].src}
               target="_blank"
               rel="noreferrer"
@@ -295,7 +295,7 @@ export function ReceiveMessage({
             </a>
           ) : (
             <div
-              className="bg-littleblack fixed top-0 left-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full"
+              className="fixed top-0 left-0 z-[1100] h-10 w-10 cursor-pointer rounded-br-full bg-neutral-500"
               onClick={() => downloadFile(viewerImages[activeIndex].src)}
             >
               <Icon.Download className="mt-1 ml-1" stroke="#FFF" />

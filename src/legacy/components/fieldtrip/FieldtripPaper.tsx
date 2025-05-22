@@ -525,7 +525,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                   <div className="flex w-full items-center justify-end space-x-2">
                     <div className="whitespace-pre">학생 : {fieldtrip?.student?.name} </div>
                     <div className="relative" style={{ width: '75px', minHeight: '50px' }}>
-                      <div className="text-littleblack absolute" style={{ top: '13px', left: '27px' }}>
+                      <div className="absolute text-neutral-500" style={{ top: '13px', left: '27px' }}>
                         (인)
                       </div>
                       {fieldtrip?.studentSignature && (
@@ -537,7 +537,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                   <div className="-mt-6 flex w-full items-center justify-end space-x-2">
                     <div className="whitespace-pre">보호자 : {fieldtrip?.student?.nokName} </div>
                     <div className="relative" style={{ width: '75px', minHeight: '50px' }}>
-                      <div className="text-littleblack absolute" style={{ top: '13px', left: '27px' }}>
+                      <div className="absolute text-neutral-500" style={{ top: '13px', left: '27px' }}>
                         (인)
                       </div>
 
@@ -752,7 +752,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                       {schoolName} {fieldtrip?.studentGradeKlass} {fieldtrip?.approver1Title} 교사{' '}
                     </div>
                     <div className="relative" style={{ width: '75px', minHeight: '50px' }}>
-                      <div className="text-littleblack absolute" style={{ top: '15px', left: '37px' }}>
+                      <div className="absolute text-neutral-500" style={{ top: '15px', left: '37px' }}>
                         (인)
                       </div>
                       {fieldtrip?.approver1Signature && (
@@ -1200,7 +1200,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                   <div className="flex w-full items-center justify-end space-x-2">
                     <div className="whitespace-pre">보호자 {fieldtrip?.student?.nokName}:</div>
                     <div className="relative" style={{ width: '75px', minHeight: '50px' }}>
-                      <div className="text-littleblack absolute" style={{ top: '13px', left: '37px' }}>
+                      <div className="absolute text-neutral-500" style={{ top: '13px', left: '37px' }}>
                         (인)
                       </div>
                       {fieldtrip?.parentResultSignature && (
@@ -1211,7 +1211,7 @@ export function FieldtripPaper({ school, fieldtrip, content, type, resultTextPag
                   <div className="-mt-5 flex w-full items-center justify-end space-x-2">
                     <div className="whitespace-pre">학생 {fieldtrip?.student?.name}:</div>
                     <div className="relative" style={{ width: '75px', minHeight: '50px' }}>
-                      <div className="text-littleblack absolute" style={{ top: '13px', left: '37px' }}>
+                      <div className="absolute text-neutral-500" style={{ top: '13px', left: '37px' }}>
                         (인)
                       </div>
                       {fieldtrip?.studentResultSignature && (

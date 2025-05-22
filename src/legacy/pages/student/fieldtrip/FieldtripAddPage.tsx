@@ -1124,7 +1124,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
           <button
             children="닫기"
             onClick={() => setSuburbsModalopen(false)}
-            className="text-littleblack w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold"
+            className="w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold text-neutral-500"
           />
         </div>
       </SuperModal>
@@ -1174,7 +1174,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
           <button
             children="닫기"
             onClick={() => setHomeModalopen(false)}
-            className="text-littleblack w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold"
+            className="w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold text-neutral-500"
           />
         </div>
       </SuperModal>
@@ -1198,7 +1198,7 @@ export function FieldtripAddPage({ fieldtripData, returnToDetail }: FieldtripAdd
           <button
             children="닫기"
             onClick={() => setInfoHalfDayModalopen(false)}
-            className="text-littleblack w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold"
+            className="w-4/5 rounded-lg border border-gray-100 bg-gray-100 py-2 font-bold text-neutral-500"
           />
         </div>
       </SuperModal>

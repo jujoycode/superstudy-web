@@ -241,7 +241,7 @@ export const StudentActivityDetail: React.FC<StudentActivityDetailProps> = ({ ac
           <div className="text-24 mb-4 font-bold">관찰기록</div>
           <div className="flex h-full w-full flex-col overflow-hidden rounded-sm border border-neutral-400">
             <div className="relative h-full w-full flex-col space-y-4 overflow-y-auto bg-white p-5">
-              {isRecordLoading && <div className="bg-littleblack absolute inset-0">로딩 중...</div>}
+              {isRecordLoading && <div className="absolute inset-0 bg-neutral-500">로딩 중...</div>}
               {studentActivityV3.records
                 ?.slice()
                 .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())

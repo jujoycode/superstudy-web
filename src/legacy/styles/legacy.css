@@ -22,7 +22,7 @@
   display: flex;
   width: 100%;
   border-top-width: 1px;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
 }
@@ -75,7 +75,7 @@
 
 .chip-selected {
   background-color: var(--color-primary-800);
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .file-upload {
@@ -83,7 +83,7 @@
   border-width: 2px;
   border-style: dashed;
   border-color: var(--color-gray-500);
-  background-color: #ffffff;
+  background-color: var(--color-white);
 }
 
 .horizontal-scroll-view-inner {
@@ -106,7 +106,7 @@
   border-width: 2px;
   border-style: dashed;
   border-color: var(--color-gray-500);
-  background-color: #ffffff;
+  background-color: var(--color-white);
 }
 
 .list {
@@ -275,7 +275,7 @@
   height: 2.5rem;
   overflow-y: hidden;
   border-bottom-width: 1px;
-  background-color: #ffffff;
+  background-color: var(--color-white);
 }
 
 .tabs-item {
@@ -297,7 +297,7 @@
 .ib-tabs {
   width: fit-content;
   border-collapse: collapse;
-  background-color: #ffffff;
+  background-color: var(--color-white);
 }
 
 .ib-tabs-item {
@@ -637,10 +637,6 @@
   --color-old-primary-blue-800: #0066ff;
 
   /* Colors */
-  --color-littlegray: rgba(0, 0, 0, 0.2);
-  --color-littleblack: rgba(0, 0, 0, 0.5);
-  --color-transblack: rgba(0, 0, 0, 0.8);
-
   --color-counselingCategory-0: rgba(0, 168, 95, 0.12);
   --color-counselingCategory-1: rgba(253, 196, 0, 0.12);
   --color-counselingCategory-2: rgba(50, 99, 227, 0.12);
@@ -768,7 +764,7 @@
 }
 
 .feedback_space a {
-  color: #2f80ed;
+  color: var(--color-blue-500);
 }
 .feedback_space a:hover {
   text-decoration: underline;
@@ -950,17 +946,6 @@
   color: var(--color-light_orange);
 }
 
-.bg-littlegray {
-  background-color: var(--color-littlegray);
-}
-
-.bg-littleblack {
-  background-color: var(--color-littleblack);
-}
-.text-littleblack {
-  color: var(--color-littleblack);
-}
-
 .bg-counselingCategory-0 {
   background-color: var(--color-counselingCategory-0);
 }
@@ -981,16 +966,16 @@
 .filled-primary {
   background-color: var(--color-primary-800);
   border: 1px solid transparent;
-  color: #ffffff;
+  color: var(--color-white);
 }
 .filled-primary:disabled {
-  background-color: #f8efe4;
+  background-color: var(--color-primary-100);
 }
 
 .filled-gray {
   background-color: var(--color-gray-500);
   border: 1px solid transparent;
-  color: #ffffff;
+  color: var(--color-white);
 }
 .filled-gray:disabled {
   background-color: var(--color-gray-200);
@@ -999,7 +984,7 @@
 .filled-gray-dark {
   background-color: var(--color-gray-800);
   border: 1px solid transparent;
-  color: #ffffff;
+  color: var(--color-white);
 }
 .filled-gray-dark:disabled {
   background-color: var(--color-gray-200);
@@ -1008,7 +993,7 @@
 .filled-gray-300 {
   background-color: var(--color-gray-300);
   border: 1px solid transparent;
-  color: #ffffff;
+  color: var(--color-white);
 }
 .filled-gray-300:disabled {
   background-color: var(--color-gray-200);
@@ -1019,13 +1004,13 @@
   border: 1px solid transparent;
 }
 .filled-gray-light:disabled {
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .filled-blue {
   background-color: var(--color-blue-500);
   border: 1px solid transparent;
-  color: #ffffff;
+  color: var(--color-white);
 }
 .filled-blue:disabled {
   background-color: var(--color-gray-200);
@@ -1034,7 +1019,7 @@
 .filled-green {
   background-color: var(--color-green-500);
   border: 1px solid transparent;
-  color: #ffffff;
+  color: var(--color-white);
 }
 .filled-green:disabled {
   background-color: var(--color-gray-200);
@@ -1043,7 +1028,7 @@
 .filled-red {
   background-color: var(--color-red-500);
   border: 1px solid transparent;
-  color: #ffffff;
+  color: var(--color-white);
 }
 .filled-red:disabled {
   background-color: var(--color-gray-200);
@@ -1055,20 +1040,20 @@
   color: var(--color-red-500);
 }
 .filled-red-light:disabled {
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .filled-yellow {
   background-color: var(--color-yellow-500);
   border: 1px solid transparent;
-  color: #ffffff;
+  color: var(--color-white);
 }
 .filled-yellow:disabled {
   background-color: var(--color-gray-200);
 }
 
 .outlined-primary {
-  background-color: #ffffff;
+  background-color: var(--color-white);
   border: 1px solid var(--color-primary-800);
   color: var(--color-primary-800);
 }
@@ -1082,7 +1067,7 @@
 }
 
 .outlined-gray {
-  background-color: #ffffff;
+  background-color: var(--color-white);
   border: 1px solid var(--color-gray-400);
   color: var(--color-gray-700);
 }
@@ -1096,7 +1081,7 @@
 }
 
 .outlined-blue {
-  background-color: #ffffff;
+  background-color: var(--color-white);
   border: 1px solid var(--color-blue-500);
   color: var(--color-blue-500);
 }

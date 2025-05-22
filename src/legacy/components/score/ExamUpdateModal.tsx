@@ -63,7 +63,7 @@ export function ExamUpdateModal({
 
   return (
     <div
-      className={`bg-littlegray fixed inset-0 z-60 flex h-screen w-full items-center justify-center ${
+      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-neutral-300 ${
         modalOpen ? 'backdrop-blur-xs' : 'hidden'
       }`}
       onClick={(e) => {
