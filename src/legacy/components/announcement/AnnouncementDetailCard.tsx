@@ -48,10 +48,10 @@ export default function AnnouncementDetailCard({ announcement }: AnnouncementPro
   }
 
   const recipients = [
-    { label: '관리자', isActive: announcement?.toAdmin, color: 'bg-users-admin' },
-    { label: '선생님', isActive: announcement?.toTeacher, color: 'bg-users-teacher' },
-    { label: '학생', isActive: announcement?.toStudent, color: 'bg-users-user' },
-    { label: '보호자', isActive: announcement?.toParent, color: 'bg-users-user' },
+    { label: '관리자', isActive: announcement?.toAdmin, color: 'bg-blue-600' },
+    { label: '선생님', isActive: announcement?.toTeacher, color: 'bg-emerald-600' },
+    { label: '학생', isActive: announcement?.toStudent, color: 'bg-amber-400' },
+    { label: '보호자', isActive: announcement?.toParent, color: 'bg-amber-400' },
   ]
 
   return (

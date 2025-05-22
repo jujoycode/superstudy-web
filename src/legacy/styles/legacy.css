@@ -646,10 +646,6 @@
   --color-counselingCategory-2: rgba(50, 99, 227, 0.12);
   --color-counselingCategory-3: rgba(252, 121, 0, 0.12);
 
-  --color-users-user: #fdc400;
-  --color-users-teacher: #00a85f;
-  --color-users-admin: #3263e3;
-
   /* Gradient */
   --color-gradient-green-400: linear-gradient(rgba(0, 190, 133, 1), rgba(118, 218, 188, 1));
   --color-gradient-green-800: linear-gradient(rgba(0, 168, 118, 1), rgba(92, 202, 175, 1));
@@ -976,16 +972,6 @@
 }
 .bg-counselingCategory-3 {
   background-color: var(--color-counselingCategory-3);
-}
-
-.bg-users-user {
-  background-color: var(--color-users-user);
-}
-.bg-users-teacher {
-  background-color: var(--color-users-teacher);
-}
-.bg-users-admin {
-  background-color: var(--color-users-admin);
 }
 
 .backdrop-blur-20 {

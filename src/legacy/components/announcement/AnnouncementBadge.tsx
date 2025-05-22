@@ -16,10 +16,10 @@ export default function AnnouncementBadge({ news, type }: AnnouncementBadgeProps
   const { t } = useLanguage()
 
   const recipients = [
-    { label: t('administrator'), isActive: news.toAdmin, color: 'bg-users-admin' },
-    { label: t('teacher'), isActive: news.toTeacher, color: 'bg-users-teacher' },
-    { label: t('student'), isActive: news.toStudent, color: 'bg-users-user' },
-    { label: t('parent'), isActive: news.toParent, color: 'bg-users-user' },
+    { label: t('administrator'), isActive: news.toAdmin, color: 'bg-blue-600' },
+    { label: t('teacher'), isActive: news.toTeacher, color: 'bg-emerald-600' },
+    { label: t('student'), isActive: news.toStudent, color: 'bg-amber-400' },
+    { label: t('parent'), isActive: news.toParent, color: 'bg-amber-400' },
   ]
 
   return (
