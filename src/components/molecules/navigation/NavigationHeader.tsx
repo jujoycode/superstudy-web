@@ -10,10 +10,10 @@ export type NavigationHeaderProps = {
 
 export function NavigationHeader({ ProfileProps }: NavigationHeaderProps) {
   return (
-    <Grid col={12} gap={5}>
-      <GridItem colSpan={1}>{''}</GridItem>
+    <Grid col={12}>
+      <GridItem colSpan={1} empty />
       <GridItem colSpan={10}>
-        <Grid col={1} row={2}>
+        <Grid col={1} row={2} className="pt-8">
           <GridItem>
             <Flex direction="row" justify="between" items="center" gap="3">
               <Icon name="logo" customSize={{ width: '70px', height: '40px' }} />
@@ -31,7 +31,7 @@ export function NavigationHeader({ ProfileProps }: NavigationHeaderProps) {
           </GridItem>
         </Grid>
       </GridItem>
-      <GridItem colSpan={1}>{''}</GridItem>
+      <GridItem colSpan={1} empty />
     </Grid>
   )
 }

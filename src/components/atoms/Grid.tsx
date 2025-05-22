@@ -58,7 +58,14 @@ export function Grid({ children, className, col = 12, row, gap = 0 }: ContainerP
 
   return (
     <Box
-      className={cn('grid', col && gridTemplateColumns[col], row && gridTemplateRows[row], gapClasses[gap], className)}
+      className={cn(
+        'h-full',
+        'grid',
+        col && gridTemplateColumns[col],
+        row && gridTemplateRows[row],
+        gapClasses[gap],
+        className,
+      )}
     >
       {children}
     </Box>

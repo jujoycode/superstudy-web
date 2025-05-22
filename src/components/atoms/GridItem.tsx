@@ -2,13 +2,14 @@ import { cn } from '@/utils/commonUtil'
 import { Box } from './Box'
 
 interface GridItemProps {
-  children: React.ReactNode
   colSpan?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'full'
   rowSpan?: 1 | 2 | 3 | 4 | 5 | 6
   className?: string
+  empty?: boolean
+  children?: React.ReactNode
 }
 
-export function GridItem({ children, colSpan, rowSpan, className }: GridItemProps) {
+export function GridItem({ children, colSpan, rowSpan, className, empty }: GridItemProps) {
   // 그리드 컬럼 스팬 클래스 매핑
   const colSpanClasses = {
     1: 'col-span-1',
@@ -37,8 +38,15 @@ export function GridItem({ children, colSpan, rowSpan, className }: GridItemProp
   }
 
   return (
-    <Box className={cn(colSpan && colSpanClasses[colSpan], rowSpan && rowSpanClasses[rowSpan], className)}>
-      {children}
+    <Box
+      className={cn(
+        colSpan && colSpanClasses[colSpan],
+        rowSpan && rowSpanClasses[rowSpan],
+        empty && 'h-full w-full',
+        className,
+      )}
+    >
+      {empty ? null : children}
     </Box>
   )
 }
