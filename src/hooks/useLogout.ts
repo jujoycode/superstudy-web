@@ -1,7 +1,7 @@
 // src/legacy/util/hooks.ts
-import { useNavigate } from 'react-router'
 import { useBrowserStorage } from '@/hooks/useBrowserStorage'
 import { useAuthStore } from '@/stores/auth'
+import { useUserStore } from '@/stores/user'
 import { RN } from '@/legacy/lib/rn'
 
 export function useAuth() {
@@ -13,9 +13,8 @@ export function useAuth() {
 
 export function useLogout() {
   const { removeStorage } = useBrowserStorage()
-  const navigate = useNavigate()
-  const resetAuthStore = useAuthStore((state) => state.reset)
-  const setIsStayLoggedIn = useAuthStore((state) => state.setIsStayLoggedIn)
+  const { reset } = useUserStore()
+  const { reset: resetAuthStore } = useAuthStore()
 
   return () => {
     const tagValue = { schoolId: null, role: null }
@@ -30,8 +29,7 @@ export function useLogout() {
     localStorage.removeItem('tabType')
     localStorage.removeItem('reqParent_userInfo')
     resetAuthStore()
-    setIsStayLoggedIn(false)
-
-    navigate('/login')
+    reset()
+    window.location.replace('/login')
   }
 }

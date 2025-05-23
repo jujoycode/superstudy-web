@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { Navigate } from 'react-router'
 import { useAuthStore } from '@/stores/auth'
 import { useUserStore } from '@/stores/user'
 import { useSchoolPropertyGetProperties } from '@/legacy/generated/endpoint'
@@ -13,7 +12,7 @@ export function useAuth() {
 
 export function useLogout() {
   const { reset: resetAuth } = useAuthStore()
-  const { setChild } = useUserStore()
+  const { reset } = useUserStore()
 
   return () => {
     RN.flareLane('setUserId', null)
@@ -27,9 +26,8 @@ export function useLogout() {
     // localStorage.removeItem('isStayLoggedIn')
 
     resetAuth()
-    setChild(undefined)
-
-    Navigate({ to: '/login' })
+    reset()
+    window.location.replace('/login')
   }
 }
 

@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
 import { useHistory } from '@/hooks/useHistory'
+import { useLogout } from '@/hooks/useLogout'
 import { BackButton, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { Toast } from '@/legacy/components/Toast'
 import { useOtp } from '@/legacy/container/otp'
-import { useLogout } from '@/legacy/util/hooks'
 import { Validator } from '@/legacy/util/validator'
 
 export function TwoFactor() {
