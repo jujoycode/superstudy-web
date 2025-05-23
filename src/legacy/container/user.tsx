@@ -59,7 +59,7 @@ export function userHook() {
         RN.flareLane('setUserId', res?.email)
         RN.flareLane('setTags', tagValue)
       },
-      enabled: !!token,
+      enabled: !!token && !me,
     },
   })
 
