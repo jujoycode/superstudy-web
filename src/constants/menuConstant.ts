@@ -1,7 +1,7 @@
 import { NavigationItemProps } from '@/molecules/navigation/NavigationItem'
 
 export class MenuConstant {
-  public static readonly MENU_ITEMS = [
+  public static readonly TEACHER_MENU = [
     {
       name: '출석',
       children: [

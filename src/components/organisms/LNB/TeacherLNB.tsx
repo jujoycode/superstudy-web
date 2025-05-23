@@ -1,6 +1,7 @@
 import { MenuConstant } from '@/constants/menuConstant'
 import { Box } from '@/atoms/Box'
 import { Divider } from '@/atoms/Divider'
+import { Flex } from '@/atoms/Flex'
 import { Grid } from '@/atoms/Grid'
 import { GridItem } from '@/atoms/GridItem'
 import { ScrollArea } from '@/atoms/ScrollArea'
@@ -25,7 +26,7 @@ export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
       <GridItem className="row-span-10">
         <ScrollArea>
           <Box width="full" padding="5" className="mt-4 pt-0">
-            {MenuConstant.MENU_ITEMS.map((items) => {
+            {MenuConstant.TEACHER_MENU.map((items) => {
               return (
                 <>
                   <Box padding="3">
