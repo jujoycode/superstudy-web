@@ -14,8 +14,7 @@ export function useAuth() {
 export function useLogout() {
   const { removeStorage } = useBrowserStorage()
   const navigate = useNavigate()
-  const resetAuthStore = useAuthStore((state) => state.reset)
-  const setIsStayLoggedIn = useAuthStore((state) => state.setIsStayLoggedIn)
+  const { resetAuthStore, setIsStayLoggedIn } = useAuthStore()
 
   return () => {
     const tagValue = { schoolId: null, role: null }

@@ -100,26 +100,6 @@ export default tseslint.config(
               position: 'before',
             },
             {
-              pattern: '@/atoms/**',
-              group: 'internal',
-              position: 'before',
-            },
-            {
-              pattern: '@/molecules/**',
-              group: 'internal',
-              position: 'before',
-            },
-            {
-              pattern: '@/organisms/**',
-              group: 'internal',
-              position: 'before',
-            },
-            {
-              pattern: '@/pages/**',
-              group: 'internal',
-              position: 'before',
-            },
-            {
               pattern: '@/layouts/**',
               group: 'internal',
               position: 'before',
@@ -151,6 +131,26 @@ export default tseslint.config(
             },
             {
               pattern: '@/routers',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/atoms/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/molecules/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/organisms/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/pages/**',
               group: 'internal',
               position: 'before',
             },

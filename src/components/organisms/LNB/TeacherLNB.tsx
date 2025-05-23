@@ -1,10 +1,13 @@
+import { MenuConstant } from '@/constants/menuConstant'
 import { Box } from '@/atoms/Box'
 import { Divider } from '@/atoms/Divider'
 import { Flex } from '@/atoms/Flex'
 import { Grid } from '@/atoms/Grid'
 import { GridItem } from '@/atoms/GridItem'
 import { ScrollArea } from '@/atoms/ScrollArea'
+import { Text } from '@/atoms/Text'
 import { NavigationHeader } from '@/molecules/navigation/NavigationHeader'
+import { NavigationItem } from '@/molecules/navigation/NavigationItem'
 import type { NavigationProfileProps } from '@/molecules/navigation/NavigationProfile'
 
 export type TeacherLNBProps = {
@@ -17,22 +20,30 @@ export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
       {/* Header */}
       <GridItem rowSpan={2}>
         <NavigationHeader ProfileProps={HeaderProps} />
+        <Divider marginY="0" />
       </GridItem>
-      <Divider marginY="4" />
 
-      {/* 여기서 남은 행을 모두 차지하도록 rowSpan 설정 */}
-      <GridItem rowSpan={6} className="h-full">
+      <GridItem className="row-span-10">
         <ScrollArea>
-          <Box className="bg-primary-50">
-            테스트 value
-            {/* 스크롤 테스트를 위한 추가 콘텐츠 */}
-            {Array(20)
-              .fill(0)
-              .map((_, i) => (
-                <div key={i} className="py-4">
-                  테스트 아이템 {i + 1}
-                </div>
-              ))}
+          <Box width="full" padding="5" className="mt-4 pt-0">
+            {MenuConstant.MENU_ITEMS.map((items) => {
+              return (
+                <>
+                  <Box padding="3">
+                    <Text variant="sub" className="mb-1" size="sm">
+                      {items.name}
+                    </Text>
+                    <Flex direction="col" gap="0.5">
+                      {items.children?.map((menu) => {
+                        return <NavigationItem {...menu} />
+                      })}
+                    </Flex>
+                  </Box>
+
+                  <Divider marginY="0" />
+                </>
+              )
+            })}
           </Box>
         </ScrollArea>
       </GridItem>
