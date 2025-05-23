@@ -10,12 +10,12 @@ import { useBrowserStorage } from '@/legacy/hooks/useBrowserStorage'
 import { useLogoutOnIdle } from '@/legacy/hooks/useLogoutOnIdle'
 import { RN } from '@/legacy/lib/rn'
 import { errorType } from '@/legacy/types'
-import { useLogout } from '@/legacy/util/hooks'
 import { isEmail } from '@/legacy/util/validator'
 import { useUserStore } from '@/stores/user'
 import { useAuthStore } from '@/stores/auth'
 import { useSchoolStore } from '@/stores/school'
 import { createContainer } from './createContainer'
+import { useLogout } from '../util/hooks'
 
 export function userHook() {
   const logout = useLogout()
