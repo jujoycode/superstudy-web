@@ -7,12 +7,7 @@ interface ScrollAreaProps {
   scrollbarTrack?: string // 스크롤바 track 색상 (예: 'transparent')
 }
 
-export function ScrollArea({
-  className,
-  children,
-  scrollbarThumb = 'gray-300',
-  scrollbarTrack = 'transparent',
-}: ScrollAreaProps) {
+export function ScrollArea({ className, children }: ScrollAreaProps) {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
       event.preventDefault()
@@ -22,11 +17,17 @@ export function ScrollArea({
   return (
     <div
       className={cn(
-        'overflow-x-auto overflow-y-auto', // 가로 및 세로 스크롤 활성화
-        'scrollbar-thin', // 스크롤바 너비 조정
+        'overflow-y-auto',
         'h-full',
-        scrollbarThumb && `scrollbar-thumb-${scrollbarThumb}`, // thumb 색상
-        scrollbarTrack && `scrollbar-track-${scrollbarTrack}`, // track 색상
+        'bg-transparent',
+        '[&::-webkit-scrollbar]:w-1',
+        '[&::-webkit-scrollbar]:bg-transparent',
+        '[&::-webkit-scrollbar-track]:bg-transparent',
+        '[&::-webkit-scrollbar-thumb]:bg-gray-400',
+        '[&::-webkit-scrollbar-thumb]:rounded-full',
+        '[&::-webkit-scrollbar-thumb]:opacity-0',
+        'hover:[&::-webkit-scrollbar-thumb]:opacity-100',
+        'transition-opacity duration-300',
         className,
       )}
       tabIndex={0}

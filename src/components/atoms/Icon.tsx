@@ -5,8 +5,17 @@ import { ReactComponent as World } from '@/assets/icons/new-world.svg'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { ReactComponent as RightFillArrow } from '@/assets/svg/RightFillArrow.svg'
 import { ReactComponent as RightUpArrow } from '@/assets/svg/RightUpArrow.svg'
+import { ReactComponent as UnderFillArrow } from '@/assets/svg/UnderFillArrow.svg'
 
-type IconName = 'logo' | 'world' | 'bell' | 'rightFillArrow' | 'rightUpArrow' | 'chevronDown' | 'chevronUp'
+type IconName =
+  | 'logo'
+  | 'world'
+  | 'bell'
+  | 'rightFillArrow'
+  | 'rightUpArrow'
+  | 'chevronDown'
+  | 'chevronUp'
+  | 'underFillArrow'
 
 export type IconProps = {
   name: IconName
@@ -51,6 +60,7 @@ export function Icon({
     world: World,
     bell: Bell,
     rightFillArrow: RightFillArrow,
+    underFillArrow: UnderFillArrow,
     rightUpArrow: RightUpArrow,
     chevronDown: ChevronDown,
     chevronUp: ChevronUp,
