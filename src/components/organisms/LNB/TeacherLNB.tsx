@@ -17,14 +17,14 @@ export type TeacherLNBProps = {
 
 export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
   return (
-    <Grid col={1} row={12} className="h-screen border-r-1 border-gray-200">
+    <Grid col={1} row={12} className="h-screen max-w-[240px] border-r-1 border-gray-200">
       {/* Header */}
-      <GridItem rowSpan={2}>
+      <GridItem rowSpan={2} className="max-h-[150px]">
         <NavigationHeader ProfileProps={HeaderProps} />
-        <Divider marginY="0" />
       </GridItem>
 
       <GridItem className="row-span-10">
+        <Divider marginY="0" className="mt-2" />
         <ScrollArea>
           <Box width="full" padding="5" className="mt-4 pt-0">
             {MenuConstant.TEACHER_MENU.map((items) => {

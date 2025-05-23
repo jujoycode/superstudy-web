@@ -6,16 +6,18 @@ import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { ReactComponent as RightFillArrow } from '@/assets/svg/RightFillArrow.svg'
 import { ReactComponent as RightUpArrow } from '@/assets/svg/RightUpArrow.svg'
 import { ReactComponent as UnderFillArrow } from '@/assets/svg/UnderFillArrow.svg'
+import { ReactComponent as Check } from '@/assets/icons/check.svg'
 
 type IconName =
   | 'logo'
   | 'world'
   | 'bell'
-  | 'rightFillArrow'
-  | 'rightUpArrow'
-  | 'chevronDown'
+  | 'check'
   | 'chevronUp'
+  | 'chevronDown'
+  | 'rightFillArrow'
   | 'underFillArrow'
+  | 'rightUpArrow'
 
 export type IconProps = {
   name: IconName
@@ -27,6 +29,7 @@ export type IconProps = {
   }
   fill?: boolean
   stroke?: boolean
+  strokeWidth?: number
   className?: string
 }
 
@@ -37,7 +40,7 @@ const sizeOptions = {
 }
 
 const colorOptions = {
-  primary: 'text-primary',
+  primary: 'text-primary-800',
   secondary: 'text-secondary',
   tertiary: 'text-tertiary',
   'gray-400': 'text-gray-400',
@@ -53,21 +56,23 @@ export function Icon({
   customSize,
   fill = false,
   stroke = false,
+  strokeWidth,
   className = '',
 }: IconProps) {
+  const sizeClass = sizeOptions[size] || sizeOptions.md
+  const colorClass = color ? colorOptions[color] : ''
+
   const IconComponent = {
     logo: Logo,
     world: World,
     bell: Bell,
+    check: Check,
+    rightUpArrow: RightUpArrow,
     rightFillArrow: RightFillArrow,
     underFillArrow: UnderFillArrow,
-    rightUpArrow: RightUpArrow,
-    chevronDown: ChevronDown,
     chevronUp: ChevronUp,
+    chevronDown: ChevronDown,
   }[name]
-
-  const sizeClass = sizeOptions[size] || sizeOptions.md
-  const colorClass = color ? colorOptions[color] : ''
 
   return (
     <div className={`inline-flex ${customSize ? '' : sizeClass} ${colorClass} ${className}`}>
@@ -75,6 +80,7 @@ export function Icon({
         fill={fill ? 'currentColor' : 'none'}
         stroke={stroke ? 'currentColor' : 'none'}
         width={customSize?.width}
+        strokeWidth={strokeWidth}
         height={customSize?.height}
         color={colorClass}
       />

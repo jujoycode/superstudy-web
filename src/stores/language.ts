@@ -16,7 +16,7 @@ type LanguageState = {
 // 초기 상태
 const initialState = {
   currentLanguage: (localStorage.getItem('languageState') as Languages) || 'ko',
-  supportedLanguages: ['en', 'ko'] as Languages[],
+  supportedLanguages: ['ko', 'en'] as Languages[],
 }
 
 export const useLanguageStore = create<LanguageState>()(

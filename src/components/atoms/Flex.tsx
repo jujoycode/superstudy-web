@@ -1,6 +1,6 @@
 import { cn } from '@/utils/commonUtil'
 
-interface FlexProps {
+export interface FlexProps {
   children: React.ReactNode
   className?: string
   width?: 'full' | 'fit-content'
@@ -9,6 +9,7 @@ interface FlexProps {
   items?: 'start' | 'center' | 'end' | 'stretch' | 'baseline'
   gap?: string
   wrap?: boolean
+  onClick?: () => void
 }
 
 export function Flex({
@@ -20,6 +21,7 @@ export function Flex({
   items = 'start',
   gap,
   wrap,
+  onClick,
 }: FlexProps) {
   const flexWidth = width ? `w-${width}` : ''
   const flexDirection = { row: 'flex-row', col: 'flex-col' }[direction]
@@ -45,7 +47,10 @@ export function Flex({
   const flexWrap = wrap ? 'flex-wrap' : ''
 
   return (
-    <div className={cn('flex', flexDirection, flexJustify, flexItems, flexGap, flexWrap, flexWidth, className)}>
+    <div
+      className={cn('flex', flexDirection, flexJustify, flexItems, flexGap, flexWrap, flexWidth, className)}
+      onClick={onClick}
+    >
       {children}
     </div>
   )

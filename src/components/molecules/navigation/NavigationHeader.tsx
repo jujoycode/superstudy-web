@@ -2,10 +2,10 @@ import { Flex } from '@/atoms/Flex'
 import { Grid } from '@/atoms/Grid'
 import { GridItem } from '@/atoms/GridItem'
 import { Icon } from '@/atoms/Icon'
-import { NavigationDropdown } from '@/molecules/navigation/NavigationLanguageDropdown'
+import { NavigationLanguageDropdown } from '@/molecules/navigation/NavigationLanguageDropdown'
 import { NavigationProfile, type NavigationProfileProps } from '@/molecules/navigation/NavigationProfile'
 
-export type NavigationHeaderProps = {
+interface NavigationHeaderProps {
   ProfileProps: NavigationProfileProps
 }
 
@@ -20,7 +20,7 @@ export function NavigationHeader({ ProfileProps }: NavigationHeaderProps) {
               <Icon name="logo" customSize={{ width: '70px', height: '40px' }} />
 
               <Flex direction="row" justify="end" items="center" gap="3">
-                <NavigationDropdown />
+                <NavigationLanguageDropdown />
                 <Icon name="bell" customSize={{ width: '20px', height: '20px' }} />
               </Flex>
             </Flex>

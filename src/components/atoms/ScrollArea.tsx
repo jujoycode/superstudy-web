@@ -3,11 +3,10 @@ import { cn } from '@/utils/commonUtil'
 interface ScrollAreaProps {
   className?: string
   children?: React.ReactNode
-  scrollbarThumb?: string // 스크롤바 thumb 색상 (예: 'gray-300')
-  scrollbarTrack?: string // 스크롤바 track 색상 (예: 'transparent')
+  scrollbarWidth?: 'thin' | 'none' | 'auto'
 }
 
-export function ScrollArea({ className, children }: ScrollAreaProps) {
+export function ScrollArea({ className, children, scrollbarWidth = 'thin' }: ScrollAreaProps) {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
       event.preventDefault()
@@ -17,21 +16,26 @@ export function ScrollArea({ className, children }: ScrollAreaProps) {
   return (
     <div
       className={cn(
-        'overflow-y-auto',
         'h-full',
-        'bg-transparent',
+        'scrollable',
+        'overflow-y-auto',
+        'hover:[overflow:scroll]',
         '[&::-webkit-scrollbar]:w-1',
         '[&::-webkit-scrollbar]:bg-transparent',
         '[&::-webkit-scrollbar-track]:bg-transparent',
-        '[&::-webkit-scrollbar-thumb]:bg-gray-400',
         '[&::-webkit-scrollbar-thumb]:rounded-full',
+        '[&::-webkit-scrollbar-thumb]:bg-gray-300',
         '[&::-webkit-scrollbar-thumb]:opacity-0',
         'hover:[&::-webkit-scrollbar-thumb]:opacity-100',
-        'transition-opacity duration-300',
+        'transition-all duration-200',
         className,
       )}
       tabIndex={0}
       onKeyDown={handleKeyDown}
+      style={{
+        scrollbarWidth,
+        msOverflowStyle: 'none',
+      }}
     >
       {children}
     </div>
