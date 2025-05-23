@@ -21,8 +21,7 @@
     --tw-shadow: 0 0 #0000;
     -webkit-appearance: none;
     appearance: none;
-    background-color: #fff;
-    border-color: var(--gray-200);
+    border-color: var(--color-gray-200);
     border-radius: 0;
     border-width: 1px;
     font-size: 1rem;
