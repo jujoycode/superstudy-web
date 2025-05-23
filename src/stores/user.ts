@@ -21,9 +21,26 @@ type UserState = {
   reset: () => void
 }
 
+// sessionStorage에서 user-storage 데이터 가져오기
+const getUserStorageData = () => {
+  try {
+    const userStorageData = sessionStorage.getItem('user-storage')
+    if (userStorageData) {
+      const parsedData = JSON.parse(userStorageData)
+      if (parsedData.state && parsedData.state.me) {
+        return parsedData.state.me
+      }
+    }
+    return undefined
+  } catch (error) {
+    console.error('사용자 데이터 파싱 오류:', error)
+    return undefined
+  }
+}
+
 // 초기 상태
 const initialState = {
-  me: undefined,
+  me: getUserStorageData(),
   child: undefined,
   selectedGroupId: 0,
   isUpdateMe: false,

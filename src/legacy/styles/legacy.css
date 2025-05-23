@@ -55,8 +55,13 @@
   width: 1rem;
   border-width: 1px;
   border-radius: 0.25rem;
+  border-width: 1px;
   border-color: var(--color-gray-300);
   color: var(--color-primary-800);
+}
+
+.checkbox:checked {
+  background-color: var(--color-primary-800);
 }
 
 .checkbox:focus {

@@ -1,7 +1,6 @@
 import { MenuConstant } from '@/constants/menuConstant'
 import { Box } from '@/atoms/Box'
 import { Divider } from '@/atoms/Divider'
-import { Flex } from '@/atoms/Flex'
 import { Grid } from '@/atoms/Grid'
 import { GridItem } from '@/atoms/GridItem'
 import { ScrollArea } from '@/atoms/ScrollArea'

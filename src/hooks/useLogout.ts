@@ -1,7 +1,7 @@
 // src/legacy/util/hooks.ts
-import { useNavigate } from 'react-router'
 import { useBrowserStorage } from '@/hooks/useBrowserStorage'
 import { useAuthStore } from '@/stores/auth'
+import { useUserStore } from '@/stores/user'
 import { RN } from '@/legacy/lib/rn'
 
 export function useAuth() {
@@ -29,8 +29,7 @@ export function useLogout() {
     localStorage.removeItem('tabType')
     localStorage.removeItem('reqParent_userInfo')
     resetAuthStore()
-    setIsStayLoggedIn(false)
-
-    navigate('/login')
+    reset()
+    window.location.replace('/login')
   }
 }
