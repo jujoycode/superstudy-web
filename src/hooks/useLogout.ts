@@ -14,8 +14,7 @@ export function useAuth() {
 export function useLogout() {
   const { removeStorage } = useBrowserStorage()
   const { reset } = useUserStore()
-  const resetAuthStore = useAuthStore((state) => state.reset)
-  const setIsStayLoggedIn = useAuthStore((state) => state.setIsStayLoggedIn)
+  const { reset: resetAuthStore } = useAuthStore()
 
   return () => {
     const tagValue = { schoolId: null, role: null }
@@ -30,7 +29,6 @@ export function useLogout() {
     localStorage.removeItem('tabType')
     localStorage.removeItem('reqParent_userInfo')
     resetAuthStore()
-    setIsStayLoggedIn(false)
     reset()
     window.location.replace('/login')
   }

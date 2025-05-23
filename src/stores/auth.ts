@@ -83,6 +83,7 @@ export const useAuthStore = create<AuthState>()((set) => ({
       localStorage.removeItem('refreshToken')
       localStorage.removeItem('twoFactor')
       localStorage.removeItem('tokenIssue')
+      localStorage.removeItem('isStayLoggedIn')
       sessionStorage.removeItem('token')
       sessionStorage.removeItem('refreshToken')
       sessionStorage.removeItem('twoFactor')
