@@ -15,7 +15,7 @@ export function NavigationHeader({ ProfileProps }: NavigationHeaderProps) {
       <GridItem colSpan={10}>
         <Grid col={1} row={2}>
           <GridItem>
-            <Flex direction="row" justify="between" items="center" gap="3">
+            <Flex direction="row" justify="between" items="center" gap="3" className="pt-4">
               <Icon name="logo" customSize={{ width: '70px', height: '40px' }} />
 
               <Flex direction="row" justify="end" items="center" gap="3">

@@ -13,7 +13,7 @@ export type NavigationProfileProps = {
 
 export function NavigationProfile({ name, email, school, src }: NavigationProfileProps) {
   return (
-    <Flex direction="row" justify="start" items="start" gap="3">
+    <Flex direction="row" justify="start" items="start" gap="3" className="cursor-pointer rounded-md hover:bg-gray-50">
       {/* Avatar */}
       <Box width="fit-content">
         <Avatar rounded="md" src={src} />

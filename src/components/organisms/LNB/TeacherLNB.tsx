@@ -44,6 +44,16 @@ export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
                 </>
               )
             })}
+            <Divider marginY="0" />
+            <Flex width="full" justify="between" items="center" gap="3">
+              <Text variant="sub" className="mb-1" size="sm">
+                내 정보 관리
+              </Text>
+              <Divider orientation="vertical" marginY="0" />
+              <Text variant="sub" className="mb-1" size="sm">
+                로그아웃
+              </Text>
+            </Flex>
           </Box>
         </ScrollArea>
       </GridItem>
