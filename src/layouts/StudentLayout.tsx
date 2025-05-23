@@ -44,7 +44,7 @@ export function StudentLayout() {
 
   return (
     <>
-      <div className="flex h-full flex-col">
+      <div className="flex h-screen flex-col">
         <div className="flex h-full w-full flex-col overflow-y-auto">
           <Outlet />
         </div>
