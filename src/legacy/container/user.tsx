@@ -15,7 +15,7 @@ import { useUserStore } from '@/stores/user'
 import { useAuthStore } from '@/stores/auth'
 import { useSchoolStore } from '@/stores/school'
 import { createContainer } from './createContainer'
-import { useLogout } from '../util/hooks'
+import { useLogout } from '@/hooks/useLogout'
 
 export function userHook() {
   const logout = useLogout()

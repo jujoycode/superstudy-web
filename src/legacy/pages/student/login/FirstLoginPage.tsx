@@ -1,16 +1,16 @@
-import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { useHistory } from '@/hooks/useHistory'
+import { useLogout } from '@/hooks/useLogout'
+import { cn } from '@/utils/commonUtil'
 import { useUserStore } from '@/stores/user'
 import { BackButton, Blank, Label, PhoneNumberField, Section, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useStudentFirstLogin } from '@/legacy/container/student-first-login'
-import { useLogout } from '@/legacy/util/hooks'
 import { Validator } from '@/legacy/util/validator'
 
 export function FirstLoginPage() {

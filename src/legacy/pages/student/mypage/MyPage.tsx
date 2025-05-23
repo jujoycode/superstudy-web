@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { ReactComponent as RightArrow } from '@/assets/svg/mypage-right-arrow.svg'
 import { useHistory } from '@/hooks/useHistory'
+import { useLogout } from '@/hooks/useLogout'
 import { useUserStore } from '@/stores/user'
 import { StudentIDCard } from '@/legacy/components'
 import { Blank, IconButton, Section, TopNavbar } from '@/legacy/components/common'
@@ -15,7 +16,6 @@ import { Constants } from '@/legacy/constants'
 import { useParentGetChildrenInfo } from '@/legacy/container/parent-get-children-info'
 import { ResponseUserDto, Role, ScoreUse } from '@/legacy/generated/model'
 import { globalEnv } from '@/legacy/util/global-env'
-import { useLogout } from '@/legacy/util/hooks'
 
 export function MyPage() {
   const logout = useLogout()
