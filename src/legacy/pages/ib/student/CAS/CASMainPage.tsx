@@ -229,7 +229,17 @@ export const CASMainPage = () => {
                   {data === undefined ? (
                     <div>계획서를 불러올 수 없습니다.</div>
                   ) : (
-                    <Outlet context={{ data, refetch, setEdit, status: data.status, id: data.id, writerId: me.id }} />
+                    <Outlet
+                      context={{
+                        data,
+                        refetch,
+                        setEdit,
+                        type: me.role === 'USER' ? 'student' : 'teacher',
+                        status: data.status,
+                        id: data.id,
+                        writerId: me.id,
+                      }}
+                    />
                     // <Routes>
                     //   <Route
                     //     path="/ib/student/cas/:id/plan"
