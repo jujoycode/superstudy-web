@@ -31,6 +31,7 @@ export type IconProps = {
   stroke?: boolean
   strokeWidth?: number
   className?: string
+  onClick?: () => void
 }
 
 const sizeOptions = {
@@ -58,6 +59,7 @@ export function Icon({
   stroke = false,
   strokeWidth,
   className = '',
+  onClick,
 }: IconProps) {
   const sizeClass = sizeOptions[size] || sizeOptions.md
   const colorClass = color ? colorOptions[color] : ''
@@ -75,7 +77,7 @@ export function Icon({
   }[name]
 
   return (
-    <div className={`inline-flex ${customSize ? '' : sizeClass} ${colorClass} ${className}`}>
+    <div className={`inline-flex ${customSize ? '' : sizeClass} ${colorClass} ${className}`} onClick={onClick}>
       <IconComponent
         fill={fill ? 'currentColor' : 'none'}
         stroke={stroke ? 'currentColor' : 'none'}

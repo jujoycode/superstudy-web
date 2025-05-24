@@ -12,6 +12,7 @@ export interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
   size?: TextSize
   className?: string
   as?: 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  copyable?: boolean
 }
 
 const variantOptions: Record<TextVariant, string> = {
@@ -39,11 +40,19 @@ export function Text({
   variant = 'default',
   className,
   as: Component = 'p',
+  copyable = true,
   ...props
 }: TextProps) {
   return (
     <Component
-      className={cn('font-pretendard', weightOptions[weight], sizeOptions[size], variantOptions[variant], className)}
+      className={cn(
+        'font-pretendard',
+        weightOptions[weight],
+        sizeOptions[size],
+        variantOptions[variant],
+        !copyable && 'notSelectable',
+        className,
+      )}
       {...props}
     >
       {children}

@@ -39,22 +39,32 @@
     print-color-adjust: exact;
   }
 
-  .scrollable::-webkit-scrollbar {
-    width: 0.25rem;
-    background: transparent;
+  .notSelectable {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
+  }
+
+  .scrollable {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    scrollbar-track-color: transparent;
+    transition: scrollbar-color 0.5s ease;
+    scrollbar-gutter: stable;
   }
 
   .scrollable::-webkit-scrollbar-thumb {
-    background: transparent;
+    height: 10px;
   }
-
-  .scrollable:hover::-webkit-scrollbar {
-    width: 0.25rem;
-    background: transparent;
+  
+  .scrollable:hover {
+    transition: scrollbar-color 0.5s ease;
+    scrollbar-color: var(--color-gray-300) transparent;
   }
-
-  .scrollable:hover::-webkit-scrollbar-thumb {
-    background: rgba(209, 213, 219, 0.5);
-    border-radius: 9999px;
+  
+  .scrollable::-webkit-scrollbar-button {
+    display: none;
   }
 }

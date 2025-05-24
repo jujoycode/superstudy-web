@@ -7,40 +7,40 @@ export class MenuConstant {
       children: [
         {
           name: '출석부',
-          to: '/attendance',
+          to: '/teacher/attendance',
         },
         {
           name: '시간표/출석체크',
-          to: '/timetable',
+          to: '/teacher/timetable',
         },
         {
           name: '확인증',
-          to: '/outing',
+          to: '/teacher/outing',
         },
         {
           name: '결석신고서',
-          to: '/absent',
+          to: '/teacher/absent',
         },
         {
           name: '체험학습',
           children: [
             {
               name: '신청서',
-              to: '/fieldtrip',
+              to: '/teacher/fieldtrip',
             },
             {
               name: '통보서',
-              to: '/fieldtrip/notice',
+              to: '/teacher/fieldtrip/notice',
             },
             {
               name: '결과보고서',
-              to: '/fieldtrip/result',
+              to: '/teacher/fieldtrip/result',
             },
           ],
         },
         {
           name: '출결서류관리',
-          to: '/history',
+          to: '/teacher/history',
         },
       ],
     },
@@ -49,11 +49,11 @@ export class MenuConstant {
       children: [
         {
           name: '학생정보',
-          to: '/studentcard',
+          to: '/teacher/studentcard',
         },
         {
           name: '그룹정보',
-          to: '/groups',
+          to: '/teacher/groups',
         },
       ],
     },
@@ -62,15 +62,15 @@ export class MenuConstant {
       children: [
         {
           name: '활동기록',
-          to: '/activityv3',
+          to: '/teacher/activityv3',
         },
         {
           name: '프로젝트',
-          to: '/project',
+          to: '/teacher/project',
         },
         {
           name: '과제 활동분석',
-          to: '/activityv3/analyze',
+          to: '/teacher/activityv3/analyze',
         },
       ],
     },
@@ -79,11 +79,11 @@ export class MenuConstant {
       children: [
         {
           name: '캘린더',
-          to: '/calendar',
+          to: '/teacher/calendar',
         },
         {
           name: '급식표',
-          to: '/canteen',
+          to: '/teacher/canteen',
         },
       ],
     },
@@ -93,17 +93,17 @@ export class MenuConstant {
     //   children: [
     //     {
     //       name: '상담신청',
-    //       to: '',
+    //       to: '/teacher',
     //       external: true,
     //     },
     //     {
     //       name: '수강신청',
-    //       to: '',
+    //       to: '/teacher',
     //       external: true,
     //     },
     //     {
     //       name: '야자신청',
-    //       to: '',
+    //       to: '/teacher',
     //       external: true,
     //     },
     //   ],
@@ -113,19 +113,19 @@ export class MenuConstant {
       children: [
         {
           name: '공지사항',
-          to: '/notice',
+          to: '/teacher/notice',
         },
         {
           name: '학급게시판',
-          to: '/board',
+          to: '/teacher/board',
         },
         {
           name: '가정통신문',
-          to: '/newsletter',
+          to: '/teacher/newsletter',
         },
         {
           name: '메시지',
-          to: '/chat',
+          to: '/teacher/chat',
         },
       ],
     },
@@ -157,14 +157,14 @@ export class MenuConstant {
             },
             {
               name: '사용안내 동영상',
-              to: 'https://web.superschool.to/AboutSuperSchool',
+              to: 'https://web.superschool.to//AbteacheroutSuperSchool',
               external: true,
             },
           ],
         },
         {
           name: '슈퍼스쿨 공지사항',
-          to: '/announcement',
+          to: '/teacher/announcement',
         },
       ],
     },

@@ -26,7 +26,7 @@ export const makeStudNum5 = (klass: string | { grade: number; classNum: number; 
 
 export const checkNewVersion = () => {
   // 빌드 시간을 사용합니다
-  const buildDateNew = __BUILD_TIME__
+  const buildDateNew = import.meta.env.VITE_BUILD_TIME
   const buildDateOld = localStorage.getItem('buildDate')
   if (buildDateNew !== buildDateOld) {
     localStorage.setItem('buildDate', buildDateNew)

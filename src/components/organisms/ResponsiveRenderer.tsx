@@ -6,7 +6,7 @@ interface MediaRendererProps {
   //   tablet?: React.ReactNode
 }
 
-export function MediaRenderer({ default: defaultComponent, mobile }: MediaRendererProps) {
+export function ResponsiveRenderer({ default: defaultComponent, mobile }: MediaRendererProps) {
   return (
     <>
       {defaultComponent && <ReactResponsive minWidth={771}>{defaultComponent}</ReactResponsive>}

@@ -51,7 +51,7 @@ export function Dropdown({ trigger, children, className, menuClassName, align = 
       {isOpen && (
         <div
           className={cn(
-            'ring-opacity-5 absolute z-10 mt-1 rounded-md bg-white shadow-lg ring-1 ring-black',
+            'ring-opacity-5 absolute z-10 mt-1 rounded-md bg-white shadow-lg ring-1 ring-gray-200',
             align === 'right' ? 'right-0' : 'left-0',
             menuClassName,
           )}

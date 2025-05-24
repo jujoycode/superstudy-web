@@ -15,21 +15,7 @@ export function ScrollArea({ className, children, scrollbarWidth = 'thin' }: Scr
 
   return (
     <div
-      className={cn(
-        'h-full',
-        'scrollable',
-        'overflow-y-auto',
-        'hover:[overflow:scroll]',
-        '[&::-webkit-scrollbar]:w-1',
-        '[&::-webkit-scrollbar]:bg-transparent',
-        '[&::-webkit-scrollbar-track]:bg-transparent',
-        '[&::-webkit-scrollbar-thumb]:rounded-full',
-        '[&::-webkit-scrollbar-thumb]:bg-gray-300',
-        '[&::-webkit-scrollbar-thumb]:opacity-0',
-        'hover:[&::-webkit-scrollbar-thumb]:opacity-100',
-        'transition-all duration-200',
-        className,
-      )}
+      className={cn('h-full', 'scrollable', className)}
       tabIndex={0}
       onKeyDown={handleKeyDown}
       style={{

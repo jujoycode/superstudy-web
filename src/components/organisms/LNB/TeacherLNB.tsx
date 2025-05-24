@@ -1,14 +1,13 @@
 import { MenuConstant } from '@/constants/menuConstant'
 import { Box } from '@/atoms/Box'
 import { Divider } from '@/atoms/Divider'
-import { Flex } from '@/atoms/Flex'
 import { Grid } from '@/atoms/Grid'
 import { GridItem } from '@/atoms/GridItem'
 import { ScrollArea } from '@/atoms/ScrollArea'
 import { Text } from '@/atoms/Text'
 import { NavigationFooter } from '@/molecules/navigation/NavigationFooter'
 import { NavigationHeader } from '@/molecules/navigation/NavigationHeader'
-import { NavigationItem } from '@/molecules/navigation/NavigationItem'
+import { NavigationContainer } from '@/molecules/navigation/NavigationContainer'
 import type { NavigationProfileProps } from '@/molecules/navigation/NavigationProfile'
 
 export type TeacherLNBProps = {
@@ -17,7 +16,7 @@ export type TeacherLNBProps = {
 
 export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
   return (
-    <Grid col={1} row={12} className="h-screen max-w-[240px] border-r-1 border-gray-200">
+    <Grid col={1} row={12} className="h-screen max-w-[240px] min-w-[230px] border-r-1 border-gray-200">
       {/* Header */}
       <GridItem rowSpan={2} className="max-h-[150px]">
         <NavigationHeader ProfileProps={HeaderProps} />
@@ -27,22 +26,15 @@ export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
         <Divider marginY="0" className="mt-2" />
         <ScrollArea>
           <Box width="full" padding="5" className="mt-4 pt-0">
-            {MenuConstant.TEACHER_MENU.map((items) => {
+            {MenuConstant.TEACHER_MENU.map((section, sectionIndex) => {
               return (
-                <>
-                  <Box padding="3">
-                    <Text variant="sub" className="mb-1" size="sm">
-                      {items.name}
-                    </Text>
-                    <Flex direction="col" gap="0.5">
-                      {items.children?.map((menu) => {
-                        return <NavigationItem {...menu} />
-                      })}
-                    </Flex>
-                  </Box>
-
-                  <Divider marginY="0" />
-                </>
+                <Box key={sectionIndex} padding="3">
+                  <Text variant="sub" className="mb-1" size="sm">
+                    {section.name}
+                  </Text>
+                  <NavigationContainer items={section.children || []} />
+                  {sectionIndex < MenuConstant.TEACHER_MENU.length - 1 && <Divider marginY="0" className="mt-2" />}
+                </Box>
               )
             })}
             <NavigationFooter />
