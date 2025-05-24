@@ -146,6 +146,11 @@ export function IbEeEssay({
     mode: 'onChange',
   })
 
+  const handleCharCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/[^0-9]/g, '')
+    e.target.value = value
+  }
+
   const onSubmit = async (data: RequestEssayDto) => {
     const documentFiles = [...documentObjectMap.values()]
       .filter((value) => !value.isDelete && value.document instanceof File)
@@ -191,9 +196,10 @@ export function IbEeEssay({
             <Input.Basic
               size={32}
               placeholder="예) 3600"
-              type="number"
-              value={essayData?.charCount}
+              type="text"
+              inputMode="numeric"
               className="w-[200px]"
+              onInput={handleCharCountChange}
               {...register('charCount', { valueAsNumber: true, required: true, validate: (value) => !!value })}
             />
           </div>
@@ -243,9 +249,10 @@ export function IbEeEssay({
             <Input.Basic
               size={32}
               placeholder="예) 3600"
-              type="number"
+              type="text"
+              inputMode="numeric"
               className="w-[200px]"
-              value={essayData?.charCount}
+              onInput={handleCharCountChange}
               {...register('charCount', { valueAsNumber: true, required: true, validate: (value) => !!value })}
             />
           </div>
