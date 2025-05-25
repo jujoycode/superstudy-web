@@ -4,9 +4,10 @@ import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
+import { Radio } from '@/atoms/Radio'
 import { SuperModal } from '@/legacy/components'
 import { ActivitySessionTeacherView } from '@/legacy/components/activityv3/ActivitySessionTeacherView'
-import { Blank, CloseButton, Label, Radio, RadioGroup, Textarea } from '@/legacy/components/common'
+import { Blank, CloseButton, Label, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
@@ -187,38 +188,31 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                       <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
                     </div>
                   </td>
-                  <td className="py-3">
-                    <RadioGroup className="flex items-center space-x-4" onChange={() => {}}>
-                      {Object.entries(ACTIVITY_SESSION_TYPE_KOR).map(([type, kor]) => (
-                        <div className="flex items-center space-x-2" key={type}>
-                          <Radio
-                            key={type}
-                            id={type}
-                            value={type}
-                            checked={activitySessiontype === type}
-                            {...register('type', {
-                              required: !activitySessionData,
-                              onChange: () => {
-                                setValue('title', '')
-                                setValue('content', '')
-                                setValue('endDate', '')
-                                setValue('isFile', false)
-                                setValue('isFileRequired', false)
-                                setValue('isContent', false)
-                                setValue('isContentRequired', false)
-                                setContent([])
-                              },
-                            })}
-                            disabled={!!activitySessionData}
-                          ></Radio>
-                          <Label
-                            htmlFor={type}
-                            children={kor}
-                            className={'cursor-pointer ' + (!!activitySessionData && 'text-gray-600')}
-                          />
-                        </div>
-                      ))}
-                    </RadioGroup>
+                  <td className="flex items-center space-x-4 py-3">
+                    {Object.entries(ACTIVITY_SESSION_TYPE_KOR).map(([type, kor]) => (
+                      <Label.row htmlFor={type} key={type}>
+                        <Radio
+                          key={type}
+                          id={type}
+                          checked={activitySessiontype === type}
+                          {...register('type', {
+                            required: !activitySessionData,
+                            onChange: () => {
+                              setValue('title', '')
+                              setValue('content', '')
+                              setValue('endDate', '')
+                              setValue('isFile', false)
+                              setValue('isFileRequired', false)
+                              setValue('isContent', false)
+                              setValue('isContentRequired', false)
+                              setContent([])
+                            },
+                          })}
+                          disabled={!!activitySessionData}
+                        ></Radio>
+                        <div>{kor}</div>
+                      </Label.row>
+                    ))}
                     <Label.Error children={errors.type?.message} />
                   </td>
                 </tr>
