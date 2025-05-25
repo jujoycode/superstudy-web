@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { useUserStore } from '@/stores/user'
 import { Role } from '@/legacy/generated/model'
@@ -57,30 +58,35 @@ export function AdminGuard({ children }: Props) {
   const navigate = useNavigate()
   const path = Object.keys(PERMISSION_MAP).find((p) => location.pathname.startsWith(p)) as PathKey | undefined
 
-  // Role.ADMIN인 경우 /admin/school으로 리다이렉트
-  if (me?.role === Role.ADMIN && location.pathname === '/admin') {
-    navigate('/admin/school', { replace: true })
-  }
+  useEffect(() => {
+    // Role.ADMIN인 경우 /admin/school으로 리다이렉트
+    if (me?.role === Role.ADMIN && location.pathname === '/admin') {
+      navigate('/admin/school', { replace: true })
+      return
+    }
 
-  // Role.ADMIN이 아닌 경우 권한 체크
-  if (me?.role !== Role.ADMIN) {
-    // /admin 경로에서 권한이 있는 첫 번째 페이지로 리다이렉트
-    if (location.pathname === '/admin') {
-      const redirectPath = (Object.keys(PERMISSION_MAP) as PathKey[]).find((key) =>
-        PERMISSION_MAP[key](me?.teacherPermission, me),
-      )
+    // Role.ADMIN이 아닌 경우 권한 체크
+    if (me?.role !== Role.ADMIN) {
+      // /admin 경로에서 권한이 있는 첫 번째 페이지로 리다이렉트
+      if (location.pathname === '/admin') {
+        const redirectPath = (Object.keys(PERMISSION_MAP) as PathKey[]).find((key) =>
+          PERMISSION_MAP[key](me?.teacherPermission, me),
+        )
 
-      if (redirectPath) {
-        navigate(redirectPath, { replace: true })
+        if (redirectPath) {
+          navigate(redirectPath, { replace: true })
+          return
+        }
+        navigate('/', { replace: true })
+        return
       }
-      navigate('/', { replace: true })
-    }
 
-    // 특정 관리자 페이지 접근 시 권한 체크
-    if (path && !PERMISSION_MAP[path](me?.teacherPermission, me)) {
-      navigate('/admin', { replace: true })
+      // 특정 관리자 페이지 접근 시 권한 체크
+      if (path && !PERMISSION_MAP[path](me?.teacherPermission, me)) {
+        navigate('/admin', { replace: true })
+      }
     }
-  }
+  }, [me, location.pathname, navigate, path])
 
   return children
 }

@@ -392,7 +392,7 @@ export const AcademicRecordsComponent = () => {
                                 mockScore?.first_test ? (
                                   <Admin.Box className="flex items-center justify-center gap-1">
                                     <button
-                                      className="border-[#ff2525;] text-[#ff2525;] rounded-lg border px-4 py-1 text-[15px] font-bold"
+                                      className="rounded-lg border border-[#ff2525] px-4 py-1 text-[15px] font-bold text-[#ff2525]"
                                       onClick={() => deleteScoreFile(1, klass.klass)}
                                     >
                                       삭제
@@ -410,7 +410,7 @@ export const AcademicRecordsComponent = () => {
                                 mockScore?.second_test ? (
                                   <Admin.Box className="flex items-center justify-center gap-1">
                                     <button
-                                      className="border-[#ff2525;] text-[#ff2525;] rounded-lg border px-4 py-1 text-[15px] font-bold"
+                                      className="rounded-lg border border-[#ff2525] px-4 py-1 text-[15px] font-bold text-[#ff2525]"
                                       onClick={() => deleteScoreFile(2, klass.klass)}
                                     >
                                       삭제
@@ -428,7 +428,7 @@ export const AcademicRecordsComponent = () => {
                                 registeredScore ? (
                                   <Admin.Box className="flex items-center justify-center gap-1">
                                     <button
-                                      className="border-[#ff2525;] rounded-lg border px-4 py-1 text-[15px] font-bold text-[#ff2525]"
+                                      className="rounded-lg border border-[#ff2525] px-4 py-1 text-[15px] font-bold text-[#ff2525]"
                                       onClick={() => deleteScoreFile(3, klass.klass)}
                                     >
                                       삭제

@@ -17,6 +17,7 @@ import {
   groupManagementDeleteGroup,
   groupManagementDeleteStudent,
   groupManagementDeleteTeacher,
+  groupManagementUpdateGroup,
   useAdminCommonSearchStudents,
   useAdminCommonSearchTeachers,
   useGroupManagementGetGroupDetailInfo,
@@ -85,6 +86,7 @@ export function GroupPage() {
 
   async function saveGroupName(params: RequestModifyGroupOnlyDto) {
     if (!groupId) return
+    await groupManagementUpdateGroup(groupId, { ...params, year: `${year}` })
     setToastMsg(`${params.name} 그룹명이 변경되었습니다`)
     setEditGroup(false)
   }

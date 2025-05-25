@@ -186,7 +186,7 @@ const ConfirmSelectBar = forwardRef<HTMLDivElement, SelectBarProps>(
                     {
                       'text-primary-800 flex items-center justify-between': option.value === tempValue,
                     },
-                    'cursor-pointer rounded-md bg-white px-2.5 py-1.5 text-gray-900 hover:bg-gray-100',
+                    'cursor-pointer rounded-md bg-white px-2.5 py-1.5 hover:bg-gray-100',
                     fontClass,
                   )}
                   aria-selected={option.value === tempValue}

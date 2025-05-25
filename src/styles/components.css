@@ -35,15 +35,16 @@
     background-repeat: no-repeat;
     background-size: 1.5em 1.5em;
     padding-right: 2.5rem;
+    background-color: white;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
   .notSelectable {
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   .scrollable {
@@ -58,12 +59,12 @@
   .scrollable::-webkit-scrollbar-thumb {
     height: 10px;
   }
-  
+
   .scrollable:hover {
     transition: scrollbar-color 0.5s ease;
     scrollbar-color: var(--color-gray-300) transparent;
   }
-  
+
   .scrollable::-webkit-scrollbar-button {
     display: none;
   }
