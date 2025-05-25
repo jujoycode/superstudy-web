@@ -1,24 +1,22 @@
 import { createContext, useEffect, useContext, type ReactNode } from 'react'
-import { themes } from '@/constants/themeConstant'
-
-export type Theme = 'default' | 'theme_lg'
+import { ThemeConstant, THEME_ENUM } from '@/constants/themeConstant'
 
 interface ThemeContextType {
-  theme: Theme
-  setTheme: (theme: Theme) => void
+  theme: THEME_ENUM
+  setTheme: (theme: THEME_ENUM) => void
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 interface ThemeProviderProps {
   children: ReactNode
-  theme: Theme
-  setTheme: (theme: Theme) => void
+  theme: THEME_ENUM
+  setTheme: (theme: THEME_ENUM) => void
 }
 
 export function ThemeProvider({ children, theme, setTheme }: ThemeProviderProps) {
   useEffect(() => {
-    const currentTheme = themes[theme]
+    const currentTheme = ThemeConstant.Themes[theme]
     const root = document.documentElement
 
     // CSS 변수 설정
@@ -35,5 +33,6 @@ export function useTheme() {
   if (context === undefined) {
     throw new Error('useTheme must be used within a ThemeProvider')
   }
+
   return context
 }

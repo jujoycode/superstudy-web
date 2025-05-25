@@ -67,13 +67,13 @@ export function TeacherLayout() {
     [me?.role, pathname],
   )
 
-  const pcComponent = (
+  const LeftNav = (
     <GridItem colSpan={2}>
       <TeacherLNB HeaderProps={{ name: me.name, email: me.email || '', school: me.school.name }} />
     </GridItem>
   )
 
-  const mobileComponent = (
+  const BottomNav = (
     <nav className="bottom-nav z-100 md:hidden">
       {tabs.map((tab) => {
         const active = [tab.path, ...(tab.extra ?? [])].some((path) => pathname.startsWith(path))
@@ -89,11 +89,11 @@ export function TeacherLayout() {
 
   return (
     <Grid col={12}>
-      <ResponsiveRenderer default={pcComponent} />
+      <ResponsiveRenderer default={LeftNav} />
 
       <GridItem colSpan={isMobile ? 12 : 10}>
         <Outlet />
-        <ResponsiveRenderer mobile={mobileComponent} />
+        <ResponsiveRenderer mobile={BottomNav} />
       </GridItem>
 
       <Toast />

@@ -37,6 +37,7 @@ export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
                 </Box>
               )
             })}
+
             <NavigationFooter />
           </Box>
         </ScrollArea>
