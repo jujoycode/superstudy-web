@@ -4,10 +4,10 @@ import Viewer from 'react-viewer'
 import { ReactComponent as ChatIcon } from '@/assets/svg/chat.svg'
 import { ReactComponent as ClockIcon } from '@/assets/svg/clock.svg'
 import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
-import { Icon } from '@/atoms/Icon'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
 import { useUserStore } from '@/stores/user'
+import { Icon } from '@/atoms/Icon'
 import { ErrorBlank } from '@/legacy/components'
 import AnnouncementPopup from '@/legacy/components/announcement/Announcement'
 import { CanteenCalendar } from '@/legacy/components/CanteenCalendar'
@@ -162,9 +162,7 @@ export function CanteenPage() {
             />
           )}
         </div>
-        <div className="bg-primary-800 bg-opacity-20 text-primary-800 -ml-5 w-screen px-5 py-5 font-semibold">
-          오늘의 급식표
-        </div>
+        <div className="bg-primary-800/20 text-primary-800 -ml-5 w-screen px-5 py-5 font-semibold">오늘의 급식표</div>
         {selectedCanteen && (
           <div className="flex items-start space-x-2">
             <div className="w-full flex-col space-y-2">
