@@ -2,6 +2,17 @@
 @import '../legacy/styles/legacy.css' layer(components);
 
 @layer components {
+  /* Default border color */
+  .border,
+  .border-t,
+  .border-r,
+  .border-b,
+  .border-l,
+  .border-x,
+  .border-y {
+    border-color: var(--color-gray-200);
+  }
+
   [multiple],
   [type='date'],
   [type='datetime-local'],
