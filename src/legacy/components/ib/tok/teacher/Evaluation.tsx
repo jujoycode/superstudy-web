@@ -134,7 +134,7 @@ export default function Evaluation({
             typographyVariant="title3"
             typographyClassName={cn('font-medium', disabled ? 'text-gray-500' : 'text-gray-900')}
           >
-            <div className={cn('mt-4 p-4', { 'bg-gray-50': !isFinal, 'border-t': !isFinal })}>
+            <div className={cn('mt-4 p-4', { 'bg-gray-50': !isFinal, 'border-t border-gray-200': !isFinal })}>
               <RadioV2.Group onChange={(value: number) => handleScoreChange(value, 0)} className="flex flex-col gap-2">
                 {grades.map((grade) => (
                   <div className="flex items-center justify-between" key={grade.id}>
