@@ -3,7 +3,8 @@ import { FC, useEffect, useRef, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { useNotificationStore } from '@/stores/notification'
-import { Avatar, Label, Radio, RadioGroup, Select, Textarea } from '@/legacy/components/common'
+import { Radio } from '@/atoms/Radio'
+import { Avatar, Label, Select, Textarea } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Coachmark2 } from '@/legacy/components/common/CoachMark2'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
@@ -231,6 +232,19 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
     },
   ]
 
+  const gptTypes = [
+    {
+      id: 1,
+      name: '교과활동',
+      value: '교과',
+    },
+    {
+      id: 2,
+      name: '창의적체험활동',
+      value: '창체',
+    },
+  ]
+
   const activitiesViews = [
     {
       id: 1,
@@ -389,40 +403,14 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                     )}
                   </div>
 
-                  <RadioGroup className="flex items-center justify-start gap-10" onChange={() => {}}>
-                    <div className="flex items-center space-x-1">
-                      <Radio
-                        id="교과활동"
-                        name="교과활동"
-                        checked={type === '교과'}
-                        onChange={() => setType('교과')}
-                        className="h-6 w-6 text-blue-500 checked:ring-0"
-                      />
-                      <Label htmlFor="교과활동" children="교과활동" className="text-14 cursor-pointer whitespace-pre" />
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Radio
-                        id="창의적체험활동"
-                        name="창의적체험활동"
-                        checked={type === '창의적체험활동'}
-                        onChange={() => setType('창의적체험활동')}
-                        className="h-6 w-6 text-blue-500 checked:ring-0"
-                      />
-                      <Label
-                        htmlFor="창의적체험활동"
-                        children="창의적 체험활동"
-                        className="text-14 cursor-pointer whitespace-pre"
-                      />
-                    </div>
-                    {/* <div className="flex items-center space-x-1">
-                  <Radio id="행동특성 및 종합의견" name="행동특성 및 종합의견"></Radio>
-                  <Label
-                    htmlFor="행동특성 및 종합의견"
-                    children="행동특성 및 종합의견"
-                    className="cursor-pointer whitespace-pre"
-                  />
-                </div> */}
-                  </RadioGroup>
+                  <div className="flex items-center justify-start gap-10">
+                    {gptTypes.map(({ id, name, value }) => (
+                      <Label.row key={id} htmlFor={value}>
+                        <Radio id={value} checked={type === value} onChange={() => setType(value)} />
+                        <div className="text-14 cursor-pointer whitespace-pre">{name}</div>
+                      </Label.row>
+                    ))}
+                  </div>
                 </div>
                 <div className="mt-6 flex w-full gap-x-0.5">
                   <div className="text-lg font-semibold">선택한 활동</div>
@@ -494,38 +482,19 @@ export const ActivityV3GPTModal: FC<ActivityV3GPTModalProps> = ({
                     )}
                   </div>
 
-                  <RadioGroup className="flex items-center justify-start gap-16" onChange={() => {}}>
-                    <div className="flex items-center space-x-2">
-                      <Radio
-                        id="상"
-                        name="상"
-                        checked={achievement === '상'}
-                        onChange={() => setAchievement('상')}
-                        className="h-6 w-6 text-blue-500 checked:ring-0"
-                      />
-                      <Label htmlFor="상" children="상" className="text-14 cursor-pointer whitespace-pre" />
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Radio
-                        id="중"
-                        name="중"
-                        checked={achievement === '중'}
-                        onChange={() => setAchievement('중')}
-                        className="h-6 w-6 text-blue-500 checked:ring-0"
-                      />
-                      <Label htmlFor="중" children="중" className="text-14 cursor-pointer whitespace-pre" />
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Radio
-                        id="하"
-                        name="하"
-                        checked={achievement === '하'}
-                        onChange={() => setAchievement('하')}
-                        className="h-6 w-6 text-blue-500 checked:ring-0"
-                      />
-                      <Label htmlFor="하" children="하" className="text-14 cursor-pointer whitespace-pre" />
-                    </div>
-                  </RadioGroup>
+                  <div className="flex items-center justify-start gap-16">
+                    {['상', '중', '하'].map((el) => (
+                      <Label.row key={el} htmlFor={el}>
+                        <Radio
+                          id={el}
+                          checked={achievement === el}
+                          onChange={() => setAchievement(el)}
+                          className="h-6 w-6 text-blue-500 checked:ring-0"
+                        />
+                        <div className="text-14">{el}</div>
+                      </Label.row>
+                    ))}
+                  </div>
                 </div>
                 <div className="mt-6 flex w-full gap-x-0.5">
                   <div className="text-lg font-semibold">성취기준</div>
