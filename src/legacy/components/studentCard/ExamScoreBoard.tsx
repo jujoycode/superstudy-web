@@ -119,7 +119,7 @@ export function ExamScoreBoard({ studentId }: ExamScoreBoardProps) {
                             {groupedData[subjectGroup][semester].map((score, index) => (
                               <tr
                                 key={`${score.subject_name}-${score.grade}-${score.semester}-${index}`}
-                                className="border-b bg-white"
+                                className="border-b border-gray-300 bg-white"
                               >
                                 {index === 0 && semesterIndex === 0 && (
                                   <td
@@ -193,7 +193,7 @@ export function ExamScoreBoard({ studentId }: ExamScoreBoardProps) {
                     scoreDatas[selectedSemester].map((score: any, index: number) => (
                       <tr
                         key={`${score.subject_name}-${score.grade}-${score.semester}-${index}`}
-                        className="border-b bg-white hover:bg-gray-50"
+                        className="border-b border-gray-200 bg-white hover:bg-gray-50"
                       >
                         <td className="border-r border-gray-300 px-2 py-2 font-medium">{score.subject_group}</td>
                         <td className="border-r border-gray-300 px-2 py-2">{score.subject_name}</td>
