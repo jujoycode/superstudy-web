@@ -41,4 +41,20 @@
   --color-gradient-orange-400: linear-gradient(rgba(255, 128, 61, 1), rgba(255, 188, 153, 1));
   --color-gradient-orange-800: linear-gradient(rgba(255, 96, 12, 1), rgba(255, 128, 61, 1));
   --color-gradient-navy-400: linear-gradient(rgba(110, 131, 163, 1), rgba(164, 192, 207, 1));
+
+  /* Old Primary Colors */
+  --color-old-primary-red-100: #ffebeb;
+  --color-old-primary-red-400: #ffadad;
+  --color-old-primary-red-800: #ff2626;
+  --color-old-primary-green-50: #f3fbf9;
+  --color-old-primary-green-100: #ddf4ed;
+  --color-old-primary-green-400: #78ceb9;
+  --color-old-primary-green-800: #00a876;
+  --color-old-primary-blue-50: #f2f9ff;
+  --color-old-primary-blue-100: #dbeeff;
+  --color-old-primary-blue-400: #66b2ff;
+  --color-old-primary-blue-800: #0066ff;
+
+  /* System Colors */
+  --color-system-error: #ff2626;
 }
