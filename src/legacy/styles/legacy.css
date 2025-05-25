@@ -533,15 +533,6 @@
   --color-old-primary-blue-400: #66b2ff;
   --color-old-primary-blue-800: #0066ff;
 
-  /* Gradient */
-  --color-gradient-green-400: linear-gradient(rgba(0, 190, 133, 1), rgba(118, 218, 188, 1));
-  --color-gradient-green-800: linear-gradient(rgba(0, 168, 118, 1), rgba(92, 202, 175, 1));
-  --color-gradient-blue-400: linear-gradient(rgba(53, 111, 255, 1), rgba(102, 178, 255, 1));
-  --color-gradient-blue-800: linear-gradient(rgba(0, 102, 255, 1), rgba(67, 161, 255, 1));
-  --color-gradient-orange-400: linear-gradient(rgba(255, 128, 61, 1), rgba(255, 188, 153, 1));
-  --color-gradient-orange-800: linear-gradient(rgba(255, 96, 12, 1), rgba(255, 128, 61, 1));
-  --color-gradient-navy-400: linear-gradient(rgba(110, 131, 163, 1), rgba(164, 192, 207, 1));
-
   /* Font Sizes */
   --text-10: 0.625rem;
   --text-10--line-height: 0.75rem;
