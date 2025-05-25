@@ -12,11 +12,14 @@ export function StudentCardDetailPage() {
   const { me: meRecoil } = useUserStore()
   const { t, currentLang } = useLanguage()
 
-  const { id, cardType, groupId } = useParams<{ id: string; cardType: string; groupId: string }>()
+  const { id, groupId } = useParams<{ id: string; groupId: string }>()
   const { replace } = useHistory()
-  const { search } = useLocation()
+  const { search, pathname } = useLocation()
   const { isForbidden, isLoading } = useTeacherStudentCard(Number(id))
   const searchParams = new URLSearchParams(search)
+
+  const cardTypeMatch = pathname.match(/\/teacher\/studentcard\/\d+\/\d+\/(.+)$/)
+  const cardType = cardTypeMatch?.[1] || 'default'
 
   if (isLoading) return <Blank />
 
@@ -57,7 +60,7 @@ export function StudentCardDetailPage() {
     },
     {
       id: 5,
-      type: 'default',
+      type: 'all',
       name: t('comprehensive_card', '종합카드'),
       url: `/teacher/studentcard/${groupId}/${id}/all`,
     },
@@ -91,7 +94,7 @@ export function StudentCardDetailPage() {
                       key={id}
                       className={cn(
                         'cursor-pointer rounded-md px-1 py-1 md:h-10 md:px-4',
-                        cardType === type ? 'bg-orange-400 text-white' : 'hover:font-bold',
+                        cardType === type ? 'bg-primary-700 text-white' : 'hover:font-bold',
                       )}
                       onClick={() => handleReplace(url)}
                     >
