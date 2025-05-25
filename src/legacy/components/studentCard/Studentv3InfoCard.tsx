@@ -75,8 +75,9 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
   useEffect(() => {
     if (expiredReason && studentStates) {
       const selItem = studentStates?.filter((item: Code) => item.name === expiredReason)
+
       if (selItem) {
-        setStudentStatesKey(selItem[0].key)
+        setStudentStatesKey(selItem[0]?.key)
       }
     }
   }, [expiredReason, studentStates])

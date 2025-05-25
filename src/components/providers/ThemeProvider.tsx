@@ -16,7 +16,7 @@ interface ThemeProviderProps {
 
 export function ThemeProvider({ children, theme, setTheme }: ThemeProviderProps) {
   useEffect(() => {
-    const currentTheme = ThemeConstant.Themes[theme]
+    const currentTheme = ThemeConstant.Themes[theme] || ThemeConstant.Themes[THEME_ENUM.SUPERSCHOOL]
     const root = document.documentElement
 
     // CSS 변수 설정
