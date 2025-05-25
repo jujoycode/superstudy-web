@@ -159,7 +159,7 @@ export const ExamScoresComponent = () => {
                       <td>
                         {score.isSubmitted ? (
                           <button
-                            className="border-[#ff2525;] text-[#ff2525;] rounded-lg border px-4 py-1 text-[15px] font-bold"
+                            className="rounded-lg border border-[#ff2525] px-4 py-1 text-[15px] font-bold text-[#ff2525]"
                             onClick={() => deleteMockScoreFile(score.month, score.class)}
                           >
                             삭제
