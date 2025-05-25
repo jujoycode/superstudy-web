@@ -34,13 +34,10 @@
   --color-dim-8: rgba(0, 0, 0, 0.08);
 
   /* Gradient */
-  --color-gradient-green-400: linear-gradient(rgba(0, 190, 133, 1), rgba(118, 218, 188, 1));
-  --color-gradient-green-800: linear-gradient(rgba(0, 168, 118, 1), rgba(92, 202, 175, 1));
-  --color-gradient-blue-400: linear-gradient(rgba(53, 111, 255, 1), rgba(102, 178, 255, 1));
-  --color-gradient-blue-800: linear-gradient(rgba(0, 102, 255, 1), rgba(67, 161, 255, 1));
-  --color-gradient-orange-400: linear-gradient(rgba(255, 128, 61, 1), rgba(255, 188, 153, 1));
-  --color-gradient-orange-800: linear-gradient(rgba(255, 96, 12, 1), rgba(255, 128, 61, 1));
-  --color-gradient-navy-400: linear-gradient(rgba(110, 131, 163, 1), rgba(164, 192, 207, 1));
+  --background-image-gradient-navy-400: linear-gradient(90deg, #6e83a3 0%, #a4c0cf 100%);
+  --background-image-gradient-blue-400: linear-gradient(90deg, #356fff 0%, #66bdff 100%);
+  --background-image-gradient-green-400: linear-gradient(90deg, #00be85 0%, #76dabc 100%);
+  --background-image-gradient-orange-400: linear-gradient(90deg, #ff803d 0%, #ffbc99 100%);
 
   /* Old Primary Colors */
   --color-old-primary-red-100: #ffebeb;
