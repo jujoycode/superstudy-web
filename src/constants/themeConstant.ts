@@ -7,7 +7,7 @@ export class ThemeConstant {
   public static readonly THEME_ENUM = THEME_ENUM;
 
   public static readonly Themes = {
-    'SUPERSCHOOL': {
+    [THEME_ENUM.SUPERSCHOOL]: {
       'color-primary-50': '#FFF8F5',
       'color-primary-100': '#FFE8DB',
       'color-primary-200': '#FFD8C2',
@@ -21,7 +21,7 @@ export class ThemeConstant {
       'color-primary-999': '#501C00',
     },
 
-    'LGU+': {
+    [THEME_ENUM.LG]: {
       'color-primary-50': '#FFF7FB',
       'color-primary-100': '#FCDAED',
       'color-primary-200': '#F8BFE0',

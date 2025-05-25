@@ -109,7 +109,7 @@ export class MenuConstant {
     //   ],
     // },
     {
-      name: '공지',
+      name: '소통',
       children: [
         {
           name: '공지사항',

@@ -84,19 +84,8 @@ function NavigationParentItem({ name, children, isActive }: NavigationParentItem
           {name}
         </Text>
 
-        <div
-          className={cn(
-            'flex cursor-pointer items-center justify-center transition-transform duration-300 ease-in-out',
-            isCollapsed ? '-rotate-180' : '',
-          )}
-        >
-          <Icon
-            name="chevronDown"
-            size="sm"
-            color="gray-400"
-            stroke
-            className="hover:text-primary-800 cursor-pointer"
-          />
+        <div className={cn('flex cursor-pointer items-center justify-center', isCollapsed ? '-rotate-180' : '')}>
+          <Icon name="chevronUp" size="sm" color="gray-400" stroke className="hover:text-primary-800 cursor-pointer" />
         </div>
       </div>
 
