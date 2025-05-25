@@ -36,6 +36,7 @@ export function LoginV2() {
       return
     }
     setFrontError('')
+
     handleLogin(email, password)
   }
 
@@ -70,9 +71,9 @@ export function LoginV2() {
               />
             </Label.col>
             {frontError ? (
-              <div className="text-brand-1 text-sm">{frontError}</div>
+              <div className="text-primary-800 text-sm">{frontError}</div>
             ) : errorMessage ? (
-              <div className="text-brand-1 text-sm">{errorMessage}</div>
+              <div className="text-primary-800 text-sm">{errorMessage}</div>
             ) : null}
             <Label.col>
               <PasswordInputToggle

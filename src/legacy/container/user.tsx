@@ -16,9 +16,12 @@ import { useAuthStore } from '@/stores/auth'
 import { useSchoolStore } from '@/stores/school'
 import { createContainer } from './createContainer'
 import { useLogout } from '@/hooks/useLogout'
+import { useTheme } from '@/providers/ThemeProvider'
+import { THEME_ENUM } from '@/constants/themeConstant'
 
 export function userHook() {
   const logout = useLogout()
+  const { setTheme } = useTheme()
   const { setStorage, getStorage } = useBrowserStorage()
   const { me, setMe, setChild } = useUserStore()
   const { token, isStayLoggedIn, setToken, setRefreshToken, setTwoFactor: setTwoFactorState } = useAuthStore()
@@ -89,11 +92,14 @@ export function userHook() {
         if (!res.token || !res.refresh_token) {
           throw new Error('No token')
         }
+
         setToken(res.token)
         setRefreshToken(res.refresh_token)
         setStorage('token', res.token)
         setStorage('refreshToken', res.refresh_token)
         refetchSchoolProperties()
+
+        setTheme(me?.school.brandingType as THEME_ENUM)
       },
       onError: (err) => {
         const errorMsg: errorType | undefined = err?.response?.data as unknown as errorType
@@ -109,6 +115,7 @@ export function userHook() {
       setErrorMessage('올바른 이메일 형식이 아닙니다.')
       return
     }
+
     loginMutation({ data: { email, password } })
   }
 

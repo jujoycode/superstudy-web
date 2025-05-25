@@ -1,4 +1,5 @@
 import { MenuConstant } from '@/constants/menuConstant'
+import { useLogout } from '@/hooks/useLogout'
 import { Box } from '@/atoms/Box'
 import { Divider } from '@/atoms/Divider'
 import { Grid } from '@/atoms/Grid'
@@ -37,7 +38,8 @@ export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
                 </Box>
               )
             })}
-            <NavigationFooter />
+
+            <NavigationFooter actions={[{ label: '내 정보 관리' }, { label: '로그아웃', onClick: useLogout() }]} />
           </Box>
         </ScrollArea>
       </GridItem>

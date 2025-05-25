@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { useUserStore } from '@/stores/user'
 import { Blank, Section } from '@/legacy/components/common'
 import { useNotificationLogFindAll, useNotificationLogRead } from '@/legacy/generated/endpoint'

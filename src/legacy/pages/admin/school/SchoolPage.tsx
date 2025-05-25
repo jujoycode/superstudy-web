@@ -2,8 +2,9 @@ import { Checkbox } from '@mui/material'
 import { type ChangeEvent, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNotificationStore } from '@/stores/notification'
+import { Radio } from '@/atoms/Radio'
 import BlockchainSetting from '@/legacy/components/blockchain/BlockchainSetting'
-import { Label, Radio, Select } from '@/legacy/components/common'
+import { Label, Select } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
 import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
@@ -195,21 +196,21 @@ export function SchoolPage() {
                 <Label.Text children={'토요일 수업'} />
               </div>
               {editLastPeriod ? (
-                <div className="flex h-9 items-center">
+                <div className="flex h-9 items-center space-x-1">
                   <Radio
                     checked={hasSaturdayClass}
                     onChange={(e) => {
                       setValue('hasSaturdayClass', e.target.checked)
                     }}
-                    className="filled-red-light mr-1 rounded-full"
+                    className="bg-red-500"
                   />
-                  <p className="mr-2">있음</p>
+                  <p className="pr-1">있음</p>
                   <Radio
                     checked={!hasSaturdayClass}
                     onChange={(e) => {
                       setValue('hasSaturdayClass', !e.target.checked)
                     }}
-                    className="filled-red-light mr-1 rounded-full"
+                    className="bg-red-500"
                   />
                   <p className="">없음</p>
                 </div>
@@ -427,7 +428,7 @@ export function SchoolPage() {
                         updateEnhancedSecurity()
                       }
                     }}
-                    className="filled-red-light mr-1 rounded-full"
+                    className="bg-red-500"
                   />
                   <p className="">{t('enhanced_security_mode')}</p>
                 </Label.row>
@@ -447,7 +448,7 @@ export function SchoolPage() {
                         updateEnhancedSecurity()
                       }
                     }}
-                    className="filled-red-light mr-1 rounded-full"
+                    className="bg-red-500"
                   />
                   <p>{t('convenience_mode')}</p>
                 </Label.row>

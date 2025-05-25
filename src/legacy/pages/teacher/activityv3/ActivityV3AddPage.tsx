@@ -5,13 +5,14 @@ import { useForm } from 'react-hook-form'
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
+import { Radio } from '@/atoms/Radio'
 import { SuperModal } from '@/legacy/components'
 import {
   ActivityCriteriaSelectModal,
   getCriteriaTitle,
 } from '@/legacy/components/activityv3/ActivityCriteriaSelectModal'
 import { ActivityGroupSelectModal } from '@/legacy/components/activityv3/ActivityGroupSelectModal'
-import { CloseButton, Label, Radio, RadioGroup, Select, Textarea } from '@/legacy/components/common'
+import { CloseButton, Label, Select, Textarea } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Coachmark2 } from '@/legacy/components/common/CoachMark2'
@@ -394,30 +395,25 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
                       </div>
                     </div>
-                    <div className="py-3">
-                      <RadioGroup className="flex items-center space-x-4" onChange={() => {}}>
-                        {Object.entries(ACTIVITYV3_TYPE_KOR).map(([type, kor]) => (
-                          <div className={`flex items-center space-x-2 ${!!activityv3Data && 'opacity-60'}`} key={type}>
-                            <Radio
-                              key={type}
-                              id={type}
-                              name="type"
-                              value={type}
-                              checked={activityv3type === type}
-                              onChange={() => {
-                                setActivityV3Type(type as SubjectType)
-                                setSelectedGroupIds([])
-                              }}
-                              disabled={!!activityv3Data}
-                            ></Radio>
-                            <Label
-                              htmlFor={type}
-                              children={kor}
-                              className={'cursor-pointer ' + (!!activityv3Data && 'text-gray-600')}
-                            />
-                          </div>
-                        ))}
-                      </RadioGroup>
+                    <div className="flex items-center space-x-4 py-3">
+                      {Object.entries(ACTIVITYV3_TYPE_KOR).map(([type, kor]) => (
+                        <Label.row
+                          htmlFor={type}
+                          className={activityv3Data ? 'cursor-pointer text-gray-600 opacity-60' : ''}
+                          key={type}
+                        >
+                          <Radio
+                            id={type}
+                            checked={activityv3type === type}
+                            onChange={() => {
+                              setActivityV3Type(type as SubjectType)
+                              setSelectedGroupIds([])
+                            }}
+                            disabled={!!activityv3Data}
+                          ></Radio>
+                          <div>{kor}</div>
+                        </Label.row>
+                      ))}
                     </div>
                   </div>
 
