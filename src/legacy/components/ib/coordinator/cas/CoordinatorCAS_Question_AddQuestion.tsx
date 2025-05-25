@@ -1,5 +1,5 @@
-import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren, useEffect, useRef, useState } from 'react'
+import { cn } from '@/utils/commonUtil'
 
 import { Blank } from '@/legacy/components/common'
 import AlertV2 from '@/legacy/components/common/AlertV2'
@@ -106,7 +106,7 @@ export function CoordinatorCAS_Question_AddQuestion({
     <>
       {isLoading && <Blank />}
       <div
-        className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
+        className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black/50 ${
           !modalOpen && 'hidden'
         }`}
       >

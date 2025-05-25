@@ -32,7 +32,7 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   theme = 'primary',
 }) => {
   return (
-    <div className="bg-opacity-50 fixed inset-0 z-100 flex h-screen w-full items-center justify-center bg-black">
+    <div className="fixed inset-0 z-100 flex h-screen w-full items-center justify-center bg-black/50">
       <div className="mx-4 flex h-[278px] w-full flex-col items-center justify-center gap-2 bg-white p-6 md:mx-0 md:w-[480px]">
         <h2 className="mb-2 text-center text-2xl font-semibold">{message}</h2>
         <p

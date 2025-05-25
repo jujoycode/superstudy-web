@@ -9,7 +9,7 @@ function AlertModal({ isOpen, onClose, head, message }: AlertModalProps) {
   if (!isOpen) return null // 모달이 열려있지 않으면 아무것도 렌더링하지 않음
 
   return (
-    <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="w-96 rounded-lg bg-white p-6 shadow-lg">
         <h2 className="mb-4 text-xl font-semibold">{head}</h2>
         <p className="mb-6">{message}</p>

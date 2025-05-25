@@ -191,7 +191,7 @@ export function CanteenPage() {
       </Section>
       <div className="absolute right-20 bottom-52">
         <div className="fixed">
-          <div className="bg-primary-800 bg-opacity-50 relative mb-2 h-16 w-16 rounded-full">
+          <div className="bg-primary-800/50 relative mb-2 h-16 w-16 rounded-full">
             <Link className="flex h-full w-full flex-col items-center justify-center" to={'/student/chat'}>
               <ChatIcon />
               <div className="text-sm text-white">메시지</div>

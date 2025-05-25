@@ -177,7 +177,7 @@ export function IbCASNormal({
 
   return (
     <div
-      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
+      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black/50 ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {

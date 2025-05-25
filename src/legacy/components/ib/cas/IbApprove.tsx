@@ -1,5 +1,5 @@
-import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren, useState } from 'react'
+import { cn } from '@/utils/commonUtil'
 
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
@@ -25,7 +25,7 @@ export function IbApprove({
   const [isOpen, setIsOpen] = useState<boolean>(false)
   return (
     <div
-      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
+      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black/50 ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {

@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren, useEffect, useState } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
+import { cn } from '@/utils/commonUtil'
 
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Check } from '@/legacy/components/common/Check'
@@ -133,7 +133,7 @@ export function IbCASInterview({
   }, [data])
   return (
     <div
-      className={`bg-opacity-50 fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black ${
+      className={`fixed inset-0 z-60 flex h-screen w-full items-center justify-center bg-black/50 ${
         !modalOpen && 'hidden'
       }`}
       onClick={(e) => {

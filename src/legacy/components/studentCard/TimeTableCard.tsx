@@ -62,7 +62,7 @@ export function TimeTableCard({ studentId }: TimeTableCardProps) {
                 return (
                   <td
                     key={dayNum}
-                    className={`min-h-10.5 min-w-9.5 cursor-pointer border border-gray-50 px-1 py-2 text-xs md:text-base ${todayNum === dayNum + 1 ? 'bg-primary-800 bg-opacity-20' : ''} ${i === 0 && dayNum === 0 ? 'border-t-0 border-l-0' : ''} ${i === 0 && dayNum === (hasSaturdayClass ? 5 : 4) ? 'border-t-0 border-r-0' : ''} ${i === maxTime - 1 && dayNum === 0 ? 'border-b-0 border-l-0' : ''} ${
+                    className={`min-h-10.5 min-w-9.5 cursor-pointer border border-gray-50 px-1 py-2 text-xs md:text-base ${todayNum === dayNum + 1 ? 'bg-primary-800/20' : ''} ${i === 0 && dayNum === 0 ? 'border-t-0 border-l-0' : ''} ${i === 0 && dayNum === (hasSaturdayClass ? 5 : 4) ? 'border-t-0 border-r-0' : ''} ${i === maxTime - 1 && dayNum === 0 ? 'border-b-0 border-l-0' : ''} ${
                       i === maxTime - 1 && dayNum === (hasSaturdayClass ? 5 : 4) ? 'border-r-0 border-b-0' : ''
                     } ${i === 0 || i === maxTime - 1 ? 'border-t-0 border-b-0' : ''} ${dayNum === 0 || dayNum === (hasSaturdayClass ? 5 : 4) ? 'border-r-0 border-l-0' : ''} ${
                       lecture?.id !== undefined && selectedLectureInfo?.id === lecture?.id
