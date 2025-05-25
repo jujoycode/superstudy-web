@@ -288,6 +288,7 @@
   height: 2.5rem;
   overflow-y: hidden;
   border-bottom-width: 1px;
+  border-bottom-color: var(--color-gray-200);
   background-color: var(--color-white);
 }
 
