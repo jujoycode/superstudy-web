@@ -38,7 +38,7 @@ const AlertV2: React.FC<AlertV2Props> = ({
   const cancelButtonClass = ratio === '3/7' ? 'grow-[3] basis-3/10' : 'grow basis-1/2'
   const confirmButtonClass = ratio === '3/7' ? 'grow-[7] basis-7/10' : 'grow basis-1/2'
   return (
-    <div className="bg-opacity-50 fixed inset-0 z-100 flex h-screen w-full items-center justify-center bg-black">
+    <div className="fixed inset-0 z-100 flex h-screen w-full items-center justify-center bg-black/50">
       <div className="flex w-[416px] flex-col items-center justify-center rounded-xl bg-white">
         <div className="flex flex-col items-center gap-2 p-8">
           <Typography

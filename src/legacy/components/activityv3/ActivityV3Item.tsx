@@ -49,8 +49,8 @@ export const Activityv3Item: FC<Activityv3ItemProps> = ({
           <Link
             to={`/teacher/activityv3/${activityv3.id}/submit`}
             className={twMerge(
-              'bg-opacity-10 rounded-full bg-black px-4 py-2 text-sm',
-              pathname === `/teacher/activityv3/${activityv3.id}/submit` && 'bg-opacity-100 bg-gray-600 text-white',
+              'rounded-full bg-black/10 px-4 py-2 text-sm',
+              pathname === `/teacher/activityv3/${activityv3.id}/submit` && 'bg-gray-600/100 text-white',
             )}
           >
             전달 대상
@@ -59,8 +59,8 @@ export const Activityv3Item: FC<Activityv3ItemProps> = ({
             to={`/teacher/activityv3/${activityv3.id}`}
             onClick={() => !sessionOpen && setOpenedActivityIds(openedActivityIds?.concat(activityv3.id) || [])}
             className={twMerge(
-              'bg-opacity-10 rounded-full bg-black px-4 py-2 text-sm',
-              pathname === `/teacher/activityv3/${activityv3.id}` && 'bg-opacity-100 bg-gray-600 text-white',
+              'rounded-full bg-black/10 px-4 py-2 text-sm',
+              pathname === `/teacher/activityv3/${activityv3.id}` && 'bg-gray-600/100 text-white',
             )}
           >
             상세보기

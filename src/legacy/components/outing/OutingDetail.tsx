@@ -37,7 +37,7 @@ export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
       <div className="relative">
         {/* 반투명 레이어 */}
         {outing?.outingStatus === 'PROCESSED' && new Date(endAt) < new Date() && (
-          <div className="bg-opacity-30 absolute inset-0 flex items-center justify-center bg-gray-900 text-3xl font-bold text-white">
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-900/30 text-3xl font-bold text-white">
             기 간 만 료
           </div>
         )}
