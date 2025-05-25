@@ -448,13 +448,6 @@
   text-align: center;
 }
 
-.section {
-  padding-top: 16px;
-  padding-bottom: 16px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
 .swiper.mySwiper {
   padding-left: var(--padding-6) !important;
   padding-right: var(--padding-6) !important;
