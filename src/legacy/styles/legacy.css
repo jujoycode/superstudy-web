@@ -176,6 +176,7 @@
   border-color: var(--color-gray-200);
   font-size: 0.75rem;
   font-weight: 300;
+  line-height: 1rem;
 }
 
 .select-xs::placeholder {
@@ -197,6 +198,7 @@
   border-width: 1px;
   border-color: var(--color-gray-200);
   font-size: 0.8125rem;
+  line-height: 1.125rem;
 }
 
 .select-sm::placeholder {
@@ -218,6 +220,7 @@
   border-width: 1px;
   border-color: var(--color-gray-200);
   font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .select::placeholder {
@@ -240,6 +243,7 @@
   border-color: var(--color-gray-200);
   font-size: 0.9375rem;
   font-weight: 500;
+  line-height: 1.375rem;
 }
 
 .select-lg::placeholder {
@@ -262,6 +266,7 @@
   border-color: var(--color-gray-200);
   font-size: 1rem;
   font-weight: 700;
+  line-height: 1.5rem;
 }
 
 .select-xl::placeholder {
