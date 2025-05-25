@@ -48,7 +48,7 @@ export function StudentLayout() {
         <div className="flex h-full w-full flex-col overflow-y-auto">
           <Outlet />
         </div>
-        <nav className="flex w-full border-t bg-white py-1">
+        <nav className="flex w-full border-t border-gray-200 bg-white py-1">
           {tabs.map((tab) => {
             const active = [tab.path, ...(tab.extra ?? [])].some((path) => pathname.startsWith(path))
             return tab.hidden ? null : (
