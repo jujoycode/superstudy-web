@@ -29,6 +29,7 @@ export const useLanguageStore = create<LanguageState>()(
         if (typeof window !== 'undefined') {
           localStorage.setItem('languageState', currentLanguage)
         }
+
         return set({ currentLanguage })
       },
       setSupportedLanguages: (supportedLanguages) => set({ supportedLanguages }),

@@ -51,7 +51,7 @@ export function NavigationItem(props: NavigationItemProps) {
  * 부모 메뉴 아이템 컴포넌트 (확장/축소 가능한 항목)
  */
 function NavigationParentItem({ name, children, isActive }: NavigationParentItemProps) {
-  const [isCollapsed, setIsCollapsed] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(true)
   const hasActiveChild = children?.some((child) => child.isActive)
 
   const handleToggle = () => {

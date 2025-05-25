@@ -1,7 +1,11 @@
 import { useMemo } from 'react'
-import { Flex } from '@/atoms/Flex'
-import { NavigationItem, NavigationLinkItemProps, NavigationParentItemProps } from './NavigationItem'
 import { useActiveNavigation } from '@/hooks/useActiveNavigation'
+import { Flex } from '@/atoms/Flex'
+import {
+  NavigationItem,
+  NavigationLinkItemProps,
+  NavigationParentItemProps,
+} from '@/molecules/navigation/NavigationItem'
 
 type NavigationItemWithoutActive =
   | Omit<NavigationLinkItemProps, 'isActive'>
@@ -24,7 +28,7 @@ export function NavigationContainer({ items }: NavigationContainerProps) {
         // 자식 메뉴 중에 활성화된 항목이 있는지 확인
         const childrenWithActive = item.children.map((child) => ({
           ...child,
-          isActive: child.to ? isActive(child.to) : false,
+          isActive: child.to ? isActive(child.to, true) : false,
         }))
 
         return {
