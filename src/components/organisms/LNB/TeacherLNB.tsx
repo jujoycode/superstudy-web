@@ -16,7 +16,7 @@ export type TeacherLNBProps = {
 
 export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
   return (
-    <Flex direction="col" className="h-screen w-full max-w-[280px] border-r border-gray-200 bg-gray-50">
+    <Flex direction="col" className="h-screen w-full max-w-[288px] min-w-[280px] border-r border-gray-200 bg-gray-50">
       {/* Header */}
       <NavigationHeader ProfileProps={HeaderProps} />
 

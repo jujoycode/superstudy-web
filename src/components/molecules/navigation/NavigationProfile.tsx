@@ -6,13 +6,14 @@ import { Text } from '@/atoms/Text'
 
 export type NavigationProfileProps = {
   name: string
+  nickname?: string
   email: string
   school: string
-  src?: string
+  profile?: string
   onClick?: () => void
 }
 
-export function NavigationProfile({ name, email, school, src, onClick }: NavigationProfileProps) {
+export function NavigationProfile({ name, nickname, email, school, profile, onClick }: NavigationProfileProps) {
   const handleClick = () => {
     onClick?.()
   }
@@ -28,14 +29,14 @@ export function NavigationProfile({ name, email, school, src, onClick }: Navigat
     >
       {/* Avatar */}
       <Box width="fit-content">
-        <Avatar rounded="md" src={src} />
+        <Avatar rounded="md" src={profile} />
       </Box>
 
       <Box width="full" className="hover:rounded-md hover:bg-gray-100">
         <Flex direction="col" items="start" gap="1">
           <Flex direction="row" justify="between" items="center" width="full">
             <Text size="lg" weight="lg">
-              {name}
+              {name} {nickname && `(${nickname})`}
             </Text>
             <Icon name="rightFillArrow" size="sm" />
           </Flex>

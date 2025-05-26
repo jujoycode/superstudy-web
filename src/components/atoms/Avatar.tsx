@@ -23,6 +23,10 @@ export function Avatar({ src, alt = '', className, size = 'md', rounded = 'full'
     setIsLoading(false)
   }
 
+  function getImageUrl(src: string) {
+    return `${process.env.REACT_APP_API_URL}/api/images?url=${src}`
+  }
+
   const sizeClasses = {
     sm: 'w-8 h-8',
     md: 'w-12 h-12',
@@ -48,7 +52,7 @@ export function Avatar({ src, alt = '', className, size = 'md', rounded = 'full'
     <div className={cn('relative overflow-hidden', sizeClasses[size], roundedClasses[rounded], className)}>
       {isLoading && <div className={cn('absolute inset-0 animate-pulse bg-gray-200', roundedClasses[rounded])} />}
       <img
-        src={src}
+        src={getImageUrl(src)}
         alt={alt || '프로필 이미지'}
         className={cn(
           'h-full w-full object-cover transition-opacity duration-300',

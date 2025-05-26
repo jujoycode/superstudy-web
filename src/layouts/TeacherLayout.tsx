@@ -2,6 +2,7 @@ import { useEffect, useMemo } from 'react'
 import { Outlet, useNavigate, useLocation, Link } from 'react-router'
 import { cn } from '@/utils/commonUtil'
 import { useUserStore } from '@/stores/user'
+import { Flex } from '@/atoms/Flex'
 import { Grid } from '@/atoms/Grid'
 import { GridItem } from '@/atoms/GridItem'
 import { TeacherLNB } from '@/organisms/LNB/TeacherLNB'
@@ -67,7 +68,15 @@ export function TeacherLayout() {
 
   const LeftNav = (
     <GridItem colSpan={4}>
-      <TeacherLNB HeaderProps={{ name: me.name, email: me.email || '', school: me.school.name }} />
+      <TeacherLNB
+        HeaderProps={{
+          name: me.name,
+          nickname: me.nickName,
+          email: me.email || '',
+          school: me.school.name,
+          profile: me.profile,
+        }}
+      />
     </GridItem>
   )
 
@@ -86,7 +95,7 @@ export function TeacherLayout() {
   )
 
   return (
-    <>
+    <Flex direction="row" className="h-screen w-full">
       <ResponsiveRenderer default={LeftNav} />
 
       <Grid col={12}>
@@ -97,6 +106,6 @@ export function TeacherLayout() {
       <ResponsiveRenderer mobile={BottomNav} />
 
       <Toast />
-    </>
+    </Flex>
   )
 }
