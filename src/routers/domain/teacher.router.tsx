@@ -175,14 +175,15 @@ export const teacherRoutes = {
       path: 'studentcard',
       element: <StudentCardPage />,
       children: [
+        { path: ':groupId', element: <StudentCardPage /> },
         {
-          path: ':groupId',
+          path: ':groupId/:id',
           element: <StudentCardDetailPage />,
           children: [
-            { path: ':id/all', element: <StudyInfoCard2 isCard={true} /> },
-            { path: ':id/activityv3', element: <ActivityV3CardPage /> },
+            { path: 'all', element: <StudyInfoCard2 isCard={true} /> },
+            { path: 'activityv3', element: <ActivityV3CardPage /> },
             {
-              path: ':id/score',
+              path: 'score',
               element: <ScoreCardPage />,
               children: [
                 { index: true, element: <AllScore /> },
@@ -190,10 +191,10 @@ export const teacherRoutes = {
                 { path: 'analysis', element: <ScoreAnalysis /> },
               ],
             },
-            { path: ':id/counseling', element: <Counselingv3Card /> },
-            { path: ':id/general', element: <GeneralCardPage /> },
-            { path: ':id/default', element: <AllCardPage /> },
-            { path: ':id/pointlogs', element: <PointLogsPage /> },
+            { path: 'counseling', element: <Counselingv3Card /> },
+            { path: 'general', element: <GeneralCardPage /> },
+            { path: 'default', element: <AllCardPage /> },
+            { path: 'pointlogs', element: <PointLogsPage /> },
           ],
         },
       ],
