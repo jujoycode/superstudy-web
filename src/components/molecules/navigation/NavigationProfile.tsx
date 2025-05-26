@@ -23,7 +23,7 @@ export function NavigationProfile({ name, email, school, src, onClick }: Navigat
       justify="start"
       items="start"
       gap="3"
-      className="cursor-pointer rounded-md p-2 transition-colors duration-200 hover:bg-gray-50"
+      className="cursor-pointer rounded-md p-5 pt-0 pb-4 transition-colors duration-200"
       onClick={handleClick}
     >
       {/* Avatar */}
@@ -31,7 +31,7 @@ export function NavigationProfile({ name, email, school, src, onClick }: Navigat
         <Avatar rounded="md" src={src} />
       </Box>
 
-      <Box width="full">
+      <Box width="full" className="hover:rounded-md hover:bg-gray-100">
         <Flex direction="col" items="start" gap="1">
           <Flex direction="row" justify="between" items="center" width="full">
             <Text size="lg" weight="lg">
@@ -41,10 +41,10 @@ export function NavigationProfile({ name, email, school, src, onClick }: Navigat
           </Flex>
 
           <Box>
-            <Text size="sm" weight="sm" variant="dim">
+            <Text size="xs" weight="sm" variant="dim">
               {email}
             </Text>
-            <Text size="sm" weight="sm" variant="dim">
+            <Text size="xs" weight="sm" variant="dim">
               {school}
             </Text>
           </Box>

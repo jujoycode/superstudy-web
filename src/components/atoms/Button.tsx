@@ -2,7 +2,7 @@ import React from 'react'
 import { cn } from '@/utils/commonUtil'
 
 export type ButtonVariant = 'solid' | 'outline' | 'link'
-export type ButtonSize = 'sm' | 'md' | 'lg'
+export type ButtonSize = 'sm' | 'md' | 'lg' | 'full'
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
@@ -28,6 +28,7 @@ const sizeOptions: Record<ButtonSize, string> = {
   sm: 'h-8 px-3 text-[12px] rounded-[6px]',
   md: 'h-10 px-4 text-[14px] rounded-[8px]',
   lg: 'h-12 px-6 text-[16px] rounded-[8px]',
+  full: 'h-10 w-full rounded-[8px]',
 }
 
 const getSizeOptions = (variant: ButtonVariant, size: ButtonSize) => {

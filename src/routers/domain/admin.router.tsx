@@ -31,6 +31,10 @@ import { TimetablePage } from '@/legacy/pages/admin/timetable/TimetablePage'
 import { AuthRouter } from '../AuthRouter'
 import { AdminGuard } from '../guard/AdminGuard'
 
+/**
+ * Admin Router
+ * @author Suh Jihun
+ */
 export const adminRoutes = {
   path: '/admin',
   element: (

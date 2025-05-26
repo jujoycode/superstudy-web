@@ -1,6 +1,5 @@
 import { useEffect, useMemo } from 'react'
 import { Outlet, useNavigate, useLocation, Link } from 'react-router'
-import { useResponsive } from '@/hooks/useResponsive'
 import { cn } from '@/utils/commonUtil'
 import { useUserStore } from '@/stores/user'
 import { Grid } from '@/atoms/Grid'
@@ -16,7 +15,6 @@ import { DateFormat } from '@/legacy/util/date'
 export function TeacherLayout() {
   const { me } = useUserStore()
   const { pathname } = useLocation()
-  const { isMobile } = useResponsive()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -24,10 +22,6 @@ export function TeacherLayout() {
       navigate(`/teacher/canteen/${DateUtil.formatDate(new Date().toISOString(), DateFormat['YYYY-MM-DD'])}`)
     }
   }, [pathname, me, navigate])
-
-  if (!me) {
-    return <Blank />
-  }
 
   const tabs = useMemo(
     () => [
@@ -64,11 +58,15 @@ export function TeacherLayout() {
         extra: ['/teacher/update', '/teacher/announcement'],
       },
     ],
-    [me?.role, pathname],
+    [],
   )
 
+  if (!me) {
+    return <Blank />
+  }
+
   const LeftNav = (
-    <GridItem colSpan={2}>
+    <GridItem colSpan={4}>
       <TeacherLNB HeaderProps={{ name: me.name, email: me.email || '', school: me.school.name }} />
     </GridItem>
   )
@@ -88,15 +86,17 @@ export function TeacherLayout() {
   )
 
   return (
-    <Grid col={12}>
+    <>
       <ResponsiveRenderer default={LeftNav} />
 
-      <GridItem colSpan={isMobile ? 12 : 10}>
-        <Outlet />
-        <ResponsiveRenderer mobile={BottomNav} />
-      </GridItem>
+      <Grid col={12}>
+        <GridItem colSpan={12}>
+          <Outlet />
+        </GridItem>
+      </Grid>
+      <ResponsiveRenderer mobile={BottomNav} />
 
       <Toast />
-    </Grid>
+    </>
   )
 }

@@ -1,14 +1,13 @@
-import { useLogout } from '@/hooks/useLogout'
+import { cn } from '@/utils/commonUtil'
 import { MenuConstant } from '@/constants/menuConstant'
 import { Box } from '@/atoms/Box'
 import { Divider } from '@/atoms/Divider'
-import { Grid } from '@/atoms/Grid'
-import { GridItem } from '@/atoms/GridItem'
+import { Flex } from '@/atoms/Flex'
 import { ScrollArea } from '@/atoms/ScrollArea'
 import { Text } from '@/atoms/Text'
-import { NavigationContainer } from '@/molecules/navigation/NavigationContainer'
 import { NavigationFooter } from '@/molecules/navigation/NavigationFooter'
 import { NavigationHeader } from '@/molecules/navigation/NavigationHeader'
+import { NavigationItem } from '@/molecules/navigation/NavigationItem'
 import type { NavigationProfileProps } from '@/molecules/navigation/NavigationProfile'
 
 export type TeacherLNBProps = {
@@ -17,32 +16,33 @@ export type TeacherLNBProps = {
 
 export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
   return (
-    <Grid col={1} row={12} className="h-screen max-w-[240px] min-w-[230px] border-r-1 border-gray-200">
+    <Flex direction="col" className="h-screen w-full max-w-[280px] border-r border-gray-200 bg-gray-50">
       {/* Header */}
-      <GridItem rowSpan={2} className="max-h-[150px]">
-        <NavigationHeader ProfileProps={HeaderProps} />
-      </GridItem>
+      <NavigationHeader ProfileProps={HeaderProps} />
 
-      <GridItem className="row-span-10">
-        <Divider marginY="0" className="mt-2" />
-        <ScrollArea>
-          <Box width="full" padding="5" className="mt-4 pt-0">
-            {MenuConstant.TEACHER_MENU.map((section, sectionIndex) => {
-              return (
-                <Box key={sectionIndex} padding="3">
-                  <Text variant="sub" className="mb-1" size="sm">
-                    {section.name}
-                  </Text>
-                  <NavigationContainer items={section.children || []} />
-                  {sectionIndex < MenuConstant.TEACHER_MENU.length - 1 && <Divider marginY="0" className="mt-2" />}
-                </Box>
-              )
-            })}
+      <Divider marginY="0" />
 
-            <NavigationFooter actions={[{ label: '내 정보 관리' }, { label: '로그아웃', onClick: useLogout() }]} />
-          </Box>
-        </ScrollArea>
-      </GridItem>
-    </Grid>
+      {/* Body */}
+      <ScrollArea className="w-full">
+        <Box height="screen" width="full" padding="5" className="mt-4 pt-0">
+          {MenuConstant.TEACHER_MENU.map((section, sectionIndex) => {
+            return (
+              <Box key={sectionIndex} className={cn('mb-6 px-2', sectionIndex === 0 && 'mt-7')}>
+                <Text variant="dim" className="mb-1 px-2" size="sm" weight="sm">
+                  {section.title}
+                </Text>
+
+                {section.child?.map((child, index) => {
+                  return <NavigationItem key={index} {...child} />
+                })}
+              </Box>
+            )
+          })}
+
+          {/* Footer */}
+          <NavigationFooter />
+        </Box>
+      </ScrollArea>
+    </Flex>
   )
 }

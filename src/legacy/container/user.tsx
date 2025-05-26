@@ -16,16 +16,14 @@ import { useAuthStore } from '@/stores/auth'
 import { useSchoolStore } from '@/stores/school'
 import { createContainer } from './createContainer'
 import { useLogout } from '@/hooks/useLogout'
-import { useTheme } from '@/providers/ThemeProvider'
 import { THEME_ENUM } from '@/constants/themeConstant'
 
 export function userHook() {
   const logout = useLogout()
-  const { setTheme } = useTheme()
   const { setStorage, getStorage } = useBrowserStorage()
   const { me, setMe, setChild } = useUserStore()
   const { token, isStayLoggedIn, setToken, setRefreshToken, setTwoFactor: setTwoFactorState } = useAuthStore()
-  const { schoolProperties, setSchoolProperties } = useSchoolStore()
+  const { schoolProperties, setSchoolProperties, setSchoolBrand } = useSchoolStore()
   const [errorMessage, setErrorMessage] = useState<string>()
   const [errorCode, setErrorCode] = useState('')
 
@@ -41,6 +39,8 @@ export function userHook() {
       queryKey: ['me'],
       onSuccess: (res) => {
         setMe(res)
+        setSchoolBrand((me?.school.brandingType as THEME_ENUM) || THEME_ENUM.SUPERSCHOOL)
+
         if (
           !res.school.enhancedSecurity &&
           (getStorage('two-factor') === null || getStorage('two-factor') === 'false')
@@ -98,8 +98,6 @@ export function userHook() {
         setStorage('token', res.token)
         setStorage('refreshToken', res.refresh_token)
         refetchSchoolProperties()
-
-        setTheme(me?.school.brandingType as THEME_ENUM)
       },
       onError: (err) => {
         const errorMsg: errorType | undefined = err?.response?.data as unknown as errorType

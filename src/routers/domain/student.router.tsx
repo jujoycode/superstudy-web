@@ -42,6 +42,10 @@ import { TimetableDetailPage } from '@/legacy/pages/student/timetable/TimetableD
 import { AuthRouter } from '../AuthRouter'
 import { AuthGuard } from '../guard/AuthGuard'
 
+/**
+ * Student Router
+ * @author Suh Jihun
+ */
 export const studentRoutes = {
   path: '/student',
   element: (

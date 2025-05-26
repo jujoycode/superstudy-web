@@ -28,6 +28,10 @@ import PlagiarismInspectPage from '@/legacy/pages/plagiarismInspect/student/Plag
 import { AuthRouter } from '../AuthRouter'
 import { AuthGuard } from '../guard/AuthGuard'
 
+/**
+ * IB Router
+ * @author Sukjin So
+ */
 export const ibRoutes = {
   path: '/ib/student',
   element: (

@@ -1,135 +1,112 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router'
+import { useEffect, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router'
+import { useActiveNavigation } from '@/hooks/useActiveNavigation'
 import { cn } from '@/utils/commonUtil'
-import { Box } from '@/atoms/Box'
 import { Collapse } from '@/atoms/Collapse'
 import { Flex } from '@/atoms/Flex'
-import { Icon } from '@/atoms/Icon'
+import { Icon, type IconName } from '@/atoms/Icon'
 import { Text } from '@/atoms/Text'
 
-// 메뉴 아이템 기본 속성
-export interface NavigationItemBaseProps {
-  name: string
-  isActive?: boolean
-}
-
-// 자식 메뉴 아이템 속성
-export interface NavigationLinkItemProps extends NavigationItemBaseProps {
-  to: string
+export interface NavigationItemProps {
+  title: string
+  icon?: IconName
+  to?: string
   external?: boolean
-  isChild?: boolean
-  children?: never
+  child?: NavigationItemProps[]
 }
 
-// 부모 메뉴 아이템 속성
-export interface NavigationParentItemProps extends NavigationItemBaseProps {
-  children: NavigationLinkItemProps[]
-  to?: never
-  external?: never
-}
+export function NavigationItem({ title, icon, to, external, child }: NavigationItemProps) {
+  const [isOpen, setIsOpen] = useState(false)
+  const { isActive } = useActiveNavigation()
+  const navigate = useNavigate()
 
-// 통합 타입 정의 (부모 또는 자식 중 하나)
-export type NavigationItemProps = NavigationLinkItemProps | NavigationParentItemProps
+  const isActiveNavigation = useMemo(() => (to ? isActive(to) : false), [to, isActive])
 
-// 메뉴 아이템이 부모인지 확인하는 타입 가드
-function isParentItem(item: NavigationItemProps): item is NavigationParentItemProps {
-  return Array.isArray((item as NavigationParentItemProps).children)
-}
-
-/**
- * 내비게이션 아이템 컴포넌트 (부모 또는 링크)
- */
-export function NavigationItem(props: NavigationItemProps) {
-  if (isParentItem(props)) {
-    return <NavigationParentItem {...props} />
-  }
-
-  return <NavigationLinkItem {...props} />
-}
-
-/**
- * 부모 메뉴 아이템 컴포넌트 (확장/축소 가능한 항목)
- */
-function NavigationParentItem({ name, children, isActive }: NavigationParentItemProps) {
-  const [isCollapsed, setIsCollapsed] = useState(true)
-  const hasActiveChild = children?.some((child) => child.isActive)
-
-  const handleToggle = () => {
-    setIsCollapsed(!isCollapsed)
-  }
-
-  // 활성화된 자식이 있으면 자동으로 펼치기
+  // 자식 계층이 활성화 되어있다면 collapse open 처리
   useEffect(() => {
-    if (hasActiveChild) {
-      setIsCollapsed(false)
+    if (child && child.some((item) => isActive(item.to ?? ''))) {
+      setIsOpen(true)
     }
-  }, [hasActiveChild])
+  }, [child, isActive])
 
-  return (
-    <Box width="full">
-      <div
-        className={cn('flex w-full cursor-pointer items-center justify-between')}
-        onClick={handleToggle}
-        onKeyDown={(e) => e.key === 'Enter' && handleToggle()}
-        tabIndex={0}
-        aria-label="하위 메뉴 펼치기/접기"
-        aria-expanded={!isCollapsed}
-        role="button"
-      >
-        <Text
-          variant="default"
-          size="md"
-          className={cn('cursor-pointer hover:bg-gray-50', isActive && 'text-primary-800')}
-        >
-          {name}
-        </Text>
-
-        <div className={cn('flex cursor-pointer items-center justify-center', isCollapsed ? '-rotate-180' : '')}>
-          <Icon name="chevronUp" size="sm" color="gray-400" stroke className="hover:text-primary-800 cursor-pointer" />
-        </div>
-      </div>
-
-      <Collapse isOpen={!isCollapsed} className="mt-1">
-        <Flex direction="col" justify="between" items="center" gap="1">
-          {children.map((child, index) => (
-            <Flex key={index} width="full" className="pl-4">
-              <NavigationLinkItem {...child} isChild={true} />
-            </Flex>
-          ))}
-        </Flex>
-      </Collapse>
-    </Box>
-  )
-}
-
-/**
- * 링크 메뉴 아이템 컴포넌트
- */
-function NavigationLinkItem({ name, to, external, isChild, isActive }: NavigationLinkItemProps) {
-  const textElement = (
-    <Text
-      variant={isChild ? 'sub' : 'default'}
-      size="md"
-      className={cn('cursor-pointer hover:bg-gray-50', isActive && 'text-primary-800')}
-    >
-      {name}
-    </Text>
-  )
-
-  // 외부 링크인 경우
-  if (external) {
-    return (
-      <div className="flex w-full items-center justify-between">
-        {textElement}
-        <Icon name="rightUpArrow" size="sm" color="gray-400" stroke className="hover:text-primary-800 cursor-pointer" />
-      </div>
-    )
+  function onClickItem(isExternal: boolean, to: string) {
+    if (isExternal) {
+      window.open(to, '_blank')
+    } else if (to) {
+      navigate(to)
+    }
   }
 
-  // 내부 링크인 경우
   return (
-    <Link to={to} className="w-full">
-      {textElement}
-    </Link>
+    <Flex direction="col" items="start" justify="center" width="full" className="mb-1">
+      <Flex
+        direction="row"
+        items="center"
+        justify="between"
+        width="full"
+        className="mb-1 cursor-pointer px-2 py-0.5 hover:rounded-md hover:bg-gray-200 hover:px-2"
+        onClick={() => {
+          onClickItem(external ?? false, to ?? '')
+          if (child) setIsOpen(!isOpen)
+        }}
+      >
+        {/* 일반 메뉴 제목 */}
+        <Flex direction="row" items="center" justify="start" gap="2" width="full">
+          {icon && <Icon name={icon} size="sm" color={isActiveNavigation ? 'primary-800' : 'gray-700'} stroke />}
+          <Text size="md" weight="sm" wrap={false} className={cn(isActiveNavigation ? 'text-primary-800' : '')}>
+            {title}
+          </Text>
+        </Flex>
+
+        {/* 외부 연결 케이스 */}
+        {external && (
+          <Flex items="center" justify="end">
+            <Icon name="rightUpArrow" size="sm" color="gray-400" stroke />
+          </Flex>
+        )}
+
+        {/* 하위 메뉴 케이스 */}
+        {child && (
+          <Flex items="center" justify="end">
+            <Icon
+              name="chevronRight"
+              size="sm"
+              color="gray-400"
+              stroke
+              className={cn('transition-transform duration-400', isOpen ? 'rotate-90' : '')}
+            />
+          </Flex>
+        )}
+      </Flex>
+
+      {child && (
+        <Collapse isOpen={isOpen} animationDuration={400} className="w-full">
+          <Flex direction="col" items="center" justify="center" width="full" className="mx-3.5">
+            <ul className="border-sidebar-border w-full flex-col gap-1 border-l border-gray-300 px-2.5 py-0.5">
+              {child.map((item, index) => (
+                <li key={index} className="w-[90%] cursor-pointer rounded-md py-1 pl-2 hover:bg-gray-200">
+                  <Flex
+                    direction="row"
+                    items="center"
+                    justify="between"
+                    width="full"
+                    onClick={() => onClickItem(item.external ?? false, item.to ?? '')}
+                  >
+                    <Text
+                      variant="sub"
+                      size="sm"
+                      className={cn(isActive(item.to ?? '', true) ? 'text-primary-800' : '')}
+                    >
+                      {item.title}
+                    </Text>
+                    {item.external && <Icon name="rightUpArrow" size="sm" color="gray-400" stroke />}
+                  </Flex>
+                </li>
+              ))}
+            </ul>
+          </Flex>
+        </Collapse>
+      )}
+    </Flex>
   )
 }

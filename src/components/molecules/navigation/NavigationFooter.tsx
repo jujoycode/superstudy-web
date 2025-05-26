@@ -1,37 +1,60 @@
+import { useMemo } from 'react'
+import { Link } from 'react-router'
+import { useLanguage } from '@/hooks/useLanguage'
+import { useLogout } from '@/hooks/useLogout'
+import { useUserStore } from '@/stores/user'
 import { Box } from '@/atoms/Box'
+import { Button } from '@/atoms/Button'
 import { Divider } from '@/atoms/Divider'
 import { Flex } from '@/atoms/Flex'
 import { Text } from '@/atoms/Text'
+import { Role } from '@/legacy/generated/model'
 
-interface NavigationFooterProps {
-  actions: {
-    label: string
-    onClick?: () => void
-  }[]
-}
+export function NavigationFooter() {
+  const { me } = useUserStore()
+  const { t } = useLanguage()
 
-export function NavigationFooter({ actions }: NavigationFooterProps) {
+  const adminPermission = useMemo(
+    () =>
+      me?.teacherPermission?.adminApprovalLine ||
+      me?.teacherPermission?.adminClass ||
+      me?.teacherPermission?.adminGroup ||
+      me?.teacherPermission?.adminParent ||
+      me?.teacherPermission?.adminSms ||
+      me?.teacherPermission?.adminScore ||
+      me?.teacherPermission?.adminStudent ||
+      me?.teacherPermission?.adminTeacher ||
+      me?.teacherPermission?.adminTimetable ||
+      me?.teacherPermission?.adminIb,
+    [me],
+  )
+
   return (
-    <Box padding="5">
-      <Flex width="full" justify="between" items="center" gap="3">
-        {actions.map((action, index) => (
-          <>
-            {index > 0 && <Divider orientation="vertical" marginX="0" marginY="0" />}
+    <Box className="pb-4">
+      <Flex direction="col" width="full" justify="between" items="center" gap="4">
+        {(me?.role === Role.ADMIN || adminPermission) && (
+          <Link to="/admin" className="w-full">
+            <Button variant="solid" size="full" className="bg-gray-200 hover:bg-gray-300">
+              <Text size="sm">{t('admin_mode')}</Text>
+            </Button>
+          </Link>
+        )}
 
-            <Flex
-              key={action.label + index}
-              width="full"
-              justify="center"
-              items="center"
-              className="cursor-pointer rounded-md transition-colors duration-200 hover:bg-gray-50"
-              onClick={action.onClick}
-            >
-              <Text variant="sub" className="mb-1" size="sm">
-                {action.label}
-              </Text>
-            </Flex>
-          </>
-        ))}
+        <Flex direction="row" items="center" justify="center">
+          <Button variant="link" size="full" className="text-gray-600 hover:text-gray-700">
+            <Text size="xs" weight="sm">
+              내 정보 관리
+            </Text>
+          </Button>
+
+          <Divider orientation="vertical" />
+
+          <Button variant="link" size="full" className="text-gray-600 hover:text-gray-700" onClick={useLogout()}>
+            <Text size="xs" weight="sm">
+              로그아웃
+            </Text>
+          </Button>
+        </Flex>
       </Flex>
     </Box>
   )

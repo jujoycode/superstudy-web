@@ -103,6 +103,10 @@ import { ScoreAnalysis } from '@/legacy/components/score/ScoreAnalysis'
 import { GroupDetailPage } from '@/legacy/pages/teacher/group/GroupDetailPage'
 import { GroupAddPage } from '@/legacy/pages/teacher/group/GroupAddPage'
 
+/**
+ * Teacher Router
+ * @author Suh Jihun
+ */
 export const teacherRoutes = {
   path: '/teacher',
   element: (

@@ -67,10 +67,6 @@
     scrollbar-gutter: stable;
   }
 
-  .scrollable::-webkit-scrollbar-thumb {
-    height: 10px;
-  }
-
   .scrollable:hover {
     transition: scrollbar-color 0.5s ease;
     scrollbar-color: var(--color-gray-300) transparent;

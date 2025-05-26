@@ -15,7 +15,7 @@ export function ScrollArea({ className, children, scrollbarWidth = 'thin' }: Scr
 
   return (
     <div
-      className={cn('h-full', 'scrollable', className)}
+      className={cn('h-screen', 'flex-1', 'scrollable', className)}
       tabIndex={0}
       onKeyDown={handleKeyDown}
       style={{

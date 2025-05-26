@@ -22,7 +22,6 @@ export function LoginV2() {
 
   // 로그인 페이지 팝업 숨김 처리
   const [noticeOpen, setNoticeOpen] = useState(true)
-  // const [noticeOpen2, setNoticeOpen2] = useState(true);
 
   useEffect(() => {
     if (!localStorage.getItem('noticeShow')) {

@@ -1,172 +1,168 @@
 import { NavigationItemProps } from '@/molecules/navigation/NavigationItem'
 
 export class MenuConstant {
-  public static readonly TEACHER_MENU = [
+  public static readonly TEACHER_MENU: NavigationItemProps[] = [
     {
-      name: '출석',
-      children: [
+      title: '출석',
+      child: [
         {
-          name: '출석부',
+          title: '출석부',
+          icon: 'BookUser',
           to: '/teacher/attendance',
         },
         {
-          name: '시간표/출석체크',
+          title: '시간표/출석체크',
+          icon: 'ChartPie',
           to: '/teacher/timetable',
         },
         {
-          name: '확인증',
+          title: '확인증',
+          icon: 'ShieldCheck',
           to: '/teacher/outing',
         },
         {
-          name: '결석신고서',
+          title: '결석신고서',
+          icon: 'ShieldAlert',
           to: '/teacher/absent',
         },
         {
-          name: '체험학습',
-          children: [
+          title: '체험학습',
+          icon: 'Tent',
+          child: [
             {
-              name: '신청서',
+              title: '신청서',
               to: '/teacher/fieldtrip',
             },
             {
-              name: '통보서',
+              title: '통보서',
               to: '/teacher/fieldtrip/notice',
             },
             {
-              name: '결과보고서',
+              title: '결과보고서',
               to: '/teacher/fieldtrip/result',
             },
           ],
         },
         {
-          name: '출결서류관리',
+          title: '출결서류관리',
+          icon: 'Archive',
           to: '/teacher/history',
         },
       ],
     },
     {
-      name: '정보',
-      children: [
+      title: '정보',
+      child: [
         {
-          name: '학생정보',
+          title: '학생정보',
+          icon: 'GraduationCap',
           to: '/teacher/studentcard',
         },
         {
-          name: '그룹정보',
+          title: '그룹정보',
+          icon: 'Users',
           to: '/teacher/groups',
         },
       ],
     },
     {
-      name: '활동',
-      children: [
+      title: '활동',
+      child: [
         {
-          name: '활동기록',
+          title: '활동기록',
+          icon: 'NotebookPen',
           to: '/teacher/activityv3',
         },
         {
-          name: '프로젝트',
+          title: '프로젝트',
+          icon: 'Presentation',
           to: '/teacher/project',
         },
         {
-          name: '과제 활동분석',
+          title: '과제 활동분석',
+          icon: 'Database',
           to: '/teacher/activityv3/analyze',
         },
       ],
     },
     {
-      name: '일정',
-      children: [
+      title: '일정',
+      child: [
         {
-          name: '캘린더',
+          title: '캘린더',
+          icon: 'CalendarDays',
           to: '/teacher/calendar',
         },
         {
-          name: '급식표',
+          title: '급식표',
+          icon: 'Hamburger',
           to: '/teacher/canteen',
         },
       ],
     },
-    // # 추후 추가 예정
-    // {
-    //   name: '신청',
-    //   children: [
-    //     {
-    //       name: '상담신청',
-    //       to: '/teacher',
-    //       external: true,
-    //     },
-    //     {
-    //       name: '수강신청',
-    //       to: '/teacher',
-    //       external: true,
-    //     },
-    //     {
-    //       name: '야자신청',
-    //       to: '/teacher',
-    //       external: true,
-    //     },
-    //   ],
-    // },
     {
-      name: '소통',
-      children: [
+      title: '소통',
+      child: [
         {
-          name: '공지사항',
+          title: '공지사항',
+          icon: 'Megaphone',
           to: '/teacher/notice',
         },
         {
-          name: '학급게시판',
+          title: '학급게시판',
+          icon: 'List',
           to: '/teacher/board',
         },
         {
-          name: '가정통신문',
+          title: '가정통신문',
+          icon: 'ScrollText',
           to: '/teacher/newsletter',
         },
         {
-          name: '메시지',
+          title: '메시지',
+          icon: 'MessageSquareMore',
           to: '/teacher/chat',
         },
       ],
     },
     {
-      name: '더보기',
-      children: [
+      title: '더보기',
+      child: [
         {
-          name: '문의하기',
-          to: 'http://superstudy.channel.io/',
+          title: '문의하기',
           external: true,
+          to: 'http://superstudy.channel.io/',
         },
         {
-          name: '슈퍼스쿨 사용안내',
-          children: [
+          title: '슈퍼스쿨 사용안내',
+          child: [
             {
-              name: '교사 사용안내',
+              title: '교사 사용안내',
+              external: true,
               to: 'https://superschoolofficial.notion.site/f9bae37feef94ee7b9f886b5e074fdac',
-              external: true,
             },
             {
-              name: '학생 사용안내',
+              title: '학생 사용안내',
+              external: true,
               to: 'https://superschoolofficial.notion.site/e8ebd5829e2846ab8e97417c7ab589f7',
-              external: true,
             },
             {
-              name: '학부모 사용안내',
+              title: '학부모 사용안내',
+              external: true,
               to: 'https://superschoolofficial.notion.site/70491392ea96454f8688cffee395c1c7',
-              external: true,
             },
             {
-              name: '사용안내 동영상',
-              to: 'https://web.superschool.to//AbteacheroutSuperSchool',
+              title: '사용안내 동영상',
               external: true,
+              to: 'https://web.superschool.to//AbteacheroutSuperSchool',
             },
           ],
         },
         {
-          name: '슈퍼스쿨 공지사항',
+          title: '슈퍼스쿨 공지사항',
           to: '/teacher/announcement',
         },
       ],
     },
-  ] as NavigationItemProps[]
+  ]
 }

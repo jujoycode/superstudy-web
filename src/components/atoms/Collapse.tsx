@@ -17,13 +17,7 @@ export function Collapse({ children, isOpen, className, animationDuration = 300 
 
     if (isOpen) {
       const contentHeight = contentRef.current.scrollHeight
-      setHeight(0)
-
-      contentRef.current.offsetHeight
-
-      setTimeout(() => {
-        setHeight(contentHeight)
-      }, 10)
+      setHeight(contentHeight)
 
       const timer = setTimeout(() => {
         setHeight(undefined)
@@ -31,17 +25,16 @@ export function Collapse({ children, isOpen, className, animationDuration = 300 
 
       return () => clearTimeout(timer)
     } else {
-      if (contentRef.current.scrollHeight) {
-        setHeight(contentRef.current.scrollHeight)
+      // 닫힐 때는 먼저 현재 높이로 설정
+      setHeight(contentRef.current.scrollHeight)
 
-        contentRef.current.offsetHeight
+      // 강제 리플로우 발생
+      contentRef.current.offsetHeight
 
-        setTimeout(() => {
-          setHeight(0)
-        }, 10)
-      } else {
+      // 지연 후 높이를 0으로 설정하여 애니메이션 효과 적용
+      setTimeout(() => {
         setHeight(0)
-      }
+      }, 10)
     }
   }, [isOpen, animationDuration])
 

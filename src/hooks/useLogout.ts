@@ -1,13 +1,12 @@
 // src/legacy/util/hooks.ts
 import { useBrowserStorage } from '@/hooks/useBrowserStorage'
 import { useAuthStore } from '@/stores/auth'
+import { useSchoolStore } from '@/stores/school'
 import { useUserStore } from '@/stores/user'
 import { RN } from '@/legacy/lib/rn'
 
 export function useAuth() {
-  const token = useAuthStore((state) => state.token)
-  const twoFactor = useAuthStore((state) => state.twoFactor)
-
+  const { token, twoFactor } = useAuthStore()
   return { authenticated: token !== null, twoFactorAuthenticated: twoFactor !== null && twoFactor !== 'false' }
 }
 
@@ -15,6 +14,7 @@ export function useLogout() {
   const { removeStorage } = useBrowserStorage()
   const { reset: resetUserStore } = useUserStore()
   const { reset: resetAuthStore } = useAuthStore()
+  const { reset: resetSchoolStore } = useSchoolStore()
 
   return () => {
     const tagValue = { schoolId: null, role: null }
@@ -30,6 +30,7 @@ export function useLogout() {
     localStorage.removeItem('reqParent_userInfo')
     resetAuthStore()
     resetUserStore()
+    resetSchoolStore()
 
     window.location.replace('/login')
   }

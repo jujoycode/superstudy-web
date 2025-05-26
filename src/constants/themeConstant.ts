@@ -1,11 +1,9 @@
 export enum THEME_ENUM {
   SUPERSCHOOL = 'SUPERSCHOOL',
-  LG = 'LGU+',
+  LG = 'LG',
 }
 
 export class ThemeConstant {
-  public static readonly THEME_ENUM = THEME_ENUM
-
   public static readonly Themes = {
     [THEME_ENUM.SUPERSCHOOL]: {
       'color-primary-50': '#FFF8F5',
