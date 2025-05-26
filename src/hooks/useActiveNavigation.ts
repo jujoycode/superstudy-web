@@ -1,5 +1,5 @@
-import { useLocation } from 'react-router'
 import { useMemo } from 'react'
+import { useLocation } from 'react-router'
 
 /**
  * 현재 라우트 경로와 메뉴 경로를 비교하여 활성화 상태를 확인하는 훅
@@ -30,4 +30,4 @@ export function useActiveNavigation() {
   }, [location.pathname])
 
   return { isActive }
-} 
+}

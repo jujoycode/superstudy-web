@@ -1,5 +1,5 @@
-import { cn } from '@/utils/commonUtil'
 import React, { HTMLAttributes, ReactNode, useEffect, useRef, useState } from 'react'
+import { cn } from '@/utils/commonUtil'
 
 // C-IB-021: IB 기본 레이아웃
 // https://www.notion.so/superschoolofficial/C-IB-021-IB-8702e1b24cbe431685cd9ee702de3bd7

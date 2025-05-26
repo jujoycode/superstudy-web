@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils/commonUtil'
 
 interface Step {
   title: string

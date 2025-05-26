@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
+import { cn } from '@/utils/commonUtil'
 
 import { Blank } from '@/legacy/components/common'
 import FileUploadInspector from '@/legacy/components/ib/plagiarismInspect/FileUploadInspector'

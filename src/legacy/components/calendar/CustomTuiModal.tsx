@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
-import { Button } from '@/atoms/Button'
 import { cn } from '@/utils/commonUtil'
+import { Button } from '@/atoms/Button'
 import { MergedGroupType } from '@/legacy/container/teacher-chat-user-list'
 import { GroupType } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'

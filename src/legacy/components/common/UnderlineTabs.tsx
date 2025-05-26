@@ -1,5 +1,5 @@
-import { cn } from '@/utils/commonUtil'
 import React, { ReactNode } from 'react'
+import { cn } from '@/utils/commonUtil'
 
 interface TabProps<T> {
   value: T

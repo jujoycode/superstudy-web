@@ -1,11 +1,11 @@
 import { Box, LinearProgress, LinearProgressProps, Typography } from '@mui/material'
-import { cn } from '@/utils/commonUtil'
 import _ from 'lodash'
 import { useState } from 'react'
 
 import superstudyLogo from '@/assets/images/logo.png'
 import neisLogo from '@/assets/images/neis.png'
 import { useHistory } from '@/hooks/useHistory'
+import { cn } from '@/utils/commonUtil'
 import AlertDialog from '@/legacy/components/common/AlertDialog'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
 import { Icon } from '@/legacy/components/common/icons'

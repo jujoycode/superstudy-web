@@ -1,15 +1,15 @@
 import clsx from 'clsx'
 import { useEffect, useMemo } from 'react'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router'
-import { Button } from '@/atoms/Button'
-import { Icon } from '@/atoms/Icon'
-import { useUserStore } from '@/stores/user'
 import { useResponsive } from '@/hooks/useResponsive'
+import { useUserStore } from '@/stores/user'
+import { Box } from '@/atoms/Box'
+import { Button } from '@/atoms/Button'
+import { Flex } from '@/atoms/Flex'
+import { Icon } from '@/atoms/Icon'
 import { Blank } from '@/legacy/components/common'
 import { Icon as LegacyIcon } from '@/legacy/components/common/icons'
 import { Role } from '@/legacy/generated/model'
-import { Flex } from '@/atoms/Flex'
-import { Box } from '@/atoms/Box'
 
 export function StudentLayout() {
   const { me } = useUserStore()

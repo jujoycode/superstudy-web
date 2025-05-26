@@ -1,5 +1,5 @@
-import { cn } from '@/utils/commonUtil'
 import { HTMLAttributes } from 'react'
+import { cn } from '@/utils/commonUtil'
 
 interface SectionProps extends HTMLAttributes<HTMLElement> {}
 

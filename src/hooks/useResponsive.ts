@@ -11,7 +11,7 @@ const DEFAULT_CONFIG: ResponsiveConfig = {
   mobile: 770,
   tablet: 1024,
   desktop: 1025,
-  custom: 0
+  custom: 0,
 }
 
 export const useResponsive = (config: ResponsiveConfig = {}) => {
@@ -24,4 +24,3 @@ export const useResponsive = (config: ResponsiveConfig = {}) => {
 
   return { isMobile, isTablet, isDesktop, isCustom }
 }
-

@@ -1,7 +1,7 @@
-import { cn } from '@/utils/commonUtil'
 import { InputHTMLAttributes } from 'react'
 
 import { ReactComponent as FileUploadImg } from '@/assets/svg/upload-image.svg'
+import { cn } from '@/utils/commonUtil'
 
 export interface MobileImageUploadProps extends InputHTMLAttributes<HTMLInputElement> {}
 

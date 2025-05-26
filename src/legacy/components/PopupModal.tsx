@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils/commonUtil'
 
 import { Typography } from './common/Typography'
 import ColorSVGIcon from './icon/ColorSVGIcon'

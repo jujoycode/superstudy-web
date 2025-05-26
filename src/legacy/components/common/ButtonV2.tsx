@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { ButtonHTMLAttributes, forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils/commonUtil'
 
 interface ButtonV2Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: 'solid' | 'outline'

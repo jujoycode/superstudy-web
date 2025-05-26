@@ -1,7 +1,7 @@
-import { cn } from '@/utils/commonUtil'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router'
 import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils/commonUtil'
 
 import { Admin } from '@/legacy/components/common/Admin'
 

@@ -1,9 +1,9 @@
-import { cn } from '@/utils/commonUtil'
 import { format } from 'date-fns'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import NODATA from '@/assets/images/no-data.png'
+import { cn } from '@/utils/commonUtil'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'

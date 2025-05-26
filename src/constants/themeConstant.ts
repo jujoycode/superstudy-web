@@ -4,7 +4,7 @@ export enum THEME_ENUM {
 }
 
 export class ThemeConstant {
-  public static readonly THEME_ENUM = THEME_ENUM;
+  public static readonly THEME_ENUM = THEME_ENUM
 
   public static readonly Themes = {
     [THEME_ENUM.SUPERSCHOOL]: {
