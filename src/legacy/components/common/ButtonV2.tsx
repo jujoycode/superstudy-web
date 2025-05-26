@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { ButtonHTMLAttributes, forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils/commonUtil'
 
 interface ButtonV2Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: 'solid' | 'outline'
@@ -11,13 +11,13 @@ interface ButtonV2Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 const buttonStyles = {
   solid: {
     orange800:
-      'bg-primary-800 text-white active:bg-primary-850 disabled:bg-primary-50 disabled:text-primary-400 disabled:cursor-not-allowed cursor:pointer',
+      'bg-primary-800 text-white active:bg-primary-850 disabled:bg-primary-50 disabled:text-primary-400 disabled:cursor-not-allowed cursor-pointer',
     gray700:
-      'bg-gray-700 text-white active:bg-gray-800 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed cursor:pointer',
+      'bg-gray-700 text-white active:bg-gray-800 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed cursor-pointer',
     orange100:
-      'bg-primary-100 text-primary-800 active:bg-primary-400 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed cursor:pointer',
+      'bg-primary-100 text-primary-800 active:bg-primary-400 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed cursor-pointer',
     gray100:
-      'bg-gray-100 text-gray-900 active:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed cursor:pointer',
+      'bg-gray-100 text-gray-900 active:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed cursor-pointer',
   },
   outline: {
     orange700:

@@ -1,5 +1,5 @@
-import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
+import { cn } from '@/utils/commonUtil'
 import { useSchoolStore } from '@/stores/school'
 import { Typography } from '@/legacy/components/common/Typography'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'

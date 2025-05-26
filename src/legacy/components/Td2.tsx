@@ -1,5 +1,5 @@
-import { cn } from '@/utils/commonUtil'
 import { TdHTMLAttributes } from 'react'
+import { cn } from '@/utils/commonUtil'
 
 interface Td2Props extends TdHTMLAttributes<HTMLTableCellElement> {}
 

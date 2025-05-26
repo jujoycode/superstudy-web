@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils/commonUtil'
 
 import { Typography } from './common/Typography'
 import ColorSVGIcon from './icon/ColorSVGIcon'
@@ -84,10 +84,9 @@ export function PopupModal({
         {/* 하단 고정 푸터 */}
         {footerButtons && (
           <div
-            className={twMerge(
-              `sticky bottom-0 flex h-[104px] justify-end gap-4 ${
-                bottomBorder && 'border-t border-t-gray-100'
-              }bg-white/70 backdrop-blur-20 pt-6 pb-8`,
+            className={cn(
+              'backdrop-blur-20 sticky bottom-0 flex h-[104px] justify-end gap-4 bg-white/70 pt-6 pb-8',
+              bottomBorder && 'border-t border-t-gray-100',
               footerClassName,
             )}
           >

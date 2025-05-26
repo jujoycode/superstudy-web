@@ -1,7 +1,7 @@
 import { cloneDeep } from 'lodash'
 import { useState, useEffect, type ChangeEvent } from 'react'
 
-import { Label, Radio, RadioGroup, Section, Textarea } from '@/legacy/components/common'
+import { Label, Radio, Section, Textarea } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { ImageUpload } from '@/legacy/components/common/ImageUpload'
 import { TextInput } from '@/legacy/components/common/TextInput'
@@ -219,7 +219,7 @@ export function SuperSurveyComponent({
                   <span className="w-10 shrink-0 text-sm text-red-400">{question.required ? '[필수]' : ''}</span>
                   <div className="w-full text-lg font-bold break-words whitespace-normal">{question.title}</div>
                 </div>
-                <RadioGroup className="space-y-2" onChange={(e) => onChangeValue(e.target.value)}>
+                <div className="space-y-2">
                   {question?.choices?.map((c: any, index: number) => (
                     <Label.row key={index}>
                       <Radio
@@ -233,7 +233,7 @@ export function SuperSurveyComponent({
                       {c}
                     </Label.row>
                   ))}
-                </RadioGroup>
+                </div>
               </div>
             )
         }

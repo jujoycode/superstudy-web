@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { cn } from '@/utils/commonUtil'
 
 import { Constants } from '@/legacy/constants'
 import type { ImageObject } from '@/legacy/types/image-object'

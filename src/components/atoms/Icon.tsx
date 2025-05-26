@@ -1,3 +1,4 @@
+import { ReactComponent as Check } from '@/assets/icons/check.svg'
 import { ReactComponent as ChevronDown } from '@/assets/icons/chevron-down.svg'
 import { ReactComponent as ChevronUp } from '@/assets/icons/chevron-up.svg'
 import { ReactComponent as Bell } from '@/assets/icons/new-bell.svg'
@@ -6,7 +7,6 @@ import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { ReactComponent as RightFillArrow } from '@/assets/svg/RightFillArrow.svg'
 import { ReactComponent as RightUpArrow } from '@/assets/svg/RightUpArrow.svg'
 import { ReactComponent as UnderFillArrow } from '@/assets/svg/UnderFillArrow.svg'
-import { ReactComponent as Check } from '@/assets/icons/check.svg'
 
 type IconName =
   | 'logo'

@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# ScrollArea 컴포넌트 사용 가이드
+
+[ScrollArea.tsx](mdc:src/components/atoms/ScrollArea.tsx) 컴포넌트는 스크롤이 필요한 영역을 관리하는 데 사용됩니다.
+
+## 주요 특징
+- **투명한 배경**: 컴포넌트의 배경은 기본적으로 투명합니다.
+- **호버 시 스크롤바 표시**: 마우스를 올렸을 때만 스크롤바가 나타나고, 그렇지 않을 때는 숨겨집니다.
+- **접근성**: 키보드 탐색을 지원합니다.
+
+## 사용 예시
+```tsx
+<ScrollArea className="h-64">
+  <div className="p-4">
+    <Text>스크롤 가능한 내용이 여기에 들어갑니다.</Text>
+    {/* 더 많은 내용 */}
+  </div>
+</ScrollArea>
+```
+
+## 속성(Props)
+- `className`: 추가적인 CSS 클래스
+- `children`: 스크롤 영역 내부에 표시할 내용
+- `scrollbarThumb`: 스크롤바 색상 (기본값: 'gray-300')
+- `scrollbarTrack`: 스크롤바 트랙 색상 (기본값: 'transparent')
+
+## 스타일링 커스터마이징
+스크롤바의 외관을 변경하려면 다음과 같이 속성을 전달하세요:
+
+```tsx
+<ScrollArea 
+  scrollbarThumb="blue-400" 
+  className="h-64"
+>
+  {/* 내용 */}
+</ScrollArea>
+```
+
+## 주의사항
+- 항상 컨테이너에 고정된 높이(height)나 최대 높이(max-height)를 지정하세요.
+- 내비게이션 메뉴와 같은 UI 요소에 사용할 때는 스크롤바가 호버 시에만 나타나도록 설정하는 것이 권장됩니다.

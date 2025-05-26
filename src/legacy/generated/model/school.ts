@@ -43,6 +43,8 @@ export interface School {
   studentSafeText: string
   /** 바코드 종류 */
   barcodeType: string
+  /** 계약 타입 (SUPERSCHOOL, LGU+) */
+  brandingType: string
   /** 학교 타입(ES, MS, HS) */
   schoolType: string
   /** 보안강화 */

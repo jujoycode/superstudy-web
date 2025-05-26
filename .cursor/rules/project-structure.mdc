@@ -1,0 +1,48 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 프로젝트 구조 가이드
+
+이 프로젝트는 React와 TypeScript를 기반으로 하는 웹 애플리케이션입니다. 다음과 같은 구조로 구성되어 있습니다:
+
+## 주요 디렉토리 구조
+
+- **src/components**: UI 컴포넌트 (Atomic Design 패턴 적용)
+  - **atoms**: 기본 UI 요소 (Box, Text, Icon 등)
+  - **molecules**: 여러 원자로 구성된 복합 요소
+  - **organisms**: 분자와 원자를 조합한 복잡한 UI 구성요소
+  - **providers**: 컨텍스트 제공자 컴포넌트
+
+- **src/hooks**: 커스텀 React 훅
+- **src/utils**: 유틸리티 함수
+- **src/types**: TypeScript 타입 정의
+- **src/stores**: 상태 관리 (Zustand 사용)
+- **src/routers**: 라우팅 설정
+- **src/assets**: 정적 자산 (이미지, 폰트 등)
+- **src/styles**: 전역 스타일 및 테마
+
+## 주요 파일
+
+- [src/main.tsx](mdc:src/main.tsx): 애플리케이션 진입점
+- [src/App.tsx](mdc:src/App.tsx): 루트 컴포넌트
+
+## 개발 환경
+
+이 프로젝트는 다음과 같은 기술 스택을 사용합니다:
+
+- React 19
+- TypeScript
+- Vite
+- TailwindCSS
+- Zustand (상태 관리)
+- React-Router (라우팅)
+- Storybook (컴포넌트 문서화)
+
+## 코드 스타일 가이드라인
+
+- 파일명은 PascalCase를 사용합니다 (예: NavigationItem.tsx)
+- 컴포넌트명도 PascalCase를 사용합니다 (예: function NavigationItem())
+- 유틸리티 함수는 camelCase를 사용합니다
+- 스타일링은 TailwindCSS를 사용하며, 필요한 경우 cn() 유틸리티로 조건부 클래스를 적용합니다

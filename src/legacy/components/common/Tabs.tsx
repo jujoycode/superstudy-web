@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { ButtonHTMLAttributes, HTMLAttributes } from 'react'
 import { Link, LinkProps } from 'react-router'
+import { cn } from '@/utils/commonUtil'
 
 interface TabsProps extends HTMLAttributes<HTMLElement> {}
 

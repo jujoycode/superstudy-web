@@ -1,5 +1,5 @@
-import { cn } from '@/utils/commonUtil'
 import { type HTMLAttributes } from 'react'
+import { cn } from '@/utils/commonUtil'
 
 const tooltipBaseClasses =
   'absolute z-50 inline-flex items-center justify-center rounded-md px-3 py-1 font-semibold transition-opacity duration-300 ease-in-out peer-hover:block peer-focus-within:block'

@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { forwardRef, ReactElement, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils/commonUtil'
 
 import SVGIcon from '../icon/SVGIcon'
 

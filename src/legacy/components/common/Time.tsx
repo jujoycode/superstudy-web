@@ -1,7 +1,7 @@
-import { cn } from '@/utils/commonUtil'
 import { format, formatDistanceToNowStrict } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { TimeHTMLAttributes } from 'react'
+import { cn } from '@/utils/commonUtil'
 
 export interface TimeProps extends TimeHTMLAttributes<HTMLTimeElement> {
   date?: string | null

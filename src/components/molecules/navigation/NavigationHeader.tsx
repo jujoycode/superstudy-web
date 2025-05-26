@@ -24,11 +24,16 @@ export function NavigationHeader({ ProfileProps }: NavigationHeaderProps) {
         <Grid col={1} row={2}>
           <GridItem>
             <Flex direction="row" justify="between" items="center" gap="3" className="pt-8">
-              <Icon name="logo" customSize={{ width: '70px', height: '40px' }} onClick={handleLogoClick} />
+              <Icon
+                name="logo"
+                customSize={{ width: '70px', height: '40px' }}
+                onClick={handleLogoClick}
+                className="cursor-pointer"
+              />
 
               <Flex direction="row" justify="end" items="center" gap="3">
                 <NavigationLanguageDropdown />
-                <Icon name="bell" customSize={{ width: '20px', height: '20px' }} />
+                <Icon name="bell" customSize={{ width: '20px', height: '20px' }} className="cursor-pointer" />
               </Flex>
             </Flex>
           </GridItem>

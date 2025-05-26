@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { HTMLAttributes, createElement, forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils/commonUtil'
 
 export interface TypographyProps extends HTMLAttributes<HTMLElement> {
   variant:

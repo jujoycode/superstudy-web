@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router'
-import { Box } from '@/atoms/Box'
-import { Flex } from '@/atoms/Flex'
-import { Text } from '@/atoms/Text'
-import { Collapse } from '@/atoms/Collapse'
-import { Icon } from '@/atoms/Icon'
 import { cn } from '@/utils/commonUtil'
+import { Box } from '@/atoms/Box'
+import { Collapse } from '@/atoms/Collapse'
+import { Flex } from '@/atoms/Flex'
+import { Icon } from '@/atoms/Icon'
+import { Text } from '@/atoms/Text'
 
 // 메뉴 아이템 기본 속성
 export interface NavigationItemBaseProps {
@@ -84,19 +84,8 @@ function NavigationParentItem({ name, children, isActive }: NavigationParentItem
           {name}
         </Text>
 
-        <div
-          className={cn(
-            'flex cursor-pointer items-center justify-center transition-transform duration-300 ease-in-out',
-            isCollapsed ? '-rotate-180' : '',
-          )}
-        >
-          <Icon
-            name="chevronDown"
-            size="sm"
-            color="gray-400"
-            stroke
-            className="hover:text-primary-800 cursor-pointer"
-          />
+        <div className={cn('flex cursor-pointer items-center justify-center', isCollapsed ? '-rotate-180' : '')}>
+          <Icon name="chevronUp" size="sm" color="gray-400" stroke className="hover:text-primary-800 cursor-pointer" />
         </div>
       </div>
 

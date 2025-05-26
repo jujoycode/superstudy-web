@@ -1,6 +1,6 @@
 // ProposalInputField.tsx
-import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren, ReactElement } from 'react'
+import { cn } from '@/utils/commonUtil'
 
 import { Typography } from '@/legacy/components/common/Typography'
 

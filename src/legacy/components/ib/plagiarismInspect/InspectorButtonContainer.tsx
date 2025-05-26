@@ -1,8 +1,8 @@
-import { cn } from '@/utils/commonUtil'
 import { ChangeEvent, useState, useRef } from 'react'
 
 import ADDFILE from '@/assets/images/addfile.png'
 import WRITE from '@/assets/images/write.png'
+import { cn } from '@/utils/commonUtil'
 import AlertV2 from '@/legacy/components/common/AlertV2'
 import { Typography } from '@/legacy/components/common/Typography'
 import { useImageAndDocument, fileType } from '@/legacy/hooks/useImageAndDocument'

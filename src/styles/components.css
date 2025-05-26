@@ -79,4 +79,16 @@
   .scrollable::-webkit-scrollbar-button {
     display: none;
   }
+
+  [role='button'],
+  button {
+    cursor: pointer;
+  }
+
+  *,
+  :after,
+  :before {
+    border: 0 solid var(--color-gray-200);
+    box-sizing: border-box;
+  }
 }

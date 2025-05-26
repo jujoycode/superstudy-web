@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { forwardRef, ReactElement, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils/commonUtil'
 
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'

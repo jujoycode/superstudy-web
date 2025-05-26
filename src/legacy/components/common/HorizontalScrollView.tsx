@@ -1,5 +1,5 @@
-import { cn } from '@/utils/commonUtil'
 import { PropsWithChildren } from 'react'
+import { cn } from '@/utils/commonUtil'
 
 interface HorizontalScrollViewProps {
   classNameOuter?: string

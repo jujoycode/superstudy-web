@@ -1,6 +1,6 @@
-import { cn } from '@/utils/commonUtil'
 import { useState } from 'react'
 import { useHistory } from '@/hooks/useHistory'
+import { cn } from '@/utils/commonUtil'
 import { useUserStore } from '@/stores/user'
 import { BackButton, Blank, Divider, TopNavbar } from '@/legacy/components/common'
 import { useSchoolsFindOne } from '@/legacy/generated/endpoint'

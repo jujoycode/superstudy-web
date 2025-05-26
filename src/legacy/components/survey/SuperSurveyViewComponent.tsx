@@ -1,7 +1,7 @@
 import { cloneDeep } from 'lodash'
 import { useEffect, useState } from 'react'
 
-import { Label, Radio, RadioGroup, Section, Textarea } from '@/legacy/components/common'
+import { Label, Radio, Section, Textarea } from '@/legacy/components/common'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Icon } from '@/legacy/components/common/icons'
 import { TextInput } from '@/legacy/components/common/TextInput'
@@ -138,7 +138,7 @@ export function SuperSurveyViewComponent({
             return (
               <div className="flex flex-col space-y-2" key={question.id}>
                 <div className="text-lg font-bold">{question.title}</div>
-                <RadioGroup className="space-y-2" onChange={(e) => onChangeValue(e.target.value)}>
+                <div className="space-y-2">
                   {question?.choices?.map((c: any, index: number) => (
                     <Label.row key={index}>
                       <Radio
@@ -152,7 +152,7 @@ export function SuperSurveyViewComponent({
                       <p className={` ${value === c ? 'font-bold text-red-400' : ''}`}>{c}</p>
                     </Label.row>
                   ))}
-                </RadioGroup>
+                </div>
               </div>
             )
         }

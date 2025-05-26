@@ -10,10 +10,11 @@ import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
 import { useUserStore } from '@/stores/user'
+import { Radio } from '@/atoms/Radio'
 import { SuperModal } from '@/legacy/components'
 import { Activityv3SubmitterItem } from '@/legacy/components/activityv3/ActivityV3SubmitterItem'
 import { SessionDownloadModal } from '@/legacy/components/activityv3/SessionDownloadModal'
-import { BackButton, Label, Radio, RadioGroup, Select, TopNavbar } from '@/legacy/components/common'
+import { BackButton, Label, Select, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
@@ -575,27 +576,24 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                     </div>
                     <div className="flex space-x-6">
                       <div className="text-15 border-r border-[#DDD] px-2 pt-2 whitespace-pre md:w-40">제출 여부</div>
-                      <div className="w-full pt-2">
-                        <RadioGroup className="flex items-center space-x-4" onChange={() => {}}>
-                          {SELECT_SUBMITTED.map(({ value, label }) => (
-                            <div className="flex items-center space-x-2" key={value}>
-                              <Radio
-                                id={value}
-                                name="submitted-filter"
-                                value={value}
-                                checked={selectedFilter === value}
-                                onChange={() => {
-                                  searchParams.set('selectedFilter', value)
-                                  replace({
-                                    pathname,
-                                    search: searchParams.toString(),
-                                  })
-                                }}
-                              ></Radio>
-                              <Label htmlFor={value} children={label} className="text-14 cursor-pointer" />
-                            </div>
-                          ))}
-                        </RadioGroup>
+                      <div className="flex w-full items-center space-x-4 pt-2">
+                        {SELECT_SUBMITTED.map(({ value, label }) => (
+                          <Label.row htmlFor={value} key={value}>
+                            <Radio
+                              id={value}
+                              name="submitted-filter"
+                              checked={selectedFilter === value}
+                              onChange={() => {
+                                searchParams.set('selectedFilter', value)
+                                replace({
+                                  pathname,
+                                  search: searchParams.toString(),
+                                })
+                              }}
+                            />
+                            <div className="text-14">{label}</div>
+                          </Label.row>
+                        ))}
                       </div>
                     </div>
                   </div>

@@ -1,7 +1,8 @@
 import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { QueryClientProvider } from 'react-query'
-import { ThemeProvider, type Theme } from '@/providers/ThemeProvider'
+import { ThemeProvider } from '@/providers/ThemeProvider'
+import { THEME_ENUM } from '@/constants/themeConstant'
 import { DialogProvider } from '@/legacy/container/DialogContext'
 import { GroupContainer } from '@/legacy/container/group'
 import { UserContainer } from '@/legacy/container/user'
@@ -18,7 +19,7 @@ import 'tui-date-picker/dist/tui-date-picker.css'
 import 'tui-time-picker/dist/tui-time-picker.css'
 
 export function Root() {
-  const [theme, setTheme] = useState<Theme>('default')
+  const [theme, setTheme] = useState<THEME_ENUM>(THEME_ENUM.SUPERSCHOOL)
 
   return (
     <StrictMode>
