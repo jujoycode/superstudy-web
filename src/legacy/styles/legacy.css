@@ -23,6 +23,7 @@
   display: flex;
   width: 100%;
   border-top-width: 1px;
+  border-top-color: var(--color-gray-200);
   background-color: var(--color-white);
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -287,6 +288,7 @@
   height: 2.5rem;
   overflow-y: hidden;
   border-bottom-width: 1px;
+  border-bottom-color: var(--color-gray-200);
   background-color: var(--color-white);
 }
 
@@ -444,13 +446,6 @@
   border-width: 1px;
   padding: 0;
   text-align: center;
-}
-
-.section {
-  padding-top: 16px;
-  padding-bottom: 16px;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .swiper.mySwiper {

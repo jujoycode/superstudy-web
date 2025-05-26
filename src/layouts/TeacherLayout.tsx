@@ -78,7 +78,7 @@ export function TeacherLayout() {
       {tabs.map((tab) => {
         const active = [tab.path, ...(tab.extra ?? [])].some((path) => pathname.startsWith(path))
         return (
-          <Link key={tab.path} to={tab.path} className={cn('bottom-nav-item', active && 'text-darkgray')}>
+          <Link key={tab.path} to={tab.path} className={cn('bottom-nav-item', active && 'text-gray-700')}>
             <tab.icon className="stroke-current" />
             <span>{tab.name}</span>
           </Link>

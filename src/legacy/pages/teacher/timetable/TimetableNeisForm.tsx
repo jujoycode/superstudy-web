@@ -76,7 +76,7 @@ export function TimetableNeisForm({ students, lastPeriod }: TimetableNeisFormPro
       <div>
         <table className="w-full">
           <thead>
-            <tr className="border-y text-sm">
+            <tr className="border-y border-gray-200 text-sm">
               <th className="p-1">이름</th>
               <th className="p-1">조회</th>
               {Array.from({ length: lastPeriod }).map((_, i) => (
@@ -98,19 +98,19 @@ export function TimetableNeisForm({ students, lastPeriod }: TimetableNeisFormPro
                 return a.name.localeCompare(b.name)
               })
               .map((student) => (
-                <tr key={student.id} className={`border-y ${student.focus ? 'bg-red-50' : ''}`}>
+                <tr key={student.id} className={`border-y border-gray-200 ${student.focus ? 'bg-red-50' : ''}`}>
                   <td className="text-left">{student.name}</td>
                   {Array.from({ length: lastPeriod + 1 }).map((_, i) => (
                     <td
                       key={i}
-                      className={`border-l px-1 text-center ${student.content[i] && student.content[i].type2 === '인정' ? 'text-red-500' : ''} `}
+                      className={`border-l border-gray-200 px-1 text-center ${student.content[i] && student.content[i].type2 === '인정' ? 'text-red-500' : ''} `}
                     >
                       {student.content[i] &&
                         (student.content[i].type2 === '인정' ? '-' : student.content[i].absent ? '/' : '')}
                     </td>
                   ))}
                   <td
-                    className={`border-l px-1 text-center ${student.content[lastPeriod] && student.content[lastPeriod].type2 === '인정' ? 'text-red-500' : ''} `}
+                    className={`border-l border-gray-200 px-1 text-center ${student.content[lastPeriod] && student.content[lastPeriod].type2 === '인정' ? 'text-red-500' : ''} `}
                   >
                     {student.content[lastPeriod] &&
                       (student.content[lastPeriod].type2 === '인정'
@@ -120,7 +120,7 @@ export function TimetableNeisForm({ students, lastPeriod }: TimetableNeisFormPro
                           : '')}
                   </td>
                   <td
-                    className={`border-l px-1 text-center whitespace-pre-line ${student.type2 === '인정' ? 'text-red-500' : ''} `}
+                    className={`border-l border-gray-200 px-1 text-center whitespace-pre-line ${student.type2 === '인정' ? 'text-red-500' : ''} `}
                   >
                     {student.focus ? `${student.type2}${student.type1}` : ''}
                   </td>

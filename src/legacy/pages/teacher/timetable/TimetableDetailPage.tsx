@@ -138,16 +138,16 @@ export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDet
           <tr>
             <th colSpan={4}></th>
             <th colSpan={1}></th>
-            <th colSpan={10} className={cn('min-w-max rounded-l-xl py-4', day === 1 ? 'bg-gray-900/10' : 'bg-gray-9')}>
+            <th colSpan={10} className={cn('min-w-max rounded-l-xl py-4', day === 1 ? 'bg-gray-900/10' : 'bg-gray-50')}>
               {t('monday', '월')}
             </th>
-            <th colSpan={10} className={cn('min-w-max', day === 2 ? 'bg-primary-800/20' : 'bg-gray-9')}>
+            <th colSpan={10} className={cn('min-w-max', day === 2 ? 'bg-primary-800/20' : 'bg-gray-50')}>
               {t('tuesday', '화')}
             </th>
-            <th colSpan={10} className={cn('min-w-max', day === 3 ? 'bg-primary-800/20' : 'bg-gray-9')}>
+            <th colSpan={10} className={cn('min-w-max', day === 3 ? 'bg-primary-800/20' : 'bg-gray-50')}>
               {t('wednesday', '수')}
             </th>
-            <th colSpan={10} className={cn('min-w-max', day === 4 ? 'bg-primary-800/20' : 'bg-gray-9')}>
+            <th colSpan={10} className={cn('min-w-max', day === 4 ? 'bg-primary-800/20' : 'bg-gray-50')}>
               {t('thursday', '목')}
             </th>
             <th
@@ -155,13 +155,13 @@ export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDet
               className={cn(
                 'min-w-max',
                 !hasSaturdayClass && 'rounded-r-xl',
-                day === 5 ? 'bg-primary-800/20' : 'bg-gray-9',
+                day === 5 ? 'bg-primary-800/20' : 'bg-gray-50',
               )}
             >
               {t('friday', '금')}
             </th>
             {hasSaturdayClass && (
-              <th colSpan={10} className={cn('min-w-max rounded-r-xl', day === 6 ? 'bg-primary-800/20' : 'bg-gray-9')}>
+              <th colSpan={10} className={cn('min-w-max rounded-r-xl', day === 6 ? 'bg-primary-800/20' : 'bg-gray-50')}>
                 {t('saturday', '토')}
               </th>
             )}

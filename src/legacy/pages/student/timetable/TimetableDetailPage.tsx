@@ -57,7 +57,7 @@ export function TimetableDetailPage() {
               <th className="min-w-max bg-gray-50">화</th>
               <th className="min-w-max bg-gray-50">수</th>
               <th className="min-w-max bg-gray-50">목</th>
-              <th className={`min-w-max ${hasSaturdayClass ? '' : 'rounded-r-xl'} bg-gray-9`}>금</th>
+              <th className={`min-w-max ${hasSaturdayClass ? '' : 'rounded-r-xl'} bg-gray-50`}>금</th>
               {hasSaturdayClass && <th className="min-w-max rounded-r-xl bg-gray-50">토</th>}
             </tr>
             <tr>

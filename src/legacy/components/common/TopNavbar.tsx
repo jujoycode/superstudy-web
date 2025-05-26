@@ -26,7 +26,7 @@ export function TopNavbar({
   ...props
 }: TopNavbarProps) {
   const positionAdditional = position === 'sticky' ? 'top-0' : 'top-0 left-0 right-0'
-  const border = borderless ? 'border-0' : 'border-b'
+  const border = borderless ? 'border-0' : 'border-b border-gray-200'
   const hasLineBreak = title?.includes('\r\n')
   const titleClass = hasLineBreak
     ? 'whitespace-pre-line text-md'
