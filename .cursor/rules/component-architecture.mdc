@@ -1,0 +1,34 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 컴포넌트 아키텍처 규칙
+
+이 프로젝트는 Atomic Design 패턴을 따르며, 컴포넌트는 다음과 같은 계층 구조로 구성됩니다:
+
+## 1. Atoms (원자)
+가장 기본적인 UI 요소입니다. 더 이상 분해할 수 없는 최소 단위의 컴포넌트입니다.
+
+예시:
+- [Box.tsx](mdc:src/components/atoms/Box.tsx) - 기본 컨테이너 요소
+- [Text.tsx](mdc:src/components/atoms/Text.tsx) - 텍스트 표시 요소
+- [Icon.tsx](mdc:src/components/atoms/Icon.tsx) - 아이콘 요소
+- [ScrollArea.tsx](mdc:src/components/atoms/ScrollArea.tsx) - 스크롤 영역 요소
+
+## 2. Molecules (분자)
+여러 Atoms를 조합한 UI 요소입니다. 한 가지 기능을 수행하는 단위입니다.
+
+예시:
+- [NavigationItem.tsx](mdc:src/components/molecules/navigation/NavigationItem.tsx) - 내비게이션 항목
+- [Dropdown.tsx](mdc:src/components/molecules/Dropdown.tsx) - 드롭다운 컴포넌트
+
+## 3. Organisms (유기체)
+여러 Molecules와 Atoms를 조합한 복잡한 UI 컴포넌트입니다.
+
+## 컴포넌트 스타일링
+이 프로젝트는 TailwindCSS를 사용하여 스타일링합니다. 스타일링 시 다음 규칙을 따릅니다:
+
+- 일관된 디자인 시스템을 위해 Tailwind 클래스를 사용합니다.
+- 조건부 스타일링을 위해 `cn()` 유틸리티 함수를 사용합니다.
+- 컴포넌트 내부에서 직접 CSS를 작성하지 않습니다.
