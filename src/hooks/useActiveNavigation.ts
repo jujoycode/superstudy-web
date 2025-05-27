@@ -1,6 +1,11 @@
 import { useMemo } from 'react'
 import { useLocation } from 'react-router'
 
+interface UseActiveNavigationProps {
+  path: string
+  exact?: boolean
+}
+
 /**
  * 현재 라우트 경로와 메뉴 경로를 비교하여 활성화 상태를 확인하는 훅
  * @returns 현재 경로가 주어진 경로와 일치하는지 확인하는 함수
@@ -15,7 +20,7 @@ export function useActiveNavigation() {
    * @returns 활성화 여부 (boolean)
    */
   const isActive = useMemo(() => {
-    return (path: string, exact: boolean = false): boolean => {
+    return ({ path, exact = false }: UseActiveNavigationProps): boolean => {
       if (exact) {
         return location.pathname === path
       }

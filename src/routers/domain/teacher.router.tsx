@@ -144,6 +144,11 @@ export const teacherRoutes = {
         { path: 'add', element: <AbsentAddPage /> },
       ],
     },
+    /**
+     * @date 2025-05-27
+     * @history 위치 변경되었으나, router 구조 변경되지 않음, 추후 변경 필요
+     * @author 주승열
+     */
     { path: 'comparison', element: <AbsentComparisonPage /> },
 
     // 체험학습
@@ -162,7 +167,6 @@ export const teacherRoutes = {
       element: <FieldtripMainPage />,
       children: [{ path: ':id', element: <FieldtripDetailPage /> }],
     },
-
     // 출결서류관리
     {
       path: 'history',

@@ -99,9 +99,7 @@ export function TeacherLayout() {
       <ResponsiveRenderer default={LeftNav} />
 
       <Grid col={12}>
-        <GridItem colSpan={12}>
-          <Outlet />
-        </GridItem>
+        <Outlet />
       </Grid>
       <ResponsiveRenderer mobile={BottomNav} />
 

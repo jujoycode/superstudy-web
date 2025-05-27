@@ -11,20 +11,25 @@ export interface NavigationItemProps {
   title: string
   icon?: IconName
   to?: string
+  isDynamicRoute?: boolean
   external?: boolean
   child?: NavigationItemProps[]
 }
 
-export function NavigationItem({ title, icon, to, external, child }: NavigationItemProps) {
+export function NavigationItem({ title, icon, to, isDynamicRoute = false, external, child }: NavigationItemProps) {
   const [isOpen, setIsOpen] = useState(false)
   const { isActive } = useActiveNavigation()
   const navigate = useNavigate()
 
-  const isActiveNavigation = useMemo(() => (to ? isActive(to) : false), [to, isActive])
+  const isActiveNavigation = useMemo(
+    // 동적 라우트인 경우 정확히 일치하지 않아도 활성화 처리 (:id 등)
+    () => (to ? isActive({ path: to, exact: !isDynamicRoute }) : false),
+    [to, isActive, isDynamicRoute],
+  )
 
   // 자식 계층이 활성화 되어있다면 collapse open 처리
   useEffect(() => {
-    if (child && child.some((item) => isActive(item.to ?? ''))) {
+    if (child && child.some((item) => isActive({ path: item.to ?? '' }))) {
       setIsOpen(true)
     }
   }, [child, isActive])
@@ -95,7 +100,7 @@ export function NavigationItem({ title, icon, to, external, child }: NavigationI
                     <Text
                       variant="sub"
                       size="sm"
-                      className={cn(isActive(item.to ?? '', true) ? 'text-primary-800' : '')}
+                      className={cn(isActive({ path: item.to ?? '', exact: true }) ? 'text-primary-800' : '')}
                     >
                       {item.title}
                     </Text>

@@ -34,7 +34,7 @@ export function NavigationFooter() {
       <Flex direction="col" width="full" justify="between" items="center" gap="4">
         {(me?.role === Role.ADMIN || adminPermission) && (
           <Link to="/admin" className="w-full">
-            <Button variant="solid" size="full" className="bg-gray-200 hover:bg-gray-300">
+            <Button variant="solid" size="full" className="bg-gray-200 hover:bg-gray-300 active:bg-gray-300">
               <Text size="sm">{t('admin_mode')}</Text>
             </Button>
           </Link>

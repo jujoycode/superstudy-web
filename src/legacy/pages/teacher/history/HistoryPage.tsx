@@ -140,7 +140,7 @@ export function HistoryPage() {
       <div className={`h-screen-7 col-span-3 md:h-screen ${isDetail ? 'hidden' : 'block'} md:block`}>
         <div className="md:hidden">
           <TopNavbar
-            title={t('attendance_documents_management', '출결서류관리')}
+            title={t('history_management', '이력 관리')}
             left={<BackButton />}
             right={
               <div onClick={() => queryClient.refetchQueries({ active: true })} className="text-primary-800 text-sm">
@@ -153,7 +153,7 @@ export function HistoryPage() {
           <div className="scroll-box flex flex-col overflow-x-scroll px-6 py-4">
             <div className="hidden md:block">
               <div className="flex items-center justify-between">
-                <h1 className="text-2xl font-semibold">{t('attendance_documents_management', '출결서류관리')}</h1>
+                <h1 className="text-2xl font-semibold">{t('history_management', '이력 관리')}</h1>
                 <div
                   className="text-primary-800 cursor-pointer text-lg"
                   onClick={() => queryClient.refetchQueries({ active: true })}
