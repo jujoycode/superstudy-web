@@ -97,12 +97,8 @@ export function TeacherLayout() {
   return (
     <Flex direction="row" className="h-screen w-full">
       <ResponsiveRenderer default={LeftNav} />
-
-      <Grid col={12}>
-        <Outlet />
-      </Grid>
+      <Outlet />
       <ResponsiveRenderer mobile={BottomNav} />
-
       <Toast />
     </Flex>
   )

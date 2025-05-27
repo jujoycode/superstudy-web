@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react'
-import { Link, Outlet, useLocation } from 'react-router'
+import { Outlet } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
 import { cn } from '@/utils/commonUtil'
+import { Button } from '@/atoms/Button'
+import { DatePicker } from '@/atoms/DatePicker'
+import { Divider } from '@/atoms/Divider'
+import { Flex } from '@/atoms/Flex'
+import { Grid } from '@/atoms/Grid'
+import { GridItem } from '@/atoms/GridItem'
+import { SearchField } from '@/molecules/SearchField'
+import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
+import { Button as OldButton } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
-import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { OutingCard } from '@/legacy/components/outing/OutingCard'
 import { OutingsExcelDownloadView } from '@/legacy/components/outing/OutingExcelDownloadView'
 import { GroupContainer } from '@/legacy/container/group'
@@ -70,9 +77,6 @@ export function OutingPage() {
     approveOutings,
   } = useTeacherOutgoing()
 
-  const { pathname } = useLocation()
-  const isDetail = !pathname.endsWith('/teacher/outing')
-
   const searchAlert = () => {
     const confirmed = window.confirm(
       '승인 전 상태의 내용만 일괄 승인이 가능합니다. \n승인 전 상태인 건들을 조회하시겠습니까?',
@@ -90,253 +94,258 @@ export function OutingPage() {
         setStampMode(false)
       }
     }
-  }, [open])
+  }, [open, stamp, setStampMode])
+
+  if (error) {
+    return <ErrorBlank />
+  }
+
+  if (isLoading) {
+    return <Blank reversed />
+  }
 
   return (
     <>
-      {error && <ErrorBlank />}
-      {isLoading && <Blank reversed />}
-      <div className={`h-screen-6 col-span-3 md:h-screen ${isDetail ? 'hidden' : 'block'} md:block`}>
-        <div className="md:hidden">
-          <TopNavbar title="확인증" left={<BackButton />} />
-        </div>
+      <Grid className="w-full">
+        {/* <div className={`h-screen-6 col-span-3 md:h-screen ${isDetail ? 'hidden' : 'block'} md:block`}> */}
+        <GridItem colSpan={6}>
+          <ResponsiveRenderer mobile={<TopNavbar title="확인증" left={<BackButton />} />} />
 
-        <div className="scroll-box flex flex-col overflow-x-scroll px-3 py-2 md:px-6 md:py-4">
-          <div className="hidden md:block">
-            <div className="flex items-center justify-between">
-              <h1 className="text-2xl font-semibold">{t('certificate', '확인증')}</h1>
-              <Link
-                children={t('write', '작성하기')}
-                to="/teacher/outing/add"
-                className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-4 py-2 text-sm focus:outline-hidden"
-              />
-            </div>
-            <div className="mb-5 text-sm text-gray-500">
-              ※ {t('early_leave_pass_outpass_certificate', '조퇴증,외출증,확인증')}
-              {currentLang === 'ko' ? ' / ' : <br />}
-              {t('documents_before_early_leave_outpass_certificate', '조퇴,외출,확인 전 작성 서류')}
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center justify-center md:justify-start md:space-x-3">
-              <input
-                type="date"
-                value={makeDateToString(new Date(startDate))}
-                min={schoolYear.start}
-                max={schoolYear.end}
-                className="focus:border-primary-800 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
-                onChange={(e) => {
-                  const selectedDate = new Date(e.target.value)
-                  if (!isValidDate(selectedDate)) {
-                    return
-                  }
-                  if (endDate && selectedDate > new Date(endDate)) {
-                    setEndDate(e.target.value)
-                  }
-                  setStartDate(e.target.value)
-                  setPage(1)
-                }}
-              />
-              <div className="px-4 text-xl font-bold">~</div>
-              <input
-                className="focus:border-primary-800 h-12 w-full rounded-lg border border-gray-200 p-2 placeholder-gray-400 focus:ring-0 disabled:bg-gray-100 disabled:text-gray-400 md:p-4"
-                type="date"
-                value={makeDateToString(new Date(endDate))}
-                min={schoolYear.start}
-                max={schoolYear.end}
-                onChange={(e) => {
-                  const selectedDate = new Date(e.target.value)
-                  if (!isValidDate(selectedDate)) {
-                    return
-                  }
-                  if (startDate && selectedDate < new Date(startDate)) {
-                    setStartDate(e.target.value)
-                  }
-                  setEndDate(e.target.value)
-                  setPage(1)
-                }}
-              />
-            </div>
-
-            <div className="flex items-center gap-2 md:mb-2 md:gap-0 md:space-x-2">
-              <div className="min-w-max cursor-pointer">
-                <SelectMenus
-                  allText={t('show_all', '전체보기')}
-                  items={filters}
-                  onChange={(e) => setFilter(e)}
-                  value={filter}
-                  tooltip={t('approval_state', '승인 상태')}
-                ></SelectMenus>
+          <div className="scroll-box flex flex-col overflow-x-scroll px-3 py-2 md:px-6 md:py-4">
+            {/* Desktop View */}
+            <div className="hidden md:block">
+              <div className="flex items-center justify-between">
+                <h1 className="text-2xl font-semibold">{t('certificate', '확인증')}</h1>
+                <Button color="secondary" className="w-[120px]">
+                  {t('write', '신규 생성')}
+                </Button>
               </div>
-              <div className="min-w-max cursor-pointer">
-                <SelectMenus
-                  allText={t('show_all', '전체보기')}
-                  items={outingTypes}
-                  onChange={(e) => setType(e)}
-                  value={type}
-                  tooltip={t('category', '분류')}
-                ></SelectMenus>
+              <div className="mb-5 text-sm text-gray-500">
+                ※ {t('early_leave_pass_outpass_certificate', '조퇴증,외출증,확인증')}
+                {currentLang === 'ko' ? ' / ' : <br />}
+                {t('documents_before_early_leave_outpass_certificate', '조퇴,외출,확인 전 작성 서류')}
               </div>
-              {outings &&
-                (me?.role === Role.PRE_HEAD ||
-                  me?.role === Role.HEAD ||
-                  me?.role === Role.PRE_PRINCIPAL ||
-                  me?.role === Role.PRINCIPAL ||
-                  me?.role === Role.VICE_PRINCIPAL ||
-                  me?.role === Role.HEAD_PRINCIPAL ||
-                  me?.role === Role.SECURITY ||
-                  me?.role === Role.ADMIN) && (
-                  <>
-                    <div className="min-w-max cursor-pointer">
-                      <SelectMenus
-                        allText={t('show_all', '전체보기')}
-                        allTextVisible
-                        items={groups.filter((el) =>
-                          me?.role === Role.PRE_HEAD || me?.role === Role.HEAD
-                            ? el.name?.startsWith(me?.headNumber.toString())
-                            : true,
-                        )}
-                        value={selectedGroup}
-                        onChange={(group: any) => setSelectedGroup(group)}
-                        tooltip={t('class', '학급')}
-                      />
-                    </div>
-                  </>
-                )}
-              <div className="flex w-full items-center space-x-2">
-                <SearchInput
-                  placeholder={t('search_by_name', '이름 검색')}
-                  value={_studentName}
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center justify-center md:justify-start md:space-x-3">
+                <DatePicker
+                  value={makeDateToString(new Date(startDate))}
                   onChange={(e) => {
-                    set_studentName(e.target.value)
-                    if (e.target.value === '') replace(`/teacher/outing`)
+                    const selectedDate = new Date(e.target.value)
+                    if (!isValidDate(selectedDate)) {
+                      return
+                    }
+                    if (endDate && selectedDate > new Date(endDate)) {
+                      setEndDate(e.target.value)
+                    }
+                    setStartDate(e.target.value)
                     setPage(1)
                   }}
-                  onSearch={() => _studentName && replace(`/teacher/outing?username=${_studentName}`)}
-                  className="w-full"
                 />
-                <Icon.Search
-                  className="scale-150 cursor-pointer"
-                  onClick={() => {
-                    _studentName.trim() === ''
-                      ? alert('텍스트 내용을 입력해주세요.')
-                      : replace(`/teacher/outing?username=${_studentName.trim()}`)
+                <div className="px-4 text-xl font-bold">~</div>
+                <DatePicker
+                  value={makeDateToString(new Date(endDate))}
+                  onChange={(e) => {
+                    const selectedDate = new Date(e.target.value)
+                    if (!isValidDate(selectedDate)) {
+                      return
+                    }
+                    if (startDate && selectedDate < new Date(startDate)) {
+                      setStartDate(e.target.value)
+                    }
+                    setEndDate(e.target.value)
+                    setPage(1)
                   }}
                 />
               </div>
-            </div>
-          </div>
-          <div className="grid auto-cols-fr grid-flow-col gap-2 max-md:hidden">
-            {/* 확인증현황 Excel 버튼 */}
-            <OutingsExcelDownloadView
-              startDate={startDate}
-              endDate={endDate}
-              selectedGroupId={undefined}
-              username={_studentName}
-              outingStatus={filter.value}
-            />
-            <Button.lg
-              children={t('bulk_approve', '일괄 승인하기')}
-              disabled={!PermissionUtil.hasOutingAuthorization(userRole)}
-              onClick={() => {
-                if (filter.value === 'BEFORE_APPROVAL') {
-                  if (outings && outings.total > 0) {
-                    setOpen(true)
-                    setAgreeAll(true)
-                  } else {
-                    alert('승인할 서류가 없습니다.')
-                  }
-                } else {
-                  searchAlert()
-                }
-              }}
-              className="filled-primary"
-            />
-          </div>
-        </div>
-        <div className="h-0.5 bg-gray-100"></div>
-        <div className="grid grid-cols-4 bg-gray-100 max-md:hidden">
-          <button
-            onClick={() => toggleSort('period')}
-            className={cn(
-              'flex items-center justify-center',
-              frontSortType !== 'period' && 'text-[#aaa] hover:underline hover:underline-offset-4',
-            )}
-          >
-            <span className={cn(frontSortType === 'period' && 'font-bold')}>{t('by_date', '기간순')}</span>
-            {frontSortType === 'period' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
-          </button>
-          <button
-            onClick={() => toggleSort('request')}
-            className={cn(
-              'flex items-center justify-center',
-              frontSortType !== 'request' && 'text-[#aaa] hover:underline hover:underline-offset-4',
-            )}
-          >
-            <span className={cn(frontSortType === 'request' && 'font-bold')}>
-              {t('by_application_date', '신청일순')}
-            </span>
-            {frontSortType === 'request' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
-          </button>
-          <button
-            onClick={() => toggleSort('name')}
-            className={cn(
-              'flex items-center justify-center',
-              frontSortType !== 'name' && 'text-[#aaa] hover:underline hover:underline-offset-4',
-            )}
-          >
-            <span className={cn(frontSortType === 'name' && 'font-bold')}>{t('by_name', '이름순')}</span>
-            {frontSortType === 'name' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
-          </button>
-          <button
-            onClick={() => toggleSort('num')}
-            className={cn(
-              'flex items-center justify-center',
-              frontSortType !== 'num' && 'text-[#aaa] hover:underline hover:underline-offset-4',
-            )}
-          >
-            <span className={cn(frontSortType === 'num' && 'font-bold')}>{t('by_student_id', '학번순')}</span>
-            {frontSortType === 'num' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
-          </button>
-        </div>
 
-        <div className="h-screen-18 overflow-y-auto">
-          {outings?.items
-            ?.sort((a, b) => compareOutings(a, b, frontSortType, sortOrder))
-            .map((outing: ResponseCreateOutingDto) => <OutingCard key={outing.id} outing={outing} type={'outing'} />)}
-          {outings && outings?.total > limit && (
-            <div className="grid place-items-center">
-              <FrontPagination
-                basePath="/teacher/outing"
-                total={outings?.total}
-                limit={limit}
-                page={page}
-                setPage={setPage}
-              />
+              <div className="flex items-center gap-2 md:mb-2 md:gap-0 md:space-x-2">
+                <div className="min-w-max cursor-pointer">
+                  <SelectMenus
+                    allText={t('show_all', '전체보기')}
+                    items={filters}
+                    onChange={(e) => setFilter(e)}
+                    value={filter}
+                    tooltip={t('approval_state', '승인 상태')}
+                  ></SelectMenus>
+                </div>
+                <div className="min-w-max cursor-pointer">
+                  <SelectMenus
+                    allText={t('show_all', '전체보기')}
+                    items={outingTypes}
+                    onChange={(e) => setType(e)}
+                    value={type}
+                    tooltip={t('category', '분류')}
+                  ></SelectMenus>
+                </div>
+                {outings &&
+                  (me?.role === Role.PRE_HEAD ||
+                    me?.role === Role.HEAD ||
+                    me?.role === Role.PRE_PRINCIPAL ||
+                    me?.role === Role.PRINCIPAL ||
+                    me?.role === Role.VICE_PRINCIPAL ||
+                    me?.role === Role.HEAD_PRINCIPAL ||
+                    me?.role === Role.SECURITY ||
+                    me?.role === Role.ADMIN) && (
+                    <>
+                      <div className="min-w-max cursor-pointer">
+                        <SelectMenus
+                          allText={t('show_all', '전체보기')}
+                          allTextVisible
+                          items={groups.filter((el) =>
+                            me?.role === Role.PRE_HEAD || me?.role === Role.HEAD
+                              ? el.name?.startsWith(me?.headNumber.toString())
+                              : true,
+                          )}
+                          value={selectedGroup}
+                          onChange={(group) => setSelectedGroup(group)}
+                          tooltip={t('class', '학급')}
+                        />
+                      </div>
+                    </>
+                  )}
+
+                <div className="flex w-full items-center space-x-2">
+                  <SearchField
+                    placeholder={t('search_by_name', '이름 검색')}
+                    value={_studentName}
+                    onChange={(e) => {
+                      set_studentName(e.target.value)
+                      if (e.target.value === '') replace(`/teacher/outing`)
+                      setPage(1)
+                    }}
+                  />
+                  {/* <SearchInput
+                    placeholder={t('search_by_name', '이름 검색')}
+                    value={_studentName}
+                    onChange={(e) => {
+                      set_studentName(e.target.value)
+                      if (e.target.value === '') replace(`/teacher/outing`)
+                      setPage(1)
+                    }}
+                    onSearch={() => _studentName && replace(`/teacher/outing?username=${_studentName}`)}
+                    className="w-full"
+                  />
+                  <Icon.Search
+                    className="scale-150 cursor-pointer"
+                    onClick={() => {
+                      _studentName.trim() === ''
+                        ? alert('텍스트 내용을 입력해주세요.')
+                        : replace(`/teacher/outing?username=${_studentName.trim()}`)
+                    }}
+                  /> */}
+                </div>
+              </div>
             </div>
-          )}
-        </div>
-      </div>
-      <div className="col-span-3 bg-gray-50 md:h-screen md:overflow-y-auto">
-        <Outlet context={{ isLoading, setOutingId, setOpen, setAgreeAll, userRole }} />
-        {/* <Routes>
-          <Route path="/teacher/outing/add" Component={() => <OutingAddPage />} />
-          <Route
-            path="/teacher/outing/:id"
-            Component={() => (
-              <OutingDetailPage
-                isLoading={isLoading}
-                setOutingId={(n: number) => setOutingId(n)}
-                setOpen={(b: boolean) => setOpen(b)}
-                setAgreeAll={(b: boolean) => setAgreeAll(b)}
-                userRole={userRole}
-                // {...props} // URL 매개변수 전달
-              />
+
+            <Flex items="center" justify="between" width="full" className="mt-6">
+              <Flex items="center" gap="2">
+                최신순 <Icon.ChevronDown />
+              </Flex>
+
+              <Flex items="center" justify="end" gap="2">
+                {/* 확인증현황 Excel 버튼 */}
+                <OutingsExcelDownloadView
+                  startDate={startDate}
+                  endDate={endDate}
+                  selectedGroupId={undefined}
+                  username={_studentName}
+                  outingStatus={filter.value}
+                />
+                <Button
+                  color="primary"
+                  disabled={!PermissionUtil.hasOutingAuthorization(userRole)}
+                  onClick={() => {
+                    if (filter.value === 'BEFORE_APPROVAL') {
+                      if (outings && outings.total > 0) {
+                        setOpen(true)
+                        setAgreeAll(true)
+                      } else {
+                        alert('승인할 서류가 없습니다.')
+                      }
+                    } else {
+                      searchAlert()
+                    }
+                  }}
+                >
+                  {t('bulk_approve', '일괄 승인하기')}
+                </Button>
+              </Flex>
+            </Flex>
+          </div>
+
+          <Divider height="0.5" color="bg-gray-100" />
+
+          {/* <div className="grid grid-cols-4 bg-gray-100 max-md:hidden">
+            <button
+              onClick={() => toggleSort('period')}
+              className={cn(
+                'flex items-center justify-center',
+                frontSortType !== 'period' && 'text-[#aaa] hover:underline hover:underline-offset-4',
+              )}
+            >
+              <span className={cn(frontSortType === 'period' && 'font-bold')}>{t('by_date', '기간순')}</span>
+              {frontSortType === 'period' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
+            </button>
+            <button
+              onClick={() => toggleSort('request')}
+              className={cn(
+                'flex items-center justify-center',
+                frontSortType !== 'request' && 'text-[#aaa] hover:underline hover:underline-offset-4',
+              )}
+            >
+              <span className={cn(frontSortType === 'request' && 'font-bold')}>
+                {t('by_application_date', '신청일순')}
+              </span>
+              {frontSortType === 'request' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
+            </button>
+            <button
+              onClick={() => toggleSort('name')}
+              className={cn(
+                'flex items-center justify-center',
+                frontSortType !== 'name' && 'text-[#aaa] hover:underline hover:underline-offset-4',
+              )}
+            >
+              <span className={cn(frontSortType === 'name' && 'font-bold')}>{t('by_name', '이름순')}</span>
+              {frontSortType === 'name' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
+            </button>
+            <button
+              onClick={() => toggleSort('num')}
+              className={cn(
+                'flex items-center justify-center',
+                frontSortType !== 'num' && 'text-[#aaa] hover:underline hover:underline-offset-4',
+              )}
+            >
+              <span className={cn(frontSortType === 'num' && 'font-bold')}>{t('by_student_id', '학번순')}</span>
+              {frontSortType === 'num' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
+            </button>
+          </div> */}
+
+          <div className="overflow-y-auto">
+            {outings?.items
+              ?.sort((a, b) => compareOutings(a, b, frontSortType, sortOrder))
+              .map((outing: ResponseCreateOutingDto) => <OutingCard key={outing.id} outing={outing} type={'outing'} />)}
+            {outings && outings?.total > limit && (
+              <div className="grid place-items-center">
+                <FrontPagination
+                  basePath="/teacher/outing"
+                  total={outings?.total}
+                  limit={limit}
+                  page={page}
+                  setPage={setPage}
+                />
+              </div>
             )}
-          />
-        </Routes> */}
-      </div>
+          </div>
+        </GridItem>
+
+        <GridItem colSpan={6} className="bg-gray-50">
+          <Outlet context={{ isLoading, setOutingId, setOpen, setAgreeAll, userRole }} />
+        </GridItem>
+      </Grid>
+
+      {/* 모달 */}
       <SuperModal
         modalOpen={open}
         setModalClose={() => {
@@ -393,7 +402,7 @@ export function OutingPage() {
               />
             </label>
             {!stampMode ? (
-              <Button.xl
+              <OldButton.xl
                 children="도장 사용하기"
                 onClick={() => {
                   setStampMode(true)
@@ -402,7 +411,7 @@ export function OutingPage() {
                 className="filled-blue"
               />
             ) : (
-              <Button.xl
+              <OldButton.xl
                 children="도장으로 승인"
                 disabled={!stampImgUrl}
                 onClick={() => {
@@ -420,7 +429,7 @@ export function OutingPage() {
                 className={cn('text-white', stampImgUrl ? 'border-4 border-red-500 bg-blue-500' : 'bg-blue-100')}
               />
             )}
-            <Button.xl
+            <OldButton.xl
               children="서명 다시하기"
               onClick={() => {
                 setStampMode(false)
@@ -429,9 +438,9 @@ export function OutingPage() {
               className="outlined-primary"
             />
             {stampMode ? (
-              <Button.xl children="서명 사용하기" onClick={() => setStampMode(false)} className="outlined-primary" />
+              <OldButton.xl children="서명 사용하기" onClick={() => setStampMode(false)} className="outlined-primary" />
             ) : (
-              <Button.xl
+              <OldButton.xl
                 children="서명으로 승인"
                 onClick={() => {
                   if (!sigPadData) {

@@ -1,4 +1,4 @@
-import { Button } from '@/legacy/components/common/Button'
+import { IconButton } from '@/molecules/IconButton'
 import { useOutingsDownloadOutings } from '@/legacy/generated/endpoint'
 import { Outing, OutingStatus } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
@@ -38,10 +38,16 @@ export function OutingsExcelDownloadView({
   )
 
   return (
-    <Button.lg
-      children={t('certificate_status', '확인증현황')}
+    <IconButton
+      iconName="ssDownload"
+      iconColor="gray-700"
+      stroke={true}
+      strokeWidth={4}
+      position="front"
+      color="tertiary"
       onClick={() => refetchExcelData()}
-      className="filled-green"
-    />
+    >
+      {t('certificate_status', '확인증현황')}
+    </IconButton>
   )
 }

@@ -4,8 +4,8 @@ import { addons } from '@storybook/manager-api';
 
 import { Text } from '@/atoms/Text'
 import { Button } from '@/atoms/Button'
-import { ThemeProvider } from '@/providers/ThemeProvider'
-import { themes as appThemes } from '@/constants/themeConstant'
+import { useTheme } from '@/providers/ThemeProvider'
+import { ThemeConstant } from '@/constants/themeConstant'
 
 <Meta title="SuperSchool/Introduction" />
 
@@ -16,37 +16,3 @@ import { themes as appThemes } from '@/constants/themeConstant'
 <br />
 
 ## ✨ ThemeProvider
-
-{/* <Container flex direction="col" items="start" justify="start" gap="2" className="max-h-[20%] min-w-[8%]">
-    <Text>SuperSchool Default Brand Color</Text>
-    <Container flex direction="row" items="center" gap="2">
-        <Container className="h-[90%] max-w-[20%] bg-primary-50" />
-        <Container className="h-[90%] max-w-[20%] bg-primary-100" />
-        <Container className="h-[90%] max-w-[20%] bg-primary-200" />
-        <Container className="h-[90%] max-w-[20%] bg-primary-300" />
-        <Container className="h-[90%] max-w-[20%] bg-primary-400" />
-        <Container className="h-[90%] max-w-[20%] bg-primary-700" />
-        <Container className="h-[90%] max-w-[20%] bg-primary-800" />
-        <Container className="h-[90%] max-w-[20%] bg-primary-850" />
-        <Container className="h-[90%] max-w-[20%] bg-primary-900" />
-        <Container className="h-[90%] max-w-[20%] bg-primary-950" />
-        <Container className="h-[90%] max-w-[20%] bg-primary-999" />
-    </Container>
-</Container>
-
-<Container flex direction="col" items="start" justify="start" gap="2" className="max-h-[20%] min-w-[8%]">
-    <Text>LG U+ Theme</Text>
-    <Container flex direction="row" items="center" gap="2">
-    <Container className="h-[90%] max-w-[20%] bg-[#FFF7FB]" />
-    <Container className="h-[90%] max-w-[20%] bg-[#FCDAED]" />
-    <Container className="h-[90%] max-w-[20%] bg-[#F8BFE0]" />
-    <Container className="h-[90%] max-w-[20%] bg-[#EE96C9]" />
-    <Container className="h-[90%] max-w-[20%] bg-[#E666B1]" />
-    <Container className="h-[90%] max-w-[20%] bg-[#E63596]" />
-    <Container className="h-[90%] max-w-[20%] bg-[#E6007E]" />
-    <Container className="h-[90%] max-w-[20%] bg-[#B20068]" />
-    <Container className="h-[90%] max-w-[20%] bg-[#8A0150]" />
-    <Container className="h-[90%] max-w-[20%] bg-[#66003B]" />
-    <Container className="h-[90%] max-w-[20%] bg-[#47002A]" />
-    </Container>
-</Container> */}

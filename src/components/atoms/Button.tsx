@@ -1,27 +1,17 @@
 import React from 'react'
 import { cn } from '@/utils/commonUtil'
 
-export type ButtonVariant = 'solid' | 'outline' | 'link'
-export type ButtonSize = 'sm' | 'md' | 'lg' | 'full'
+type ButtonVariant = 'solid' | 'outline' | 'link'
+type ButtonColor = 'primary' | 'secondary' | 'sub' | 'tertiary'
+type ButtonSize = 'sm' | 'md' | 'lg' | 'full'
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
   variant?: ButtonVariant
+  color?: ButtonColor
   size?: ButtonSize
   disabled?: boolean
   className?: string
-}
-
-const variantOptions: Record<ButtonVariant, string> = {
-  solid: 'bg-primary-800 text-white hover:bg-primary-850 active:bg-primary-850 ',
-  outline: 'border border-primary-800 text-primary-800 hover:bg-primary-100 active:bg-primary-100',
-  link: 'text-primary-800 hover:text-primary-850 active:text-primary-850',
-}
-
-const disabledOptions: Record<ButtonVariant, string> = {
-  solid: 'disabled:bg-primary-50 disabled:text-primary-400',
-  outline: 'disabled:border-gray-300 disabled:text-gray-500 disabled:hover:bg-transparent',
-  link: 'disabled:text-gray-500',
 }
 
 const sizeOptions: Record<ButtonSize, string> = {
@@ -31,29 +21,53 @@ const sizeOptions: Record<ButtonSize, string> = {
   full: 'h-10 w-full rounded-[8px]',
 }
 
-const getSizeOptions = (variant: ButtonVariant, size: ButtonSize) => {
-  if (variant === 'link') {
-    switch (size) {
-      case 'sm':
-        return 'h-8 text-[12px] rounded-[6px]'
-      case 'md':
-        return 'h-10 text-[14px] rounded-[8px]'
-      case 'lg':
-        return 'h-12 text-[16px] rounded-[8px]'
-    }
-  }
-  return sizeOptions[size]
+const variantClasses: Record<ButtonVariant, Record<ButtonColor, string>> = {
+  solid: {
+    primary: 'bg-primary-800 text-white hover:bg-primary-850 active:bg-primary-850',
+    secondary: 'bg-secondary-800 text-white hover:bg-secondary-850 active:bg-secondary-850',
+    sub: 'bg-primary-100 text-primary-800 hover:bg-primary-400 active:bg-primary-800',
+    tertiary: 'text-tertiary-600 bg-tertiary-100 hover:bg-tertiary-300 active:bg-tertiary-300',
+  },
+  outline: {
+    primary: 'border border-primary-700 text-primary-800 hover:bg-primary-100 active:bg-primary-100',
+    secondary: 'border border-secondary-700 text-secondary-800 hover:bg-secondary-100 active:bg-secondary-100',
+    // outline-sub는 현재 미존재, 따라서 primary와 동일한 스타일로 처리
+    sub: 'border border-primary-700 text-primary-800 hover:bg-primary-100 active:bg-primary-100',
+    tertiary: 'border border-tertiary-400 text-tertiary-600 hover:bg-tertiary-400 active:bg-tertiary-400',
+  },
+  link: {
+    primary: 'text-gray-900 hover:text-primary-800',
+    secondary: 'text-gray-900 hover:text-secondary-800',
+    // link-sub는 현재 미존재, 따라서 primary와 동일한 스타일로 처리
+    sub: 'text-gray-900 hover:text-primary-800',
+    // link-tertiary는 현재 미존재, 따라서 primary와 동일한 스타일로 처리
+    tertiary: 'text-gray-900 hover:text-primary-800',
+  },
 }
 
-export function Button({ children, variant = 'solid', size = 'md', className, disabled, ...props }: ButtonProps) {
+const getVariant = (variant: ButtonVariant, color: ButtonColor, disabled: boolean) => {
+  if (disabled) {
+    return color === 'primary' ? 'bg-primary-50 text-primary-400' : 'bg-gray-100 text-gray-400'
+  }
+  return variantClasses[variant][color]
+}
+
+export function Button({
+  children,
+  variant = 'solid',
+  color = 'primary',
+  size = 'md',
+  disabled = false,
+  className,
+  ...props
+}: ButtonProps) {
   return (
     <button
       className={cn(
         'font-pretendard cursor-pointer font-medium transition-colors duration-200',
-        variantOptions[variant],
-        getSizeOptions(variant, size),
+        sizeOptions[size],
+        getVariant(variant, color, disabled),
         disabled && 'cursor-not-allowed',
-        disabled && disabledOptions[variant],
         className,
       )}
       disabled={disabled}

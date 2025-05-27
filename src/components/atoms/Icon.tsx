@@ -7,10 +7,11 @@ import { ReactComponent as ChevronRight } from '@/assets/icons/chevron-right.svg
 import { ReactComponent as ChevronUp } from '@/assets/icons/chevron-up.svg'
 import { ReactComponent as Bell } from '@/assets/icons/new-bell.svg'
 import { ReactComponent as World } from '@/assets/icons/new-world.svg'
-import { ReactComponent as DemoMenu } from '@/assets/svg/demo-menu.svg'
+import { ReactComponent as ssSearch } from '@/assets/icons/search.svg'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { ReactComponent as RightFillArrow } from '@/assets/svg/RightFillArrow.svg'
 import { ReactComponent as RightUpArrow } from '@/assets/svg/RightUpArrow.svg'
+import { ReactComponent as SSDownload } from '@/assets/svg/ssDownload.svg'
 import { ReactComponent as UnderFillArrow } from '@/assets/svg/UnderFillArrow.svg'
 
 type LucideIconName = keyof typeof LucideIcons
@@ -27,7 +28,8 @@ export type IconName =
   | 'rightFillArrow'
   | 'underFillArrow'
   | 'rightUpArrow'
-  | 'demoMenu'
+  | 'ssDownload'
+  | 'ssSearch'
   | LucideIconName
 
 export type IconProps = {
@@ -91,7 +93,8 @@ export function Icon({
       chevronDown: ChevronDown,
       chevronLeft: ChevronLeft,
       chevronRight: ChevronRight,
-      demoMenu: DemoMenu,
+      ssDownload: SSDownload,
+      ssSearch: ssSearch,
     }),
     [],
   )
