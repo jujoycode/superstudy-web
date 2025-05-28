@@ -10,5 +10,33 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {},
+  args: {
+    title: '페이지 제목',
+    description: '※ 어느정도 길이가 되는 그런 자잘한 설명 문구',
+    config: {
+      topBtn: [{ label: '테스트', variant: 'solid', color: 'secondary', action: () => {} }],
+      dateSearchBar: {
+        type: 'range',
+        searchState: {
+          value: {
+            from: new Date(),
+            to: new Date(),
+          },
+          setValue: () => {},
+        },
+      },
+      searchBar: {
+        placeholder: '무언가 검색',
+        searchState: {
+          value: '',
+          setValue: () => {},
+        },
+      },
+      bottomBtn: [
+        { label: '다운로드1', variant: 'solid', color: 'tertiary', icon: { name: 'ssDownload' }, action: () => {} },
+        { label: '다운로드2', variant: 'solid', color: 'tertiary', icon: { name: 'ssDownload' }, action: () => {} },
+        { label: '승인', variant: 'solid', color: 'primary', action: () => {} },
+      ],
+    },
+  },
 }

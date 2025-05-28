@@ -13,9 +13,9 @@ export interface InputProps {
 }
 
 const sizeOptions = {
-  sm: 'h-8 text-[14px] placeholder:text-[14px]',
-  md: 'h-10 text-[15px] placeholder:text-[15px]',
-  lg: 'h-12 text-[16px] placeholder:text-[16px]',
+  sm: 'h-8 text-[14px] placeholder:text-[14px] placeholder:font-semibold placeholder:text-gray-400',
+  md: 'h-10 text-[15px] placeholder:text-[15px] placeholder:font-semibold placeholder:text-gray-400',
+  lg: 'h-12 text-[16px] placeholder:text-[16px] placeholder:font-semibold placeholder:text-gray-400',
 }
 
 export function Input({

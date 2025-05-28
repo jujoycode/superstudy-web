@@ -3,7 +3,7 @@ import { cn } from '@/utils/commonUtil'
 
 export type TextWeight = 'sm' | 'md' | 'lg'
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg'
-export type TextVariant = 'default' | 'sub' | 'dim' // | 'error' | 'success' | 'warning'
+export type TextVariant = 'title' | 'default' | 'sub' | 'dim' // | 'error' | 'success' | 'warning'
 
 export interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
   children: React.ReactNode
@@ -17,6 +17,7 @@ export interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
 }
 
 const variantOptions: Record<TextVariant, string> = {
+  title: 'text-gray-900 text-2xl font-semibold',
   default: 'text-gray-900',
   sub: 'text-gray-700',
   dim: 'text-gray-500',
