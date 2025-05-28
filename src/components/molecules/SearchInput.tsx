@@ -1,22 +1,46 @@
+import { Flex } from '@/atoms/Flex'
 import { Icon } from '@/atoms/Icon'
 import { Input } from '@/atoms/Input'
 
 type SearchInputProps = {
-  placeholder?: string
   value: string
-  onChange: (value: string) => void
+  placeholder?: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
-export function SearchInput({ placeholder = 'Search...', value, onChange, onKeyDown }: SearchInputProps) {
+export function SearchInput({ placeholder, value, onChange, onKeyDown }: SearchInputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value)
+    onChange(e)
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onKeyDown?.(e)
+    }
   }
 
   return (
-    <div className="relative flex items-center rounded-md border p-2 focus-within:ring-2 focus-within:ring-blue-500">
-      <Icon name="Search" className="mr-2 text-gray-400" />
-      <Input placeholder={placeholder} value={value} onChange={handleChange} />
-    </div>
+    <Flex
+      items="center"
+      justify="start"
+      className="focus-within:ring-primary-800 relative flex w-full items-center rounded-lg border border-gray-200 focus-within:ring-1"
+    >
+      <Icon
+        name="ssSearch"
+        color="gray-700"
+        className="ml-3"
+        stroke
+        strokeWidth={1.5}
+        customSize={{ width: '20px', height: '20px' }}
+      />
+      <Input
+        placeholder={placeholder}
+        value={value}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        className="border-0"
+      />
+    </Flex>
   )
 }

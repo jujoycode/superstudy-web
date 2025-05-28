@@ -18,8 +18,9 @@ export class ThemeConstant {
       'color-primary-950': '#A23800',
       'color-primary-999': '#501C00',
       // 2 degree 대응 컬러 (** 개선 필요)
-      'color-secondary-800': 'rgba(76, 80, 87, 1)',
-      'color-secondary-850': 'rgba(36, 40, 45, 1)',
+      'color-secondary-400': '#FFFFFF',
+      'color-secondary-800': '#4C5057',
+      'color-secondary-850': '#24282D',
     },
 
     [THEME_ENUM.LG]: {
@@ -35,12 +36,13 @@ export class ThemeConstant {
       'color-primary-950': '#66003B',
       'color-primary-999': '#47002A',
       // 2 degree 대응 컬러 (** 개선 필요)
+      'color-secondary-400': '#C7CBD1',
       'color-secondary-800': '#000000',
-      'color-secondary-850': 'rgba(255, 255, 255, 0.12)', // 16진수: 1F = 12%
-      // 4 degree 대응 컬러 (** 개선 필요) (** hover와 text-color만 다름)
+      'color-secondary-850': '#000000',
+      // 4 degree 대응 컬러 (** 개선 필요)
       'color-tertiary-100': '#F3F5F6',
-      'color-tertiary-300': 'rgba(243, 245, 246, 0.12)', // 12% 투명도
-      'color-tertiary-600': '#66707A',
+      'color-tertiary-300': '#D8DBDF',
+      'color-tertiary-600': '#61656B',
     },
   }
 }

@@ -90,6 +90,11 @@ export default tseslint.config(
           groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
           pathGroups: [
             {
+              pattern: 'react',
+              group: 'builtin',
+              position: 'before',
+            },
+            {
               pattern: '@/',
               group: 'internal',
               position: 'before',
@@ -151,6 +156,11 @@ export default tseslint.config(
             },
             {
               pattern: '@/pages/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@/templates/**',
               group: 'internal',
               position: 'before',
             },

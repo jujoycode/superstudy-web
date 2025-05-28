@@ -1,11 +1,11 @@
+import { useEffect, useState } from 'react'
 import { EventClickArg } from '@fullcalendar/core/index.js'
 import { addMonths, endOfMonth, format, startOfMonth, subMonths } from 'date-fns'
 import { t } from 'i18next'
-import { useEffect, useState } from 'react'
 import { CoachMark } from 'react-coach-mark'
 import { useUserStore } from '@/stores/user'
 import { Button } from '@/atoms/Button'
-import { Calendar, type CalendarData } from '@/atoms/Calendar'
+import { FullCalendar, type CalendarData } from '@/atoms/FullCalendar'
 import { ErrorBlank } from '@/legacy/components'
 import { CustomTuiDetailModal } from '@/legacy/components/calendar/CustomTuiDetailModal'
 import { CustomTuiModal } from '@/legacy/components/calendar/CustomTuiModal'
@@ -268,7 +268,7 @@ export function CalendarPage() {
               </button>
             </div>
           </div>
-          <Calendar
+          <FullCalendar
             data={data}
             full
             now={selectedDate}

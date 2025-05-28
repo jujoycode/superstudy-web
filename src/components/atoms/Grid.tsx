@@ -60,6 +60,7 @@ export function Grid({ children, className, col = 12, row, gap = 0 }: ContainerP
     <Box
       className={cn(
         'h-full',
+        'w-full',
         'grid',
         col && gridTemplateColumns[col],
         row && gridTemplateRows[row],

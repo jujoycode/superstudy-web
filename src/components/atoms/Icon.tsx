@@ -11,8 +11,9 @@ import { ReactComponent as ssSearch } from '@/assets/icons/search.svg'
 import { ReactComponent as Logo } from '@/assets/svg/logo.svg'
 import { ReactComponent as RightFillArrow } from '@/assets/svg/RightFillArrow.svg'
 import { ReactComponent as RightUpArrow } from '@/assets/svg/RightUpArrow.svg'
-import { ReactComponent as SSDownload } from '@/assets/svg/ssDownload.svg'
+import { ReactComponent as ssDownload } from '@/assets/svg/ssDownload.svg'
 import { ReactComponent as UnderFillArrow } from '@/assets/svg/UnderFillArrow.svg'
+import { ReactComponent as ssCalendar } from '@/assets/svg/ssCalendar.svg'
 
 type LucideIconName = keyof typeof LucideIcons
 
@@ -30,6 +31,7 @@ export type IconName =
   | 'rightUpArrow'
   | 'ssDownload'
   | 'ssSearch'
+  | 'ssCalendar'
   | LucideIconName
 
 export type IconProps = {
@@ -93,8 +95,9 @@ export function Icon({
       chevronDown: ChevronDown,
       chevronLeft: ChevronLeft,
       chevronRight: ChevronRight,
-      ssDownload: SSDownload,
+      ssDownload: ssDownload,
       ssSearch: ssSearch,
+      ssCalendar: ssCalendar,
     }),
     [],
   )

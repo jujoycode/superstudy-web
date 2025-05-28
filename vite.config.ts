@@ -5,6 +5,7 @@ import { compression } from 'vite-plugin-compression2'
 import react from '@vitejs/plugin-react-swc'
 import svgr from 'vite-plugin-svgr'
 import tailwindcss from '@tailwindcss/vite'
+import path from 'path'
 
 // 메타 태그 생성 함수
 const generateMetaTag = () => {
@@ -132,6 +133,7 @@ export default defineConfig(({ mode }) => {
         '@/molecules': '/src/components/molecules',
         '@/organisms': '/src/components/organisms',
         '@/pages': '/src/components/pages',
+        '@/templates': '/src/components/templates',
         '@/layouts': '/src/layouts',
         '@/hooks': '/src/hooks',
         '@/providers': '/src/components/providers',

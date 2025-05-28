@@ -11,7 +11,7 @@ interface IconButtonProps extends ButtonProps, Pick<IconProps, 'fill' | 'stroke'
 
 /**
  * IconButton
- * @author jh.b.ryu
+ * @author jujoycode
  * @returns 콘텐츠의 앞이나 뒤에 아이콘이 있는 버튼
  */
 export function IconButton({

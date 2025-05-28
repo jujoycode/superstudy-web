@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
+import { toDate } from 'date-fns'
 import { Outlet } from 'react-router'
-
 import { useHistory } from '@/hooks/useHistory'
 import { cn } from '@/utils/commonUtil'
 import { Button } from '@/atoms/Button'
-import { DatePicker } from '@/atoms/DatePicker'
+import type { DateRange } from '@/atoms/Calendar'
 import { Divider } from '@/atoms/Divider'
 import { Flex } from '@/atoms/Flex'
 import { Grid } from '@/atoms/Grid'
 import { GridItem } from '@/atoms/GridItem'
-import { SearchField } from '@/molecules/SearchField'
+import { DateRangePicker } from '@/molecules/DateRangePicker'
+import { SearchInput } from '@/molecules/SearchInput'
 import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'
 import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
@@ -22,6 +23,7 @@ import { useTeacherOutgoing } from '@/legacy/container/teacher-outgoing'
 import { UserContainer } from '@/legacy/container/user'
 import { ResponseCreateOutingDto, Role } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { DateUtil } from '@/legacy/util/date'
 import { compareOutings } from '@/legacy/util/document'
 import { PermissionUtil } from '@/legacy/util/permission'
 import { getCurrentSchoolYear, isValidDate, makeDateToString } from '@/legacy/util/time'
@@ -34,9 +36,15 @@ export function OutingPage() {
 
   const [agreeAll, setAgreeAll] = useState(false)
   const [_studentName, set_studentName] = useState('')
-
   const [frontSortType, setFrontSortType] = useState('')
   const [sortOrder, setSortOrder] = useState<'ASC' | 'DESC'>('ASC')
+
+  // [2025. 05. 28] DateRange 리팩토링
+  const [dateRange, setDateRange] = useState<DateRange>({
+    from: toDate(DateUtil.getAMonthAgo(new Date())),
+    to: new Date(),
+  })
+
   const { allKlassGroups: groups } = GroupContainer.useContext()
   const schoolYear = getCurrentSchoolYear()
 
@@ -96,6 +104,16 @@ export function OutingPage() {
     }
   }, [open, stamp, setStampMode])
 
+  // [2025. 05. 28] DateRange 리팩토링
+  useEffect(() => {
+    if (dateRange.from && dateRange.to) {
+      setStartDate(dateRange.from?.toString())
+      setEndDate(dateRange.to?.toString())
+
+      setPage(1)
+    }
+  }, [dateRange, setDateRange, setStartDate, setEndDate, setPage])
+
   if (error) {
     return <ErrorBlank />
   }
@@ -106,7 +124,7 @@ export function OutingPage() {
 
   return (
     <>
-      <Grid className="w-full">
+      <Grid>
         {/* <div className={`h-screen-6 col-span-3 md:h-screen ${isDetail ? 'hidden' : 'block'} md:block`}> */}
         <GridItem colSpan={6}>
           <ResponsiveRenderer mobile={<TopNavbar title="확인증" left={<BackButton />} />} />
@@ -128,36 +146,8 @@ export function OutingPage() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <div className="flex items-center justify-center md:justify-start md:space-x-3">
-                <DatePicker
-                  value={makeDateToString(new Date(startDate))}
-                  onChange={(e) => {
-                    const selectedDate = new Date(e.target.value)
-                    if (!isValidDate(selectedDate)) {
-                      return
-                    }
-                    if (endDate && selectedDate > new Date(endDate)) {
-                      setEndDate(e.target.value)
-                    }
-                    setStartDate(e.target.value)
-                    setPage(1)
-                  }}
-                />
-                <div className="px-4 text-xl font-bold">~</div>
-                <DatePicker
-                  value={makeDateToString(new Date(endDate))}
-                  onChange={(e) => {
-                    const selectedDate = new Date(e.target.value)
-                    if (!isValidDate(selectedDate)) {
-                      return
-                    }
-                    if (startDate && selectedDate < new Date(startDate)) {
-                      setStartDate(e.target.value)
-                    }
-                    setEndDate(e.target.value)
-                    setPage(1)
-                  }}
-                />
+              <div className="flex items-center justify-start">
+                <DateRangePicker.Default dateRange={dateRange} setDateRange={setDateRange} />
               </div>
 
               <div className="flex items-center gap-2 md:mb-2 md:gap-0 md:space-x-2">
@@ -207,7 +197,7 @@ export function OutingPage() {
                   )}
 
                 <div className="flex w-full items-center space-x-2">
-                  <SearchField
+                  <SearchInput
                     placeholder={t('search_by_name', '이름 검색')}
                     value={_studentName}
                     onChange={(e) => {

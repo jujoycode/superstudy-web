@@ -67,17 +67,15 @@ export function TeacherLayout() {
   }
 
   const LeftNav = (
-    <GridItem colSpan={4}>
-      <TeacherLNB
-        HeaderProps={{
-          name: me.name,
-          nickname: me.nickName,
-          email: me.email || '',
-          school: me.school.name,
-          profile: me.profile,
-        }}
-      />
-    </GridItem>
+    <TeacherLNB
+      HeaderProps={{
+        name: me.name,
+        nickname: me.nickName,
+        email: me.email || '',
+        school: me.school.name,
+        profile: me.profile,
+      }}
+    />
   )
 
   const BottomNav = (

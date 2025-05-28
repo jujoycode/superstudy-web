@@ -23,7 +23,7 @@ const ROLE_ACCESS_PATTERNS: Record<Role, RegExp[]> = {
 /**
  * getDefaultPath
  * @desc 권한에 맞는 기본 경로 반환
- * @author jh.ryu
+ * @author jujoycode
  */
 export function getDefaultPath(role: Role) {
   switch (role) {
