@@ -33,6 +33,8 @@ export function Calendar({
   return (
     <DayPicker
       locale={currentLanguage === 'ko' ? ko : enUS}
+      fromDate={props.fromDate}
+      toDate={props.toDate}
       showOutsideDays={showOutsideDays}
       className={cn('p-3', className)}
       formatters={{ formatCaption }}

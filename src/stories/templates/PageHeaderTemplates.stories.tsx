@@ -58,6 +58,23 @@ export const Default: Story = {
           setValue: () => {},
         },
       },
+      sort: {
+        mode: 'client',
+        items: [
+          { label: '기간순', value: 'period' },
+          { label: '요청순', value: 'request' },
+          { label: '이름순', value: 'name' },
+          { label: '학번순', value: 'num' },
+        ],
+        itemState: {
+          value: 'period',
+          setValue: () => {},
+        },
+        sortState: {
+          value: 'desc',
+          setValue: () => {},
+        },
+      },
       bottomBtn: [
         { label: '다운로드1', variant: 'solid', color: 'tertiary', icon: { name: 'ssDownload' }, action: () => {} },
         { label: '다운로드2', variant: 'solid', color: 'tertiary', icon: { name: 'ssDownload' }, action: () => {} },

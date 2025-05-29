@@ -1,13 +1,14 @@
 import { Button, type ButtonProps } from '@/atoms/Button'
 import type { DateRange } from '@/atoms/Calendar'
 import { Flex } from '@/atoms/Flex'
-import type { IconName, IconProps } from '@/atoms/Icon'
+import type { IconProps } from '@/atoms/Icon'
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/atoms/Select'
 import { Text } from '@/atoms/Text'
 import { DatePicker } from '@/molecules/DatePicker'
 import { DateRangePicker } from '@/molecules/DateRangePicker'
 import { IconButton } from '@/molecules/IconButton'
 import { SearchInput } from '@/molecules/SearchInput'
+import { SortButton, SortButtonProps } from '@/molecules/SortButton'
 
 interface PageHeaderTemplateProps {
   title: string
@@ -26,12 +27,15 @@ type BtnConfig = {
   label: string
   color: ButtonProps['color']
   variant: ButtonProps['variant']
+  disabled?: boolean
   icon?: IconProps
   action: () => void
 }
 
 type DateSearchBarConfig = {
   type: 'single' | 'range'
+  minDate?: Date
+  maxDate?: Date
   searchState: {
     value: Date | DateRange
     setValue: React.Dispatch<React.SetStateAction<Date | DateRange>>
@@ -55,17 +59,11 @@ type SearchBarConfig = {
     value: string
     setValue: React.Dispatch<React.SetStateAction<string>>
   }
+  onSearch?: () => void
 }
 
-type SortConfig = {
+interface SortConfig extends SortButtonProps {
   mode: 'client' | 'server'
-  items: string[]
-  defaultValue?: string
-  defaultDirection?: 'asc' | 'desc'
-  sortState: {
-    value: string
-    setValue: React.Dispatch<React.SetStateAction<string>>
-  }
 }
 
 /**
@@ -80,8 +78,8 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
     : []
 
   return (
-    <Flex width="full" direction="col" items="center" gap="4" className="p-2">
-      <Flex width="full" direction="row" justify="between" items="center">
+    <Flex direction="col" items="center" gap="4" className="p-8 pb-0">
+      <Flex direction="row" justify="between" items="center">
         <Flex direction="col" items="start" justify="center" gap="2">
           {/* 제목 */}
           <Text variant="title">{title}</Text>
@@ -95,13 +93,15 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
         </Flex>
 
         {/* 상단 버튼 영역 */}
-        <Flex direction="row" items="center" justify="end" gap="2">
+        <Flex direction="row" items="center" justify="end" gap="2" width="fit-content">
           {topBtn.map((btn, index) =>
             btn.icon ? (
               <IconButton
                 key={index}
                 iconName={btn.icon.name}
+                color={btn?.color}
                 variant={btn?.variant}
+                disabled={btn?.disabled}
                 onClick={btn?.action}
                 position="front"
                 className="max-w-[240px] min-w-[120px]"
@@ -109,7 +109,14 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
                 {btn?.label}
               </IconButton>
             ) : (
-              <Button key={index} variant={btn?.variant} onClick={btn?.action} className="max-w-[240px] min-w-[120px]">
+              <Button
+                key={index}
+                color={btn?.color}
+                variant={btn?.variant}
+                disabled={btn?.disabled}
+                onClick={btn?.action}
+                className="max-w-[240px] min-w-[120px]"
+              >
                 {btn?.label}
               </Button>
             ),
@@ -117,18 +124,22 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
         </Flex>
       </Flex>
 
-      <Flex width="full" direction="col" items="center" justify="start" gap="2">
+      <Flex direction="col" items="center" justify="start" gap="2">
         {/* Tab이나 custom 컴포넌트 */}
 
         {/* 날짜 검색 바 */}
         {config?.dateSearchBar &&
           (config.dateSearchBar.type === 'single' ? (
             <DatePicker.Default
+              minDate={config.dateSearchBar.minDate}
+              maxDate={config.dateSearchBar.maxDate}
               date={config.dateSearchBar.searchState.value as Date}
               setDate={config.dateSearchBar.searchState.setValue}
             />
           ) : (
             <DateRangePicker.Default
+              minDate={config.dateSearchBar.minDate}
+              maxDate={config.dateSearchBar.maxDate}
               dateRange={config.dateSearchBar.searchState.value as DateRange}
               setDateRange={config.dateSearchBar.searchState.setValue}
             />
@@ -156,15 +167,27 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
             <SearchInput
               placeholder={config.searchBar.placeholder}
               value={config.searchBar.searchState.value}
-              onChange={(e) => e.target.value}
+              onChange={(e) => {
+                if (config.searchBar) {
+                  config.searchBar.searchState.setValue(e.target.value)
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && config.searchBar?.onSearch) {
+                  config.searchBar.onSearch()
+                }
+              }}
             />
           )}
         </Flex>
       </Flex>
 
       {/* 하단 영역 */}
-      <Flex>
+      <Flex className="pt-2">
         {/* 정렬 영역 */}
+        {config?.sort && (
+          <SortButton items={config.sort.items} itemState={config.sort.itemState} sortState={config.sort.sortState} />
+        )}
 
         {/* 버튼 영역 */}
         <Flex direction="row" items="center" justify="end" gap="2">
@@ -173,7 +196,9 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
               <IconButton
                 key={index}
                 iconName={btn.icon.name}
+                color={btn?.color}
                 variant={btn?.variant}
+                disabled={btn?.disabled}
                 onClick={btn?.action}
                 position="front"
                 className="max-w-[240px] min-w-[120px]"
@@ -181,7 +206,13 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
                 {btn?.label}
               </IconButton>
             ) : (
-              <Button key={index} variant={btn?.variant} onClick={btn?.action} className="max-w-[240px] min-w-[120px]">
+              <Button
+                key={index}
+                variant={btn?.variant}
+                disabled={btn?.disabled}
+                onClick={btn?.action}
+                className="max-w-[240px] min-w-[120px]"
+              >
                 {btn?.label}
               </Button>
             ),

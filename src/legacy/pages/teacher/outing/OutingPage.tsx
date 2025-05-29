@@ -1,43 +1,39 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { toDate } from 'date-fns'
 import { Outlet } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
-import { cn } from '@/utils/commonUtil'
+import { SortState } from '@/constants/enumConstant'
 import { Button } from '@/atoms/Button'
 import type { DateRange } from '@/atoms/Calendar'
 import { Divider } from '@/atoms/Divider'
-import { Flex } from '@/atoms/Flex'
 import { Grid } from '@/atoms/Grid'
 import { GridItem } from '@/atoms/GridItem'
-import { DateRangePicker } from '@/molecules/DateRangePicker'
-import { SearchInput } from '@/molecules/SearchInput'
+import { Input } from '@/atoms/Input'
 import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'
-import { ErrorBlank, FrontPagination, SelectMenus, SuperModal } from '@/legacy/components'
+import { PageHeaderTemplate } from '@/templates/PageHeaderTemplate'
+import { ErrorBlank, FrontPagination, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
-import { Button as OldButton } from '@/legacy/components/common/Button'
-import { Icon } from '@/legacy/components/common/icons'
 import { OutingCard } from '@/legacy/components/outing/OutingCard'
-import { OutingsExcelDownloadView } from '@/legacy/components/outing/OutingExcelDownloadView'
 import { GroupContainer } from '@/legacy/container/group'
 import { useTeacherOutgoing } from '@/legacy/container/teacher-outgoing'
 import { UserContainer } from '@/legacy/container/user'
+import { useOutingsDownloadOutings } from '@/legacy/generated/endpoint'
 import { ResponseCreateOutingDto, Role } from '@/legacy/generated/model'
-import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { DateUtil } from '@/legacy/util/date'
 import { compareOutings } from '@/legacy/util/document'
+import { downloadExcel } from '@/legacy/util/download-excel'
 import { PermissionUtil } from '@/legacy/util/permission'
-import { getCurrentSchoolYear, isValidDate, makeDateToString } from '@/legacy/util/time'
+import { getCurrentSchoolYear, makeDateToString } from '@/legacy/util/time'
 
 export function OutingPage() {
   const { replace } = useHistory()
   const { me } = UserContainer.useContext()
-  const { t, currentLang } = useLanguage()
   const userRole = me?.role
 
   const [agreeAll, setAgreeAll] = useState(false)
   const [_studentName, set_studentName] = useState('')
-  const [frontSortType, setFrontSortType] = useState('')
-  const [sortOrder, setSortOrder] = useState<'ASC' | 'DESC'>('ASC')
+  const [frontSortType, setFrontSortType] = useState('period')
+  const [sortOrder, setSortOrder] = useState<SortState>(SortState.DESC)
 
   // [2025. 05. 28] DateRange 리팩토링
   const [dateRange, setDateRange] = useState<DateRange>({
@@ -48,15 +44,6 @@ export function OutingPage() {
   const { allKlassGroups: groups } = GroupContainer.useContext()
   const schoolYear = getCurrentSchoolYear()
 
-  const toggleSort = (sortType: string) => {
-    if (frontSortType === sortType) {
-      setSortOrder(sortOrder === 'ASC' ? 'DESC' : 'ASC')
-    } else {
-      setFrontSortType(sortType)
-      setSortOrder('ASC')
-    }
-  }
-
   const {
     signature: { canvasRef, sigPadData, clearSignature },
     stamp: { stamp, stampMode, stampImgUrl, updateStamp, setStampMode },
@@ -66,9 +53,7 @@ export function OutingPage() {
     outingTypes,
     type,
     setType,
-    startDate,
     setStartDate,
-    endDate,
     setEndDate,
     page,
     setPage,
@@ -85,13 +70,54 @@ export function OutingPage() {
     approveOutings,
   } = useTeacherOutgoing()
 
-  const searchAlert = () => {
+  const { refetch: refetchExcelData } = useOutingsDownloadOutings(
+    {
+      startDate: dateRange.from?.toString() || '',
+      endDate: dateRange.to?.toString() || '',
+      selectedGroupId: selectedGroup?.id,
+      username: _studentName,
+      outingStatus: filter.value,
+    },
+    {
+      query: {
+        enabled: false,
+        onSuccess: (data) => {
+          if (dateRange.from && dateRange.to) {
+            downloadExcel(data, `확인증현황(${makeDateToString(dateRange.from)}~${makeDateToString(dateRange.to)})`)
+          } else {
+            alert('날짜를 선택해주세요.')
+          }
+        },
+      },
+    },
+  )
+
+  const sortedOutings = useMemo(() => {
+    if (sortOrder === 'default') {
+      return outings?.items
+    }
+    return outings?.items?.sort((a, b) =>
+      compareOutings(a, b, frontSortType, sortOrder.toUpperCase() as 'ASC' | 'DESC'),
+    )
+  }, [outings, frontSortType, sortOrder])
+
+  const handleApproveAll = () => {
+    if (filter.value === 'BEFORE_APPROVAL') {
+      if (!outings || outings.total === 0) {
+        alert('승인할 서류가 없습니다.')
+        return
+      }
+
+      setOpen(true)
+      setAgreeAll(true)
+
+      return
+    }
+
     const confirmed = window.confirm(
       '승인 전 상태의 내용만 일괄 승인이 가능합니다. \n승인 전 상태인 건들을 조회하시겠습니까?',
     )
-    if (confirmed) {
-      setFilter(filters[1])
-    }
+    if (confirmed) setFilter(filters[1])
   }
 
   useEffect(() => {
@@ -129,193 +155,119 @@ export function OutingPage() {
         <GridItem colSpan={6}>
           <ResponsiveRenderer mobile={<TopNavbar title="확인증" left={<BackButton />} />} />
 
-          <div className="scroll-box flex flex-col overflow-x-scroll px-3 py-2 md:px-6 md:py-4">
-            {/* Desktop View */}
-            <div className="hidden md:block">
-              <div className="flex items-center justify-between">
-                <h1 className="text-2xl font-semibold">{t('certificate', '확인증')}</h1>
-                <Button color="secondary" className="w-[120px]">
-                  {t('write', '신규 생성')}
-                </Button>
-              </div>
-              <div className="mb-5 text-sm text-gray-500">
-                ※ {t('early_leave_pass_outpass_certificate', '조퇴증,외출증,확인증')}
-                {currentLang === 'ko' ? ' / ' : <br />}
-                {t('documents_before_early_leave_outpass_certificate', '조퇴,외출,확인 전 작성 서류')}
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center justify-start">
-                <DateRangePicker.Default dateRange={dateRange} setDateRange={setDateRange} />
-              </div>
-
-              <div className="flex items-center gap-2 md:mb-2 md:gap-0 md:space-x-2">
-                <div className="min-w-max cursor-pointer">
-                  <SelectMenus
-                    allText={t('show_all', '전체보기')}
-                    items={filters}
-                    onChange={(e) => setFilter(e)}
-                    value={filter}
-                    tooltip={t('approval_state', '승인 상태')}
-                  ></SelectMenus>
-                </div>
-                <div className="min-w-max cursor-pointer">
-                  <SelectMenus
-                    allText={t('show_all', '전체보기')}
-                    items={outingTypes}
-                    onChange={(e) => setType(e)}
-                    value={type}
-                    tooltip={t('category', '분류')}
-                  ></SelectMenus>
-                </div>
-                {outings &&
-                  (me?.role === Role.PRE_HEAD ||
-                    me?.role === Role.HEAD ||
-                    me?.role === Role.PRE_PRINCIPAL ||
-                    me?.role === Role.PRINCIPAL ||
-                    me?.role === Role.VICE_PRINCIPAL ||
-                    me?.role === Role.HEAD_PRINCIPAL ||
-                    me?.role === Role.SECURITY ||
-                    me?.role === Role.ADMIN) && (
-                    <>
-                      <div className="min-w-max cursor-pointer">
-                        <SelectMenus
-                          allText={t('show_all', '전체보기')}
-                          allTextVisible
-                          items={groups.filter((el) =>
-                            me?.role === Role.PRE_HEAD || me?.role === Role.HEAD
-                              ? el.name?.startsWith(me?.headNumber.toString())
-                              : true,
-                          )}
-                          value={selectedGroup}
-                          onChange={(group) => setSelectedGroup(group)}
-                          tooltip={t('class', '학급')}
-                        />
-                      </div>
-                    </>
-                  )}
-
-                <div className="flex w-full items-center space-x-2">
-                  <SearchInput
-                    placeholder={t('search_by_name', '이름 검색')}
-                    value={_studentName}
-                    onChange={(e) => {
-                      set_studentName(e.target.value)
-                      if (e.target.value === '') replace(`/teacher/outing`)
-                      setPage(1)
-                    }}
-                  />
-                  {/* <SearchInput
-                    placeholder={t('search_by_name', '이름 검색')}
-                    value={_studentName}
-                    onChange={(e) => {
-                      set_studentName(e.target.value)
-                      if (e.target.value === '') replace(`/teacher/outing`)
-                      setPage(1)
-                    }}
-                    onSearch={() => _studentName && replace(`/teacher/outing?username=${_studentName}`)}
-                    className="w-full"
-                  />
-                  <Icon.Search
-                    className="scale-150 cursor-pointer"
-                    onClick={() => {
-                      _studentName.trim() === ''
-                        ? alert('텍스트 내용을 입력해주세요.')
-                        : replace(`/teacher/outing?username=${_studentName.trim()}`)
-                    }}
-                  /> */}
-                </div>
-              </div>
-            </div>
-
-            <Flex items="center" justify="between" width="full" className="mt-6">
-              <Flex items="center" gap="2">
-                최신순 <Icon.ChevronDown />
-              </Flex>
-
-              <Flex items="center" justify="end" gap="2">
-                {/* 확인증현황 Excel 버튼 */}
-                <OutingsExcelDownloadView
-                  startDate={startDate}
-                  endDate={endDate}
-                  selectedGroupId={undefined}
-                  username={_studentName}
-                  outingStatus={filter.value}
-                />
-                <Button
-                  color="primary"
-                  disabled={!PermissionUtil.hasOutingAuthorization(userRole)}
-                  onClick={() => {
-                    if (filter.value === 'BEFORE_APPROVAL') {
-                      if (outings && outings.total > 0) {
-                        setOpen(true)
-                        setAgreeAll(true)
-                      } else {
-                        alert('승인할 서류가 없습니다.')
-                      }
-                    } else {
-                      searchAlert()
-                    }
-                  }}
-                >
-                  {t('bulk_approve', '일괄 승인하기')}
-                </Button>
-              </Flex>
-            </Flex>
-          </div>
+          <PageHeaderTemplate
+            title="확인증"
+            description="학생이 제출했거나 선생님이 작성한 조퇴증/외출증/확인증을 확인할 수 있어요."
+            config={{
+              topBtn: [
+                {
+                  label: '작성하기',
+                  variant: 'solid',
+                  color: 'secondary',
+                  action: () => replace('/teacher/outing/add'),
+                },
+              ],
+              dateSearchBar: {
+                type: 'range',
+                minDate: toDate(schoolYear.start),
+                maxDate: toDate(schoolYear.end),
+                searchState: {
+                  value: dateRange,
+                  setValue: (value) => setDateRange(value as DateRange),
+                },
+              },
+              filters: [
+                {
+                  items: [
+                    { label: '전체', value: 'ALL' },
+                    { label: '승인 전', value: 'BEFORE_APPROVAL' },
+                    { label: '승인 완료', value: 'PROCESSED' },
+                    { label: '반려됨', value: 'RETURNED' },
+                  ],
+                  filterState: {
+                    value: filter.value,
+                    setValue: (v) => setFilter(filters.find((f) => f.value === v) || filters[0]),
+                  },
+                },
+                {
+                  items: [
+                    { label: '전체보기', value: 'ALL' },
+                    { label: '조퇴', value: '조퇴' },
+                    { label: '외출', value: '외출' },
+                    { label: '확인', value: '확인' },
+                  ],
+                  filterState: {
+                    value: type.value,
+                    setValue: (v) => setType(outingTypes.find((t) => t.value === v) || outingTypes[0]),
+                  },
+                },
+                {
+                  items: [
+                    { label: '전체보기', value: 'ALL' },
+                    ...groups
+                      .filter((el) =>
+                        me?.role === Role.PRE_HEAD || me?.role === Role.HEAD
+                          ? el.name?.startsWith(me?.headNumber.toString())
+                          : true,
+                      )
+                      .map((el) => ({ label: el.name || '', value: el.id.toString() })),
+                  ],
+                  filterState: {
+                    value: selectedGroup?.id.toString() || 'ALL',
+                    setValue: (v) => setSelectedGroup(groups.find((el) => el.id.toString() === v) || null),
+                  },
+                },
+              ],
+              searchBar: {
+                placeholder: '이름 검색',
+                searchState: {
+                  value: _studentName,
+                  setValue: (v) => set_studentName(v),
+                },
+                onSearch: () => _studentName && replace(`/teacher/outing?username=${_studentName}`),
+              },
+              sort: {
+                mode: 'client',
+                items: [
+                  { label: '기간순', value: 'period' },
+                  { label: '요청순', value: 'request' },
+                  { label: '이름순', value: 'name' },
+                  { label: '학번순', value: 'num' },
+                ],
+                itemState: {
+                  value: frontSortType,
+                  setValue: (v) => setFrontSortType(v),
+                },
+                sortState: {
+                  value: sortOrder,
+                  setValue: (v) => setSortOrder(v),
+                },
+              },
+              bottomBtn: [
+                {
+                  label: '확인증 현황',
+                  variant: 'solid',
+                  color: 'tertiary',
+                  icon: { name: 'ssDownload' },
+                  action: refetchExcelData,
+                },
+                {
+                  label: '모두 승인하기',
+                  variant: 'solid',
+                  color: 'primary',
+                  disabled: !PermissionUtil.hasOutingAuthorization(userRole),
+                  action: handleApproveAll,
+                },
+              ],
+            }}
+          />
 
           <Divider height="0.5" color="bg-gray-100" />
 
-          {/* <div className="grid grid-cols-4 bg-gray-100 max-md:hidden">
-            <button
-              onClick={() => toggleSort('period')}
-              className={cn(
-                'flex items-center justify-center',
-                frontSortType !== 'period' && 'text-[#aaa] hover:underline hover:underline-offset-4',
-              )}
-            >
-              <span className={cn(frontSortType === 'period' && 'font-bold')}>{t('by_date', '기간순')}</span>
-              {frontSortType === 'period' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
-            </button>
-            <button
-              onClick={() => toggleSort('request')}
-              className={cn(
-                'flex items-center justify-center',
-                frontSortType !== 'request' && 'text-[#aaa] hover:underline hover:underline-offset-4',
-              )}
-            >
-              <span className={cn(frontSortType === 'request' && 'font-bold')}>
-                {t('by_application_date', '신청일순')}
-              </span>
-              {frontSortType === 'request' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
-            </button>
-            <button
-              onClick={() => toggleSort('name')}
-              className={cn(
-                'flex items-center justify-center',
-                frontSortType !== 'name' && 'text-[#aaa] hover:underline hover:underline-offset-4',
-              )}
-            >
-              <span className={cn(frontSortType === 'name' && 'font-bold')}>{t('by_name', '이름순')}</span>
-              {frontSortType === 'name' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
-            </button>
-            <button
-              onClick={() => toggleSort('num')}
-              className={cn(
-                'flex items-center justify-center',
-                frontSortType !== 'num' && 'text-[#aaa] hover:underline hover:underline-offset-4',
-              )}
-            >
-              <span className={cn(frontSortType === 'num' && 'font-bold')}>{t('by_student_id', '학번순')}</span>
-              {frontSortType === 'num' && <Icon.ChevronDown className={sortOrder === 'DESC' ? 'rotate-180' : ''} />}
-            </button>
-          </div> */}
-
           <div className="overflow-y-auto">
-            {outings?.items
-              ?.sort((a, b) => compareOutings(a, b, frontSortType, sortOrder))
-              .map((outing: ResponseCreateOutingDto) => <OutingCard key={outing.id} outing={outing} type={'outing'} />)}
+            {sortedOutings?.map((outing: ResponseCreateOutingDto) => (
+              <OutingCard key={outing.id} outing={outing} type={'outing'} />
+            ))}
             {outings && outings?.total > limit && (
               <div className="grid place-items-center">
                 <FrontPagination
@@ -376,33 +328,34 @@ export function OutingPage() {
             )}
           </div>
           <div className="grid grid-cols-2 gap-2">
-            <label>
-              <div className="flex h-13 w-full cursor-pointer items-center justify-center rounded-lg border border-blue-500 bg-white px-6 font-bold text-current">
-                도장등록
-              </div>
-              <input
-                type="file"
-                className="sr-only"
-                accept=".png, .jpeg, .jpg"
-                onChange={(e) => {
-                  if (!e.target?.files) return
-                  updateStamp(e.target.files[0])
-                  setStampMode(true)
-                }}
-              />
-            </label>
+            <Input.File
+              size="lg"
+              accept=".png, .jpeg, .jpg"
+              onChange={(e) => {
+                if (!e.target?.files) return
+                updateStamp(e.target.files[0])
+                setStampMode(true)
+              }}
+            >
+              <Button size="lg" color="sub" className="w-full">
+                도장 등록
+              </Button>
+            </Input.File>
             {!stampMode ? (
-              <OldButton.xl
-                children="도장 사용하기"
+              <Button
+                size="lg"
+                color="tertiary"
                 onClick={() => {
                   setStampMode(true)
                   clearSignature()
                 }}
-                className="filled-blue"
-              />
+              >
+                도장 사용하기
+              </Button>
             ) : (
-              <OldButton.xl
-                children="도장으로 승인"
+              <Button
+                size="lg"
+                color="primary"
                 disabled={!stampImgUrl}
                 onClick={() => {
                   if (!stampImgUrl) {
@@ -416,22 +369,28 @@ export function OutingPage() {
                     setStampMode(false)
                   }
                 }}
-                className={cn('text-white', stampImgUrl ? 'border-4 border-red-500 bg-blue-500' : 'bg-blue-100')}
-              />
+              >
+                도장으로 승인
+              </Button>
             )}
-            <OldButton.xl
-              children="서명 다시하기"
+            <Button
+              size="lg"
+              color="tertiary"
               onClick={() => {
                 setStampMode(false)
                 clearSignature()
               }}
-              className="outlined-primary"
-            />
+            >
+              서명 다시하기
+            </Button>
             {stampMode ? (
-              <OldButton.xl children="서명 사용하기" onClick={() => setStampMode(false)} className="outlined-primary" />
+              <Button size="lg" color="tertiary" onClick={() => setStampMode(false)}>
+                서명 사용하기
+              </Button>
             ) : (
-              <OldButton.xl
-                children="서명으로 승인"
+              <Button
+                size="lg"
+                color="primary"
                 onClick={() => {
                   if (!sigPadData) {
                     alert('서명 후 승인해 주세요.')
@@ -439,8 +398,9 @@ export function OutingPage() {
                     agreeAll ? approveOutings() : approveOuting()
                   }
                 }}
-                className={cn('text-white', sigPadData ? 'bg-primary-800 border-4 border-green-500' : 'bg-primary-100')}
-              />
+              >
+                서명으로 승인
+              </Button>
             )}
           </div>
         </Section>

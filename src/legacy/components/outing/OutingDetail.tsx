@@ -1,19 +1,14 @@
-import { useUserStore } from '@/stores/user'
-import { OutingStatus, OutingTypeEnum, OutingUse, ResponseCreateOutingDto, Role } from '@/legacy/generated/model'
+import { OutingStatus, OutingTypeEnum, ResponseCreateOutingDto } from '@/legacy/generated/model'
 import { useSignedUrl } from '@/legacy/lib/query'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { getNickName, getPeriodStrEx } from '@/legacy/util/status'
 import { makeDateToString, makeDateToStringByFormat } from '@/legacy/util/time'
-import { Button } from '../common/Button'
 
 interface OutingCardProps {
   outing: ResponseCreateOutingDto | undefined
-  onResendAlimtalk?: () => Promise<void>
 }
 
-export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
-  const { me } = useUserStore()
-
+export function OutingDetail({ outing }: OutingCardProps) {
   const startAt = DateUtil.formatDate(outing?.startAt || '', DateFormat['YYYY-MM-DD HH:mm'])
   const endAt = DateUtil.formatDate(outing?.endAt || '', DateFormat['YYYY-MM-DD HH:mm'])
 
@@ -226,26 +221,6 @@ export function OutingDetail({ outing, onResendAlimtalk }: OutingCardProps) {
           {`확인증 및 외출증 신청기간이 현재 시점보다 과거인 경우 자동으로 '기간만료'문구가 보여집니다. 이 경우 확인증 사유 수정 또는 교사의 승인은 정상적으로 작동됩니다.`}
         </div>
       )}
-
-      {me?.role !== Role.USER &&
-        me?.role !== Role.PARENT &&
-        me?.school.isOutingActive === OutingUse.USE_PARENT_APPROVE &&
-        outing?.outingStatus !== OutingStatus.BEFORE_PARENT_APPROVAL &&
-        outing?.outingStatus !== OutingStatus.PROCESSED &&
-        !outing?.parentSignature && (
-          <div className="flex w-full items-center justify-end space-x-2">
-            <div className="mr-2 font-bold text-red-500"> *주의 : 보호자 승인을 요청하시겠습니까?</div>
-            <Button.lg
-              children="승인 요청"
-              onClick={() => {
-                if (onResendAlimtalk) {
-                  onResendAlimtalk()
-                }
-              }}
-              className="filled-primary"
-            />
-          </div>
-        )}
     </>
   )
 }

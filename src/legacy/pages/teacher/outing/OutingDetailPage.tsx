@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useOutletContext, useParams } from 'react-router'
-
 import { useUserStore } from '@/stores/user'
+import { Button } from '@/atoms/Button'
+import { Flex } from '@/atoms/Flex'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import CertificationBadge from '@/legacy/components/blockchain/CertificationBadge'
 import { BackButton, Blank, Section, Textarea, TopNavbar } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { OutingDetail } from '@/legacy/components/outing/OutingDetail'
 import { useBlockChainDocument } from '@/legacy/container/block-chain-document-status'
 import { useTeacherOutingDetail } from '@/legacy/container/teacher-outing-detail'
-import { OutingStatus, Role } from '@/legacy/generated/model'
+import { OutingStatus, OutingUse, Role } from '@/legacy/generated/model'
 import { approveButtonType } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { PermissionUtil, buttonEnableState } from '@/legacy/util/permission'
@@ -138,14 +138,14 @@ export function OutingDetailPage() {
         <div className="h-screen-13 md:h-screen-8 overflow-y-auto">
           <Section>
             {outing?.updateReason && (
-              <div className="bg-primary-100 flex items-center justify-between rounded-lg px-5 py-2">
-                <div className="text-primary-800">{outing?.updateReason}</div>
+              <div className="flex items-center justify-between rounded-lg bg-gray-50 px-5 py-2">
+                <div className="text-black">{outing?.updateReason}</div>
                 <div className="text-sm text-gray-500">{updatedAt}에 마지막으로 수정</div>
               </div>
             )}
             {outing?.outingStatus === 'RETURNED' && (
-              <div className="bg-primary-100 flex items-center justify-between rounded-lg px-5 py-2">
-                <div className="text-primary-800 text-sm">{outing?.notApprovedReason}</div>
+              <div className="flex items-center justify-between rounded-lg bg-gray-50 px-5 py-2">
+                <div className="text-sm text-black">{outing?.notApprovedReason}</div>
                 <div className="text-red-500">반려 이유</div>
               </div>
             )}
@@ -154,54 +154,76 @@ export function OutingDetailPage() {
                 <CertificationBadge status={data?.status} />
               </div>
             )}
-            {outing && <OutingDetail outing={outing} onResendAlimtalk={handleResendAlimtalk} />}
+            {outing && <OutingDetail outing={outing} />}
           </Section>
         </div>
 
         {errM && <div className="text-red-500">{errM}</div>}
-        <div className="grid grid-cols-4 gap-2 px-2 pt-3 md:px-0">
+        <div className="px-2 pt-3 md:px-0">
           {PermissionUtil.hasOutingAuthorization(userRole) && (
-            <>
-              {outing?.writerName === me?.name && outing?.outingStatus !== OutingStatus.PROCESSED ? (
-                <Button.xl
-                  children={'삭제'}
+            <Flex direction="row" items="center" className="px-3">
+              <Flex direction="row" items="center" justify="start">
+                <Button
+                  color="tertiary"
+                  disabled={checkButtonDisable(approveButtonType.EDIT)}
+                  onClick={() => setChangeMode(true)}
+                  className="min-w-[80px]"
+                >
+                  {isConfirmed ? '승인 후 수정' : '수정'}
+                </Button>
+              </Flex>
+
+              <Flex direction="row" items="center" justify="end" gap="2">
+                {outing?.writerName === me?.name && outing?.outingStatus !== OutingStatus.PROCESSED ? (
+                  <Button
+                    onClick={() => {
+                      if (confirm('확인증을 삭제하시겠습니까?')) {
+                        deleteOuting()
+                      }
+                    }}
+                  >
+                    삭제
+                  </Button>
+                ) : (
+                  <Button
+                    color="tertiary"
+                    disabled={checkButtonDisable(approveButtonType.DELETE)}
+                    onClick={() => setDeleteAppeal(true)}
+                    className="min-w-[120px]"
+                  >
+                    {outing?.outingStatus === 'DELETE_APPEAL' ? '삭제대기' : '삭제요청'}
+                  </Button>
+                )}
+                {me?.role !== Role.USER &&
+                  me?.role !== Role.PARENT &&
+                  me?.school.isOutingActive === OutingUse.USE_PARENT_APPROVE &&
+                  outing?.outingStatus !== OutingStatus.BEFORE_PARENT_APPROVAL &&
+                  outing?.outingStatus !== OutingStatus.PROCESSED &&
+                  !outing?.parentSignature && (
+                    <Button color="tertiary" onClick={handleResendAlimtalk} className="min-w-[140px]">
+                      보호자 승인요청
+                    </Button>
+                  )}
+                <Button
+                  color="sub"
+                  disabled={checkButtonDisable(approveButtonType.RETURN)}
+                  onClick={() => setDeny(true)}
+                  className="min-w-[120px]"
+                >
+                  {outing?.outingStatus === 'RETURNED' ? '반려됨' : '반려'}
+                </Button>
+                <Button
+                  disabled={checkButtonDisable(approveButtonType.APPROVE)}
                   onClick={() => {
-                    if (confirm('확인증을 삭제하시겠습니까?')) {
-                      deleteOuting()
-                    }
+                    setOpen(true)
+                    setAgreeAll(false)
                   }}
-                  className="filled-red"
-                />
-              ) : (
-                <Button.xl
-                  children={outing?.outingStatus === 'DELETE_APPEAL' ? '삭제대기' : '삭제요청'}
-                  disabled={checkButtonDisable(approveButtonType.DELETE)}
-                  onClick={() => setDeleteAppeal(true)}
-                  className="filled-red"
-                />
-              )}
-              <Button.xl
-                children={outing?.outingStatus === 'RETURNED' ? '반려됨' : '반려'}
-                disabled={checkButtonDisable(approveButtonType.RETURN)}
-                onClick={() => setDeny(true)}
-                className="filled-blue"
-              />
-              <Button.xl
-                children={isConfirmed ? '승인 후 수정' : '수정'}
-                disabled={checkButtonDisable(approveButtonType.EDIT)}
-                onClick={() => setChangeMode(true)}
-                className="filled-yellow"
-              />
-              <Button.xl
-                children={outing?.outingStatus === 'PROCESSED' ? '승인 완료' : '승인'}
-                disabled={checkButtonDisable(approveButtonType.APPROVE)}
-                onClick={() => {
-                  setOpen(true)
-                  setAgreeAll(false)
-                }}
-                className="filled-primary"
-              />
-            </>
+                  className="min-w-[120px]"
+                >
+                  {outing?.outingStatus === 'PROCESSED' ? '승인 완료' : '승인'}
+                </Button>
+              </Flex>
+            </Flex>
           )}
         </div>
 
@@ -215,12 +237,9 @@ export function OutingDetailPage() {
               value={notApprovedReason}
               onChange={(e) => setNotApprovedReason(e.target.value)}
             />
-            <Button.xl
-              children="반려하기"
-              disabled={!notApprovedReason}
-              onClick={() => denyOuting()}
-              className="filled-primary"
-            />
+            <Button color="primary" disabled={!notApprovedReason} onClick={() => denyOuting()}>
+              반려하기
+            </Button>
           </Section>
         </SuperModal>
         <SuperModal modalOpen={deleteAppeal} setModalClose={() => setDeleteAppeal(false)} className="w-max">
@@ -230,12 +249,9 @@ export function OutingDetailPage() {
             </div>
             <Textarea placeholder="삭제 이유" value={deleteReason} onChange={(e) => setDeleteReason(e.target.value)} />
             <span className="text-sm text-red-400">* 교사가 삭제요청하면 학생 또는 보호자가 삭제할 수 있습니다.</span>
-            <Button.xl
-              children="삭제 요청하기"
-              disabled={!deleteReason}
-              onClick={() => requestDeleteOuting()}
-              className="filled-red"
-            />
+            <Button color="primary" disabled={!deleteReason} onClick={() => requestDeleteOuting()}>
+              삭제 요청하기
+            </Button>
           </Section>
         </SuperModal>
       </div>

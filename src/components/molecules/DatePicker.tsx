@@ -11,6 +11,8 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/atoms/Popover'
 interface DatePickerProps {
   date: Date
   setDate: (date: Date) => void
+  minDate?: Date
+  maxDate?: Date
   align?: 'start' | 'end'
   children?: React.ReactNode
 }
@@ -21,14 +23,21 @@ interface DatePickerProps {
  * @link [DatePicker - shadcn](https://ui.shadcn.com/docs/components/date-picker)
  * @author jujoycode
  */
-export function DatePicker({ children, align = 'start', date, setDate }: DatePickerProps) {
+export function DatePicker({ children, align = 'start', minDate, maxDate, date, setDate }: DatePickerProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
 
       <PopoverContent align={align} className="flex w-auto flex-col space-y-2 p-2">
         <Box className="rounded-md border">
-          <Calendar initialFocus mode="single" selected={date} onSelect={(date) => date && setDate(date)} />
+          <Calendar
+            initialFocus
+            mode="single"
+            selected={date}
+            fromDate={minDate}
+            toDate={maxDate}
+            onSelect={(date) => date && setDate(date)}
+          />
         </Box>
       </PopoverContent>
     </Popover>
@@ -36,6 +45,8 @@ export function DatePicker({ children, align = 'start', date, setDate }: DatePic
 }
 
 interface DefaultDatePickerProps {
+  minDate?: Date
+  maxDate?: Date
   date: Date
   setDate: (date: Date) => void
 }
@@ -45,7 +56,7 @@ interface DefaultDatePickerProps {
  * @desc 기본 DatePicker Preset
  * @author jujoycode
  */
-function DefaultDatePicker({ date, setDate }: DefaultDatePickerProps) {
+function DefaultDatePicker({ minDate, maxDate, date, setDate }: DefaultDatePickerProps) {
   const { currentLanguage } = useLanguage()
 
   const formatDate = (date: Date) => {
@@ -56,7 +67,7 @@ function DefaultDatePicker({ date, setDate }: DefaultDatePickerProps) {
   }
 
   return (
-    <DatePicker date={date} setDate={setDate}>
+    <DatePicker minDate={minDate} maxDate={maxDate} date={date} setDate={setDate}>
       <Button
         variant="ghost"
         className={cn(

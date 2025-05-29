@@ -13,6 +13,8 @@ interface DateRangePickerProps {
   dateRange: DateRange
   setDateRange: (dateRange: DateRange) => void
   align?: 'start' | 'end'
+  minDate?: Date
+  maxDate?: Date
   children?: React.ReactNode
 }
 
@@ -22,7 +24,14 @@ interface DateRangePickerProps {
  * @link [DateRangePicker - shadcn](https://ui.shadcn.com/docs/components/date-picker)
  * @author jujoycode
  */
-export function DateRangePicker({ children, align = 'start', dateRange, setDateRange }: DateRangePickerProps) {
+export function DateRangePicker({
+  children,
+  align = 'start',
+  dateRange,
+  minDate,
+  maxDate,
+  setDateRange,
+}: DateRangePickerProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
@@ -33,6 +42,8 @@ export function DateRangePicker({ children, align = 'start', dateRange, setDateR
             initialFocus
             mode="range"
             selected={dateRange}
+            fromDate={minDate}
+            toDate={maxDate}
             numberOfMonths={2}
             onSelect={(date) => date && setDateRange(date)}
           />
@@ -43,6 +54,8 @@ export function DateRangePicker({ children, align = 'start', dateRange, setDateR
 }
 
 interface DefaultDateRangePickerProps {
+  minDate?: Date
+  maxDate?: Date
   dateRange: DateRange
   setDateRange: (dateRange: DateRange) => void
 }
@@ -52,7 +65,7 @@ interface DefaultDateRangePickerProps {
  * @desc 기본 DateRangePicker Preset
  * @author jujoycode
  */
-function DefaultDateRangePicker({ dateRange, setDateRange }: DefaultDateRangePickerProps) {
+function DefaultDateRangePicker({ minDate, maxDate, dateRange, setDateRange }: DefaultDateRangePickerProps) {
   const { currentLanguage } = useLanguage()
   const formatDate = (date: Date) => {
     if (currentLanguage === 'ko') {
@@ -63,7 +76,7 @@ function DefaultDateRangePicker({ dateRange, setDateRange }: DefaultDateRangePic
 
   return (
     <Flex direction="row" items="center" width="full" className="rounded-md border-1">
-      <DateRangePicker dateRange={dateRange} setDateRange={setDateRange}>
+      <DateRangePicker minDate={minDate} maxDate={maxDate} dateRange={dateRange} setDateRange={setDateRange}>
         <Button
           variant="ghost"
           className={cn('w-full justify-start text-left font-normal', !dateRange && 'text-muted-foreground')}
