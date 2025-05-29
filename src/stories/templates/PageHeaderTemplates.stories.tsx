@@ -25,6 +25,32 @@ export const Default: Story = {
           setValue: () => {},
         },
       },
+      filters: [
+        {
+          items: [
+            { label: '전체', value: 'ALL' },
+            { label: '승인 전', value: 'BEFORE_APPROVAL' },
+            { label: '승인 완료', value: 'PROCESSED' },
+            { label: '반려됨', value: 'RETURNED' },
+          ],
+          filterState: {
+            value: 'BEFORE_APPROVAL',
+            setValue: () => {},
+          },
+        },
+        {
+          items: [
+            { label: '전체보기', value: 'ALL' },
+            { label: '조퇴', value: '조퇴' },
+            { label: '외출', value: '외출' },
+            { label: '확인', value: '확인' },
+          ],
+          filterState: {
+            value: 'ALL',
+            setValue: () => {},
+          },
+        },
+      ],
       searchBar: {
         placeholder: '무언가 검색',
         searchState: {

@@ -33,7 +33,11 @@ export function TeacherLNB({ HeaderProps }: TeacherLNBProps) {
                 </Text>
 
                 {section.child?.map((child, index) => {
-                  return <NavigationItem key={index} {...child} />
+                  return (
+                    <div className="pl-3">
+                      <NavigationItem key={index} {...child} />
+                    </div>
+                  )
                 })}
               </Box>
             )

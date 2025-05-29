@@ -2,6 +2,7 @@ import { Button, type ButtonProps } from '@/atoms/Button'
 import type { DateRange } from '@/atoms/Calendar'
 import { Flex } from '@/atoms/Flex'
 import type { IconName, IconProps } from '@/atoms/Icon'
+import { Select, SelectContent, SelectItem, SelectTrigger } from '@/atoms/Select'
 import { Text } from '@/atoms/Text'
 import { DatePicker } from '@/molecules/DatePicker'
 import { DateRangePicker } from '@/molecules/DateRangePicker'
@@ -38,8 +39,10 @@ type DateSearchBarConfig = {
 }
 
 type FilterConfig = {
-  items: string[]
-  defaultValue?: string
+  items: {
+    label: string
+    value: string
+  }[]
   filterState: {
     value: string
     setValue: React.Dispatch<React.SetStateAction<string>>
@@ -131,9 +134,22 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
             />
           ))}
 
-        <Flex direction="row" items="center" gap="2" wrap>
+        <Flex direction="row" items="center" gap="2">
           {/* 필터 영역 */}
-          {config?.filters?.map((_) => <></>)}
+          {config?.filters?.map((filter, index) => (
+            <Select key={index} value={filter.filterState.value} onValueChange={filter.filterState.setValue}>
+              <SelectTrigger>
+                {filter.items.find((item) => item.value === filter.filterState.value)?.label}
+              </SelectTrigger>
+              <SelectContent>
+                {filter.items.map((item, index) => (
+                  <SelectItem key={index} value={item.value}>
+                    {item.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          ))}
 
           {/* 검색 영역 */}
           {config?.searchBar && (
