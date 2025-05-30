@@ -19,7 +19,7 @@ export function FieldtripCard({ fieldtrip, type }: FieldtripCardProps) {
 
   switch (fieldtrip?.fieldtripStatus) {
     case FieldtripStatus.BEFORE_PARENT_CONFIRM:
-      text = <div className="text-sm text-red-500">{t('before_parent_approval', '학부모 승인 전')}</div>
+      text = <div className="text-sm text-red-500">{t('before_parent_approval', '보호자 승인 전')}</div>
       break
     case FieldtripStatus.PROCESSING:
       text = (
@@ -44,7 +44,7 @@ export function FieldtripCard({ fieldtrip, type }: FieldtripCardProps) {
       case FieldtripStatus.BEFORE_PARENT_CONFIRM:
         textResult = fieldtrip?.resultTitle ? (
           <div className="text-xs text-red-500">
-            {t('report_form', '결과보고서')} : {t('before_parent_approval', '학부모 승인 전')}
+            {t('report_form', '결과보고서')} : {t('before_parent_approval', '보호자 승인 전')}
           </div>
         ) : (
           <div className="text-xs text-gray-500">

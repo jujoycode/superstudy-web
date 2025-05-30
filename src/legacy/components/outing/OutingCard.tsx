@@ -65,7 +65,7 @@ export function OutingCard({ outing, type }: OutingCardProps) {
           <div>
             {outing?.outingStatus === OutingStatus.BEFORE_PARENT_APPROVAL ? (
               <span className="my-1 mr-1 inline-block rounded-md px-1 py-2 text-xs text-gray-600 md:mr-2 md:px-3 md:text-sm">
-                {t('before_parent_approval', '학부모 승인 전')}
+                {t('before_parent_approval', '보호자 승인 전')}
               </span>
             ) : outing?.outingStatus === OutingStatus.BEFORE_TEACHER_APPROVAL && !myConfirmState ? (
               <span className="my-1 mr-1 inline-block rounded-md px-1 py-2 text-xs text-red-500 md:mr-2 md:px-3 md:text-sm">

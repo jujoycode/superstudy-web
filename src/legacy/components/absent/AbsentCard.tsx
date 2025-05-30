@@ -1,11 +1,14 @@
+import React from 'react'
 import { useState } from 'react'
 import { useLocation } from 'react-router'
-
 import { useHistory } from '@/hooks/useHistory'
+import { Text, type TextVariant } from '@/atoms/Text'
 import { Absent, AbsentStatus, ResponsePaginatedAbsentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName, getPeriodStr } from '@/legacy/util/status'
 import { makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
+import { Checkbox } from '@/atoms/Checkbox'
+import { Flex } from '@/atoms/Flex'
 
 interface AbsentCardProps {
   absent: ResponsePaginatedAbsentDto['items'][number]
@@ -22,28 +25,54 @@ export function AbsentCard({ absent, submitAbsent, submitNiceAbsent, page, limit
   const { push } = useHistory()
   const [clicked, setClicked] = useState(false)
 
-  let text = <div className="text-sm text-red-500"></div>
+  const getStatusContent = (absentStatus: AbsentStatus) => {
+    let variant: TextVariant = 'default'
+    let content = ''
 
-  switch (absent?.absentStatus) {
-    case AbsentStatus.BEFORE_PARENT_CONFIRM:
-      text = <div className="text-xs text-red-500 md:text-sm">{t('before_parent_approval', '학부모 승인 전')}</div>
-      break
-    case AbsentStatus.PROCESSING:
-      text = (
-        <div className="text-xs text-red-500 md:text-sm">
-          {absent?.nextApproverTitle} {t('pending_approval', '승인 전')}
-        </div>
-      )
-      break
-    case AbsentStatus.PROCESSED:
-      text = <div className="text-xs text-gray-600 md:text-sm">{t('approved', '승인 완료')}</div>
-      break
-    case AbsentStatus.RETURNED:
-      text = <div className="text-primary-800 text-xs md:text-sm">{t('rejected', '반려됨')}</div>
-      break
-    case AbsentStatus.DELETE_APPEAL:
-      text = <div className="text-xs text-red-800 md:text-sm">{t('delete_request', '삭제 요청')}</div>
-      break
+    switch (absentStatus) {
+      // 보호자 승인 전 (primary)
+      case AbsentStatus.BEFORE_PARENT_CONFIRM: {
+        variant = 'primary'
+        content = t('before_parent_approval', '보호자\n승인 전')
+        break
+      }
+      //
+      case AbsentStatus.PROCESSING: {
+        variant = 'primary'
+        content = `${absent?.nextApproverTitle}\n${t('pending_approval', '승인 전')}`
+        break
+      }
+      case AbsentStatus.PROCESSED: {
+        variant = 'sub'
+        content = t('approved', '승인 완료')
+        break
+      }
+      // 반려됨 (red-500)
+      case AbsentStatus.RETURNED: {
+        variant = 'error'
+        content = t('rejected', '반려됨')
+        break
+      }
+
+      case AbsentStatus.DELETE_APPEAL: {
+        variant = 'error'
+        content = t('delete_request', '삭제 요청')
+        break
+      }
+    }
+
+    return (
+      <Flex items="center" justify="center">
+        <Text size="xs" weight="sm" variant={variant} className="w-fit text-center">
+          {content.split('\n').map((text, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <br />}
+              {text}
+            </React.Fragment>
+          ))}
+        </Text>
+      </Flex>
+    )
   }
 
   const handleCheckboxChange = () => {
@@ -84,7 +113,7 @@ export function AbsentCard({ absent, submitAbsent, submitNiceAbsent, page, limit
             <div className="text-xs text-gray-500">신고일 : {absent.reportedAt}</div>
           </div>
         </div>
-        <div>{text}</div>
+        {getStatusContent(absent.absentStatus)}
       </div>
 
       {/* Desktop V */}
@@ -116,41 +145,48 @@ export function AbsentCard({ absent, submitAbsent, submitNiceAbsent, page, limit
             <div className="overflow-x-hidden text-xs text-gray-500">
               {t('application_date', '신청일')} : {absent.reportedAt}
             </div>
-            {/* <Time date={absent.createdAt} format="신청일 : yyyy-MM-dd" className="text-xs font-normal text-gray-500" /> */}
           </div>
-          <div className="text-center" onClick={() => push(`/teacher/absent/${absent.id}?page=${page}&limit=${limit}`)}>
-            {text}
-          </div>
+          {getStatusContent(absent.absentStatus)}
           <div className="flex h-full items-center justify-center gap-2">
-            <div>나이스</div>
-            <input
-              type="checkbox"
-              className="h-5 w-5 md:h-6 md:w-6"
-              checked={absent.niceSubmitted}
-              disabled={clicked}
-              onChange={() => {
-                setClicked(true)
-                submitNiceAbsent({
-                  id: absent.id,
-                  submitted: !absent.niceSubmitted,
-                  callback: () => setClicked(false),
-                })
-              }}
-            />
+            <Flex direction="row" items="center" justify="center" gap="2">
+              <Flex items="center" justify="end" className="w-fit">
+                <Text size="xs" weight="sm" variant="sub" className="w-full text-center">
+                  나이스입력완료
+                </Text>
+              </Flex>
+              <Flex items="center" justify="center" className="w-fit">
+                <Checkbox
+                  checked={absent.niceSubmitted}
+                  disabled={clicked}
+                  onChange={() => {
+                    setClicked(true)
+                    submitNiceAbsent({
+                      id: absent.id,
+                      submitted: !absent.niceSubmitted,
+                      callback: () => setClicked(false),
+                    })
+                  }}
+                />
+              </Flex>
+            </Flex>
           </div>
           <div className="flex h-full items-center justify-center gap-2 text-center text-xs md:text-sm">
-            <div>
-              {absent?.evidenceType === '진료확인서류(진료확인서, 진단서, 의사소견서, 처방전, 약봉투 등)'
-                ? '진료확인서류'
-                : absent?.evidenceType}
-            </div>
-            <input
-              type="checkbox"
-              className="h-5 w-5 md:h-6 md:w-6"
-              checked={absent.submitted || absent?.evidenceType === '학부모 확인서'}
-              disabled={clicked || absent?.evidenceType === '학부모 확인서'}
-              onChange={handleCheckboxChange}
-            />
+            <Flex direction="row" items="center" justify="center" gap="2">
+              <Flex items="center" justify="center">
+                <Text size="xs" weight="sm" variant="sub" className="w-full text-center">
+                  {absent?.evidenceType === '진료확인서류(진료확인서, 진단서, 의사소견서, 처방전, 약봉투 등)'
+                    ? '진료확인서류'
+                    : absent?.evidenceType}
+                </Text>
+              </Flex>
+              <Flex items="center" justify="center" className="w-fit pr-7">
+                <Checkbox
+                  checked={absent.submitted || absent?.evidenceType === '학부모 확인서'}
+                  disabled={clicked || absent?.evidenceType === '학부모 확인서'}
+                  onChange={handleCheckboxChange}
+                />
+              </Flex>
+            </Flex>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { cn } from '@/utils/commonUtil'
 import { Button, type ButtonProps } from '@/atoms/Button'
 import type { DateRange } from '@/atoms/Calendar'
 import { Flex } from '@/atoms/Flex'
@@ -28,6 +29,7 @@ type BtnConfig = {
   color: ButtonProps['color']
   variant: ButtonProps['variant']
   disabled?: boolean
+  customWidth?: string
   icon?: IconProps
   action: () => void
 }
@@ -51,6 +53,7 @@ type FilterConfig = {
     value: string
     setValue: React.Dispatch<React.SetStateAction<string>>
   }
+  hidden?: boolean
 }
 
 type SearchBarConfig = {
@@ -104,7 +107,7 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
                 disabled={btn?.disabled}
                 onClick={btn?.action}
                 position="front"
-                className="max-w-[240px] min-w-[120px]"
+                className={cn('max-w-[240px]', btn.customWidth ? `min-w-[${btn.customWidth}]` : 'min-w-[120px]')}
               >
                 {btn?.label}
               </IconButton>
@@ -115,7 +118,7 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
                 variant={btn?.variant}
                 disabled={btn?.disabled}
                 onClick={btn?.action}
-                className="max-w-[240px] min-w-[120px]"
+                className={cn('max-w-[240px]', btn.customWidth ? `min-w-[${btn.customWidth}]` : 'min-w-[120px]')}
               >
                 {btn?.label}
               </Button>
@@ -147,20 +150,22 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
 
         <Flex direction="row" items="center" gap="2">
           {/* 필터 영역 */}
-          {config?.filters?.map((filter, index) => (
-            <Select key={index} value={filter.filterState.value} onValueChange={filter.filterState.setValue}>
-              <SelectTrigger>
-                {filter.items.find((item) => item.value === filter.filterState.value)?.label}
-              </SelectTrigger>
-              <SelectContent>
-                {filter.items.map((item, index) => (
-                  <SelectItem key={index} value={item.value}>
-                    {item.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          ))}
+          {config?.filters
+            ?.filter((filter) => !filter.hidden)
+            .map((filter, index) => (
+              <Select key={index} value={filter.filterState.value} onValueChange={filter.filterState.setValue}>
+                <SelectTrigger>
+                  {filter.items.find((item) => item.value === filter.filterState.value)?.label}
+                </SelectTrigger>
+                <SelectContent>
+                  {filter.items.map((item, index) => (
+                    <SelectItem key={index} value={item.value}>
+                      {item.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            ))}
 
           {/* 검색 영역 */}
           {config?.searchBar && (
@@ -201,7 +206,7 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
                 disabled={btn?.disabled}
                 onClick={btn?.action}
                 position="front"
-                className="max-w-[240px] min-w-[120px]"
+                className={cn('max-w-[240px]', btn.customWidth ? `min-w-[${btn.customWidth}]` : 'min-w-[120px]')}
               >
                 {btn?.label}
               </IconButton>
@@ -211,7 +216,7 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
                 variant={btn?.variant}
                 disabled={btn?.disabled}
                 onClick={btn?.action}
-                className="max-w-[240px] min-w-[120px]"
+                className={cn('max-w-[240px]', btn.customWidth ? `min-w-[${btn.customWidth}]` : 'min-w-[120px]')}
               >
                 {btn?.label}
               </Button>

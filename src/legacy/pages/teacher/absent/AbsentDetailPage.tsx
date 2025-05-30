@@ -1,22 +1,22 @@
+import { useRef, useState } from 'react'
 import { t } from 'i18next'
 import moment from 'moment'
-import { useRef, useState } from 'react'
 import { Document, Page } from 'react-pdf'
 import { useOutletContext, useParams } from 'react-router'
-
+import { Button } from '@/atoms/Button'
+import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { AbsentPaper } from '@/legacy/components/absent/AbsentPaper'
 import { ParentConfirmPaper } from '@/legacy/components/absent/ParentConfirmPaper'
 import { TeacherConfirmPaper } from '@/legacy/components/absent/TeacherConfirmPaper'
 import CertificationBadge from '@/legacy/components/blockchain/CertificationBadge'
 import { BackButton, Blank, Section, Textarea, TopNavbar } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
+import { Button as OldButton } from '@/legacy/components/common/Button'
 import { Constants } from '@/legacy/constants'
 import { useBlockChainDocument } from '@/legacy/container/block-chain-document-status'
 import { useTeacherAbsentDeatil } from '@/legacy/container/teacher-absent-detail'
 import { AbsentStatus, ResponseUserDto } from '@/legacy/generated/model'
 import { AbsentUpdatePage } from '@/legacy/pages/teacher/absent/AbsentUpdatePage'
-
 import { AbsentEvidenceType, approveButtonType } from '@/legacy/types'
 import { DateFormat, DateUtil } from '@/legacy/util/date'
 import { extractImageData, extractReactData, extractReactDataArray, getDoc, getPdfImageSize } from '@/legacy/util/pdf'
@@ -186,13 +186,18 @@ export function AbsentDetailPage() {
     setNumPages(numPages)
   }
 
+  if (isLoading) {
+    return <Blank reversed />
+  }
+
+  if (errorMessage) {
+    return <ErrorBlank text={errorMessage} />
+  }
+
   return (
     <>
-      {isLoading && <Blank reversed />}
-      {errorMessage && <ErrorBlank text={errorMessage} />}
-      <div className="block md:hidden">
-        <TopNavbar title="상세보기" left={<BackButton />} />
-      </div>
+      <ResponsiveRenderer mobile={<TopNavbar title="상세보기" left={<BackButton />} />} />
+
       <div className="relative rounded-lg border bg-white md:m-6">
         {/* Desktop V */}
         <div className="h-screen-10 md:h-screen-6 relative w-auto overflow-scroll md:mb-0">
@@ -213,7 +218,7 @@ export function AbsentDetailPage() {
           {absent?.absentStatus === AbsentStatus.BEFORE_PARENT_CONFIRM && (
             <div className="bg-primary-100 m-2 flex items-center justify-between rounded-lg px-5 py-2">
               <div className="text-primary-800 text-sm">학부모 승인 전</div>
-              <Button.sm
+              <OldButton.sm
                 children="학부모 승인 요청 다시하기"
                 onClick={() => resendAlimtalk()}
                 className="bg-blue-500 text-white"
@@ -378,8 +383,7 @@ export function AbsentDetailPage() {
         <div className="fixed bottom-16 w-full bg-gray-50 md:absolute md:bottom-0">
           <div className="bottom-0 -ml-1 block md:sticky md:ml-0" style={{ width: 'inherit', maxWidth: 'inherit' }}>
             <div className="mt-3 grid auto-cols-fr grid-flow-col gap-2 px-2 md:px-0">
-              <Button.xl
-                children="다운로드"
+              <Button
                 disabled={clicked || checkButtonDisable(approveButtonType.DOWNLOAD)}
                 onClick={async () => {
                   if (ref?.current) {
@@ -387,40 +391,48 @@ export function AbsentDetailPage() {
                   }
                 }}
                 className="filled-green max-md:hidden"
-              />
+              >
+                다운로드
+              </Button>
               {absent?.writerName === me?.name && absent?.absentStatus !== AbsentStatus.PROCESSED ? (
-                <Button.xl
-                  children={'삭제'}
+                <Button
                   onClick={() => {
                     if (confirm(`${t(`absentTitle`, '결석신고서')}를 삭제하시겠습니까?`)) {
                       deleteAbsent()
                     }
                   }}
                   className="filled-red"
-                />
+                >
+                  삭제
+                </Button>
               ) : (
-                <Button.xl
-                  children={absent?.absentStatus === AbsentStatus.DELETE_APPEAL ? '삭제대기' : '삭제요청'}
+                <Button
+                  
                   disabled={checkButtonDisable(approveButtonType.DELETE)}
                   onClick={() => setDeleteAppeal(true)}
                   className="filled-red"
-                />
+                >
+                  {absent?.absentStatus === AbsentStatus.DELETE_APPEAL ? '삭제대기' : '삭제요청'}
+                </Button>
               )}
 
-              <Button.xl
-                children={absent?.absentStatus === AbsentStatus.RETURNED ? '반려됨' : '반려'}
+              <Button
+                
                 disabled={checkButtonDisable(approveButtonType.RETURN)}
                 onClick={() => setDeny(true)}
                 className="filled-blue"
-              />
-              <Button.xl
-                children={isApproved ? '승인 후 수정' : '수정'}
+              >
+                {absent?.absentStatus === AbsentStatus.RETURNED ? '반려됨' : '반려'}
+              </Button>
+              <Button
+                
                 disabled={checkButtonDisable(approveButtonType.EDIT)}
                 onClick={() => setChangeMode(true)}
                 className="filled-yellow"
-              />
-              <Button.xl
-                children={nowApprove ? '승인' : isApproved ? '승인 완료' : '승인 대기'}
+              >
+                {isApproved ? '승인 후 수정' : '수정'}
+              </Button>
+              <Button
                 disabled={checkButtonDisable(approveButtonType.APPROVE)}
                 onClick={() => {
                   if (absent?.reason === '생리') {
@@ -435,7 +447,9 @@ export function AbsentDetailPage() {
                   }
                 }}
                 className="filled-primary"
-              />
+              >
+                {nowApprove ? '승인' : isApproved ? '승인 완료' : '승인 대기'}
+              </Button>
             </div>
           </div>
         </div>
@@ -445,12 +459,13 @@ export function AbsentDetailPage() {
               {`${t(`absentTitle`, '결석신고서')}를 다운로드 하시겠습니까?`}
             </div>
             <div className="flex space-x-2">
-              <Button.lg
-                children="다운로드"
+              <Button
+                
                 disabled={clicked}
                 onClick={async () => {
                   setClicked(true)
-                  if (ref?.current) {
+            >
+            {다운로드}</Button>  if (ref?.current) {
                     const { addPage, download } = getDoc()
 
                     const absentPdfData = await extractReactData(ref.current)
@@ -530,12 +545,13 @@ export function AbsentDetailPage() {
                 }}
                 className="filled-green w-full"
               />
-              <Button.lg
-                children="취소"
+              <Button
+                
                 onClick={async () => {
                   setClicked(false)
                   setDownload(false)
-                }}
+            >
+            {취소}</Button>}}
                 className="filled-gray w-full"
               />
             </div>
@@ -551,12 +567,14 @@ export function AbsentDetailPage() {
               value={notApprovedReason}
               onChange={(e) => setNotApprovedReason(e.target.value)}
             />
-            <Button.lg
-              children="반려하기"
+            <Button
+              
               disabled={!notApprovedReason}
               onClick={() => denyAbsent()}
               className="filled-primary"
-            />
+            >
+              {반려하기}
+            </Button>
           </Section>
         </SuperModal>
         <SuperModal modalOpen={comment} setModalClose={() => setComment(false)} className="w-max">
@@ -569,12 +587,13 @@ export function AbsentDetailPage() {
               value={teacherComment}
               onChange={(e) => setTeacherComment(e.target.value)}
             />
-            <Button.lg
-              children="등록하기"
+            <Button
+              
               disabled={!teacherComment}
               onClick={() => {
                 teacherCommentAbsent()
-                setOpen(true)
+          >
+          {등록하기}</Button>  setOpen(true)
                 setAgreeAll(false)
               }}
               className="filled-primary"
@@ -586,21 +605,23 @@ export function AbsentDetailPage() {
             {getMensesMessage()}
 
             <div className="flex space-x-2">
-              <Button.lg
-                children="확인"
+              <Button
+                
                 onClick={() => {
                   setMensesDialog(false)
                   setOpen(true)
-                  setAgreeAll(false)
+            >
+            {확인}</Button>  setAgreeAll(false)
                 }}
                 className="filled-green w-full"
               />
-              <Button.lg
-                children="취소"
+              <Button
+                
                 onClick={() => {
                   setMensesDialog(false)
                 }}
-                className="filled-gray w-full"
+            >
+              {취소}</Button>className="filled-gray w-full"
               />
             </div>
           </Section>
@@ -613,12 +634,14 @@ export function AbsentDetailPage() {
             </div>
             <Textarea placeholder="삭제 이유" onChange={(e) => setDeleteReason(e.target.value)} value={deleteReason} />
             <span className="text-sm text-red-400">* 교사가 삭제요청하면 학생 또는 보호자가 삭제할 수 있습니다.</span>
-            <Button.lg
-              children="삭제 요청하기"
+            <Button
+              
               disabled={!deleteReason}
               onClick={() => deleteAppealAbsent()}
               className="filled-red"
-            />
+            >
+              {삭제 요청하기}
+            </Button>
           </Section>
         </SuperModal>
       </div>

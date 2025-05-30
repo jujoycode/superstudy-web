@@ -18,7 +18,7 @@ import { GroupContainer } from '@/legacy/container/group'
 import { useTeacherOutgoing } from '@/legacy/container/teacher-outgoing'
 import { UserContainer } from '@/legacy/container/user'
 import { useOutingsDownloadOutings } from '@/legacy/generated/endpoint'
-import { ResponseCreateOutingDto, Role } from '@/legacy/generated/model'
+import { Role } from '@/legacy/generated/model'
 import { DateUtil } from '@/legacy/util/date'
 import { compareOutings } from '@/legacy/util/document'
 import { downloadExcel } from '@/legacy/util/download-excel'
@@ -151,7 +151,6 @@ export function OutingPage() {
   return (
     <>
       <Grid>
-        {/* <div className={`h-screen-6 col-span-3 md:h-screen ${isDetail ? 'hidden' : 'block'} md:block`}> */}
         <GridItem colSpan={6}>
           <ResponsiveRenderer mobile={<TopNavbar title="확인증" left={<BackButton />} />} />
 
@@ -179,7 +178,7 @@ export function OutingPage() {
               filters: [
                 {
                   items: [
-                    { label: '전체', value: 'ALL' },
+                    { label: '결재 전체', value: 'ALL' },
                     { label: '승인 전', value: 'BEFORE_APPROVAL' },
                     { label: '승인 완료', value: 'PROCESSED' },
                     { label: '반려됨', value: 'RETURNED' },
@@ -191,7 +190,7 @@ export function OutingPage() {
                 },
                 {
                   items: [
-                    { label: '전체보기', value: 'ALL' },
+                    { label: '유형 전체', value: 'ALL' },
                     { label: '조퇴', value: '조퇴' },
                     { label: '외출', value: '외출' },
                     { label: '확인', value: '확인' },
@@ -203,7 +202,7 @@ export function OutingPage() {
                 },
                 {
                   items: [
-                    { label: '전체보기', value: 'ALL' },
+                    { label: '학급 전체', value: 'ALL' },
                     ...groups
                       .filter((el) =>
                         me?.role === Role.PRE_HEAD || me?.role === Role.HEAD
@@ -216,13 +215,28 @@ export function OutingPage() {
                     value: selectedGroup?.id.toString() || 'ALL',
                     setValue: (v) => setSelectedGroup(groups.find((el) => el.id.toString() === v) || null),
                   },
+                  hidden: !(
+                    outings &&
+                    (me?.role === Role.PRE_HEAD ||
+                      me?.role === Role.HEAD ||
+                      me?.role === Role.PRE_PRINCIPAL ||
+                      me?.role === Role.PRINCIPAL ||
+                      me?.role === Role.VICE_PRINCIPAL ||
+                      me?.role === Role.HEAD_PRINCIPAL ||
+                      me?.role === Role.SECURITY ||
+                      me?.role === Role.ADMIN)
+                  ),
                 },
               ],
               searchBar: {
                 placeholder: '이름 검색',
                 searchState: {
                   value: _studentName,
-                  setValue: (v) => set_studentName(v),
+                  setValue: (v) => {
+                    set_studentName(v)
+                    if (v === '') replace(`/teacher/outing`)
+                    setPage(1)
+                  },
                 },
                 onSearch: () => _studentName && replace(`/teacher/outing?username=${_studentName}`),
               },
@@ -265,9 +279,7 @@ export function OutingPage() {
           <Divider height="0.5" color="bg-gray-100" />
 
           <div className="overflow-y-auto">
-            {sortedOutings?.map((outing: ResponseCreateOutingDto) => (
-              <OutingCard key={outing.id} outing={outing} type={'outing'} />
-            ))}
+            {sortedOutings?.map((outing) => <OutingCard key={outing.id} outing={outing} type={'outing'} />)}
             {outings && outings?.total > limit && (
               <div className="grid place-items-center">
                 <FrontPagination

@@ -1,10 +1,10 @@
+import { useRef, useState } from 'react'
 import loadImage from 'blueimp-load-image'
 import imageCompression from 'browser-image-compression'
 import { toJpeg } from 'html-to-image'
 import { t } from 'i18next'
 import { jsPDF } from 'jspdf'
 import { filter, find, groupBy, map } from 'lodash'
-import { useRef, useState } from 'react'
 import { Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { AbsentPdf } from '@/legacy/components/pdfDocs/AbsentPdf'
@@ -25,6 +25,8 @@ interface AbsentsDownloadViewProps {
   fileName: string
   setCsvData: (b: boolean) => void
   isCsvData: boolean
+  open?: boolean
+  setOpen?: (b: boolean) => void
 }
 
 interface ReactPdfData {
@@ -38,8 +40,14 @@ interface ReactPdfData {
   orientation?: number
 }
 
-export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvData }: AbsentsDownloadViewProps) {
-  const [open, setOpen] = useState(false)
+export function AbsentsDownloadView({
+  absents = [],
+  fileName,
+  setCsvData,
+  isCsvData,
+  open = false,
+  setOpen = () => {},
+}: AbsentsDownloadViewProps) {
   const docRef = useRef<jsPDF>(null)
   const [withEvidence, setWithEvidence] = useState(false)
   const [isExtractData, setIsExtractData] = useState(false)
@@ -296,7 +304,7 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
   return (
     <>
       {open && (
-        <div className="fixed inset-0 z-100 m-0 h-screen w-full overflow-y-scroll bg-neutral-500/50">
+        <div className="fixed inset-0 z-100 m-0 h-screen w-full overflow-y-scroll bg-black/50">
           <div className="flex h-full w-full items-start">
             <div className="py-6">
               <div className="mb-2 flex w-screen items-center justify-center">
@@ -376,7 +384,7 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
                     <br />
                     서류양이 많을 경우 다운로드가 최대 수 분까지 지연될 수 있습니다. <br />
                     {t(`absentTitle`, '결석신고서')} 화면 상단에서 날짜 범위를 좁혀 원하는 서류만 선택하면 다운로드
-                    속도가 빨라집니다.`
+                    속도가 빨라집니다.
                   </div>
                 </div>
               </div>
@@ -403,15 +411,14 @@ export function AbsentsDownloadView({ absents = [], fileName, setCsvData, isCsvD
           </div>
         </div>
       )}
-      <Button.lg
+      {/* <Button.lg
         children="PDF"
         onClick={() => {
-          //alert('승인 완료된 결석계만 다운로드됩니다. 계속 진행하시겠습니까?');
           !isCsvData && setCsvData(true)
           setOpen(true)
         }}
         className="filled-blue"
-      />
+      /> */}
     </>
   )
 }

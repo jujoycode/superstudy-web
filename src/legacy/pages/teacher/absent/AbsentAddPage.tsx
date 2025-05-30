@@ -1,5 +1,5 @@
-import { t } from 'i18next'
 import { useEffect, useState, useRef } from 'react'
+import { t } from 'i18next'
 import { ReactComponent as Close } from '@/assets/svg/close.svg'
 import { cn } from '@/utils/commonUtil'
 import { SelectMenus, SelectValues } from '@/legacy/components'
@@ -133,7 +133,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
       />
       <Section>
         <div>
-          <div className="w-36 py-2">
+          <div className="w-36 overflow-y-auto py-2">
             <SelectMenus
               label="* 학생 선택"
               items={allKlassGroups.map((tg) => ({ id: tg.id, name: tg.name }))}
