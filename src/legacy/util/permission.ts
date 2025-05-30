@@ -16,6 +16,19 @@ export const PermissionUtil = {
       userRole === Role.ADMIN
     )
   },
+  hasFieldtripAuthorization: (userRole?: Role) => {
+    if (!userRole) return false
+    return (
+      userRole === Role.TEACHER ||
+      userRole === Role.HEAD ||
+      userRole === Role.PRE_HEAD ||
+      userRole === Role.PRINCIPAL ||
+      userRole === Role.PRE_PRINCIPAL ||
+      userRole === Role.VICE_PRINCIPAL ||
+      userRole === Role.HEAD_PRINCIPAL ||
+      userRole === Role.ADMIN
+    )
+  },
   isNotStudentNotParent: (userRole?: Role) => {
     if (!userRole) return false
     return (
