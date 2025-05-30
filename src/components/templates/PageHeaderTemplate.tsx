@@ -150,9 +150,8 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
 
         <Flex direction="row" items="center" gap="2">
           {/* 필터 영역 */}
-          {config?.filters
-            ?.filter((filter) => !filter.hidden)
-            .map((filter, index) => (
+          {config?.filters?.map((filter, index) =>
+            filter.hidden ? null : (
               <Select key={index} value={filter.filterState.value} onValueChange={filter.filterState.setValue}>
                 <SelectTrigger>
                   {filter.items.find((item) => item.value === filter.filterState.value)?.label}
@@ -165,7 +164,8 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
                   ))}
                 </SelectContent>
               </Select>
-            ))}
+            ),
+          )}
 
           {/* 검색 영역 */}
           {config?.searchBar && (
