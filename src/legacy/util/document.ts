@@ -1,4 +1,5 @@
 import type { User } from '@/legacy/generated/model'
+import { TeacharAllGroup } from '../container/teacher-group-all'
 
 interface SortableItem {
   startAt?: string
@@ -154,6 +155,37 @@ export function compareUsers(a: SortableUsr, b: SortableUsr, sortType: string, s
         break
       }
       comparison = a.id - b.id
+      break
+    default:
+      break
+  }
+
+  return sortOrder === 'ASC' ? comparison : -comparison
+}
+
+export function compareGroups(
+  a: TeacharAllGroup,
+  b: TeacharAllGroup,
+  sortType: string,
+  sortOrder: 'ASC' | 'DESC',
+): number {
+  let comparison = 0
+
+  switch (sortType) {
+    case 'name':
+      if (a.name && b.name) {
+        comparison = a.name.localeCompare(b.name)
+      }
+      break
+    case 'subject':
+      if (a.subject && b.subject) {
+        comparison = a.subject.localeCompare(b.subject)
+      }
+      break
+    case 'origin':
+      if (a.origin && b.origin) {
+        comparison = a.origin.localeCompare(b.origin)
+      }
       break
     default:
       break

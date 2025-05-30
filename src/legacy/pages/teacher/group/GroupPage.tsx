@@ -1,122 +1,96 @@
-import { useState } from 'react'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { useMemo, useState } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 
 import { useHistory } from '@/hooks/useHistory'
-import { Divider } from '@/legacy/components/common'
-import { Icon } from '@/legacy/components/common/icons'
-import { TeacharAllGroup, useTeacherAllGroup } from '@/legacy/container/teacher-group-all'
+import { SortState } from '@/constants/enumConstant'
+import { Divider } from '@/atoms/Divider'
+import { Grid } from '@/atoms/Grid'
+import { GridItem } from '@/atoms/GridItem'
+import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'
+import { PageHeaderTemplate } from '@/templates/PageHeaderTemplate'
+import { BackButton, TopNavbar } from '@/legacy/components/common'
+import { useTeacherAllGroup } from '@/legacy/container/teacher-group-all'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { compareGroups } from '@/legacy/util/document'
 
 export function GroupPage() {
-  const { push } = useHistory()
+  const { push, replace } = useHistory()
   const { t, currentLang } = useLanguage()
   const { pathname } = useLocation()
   const id = pathname.replace('/teacher/groups', '').replace('/', '')
 
   const [frontSortType, setFrontSortType] = useState('name')
+  const [sortOrder, setSortOrder] = useState<SortState>(SortState.ASC)
 
   const { allGroups } = useTeacherAllGroup()
 
-  const getTextColor = (origin: string) => {
-    return origin === 'TIMETABLE' ? 'text-indigo-300' : origin === 'KLASS' ? 'text-emerald-200' : 'text-primary-800'
-  }
-
-  const getBorderColor = (origin: string) => {
-    return origin === 'TIMETABLE'
-      ? 'border-indigo-300'
-      : origin === 'KLASS'
-        ? 'border-emerald-200'
-        : 'border-primary-800'
-  }
+  const sortedGroups = useMemo(() => {
+    if (sortOrder === 'default') {
+      return allGroups
+    }
+    return allGroups?.sort((a, b) => compareGroups(a, b, frontSortType, sortOrder.toUpperCase() as 'ASC' | 'DESC'))
+  }, [allGroups, frontSortType, sortOrder])
 
   return (
-    <div className="col-span-7 grid grid-cols-7">
-      <div className="col-span-4 hidden h-screen md:block">
-        <div className="px-6 py-6">
-          <div className="flex justify-between">
-            <h1 className="text-2xl font-semibold">{t('group_information', '그룹정보')}</h1>
-            <Link
-              children={t('add', '추가하기')}
-              to="/teacher/groups/add"
-              className="bg-primary-50 text-primary-800 hover:bg-primary-800 hover:text-primary-50 rounded-md px-4 py-2 text-sm focus:outline-hidden"
-            />
-          </div>
+    <Grid>
+      <GridItem colSpan={6}>
+        <ResponsiveRenderer mobile={<TopNavbar title="그룹정보" left={<BackButton />} />} />
+
+        <PageHeaderTemplate
+          title="그룹정보"
+          description="선생님에게 할당된 그룹 정보를 열람할 수 있어요"
+          config={{
+            topBtn: [
+              {
+                label: t('add', '추가하기'),
+                variant: 'solid',
+                color: 'primary',
+                action: () => replace('/teacher/groups/add'),
+              },
+            ],
+            sort: {
+              mode: 'client',
+              items: [
+                { label: '이름순', value: 'name' },
+                { label: '과목순', value: 'subject' },
+                { label: '종류별', value: 'type' },
+              ],
+              itemState: {
+                value: frontSortType,
+                setValue: (v) => setFrontSortType(v),
+              },
+              sortState: {
+                value: sortOrder,
+                setValue: (v) => setSortOrder(v),
+              },
+            },
+          }}
+        />
+
+        <Divider height="0.5" color="bg-gray-100" />
+        <div className="grid grid-cols-2 gap-2 overflow-y-auto p-2">
+          {sortedGroups.map((group) => (
+            <div
+              key={group.id}
+              className="w-full cursor-pointer rounded-lg border-2 p-2"
+              onClick={() => push(`/teacher/groups/${group.id}`)}
+            >
+              <div className="overflow-hidden font-semibold whitespace-pre"> {group.name}</div>
+              <div className="overflow-hidden pl-3 text-sm whitespace-pre text-gray-500">
+                {t('subject', '과목')} : {group.subject}
+              </div>
+              <div className="overflow-hidden pl-3 text-sm whitespace-pre text-gray-500">
+                {t('classroom', '교실')} : {group.room}
+              </div>
+
+              <div className="text-right text-xs">{currentLang === 'ko' ? group.originKor : group.origin}</div>
+            </div>
+          ))}
         </div>
-        <Divider />
-        <div className="grid grid-cols-3 bg-gray-100 max-md:hidden">
-          <button onClick={() => setFrontSortType('name')} className="flex items-center justify-center">
-            <span>{t('by_name', '이름순')}</span>
-            {frontSortType === 'name' && <Icon.ChevronDown />}
-          </button>
-          <button onClick={() => setFrontSortType('subject')} className="flex items-center justify-center">
-            <span>{t('by_subject', '과목순')}</span>
-            {frontSortType === 'subject' && <Icon.ChevronDown />}
-          </button>
-          <button onClick={() => setFrontSortType('origin')} className="flex items-center justify-center">
-            <span>{t('by_type', '종류별')}</span>
-            {frontSortType === 'origin' && <Icon.ChevronDown />}
-          </button>
-        </div>
-        <Divider />
-        <div className="scroll-box h-screen-6 w-full overflow-y-auto">
-          <div className="grid w-full grid-flow-row grid-cols-2 gap-2 pr-4 lg:grid-cols-3 xl:grid-cols-4">
-            {allGroups
-              .sort((a, b) => {
-                if (frontSortType === 'subject') {
-                  if (a.subject && b.subject) {
-                    if (a.subject < b.subject) return -1
-                    if (a.subject > b.subject) return 1
-                  } else {
-                    if (!a.subject && b.subject) return -1
-                    if (a.subject && !b.subject) return 1
-                  }
-                } else if (frontSortType === 'origin') {
-                  if (a.origin && b.origin) {
-                    if (a.origin < b.origin) return -1
-                    if (a.origin > b.origin) return 1
-                  } else {
-                    if (!a.origin && b.origin) return -1
-                    if (a.origin && !b.origin) return 1
-                  }
-                }
-
-                // 기본은 이름순
-                if (a.name < b.name) return -1
-                if (a.name > b.name) return 1
-
-                return 0
-              })
-              .map((group: TeacharAllGroup) => (
-                <div
-                  key={group.id}
-                  className={`m-1 w-full cursor-pointer rounded-lg border-2 ${getBorderColor(group.origin)} ${
-                    group.id === +id ? 'bg-gray-100' : ''
-                  } p-1`}
-                  onClick={() => push(`/teacher/groups/${group.id}`)}
-                >
-                  <div className="w-full overflow-hidden font-semibold whitespace-pre"> {group.name}</div>
-                  <div className="w-full overflow-hidden pl-3 text-sm whitespace-pre text-gray-500">
-                    {t('subject', '과목')} : {group.subject}
-                  </div>
-                  <div className="w-full overflow-hidden pl-3 text-sm whitespace-pre text-gray-500">
-                    {t('classroom', '교실')} : {group.room}
-                  </div>
-
-                  {/* <div className="font-base pl-3 text-sm text-gray-3">
-                  {group.studentCount ? <span>({group.studentCount}명)</span> : ''}
-                </div> */}
-
-                  <div className={`mt-2 w-full text-right text-xs ${getTextColor(group.origin)}`}>
-                    {currentLang === 'ko' ? group.originKor : group.origin}
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
-      </div>
-      <div className="scroll-box col-span-3 bg-gray-50">
+      </GridItem>
+      <GridItem colSpan={6}>
         <Outlet context={{ selectedGroup: allGroups.find((g) => g.id === +id) }} />
-      </div>
-    </div>
+      </GridItem>
+    </Grid>
   )
 }
