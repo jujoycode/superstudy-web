@@ -1,10 +1,11 @@
+import { useEffect, useMemo, useState } from 'react'
 import { format } from 'date-fns'
 import _ from 'lodash'
-import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
+import { Button } from '@/atoms/Button'
 import { Radio } from '@/atoms/Radio'
 import { SuperModal } from '@/legacy/components'
 import {
@@ -13,7 +14,6 @@ import {
 } from '@/legacy/components/activityv3/ActivityCriteriaSelectModal'
 import { ActivityGroupSelectModal } from '@/legacy/components/activityv3/ActivityGroupSelectModal'
 import { CloseButton, Label, Select, Textarea } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Coachmark2 } from '@/legacy/components/common/CoachMark2'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
@@ -368,10 +368,6 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                 <div className="text-18 font-normal text-[#444]">
                   학생들에게 활동&nbsp;/&nbsp; 활동보고서의 상세 내용을 안내할 수 있습니다.
                 </div>
-                {/* <Button.lg className="absolute right-15 top-12 flex items-center rounded-full border border-[#777] px-1 text-[#777]">
-              <div className="whitespace-pre border-r border-[#777] px-2 py-1">임시저장</div>
-              <div className="px-2 py-1">4</div>
-            </Button.lg> */}
               </div>
 
               <div className="3xl:px-30 h-full min-w-2/3 md:px-10">
@@ -760,24 +756,13 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
             <div className="3xl:-bottom-20 absolute -bottom-14 left-0 w-full">
               <div className="flex items-center justify-between">
                 <div>
-                  <Button
-                    className="h-12 w-40 rounded-lg border border-neutral-500 bg-white text-lg font-semibold"
-                    onClick={() => setShowDialog(true)}
-                  >
-                    취소
-                  </Button>
+                  <Button size="lg" children="취소" onClick={() => setShowDialog(true)} />
                 </div>
 
                 <div className="flex items-center space-x-2">
+                  <Button size="lg" onClick={() => setPreviewOpen(true)} children="미리보기" disabled={!isFormValid} />
                   <Button
-                    className="h-12 w-40 rounded-lg border border-orange-500 bg-white text-lg font-semibold text-orange-500 disabled:border-gray-500 disabled:text-gray-500"
-                    onClick={() => setPreviewOpen(true)}
-                    disabled={!isFormValid}
-                  >
-                    미리보기
-                  </Button>
-                  <Button
-                    className="h-12 w-40 rounded-lg bg-orange-500 text-lg font-semibold text-white disabled:bg-gray-500"
+                    size="lg"
                     disabled={!isFormValid}
                     onClick={handleSubmit(async (data) => {
                       // file image 처리
@@ -818,9 +803,8 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         createActivityV3({ data: _data })
                       }
                     })}
-                  >
-                    확인
-                  </Button>
+                    children="확인"
+                  />
                 </div>
               </div>
             </div>
@@ -952,11 +936,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                       작성해주세요.
                     </div>
                     <Textarea className="my-2 resize-none" placeholder={watch('explainText') || DEFAULT_EXPLAIN_TEXT} />
-                    <Button.lg
-                      className="bg-primary-800 w-full text-white disabled:bg-gray-500"
-                      disabled
-                      children="제출하기"
-                    />
+                    <Button size="lg" disabled children="제출하기" />
                     <div className="text-13 mt-4 w-full text-center text-red-500">
                       *미리보기 화면에선 제출이 불가합니다.
                     </div>
