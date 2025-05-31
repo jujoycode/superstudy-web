@@ -755,9 +755,8 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
             {/* 하단 버튼 영역 */}
             <div className="3xl:-bottom-20 absolute -bottom-14 left-0 w-full">
               <div className="flex items-center justify-between">
-                <div>
                   <Button size="lg" children="취소" onClick={() => setShowDialog(true)} />
-                </div>
+
 
                 <div className="flex items-center space-x-2">
                   <Button size="lg" onClick={() => setPreviewOpen(true)} children="미리보기" disabled={!isFormValid} />
