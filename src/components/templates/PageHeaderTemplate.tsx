@@ -24,7 +24,7 @@ interface PageHeaderTemplateProps {
   }
 }
 
-type BtnConfig = {
+export type BtnConfig = {
   label: string
   color: ButtonProps['color']
   variant: ButtonProps['variant']
@@ -34,7 +34,7 @@ type BtnConfig = {
   action: () => void
 }
 
-type DateSearchBarConfig = {
+export type DateSearchBarConfig = {
   type: 'single' | 'range'
   minDate?: Date
   maxDate?: Date
@@ -44,7 +44,7 @@ type DateSearchBarConfig = {
   }
 }
 
-type FilterConfig = {
+export type FilterConfig = {
   items: {
     label: string
     value: string
@@ -56,7 +56,7 @@ type FilterConfig = {
   hidden?: boolean
 }
 
-type SearchBarConfig = {
+export type SearchBarConfig = {
   placeholder: string
   searchState: {
     value: string

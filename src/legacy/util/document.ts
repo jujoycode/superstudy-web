@@ -1,3 +1,4 @@
+import { SortState } from '@/constants/enumConstant'
 import type { User } from '@/legacy/generated/model'
 
 interface SortableItem {
@@ -84,12 +85,7 @@ export function compareAbsents(
 
   return sortOrder === 'ASC' ? comparison : -comparison
 }
-export function compareFieldTrips(
-  a: SortableAbsFt,
-  b: SortableAbsFt,
-  sortType: string,
-  sortOrder: 'ASC' | 'DESC',
-): number {
+export function compareFieldTrips(a: SortableAbsFt, b: SortableAbsFt, sortType: string, sortOrder: SortState): number {
   let comparison = 0
 
   switch (sortType) {
@@ -115,5 +111,5 @@ export function compareFieldTrips(
       break
   }
 
-  return sortOrder === 'ASC' ? comparison : -comparison
+  return sortOrder === SortState.ASC ? comparison : -comparison
 }

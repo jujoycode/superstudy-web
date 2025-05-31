@@ -1,7 +1,7 @@
+import { useRef, useState } from 'react'
 import { toJpeg } from 'html-to-image'
 import { jsPDF } from 'jspdf'
 import { filter, find, groupBy, map } from 'lodash'
-import { useRef, useState } from 'react'
 import { Select } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Fieldtrip } from '@/legacy/generated/model'
@@ -14,6 +14,8 @@ interface FieldtripsDownloadViewProps {
   fileName: string
   setCsvData: (b: boolean) => void
   isCsvData: boolean
+  open?: boolean
+  setOpen?: (b: boolean) => void
 }
 
 interface ReactPdfData {
@@ -31,8 +33,9 @@ export function FieldtripsDownloadView({
   fileName,
   setCsvData,
   isCsvData,
+  open = false,
+  setOpen = () => {},
 }: FieldtripsDownloadViewProps) {
-  const [open, setOpen] = useState(false)
   const docRef = useRef<jsPDF>(null)
   const [withEvidence, setWithEvidence] = useState(false)
   const [isExtractData, setIsExtractData] = useState(false)
@@ -297,7 +300,7 @@ export function FieldtripsDownloadView({
           </div>
         </div>
       )}
-      <Button.lg
+      {/* <Button.lg
         children="PDF"
         onClick={() => {
           //alert('결과보고서까지 승인 완료된 체험학습 서류만 다운로드됩니다. 계속 진행하시겠습니까?');
@@ -305,7 +308,7 @@ export function FieldtripsDownloadView({
           setOpen(true)
         }}
         className="filled-blue w-full"
-      />
+      /> */}
     </>
   )
 }
