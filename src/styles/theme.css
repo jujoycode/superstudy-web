@@ -19,7 +19,7 @@
   --color-secondary-800: #4c5057; /* bg */
   --color-secondary-850: #24282d; /* hover bg */
   /* 디자인팀의 4 degree 색상을 지원하기 위한 대응 컬러 (**개선되어야 함) */
-  --color-tertiary-100: #f9fafb; /* solid bg */
+  --color-tertiary-100: #F3F5F6; /* solid bg */
   --color-tertiary-300: #D8DBDF; /* hover bg */
   --color-tertiary-400: #C7CBD1; /* border color */
   --color-tertiary-600: #121417; /* text color */

@@ -9,6 +9,7 @@ import { Divider } from '@/atoms/Divider'
 import { Grid } from '@/atoms/Grid'
 import { GridItem } from '@/atoms/GridItem'
 import { Input } from '@/atoms/Input'
+import { ScrollArea } from '@/atoms/ScrollArea'
 import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'
 import { PageHeaderTemplate } from '@/templates/PageHeaderTemplate'
 import { ErrorBlank, FrontPagination, SuperModal } from '@/legacy/components'
@@ -278,7 +279,7 @@ export function OutingPage() {
 
           <Divider height="0.5" color="bg-gray-100" />
 
-          <div className="overflow-y-auto">
+          <ScrollArea>
             {sortedOutings?.map((outing) => <OutingCard key={outing.id} outing={outing} type={'outing'} />)}
             {outings && outings?.total > limit && (
               <div className="grid place-items-center">
@@ -291,7 +292,7 @@ export function OutingPage() {
                 />
               </div>
             )}
-          </div>
+          </ScrollArea>
         </GridItem>
 
         <GridItem colSpan={6} className="bg-gray-50">
