@@ -23,9 +23,7 @@ export function StudentItem({ studentid, studentname, klass, klassnum, onClick, 
       <table className="w-full table-fixed">
         <tr>
           <td className="text-md pl-4 font-semibold">
-            {studentname}
-            {klass.padStart(2, '0')}
-            {klassnum.toString().padStart(2, '0')}
+            {studentname} {klass.padStart(2, '0')} {klassnum.toString().padStart(2, '0')}
           </td>
         </tr>
       </table>

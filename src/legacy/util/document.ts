@@ -1,5 +1,6 @@
 import { SortState } from '@/constants/enumConstant'
 import type { User } from '@/legacy/generated/model'
+import { TeacharAllGroup } from '../container/teacher-group-all'
 
 interface SortableItem {
   startAt?: string
@@ -112,4 +113,79 @@ export function compareFieldTrips(a: SortableAbsFt, b: SortableAbsFt, sortType: 
   }
 
   return sortOrder === SortState.ASC ? comparison : -comparison
+}
+
+interface SortableUsr {
+  id: number
+  name: string
+  nickName: string | undefined
+  grade: number
+  klass: string | number | null
+  studentNumber: number | string
+}
+
+export function compareUsers(a: SortableUsr, b: SortableUsr, sortType: string, sortOrder: 'ASC' | 'DESC'): number {
+  let comparison = 0
+
+  switch (sortType) {
+    case 'name':
+      if (a.name && b.name) {
+        comparison = a.name.localeCompare(b.name)
+      }
+      break
+    case 'num':
+      if (a.grade !== b.grade) {
+        comparison = a.grade - b.grade
+        break
+      }
+      if (typeof a.klass === 'number' && typeof b.klass === 'number' && a.klass !== b.klass) {
+        comparison = a.klass - b.klass
+        break
+      }
+      if (typeof a.klass === 'string' && typeof b.klass === 'string' && a.klass !== b.klass) {
+        comparison = a.klass.localeCompare(b.klass)
+        break
+      }
+      if (a.studentNumber !== b.studentNumber) {
+        comparison = Number(a.studentNumber) - Number(b.studentNumber)
+        break
+      }
+      comparison = a.id - b.id
+      break
+    default:
+      break
+  }
+
+  return sortOrder === 'ASC' ? comparison : -comparison
+}
+
+export function compareGroups(
+  a: TeacharAllGroup,
+  b: TeacharAllGroup,
+  sortType: string,
+  sortOrder: 'ASC' | 'DESC',
+): number {
+  let comparison = 0
+
+  switch (sortType) {
+    case 'name':
+      if (a.name && b.name) {
+        comparison = a.name.localeCompare(b.name)
+      }
+      break
+    case 'subject':
+      if (a.subject && b.subject) {
+        comparison = a.subject.localeCompare(b.subject)
+      }
+      break
+    case 'origin':
+      if (a.origin && b.origin) {
+        comparison = a.origin.localeCompare(b.origin)
+      }
+      break
+    default:
+      break
+  }
+
+  return sortOrder === 'ASC' ? comparison : -comparison
 }
