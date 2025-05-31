@@ -1,6 +1,6 @@
+import { useMemo, useState } from 'react'
 import { differenceInSeconds, format } from 'date-fns'
 import _ from 'lodash'
-import { useMemo, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import { useLocation, useParams } from 'react-router-dom'
@@ -10,12 +10,12 @@ import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
 import { useUserStore } from '@/stores/user'
+import { Button } from '@/atoms/Button'
 import { Radio } from '@/atoms/Radio'
 import { SuperModal } from '@/legacy/components'
 import { Activityv3SubmitterItem } from '@/legacy/components/activityv3/ActivityV3SubmitterItem'
 import { SessionDownloadModal } from '@/legacy/components/activityv3/SessionDownloadModal'
 import { BackButton, Label, Select, TopNavbar } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
 import FileDownloadProgressModal from '@/legacy/components/common/FileDownloadProgressModal'
@@ -390,19 +390,18 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                   {(me?.role === Role.ADMIN || activityv3?.writerId === me?.id) && (
                     <div className="ml-4 flex shrink-0 items-center space-x-2">
                       <Button
-                        className="h-8 w-16 rounded-lg border border-neutral-500 bg-white font-semibold text-neutral-500"
-                        onClick={() => {
-                          push(`/teacher/activityv3/${activityv3?.id}/session/${id}/update`)
-                        }}
-                      >
-                        수정
-                      </Button>
+                        size="sm"
+                        variant="outline"
+                        onClick={() => push(`/teacher/activityv3/${activityv3?.id}/session/${id}/update`)}
+                        children="수정"
+                      ></Button>
                       <Button
-                        className="h-8 w-16 rounded-lg border border-orange-500 font-semibold text-orange-500"
+                        size="sm"
+                        className="border-red-500 text-red-500"
+                        variant="outline"
                         onClick={() => setShowDialog(true)}
-                      >
-                        삭제
-                      </Button>
+                        children="삭제"
+                      />
                     </div>
                   )}
                 </div>
@@ -483,11 +482,12 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                     <div className="text-sm font-semibold whitespace-pre md:w-40">설문 내용</div>
                     <div className="w-full">
                       <Button
-                        className="h-8 w-28 rounded-lg border border-zinc-800"
+                        size="sm"
+                        variant="outline"
+                        color="secondary"
+                        children="설문지 보기"
                         onClick={() => setSurveyModalOpen(true)}
-                      >
-                        설문지 보기
-                      </Button>
+                      />
                     </div>
                   </div>
                 )}
@@ -499,14 +499,7 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                 <div className="mt-16">
                   <div className="flex items-center justify-between">
                     <div className="text-24 font-bold whitespace-pre">제출자 현황</div>
-                    <Button
-                      className="border border-gray-600"
-                      onClick={() => {
-                        setDownloadModalOpen(true)
-                      }}
-                    >
-                      제출현황 다운로드
-                    </Button>
+                    <Button children="제출현황 다운로드" onClick={() => setDownloadModalOpen(true)} />
                   </div>
                   <div className="mt-4 flex rounded-sm border border-zinc-800 text-[#333333]">
                     <div className="text-16 flex w-full items-center justify-between border-r border-zinc-800 p-4 font-bold">
@@ -702,13 +695,9 @@ export const ActivityV3SessionDetailPage: React.FC<ActivityV3SessionDetailPagePr
                                 <div className="flex items-center gap-4">
                                   {activitySession?.isFile && (
                                     <Button
-                                      className="border border-gray-600"
-                                      onClick={() => {
-                                        handleBatchDownload(submittedStudentGroups, ga.group?.name || '')
-                                      }}
-                                    >
-                                      파일 일괄 다운로드
-                                    </Button>
+                                      children="파일 일괄 다운로드"
+                                      onClick={() => handleBatchDownload(submittedStudentGroups, ga.group?.name || '')}
+                                    />
                                   )}
 
                                   <div className="text-lg">

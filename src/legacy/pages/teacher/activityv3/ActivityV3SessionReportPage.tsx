@@ -1,6 +1,6 @@
+import { useEffect, useMemo, useState } from 'react'
 import { format } from 'date-fns'
 import _ from 'lodash'
-import { useEffect, useMemo, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import { useParams } from 'react-router-dom'
@@ -10,10 +10,10 @@ import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
 import { useUserStore } from '@/stores/user'
+import { Button } from '@/atoms/Button'
 import { SuperModal } from '@/legacy/components'
 import { SessionCommentItem } from '@/legacy/components/activityv3/SessionCommentItem'
 import { Avatar, BackButton, Textarea, TopNavbar } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
 import { Time } from '@/legacy/components/common/Time'
 import { SuperSurveyComponent } from '@/legacy/components/survey/SuperSurveyComponent'
@@ -350,11 +350,12 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                     <div className="text-sm font-semibold whitespace-pre md:w-40">설문 내용</div>
                     <div className="w-full">
                       <Button
-                        className="h-8 w-28 rounded-lg border border-zinc-800"
+                        size="sm"
+                        variant="outline"
+                        color="secondary"
                         onClick={() => setSurveyModalOpen(true)}
-                      >
-                        설문지 보기
-                      </Button>
+                        children="설문지 보기"
+                      />
                     </div>
                   </div>
                 )}
@@ -624,7 +625,7 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                         disabled={isSessionCommentLoading}
                       />
                       <Button
-                        className="h-8 w-16 rounded-lg bg-orange-500 font-semibold text-white disabled:bg-gray-50 disabled:text-gray-500"
+                        size="sm"
                         onClick={() =>
                           studentActivitySession &&
                           createSessionComment({
@@ -633,9 +634,8 @@ export const ActivityV3SessionReportPage: React.FC<ActivityV3SessionReportPagePr
                           })
                         }
                         disabled={isSessionCommentLoading}
-                      >
-                        등록
-                      </Button>
+                        children="등록"
+                      />
                     </div>
                   ) : (
                     <div className="flex min-h-[80px] items-center justify-center border-t border-gray-300 px-4 py-4">

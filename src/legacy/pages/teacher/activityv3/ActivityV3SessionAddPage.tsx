@@ -1,14 +1,14 @@
-import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
+import { format } from 'date-fns'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
+import { Button } from '@/atoms/Button'
 import { Radio } from '@/atoms/Radio'
 import { SuperModal } from '@/legacy/components'
 import { ActivitySessionTeacherView } from '@/legacy/components/activityv3/ActivitySessionTeacherView'
 import { Blank, CloseButton, Label, Textarea } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
 import { Icon } from '@/legacy/components/common/icons'
@@ -542,25 +542,19 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
           {/* 하단 버튼 영역 */}
           <div className="3xl:-bottom-20 absolute -bottom-14 left-0 w-full">
             <div className="flex items-center justify-between">
-              <div>
-                <Button
-                  className="h-12 w-40 rounded-lg border border-neutral-500 bg-white text-lg font-semibold"
-                  onClick={() => setShowDialog(true)}
-                >
-                  취소
-                </Button>
-              </div>
+              <Button size="lg" children="취소" onClick={() => setShowDialog(true)} />
 
               <div className="flex items-center space-x-2">
                 <Button
-                  className="h-12 w-40 rounded-lg border border-orange-500 bg-white text-lg font-semibold text-orange-500 disabled:border-gray-500 disabled:text-gray-500"
+                  size="lg"
                   onClick={() => setPreviewOpen(true)}
                   disabled={!isFormValid}
-                >
-                  미리보기
-                </Button>
+                  variant="outline"
+                  children="미리보기"
+                />
                 <Button
-                  className="h-12 w-40 rounded-lg bg-orange-500 text-lg font-semibold text-white disabled:bg-gray-500"
+                  size="lg"
+                  children="확인"
                   disabled={!isFormValid}
                   onClick={handleSubmit(async (data) => {
                     // file image 처리
@@ -620,9 +614,7 @@ export const ActivityV3SessionAddPage: React.FC<ActivityV3SessionAddPageProps> =
                         .catch((error: Error) => setToastMsg(error.message))
                     }
                   })}
-                >
-                  확인
-                </Button>
+                />
               </div>
             </div>
           </div>

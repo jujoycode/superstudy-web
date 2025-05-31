@@ -1,11 +1,12 @@
-import _, { range } from 'lodash'
 import { useEffect, useState } from 'react'
+import _, { range } from 'lodash'
 import { Link } from 'react-router-dom'
 
 import { useHistory } from '@/hooks/useHistory'
+import { Button } from '@/atoms/Button'
+import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'
 import { SessionDownloadModal } from '@/legacy/components/activityv3/SessionDownloadModal'
 import { BackButton, Select, TopNavbar } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { Icon } from '@/legacy/components/common/icons'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { ACTIVITYV3_TYPE_KOR, ACTIVITY_SESSION_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
@@ -106,11 +107,7 @@ export function ActivityV3Page() {
               </div>
             </div>
             {activityv3s?.length !== 0 && (
-              <Button.lg
-                children="활동 생성하기"
-                onClick={() => push('/teacher/activityv3/add')}
-                className="bg-orange-500 text-white"
-              />
+              <Button size="lg" children="활동 생성하기" onClick={() => push('/teacher/activityv3/add')} />
             )}
           </div>
           <div className="flex w-full items-center justify-between py-4">
@@ -217,11 +214,8 @@ export function ActivityV3Page() {
                     <tr>
                       <td colSpan={6} className="pt-14">
                         <div className="flex w-full flex-col items-center justify-center gap-4">
-                          <Button.lg
-                            children="활동 생성하기"
-                            onClick={() => push('/teacher/activityv3/add')}
-                            className="h-12 w-40 bg-orange-500 text-white"
-                          />
+                          <Button size="lg" children="활동 생성하기" onClick={() => push('/teacher/activityv3/add')} />
+
                           <p className="text-center text-neutral-500">
                             &#39;활동 생성하기&#39; 버튼을 눌러 활동기록을 시작해 보세요.
                           </p>
@@ -318,20 +312,25 @@ export function ActivityV3Page() {
                                       /&nbsp;
                                       {el.allCount}
                                     </td>
-                                    <td
-                                      className="table-cell w-36 border-b border-[#EEEEEE] px-2 py-2 text-[#333333]"
-                                      style={{ textAlign: 'right' }}
-                                    >
-                                      <Button
-                                        className="hidden rounded-lg border border-[#333333] bg-white md:inline-block"
-                                        onClick={() => {
-                                          setSelectedSessionId(session.id)
-                                          setDownloadModalOpen(true)
-                                        }}
-                                      >
-                                        제출현황 다운로드
-                                      </Button>
-                                    </td>
+                                    <ResponsiveRenderer
+                                      default={
+                                        <td
+                                          className="table-cell w-36 border-b border-[#EEEEEE] px-2 py-2 text-[#333333]"
+                                          style={{ textAlign: 'right' }}
+                                        >
+                                          <Button
+                                            size="md"
+                                            variant="outline"
+                                            children="제출현황 다운로드"
+                                            className="border-[#333] text-[#333]"
+                                            onClick={() => {
+                                              setSelectedSessionId(session.id)
+                                              setDownloadModalOpen(true)
+                                            }}
+                                          />
+                                        </td>
+                                      }
+                                    />
                                   </tr>
                                 ))
                                 .value()

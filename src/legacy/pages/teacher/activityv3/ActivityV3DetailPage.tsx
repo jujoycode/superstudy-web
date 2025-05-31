@@ -1,6 +1,6 @@
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { differenceInDays, format } from 'date-fns'
 import _, { sortBy } from 'lodash'
-import { useEffect, useMemo, useRef, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useLocation, useParams } from 'react-router-dom'
 import Viewer from 'react-viewer'
@@ -10,12 +10,12 @@ import { ReactComponent as FileItemIcon } from '@/assets/svg/file-item-icon.svg'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
 import { useUserStore } from '@/stores/user'
+import { Button } from '@/atoms/Button'
 import { Radio } from '@/atoms/Radio'
 import { Activityv3SubmitterItem } from '@/legacy/components/activityv3/ActivityV3SubmitterItem'
 import { SessionDownloadModal } from '@/legacy/components/activityv3/SessionDownloadModal'
 import { SessionTable } from '@/legacy/components/activityv3/SessionTable'
 import { BackButton, Label, Select, TopNavbar } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Coachmark2 } from '@/legacy/components/common/CoachMark2'
 import ConfirmDialog from '@/legacy/components/common/ConfirmDialog'
@@ -201,17 +201,18 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                   {(me?.role === Role.ADMIN || activityv3.writerId === me?.id) && (
                     <div className="ml-4 flex shrink-0 items-center space-x-2">
                       <Button
-                        className="h-8 w-16 rounded-lg border border-neutral-500 bg-white font-semibold text-neutral-500"
+                        size="sm"
+                        variant="outline"
+                        children="수정"
                         onClick={() => push(`/teacher/activityv3/${activityv3.id}/update`)}
-                      >
-                        수정
-                      </Button>
+                      />
                       <Button
-                        className="h-8 w-16 rounded-lg border border-orange-500 font-semibold text-orange-500"
+                        size="sm"
+                        variant="outline"
+                        className="border-red-500 text-red-500"
+                        children="삭제"
                         onClick={() => setShowDialog(true)}
-                      >
-                        삭제
-                      </Button>
+                      />
                     </div>
                   )}
                 </div>
@@ -329,19 +330,16 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                 <div className="text-3xl font-bold whitespace-pre">활동 차시</div>
                 {activityv3.activitySessions?.length !== 0 && (
                   <div className="relative">
-                    <button
-                      className={twMerge(
-                        'bg-primary-800 rounded-lg px-8 py-3 font-semibold text-white',
-                        activityv3.writerId !== me?.id && 'bg-gray-500',
-                      )}
+                    <Button
+                      size="lg"
+                      className={activityv3.writerId !== me?.id ? 'bg-gray-500' : undefined}
                       onClick={() =>
                         activityv3.writerId === me?.id
                           ? push(`/teacher/activityv3/${activityv3.id}/session/add`)
                           : setCoachmarkVisible(!coachmarkVisible)
                       }
-                    >
-                      차시 추가하기
-                    </button>
+                      children="차시 추가하기"
+                    />
                     {coachmarkVisible && (
                       <Coachmark2
                         steps={[
@@ -368,12 +366,11 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                     ref={addSessionButtonRef}
                   >
                     <div className="flex flex-col items-center justify-center gap-4 rounded-lg">
-                      <button
-                        className="bg-primary-800 rounded-lg px-6 py-4 text-lg font-semibold text-white"
+                      <Button
+                        size="lg"
                         onClick={() => push(`/teacher/activityv3/${activityv3.id}/session/add`)}
-                      >
-                        차시 추가하기
-                      </button>
+                        children="차시 추가하기"
+                      />
                       <p className="text-gray-500">
                         <strong>차시 추가하기</strong> 버튼을 눌러 활동을 시작해 보세요.
                       </p>
@@ -402,9 +399,13 @@ export const ActivityV3DetailPage: React.FC<ActivityV3DetailPageProps> = () => {
                 <div className="mt-16">
                   <div className="flex items-center justify-between">
                     <div className="text-24 font-bold whitespace-pre">활동 보고서</div>
-                    <Button className="border border-gray-600" disabled={isLoading} onClick={() => refetch()}>
-                      새로고침
-                    </Button>
+                    <Button
+                      children="새로고침"
+                      className="border border-gray-600"
+                      variant="outline"
+                      disabled={isLoading}
+                      onClick={() => refetch()}
+                    />
                   </div>
 
                   {/* 제출자 목록 화면 */}
