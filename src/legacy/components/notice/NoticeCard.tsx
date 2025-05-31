@@ -23,7 +23,7 @@ export function NoticeCard({ notice, isNew, onClick }: NoticeCardProps) {
       <div
         className={
           pathname.startsWith(`${Routes.teacher.notice}/${notice.id}`)
-            ? 'cursor-pointer bg-gray-50 px-6 py-4'
+            ? 'cursor-pointer bg-gray-100 px-6 py-4'
             : 'cursor-pointer px-6 py-4'
         }
         onClick={() => {
