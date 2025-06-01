@@ -96,7 +96,8 @@ export function FieldtripCard({ fieldtrip, type }: FieldtripCardProps) {
       <Link to={`/teacher/${type}/${fieldtrip.id}${search}`}>
         <div
           className={
-            pathname.startsWith(`/teacher/fieldtrip/${fieldtrip.id}`)
+            pathname.startsWith(`/teacher/fieldtrip/${fieldtrip.id}`) ||
+            pathname.startsWith(`/teacher/history/${fieldtrip.id}`)
               ? 'relative flex w-full items-center justify-between bg-gray-50 p-4'
               : 'relative flex w-full items-center justify-between p-4'
           }

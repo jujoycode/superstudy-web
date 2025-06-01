@@ -268,6 +268,7 @@ export function HistoryPage() {
                       if (value === '2') {
                         setSelectedGroup(null)
                       }
+                      replace(`/teacher/history`)
                     },
                   },
                 },

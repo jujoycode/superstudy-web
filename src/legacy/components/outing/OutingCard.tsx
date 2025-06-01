@@ -32,7 +32,7 @@ export function OutingCard({ outing, type }: OutingCardProps) {
       <Link to={`/teacher/${type}/${outing.id}${search}`}>
         <div
           className={
-            pathname.startsWith(`/teacher/outing/${outing.id}`)
+            pathname.startsWith(`/teacher/outing/${outing.id}`) || pathname.startsWith(`/teacher/history/${outing.id}`)
               ? 'relative flex w-full items-center justify-between bg-gray-100 p-4'
               : 'relative flex w-full cursor-pointer items-center justify-between p-4'
           }

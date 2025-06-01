@@ -87,7 +87,7 @@ export function AbsentCard({ absent, submitAbsent, submitNiceAbsent, page, limit
   return (
     <div
       className={
-        pathname.startsWith(`/teacher/absent/${absent.id}`)
+        pathname.startsWith(`/teacher/absent/${absent.id}`) || pathname.startsWith(`/teacher/history/${absent.id}`)
           ? 'w-full bg-gray-100 py-4'
           : 'w-full cursor-pointer border-b border-gray-100 py-4'
       }

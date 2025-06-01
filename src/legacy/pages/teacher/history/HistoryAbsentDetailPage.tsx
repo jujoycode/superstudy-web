@@ -1,15 +1,18 @@
-import { t } from 'i18next'
 import { useRef, useState } from 'react'
+import { t } from 'i18next'
 import { Document, Page } from 'react-pdf'
 import { useParams } from 'react-router'
 
 import { useUserStore } from '@/stores/user'
+import { Button } from '@/atoms/Button'
+import { Flex } from '@/atoms/Flex'
+import { IconButton } from '@/molecules/IconButton'
+import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'
 import { SuperModal } from '@/legacy/components'
 import { AbsentPaper } from '@/legacy/components/absent/AbsentPaper'
 import { ParentConfirmPaper } from '@/legacy/components/absent/ParentConfirmPaper'
 import { TeacherConfirmPaper } from '@/legacy/components/absent/TeacherConfirmPaper'
-import { BackButton, Blank, Section, Textarea, TopNavbar } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
+import { BackButton, Blank, TopNavbar } from '@/legacy/components/common'
 import { Constants } from '@/legacy/constants'
 import { useTeacherAbsentDeatil } from '@/legacy/container/teacher-absent-detail'
 import { AbsentStatus } from '@/legacy/generated/model'
@@ -102,10 +105,8 @@ export function HistoryAbsentDetailPage({ setAbsentId, userId }: HistoryAbsentDe
   return (
     <>
       {isLoading && <Blank reversed />}
-      <div className="block md:hidden">
-        <TopNavbar title="상세보기" left={<BackButton />} />
-      </div>
-      <div className="relative rounded-lg border bg-white md:py-5">
+      <ResponsiveRenderer mobile={<TopNavbar title="상세보기" left={<BackButton />} />} />
+      <div className="relative rounded-lg bg-white md:m-6">
         {/* Desktop V */}
         <div className="h-screen-10 md:h-screen-6 relative w-auto overflow-scroll md:mb-0">
           {absent?.updateReason && (
@@ -250,56 +251,42 @@ export function HistoryAbsentDetailPage({ setAbsentId, userId }: HistoryAbsentDe
           </div>
         </div>
         <div className="fixed bottom-16 w-full bg-gray-50 md:absolute md:bottom-0">
-          <div className="bottom-0 -ml-1 block md:sticky md:ml-0" style={{ width: 'inherit', maxWidth: 'inherit' }}>
-            <div className="mt-3 grid auto-cols-fr grid-flow-col gap-2">
-              <Button.xl
-                children="다운로드"
-                disabled={clicked || checkButtonDisable(approveButtonType.DOWNLOAD)}
-                onClick={async () => {
-                  if (ref?.current) {
-                    setDownload(true)
-                  }
-                }}
-                className="filled-green max-md:hidden"
-              />
-              {/* <Button.xl
-                children={absent?.absentStatus === AbsentStatus.DELETE_APPEAL ? '삭제대기' : '삭제요청'}
-                disabled={checkButtonDisable(approveButtonType.DELETE)}
-                onClick={() => setDeleteAppeal(true)}
-                className="filled-red"
-              />
-              <Button.xl
-                children={absent?.absentStatus === AbsentStatus.RETURNED ? '반려됨' : '반려'}
-                disabled={checkButtonDisable(approveButtonType.RETURN)}
-                onClick={() => setDeny(true)}
-                className="filled-blue"
-              />
-              <Button.xl
-                children={isApproved ? '승인 후 수정' : '수정'}
-                disabled={checkButtonDisable(approveButtonType.EDIT)}
-                onClick={() => setChangeMode(true)}
-                className="filled-yellow"
-              />
-              <Button.xl
-                children={nowApprove ? '승인' : isApproved ? '승인 완료' : '승인 대기'}
-                disabled={checkButtonDisable(approveButtonType.APPROVE)}
-                onClick={() => {
-                  setOpen(true);
-                  setAgreeAll(false);
-                }}
-                className="filled-primary"
-              /> */}
-            </div>
-          </div>
+          <Flex direction="row" items="center" justify="between" className="pt-8 pb-0">
+            <IconButton
+              position="front"
+              iconName="ssDownload"
+              color="tertiary"
+              onClick={async () => {
+                if (ref?.current) {
+                  setDownload(true)
+                }
+              }}
+              className="min-w-[80px]"
+            >
+              다운로드
+            </IconButton>
+          </Flex>
         </div>
         <SuperModal modalOpen={download} setModalClose={() => setDownload(false)} className="w-max">
           <div className="px-12 py-6">
             <div className="mb-6 w-full text-center text-lg font-bold text-gray-900">
               {`${t(`Custom.SID${absent?.schoolId}.absentTitle`, '결석신고서')}를 다운로드 하시겠습니까?`}
             </div>
-            <div className="flex space-x-2">
-              <Button.lg
+            <Flex direction="row" items="center" justify="between" className="gap-2">
+              <Button
+                children="취소"
+                onClick={async () => {
+                  setClicked(false)
+                  setDownload(false)
+                }}
+                color="tertiary"
+                className="flex-1"
+              />
+              <Button
                 children="다운로드"
+                color="primary"
+                variant="solid"
+                className="flex-1"
                 disabled={clicked}
                 onClick={async () => {
                   setClicked(true)
@@ -378,20 +365,11 @@ export function HistoryAbsentDetailPage({ setAbsentId, userId }: HistoryAbsentDe
                   setClicked(false)
                   setDownload(false)
                 }}
-                className="filled-green w-full"
               />
-              <Button.lg
-                children="취소"
-                onClick={async () => {
-                  setClicked(false)
-                  setDownload(false)
-                }}
-                className="filled-gray w-full"
-              />
-            </div>
+            </Flex>
           </div>
         </SuperModal>
-        <SuperModal modalOpen={deny} setModalClose={() => setDeny(false)} className="w-max">
+        {/* <SuperModal modalOpen={deny} setModalClose={() => setDeny(false)} className="w-max">
           <Section className="mt-7">
             <div className="mb-6 w-full text-center text-lg font-bold text-gray-900">
               {`이 학생의 ${t(`Custom.SID${absent?.schoolId}.absentTitle`, '결석신고서')}를 반려하시겠습니까?`}
@@ -423,7 +401,7 @@ export function HistoryAbsentDetailPage({ setAbsentId, userId }: HistoryAbsentDe
               className="filled-red"
             />
           </Section>
-        </SuperModal>
+        </SuperModal> */}
       </div>
     </>
   )

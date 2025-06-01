@@ -2,9 +2,14 @@ import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
+import { Box } from '@/atoms/Box'
+import { Button } from '@/atoms/Button'
+import { Flex } from '@/atoms/Flex'
+import { Tabs, TabsList, TabsTrigger } from '@/atoms/Tabs'
+import { Text } from '@/atoms/Text'
+import { IconButton } from '@/molecules/IconButton'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Blank, Section, Textarea } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { FieldtripPaper } from '@/legacy/components/fieldtrip/FieldtripPaper'
 import { FieldtripSeparatePaper } from '@/legacy/components/fieldtrip/FieldtripSeparatePaper'
 import { useTeacherFieldtripDetail } from '@/legacy/container/teacher-fieldtrip-detail'
@@ -103,27 +108,23 @@ export function HistoryFieldtripDetailPage({
   }
 
   return (
-    <div className="h-screen-10 md:h-screen-10 bg-white py-5 md:rounded-lg md:border">
+    <div className="h-screen-10 md:h-screen-3 m-6 bg-white py-5 md:rounded-lg md:border">
       {loading && <Blank reversed />}
       {isLoading && <Blank reversed />}
       {errorMessage && <ErrorBlank text={errorMessage} />}
 
-      <div className="relative h-full w-auto overflow-scroll">
-        <div className="flex w-full items-center justify-start space-x-2 px-5">
-          <div className="text-primary-800 cursor-pointer underline">신청서</div>
-          <div
-            className="text-primary-800 cursor-pointer underline"
-            onClick={() => fieldtrip && push(`/teacher/fieldtrip/notice/${fieldtrip.id}`)}
-          >
-            통보서
-          </div>
-          <div
-            className="text-primary-800 cursor-pointer underline"
-            onClick={() => fieldtrip && push(`/teacher/fieldtrip/result/${fieldtrip.id}`)}
-          >
-            결과보고서
-          </div>
-        </div>
+      <div className="h-screen-8 relative w-full overflow-y-scroll">
+        <Tabs defaultValue="tab1" className="w-full px-3 pb-2">
+          <TabsList className="w-full">
+            <TabsTrigger value="tab1">신청서</TabsTrigger>
+            <TabsTrigger value="tab2" onClick={() => fieldtrip && push(`/teacher/fieldtrip/notice/${fieldtrip.id}`)}>
+              통보서
+            </TabsTrigger>
+            <TabsTrigger value="tab3" onClick={() => fieldtrip && push(`/teacher/fieldtrip/result/${fieldtrip.id}`)}>
+              결과보고서
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
 
         {fieldtrip?.fieldtripStatus === 'RETURNED' && fieldtrip?.notApprovedReason && fieldtrip?.updatedAt && (
           <div className="bg-primary-100 mx-5 flex items-center justify-between rounded-lg px-5 py-2">
@@ -142,16 +143,34 @@ export function HistoryFieldtripDetailPage({
           </div>
         )}
 
-        <div className="mx-5 mt-2">
-          ※ 연간 {me?.school?.fieldtripDays} 일 중, 금회 {fieldtrip?.usedDays} 일, 누적{' '}
-          {me?.school?.fieldtripDays &&
-            fieldtrip?.currentRemainDays &&
-            fieldtrip?.usedDays &&
-            me?.school.fieldtripDays - fieldtrip.currentRemainDays + fieldtrip.usedDays}{' '}
-          일 사용하여 잔여{' '}
-          {fieldtrip?.currentRemainDays && fieldtrip?.usedDays && fieldtrip?.currentRemainDays - fieldtrip?.usedDays} 일
-          남았습니다.
-        </div>
+        <Box className="px-3">
+          <Flex direction="row" items="center" justify="between" className="gap-2 rounded-lg bg-gray-50 px-4 py-2">
+            <Text variant="default" size="sm" weight="sm" className="line-clamp-2 flex-1">
+              연간 {me?.school?.fieldtripDays} 일 중,{' '}
+              <Text as="span" variant="primary" size="sm" weight="sm">
+                금회 {fieldtrip?.usedDays}일
+              </Text>
+              ,
+              <Text as="span" variant="primary" size="sm" weight="sm">
+                누적{' '}
+                {me?.school?.fieldtripDays &&
+                  fieldtrip?.currentRemainDays &&
+                  fieldtrip?.usedDays !== undefined &&
+                  me.school.fieldtripDays - fieldtrip.currentRemainDays + fieldtrip.usedDays}
+                일
+              </Text>{' '}
+              사용하여{' '}
+              <Text as="span" variant="primary" size="sm" weight="sm">
+                잔여{' '}
+                {fieldtrip?.currentRemainDays &&
+                  fieldtrip?.usedDays !== undefined &&
+                  fieldtrip?.currentRemainDays - fieldtrip?.usedDays}
+                일
+              </Text>{' '}
+              남았습니다.
+            </Text>
+          </Flex>
+        </Box>
         {fieldtrip?.type === 'HOME' && fieldtrip?.usedDays > 1 && homeplans?.length === 0 && (
           <div className="mx-5 mt-2 text-red-500">※ 전 일정 동일한 계획으로 가정학습을 신청합니다.</div>
         )}
@@ -176,63 +195,48 @@ export function HistoryFieldtripDetailPage({
           </>
         )}
       </div>
-      <div className="grid grid-cols-4 gap-2 pt-3 md:grid-cols-1 md:pt-8">
-        <Button.xl
-          children="다운로드"
+      <Flex direction="row" items="center" justify="between" className="gap-2 px-3 pt-3">
+        <IconButton
+          position="front"
+          iconName="Download"
+          color="tertiary"
+          variant="solid"
+          stroke
+          strokeWidth={2}
           disabled={clicked || checkButtonDisable(approveButtonType.DOWNLOAD)}
           onClick={async () => {
             if (ref?.current) {
               setDownload(true)
             }
           }}
-          className="filled-green max-md:hidden"
-        />
-        {/* <Button.xl
-          children={fieldtrip?.fieldtripStatus === 'DELETE_APPEAL' ? '삭제대기' : '삭제요청'}
-          disabled={checkButtonDisable(approveButtonType.DELETE)}
-          onClick={() => setDeleteAppeal(true)}
-          className="filled-red"
-        />
-        <Button.xl
-          children={fieldtrip?.fieldtripStatus === 'RETURNED' ? '반려됨' : '반려'}
-          disabled={checkButtonDisable(approveButtonType.RETURN)}
-          onClick={() => setDeny(true)}
-          className="filled-blue"
-        />
-        <Button.xl
-          children={isApproved ? '승인 후 수정' : '수정'}
-          disabled={checkButtonDisable(approveButtonType.EDIT)}
-          onClick={() => setReadState(false)}
-          className="filled-yellow"
-        />
-        <Button.xl
-          children={nowApprove ? '승인' : isApproved ? '승인 완료' : '승인 대기'}
-          disabled={checkButtonDisable(approveButtonType.APPROVE)}
-          onClick={() => {
-            if (
-              (fieldtrip?.startPeriodS &&
-                fieldtrip?.endPeriodE &&
-                (fieldtrip?.startPeriodS > 0 || fieldtrip?.endPeriodE > 0)) ||
-              (fieldtrip?.usedDays && fieldtrip?.usedDays < 1)
-            ) {
-              setConfirmHalfSubmit(true);
-            } else {
-              setOpen(true);
-              setAgreeAll(false);
-            }
-          }}
-          className="filled-primary"
-        /> */}
-      </div>
+        >
+          <Text variant="default" size="sm" weight="sm">
+            다운로드
+          </Text>
+        </IconButton>
+      </Flex>
       <SuperModal modalOpen={download} setModalClose={() => setDownload(false)} className="w-max">
         <div className="px-12 py-6">
           <div className="mb-6 w-full text-center text-lg font-bold text-gray-900">
             체험학습 신청서를 다운로드 하시겠습니까?
           </div>
-          <div className="flex space-x-2">
-            <Button.lg
+          <Flex direction="row" items="center" justify="end" className="gap-2">
+            <Button
+              children="취소"
+              onClick={async () => {
+                setClicked(false)
+                setDownload(false)
+              }}
+              color="tertiary"
+              variant="solid"
+              className="flex-1"
+            />
+            <Button
               children="다운로드"
               disabled={clicked}
+              color="primary"
+              variant="solid"
+              className="flex-1"
               onClick={async () => {
                 setClicked(true)
                 if (ref?.current) {
@@ -260,20 +264,11 @@ export function HistoryFieldtripDetailPage({
                 setClicked(false)
                 setDownload(false)
               }}
-              className="filled-green w-full"
             />
-            <Button.lg
-              children="취소"
-              onClick={async () => {
-                setClicked(false)
-                setDownload(false)
-              }}
-              className="filled-gray w-full"
-            />
-          </div>
+          </Flex>
         </div>
       </SuperModal>
-      <SuperModal modalOpen={deny} setModalClose={() => setDeny(false)} className="w-max">
+      {/* <SuperModal modalOpen={deny} setModalClose={() => setDeny(false)} className="w-max">
         <Section className="mt-7">
           <div className="mb-6 w-full text-center text-lg font-bold text-gray-900">
             이 학생의 체험학습 신청서를 반려하시겠습니까?
@@ -350,7 +345,7 @@ export function HistoryFieldtripDetailPage({
             className="filled-gray"
           />
         </Section>
-      </SuperModal>
+      </SuperModal> */}
     </div>
   )
 }
