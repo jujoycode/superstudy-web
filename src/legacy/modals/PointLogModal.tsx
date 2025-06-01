@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next'
-
 import { Label } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
 import { Time } from '@/legacy/components/common/Time'
@@ -12,14 +11,13 @@ import {
 } from '@/legacy/generated/endpoint'
 import { numberWithSign } from '@/legacy/util/string'
 
-import { useModals } from './ModalStack'
-
 export interface PointLogModalProps {
   pointLogId: number
+  modalOpen: boolean
+  setModalClose: () => void
 }
 
-export function PointLogModal({ pointLogId }: PointLogModalProps) {
-  const { popModal } = useModals()
+export function PointLogModal({ pointLogId, modalOpen, setModalClose }: PointLogModalProps) {
   const { t } = useTranslation()
   const { t: tm } = useTranslation('modal', { keyPrefix: 'point_log_modal' })
   const { data: me } = useUserMe()
@@ -39,13 +37,13 @@ export function PointLogModal({ pointLogId }: PointLogModalProps) {
   async function deletePointLog() {
     if (!confirm(`기록을 삭제할까요?`)) return
     await teacherPointLogDelete(pointLogId)
-    popModal()
+    setModalClose()
   }
 
   return (
     <SuperModal
-      modalOpen
-      setModalClose={popModal}
+      modalOpen={modalOpen}
+      setModalClose={setModalClose}
       className="max-md:h-screen-3.5 md:max-h-screen-48 flex w-96 flex-col gap-4 px-4 py-20 max-md:w-full max-md:self-start max-md:rounded-none"
     >
       <h2 className="text-18">{tm('point_log')}</h2>

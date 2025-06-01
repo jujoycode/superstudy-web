@@ -1,18 +1,20 @@
-import { format } from 'date-fns'
 import { useEffect, useMemo, useState } from 'react'
+import { format } from 'date-fns'
 import { useTranslation } from 'react-i18next'
-
-import { BackButton, Select, TopNavbar } from '@/legacy/components/common'
+import { Flex } from '@/atoms/Flex'
+import { Grid } from '@/atoms/Grid'
+import { GridItem } from '@/atoms/GridItem'
+import { IconButton } from '@/molecules/IconButton'
+import { SearchInput } from '@/molecules/SearchInput'
+import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'
+import { PageHeaderTemplate } from '@/templates/PageHeaderTemplate'
+import { BackButton, TopNavbar } from '@/legacy/components/common'
 import { Admin } from '@/legacy/components/common/Admin'
-import { Button } from '@/legacy/components/common/Button'
-import { TextInput } from '@/legacy/components/common/TextInput'
 import { Time } from '@/legacy/components/common/Time'
-import SVGIcon from '@/legacy/components/icon/SVGIcon'
 import { GroupContainer } from '@/legacy/container/group'
 import { teacherPointLogGet, useStudentGroupsFindByGroupId, useTeacherPointLogGet } from '@/legacy/generated/endpoint'
 import { PointLog, User } from '@/legacy/generated/model'
 import { AssignPointModal } from '@/legacy/modals/AssignPointModal'
-import { useModals } from '@/legacy/modals/ModalStack'
 import { PointLogModal } from '@/legacy/modals/PointLogModal'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { numberWithSign, roundToFirstDecimal } from '@/legacy/util/string'
@@ -20,10 +22,11 @@ import { getThisYear } from '@/legacy/util/time'
 
 export function PointDashboard() {
   const { t: tt } = useTranslation('teacher', { keyPrefix: 'point_dashboard' })
-  const { pushModal } = useModals()
-  const [groupId, setGroupId] = useState(0)
   const [q, setQ] = useState('')
-
+  const [groupId, setGroupId] = useState(0)
+  const [openAssignPointModal, setOpenAssignPointModal] = useState(false)
+  const [pointLogId, setPointLogId] = useState(0)
+  const [openPointLogModal, setOpenPointLogModal] = useState(false)
   const { allKlassGroupsUnique } = GroupContainer.useContext()
 
   const { data: studentGroups } = useStudentGroupsFindByGroupId(groupId)
@@ -70,9 +73,9 @@ export function PointDashboard() {
   }, [q, pointLogs])
 
   useEffect(() => {
-    if (groupId || allKlassGroupsUnique.length === 0) return
+    if (groupId > 0 || allKlassGroupsUnique.length === 0) return
     setGroupId(allKlassGroupsUnique[0].id)
-  }, [allKlassGroupsUnique])
+  }, [allKlassGroupsUnique, groupId])
 
   async function downloadAsExcel() {
     const { items } = await teacherPointLogGet({
@@ -104,119 +107,140 @@ export function PointDashboard() {
 
   return (
     <>
-      <TopNavbar title={tt('title')} left={<BackButton />} className="md:hidden" />
-      <div className="scroll-box col-span-6 flex flex-col gap-4 overflow-y-auto px-3 py-2 md:px-6 md:py-4">
-        <div className="max-md:hidden">
-          <h1 className="text-2xl font-semibold">{tt('title')}</h1>
-        </div>
+      <ResponsiveRenderer
+        mobile={
+          <TopNavbar title={tt('title')} left={<BackButton />}>
+            <h1 className="text-2xl font-semibold">{tt('title')}</h1>
+          </TopNavbar>
+        }
+      />
 
-        <div className="flex items-center justify-between">
-          <Select value={groupId} onChange={(e) => setGroupId(Number(e.target.value))} className="max-w-[200px]">
-            {allKlassGroupsUnique.map((k) => (
-              <option key={k.id} value={k.id}>
-                {k.name}
-              </option>
-            ))}
-          </Select>
-          <Button
-            children={tt('assign_points')}
-            onClick={() => pushModal(<AssignPointModal groupId={groupId} />)}
-            className="outlined-gray"
-          />
-        </div>
+      <Flex direction="col" items="center" justify="center" className="h-full">
+        <PageHeaderTemplate
+          title={tt('title')}
+          config={{
+            topBtn: {
+              label: tt('assign_points'),
+              color: 'primary',
+              variant: 'solid',
+              action: () => setOpenAssignPointModal(true),
+            },
+            filters: [
+              {
+                items: allKlassGroupsUnique.map((k) => ({
+                  label: k.name,
+                  value: String(k.id),
+                })),
+                filterState: {
+                  value: groupId > 0 ? String(groupId) : '',
+                  setValue: (v) => setGroupId(Number(v)),
+                },
+              },
+            ],
+          }}
+        />
 
-        <div className="scroll-box flex flex-col gap-8 overflow-y-auto pb-20 md:flex-row">
-          <div className="flex flex-1 flex-col gap-4">
-            <div className="grid grid-cols-3 gap-4">
-              <div>
-                <p>{tt('total_merits')}</p>
-                <p>{students.reduce((acc, s) => acc + s.merits, 0)}</p>
+        <Grid col={12} className="pr-8">
+          <GridItem colSpan={6} className="w-full">
+            <div className="flex flex-1 flex-col gap-4 p-8">
+              <div className="grid grid-cols-3 gap-4">
+                <div>
+                  <p>{tt('total_merits')}</p>
+                  <p>{students.reduce((acc, s) => acc + s.merits, 0)}</p>
+                </div>
+                <div>
+                  <p>{tt('total_demerits')}</p>
+                  <p>{students.reduce((acc, s) => acc + s.demerits, 0)}</p>
+                </div>
+                <div>
+                  <p>{tt('average')}</p>
+                  <p>
+                    {roundToFirstDecimal(
+                      students.reduce((acc, s) => acc + s.merits + s.demerits, 0) / (studentGroups?.length || 1),
+                    )}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p>{tt('total_demerits')}</p>
-                <p>{students.reduce((acc, s) => acc + s.demerits, 0)}</p>
-              </div>
-              <div>
-                <p>{tt('average')}</p>
-                <p>
-                  {roundToFirstDecimal(
-                    students.reduce((acc, s) => acc + s.merits + s.demerits, 0) / (studentGroups?.length || 1),
+
+              <div></div>
+
+              <Admin.H2>{tt('top_merit_scorers')}</Admin.H2>
+
+              <Admin.Table>
+                <Admin.TableHead>
+                  <Admin.TableRow>
+                    <Admin.TableHCell children={tt('student_name')} />
+                    <Admin.TableHCell children={tt('student_merits')} className="text-end" />
+                    <Admin.TableHCell children={tt('student_demerits')} className="text-end" />
+                    <Admin.TableHCell children={tt('student_total')} className="text-end" />
+                  </Admin.TableRow>
+                </Admin.TableHead>
+                <Admin.TableBody>
+                  {topMeritScorers.map((student) => (
+                    <Admin.TableRow key={student.id}>
+                      <Admin.TableCell children={student.name} />
+                      <Admin.TableCell children={numberWithSign(student.merits)} className="text-end" />
+                      <Admin.TableCell children={numberWithSign(student.demerits)} className="text-end" />
+                      <Admin.TableCell
+                        children={numberWithSign(student.merits + student.demerits)}
+                        className="text-end"
+                      />
+                    </Admin.TableRow>
+                  ))}
+                  {topMeritScorers.length === 0 && (
+                    <Admin.TableRow>
+                      <Admin.TableCell
+                        colSpan={4}
+                        children={tt('no_items_found')}
+                        className="text-15 py-8 text-center"
+                      />
+                    </Admin.TableRow>
                   )}
-                </p>
-              </div>
+                </Admin.TableBody>
+              </Admin.Table>
+
+              <div></div>
+
+              <Admin.H2>{tt('top_demerit_receivers')}</Admin.H2>
+
+              <Admin.Table>
+                <Admin.TableHead>
+                  <Admin.TableRow>
+                    <Admin.TableHCell children={tt('student_name')} />
+                    <Admin.TableHCell children={tt('student_merits')} className="text-end" />
+                    <Admin.TableHCell children={tt('student_demerits')} className="text-end" />
+                    <Admin.TableHCell children={tt('student_total')} className="text-end" />
+                  </Admin.TableRow>
+                </Admin.TableHead>
+                <Admin.TableBody>
+                  {topDemeritReceivers.map((student) => (
+                    <Admin.TableRow key={student.id}>
+                      <Admin.TableCell children={student.name} />
+                      <Admin.TableCell children={numberWithSign(student.merits)} className="text-end" />
+                      <Admin.TableCell children={numberWithSign(student.demerits)} className="text-end" />
+                      <Admin.TableCell
+                        children={numberWithSign(student.merits + student.demerits)}
+                        className="text-end"
+                      />
+                    </Admin.TableRow>
+                  ))}
+                  {topDemeritReceivers.length === 0 && (
+                    <Admin.TableRow>
+                      <Admin.TableCell
+                        colSpan={4}
+                        children={tt('no_items_found')}
+                        className="text-15 py-8 text-center"
+                      />
+                    </Admin.TableRow>
+                  )}
+                </Admin.TableBody>
+              </Admin.Table>
             </div>
-
-            <div></div>
-
-            <Admin.H2>{tt('top_merit_scorers')}</Admin.H2>
-
-            <Admin.Table>
-              <Admin.TableHead>
-                <Admin.TableRow>
-                  <Admin.TableHCell children={tt('student_name')} />
-                  <Admin.TableHCell children={tt('student_merits')} className="text-end" />
-                  <Admin.TableHCell children={tt('student_demerits')} className="text-end" />
-                  <Admin.TableHCell children={tt('student_total')} className="text-end" />
-                </Admin.TableRow>
-              </Admin.TableHead>
-              <Admin.TableBody>
-                {topMeritScorers.map((student) => (
-                  <Admin.TableRow key={student.id}>
-                    <Admin.TableCell children={student.name} />
-                    <Admin.TableCell children={numberWithSign(student.merits)} className="text-end" />
-                    <Admin.TableCell children={numberWithSign(student.demerits)} className="text-end" />
-                    <Admin.TableCell
-                      children={numberWithSign(student.merits + student.demerits)}
-                      className="text-end"
-                    />
-                  </Admin.TableRow>
-                ))}
-                {topMeritScorers.length === 0 && (
-                  <Admin.TableRow>
-                    <Admin.TableCell colSpan={4} children={tt('no_items_found')} className="text-15 py-8 text-center" />
-                  </Admin.TableRow>
-                )}
-              </Admin.TableBody>
-            </Admin.Table>
-
-            <div></div>
-
-            <Admin.H2>{tt('top_demerit_receivers')}</Admin.H2>
-
-            <Admin.Table>
-              <Admin.TableHead>
-                <Admin.TableRow>
-                  <Admin.TableHCell children={tt('student_name')} />
-                  <Admin.TableHCell children={tt('student_merits')} className="text-end" />
-                  <Admin.TableHCell children={tt('student_demerits')} className="text-end" />
-                  <Admin.TableHCell children={tt('student_total')} className="text-end" />
-                </Admin.TableRow>
-              </Admin.TableHead>
-              <Admin.TableBody>
-                {topDemeritReceivers.map((student) => (
-                  <Admin.TableRow key={student.id}>
-                    <Admin.TableCell children={student.name} />
-                    <Admin.TableCell children={numberWithSign(student.merits)} className="text-end" />
-                    <Admin.TableCell children={numberWithSign(student.demerits)} className="text-end" />
-                    <Admin.TableCell
-                      children={numberWithSign(student.merits + student.demerits)}
-                      className="text-end"
-                    />
-                  </Admin.TableRow>
-                ))}
-                {topDemeritReceivers.length === 0 && (
-                  <Admin.TableRow>
-                    <Admin.TableCell colSpan={4} children={tt('no_items_found')} className="text-15 py-8 text-center" />
-                  </Admin.TableRow>
-                )}
-              </Admin.TableBody>
-            </Admin.Table>
-          </div>
-
-          <div className="flex flex-1 flex-col gap-4">
+          </GridItem>
+          <GridItem colSpan={6} className="w-full">
             <Admin.H2>{tt('student_points_overview')}</Admin.H2>
 
-            <Admin.Table>
+            <Admin.Table className="w-full">
               <Admin.TableHead>
                 <Admin.TableRow>
                   <Admin.TableHCell children={tt('student_name')} />
@@ -245,24 +269,20 @@ export function PointDashboard() {
               </Admin.TableBody>
             </Admin.Table>
 
-            <div></div>
-
-            <div className="flex items-center justify-between gap-2">
+            <div className="mt-6 flex w-full items-center justify-between gap-2">
               <Admin.H2>{tt('recent_logs')}</Admin.H2>
-              <Button.sm children={tt('download_excel')} onClick={downloadAsExcel} className="outlined-gray" />
             </div>
 
-            <div className="relative">
-              <TextInput
-                placeholder="이름"
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                className="h-8 w-40 pr-2 pl-7"
-              />
-              <SVGIcon.Search className="absolute top-2 left-2" />
-            </div>
+            <Flex direction="row" justify="between" items="center" gap="2" className="my-4">
+              <Flex width="fit-content">
+                <SearchInput placeholder="이름" value={q} onChange={(e) => setQ(e.target.value)} className="h-9" />
+              </Flex>
+              <IconButton size="sm" color="tertiary" position="front" iconName="ssDownload" onClick={downloadAsExcel}>
+                {tt('download_excel')}
+              </IconButton>
+            </Flex>
 
-            <Admin.Table>
+            <Admin.Table className="w-full">
               <Admin.TableHead>
                 <Admin.TableRow>
                   <Admin.TableHCell children={tt('point_log_created_at')} />
@@ -276,7 +296,10 @@ export function PointDashboard() {
                 {filteredLogs.map((pointLog) => (
                   <Admin.TableRow
                     key={pointLog.id}
-                    onClick={() => pushModal(<PointLogModal pointLogId={pointLog.id} />)}
+                    onClick={() => {
+                      setPointLogId(pointLog.id)
+                      setOpenPointLogModal(true)
+                    }}
                   >
                     <Admin.TableCell>
                       <Time date={pointLog.createdAt} format="MM.dd" />
@@ -294,9 +317,20 @@ export function PointDashboard() {
                 )}
               </Admin.TableBody>
             </Admin.Table>
-          </div>
-        </div>
-      </div>
+          </GridItem>
+        </Grid>
+      </Flex>
+
+      <AssignPointModal
+        groupId={groupId}
+        modalOpen={openAssignPointModal}
+        setModalClose={() => setOpenAssignPointModal(false)}
+      />
+      <PointLogModal
+        pointLogId={pointLogId}
+        modalOpen={openPointLogModal}
+        setModalClose={() => setOpenPointLogModal(false)}
+      />
     </>
   )
 }

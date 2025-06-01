@@ -1,3 +1,4 @@
+import { cn } from '@/utils/commonUtil'
 import { Flex } from '@/atoms/Flex'
 import { Icon } from '@/atoms/Icon'
 import { Input } from '@/atoms/Input'
@@ -7,9 +8,10 @@ type SearchInputProps = {
   placeholder?: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  className?: string
 }
 
-export function SearchInput({ placeholder, value, onChange, onKeyDown }: SearchInputProps) {
+export function SearchInput({ placeholder, value, onChange, onKeyDown, className }: SearchInputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e)
   }
@@ -24,7 +26,10 @@ export function SearchInput({ placeholder, value, onChange, onKeyDown }: SearchI
     <Flex
       items="center"
       justify="start"
-      className="focus-within:ring-primary-800 relative flex w-full items-center rounded-lg border border-gray-200 focus-within:ring-1"
+      className={cn(
+        'focus-within:ring-primary-800 relative flex w-full items-center rounded-lg border border-gray-200 focus-within:ring-1',
+        className,
+      )}
     >
       <Icon
         name="ssSearch"

@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { Admin } from '@/legacy/components/common/Admin'
@@ -6,13 +6,14 @@ import { Button } from '@/legacy/components/common/Button'
 import { Time } from '@/legacy/components/common/Time'
 import { useTeacherPointLogGet } from '@/legacy/generated/endpoint'
 import { AssignPointModal } from '@/legacy/modals/AssignPointModal'
-import { useModals } from '@/legacy/modals/ModalStack'
 import { PointLogModal } from '@/legacy/modals/PointLogModal'
 import { numberWithSign } from '@/legacy/util/string'
 
 export function PointLogsPage() {
-  const { pushModal } = useModals()
   const { t: tt } = useTranslation('teacher', { keyPrefix: 'pointlogs_page' })
+  const [openAssignPointModal, setOpenAssignPointModal] = useState(false)
+  const [pointLogId, setPointLogId] = useState(0)
+  const [openPointLogModal, setOpenPointLogModal] = useState(false)
   const { id } = useParams<{ id: string }>()
   const studentId = Number(id)
 
@@ -28,7 +29,7 @@ export function PointLogsPage() {
       <div className="flex items-end justify-between">
         <Button
           children={tt('assign_points')}
-          onClick={() => pushModal(<AssignPointModal studentId={studentId} />)}
+          onClick={() => setOpenAssignPointModal(true)}
           className="outlined-gray"
         />
         <div className="flex gap-3 font-light">
@@ -55,7 +56,13 @@ export function PointLogsPage() {
         </Admin.TableHead>
         <Admin.TableBody>
           {pointLogs?.items.map((pointLog) => (
-            <Admin.TableRow key={pointLog.id} onClick={() => pushModal(<PointLogModal pointLogId={pointLog.id} />)}>
+            <Admin.TableRow
+              key={pointLog.id}
+              onClick={() => {
+                setPointLogId(pointLog.id)
+                setOpenPointLogModal(true)
+              }}
+            >
               <Admin.TableCell>
                 <Time date={pointLog.createdAt} format="MM.dd" />
               </Admin.TableCell>
@@ -71,6 +78,18 @@ export function PointLogsPage() {
           )}
         </Admin.TableBody>
       </Admin.Table>
+
+      <AssignPointModal
+        studentId={studentId}
+        modalOpen={openAssignPointModal}
+        setModalClose={() => setOpenAssignPointModal(false)}
+      />
+
+      <PointLogModal
+        pointLogId={pointLogId}
+        modalOpen={openPointLogModal}
+        setModalClose={() => setOpenPointLogModal(false)}
+      />
     </div>
   )
 }

@@ -19,17 +19,22 @@ import { form } from '@/legacy/lib/form'
 import { cn } from '@/legacy/lib/tailwind-merge'
 import { getNickName } from '@/legacy/util/status'
 import { numberWithSign } from '@/legacy/util/string'
-import { useModals } from './ModalStack'
 
 export interface AssignPointModalProps {
+  modalOpen: boolean
+  setModalClose: () => void
   studentId?: number
   groupId?: number
 }
 
-export function AssignPointModal({ studentId, groupId: defaultGroupId }: AssignPointModalProps) {
+export function AssignPointModal({
+  studentId,
+  groupId: defaultGroupId,
+  modalOpen,
+  setModalClose,
+}: AssignPointModalProps) {
   const { t } = useTranslation()
   const { t: tm } = useTranslation('modal', { keyPrefix: 'assign_point_modal' })
-  const { popModal } = useModals()
   const { setToast: setToastMsg } = useNotificationStore()
   const [groupId, setGroupId] = useState(defaultGroupId)
   const [studentIds, setStudentIds] = useState<number[]>(studentId ? [studentId] : [])
@@ -68,15 +73,15 @@ export function AssignPointModal({ studentId, groupId: defaultGroupId }: AssignP
     setToastMsg(
       `${pointLogs.length}명에게 부여되었습니다: ${pointLogs[0].title} (${numberWithSign(pointLogs[0].value)})`,
     )
-    popModal()
+    setModalClose()
   }
 
   const pointValue = watch('value') ?? 1
 
   return (
     <SuperModal
-      modalOpen
-      setModalClose={popModal}
+      modalOpen={modalOpen}
+      setModalClose={setModalClose}
       className="max-md:h-screen-3.5 md:max-h-screen-48 flex w-96 flex-col overflow-y-auto pt-16 max-md:w-full max-md:self-start max-md:rounded-none md:gap-8"
     >
       <div className="flex flex-1 flex-col gap-4 px-4">
@@ -163,7 +168,7 @@ export function AssignPointModal({ studentId, groupId: defaultGroupId }: AssignP
       </div>
 
       <div className="sticky bottom-0 flex gap-4 bg-white p-4">
-        <Button.lg children={t('cancel')} onClick={popModal} className="outlined-gray flex-1" />
+        <Button.lg children={t('cancel')} onClick={setModalClose} className="outlined-gray flex-1" />
         <Button.lg
           children={tm('assign')}
           onClick={handleSubmit(assign)}
