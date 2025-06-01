@@ -1,31 +1,25 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import Viewer from 'react-viewer'
-import { ReactComponent as ChatIcon } from '@/assets/svg/chat.svg'
-import { ReactComponent as ClockIcon } from '@/assets/svg/clock.svg'
-import { ReactComponent as Refresh } from '@/assets/svg/refresh.svg'
-import { useNotificationStore } from '@/stores/notification'
+// @ts-ignore
+import { useLanguage } from '@/hooks/useLanguage'
 import { useUserStore } from '@/stores/user'
+import { Flex } from '@/atoms/Flex'
+import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'
 import { ErrorBlank } from '@/legacy/components'
 import AnnouncementPopup from '@/legacy/components/announcement/Announcement'
+import { CanteenMobile } from '@/legacy/components/canteen/CanteenMobile'
 import { CanteenCalendar } from '@/legacy/components/CanteenCalendar'
-import { Blank, TopNavbar } from '@/legacy/components/common'
-import { Icon } from '@/legacy/components/common/icons'
-import { Dashboard } from '@/legacy/components/Dashboard'
-import { NotificationModal } from '@/legacy/components/notification/NotificationModal'
-import { Constants } from '@/legacy/constants'
+import { Blank } from '@/legacy/components/common'
+import { Typography } from '@/legacy/components/common/Typography'
 import { useTeacherCanteen } from '@/legacy/container/teacher-canteen'
 import { useNotificationLogFindRecent } from '@/legacy/generated/endpoint'
 import { CalendarIdEnum } from '@/legacy/generated/model'
-import { useLanguage } from '@/legacy/hooks/useLanguage'
+import { CanteenDetailPage } from '@/legacy/pages/teacher/canteen/CanteenDetailPage'
+import { CanteenSubmitPage } from '@/legacy/pages/teacher/canteen/CanteenSubmitPage'
 import { checkNewVersion } from '@/legacy/util/status'
-import { makeDateToString, makeMonthDayToString, makeMonthDayToStringEN } from '@/legacy/util/time'
-import { CanteenDetailPage } from './CanteenDetailPage'
-import { CanteenSubmitPage } from './CanteenSubmitPage'
+import { makeDateToString, makeMonthDayToStringEN, makeMonthDayWithDayOfWeekToString } from '@/legacy/util/time'
 
 export function CanteenPage() {
   const { me } = useUserStore()
-  const { newMsgCnt } = useNotificationStore()
   const { t } = useLanguage()
 
   checkNewVersion()
@@ -41,10 +35,7 @@ export function CanteenPage() {
   } = useTeacherCanteen()
   const { data: notificationLog } = useNotificationLogFindRecent()
 
-  const [modalOpen, setModalOpen] = useState(false)
-  const [readState, setReadState] = useState(true)
-  const [blankOpen, setBlankOpen] = useState(false)
-  const [isImageModalOpen, setImageModalOpen] = useState(false)
+  const [readState, setReadState] = useState(false)
 
   const conteenRef = useRef<HTMLImageElement | null>(null)
   useEffect(() => {
@@ -60,43 +51,19 @@ export function CanteenPage() {
   const hasConfirmedAll = !notificationLog
 
   return (
-    <>
-      {/* 팝업공지 출력 */}
+    <Flex direction="col" className="h-screen w-full bg-gray-50" gap="6">
       <AnnouncementPopup type="teacher" />
-      {/* Mobile V */}
-      <div className="relative block md:hidden">
-        {blankOpen && <Blank />}
-        <TopNavbar
-          title={modalOpen ? '알림' : '일정'}
-          left={
-            <div className="relative h-6 w-6">
-              {modalOpen ? (
-                <Icon.Back className="h-6 w-6 cursor-pointer" onClick={() => setModalOpen(!modalOpen)} />
-              ) : (
-                <Icon.Bell className="h-6 w-6 cursor-pointer" onClick={() => setModalOpen(!modalOpen)} />
-              )}
-              {!hasConfirmedAll && <div className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500" />}
-            </div>
-          }
-          right={
-            <div
-              onClick={() => {
-                setBlankOpen(true)
-                window?.location?.reload()
-              }}
-              className="text-primary-800 text-sm"
-            >
-              <Refresh />
-            </div>
-          }
-        />
-        {modalOpen && (
-          <div className="scroll-box h-screen-7 fixed inset-x-0 top-14 bottom-0 z-50 overflow-x-auto">
-            <NotificationModal />
-          </div>
-        )}
-        <Dashboard />
-        <div className="px-4 py-4">
+      {errorMessage && <ErrorBlank />}
+      <header className="w-full bg-white pt-14 pb-6">
+        <div className="mx-auto w-[1280px]">
+          <Typography variant="heading" className="font-bold">
+            급식표
+          </Typography>
+        </div>
+      </header>
+      <ResponsiveRenderer mobile={<CanteenMobile hasConfirmedAll={hasConfirmedAll} />} />
+      <Flex direction="row" className="mx-auto w-full max-w-[1280px]" gap="4">
+        <div className="scroll-box flex min-h-[680px] w-[848px] flex-col gap-6 rounded-xl bg-white p-6">
           <CanteenCalendar
             value={selectedDate}
             onChange={(value: any) => setSelectedDate(new Date(value))}
@@ -105,177 +72,68 @@ export function CanteenPage() {
               const dateStr = makeDateToString(date)
               const schedules = schedulesOrderByDay[dateStr]
               return (
-                <div className="absolute inset-x-0 flex justify-center space-x-0.5">
+                <div className="flex justify-center space-x-0.5">
                   {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_0) && (
-                    <div className="h-1 w-1 rounded-full bg-violet-500" />
+                    <div className="h-1 w-1 rounded-full bg-[#955FFF]" />
                   )}
                   {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_1) && (
-                    <div className="h-1 w-1 rounded-full bg-blue-500" />
+                    <div className="h-1 w-1 rounded-full bg-[#00A9FF]" />
                   )}
                   {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_2) && (
-                    <div className="h-1 w-1 rounded-full bg-lime-500" />
+                    <div className="h-1 w-1 rounded-full bg-[#8CD23C]" />
                   )}
                 </div>
               )
             }}
           />
-        </div>
-        <div className="h-0.5 w-full bg-gray-50" />
-        <div className="px-6 py-4">
-          {/* <div className="pb-3 text-sm text-gray-5">{makeMonthDayToString(selectedDate)}</div> */}
-          <div className="pb-3 text-sm text-gray-500">
-            {t('language') === 'ko' ? makeMonthDayToString(selectedDate) : makeMonthDayToStringEN(selectedDate)}
-          </div>
-          <div className="flex flex-col space-y-3">
-            {selectedSchedules?.map((schedule: any) => (
-              <div key={schedule.id} id={schedule.id} className="flex w-full items-center space-x-2">
-                <div
-                  className={`h-2 w-2 rounded-full ${
-                    schedule.calendarId === CalendarIdEnum.NUMBER_0
-                      ? 'bg-blue-500'
-                      : schedule.calendarId === CalendarIdEnum.NUMBER_2
-                        ? 'bg-lime-500'
-                        : 'bg-violet-500'
-                  }`}
-                />
-                <div className="font-bold">{schedule.title}</div>
+
+          <div className="flex flex-col gap-1 rounded-lg bg-gray-50 p-4">
+            <Typography variant="body3" className="text-gray-600">
+              {t('language') === 'ko'
+                ? makeMonthDayWithDayOfWeekToString(selectedDate)
+                : makeMonthDayToStringEN(selectedDate)}
+            </Typography>
+            {selectedSchedules && selectedSchedules?.length > 0 ? (
+              <div className="flex flex-col gap-0.5">
+                {selectedSchedules?.map((schedule) => (
+                  <div key={schedule.id} className="flex w-full items-center gap-1.5">
+                    <div
+                      className={`border-dim-8 h-3 w-3 rounded-[4px] border ${
+                        schedule.calendarId === CalendarIdEnum.NUMBER_1
+                          ? 'bg-[#00A9FF]'
+                          : schedule.calendarId === CalendarIdEnum.NUMBER_2
+                            ? 'bg-[#8CD23C]'
+                            : 'bg-[#955FFF]'
+                      }`}
+                    />
+                    <Typography variant="body3" className="font-medium">
+                      {schedule.title}
+                    </Typography>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-        {selectedCanteen?.image && (
-          <div onClick={() => setImageModalOpen(true)} ref={conteenRef}>
-            <div className="aspect-5/3 rounded-sm bg-gray-50">
-              <img
-                src={Constants.imageUrl + selectedCanteen.image}
-                alt=""
-                className="h-full w-full rounded-lg object-cover"
-              />
-            </div>
-
-            <div className="ml-4 text-sm text-gray-400">이미지를 클릭해서 크게 볼 수 있습니다.</div>
-          </div>
-        )}
-        <div className="absolute">
-          {selectedCanteen?.image && (
-            <Viewer
-              visible={isImageModalOpen}
-              rotatable
-              noImgDetails
-              scalable={false}
-              images={[{ src: Constants.imageUrl + selectedCanteen.image, alt: '' }]}
-              onClose={() => setImageModalOpen(false)}
-            />
-          )}
-        </div>
-        {selectedCanteen ? (
-          <div className="mb-20 flex space-x-2 px-4 py-4">
-            <div className="w-full flex-col space-y-2">
-              <div className="text-lg font-bold">{t('lunch')}</div>
-              <div className="whitespace-pre-line">{selectedCanteen?.lunch}</div>
-            </div>
-            <div className="w-full flex-col space-y-2">
-              {/* <div className="text-lg font-bold">석식</div> */}
-              <div className="text-lg font-bold">{selectedCanteen?.dinner ? t('dinner') : ''}</div>
-              <div className="whitespace-pre-line">{selectedCanteen?.dinner}</div>
-            </div>
-          </div>
-        ) : (
-          <div className="h-20"></div>
-        )}
-
-        <div className="fixed right-4 bottom-16">
-          <div className="bg-primary-800/50 relative mb-2 h-16 w-16 rounded-full">
-            <Link className="flex h-full w-full flex-col items-center justify-center" to={'/teacher/chat'}>
-              <ChatIcon />
-              <div className="text-sm text-white">메시지</div>
-            </Link>
-            {newMsgCnt > 0 && (
-              <small className="absolute top-0 right-0 h-6 w-6 rounded-full bg-red-500 text-center text-xs leading-6 text-white">
-                N
-              </small>
+            ) : (
+              <Typography variant="body3" className="font-medium">
+                일정 없음
+              </Typography>
             )}
           </div>
-          <div className="h-16 w-16 rounded-full bg-gray-700">
-            <Link className="flex h-full w-full flex-col items-center justify-center" to={'/teacher/timetable'}>
-              <ClockIcon />
-              <div className="text-sm text-white">시간표</div>
-            </Link>
-          </div>
         </div>
-      </div>
-
-      {/* Desktop V */}
-      <div className="col-span-6 hidden grid-cols-6 md:block xl:grid">
-        {errorMessage && <ErrorBlank />}
-        <div className="scroll-box col-span-3 h-screen overflow-y-auto">
-          <div className="px-6 py-6">
-            <CanteenCalendar
-              value={selectedDate}
-              onChange={(value: any) => setSelectedDate(new Date(value))}
-              onActiveStartDateChange={({ activeStartDate }) => activeStartDate && setSelectedDate(activeStartDate)}
-              tileContent={({ date }) => {
-                const dateStr = makeDateToString(date)
-                const schedules = schedulesOrderByDay[dateStr]
-                return (
-                  <div className="absolute inset-x-0 flex justify-center space-x-0.5">
-                    {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_0) && (
-                      <div className="h-1 w-1 rounded-full bg-violet-500" />
-                    )}
-                    {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_1) && (
-                      <div className="h-1 w-1 rounded-full bg-blue-500" />
-                    )}
-                    {schedules?.some((s) => s.calendarId === CalendarIdEnum.NUMBER_2) && (
-                      <div className="h-1 w-1 rounded-full bg-lime-500" />
-                    )}
-                  </div>
-                )
-              }}
-            />
-          </div>
-
-          <div className="h-0.5 w-full bg-gray-50" />
-          <div className="px-6 py-4">
-            <div className="pb-3 text-sm text-gray-500">
-              {t('language') === 'ko' ? makeMonthDayToString(selectedDate) : makeMonthDayToStringEN(selectedDate)}
-            </div>
-            <div className="flex flex-col space-y-3">
-              {selectedSchedules?.map((schedule: any) => (
-                <div id={schedule.id} className="flex w-full items-center space-x-2">
-                  <div
-                    className={`h-2 w-2 rounded-full ${
-                      schedule.calendarId === CalendarIdEnum.NUMBER_1
-                        ? 'bg-blue-500'
-                        : schedule.calendarId === CalendarIdEnum.NUMBER_2
-                          ? 'bg-lime-500'
-                          : 'bg-violet-500'
-                    }`}
-                  />
-                  <div className="font-bold">{schedule.title}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="scroll-box col-span-3 h-screen bg-gray-50">
-          {readState ? (
-            <CanteenDetailPage
-              selectedDate={selectedDate}
-              canteen={selectedCanteen}
-              setSubmitState={() => setReadState(false)}
-            />
-          ) : (
-            <CanteenSubmitPage
-              selectedDate={selectedDate}
-              canteenData={selectedCanteen}
-              refetch={() => {
-                setReadState(true)
-              }}
-            />
-          )}
-        </div>
-      </div>
-    </>
+        <CanteenDetailPage
+          selectedDate={selectedDate}
+          canteen={selectedCanteen}
+          setSubmitState={() => setReadState(true)}
+        />
+        {readState && (
+          <CanteenSubmitPage
+            selectedDate={selectedDate}
+            canteenData={selectedCanteen}
+            refetch={() => {
+              setReadState(false)
+            }}
+          />
+        )}
+      </Flex>
+    </Flex>
   )
 }

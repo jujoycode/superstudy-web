@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { addMonths } from 'date-fns'
 import Calendar, { CalendarProps } from 'react-calendar'
+import { useLanguage } from '@/hooks/useLanguage'
 import { Typography } from '@/legacy/components/common/Typography'
 import SVGIcon from '@/legacy/components/icon/SVGIcon'
-import { useLanguage } from '@/legacy/hooks/useLanguage'
 
 export interface CanteenCalendarProps extends CalendarProps {}
 
-export function CanteenCalendar({ value, onActiveStartDateChange, ...props }: CanteenCalendarProps) {
+export function CanteenCalendarM({ value, onActiveStartDateChange, ...props }: CanteenCalendarProps) {
   const { t } = useLanguage()
   const [internalStartDate, setInternalStartDate] = useState(value instanceof Date ? value : new Date())
 
@@ -27,30 +27,28 @@ export function CanteenCalendar({ value, onActiveStartDateChange, ...props }: Ca
       next2Label={null}
       formatDay={(_, date) => date.getDate().toString()}
       navigationLabel={({ label }) => (
-        <div className="flex cursor-default items-center justify-between" onClick={(e) => e.stopPropagation()}>
-          <Typography variant="title1" className="font-bold">
+        <div className="flex cursor-default items-center justify-between px-2.5" onClick={(e) => e.stopPropagation()}>
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              handleMonthChange(-1)
+            }}
+            className="flex h-8 w-8 items-center justify-center"
+          >
+            <SVGIcon.Arrow size={16} weight="bold" color="gray700" />
+          </button>
+          <Typography variant="title2" className="font-semibold">
             {label}
           </Typography>
-          <div className="flex items-center gap-1">
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                handleMonthChange(-1)
-              }}
-              className="flex h-8 w-8 items-center justify-center"
-            >
-              <SVGIcon.Arrow size={16} weight="bold" color="gray700" />
-            </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                handleMonthChange(1)
-              }}
-              className="flex h-8 w-8 items-center justify-center"
-            >
-              <SVGIcon.Arrow size={16} weight="bold" color="gray700" rotate={180} />
-            </button>
-          </div>
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              handleMonthChange(1)
+            }}
+            className="flex h-8 w-8 items-center justify-center"
+          >
+            <SVGIcon.Arrow size={16} weight="bold" color="gray700" rotate={180} />
+          </button>
         </div>
       )}
       activeStartDate={internalStartDate}

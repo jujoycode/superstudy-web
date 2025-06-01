@@ -23,6 +23,14 @@ export const makeMonthDayToString = (date: Date) => {
   return `${month}월 ${day}일`
 }
 
+export const makeMonthDayWithDayOfWeekToString = (date: Date) => {
+  const month: any = date.getMonth() + 1
+  const day: any = date.getDate()
+  const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토']
+  const dayOfWeekStr = dayOfWeek[date.getDay()]
+  return `${month}월 ${day}일 (${dayOfWeekStr})`
+}
+
 export const makeMonthDayToStringEN = (date: Date) => {
   return format(date, 'MMM d')
 }
