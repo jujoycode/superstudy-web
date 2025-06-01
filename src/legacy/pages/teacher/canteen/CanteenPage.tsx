@@ -78,7 +78,7 @@ export function CanteenPage() {
         <Grid col={12} className="gap-6">
           {/* 왼쪽 컨텐츠 (캘린더와 일정) */}
           <GridItem colSpan={7} className="flex min-h-[680px] flex-col">
-            <Flex direction="col" gap="2">
+            <Flex direction="col" gap="4">
               <Flex className="rounded-md bg-white p-6 shadow-sm">
                 <CanteenCalendar
                   value={selectedDate}

@@ -45,7 +45,7 @@ export function CanteenDetailPage({ selectedDate, canteen, setSubmitState }: Can
 
       <section className="scrollable-vertical flex flex-col gap-6 px-6">
         {canteen ? (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4">
             <section className="flex flex-col gap-3">
               <Typography variant="title2" className="font-semibold">
                 오늘의 급식
