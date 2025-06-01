@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-
 import { useNotificationStore } from '@/stores/notification'
+import { Button } from '@/atoms/Button'
+import { Text } from '@/atoms/Text'
 import { SuperModal } from '@/legacy/components'
 import { Label, Select } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { GroupContainer } from '@/legacy/container/group'
 import {
@@ -85,7 +85,9 @@ export function AssignPointModal({
       className="max-md:h-screen-3.5 md:max-h-screen-48 flex w-96 flex-col overflow-y-auto pt-16 max-md:w-full max-md:self-start max-md:rounded-none md:gap-8"
     >
       <div className="flex flex-1 flex-col gap-4 px-4">
-        <h2 className="text-18">{tm('assign_points')}</h2>
+        <Text size="lg" weight="lg">
+          {tm('assign_points')}
+        </Text>
 
         <Select.lg value={groupId} onChange={(e) => setGroupId(Number(e.target.value))}>
           {allKlassGroupsUnique.map((k) => (
@@ -99,17 +101,19 @@ export function AssignPointModal({
           {studentGroups?.items.map(({ user }) => {
             const selected = studentIds.includes(user.id)
             return (
-              <button
+              <Button
+                color={selected ? 'sub' : 'tertiary'}
+                // variant={selected ? 'solid' : 'outline'}
+                size="sm"
                 key={user.id}
                 onClick={() => {
                   selected
                     ? setStudentIds((prev) => prev.filter((id) => id !== user.id))
                     : setStudentIds((prev) => [...prev, user.id])
                 }}
-                className={cn('rounded-sm p-1', selected ? 'filled-gray' : 'outlined-gray')}
               >
                 {user.name}
-              </button>
+              </Button>
             )
           })}
         </div>
@@ -118,13 +122,15 @@ export function AssignPointModal({
           <Label.Text children={tm('assignees')} />
           <div className="flex flex-wrap gap-2">
             {students?.items.map((student) => (
-              <button
+              <Button
                 key={student.id}
+                color="sub"
+                variant="solid"
+                size="sm"
                 onClick={() => setStudentIds((prev) => prev.filter((id) => id !== student.id))}
-                className="filled-gray rounded-sm p-1"
               >
                 {student.name} {getNickName(student.nickName)}
-              </button>
+              </Button>
             ))}
           </div>
         </div>
@@ -168,8 +174,8 @@ export function AssignPointModal({
       </div>
 
       <div className="sticky bottom-0 flex gap-4 bg-white p-4">
-        <Button.lg children={t('cancel')} onClick={setModalClose} className="outlined-gray flex-1" />
-        <Button.lg
+        <Button color="sub" variant="outline" children={t('cancel')} onClick={setModalClose} className="flex-1" />
+        <Button
           children={tm('assign')}
           onClick={handleSubmit(assign)}
           disabled={!studentIds.length}
