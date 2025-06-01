@@ -35,68 +35,41 @@ export function useActiveNavigation() {
       // 동적 라우트 처리
       if (isDynamicRoute) {
         // 쿼리 파라미터 제거
-        const baseUrl = path.split('?')[0];
-        const currentPathWithoutQuery = location.pathname.split('?')[0];
+        const baseUrl = path.split('?')[0]
+        const currentPathWithoutQuery = location.pathname.split('?')[0]
 
-        // 특수 케이스 처리: 체험학습 메뉴 (경로 구조 비교)
-        // /teacher/fieldtrip, /teacher/fieldtrip/notice, /teacher/fieldtrip/result
-        if (path.includes('/teacher/fieldtrip')) {
-          // 정확한 경로 구조 매칭을 위해 경로를 세그먼트로 분리
-          const pathSegments = path.split('/').filter(Boolean);
-          const currentSegments = currentPathWithoutQuery.split('/').filter(Boolean);
-
-          // 기본 세그먼트 수 (동적 ID 이전까지의 세그먼트)
-          const baseSegmentCount = pathSegments.length;
-
-          // 현재 경로의 세그먼트 수가 적으면 매칭 실패
-          if (currentSegments.length < baseSegmentCount) {
-            return false;
-          }
-
-          // 기본 세그먼트까지 정확히 일치하는지 확인
-          for (let i = 0; i < baseSegmentCount; i++) {
-            if (pathSegments[i] !== currentSegments[i]) {
-              return false;
-            }
-          }
-
-          // 기본 세그먼트 이후 추가 세그먼트가 있는 경우
-          if (currentSegments.length > baseSegmentCount) {
-            // 다음 세그먼트가 숫자(ID)인 경우만 활성화
-            return /^\d+$/.test(currentSegments[baseSegmentCount]);
-          }
-
-          // 정확히 일치하는 경우
-          return true;
-        }
-
-        // 일반 동적 라우트 처리
         if (currentPathWithoutQuery.startsWith(baseUrl)) {
           // 정확히 일치하는 경우
           if (currentPathWithoutQuery === baseUrl) {
-            return true;
+            return true
           }
 
           // baseUrl 다음에 오는 세그먼트 체크
-          const remainingPath = currentPathWithoutQuery.slice(baseUrl.length);
+          const remainingPath = currentPathWithoutQuery.slice(baseUrl.length)
 
           // baseUrl 다음에 '/'로 시작하는지 확인 (경로 구조가 맞는지)
           if (remainingPath.startsWith('/')) {
             // 다음 세그먼트 추출 (ID 또는 다른 경로명)
-            const nextSegment = remainingPath.split('/')[1];
+            const nextSegment = remainingPath.split('/')[1]
 
             // 다음 세그먼트가 숫자인 경우 (ID로 추정) -> 활성화
             // 또는 다음 세그먼트가 없는 경우 (끝에 '/'만 있는 경우) -> 활성화
-            if (!nextSegment || /^\d+$/.test(nextSegment)) {
-              return true;
+            // 또는 다음 세그먼트가 날짜 형식(YYYY-MM-DD)인 경우 -> 활성화
+            if (
+              !nextSegment ||
+              /^\d+$/.test(nextSegment) ||
+              /^\d{4}-\d{2}-\d{2}$/.test(nextSegment) ||
+              /^\d{4}-\d{1,2}-\d{1,2}$/.test(nextSegment)
+            ) {
+              return true
             }
           }
 
           // 그 외의 경우는 비활성화
-          return false;
+          return false
         }
 
-        return false;
+        return false
       }
 
       return location.pathname.startsWith(path)

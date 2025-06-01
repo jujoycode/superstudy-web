@@ -1,8 +1,8 @@
 import { cn } from '@/utils/commonUtil'
+import { Button } from '@/atoms/Button'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { useModals } from '@/legacy/modals/ModalStack'
 import { StudentModal } from '@/legacy/modals/StudentModal'
-import { Button } from '../common/Button'
 
 interface TimetableAtdCardProps {
   attendance: boolean
@@ -44,12 +44,16 @@ export function TimetableAtdCard({ attendance, student, comment, setModalOpen }:
             <div className={`text-sm md:text-lg ${student.expired && 'text-gray-400'}`}>({student.nick_name})</div>
           )}
         </div>
-        <Button.lg
-          children={t('attendance_management', '출결관리')}
+
+        <Button
+          color="tertiary"
           onClick={() => student.expired === false && student.not_attend === false && setModalOpen()}
-          className={cn(student.expired || student.not_attend ? 'filled-gray' : 'filled-primary')}
-        />
+          className={(cn(student.expired || student.not_attend ? 'filled-gray' : 'filled-primary'), 'text-gray-600')}
+        >
+          {t('attendance_management', '출결관리')}
+        </Button>
       </div>
+
       <div className="px-4 text-sm md:text-base">{comment}</div>
     </div>
   )

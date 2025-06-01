@@ -1,12 +1,13 @@
-import { format } from 'date-fns'
 import { useEffect, useMemo, useState } from 'react'
+import { format } from 'date-fns'
 import { useTranslation } from 'react-i18next'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { ReactComponent as userSvg } from '@/assets/svg/user.svg'
 import { cn } from '@/utils/commonUtil'
+import { Button } from '@/atoms/Button'
+import { Tabs, TabsList, TabsTrigger } from '@/atoms/Tabs'
 import { SuperModal } from '@/legacy/components'
 import { Divider, Label, Section, Select } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { Constants } from '@/legacy/constants'
 import {
@@ -147,7 +148,9 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
 
         {tab === 'table' && (
           <div className="ml-auto">
-            <Button.sm children={t('download_excel')} onClick={downloadAsExcel} className="outlined-gray" />
+            <Button onClick={downloadAsExcel} className="outlined-gray">
+              {t('download_excel')}
+            </Button>
           </div>
         )}
       </div>
@@ -211,11 +214,9 @@ export function TimetableCoursePage({ course }: TimetableCoursePageProps) {
                       <div>{`${studentGroup.group.grade}학년 ${studentGroup.group.klass}반 ${studentGroup.studentNumber}번 ${trainee.user.name}`}</div>
                     </div>
                     <div>{lectureAttendance ? lectureAttendance.note : ''}</div>
-                    <Button.lg
-                      children={t('attendance_management')}
-                      onClick={() => setSelectedUser(trainee.user)}
-                      className="filled-primary"
-                    />
+                    <Button onClick={() => setSelectedUser(trainee.user)} className="filled-primary">
+                      {t('attendance_management')}
+                    </Button>
                   </div>
                 )
               })}
@@ -329,24 +330,31 @@ function TimetableCoursePageAttendanceManagementModal({
             </div>
           </div>
         </div>
+
         <Divider />
-        <div className="flex w-full items-center justify-between space-x-2">
-          <Button
-            children="출석"
-            onClick={() => setIsAttended(true)}
-            className={cn('w-full', isAttended ? 'filled-blue' : 'bg-gray-100 text-gray-500')}
-          />
-          <Button
-            children="미출석"
-            onClick={() => setIsAttended(false)}
-            className={cn('w-full', isAttended ? 'bg-gray-100 text-gray-500' : 'filled-red-light')}
-          />
-        </div>
+
+        <Tabs
+          value={isAttended ? 'attendance' : 'absent'}
+          onValueChange={(value) => setIsAttended(value === 'attendance')}
+        >
+          <TabsList>
+            <TabsTrigger value="attendance" onClick={() => setIsAttended(true)}>
+              출석
+            </TabsTrigger>
+            <TabsTrigger value="absent" onClick={() => setIsAttended(false)}>
+              미출석
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+
         <Label.col>
           <Label.Text children="사유" />
           <TextInput placeholder="특기사항을 입력해주세요." value={note} onChange={(e) => setNote(e.target.value)} />
         </Label.col>
-        <Button children="저장하기" disabled={disabled} onClick={save} className="filled-primary" />
+
+        <Button disabled={disabled} onClick={save}>
+          저장하기
+        </Button>
       </Section>
     </SuperModal>
   )

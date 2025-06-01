@@ -1,13 +1,15 @@
-import moment from 'moment'
 import { useEffect, useMemo, useState } from 'react'
+import moment from 'moment'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { cn } from '@/utils/commonUtil'
 import { useUserStore } from '@/stores/user'
+import { Button } from '@/atoms/Button'
+import { Divider } from '@/atoms/Divider'
+import { Tabs as TabsNew, TabsList, TabsTrigger } from '@/atoms/Tabs'
 import { SelectMenus, SuperModal } from '@/legacy/components'
-import { Divider, Label, Section, Select } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
+import { Label, Section, Select } from '@/legacy/components/common'
 import { Tabs } from '@/legacy/components/common/Tabs'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { Time } from '@/legacy/components/common/Time'
@@ -49,13 +51,6 @@ enum contentType {
   seat,
   role,
   neis,
-}
-
-enum listType {
-  total = 1,
-  in,
-  out,
-  del,
 }
 
 interface AbsentUser {
@@ -163,7 +158,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
 
   useEffect(() => {
     setTeacherName(selectedKlassInfo ? selectedKlassInfo?.homeRoomTeacherName : lectureInfo.teacherName)
-  }, [selectedKlassInfo])
+  }, [lectureInfo.teacherName, selectedKlassInfo])
 
   const { seatPositionId, seatPosition, updateSeatPosition } = useTeacherSeatPosition({
     groupId: selectedKlassInfo ? selectedKlassInfo.id : lectureInfo.groupId,
@@ -196,7 +191,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
 
   const [roleInfo, setRoleInfo] = useState<RoleInfoType[]>([...tempRoleInfo])
 
-  const [showAbsent, setShowAbsent] = useState(listType.total)
+  const [showAbsent, setShowAbsent] = useState<string>('all')
 
   const [showSeat, setShowSeat] = useState(contentType.list)
   const [selectedUserId, setSelectedUserId] = useState<AbsentUser>(defaultSelectedUser)
@@ -595,6 +590,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
           <div>{lectureInfo.room}</div>
           <div>{targetDay}</div>
         </div>
+
         <div className="my-3 flex flex-wrap justify-between font-semibold md:text-xl">
           <p className="flex flex-wrap">
             {currentLang === 'ko' ? <>{dayOfKorWeek(lectureInfo.day)}요일 </> : <>{dayOfEngWeek(lectureInfo.day)} </>}
@@ -631,48 +627,32 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
               : ''}
           </p>
         </div>
+
         {showSubject && lectureInfo.type === LectureType.SELECT && (
           <div className="mb-3 flex items-center justify-between rounded-lg border bg-gray-100 px-5">
             {lectureInfo.info}
           </div>
         )}
-        <div className="flex flex-wrap items-center justify-between rounded-lg border bg-gray-100 p-5">
-          <p
-            className={cn(
-              'flex cursor-pointer flex-wrap',
-              showAbsent === listType.total && 'font-extrabold text-red-500',
-            )}
-            onClick={() => setShowAbsent(listType.total)}
-          >
-            {t('total_students', '총원')} : {students?.length - removeStudents.size} {t('count', '명')}
-          </p>
-          <p
-            className={cn('flex cursor-pointer flex-wrap', showAbsent === listType.in && 'font-extrabold text-red-500')}
-            onClick={() => setShowAbsent(listType.in)}
-          >
-            {t('attendance', '출석')} : {students?.length - removeStudents.size - studentsAbsent?.length}{' '}
-            {t('count', '명')}
-          </p>
-          <p
-            className={cn(
-              'flex cursor-pointer flex-wrap',
-              showAbsent === listType.out && 'font-extrabold text-red-500',
-            )}
-            onClick={() => setShowAbsent(listType.out)}
-          >
-            {t('non-attendance', '미출석')} : {studentsAbsent?.length} {t('count', '명')}
-          </p>
-          <p
-            className={cn(
-              'hidden cursor-pointer md:inline',
-              showAbsent === listType.del && 'font-extrabold text-red-500',
-            )}
-            onClick={() => setShowAbsent(listType.del)}
-          >
-            {t('expelled', '제적')}
-          </p>
-        </div>
+
+        <TabsNew defaultValue="all" value={showAbsent} onValueChange={(value) => setShowAbsent(value)} className="mb-4">
+          <TabsList className="h-14 w-full p-2">
+            <TabsTrigger value="all" className="h-10">
+              {t('total_students', '총원')} : {students?.length - removeStudents.size} {t('count', '명')}
+            </TabsTrigger>
+            <TabsTrigger value="in" className="h-10">
+              {t('attendance', '출석')} : {students?.length - removeStudents.size - studentsAbsent?.length}{' '}
+              {t('count', '명')}
+            </TabsTrigger>
+            <TabsTrigger value="out" className="h-10">
+              {t('non-attendance', '미출석')} : {studentsAbsent?.length} {t('count', '명')}
+            </TabsTrigger>
+            <TabsTrigger value="del" className="h-10">
+              {t('expelled', '제적')}
+            </TabsTrigger>
+          </TabsList>
+        </TabsNew>
       </div>
+
       <Tabs>
         {[
           { name: t('list', '목록'), type: contentType.list },
@@ -700,13 +680,13 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
           <div className="mb-10">
             {students
               ?.filter((student: ResponseUserAttendanceDto) =>
-                showAbsent === listType.total
+                showAbsent === 'all'
                   ? !removeStudents.get(student.id)
-                  : showAbsent === listType.in
+                  : showAbsent === 'in'
                     ? removeStudents.get(student.id) === false || absentOfSelectedPeriod.get(student.id) === false
-                    : showAbsent === listType.out
+                    : showAbsent === 'out'
                       ? absentOfSelectedPeriod.get(student.id)
-                      : showAbsent === listType.del
+                      : showAbsent === 'del'
                         ? removeStudents.get(student.id)
                         : true,
               )
@@ -737,22 +717,23 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                   setModalOpen={() => handleModalOpen(student)}
                 />
               ))}
+
+            <Divider />
+
             {(lectureInfo.time > 0 ||
               // && selectedLectureInfo.teacherId === me?.id
               (lectureInfo.time === 0 && teacherName === me?.name)) && (
-              <div className="flex w-full flex-col items-center justify-center">
-                <div className="mt-6 cursor-pointer">
+              <div className="mt-4 flex w-full flex-col items-end justify-center">
+                <div className="cursor-pointer">
                   {AttendanceCheckInfo ? (
                     <div className="mt-3 text-blue-500">
                       출석체크 완료 : {AttendanceCheckInfo.teacherName} (
                       <Time date={AttendanceCheckInfo.updatedAt} className="text-16 text-inherit" />)
                     </div>
                   ) : (
-                    <Button.xl
-                      children={t('check_attendance', '출석체크 확인')}
-                      onClick={() => confirmAttendanceCheck()}
-                      className="filled-primary"
-                    />
+                    <Button onClick={() => confirmAttendanceCheck()} className="filled-primary">
+                      {t('check_attendance', '출석체크 확인')}
+                    </Button>
                   )}
                 </div>
               </div>
@@ -879,14 +860,15 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
 
                 {me?.name === teacherName && (
                   <div className="mt-6 cursor-pointer">
-                    <Button.xl
-                      children={seatEditMode ? '변경완료' : '자리변경'}
+                    <Button
                       onClick={() => {
                         setSelSeat('')
                         setSeatEditMode(!seatEditMode)
                       }}
                       className="filled-primary"
-                    />
+                    >
+                      {seatEditMode ? '변경완료' : '자리변경'}
+                    </Button>
                   </div>
                 )}
               </div>
@@ -955,14 +937,15 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
             <div className="flex w-full flex-col items-center justify-center">
               {myKlass && (
                 <div className="mt-6 cursor-pointer">
-                  <Button.xl
-                    children={roleEditMode ? '저장하기' : '수정하기'}
+                  <Button
                     onClick={() => {
                       if (roleEditMode) saveRole()
                       setRoleEditMode(!roleEditMode)
                     }}
                     className="filled-primary"
-                  />
+                  >
+                    {roleEditMode ? '저장하기' : '수정하기'}
+                  </Button>
                 </div>
               )}
               {!myKlass && '* 담임선생님만 수정이 가능합니다. '}
@@ -1007,21 +990,28 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
               <div className="text-sm text-gray-700">장래희망 | {selectedUserId.hope}</div>
             </div>
           </div>
-          <Divider />
-          <div className="flex w-full items-center justify-between space-x-2">
-            <Button
-              children="출석"
-              onClick={() =>
-                setSelectedUserId((prevState) => ({ ...prevState, type1: '', type2: '', comment: '', absent: false }))
-              }
-              className={cn('w-full', selectedUserId.absent ? 'bg-gray-100 text-gray-500' : 'filled-blue')}
-            />
-            <Button
-              children="미출석"
-              onClick={() => setSelectedUserId((prevState) => ({ ...prevState, absent: true }))}
-              className={cn('w-full', selectedUserId.absent ? 'filled-red-light' : 'bg-gray-100 text-gray-500')}
-            />
-          </div>
+
+          <Divider marginY="0" />
+
+          <TabsNew className="h-12">
+            <TabsList className="h-12 w-full">
+              <TabsTrigger
+                value="attendance"
+                className="h-10"
+                onClick={() => setSelectedUserId((prev) => ({ ...prev, type1: '', type2: '', absent: false }))}
+              >
+                출석
+              </TabsTrigger>
+              <TabsTrigger
+                value="absent"
+                className="h-10"
+                onClick={() => setSelectedUserId((prev) => ({ ...prev, absent: true }))}
+              >
+                미출석
+              </TabsTrigger>
+            </TabsList>
+          </TabsNew>
+
           <Label.col>
             <Label.Text children="사유" />
             <TextInput

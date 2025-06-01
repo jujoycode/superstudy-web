@@ -1,11 +1,13 @@
 import { useState } from 'react'
+import clsx from 'clsx'
 import { useHistory } from '@/hooks/useHistory'
-import { cn } from '@/utils/commonUtil'
+import { useLanguage } from '@/hooks/useLanguage'
 import { useUserStore } from '@/stores/user'
+import { Grid } from '@/atoms/Grid'
+import { GridItem } from '@/atoms/GridItem'
 import { BackButton, Blank, Divider, TopNavbar } from '@/legacy/components/common'
 import { useSchoolsFindOne } from '@/legacy/generated/endpoint'
 import { Course, ResponseTimetableV3Dto } from '@/legacy/generated/model'
-import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { TimetableAttendancePage } from './TimetableAttendancePage'
 import { TimetableCoursePage } from './TimetableCoursePage'
 import { TimetableCoursesPage } from './TimetableCoursesPage'
@@ -23,7 +25,7 @@ export function TimetablePage() {
   const { data: school } = useSchoolsFindOne(me?.schoolId ?? 0, { query: { enabled: !!me } })
 
   return (
-    <>
+    <Grid col={12}>
       {/* Mobile V */}
       <div className="block md:hidden">
         {blankOpen && <Blank />}
@@ -48,12 +50,12 @@ export function TimetablePage() {
                 setBlankOpen(true)
                 window?.location?.reload()
               }}
-              className="text-primary-800 text-sm"
+              className="text-brand-1 text-sm"
             />
           }
         />
 
-        <div className={cn('flex flex-col gap-8', (lectureInfo || course) && 'hidden')}>
+        <div className={clsx('flex flex-col gap-8', (lectureInfo || course) && 'hidden')}>
           <TimetableDetailPage
             onSelectLecture={(info) => {
               setLectureInfo(info)
@@ -74,7 +76,7 @@ export function TimetablePage() {
       </div>
 
       {/* Desktop V */}
-      <div className="col-span-2 hidden h-screen md:block">
+      <GridItem colSpan={4}>
         <div className="px-6 py-6">
           <h1 className="text-2xl font-semibold">
             {t('timetable', '시간표')}/{t('attendance_check', '출석체크')}
@@ -99,13 +101,13 @@ export function TimetablePage() {
             />
           )}
         </div>
-      </div>
+      </GridItem>
 
       {/* Mobile / Desktop V */}
-      <div className="p-6 md:col-span-4 md:block">
+      <GridItem colSpan={8} className="p-6">
         {lectureInfo && <TimetableAttendancePage lectureInfo={lectureInfo} isKlass={isKlass} />}
         {course && <TimetableCoursePage course={course} />}
-      </div>
-    </>
+      </GridItem>
+    </Grid>
   )
 }
