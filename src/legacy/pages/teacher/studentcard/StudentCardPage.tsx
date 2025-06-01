@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { chain, filter, some, uniqBy } from 'lodash'
-import { useLocation } from 'react-router'
+import { Outlet, useLocation } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
 import { SortState } from '@/constants/enumConstant'
 import { useUserStore } from '@/stores/user'
@@ -95,7 +95,7 @@ export function StudentCardPage() {
 
   return (
     <Grid>
-      <GridItem colSpan={6}>
+      <GridItem colSpan={4}>
         <ResponsiveRenderer mobile={<TopNavbar title="확인증" left={<BackButton />} />} />
 
         <PageHeaderTemplate
@@ -131,7 +131,7 @@ export function StudentCardPage() {
                 items: groups.map((g) => ({ value: String(g.id), label: g.name || '' })),
                 filterState: {
                   value: String(groupId),
-                  setValue: (v) => replace(`/teacher/studentcard` + !!v && `/${v}`),
+                  setValue: (v) => replace(v ? `/teacher/studentcard/${v}` : `/teacher/studentcard`),
                 },
               },
             ],
@@ -186,6 +186,9 @@ export function StudentCardPage() {
             )
           })}
         </div>
+      </GridItem>
+      <GridItem colSpan={8} className="bg-gray-50">
+        <Outlet />
       </GridItem>
     </Grid>
   )
