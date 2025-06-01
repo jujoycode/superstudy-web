@@ -207,7 +207,7 @@ export function CalendarPage() {
       {errorMessage && <ErrorBlank />}
       {<CoachMark {...coach} />}
       <div className="flex h-full w-full">
-        <div className="w-[25%] border-r px-3 py-4">
+        <div className="w-[25%] border-r px-3 py-6">
           <Flex direction="col" gap="2" className="border-b pb-3">
             <Flex direction="row" items="center" justify="between" gap="2">
               <Text size="lg" weight="lg" variant="default">
