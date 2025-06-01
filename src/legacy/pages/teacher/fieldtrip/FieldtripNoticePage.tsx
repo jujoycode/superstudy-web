@@ -135,7 +135,7 @@ export function FieldtripNoticePage() {
             </div>
           )}
         </GridItem>
-        <GridItem colSpan={6}>
+        <GridItem colSpan={6} className="bg-gray-50">
           <Outlet context={{ school: me?.school }} />
         </GridItem>
       </Grid>

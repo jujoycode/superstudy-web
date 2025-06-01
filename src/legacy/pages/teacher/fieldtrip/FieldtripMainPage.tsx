@@ -3,17 +3,17 @@ import { toDate } from 'date-fns'
 import { DateRange } from 'react-day-picker'
 import { Outlet } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
-import { cn } from '@/utils/commonUtil'
 
 import { SortState } from '@/constants/enumConstant'
+import { Button } from '@/atoms/Button'
 import { Divider } from '@/atoms/Divider'
 import { Grid } from '@/atoms/Grid'
 import { GridItem } from '@/atoms/GridItem'
+import { Input } from '@/atoms/Input'
 import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'
 import { PageHeaderTemplate } from '@/templates/PageHeaderTemplate'
 import { ErrorBlank, FrontPagination, SuperModal } from '@/legacy/components'
 import { BackButton, Blank, Section, TopNavbar } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { FieldtripCard } from '@/legacy/components/fieldtrip/FieldtripCard'
 import { FieldtripsDownloadView } from '@/legacy/components/pdfDocs/FieldtripsDownloadView'
 import { useTeacherFieldTrip } from '@/legacy/container/teacher-fieldtrip'
@@ -285,7 +285,7 @@ export function FieldtripMainPage() {
             </div>
           )}
         </GridItem>
-        <GridItem colSpan={6}>
+        <GridItem colSpan={6} className="bg-gray-50">
           <Outlet context={{ setOpen, setFieldtripId, setAgreeAll, me }} />
         </GridItem>
       </Grid>
@@ -364,60 +364,63 @@ export function FieldtripMainPage() {
             )}
           </div>
           <div className="grid grid-cols-2 gap-2">
-            <label>
-              <Button.xl as="p" className="cursor-pointer border border-blue-500 bg-white text-current">
-                도장등록
-              </Button.xl>
-              <input
-                type="file"
-                className="sr-only"
-                accept=".png, .jpeg, .jpg"
-                onChange={(e) => {
-                  if (!e.target?.files) return
-                  updateStamp(e.target.files[0])
-                  setStampMode(true)
-                }}
-              />
-            </label>
+            <Input.File
+              size="lg"
+              accept=".png, .jpeg, .jpg"
+              onChange={(e) => {
+                if (!e.target?.files) return
+                updateStamp(e.target.files[0])
+                setStampMode(true)
+              }}
+            >
+              <Button size="lg" color="sub" className="w-full">
+                도장 등록
+              </Button>
+            </Input.File>
             {!stampMode ? (
-              <Button.xl
-                children="도장 사용하기"
+              <Button
+                size="lg"
+                color="tertiary"
                 onClick={() => {
                   setStampMode(true)
                   clearSignature()
                 }}
-                className="filled-blue"
-              />
+              >
+                도장 사용하기
+              </Button>
             ) : (
-              <Button.xl
-                children="도장으로 승인"
-                onClick={onClickApproveByStamp}
-                className={cn('text-white', stampImgUrl ? 'border-4 border-red-500 bg-blue-500' : 'bg-blue-100')}
-              />
+              <Button size="lg" color="primary" disabled={!stampImgUrl} onClick={onClickApproveByStamp}>
+                도장으로 승인
+              </Button>
             )}
-            <Button.xl
-              children="서명 다시하기"
+            <Button
+              size="lg"
+              color="tertiary"
               onClick={() => {
-                clearSignature()
                 setStampMode(false)
+                clearSignature()
               }}
-              className="outlined-primary text-current"
-            />
+            >
+              서명 다시하기
+            </Button>
             {stampMode ? (
-              <Button.xl children="서명 사용하기" onClick={() => setStampMode(false)} className="filled-primary" />
+              <Button size="lg" color="tertiary" onClick={() => setStampMode(false)}>
+                서명 사용하기
+              </Button>
             ) : (
-              <Button.xl
-                children="서명으로 승인"
+              <Button
+                size="lg"
+                color="primary"
                 onClick={() => {
                   if (!sigPadData) {
                     alert('서명 후 승인해 주세요.')
                   } else {
-                    setLoading(true)
                     agreeAll ? approveFieldtrips() : approveFieldtrip()
                   }
                 }}
-                className={cn('text-white', sigPadData ? 'bg-primary-800 border-4 border-green-500' : 'bg-primary-100')}
-              />
+              >
+                서명으로 승인
+              </Button>
             )}
           </div>
         </Section>

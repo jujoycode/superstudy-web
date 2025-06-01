@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { useOutletContext, useParams } from 'react-router-dom'
 
+import { Button } from '@/atoms/Button'
+import { Flex } from '@/atoms/Flex'
+import { Tabs, TabsList, TabsTrigger } from '@/atoms/Tabs'
+import { IconButton } from '@/molecules/IconButton'
 import { SuperModal } from '@/legacy/components'
 import { Blank, Section, Textarea } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { FieldtripPaper } from '@/legacy/components/fieldtrip/FieldtripPaper'
 import { FieldtripSeparatePaper } from '@/legacy/components/fieldtrip/FieldtripSeparatePaper'
 import { FieldtripSuburbsSeparatePaper } from '@/legacy/components/fieldtrip/FieldtripSuburbsSeparatePaper'
@@ -186,40 +189,43 @@ export function FieldtripResultDetailPage() {
 
   if (!fieldtrip || fieldtrip?.fieldtripResultStatus === 'BEFORE_PARENT_CONFIRM') {
     return (
-      <div className="h-screen-7 relative flex items-center justify-center rounded-lg border bg-white py-5 text-center">
-        <div className="absolute top-5 left-0">
-          <div className="flex w-full items-center justify-start space-x-2 px-5">
-            <div
-              className="text-primary-800 cursor-pointer underline"
+      <div className="h-screen-7 relative m-6 flex items-center justify-center rounded-lg border bg-white py-5 text-center">
+        <Tabs defaultValue="tab3" className="w-full px-3 pb-2">
+          <TabsList className="w-full">
+            <TabsTrigger
+              value="tab1"
               onClick={() => fieldtrip && pushWithQueryParams(`/teacher/fieldtrip/${fieldtrip.id}`)}
             >
               신청서
-            </div>
-            <div
-              className="text-primary-800 cursor-pointer underline"
+            </TabsTrigger>
+            <TabsTrigger
+              value="tab2"
               onClick={() => fieldtrip && pushWithQueryParams(`/teacher/fieldtrip/notice/${fieldtrip.id}`)}
             >
               통보서
+            </TabsTrigger>
+            <TabsTrigger
+              value="tab3"
+              onClick={() => fieldtrip && pushWithQueryParams(`/teacher/fieldtrip/result/${fieldtrip.id}`)}
+            >
+              결과보고서
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+        <Flex direction="row" items="center" justify="center" className="h-full gap-2">
+          {fieldtrip ? (
+            <div className="bg-white p-5 text-lg">
+              학생이 작성한 결과보고서의 보호자 승인이 필요합니다.
+              <div className="relative flex items-center justify-center pt-2">
+                {fieldtrip?.fieldtripResultStatus.toString() === 'BEFORE_PARENT_CONFIRM' && (
+                  <Button children="알림톡 재전송" onClick={() => resendAlimtalk()} color="primary" variant="solid" />
+                )}
+              </div>
             </div>
-            <div className="text-primary-800 cursor-pointer underline">결과보고서</div>
-          </div>
-        </div>
-        {fieldtrip ? (
-          <div className="bg-white p-5 text-lg">
-            학생이 작성한 결과보고서의 보호자 승인이 필요합니다.
-            <div className="relative flex items-center justify-center pt-2">
-              {fieldtrip?.fieldtripResultStatus.toString() === 'BEFORE_PARENT_CONFIRM' && (
-                <Button.lg
-                  children="알림톡 재전송"
-                  onClick={() => resendAlimtalk()}
-                  className="bg-blue-500 text-white"
-                />
-              )}
-            </div>
-          </div>
-        ) : (
-          <div className="bg-white p-5 text-lg">아직 결과보고서가 작성되지 않았습니다.</div>
-        )}
+          ) : (
+            <div className="bg-white p-5 text-lg">아직 결과보고서가 작성되지 않았습니다.</div>
+          )}
+        </Flex>
       </div>
     )
   }
@@ -236,116 +242,135 @@ export function FieldtripResultDetailPage() {
   }
 
   return (
-    <div className="h-screen-10">
+    <div className="h-screen-6 md:h-screen-3 m-6 bg-white py-5 md:rounded-lg md:border">
       {loading && <Blank reversed />}
       {isLoading && <Blank reversed />}
-
-      <div className="h-screen-10 md:h-screen-7 bg-white py-5 md:rounded-lg md:border">
-        <div className="relative h-full w-auto overflow-scroll">
-          <div className="flex w-full items-center justify-start space-x-2 px-5">
-            <div
-              className="text-primary-800 cursor-pointer underline"
-              onClick={() => pushWithQueryParams(`/teacher/fieldtrip/${fieldtrip.id}`)}
+      <div className="h-screen-8 relative w-full overflow-y-scroll">
+        <Tabs defaultValue="tab3" className="w-full px-3 pb-2">
+          <TabsList className="w-full">
+            <TabsTrigger
+              value="tab1"
+              onClick={() => fieldtrip && pushWithQueryParams(`/teacher/fieldtrip/${fieldtrip.id}`)}
             >
               신청서
-            </div>
-            <div
-              className="text-primary-800 cursor-pointer underline"
-              onClick={() => pushWithQueryParams(`/teacher/fieldtrip/notice/${fieldtrip.id}`)}
+            </TabsTrigger>
+            <TabsTrigger
+              value="tab2"
+              onClick={() => fieldtrip && pushWithQueryParams(`/teacher/fieldtrip/notice/${fieldtrip.id}`)}
             >
               통보서
+            </TabsTrigger>
+            <TabsTrigger
+              value="tab3"
+              onClick={() => fieldtrip && pushWithQueryParams(`/teacher/fieldtrip/result/${fieldtrip.id}`)}
+            >
+              결과보고서
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+        {fieldtrip?.fieldtripResultStatus === 'RETURNED' && fieldtrip?.notApprovedReason && fieldtrip?.updatedAt && (
+          <div className="bg-primary-100 mx-5 flex items-center justify-between rounded-lg px-5 py-2">
+            <div className="text-primary-800">{fieldtrip?.notApprovedReason}</div>
+            <div className="text-sm text-gray-500">
+              {makeDateToString(new Date(fieldtrip?.updatedAt))} {makeTimeToString(new Date(fieldtrip?.updatedAt))}에
+              마지막으로 수정
             </div>
-            <div className="text-primary-800 cursor-pointer underline">결과보고서</div>
           </div>
-          {fieldtrip?.fieldtripResultStatus === 'RETURNED' && fieldtrip?.notApprovedReason && fieldtrip?.updatedAt && (
-            <div className="bg-primary-100 mx-5 flex items-center justify-between rounded-lg px-5 py-2">
-              <div className="text-primary-800">{fieldtrip?.notApprovedReason}</div>
-              <div className="text-sm text-gray-500">
-                {makeDateToString(new Date(fieldtrip?.updatedAt))} {makeTimeToString(new Date(fieldtrip?.updatedAt))}에
-                마지막으로 수정
-              </div>
+        )}
+        {fieldtrip?.updateReason && fieldtrip?.updatedAt && (
+          <div className="bg-primary-100 flex items-center justify-between rounded-lg px-5 py-2">
+            <div className="text-primary-800">{fieldtrip?.updateReason}</div>
+            <div className="text-sm text-gray-500">
+              {makeDateToString(fieldtrip?.updatedAt)} {makeTimeToString(fieldtrip?.updatedAt)}에 마지막으로 수정
             </div>
-          )}
-          {fieldtrip?.updateReason && fieldtrip?.updatedAt && (
-            <div className="bg-primary-100 flex items-center justify-between rounded-lg px-5 py-2">
-              <div className="text-primary-800">{fieldtrip?.updateReason}</div>
-              <div className="text-sm text-gray-500">
-                {makeDateToString(fieldtrip?.updatedAt)} {makeTimeToString(fieldtrip?.updatedAt)}에 마지막으로 수정
-              </div>
-            </div>
-          )}
-
-          <div ref={ref} className={`md:h-[1100px] ${download ? 'w-[778px]' : 'w-full p-5 md:p-0'} bg-white`}>
-            <FieldtripPaper
-              school={school}
-              fieldtrip={fieldtrip}
-              content={content}
-              type="결과보고서"
-              resultTextPage1={resultTextPages[0]}
-              isPaper={download}
-            />
           </div>
+        )}
 
-          {fieldtrip?.type === 'HOME' && (
-            <>
-              {homeplans?.map((content, i: number) => (
-                <div
-                  key={i}
-                  ref={separatePaperRefs.current[i]}
-                  className={` ${download ? 'h-[1100px] w-[778px] p-15' : 'w-full p-5 md:p-12'} bg-white`}
-                >
-                  <FieldtripSeparatePaper
-                    studentName={fieldtrip?.student?.name + getNickName(fieldtrip?.student?.nickName)}
-                    studentGradeKlass={fieldtrip?.studentGradeKlass + ' ' + fieldtrip?.studentNumber + '번'}
-                    fieldtrip={fieldtrip}
-                    index={i + 1}
-                    content={content}
-                    type="결과보고서"
-                  />
-                </div>
-              ))}
-            </>
-          )}
-
-          {fieldtrip?.type === 'SUBURBS' && resultTextPages.length > 1 && (
-            <>
-              {resultTextPages.slice(1).map((el: string, i: number) => (
-                <div
-                  key={i}
-                  ref={refTextPageRemain.current[i]}
-                  className={` ${download ? 'h-[1100px] w-[778px] p-15' : 'w-full p-5 md:p-12'} bg-white`}
-                >
-                  <FieldtripSuburbsTextSeparatePaper
-                    studentName={(fieldtrip?.student?.name || '') + getNickName(fieldtrip?.student?.nickName)}
-                    fieldtrip={fieldtrip}
-                    resultTextPage={el}
-                  />
-                </div>
-              ))}
-            </>
-          )}
-          {fieldtrip?.type === 'SUBURBS' && (
-            <>
-              {resultFilesWithTwo.map((el: string[], i: number) => (
-                <div
-                  key={i}
-                  ref={separatePaperRefs.current[i]}
-                  className={` ${download ? 'h-[1100px] w-[778px] p-15' : 'w-full p-5 md:p-12'} bg-white`}
-                >
-                  <FieldtripSuburbsSeparatePaper
-                    studentName={(fieldtrip?.student?.name || '') + getNickName(fieldtrip?.student?.nickName)}
-                    fieldtrip={fieldtrip}
-                    resultFile1={el[0]}
-                    resultFile2={el[1]}
-                  />
-                </div>
-              ))}
-            </>
-          )}
+        <div ref={ref} className={`md:h-[1100px] ${download ? 'w-[778px]' : 'w-full p-5 md:p-0'} bg-white`}>
+          <FieldtripPaper
+            school={school}
+            fieldtrip={fieldtrip}
+            content={content}
+            type="결과보고서"
+            resultTextPage1={resultTextPages[0]}
+            isPaper={download}
+          />
         </div>
 
-        <div className="mt-3 grid grid-cols-4 gap-2 overflow-x-auto px-2 md:mt-8 md:px-0">
-          <Button.xl
+        {fieldtrip?.type === 'HOME' && (
+          <>
+            {homeplans?.map((content, i: number) => (
+              <div
+                key={i}
+                ref={separatePaperRefs.current[i]}
+                className={` ${download ? 'h-[1100px] w-[778px] p-15' : 'w-full p-5 md:p-12'} bg-white`}
+              >
+                <FieldtripSeparatePaper
+                  studentName={fieldtrip?.student?.name + getNickName(fieldtrip?.student?.nickName)}
+                  studentGradeKlass={fieldtrip?.studentGradeKlass + ' ' + fieldtrip?.studentNumber + '번'}
+                  fieldtrip={fieldtrip}
+                  index={i + 1}
+                  content={content}
+                  type="결과보고서"
+                />
+              </div>
+            ))}
+          </>
+        )}
+
+        {fieldtrip?.type === 'SUBURBS' && resultTextPages.length > 1 && (
+          <>
+            {resultTextPages.slice(1).map((el: string, i: number) => (
+              <div
+                key={i}
+                ref={refTextPageRemain.current[i]}
+                className={` ${download ? 'h-[1100px] w-[778px] p-15' : 'w-full p-5 md:p-12'} bg-white`}
+              >
+                <FieldtripSuburbsTextSeparatePaper
+                  studentName={(fieldtrip?.student?.name || '') + getNickName(fieldtrip?.student?.nickName)}
+                  fieldtrip={fieldtrip}
+                  resultTextPage={el}
+                />
+              </div>
+            ))}
+          </>
+        )}
+        {fieldtrip?.type === 'SUBURBS' && (
+          <>
+            {resultFilesWithTwo.map((el: string[], i: number) => (
+              <div
+                key={i}
+                ref={separatePaperRefs.current[i]}
+                className={` ${download ? 'h-[1100px] w-[778px] p-15' : 'w-full p-5 md:p-12'} bg-white`}
+              >
+                <FieldtripSuburbsSeparatePaper
+                  studentName={(fieldtrip?.student?.name || '') + getNickName(fieldtrip?.student?.nickName)}
+                  fieldtrip={fieldtrip}
+                  resultFile1={el[0]}
+                  resultFile2={el[1]}
+                />
+              </div>
+            ))}
+          </>
+        )}
+      </div>
+
+      <Flex direction="row" items="center" justify="between" className="px-3 pt-3">
+        <Flex direction="row" items="center" className="gap-2">
+          <Button
+            children={isApproved ? '승인 후 수정' : '수정'}
+            disabled={checkButtonDisable(approveButtonType.EDIT)}
+            onClick={() => setReadState(false)}
+            color="tertiary"
+            variant="solid"
+          />
+          <IconButton
+            position="front"
+            iconName="Download"
+            color="tertiary"
+            variant="solid"
+            stroke
+            strokeWidth={2}
             children="다운로드"
             disabled={clicked || checkButtonDisable(approveButtonType.DOWNLOAD)}
             onClick={async () => {
@@ -353,129 +378,134 @@ export function FieldtripResultDetailPage() {
                 setDownload(true)
               }
             }}
-            className="filled-green max-md:hidden"
           />
-          <Button.xl
+        </Flex>
+        <Flex direction="row" items="center" justify="end" className="gap-2">
+          <Button
             children={fieldtrip?.fieldtripResultStatus === 'RETURNED' ? '반려됨' : '반려'}
             disabled={checkButtonDisable(approveButtonType.RETURN)}
             onClick={() => setDeny(true)}
-            className="filled-blue"
+            color="sub"
+            variant="solid"
           />
-          <Button.xl
-            children={isApproved ? '승인 후 수정' : '수정'}
-            disabled={checkButtonDisable(approveButtonType.EDIT)}
-            onClick={() => setReadState(false)}
-            className="filled-yellow"
-          />
-          <Button.xl
+          <Button
             children={nowApprove ? '승인' : isApproved ? '승인 완료' : '승인 대기'}
             disabled={checkButtonDisable(approveButtonType.APPROVE)}
             onClick={() => {
               setOpen(true)
               setAgreeAll(false)
             }}
-            className="filled-primary"
+            color="primary"
+            variant="solid"
           />
-        </div>
-        <SuperModal modalOpen={download} setModalClose={() => setDownload(false)} className="w-max">
-          <div className="px-12 py-6">
-            <div className="mb-6 w-full text-center text-lg font-bold text-gray-900">
-              체험학습 결과보고서를 다운로드 하시겠습니까?
-            </div>
-            <div className="flex space-x-2">
-              <Button.lg
-                children="다운로드"
-                disabled={clicked}
-                onClick={async () => {
-                  setClicked(true)
-                  if (ref?.current) {
-                    const { addPage, download } = getDoc()
-
-                    const imgData = await extractReactData(ref.current)
-                    await addPage(imgData)
-
-                    if (planRef?.current) {
-                      const planImgData = await extractReactData(planRef.current)
-                      await addPage(planImgData)
-                    }
-
-                    for (const ref of refTextPageRemain.current) {
-                      if (ref) {
-                        const paperImgData = await extractReactData(ref)
-                        await addPage(paperImgData)
-                      }
-                    }
-
-                    for (const ref of separatePaperRefs.current) {
-                      if (ref) {
-                        const paperImgData = await extractReactData(ref)
-                        await addPage(paperImgData)
-                      }
-                    }
-
-                    const fileName = `체험학습 결과보고서_${
-                      fieldtrip?.startAt && fieldtrip?.endAt && makeStartEndToString(fieldtrip.startAt, fieldtrip.endAt)
-                    }_${fieldtrip?.student?.name}.pdf`
-                    await download(fileName)
-                  }
-                  setClicked(false)
-                  setDownload(false)
-                }}
-                className="filled-green w-full"
-              />
-              <Button.lg
-                children="취소"
-                onClick={async () => {
-                  setClicked(false)
-                  setDownload(false)
-                }}
-                className="filled-gray w-full"
-              />
-            </div>
+        </Flex>
+      </Flex>
+      <SuperModal modalOpen={download} setModalClose={() => setDownload(false)} className="w-max">
+        <div className="px-12 py-6">
+          <div className="mb-6 w-full text-center text-lg font-bold text-gray-900">
+            체험학습 결과보고서를 다운로드 하시겠습니까?
           </div>
-        </SuperModal>
-        <SuperModal modalOpen={deny} setModalClose={() => setDeny(false)} className="w-max">
-          <Section className="mt-7">
-            <div className="mb-6 w-full text-center text-lg font-bold text-gray-900">
-              이 학생의 체험학습 결과보고서를 반려하시겠습니까?
-            </div>
-            <Textarea
-              placeholder="반려 이유"
-              value={notApprovedReason}
-              onChange={(e) => setNotApprovedReason(e.target.value)}
-            />
-            <Button.xl
-              children="반려하기"
-              disabled={!notApprovedReason}
-              onClick={() => {
-                setLoading(true)
-                denyFieldtripResult({ id: Number(id), data: { reason: notApprovedReason } })
-              }}
-              className="filled-primary"
-            />
-          </Section>
-        </SuperModal>
+          <div className="flex space-x-2">
+            <IconButton
+              position="front"
+              iconName="Download"
+              color="tertiary"
+              variant="solid"
+              stroke
+              strokeWidth={2}
+              children="다운로드"
+              disabled={clicked}
+              onClick={async () => {
+                setClicked(true)
+                if (ref?.current) {
+                  const { addPage, download } = getDoc()
 
-        {/* 삭제요청 버튼이 없기 때문에 아래 SuperModal은 실제로 사용되지는 않음, 코드 베이스 유지를 위해서 삭제는 하지않음 */}
-        <SuperModal modalOpen={deleteAppeal} setModalClose={() => setDeleteAppeal(false)} className="w-max">
-          <Section className="mt-7">
-            <div className="mb-6 w-full text-center text-lg font-bold text-gray-900">
-              이 체험학습 결과보고서를 삭제하도록 요청하시겠습니까?
-            </div>
-            <Textarea placeholder="삭제 이유" value={deleteReason} onChange={(e) => setDeleteReason(e.target.value)} />
-            <span className="text-sm text-red-400">* 교사가 삭제요청하면 학생 또는 보호자가 삭제할 수 있습니다.</span>
-            <Button.xl
-              children="삭제 요청하기"
-              disabled={!deleteReason}
-              onClick={() => {
-                setLoading(true)
-                deleteAppealFieldtripResult({ id: Number(id), data: { reason: deleteReason } })
+                  const imgData = await extractReactData(ref.current)
+                  await addPage(imgData)
+
+                  if (planRef?.current) {
+                    const planImgData = await extractReactData(planRef.current)
+                    await addPage(planImgData)
+                  }
+
+                  for (const ref of refTextPageRemain.current) {
+                    if (ref) {
+                      const paperImgData = await extractReactData(ref)
+                      await addPage(paperImgData)
+                    }
+                  }
+
+                  for (const ref of separatePaperRefs.current) {
+                    if (ref) {
+                      const paperImgData = await extractReactData(ref)
+                      await addPage(paperImgData)
+                    }
+                  }
+
+                  const fileName = `체험학습 결과보고서_${
+                    fieldtrip?.startAt && fieldtrip?.endAt && makeStartEndToString(fieldtrip.startAt, fieldtrip.endAt)
+                  }_${fieldtrip?.student?.name}.pdf`
+                  await download(fileName)
+                }
+                setClicked(false)
+                setDownload(false)
               }}
-              className="filled-red"
             />
-          </Section>
-        </SuperModal>
-      </div>
+            <Button
+              children="취소"
+              onClick={async () => {
+                setClicked(false)
+                setDownload(false)
+              }}
+              color="tertiary"
+              variant="solid"
+            />
+          </div>
+        </div>
+      </SuperModal>
+      <SuperModal modalOpen={deny} setModalClose={() => setDeny(false)} className="w-max">
+        <Section className="mt-7">
+          <div className="mb-6 w-full text-center text-lg font-bold text-gray-900">
+            이 학생의 체험학습 결과보고서를 반려하시겠습니까?
+          </div>
+          <Textarea
+            placeholder="반려 이유"
+            value={notApprovedReason}
+            onChange={(e) => setNotApprovedReason(e.target.value)}
+          />
+          <Button
+            children="반려하기"
+            disabled={!notApprovedReason}
+            onClick={() => {
+              setLoading(true)
+              denyFieldtripResult({ id: Number(id), data: { reason: notApprovedReason } })
+            }}
+            color="primary"
+            variant="solid"
+          />
+        </Section>
+      </SuperModal>
+
+      {/* 삭제요청 버튼이 없기 때문에 아래 SuperModal은 실제로 사용되지는 않음, 코드 베이스 유지를 위해서 삭제는 하지않음 */}
+      <SuperModal modalOpen={deleteAppeal} setModalClose={() => setDeleteAppeal(false)} className="w-max">
+        <Section className="mt-7">
+          <div className="mb-6 w-full text-center text-lg font-bold text-gray-900">
+            이 체험학습 결과보고서를 삭제하도록 요청하시겠습니까?
+          </div>
+          <Textarea placeholder="삭제 이유" value={deleteReason} onChange={(e) => setDeleteReason(e.target.value)} />
+          <span className="text-sm text-red-400">* 교사가 삭제요청하면 학생 또는 보호자가 삭제할 수 있습니다.</span>
+          <Button
+            children="삭제 요청하기"
+            disabled={!deleteReason}
+            onClick={() => {
+              setLoading(true)
+              deleteAppealFieldtripResult({ id: Number(id), data: { reason: deleteReason } })
+            }}
+            color="sub"
+            variant="solid"
+          />
+        </Section>
+      </SuperModal>
     </div>
   )
 }
