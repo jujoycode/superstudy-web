@@ -179,7 +179,7 @@ export const teacherRoutes = {
       path: 'studentcard',
       element: <StudentCardPage />,
       children: [
-        { path: ':groupId', element: <StudentCardPage /> },
+        { path: ':groupId', element: <></> },
         {
           path: ':groupId/:id',
           element: <StudentCardDetailPage />,

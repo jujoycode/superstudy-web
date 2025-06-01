@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import { ReactComponent as SvgUser } from '@/assets/svg/user.svg'
 import { cn } from '@/utils/commonUtil'
 import { useNotificationStore } from '@/stores/notification'
-import { Constants } from '@/legacy/constants'
+import { Avatar } from '@/atoms/Avatar'
 import { useCodeByCategoryName } from '@/legacy/container/category'
 import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'
 import { useTeacherStudentUpdate } from '@/legacy/container/teacher-student-update'
@@ -187,16 +186,8 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
           {isEditMode ? (
             <>
               <label htmlFor="imageupload" className="h-full w-full cursor-pointer">
-                <img
-                  src={`${Constants.imageUrl}${profile}`}
-                  className="rounded-[8px] object-fill"
-                  alt=""
-                  onError={({ currentTarget }) => {
-                    currentTarget.onerror = null
-                    currentTarget.src = SvgUser as unknown as string
-                    currentTarget.className = 'w-full'
-                  }}
-                />
+                <Avatar rounded="md" src={profile} />
+
                 {profile ? (
                   <span className="absolute top-0 right-0 z-40 block h-6 w-6 rounded-full bg-red-700 ring-2 ring-white">
                     <div
@@ -224,16 +215,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
               </label>
             </>
           ) : (
-            <img
-              src={`${Constants.imageUrl}${profile}`}
-              alt="프로필 이미지"
-              className="w-full rounded-[8px] object-fill"
-              onError={({ currentTarget }) => {
-                currentTarget.onerror = null
-                currentTarget.src = SvgUser as unknown as string
-                currentTarget.className = 'rounded-[8px] object-fill w-full'
-              }}
-            />
+            <Avatar rounded="md" src={profile} />
           )}
         </div>
         <div className="flex w-full flex-col md:ml-4 md:basis-3/4">

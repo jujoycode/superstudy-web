@@ -294,10 +294,6 @@ export function OutingPage() {
             )}
           </ScrollArea>
         </GridItem>
-
-        <GridItem colSpan={6} className="bg-gray-50">
-          <Outlet context={{ isLoading, setOutingId, setOpen, setAgreeAll, userRole }} />
-        </GridItem>
       </Grid>
 
       {/* 모달 */}
