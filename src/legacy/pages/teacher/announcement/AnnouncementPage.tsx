@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
-
 import { Grid } from '@/atoms/Grid'
 import { GridItem } from '@/atoms/GridItem'
 import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'

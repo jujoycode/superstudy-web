@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router'
-
 import { useHistory } from '@/hooks/useHistory'
 import { Time } from '@/legacy/components/common/Time'
 import { Announcement } from '@/legacy/generated/model/announcement'
