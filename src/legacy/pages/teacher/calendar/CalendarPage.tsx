@@ -5,15 +5,17 @@ import { t } from 'i18next'
 import { CoachMark } from 'react-coach-mark'
 import { useUserStore } from '@/stores/user'
 import { Button } from '@/atoms/Button'
+import { Checkbox } from '@/atoms/Checkbox'
+import { Flex } from '@/atoms/Flex'
 import { FullCalendar, type CalendarData } from '@/atoms/FullCalendar'
+import { Icon } from '@/atoms/Icon'
+import { Text } from '@/atoms/Text'
 import { ErrorBlank } from '@/legacy/components'
 import { CustomTuiDetailModal } from '@/legacy/components/calendar/CustomTuiDetailModal'
 import { CustomTuiModal } from '@/legacy/components/calendar/CustomTuiModal'
 import { LnbCalendarsItem } from '@/legacy/components/calendar/LnbCalendarsItem'
-import { Blank, Label } from '@/legacy/components/common'
-import { Checkbox } from '@/legacy/components/common/Checkbox'
+import { Blank } from '@/legacy/components/common'
 import { Guide, useCoachMark } from '@/legacy/components/common/CoachMark'
-import { Icon } from '@/legacy/components/common/icons'
 import { useTeacherCalendarDetail } from '@/legacy/container/teacher-calendar-detail'
 import { useTeacherChatUserList } from '@/legacy/container/teacher-chat-user-list'
 import { CalendarIdEnum, Role, ScheduleCategoryEnum } from '@/legacy/generated/model'
@@ -205,32 +207,21 @@ export function CalendarPage() {
       {errorMessage && <ErrorBlank />}
       {<CoachMark {...coach} />}
       <div className="flex h-full w-full">
-        <div className="w-[25%] border-r border-gray-500 px-3 py-2">
-          <div className="flex items-center space-x-2 border-b border-[#E5E5E5] pb-3">
-            <Button
-              children={t('add_new_event')}
-              onClick={() => {
-                if (readOnly) {
-                  alert('일정 추가 권한이 없습니다.')
-                } else {
-                  setModalOpen(true)
-                }
-              }}
-              className="rounded-full"
-            />
-            <div
-              className="cursor-pointer rounded-full border border-gray-500 px-2 text-sm text-gray-500"
-              onClick={reOpenCoach}
-            >
-              ?
-            </div>
-          </div>
-          <div className="border-b border-[#e5e5e5] px-3 py-4">
-            <Label.row>
-              <Checkbox checked={!filterId} onChange={() => filterId && setFilterId(undefined)} />
-              <strong>{t('view_all')}</strong>
-            </Label.row>
-          </div>
+        <div className="w-[25%] border-r px-3 py-6">
+          <Flex direction="col" gap="2" className="border-b pb-3">
+            <Flex direction="row" items="center" justify="between" gap="2">
+              <Text size="lg" weight="lg" variant="default">
+                내 캘린더
+              </Text>
+              <Icon stroke name="Info" customSize={{ width: '20px', height: '20px' }} onClick={reOpenCoach} />
+            </Flex>
+            <Flex direction="row" items="center" gap="1">
+              <Checkbox checked={!filterId} onChange={() => filterId && setFilterId(undefined)} size="md" />
+              <Text size="sm" weight="sm" variant="sub">
+                {t('view_all')}
+              </Text>
+            </Flex>
+          </Flex>
           <div className="space-y-2 border-b border-[#e5e5e5] px-3 py-4" ref={refs[0]}>
             {CALENDAR_TYPES.map(({ id, name, bgColor }) => (
               <LnbCalendarsItem
@@ -243,31 +234,52 @@ export function CalendarPage() {
               />
             ))}
           </div>
-          <div className="text-10 absolute bottom-[12px] pl-4 text-[#999]">© NHN Corp.</div>
         </div>
         <div className="scroll-box max-h-[100vh] w-full overflow-y-scroll">
-          <div className="flex items-center space-x-6 p-4">
-            <button
+          <Flex direction="row" items="center" justify="between" className="p-5">
+            <Button
+              size="lg"
+              color="tertiary"
+              variant="outline"
               children={t('today')}
-              className="rounded-full border border-gray-300 px-6 py-2 text-sm hover:border-gray-400"
+              className="rounded-full"
               onClick={() => setSelectedDate(new Date())}
             />
-            <div className="flex items-center space-x-2">
-              <button
-                className="rounded-full border border-gray-300 p-2 hover:border-gray-400"
+            <Flex direction="row" items="center" justify="center" gap="6" className="flex-1">
+              <Icon
+                name="chevronLeft"
+                size="md"
+                data-action="move-prev"
+                stroke
+                className="cursor-pointer"
                 onClick={() => setSelectedDate(subMonths(selectedDate, 1))}
-              >
-                <Icon.ChevronLeft className="h-4 w-4" data-action="move-prev" />
-              </button>
-              <p>{format(selectedDate, 'yyyy-MM-dd')}</p>
-              <button
-                className="rounded-full border border-gray-300 p-2 hover:border-gray-400"
+              />
+              <Text size="md" weight="md" variant="title">
+                {format(selectedDate, 'yyyy.MM')}
+              </Text>
+              <Icon
+                name="chevronRight"
+                size="md"
+                data-action="move-next"
+                stroke
+                className="cursor-pointer"
                 onClick={() => setSelectedDate(addMonths(selectedDate, 1))}
-              >
-                <Icon.ChevronRight className="h-4 w-4" data-action="move-next" />
-              </button>
-            </div>
-          </div>
+              />
+            </Flex>
+            <Button
+              size="md"
+              color="primary"
+              variant="solid"
+              children={t('add_new_event')}
+              onClick={() => {
+                if (readOnly) {
+                  alert('일정 추가 권한이 없습니다.')
+                } else {
+                  setModalOpen(true)
+                }
+              }}
+            />
+          </Flex>
           <FullCalendar
             data={data}
             full

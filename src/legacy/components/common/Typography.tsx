@@ -1,6 +1,6 @@
-import { HTMLAttributes, createElement, forwardRef } from 'react'
+import { HTMLAttributes, forwardRef } from 'react'
+import clsx from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import { cn } from '@/utils/commonUtil'
 
 export interface TypographyProps extends HTMLAttributes<HTMLElement> {
   variant:
@@ -8,6 +8,7 @@ export interface TypographyProps extends HTMLAttributes<HTMLElement> {
     | 'title1'
     | 'title2'
     | 'title3'
+    | 'mobileTitle'
     | 'body1'
     | 'body2'
     | 'body3'
@@ -21,18 +22,20 @@ const styles = {
   title1: 'text-[#121316] text-2xl font-bold',
   title2: 'text-[#121316] text-[18px] leading-[26px] font-semibold',
   title3: 'text-[#121316] text-base leading-6 font-semibold',
+  mobileTitle: 'text-[#121316] text-20 font-bold',
   body1: 'text-[#121316] text-base font-normal',
-  body2: 'text-[#121316] text-[15px] font-normal',
+  body2: 'text-[#121316] text-[15px] font-normal leading-[22px]',
   body3: 'text-[#121316] text-[14px] leading-5 font-normal',
   caption: 'text-[#121316] text-[13px] leading-[18px] font-normal',
   caption2: 'text-[#121316] text-[12px] leading-[16px] font-normal',
   caption3: 'text-[#121316] text-[11px] leading-[14px] font-medium',
 }
 
-export const Typography = forwardRef<HTMLElement, TypographyProps>(function Typography(
-  { className, variant, ...props },
-  ref,
-) {
+export const Typography = forwardRef<HTMLElement, TypographyProps>(function Typography({
+  className,
+  variant,
+  ...props
+}) {
   const Component =
     variant === 'heading'
       ? 'h1'
@@ -42,11 +45,13 @@ export const Typography = forwardRef<HTMLElement, TypographyProps>(function Typo
           ? 'h3'
           : variant === 'title3'
             ? 'h3'
-            : variant === 'caption' || variant === 'caption2' || variant === 'caption3'
-              ? 'span'
-              : 'p'
+            : variant === 'mobileTitle'
+              ? 'h3'
+              : variant === 'caption' || variant === 'caption2' || variant === 'caption3'
+                ? 'span'
+                : 'p'
 
-  const combinedClassName = twMerge(cn(styles[variant], 'whitespace-pre-wrap', className))
+  const combinedClassName = twMerge(clsx(styles[variant], 'whitespace-pre-wrap', className))
 
-  return createElement(Component, { ref, className: combinedClassName, ...props })
+  return <Component className={combinedClassName} {...props} />
 })
