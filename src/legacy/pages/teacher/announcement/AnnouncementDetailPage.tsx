@@ -60,7 +60,7 @@ export default function AnnouncementDetailPage() {
       </div>
 
       {/* Desktop V */}
-      <div className="hidden rounded-lg border bg-white p-5 md:block">
+      <div className="h-screen-3 m-6 hidden overflow-y-scroll rounded-lg border bg-white p-5 md:block">
         {isLoading && <Blank reversed text={`${t('loading_post')}`} />}
         {errorMessage && <ErrorBlank text={`${t('failed_to_load_post')}`} />}
         <Section>
