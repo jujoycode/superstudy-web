@@ -8,6 +8,8 @@ import { Button } from '@/atoms/Button'
 import { Checkbox } from '@/atoms/Checkbox'
 import { Flex } from '@/atoms/Flex'
 import { FullCalendar, type CalendarData } from '@/atoms/FullCalendar'
+import { Grid } from '@/atoms/Grid'
+import { GridItem } from '@/atoms/GridItem'
 import { Icon } from '@/atoms/Icon'
 import { Text } from '@/atoms/Text'
 import { ErrorBlank } from '@/legacy/components'
@@ -201,121 +203,132 @@ export function CalendarPage() {
     return `${startDate} ~ ${format(new Date(end), 'yyyy.MM.dd')}`
   }
 
+  if (isCalendarLoading || isLoading) return <Blank />
+  if (errorMessage) return <ErrorBlank />
+
   return (
     <>
-      {(isCalendarLoading || isLoading) && <Blank />}
-      {errorMessage && <ErrorBlank />}
       {<CoachMark {...coach} />}
+
       <div className="flex h-full w-full">
-        <div className="w-[25%] border-r px-3 py-6">
-          <Flex direction="col" gap="2" className="border-b pb-3">
-            <Flex direction="row" items="center" justify="between" gap="2">
-              <Text size="lg" weight="lg" variant="default">
-                내 캘린더
-              </Text>
-              <Icon stroke name="Info" customSize={{ width: '20px', height: '20px' }} onClick={reOpenCoach} />
+        <Grid>
+          <GridItem colSpan={2} className="border-r border-gray-300">
+            <Flex direction="col" gap="2" className="p-4 pt-6 pb-2.5">
+              <Flex direction="row" items="center" justify="between" gap="2">
+                <Text size="lg" weight="lg" variant="default">
+                  내 캘린더
+                </Text>
+                <Icon stroke name="Info" customSize={{ width: '20px', height: '20px' }} onClick={reOpenCoach} />
+              </Flex>
+
+              <Flex direction="row" items="center" gap="1">
+                <Checkbox checked={!filterId} onChange={() => filterId && setFilterId(undefined)} size="md" />
+                <Text size="sm" weight="sm" variant="sub">
+                  {t('view_all')}
+                </Text>
+              </Flex>
             </Flex>
-            <Flex direction="row" items="center" gap="1">
-              <Checkbox checked={!filterId} onChange={() => filterId && setFilterId(undefined)} size="md" />
-              <Text size="sm" weight="sm" variant="sub">
-                {t('view_all')}
-              </Text>
-            </Flex>
-          </Flex>
-          <div className="space-y-2 border-b border-[#e5e5e5] px-3 py-4" ref={refs[0]}>
-            {CALENDAR_TYPES.map(({ id, name, bgColor }) => (
-              <LnbCalendarsItem
-                key={id}
-                value={id}
-                checked={false}
-                color={bgColor}
-                text={name}
-                onClick={() => setFilterId(id)}
+
+            <div className="space-y-2 px-3 py-4" ref={refs[0]}>
+              {CALENDAR_TYPES.map(({ id, name, bgColor }) => (
+                <LnbCalendarsItem
+                  key={id}
+                  value={id}
+                  checked={false}
+                  color={bgColor}
+                  text={name}
+                  onClick={() => setFilterId(id)}
+                />
+              ))}
+            </div>
+          </GridItem>
+
+          <GridItem colSpan={10}>
+            <div className="scroll-box max-h-[100vh] w-full overflow-y-scroll">
+              <Flex direction="row" items="center" justify="between" className="p-5">
+                <Button
+                  size="lg"
+                  color="tertiary"
+                  variant="outline"
+                  children={t('today')}
+                  className="rounded-full"
+                  onClick={() => setSelectedDate(new Date())}
+                />
+                <Flex direction="row" items="center" justify="center" gap="6" className="flex-1">
+                  <Icon
+                    name="chevronLeft"
+                    size="md"
+                    data-action="move-prev"
+                    stroke
+                    className="cursor-pointer"
+                    onClick={() => setSelectedDate(subMonths(selectedDate, 1))}
+                  />
+                  <Text size="md" weight="md" variant="title">
+                    {format(selectedDate, 'yyyy.MM')}
+                  </Text>
+                  <Icon
+                    name="chevronRight"
+                    size="md"
+                    data-action="move-next"
+                    stroke
+                    className="cursor-pointer"
+                    onClick={() => setSelectedDate(addMonths(selectedDate, 1))}
+                  />
+                </Flex>
+
+                <Button
+                  size="md"
+                  color="primary"
+                  variant="solid"
+                  children={t('add_new_event')}
+                  onClick={() => {
+                    if (readOnly) {
+                      alert('일정 추가 권한이 없습니다.')
+                    } else {
+                      setModalOpen(true)
+                    }
+                  }}
+                />
+              </Flex>
+
+              <FullCalendar
+                data={data}
+                full
+                now={selectedDate}
+                handleEventClick={handleEventClick}
+                handleDayClick={handleDayClick}
               />
-            ))}
-          </div>
-        </div>
-        <div className="scroll-box max-h-[100vh] w-full overflow-y-scroll">
-          <Flex direction="row" items="center" justify="between" className="p-5">
-            <Button
-              size="lg"
-              color="tertiary"
-              variant="outline"
-              children={t('today')}
-              className="rounded-full"
-              onClick={() => setSelectedDate(new Date())}
-            />
-            <Flex direction="row" items="center" justify="center" gap="6" className="flex-1">
-              <Icon
-                name="chevronLeft"
-                size="md"
-                data-action="move-prev"
-                stroke
-                className="cursor-pointer"
-                onClick={() => setSelectedDate(subMonths(selectedDate, 1))}
+              {detailModalOpen && selectedData && (
+                <CustomTuiDetailModal
+                  title={selectedData.title}
+                  date={formatDateRange(selectedData.start, selectedData.end)}
+                  type={selectedType?.name || ''}
+                  backgroundColor={selectedType?.bgColor || ''}
+                  onClose={() => setDetailModalOpen(false)}
+                  onEdit={() => {
+                    setModalOpen(true)
+                    setDetailModalOpen(false)
+                  }}
+                  onDelete={() => deleteCalendar(Number(selectedData.id))}
+                />
+              )}
+              <CustomTuiModal
+                isOpen={modalOpen}
+                onClose={() => {
+                  setModalOpen(false)
+                  setSelectedData(undefined)
+                }}
+                onSubmit={!selectedData?.id ? createCalendar : updateCalendar}
+                calendars={CALENDAR_TYPES}
+                schedule={selectedCalendarData}
+                startDate={selectedData?.start ? new Date(selectedData.start) : new Date()}
+                endDate={selectedData?.end ? new Date(selectedData.end) : new Date()}
+                schoolType={schoolType}
+                groupProps={groupProps}
               />
-              <Text size="md" weight="md" variant="title">
-                {format(selectedDate, 'yyyy.MM')}
-              </Text>
-              <Icon
-                name="chevronRight"
-                size="md"
-                data-action="move-next"
-                stroke
-                className="cursor-pointer"
-                onClick={() => setSelectedDate(addMonths(selectedDate, 1))}
-              />
-            </Flex>
-            <Button
-              size="md"
-              color="primary"
-              variant="solid"
-              children={t('add_new_event')}
-              onClick={() => {
-                if (readOnly) {
-                  alert('일정 추가 권한이 없습니다.')
-                } else {
-                  setModalOpen(true)
-                }
-              }}
-            />
-          </Flex>
-          <FullCalendar
-            data={data}
-            full
-            now={selectedDate}
-            handleEventClick={handleEventClick}
-            handleDayClick={handleDayClick}
-          />
-          {detailModalOpen && selectedData && (
-            <CustomTuiDetailModal
-              title={selectedData.title}
-              date={formatDateRange(selectedData.start, selectedData.end)}
-              type={selectedType?.name || ''}
-              backgroundColor={selectedType?.bgColor || ''}
-              onClose={() => setDetailModalOpen(false)}
-              onEdit={() => {
-                setModalOpen(true)
-                setDetailModalOpen(false)
-              }}
-              onDelete={() => deleteCalendar(Number(selectedData.id))}
-            />
-          )}
-          <CustomTuiModal
-            isOpen={modalOpen}
-            onClose={() => {
-              setModalOpen(false)
-              setSelectedData(undefined)
-            }}
-            onSubmit={!selectedData?.id ? createCalendar : updateCalendar}
-            calendars={CALENDAR_TYPES}
-            schedule={selectedCalendarData}
-            startDate={selectedData?.start ? new Date(selectedData.start) : new Date()}
-            endDate={selectedData?.end ? new Date(selectedData.end) : new Date()}
-            schoolType={schoolType}
-            groupProps={groupProps}
-          />
-        </div>
+            </div>
+          </GridItem>
+        </Grid>
       </div>
     </>
   )

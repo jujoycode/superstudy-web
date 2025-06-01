@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router'
 
 import { useHistory } from '@/hooks/useHistory'
-import { Badge } from '@/legacy/components/common'
+import { Badge } from '@/atoms/Badge'
 import { Time } from '@/legacy/components/common/Time'
 import { Board } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
@@ -30,11 +30,12 @@ export function BoardCard({ board, isNew }: BoardCardProps) {
           <div className="flex justify-between">
             <div className="space-x-2">
               <Badge
+                variant="active"
+                className="border-0"
                 children={t(`${board.category}`) || t('class_bulletin_board')}
-                className="bg-primary-800 text-primary-100 rounded-md"
               />
               {(board.toStudent || board.toParent) && (
-                <Badge className="rounded-md bg-purple-100 text-purple-700">
+                <Badge className="border-0">
                   {board.toStudent && t('student')} {board.toParent && t('parent')}
                 </Badge>
               )}

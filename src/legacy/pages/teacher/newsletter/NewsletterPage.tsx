@@ -3,6 +3,8 @@ import { Outlet } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
 import { useNotificationStore } from '@/stores/notification'
 import { useUserStore } from '@/stores/user'
+import { Grid } from '@/atoms/Grid'
+import { GridItem } from '@/atoms/GridItem'
 import { Blank, Chip, HorizontalScrollView, Select } from '@/legacy/components/common'
 import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
 import { Icon } from '@/legacy/components/common/icons'
@@ -28,11 +30,13 @@ export function NewsletterPage() {
     setFilter(e.target.value)
   }
 
+  if (isLoading) {
+    return <Blank reversed />
+  }
+
   return (
-    <>
-      {/* Desktop V */}
-      {isLoading && <Blank reversed />}
-      <div className="col-span-2 hidden h-screen md:block">
+    <Grid col={12}>
+      <GridItem colSpan={5}>
         <div className="flex justify-between px-6 py-6">
           <h1 className="text-2xl font-semibold">{t('parent_letters')}</h1>
           <ButtonV2
@@ -115,12 +119,11 @@ export function NewsletterPage() {
               />
             ))}
         </div>
-      </div>
+      </GridItem>
 
-      {/* Desktop V */}
-      <div className="bg-gray-50 md:col-span-4 md:overflow-y-auto md:p-6">
+      <GridItem colSpan={7} className="bg-gray-50 md:overflow-y-auto md:p-6">
         <Outlet />
-      </div>
-    </>
+      </GridItem>
+    </Grid>
   )
 }

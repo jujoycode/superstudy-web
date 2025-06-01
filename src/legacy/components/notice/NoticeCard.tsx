@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
-import { Badge } from '@/legacy/components/common'
+import { Badge } from '@/atoms/Badge'
 import { Time } from '@/legacy/components/common/Time'
 import { Routes } from '@/legacy/constants/routes'
 import { Notice } from '@/legacy/generated/model'
@@ -33,12 +33,11 @@ export function NoticeCard({ notice, isNew, onClick }: NoticeCardProps) {
       >
         <div className="flex justify-between">
           <div className="space-x-2">
-            <Badge
-              children={t(`${notice.category}`) || t('announcement')}
-              className="rounded-md bg-red-50 text-red-500"
-            />
+            <Badge variant="active" className="border-0">
+              {t(`${notice.category}`) || t('announcement')}
+            </Badge>
             {(notice.toStudent || notice.toParent) && (
-              <Badge className="rounded-md bg-purple-100 text-purple-700">
+              <Badge className="border-0">
                 {notice.toStudent && t('student')} {notice.toParent && t('parent')}
               </Badge>
             )}
