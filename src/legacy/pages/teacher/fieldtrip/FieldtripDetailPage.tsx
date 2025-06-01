@@ -1,10 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { useOutletContext, useParams } from 'react-router'
 import { useNotificationStore } from '@/stores/notification'
+import { Box } from '@/atoms/Box'
+import { Button } from '@/atoms/Button'
+import { Flex } from '@/atoms/Flex'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/atoms/Tabs'
+import { Text } from '@/atoms/Text'
+import { IconButton } from '@/molecules/IconButton'
 import { ErrorBlank, SuperModal } from '@/legacy/components'
 import { Blank, Section, Textarea } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
-import { Icon } from '@/legacy/components/common/icons'
 import { FieldtripPaper } from '@/legacy/components/fieldtrip/FieldtripPaper'
 import { FieldtripSeparatePaper } from '@/legacy/components/fieldtrip/FieldtripSeparatePaper'
 import { FieldtripSuburbsSeparatePaper } from '@/legacy/components/fieldtrip/FieldtripSuburbsSeparatePaper'
@@ -164,28 +168,34 @@ export function FieldtripDetailPage() {
   }
 
   return (
-    <div className="h-screen-10 md:h-screen-7 bg-white py-5 md:rounded-lg md:border">
+    <div className="h-screen-10 md:h-screen-3 m-6 bg-white py-5 md:rounded-lg md:border">
       {loading && <Blank reversed />}
       {isLoading && <Blank reversed />}
       {errorMessage && <ErrorBlank text={errorMessage} />}
 
-      <div className="relative h-full w-auto overflow-y-scroll">
-        <div className="flex w-full items-center justify-start space-x-2 px-5">
-          <div className="text-primary-800 cursor-pointer underline">신청서</div>
-          <div
-            className="text-primary-800 cursor-pointer underline"
-            onClick={() => fieldtrip && pushWithQueryParams(`/teacher/fieldtrip/notice/${fieldtrip.id}`)}
-          >
-            통보서
-          </div>
-          <div
-            className="text-primary-800 cursor-pointer underline"
-            //onClick={() => fieldtrip && push(`/teacher/fieldtrip/result/${fieldtrip.id}`)}
-            onClick={() => fieldtrip && pushWithQueryParams(`/teacher/fieldtrip/result/${fieldtrip.id}`)}
-          >
-            결과보고서
-          </div>
-        </div>
+      <div className="h-screen-8 relative w-full overflow-y-scroll">
+        <Tabs defaultValue="tab1" className="w-full px-3 pb-2">
+          <TabsList className="w-full">
+            <TabsTrigger
+              value="tab1"
+              onClick={() => fieldtrip && pushWithQueryParams(`/teacher/fieldtrip/${fieldtrip.id}`)}
+            >
+              신청서
+            </TabsTrigger>
+            <TabsTrigger
+              value="tab2"
+              onClick={() => fieldtrip && pushWithQueryParams(`/teacher/fieldtrip/notice/${fieldtrip.id}`)}
+            >
+              통보서
+            </TabsTrigger>
+            <TabsTrigger
+              value="tab3"
+              onClick={() => fieldtrip && pushWithQueryParams(`/teacher/fieldtrip/result/${fieldtrip.id}`)}
+            >
+              결과보고서
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
 
         {fieldtrip?.fieldtripStatus === 'RETURNED' && fieldtrip?.notApprovedReason && fieldtrip?.updatedAt && (
           <div className="bg-primary-100 mx-5 flex items-center justify-between rounded-lg px-5 py-2">
@@ -207,39 +217,56 @@ export function FieldtripDetailPage() {
         {fieldtrip?.fieldtripStatus === FieldtripStatus.BEFORE_PARENT_CONFIRM && (
           <div className="bg-primary-100 m-2 flex items-center justify-between rounded-lg px-5 py-2">
             <div className="text-primary-800 text-sm">학부모 승인 전</div>
-            <Button.sm
-              children="학부모 승인 요청 다시하기"
-              onClick={() => resendAlimtalk()}
-              className="bg-blue-500 text-white"
-            />
+            <Button children="학부모 승인 요청 다시하기" onClick={() => resendAlimtalk()} color="primary" />
           </div>
         )}
 
-        <div className="mx-5 mt-2 flex items-center justify-between space-x-2">
-          ※ 연간 {me.school?.fieldtripDays} 일 중, 금회 {fieldtrip?.usedDays} 일, 누적{' '}
-          {me.school?.fieldtripDays &&
-            fieldtrip?.currentRemainDays &&
-            fieldtrip?.usedDays !== undefined &&
-            me.school.fieldtripDays - fieldtrip.currentRemainDays + fieldtrip.usedDays}{' '}
-          일 사용하여 잔여{' '}
-          {fieldtrip?.currentRemainDays &&
-            fieldtrip?.usedDays !== undefined &&
-            fieldtrip?.currentRemainDays - fieldtrip?.usedDays}{' '}
-          일 남았습니다.
-          <Button.sm
-            onClick={() => {
-              setRecalculateDays()
-            }}
-            className="outlined-gray flex h-10 w-25 items-center"
-          >
-            <Icon.Refresh />
-            <span className="text-bold text-primary-800 pl-2 text-sm">
-              잔여일
-              <br />
-              재확인
-            </span>
-          </Button.sm>
-        </div>
+        <Box className="px-3">
+          <Flex direction="row" items="center" justify="between" className="gap-2 rounded-lg bg-gray-50 px-4 py-2">
+            <Text variant="default" size="sm" weight="sm" className="line-clamp-2 flex-1">
+              연간 {me.school?.fieldtripDays} 일 중,{' '}
+              <Text as="span" variant="primary" size="sm" weight="sm">
+                금회 {fieldtrip?.usedDays}일
+              </Text>
+              ,
+              <Text as="span" variant="primary" size="sm" weight="sm">
+                누적{' '}
+                {me.school?.fieldtripDays &&
+                  fieldtrip?.currentRemainDays &&
+                  fieldtrip?.usedDays !== undefined &&
+                  me.school.fieldtripDays - fieldtrip.currentRemainDays + fieldtrip.usedDays}
+                일
+              </Text>{' '}
+              사용하여{' '}
+              <Text as="span" variant="primary" size="sm" weight="sm">
+                잔여{' '}
+                {fieldtrip?.currentRemainDays &&
+                  fieldtrip?.usedDays !== undefined &&
+                  fieldtrip?.currentRemainDays - fieldtrip?.usedDays}
+                일
+              </Text>{' '}
+              남았습니다.
+            </Text>
+            <IconButton
+              iconName="RotateCw"
+              stroke
+              iconSize="sm"
+              onClick={() => {
+                setRecalculateDays()
+              }}
+              position="front"
+              variant="outline"
+              color="tertiary"
+              strokeWidth={2}
+              size="sm"
+              className="flex-shrink-0"
+            >
+              <Text variant="default" size="sm" weight="sm">
+                잔여일 재확인
+              </Text>
+            </IconButton>
+          </Flex>
+        </Box>
         {fieldtrip?.type === 'HOME' && fieldtrip?.usedDays > 1 && homeplans?.length === 0 && (
           <div className="mx-5 mt-2 text-red-500">※ 전 일정 동일한 계획으로 가정학습을 신청합니다.</div>
         )}
@@ -290,61 +317,88 @@ export function FieldtripDetailPage() {
         )}
       </div>
 
-      <div className="grid grid-cols-4 gap-2 px-2 pt-3 md:grid-cols-5 md:px-0 md:pt-8">
-        <Button.xl
-          children="다운로드"
-          disabled={clicked || checkButtonDisable(approveButtonType.DOWNLOAD)}
-          onClick={async () => {
-            if (ref?.current) {
-              setDownload(true)
-            }
-          }}
-          className="filled-green max-md:hidden"
-        />
-        <Button.xl
-          children={fieldtrip?.fieldtripStatus === 'DELETE_APPEAL' ? '삭제대기' : '삭제요청'}
-          disabled={checkButtonDisable(approveButtonType.DELETE)}
-          onClick={() => setDeleteAppeal(true)}
-          className="filled-red"
-        />
-        <Button.xl
-          children={fieldtrip?.fieldtripStatus === 'RETURNED' ? '반려됨' : '반려'}
-          disabled={checkButtonDisable(approveButtonType.RETURN)}
-          onClick={() => setDeny(true)}
-          className="filled-blue"
-        />
-        <Button.xl
-          children={isApproved ? '승인 후 수정' : '수정'}
-          disabled={checkButtonDisable(approveButtonType.EDIT)}
-          onClick={() => setReadState(false)}
-          className="filled-yellow"
-        />
-        <Button.xl
-          children={nowApprove ? '승인' : isApproved ? '승인 완료' : '승인 대기'}
-          disabled={checkButtonDisable(approveButtonType.APPROVE)}
-          onClick={() => {
-            if (
-              (fieldtrip?.startPeriodS &&
-                fieldtrip?.endPeriodE &&
-                (fieldtrip?.startPeriodS > 0 || fieldtrip?.endPeriodE > 0)) ||
-              (fieldtrip?.usedDays && fieldtrip?.usedDays < 1)
-            ) {
-              setConfirmHalfSubmit(true)
-            } else {
-              setOpen(true)
-              setAgreeAll(false)
-            }
-          }}
-          className="filled-primary"
-        />
-      </div>
+      <Flex direction="row" items="center" justify="between" className="gap-2 px-3 pt-3">
+        <Flex direction="row" items="center" className="gap-2">
+          <Button
+            children={isApproved ? '승인 후 수정' : '수정'}
+            disabled={checkButtonDisable(approveButtonType.EDIT)}
+            onClick={() => setReadState(false)}
+            color="tertiary"
+            variant="solid"
+          />
+          <IconButton
+            position="front"
+            iconName="Download"
+            color="tertiary"
+            variant="solid"
+            stroke
+            strokeWidth={2}
+            disabled={clicked || checkButtonDisable(approveButtonType.DOWNLOAD)}
+            onClick={async () => {
+              if (ref?.current) {
+                setDownload(true)
+              }
+            }}
+          >
+            <Text variant="default" size="sm" weight="sm">
+              다운로드
+            </Text>
+          </IconButton>
+        </Flex>
+        <Flex direction="row" items="center" justify="end" className="gap-2">
+          <Button
+            children={fieldtrip?.fieldtripStatus === 'DELETE_APPEAL' ? '삭제대기' : '삭제요청'}
+            disabled={checkButtonDisable(approveButtonType.DELETE)}
+            onClick={() => setDeleteAppeal(true)}
+            color="tertiary"
+            variant="solid"
+          />
+          <Button
+            children={fieldtrip?.fieldtripStatus === 'RETURNED' ? '반려됨' : '반려'}
+            disabled={checkButtonDisable(approveButtonType.RETURN)}
+            onClick={() => setDeny(true)}
+            color="sub"
+            variant="solid"
+          />
+
+          <Button
+            children={nowApprove ? '승인' : isApproved ? '승인 완료' : '승인 대기'}
+            disabled={checkButtonDisable(approveButtonType.APPROVE)}
+            onClick={() => {
+              if (
+                (fieldtrip?.startPeriodS &&
+                  fieldtrip?.endPeriodE &&
+                  (fieldtrip?.startPeriodS > 0 || fieldtrip?.endPeriodE > 0)) ||
+                (fieldtrip?.usedDays && fieldtrip?.usedDays < 1)
+              ) {
+                setConfirmHalfSubmit(true)
+              } else {
+                setOpen(true)
+                setAgreeAll(false)
+              }
+            }}
+            color="primary"
+            variant="solid"
+          />
+        </Flex>
+      </Flex>
       <SuperModal modalOpen={download} setModalClose={() => setDownload(false)} className="w-max">
         <div className="px-12 py-6">
           <div className="mb-6 w-full text-center text-lg font-bold text-gray-900">
             체험학습 신청서를 다운로드 하시겠습니까?
           </div>
-          <div className="flex space-x-2">
-            <Button.lg
+          <Flex direction="row" items="center" justify="end" className="gap-2">
+            <Button
+              children="취소"
+              onClick={async () => {
+                setClicked(false)
+                setDownload(false)
+              }}
+              color="tertiary"
+              variant="solid"
+              className="flex-1"
+            />
+            <Button
               children="다운로드"
               disabled={clicked}
               onClick={async () => {
@@ -376,17 +430,11 @@ export function FieldtripDetailPage() {
                 setClicked(false)
                 setDownload(false)
               }}
-              className="filled-green w-full"
+              color="primary"
+              variant="solid"
+              className="flex-1"
             />
-            <Button.lg
-              children="취소"
-              onClick={async () => {
-                setClicked(false)
-                setDownload(false)
-              }}
-              className="filled-gray w-full"
-            />
-          </div>
+          </Flex>
         </div>
       </SuperModal>
       <SuperModal modalOpen={deny} setModalClose={() => setDeny(false)} className="w-max">
@@ -399,7 +447,7 @@ export function FieldtripDetailPage() {
             value={notApprovedReason}
             onChange={(e) => setNotApprovedReason(e.target.value)}
           />
-          <Button.xl
+          <Button
             children="반려하기"
             disabled={!notApprovedReason}
             onClick={() => {
@@ -417,7 +465,7 @@ export function FieldtripDetailPage() {
           </div>
           <Textarea placeholder="삭제 이유" value={deleteReason} onChange={(e) => setDeleteReason(e.target.value)} />
           <span className="text-sm text-red-400">* 교사가 삭제요청하면 학생 또는 보호자가 삭제할 수 있습니다.</span>
-          <Button.xl
+          <Button
             children="삭제 요청하기"
             disabled={!deleteReason}
             onClick={() => {
@@ -449,21 +497,21 @@ export function FieldtripDetailPage() {
             </div>
             반일기준 체험활동 신청 시간이 교칙에 맞습니까?
           </div>
-          <Button.xl
+          <Button
             children="교칙에 맞습니다. 승인함"
             onClick={() => {
               setConfirmHalfSubmit(false)
               setOpen(true)
               setAgreeAll(false)
             }}
-            className="filled-primary"
+            color="primary"
           />
-          <Button.xl
+          <Button
             children="교칙에 맞지 않습니다. 승인취소"
             onClick={() => {
               setConfirmHalfSubmit(false)
             }}
-            className="filled-gray"
+            color="secondary"
           />
         </Section>
       </SuperModal>
