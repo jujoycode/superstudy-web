@@ -2,13 +2,13 @@ import React from 'react'
 import { useState } from 'react'
 import { useLocation } from 'react-router'
 import { useHistory } from '@/hooks/useHistory'
+import { Checkbox } from '@/atoms/Checkbox'
+import { Flex } from '@/atoms/Flex'
 import { Text, type TextVariant } from '@/atoms/Text'
 import { Absent, AbsentStatus, ResponsePaginatedAbsentDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { getNickName, getPeriodStr } from '@/legacy/util/status'
 import { makeStartEndToString, makeTimeToString } from '@/legacy/util/time'
-import { Checkbox } from '@/atoms/Checkbox'
-import { Flex } from '@/atoms/Flex'
 
 interface AbsentCardProps {
   absent: ResponsePaginatedAbsentDto['items'][number]
@@ -30,13 +30,11 @@ export function AbsentCard({ absent, submitAbsent, submitNiceAbsent, page, limit
     let content = ''
 
     switch (absentStatus) {
-      // 보호자 승인 전 (primary)
       case AbsentStatus.BEFORE_PARENT_CONFIRM: {
         variant = 'primary'
         content = t('before_parent_approval', '보호자\n승인 전')
         break
       }
-      //
       case AbsentStatus.PROCESSING: {
         variant = 'primary'
         content = `${absent?.nextApproverTitle}\n${t('pending_approval', '승인 전')}`
@@ -47,13 +45,11 @@ export function AbsentCard({ absent, submitAbsent, submitNiceAbsent, page, limit
         content = t('approved', '승인 완료')
         break
       }
-      // 반려됨 (red-500)
       case AbsentStatus.RETURNED: {
         variant = 'error'
         content = t('rejected', '반려됨')
         break
       }
-
       case AbsentStatus.DELETE_APPEAL: {
         variant = 'error'
         content = t('delete_request', '삭제 요청')
@@ -61,6 +57,8 @@ export function AbsentCard({ absent, submitAbsent, submitNiceAbsent, page, limit
       }
     }
 
+    // 2025.06.01 / jujoycode
+    // 줄바꿈 처리를 위해 어쩔 수 없는 구조이나, 이후 리팩토링 필요
     return (
       <Flex items="center" justify="center">
         <Text size="xs" weight="sm" variant={variant} className="w-fit text-center">

@@ -4,6 +4,7 @@ import { useLocation } from 'react-router'
 interface UseActiveNavigationProps {
   path: string
   exact?: boolean
+  isDynamicRoute?: boolean
 }
 
 /**
@@ -17,10 +18,11 @@ export function useActiveNavigation() {
    * 현재 경로가 주어진 경로와 일치하는지 확인
    * @param path 비교할 메뉴 경로
    * @param exact 정확히 일치하는지 여부 (true: 정확히 일치, false: 경로가 포함되면 일치)
+   * @param isDynamicRoute 동적 라우트 여부 (true: 쿼리 파라미터나 추가 경로 세그먼트가 있어도 매칭)
    * @returns 활성화 여부 (boolean)
    */
   const isActive = useMemo(() => {
-    return ({ path, exact = false }: UseActiveNavigationProps): boolean => {
+    return ({ path, exact = false, isDynamicRoute = false }: UseActiveNavigationProps): boolean => {
       if (exact) {
         return location.pathname === path
       }
@@ -28,6 +30,73 @@ export function useActiveNavigation() {
       // 특수 케이스: 홈 경로 ('/')
       if (path === '/') {
         return location.pathname === '/'
+      }
+
+      // 동적 라우트 처리
+      if (isDynamicRoute) {
+        // 쿼리 파라미터 제거
+        const baseUrl = path.split('?')[0];
+        const currentPathWithoutQuery = location.pathname.split('?')[0];
+
+        // 특수 케이스 처리: 체험학습 메뉴 (경로 구조 비교)
+        // /teacher/fieldtrip, /teacher/fieldtrip/notice, /teacher/fieldtrip/result
+        if (path.includes('/teacher/fieldtrip')) {
+          // 정확한 경로 구조 매칭을 위해 경로를 세그먼트로 분리
+          const pathSegments = path.split('/').filter(Boolean);
+          const currentSegments = currentPathWithoutQuery.split('/').filter(Boolean);
+
+          // 기본 세그먼트 수 (동적 ID 이전까지의 세그먼트)
+          const baseSegmentCount = pathSegments.length;
+
+          // 현재 경로의 세그먼트 수가 적으면 매칭 실패
+          if (currentSegments.length < baseSegmentCount) {
+            return false;
+          }
+
+          // 기본 세그먼트까지 정확히 일치하는지 확인
+          for (let i = 0; i < baseSegmentCount; i++) {
+            if (pathSegments[i] !== currentSegments[i]) {
+              return false;
+            }
+          }
+
+          // 기본 세그먼트 이후 추가 세그먼트가 있는 경우
+          if (currentSegments.length > baseSegmentCount) {
+            // 다음 세그먼트가 숫자(ID)인 경우만 활성화
+            return /^\d+$/.test(currentSegments[baseSegmentCount]);
+          }
+
+          // 정확히 일치하는 경우
+          return true;
+        }
+
+        // 일반 동적 라우트 처리
+        if (currentPathWithoutQuery.startsWith(baseUrl)) {
+          // 정확히 일치하는 경우
+          if (currentPathWithoutQuery === baseUrl) {
+            return true;
+          }
+
+          // baseUrl 다음에 오는 세그먼트 체크
+          const remainingPath = currentPathWithoutQuery.slice(baseUrl.length);
+
+          // baseUrl 다음에 '/'로 시작하는지 확인 (경로 구조가 맞는지)
+          if (remainingPath.startsWith('/')) {
+            // 다음 세그먼트 추출 (ID 또는 다른 경로명)
+            const nextSegment = remainingPath.split('/')[1];
+
+            // 다음 세그먼트가 숫자인 경우 (ID로 추정) -> 활성화
+            // 또는 다음 세그먼트가 없는 경우 (끝에 '/'만 있는 경우) -> 활성화
+            if (!nextSegment || /^\d+$/.test(nextSegment)) {
+              return true;
+            }
+          }
+
+          // 그 외의 경우는 비활성화
+          return false;
+        }
+
+        return false;
       }
 
       return location.pathname.startsWith(path)

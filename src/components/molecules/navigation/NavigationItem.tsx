@@ -22,14 +22,24 @@ export function NavigationItem({ title, icon, to, isDynamicRoute = false, extern
   const navigate = useNavigate()
 
   const isActiveNavigation = useMemo(
-    // 동적 라우트인 경우 정확히 일치하지 않아도 활성화 처리 (:id 등)
-    () => (to ? isActive({ path: to, exact: !isDynamicRoute }) : false),
+    // 동적 라우트 속성을 isActive 함수에 전달
+    () => (to ? isActive({ path: to, exact: !isDynamicRoute, isDynamicRoute }) : false),
     [to, isActive, isDynamicRoute],
   )
 
   // 자식 계층이 활성화 되어있다면 collapse open 처리
   useEffect(() => {
-    if (child && child.some((item) => isActive({ path: item.to ?? '' }))) {
+    if (
+      child &&
+      child.some(
+        (item) =>
+          item.to &&
+          isActive({
+            path: item.to,
+            isDynamicRoute: item.isDynamicRoute,
+          }),
+      )
+    ) {
       setIsOpen(true)
     }
   }, [child, isActive])
@@ -100,7 +110,15 @@ export function NavigationItem({ title, icon, to, isDynamicRoute = false, extern
                     <Text
                       variant="sub"
                       size="sm"
-                      className={cn(isActive({ path: item.to ?? '', exact: true }) ? 'text-primary-800' : '')}
+                      className={cn(
+                        isActive({
+                          path: item.to ?? '',
+                          exact: !item.isDynamicRoute,
+                          isDynamicRoute: item.isDynamicRoute,
+                        })
+                          ? 'text-primary-800'
+                          : '',
+                      )}
                     >
                       {item.title}
                     </Text>

@@ -20,7 +20,7 @@ export function GroupPage() {
   const id = pathname.replace('/teacher/groups', '').replace('/', '')
 
   const [frontSortType, setFrontSortType] = useState('name')
-  const [sortOrder, setSortOrder] = useState<SortState>(SortState.ASC)
+  const [sortOrder, setSortOrder] = useState<SortState>(SortState.DEFAULT)
 
   const { allGroups } = useTeacherAllGroup()
 

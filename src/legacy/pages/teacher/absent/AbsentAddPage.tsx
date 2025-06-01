@@ -133,6 +133,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
           </div>
         }
       />
+
       <ScrollArea>
         <Section>
           <div>
@@ -199,7 +200,7 @@ export function AbsentAddPage({ absentData, returnToDetail }: AbsentAddPageProps
                 className={
                   selectedUsers.length > 0
                     ? 'mt-2 flex flex-wrap rounded-lg border border-gray-300 px-4 py-3 whitespace-pre-line'
-                    : 'mt-2 flex flex-wrap rounded-lg border border-2 border-red-700 px-4 py-3 whitespace-pre-line'
+                    : 'mt-2 flex flex-wrap rounded-lg border-2 border-red-700 px-4 py-3 whitespace-pre-line'
                 }
               >
                 {selectedUsers.map((el) => (
