@@ -8,9 +8,9 @@ import LUNCH from '@/assets/images/lunch.png'
 import NODATA from '@/assets/images/no-data.png'
 import { useLanguage } from '@/hooks/useLanguage'
 import { useUserStore } from '@/stores/user'
+import { Badge } from '@/atoms/Badge'
 import { Button } from '@/atoms/Button'
-import { BadgeV2 } from '@/legacy/components/common/BadgeV2'
-import { ButtonV2 } from '@/legacy/components/common/ButtonV2'
+import { Flex } from '@/atoms/Flex'
 import { IBBlank } from '@/legacy/components/common/IBBlank'
 import { Typography } from '@/legacy/components/common/Typography'
 import { Constants } from '@/legacy/constants'
@@ -29,7 +29,7 @@ export function CanteenDetailPage({ selectedDate, canteen, setSubmitState }: Can
   const isToday = isSameDay(selectedDate, new Date())
   const [isLoading, setIsLoading] = useState(canteen?.image ? false : true)
   return (
-    <main className="relative flex h-[680px] w-[416px] flex-col gap-6 rounded-xl bg-white py-6">
+    <main className="relative flex h-[680px] w-full flex-col gap-6 rounded-xl bg-white py-6">
       <header className="relative flex w-full items-center gap-2 px-6">
         <Typography variant="title1">
           {t('language') === 'ko'
@@ -37,20 +37,21 @@ export function CanteenDetailPage({ selectedDate, canteen, setSubmitState }: Can
             : format(selectedDate, 'MMM d, yyyy')}
         </Typography>
         {isToday && (
-          <BadgeV2 type="solid_regular" color="orange" size={24}>
+          <Badge variant="active" className="border-none px-2 py-1">
             오늘
-          </BadgeV2>
+          </Badge>
         )}
       </header>
+
       <section className="scrollable-vertical flex flex-col gap-6 px-6">
         {canteen ? (
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
             <section className="flex flex-col gap-3">
               <Typography variant="title2" className="font-semibold">
                 오늘의 급식
               </Typography>
               {canteen.lunch && (
-                <span className="border-primary-gray-200 relative flex flex-col gap-1 rounded-xl border p-4">
+                <span className="relative flex flex-col gap-1 rounded-md border border-gray-200 p-4">
                   <Typography variant="title3" className="font-semibold">
                     중식
                   </Typography>
@@ -93,15 +94,17 @@ export function CanteenDetailPage({ selectedDate, canteen, setSubmitState }: Can
               )}
             </section>
             {(me?.canEditCanteen || me?.role === Role.ADMIN) && (
-              <div className="flex justify-end">
-                <ButtonV2
+              <Flex items="center" justify="start">
+                <Button
+                  color="tertiary"
                   variant="outline"
-                  color="gray400"
-                  size={32}
-                  children={t('edit')}
-                  onClick={() => setSubmitState()}
-                />
-              </div>
+                  size="sm"
+                  className="border-gray-200"
+                  onClick={setSubmitState}
+                >
+                  {t('edit')}
+                </Button>
+              </Flex>
             )}
           </div>
         ) : (
@@ -120,6 +123,7 @@ export function CanteenDetailPage({ selectedDate, canteen, setSubmitState }: Can
           </div>
         )}
       </section>
+
       <div className="absolute">
         {canteen?.image && (
           <Viewer
