@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 // @ts-ignore
 import { useLanguage } from '@/hooks/useLanguage'
 import { useUserStore } from '@/stores/user'
+import { Box } from '@/atoms/Box'
 import { Flex } from '@/atoms/Flex'
+import { Text } from '@/atoms/Text'
 import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'
 import { ErrorBlank } from '@/legacy/components'
 import AnnouncementPopup from '@/legacy/components/announcement/Announcement'
@@ -53,15 +55,15 @@ export function CanteenPage() {
   return (
     <Flex direction="col" className="h-screen w-full bg-gray-50" gap="6">
       <AnnouncementPopup type="teacher" />
+      <ResponsiveRenderer mobile={<CanteenMobile hasConfirmedAll={hasConfirmedAll} />} />
       {errorMessage && <ErrorBlank />}
       <header className="w-full bg-white pt-14 pb-6">
-        <div className="mx-auto w-[1280px]">
-          <Typography variant="heading" className="font-bold">
+        <Box className="mx-auto" width="[1280px]">
+          <Text variant="default" className="text-[32px] font-bold">
             급식표
-          </Typography>
-        </div>
+          </Text>
+        </Box>
       </header>
-      <ResponsiveRenderer mobile={<CanteenMobile hasConfirmedAll={hasConfirmedAll} />} />
       <Flex direction="row" className="mx-auto w-full max-w-[1280px]" gap="4">
         <div className="scroll-box flex min-h-[680px] w-[848px] flex-col gap-6 rounded-xl bg-white p-6">
           <CanteenCalendar
@@ -87,12 +89,12 @@ export function CanteenPage() {
             }}
           />
 
-          <div className="flex flex-col gap-1 rounded-lg bg-gray-50 p-4">
-            <Typography variant="body3" className="text-gray-600">
+          <Flex direction="col" gap="1" className="rounded-lg bg-gray-50 p-4">
+            <Text size="sm" weight="sm" variant="sub">
               {t('language') === 'ko'
                 ? makeMonthDayWithDayOfWeekToString(selectedDate)
                 : makeMonthDayToStringEN(selectedDate)}
-            </Typography>
+            </Text>
             {selectedSchedules && selectedSchedules?.length > 0 ? (
               <div className="flex flex-col gap-0.5">
                 {selectedSchedules?.map((schedule) => (
@@ -113,11 +115,11 @@ export function CanteenPage() {
                 ))}
               </div>
             ) : (
-              <Typography variant="body3" className="font-medium">
+              <Text variant="default" size="sm" weight="md">
                 일정 없음
-              </Typography>
+              </Text>
             )}
-          </div>
+          </Flex>
         </div>
         <CanteenDetailPage
           selectedDate={selectedDate}
