@@ -131,7 +131,7 @@ export function StudentCardPage() {
                 items: groups.map((g) => ({ value: String(g.id), label: g.name || '' })),
                 filterState: {
                   value: String(groupId),
-                  setValue: (v) => replace(`/teacher/studentcard` + !!v && `/${v}`),
+                  setValue: (v) => replace(v ? `/teacher/studentcard/${v}` : `/teacher/studentcard`),
                 },
               },
             ],
