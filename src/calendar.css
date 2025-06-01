@@ -61,6 +61,11 @@
   display: flex !important;
 }
 
+.fc-theme-standard .fc-scrollgrid {
+  border-left: none;
+  border-right: none;
+}
+
 /* FullCalendar styles */
 .sunday-red .fc-day-sun {
   color: var(--color-red-500);
