@@ -73,7 +73,7 @@ function NoticePageView() {
   return (
     <>
       <Grid>
-        <GridItem colSpan={6}>
+        <GridItem colSpan={4}>
           <ResponsiveRenderer
             mobile={
               <>
@@ -110,7 +110,7 @@ function NoticePageView() {
                 {
                   label: '추가',
                   variant: 'solid',
-                  color: 'secondary',
+                  color: 'primary',
                   action: () => {
                     if (meRecoil?.canEditNotice) {
                       push('/teacher/notice/add')
@@ -185,7 +185,7 @@ function NoticePageView() {
           </ScrollArea>
         </GridItem>
 
-        <GridItem colSpan={6} className="bg-gray-50">
+        <GridItem colSpan={8} className="bg-gray-50">
           <div
             className={`scroll-box col-span-4 h-screen overflow-y-scroll bg-gray-50 p-0 md:p-6 ${
               isDetail ? 'block' : 'hidden'

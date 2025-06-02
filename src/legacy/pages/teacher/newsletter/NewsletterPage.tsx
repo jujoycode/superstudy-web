@@ -39,7 +39,7 @@ export function NewsletterPage() {
 
   return (
     <Grid>
-      <GridItem colSpan={6}>
+      <GridItem colSpan={4}>
         <PageHeaderTemplate
           title={t('parent_letters')}
           description="발송된 학교 가정통신문을 확인할 수 있습니다."
@@ -48,7 +48,7 @@ export function NewsletterPage() {
               {
                 label: t('add'),
                 variant: 'solid',
-                color: 'sub',
+                color: 'primary',
                 action: () =>
                   me?.canEditNewsletter
                     ? push('/teacher/newsletter/add')
@@ -99,7 +99,7 @@ export function NewsletterPage() {
         </div>
       </GridItem>
 
-      <GridItem colSpan={6} className="bg-gray-50 md:overflow-y-auto md:p-6">
+      <GridItem colSpan={8} className="bg-gray-50 md:overflow-y-auto md:p-6">
         <Outlet />
       </GridItem>
     </Grid>

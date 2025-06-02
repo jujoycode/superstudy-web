@@ -1,5 +1,5 @@
-import parse from 'html-react-parser'
 import { useState } from 'react'
+import parse from 'html-react-parser'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Linkify from 'react-linkify'
 import Viewer from 'react-viewer'
@@ -259,7 +259,7 @@ export function FeedsDetail({
           <div key={index} className="filled-gray-light rounded-lg px-3 py-2">
             <div className="text-13 flex items-center space-x-2">
               <FileItemIcon />
-              <div className="w-full px-2 whitespace-pre-wrap text-indigo-500">
+              <div className="w-full overflow-x-hidden px-2 whitespace-pre-wrap text-indigo-500">
                 <a
                   href={`${Constants.imageUrl}${fileUrl}`}
                   target="_blank"
