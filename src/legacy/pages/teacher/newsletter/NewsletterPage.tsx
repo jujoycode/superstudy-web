@@ -39,7 +39,7 @@ export function NewsletterPage() {
 
   return (
     <Grid>
-      <GridItem colSpan={4}>
+      <GridItem colSpan={5}>
         <PageHeaderTemplate
           title={t('parent_letters')}
           description="발송된 학교 가정통신문을 확인할 수 있습니다."
@@ -99,7 +99,7 @@ export function NewsletterPage() {
         </div>
       </GridItem>
 
-      <GridItem colSpan={8} className="bg-gray-50 md:overflow-y-auto md:p-6">
+      <GridItem colSpan={7} className="bg-gray-50 md:overflow-y-auto md:p-6">
         <Outlet />
       </GridItem>
     </Grid>

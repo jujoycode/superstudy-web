@@ -73,7 +73,7 @@ function NoticePageView() {
   return (
     <>
       <Grid>
-        <GridItem colSpan={4}>
+        <GridItem colSpan={5}>
           <ResponsiveRenderer
             mobile={
               <>
@@ -185,7 +185,7 @@ function NoticePageView() {
           </ScrollArea>
         </GridItem>
 
-        <GridItem colSpan={8} className="bg-gray-50">
+        <GridItem colSpan={7} className="bg-gray-50">
           <div
             className={`scroll-box col-span-4 h-screen overflow-y-scroll bg-gray-50 p-0 md:p-6 ${
               isDetail ? 'block' : 'hidden'

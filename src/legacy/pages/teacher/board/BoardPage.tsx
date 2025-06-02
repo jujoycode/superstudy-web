@@ -36,7 +36,7 @@ export function BoardsPage() {
   }
   return (
     <Grid>
-      <GridItem colSpan={4}>
+      <GridItem colSpan={5}>
         <PageHeaderTemplate
           title={t('class_bulletin_board')}
           config={{
@@ -128,7 +128,7 @@ export function BoardsPage() {
         </div>
       </GridItem>
 
-      <GridItem colSpan={8}>
+      <GridItem colSpan={7}>
         <div className="scroll-box col-span-4 h-screen bg-gray-50 p-0 md:overflow-y-scroll md:p-6">
           <Outlet context={{ homeKlass, groups, key: getKeyFromPath(), page: 1, limit: 1 }} />
         </div>

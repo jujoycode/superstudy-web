@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Badge } from '@/legacy/components/common'
+import { Badge } from '@/atoms/Badge'
 import { Time } from '@/legacy/components/common/Time'
 import { Routes } from '@/legacy/constants/routes'
 import { Newsletter, NewsletterType } from '@/legacy/generated/model'
@@ -22,17 +22,14 @@ export function NewsletterCard({ newsletter, isNew, onClick }: NewsletterCardPro
       <div className={pathname === `/teacher/newsletter/${newsletter.id}` ? 'bg-gray-50 px-6 py-4' : 'px-6 py-4'}>
         <div className="flex justify-between">
           <div className="space-x-2">
-            <Badge
-              children={t(`${newsletter.category}`) || t('parent_letters')}
-              className="bg-primary-800 text-primary-100 rounded-md"
-            />
-            <Badge className="rounded-md bg-purple-100 text-purple-700">
+            <Badge variant="active">{t(`${newsletter.category}`) || t('parent_letters')}</Badge>
+            <Badge variant="default" className="bg-primary-50 text-purple-700">
               {newsletter.toPerson && t('individual')} {newsletter.toStudent && t('student')}{' '}
               {newsletter.toParent && t('parent')}{' '}
               {newsletter.type === NewsletterType.NOTICE ? `- ${t('notice')}` : `- ${t('survey')}`}
             </Badge>
 
-            {newsletter.isTemp && <Badge className="text-primary-800 px-4 py-1 text-sm">{t('save_draft')}</Badge>}
+            {newsletter.isTemp && <Badge>{t('save_draft')}</Badge>}
           </div>
 
           <div className="text-sm font-light">

@@ -1,5 +1,5 @@
-import { uniqBy } from 'lodash'
 import { useEffect, useState } from 'react'
+import { uniqBy } from 'lodash'
 import { CoachMark } from 'react-coach-mark'
 import { useLocation, useParams } from 'react-router-dom'
 import * as XLSX from 'xlsx'
@@ -8,6 +8,10 @@ import { useHistory } from '@/hooks/useHistory'
 import { cn } from '@/utils/commonUtil'
 import { useNotificationStore } from '@/stores/notification'
 import { useUserStore } from '@/stores/user'
+import { Grid } from '@/atoms/Grid'
+import { GridItem } from '@/atoms/GridItem'
+import { ResponsiveRenderer } from '@/organisms/ResponsiveRenderer'
+import { PageHeaderTemplate } from '@/templates/PageHeaderTemplate'
 import { ChatRoomList } from '@/legacy/components/chat/ChatRoomList'
 import { BackButton, Blank, Divider, Label, Section, Select, TopNavbar } from '@/legacy/components/common'
 import { Button } from '@/legacy/components/common/Button'
@@ -17,7 +21,6 @@ import { Icon } from '@/legacy/components/common/icons'
 import { SearchInput } from '@/legacy/components/common/SearchInput'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import SolidSVGIcon from '@/legacy/components/icon/SolidSVGIcon'
-import { Routes } from '@/legacy/constants/routes'
 import { useTeacherChatRoomList } from '@/legacy/container/teacher-chat-room-list'
 import { MergedGroupType, useTeacherChatUserList } from '@/legacy/container/teacher-chat-user-list'
 import { GroupType, Role } from '@/legacy/generated/model'
@@ -25,7 +28,6 @@ import { useLanguage } from '@/legacy/hooks/useLanguage'
 import { MenuType, UserDatas } from '@/legacy/types'
 import { exportCSVToExcel } from '@/legacy/util/download-excel'
 import { Validator } from '@/legacy/util/validator'
-
 import { ChatDetailPage } from './ChatDetailPage'
 import { ChatSMSPage } from './ChatSMSPage'
 
@@ -55,7 +57,6 @@ export function ChatListPage() {
     allGroups,
     lectureGroups,
     selectedGroup,
-    setStudentGroups,
     setSelectedGroup,
     selectedUserType,
     setSelectedUserType,
@@ -72,7 +73,7 @@ export function ChatListPage() {
   useEffect(() => {
     refetchRoomList()
     setChatRoomId(pathRoomId)
-  }, [pathRoomId])
+  }, [pathRoomId, refetchRoomList])
 
   const userIds = selectedUsers.map((el) => el.id)
 
@@ -157,9 +158,9 @@ export function ChatListPage() {
   }
 
   const readExcel = (data: any[]) => {
-    const readData: any[] = [...selectedUsers]
+    const readData = [...selectedUsers]
 
-    data.map((row: any) => {
+    data.map((row) => {
       const obj: { [key: string]: any } = {}
 
       for (let i = 0; i < headers.length; i++) {
@@ -217,464 +218,460 @@ export function ChatListPage() {
     handleFileUpload(f)
   }
 
+  if (loading) {
+    return <Blank reversed />
+  }
+
   return (
     <>
       {selectedMenu === MenuType.SMS && <CoachMark {...coach} />}
+
       {/* Desktop V */}
-      {loading && <Blank reversed />}
-      {/* {error && <ErrorBlank />} */}
       {(selectedMenu === MenuType.SMS && mobileSmsSendView) || (
-        <div className={`col-span-3 h-screen ${!chatRoomId || chatRoomId === '' ? '' : 'hidden md:block'}`}>
-          <div className="md:hidden">
-            <div className="block md:hidden">
-              <TopNavbar title={`${t('messages')}`} left={<BackButton />} />
-            </div>
-          </div>
-          <div className="flex justify-between px-6 py-1 md:py-6">
-            <h1 className="hidden text-2xl font-semibold md:block">{t('messages')}</h1>
-          </div>
-          <div className="flex space-x-2 px-6 pb-3">
-            <Button.xl
-              children={t('chat_list')}
-              onClick={() => {
-                setChatRoomId('')
-                setSelectedMenu(MenuType.List)
-              }}
-              className={cn(
-                selectedMenu === MenuType.List ? 'bg-primary-800 text-primary-50' : 'bg-primary-50 text-primary-800',
-              )}
-            />
-            <Button.xl
-              children={t('new_chat')}
-              onClick={() => {
-                setSelectedMenu(MenuType.Chat)
-                setSelectedUsers([])
-                setSelectedUserType(-1)
-                setSelectedGroup(null)
-                setChatRoomId('')
-                setStudentGroups([])
-                set_studentName('')
-                push(`${Routes.teacher.chat}`)
-              }}
-              className={cn(
-                selectedMenu === MenuType.Chat ? 'bg-primary-800 text-primary-50' : 'bg-primary-50 text-primary-800',
-              )}
-            />
-            <Button.xl
-              children="SMS"
-              onClick={() => {
-                setSelectedMenu(MenuType.SMS)
-                setSelectedUsers([])
-                setSelectedUserType(-1)
-                setSelectedGroup(null)
-                setChatRoomId('')
-                setStudentGroups([])
-                set_studentName('')
-                push(`${Routes.teacher.chat}`)
-              }}
-              className={cn(
-                selectedMenu === MenuType.SMS ? 'bg-primary-800 text-primary-50' : 'bg-primary-50 text-primary-800',
-              )}
-            />
-          </div>
-          <div className="scroll-box h-screen-12 overflow-y-auto">
-            <div className="px-4">
-              {/* Chat list */}
-              {selectedMenu === MenuType.List && <ChatRoomList />}
+        <Grid col={12}>
+          <GridItem colSpan={6}>
+            <ResponsiveRenderer mobile={<TopNavbar title={`${t('messages')}`} left={<BackButton />} />} />
 
-              {(selectedMenu === MenuType.Chat || selectedMenu === MenuType.SMS) && (
-                <>
-                  <Section>
-                    <div className="flex items-center space-x-3">
-                      <div className="mt-1 min-w-max cursor-pointer">
-                        <Select.lg
-                          placeholder={`${t('group_type')}`}
-                          ref={refs[0]}
-                          value={selectedUserType}
-                          onChange={(e) => {
-                            setSelectedUserType(Number(e.target.value))
-                            if (e.target.value === '2') {
-                              setSelectedGroup(null)
-                            }
+            <PageHeaderTemplate
+              title={t('messages')}
+              config={{
+                topBtn: [
+                  {
+                    label: '대화 목록',
+                    color: 'sub',
+                    variant: 'solid',
+                    customWidth: '100px',
+                    action: () => {
+                      setSelectedMenu(MenuType.List)
+                    },
+                  },
+                  {
+                    label: 'SMS 발송',
+                    color: 'sub',
+                    variant: 'solid',
+                    customWidth: '100px',
+                    action: () => {
+                      setSelectedMenu(MenuType.SMS)
+                      setSelectedUsers([])
+                      setSelectedUserType(-1)
+                      setSelectedGroup(null)
+                      setChatRoomId('')
+                      setSelectedGroup(null)
+                      set_studentName('')
+                      push('/teacher/chat')
+                    },
+                  },
+                  {
+                    label: '새 메시지',
+                    color: 'primary',
+                    variant: 'solid',
+                    customWidth: '100px',
+                    action: () => {
+                      setSelectedMenu(MenuType.Chat)
+                      setSelectedUsers([])
+                      setSelectedUserType(-1)
+                      setSelectedGroup(null)
+                      setChatRoomId('')
+                      setSelectedGroup(null)
+                      set_studentName('')
+                      push('/teacher/chat')
+                    },
+                  },
+                ],
+                searchBar: {
+                  placeholder: t('search_chat_partners'),
+                  searchState: {
+                    value: _studentName,
+                    setValue: (value) => set_studentName(value),
+                  },
+                  onSearch: () => reSearch(selectedUserType, _studentName, selectedGroup?.id),
+                },
+              }}
+            />
 
-                            reSearch(Number(e.target.value), _studentName, selectedGroup?.id)
-                          }}
-                        >
-                          <option value={-1}>{t('group_type')}</option>
-                          <option value={0}>{t('student')}</option>
-                          <option value={1}>{t('parent')}</option>
-                          <option value={2}>{t('teacher')}</option>
-                          {selectedMenu === MenuType.SMS && <option value={3}>{t('direct_input')}</option>}
-                        </Select.lg>
-                      </div>
-                      {selectedUserType === 3 ? (
-                        <>
-                          <div className="w-2/5 cursor-pointer text-sm">
-                            <TextInput
-                              placeholder={`${t('name')}`}
-                              value={nameInput}
-                              onChange={(e) => setNameInput(e.target.value)}
-                            />
-                          </div>
-                          <div className="w-2/5 cursor-pointer text-sm">
-                            <TextInput
-                              placeholder={`${t('phone_number')}`}
-                              value={phoneInput}
-                              onChange={(e) => setPhoneInput(e.target.value)}
-                            />
-                          </div>
-                          <Button
-                            className="filled-primary h-12 w-1/5"
-                            children={t('add')}
-                            onClick={() => {
-                              if (phoneInput && !Validator.phoneNumberRule(phoneInput)) {
-                                setToastMsg('전화번호가 규칙에 맞지않습니다.')
-                                return
+            <div className="scroll-box h-screen-12 overflow-y-auto">
+              <div className="px-4">
+                {/* Chat list */}
+                {selectedMenu === MenuType.List && <ChatRoomList name={_studentName} />}
+
+                {(selectedMenu === MenuType.Chat || selectedMenu === MenuType.SMS) && (
+                  <>
+                    <Section>
+                      <div className="flex items-center space-x-3">
+                        <div className="mt-1 min-w-max cursor-pointer">
+                          <Select.lg
+                            placeholder={`${t('group_type')}`}
+                            ref={refs[0]}
+                            value={selectedUserType}
+                            onChange={(e) => {
+                              setSelectedUserType(Number(e.target.value))
+                              if (e.target.value === '2') {
+                                setSelectedGroup(null)
                               }
 
-                              if (!selectedUsers?.find((el) => el.id === Number(phoneInput))) {
-                                let inputUser = {
-                                  id: Number(phoneInput),
-                                  name: nameInput,
-                                  role: '',
-                                  title: phoneInput,
-                                  studNum: -1,
-                                  klass: '',
-                                  useNokInfo: false,
-                                }
-
-                                setSelectedUsers(selectedUsers.concat(inputUser))
-                              }
+                              reSearch(Number(e.target.value), _studentName, selectedGroup?.id)
                             }}
-                          />
-                        </>
-                      ) : (
-                        <>
-                          <div className="mt-1 flex min-w-max cursor-pointer space-x-2">
-                            <Select.lg
-                              value={selectedGroupType}
-                              disabled={selectedUserType === 2}
-                              onChange={(e) => {
-                                setSelectedGroupType(e.target.value as GroupType)
-                              }}
-                            >
-                              <option selected disabled value={undefined}>
-                                {t('type', '유형')}
-                              </option>
-                              <option value={GroupType.KLASS}>{t('klass_group', '학급소속 그룹')}</option>
-                              <option value={'LECTURE'}>{t('timetable_group', '강의시간표 그룹')}</option>
-                              <option value={GroupType.KLUB}>{t('klub_group', '사용자정의 그룹')}</option>
-                            </Select.lg>
-
-                            <Select.lg
-                              value={selectedGroup?.id || ''}
-                              disabled={selectedUserType === 2}
-                              onChange={(e) => {
-                                setSelectedGroup(
-                                  everyGroup?.find((tg: MergedGroupType) => tg.id === Number(e.target.value)) || null,
-                                )
-                                reSearch(selectedUserType, _studentName, Number(e.target.value))
-                              }}
-                            >
-                              <option value={-1}>{t('select_class')}</option>
-                              {(selectedGroupType === 'LECTURE'
-                                ? lectureGroups
-                                : allGroups?.filter((g) => (selectedGroupType ? g.type === selectedGroupType : true))
-                              )?.map((group: MergedGroupType) => (
-                                <option key={group.id} value={group.id}>
-                                  {group.name}
-                                </option>
-                              ))}
-                            </Select.lg>
-                          </div>
-                          <div className="w-full cursor-pointer text-sm">
-                            <div className="flex items-center space-x-2 pt-3 pb-2">
-                              <SearchInput
+                          >
+                            <option value={-1}>{t('group_type')}</option>
+                            <option value={0}>{t('student')}</option>
+                            <option value={1}>{t('parent')}</option>
+                            <option value={2}>{t('teacher')}</option>
+                            {selectedMenu === MenuType.SMS && <option value={3}>{t('direct_input')}</option>}
+                          </Select.lg>
+                        </div>
+                        {selectedUserType === 3 ? (
+                          <>
+                            <div className="w-2/5 cursor-pointer text-sm">
+                              <TextInput
                                 placeholder={`${t('name')}`}
-                                value={_studentName}
-                                onChange={(e) => {
-                                  set_studentName(e.target.value)
-                                }}
-                                onSearch={() => {
-                                  //setKeyword(_studentName);
-                                  reSearch(selectedUserType, _studentName, selectedGroup?.id)
-                                }}
-                                className="w-full"
-                              />
-                              <Icon.Search
-                                className="cursor-pointer"
-                                onClick={() => {
-                                  //setKeyword(_studentName);
-                                  reSearch(selectedUserType, _studentName, selectedGroup?.id)
-                                }}
+                                value={nameInput}
+                                onChange={(e) => setNameInput(e.target.value)}
                               />
                             </div>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                    {selectedUserType === 3 && (
-                      <div className="hidden md:block">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-4/5">
-                            <label
-                              htmlFor="excel-file"
-                              className={cn(
-                                'my-3 block w-full rounded-lg border-2 border-dotted py-2 text-center hover:bg-yellow-50',
-                                isDragIn ? 'border-yellow-600 bg-yellow-50' : 'border-gray-600 bg-slate-50',
-                              )}
-                              onDrop={handleDrop}
-                              onDragOver={(e) => {
-                                e.stopPropagation()
-                                e.preventDefault()
-                                setDragIn(true)
-                              }}
-                              onDragEnter={(e) => {
-                                e.stopPropagation()
-                                e.preventDefault()
-                                setDragIn(true)
-                              }}
-                              onDragLeave={(e) => {
-                                e.stopPropagation()
-                                e.preventDefault()
-                                setDragIn(false)
-                              }}
-                            >
-                              {loading ? '업로드 중...' : '문자 수신자 등록 양식 파일을 선택(드래그)해주세요.'}
-                            </label>
-
-                            <input
-                              id="excel-file"
-                              type="file"
-                              className="hidden"
-                              onChange={(e) => {
-                                const file = e.target.files?.[0]
-                                if (file) {
-                                  setDragIn(false)
-                                  setLoading(true)
-                                  handleFileUpload(file)
+                            <div className="w-2/5 cursor-pointer text-sm">
+                              <TextInput
+                                placeholder={`${t('phone_number')}`}
+                                value={phoneInput}
+                                onChange={(e) => setPhoneInput(e.target.value)}
+                              />
+                            </div>
+                            <Button
+                              className="filled-primary h-12 w-1/5"
+                              children={t('add')}
+                              onClick={() => {
+                                if (phoneInput && !Validator.phoneNumberRule(phoneInput)) {
+                                  setToastMsg('전화번호가 규칙에 맞지않습니다.')
+                                  return
                                 }
 
-                                e.target.value = ''
+                                if (!selectedUsers?.find((el) => el.id === Number(phoneInput))) {
+                                  let inputUser = {
+                                    id: Number(phoneInput),
+                                    name: nameInput,
+                                    role: '',
+                                    title: phoneInput,
+                                    studNum: -1,
+                                    klass: '',
+                                    useNokInfo: false,
+                                  }
+
+                                  setSelectedUsers(selectedUsers.concat(inputUser))
+                                }
                               }}
                             />
-                          </div>
-                          <Button
-                            className="outlined-gray h-12 w-1/5"
-                            children={t('download_form')}
-                            onClick={downloadAsExcel}
-                          />
-                        </div>
-                      </div>
-                    )}
-                  </Section>
+                          </>
+                        ) : (
+                          <>
+                            <div className="mt-1 flex min-w-max cursor-pointer space-x-2">
+                              <Select.lg
+                                value={selectedGroupType}
+                                disabled={selectedUserType === 2}
+                                onChange={(e) => {
+                                  setSelectedGroupType(e.target.value as GroupType)
+                                }}
+                              >
+                                <option selected disabled value={undefined}>
+                                  {t('type', '유형')}
+                                </option>
+                                <option value={GroupType.KLASS}>{t('klass_group', '학급소속 그룹')}</option>
+                                <option value={'LECTURE'}>{t('timetable_group', '강의시간표 그룹')}</option>
+                                <option value={GroupType.KLUB}>{t('klub_group', '사용자정의 그룹')}</option>
+                              </Select.lg>
 
-                  {selectedUserType !== 3 && (
-                    <>
-                      {selectedUserType !== 2 && selectedUserDatas.length === 0 && (
-                        <div className="text-center">{t('select_group_type_and_class')}</div>
-                      )}
-
-                      <div className="w-full px-5 py-2">
-                        {selectedUserDatas && selectedUserDatas.length > 0 && (
-                          <Label.row>
-                            <Checkbox
-                              checked={!selectedUserDatas?.filter((el) => !userIds.includes(el.id)).length}
-                              onChange={() =>
-                                !selectedUserDatas?.filter((el) => !userIds.includes(el.id)).length
-                                  ? setSelectedUsers(
-                                      selectedUsers.filter(
-                                        (el) => !selectedUserDatas?.map((sg) => sg.id).includes(el.id),
-                                      ),
-                                    )
-                                  : setSelectedUsers(
-                                      selectedUsers.concat(
-                                        selectedUserDatas
-                                          ?.filter((el) => selectedMenu === MenuType.Chat || el.phone)
-                                          ?.filter((el) => !selectedUsers.map((u) => u.id).includes(el.id))
-                                          .map((el) => el) || [],
-                                      ),
-                                    )
-                              }
-                            />
-                            <p>{t('select_all')}</p>
-                          </Label.row>
+                              <Select.lg
+                                value={selectedGroup?.id || ''}
+                                disabled={selectedUserType === 2}
+                                onChange={(e) => {
+                                  setSelectedGroup(
+                                    everyGroup?.find((tg: MergedGroupType) => tg.id === Number(e.target.value)) || null,
+                                  )
+                                  reSearch(selectedUserType, _studentName, Number(e.target.value))
+                                }}
+                              >
+                                <option value={-1}>{t('select_class')}</option>
+                                {(selectedGroupType === 'LECTURE'
+                                  ? lectureGroups
+                                  : allGroups?.filter((g) => (selectedGroupType ? g.type === selectedGroupType : true))
+                                )?.map((group: MergedGroupType) => (
+                                  <option key={group.id} value={group.id}>
+                                    {group.name}
+                                  </option>
+                                ))}
+                              </Select.lg>
+                            </div>
+                          </>
                         )}
                       </div>
+                      {selectedUserType === 3 && (
+                        <div className="hidden md:block">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-4/5">
+                              <label
+                                htmlFor="excel-file"
+                                className={cn(
+                                  'my-3 block w-full rounded-lg border-2 border-dotted py-2 text-center hover:bg-yellow-50',
+                                  isDragIn ? 'border-yellow-600 bg-yellow-50' : 'border-gray-600 bg-slate-50',
+                                )}
+                                onDrop={handleDrop}
+                                onDragOver={(e) => {
+                                  e.stopPropagation()
+                                  e.preventDefault()
+                                  setDragIn(true)
+                                }}
+                                onDragEnter={(e) => {
+                                  e.stopPropagation()
+                                  e.preventDefault()
+                                  setDragIn(true)
+                                }}
+                                onDragLeave={(e) => {
+                                  e.stopPropagation()
+                                  e.preventDefault()
+                                  setDragIn(false)
+                                }}
+                              >
+                                {loading ? '업로드 중...' : '문자 수신자 등록 양식 파일을 선택(드래그)해주세요.'}
+                              </label>
 
-                      {selectedUserDatas.length > 0 && (
-                        <div className="grid w-full grid-flow-row grid-cols-2 gap-1 px-3 pr-4 pb-4 lg:grid-cols-3 xl:grid-cols-4">
-                          {selectedUserDatas?.map((item: UserDatas) => (
-                            <div
-                              key={item.id}
-                              title={getTitle(item)}
-                              className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-1 ${
-                                userIds.includes(item.id) ? 'border-primary-800 bg-primary-50' : 'border-gray-200'
-                              }`}
-                              onClick={() => {
-                                if (userIds.includes(item.id)) {
-                                  setSelectedUsers(selectedUsers.filter((u) => u.id !== item.id))
-                                } else {
-                                  if (selectedMenu === MenuType.Chat || item.phone) {
-                                    setSelectedUsers(selectedUsers.concat(item))
-                                  } else {
-                                    setToastMsg('전화번호가 없어 수신자로 지정할 수 없습니다.')
+                              <input
+                                id="excel-file"
+                                type="file"
+                                className="hidden"
+                                onChange={(e) => {
+                                  const file = e.target.files?.[0]
+                                  if (file) {
+                                    setDragIn(false)
+                                    setLoading(true)
+                                    handleFileUpload(file)
                                   }
-                                }
-                              }}
-                            >
-                              <div className="text-sm font-bold">{item.title}</div>
-                              <div className="font-base text-sm">{item.name}</div>
+
+                                  e.target.value = ''
+                                }}
+                              />
                             </div>
-                          ))}
+                            <Button
+                              className="outlined-gray h-12 w-1/5"
+                              children={t('download_form')}
+                              onClick={downloadAsExcel}
+                            />
+                          </div>
                         </div>
                       )}
-                    </>
-                  )}
+                    </Section>
 
-                  <Section>
-                    <div>
-                      <div className="flex items-center space-x-3">
-                        <Label
-                          children={selectedMenu === MenuType.Chat ? t('selected_contacts') : t('selected_recipients')}
-                        />
-                        <Button.xs
-                          children={'전체삭제'}
-                          onClick={() => setSelectedUsers([])}
-                          className="outlined-gray"
+                    {selectedUserType !== 3 && (
+                      <>
+                        {selectedUserType !== 2 && selectedUserDatas.length === 0 && (
+                          <div className="text-center">{t('select_group_type_and_class')}</div>
+                        )}
+
+                        <div className="w-full px-5 py-2">
+                          {selectedUserDatas && selectedUserDatas.length > 0 && (
+                            <Label.row>
+                              <Checkbox
+                                checked={!selectedUserDatas?.filter((el) => !userIds.includes(el.id)).length}
+                                onChange={() =>
+                                  !selectedUserDatas?.filter((el) => !userIds.includes(el.id)).length
+                                    ? setSelectedUsers(
+                                        selectedUsers.filter(
+                                          (el) => !selectedUserDatas?.map((sg) => sg.id).includes(el.id),
+                                        ),
+                                      )
+                                    : setSelectedUsers(
+                                        selectedUsers.concat(
+                                          selectedUserDatas
+                                            ?.filter((el) => selectedMenu === MenuType.Chat || el.phone)
+                                            ?.filter((el) => !selectedUsers.map((u) => u.id).includes(el.id))
+                                            .map((el) => el) || [],
+                                        ),
+                                      )
+                                }
+                              />
+                              <p>{t('select_all')}</p>
+                            </Label.row>
+                          )}
+                        </div>
+
+                        {selectedUserDatas.length > 0 && (
+                          <div className="grid w-full grid-flow-row grid-cols-2 gap-1 px-3 pr-4 pb-4 lg:grid-cols-3 xl:grid-cols-4">
+                            {selectedUserDatas?.map((item: UserDatas) => (
+                              <div
+                                key={item.id}
+                                title={getTitle(item)}
+                                className={`flex w-full cursor-pointer items-center justify-between rounded-lg border-2 px-3 py-1 ${
+                                  userIds.includes(item.id) ? 'border-primary-800 bg-primary-50' : 'border-gray-200'
+                                }`}
+                                onClick={() => {
+                                  if (userIds.includes(item.id)) {
+                                    setSelectedUsers(selectedUsers.filter((u) => u.id !== item.id))
+                                  } else {
+                                    if (selectedMenu === MenuType.Chat || item.phone) {
+                                      setSelectedUsers(selectedUsers.concat(item))
+                                    } else {
+                                      setToastMsg('전화번호가 없어 수신자로 지정할 수 없습니다.')
+                                    }
+                                  }
+                                }}
+                              >
+                                <div className="text-sm font-bold">{item.title}</div>
+                                <div className="font-base text-sm">{item.name}</div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    )}
+
+                    <Section>
+                      <div>
+                        <div className="flex items-center space-x-3">
+                          <Label
+                            children={
+                              selectedMenu === MenuType.Chat ? t('selected_contacts') : t('selected_recipients')
+                            }
+                          />
+                          <Button.xs
+                            children={'전체삭제'}
+                            onClick={() => setSelectedUsers([])}
+                            className="outlined-gray"
+                          />
+                        </div>
+                        <div className="mt-1 flex flex-wrap">
+                          {selectedUsers
+                            ?.slice()
+                            ?.sort((a: UserDatas, b: UserDatas) => {
+                              return a?.name < b?.name ? -1 : 1
+                            })
+                            .map((el) => (
+                              <div
+                                key={el.id}
+                                title={getTitle(el)}
+                                onClick={() => setSelectedUsers(selectedUsers.filter((u) => u.id !== el.id))}
+                                className={cn(
+                                  'm-1s text-2sm mt-2 mr-2 flex w-max cursor-pointer items-center space-x-2 rounded-full border-2 bg-white px-2.5 py-1.5 font-bold whitespace-nowrap',
+                                  el.role === ''
+                                    ? 'border-green-400 text-green-400'
+                                    : el.role === Role.USER
+                                      ? 'border-primary-800 text-primary-800'
+                                      : el.role === Role.PARENT
+                                        ? 'border-blue-500 text-blue-500'
+                                        : 'border-black text-black',
+                                )}
+                              >
+                                <div className="whitespace-pre">{el.name}</div>
+                                <Close />
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+                    </Section>
+
+                    <Divider />
+
+                    {selectedMenu === MenuType.Chat && (
+                      <div className="my-6 text-center">
+                        <Button.lg
+                          children={t('start_new_chat')}
+                          disabled={!selectedUsers.length}
+                          onClick={() => createNewRoom()}
+                          className="filled-primary w-full"
                         />
                       </div>
-                      <div className="mt-1 flex flex-wrap">
-                        {selectedUsers
-                          ?.slice()
-                          ?.sort((a: UserDatas, b: UserDatas) => {
-                            return a?.name < b?.name ? -1 : 1
-                          })
-                          .map((el) => (
-                            <div
-                              key={el.id}
-                              title={getTitle(el)}
-                              onClick={() => setSelectedUsers(selectedUsers.filter((u) => u.id !== el.id))}
-                              className={cn(
-                                'm-1s text-2sm mt-2 mr-2 flex w-max cursor-pointer items-center space-x-2 rounded-full border-2 bg-white px-2.5 py-1.5 font-bold whitespace-nowrap',
-                                el.role === ''
-                                  ? 'border-green-400 text-green-400'
-                                  : el.role === Role.USER
-                                    ? 'border-primary-800 text-primary-800'
-                                    : el.role === Role.PARENT
-                                      ? 'border-blue-500 text-blue-500'
-                                      : 'border-black text-black',
-                              )}
-                            >
-                              <div className="whitespace-pre">{el.name}</div>
-                              <Close />
-                            </div>
-                          ))}
+                    )}
+
+                    {selectedMenu === MenuType.SMS && (
+                      <div className="my-6 text-center md:hidden">
+                        <Button.lg
+                          children={t('send_text_message')}
+                          disabled={!selectedUsers.length}
+                          onClick={() => setMobileSmsSendView(true)}
+                          className="filled-primary w-full"
+                        />
                       </div>
-                    </div>
-                  </Section>
-
-                  <Divider />
-
-                  {selectedMenu === MenuType.Chat && (
-                    <div className="my-6 text-center">
-                      <Button.lg
-                        children={t('start_new_chat')}
-                        disabled={!selectedUsers.length}
-                        onClick={() => createNewRoom()}
-                        className="filled-primary w-full"
-                      />
-                    </div>
-                  )}
-
-                  {selectedMenu === MenuType.SMS && (
-                    <div className="my-6 text-center md:hidden">
-                      <Button.lg
-                        children={t('send_text_message')}
-                        disabled={!selectedUsers.length}
-                        onClick={() => setMobileSmsSendView(true)}
-                        className="filled-primary w-full"
-                      />
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {(selectedMenu === MenuType.List || selectedMenu === MenuType.Chat) && (
-        <>
-          {chatRoomId && chatRoomId !== '' ? (
-            <div className="scroll-box col-span-3 h-screen overflow-y-scroll bg-gray-200 p-0 md:p-6">
-              <ChatDetailPage />
-            </div>
-          ) : (
-            <div className="col-span-3 hidden h-full w-full flex-col items-center justify-center space-y-4 md:flex">
-              <div className="text-gray-700">
-                {meRecoil?.teacherProperty?.chatStartTime &&
-                meRecoil?.teacherProperty?.chatEndTime &&
-                meRecoil?.teacherProperty?.chatStartTime !== meRecoil?.teacherProperty?.chatEndTime ? (
-                  <div>
-                    <div className="mb-3 text-xl font-bold">
-                      {t('available_chat_time')} : {meRecoil?.teacherProperty?.chatStartTime} ~{' '}
-                      {meRecoil?.teacherProperty?.chatEndTime}
-                    </div>
-                    <div className="text-sm text-red-400">* {t('start_new_chat_time')}</div>
-                    <div className="text-sm text-red-400">* {t('separate_time_for_each_chat')}</div>
-                  </div>
-                ) : (
-                  <div className="flex w-full flex-col items-center justify-center space-y-4">
-                    <div className="text-xl">{t('chat_unavailable')}</div>
-
-                    <div>
-                      <span className="font-bold">{t('set_chat_time_in_profile')}</span>
-                    </div>
-
-                    <Button
-                      children={t('set_available_chat_time')}
-                      onClick={() => push('/teacher/update')}
-                      className="filled-primary"
-                    />
-                  </div>
+                    )}
+                  </>
                 )}
               </div>
             </div>
-          )}
-        </>
-      )}
+          </GridItem>
 
-      {selectedMenu === MenuType.SMS && (
-        <div className={` ${mobileSmsSendView ? '' : 'hidden md:col-span-3 md:block'} `}>
-          <div className="block md:hidden">
-            <TopNavbar
-              title={`${t('messages')}`}
-              left={<BackButton onClick={() => setMobileSmsSendView(false)} />}
-              right={
-                <Button.sm
-                  children={
-                    <div className="flex items-center gap-1">
-                      <SolidSVGIcon.Tooltip />
-                      {t('mail_merge_manual')}
+          <GridItem colSpan={6}>
+            {(selectedMenu === MenuType.List || selectedMenu === MenuType.Chat) && (
+              <>
+                {chatRoomId && chatRoomId !== '' ? (
+                  <div className="scroll-box col-span-3 h-screen overflow-y-scroll bg-gray-200 p-0 md:p-6">
+                    <ChatDetailPage />
+                  </div>
+                ) : (
+                  <div className="col-span-3 hidden h-full w-full flex-col items-center justify-center space-y-4 md:flex">
+                    <div className="text-gray-700">
+                      {meRecoil?.teacherProperty?.chatStartTime &&
+                      meRecoil?.teacherProperty?.chatEndTime &&
+                      meRecoil?.teacherProperty?.chatStartTime !== meRecoil?.teacherProperty?.chatEndTime ? (
+                        <div>
+                          <div className="mb-3 text-xl font-bold">
+                            {t('available_chat_time')} : {meRecoil?.teacherProperty?.chatStartTime} ~{' '}
+                            {meRecoil?.teacherProperty?.chatEndTime}
+                          </div>
+                          <div className="text-sm text-red-400">* {t('start_new_chat_time')}</div>
+                          <div className="text-sm text-red-400">* {t('separate_time_for_each_chat')}</div>
+                        </div>
+                      ) : (
+                        <div className="flex w-full flex-col items-center justify-center space-y-4">
+                          <div className="text-xl">{t('chat_unavailable')}</div>
+
+                          <div>
+                            <span className="font-bold">{t('set_chat_time_in_profile')}</span>
+                          </div>
+
+                          <Button
+                            children={t('set_available_chat_time')}
+                            onClick={() => push('/teacher/update')}
+                            className="filled-primary"
+                          />
+                        </div>
+                      )}
                     </div>
-                  }
-                  className="outlined-gray mr-2"
-                  onClick={() =>
-                    window.open('https://superschoolofficial.notion.site/1d6e90ac0a9980dcb027c1c73a3cf44d', '_blank')
-                  }
-                />
-              }
-            />
-          </div>
-          <div className="h-screen-6 p-0 md:h-screen md:py-6">
-            <ChatSMSPage
-              isMobileView={mobileSmsSendView}
-              selectedUsers={selectedUsers}
-              setSelectedUsers={setSelectedUsers}
-            />
-          </div>
-        </div>
+                  </div>
+                )}
+              </>
+            )}
+
+            {selectedMenu === MenuType.SMS && (
+              <div className={` ${mobileSmsSendView ? '' : 'hidden md:col-span-3 md:block'} `}>
+                <div className="block md:hidden">
+                  <TopNavbar
+                    title={`${t('messages')}`}
+                    left={<BackButton onClick={() => setMobileSmsSendView(false)} />}
+                    right={
+                      <Button.sm
+                        children={
+                          <div className="flex items-center gap-1">
+                            <SolidSVGIcon.Tooltip />
+                            {t('mail_merge_manual')}
+                          </div>
+                        }
+                        className="outlined-gray mr-2"
+                        onClick={() =>
+                          window.open(
+                            'https://superschoolofficial.notion.site/1d6e90ac0a9980dcb027c1c73a3cf44d',
+                            '_blank',
+                          )
+                        }
+                      />
+                    }
+                  />
+                </div>
+                <div className="h-screen-6 p-0 md:h-screen md:py-6">
+                  <ChatSMSPage
+                    isMobileView={mobileSmsSendView}
+                    selectedUsers={selectedUsers}
+                    setSelectedUsers={setSelectedUsers}
+                  />
+                </div>
+              </div>
+            )}
+          </GridItem>
+        </Grid>
       )}
     </>
   )

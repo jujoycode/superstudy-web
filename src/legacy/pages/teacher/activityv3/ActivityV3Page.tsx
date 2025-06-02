@@ -28,8 +28,8 @@ export function ActivityV3Page() {
   const [isDownloadModalOpen, setDownloadModalOpen] = useState(false)
   const [selectedSessionId, setSelectedSessionId] = useState<number>()
   const [title] = useState('')
-  const [type, setType] = useState('all')
-  const [subject, setSubject] = useState('all')
+  const [type, setType] = useState('')
+  const [subject, setSubject] = useState('')
   const [year, setYear] = useState<number>(+getThisYear())
   const [_isMyActivityV3, _setMyActivityV3] = useState(isMyActivityV3 || 'all')
 
@@ -46,8 +46,8 @@ export function ActivityV3Page() {
     title: title || undefined,
     subjectType: undefined,
     subject: undefined,
-    isMyActivityV3,
-    type,
+    isMyActivityV3: _isMyActivityV3 || undefined,
+    type: type || undefined,
     ...(year ? { year } : {}),
   })
 

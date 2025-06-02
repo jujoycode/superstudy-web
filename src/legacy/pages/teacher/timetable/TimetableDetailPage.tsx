@@ -29,7 +29,7 @@ export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDet
 
   useEffect(() => {
     onIsKlass(selectedMyClass)
-  }, [selectedMyClass])
+  }, [onIsKlass, selectedMyClass])
 
   // 학급 교사 시간표
   const {
@@ -129,7 +129,7 @@ export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDet
             variant={selectedMyClass ? 'default' : 'active'}
             cursor="pointer"
             onClick={() => setSelectedMyClass(false)}
-            className="rounded-full"
+            className="rounded-lg px-2.5 py-1"
           >
             {t('by_teacher', '교사별')}
           </Badge>
@@ -137,7 +137,7 @@ export function TimetableDetailPage({ onSelectLecture, onIsKlass }: TimetableDet
             variant={selectedMyClass ? 'active' : 'default'}
             cursor="pointer"
             onClick={() => setSelectedMyClass(true)}
-            className="rounded-full"
+            className="rounded-lg px-2.5 py-1"
           >
             {t('by_class', '학급별')}
           </Badge>

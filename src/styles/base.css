@@ -19,16 +19,9 @@
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
     @apply text-gray-800;
   }
 
-  button,
-  input,
-  textarea,
-  select {
-    @apply focus:ring-0 focus:outline-hidden;
-  }
 
   /* Number Input remove default updown button */
   input::-webkit-outer-spin-button,

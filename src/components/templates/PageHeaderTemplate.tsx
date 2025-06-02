@@ -13,6 +13,7 @@ import { SortButton, SortButtonProps } from '@/molecules/SortButton'
 
 interface PageHeaderTemplateProps {
   title: string
+  onClickTitle?: () => void
   description?: string
   config: {
     topBtn?: BtnConfig | BtnConfig[]
@@ -74,7 +75,7 @@ interface SortConfig extends SortButtonProps {
  * @desc 페이지 헤더 표준화 및 간편화 템플릿
  * @author jujoycode
  */
-export function PageHeaderTemplate({ title, description, config }: PageHeaderTemplateProps) {
+export function PageHeaderTemplate({ title, description, config, onClickTitle }: PageHeaderTemplateProps) {
   const topBtn = config?.topBtn ? (Array.isArray(config.topBtn) ? config.topBtn : [config.topBtn]).filter(Boolean) : []
   const bottomBtn = config?.bottomBtn
     ? (Array.isArray(config.bottomBtn) ? config.bottomBtn : [config.bottomBtn]).filter(Boolean)
@@ -85,7 +86,9 @@ export function PageHeaderTemplate({ title, description, config }: PageHeaderTem
       <Flex direction="row" justify="between" items="center">
         <Flex direction="col" items="start" justify="center" gap="2">
           {/* 제목 */}
-          <Text variant="title">{title}</Text>
+          <Text variant="title" onClick={() => onClickTitle?.()}>
+            {title}
+          </Text>
 
           {/* 설명 (optional) */}
           {description && (
