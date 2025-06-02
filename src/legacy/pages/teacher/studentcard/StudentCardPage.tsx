@@ -95,7 +95,7 @@ export function StudentCardPage() {
 
   return (
     <Grid>
-      <GridItem colSpan={4}>
+      <GridItem colSpan={3}>
         <ResponsiveRenderer mobile={<TopNavbar title="확인증" left={<BackButton />} />} />
 
         <PageHeaderTemplate
@@ -187,7 +187,7 @@ export function StudentCardPage() {
           })}
         </div>
       </GridItem>
-      <GridItem colSpan={8} className="bg-gray-50">
+      <GridItem colSpan={9} className="bg-gray-50">
         <Outlet />
       </GridItem>
     </Grid>
