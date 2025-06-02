@@ -65,7 +65,7 @@ export function CanteenPage() {
       <ResponsiveRenderer mobile={<CanteenMobile hasConfirmedAll={hasConfirmedAll} />} />
 
       {/* 헤더 */}
-      <header className="w-full bg-white pt-12">
+      <header className="w-full pt-12">
         <Flex items="center" className="mx-auto w-full max-w-[1500px] px-6">
           <Text variant="default" className="text-[32px] font-bold">
             급식표

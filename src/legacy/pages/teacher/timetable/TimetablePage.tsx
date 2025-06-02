@@ -76,14 +76,14 @@ export function TimetablePage() {
       </div>
 
       {/* Desktop V */}
-      <GridItem colSpan={4}>
-        <div className="px-6 py-6">
+      <GridItem colSpan={5}>
+        <div className="p-8">
           <h1 className="text-2xl font-semibold">
             {t('timetable', '시간표')}/{t('attendance_check', '출석체크')}
           </h1>
         </div>
         <Divider className="h-0.5" />
-        <div className="scroll-box h-screen-6 hidden w-full gap-8 overflow-y-auto md:flex md:flex-col">
+        <div className="scroll-box h-screen-6 hidden w-full gap-8 overflow-y-auto p-2 md:flex md:flex-col">
           <TimetableDetailPage
             onSelectLecture={(info) => {
               setLectureInfo(info)
@@ -104,7 +104,7 @@ export function TimetablePage() {
       </GridItem>
 
       {/* Mobile / Desktop V */}
-      <GridItem colSpan={8} className="p-6">
+      <GridItem colSpan={7} className="p-6">
         {lectureInfo && <TimetableAttendancePage lectureInfo={lectureInfo} isKlass={isKlass} />}
         {course && <TimetableCoursePage course={course} />}
       </GridItem>

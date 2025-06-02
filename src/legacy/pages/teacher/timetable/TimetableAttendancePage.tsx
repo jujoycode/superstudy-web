@@ -7,6 +7,7 @@ import { cn } from '@/utils/commonUtil'
 import { useUserStore } from '@/stores/user'
 import { Button } from '@/atoms/Button'
 import { Divider } from '@/atoms/Divider'
+import { ScrollArea } from '@/atoms/ScrollArea'
 import { Tabs as TabsNew, TabsList, TabsTrigger } from '@/atoms/Tabs'
 import { SelectMenus, SuperModal } from '@/legacy/components'
 import { Label, Section, Select } from '@/legacy/components/common'
@@ -674,7 +675,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
         ))}
       </Tabs>
 
-      <div className="md:scroll-box md:h-screen-13 md:overflow-x-hidden md:overflow-y-auto">
+      <ScrollArea>
         {/* 출석부 tab */}
         {showSeat === contentType.list && (
           <div className="mb-10">
@@ -723,7 +724,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
             {(lectureInfo.time > 0 ||
               // && selectedLectureInfo.teacherId === me?.id
               (lectureInfo.time === 0 && teacherName === me?.name)) && (
-              <div className="mt-4 flex w-full flex-col items-end justify-center">
+              <div className="mt-8 flex w-full flex-col items-end justify-center">
                 <div className="cursor-pointer">
                   {AttendanceCheckInfo ? (
                     <div className="mt-3 text-blue-500">
@@ -934,6 +935,7 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
                 </div>
               ))}
             </div>
+
             <div className="flex w-full flex-col items-center justify-center">
               {myKlass && (
                 <div className="mt-6 cursor-pointer">
@@ -954,9 +956,9 @@ export function TimetableAttendancePage({ lectureInfo, isKlass }: TimetableAtten
             <br />
           </>
         )}
-      </div>
-      {/* 상태변경 */}
+      </ScrollArea>
 
+      {/* 상태변경 */}
       <SuperModal modalOpen={isAttendanceModalOpen} setModalClose={() => submitAbsentUser(false)} ablePropragation>
         <Section className="space-y-2">
           <div className="text-lg font-semibold">출결관리</div>
