@@ -6,7 +6,7 @@ interface AvatarProps {
   src?: string
   alt?: string
   className?: string
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'sm' | 'md' | 'lg' | 'full'
   rounded?: 'none' | 'sm' | 'md' | 'full'
 }
 
@@ -31,6 +31,7 @@ export function Avatar({ src, alt = '', className, size = 'md', rounded = 'full'
     sm: 'w-8 h-8',
     md: 'w-12 h-12',
     lg: 'w-16 h-16',
+    full: 'w-full h-full',
   }
 
   const roundedClasses = {

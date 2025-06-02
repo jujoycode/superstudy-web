@@ -1,14 +1,14 @@
+import { useEffect, useState } from 'react'
 import { format } from 'date-fns'
 import _, { range } from 'lodash'
-import { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 
 import { useUserStore } from '@/stores/user'
+import { Button } from '@/atoms/Button'
+import { Icon } from '@/atoms/Icon'
 import { ActivityV3GPTModal } from '@/legacy/components/activityv3/GPT/ActivityV3GPTModal'
 import { Select } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
-import { Icon } from '@/legacy/components/common/icons'
 import { ActivityV3Card } from '@/legacy/components/studentCard/ActivityV3Card'
 import { StudentRecordItem } from '@/legacy/components/studentCard/StudentRecordItem'
 import { ACTIVITYV3_TYPE_KOR } from '@/legacy/constants/activityv3.enum'
@@ -163,16 +163,14 @@ export const ActivityV3Page = () => {
     <>
       <div className="bg-gray relative mt-2 h-full w-auto border-t border-gray-300 py-4 pt-2">
         <div className="flex w-full items-center space-x-2">
-          <Button.lg
-            children="활동요약 다운로드"
-            onClick={() => downloadSummary()}
-            className="filled-primary hidden md:block"
-          />
-          <Button.lg
-            children="활동기록 초안 다운로드"
-            onClick={() => downloadRecord()}
-            className="filled-primary hidden md:block"
-          />
+          <Button color="tertiary" className="flex items-center" onClick={() => downloadSummary()}>
+            <Icon size="sm" name="ssDownload" className="mr-2" />
+            활동요약
+          </Button>
+          <Button color="tertiary" className="flex items-center" onClick={() => downloadRecord()}>
+            <Icon size="sm" name="ssDownload" className="mr-2" />
+            활동기록 초안
+          </Button>
         </div>
         <div className="h-screen-7 space-y-4 overflow-y-scroll md:flex md:space-y-0 md:space-x-4 md:overflow-y-hidden md:p-4">
           <div className="flex w-full flex-col space-y-1 overflow-y-hidden rounded-xl border border-gray-300 bg-white p-4">
@@ -288,16 +286,15 @@ export const ActivityV3Page = () => {
                     ?
                   </div>
                 </div>
-                <Button.lg
-                  className="filled-primary"
+                <Button
+                  children="초안 작성"
+                  className="px-8"
                   disabled={!checkedCardIds.length}
                   onClick={() => {
                     localStorage.setItem('is_record_modal_open', 'true')
                     setOpen(true)
                   }}
-                >
-                  작성하기
-                </Button.lg>
+                />
               </div>
               <label className="flex items-center space-x-2">
                 <Checkbox checked={showMyRecord} onChange={() => setShowMyRecord(!showMyRecord)} />
@@ -337,7 +334,8 @@ export const ActivityV3Page = () => {
           <div className="fixed inset-0 z-10 bg-neutral-500/50"></div>
           <div className="scroll-box fixed inset-x-0 inset-y-12 z-20 flex flex-col overflow-y-scroll rounded-3xl border border-gray-300 md:inset-x-10 md:inset-y-10 md:flex-row">
             <div className="relative flex h-full w-full flex-row bg-white">
-              <Icon.Close
+              <Icon
+                name="close"
                 className="absolute top-4 right-6 cursor-pointer text-zinc-400"
                 onClick={() => handleCoachmarkClose()}
               />

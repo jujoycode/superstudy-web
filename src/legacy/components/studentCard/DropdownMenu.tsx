@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 
+import { Icon } from '@/atoms/Icon'
 import { ResponseParentUserDto } from '@/legacy/generated/model'
 
 interface DropdownMenuProps {
-  icon: string
   studentId: number
   parent: ResponseParentUserDto
   updateStudentParent: (studentId: number, nokName: string, nokPhone: string) => void
 }
 
-export function DropdownMenu({ icon, studentId, parent, updateStudentParent }: DropdownMenuProps) {
+export function DropdownMenu({ studentId, parent, updateStudentParent }: DropdownMenuProps) {
   const [modalOpen, setModalOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement | null>(null)
 
@@ -27,7 +27,7 @@ export function DropdownMenu({ icon, studentId, parent, updateStudentParent }: D
 
   return (
     <div className="relative h-6 w-6 cursor-pointer" onClick={() => setModalOpen(!modalOpen)} ref={dropdownRef}>
-      <img src={icon} className="object-cover transition-all hover:scale-125" loading="lazy" />
+      <Icon name="EllipsisVertical" stroke strokeWidth={2} className="text-gray-500" />
       <div
         className={`${
           modalOpen ? 'block' : 'hidden'

@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 
 import { useOutletContext } from 'react-router-dom'
 import { ReactComponent as DownArrow } from '@/assets/icons/chevron-down.svg'
-import { ReactComponent as Plus } from '@/assets/svg/plus.svg'
+import { Button } from '@/atoms/Button'
 import { Blank, Select } from '@/legacy/components/common'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useCodeByCategoryName } from '@/legacy/container/category'
@@ -145,32 +145,28 @@ export default function Counselingv3Card() {
         <div className="flex items-center justify-between pt-3 md:pt-0">
           <h6 className="text-lg font-semibold">상담내역</h6>
           {filteredData.length !== 0 && (
-            <button
+            <Button
+              className="px-8"
               onClick={() => {
                 setIsAddMode(true)
                 setContent('')
                 setCoulselorName(me?.name || '')
               }}
-              className="flex h-8 w-24 items-center justify-center gap-1 rounded-lg border border-slate-600 bg-white font-semibold transition-all hover:bg-slate-600 hover:text-white"
-            >
-              <Plus />
-              <p>상담 추가</p>
-            </button>
+              children="상담 추가"
+            />
           )}
         </div>
         {filteredData.length === 0 && (
           <div className="mt-4 flex h-[228px] flex-col items-center justify-center gap-4 rounded-[4px] bg-[#F3F3F3] text-sm">
-            <button
+            <Button
+              className="px-8"
               onClick={() => {
                 setIsAddMode(true)
                 setContent('')
                 setCoulselorName(me?.name || '')
               }}
-              className="flex h-8 w-24 items-center justify-center gap-1 rounded-lg border border-slate-600 bg-white font-semibold transition-all hover:bg-slate-600 hover:text-white"
-            >
-              <Plus />
-              <p>상담 추가</p>
-            </button>
+              children="상담 추가"
+            />
             <p className="text-center text-[#999999]">
               상담 내역이 없습니다.
               <br />

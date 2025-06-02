@@ -1,8 +1,5 @@
 import { useOutletContext } from 'react-router-dom'
-import { ReactComponent as SomeIcon } from '@/assets/svg/edit_orange.svg'
-import { ReactComponent as SaveIcon } from '@/assets/svg/save.svg'
-import { Button } from '@/legacy/components/common/Button'
-import { Icon } from '@/legacy/components/common/icons'
+import { Button } from '@/atoms/Button'
 import { Time } from '@/legacy/components/common/Time'
 import { useStudentPropertyUpdate } from '@/legacy/container/student-property-update'
 
@@ -66,6 +63,8 @@ export function StudyInfoCard2({
       motto,
       hopeCareerPath,
     )
+    refetch()
+    setIsEditMode(false)
   }
 
   const setValues = (type: string, row: string, col: string, value: string) => {
@@ -126,48 +125,15 @@ export function StudyInfoCard2({
       {isCard && (
         <div className="flex justify-end border-b border-[#d9d9d9] p-0 text-xl font-semibold md:p-2">
           <div className="flex items-center justify-end gap-4">
-            {isEditMode && (
-              <>
-                <button
-                  className="h-8 rounded-md bg-[#ebebeb] px-2 py-1 text-sm focus:outline-hidden"
-                  onClick={() => {
-                    setIsEditMode(false)
-                    refetch()
-                  }}
-                >
-                  <div className="flex items-center gap-1">
-                    <p>취소</p>
-                    <Icon.Close className="scale-75" />
-                  </div>
-                </button>
-              </>
-            )}
-            {!isForbidden ? (
-              <button
-                className="text-primary-800 hover:bg-primary-800 hover:text-primary-50 h-8 rounded-md bg-[#ffe4cb] px-2 py-1 text-sm focus:outline-hidden"
-                onClick={() => {
-                  if (isEditMode) {
-                    handleUpdate()
-                    refetch()
-                  }
-                  setIsEditMode(true)
-                }}
-              >
-                {isEditMode ? (
-                  <div className="flex items-center gap-1">
-                    <p>저장하기</p>
-                    <SaveIcon />
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-1">
-                    <p>수정하기</p>
-                    <SomeIcon className="scale-75" />
-                  </div>
-                )}
-              </button>
-            ) : (
-              <></>
-            )}
+            {!isForbidden &&
+              (isEditMode ? (
+                <>
+                  <Button color="tertiary" children="취소" onClick={() => setIsEditMode(false)} />
+                  <Button children="저장" onClick={() => handleUpdate()} />
+                </>
+              ) : (
+                <Button color="tertiary" children="수정" onClick={() => setIsEditMode(true)} />
+              ))}
           </div>
         </div>
       )}
@@ -1184,28 +1150,14 @@ export function StudyInfoCard2({
 
       {!isCard && (
         <div className="flex justify-end space-x-2 p-3">
-          {isEditMode && (
+          {isEditMode ? (
             <>
-              <Button.lg
-                children="취소"
-                className="outlined-primary w-full"
-                onClick={() => {
-                  setIsEditMode(false)
-                  refetch()
-                }}
-              />
+              <Button children="취소" variant="outline" className="w-full" onClick={() => setIsEditMode(false)} />
+              <Button className="w-full" children="저장하기" onClick={() => handleUpdate()} />
             </>
+          ) : (
+            <Button className="w-full" children="수정하기" onClick={() => setIsEditMode(true)} />
           )}
-          <Button.lg
-            children={isEditMode ? '저장하기' : '수정하기'}
-            className="filled-primary w-full"
-            onClick={() => {
-              if (isEditMode) {
-                handleUpdate()
-              }
-              setIsEditMode(true)
-            }}
-          />
         </div>
       )}
     </div>

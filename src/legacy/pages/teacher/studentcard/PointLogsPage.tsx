@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
+import { Button } from '@/atoms/Button'
 import { Admin } from '@/legacy/components/common/Admin'
-import { Button } from '@/legacy/components/common/Button'
 import { Time } from '@/legacy/components/common/Time'
 import { useTeacherPointLogGet } from '@/legacy/generated/endpoint'
 import { AssignPointModal } from '@/legacy/modals/AssignPointModal'
@@ -27,11 +27,6 @@ export function PointLogsPage() {
   return (
     <div className="scroll-box h-screen-12 md:h-screen-4 mt-4 flex flex-col gap-4 overflow-y-auto pb-4">
       <div className="flex items-end justify-between">
-        <Button
-          children={tt('assign_points')}
-          onClick={() => setOpenAssignPointModal(true)}
-          className="outlined-gray"
-        />
         <div className="flex gap-3 font-light">
           <span>
             {tt('merits')}: {numberWithSign(merits)}
@@ -43,6 +38,7 @@ export function PointLogsPage() {
             {tt('total')}: {numberWithSign(merits + demerits)}
           </span>
         </div>
+        <Button children={tt('assign_points')} onClick={() => setOpenAssignPointModal(true)} className="px-8" />
       </div>
 
       <Admin.Table className="w-full">

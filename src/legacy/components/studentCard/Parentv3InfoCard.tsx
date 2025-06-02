@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 
-import { ReactComponent as icon } from '@/assets/icons/more-vertical.svg'
-import { Icon } from '@/legacy/components/common/icons'
+import { cn } from '@/utils/commonUtil'
+import { Button } from '@/atoms/Button'
 import { TextInput } from '@/legacy/components/common/TextInput'
 import { useTeacherStudentUpdateParent } from '@/legacy/container/teacher-student-update-parent'
 import { useCounselingSendParentSignUpV2 } from '@/legacy/generated/endpoint'
@@ -10,7 +10,6 @@ import type { ResponseParentUserDto } from '@/legacy/generated/model'
 import { useLanguage } from '@/legacy/hooks/useLanguage'
 import type { errorType } from '@/legacy/types'
 import { Validator } from '@/legacy/util/validator'
-
 import { DropdownMenu } from './DropdownMenu'
 
 interface ParentInfoCard {
@@ -95,15 +94,8 @@ export default function Parentv3InfoCard({
         <div className="flex w-full flex-col">
           <section className="flex w-full flex-row items-center justify-between">
             <h6 className="text-lg font-bold">{t('guardian_information', '보호자 정보')}</h6>
-            {canAddParent && (
-              <button
-                onClick={() => setAddBtnParent(!addBtnParent)}
-                className={`block h-8 rounded-md border border-slate-600 px-4 font-semibold transition-all hover:bg-slate-600 hover:text-white ${
-                  addBtnParent && 'hidden'
-                }`}
-              >
-                {t('add', '추가')}
-              </button>
+            {canAddParent && !addBtnParent && (
+              <Button size="sm" onClick={() => setAddBtnParent(!addBtnParent)} children={t('add', '추가')} />
             )}
           </section>
 
@@ -128,18 +120,18 @@ export default function Parentv3InfoCard({
               <div className="flex items-center gap-2">
                 <h6 className="font-bold">{parent.name}</h6>
                 <span
-                  className={`text-white ${
-                    (parent.isPrimaryGuardian && 'bg-orange-400') || 'bg-[#CCCCCC]'
-                  } rounded-md px-2`}
+                  className={cn(
+                    'rounded-md bg-gray-100 px-2 text-gray-800',
+                    parent.isPrimaryGuardian && 'bg-primary-100 text-primary-800',
+                  )}
                 >
                   {(parent.isPrimaryGuardian && t('primary_guaridan', '주 보호자')) || t('guardian', '보호자')}
                 </span>
               </div>
               <DropdownMenu
-                icon={icon as unknown as string}
+                key={parent.id}
                 parent={parent}
                 studentId={studentId || 0}
-                key={parent.id}
                 updateStudentParent={updateStudentParent}
               />
             </div>
@@ -156,14 +148,10 @@ export default function Parentv3InfoCard({
             <div className="flex flex-row items-center justify-between pb-4">
               <h6 className="text-xl font-semibold">{t('add_parent', '보호자 추가')}</h6>
               <nav className="flex items-center justify-between space-x-2">
-                <button
-                  onClick={() => cancel()}
-                  className="flex w-16 items-center rounded-md border border-slate-600 font-semibold transition-all hover:bg-slate-600 hover:text-white"
-                >
-                  <Icon.Close />
-                  {t('cancel', '취소')}
-                </button>
-                <button
+                <Button size="sm" children={t('cancel', '취소')} onClick={() => cancel()} />
+                <Button
+                  size="sm"
+                  children={t('add', '추가')}
                   onClick={() => {
                     const regExp = /^010(?:\d{4})\d{4}$/
                     if (nokPhone && !regExp.test(nokPhone.replace(/-/g, ''))) {
@@ -176,10 +164,7 @@ export default function Parentv3InfoCard({
                     })
                     cancel()
                   }}
-                  className="w-12 rounded-md border border-slate-600 font-semibold transition-all hover:bg-slate-600 hover:text-white"
-                >
-                  {t('add', '추가')}
-                </button>
+                />
               </nav>
             </div>
             <div className="flex flex-col gap-1 space-y-2">
@@ -214,16 +199,15 @@ export default function Parentv3InfoCard({
         <div className="mt-2 flex flex-col gap-1 rounded-md border p-4 md:p-2">
           <div className="flex w-full items-center justify-between">
             <p className="font-bold">{t('signup_request_in_progress', '가입요청중')}</p>
-            <button
+            <Button
+              size="sm"
+              children={t('cancel', '취소')}
               onClick={() => {
                 alert('가입 요청을 취소합니다.')
                 localStorage.removeItem(studentId.toString())
                 queryClient.refetchQueries({ active: true })
               }}
-              className="h-6 rounded-md border border-slate-600 px-2 py-px text-sm font-semibold transition-all hover:bg-slate-600 hover:text-white"
-            >
-              {t('cancel', '취소')}
-            </button>
+            />
           </div>
           <p>{reqParentName}</p>
           <p>{reqParentPhone?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}</p>

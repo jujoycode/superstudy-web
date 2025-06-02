@@ -41,11 +41,11 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
     setNickName,
     phone,
     setPhone,
+    profile,
     expired,
     setExpired,
     expiredReason,
     setExpiredReason,
-    profile,
     birthDate,
     setBirthDate,
     setStudentInfo,
@@ -123,6 +123,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
       alert('복사할 내용이 없습니다.')
     }
   }
+
   return (
     <section className="relative h-full rounded-md border-2 bg-white p-4">
       <article className="flex items-center justify-between pt-3 md:pt-0">
@@ -186,7 +187,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
           {isEditMode ? (
             <>
               <label htmlFor="imageupload" className="h-full w-full cursor-pointer">
-                <Avatar rounded="md" src={profile} />
+                <Avatar rounded="md" size="full" src={profile || ''} />
 
                 {profile ? (
                   <span className="absolute top-0 right-0 z-40 block h-6 w-6 rounded-full bg-red-700 ring-2 ring-white">
@@ -215,7 +216,7 @@ export default function Studentv3InfoCard({ id }: StudentInfoCardProps) {
               </label>
             </>
           ) : (
-            <Avatar rounded="md" src={profile} />
+            <Avatar rounded="md" size="full" src={info?.student?.profile || ''} />
           )}
         </div>
         <div className="flex w-full flex-col md:ml-4 md:basis-3/4">

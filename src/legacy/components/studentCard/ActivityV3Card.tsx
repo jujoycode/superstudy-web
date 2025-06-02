@@ -1,5 +1,5 @@
-import { Chart as ChartJS, registerables } from 'chart.js'
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
+import { Chart as ChartJS, registerables } from 'chart.js'
 import { Chart } from 'react-chartjs-2'
 import { useNotificationStore } from '@/stores/notification'
 import { useUserStore } from '@/stores/user'
