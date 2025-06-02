@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { Button } from '@/atoms/Button'
 import { GeneralGPTModal } from '@/legacy/components/activityv3/GPT/GeneralGPTModal'
 import { Blank } from '@/legacy/components/common'
-import { Button } from '@/legacy/components/common/Button'
 import { Checkbox } from '@/legacy/components/common/Checkbox'
 import { Icon } from '@/legacy/components/common/icons'
 import { AnnualReviewRecordItem } from '@/legacy/components/studentCard/AnnualReviewRecordItem'
@@ -179,9 +179,7 @@ export const GeneralCardPage: FC = () => {
                     ?
                   </div>
                 </div>
-                <Button.lg className="filled-primary" onClick={() => setOpen(true)}>
-                  작성하기
-                </Button.lg>
+                <Button children="초안 작성" className="px-8" onClick={() => setOpen(true)} />
               </div>
               <div className="scroll-box h-full overflow-y-scroll">
                 {studentRecords
