@@ -446,6 +446,7 @@ export function NewsletterAddPage() {
             </Label.Text>
             <TextInput
               id="title"
+              className="text-gray-800"
               placeholder={`${t('enter_title')}`}
               value={newsletter.title}
               onChange={(e) => setNewsletter((prevState) => ({ ...prevState, title: e.target.value }))}

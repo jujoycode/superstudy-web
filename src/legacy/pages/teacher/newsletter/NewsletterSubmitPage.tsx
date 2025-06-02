@@ -66,7 +66,7 @@ export function NewsletterSubmitPage() {
   }
 
   return (
-    <div className="ml-0.5 grid h-screen grid-cols-7 bg-white">
+    <div className="h-screen bg-white">
       {submiterLoding && <Blank reversed />}
       <div className="col-span-4">
         <div className="flex w-full items-center justify-between p-4">
@@ -160,11 +160,6 @@ export function NewsletterSubmitPage() {
             )
           })}
         </div>
-      </div>
-      <div className="col-span-3">
-        <Routes>
-          <Route path={`/teacher/newsletter/submit/:id/:snid`} Component={() => <NewsletterSubmitDetailPage />} />
-        </Routes>
       </div>
       <SuperModal modalOpen={modalOpen} setModalClose={() => setModalOpen(false)} className="w-max">
         <div className="px-12 py-6">
