@@ -1,5 +1,5 @@
-import _, { range } from 'lodash'
 import React, { useEffect, useState, useCallback } from 'react'
+import _, { range } from 'lodash'
 import { useLocation } from 'react-router'
 import * as XLSX from 'xlsx'
 import { useHistory } from '@/hooks/useHistory'
@@ -353,7 +353,7 @@ const AbsentComparisonPage: React.FC = () => {
     setNiceFileContent([])
     setNiceFile(null)
     searchParams.set('selectedGroupId', groupId.toString())
-    replace(`/teacher/absent/comparison?${searchParams.toString()}`)
+    replace(`/teacher/comparison?${searchParams.toString()}`)
   }
 
   const getTitle = (studNum: number, header: string) => {
@@ -428,7 +428,7 @@ const AbsentComparisonPage: React.FC = () => {
                 setNiceFile(null)
                 refetch()
                 searchParams.set('year', e.target.value)
-                replace(`/teacher/absent/comparison?${searchParams.toString()}`)
+                replace(`/teacher/comparison?${searchParams.toString()}`)
               }}
             >
               {range(thisYear + 1, thisYear - 3, -1).map((year) => (
@@ -449,7 +449,7 @@ const AbsentComparisonPage: React.FC = () => {
                 setNiceFile(null)
                 refetch()
                 searchParams.set('month', e.target.value)
-                replace(`/teacher/absent/comparison?${searchParams.toString()}`)
+                replace(`/teacher/comparison?${searchParams.toString()}`)
               }}
             >
               {[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0, 1].map((month) => (
