@@ -5,7 +5,6 @@ import { compression } from 'vite-plugin-compression2'
 import react from '@vitejs/plugin-react-swc'
 import svgr from 'vite-plugin-svgr'
 import tailwindcss from '@tailwindcss/vite'
-import path from 'path'
 
 // 메타 태그 생성 함수
 const generateMetaTag = () => {
@@ -54,7 +53,6 @@ export default defineConfig(({ mode }) => {
 
   // 프론트엔드에 노출할 환경 변수 필터링
   const exposedEnvs = filterExposedEnvs(env)
-
 
   // Vite 설정 반환
   return {

@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { useLanguage } from '@/hooks/useLanguage'
 import { useLogout } from '@/hooks/useLogout'
 import { useUserStore } from '@/stores/user'
@@ -13,6 +13,7 @@ import { Role } from '@/legacy/generated/model'
 export function NavigationFooter() {
   const { me } = useUserStore()
   const { t } = useLanguage()
+  const navigate = useNavigate()
 
   const adminPermission = useMemo(
     () =>
@@ -29,6 +30,10 @@ export function NavigationFooter() {
     [me],
   )
 
+  const goToMyInfo = () => {
+    navigate('/teacher/update')
+  }
+
   return (
     <Box className="pb-4">
       <Flex direction="col" width="full" justify="between" items="center" gap="4">
@@ -41,7 +46,7 @@ export function NavigationFooter() {
         )}
 
         <Flex direction="row" items="center" justify="center">
-          <Button variant="link" size="full" className="text-gray-600 hover:text-gray-700">
+          <Button variant="link" size="full" className="text-gray-600 hover:text-gray-700" onClick={goToMyInfo}>
             <Text size="xs" weight="sm">
               내 정보 관리
             </Text>
