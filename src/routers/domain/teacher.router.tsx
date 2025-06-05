@@ -144,11 +144,7 @@ export const teacherRoutes = {
         { path: 'add', element: <AbsentAddPage /> },
       ],
     },
-    /**
-     * @date 2025-05-27
-     * @history 위치 변경되었으나, router 구조 변경되지 않음, 추후 변경 필요
-     * @author 주승열
-     */
+    // 나이스 자료 비교
     { path: 'comparison', element: <AbsentComparisonPage /> },
 
     // 체험학습
