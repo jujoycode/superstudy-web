@@ -362,9 +362,7 @@ export const ActivityV3Card: FC<ActivityV3CardProps> = ({
                       })
                     }
                   >
-                    {gptContents
-                      ? t('update_ai_activity_analysis', '활동 AI 분석 업데이트하기')
-                      : t('ai_analyze_activity', '활동 AI 분석하기')}
+                    활동 내용 AI 분석
                   </Button>
                 )}
                 <Button

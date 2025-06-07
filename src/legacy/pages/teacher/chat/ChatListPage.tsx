@@ -624,7 +624,7 @@ export function ChatListPage() {
                           </div>
 
                           <Button
-                            children={t('set_available_chat_time')}
+                            children="대화가능시간 설정"
                             onClick={() => push('/teacher/update')}
                             className="filled-primary"
                           />

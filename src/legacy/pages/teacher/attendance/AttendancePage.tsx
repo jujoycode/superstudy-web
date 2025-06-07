@@ -985,7 +985,9 @@ export function AttendancePage() {
                     klassName &&
                     '(' + klassName + ` - ${t('homeroom_teacher', '담임선생님')} : ` + teacher + teacherNickName + ')'}
                 </h1>
-                <div className="mb-5 text-sm text-gray-500">*{t('attendance_check_and_document_comparison')}</div>
+                <div className="mb-5 text-sm text-gray-500">
+                  *학생 출석을 입력하고 출결 현황을 한눈에 확인할 수 있어요.
+                </div>
               </div>
               <div className="flex space-x-2">
                 <Select.lg
@@ -1044,7 +1046,7 @@ export function AttendancePage() {
           <div className="flex w-full items-center bg-white px-6 py-3">
             {/* TODO : 엑셀버튼 누르면 해당주의 시간표만 나오는데, 이전에는 해당 학기의 시간표가 모두나왔다.*/}
             <Button.lg
-              children="Excel"
+              children="출석부"
               onClick={() => {
                 setLoading(true)
                 downloadAttendanceBook()

@@ -220,12 +220,11 @@ export const ActivityV3Page = () => {
                 checked={showDisabledActivity}
                 onChange={() => setShowDisabledActivity(!showDisabledActivity)}
               />
-              <div>비활성화된 활동 보기</div>
+              <div>모든 활동 보기</div>
             </label>
             <div className="scroll-box w-full overflow-y-scroll" style={{ height: 'calc(90vh - 36px)' }}>
               <div className="mt-2 py-1 text-sm text-red-500">
-                *활동 내역 (활동보고서/관찰기록/활동요약/차시정보) 중 하나가 있어야 활동기록 초안 작성을 위한 선택이
-                가능합니다.
+                *참여 활동 중 1개를 선택해야 AI가 활동기록 초안을 작성할 수 있어요.
               </div>
               {!!lectureAV3?.length && <div className="mt-2 py-2 font-bold">교과활동</div>}
               <div className="flex flex-col space-y-2">
@@ -242,7 +241,7 @@ export const ActivityV3Page = () => {
                   />
                 ))}
               </div>
-              {!!activityAV3?.length && <div className="mt-4 py-2 font-bold">창체활동</div>}
+              {!!activityAV3?.length && <div className="mt-4 py-2 font-bold">창의적 체험 활동</div>}
               <div className="flex flex-col space-y-2">
                 {activityAV3?.map((activityv3) => (
                   <ActivityV3Card
@@ -278,7 +277,7 @@ export const ActivityV3Page = () => {
             <div>
               <div className="flex items-center justify-between">
                 <div className="flex flex-row items-center gap-1">
-                  <div className="text-18 font-bold">작성한 활동기록 초안</div>
+                  <div className="text-18 font-bold">활동기록 초안 목록</div>
                   <div
                     className="text-md flex h-4 w-4 cursor-pointer items-center justify-center rounded-full border border-gray-500 text-sm"
                     onClick={() => handleCoachmarOpen()}
@@ -287,7 +286,7 @@ export const ActivityV3Page = () => {
                   </div>
                 </div>
                 <Button
-                  children="초안 작성"
+                  children="초안 작성하기"
                   className="px-8"
                   disabled={!checkedCardIds.length}
                   onClick={() => {

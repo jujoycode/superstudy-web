@@ -120,10 +120,11 @@ export function PointDashboard() {
           title={tt('title')}
           config={{
             topBtn: {
-              label: tt('assign_points'),
+              label: '상벌점 부여하기',
               color: 'primary',
               variant: 'solid',
               action: () => setOpenAssignPointModal(true),
+              customWidth: '140px',
             },
             filters: [
               {
@@ -278,7 +279,7 @@ export function PointDashboard() {
                 <SearchInput placeholder="이름" value={q} onChange={(e) => setQ(e.target.value)} className="h-9" />
               </Flex>
               <IconButton size="sm" color="tertiary" position="front" iconName="ssDownload" onClick={downloadAsExcel}>
-                {tt('download_excel')}
+                학급별상벌점현황
               </IconButton>
             </Flex>
 

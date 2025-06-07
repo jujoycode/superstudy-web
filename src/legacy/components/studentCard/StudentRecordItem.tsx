@@ -43,13 +43,25 @@ export const StudentRecordItem: FC<StudentRecordItemProps> = ({ record, refetch 
     },
   })
 
+  const convertRecordTypeText = {
+    교과: '교과활동',
+    창의적체험활동: '창의적 체험 활동',
+  }
+
+  const getRecordTypeText = (type: string) => {
+    if (convertRecordTypeText[type as keyof typeof convertRecordTypeText]) {
+      return convertRecordTypeText[type as keyof typeof convertRecordTypeText]
+    }
+    return type
+  }
+
   return (
     <>
       {updateView ? (
         <div className="mt-2 flex flex-col space-y-2 rounded-lg border border-gray-300 p-4" key={record.id}>
           <div className="flex items-center justify-between">
             <div className="border-primary-800 text-15 text-primary-800 w-min rounded-xl border px-3 py-1.5 whitespace-pre">
-              {record.type}
+              {getRecordTypeText(record.type)}
             </div>
             <div className="text-sm">작성자 : {record?.writer?.name} 선생님</div>
           </div>
@@ -85,7 +97,7 @@ export const StudentRecordItem: FC<StudentRecordItemProps> = ({ record, refetch 
         <div className="mt-2 flex flex-col space-y-2 rounded-lg border border-gray-300 p-4" key={record.id}>
           <div className="flex items-center justify-between">
             <div className="border-primary-800 text-15 text-primary-800 w-min rounded-xl border px-3 py-1.5 whitespace-pre">
-              {record.type}
+              {getRecordTypeText(record.type)}
             </div>
             <div className="text-sm">작성자 : {record?.writer?.name} 선생님</div>
           </div>

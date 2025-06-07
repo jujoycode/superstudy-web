@@ -247,7 +247,7 @@ export function AbsentPage() {
                 },
                 {
                   items: [
-                    { label: '전체보기', value: 'ALL' },
+                    { label: '출결 구분 전체', value: 'ALL' },
                     { label: '결석', value: '결석' },
                     { label: '지각', value: '지각' },
                     { label: '조퇴', value: '조퇴' },
@@ -260,7 +260,7 @@ export function AbsentPage() {
                 },
                 {
                   items: [
-                    { label: '전체보기', value: 'ALL' },
+                    { label: '결석 유형 전체', value: 'ALL' },
                     { label: '인정', value: '인정' },
                     { label: '질병', value: '질병' },
                     { label: '기타', value: '기타' },
