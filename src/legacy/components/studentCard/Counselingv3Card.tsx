@@ -152,7 +152,7 @@ export default function Counselingv3Card() {
                 setContent('')
                 setCoulselorName(me?.name || '')
               }}
-              children="상담 추가"
+              children="상담 추가하기"
             />
           )}
         </div>
@@ -165,7 +165,7 @@ export default function Counselingv3Card() {
                 setContent('')
                 setCoulselorName(me?.name || '')
               }}
-              children="상담 추가"
+              children="상담 추가하기"
             />
             <p className="text-center text-[#999999]">
               상담 내역이 없습니다.

@@ -107,7 +107,7 @@ export function StudentCardPage() {
                 items: [
                   {
                     value: 'ALL',
-                    label: '전체 그룹',
+                    label: '그룹 전체',
                   },
                   {
                     value: GroupType.KLASS,

@@ -282,7 +282,7 @@ export function GroupAddPage({ groupData, onSubmit }: GroupAddPageProps) {
 
       <div className="mt-10 text-center">
         <Button.lg
-          children={t('register', '등록하기')}
+          children="등록하기"
           disabled={!name || !subject || !selectedTeachers.length}
           onClick={() =>
             handleSubmit({

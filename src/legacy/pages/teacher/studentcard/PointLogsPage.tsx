@@ -38,7 +38,7 @@ export function PointLogsPage() {
             {tt('total')}: {numberWithSign(merits + demerits)}
           </span>
         </div>
-        <Button children={tt('assign_points')} onClick={() => setOpenAssignPointModal(true)} className="px-8" />
+        <Button children="상벌점 부여하기" onClick={() => setOpenAssignPointModal(true)} className="px-8" />
       </div>
 
       <Admin.Table className="w-full">

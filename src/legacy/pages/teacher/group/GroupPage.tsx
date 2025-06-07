@@ -42,7 +42,7 @@ export function GroupPage() {
           config={{
             topBtn: [
               {
-                label: t('add', '추가하기'),
+                label: '그룹 추가하기',
                 variant: 'solid',
                 color: 'primary',
                 action: () => replace('/teacher/groups/add'),

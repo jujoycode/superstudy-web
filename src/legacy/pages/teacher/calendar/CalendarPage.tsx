@@ -280,7 +280,7 @@ export function CalendarPage() {
                   size="md"
                   color="primary"
                   variant="solid"
-                  children={t('add_new_event')}
+                  children="새 일정 추가하기"
                   onClick={() => {
                     if (readOnly) {
                       alert('일정 추가 권한이 없습니다.')

@@ -108,7 +108,7 @@ function NoticePageView() {
             config={{
               topBtn: [
                 {
-                  label: '추가',
+                  label: '추가하기',
                   variant: 'solid',
                   color: 'primary',
                   action: () => {

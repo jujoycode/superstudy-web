@@ -52,7 +52,7 @@ interface ActivityV3AddPageProps {
   activityv3Data?: ActivityV3
 }
 
-export const DEFAULT_EXPLAIN_TEXT = '예) 주제, 주요활동을 중심으로 200자 이내로 활동요약을 작성해주세요.'
+export const DEFAULT_EXPLAIN_TEXT = '예시) 주제/주요 활동한 내용을 중심으로 200자 이내 요약해 작성하세요.'
 
 export const SUBJECTS_TYPE_ACTIVITY = [
   { id: 1, name: '자율' },
@@ -319,29 +319,30 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
 
   const steps = [
     {
-      title: '1단계 : 활동 생성 기본 설정',
-      description: '활동 타입, 과목, 기간, 활동명을 선택하고 학생들에게 보여줄 활동에 대한 설명을 간략하게 요약합니다.',
+      title: '1단계 활동 영역 작성',
+      description:
+        '활동 영역/과목/기간을 선택하고 활동명을 입력하세요. 활동 영역/과목과 활동명은 필수 입력 항목이에요.',
       actions: [
-        { text: '그만보기', onClick: () => handleCoachmarkClose() },
-        { text: '다음으로', onClick: () => setCurrentStep((prev) => Math.min(prev + 1, steps.length)) },
+        { text: '닫기', onClick: () => handleCoachmarkClose() },
+        { text: '다음', onClick: () => setCurrentStep((prev) => Math.min(prev + 1, steps.length)) },
       ],
     },
     {
-      title: '2단계 : AI 요약',
-      description: '공통문구와 성취기준을 입력하면 AI 활동기록부 초안 작성 시 답변 정확도가 높아집니다.',
+      title: '2단계 활동 안내 작성/성취 기준 선택',
+      description: '성취 기준을 선택하고, 어떤 활동인지 자세히 입력하면 AI가 활동 기록 초안을 더 정확하게 작성해요.',
       actions: [
-        { text: '그만보기', onClick: () => handleCoachmarkClose() },
-        { text: '이전으로', onClick: () => setCurrentStep((prev) => Math.max(prev - 1, 1)) },
-        { text: '다음으로', onClick: () => setCurrentStep((prev) => Math.min(prev + 1, steps.length)) },
+        { text: '닫기', onClick: () => handleCoachmarkClose() },
+        { text: '이전', onClick: () => setCurrentStep((prev) => Math.max(prev - 1, 1)) },
+        { text: '다음', onClick: () => setCurrentStep((prev) => Math.min(prev + 1, steps.length)) },
       ],
     },
     {
-      title: '3단계 : 활동보고서 제출 설정',
-      description: '활동보고서는 학생이 자신이 참여한 활동의 주요 내용을 통합 요약한 것입니다.',
+      title: '3단계 활동보고서 제출 여부 선택',
+      description:
+        '활동보고서 제출 여부를 선택하세요. 제출이 필요한 경우, 마감일을 선택하고 학생에게 보여줄 예시와 작성 가이드를 입력하세요. ',
       actions: [
-        { text: '그만보기', onClick: () => handleCoachmarkClose() },
-        { text: '이전으로', onClick: () => setCurrentStep((prev) => Math.max(prev - 1, 1)) },
-        { text: '마치기', onClick: () => handleCoachmarkClose() },
+        { text: '닫기', onClick: () => handleCoachmarkClose() },
+        { text: '이전', onClick: () => setCurrentStep((prev) => Math.max(prev - 1, 1)) },
       ],
     },
   ]
@@ -357,7 +358,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
               {/* 활동 생성하기 박스 */}
               <div className="3xl:px-30 flex w-full flex-col gap-2 bg-white pb-8 md:px-10">
                 <div className="flex items-center gap-2">
-                  <div className="text-3xl font-bold">활동 {activityv3Data ? '수정' : '생성'}하기</div>
+                  <div className="text-3xl font-bold">활동 {activityv3Data ? '수정' : '추가'}하기</div>
                   <div
                     className="text-md flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-gray-500"
                     onClick={() => handleCoachmarOpen()}
@@ -365,9 +366,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                     ?
                   </div>
                 </div>
-                <div className="text-18 font-normal text-[#444]">
-                  학생들에게 활동&nbsp;/&nbsp; 활동보고서의 상세 내용을 안내할 수 있습니다.
-                </div>
+                <div className="text-18 font-normal text-[#444]">추가할 활동 정보를 입력해 주세요</div>
               </div>
 
               <div className="3xl:px-30 h-full min-w-2/3 md:px-10">
@@ -387,7 +386,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                   <div className="border-gray-[#444] flex h-14 items-center border-b">
                     <div className="text-[#333333 w-30 py-3 font-bold whitespace-pre">
                       <div className="flex gap-x-0.5">
-                        <p>타입</p>
+                        <p>유형</p>
                         <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
                       </div>
                     </div>
@@ -416,7 +415,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                   <div className="border-gray-[#444] flex h-14 items-center border-b py-3">
                     <div className="w-30 font-bold whitespace-pre text-[#333333]">
                       <div className="flex gap-x-0.5">
-                        <p>과목</p>
+                        <p>과목/차시</p>
                         <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
                       </div>
                     </div>
@@ -476,7 +475,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                     <div className="grow py-3">
                       <TextInput
                         id="title"
-                        placeholder="예) 통계포스터 만들기"
+                        placeholder="예시) 통계 포스터 만들기"
                         className="h-10 rounded-lg border border-[#CCCCCC]"
                         {...register('title', { required: true })}
                       />
@@ -485,7 +484,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                   </div>
 
                   <div className="border-gray-[#444] flex w-full flex-1 items-center border-b">
-                    <div className="w-30 shrink-0 py-3 font-bold whitespace-pre text-[#333333]">활동 설명</div>
+                    <div className="w-30 shrink-0 py-3 font-bold whitespace-pre text-[#333333]">활동 안내</div>
                     <div className="grow py-3">
                       <Textarea
                         id="description"
@@ -501,13 +500,6 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                     <div className="w-30 shrink-0 py-3 font-bold whitespace-pre text-[#333333]">
                       <div className="flex gap-x-0.5">
                         <p>공통문구</p>
-                        {currentStep === 2 && coachmarkVisible && (
-                          <span className="relative flex h-1.5 w-1.5">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75" />
-                            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-500" />
-                            <Coachmark2 steps={steps} currentStep={currentStep} />
-                          </span>
-                        )}
                       </div>
                     </div>
                     <div className="grow py-3">
@@ -515,7 +507,8 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         id="commonText"
                         className="h-20 resize-none rounded-lg border border-[#CCCCCC]"
                         rows={3}
-                        placeholder="공통문구를 입력해 주세요. 공통문구는 선생님에게만 보여집니다."
+                        placeholder={`활동요약을 작성할 때 필요한 공통 문구를 작성해 주세요.
+해당 문구는 학생에게 노출되지 않아요.`}
                         {...register('commonText')}
                       />
                       <Label.Error children={errors.commonText?.message} />
@@ -526,6 +519,13 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                       <div className="w-30 shrink-0 py-3 font-bold whitespace-pre text-[#333333]">
                         <div className="flex gap-x-0.5">
                           <p>성취기준</p>
+                          {currentStep === 2 && coachmarkVisible && (
+                            <span className="relative flex h-1.5 w-1.5">
+                              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75" />
+                              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-500" />
+                              <Coachmark2 steps={steps} currentStep={currentStep} />
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="flex w-full grow flex-col gap-2 py-3">
@@ -569,7 +569,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                   <div className="border-gray-[#444] flex h-14 flex-1 items-center border-b">
                     <div className="w-30 shrink-0 py-3 font-bold whitespace-pre text-[#333333]">
                       <div className="flex gap-x-0.5">
-                        <p>전달대상</p>
+                        <p>참여 대상</p>
                         <div className="h-1.5 w-1.5 overflow-hidden rounded-full bg-orange-500" />
                       </div>
                     </div>
@@ -671,7 +671,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         >
                           <Icon.Plus />
                         </label>
-                        <p className="text-xs text-neutral-500">100MB 이하의 이미지/문서 파일을 첨부할 수 있습니다.</p>
+                        <p className="text-xs text-neutral-500">100MB 이하 이미지/문서 파일을 첨부해 주세요.</p>
                       </div>
                     </div>
                   </div>
@@ -755,8 +755,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
             {/* 하단 버튼 영역 */}
             <div className="3xl:-bottom-20 absolute -bottom-14 left-0 w-full">
               <div className="flex items-center justify-between">
-                  <Button size="lg" children="취소" onClick={() => setShowDialog(true)} />
-
+                <Button size="lg" children="취소" onClick={() => setShowDialog(true)} />
 
                 <div className="flex items-center space-x-2">
                   <Button size="lg" onClick={() => setPreviewOpen(true)} children="미리보기" disabled={!isFormValid} />
@@ -802,7 +801,7 @@ export const ActivityV3AddPage: React.FC<ActivityV3AddPageProps> = ({ activityv3
                         createActivityV3({ data: _data })
                       }
                     })}
-                    children="확인"
+                    children="등록하기"
                   />
                 </div>
               </div>

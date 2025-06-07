@@ -145,12 +145,10 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
               <div className="mb-2 h-full w-full overflow-hidden px-5 pb-4">
                 <div className="flex items-center gap-2">
                   <div className="text-xl font-bold">
-                    행동특성 및 종합의견 초안 작성<span className="ml-1 align-top text-sm text-blue-500">AI</span>
+                    행동특성 및 종합의견 <span className="text-blue-500">AI</span> 초안 작성
                   </div>
                 </div>
-                <div className="text-xs font-semibold text-[#666]">
-                  선택한 기록을 기반으로 행동특성 및 종합의견 초안을 작성합니다.
-                </div>
+                <div className="text-xs font-semibold text-[#666]">선택한 항목을 기반으로 AI가 초안을 작성해요.</div>
                 <div className="h-screen-16 flex flex-col space-y-4 overflow-y-auto p-4">
                   {studentInfo && (
                     <>
@@ -295,7 +293,7 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
                   }
                   className="w-full rounded-lg bg-[#163192] py-2 text-base text-white disabled:bg-gray-500"
                 >
-                  행동특성 및 종합의견 초안 작성
+                  AI 초안 작성 시작
                 </button>
               </div>
             </div>
@@ -310,9 +308,7 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
               )}
               {reportContents[0] && (
                 <div className="flex w-full flex-col overflow-y-auto pr-2">
-                  <div className="text-xl font-bold">
-                    {t('ai_drafted_annual_review_record', 'AI 작성 행동특성 및 종합의견 초안')}
-                  </div>
+                  <div className="text-xl font-bold">AI 초안</div>
                   {reportContents.map((_data, i) => {
                     if (_data.type === 'question') {
                       return (
@@ -399,10 +395,7 @@ export const GeneralGPTModal: FC<GeneralGPTModalProps> = ({
                 {!!reportContents.length && !isLoading && (
                   <div className="flex items-center space-x-2 py-2">
                     <SearchInput
-                      placeholder={t(
-                        'chatbot_annual_review_record_prompt',
-                        '챗봇과 대화를 통해 행동특성 및 종합의견을 보완해 보세요.',
-                      )}
+                      placeholder="보완하고 싶은 부분을 AI에게 요청하면 바로 수정해 드려요. (예시) 명사형이 아니라 해요체로 써 줘, ‘인내심’은 ‘끈기’로 수정해 줘."
                       value={question}
                       onChange={(e) => setQuestion(e.target.value)}
                       onSearch={handleQuestionSend}

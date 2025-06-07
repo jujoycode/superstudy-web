@@ -403,9 +403,9 @@ const AbsentComparisonPage: React.FC = () => {
       <div className="col-span-6 h-full w-full overflow-auto bg-white px-6 py-4">
         <div className="flex w-full items-center justify-between">
           <div>
-            <h1 className="text-2xl font-semibold">나이스 자료 비교</h1>
+            <h1 className="text-2xl font-semibold">나이스(NEIS) 비교</h1>
             <div className="my-2 text-gray-500">
-              나이스의 학급별출결현황 자료를 슈퍼스쿨의 데이터와 비교할 수 있습니다.
+              선생님이 입력한 슈퍼스쿨 출석부 내용과 나이스에 입력된 내용을 비교할 수 있어요.
             </div>
           </div>
           <a
@@ -414,7 +414,7 @@ const AbsentComparisonPage: React.FC = () => {
             download
             className="block rounded-xl border border-gray-300 px-2 py-1 text-red-500"
           >
-            NEIS 출결처리 가이드
+            나이스 출결처리 가이드
           </a>
         </div>
         <div className="mt-2 flex items-center space-x-3">
@@ -479,7 +479,7 @@ const AbsentComparisonPage: React.FC = () => {
                       (nice) => nice.year === String(year) && nice.month === month && nice.groupId === el.id,
                     ) && (
                       <>
-                        <div className="text-sm">나이스 파일 존재</div>
+                        <div className="text-sm">출결 파일 적용하기</div>
                         <Button.xs
                           children="변경"
                           onClick={() => setSelectedGroupId(el.id)}
@@ -525,7 +525,7 @@ const AbsentComparisonPage: React.FC = () => {
                 ? '여기에 업로드하여 저장된 파일을 업데이트할 수 있습니다.'
                 : selectedGroupName
                   ? '나이스에서 다운로드받은 ' + selectedGroupName + '의 학급별출결현황 파일을 여기에 업로드하세요'
-                  : '학급까지 선택 후 나이스에서 다운로드받은 학급별출결현황 파일을 여기에 업로드하세요'}
+                  : '나이스에서 내려 받은 출결 파일을 이 영역에 끌어다 놓거나 눌러서 첨부해 주세요.'}
         </label>
 
         <input
@@ -546,15 +546,12 @@ const AbsentComparisonPage: React.FC = () => {
         {!!content?.length && (
           <>
             <div className="mt-8 mb-1 font-bold">
-              슈퍼스쿨로 접수한 출결서류와 NEIS로 정리한 학급별출결현황을 비교한 자료입니다.
-              <br />
-              NEIS 미작성 <span className="text-red-500">{niceEmptyNumber}</span>건,
-              <br /> 슈퍼스쿨 미작성 <span className="text-orange-500">{schoolEmptyNumber}</span>건
-              <br />
-              <br />
-              NEIS 자료에 미작성된 건은 <span className="text-red-500">빨간색</span>으로, 슈퍼스쿨 자료에 미작성된 건은{' '}
-              <span className="text-orange-500">주황색</span>
-              으로, 둘 모두 정상적으로 일치하는 결석 건은 <span className="text-green-500">초록색</span>으로 표시됩니다.
+              슈퍼스쿨 출석부에 입력한 내용과 나이스에 입력된 내용을 비교했어요.
+              <br /> - 슈퍼스쿨 미작성 <span className="text-orange-500">{schoolEmptyNumber}</span>건 / 나이스 미작성{' '}
+              <span className="text-red-500">{niceEmptyNumber}</span>건
+              <br />※ 슈퍼스쿨에서 작성하지 않은 건은 <span className="text-red-500">빨간색</span>, 나이스에서 작성하지
+              않은 건은 <span className="text-orange-500">주황색</span>, 모두 작성된 건은{' '}
+              <span className="text-green-500">초록색</span> 박스로 표시돼요.
             </div>
 
             <table className="w-full border-collapse border border-gray-600">

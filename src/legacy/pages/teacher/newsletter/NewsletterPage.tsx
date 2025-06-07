@@ -46,7 +46,7 @@ export function NewsletterPage() {
           config={{
             topBtn: [
               {
-                label: t('add'),
+                label: '추가하기',
                 variant: 'solid',
                 color: 'primary',
                 action: () =>

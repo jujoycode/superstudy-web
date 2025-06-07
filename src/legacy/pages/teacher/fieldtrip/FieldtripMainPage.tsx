@@ -176,7 +176,7 @@ export function FieldtripMainPage() {
               filters: [
                 {
                   items: [
-                    { label: '전체보기', value: 'ALL' },
+                    { label: '결재 전체', value: 'ALL' },
                     { label: '승인 전', value: 'BEFORE_APPROVAL' },
                     { label: '승인 완료', value: 'PROCESSED' },
                     { label: '반려됨', value: 'RETURNED' },
@@ -188,7 +188,7 @@ export function FieldtripMainPage() {
                 },
                 {
                   items: [
-                    { label: '전체보기', value: 'ALL' },
+                    { label: '학급 전체', value: 'ALL' },
                     ...(classGroups
                       ?.filter((el: any) =>
                         me?.role === Role.PRE_HEAD || me?.role === Role.HEAD

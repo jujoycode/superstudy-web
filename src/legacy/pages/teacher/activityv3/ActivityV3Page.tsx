@@ -28,8 +28,8 @@ export function ActivityV3Page() {
   const [isDownloadModalOpen, setDownloadModalOpen] = useState(false)
   const [selectedSessionId, setSelectedSessionId] = useState<number>()
   const [title] = useState('')
-  const [type, setType] = useState('')
-  const [subject, setSubject] = useState('')
+  const [type, setType] = useState('all')
+  const [subject, setSubject] = useState('all')
   const [year, setYear] = useState<number>(+getThisYear())
   const [_isMyActivityV3, _setMyActivityV3] = useState(isMyActivityV3 || 'all')
 
@@ -45,10 +45,10 @@ export function ActivityV3Page() {
   } = useActivityV3FindByTeacher({
     title: title || undefined,
     subjectType: undefined,
-    subject: undefined,
+    subject: subject === 'all' ? undefined : subject,
     isMyActivityV3: _isMyActivityV3 || undefined,
-    type: type || undefined,
-    ...(year ? { year } : {}),
+    type: type === 'all' ? undefined : type,
+    ...(year !== 0 ? { year } : {}),
   })
 
   const { data: activitySessions, isLoading: sessionLoading } = useActivitySessionFindByTeacher(
@@ -88,25 +88,28 @@ export function ActivityV3Page() {
           <div className="3xl:mx-[208px] 3xl:my-[64px]overflow-hidden bg-white p-2 md:h-screen">
             <PageHeaderTemplate
               title="활동기록"
-              description="교과, 창체, 기타 활동을 생성하고, 각 활동에 차시를 추가할 수 있습니다."
+              description="활동 목록을 확인하고, 보고서 제출 현황도 함께 관리할 수 있어요."
               config={{
                 topBtn: {
-                  label: '활동 생성',
+                  label: '활동 추가하기',
                   color: 'primary',
                   variant: 'solid',
                   action: () => push('/teacher/activityv3/add'),
                 },
                 filters: [
                   {
-                    items: _.range(thisYear, thisYear - 3, -1).map((year) => ({
-                      label: `${year}학년도`,
-                      value: `${year}`,
-                    })),
+                    items: [
+                      { label: '전체', value: '0' },
+                      ..._.range(thisYear, thisYear - 3, -1).map((year) => ({
+                        label: `${year}학년도`,
+                        value: `${year}`,
+                      })),
+                    ],
                     filterState: { value: year.toString(), setValue: (v) => setYear(Number(v)) },
                   },
                   {
                     items: [
-                      { label: '전체 활동', value: 'all' },
+                      { label: '활동 전체', value: 'all' },
                       { label: '내 활동', value: 'my' },
                       { label: '내 그룹 활동', value: 'myGroup' },
                     ],
@@ -145,7 +148,7 @@ export function ActivityV3Page() {
               <table className="text-10 w-full border-separate border-spacing-0 text-center md:text-sm">
                 <thead>
                   <tr className="sticky top-0 z-10 bg-white">
-                    <th className="w-20 border-t border-b border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">타입</th>
+                    <th className="w-20 border-t border-b border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">유형</th>
                     <th className="w-30 border-t border-b border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">
                       과목/차시
                     </th>
@@ -156,7 +159,7 @@ export function ActivityV3Page() {
                       활동 기간
                     </th>
                     <th className="w-28 border-t border-b border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]">
-                      제출/총인원
+                      보고서 제출 현황
                     </th>
                     <th className="table-cell w-36 border-t border-b border-[#AAAAAA] border-t-[#333333] px-2 py-[15px]"></th>
                   </tr>
@@ -207,7 +210,7 @@ export function ActivityV3Page() {
                   ) : (
                     <>
                       {activityv3s
-                        ?.filter((el) => (subject ? el.subject === subject : true))
+                        ?.filter((el) => (subject !== 'all' ? el.subject === subject : true))
                         ?.map((el) => (
                           <>
                             <tr key={el.id} className="h-14">

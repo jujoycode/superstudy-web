@@ -35,7 +35,7 @@ export function FieldtripResultPage() {
   const { t } = useLanguage()
 
   const filters = [
-    { id: 1, name: t('show_all', '전체보기'), value: 'ALL' },
+    { id: 1, name: '결재 전체', value: 'ALL' },
     { id: 2, name: t('pending_approval', '승인 전'), value: 'BEFORE_APPROVAL' },
     { id: 3, name: t('approved', '승인 완료'), value: 'PROCESSED' },
     { id: 4, name: t('rejected', '반려됨'), value: 'RETURNED' },
@@ -145,7 +145,7 @@ export function FieldtripResultPage() {
               filters: [
                 {
                   items: [
-                    { label: '전체보기', value: 'ALL' },
+                    { label: '결재 전체', value: 'ALL' },
                     { label: '승인 전', value: 'BEFORE_APPROVAL' },
                     { label: '승인 완료', value: 'PROCESSED' },
                     { label: '반려됨', value: 'RETURNED' },
@@ -157,7 +157,7 @@ export function FieldtripResultPage() {
                 },
                 {
                   items: [
-                    { label: '전체보기', value: 'ALL' },
+                    { label: '학급 전체', value: 'ALL' },
                     ...(classGroups
                       ?.filter((el: any) =>
                         me?.role === Role.PRE_HEAD || me?.role === Role.HEAD
